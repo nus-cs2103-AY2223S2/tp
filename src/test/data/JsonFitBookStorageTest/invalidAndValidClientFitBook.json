@@ -5,6 +5,7 @@
     "email": "hans@example.com",
     "weight": "23",
     "gender": "m",
+    "goal": "lose weight",
     "address": "4th street"
   }, {
     "name": "Client With Invalid Phone Field",

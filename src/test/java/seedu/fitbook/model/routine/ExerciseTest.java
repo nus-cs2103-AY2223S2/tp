@@ -1,5 +1,6 @@
 package seedu.fitbook.model.routine;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fitbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -25,4 +26,11 @@ public class ExerciseTest {
         assertThrows(NullPointerException.class, () -> Exercise.isValidExerciseName(null));
     }
 
+    @Test
+    public void test_equalsSymmetric() {
+        Exercise exerciseA = new Exercise("push up");
+        Exercise exerciseB = new Exercise("push up");
+        assertTrue(exerciseA.equals(exerciseB) && exerciseB.equals(exerciseA));
+        assertTrue(exerciseA.hashCode() == exerciseB.hashCode());
+    }
 }

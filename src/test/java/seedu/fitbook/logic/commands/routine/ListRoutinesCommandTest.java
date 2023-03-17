@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.commands;
+package seedu.fitbook.logic.commands.routine;
 
 import static seedu.fitbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fitbook.logic.commands.CommandTestUtil.showRoutineAtIndex;
@@ -9,6 +9,8 @@ import static seedu.fitbook.testutil.routine.TypicalRoutines.getTypicalFitBookEx
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.fitbook.logic.commands.CommandTestUtil;
+import seedu.fitbook.logic.commands.ListRoutinesCommand;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.FitBookModelManager;
 import seedu.fitbook.model.UserPrefs;
@@ -30,7 +32,7 @@ public class ListRoutinesCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListRoutinesCommand(), model, ListRoutinesCommand.MESSAGE_SUCCESS,
+        CommandTestUtil.assertCommandSuccess(new ListRoutinesCommand(), model, ListRoutinesCommand.MESSAGE_SUCCESS,
                 expectedFitBookModel);
     }
 

@@ -11,6 +11,8 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.fitbook.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
+import static seedu.fitbook.logic.commands.CommandTestUtil.GOAL_DESC_AMY;
+import static seedu.fitbook.logic.commands.CommandTestUtil.GOAL_DESC_BOB;
 import static seedu.fitbook.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.fitbook.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.fitbook.logic.commands.CommandTestUtil.INVALID_CALORIE_DESC;
@@ -67,52 +69,58 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB + GOAL_DESC_BOB
                 + TAG_DESC_FRIEND + CALORIE_DESC_BOB, new AddCommand(expectedClient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB + GOAL_DESC_BOB
                 + TAG_DESC_FRIEND + CALORIE_DESC_BOB, new AddCommand(expectedClient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB + GOAL_DESC_BOB
                 + TAG_DESC_FRIEND + CALORIE_DESC_BOB, new AddCommand(expectedClient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB + GOAL_DESC_BOB
                 + TAG_DESC_FRIEND + CALORIE_DESC_BOB, new AddCommand(expectedClient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                + ADDRESS_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB + GOAL_DESC_BOB
                 + TAG_DESC_FRIEND + CALORIE_DESC_BOB, new AddCommand(expectedClient));
 
         // multiple calorie - last calorie accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_AMY + CALORIE_DESC_BOB
-                        + WEIGHT_DESC_BOB + GENDER_DESC_BOB + APPOINTMENT_DESC_DATE_ONE,
+                        + WEIGHT_DESC_BOB + GENDER_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + GOAL_DESC_BOB,
                 new AddCommand(expectedClient));
 
         // multiple gender - last gender accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_BOB + APPOINTMENT_DESC_DATE_ONE
-                        + WEIGHT_DESC_BOB + GENDER_DESC_AMY + GENDER_DESC_BOB,
+                        + WEIGHT_DESC_BOB + GENDER_DESC_AMY + GENDER_DESC_BOB + GOAL_DESC_BOB,
                 new AddCommand(expectedClient));
 
         // multiple weight - last weight accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_AMY + CALORIE_DESC_BOB
-                        + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_AMY + WEIGHT_DESC_BOB + GENDER_DESC_BOB,
-                new AddCommand(expectedClient));
+                        + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_AMY + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                        + GOAL_DESC_BOB, new AddCommand(expectedClient));
+
+        // multiple goal - last goal accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + CALORIE_DESC_BOB
+                + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                + GOAL_DESC_AMY + GOAL_DESC_BOB, new AddCommand(expectedClient));
 
         // multiple tags - all accepted
         Client expectedClientMultipleTags = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withAppointments(VALID_APPOINTMENT_DATE_ONE).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB
+                        + APPOINTMENT_DESC_DATE_ONE + WEIGHT_DESC_BOB + GENDER_DESC_BOB + GOAL_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + CALORIE_DESC_BOB,
                 new AddCommand(expectedClientMultipleTags));
 
@@ -121,7 +129,7 @@ public class AddCommandParserTest {
                 .withAppointments(VALID_APPOINTMENT_DATE_ONE, VALID_APPOINTMENT_DATE_TWO).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + GENDER_DESC_BOB + WEIGHT_DESC_BOB + APPOINTMENT_DESC_DATE_ONE + APPOINTMENT_DESC_DATE_TWO
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + CALORIE_DESC_BOB,
+                        + GOAL_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + CALORIE_DESC_BOB,
                 new AddCommand(expectedClientMultipleAppointments));
     }
 
@@ -130,7 +138,7 @@ public class AddCommandParserTest {
         // zero tags
         Client expectedClient = new ClientBuilder(AMY).withAppointments().withCalorie("0000").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + WEIGHT_DESC_AMY + GENDER_DESC_AMY, new AddCommand(expectedClient));
+                + WEIGHT_DESC_AMY + GENDER_DESC_AMY + GOAL_DESC_AMY, new AddCommand(expectedClient));
     }
 
     @Test

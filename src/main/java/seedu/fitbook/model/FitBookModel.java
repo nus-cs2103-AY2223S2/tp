@@ -39,19 +39,19 @@ public interface FitBookModel {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' FitBook file path.
      */
     Path getFitBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' FitBook file path.
      */
     void setFitBookFilePath(Path fitBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces FitBook data with the data in {@code fitBook}.
      */
-    void setFitBook(ReadOnlyFitBook addressBook);
+    void setFitBook(ReadOnlyFitBook fitBook);
 
     /**
      * Returns the FitBook
@@ -59,26 +59,26 @@ public interface FitBookModel {
     ReadOnlyFitBook getFitBook();
 
     /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in FitBook.
      */
     boolean hasClient(Client client);
 
     /**
      * Deletes the given client.
-     * The client must exist in the address book.
+     * The client must exist in FitBook.
      */
     void deleteClient(Client target);
 
     /**
      * Adds the given client.
-     * {@code client} must not already exist in the address book.
+     * {@code client} must not already exist in FitBook.
      */
     void addClient(Client client);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.
-     * {@code target} must exist in the address book.
-     * The client identity of {@code editedClient} must not be the same as another existing client in the address book.
+     * {@code target} must exist in the FitBook.
+     * The client identity of {@code editedClient} must not be the same as another existing client in FitBook.
      */
     void setClient(Client target, Client editedClient);
 

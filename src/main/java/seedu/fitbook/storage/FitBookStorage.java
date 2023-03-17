@@ -40,6 +40,6 @@ public interface FitBookStorage {
     /**
      * @see #saveFitBook(ReadOnlyFitBook)
      */
-    void saveFitBook(ReadOnlyFitBook addressBook, Path filePath) throws IOException;
+    void saveFitBook(ReadOnlyFitBook fitBook, Path filePath) throws IOException;
 
 }

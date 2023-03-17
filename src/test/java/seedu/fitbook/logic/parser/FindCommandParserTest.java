@@ -20,6 +20,7 @@ import seedu.fitbook.model.client.predicate.AppointmentContainsKeywordsPredicate
 import seedu.fitbook.model.client.predicate.CalorieContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.EmailContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.GenderContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.GoalContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.PhoneContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.TagContainsKeywordsPredicate;
@@ -97,6 +98,13 @@ public class FindCommandParserTest {
         FindCommand expectedFindCalorieCommand =
                 new FindCommand(caloriePredicates);
         assertParseSuccess(parser, " cal/1000", expectedFindCalorieCommand);
+
+        List<String> goalKeywords = Arrays.asList("lose weight");
+        List<Predicate<Client>> goalPredicates = new ArrayList<>();
+        goalPredicates.add(new GoalContainsKeywordsPredicate(goalKeywords));
+        FindCommand expectedFindGoalCommand =
+                new FindCommand(goalPredicates);
+        assertParseSuccess(parser, " gl/lose weight", expectedFindGoalCommand);
 
         List<String> appointmentKeywords = Arrays.asList("12-12-2020");
         List<Predicate<Client>> appointmentPredicates = new ArrayList<>();

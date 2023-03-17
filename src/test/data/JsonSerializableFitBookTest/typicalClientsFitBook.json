@@ -10,6 +10,7 @@
     "appointments": [ "13-02-1999 18:30" ],
     "weight": "50.0",
     "gender": "M",
+    "goal": "lose-weight",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -21,6 +22,7 @@
     "appointments": [ "13-02-2020 18:30", "14-01-2021 18:30" ],
     "weight": "50.0",
     "gender": "M",
+    "goal": "lose-weight",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -31,6 +33,7 @@
     "calorie" : "2111",
     "weight": "50.0",
     "gender": "M",
+    "goal": "lose-weight",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -42,6 +45,7 @@
     "appointments": [ "12-12-2020 18:30" ],
     "weight": "50.0",
     "gender": "M",
+    "goal": "lose-weight",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -53,6 +57,7 @@
     "appointments": [ ],
     "weight": "50.0",
     "gender": "M",
+    "goal": "lose-weight",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -64,6 +69,7 @@
     "appointments": [ ],
     "weight": "50.0",
     "gender": "M",
+    "goal": "lose-weight",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -75,6 +81,7 @@
     "appointments": [ ],
     "weight": "50.0",
     "gender": "M",
+    "goal": "lose-weight",
     "tagged" : [ ]
   } ]
 }

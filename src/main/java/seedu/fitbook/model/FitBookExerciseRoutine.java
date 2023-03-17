@@ -59,7 +59,7 @@ public class FitBookExerciseRoutine implements ReadOnlyFitBookExerciseRoutine {
     //// routine-level operations
 
     /**
-     * Returns true if a routine with the same identity as {@code routine} exists in the address book.
+     * Returns true if a routine with the same identity as {@code routine} exists in FitBook.
      */
     public boolean hasRoutine(Routine routine) {
         requireNonNull(routine);

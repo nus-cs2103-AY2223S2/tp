@@ -6,6 +6,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -29,10 +30,12 @@ import seedu.fitbook.model.client.Calorie;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
 import seedu.fitbook.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing client in the FitBook.
@@ -53,6 +56,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_GENDER + "GENDER] "
+            + "[" + PREFIX_GOAL + "GOAL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -111,11 +115,12 @@ public class EditCommand extends Command {
         Calorie updatedCalorie = editClientDescriptor.getCalorie().orElse(clientToEdit.getCalorie());
         Weight updatedWeight = editClientDescriptor.getWeight().orElse(clientToEdit.getWeight());
         Gender updatedGender = editClientDescriptor.getGender().orElse(clientToEdit.getGender());
+        Goal updatedGoal = editClientDescriptor.getGoal().orElse(clientToEdit.getGoal());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Set<Appointment> updatedAppointment =
                 editClientDescriptor.getAppointments().orElse(clientToEdit.getAppointments());
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAppointment, updatedWeight,
-                updatedGender, updatedCalorie, updatedTags);
+                updatedGender, updatedCalorie, updatedGoal, updatedTags);
     }
 
     @Override
@@ -148,6 +153,7 @@ public class EditCommand extends Command {
         private Calorie calorie;
         private Weight weight;
         private Gender gender;
+        private Goal goal;
         private Set<Tag> tags;
         private Set<Appointment> appointments;
 
@@ -165,6 +171,7 @@ public class EditCommand extends Command {
             setCalorie(toCopy.calorie);
             setWeight(toCopy.weight);
             setGender(toCopy.gender);
+            setGoal(toCopy.goal);
             setAppointments(toCopy.appointments);
             setTags(toCopy.tags);
         }
@@ -173,8 +180,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments,
-                    gender, weight, calorie, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, appointments, gender, weight,
+                    calorie, goal, tags);
         }
 
         public void setName(Name name) {
@@ -222,7 +229,12 @@ public class EditCommand extends Command {
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
         }
-
+        public void setGoal(Goal goal) {
+            this.goal = goal;
+        }
+        public Optional<Goal> getGoal() {
+            return Optional.ofNullable(goal);
+        }
 
         /**
          * Sets {@code appointments} to this object's {@code appointments}.
@@ -285,10 +297,10 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
-                    && getCalorie().equals(e.getCalorie())
                     && getWeight().equals(e.getWeight())
                     && getGender().equals(e.getGender())
+                    && getGoal().equals(e.getGoal())
+                    && getCalorie().equals(e.getCalorie())
                     && getAppointments().equals(e.getAppointments())
                     && getTags().equals(e.getTags());
         }

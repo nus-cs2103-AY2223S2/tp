@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.parser;
+package seedu.fitbook.logic.parser.routine;
 
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.fitbook.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.logic.commands.FindRoutineCommand;
+import seedu.fitbook.logic.parser.FindRoutineCommandParser;
 import seedu.fitbook.model.routines.RoutineNameContainsKeywordsPredicate;
 
 public class FindRoutineCommandParserTest {

@@ -6,7 +6,7 @@ import static seedu.fitbook.model.FitBookModel.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.fitbook.model.FitBookModel;
 
 /**
- * Lists all clients in the address book to the user.
+ * Lists all clients in FitBook to the user.
  */
 public class ListClientsCommand extends Command {
 

@@ -24,7 +24,7 @@ public class FindCommand extends Command {
 
     public static final String PREFIX_USAGE = COMMAND_WORD + ": Finds all clients whose details matches or contains "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Available Prefixes: n, p, e, a, t, w, g, cal, app\n"
+            + "Available Prefixes: n, p, e, a, t, w, g, cal, app, gl\n"
             + "Example: " + COMMAND_WORD + " n/alex or " + COMMAND_WORD + " p/91234567";
 
     private List<Predicate<Client>> predicateList;

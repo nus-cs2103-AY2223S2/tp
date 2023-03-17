@@ -1,4 +1,4 @@
-package seedu.fitbook.logic.parser;
+package seedu.fitbook.logic.parser.routine;
 
 import static seedu.fitbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.fitbook.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,6 +8,7 @@ import static seedu.fitbook.testutil.TypicalIndexes.INDEX_FIRST_ROUTINE;
 import org.junit.jupiter.api.Test;
 
 import seedu.fitbook.logic.commands.DeleteRoutineCommand;
+import seedu.fitbook.logic.parser.DeleteRoutineCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

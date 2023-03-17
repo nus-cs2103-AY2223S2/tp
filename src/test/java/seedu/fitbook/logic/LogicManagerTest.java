@@ -7,6 +7,7 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.CALORIE_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
+import static seedu.fitbook.logic.commands.CommandTestUtil.GOAL_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.WEIGHT_DESC_AMY;
@@ -88,7 +89,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + WEIGHT_DESC_AMY + GENDER_DESC_AMY + CALORIE_DESC_AMY;
+                + ADDRESS_DESC_AMY + WEIGHT_DESC_AMY + GENDER_DESC_AMY + GOAL_DESC_AMY + CALORIE_DESC_AMY;
         Client expectedClient = new ClientBuilder(AMY).withTags().withAppointments().build();
         FitBookModelManager expectedFitBookModel = new FitBookModelManager();
         expectedFitBookModel.addClient(expectedClient);

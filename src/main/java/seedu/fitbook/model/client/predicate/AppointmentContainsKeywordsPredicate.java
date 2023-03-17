@@ -11,6 +11,7 @@ import seedu.fitbook.model.client.Client;
  * Tests that a {@code Client}'s {@code Appointment} matches any of the keywords given.
  */
 public class AppointmentContainsKeywordsPredicate implements Predicate<Client> {
+
     private final List<String> keywords;
 
     public AppointmentContainsKeywordsPredicate(List<String> keywords) {

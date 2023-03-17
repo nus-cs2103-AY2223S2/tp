@@ -6,6 +6,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,10 +23,12 @@ import seedu.fitbook.model.client.Calorie;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
 import seedu.fitbook.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -40,7 +43,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG);
+                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_GOAL, PREFIX_TAG);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_WEIGHT,
                 PREFIX_GENDER, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -56,7 +59,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Calorie calorie = optionalPresentCaloriePrefix(argMultimap);
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
-        Client client = new Client(name, phone, email, address, appointmentList, weight, gender, calorie, tagList);
+        Goal goal = ParserUtil.parseGoal(argMultimap.getValue(PREFIX_GOAL).get());
+        Client client = new Client(name, phone, email, address, appointmentList, weight, gender, calorie, goal,
+                tagList);
         return new AddCommand(client);
     }
 

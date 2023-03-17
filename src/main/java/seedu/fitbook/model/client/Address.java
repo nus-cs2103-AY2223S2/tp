@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Client's address in the address book.
+ * Represents a Client's address in FitBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {

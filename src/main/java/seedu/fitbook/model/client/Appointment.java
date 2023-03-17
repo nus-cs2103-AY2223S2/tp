@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a Person's appointment time in the address book.
+ * Represents a Client's appointment time in FitBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidAppointment(String)}
  */
 public class Appointment implements Comparable<Appointment> {

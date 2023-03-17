@@ -11,11 +11,11 @@ import seedu.fitbook.model.client.Calorie;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
 import seedu.fitbook.model.tag.Tag;
-
 
 /**
  * A utility class to help with building EditClientDescriptor objects.
@@ -44,6 +44,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setCalorie(client.getCalorie());
         descriptor.setWeight(client.getWeight());
         descriptor.setGender(client.getGender());
+        descriptor.setGoal(client.getGoal());
         descriptor.setAppointments(client.getAppointments());
         descriptor.setTags(client.getTags());
     }
@@ -93,6 +94,13 @@ public class EditClientDescriptorBuilder {
      */
     public EditClientDescriptorBuilder withGender(String gender) {
         descriptor.setGender(new Gender(gender));
+        return this;
+    }
+    /**
+     * Sets the {@code goal} of the {@code EditClientDescriptor} that we are building.
+     */
+    public EditClientDescriptorBuilder withGoal(String goal) {
+        descriptor.setGoal(new Goal(goal));
         return this;
     }
 
