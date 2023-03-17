@@ -30,7 +30,7 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
     private static final String FIELD_NAME_GRP_SET = "Group set";
     private static final String FIELD_NAME_MIN_AGE = "Min age";
     private static final String FIELD_NAME_MAX_AGE = "Max age";
-    private static final String FIELD_NAME_ALLERGY = "Allergy requirements";
+    private static final String FIELD_NAME_INGREDIENTS = "Ingredients";
     private static final String FIELD_NAME_HISTORY = "History requirements";
 
     private final boolean isRenameAllowed;
@@ -70,7 +70,7 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
         builder = mapAge(argsMap.getValue(CliSyntax.PREFIX_MAX_AGE), FIELD_NAME_MAX_AGE)
                 .map(builder::setMaxAge)
                 .orElse(builder);
-        builder = mapGroupSet(argsMap.getAllValues(CliSyntax.PREFIX_INGREDIENTS), FIELD_NAME_ALLERGY)
+        builder = mapGroupSet(argsMap.getAllValues(CliSyntax.PREFIX_INGREDIENTS), FIELD_NAME_INGREDIENTS)
                 .map(builder::setIngredients)
                 .orElse(builder);
         builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_HISTORY_REQ), FIELD_NAME_HISTORY)

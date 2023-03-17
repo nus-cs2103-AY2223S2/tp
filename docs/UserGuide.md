@@ -305,7 +305,7 @@ vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
 ```
 
 Copy and paste:<br>
-`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --a allergy1, allergy2, allergy3 --h NONE::DOES 1`
+`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
 <br><br>
 Output:<br>
 {some ss}
