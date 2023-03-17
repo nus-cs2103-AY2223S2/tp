@@ -14,7 +14,7 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
 
 /**
  * A list of contacts that enforces uniqueness between its elements and does not allow nulls.
- * A contact is considered unique by comparing using {@code Event#isSameContact(Contact)}. As such, adding and
+ * A contact is considered unique by comparing using {@code Contact#isSameContact(Contact)}. As such, adding and
  * updating of contacts uses Contact#isSameContact(Contact) for equality to ensure that the contact being added
  * or updated is unique in terms of identity in the UniqueContactList.
  * However, the removal of a contact uses Contact#equals(Object) to ensure that the contact
@@ -98,8 +98,8 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Replaces the contents of this list with {@code Contacts}.
-     * {@code Contacts} must not contain duplicate Contacts.
+     * Replaces the contents of this list with {@code contacts}.
+     * {@code contacts} must not contain duplicate Contacts.
      */
     public void setContacts(List<Contact> contacts) {
         requireAllNonNull(contacts);

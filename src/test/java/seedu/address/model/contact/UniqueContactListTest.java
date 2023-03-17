@@ -56,12 +56,12 @@ public class UniqueContactListTest {
     }
 
     @Test
-    public void setEvent_nullTargetContact_throwsNullPointerException() {
+    public void setContact_nullTargetContact_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueContactList.setContact(null, ALICE));
     }
 
     @Test
-    public void setEvent_nullEditedContact_throwsNullPointerException() {
+    public void setContact_nullEditedContact_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueContactList.setContact(ALICE, null));
     }
 
