@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import seedu.address.model.ReadOnlyUserData;
+import seedu.address.model.event.Event;
 
 /**
  * Wraps all data at the UserData level
@@ -64,6 +65,13 @@ public class UserData implements ReadOnlyUserData {
     @Override
     public ReadOnlyObjectProperty<User> getData() {
         return this.user.getReadOnlyProperty();
+    }
+
+    public boolean hasEvent(Event e) {
+        return this.user.getValue().hasEvent(e);
+    }
+    public void addEvent(Event e) {
+        this.user.getValue().addEvent(e);
     }
 
     @Override

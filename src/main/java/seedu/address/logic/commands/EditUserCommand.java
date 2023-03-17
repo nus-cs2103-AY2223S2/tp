@@ -14,6 +14,7 @@ import javafx.beans.property.ReadOnlyObjectProperty;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
 import seedu.address.model.Model;
+import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
@@ -89,11 +90,12 @@ public class EditUserCommand extends Command {
         Race updatedRace = editPersonDescriptor.getRace().orElse(user.getRace());
         CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(user.getComms());
         Favorite currentFavorite = user.getIsFavorite();
+        UniqueEventList currentEvents = user.getEvents();
 
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(user.getTags());
 
-        return new User(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite);
+        return new User(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGender, updatedMajor,
+                updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite, currentEvents);
     }
 
     public EditPersonDescriptor getEditUserDescriptor() {
