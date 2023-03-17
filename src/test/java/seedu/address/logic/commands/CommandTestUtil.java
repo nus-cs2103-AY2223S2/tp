@@ -52,7 +52,6 @@ import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 public class CommandTestUtil {
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_NAME_CHARLIE = "Charlie Tan";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -75,11 +74,17 @@ public class CommandTestUtil {
 
     public static final String VALID_TAG_SINGLE = "single";
 
-    public static final String VALID_START_DATE = "2022-02-11";
-    public static final String VALID_END_DATE = "2022-02-15";
+    public static final String VALID_START_DATE_ONE = "2022-02-11";
+    public static final String VALID_END_DATE_ONE = "2022-02-15";
+
+    public static final String VALID_START_DATE_TWO = "2023-02-11";
+    public static final String VALID_END_DATE_TWO = "2023-02-15";
+
     public static final String VALID_TAG_STRONG = "strong";
 
     public static final String INVALID_NRIC = "S1234325252B"; // nric has exactly 8 characters
+
+    public static final String INVALID_DATE = "0231-9312-12";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -102,8 +107,13 @@ public class CommandTestUtil {
     public static final String TAG_DESC_SINGLE = " " + PREFIX_TAG + VALID_TAG_SINGLE;
     public static final String TAG_DESC_STRONG = " " + PREFIX_TAG + VALID_TAG_STRONG;
 
-    public static final String AVAILABLE_DATES = " " + PREFIX_AVAILABILITY + VALID_START_DATE + "," + VALID_END_DATE;
+    public static final String AVAILABLE_DATES_ONE = " " + PREFIX_AVAILABILITY + VALID_START_DATE_ONE + ","
+            + VALID_END_DATE_ONE;
+    public static final String AVAILABLE_DATES_TWO = " " + PREFIX_AVAILABILITY + VALID_START_DATE_TWO + ","
+            + VALID_END_DATE_TWO;
 
+    public static final String INVALID_AVAILABLE_DATE = " " + PREFIX_AVAILABILITY + INVALID_DATE + ","
+            + VALID_END_DATE_TWO;
     public static final String NRIC_ELDERLY_DESC_AMY = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_AMY;
     public static final String NRIC_ELDERLY_DESC_BOB = " " + PREFIX_NRIC_ELDERLY + VALID_NRIC_BOB;
     public static final String NRIC_VOLUNTEER_DESC_AMY = " " + PREFIX_NRIC_VOLUNTEER + VALID_NRIC_AMY;
