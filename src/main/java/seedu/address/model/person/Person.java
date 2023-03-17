@@ -120,7 +120,7 @@ public class Person {
                 .append(email)
                 .append(address)
                 .append(getRemark())
-                .append(" Tags: ");
+                
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

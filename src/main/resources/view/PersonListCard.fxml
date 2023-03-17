@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -27,11 +29,36 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <ImageView fitHeight="16" fitWidth="16" preserveRatio="true" >
+          <Image url="@/images/book.png"/>
+        </ImageView>
+        <FlowPane fx:id="tags" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <ImageView fitHeight="16" fitWidth="16" preserveRatio="true" >
+          <Image url="@/images/call.png"/>
+        </ImageView>
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <ImageView fitHeight="16" fitWidth="16" preserveRatio="true" >
+          <Image url="@/images/home-address.png"/>
+        </ImageView>
+        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <ImageView fitHeight="16" fitWidth="16" preserveRatio="true" >
+          <Image url="@/images/email.png"/>
+        </ImageView>
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <ImageView fitHeight="16" fitWidth="16" preserveRatio="true" >
+          <Image url="@/images/commentary.png"/>
+        </ImageView>
+        <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>
