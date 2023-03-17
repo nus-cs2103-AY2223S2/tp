@@ -242,7 +242,7 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
 
-Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
+Simply add the following to [`seedu.address.ui.EventCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
 **`PersonCard.java`:**
 
@@ -254,7 +254,7 @@ private Label remark;
 
 `@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
 
-Then insert the following into [`main/resources/view/PersonListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
+Then insert the following into [`main/resources/view/EventListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
 
 **`PersonListCard.fxml`:**
 
