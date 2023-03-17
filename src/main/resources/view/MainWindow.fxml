@@ -22,7 +22,7 @@
         <URL value="@../css/MainWindow.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox fx:id="mainVbox">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
