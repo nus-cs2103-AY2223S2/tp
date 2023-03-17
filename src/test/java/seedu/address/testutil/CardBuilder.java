@@ -14,10 +14,11 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Card objects.
  */
-public class PersonBuilder {
+public class CardBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_QUESTION = "What is a default question";
+    public static final String DEFAULT_ANSWER = "A default question is a standard, "
+            + "common question used to provide basic information or understanding";
     public static final String DEFAULT_DECK = "Default";
     private Question question;
     private Answer answer;
@@ -26,19 +27,19 @@ public class PersonBuilder {
 
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CardBuilder} with the default details.
      */
-    public PersonBuilder() {
-        question = new Question(DEFAULT_NAME);
-        answer = new Answer(DEFAULT_ADDRESS);
+    public CardBuilder() {
+        question = new Question(DEFAULT_QUESTION);
+        answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>();
         deck = Optional.of(new Deck(DEFAULT_DECK));
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code cardToCopy}.
+     * Initializes the CardBuilder with the data of {@code cardToCopy}.
      */
-    public PersonBuilder(Card cardToCopy) {
+    public CardBuilder(Card cardToCopy) {
         question = cardToCopy.getQuestion();
         answer = cardToCopy.getAnswer();
         tags = new HashSet<>(cardToCopy.getTags());
@@ -48,15 +49,15 @@ public class PersonBuilder {
     /**
      * Sets the {@code Question} of the {@code Card} that we are building.
      */
-    public PersonBuilder withName(String name) {
-        this.question = new Question(name);
+    public CardBuilder withQuestion(String question) {
+        this.question = new Question(question);
         return this;
     }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Card} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public CardBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -64,16 +65,16 @@ public class PersonBuilder {
     /**
      * Sets the {@code Answer} of the {@code Card} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.answer = new Answer(address);
+    public CardBuilder withAnswer(String answer) {
+        this.answer = new Answer(answer);
         return this;
     }
 
     /**
      * Sets the {@code Deck} of the {@code Card} that we are building.
      */
-    public PersonBuilder withDeck(String deckName) {
-        this.deck = Optional.of(new Deck(DEFAULT_DECK));
+    public CardBuilder withDeck(String deckName) {
+        this.deck = Optional.of(new Deck(deckName));
         return this;
     }
 

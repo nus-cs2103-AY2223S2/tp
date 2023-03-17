@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "cards": [ {
     "question": "Hans Muster",
     "answer": "4th street",
     "deck" : "Default"

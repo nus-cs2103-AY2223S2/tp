@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CARDS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalCards.LOOP;
+import static seedu.address.testutil.TypicalCards.VARIABLE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.card.QuestionContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.MasterDeckBuilder;
 
 public class ModelManagerTest {
 
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasCard(ALICE));
+        assertFalse(modelManager.hasCard(LOOP));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addCard(ALICE);
-        assertTrue(modelManager.hasCard(ALICE));
+        modelManager.addCard(LOOP);
+        assertTrue(modelManager.hasCard(LOOP));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        MasterDeck addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        MasterDeck addressBook = new MasterDeckBuilder().withCard(LOOP).withCard(VARIABLE).build();
         MasterDeck differentAddressBook = new MasterDeck();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getQuestion().question.split("\\s+");
+        String[] keywords = LOOP.getQuestion().question.split("\\s+");
         modelManager.updateFilteredCardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
         //assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 

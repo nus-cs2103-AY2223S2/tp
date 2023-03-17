@@ -25,7 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.CardBuilder;
 
 public class AddCommandTest {
 
@@ -37,7 +37,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Card validCard = new PersonBuilder().build();
+        Card validCard = new CardBuilder().build();
         CommandResult commandResult = new AddCommand(validCard).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
@@ -46,7 +46,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Card validCard = new PersonBuilder().build();
+        Card validCard = new CardBuilder().build();
         AddCommand addCommand = new AddCommand(validCard);
         ModelStub modelStub = new ModelStubWithPerson(validCard);
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Card alice = new PersonBuilder().withName("Alice").build();
-        Card bob = new PersonBuilder().withName("Bob").build();
+        Card alice = new CardBuilder().withQuestion("Alice").build();
+        Card bob = new CardBuilder().withQuestion("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

@@ -1,0 +1,39 @@
+{
+  "_comment": "MasterDeck save file which contains the same Card values as in TypicalCards#getTypicalMasterDeck()",
+  "cards" : [ {
+    "question": "What is a loop",
+    "answer": "A construct that repeats instructions until a condition is met",
+    "tagged" : [ "Hard" ],
+    "deck" : "Programming Concepts"
+  }, {
+    "question": "What is a variable",
+    "answer": "A named memory location that stores a value",
+    "tagged" : [ "Hard" ],
+    "deck" : "Programming Concepts"
+  }, {
+    "question": "What is the structure of an atom",
+    "answer": "Atoms consist of a nucleus containing protons and neutrons, surrounded by electrons in shells or energy levels",
+    "tagged" : [ ],
+    "deck" : "Science"
+  }, {
+    "question": "What is the basic unit of life",
+    "answer": "The cell is the basic unit of life",
+    "tagged" : [ "Medium" ],
+    "deck" : "Science"
+  }, {
+    "question": "Who was the first president of the United States",
+    "answer": "George Washington",
+    "tagged" : [ ],
+    "deck" : "History"
+  }, {
+    "question": "When did Singapore gain independence",
+    "answer": "9 August 1965",
+    "tagged" : [ ],
+    "deck" : "History"
+  }, {
+    "question": "What is an earthquake",
+    "answer": "An earthquake is a sudden and rapid shaking of the earth caused by the shifting of tectonic plates",
+    "tagged" : [ ],
+    "deck" : "Geography"
+  } ]
+}

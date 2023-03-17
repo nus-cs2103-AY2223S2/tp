@@ -14,22 +14,22 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class to help with building EditCardDescriptor objects.
  */
-public class EditPersonDescriptorBuilder {
+public class EditCardDescriptorBuilder {
 
     private EditCommand.EditCardDescriptor descriptor;
 
-    public EditPersonDescriptorBuilder() {
+    public EditCardDescriptorBuilder() {
         descriptor = new EditCommand.EditCardDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditCardDescriptor descriptor) {
+    public EditCardDescriptorBuilder(EditCommand.EditCardDescriptor descriptor) {
         this.descriptor = new EditCommand.EditCardDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditCardDescriptor} with fields containing {@code card}'s details
      */
-    public EditPersonDescriptorBuilder(Card card) {
+    public EditCardDescriptorBuilder(Card card) {
         descriptor = new EditCardDescriptor();
         descriptor.setQuestion(card.getQuestion());
         descriptor.setAnswer(card.getAnswer());
@@ -39,16 +39,16 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Question} of the {@code EditCardDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setQuestion(new Question(name));
+    public EditCardDescriptorBuilder withQuestion(String question) {
+        descriptor.setQuestion(new Question(question));
         return this;
     }
 
     /**
      * Sets the {@code Answer} of the {@code EditCardDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAnswer(new Answer(address));
+    public EditCardDescriptorBuilder withAnswer(String answer) {
+        descriptor.setAnswer(new Answer(answer));
         return this;
     }
 
@@ -56,7 +56,7 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditCardDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
+    public EditCardDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
