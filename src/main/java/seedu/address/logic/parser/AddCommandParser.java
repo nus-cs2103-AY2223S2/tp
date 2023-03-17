@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Optional;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddLectureCommand;
@@ -36,45 +35,54 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_LECTURE);
 
-        Optional<String> moduleCodeOpt = argMultimap.getValue(PREFIX_MODULE);
-        Optional<String> lectureNameOpt = argMultimap.getValue(PREFIX_LECTURE);
-
-        if (lectureNameOpt.isPresent()) {
-            return parseAddVideoCommand(argMultimap.getPreamble(), lectureNameOpt, moduleCodeOpt);
-        } else if (moduleCodeOpt.isPresent()) {
-            return parseAddLectureCommand(argMultimap.getPreamble(), moduleCodeOpt);
+        if (isAddModule(argMultimap)) {
+            return parseAddModuleCommand(argMultimap);
+        } else if (isAddLecture(argMultimap)) {
+            return parseAddLectureCommand(argMultimap);
+        } else if (isAddVideo(argMultimap)) {
+            return parseAddVideoCommand(argMultimap);
         } else {
-            return parseAddModuleCommand(argMultimap.getPreamble(), argMultimap.getValue(PREFIX_NAME));
+            throw createInvalidCommandFormatException();
         }
     }
 
-    private AddCommand parseAddVideoCommand(String videoNameStr, Optional<String> lectureNameOpt,
-            Optional<String> moduleCodeOpt) throws ParseException {
+    private boolean isAddModule(ArgumentMultimap argMultimap) {
+        return !argMultimap.getPreamble().isEmpty()
+                && argMultimap.getValue(PREFIX_MODULE).isEmpty()
+                && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
+    }
 
-        if (!moduleCodeOpt.isPresent() || !lectureNameOpt.isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
+    private boolean isAddLecture(ArgumentMultimap argMultimap) {
+        return !argMultimap.getPreamble().isEmpty()
+                && argMultimap.getValue(PREFIX_MODULE).isPresent()
+                && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
+    }
 
-        String moduleCodeStr = moduleCodeOpt.get();
-        String lectureNameStr = lectureNameOpt.get();
+    private boolean isAddVideo(ArgumentMultimap argMultimap) {
+        return !argMultimap.getPreamble().isEmpty()
+                && argMultimap.getValue(PREFIX_MODULE).isPresent()
+                && argMultimap.getValue(PREFIX_LECTURE).isPresent();
+    }
+
+    private ParseException createInvalidCommandFormatException() {
+        return new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    private AddCommand parseAddModuleCommand(ArgumentMultimap argMultimap) throws ParseException {
+        String moduleCodeStr = argMultimap.getPreamble();
+        String moduleNameStr = argMultimap.getValue(PREFIX_NAME).orElse("");
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
-        LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
-        VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
+        ModuleName moduleName = ParserUtil.parseModuleName(moduleNameStr);
 
-        Video video = new Video(videoName, false, new HashSet<>());
+        Module module = new Module(moduleCode, moduleName, new HashSet<>(), new ArrayList<>());
 
-        return new AddVideoCommand(moduleCode, lectureName, video);
+        return new AddModuleCommand(module);
     }
 
-    private AddCommand parseAddLectureCommand(String lectureNameStr, Optional<String> moduleCodeOpt)
-            throws ParseException {
-
-        if (!moduleCodeOpt.isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-        }
-
-        String moduleCodeStr = moduleCodeOpt.get();
+    private AddCommand parseAddLectureCommand(ArgumentMultimap argMultimap) throws ParseException {
+        String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
+        String lectureNameStr = argMultimap.getPreamble();
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
         LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
@@ -84,17 +92,19 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddLectureCommand(moduleCode, lecture);
     }
 
-    private AddCommand parseAddModuleCommand(String moduleCodeStr, Optional<String> moduleNameOpt)
-            throws ParseException {
+    private AddCommand parseAddVideoCommand(ArgumentMultimap argMultimap) throws ParseException {
 
-        String moduleNameStr = moduleNameOpt.orElse("");
+        String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
+        String lectureNameStr = argMultimap.getValue(PREFIX_LECTURE).get();
+        String videoNameStr = argMultimap.getPreamble();
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeStr);
-        ModuleName moduleName = ParserUtil.parseModuleName(moduleNameStr);
+        LectureName lectureName = ParserUtil.parseLectureName(lectureNameStr);
+        VideoName videoName = ParserUtil.parseVideoName(videoNameStr);
 
-        Module module = new Module(moduleCode, moduleName, new HashSet<>(), new ArrayList<>());
+        Video video = new Video(videoName, false, new HashSet<>());
 
-        return new AddModuleCommand(module);
+        return new AddVideoCommand(moduleCode, lectureName, video);
     }
 
 }
