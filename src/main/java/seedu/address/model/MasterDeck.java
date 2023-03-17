@@ -113,11 +113,10 @@ public class MasterDeck implements ReadOnlyMasterDeck {
      * hence this function should not be called in normal operation.
      */
     public void initDecks() {
-        for (Card card: cards) {
-            if (!decks.contains(card.getDeck().get())) {
-                addDeck(card.getDeck().get());
-            }
-        }
+        cards.asUnmodifiableObservableList().stream()
+                .map(card -> card.getDeck().get())
+                .distinct()
+                .forEach(this::addDeck);
     }
 
     /**
