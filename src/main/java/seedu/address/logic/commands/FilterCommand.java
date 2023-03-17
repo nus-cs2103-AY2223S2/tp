@@ -1,11 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATOON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RANK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UNIT;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,15 +36,22 @@ public class FilterCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_RANK + "RANK] "
+            + "[" + PREFIX_UNIT + "UNIT] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_PLATOON + "PLATOON] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "j "
-            + PREFIX_PHONE + "9 "
-            + PREFIX_EMAIL + ".com "
+            + PREFIX_NAME + "jo "
+            + PREFIX_PHONE + "98 "
+            + PREFIX_EMAIL + "example.com "
             + PREFIX_ADDRESS + "clementi "
+            + PREFIX_RANK + "3SG "
+            + PREFIX_UNIT + "6SIR "
+            + PREFIX_COMPANY + "Alpha "
+            + PREFIX_PLATOON + "2 "
             + PREFIX_TAG + "2ic "
             + PREFIX_TAG + "logistics ";
-    public static final String MESSAGE_FILTER_SUCCESS = "Filter applied!";
     public static final String MESSAGE_NO_FIELD_GIVEN = "At least one field must be provided to filter.";
     public static final String MESSAGE_EMPTY_FIELD = "Field values should not be blank";
     private final FilterDescriptor filterDescriptor;
@@ -72,8 +84,12 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        int originalCount = model.getAddressBook().getPersonList().size();
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(MESSAGE_FILTER_SUCCESS);
+        int currentCount = model.getFilteredPersonList().size();
+        int hiddenCount = originalCount - currentCount;
+        return new CommandResult(String.format(
+                MESSAGE_PERSONS_FILTERED_OVERVIEW, currentCount, hiddenCount));
     }
 
     @Override

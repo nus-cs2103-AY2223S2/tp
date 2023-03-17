@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_FILTERED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.FILTER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FILTER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -32,6 +33,7 @@ public class FilterCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private int totalSize = model.getAddressBook().getPersonList().size();
 
     @Test
     public void equals() {
@@ -60,7 +62,8 @@ public class FilterCommandTest {
         FilterDescriptor emptyDescriptor = new FilterDescriptor();
         FilterCommand command = new FilterCommand(emptyDescriptor);
 
-        assertCommandSuccess(command, model, FilterCommand.MESSAGE_FILTER_SUCCESS, expectedModel);
+        assertCommandSuccess(command, model,
+                String.format(MESSAGE_PERSONS_FILTERED_OVERVIEW, totalSize, 0), expectedModel);
         assertEquals(expectedModel.getFilteredPersonList(), model.getFilteredPersonList());
     }
 
@@ -72,7 +75,8 @@ public class FilterCommandTest {
 
         FilterCommand command = new FilterCommand(filterDescriptor);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, FilterCommand.MESSAGE_FILTER_SUCCESS, expectedModel);
+        assertCommandSuccess(command, model,
+                String.format(MESSAGE_PERSONS_FILTERED_OVERVIEW, 3, totalSize - 3), expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
@@ -86,7 +90,8 @@ public class FilterCommandTest {
 
         FilterCommand command = new FilterCommand(personDescriptor);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, FilterCommand.MESSAGE_FILTER_SUCCESS, expectedModel);
+        assertCommandSuccess(command, model,
+                String.format(MESSAGE_PERSONS_FILTERED_OVERVIEW, 2, totalSize - 2), expectedModel);
         assertEquals(Arrays.asList(CARL, DANIEL), model.getFilteredPersonList());
     }
 
