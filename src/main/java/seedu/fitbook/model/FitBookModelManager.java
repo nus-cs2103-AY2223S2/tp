@@ -27,7 +27,7 @@ public class FitBookModelManager implements FitBookModel {
     private final FitBookExerciseRoutine fitBookExerciseRoutine;
 
     /**
-     * Initializes a FitBookModelManager with the given fitBook and userPrefs.
+     * Initializes a FitBookModelManager with the given FitBook and userPrefs.
      */
     public FitBookModelManager(ReadOnlyFitBook fitBook, ReadOnlyFitBookExerciseRoutine fitBookExerciseRoutine,
                                ReadOnlyUserPrefs userPrefs) {

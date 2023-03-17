@@ -69,9 +69,11 @@ public class Client {
     public Weight getWeight() {
         return weight;
     }
+
     public Gender getGender() {
         return gender;
     }
+
     public Goal getGoal() {
         return goal;
     }

@@ -10,7 +10,7 @@ import seedu.fitbook.model.client.Client;
  * Tests that a {@code Client}'s {@code Calorie} matches any of the keywords given.
  */
 public class CalorieContainsKeywordsPredicate implements Predicate<Client> {
-    public static final String PREFIX_PREDICATE = "cal";
+
     private final List<String> keywords;
 
     public CalorieContainsKeywordsPredicate(List<String> keywords) {

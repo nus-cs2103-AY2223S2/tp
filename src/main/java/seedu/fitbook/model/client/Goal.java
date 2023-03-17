@@ -9,7 +9,6 @@ import static seedu.fitbook.commons.util.AppUtil.checkArgument;
  */
 public class Goal {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Goal can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
