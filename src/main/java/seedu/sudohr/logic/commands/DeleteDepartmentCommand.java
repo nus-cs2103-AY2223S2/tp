@@ -11,7 +11,7 @@ import seedu.sudohr.model.department.DepartmentName;
 
 public class DeleteDepartmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deldep";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the department identified by the department name.\n"
