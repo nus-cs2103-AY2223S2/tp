@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.Service;
-import seedu.address.model.service.Vehicle;
 
 /**
  * Deletes a vehicle identified using it's displayed index from viewvehicle.

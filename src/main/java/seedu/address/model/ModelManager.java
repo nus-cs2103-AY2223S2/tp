@@ -291,10 +291,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() { return filteredAppointment; }
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointment;
+    }
 
     @Override
-    public ObservableList<Service> getFilteredServiceList() { return filteredServices; }
+    public ObservableList<Service> getFilteredServiceList() {
+        return filteredServices;
+    }
 
     @Override
     public PartMap getPartMap() {
