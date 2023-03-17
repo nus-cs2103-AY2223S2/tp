@@ -18,6 +18,8 @@ public class DeliveryJobFullDetail extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label deliveryTimeDate;
+    @FXML
     private Label deliveryTimeSlot;
     @FXML
     private Label earning;
@@ -34,7 +36,19 @@ public class DeliveryJobFullDetail extends UiPart<Region> {
         super(FXML);
         id.setText(displayedIndex + ". ");
         label.setText(job.getJobId());
-        deliveryTimeSlot.setText(job.getDeliverSlot());
+
+        job.getDeliveryDate().ifPresentOrElse(val -> {
+            deliveryTimeDate.setText(val.date);
+        }, () -> {
+            deliveryTimeDate.setText("N.A");
+        });
+
+        job.getDeliverySlot().ifPresentOrElse(val -> {
+            deliveryTimeSlot.setText(val.value);
+        }, () -> {
+            deliveryTimeSlot.setText("N.A");
+        });
+
         earning.setText(job.getEarning().value);
         completedStatus.setText(String.valueOf(job.getDeliveredStatus()));
     }

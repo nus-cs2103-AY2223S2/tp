@@ -239,7 +239,7 @@ public class ModelManager implements Model {
 
         for (int i = 0; i < sortedDeliveryJobs.size(); i++) {
             LocalDate jobDate = sortedDeliveryJobs.get(i).getDeliverDate();
-            String jobSlot = sortedDeliveryJobs.get(i).getDeliverSlot();
+            String jobSlot = sortedDeliveryJobs.get(i).getDeliverySlot().get().value;
             int slotIndex = Integer.parseInt(jobSlot) - 1;
             DeliveryJob toAdd = sortedDeliveryJobs.get(i);
             if (jobListGroupedByDate.containsKey(jobDate)) {

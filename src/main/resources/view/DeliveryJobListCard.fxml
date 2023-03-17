@@ -29,6 +29,7 @@
       </HBox>
       <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+         <Label fx:id="deliveryTimeDate" styleClass="cell_small_label" text="\$delivery_time_date" />
          <Label fx:id="deliveryTimeSlot" styleClass="cell_small_label" text="\$delivery_time_slot" />
       <Label fx:id="earning" styleClass="cell_small_label" text="\$earning" />
          <Label fx:id="completedStatus" styleClass="cell_small_label" text="\$completed_status" />

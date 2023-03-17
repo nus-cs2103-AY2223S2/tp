@@ -55,7 +55,7 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
         String ear = argMultimap.getValue(PREFIX_EARNING).get();
 
         // TODO: check for valid person id before inserting
-        DeliveryJob job = new DeliveryJob(rid, sid, ded, ear);
+        DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear);
 
         return new AddDeliveryJobCommand(job);
     }
