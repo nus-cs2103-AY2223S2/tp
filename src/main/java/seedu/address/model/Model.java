@@ -94,6 +94,11 @@ public interface Model {
     ReadOnlyTracker getTracker();
 
     /**
+     * Clears the tracker.
+     */
+    void clearTracker();
+
+    /**
      * Returns true if a module with the same code as {@code module} exists in the tracker.
      *
      * @param module The module to check if exist.
@@ -110,13 +115,13 @@ public interface Model {
     boolean hasModule(ModuleCode moduleCode);
 
     /**
-     * Returns a module in the tracker with the specified {@code moduleCode}.
+     * Returns a module which has {@code moduleCode}.
+     * The module must exist in the tracker.
      *
-     * @param moduleCode The code of the module to check if it exist.
-     * @return a module in the tracker with the specified {@code moduleCode}.
+     * @param moduleCode The code of the module to return
+     * @return Module that has {@code moduleCode}.
      */
     ReadOnlyModule getModule(ModuleCode moduleCode);
-
 
     /**
      * Deletes the given module. <p>
@@ -155,7 +160,7 @@ public interface Model {
     /**
      * Returns true if a module of {@code moduleCode} has a lecture with {@code lectureName}.
      *
-     * @param moduleCode The moduleCode of the module that the lecture with {@code lectureName} belongs to .
+     * @param moduleCode The moduleCode of the module that the lecture with {@code lectureName} belongs to.
      * @return True if a module that has {@code moduleCode} has a lecture with {@code lectureName}. Otherwise, false.
      */
     boolean hasLecture(ModuleCode moduleCode, LectureName lectureName);
@@ -168,6 +173,16 @@ public interface Model {
      * @return True if a lecture with the same name as {@code lecture} exists in {@code module}. Otherwise, false.
      */
     boolean hasLecture(ReadOnlyModule module, LectureName lecture);
+
+    /**
+     * Returns a lecture with {@code lectureName} in module of {@code moduleCode}
+     * The module must exist in the tracker.
+     * The lecture must exist in {@code module}
+     *
+     * @param moduleCode The moduleCode of the module that the lecture with {@code lecturename} belongs to.
+     * @return Lecture with {@code lectureName} found in module of {@code moduleCode}
+     */
+    ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName);
 
 
     /**
@@ -215,6 +230,18 @@ public interface Model {
      * @return True if a video with the same name as {@code video} exists in {@code lecture}. Otherwise, false.
      */
     boolean hasVideo(ReadOnlyLecture lecture, VideoName video);
+
+    /**
+     * Returns the video with {@code videoName} in the lecture {@code lecture}
+     * The lecture must exist in the tracker.
+     * The video must exist in {@code lecture}
+     *
+     * @param lecture The lecture that contains the video with {@code videoName}
+     * @param videoName Name of video to return
+     * @return Video with {@code videoName} found in {@code lecture}
+     */
+    Video getVideo(ReadOnlyLecture lecture, VideoName videoName);
+
 
     /**
      * Deletes the given video {@code target}.<p>

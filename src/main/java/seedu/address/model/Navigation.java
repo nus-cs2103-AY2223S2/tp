@@ -13,6 +13,7 @@ public class Navigation implements ReadOnlyNavigation {
 
     public static final int ROOT_LAYER = 1;
     public static final int MODULE_LAYER = 2;
+    public static final int LECTURE_LAYER = 3;
 
     private final Stack<NavigationContext> contextStack;
 
@@ -102,5 +103,19 @@ public class Navigation implements ReadOnlyNavigation {
      */
     public boolean isAtLayer(int layer) {
         return contextStack.size() == layer;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Navigation)) {
+            return false;
+        }
+
+        Navigation other = (Navigation) obj;
+        return contextStack.equals(other.contextStack);
     }
 }
