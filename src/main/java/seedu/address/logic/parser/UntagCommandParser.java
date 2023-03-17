@@ -14,7 +14,7 @@ import seedu.address.model.tag.ModuleTag;
 /**
  * Parses input arguments and creates a new UntagCommand object
  */
-public class UntagCommandParser {
+public class UntagCommandParser implements Parser<UntagCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the UntagCommand
