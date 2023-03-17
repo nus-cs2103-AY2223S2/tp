@@ -3,6 +3,7 @@ package seedu.socket.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.socket.model.person.Person;
@@ -91,6 +92,14 @@ public class Socket implements ReadOnlySocket {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Removes all persons by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    public boolean removeAllPerson(Predicate<Person> predicate) {
+        return persons.removeAll(predicate);
     }
 
     //// util methods

@@ -18,6 +18,15 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    /**
+     * Returns true if Tag Predicate is empty.
+     *
+     * @return {@code true} if Tag Predicate is empty.
+     */
+    public boolean isEmpty() {
+        return keywords.isEmpty();
+    }
+
     @Override
     public boolean test(Person person) {
         Set<Tag> tags = person.getTags();

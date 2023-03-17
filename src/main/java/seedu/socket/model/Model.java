@@ -64,6 +64,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes persons by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    boolean hasDeleteMultiplePerson(Predicate<Person> predicate);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the {@code Socket}.
      */

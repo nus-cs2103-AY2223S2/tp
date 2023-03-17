@@ -11,6 +11,7 @@ import static seedu.socket.model.person.Person.CATEGORY_PHONE;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,6 +84,16 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Removes all persons by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    public boolean removeAll(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        boolean getRemoved = internalList.removeIf(predicate);
+        return getRemoved;
     }
 
     public void setPersons(UniquePersonList replacement) {

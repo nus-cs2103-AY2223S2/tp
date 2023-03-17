@@ -30,7 +30,6 @@ public class ListCommandParser implements Parser<ListCommand> {
         if ((!arePrefixesPresent(argMultimap, PREFIX_TAG)
                 && !arePrefixesPresent(argMultimap, PREFIX_LANGUAGE))) {
             areKeywordsPresent = false;
-
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

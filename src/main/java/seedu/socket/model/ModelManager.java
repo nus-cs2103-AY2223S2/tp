@@ -106,6 +106,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDeleteMultiplePerson(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        return socket.removeAllPerson(predicate);
+    }
+
+    @Override
     public void addPerson(Person person) {
         socket.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
