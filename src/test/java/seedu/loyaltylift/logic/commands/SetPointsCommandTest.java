@@ -7,7 +7,7 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_CUMULATIVE_
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_BOB;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
 

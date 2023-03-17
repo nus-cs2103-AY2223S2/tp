@@ -7,14 +7,17 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "orders": [ ]
   }, {
     "customerType": "INDIVIDUAL",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
+    "tagged": [ "friends" ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "orders": [ ]
   } ]
 }
