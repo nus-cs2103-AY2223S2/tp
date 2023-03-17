@@ -225,7 +225,7 @@ public class ParserUtil {
         }
         final Set<NusMod> modulesSet = new HashSet<>();
         for (String module : modules) {
-            modulesSet.add(parseModule(module));
+            modulesSet.add(parseModule(module.toUpperCase()));
         }
         return new Modules(modulesSet);
     }
