@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-        if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
+      - if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
 
       - name: Set up repository
         uses: actions/checkout@main
