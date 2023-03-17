@@ -42,4 +42,10 @@ public class ClearCommand extends Command {
         model.commitSocket();
         return new CommandResult(MESSAGE_SUCCESS);
     }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ClearCommand // instanceof handles nulls
+                && tagPredicate.equals(((ClearCommand) other).tagPredicate)); // state check for predicate
+    }
 }
