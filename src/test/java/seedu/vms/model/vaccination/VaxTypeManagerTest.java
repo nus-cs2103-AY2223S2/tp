@@ -16,7 +16,7 @@ public class VaxTypeManagerTest {
             SampleVaxTypeData.GROUPS_1,
             SampleVaxTypeData.MIN_AGE_1,
             SampleVaxTypeData.MAX_AGE_1,
-            SampleVaxTypeData.ALLERGY_REQS_1,
+            SampleVaxTypeData.INGREDIENTS_1,
             SampleVaxTypeData.HISTORY_REQS_1);
 
 

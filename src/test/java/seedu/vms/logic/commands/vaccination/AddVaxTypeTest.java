@@ -33,19 +33,19 @@ public class AddVaxTypeTest {
             "abc," + "123," + "unchi," + "i am invalid ( ^)o(^ )b," + "banana");
 
     private static final String INVALID_REQ_TYPE_CMD = String.format("UNCHI --%s %s",
-            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            CliSyntax.PREFIX_INGREDIENTS.getPrefix(),
             "rUbb15h::UNCHI");
     private static final String INVALID_REQ_CMD_EMPTY = String.format("UNCHI --%s %s",
-            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            CliSyntax.PREFIX_INGREDIENTS.getPrefix(),
             "NONE::" + ParserUtil.KEYWORD_EMPTY_LIST);
     private static final String INVALID_REQ_CMD_SYNTAX = String.format("UNCHI --%s %s",
-            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            CliSyntax.PREFIX_INGREDIENTS.getPrefix(),
             "NONE::UNCHI, i am invalid ( ^)o(^ )b, BANANA");
     private static final String INVALID_REQ_CMD_TOO_FEW_PARTS = String.format("UNCHI --%s %s",
-            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            CliSyntax.PREFIX_HISTORY_REQ.getPrefix(),
             "NONE");
     private static final String INVALID_REQ_CMD_TOO_MANY_PARTS = String.format("UNCHI --%s %s",
-            CliSyntax.PREFIX_ALLERGY_REQ.getPrefix(),
+            CliSyntax.PREFIX_HISTORY_REQ.getPrefix(),
             "NONE::UNCHI, BANANA::NONE::pear");
 
 
@@ -56,7 +56,7 @@ public class AddVaxTypeTest {
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 VaxType.DEFAULT_HISTORY_REQS);
     }
 
@@ -68,42 +68,42 @@ public class AddVaxTypeTest {
                 SampleVaxTypeData.GROUPS_1,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_MIN_AGE_1,
                 SampleVaxTypeData.NAME_1,
                 VaxType.DEFAULT_GROUP_SET,
                 SampleVaxTypeData.MIN_AGE_1,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_MIN_AGE_1,
                 SampleVaxTypeData.NAME_1,
                 VaxType.DEFAULT_GROUP_SET,
                 SampleVaxTypeData.MIN_AGE_1,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_MAX_AGE_1,
                 SampleVaxTypeData.NAME_1,
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 SampleVaxTypeData.MAX_AGE_1,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 VaxType.DEFAULT_HISTORY_REQS);
-        checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_ALLERGY_REQS_1,
+        checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_INGREDIENTS_1,
                 SampleVaxTypeData.NAME_1,
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                SampleVaxTypeData.ALLERGY_REQS_1,
+                SampleVaxTypeData.INGREDIENTS_1,
                 VaxType.DEFAULT_HISTORY_REQS);
         checkExecution(SampleVaxTypeData.CMD_NAME_1 + SampleVaxTypeData.CMD_HISTORY_REQS_1,
                 SampleVaxTypeData.NAME_1,
                 VaxType.DEFAULT_GROUP_SET,
                 VaxType.DEFAULT_MIN_AGE,
                 VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_ALLERGY_REQS,
+                VaxType.DEFAULT_INGREDIENTS,
                 SampleVaxTypeData.HISTORY_REQS_1);
     }
 
@@ -112,7 +112,7 @@ public class AddVaxTypeTest {
     public void execute_validFull() throws Exception {
         String command = String.join(" ",
                 SampleVaxTypeData.CMD_NAME_REAL,
-                SampleVaxTypeData.CMD_ALLERGY_REQS_REAL,
+                SampleVaxTypeData.CMD_INGREDIENTS_REAL,
                 SampleVaxTypeData.CMD_MIN_AGE_REAL,
                 SampleVaxTypeData.CMD_HISTORY_REQS_REAL,
                 SampleVaxTypeData.CMD_MAX_AGE_REAL,
@@ -122,7 +122,7 @@ public class AddVaxTypeTest {
                 SampleVaxTypeData.GROUPS_REAL,
                 SampleVaxTypeData.MIN_AGE_REAL,
                 SampleVaxTypeData.MAX_AGE_REAL,
-                SampleVaxTypeData.ALLERGY_REQS_REAL,
+                SampleVaxTypeData.INGREDIENTS_REAL,
                 SampleVaxTypeData.HISTORY_REQS_REAL);
     }
 
@@ -172,7 +172,7 @@ public class AddVaxTypeTest {
 
     private void checkExecution(String command, GroupName name, HashSet<GroupName> groups,
                 Age minAge, Age maxAge,
-                List<Requirement> allergyReq, List<Requirement> historyReq) throws Exception {
+                HashSet<GroupName> allergyReq, List<Requirement> historyReq) throws Exception {
         VaxType expected = new VaxType(name, groups, minAge, maxAge, allergyReq, historyReq);
 
         VaxTypeModelStub model = new VaxTypeModelStub();
