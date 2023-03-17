@@ -33,7 +33,7 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <HBox>
+            <HBox VBox.vgrow="NEVER">
                <children>
               <VBox fx:id="personList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
@@ -67,7 +67,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-without-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
