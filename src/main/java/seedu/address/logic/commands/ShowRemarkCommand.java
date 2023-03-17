@@ -46,7 +46,7 @@ public class ShowRemarkCommand extends Command {
         }
 
         Person personToShow = lastShownList.get(index.getZeroBased());
-        Remark toBeShown = personToShow.getOptionalRemark();
+        Remark toBeShown = personToShow.getOptionalRemark().orElse(new Remark(""));
         String message = !toBeShown.value.isEmpty() ? MESSAGE_SHOWN_REMARK_SUCCESS : MESSAGE_SHOWN_REMARK_EMPTY;
         return new CommandResult(String.format(message, toBeShown));
     }

@@ -58,7 +58,7 @@ class JsonAdaptedPerson {
         phone = source.getOptionalPhone().map(Phone::toString).orElse("");
         email = source.getOptionalEmail().map(Email::toString).orElse("");
         address = source.getOptionalAddress().map(Address::toString).orElse("");
-        remark = source.getOptionalRemark().value;
+        remark = source.getOptionalRemark().map(Remark::toString).orElse("");
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
