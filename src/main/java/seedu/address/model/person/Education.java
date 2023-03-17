@@ -48,7 +48,7 @@ public class Education {
      * Format state as text for viewing.
      */
     public String toString() {
-        return "[Education: " + value + ']';
+        return value;
     }
 
 }
