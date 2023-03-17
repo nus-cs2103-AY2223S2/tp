@@ -16,6 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.sudohr.commons.core.index.Index;
+import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
+import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.SudoHr;

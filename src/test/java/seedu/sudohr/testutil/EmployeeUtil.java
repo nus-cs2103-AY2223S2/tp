@@ -9,8 +9,8 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.sudohr.logic.commands.AddCommand;
-import seedu.sudohr.logic.commands.EditCommand.EditEmployeeDescriptor;
+import seedu.sudohr.logic.commands.employee.AddCommand;
+import seedu.sudohr.logic.commands.employee.EditCommand.EditEmployeeDescriptor;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.tag.Tag;
 

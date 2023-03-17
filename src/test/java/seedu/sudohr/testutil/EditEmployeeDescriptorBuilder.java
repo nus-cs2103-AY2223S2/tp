@@ -4,8 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.sudohr.logic.commands.EditCommand;
-import seedu.sudohr.logic.commands.EditCommand.EditEmployeeDescriptor;
+import seedu.sudohr.logic.commands.employee.EditCommand;
+import seedu.sudohr.logic.commands.employee.EditCommand.EditEmployeeDescriptor;
 import seedu.sudohr.model.employee.Address;
 import seedu.sudohr.model.employee.Email;
 import seedu.sudohr.model.employee.Employee;

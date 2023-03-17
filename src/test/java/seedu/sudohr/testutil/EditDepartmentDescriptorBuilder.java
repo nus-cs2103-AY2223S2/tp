@@ -1,6 +1,6 @@
 package seedu.sudohr.testutil;
 
-import seedu.sudohr.logic.commands.EditDepartmentCommand;
+import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 
