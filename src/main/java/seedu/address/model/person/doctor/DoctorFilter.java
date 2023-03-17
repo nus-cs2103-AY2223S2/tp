@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.doctor;
 
 import java.util.Set;
 import java.util.stream.Collectors;

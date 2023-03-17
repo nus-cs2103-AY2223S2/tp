@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindDoctorCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.DoctorContainsKeywordsPredicate;
-import seedu.address.model.person.DoctorFilter;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorFilter;
 
 /**
  * Parses input arguments and creates a new FindDoctorCommand object
