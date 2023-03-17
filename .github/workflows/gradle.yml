@@ -1,6 +1,15 @@
 name: Java CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
 
 jobs:
   build:
@@ -10,6 +19,8 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
+        if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
+
       - name: Set up repository
         uses: actions/checkout@main
 
@@ -23,7 +34,7 @@ jobs:
 
       - name: Run repository-wide tests
         if: runner.os == 'Linux'
-        working-directory:  ${{ github.workspace }}/.github
+        working-directory: ${{ github.workspace }}/.github
         run: ./run-checks.sh
 
       - name: Validate Gradle Wrapper
