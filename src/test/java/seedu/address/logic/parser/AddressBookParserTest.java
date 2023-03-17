@@ -29,9 +29,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.group.GroupCreateCommand;
 import seedu.address.logic.commands.group.GroupDeleteCommand;
+import seedu.address.logic.commands.group.GroupFindCommand;
 import seedu.address.logic.commands.group.GroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
+import seedu.address.model.person.MemberOfGroupPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -132,9 +135,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_groupFind() throws Exception {
-        GroupCreateCommand command = (GroupCreateCommand) parser.parseCommand(GroupCreateCommand.COMMAND_WORD
-                + " g/2103");
-        assertEquals(new GroupCreateCommand(new Group("2103")), command);
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        GroupFindCommand command = (GroupFindCommand) parser.parseCommand(GroupFindCommand.COMMAND_WORD
+                + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new GroupFindCommand(new GroupNameContainsKeywordsPredicate(keywords),
+                new MemberOfGroupPredicate(keywords)), command);
     }
 
     @Test
