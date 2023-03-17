@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import  seedu.address.model.id.PatientId;
+import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
@@ -91,6 +91,14 @@ public class PatientBuilder {
      */
     public PatientBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code PatientId} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withId(String id) {
+        this.id = new PatientId(id);
         return this;
     }
 

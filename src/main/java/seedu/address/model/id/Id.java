@@ -34,4 +34,9 @@ public abstract class Id {
         Id other = (Id) obj;
         return id.equals(other.getId());
     }
+
+    @Override
+    public String toString() {
+        return id;
+    }
 }

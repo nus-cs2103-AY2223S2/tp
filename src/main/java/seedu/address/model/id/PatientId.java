@@ -5,7 +5,7 @@ package seedu.address.model.id;
  * guarantees: details are present and not null, field values are validated, immutable.
  */
 public class PatientId extends Id {
-    private String id;
+    public final String id;
 
     public PatientId(String id) {
         this.id = id;
