@@ -120,7 +120,7 @@ public class DeadlineCommandTest {
         }
 
         @Override
-        public void addTask(DeadlineTask person) {
+        public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -223,10 +223,10 @@ public class DeadlineCommandTest {
     }
 
     /**
-     * A Model stub that always accept the deadline task being added.
+     * A Model stub that always accept the task being added.
      */
     private class ModelStubAcceptingDeadlineTaskAdded extends ModelStub {
-        final ArrayList<DeadlineTask> tasksAdded = new ArrayList<>();
+        final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
         public boolean hasTask(Task task) {
@@ -235,7 +235,7 @@ public class DeadlineCommandTest {
         }
 
         @Override
-        public void addTask(DeadlineTask task) {
+        public void addTask(Task task) {
             requireNonNull(task);
             tasksAdded.add(task);
         }

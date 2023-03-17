@@ -42,15 +42,35 @@ Pied Piper is a task management app to help project team leaders stay organized 
 
 </div>
 
-### Creating a deadline: `deadline task`
+### Creating a task : `todo`
 
-Pied Piper creates a new deadline
+Pied Piper creates a new task
+
+Format: `todo task/{TASK_NAME} `
+
+
+Example:
+* `todo task/Go for a haircut`
+
+### Creating a task with a deadline: `deadline`
+
+Pied Piper creates a new deadline task
 
 Format: `deadline task/{TASK_NAME} by/{DD/MM/YYYY}`
 
 
 Example:
 * `deadline task/Complete Assignment by/12/09/2021`
+
+### Creating a task that is an event : `event`
+
+Pied Piper creates a new event task
+
+Format: `event task/{TASK_NAME} from/{DD/MM/YYYY} to/{DD/MM/YYYY}`
+
+
+Example:
+* `event task/Manage Open House from/11/12/2023 to/16/12/2023`
 
 ### Assigning task to member: `assign`
 
