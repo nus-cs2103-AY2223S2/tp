@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -30,6 +32,18 @@ public class DeleteCommandTest {
         nricList.add(nric);
         DeleteCommand deleteCommand = new DeleteCommand(nricList);
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NRIC_DOES_NOT_EXIST);
+    }
+
+    @Test
+    public void execute_nricExist_success() {
+        ArrayList<Nric> nricList = new ArrayList<>();
+        Nric nric = new Nric("S1234567A");
+        nricList.add(nric);
+        DeleteCommand deleteCommand = new DeleteCommand(nricList);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, 1);
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deletePerson(ALICE);
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
