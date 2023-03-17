@@ -47,7 +47,8 @@ public class NavigationInjector extends Injector {
             commandText += " " + navContext.getModulePrefixArg();
         }
 
-        if (!argMultimap.getValue(PREFIX_LECTURE).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_LECTURE).isPresent()
+                && navContext.getLectureName() != null) {
             commandText += " " + navContext.getLecturePrefixArg();
         }
 

@@ -20,6 +20,7 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -108,6 +109,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearTracker() {
+        tracker.clear();
+    }
+
+    @Override
     public boolean hasModule(ReadOnlyModule module) {
         return tracker.hasModule(module);
     }
@@ -115,6 +121,11 @@ public class ModelManager implements Model {
     @Override
     public boolean hasModule(ModuleCode moduleCode) {
         return tracker.getModule(moduleCode) != null;
+    }
+
+    @Override
+    public ReadOnlyModule getModule(ModuleCode moduleCode) {
+        return tracker.getModule(moduleCode);
     }
 
     @Override
@@ -146,6 +157,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName) {
+        ReadOnlyModule mod = tracker.getModule(moduleCode);
+        return mod.getLecture(lectureName);
+    }
+    @Override
     public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
         requireNonNull(module);
         //CHECKSTYLE.OFF: SeparatorWrap
@@ -173,6 +189,18 @@ public class ModelManager implements Model {
     public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
         requireNonNull(lecture);
         return lecture.hasVideo(video);
+    }
+
+    @Override
+    public boolean hasVideo(ReadOnlyLecture lecture, VideoName videoName) {
+        requireNonNull(lecture);
+        return lecture.hasVideo(videoName);
+    }
+
+    @Override
+    public Video getVideo(ReadOnlyLecture lecture, VideoName videoName) {
+        requireNonNull(lecture);
+        return lecture.getVideo(videoName);
     }
 
     @Override
@@ -291,8 +319,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return tracker.equals(other.tracker)
-            && userPrefs.equals(other.userPrefs)
-            && filteredModules.equals(other.filteredModules);
+                && userPrefs.equals(other.userPrefs)
+                && filteredModules.equals(other.filteredModules)
+                && navigation.equals(other.navigation);
     }
 
     // TODO: Remove all code beyond this point
