@@ -46,7 +46,14 @@ public class PersonListPanel extends UiPart<Region> {
             } else {
                 setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
                 setOnMouseClicked(e -> {
-                    logic.setViewedPerson(getIndex());
+                    logger.info("An item selected: " + PersonListViewCell.super.getItem().toString());
+                    if (!logic.getViewedPerson().isEmpty()
+                            && PersonListViewCell.super.getItem().isSamePerson(logic.getViewedPerson().get(0))) {
+                        personListView.getSelectionModel().clearSelection();
+                        logic.setViewedPerson(-1);
+                    } else {
+                        logic.setViewedPerson(getIndex());
+                    }
                 });
             }
         }
