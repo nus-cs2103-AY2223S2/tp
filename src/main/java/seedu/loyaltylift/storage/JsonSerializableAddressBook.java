@@ -21,6 +21,7 @@ import seedu.loyaltylift.model.order.Order;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customers list contains duplicate customer(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Orders list contains duplicate orders(s).";
 
     private final List<JsonAdaptedCustomer> customers = new ArrayList<>();
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
@@ -62,7 +63,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
             Order order = jsonAdaptedOrder.toModelType();
             if (addressBook.hasOrder(order)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
             }
             addressBook.addOrder(order);
         }
