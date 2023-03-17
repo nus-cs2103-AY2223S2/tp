@@ -78,11 +78,28 @@ public class VersionedAddressBook {
         return true;
     }
 
+    /**
+     * Helper method
+     * @return LinkedList<AddressBook>
+     */
     public LinkedList<AddressBook> getAddressBookStateList() {
         return this.addressBookStateList;
     }
 
+    /**
+     * Helper method
+     * @return int size of addressBookStateList
+     */
     public int getSize() {
         return this.addressBookStateList.size();
     }
+
+    /**
+     * Helper method
+     * @return currentStatePointer
+     */
+    public int getCurrentStatePointer() {
+        return this.currentStatePointer;
+    }
+
 }
