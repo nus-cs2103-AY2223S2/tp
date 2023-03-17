@@ -244,27 +244,29 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markCorrect() {
+    public boolean markCorrect() {
         this.currReview.markCurrCardAsCorrect();
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+        return goToNextCard();
     }
 
     @Override
-    public void markWrong() {
+    public boolean markWrong() {
         this.currReview.markCurrCardAsWrong();
-        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+        return goToNextCard();
     }
 
     @Override
-    public void goToPrevCard() {
-        this.currReview.goToPrevCard();
+    public boolean goToPrevCard() {
+        boolean check = this.currReview.goToPrevCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+        return check;
     }
 
     @Override
-    public void goToNextCard() {
-        this.currReview.goToNextCard();
+    public boolean goToNextCard() {
+        boolean check = this.currReview.goToNextCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+        return check;
     }
 
     @Override
