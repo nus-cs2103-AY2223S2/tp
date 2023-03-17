@@ -39,13 +39,14 @@ public class SampleVaxTypeData {
             INGREDIENTS_REAL,
             HISTORY_REQS_REAL);
     public static final String CMD_NAME_REAL = "Dose 1 (Pfizer)";
-    public static final String CMD_GROUPS_REAL = "--" + CliSyntax.PREFIX_VAX_GROUPS.getPrefix() + " "
+    public static final String CMD_GROUPS_REAL = CliSyntax.DELIMITER + CliSyntax.PREFIX_VAX_GROUPS.getPrefix() + " "
             + "DOSE 1,"
             + "Pfizer,"
             + "Vaccination";
-    public static final String CMD_MIN_AGE_REAL = "--" + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 5";
+    public static final String CMD_MIN_AGE_REAL = CliSyntax.DELIMITER + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 5";
     public static final String CMD_MAX_AGE_REAL = "";
-    public static final String CMD_INGREDIENTS_REAL = "--" + CliSyntax.PREFIX_INGREDIENTS.getPrefix() + " "
+    public static final String CMD_INGREDIENTS_REAL = CliSyntax.DELIMITER
+            + CliSyntax.PREFIX_INGREDIENTS.getPrefix() + " 
             + "ALC-0315,"
             + "ALC-0159,"
             + "DSPC,"
@@ -54,9 +55,9 @@ public class SampleVaxTypeData {
             + "Phosphate,"
             + "Tromethamine,"
             + "Tromethamine hydrochloride";
-    public static final String CMD_HISTORY_REQS_REAL = "--" + CliSyntax.PREFIX_HISTORY_REQ.getPrefix()
+    public static final String CMD_HISTORY_REQS_REAL = CliSyntax.DELIMITER
+            + CliSyntax.PREFIX_HISTORY_REQ.getPrefix()
             + " none::DOSE 1";
-
 
     public static final GroupName NAME_1 = new GroupName("UNCHI");
     public static final HashSet<GroupName> GROUPS_1 = new HashSet<>(List.of(
@@ -76,10 +77,12 @@ public class SampleVaxTypeData {
             INGREDIENTS_1,
             HISTORY_REQS_1);
     public static final String CMD_NAME_1 = "UNCHI";
-    public static final String CMD_GROUPS_1 = "--" + CliSyntax.PREFIX_VAX_GROUPS.getPrefix() + " UNCHI";
-    public static final String CMD_MIN_AGE_1 = "--" + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 35";
-    public static final String CMD_MAX_AGE_1 = "--" + CliSyntax.PREFIX_MAX_AGE.getPrefix() + " 45";
-    public static final String CMD_INGREDIENTS_1 = "--" + CliSyntax.PREFIX_INGREDIENTS.getPrefix() + " UNCHI";
-    public static final String CMD_HISTORY_REQS_1 = "--" + CliSyntax.PREFIX_HISTORY_REQ.getPrefix() + " none::UNCHI";
-
+    public static final String CMD_GROUPS_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_VAX_GROUPS.getPrefix()
+            + " UNCHI";
+    public static final String CMD_MIN_AGE_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 35";
+    public static final String CMD_MAX_AGE_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_MAX_AGE.getPrefix() + " 45";
+    public static final String CMD_INGREDIENTS_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_INGREDIENTS.getPrefix()
+            + " UNCHI";
+    public static final String CMD_HISTORY_REQS_1 = CliSyntax.DELIMITER + CliSyntax.PREFIX_HISTORY_REQ.getPrefix()
+            + " none::UNCHI";
 }

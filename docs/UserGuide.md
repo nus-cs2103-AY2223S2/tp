@@ -210,12 +210,12 @@ Example:
 #### `delete` - Delete a patient
 
 ```text
-patient delete --index <integer>
+patient delete <integer>
 ```
 
 Example:
 
-* `patent delete --index 5`
+* `patent delete 5`
 
 #### `find` - Locate a patient
 
@@ -240,22 +240,32 @@ patient list
 #### `add` - Add an appointment
 
 ```text
-appointment add --patient <integer> --start <date> --end <date>
+appointment add --p <integer> --s <date> --e <date> --v <string>
 ```
 
 Example:
 
-* `appointment add --patient 5 --start 2023-3-5 0700 --end 2023-3-5 0800`
+* `appointment add --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Mordena`
+
+#### `edit` - Edit an appointment
+
+```text
+appointment edit 1 --p <integer> --s <date> --e <date> --v <string>
+```
+
+Example:
+
+* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Pfizer`
 
 #### `delete` - Delete an appointment
 
 ```text
-appointment delete --index <integer>
+appointment delete <integer>
 ```
 
 Example:
 
-* `appointment delete --index 5`
+* `appointment delete 5`
 
 #### `list` - List all appointments
 
@@ -299,6 +309,24 @@ Copy and paste:<br>
 <br><br>
 Output:<br>
 {some ss}
+
+#### `edit` - Edit a vaccination type
+
+```text
+vaccination edit <groupName> [{--name <groupName>}] [{groups <list <groupName>>}] [--lal {minAge <age>}] [--ual {maxAge <age>}] [--s {spacing <integer>}] [--a {allergyReq {requirement}}]... [--h {historyReq <requirement>}]...
+```
+
+* **name** - the name of the vaccination type to edit.
+* **groups** - the list of groups the vaccination type classifies under.
+* **minAge** - the minimum required age (inclusive) to take the vaccine.
+* **maxAge** - the maximum require age (inclusive) to take the vaccine.
+* **spacing** - the minimum time in days from the last vaccination taken to take this vaccine.
+* **allergyReq** - the allergy requirement to take the vaccine.
+* **historyReq** - the vaccination group history requirement to take the vaccine.
+
+Example:
+
+* `vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 2, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy4 --h NONE::DOES 1`
 
 ## Advance
 

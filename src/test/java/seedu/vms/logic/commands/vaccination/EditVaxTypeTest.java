@@ -30,10 +30,10 @@ public class EditVaxTypeTest {
             SampleVaxTypeData.CMD_GROUPS_REAL);
     private static final String CMD_VALID_RENAME = String.join(" ",
             SampleVaxTypeData.CMD_NAME_1,
-            "--" + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL,
+            CliSyntax.DELIMITER + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL,
             SampleVaxTypeData.CMD_GROUPS_REAL,
             SampleVaxTypeData.CMD_MIN_AGE_REAL,
-            "--" + CliSyntax.PREFIX_MAX_AGE + " " + Age.MAX_VALUE,
+            CliSyntax.DELIMITER + CliSyntax.PREFIX_MAX_AGE + " " + Age.MAX_VALUE,
             SampleVaxTypeData.CMD_INGREDIENTS_REAL,
             SampleVaxTypeData.CMD_HISTORY_REQS_REAL);
     private static final String CMD_NON_EXISTENT_NAME = String.join(" ",
@@ -41,7 +41,7 @@ public class EditVaxTypeTest {
             SampleVaxTypeData.CMD_GROUPS_REAL);
     private static final String CMD_EXISTING_RENAME = String.join(" ",
             SampleVaxTypeData.CMD_NAME_1,
-            "--" + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL);
+            CliSyntax.DELIMITER + CliSyntax.PREFIX_NAME + " " + SampleVaxTypeData.CMD_NAME_REAL);
 
     private VaxTypeModelStub model;
 
