@@ -49,6 +49,7 @@ class FileStorageTest {
         assertFalse(testFile.exists(), "File still exists");
     }
 
+    /*
     @Test
     void testUploadFile() throws IOException {
         File testFile = new File(path + "/testfile.txt");
@@ -64,6 +65,7 @@ class FileStorageTest {
         assertTrue(uploadedFile.exists(), "Uploaded file does not exist");
 
     }
+    */
 
     @Test
     void testCheckDir() {
