@@ -85,8 +85,8 @@ public class ViewCommand extends Command {
             ViewCommand otherCommand = (ViewCommand) other;
             return otherCommand.getIndex().equals(getIndex())
                     && otherCommand.getName().equals(getName());
-        } else {
-            return false;
         }
+        return false;
+
     }
 }
