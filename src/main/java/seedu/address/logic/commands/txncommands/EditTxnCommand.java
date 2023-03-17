@@ -127,7 +127,7 @@ public class EditTxnCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditTxnDescriptor(EditTxnCommand.EditTxnDescriptor toCopy) {
+        public EditTxnDescriptor(EditTxnDescriptor toCopy) {
             setDescription(toCopy.description);
             setOwner(toCopy.owner);
             setStatus(toCopy.status);

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TXN_VALUE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.txncommands.EditTxnCommand;
+import seedu.address.logic.commands.txncommands.EditTxnCommand.EditTxnDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -38,7 +39,7 @@ public class EditTxnCommandParser implements Parser<EditTxnCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTxnCommand.MESSAGE_USAGE), pe);
         }
 
-        EditTxnCommand.EditTxnDescriptor editTxnDescriptor = new EditTxnCommand.EditTxnDescriptor();
+        EditTxnCommand.EditTxnDescriptor editTxnDescriptor = new EditTxnDescriptor();
         if (argMultimap.getValue(PREFIX_TXN_DESCRIPTION).isPresent()) {
             editTxnDescriptor.setDescription(ParserUtil.parseDescription(
                     argMultimap.getValue(PREFIX_TXN_DESCRIPTION).get()));
