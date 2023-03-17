@@ -242,7 +242,7 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
-
+        setLastListLevel(Level.MODULE);
 
         // Hide other list components
         if (filteredLectures != null) {
@@ -268,6 +268,7 @@ public class ModelManager implements Model {
         }
         requireNonNull(filteredLectures);
         filteredLectures.setPredicate(predicate);
+        setLastListLevel(Level.LECTURE);
 
         // Hide other list components
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
@@ -290,6 +291,7 @@ public class ModelManager implements Model {
         }
         requireNonNull(filteredVideos);
         filteredVideos.setPredicate(predicate);
+        setLastListLevel(Level.VIDEO);
 
         // Hide other list components
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
@@ -312,6 +314,10 @@ public class ModelManager implements Model {
     @Override
     public Level getLastListLevel() {
         return lastListLevel;
+    };
+
+    private Level setLastListLevel(Level listLevel) {
+        return lastListLevel = listLevel;
     };
 
     //=========== Navigation =================================================================================
