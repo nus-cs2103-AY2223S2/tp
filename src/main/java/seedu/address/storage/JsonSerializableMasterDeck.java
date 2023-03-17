@@ -18,7 +18,7 @@ import seedu.address.model.deck.Deck;
  * An Immutable Deck that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableMasterDeck {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Card list contains duplicate card(s).";
     public static final String MESSAGE_DUPLICATE_DECK = "Deck list contains duplicate deck(s).";
@@ -27,11 +27,11 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedDeck> decks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableMasterDeck} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("cards") List<JsonAdaptedCard> cards,
-                                       @JsonProperty("decks") List<JsonAdaptedDeck> decks) {
+    public JsonSerializableMasterDeck(@JsonProperty("cards") List<JsonAdaptedCard> cards,
+                                      @JsonProperty("decks") List<JsonAdaptedDeck> decks) {
         this.cards.addAll(cards);
         this.decks.addAll(decks);
     }
@@ -39,9 +39,9 @@ class JsonSerializableAddressBook {
     /**
      * Converts a given {@code ReadOnlyDeck} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableMasterDeck}.
      */
-    public JsonSerializableAddressBook(ReadOnlyMasterDeck source) {
+    public JsonSerializableMasterDeck(ReadOnlyMasterDeck source) {
         cards.addAll(source.getCardList().stream().map(JsonAdaptedCard::new).collect(Collectors.toList()));
         decks.addAll(source.getDeckList().stream().map(JsonAdaptedDeck::new).collect(Collectors.toList()));
     }

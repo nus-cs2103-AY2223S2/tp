@@ -23,8 +23,8 @@ public class JsonSerializableMasterDeckTest {
 
     @Test
     public void toModelType_typicalCardsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_CARDS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableMasterDeck dataFromFile = JsonUtil.readJsonFile(TYPICAL_CARDS_FILE,
+                JsonSerializableMasterDeck.class).get();
         MasterDeck addressBookFromFile = dataFromFile.toModelType();
         MasterDeck typicalPersonsAddressBook = TypicalCards.getTypicalMasterDeck();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
@@ -32,16 +32,16 @@ public class JsonSerializableMasterDeckTest {
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_CARD_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableMasterDeck dataFromFile = JsonUtil.readJsonFile(INVALID_CARD_FILE,
+                JsonSerializableMasterDeck.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateCards_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CARD_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+        JsonSerializableMasterDeck dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CARD_FILE,
+                JsonSerializableMasterDeck.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableMasterDeck.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
     }
 
