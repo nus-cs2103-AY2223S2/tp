@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
+import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
@@ -108,6 +109,14 @@ public class AddressBookParserTest {
         SetPointsCommand command = (SetPointsCommand) parser.parseCommand(SetPointsCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + points.value);
         assertEquals(new SetPointsCommand(INDEX_FIRST_CUSTOMER, points), command);
+    }
+
+    @Test
+    public void parseCommand_addpoints() throws Exception {
+        final Points.AddPoints addPoints = new Points.AddPoints(100, Points.AddPoints.Modifier.PLUS);
+        AddPointsCommand command = (AddPointsCommand) parser.parseCommand(AddPointsCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + addPoints.modifier + addPoints.value);
+        assertEquals(new AddPointsCommand(INDEX_FIRST_CUSTOMER, addPoints), command);
     }
 
     @Test
