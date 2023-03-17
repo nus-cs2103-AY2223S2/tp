@@ -24,18 +24,21 @@ public class Person {
     private final Address address;
     private final Major major;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Tag> teams = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null. A person can however have no tags within their team tags.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Major major, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, major, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Major major,
+                  Set<Tag> tags, Set<Tag> teams) {
+        requireAllNonNull(name, phone, email, address, major, tags, teams);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.major = major;
         this.tags.addAll(tags);
+        this.teams.addAll(teams);
     }
 
     public Name getName() {
@@ -64,6 +67,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTeams() {
+        return Collections.unmodifiableSet(teams);
     }
 
     /**
@@ -106,13 +117,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getMajor().equals(getMajor())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getTeams().equals((getTeams()));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, major, tags);
+        return Objects.hash(name, phone, email, address, major, tags, teams);
     }
 
     @Override
@@ -131,6 +143,12 @@ public class Person {
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+
+        Set<Tag> teams = getTeams();
+        if (!teams.isEmpty()) {
+            builder.append("; Teams: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

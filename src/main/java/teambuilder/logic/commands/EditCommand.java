@@ -7,6 +7,7 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 import static teambuilder.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -47,7 +48,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MAJOR + "MAJOR] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]"
+            + "[" + PREFIX_TEAM + "TEAM]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -110,8 +112,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Tag> updatedTeams = editPersonDescriptor.getTeams().orElse(personToEdit.getTeams());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMajor, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMajor,
+                updatedTags, updatedTeams);
     }
 
     @Override
@@ -142,6 +146,7 @@ public class EditCommand extends Command {
         private Address address;
         private Major major;
         private Set<Tag> tags;
+        private Set<Tag> teams;
 
         public EditPersonDescriptor() {
         }
@@ -156,6 +161,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setMajor(toCopy.major);
             setTags(toCopy.tags);
+            setTeams(toCopy.teams);
         }
 
         /**
@@ -210,6 +216,21 @@ public class EditCommand extends Command {
          */
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Sets {@code teams} to this object's {@code teams}. A defensive copy of {@code teams} is used internally.
+         */
+        public void setTeams(Set<Tag> teams) {
+            this.teams = (teams != null) ? new HashSet<>(teams) : null;
+        }
+
+        /**
+         * Returns an unmodifiable team tag set, which throws {@code UnsupportedOperationException} if modification is
+         * attempted. Returns {@code Optional#empty()} if {@code teams} is null.
+         */
+        public Optional<Set<Tag>> getTeams() {
+            return (teams != null) ? Optional.of(Collections.unmodifiableSet(teams)) : Optional.empty();
         }
 
         /**
