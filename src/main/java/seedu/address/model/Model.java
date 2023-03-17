@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.logic.ui.tab.TabUtil;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 
@@ -109,6 +110,10 @@ public interface Model {
     ReadOnlyUserData getUserData();
 
     void setUser(User user);
+
+    boolean hasEvent(Event event);
+
+    void addEvent(Event event);
 
     boolean isValidTabIndex(Index index);
 

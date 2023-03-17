@@ -7,7 +7,7 @@ import seedu.address.model.event.enums.Interval;
 
 /**
  * Represents an Events's Recurrence in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidInterval(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidRecurrence(String)}
  */
 public class Recurrence {
 
@@ -53,9 +53,10 @@ public class Recurrence {
     /**
      * Returns if a given string is a valid Recurrence.
      */
-    public static boolean isValidInterval(String trimmedInterval) {
+    public static boolean isValidRecurrence(String trimmedInterval) {
         String lowerCaseInterval = trimmedInterval.toLowerCase(Locale.ROOT);
-        return Objects.equals(lowerCaseInterval, DAILY_CASE)
+        return Objects.equals(lowerCaseInterval, NONE_CASE)
+                || Objects.equals(lowerCaseInterval, DAILY_CASE)
                 || Objects.equals(lowerCaseInterval, WEEKLY_CASE)
                 || Objects.equals(lowerCaseInterval, MONTHLY_CASE) || Objects.equals(lowerCaseInterval, YEARLY_CASE);
     }

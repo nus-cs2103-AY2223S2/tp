@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.logic.ui.tab.TabType;
 import seedu.address.logic.ui.tab.TabUtil;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserData;
@@ -149,6 +150,19 @@ public class ModelManager implements Model {
     public void setUser(User user) {
         this.userData.setUser(user);
     }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        return this.userData.hasEvent(event);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        this.userData.addEvent(event);
+    }
+
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
