@@ -33,9 +33,6 @@ public class AddIsolatedEventCommandTest {
         IsolatedEvent isolatedEvent = new IsolatedEvent("biking", TWO_O_CLOCK_VALID, THREE_O_CLOCK_VALID);
         AddIsolatedEventCommand command = new AddIsolatedEventCommand(Index.fromOneBased(1), isolatedEvent);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addIsolatedEvent(editedPerson, isolatedEvent);
-
         String expectedMessage = String.format(AddIsolatedEventCommand.MESSAGE_SUCCESS, isolatedEvent) + " to "
                 + editedPerson.getName();
 

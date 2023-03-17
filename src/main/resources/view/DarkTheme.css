@@ -24,6 +24,13 @@
     -fx-opacity: 1;
 }
 
+.label-sub-header {
+    -fx-font-size: 13pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -140,6 +147,10 @@
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
+}
+
+.pane-group-label {
+     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .status-bar {

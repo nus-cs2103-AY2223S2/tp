@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.event.exceptions.EventConflictException;
@@ -60,6 +61,13 @@ public class AddIsolatedEventCommand extends Command {
 
         if (!checkConflictsInRecurringList.equals("0")) {
             throw new EventConflictException(checkConflictsInRecurringList);
+        }
+        IsolatedEventList isolatedEventList = personToEdit.getIsolatedEventList();
+        IsolatedEvent checkForEventClash = isolatedEventList.checkClashingIsolatedEvent(eventToAdd.getStartDate(),
+                eventToAdd.getEndDate());
+
+        if (checkForEventClash != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_ClASH, checkForEventClash));
         }
 
         model.addIsolatedEvent(personToEdit, eventToAdd);

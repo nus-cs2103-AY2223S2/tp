@@ -14,6 +14,8 @@ import seedu.address.model.person.Person;
 public class TypicalGroups {
     public static final Group FRIENDS_GROUP = new Group("Friends");
     public static final Group CS2103_GROUP = new Group("CS2103");
+    public static final Group CS2101_GROUP = new Group("CS2101");
+    public static final Group CS2040_GROUP = new Group("CS2040");
     public static final Person CS2103_MEMBER = new PersonBuilder().withGroups("CS2103").build();
 
     private TypicalGroups() {} // prevents instantiation
@@ -39,6 +41,6 @@ public class TypicalGroups {
     }
 
     public static List<Group> getTypicalGroups() {
-        return new ArrayList<>(Arrays.asList(FRIENDS_GROUP, CS2103_GROUP));
+        return new ArrayList<>(Arrays.asList(CS2040_GROUP, CS2101_GROUP, CS2103_GROUP, FRIENDS_GROUP));
     }
 }
