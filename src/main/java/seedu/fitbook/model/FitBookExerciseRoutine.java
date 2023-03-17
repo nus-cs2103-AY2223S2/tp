@@ -82,7 +82,6 @@ public class FitBookExerciseRoutine implements ReadOnlyFitBookExerciseRoutine {
      */
     public void setRoutine(Routine target, Routine editedRoutine) {
         requireNonNull(editedRoutine);
-
         routines.setRoutine(target, editedRoutine);
     }
 

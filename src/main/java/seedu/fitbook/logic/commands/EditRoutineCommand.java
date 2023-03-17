@@ -156,6 +156,7 @@ public class EditRoutineCommand extends Command {
         public void setExerciseIndexNull() {
             this.exerciseIndex = null;
         }
+
         public void setExerciseNull() {
             this.exerciseChange = null;
         }
