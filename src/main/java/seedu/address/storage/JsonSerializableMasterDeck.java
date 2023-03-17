@@ -22,6 +22,7 @@ class JsonSerializableMasterDeck {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Card list contains duplicate card(s).";
     public static final String MESSAGE_DUPLICATE_DECK = "Deck list contains duplicate deck(s).";
+    public static final String MESSAGE_MISSING_DECK = "Some cards exist without an existing deck.";
 
     private final List<JsonAdaptedCard> cards = new ArrayList<>();
     private final List<JsonAdaptedDeck> decks = new ArrayList<>();
@@ -67,6 +68,12 @@ class JsonSerializableMasterDeck {
             if (masterDeck.hasCard(card)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
+
+            Deck currDeck = card.getDeck().get();
+            if (!masterDeck.hasDeck(currDeck)) {
+                throw new IllegalValueException(MESSAGE_MISSING_DECK);
+            }
+
             masterDeck.addCard(card);
         }
 
