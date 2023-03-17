@@ -70,12 +70,6 @@ public class JsonUserPrefsStorageTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    public void getUserPrefsFilePath_validSetUserPrefs_sameAsSetUserPrefs() {
-        UserPrefs setUserPrefs = getTypicalUserPrefs();
-        assertEquals(setUserPrefs, getTypicalUserPrefs());
-    }
-
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
