@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalEvents.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import seedu.address.model.event.Name;
 import seedu.address.model.event.Rate;
 import seedu.address.model.event.Time;
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedEventTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_RATE = "-651234";
     private static final String INVALID_ADDRESS = " ";

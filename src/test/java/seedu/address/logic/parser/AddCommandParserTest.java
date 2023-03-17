@@ -30,8 +30,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalEvents.AMY;
+import static seedu.address.testutil.TypicalEvents.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,14 +42,14 @@ import seedu.address.model.event.Name;
 import seedu.address.model.event.Rate;
 import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EventBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Event expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Event expectedPerson = new EventBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
@@ -72,7 +72,7 @@ public class AddCommandParserTest {
                 + START_TIME_DESC_BOB + END_TIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Event expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Event expectedPersonMultipleTags = new EventBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                 + START_TIME_DESC_BOB + END_TIME_DESC_BOB
@@ -82,7 +82,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Event expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Event expectedPerson = new EventBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY
                         + ADDRESS_DESC_AMY
                         + START_TIME_DESC_AMY + END_TIME_DESC_AMY,

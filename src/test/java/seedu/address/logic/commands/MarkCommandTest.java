@@ -7,9 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EventBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -32,7 +32,7 @@ public class MarkCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Event eventToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Event markedEvent = new PersonBuilder(eventToMark).build();
+        Event markedEvent = new EventBuilder(eventToMark).build();
         markedEvent.mark();
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
 
@@ -56,7 +56,7 @@ public class MarkCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Event eventToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Event markedEvent = new PersonBuilder(eventToMark).build();
+        Event markedEvent = new EventBuilder(eventToMark).build();
         markedEvent.mark();
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
 

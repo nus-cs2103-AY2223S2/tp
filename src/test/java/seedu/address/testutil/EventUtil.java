@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class EventUtil {
 
     /**
      * Returns an add command string for adding the {@code event}.

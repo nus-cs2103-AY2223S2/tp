@@ -19,7 +19,7 @@ import seedu.address.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class EventBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_RATE = "85355255";
@@ -39,9 +39,9 @@ public class PersonBuilder {
 
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code EventBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         rate = new Rate(DEFAULT_RATE);
         address = new Address(DEFAULT_ADDRESS);
@@ -52,9 +52,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the EventBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Event personToCopy) {
+    public EventBuilder(Event personToCopy) {
         name = personToCopy.getName();
         rate = personToCopy.getRate();
         address = personToCopy.getAddress();
@@ -68,7 +68,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public EventBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -76,7 +76,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public EventBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -84,7 +84,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public EventBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
@@ -92,7 +92,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Rate} of the {@code Person} that we are building.
      */
-    public PersonBuilder withRate(String rate) {
+    public EventBuilder withRate(String rate) {
         this.rate = new Rate(rate);
         return this;
     }
@@ -100,7 +100,7 @@ public class PersonBuilder {
     /**
      * Sets the start {@code Time} of the {@code Event} that we are building.
      */
-    public PersonBuilder withStartTime(String startTime) {
+    public EventBuilder withStartTime(String startTime) {
         this.startTime = new Time(startTime);
         return this;
     }
@@ -108,7 +108,7 @@ public class PersonBuilder {
     /**
      * Sets the end {@code Time} of the {@code Event} that we are building.
      */
-    public PersonBuilder withEndTime(String endTime) {
+    public EventBuilder withEndTime(String endTime) {
         this.endTime = new Time(endTime);
         return this;
     }
@@ -116,7 +116,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Mark} of the {@code Event} that we are building.
      */
-    public PersonBuilder withMark(String mark) {
+    public EventBuilder withMark(String mark) {
         this.mark = new Mark();
         if (mark.equals("[X]")) {
             this.mark.setDone();
@@ -126,7 +126,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code contact} of the {@code Event} that we are building.
      */
-    public PersonBuilder withContact(String name, String number) {
+    public EventBuilder withContact(String name, String number) {
         this.contact = new Contact(new ContactName(name), new ContactPhone(number));
         return this;
     }

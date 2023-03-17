@@ -33,8 +33,8 @@ import seedu.address.model.event.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.ContactUtil;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.EventUtil;
 
 public class AddressBookParserTest {
 
@@ -42,8 +42,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Event person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        Event person = new EventBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(EventUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
     }
 
@@ -62,10 +62,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Event person = new PersonBuilder().build();
+        Event person = new EventBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + EventUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -119,7 +119,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_linkContact() throws Exception {
         Contact contact = new ContactBuilder().build();
-        Event event = new PersonBuilder().build();
+        Event event = new EventBuilder().build();
         LinkContactCommand command = (LinkContactCommand) parser.parseCommand(
                 LinkContactCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                         + contact.getPhone().value);

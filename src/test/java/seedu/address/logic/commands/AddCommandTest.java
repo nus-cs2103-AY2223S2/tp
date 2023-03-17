@@ -24,7 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Rate;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EventBuilder;
 
 public class AddCommandTest {
 
@@ -36,7 +36,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Event validPerson = new PersonBuilder().build();
+        Event validPerson = new EventBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
@@ -46,7 +46,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Event validPerson = new PersonBuilder().build();
+        Event validPerson = new EventBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
@@ -55,8 +55,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Event alice = new PersonBuilder().withName("Alice").build();
-        Event bob = new PersonBuilder().withName("Bob").build();
+        Event alice = new EventBuilder().withName("Alice").build();
+        Event bob = new EventBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

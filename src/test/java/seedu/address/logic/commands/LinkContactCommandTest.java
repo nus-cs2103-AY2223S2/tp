@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.TypicalEvents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EventBuilder;
 
 public class LinkContactCommandTest {
 
@@ -37,7 +37,7 @@ public class LinkContactCommandTest {
 
     @Test
     public void execute_contactNotFound_throwsCommandException() {
-        Event eventToLinkContact = new PersonBuilder().build();
+        Event eventToLinkContact = new EventBuilder().build();
         model.addPerson(eventToLinkContact);
         LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON,
                 "99999999"); // phone number that does not exist in contact list
@@ -55,7 +55,7 @@ public class LinkContactCommandTest {
     public void execute_validContact() {
         Event event = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Contact contact = model.getContactList().getContactList().get(0);
-        Event linkedEvent = new PersonBuilder(event).build();
+        Event linkedEvent = new EventBuilder(event).build();
         linkedEvent.linkContact(contact);
         LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON, "94351253");
         Event linkEvent = linkContactCommand.createLinkedEvent(event, contact);
@@ -67,7 +67,7 @@ public class LinkContactCommandTest {
     public void execute_markValidContact() {
         Event event = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Contact contact = model.getContactList().getContactList().get(0);
-        Event markEvent = new PersonBuilder(event).build();
+        Event markEvent = new EventBuilder(event).build();
         markEvent.mark();
         model.markEvent(event);
         markEvent.linkContact(contact);
@@ -81,7 +81,7 @@ public class LinkContactCommandTest {
     public void execute_unmarkValidContact() {
         Event event = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Contact contact = model.getContactList().getContactList().get(0);
-        Event unmarkEvent = new PersonBuilder(event).build();
+        Event unmarkEvent = new EventBuilder(event).build();
         unmarkEvent.mark();
         unmarkEvent.unmark();
         model.markEvent(event);
