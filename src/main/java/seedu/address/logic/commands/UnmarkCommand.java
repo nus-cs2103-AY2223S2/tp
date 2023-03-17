@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Unmarks a event identified using it's displayed index from the address book.
+ * Unmarks an event identified using it's displayed index from the address book.
  */
 public class UnmarkCommand extends Command {
 

@@ -15,7 +15,7 @@ public class NewContactCommand extends Command {
 
     public static final String COMMAND_WORD = "newcontact";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a event to the contact list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the contact list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE \n"

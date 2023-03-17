@@ -68,7 +68,7 @@ public interface Model {
     boolean hasContact(Contact contact);
 
     /**
-     * Returns true if a event with the same identity as {@code event} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the address book.
      */
     boolean hasEvent(Event event);
 

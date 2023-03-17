@@ -182,7 +182,7 @@ Edits the specified event from the event book.
   - Tags can be removed by typing `t/` without specifying any tags after it.
 
 **Example**:
-  - `edit 1 p/91234567 r/100` Edits the phone number and rate of the 1st event to be 91234567 and j100 respectively.
+  - `edit 1 r/100` Edits the rate of the 1st event to be 100.
   - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd event to be Betsy Crower and clears all existing tags.
 
 ### Saving the data

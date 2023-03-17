@@ -274,62 +274,62 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* freelancer who wants to keep track of their events and contact event
+* freelancer who wants to keep track of their events and contact person
 * has a need to manage a significant number of events
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage events' information and respective contact event faster than a typical mouse/GUI driven app.
+**Value proposition**: manage events' information and respective contact person faster than a typical mouse/GUI driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an...           | I can...                                         | so that...                                           |
-| -------- | -------------------- | ------------------------------------------------ | ---------------------------------------------------- |
-| `* * *`     | User                 | Access the software                              | I can use it                                         |
-| `* * *`     | User                 | Click X to exit                                  | I can stop it                                        |
-| `* * *`     | User                 | Add client contact to an event                    | I can refer to when needed                          |
-| `* * *`     | User                 | View all my contacts                             | I can see who I can contact                          |
-| `* * *`     | User                 | Link client contact to event                     | I can have quick reference to POC (Point of Contact) |
-| `* * *`     | User                 | See the rates I have discussed with the client   | I know how much money to collect                     |
-| `* * *`     | User                 | Mark the event that is done                      | I know what I don't have to do anymore               |
-| `* * *`     | User                 | Unmark an event                                  | I can undo an accidental mark.                       |
-| `* * *`     | User                 | Add events                                       | I can remember my events later                       |
-| `* * *`     | User                 | View events                                      | I can see what events I have done or am going to do  |
-| `* * *`     | User                 | Delete events                                    | I can remove unnecessary events                      |
-| `* * *`     | User                 | Add dates to my events                           | I know when the event is due                         |
-| `* * *`     | User                 | Save my events after closing the app             | I can save for when I use the app another time       |
-| `* * *`     | User                 | Load my saved events when opening the app        | I can see my events when I reopen the app            |
-| `* * *`     | User                 | Add a rate to an event                           | I can see how much I earn from an event              |
-| `* * *`     | User                 | View information associated to each event        | I can see its details                                |
-| `* * *`     | User                 | Edit my existing event details                   | I can change the details whenever there are changes  |
-| `* * *`     | User                 | See what I have added before                     | I don't need repeat myself                           |
-| `* * *`     | User                 | Change a contact linked to an event              | I can link a different contact if the POC changes    |
-| `* * *`     | New user             | See usage instructions                           | I know how to use the software                       |
-| `* * *`     | User                 | View undone events                               | I can see what events I have to do                   |
-| `* * *`     | Freelancer           | Link venue to event                              | I can have quick reference                           |
-| `* * *`     | Forgetful User       | Be reminded of upcoming events                   | I can remember                                       |
-| `* * *`     | User                 | Delete contacts                                  | I can delete unnecessary contacts                    |
-| `* *`   | User                 | Filter the events that has not been paid         | I can collect money                                  |
-| `* *`   | User                 | View the total revenue I have earned this week   | I can manage my money                                |
-| `* *`   | User                 | Set notes for contacts                           | I can keep track about them and rmb what not to do   |
-| `* *`   | User                 | View timing of upcoming events                   | I know when to go                                    |
-| `* *`   | User                 | See the most urgent events                       | I know what to do first                              |
-| `* *`   | Careless user        | Undo accidental deletion                         | I can undo deleted events                            |
-| `* *`   | Impatient event     | Search contacts                                  | I can quick find specific POC                        |
-| `* *`   | Impatient event     | Search events                                    | I can quick find specific event                      |
-| `* *`   | Lazy event          | Filter events to find similar events             | I can find similar events easily                     |
-| `* *`   | User                 | Add all information to an event at the same time | I can save time on adding all the information        |
-| `* *`   | User                 | View events associated to each contact           | I know what events to contact the POC for            |
-| `*`      | User                 | Toggle between light and dark mode               | I can use the theme i prefer                         |
-| `*`      | User                 | Redo previous action                             | I can redo previous action                           |
-| `*`      | User                 | Use abbreviation                                 | I can quickly insert items                           |
-| `*`      | Goal oriented event | Set goals                                        | I can look at my goals                               |
-| `*`      | Forgetful User       | Set reminders/checklist for events               | I can remember things to bring etc.                  |
+| Priority | As a/an...          | I can...                                         | so that...                                           |
+| -------- |---------------------| ------------------------------------------------ | ---------------------------------------------------- |
+| `* * *`     | User                | Access the software                              | I can use it                                         |
+| `* * *`     | User                | Click X to exit                                  | I can stop it                                        |
+| `* * *`     | User                | Add client contact to an event                    | I can refer to when needed                          |
+| `* * *`     | User                | View all my contacts                             | I can see who I can contact                          |
+| `* * *`     | User                | Link client contact to event                     | I can have quick reference to POC (Point of Contact) |
+| `* * *`     | User                | See the rates I have discussed with the client   | I know how much money to collect                     |
+| `* * *`     | User                | Mark the event that is done                      | I know what I don't have to do anymore               |
+| `* * *`     | User                | Unmark an event                                  | I can undo an accidental mark.                       |
+| `* * *`     | User                | Add events                                       | I can remember my events later                       |
+| `* * *`     | User                | View events                                      | I can see what events I have done or am going to do  |
+| `* * *`     | User                | Delete events                                    | I can remove unnecessary events                      |
+| `* * *`     | User                | Add dates to my events                           | I know when the event is due                         |
+| `* * *`     | User                | Save my events after closing the app             | I can save for when I use the app another time       |
+| `* * *`     | User                | Load my saved events when opening the app        | I can see my events when I reopen the app            |
+| `* * *`     | User                | Add a rate to an event                           | I can see how much I earn from an event              |
+| `* * *`     | User                | View information associated to each event        | I can see its details                                |
+| `* * *`     | User                | Edit my existing event details                   | I can change the details whenever there are changes  |
+| `* * *`     | User                | See what I have added before                     | I don't need repeat myself                           |
+| `* * *`     | User                | Change a contact linked to an event              | I can link a different contact if the POC changes    |
+| `* * *`     | New user            | See usage instructions                           | I know how to use the software                       |
+| `* * *`     | User                | View undone events                               | I can see what events I have to do                   |
+| `* * *`     | Freelancer          | Link venue to event                              | I can have quick reference                           |
+| `* * *`     | Forgetful User      | Be reminded of upcoming events                   | I can remember                                       |
+| `* * *`     | User                | Delete contacts                                  | I can delete unnecessary contacts                    |
+| `* *`   | User                | Filter the events that has not been paid         | I can collect money                                  |
+| `* *`   | User                | View the total revenue I have earned this week   | I can manage my money                                |
+| `* *`   | User                | Set notes for contacts                           | I can keep track about them and rmb what not to do   |
+| `* *`   | User                | View timing of upcoming events                   | I know when to go                                    |
+| `* *`   | User                | See the most urgent events                       | I know what to do first                              |
+| `* *`   | Careless user       | Undo accidental deletion                         | I can undo deleted events                            |
+| `* *`   | Impatient user      | Search contacts                                  | I can quick find specific POC                        |
+| `* *`   | Impatient user     | Search events                                    | I can quick find specific event                      |
+| `* *`   | Lazy user          | Filter events to find similar events             | I can find similar events easily                     |
+| `* *`   | User                | Add all information to an event at the same time | I can save time on adding all the information        |
+| `* *`   | User                | View events associated to each contact           | I know what events to contact the POC for            |
+| `*`      | User                | Toggle between light and dark mode               | I can use the theme i prefer                         |
+| `*`      | User                | Redo previous action                             | I can redo previous action                           |
+| `*`      | User                | Use abbreviation                                 | I can quickly insert items                           |
+| `*`      | Goal oriented user | Set goals                                        | I can look at my goals                               |
+| `*`      | Forgetful User      | Set reminders/checklist for events               | I can remember things to bring etc.                  |
 
 
 *{More to be added}*
@@ -647,7 +647,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The system should work on both 32-bit and 64-bit environments.
 6. The source code should be open source.
 7. The product is offered as a free product.
-8. The system should respond within two seconds for events and events up to 1000.
+8. The system should respond within two seconds for events and contacts up to 1000.
 9. The user interface should be intuitive enough for users who are not as IT-savvy.
 10. The dimensions should be at least `726px * 593px` so that it is readable for the user.
 
@@ -685,14 +685,14 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a event
+### Deleting an event
 
-1. Deleting a event while all events are being shown
+1. Deleting an event while all events are being shown
 
    1. Prerequisites: List all events using the `list` command. Multiple events in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.

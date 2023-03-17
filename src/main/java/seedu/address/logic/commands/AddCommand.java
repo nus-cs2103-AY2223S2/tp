@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Adds a event to the address book.
+ * Adds an event to the address book.
  */
 public class AddCommand extends Command {
 
@@ -37,21 +37,6 @@ public class AddCommand extends Command {
             + PREFIX_TIME_END + "11-03-2023 17:00 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "dj";
-
-    public static final String MESSAGE_USAGE_CONTACT = COMMAND_WORD + ": Adds a event to the address book. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
