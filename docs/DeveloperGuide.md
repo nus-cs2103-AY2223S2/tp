@@ -393,7 +393,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/AddSequenceDiagram.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.2</b> Sequence Diagram for a typical `add` command
+    <b>Figure 4.4.2</b> Sequence Diagram for a typical <code>add</code> command
 </div>
 <br>
 
@@ -409,7 +409,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/EditSequenceDiagram.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.3</b> Sequence Diagram for a typical `edit` command
+    <b>Figure 4.4.3</b> Sequence Diagram for a typical <code>edit</code> command
 </div>
 <br>
 
