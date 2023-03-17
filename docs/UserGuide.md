@@ -115,16 +115,25 @@ Tags a rate to an event.
 
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
-Marks a specified event in the address book as done.
+Marks a specified event in Paidlancers as done.
 
 **Format**: `mark INDEX`
 
 - Marks the event at the specified `INDEX` as done.
 
-The event must not be marked as done beforehand.
-
 **Example**:
 - `mark 2` marks the `2nd event` as done.
+
+### Unmark an Event: `unmark` <a id = "unmark-event"></a>
+
+Unmarks a specified event in Paidlancers.
+
+**Format**: `unmark INDEX`
+
+- Unmarks the event at the specified `INDEX`.
+
+**Example**:
+- `unmark 2` unmarks the `2nd event`.
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
@@ -139,7 +148,7 @@ Creates a new event
 
 ### List all Events: `listevent` <a id = "list-all-events"></a>
 
-Shows a list of all events in the address book
+Shows a list of all events in Paidlancers
 
 **Format**: `list`
 
@@ -193,6 +202,7 @@ Paidlancers data are saved in the hard disk automatically exiting the program. T
 | [Link Contact to Event](#link-contact-to-event) |            `linkcontact INDEX CONTACT`             |                              `linkcontact 2 91234567`                              |
 |             [View Rate](#view-rate)             |                `rate INDEX`                 |                                  `rate 2`                                   |
 |       [Marks Event as Done](#mark-event)        |                `mark INDEX`                 |                                  `mark 2`                                   |
+|       [Unmark Event](#unmark-event)        |                `unmark INDEX`                 |                                  `unmark 2`                                   |
 |     [Create a new Event](#create-new-event)     |               `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`               |                             `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`                  |
 |       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
 |       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |

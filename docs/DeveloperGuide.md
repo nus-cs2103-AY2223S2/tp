@@ -358,7 +358,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to delete a specified event in the list.
 3. System deletes the event and displays information of the event deleted.
 
@@ -380,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to mark a specified event in the list.
 3. System marks the event and displays information of the event marked.
 
@@ -388,22 +388,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters the wrong command.
-   * 1a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 2.
 
-* 1b. User enters an invalid index.
-   * 1b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 2.
 
-* 1c. User marks an event that is already marked.
-   * 1c1. System displays that the event has already been marked.
+* 2c. User marks an event that is already marked.
+   * 2c1. System displays that the event has already been marked.
 
       Use case ends.
 
-**Use case: UC4 - List Events**
+**Use case: UC4 - Unmark Event**
+
+**MSS**
+
+1. User <u>lists events (UC5)</u>.
+2. User requests to unmark a specified event in the list.
+3. System unmarks the event and displays information of the event unmarked.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User marks an event that is already unmarked.
+   * 2c1. System displays that the event has already been unmarked.
+
+      Use case ends.
+
+
+**Use case: UC5 - List Events**
 
 **MSS**
 
@@ -444,11 +472,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends. -->
 
-**Use case: UC5 - Link contact and event**
+**Use case: UC6 - Link contact and event**
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to link a specified event and contact.
 3. System links them and displays the event's and contact's information.
 
@@ -476,11 +504,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC6 - Display Rate**
+**Use case: UC7 - Display Rate**
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to display the rate of a specified event in the list.
 3. System displays the event and displays information of the rate.
 
@@ -502,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to tag a rate to a specified event in the list.
 3. System tags the rate to the event and displays information of the event tagged.
 
@@ -530,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends. -->
 
-**Use case: UC7 - Add Contact**
+**Use case: UC8 - Add Contact**
 
 **MSS**
 
@@ -551,11 +579,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC8 - Add Date to Event**
+**Use case: UC9 - Add Date to Event**
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to add a date to a specified event in the list.
 3. System adds the date to the event and displays information of the event with new date added.
 
@@ -583,11 +611,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC9 - Edit Event**
+**Use case: UC10 - Edit Event**
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to edit a specified event in the list.
 3. System updates the event with the edit and displays information of the event edited.
 
