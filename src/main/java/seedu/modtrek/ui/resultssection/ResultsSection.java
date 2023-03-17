@@ -3,11 +3,13 @@ package seedu.modtrek.ui.resultssection;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 import seedu.modtrek.ui.modulelist.ModuleList;
+import seedu.modtrek.ui.progress.ProgressSection;
 
 /**
  * A UI component that displays the right portion of a Graphical User Interface
@@ -34,11 +36,16 @@ public class ResultsSection extends UiPart<Region> {
      */
     public ResultsSection(ObservableList<Module> modules) {
         super(FXML);
-        displayAllModules(modules);
+//        displayAllModules(modules);
+        displayProgress();
     }
 
     // TODO: next iteration
     public void displayProgress() {
+        headerTitle.setText("Your Degree Progress");
+        headerSubtitle.setText("in summary");
+
+        body.getChildren().add(new ProgressSection().getRoot());
     }
 
     /**

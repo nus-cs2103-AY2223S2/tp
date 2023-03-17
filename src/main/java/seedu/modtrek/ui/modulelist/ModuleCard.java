@@ -50,6 +50,7 @@ public class ModuleCard extends UiPart<Region> {
         String grade = module.getGrade().toString();
         moduleCardGrade.setText(!grade.isEmpty() ? grade : "–");
 
+        // TODO: call from Tag enum
         for (Tag tag : module.getTags()) {
             switch (ValidTag.valueOf(tag.tagName)) {
             case UNIVERSITY_LEVEL_REQUIREMENTS:

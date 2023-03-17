@@ -1,0 +1,22 @@
+#progress-section {
+}
+
+/* =============================================================================================== */
+/* DOUGHNUT CHART */
+/* =============================================================================================== */
+.chart {
+    -fx-padding: 50;
+}
+
+.chart-pie-label-line {
+    visibility: hidden;
+}
+
+.doughnut-center-label {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+.data-label {
+    -fx-alignment: center;
+}

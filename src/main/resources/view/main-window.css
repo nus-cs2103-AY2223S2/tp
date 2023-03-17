@@ -53,11 +53,18 @@
 
     /* COLORS FOR TAGS */
     -tag-red: #F59B7C;
-    -tag-orange: #FED776;
+    -tag-orange: #FEBF76;
     -tag-yellow: #F1F487;
     -tag-green: #C2ED98;
     -tag-blue: #8ED2CD;
     -tag-purple: #98A9D7;
+
+    -tag-red-muted: #FFCDBC;
+    -tag-orange-muted: #F6D3A8;
+    -tag-yellow-muted: #FCFDD2;
+    -tag-green-muted: #DFFAC5;
+    -tag-blue-muted: #C0EEEB;
+    -tag-purple-muted: #C6CFE9;
 }
 
 /* ============================================================================= */

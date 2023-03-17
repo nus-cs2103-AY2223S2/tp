@@ -28,4 +28,5 @@
 
 #results-section-body {
     -fx-padding: 10;
+    -fx-alignment: center;
 }
