@@ -74,6 +74,9 @@ public class AddModuleCommandTest {
         assertFalse(addCs2040sCommand.equals(addSt2334Command));
     }
 
+    /**
+     * A {@code Model} stub that always accepts the module being added.
+     */
     private class ModelStubAcceptingModuleAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
 
@@ -89,6 +92,9 @@ public class AddModuleCommandTest {
         }
     }
 
+    /**
+     * A {@code Model} stub that contains a single module.
+     */
     private class ModelStubWithModule extends ModelStub {
         private final Module module;
 

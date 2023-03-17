@@ -141,6 +141,9 @@ public class AddVideoCommandTest {
         assertFalse(addContentVideoCommand.equals(addAnalysisVideoCommand));
     }
 
+    /**
+     * A {@code Model} stub that always accepts the video being added.
+     */
     private class ModelStubAcceptingVideoAdded extends ModelStub {
         private final ArrayList<ReadOnlyLecture> lecturesAddedTo = new ArrayList<>();
         private final ArrayList<Video> videosAdded = new ArrayList<>();
@@ -174,6 +177,9 @@ public class AddVideoCommandTest {
         }
     }
 
+    /**
+     * A {@code Model} stub that contains no module.
+     */
     private class ModelStubNoModule extends ModelStub {
         @Override
         public boolean hasModule(ModuleCode code) {
@@ -181,6 +187,9 @@ public class AddVideoCommandTest {
         }
     }
 
+    /**
+     * A {@code Model} stub that contains no lecture.
+     */
     private class ModelStubNoLecture extends ModelStub {
         @Override
         public ReadOnlyTracker getTracker() {
@@ -198,6 +207,9 @@ public class AddVideoCommandTest {
         }
     }
 
+    /**
+     * A {@code Model} stub that contains a single video.
+     */
     private class ModelStubWithVideo extends ModelStub {
         private final ReadOnlyLecture lecture;
         private final Video video;

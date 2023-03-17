@@ -108,6 +108,9 @@ public class AddLectureCommandTest {
         assertFalse(addCs2040sW1Command.equals(addCs2040sW2Command));
     }
 
+    /**
+     * A {@code Model} stub that always accepts the lecture being added.
+     */
     private class ModelStubAcceptingLectureAdded extends ModelStub {
         private final ArrayList<ReadOnlyModule> modulesAddedTo = new ArrayList<>();
         private final ArrayList<Lecture> lecturesAdded = new ArrayList<>();
@@ -136,6 +139,9 @@ public class AddLectureCommandTest {
         }
     }
 
+    /**
+     * A {@code Model} stub that contains no module.
+     */
     private class ModelStubNoModule extends ModelStub {
         @Override
         public boolean hasModule(ModuleCode code) {
@@ -143,6 +149,9 @@ public class AddLectureCommandTest {
         }
     }
 
+    /**
+     * A {@code Model} stub that contains a single lecture.
+     */
     private class ModelStubWithLecture extends ModelStub {
         private final ReadOnlyModule module;
         private final ReadOnlyLecture lecture;
