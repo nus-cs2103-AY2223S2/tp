@@ -197,7 +197,11 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            fillInnerParts(commandResult.getLevel());
+            Level listLevel = commandResult.getLevel();
+            if (listLevel == null) {
+                listLevel = logic.getLastListLevel();
+            }
+            fillInnerParts(listLevel);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
