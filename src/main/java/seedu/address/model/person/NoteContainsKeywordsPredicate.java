@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.commons.util.StringUtil;
+
 import java.util.function.Predicate;
 
 /**
@@ -15,7 +17,7 @@ public class NoteContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getNotes().stream().anyMatch(note -> note.noteName.equals(keyword));
+        return person.getNotes().stream().anyMatch(note -> StringUtil.containsWordIgnoreCase(note.noteName, keyword));
     }
 
     @Override
