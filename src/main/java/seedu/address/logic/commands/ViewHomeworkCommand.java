@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -19,11 +21,14 @@ import seedu.address.model.student.Student;
 public class ViewHomeworkCommand extends Command {
 
     public static final String COMMAND_WORD = "view-homework";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all homework that match the specified "
             + "name and status keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: [n/STUDENT_NAME] [st/Status]\n"
-            + "Example: " + COMMAND_WORD + " n/John st/pending";
+            + "Parameters: "
+            + PREFIX_NAME + "STUDENT_NAME "
+            + PREFIX_STATUS + "STATUS\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "John Doe "
+            + PREFIX_STATUS + "pending";
     private static final String SEPERATOR = "--------------------------------------------------\n";
     private static final String DOT = ". ";
     private static final String LINE_BREAK = "\n";
