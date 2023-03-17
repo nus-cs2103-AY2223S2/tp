@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "nric" : "S0077007W",
     "age" : "55",
+    "region": "CENTRAL",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -14,6 +15,7 @@
     "address": "4th street",
     "nric" : "S0077007W",
     "age" : "55",
+    "region": "CENTRAL",
     "tagged": [ "friends" ]
   } ]
 }

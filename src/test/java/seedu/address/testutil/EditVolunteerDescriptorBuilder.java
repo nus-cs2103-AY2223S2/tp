@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
@@ -12,6 +12,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,6 +41,7 @@ public class EditVolunteerDescriptorBuilder {
         descriptor.setAddress(volunteer.getAddress());
         descriptor.setNric(volunteer.getNric());
         descriptor.setAge(volunteer.getAge());
+        descriptor.setRegion(volunteer.getRegion());
         descriptor.setTags(volunteer.getTags());
     }
 
@@ -88,6 +90,14 @@ public class EditVolunteerDescriptorBuilder {
      */
     public EditVolunteerDescriptorBuilder withAge(String age) {
         descriptor.setAge(new Age(age));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Region} of the {@code EditVolunteerDescriptor} that we are building.
+     */
+    public EditVolunteerDescriptorBuilder withRegion(String region) {
+        descriptor.setRegion(new Region(region));
         return this;
     }
 

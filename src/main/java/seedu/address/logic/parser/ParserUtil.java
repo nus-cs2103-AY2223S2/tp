@@ -15,6 +15,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
@@ -106,11 +107,11 @@ public class ParserUtil {
      */
     public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
-        String trimmednric = nric.trim();
+        String trimmedNric = nric.trim();
         if (!Nric.isValidNric(nric)) {
             throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
-        return new Nric(trimmednric);
+        return new Nric(trimmedNric);
     }
 
     /**
@@ -126,6 +127,22 @@ public class ParserUtil {
             throw new ParseException(Age.MESSAGE_CONSTRAINTS);
         }
         return new Age(trimmedage);
+    }
+
+    /**
+     * Parses a {@code String age} into an {@code Region}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code region} is invalid.
+     */
+    public static Region parseRegion(String region) throws ParseException {
+        requireNonNull(region);
+        String trimmedRegion = region.trim();
+        String upperRegion = trimmedRegion.toUpperCase();
+        if (!Region.isValidRegion(upperRegion)) {
+            throw new ParseException(Region.MESSAGE_CONSTRAINTS);
+        }
+        return new Region(upperRegion);
     }
 
     /**
