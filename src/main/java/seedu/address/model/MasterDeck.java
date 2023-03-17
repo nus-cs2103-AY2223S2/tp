@@ -128,8 +128,8 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     }
 
     /**
-     * Adds a card to the address book.
-     * The card must not already exist in the address book.
+     * Adds a card to the masterDeck.
+     * The card must not already exist in the masterDeck.
      */
     public void addDeck(Deck d) {
         decks.add(d);
@@ -183,7 +183,8 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MasterDeck // instanceof handles nulls
-                && cards.equals(((MasterDeck) other).cards));
+                && cards.equals(((MasterDeck) other).cards)
+                && decks.equals(((MasterDeck) other).decks));
     }
 
     @Override
