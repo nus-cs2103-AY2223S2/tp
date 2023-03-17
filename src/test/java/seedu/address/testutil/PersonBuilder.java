@@ -50,7 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getOptionalPhone().orElse(null);
         email = personToCopy.getOptionalEmail().orElse(null);
         address = personToCopy.getOptionalAddress().orElse(null);
-        remark = personToCopy.getRemark();
+        remark = personToCopy.getOptionalRemark().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
     }
 
