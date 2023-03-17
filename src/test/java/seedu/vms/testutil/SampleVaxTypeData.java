@@ -46,7 +46,7 @@ public class SampleVaxTypeData {
     public static final String CMD_MIN_AGE_REAL = CliSyntax.DELIMITER + CliSyntax.PREFIX_MIN_AGE.getPrefix() + " 5";
     public static final String CMD_MAX_AGE_REAL = "";
     public static final String CMD_INGREDIENTS_REAL = CliSyntax.DELIMITER
-            + CliSyntax.PREFIX_INGREDIENTS.getPrefix() + " 
+            + CliSyntax.PREFIX_INGREDIENTS.getPrefix() + " "
             + "ALC-0315,"
             + "ALC-0159,"
             + "DSPC,"
