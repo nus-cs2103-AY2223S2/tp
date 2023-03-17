@@ -190,6 +190,20 @@ public interface Model {
      */
     boolean hasPart(String partName);
 
+    /**
+     * Adds Technician
+     *
+     * @param technician Technician to be added
+     */
+    void addTechnician(Technician technician);
+
+    /**
+     * Checks if technician already in the model
+     *
+     * @param technicianId ID of technician to check against
+     */
+    boolean hasTechnician(int technicianId);
+
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
 
     void updatePartsMap();

@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +16,8 @@ import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
+import seedu.address.model.service.ServiceStatus;
+import seedu.address.model.service.VehicleType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -120,5 +126,88 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses string into integer
+     *
+     * @param rawInt String to be parsed
+     * @return Parsed integer
+     * @throws ParseException If string cannot be parsed as integer
+     */
+    public static int parseInt(String rawInt) throws ParseException {
+        try {
+            return Integer.parseInt(rawInt);
+        } catch (NumberFormatException ex) {
+            throw new ParseException("Input not a number");
+        }
+    }
+
+    /**
+     * Parses string into vehicle type
+     *
+     * @param rawType String to be parsed
+     * @return Parsed VehicleType
+     * @throws ParseException If string cannot be parsed as vehicleType
+     */
+    public static VehicleType parseVehicleType(String rawType) throws ParseException {
+        requireNonNull(rawType);
+        switch (rawType.toLowerCase()) {
+        case "car":
+            return VehicleType.CAR;
+        case "motorbike":
+            return VehicleType.MOTORBIKE;
+        default:
+            throw new ParseException(VehicleType.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses string into ServiceStatus
+     *
+     * @param rawStatus String to be parsed
+     * @return Parsed ServiceStatus
+     * @throws ParseException If string cannot be parsed into ServiceStatus
+     */
+    public static ServiceStatus parseServiceStatus(String rawStatus) throws ParseException {
+        requireNonNull(rawStatus);
+        for (ServiceStatus p : ServiceStatus.values()) {
+            if (p.isEqual(rawStatus)) {
+                return p;
+            }
+        }
+        throw new ParseException(ServiceStatus.MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Parses string into LocalDate
+     *
+     * @param rawDate String to be parsed
+     * @return Parsed LocalDate
+     * @throws ParseException If string cannot be parsed as LocalDate
+     */
+    public static LocalDate parseDate(String rawDate) throws ParseException {
+        requireNonNull(rawDate);
+        try {
+            return LocalDate.parse(rawDate);
+        } catch (DateTimeParseException ex) {
+            throw new ParseException("Date should be in the format 'YYYY-MM-DD'");
+        }
+    }
+
+    /**
+     * Parses string into LocalTime
+     *
+     * @param rawTime String to be parsed
+     * @return Parsed LocalTime
+     * @throws ParseException If string cannot be parsed as LocalTime
+     */
+    public static LocalTime parseTime(String rawTime) throws ParseException {
+        requireNonNull(rawTime);
+        try {
+            return LocalTime.parse(rawTime);
+        } catch (DateTimeParseException ex) {
+            throw new ParseException("Time should be in the format 'HH:MM:SS' or 'HH:MM'");
+        }
     }
 }

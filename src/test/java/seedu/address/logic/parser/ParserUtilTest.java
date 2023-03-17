@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -18,6 +20,8 @@ import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Phone;
+import seedu.address.model.service.ServiceStatus;
+import seedu.address.model.service.VehicleType;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -44,7 +48,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -192,5 +196,46 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    void parseInt() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInt("23r"));
+        assertEquals(69, ParserUtil.parseInt("69"));
+        assertEquals(23, ParserUtil.parseInt("023"));
+    }
+
+    @Test
+    void parseVehicleType() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseVehicleType("carMotor"));
+        assertEquals(VehicleType.CAR, ParserUtil.parseVehicleType("car"));
+        assertEquals(VehicleType.CAR, ParserUtil.parseVehicleType("cAr"));
+        assertEquals(VehicleType.MOTORBIKE, ParserUtil.parseVehicleType("MoToRBike"));
+        assertEquals(VehicleType.MOTORBIKE, ParserUtil.parseVehicleType("motorbike"));
+    }
+
+    @Test
+    void parseServiceStatus() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseServiceStatus("fasf"));
+        assertEquals(ServiceStatus.CANCELLED, ParserUtil.parseServiceStatus("CaNCelled"));
+        assertEquals(ServiceStatus.COMPLETE, ParserUtil.parseServiceStatus("CoMPlete"));
+        assertEquals(ServiceStatus.ON_HOLD, ParserUtil.parseServiceStatus("On Hold"));
+        assertEquals(ServiceStatus.IN_PROGRESS, ParserUtil.parseServiceStatus("In ProGress"));
+        assertEquals(ServiceStatus.TO_REPAIR, ParserUtil.parseServiceStatus("To RePair"));
+    }
+
+    @Test
+    void parseDate() throws ParseException {
+        LocalDate expected = LocalDate.parse("2000-12-08");
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate("03/02/21"));
+        assertEquals(expected, ParserUtil.parseDate("2000-12-08"));
+    }
+
+    @Test
+    void parseTime() throws ParseException {
+        LocalTime expected = LocalTime.parse("14:05:00");
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime("20:69:69"));
+        assertEquals(expected, ParserUtil.parseTime("14:05"));
+        assertEquals(expected, ParserUtil.parseTime("14:05:00"));
     }
 }

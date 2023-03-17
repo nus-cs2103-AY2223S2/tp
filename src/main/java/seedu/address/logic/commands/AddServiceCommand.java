@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_ID;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.Service;
 
@@ -18,12 +19,12 @@ public class AddServiceCommand extends RedoableCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a service to the shop. "
             + "Parameters: "
             + PREFIX_VEHICLE_ID + "VEHICLE ID "
-            + PREFIX_SERVICE_TYPE + "TYPE "
+            + "Optional: " + PREFIX_SERVICE_DURATION + "SERVICE DURATION "
             + "Optional: " + PREFIX_SERVICE_STATUS + "STATUS "
             + "Optional: " + PREFIX_SERVICE_DESCRIPTION + "DESCRIPTION "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_VEHICLE_ID + "10 "
-            + PREFIX_SERVICE_TYPE + "standard "
+            + PREFIX_SERVICE_DURATION + "8 "
             + PREFIX_SERVICE_STATUS + "in progress "
             + PREFIX_SERVICE_DESCRIPTION + "Customer says abc";
 
@@ -53,6 +54,7 @@ public class AddServiceCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasVehicle(toAdd.getVehicleId())) {
+            IdGenerator.setServiceIdUnused(toAdd.getId());
             throw new CommandException(String.format(MESSAGE_VEHICLE_NOT_FOUND, toAdd.getVehicleId()));
         }
         if (model.hasService(toAdd.getId())) {

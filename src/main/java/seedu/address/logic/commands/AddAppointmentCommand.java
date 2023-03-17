@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.appointment.Appointment;
 
@@ -22,8 +23,8 @@ public class AddAppointmentCommand extends RedoableCommand {
             + PREFIX_TIME + "TIME "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CUSTOMER_ID + "5 "
-            + PREFIX_DATE + "05/03/2023 "
-            + PREFIX_TIME + "5pm ";
+            + PREFIX_DATE + "2023-02-03 "
+            + PREFIX_TIME + "17:00";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not registered";
@@ -50,6 +51,7 @@ public class AddAppointmentCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasCustomer(toAdd.getCustomerId())) {
+            IdGenerator.setAppointmentIdUnused(toAdd.getId());
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
         }
         model.addAppointment(toAdd);

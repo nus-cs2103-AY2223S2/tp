@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BRAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATE_NUM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.Vehicle;
 
@@ -20,10 +22,12 @@ public class AddVehicleCommand extends RedoableCommand {
             + PREFIX_PLATE_NUM + "PLATE NUMBER "
             + PREFIX_BRAND + "VEHICLE BRAND "
             + PREFIX_CUSTOMER_ID + "OWNER ID "
+            + PREFIX_VEHICLE_COLOR + "COLOR "
             + PREFIX_VEHICLE_TYPE + "VEHICLE TYPE "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PLATE_NUM + "SBA1234A "
             + PREFIX_BRAND + "Toyota "
+            + PREFIX_VEHICLE_COLOR + "red"
             + PREFIX_CUSTOMER_ID + "1 "
             + PREFIX_VEHICLE_TYPE + "4wd ";
 
@@ -53,6 +57,7 @@ public class AddVehicleCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         if (!model.hasCustomer(toAdd.getOwnerId())) {
+            IdGenerator.setVehicleIdUnused(toAdd.getId());
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
         }
         if (model.hasVehicle(toAdd.getId())) {

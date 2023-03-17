@@ -9,7 +9,6 @@ public class NegativeValueException extends RuntimeException {
      * The cause is not initialized, and may subsequently be initialized by a
      * call to {@link #initCause}.
      *
-     * @param partName Name of the part with a lack of quantity.
      */
     public NegativeValueException(int value) {
         super("Unable to set values to negative values");

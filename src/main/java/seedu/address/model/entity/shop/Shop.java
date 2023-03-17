@@ -53,10 +53,11 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// Service-level operations
+
     /**
      * Adds service to the system
      *
-     * @param service   Service to be added to the system
+     * @param service Service to be added to the system
      */
     public void addService(Service service) {
         this.services.add(service);
@@ -74,6 +75,7 @@ public class Shop implements ReadOnlyShop {
             if (vehicle.getId() == vehicleId) {
                 vehicle.addService(service);
                 this.services.add(service);
+                return;
             }
         }
         throw new VehicleNotFoundException();
@@ -240,12 +242,23 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// technician-level operations
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     public boolean hasTechnician(Technician person) {
         requireNonNull(person);
         return technicians.contains(person);
+    }
+
+    /**
+     * Checks if technician already in the system
+     *
+     * @param technicianId ID of technician to check against
+     */
+    public boolean hasTechnician(int technicianId) {
+        return this.getTechnicianList().stream()
+                .anyMatch(p -> p.getId() == technicianId);
     }
 
     /**
@@ -301,7 +314,7 @@ public class Shop implements ReadOnlyShop {
         for (var customer : customers) {
             if (customer.getId() == customerId) {
                 customer.addVehicle(vehicle);
-                this.getVehicleList().add(vehicle);
+                this.vehicles.add(vehicle);
                 return;
             }
         }
@@ -311,7 +324,7 @@ public class Shop implements ReadOnlyShop {
     /**
      * Adds vehicle to the shop
      *
-     * @param vehicle    Vehicle to be added
+     * @param vehicle Vehicle to be added
      */
     public void addVehicle(Vehicle vehicle) {
         this.vehicles.add(vehicle);
