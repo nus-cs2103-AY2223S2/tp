@@ -29,6 +29,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
     private static final String THEME_DARK = "theme-dark";
     private static final String THEME_LIGHT = "theme-light";
+    private static final String SELECT_DARK = "Dark mode";
+    private static final String SELECT_LIGHT = "Light mode";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private MenuItem themeToggleItem;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -185,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
         this.isLightMode = isLightMode;
         mainContainer.getStyleClass().add(isLightMode ? THEME_LIGHT : THEME_DARK);
         mainContainer.getStyleClass().remove(isLightMode ? THEME_DARK : THEME_LIGHT);
+        themeToggleItem.setText(isLightMode ? SELECT_DARK : SELECT_LIGHT);
     }
 
     /**
