@@ -1,6 +1,8 @@
-package seedu.calidr.task;
+package seedu.calidr.model.task;
 
-import java.time.LocalDateTime;
+import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Priority;
+import seedu.calidr.model.task.params.Title;
 
 /**
  * Represents an event - a task with specific start and end
@@ -8,62 +10,52 @@ import java.time.LocalDateTime;
  */
 public class Event extends Task {
 
-    private final LocalDateTime from;
-    private final LocalDateTime to;
+    private final EventDateTimes eventDateTimes;
 
     /**
-     * Creates a Event object with the given description and MEDIUM priority.
+     * Creates a Event object with the given details and MEDIUM priority.
      *
-     * @param description The description of the Event.
+     * @param title The title of the Event.
+     * @param eventDateTimes The date-times associaited with the Event.
      */
-    public Event(String description, LocalDateTime from, LocalDateTime to) {
-        super(description);
+    public Event(Title title, EventDateTimes eventDateTimes) {
+        super(title);
 
-        assert from != null;
-        assert to != null;
+        assert eventDateTimes != null;
 
-        this.from = from;
-        this.to = to;
+        this.eventDateTimes = eventDateTimes;
     }
 
     /**
-     * Creates a Event object with the given description and priority.
+     * Creates an Event with the given details.
      *
-     * @param description The description of the Event.
-     * @param priority The priority associated with the Event.
+     * @param title The title of the Event.
+     * @param eventDateTimes The date-times associated with the Event.
+     * @param priority The priority of the Event.
      */
-    public Event(String description, LocalDateTime from, LocalDateTime to, Priority priority) {
-        super(description, priority);
+    public Event(Title title, EventDateTimes eventDateTimes, Priority priority) {
+        super(title, priority);
 
-        assert from != null;
-        assert to != null;
+        assert eventDateTimes != null;
 
-        this.from = from;
-        this.to = to;
+        this.eventDateTimes = eventDateTimes;
     }
 
-    /**
-     * Gets the String representation of the event to be stored in the text file.
-     *
-     * @return The String representation of the event to be stored in the text file.
-     */
-    @Override
-    public String getFileRepresentation() {
-        String mark = (super.isDone) ? "X" : " ";
-
-        return "E" + "~"
-                + this.priority + "~"
-                + mark + "~"
-                + this.description + "~"
-                + this.from + "~"
-                + this.to;
+    public EventDateTimes getEventDateTimes() {
+        return eventDateTimes;
     }
 
     @Override
     public String toString() {
         return "[E]" + super.toString()
-                + " (from: " + Task.getDateTimeString(this.from)
-                + " ; to: " + Task.getDateTimeString(this.to)
+                + " ("
+                + eventDateTimes.toString()
                 + ")";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other)
+                && eventDateTimes.equals(((Event) other).eventDateTimes);
     }
 }

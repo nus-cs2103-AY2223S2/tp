@@ -8,6 +8,7 @@ import seedu.calidr.logic.commands.CommandResult;
 import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.ReadOnlyAddressBook;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.person.Person;
 
 /**
@@ -47,4 +48,7 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    //========================For Calidr=========================================================
+    ReadOnlyTaskList getTaskList();
 }

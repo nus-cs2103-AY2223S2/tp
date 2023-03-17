@@ -1,6 +1,5 @@
 package seedu.calidr.logic;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -10,10 +9,11 @@ import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.logic.commands.Command;
 import seedu.calidr.logic.commands.CommandResult;
 import seedu.calidr.logic.commands.exceptions.CommandException;
-import seedu.calidr.logic.parser.AddressBookParser;
+import seedu.calidr.logic.parser.CalidrParser;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.ReadOnlyAddressBook;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.storage.Storage;
 
@@ -26,7 +26,9 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    // private final AddressBookParser addressBookParser;
+
+    private final CalidrParser calidrParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +36,8 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        // addressBookParser = new AddressBookParser();
+        calidrParser = new CalidrParser();
     }
 
     @Override
@@ -42,14 +45,17 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = calidrParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        // TODO Storage integration
+        /*
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
+         */
 
         return commandResult;
     }
@@ -77,5 +83,12 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    //==================For Calidr=====================================================================
+
+    @Override
+    public ReadOnlyTaskList getTaskList() {
+        return model.getTaskList();
     }
 }

@@ -1,7 +1,11 @@
 package seedu.calidr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.calidr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +17,11 @@ import seedu.calidr.model.person.Address;
 import seedu.calidr.model.person.Email;
 import seedu.calidr.model.person.Name;
 import seedu.calidr.model.person.Phone;
+import seedu.calidr.model.person.Remark;
 import seedu.calidr.model.tag.Tag;
+import seedu.calidr.model.task.params.EventDateTimes;
+import seedu.calidr.model.task.params.Title;
+import seedu.calidr.model.task.params.TodoDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -96,6 +104,17 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +139,77 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    //===============================For Calidr====================================================
+    /**
+     * Parses a {@code String title} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
+    }
+
+    private static LocalDateTime parseDateTime(String dateTimeText) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+
+        try {
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeText, dateTimeFormatter);
+            return dateTime;
+
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Parses a {@code String todoDateTime} into a {@code TodoDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code todoDateTime} is invalid.
+     */
+    public static TodoDateTime parseTodoDateTime(String todoDateTime) throws ParseException {
+        requireNonNull(todoDateTime);
+        String trimmedTodoDateTime = todoDateTime.trim();
+
+        LocalDateTime byDateTime = parseDateTime(trimmedTodoDateTime);
+        if (byDateTime == null) {
+            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
+        }
+
+        return new TodoDateTime(byDateTime);
+    }
+
+    /**
+     * Parses a {@code String fromDateTime} and {@code String toDateTime}
+     * into a {@code EventDateTimes}. Leading and trailing whitespaces will
+     * be trimmed.
+     *
+     * @throws ParseException if the given {@code String fromDateTime} and
+     *     {@code String toDateTime} are invalid.
+     */
+    public static EventDateTimes parseEventDateTimes(String fromDateTime, String toDateTime)
+            throws ParseException {
+
+        requireAllNonNull(fromDateTime, toDateTime);
+
+        String trimmedFromDateTime = fromDateTime.trim();
+        String trimmedToDateTime = toDateTime.trim();
+
+        LocalDateTime from = parseDateTime(trimmedFromDateTime);
+        LocalDateTime to = parseDateTime(trimmedToDateTime);
+
+        if (from == null || to == null) {
+            throw new ParseException("Date-times should be of the format YYYY-MM-DD hhmm");
+        }
+
+        return new EventDateTimes(from, to);
     }
 }

@@ -1,42 +1,62 @@
-package seedu.calidr.task;
+package seedu.calidr.model.task;
+
+import seedu.calidr.model.task.params.Priority;
+import seedu.calidr.model.task.params.Title;
+import seedu.calidr.model.task.params.TodoDateTime;
 
 /**
- * Represents a task that should be completed, with no time constraints.
+ * Represents a deadline - a task that should be completed within
+ * a particular date and time.
  */
 public class ToDo extends Task {
 
-    public ToDo(String description) {
-        super(description);
+    private final TodoDateTime byDateTime;
+
+    /**
+     * Creates a ToDo object with the given details and MEDIUM priority.
+     *
+     * @param title The title of the ToDo.
+     * @param by The deadline date-time of the ToDo.
+     */
+    public ToDo(Title title, TodoDateTime by) {
+        super(title);
+
+        assert by != null;
+
+        this.byDateTime = by;
     }
 
     /**
-     * Creates a ToDo object with the given description and priority.
+     * Creates a ToDo with the given details.
      *
-     * @param description The description of the ToDo.
-     * @param priority The priority associated with the ToDo.
+     * @param title The title of the ToDo.
+     * @param by The deadline date-time of the ToDo.
+     * @param priority The priority of the ToDo.
      */
-    public ToDo(String description, Priority priority) {
+    public ToDo(Title title, TodoDateTime by, Priority priority) {
+        super(title, priority);
 
-        super(description, priority);
+        assert by != null;
+
+        this.byDateTime = by;
     }
 
-    /**
-     * Gets the String representation of the to-do to be stored in the text file.
-     *
-     * @return The String representation of the to-do to be stored in the text file.
-     */
-    @Override
-    public String getFileRepresentation() {
-        String mark = (super.isDone) ? "X" : " ";
-
-        return "T" + "~"
-                + this.priority + "~"
-                + mark + "~"
-                + this.description;
+    public TodoDateTime getBy() {
+        return this.byDateTime;
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+
+        return "[T]" + super.toString()
+                + " ("
+                + byDateTime.toString()
+                + ")";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return super.equals(other)
+                && byDateTime.equals(((ToDo) other).byDateTime);
     }
 }

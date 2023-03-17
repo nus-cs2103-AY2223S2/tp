@@ -1,52 +1,48 @@
-package seedu.calidr.task;
+package seedu.calidr.model.task;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import seedu.calidr.model.task.params.Priority;
+import seedu.calidr.model.task.params.Title;
 
 /**
- * Represents a task with the description of the task and
+ * Represents a task with the title of the task and
  * the status of the task - whether it is done.
  */
 public abstract class Task {
 
-    protected final String description;
-    protected boolean isDone;
-    protected Priority priority;
+    private Title title;
+    private boolean isDone;
+    private Priority priority;
 
+    /**
+     * Creates a Task object with the given title and MEDIUM priority.
+     *
+     * @param title The title of the Task.
+     */
+    public Task(Title title) {
+        assert title != null;
 
-    protected Task(String description) {
-        assert description != null;
-
-        this.description = description;
+        this.title = title;
         this.isDone = false;
         this.priority = Priority.MEDIUM;
     }
 
-    protected Task(String description, Priority priority) {
-        assert description != null;
+    /**
+     * Creates a Task object with the given title and priority.
+     *
+     * @param title The title of the Task.
+     * @param priority The priority associated with the Task.
+     */
+    public Task(Title title, Priority priority) {
+        assert title != null;
         assert priority != null;
 
-        this.description = description;
+        this.title = title;
         this.isDone = false;
         this.priority = priority;
     }
 
-    /**
-     * Gets the representation of the LocalDateTime object formatted like Jan 21 2023 06:00 PM.
-     *
-     * @param dateTime The LocalDateTime object to be formatted.
-     * @return The formatted String representation of the LocalDateTime object.
-     */
-    public static String getDateTimeString(LocalDateTime dateTime) {
-        assert dateTime != null;
-
-        DateTimeFormatter formatToPrint = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
-        return dateTime.format(formatToPrint);
-
-    }
-
-    public String getDescription() {
-        return this.description;
+    public Title getTitle() {
+        return this.title;
     }
 
     public void mark() {
@@ -61,19 +57,29 @@ public abstract class Task {
         this.priority = p;
     }
 
+    public Priority getPriority() {
+        return this.priority;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
+    }
+
     @Override
     public String toString() {
         String mark = this.isDone ? "X" : " ";
-        return "{" + this.priority.toString().toLowerCase()
-                + "}[" + mark + "] "
-                + this.description;
+        return "{" + this.priority.toString().toLowerCase() + "}[" + mark + "] " + this.title;
     }
 
-    /**
-     * Gets the String representation of the Task to be stored in the text file.
-     *
-     * @return The String representation of the Task to be stored in the text file.
-     */
-    public abstract String getFileRepresentation();
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Task // instanceof handles nulls
+                && title.equals(((Task) other).title));
+    }
 
 }

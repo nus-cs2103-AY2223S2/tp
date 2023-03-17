@@ -11,7 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
+import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.model.person.Person;
+import seedu.calidr.model.task.Task;
+import seedu.calidr.model.tasklist.TaskList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -20,8 +23,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final TaskList taskList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -32,8 +37,10 @@ public class ModelManager implements Model {
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.taskList = new TaskList();
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.taskList.getTaskList());
     }
 
     public ModelManager() {
@@ -145,6 +152,58 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== TaskList ================================================================================
+
+    @Override
+    public void setTaskList(ReadOnlyTaskList taskList) {
+        this.taskList.resetData(taskList);
+    }
+
+    @Override
+    public ReadOnlyTaskList getTaskList() {
+        return taskList;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskList.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Index targetIndex) {
+        taskList.deleteTask(targetIndex);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        taskList.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Index targetIndex, Task editedTask) {
+        requireAllNonNull(targetIndex, editedTask);
+        taskList.setTask(targetIndex, editedTask);
+    }
+
+    //=========== Filtered Task List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedTaskList}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
 }
