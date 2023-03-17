@@ -8,7 +8,9 @@ import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
+import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
 import seedu.loyaltylift.model.customer.Points;
 
@@ -28,11 +30,21 @@ public class SetPointsCommandParserTest {
     @Test
     public void parse_missingCompulsoryField_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetPointsCommand.MESSAGE_USAGE);
+        String expectedMissingIndex = Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX;
+        String input = "setpoints pt/500";
 
         // no parameters
         assertParseFailure(parser, SetPointsCommand.COMMAND_WORD, expectedMessage);
 
         // no index
         assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " " + nonEmptyPoints, expectedMessage);
+        /**
+        // no index
+        assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " "
+                + PREFIX_POINTS + nonEmptyPoints, expectedMessage);
+         */
+
+        // no points
+        assertParseFailure(parser, SetPointsCommand.COMMAND_WORD + " 1", expectedMessage);
     }
 }

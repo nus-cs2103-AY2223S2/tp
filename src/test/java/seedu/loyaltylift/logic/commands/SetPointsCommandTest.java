@@ -54,7 +54,7 @@ public class SetPointsCommandTest {
         assertFalse(standardCommand.equals(new SetPointsCommand(INDEX_SECOND_CUSTOMER,
                 new Points(VALID_POINTS_AMY))));
 
-        // different remark -> returns false
+        // different Points -> returns false
         assertFalse(standardCommand.equals(new SetPointsCommand(INDEX_FIRST_CUSTOMER,
                 new Points(VALID_POINTS_BOB))));
     }
