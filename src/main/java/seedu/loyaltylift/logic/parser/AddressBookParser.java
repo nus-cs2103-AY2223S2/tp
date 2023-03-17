@@ -13,6 +13,7 @@ import seedu.loyaltylift.logic.commands.Command;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
 import seedu.loyaltylift.logic.commands.DeleteOrderCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
+import seedu.loyaltylift.logic.commands.EditOrderCommand;
 import seedu.loyaltylift.logic.commands.ExitCommand;
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
@@ -74,6 +75,9 @@ public class AddressBookParser {
 
         case DeleteOrderCommand.COMMAND_WORD:
             return new DeleteOrderCommandParser().parse(arguments);
+
+        case EditOrderCommand.COMMAND_WORD:
+            return new EditOrderCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

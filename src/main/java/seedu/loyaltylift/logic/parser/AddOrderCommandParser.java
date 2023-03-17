@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.logic.parser.CliSyntax.*;
+import static seedu.loyaltylift.model.order.Status.PENDING;
 
 import java.util.stream.Stream;
 
@@ -14,7 +15,6 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
-import seedu.loyaltylift.model.order.StatusValue;
 
 /**
  * Parses input arguments and creates a new AddCustomerCommand object
@@ -60,7 +60,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         } else {
-            status = new Status(StatusValue.PENDING);
+            status = PENDING;
         }
         Order order = new Order(name, quantity, status, address);
         return new AddOrderCommand(order);
