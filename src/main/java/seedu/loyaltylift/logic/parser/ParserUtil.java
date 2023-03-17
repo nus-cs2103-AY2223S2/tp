@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.commons.util.StringUtil;
+import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
@@ -139,9 +140,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String points} into an {@code Points}.
+     * Parses a {@code String points} into a {@code Points}.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code points} is invalid.
      */
     public static Points parsePoints(String points) throws ParseException {
         requireNonNull(points);
@@ -158,5 +159,35 @@ public class ParserUtil {
             throw new ParseException(Points.MESSAGE_CONSTRAINTS);
         }
         return new Points(integerTrimmedPoints);
+    }
+
+    /**
+     * Parses a {@code String points} into a {@code AddPoints}.
+     *
+     * @throws ParseException if the given {@code points} is invalid.
+     */
+    public static Points.AddPoints parseAddPoints(String points) throws ParseException {
+        requireNonNull(points);
+        String trimmedPoints = points.trim();
+        Integer integerTrimmedPoints;
+        Points.AddPoints.Modifier modifier;
+        try {
+            integerTrimmedPoints = Integer.valueOf(trimmedPoints);
+        } catch (NumberFormatException e) {
+            // integerTrimmedPoints is a string that cannot be parsed
+            throw new ParseException(Points.AddPoints.MESSAGE_CONSTRAINTS);
+        }
+        if (integerTrimmedPoints < 0) {
+            integerTrimmedPoints = Math.abs(integerTrimmedPoints);
+            modifier = Points.AddPoints.Modifier.MINUS;
+        } else {
+            modifier = Points.AddPoints.Modifier.PLUS;
+        }
+
+        if (!Points.isValidPoints(integerTrimmedPoints)) {
+            // integerTrimmedPoints is an integer that is not within the range of 0 to 999999
+            throw new ParseException(Points.AddPoints.MESSAGE_CONSTRAINTS);
+        }
+        return new Points.AddPoints(integerTrimmedPoints, modifier);
     }
 }
