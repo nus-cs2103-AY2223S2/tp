@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -17,7 +18,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.doctor.DoctorStub;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -118,9 +118,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         // TODO: Change EnlargedContactCard to show nothing if doctor list is empty
         // TODO: Separation of Concerns here does not seem strong
-        Doctor initDoctor = new DoctorStub();
+        Optional<Doctor> initDoctor = Optional.empty();
         if (!logic.getFilteredDoctorList().isEmpty()) {
-            initDoctor = logic.getFilteredDoctorList().get(0);
+            initDoctor = Optional.of(logic.getFilteredDoctorList().get(0));
         }
         enlargedContactCard = new EnlargedContactCard(initDoctor);
         enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
@@ -192,6 +192,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            // TODO: Change EnlargedContactCard to show nothing if doctor list is empty
+            // TODO: Separation of Concerns here does not seem strong
+            Optional<Doctor> initDoctor = Optional.empty();
+            if (!logic.getFilteredDoctorList().isEmpty()) {
+                initDoctor = Optional.of(logic.getFilteredDoctorList().get(0));
+            }
+            enlargedContactCard.updateSelectedDoctorOptional(initDoctor);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
