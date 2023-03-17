@@ -260,6 +260,11 @@ public class Shop implements ReadOnlyShop {
         return technicians.contains(person);
     }
 
+    /**
+     * Checks if technician already in the system
+     *
+     * @param technicianId ID of technician to check against
+     */
     public boolean hasTechnician(int technicianId) {
         return this.getTechnicianList().stream()
                 .anyMatch(p -> p.getId() == technicianId);

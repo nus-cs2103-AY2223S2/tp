@@ -77,6 +77,9 @@ public class Service {
         this(id, vehicleId, 7, "");
     }
 
+    /**
+     * Yet another Service constructor
+     */
     public Service(int id, int vehicleId, int serviceDuration, String serviceDesc, ServiceStatus serviceStatus) {
         this(id, vehicleId, serviceDuration, new HashSet<>(), serviceDesc);
         this.status = serviceStatus;

@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.commands.AddVehicleCommand;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.VehicleType;
