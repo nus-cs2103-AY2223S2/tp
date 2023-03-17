@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
+import seedu.address.model.Model;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -23,13 +24,16 @@ public class UiManager implements Ui {
     private static final String ICON_APPLICATION = "/images/address_book_32.png";
 
     private Logic logic;
+
+    private Model model;
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, Model model) {
         this.logic = logic;
+        this.model = model;
     }
 
     @Override
@@ -41,6 +45,7 @@ public class UiManager implements Ui {
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
+            model.setMainWindow(mainWindow);
             mainWindow.getPrimaryStage().setMinWidth(mainWindow.getPrimaryStage().getMinWidth());
             mainWindow.getPrimaryStage().setMinHeight(mainWindow.getPrimaryStage().getMinHeight());
             mainWindow.getPrimaryStage().setResizable(false);

@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -131,10 +132,23 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
+    /**
+     * Updates content of the right pane upon entering a command
+     */
     void changeIndividualPane() {
         this.clearPane();
         personalPane = new PersonalPane(logic.getFilteredPersonList().get(logic.getPersonId()));
         personalPanePlaceholder.getChildren().add(personalPane.getRoot());
+    }
+
+    public void changeIndividualPane(Person person, String clearCommand) {
+        if (clearCommand.equals("clear")) {
+            this.clearPane();
+        } else {
+            this.clearPane();
+            personalPane = new PersonalPane(person);
+            personalPanePlaceholder.getChildren().add(personalPane.getRoot());
+        }
     }
 
     void clearPane() {
@@ -175,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

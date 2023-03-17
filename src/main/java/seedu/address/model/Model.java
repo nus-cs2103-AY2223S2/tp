@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.ui.MainWindow;
 
 /**
  * The API of the Model component.
@@ -94,5 +95,7 @@ public interface Model {
     void setPersonId(int index);
 
     int getPersonId();
+
+    void setMainWindow(MainWindow mainWindow);
 }
 
