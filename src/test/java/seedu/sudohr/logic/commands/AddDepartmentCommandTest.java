@@ -22,9 +22,7 @@ import seedu.sudohr.model.ReadOnlyUserPrefs;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
-import seedu.sudohr.model.leave.Date;
-import seedu.sudohr.model.leave.Leave;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.testutil.DepartmentBuilder;
 
 public class AddDepartmentCommandTest {
@@ -78,7 +76,7 @@ public class AddDepartmentCommandTest {
         // null -> returns false
         assertFalse(addHumanResourcesCommand.equals(null));
 
-        // different person -> returns false
+        // different employee -> returns false
         assertFalse(addHumanResourcesCommand.equals(addEngineeringCommand));
     }
     /**
@@ -116,174 +114,114 @@ public class AddDepartmentCommandTest {
         }
 
         @Override
+        public void addEmployee(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setSudoHr(ReadOnlySudoHr sudoHr) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setSudoHr'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlySudoHr getSudoHr() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getSudoHr'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasPerson'");
+        public boolean hasEmployee(Employee employee) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deletePerson'");
+        public boolean hasEmployee(Employee employee, Employee excludeFromCheck) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addPerson'");
+        public boolean hasClashingEmail(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingEmail(Employee employee, Employee excludeFromCheck) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setPerson'");
+        public boolean hasClashingPhoneNumber(Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredPersonList'");
+        public void deleteEmployee(Employee target) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredPersonList'");
+        public void setEmployee(Employee target, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Department getDepartment(DepartmentName name) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getDepartment'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasDepartment(Department department) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasDepartment'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addDepartment(Department d) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addDepartment'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setDepartment(Department target, Department editedDepartment) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'setDepartment'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void removeDepartment(Department key) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeDepartment'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addEmployeeToDepartment(Person p, Department d) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToDepartment'");
+        public void addEmployeeToDepartment(Employee p, Department d) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removeEmployeeFromDepartment(Person p, Department d) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeEmployeeFromDepartment'");
+        public void removeEmployeeFromDepartment(Employee p, Department d) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Department> getFilteredDepartmentList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredDepartmentList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredDepartmentList(Predicate<Department> predicate) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredDepartmentList'");
+            throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void addLeave(Leave leave) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addLeave'");
-        }
-
-        @Override
-        public boolean hasLeave(Leave leave) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasLeave'");
-        }
-
-        @Override
-        public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getInternalLeaveIfExist'");
-        }
-
-        @Override
-        public boolean hasEmployeeOnLeave(Date date, Person person) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasEmployeeOnLeave'");
-        }
-
-        @Override
-        public void addEmployeeToLeave(Leave leaveToAdd, Person personToAdd) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToLeave'");
-        }
-
-        @Override
-        public ObservableList<Leave> getFilteredLeaveList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredLeaveList'");
-        }
-
-        @Override
-        public void deleteEmployeeFromLeave(Leave leaveToDelete, Person personToDelete) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'deleteEmployeeFromLeave'");
-        }
-
-        @Override
-        public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredLeaveList'");
-        }
-
-        @Override
-        public void cascadeUpdateUserInLeaves(Person personToEdit, Person editedPerson) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'cascadeUpdateUserInLeaves'");
-        }
-
-        @Override
-        public void cascadeDeleteUserInLeaves(Person personToDelete) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInLeaves'");
-        }
-
-        @Override
-        public ObservableList<Leave> getLeavesList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getLeavesList'");
-        }
-
-
     }
 
     /**

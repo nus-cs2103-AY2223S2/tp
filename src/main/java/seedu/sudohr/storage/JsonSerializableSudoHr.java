@@ -13,7 +13,7 @@ import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.leave.Leave;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * An Immutable SudoHr that is serializable to JSON format.
@@ -21,22 +21,24 @@ import seedu.sudohr.model.person.Person;
 @JsonRootName(value = "sudohr")
 class JsonSerializableSudoHr {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "Employees list contains duplicate employee(s).";
+    public static final String MESSAGE_DUPLICATE_PHONE = "There are duplicate phone numbers in the employee list.";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "There are duplicate email addresses in the employee list";
     public static final String MESSAGE_DUPLICATE_DEPARTMENTS = "Departments list contains duplicate department(s).";
     public static final String MESSAGE_DUPLICATE_LEAVES = "Leave list contains duplicate events(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final List<JsonAdaptedDepartment> departments = new ArrayList<>();
     private final List<JsonAdaptedLeave> leaves = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableSudoHr} with the given persons.
+     * Constructs a {@code JsonSerializableSudoHr} with the given employees.
      */
     @JsonCreator
-    public JsonSerializableSudoHr(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableSudoHr(@JsonProperty("employees") List<JsonAdaptedEmployee> employees,
                                   @JsonProperty("departments") List<JsonAdaptedDepartment> departments,
                                   @JsonProperty("leaves") List<JsonAdaptedLeave> leaves) {
-        this.persons.addAll(persons);
+        this.employees.addAll(employees);
         this.departments.addAll(departments);
         this.leaves.addAll(leaves);
     }
@@ -47,7 +49,7 @@ class JsonSerializableSudoHr {
      * @param source future changes to this will not affect the created {@code JsonSerializableSudoHr}.
      */
     public JsonSerializableSudoHr(ReadOnlySudoHr source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
         departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new)
                 .collect(Collectors.toList()));
         leaves.addAll(source.getLeavesList().stream().map(JsonAdaptedLeave::new)
@@ -62,12 +64,18 @@ class JsonSerializableSudoHr {
     public SudoHr toModelType() throws IllegalValueException {
         SudoHr sudoHr = new SudoHr();
 
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (sudoHr.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedEmployee jsonAdaptedEmployee : employees) {
+            Employee employee = jsonAdaptedEmployee.toModelType();
+            if (sudoHr.hasEmployee(employee)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EMPLOYEE);
             }
-            sudoHr.addPerson(person);
+            if (sudoHr.hasClashingPhoneNumber(employee)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PHONE);
+            }
+            if (sudoHr.hasClashingEmail(employee)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EMAIL);
+            }
+            sudoHr.addEmployee(employee);
         }
 
         for (JsonAdaptedDepartment jsonAdaptedDepartment : departments) {
@@ -75,9 +83,9 @@ class JsonSerializableSudoHr {
             if (sudoHr.hasDepartment(department)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DEPARTMENTS);
             }
-
             sudoHr.addDepartment(department);
         }
+
 
         for (JsonAdaptedLeave jsonAdaptedLeave : leaves) {
             Leave leave = jsonAdaptedLeave.toModelType();

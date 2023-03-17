@@ -68,9 +68,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s sudohr book and {@code userPrefs}. <br>
-     * The data from the sample sudohr book will be used instead if {@code storage}'s sudohr book is not found,
-     * or an empty sudohr book will be used instead if errors occur when reading {@code storage}'s sudohr book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s SudoHR and {@code userPrefs}. <br>
+     * The data from the sample SudoHR will be used instead if {@code storage}'s SudoHR is not found,
+     * or an empty SudoHR will be used instead if errors occur when reading {@code storage}'s SudoHR.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlySudoHr> sudoHrOptional;
@@ -82,10 +82,10 @@ public class MainApp extends Application {
             }
             initialData = sudoHrOptional.orElseGet(SampleDataUtil::getSampleSudoHr);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty SudoHr");
+            logger.warning("Data file not in the correct format. Will be starting with an empty SudoHR");
             initialData = new SudoHr();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty SudoHr");
+            logger.warning("Problem while reading from the file. Will be starting with an empty SudoHR");
             initialData = new SudoHr();
         }
         return new ModelManager(initialData, userPrefs);
@@ -165,13 +165,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting SudoHr " + MainApp.VERSION);
+        logger.info("Starting SudoHR " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping SudoHR Application ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

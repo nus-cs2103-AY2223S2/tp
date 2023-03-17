@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.parser.exceptions.ParseException;
-import seedu.sudohr.model.person.Address;
-import seedu.sudohr.model.person.Email;
-import seedu.sudohr.model.person.Name;
-import seedu.sudohr.model.person.Phone;
+import seedu.sudohr.model.employee.Address;
+import seedu.sudohr.model.employee.Email;
+import seedu.sudohr.model.employee.Name;
+import seedu.sudohr.model.employee.Phone;
 import seedu.sudohr.model.tag.Tag;
 
 public class ParserUtilTest {

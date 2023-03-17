@@ -1,4 +1,3 @@
-
 package seedu.sudohr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
