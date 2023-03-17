@@ -322,6 +322,17 @@
     -fx-padding: 8 1 8 1;
 }
 
+.tag_alignment {
+    -fx-alignment: center;
+}
+
+.cell_status_label {
+    -fx-font-family: "sans-serif";
+    -fx-padding: 8;
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+}
+
 #cardPane {
     -fx-background-color: #C5C5C5;
     -fx-border-width: 0;
@@ -371,6 +382,6 @@
 
 #tagPane {
     -fx-background-color: #C5C5C5;
-    -fx-border-width: 0;
-    -fx-background-insets: 5
+    -fx-min-height: 50;
+    -fx-background-padding: 5;
 }
