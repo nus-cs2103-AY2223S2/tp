@@ -194,7 +194,7 @@ Format: `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`
 
 * After pairing, the newly added pairs appear in the pair list in the window.
 * Only elderly members and volunteers existing in FriendlyLink's data can be paired.
-* Only elderly members and volunteers with matching available dates can be paired.
+* Only elderly members and volunteers with intersecting available dates can be paired.
 * Elderly member and volunteers in different regions can be paired but a warning message is issued.
 * Duplicate pairs will fail to be added to FriendlyLink.
 * Alphabets in NRIC are case-insensitive.
