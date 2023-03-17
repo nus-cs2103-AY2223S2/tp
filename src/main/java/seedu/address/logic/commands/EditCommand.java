@@ -78,6 +78,7 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -135,6 +136,7 @@ public class EditCommand extends Command {
         private PayRate payRate;
         private Session session;
         private Set<Tag> tags;
+        private Tag groupToAdd;
 
         public EditPersonDescriptor() {}
 
@@ -149,6 +151,7 @@ public class EditCommand extends Command {
             setPayRate(toCopy.payRate);
             setSession(toCopy.session);
             setTags(toCopy.tags);
+
         }
 
 
@@ -207,6 +210,7 @@ public class EditCommand extends Command {
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
+
 
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}

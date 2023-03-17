@@ -12,7 +12,9 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +29,7 @@ public class AddressBookTest {
 
     private final AddressBook addressBook = new AddressBook();
     private final Tag test = new Tag("bob");
+    private final Set<Tag> testList = new HashSet<>(Arrays.asList(test, new Tag("ben")));
 
     @Test
     public void constructor() {
@@ -49,6 +52,13 @@ public class AddressBookTest {
     public void addTagTest() {
         AddressBook addressBookTest = new AddressBook();
         addressBookTest.addTag(test);
+        assertFalse(addressBook.equals(addressBookTest));
+    }
+
+    @Test
+    public void addAllTagTest() {
+        AddressBook addressBookTest = new AddressBook();
+        addressBookTest.addAllTags(testList);
         assertFalse(addressBook.equals(addressBookTest));
     }
 
