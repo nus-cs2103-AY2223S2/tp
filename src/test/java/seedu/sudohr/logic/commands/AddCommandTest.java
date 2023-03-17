@@ -29,6 +29,7 @@ import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.testutil.EmployeeBuilder;
 
 public class AddCommandTest {
@@ -215,6 +216,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasClashingPhoneNumber(Employee employee, Employee excludeFromCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Employee getEmployee(Id id) {
             throw new AssertionError("This method should not be called.");
         }
 

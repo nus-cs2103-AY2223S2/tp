@@ -9,6 +9,7 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
@@ -71,6 +72,15 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     //=========== Employee-Level Operations ============================
+
+    /**
+     * Returns the employee with the given Id.
+     * @param id The Id to find.
+     * @return The corresponding employee.
+     */
+    public Employee getEmployee(Id id) {
+        return employees.get(id);
+    }
 
     /**
      * Returns true if an employee with the same identity as {@code employee} exists in SudoHR.
@@ -158,20 +168,20 @@ public class SudoHr implements ReadOnlySudoHr {
     //=========== Department-Level Operations ==========================================================================
 
     /**
-     * Returns true if a department with the same identity as {@code department} exists in SudoHR.
-     */
-    public boolean hasDepartment(Department department) {
-        requireNonNull(department);
-        return departments.contains(department);
-    }
-
-    /**
      * Returns the department with the given name.
      * @param name The department name to find.
      * @return The corresponding department.
      */
     public Department getDepartment(DepartmentName name) {
         return departments.getDepartment(name);
+    }
+
+    /**
+     * Returns true if a department with the same identity as {@code department} exists in SudoHR.
+     */
+    public boolean hasDepartment(Department department) {
+        requireNonNull(department);
+        return departments.contains(department);
     }
 
     /**
