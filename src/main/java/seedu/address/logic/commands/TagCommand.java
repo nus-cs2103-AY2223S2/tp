@@ -104,4 +104,26 @@ public class TagCommand extends Command {
 
     }
 
+    public ContactIndex getIndex() {
+        return this.index;
+    }
+
+    public Set<ModuleTag> getModules() {
+        return this.moduleTags;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof TagCommand) {
+            TagCommand otherCommand = (TagCommand) other;
+            return otherCommand.getIndex().equals(getIndex())
+                    && otherCommand.getModules().equals(getModules());
+        }
+
+        return false;
+    }
+
 }
