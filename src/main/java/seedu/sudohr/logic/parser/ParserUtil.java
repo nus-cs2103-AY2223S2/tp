@@ -17,6 +17,7 @@ import seedu.sudohr.model.employee.Email;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.Name;
 import seedu.sudohr.model.employee.Phone;
+import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.tag.Tag;
 
 /**
@@ -175,21 +176,6 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
-    }
-
-    /**
-     * Parses a {@code String name} into a {@code DepartmentName}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code name} is invalid.
-     */
-    public static DepartmentName parseDepartmentName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!DepartmentName.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        }
-        return new DepartmentName(trimmedName);
     }
 
     /**

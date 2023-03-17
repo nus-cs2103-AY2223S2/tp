@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 
 /**
@@ -16,20 +16,20 @@ import seedu.sudohr.model.person.Person;
 public class Leave {
 
     private final Date title;
-    private final Set<Person> attendees;
+    private final Set<Employee> attendees;
 
     /**
      * Every field must be present and not null.
      */
     public Leave(Date title) {
         this.title = title;
-        this.attendees = new HashSet<Person>();
+        this.attendees = new HashSet<Employee>();
     }
 
     /**
      * Creates a new leave with the specified title {@code title} and attendees{@code attendees}
      */
-    public Leave(Date title, Set<Person> attendees) {
+    public Leave(Date title, Set<Employee> attendees) {
         this.title = title;
         this.attendees = attendees;
     }
@@ -38,14 +38,14 @@ public class Leave {
         return title;
     }
 
-    public Set<Person> getAttendees() {
+    public Set<Employee> getAttendees() {
         return attendees;
     }
 
     /**
      * Returns true if leave has a specific person {@code person} as an attendee.
      */
-    public boolean hasPerson(Person person) {
+    public boolean hasPerson(Employee person) {
         requireNonNull(person);
         return attendees.contains(person);
     }
@@ -53,7 +53,7 @@ public class Leave {
     /**
      * Adds a specific person {@code person} to the leave.
      */
-    public void addPerson(Person person) {
+    public void addPerson(Employee person) {
         requireNonNull(person);
         this.attendees.add(person);
     }
@@ -61,7 +61,7 @@ public class Leave {
     /**
      * Deletes a specific person {@code person} from the leave.
      */
-    public void deletePerson(Person person) {
+    public void deletePerson(Employee person) {
         requireNonNull(person);
         this.attendees.remove(person);
     }

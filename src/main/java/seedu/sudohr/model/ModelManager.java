@@ -191,33 +191,33 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasEmployeeOnLeave(Date date, Person person) {
+    public boolean hasEmployeeOnLeave(Date date, Employee person) {
         requireAllNonNull(date, person);
         return sudoHr.hasEmployeeOnLeave(date, person);
     }
 
     @Override
-    public void addEmployeeToLeave(Leave leaveToAdd, Person personToAdd) {
+    public void addEmployeeToLeave(Leave leaveToAdd, Employee personToAdd) {
         requireAllNonNull(leaveToAdd, personToAdd);
 
         sudoHr.addEmployeeToLeave(leaveToAdd, personToAdd);
     }
 
     @Override
-    public void deleteEmployeeFromLeave(Leave leaveToDelete, Person personToDelete) {
+    public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee personToDelete) {
         requireAllNonNull(leaveToDelete, personToDelete);
 
         sudoHr.deleteEmployeeFromLeave(leaveToDelete, personToDelete);
     }
 
     @Override
-    public void cascadeUpdateUserInLeaves(Person personToEdit, Person editedPerson) {
+    public void cascadeUpdateUserInLeaves(Employee personToEdit, Employee editedPerson) {
         requireAllNonNull(personToEdit, editedPerson);
         sudoHr.cascadeUpdateUserInLeaves(personToEdit, editedPerson);
     }
 
     @Override
-    public void cascadeDeleteUserInLeaves(Person personToDelete) {
+    public void cascadeDeleteUserInLeaves(Employee personToDelete) {
         requireAllNonNull(personToDelete);
         sudoHr.cascadeDeleteUserInLeaves(personToDelete);
     }

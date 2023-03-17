@@ -175,62 +175,6 @@ public interface Model {
      */
     void updateFilteredDepartmentList(Predicate<Department> predicate);
 
-    //=========== Department-Level Operations ==========================================================================
-
-    public Department getDepartment(DepartmentName name);
-
-    /**
-     * Returns true if a department with the same identity as {@code department} exists in the address
-     * book.
-     */
-    public boolean hasDepartment(Department department);
-
-    /**
-     * Adds a department to the address book.
-     * The department must not already exist in the address book.
-     */
-    void addDepartment(Department d);
-
-    /**
-     * Replaces the given department {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in
-     * the address book.
-     */
-    void setDepartment(Department target, Department editedDepartment);
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    void removeDepartment(Department key);
-
-    /**
-     * Adds a given employee from a given department
-     *
-     * @param p The employee to add
-     * @param d The department to add the employee to
-     */
-    void addEmployeeToDepartment(Person p, Department d);
-
-    /**
-     * Removes a given employee from a given department
-     *
-     * @param p The employee to remove
-     * @param d The department to remove the employee fro
-     */
-    void removeEmployeeFromDepartment(Person p, Department d);
-
-    /** Returns an unmodifiable view of the filtered department list */
-    ObservableList<Department> getFilteredDepartmentList();
-
-    /**
-     * Updates the filter of the filtered department list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredDepartmentList(Predicate<Department> predicate);
-
     //=========== Leave-Level Operations ==========================================================================
 
     /**
@@ -257,13 +201,13 @@ public interface Model {
      * Returns true if a given date{@code date} has the employee {@code employee} in
      * the sudohr book.
      */
-    boolean hasEmployeeOnLeave(Date date, Person person);
+    boolean hasEmployeeOnLeave(Date date, Employee person);
 
     /**
      * Adds a employee's {@code employee} on a given day{@code leaveToAdd} in
      * the sudohr book.
      */
-    void addEmployeeToLeave(Leave leaveToAdd, Person personToAdd);
+    void addEmployeeToLeave(Leave leaveToAdd, Employee personToAdd);
 
     /** Returns an unmodifiable view of the filtered leave list */
     ObservableList<Leave> getFilteredLeaveList();
@@ -275,7 +219,7 @@ public interface Model {
      * Deletes a employee {@code employee} from a given leave{@code leave} in
      * the sudohr book.
      */
-    void deleteEmployeeFromLeave(Leave leaveToDelete, Person personToDelete);
+    void deleteEmployeeFromLeave(Leave leaveToDelete, Employee personToDelete);
 
     /**
      * Updates the filter of the filtered leave list to filter by the given {@code predicate}.
@@ -288,12 +232,12 @@ public interface Model {
      * Update a person {@code person} with editedPerson {@code person} in all leave
      * in the sudohr book.
      */
-    void cascadeUpdateUserInLeaves(Person personToEdit, Person editedPerson);
+    void cascadeUpdateUserInLeaves(Employee personToEdit, Employee editedPerson);
 
     /**
      * Deletes a person {@code person} from all leaves
      * in the sudohr book.
      */
-    void cascadeDeleteUserInLeaves(Person personToDelete);
+    void cascadeDeleteUserInLeaves(Employee personToDelete);
 
 }

@@ -13,26 +13,26 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
- * Deletes a person from a specific leave in sudohr book.
+ * Deletes a employee from a specific leave in sudohr book.
  */
 public class DeleteEmployeeFromLeaveCommand extends Command {
     public static final String COMMAND_WORD = "deleteEmployeeLeave";
 
-    public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "This user does not exists in the leave in sudohr book";
+    public static final String MESSAGE_EMPLOYEE_DOES_NOT_EXIST = "This employee does not exists in the leave in sudohr book";
 
-    public static final String MESSAGE_SUCCESS = "person %1$s is deleted from %2$s";
+    public static final String MESSAGE_SUCCESS = "employee %1$s is deleted from %2$s";
 
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index is invalid";
+    public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The person index is invalid";
 
     public static final String MESSAGE_INVALID_DATE = "The employee has not taken a leave";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in the sudohr book. ";
 
     private final Date dateToDelete;
-    private final Index personToDeleteIndex;
+    private final Index employeeToDeleteIndex;
 
     /**
      * Creates an DeleteEmployeeFromLeaveCommand to delete the person at specified
@@ -42,35 +42,35 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         requireNonNull(personIndex);
         requireNonNull(dateToDelete);
         this.dateToDelete = dateToDelete;
-        personToDeleteIndex = personIndex;
+        employeeToDeleteIndex = personIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Employee> lastShownEmployeeList = model.getFilteredEmployeeList();
 
-        if (personToDeleteIndex.getZeroBased() >= lastShownPersonList.size()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (employeeToDeleteIndex.getZeroBased() >= lastShownEmployeeList.size()) {
+            throw new CommandException(MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownPersonList.get(personToDeleteIndex.getZeroBased());
+        Employee employeeToDelete = lastShownEmployeeList.get(employeeToDeleteIndex.getZeroBased());
 
         Leave leaveToDelete = new Leave(dateToDelete);
 
-        if (!model.hasEmployeeOnLeave(dateToDelete, personToDelete)) {
+        if (!model.hasEmployeeOnLeave(dateToDelete, employeeToDelete)) {
             throw new CommandException(MESSAGE_INVALID_DATE);
         }
 
         leaveToDelete = model.getInternalLeaveIfExist(leaveToDelete);
-        model.deleteEmployeeFromLeave(leaveToDelete, personToDelete);
+        model.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
 
-        Set<Person> personsToList = leaveToDelete.getAttendees();
-        LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(personsToList);
+        Set<Employee> employeesToList = leaveToDelete.getAttendees();
+        LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredEmployeeList(predicate);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToDelete, leaveToDelete));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, employeeToDelete, leaveToDelete));
     }
 
     @Override
@@ -78,8 +78,8 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteEmployeeFromLeaveCommand // instanceof handles nulls
                         && dateToDelete.equals(((DeleteEmployeeFromLeaveCommand) other).dateToDelete)
-                        && personToDeleteIndex
-                                .equals(((DeleteEmployeeFromLeaveCommand) other).personToDeleteIndex));
+                        && employeeToDeleteIndex
+                                .equals(((DeleteEmployeeFromLeaveCommand) other).employeeToDeleteIndex));
     }
 
 }

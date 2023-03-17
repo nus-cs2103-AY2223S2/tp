@@ -3,20 +3,20 @@ package seedu.sudohr.model.leave;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class LeaveContainsEmployeePredicate implements Predicate<Person> {
-    private final Set<Person> personsInEvent;
+public class LeaveContainsEmployeePredicate implements Predicate<Employee> {
+    private final Set<Employee> personsInEvent;
 
-    public LeaveContainsEmployeePredicate(Set<Person> personsInEvent) {
+    public LeaveContainsEmployeePredicate(Set<Employee> personsInEvent) {
         this.personsInEvent = personsInEvent;
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Employee person) {
         return personsInEvent.stream()
                 .anyMatch(personInList -> personInList.equals(person));
     }

@@ -13,7 +13,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Adds a employee using it's displayed index to a specific leave using it's
@@ -22,9 +22,9 @@ import seedu.sudohr.model.person.Person;
 public class AddEmployeeToLeaveCommand extends Command {
     public static final String COMMAND_WORD = "addEmployeeLeave";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a employee's leave in the sudohr book. ";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This user already has a leave on that day in sudohr book";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index is invalid";
-    public static final String MESSAGE_SUCCESS = "New person %1$s is added on %2$s";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on that day in sudohr book";
+    public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index is invalid";
+    public static final String MESSAGE_SUCCESS = "New employee %1$s is added on %2$s";
 
     private final Date leaveDate;
     private final Index employeeToAddIndex;
@@ -44,28 +44,28 @@ public class AddEmployeeToLeaveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownEmployeeList = model.getFilteredPersonList();
+        List<Employee> lastShownEmployeeList = model.getFilteredEmployeeList();
 
         if (employeeToAddIndex.getZeroBased() >= lastShownEmployeeList.size()) {
-            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
-        Person employeeToAdd = lastShownEmployeeList.get(employeeToAddIndex.getZeroBased());
+        Employee employeeToAdd = lastShownEmployeeList.get(employeeToAddIndex.getZeroBased());
 
         Leave leaveToAdd = new Leave(leaveDate);
 
         leaveToAdd = model.getInternalLeaveIfExist(leaveToAdd);
 
         if (leaveToAdd.hasPerson(employeeToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
         model.addEmployeeToLeave(leaveToAdd, employeeToAdd);
 
-        Set<Person> personsToList = leaveToAdd.getAttendees();
-        LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(personsToList);
+        Set<Employee> employeesToList = leaveToAdd.getAttendees();
+        LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredEmployeeList(predicate);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, employeeToAdd, leaveToAdd));
     }

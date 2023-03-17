@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.leave.exceptions.DuplicateLeaveException;
 import seedu.sudohr.model.leave.exceptions.LeaveNotFoundException;
-import seedu.sudohr.model.person.exceptions.DuplicatePersonException;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 
 /**
  * A list of leaves that enforces uniqueness between its elements and does not
@@ -98,7 +98,7 @@ public class UniqueLeaveList implements Iterable<Leave> {
     public void setLeaves(List<Leave> leaves) {
         requireAllNonNull(leaves);
         if (!leavesAreUnique(leaves)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateEmployeeException();
         }
 
         internalList.setAll(leaves);

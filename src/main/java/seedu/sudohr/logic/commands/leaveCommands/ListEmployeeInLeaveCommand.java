@@ -12,7 +12,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
-import seedu.sudohr.model.person.Person;
+import seedu.sudohr.model.employee.Employee;
 
 /**
  * Lists all employees attending a leave identified using it's displayed index
@@ -44,11 +44,11 @@ public class ListEmployeeInLeaveCommand extends Command {
         requireNonNull(model);
 
         Leave targetLeave = model.getInternalLeaveIfExist(new Leave(this.targetDate));
-        Set<Person> personsToList = targetLeave.getAttendees();
+        Set<Employee> personsToList = targetLeave.getAttendees();
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(personsToList);
 
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredEmployeeList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, model.getFilteredEmployeeList().size()));
     }
 }
