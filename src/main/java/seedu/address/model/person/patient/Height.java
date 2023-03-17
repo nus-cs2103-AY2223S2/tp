@@ -10,14 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Height {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Height should be a positive decimal point number representing the patient's height in metres "
-                    + "and should not be blank";
+            "Height should be a positive decimal point number with two decimal places representing the patient's height"
+                    + " in metres and should not be blank";
 
     /*
      * The first character of the specialty must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[0-9]+\\.[0-9]{2}$";
+    public static final String VALIDATION_REGEX = "^\\s*\\d{1}\\.\\d{1,2}\\s*$";
 
     public final String height;
 
@@ -29,7 +29,8 @@ public class Height {
     public Height(String height) {
         requireNonNull(height);
         checkArgument(isValidHeight(height), MESSAGE_CONSTRAINTS);
-        this.height = height;
+        String trimmedHeight = height.trim();
+        this.height = trimmedHeight;
     }
 
     /**

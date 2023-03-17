@@ -24,16 +24,40 @@ public class Status {
      */
     public Status(String status) {
         requireNonNull(status);
-        this.status = status.substring(0, 1).toUpperCase() + status.substring(1).toLowerCase();
+        this.status = toTitleCase(status);
     }
 
     /**
      * Returns true if a given string is a valid hospitalization status.
+     *
+     * @param test the input string to test the validation regex against
      */
     public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Converts the input string to title case.
+     *
+     * @param input the input string
+     */
+    private static String toTitleCase(String input) {
+        StringBuilder titleCase = new StringBuilder();
+        boolean nextTitleCase = true;
+
+        for (char c : input.toCharArray()) {
+            if (Character.isWhitespace(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            }
+
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
     @Override
     public String toString() {
         return status;

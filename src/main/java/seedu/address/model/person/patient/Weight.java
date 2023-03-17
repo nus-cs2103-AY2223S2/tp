@@ -10,9 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Weight {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight should be in kilograms (kg), expressed as a positive decimal number.";
+            "Weight should be in kilograms (kg), rounded to the nearest whole number.";
 
-    public static final String VALIDATION_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
+    public static final String VALIDATION_REGEX = "^\\s*[0-9]+(.[0-9]{1,2})?\\s*$";
 
     public final String weight;
 
@@ -24,7 +24,8 @@ public class Weight {
     public Weight(String weight) {
         requireNonNull(weight);
         checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
-        this.weight = weight;
+        String trimmedWeight = weight.trim();
+        this.weight = trimmedWeight;
     }
 
     /**

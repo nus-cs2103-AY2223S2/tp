@@ -27,7 +27,7 @@ public class Patient extends Person {
     public Patient(Name name, Phone phone, Email email, Height height, Weight weight,
                    Diagnosis diagnosis, Status status, Remark remark, Set<Tag> tags) {
         super(name, phone, email, tags);
-        requireAllNonNull(name, phone, email, height, weight, diagnosis, status, remark, tags);
+        requireAllNonNull(height, weight, diagnosis, status, remark, tags);
         this.height = height;
         this.weight = weight;
         this.diagnosis = diagnosis;
