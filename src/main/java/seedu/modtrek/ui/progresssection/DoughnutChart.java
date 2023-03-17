@@ -1,4 +1,4 @@
-package seedu.modtrek.ui.progress;
+package seedu.modtrek.ui.progresssection;
 
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;

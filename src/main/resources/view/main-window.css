@@ -29,6 +29,9 @@
 .h3 {
     -fx-font-size: 14;
 }
+.h4 {
+    -fx-font-size: 13;
+}
 .p1 {
     -fx-font-size: 12;
 }
@@ -126,5 +129,5 @@
 }
 
 #body {
-    -fx-padding: 30 10;
+    -fx-padding: 20 10;
 }

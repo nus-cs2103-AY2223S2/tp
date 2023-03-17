@@ -1,4 +1,4 @@
-package seedu.modtrek.ui.modulelist;
+package seedu.modtrek.ui.modulesection;
 
 import static seedu.modtrek.model.tag.Tag.ValidTag.COMPUTER_SCIENCE_BREADTH_AND_DEPTH;
 import static seedu.modtrek.model.tag.Tag.ValidTag.COMPUTER_SCIENCE_FOUNDATION;
@@ -22,7 +22,7 @@ import seedu.modtrek.ui.UiPart;
  * Represents a module card storing module details for a semYear.
  */
 public class ModuleCard extends UiPart<Region> {
-    private static final String FXML = "modulelist/ModuleCard.fxml";
+    private static final String FXML = "modulesection/ModuleCard.fxml";
 
     @FXML
     private Label moduleCardCode;

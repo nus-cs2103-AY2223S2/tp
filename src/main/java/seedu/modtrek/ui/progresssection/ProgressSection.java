@@ -1,4 +1,4 @@
-package seedu.modtrek.ui.progress;
+package seedu.modtrek.ui.progresssection;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +9,7 @@ import javafx.scene.layout.StackPane;
 import seedu.modtrek.ui.UiPart;
 
 public class ProgressSection extends UiPart<Region> {
-    private static final String FXML = "progress/ProgressSection.fxml";
+    private static final String FXML = "progresssection/ProgressSection.fxml";
 
     @FXML
     private StackPane progressSection;

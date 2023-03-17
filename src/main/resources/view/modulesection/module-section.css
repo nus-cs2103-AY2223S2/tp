@@ -1,0 +1,48 @@
+#module-section-nav {
+    -fx-padding: 0 0 10 0;
+    -fx-spacing: 10;
+
+    -fx-alignment: center-right
+}
+
+#module-section-nav-label {
+    -fx-font-family: 'Lexend Deca Semibold', sans-serif;
+    -fx-text-fill: -white;
+}
+
+.combo-box {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.combo-box .list-cell {
+    -fx-padding: 3 0 3 5;
+
+    -fx-text-fill: -white;
+
+    -fx-background: -dark-grey;
+    -fx-background-color: -dark-grey;
+}
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box .arrow {
+    -fx-background-color: -white;
+}
+.combo-box-base {
+    -fx-padding: 3;
+    -fx-background-color: -dark-grey;
+    -fx-background: -dark-grey;
+}
+.combo-box-popup .list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.combo-box-popup .list-view .list-cell:filled:hover  {
+    -fx-background-color: -white;
+    -fx-text-fill: -black;
+}
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover {
+    -fx-background: -teal;
+    -fx-background-color: -teal;
+    -fx-text-fill: -white;
+}

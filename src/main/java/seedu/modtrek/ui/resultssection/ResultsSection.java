@@ -3,13 +3,12 @@ package seedu.modtrek.ui.resultssection;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
-import seedu.modtrek.ui.modulelist.ModuleList;
-import seedu.modtrek.ui.progress.ProgressSection;
+import seedu.modtrek.ui.modulesection.ModuleSection;
+import seedu.modtrek.ui.progresssection.ProgressSection;
 
 /**
  * A UI component that displays the right portion of a Graphical User Interface
@@ -19,7 +18,7 @@ public class ResultsSection extends UiPart<Region> {
     private static final String FXML = "resultssection/ResultsSection.fxml";
 
     @FXML
-    private VBox sectionContainer;
+    private VBox resultsSection;
 
     @FXML
     private Label headerTitle;
@@ -77,8 +76,8 @@ public class ResultsSection extends UiPart<Region> {
 
         FooterButtonGroup footerButtonGroup =
                 new FooterButtonGroup(buttonLabels, buttonHandlers);
-        sectionContainer.getChildren().remove(sectionContainer.lookup(".footer-button-group"));
-        sectionContainer.getChildren().add(footerButtonGroup.getRoot());
+        resultsSection.getChildren().remove(resultsSection.lookup(".footer-button-group"));
+        resultsSection.getChildren().add(footerButtonGroup.getRoot());
 
         displayModules(modules);
     }
@@ -103,9 +102,9 @@ public class ResultsSection extends UiPart<Region> {
      * @param modules the list of modules.
      */
     private void displayModules(ObservableList<Module> modules) {
-        ModuleList moduleList = new ModuleList(modules);
+        ModuleSection moduleSection = new ModuleSection(modules);
         body.getChildren().clear();
-        body.getChildren().add(moduleList.getRoot());
+        body.getChildren().add(moduleSection.getRoot());
     }
 
     /**
