@@ -62,7 +62,6 @@ public class MainApp extends Application {
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
-        GetUtils.put(Config.class, config);
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
@@ -78,18 +77,19 @@ public class MainApp extends Application {
             new JsonFlightManagerStorage(userPrefs.getFlightManagerFilePath());
         storage = new StorageManager(userPrefsStorage, pilotStorage, locationStorage,
             crewStorage, planeStorage, flightStorage);
-        GetUtils.put(Storage.class, storage);
 
         initLogging(config);
 
-        model = new ModelManager();
-        GetUtils.put(Model.class, model);
-        initModelManager(storage, userPrefs);
+        model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
-        GetUtils.put(Logic.class, logic);
 
         ui = new UiManager(logic);
+
+        GetUtils.put(Config.class, config);
+        GetUtils.put(Storage.class, storage);
+        GetUtils.put(Model.class, model);
+        GetUtils.put(Logic.class, logic);
     }
 
     /**
@@ -222,17 +222,15 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private void initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage,
+        ReadOnlyUserPrefs userPrefs) {
         ReadOnlyItemManager<Pilot> pilotManager = readPilotManager(storage);
-        model.setPilotManager(pilotManager);
         ReadOnlyItemManager<Location> locationManager = readLocationManager(storage);
-        model.setLocationManager(locationManager);
         ReadOnlyItemManager<Crew> crewManager = readCrewManager(storage);
-        model.setCrewManager(crewManager);
         ReadOnlyItemManager<Plane> planeManager = readPlaneManager(storage);
-        model.setPlaneManager(planeManager);
         ReadOnlyItemManager<Flight> flightManager = readFlightManager(storage);
-        model.setFlightManager(flightManager);
+        return new ModelManager(userPrefs, pilotManager, locationManager,
+            crewManager, planeManager, flightManager);
     }
 
     private void initLogging(Config config) {
