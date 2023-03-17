@@ -9,6 +9,7 @@ import seedu.task.model.task.exceptions.InvalidEffortException;
  */
 public class Effort {
     public static final String MESSAGE_CONSTRAINTS = "Effort must be valid";
+    public static final long DEFAULT_DAILY_EFFORT = 24;
     private long effort;
 
     /**
@@ -23,7 +24,7 @@ public class Effort {
     }
 
     public Effort() {
-        this.effort = 2;
+        this.effort = DEFAULT_DAILY_EFFORT;
     }
 
     public long getEffort() {
