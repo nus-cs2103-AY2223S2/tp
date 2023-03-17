@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,11 +14,13 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to MedInfo. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to MedInfo. \n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME \n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_NRIC + "NRIC "
+            + "[optional]" + PREFIX_STATUS + "STATUS \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe";
+            + PREFIX_NAME + "John Doe" + PREFIX_NRIC + "S1234567A" + PREFIX_STATUS + "GRAY \n";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in MedInfo";
