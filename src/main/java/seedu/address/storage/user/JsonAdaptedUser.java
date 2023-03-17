@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
@@ -31,6 +33,9 @@ import seedu.address.storage.addressbook.JsonAdaptedTag;
  */
 public class JsonAdaptedUser extends JsonAdaptedPerson {
 
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
+
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -42,8 +47,12 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
                              @JsonProperty("comms") String comms,
                              @JsonProperty("modules") List<JsonAdaptedNusMod> modules,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("favorite") String isFavorite) {
+                             @JsonProperty("favorite") String isFavorite,
+                           @JsonProperty("events") List<JsonAdaptedEvent> events) {
         super(name, phone, email, address, race, major, gender, comms, modules, tagged, isFavorite);
+        if (events != null) {
+            this.events.addAll(events);
+        }
     }
 
     /**
@@ -51,6 +60,11 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
      */
     public JsonAdaptedUser(User source) {
         super(source);
+        if (source.getEvents() != null) {
+            this.events.addAll(
+                    source.getEvents().asUnmodifiableObservableList().stream()
+                    .map(JsonAdaptedEvent::new).collect(Collectors.toList()));
+        }
     }
 
     /**
@@ -107,7 +121,7 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         if (!Favorite.isValidFavorite(isFavorite)) {
             throw new IllegalValueException(Favorite.MESSAGE_CONSTRAINTS);
         }
-        final Favorite favoriteStatus = new Favorite(this.isFavorite);
+        final Favorite modelFavoriteStatus = new Favorite(this.isFavorite);
 
         Set<NusMod> personMods = new HashSet<>();
         for (JsonAdaptedNusMod mod: this.modules) {
@@ -115,10 +129,16 @@ public class JsonAdaptedUser extends JsonAdaptedPerson {
         }
         Modules modelModules = new Modules(personMods);
 
+        List<Event> modelUserEvents = new ArrayList<>();
+
+        for (JsonAdaptedEvent event: this.events) {
+            modelUserEvents.add(event.toModelType());
+        }
+
         CommunicationChannel modelComms = new CommunicationChannel(this.comms);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new User(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
-                modelModules, modelRace, modelTags, modelComms, favoriteStatus);
+                modelModules, modelRace, modelTags, modelComms, modelFavoriteStatus, modelUserEvents);
     }
 }
