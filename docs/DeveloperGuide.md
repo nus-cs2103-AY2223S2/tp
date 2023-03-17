@@ -420,6 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The list is empty in the database.
+
   * 1a1. FitBook displays that the list is cleared.
 
       Use case ends.
