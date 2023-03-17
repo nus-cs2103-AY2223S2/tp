@@ -13,7 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
-import seedu.address.commons.util.GetUtils;
+import seedu.address.commons.util.GetUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
@@ -78,10 +78,10 @@ public class MainApp extends Application {
     }
 
     private void configureServiceLocator() {
-        GetUtils.put(Config.class, config);
-        GetUtils.put(Storage.class, storage);
-        GetUtils.put(Model.class, model);
-        GetUtils.put(Logic.class, logic);
+        GetUtil.put(Config.class, config);
+        GetUtil.put(Storage.class, storage);
+        GetUtil.put(Model.class, model);
+        GetUtil.put(Logic.class, logic);
     }
 
     private <T extends Item> ReadOnlyItemManager<T> readManager(

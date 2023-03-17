@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import seedu.address.commons.util.GetUtils;
+import seedu.address.commons.util.GetUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
@@ -116,7 +116,7 @@ public class Flight implements Item {
      * @return the resolver for the flights.
      */
     public static LinkResolver<Flight> getResolver() {
-        return getResolver(GetUtils.get(Model.class).getFlightManager());
+        return getResolver(GetUtil.get(Model.class).getFlightManager());
     }
 
     public String getCode() {

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.commons.fp.Lazy;
-import seedu.address.commons.util.GetUtils;
+import seedu.address.commons.util.GetUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.item.Item;
@@ -89,7 +89,7 @@ public class Pilot implements Item {
     }
 
     public static LinkResolver<Pilot> getLinkResolver() {
-        return getLinkResolver(GetUtils.get(Model.class).getPilotManager());
+        return getLinkResolver(GetUtil.get(Model.class).getPilotManager());
     }
 
     /**
@@ -98,7 +98,7 @@ public class Pilot implements Item {
      * @return the link resolver.
      */
     public static Lazy<LinkResolver<Pilot>> getLazyLinkResolver() {
-        return GetUtils.getLazy(Model.class).map((manager) -> getLinkResolver(manager.getPilotManager()));
+        return GetUtil.getLazy(Model.class).map((manager) -> getLinkResolver(manager.getPilotManager()));
     }
 
     /**

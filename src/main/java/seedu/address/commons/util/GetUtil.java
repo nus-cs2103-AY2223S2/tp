@@ -15,7 +15,7 @@ import seedu.address.commons.fp.Lazy;
  * be used to help with dependency injection and create effective isolation
  * between different classes.
  */
-public class GetUtils {
+public class GetUtil {
     private static final String SERVICE_NOT_REGISTERED_MESSAGE =
         "Service %s not registered.";
     private static final String SERVICE_ALREADY_REGISTERED_MESSAGE =
@@ -26,11 +26,11 @@ public class GetUtils {
     private static final String INSTANTIATE_LAZY_VARIABLE_MESSAGE =
         "Instantiating lazy service %s for %s.";
     private static final String CLEAR_MESSAGE =
-        "Clearing the contents of GetUtils.";
+        "Clearing the contents of GetUtil.";
 
     private static final Map<Class<?>, Lazy<?>> services = new HashMap<>();
 
-    private static final Logger logger = LogsCenter.getLogger(GetUtils.class);
+    private static final Logger logger = LogsCenter.getLogger(GetUtil.class);
 
     /**
      * Clears the services stored in this service locator.
@@ -106,7 +106,7 @@ public class GetUtils {
      * Puts the value of the key to the service locator. This method will
      * throw if the service is already registered. In most cases, allowing
      * throwing would be the desired behavior. However, if you do not want
-     * this behavior, use {@link GetUtils#putForce(Class, Object)} instead.
+     * this behavior, use {@link GetUtil#putForce(Class, Object)} instead.
      *
      * @param key   the class of the value
      * @param value the value
