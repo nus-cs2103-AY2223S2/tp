@@ -41,6 +41,6 @@ JsonEduMateStorage ..> JsonSerializableEduMate
 JsonSerializableEduMate --> "*" JsonAdaptedPerson
 JsonSerializableEduMate --> JsonAdaptedUser
 JsonAdaptedPerson --> "*" JsonAdaptedTag
-JsonAdaptedUser --> "*" JsonAdaptedTag
+JsonAdaptedUser --|> JsonAdaptedPerson
 
 @enduml
