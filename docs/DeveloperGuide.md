@@ -255,9 +255,10 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 ## **Architecture**
 
-|    <img src="images/ArchitectureDiagram.png" style="width:40%; margin:0 25%">     |
-|:---------------------------------------------------------------------------------:|
-| _Figure 4.1.1_ *Architecture Diagram* explaining the high-level design of the App |
+<img src="images/ArchitectureDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
+</div>
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -293,7 +294,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" style="width:80%;margin:0 10%">
+<img src="images/ComponentManagers.png" style="width:70%;margin:0 15%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>
