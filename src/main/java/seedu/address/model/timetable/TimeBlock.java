@@ -30,7 +30,7 @@ public class TimeBlock extends TimePeriod {
             if (this.getStartTime().isBefore(period.getStartTime())) {
                 return new TimeBlock(this.getStartTime(), period.getEndTime(), getSchoolDay());
             } else {
-                return new TimeBlock(period.getEndTime(), this.getStartTime(), getSchoolDay());
+                return new TimeBlock(period.getStartTime(), this.getEndTime(), getSchoolDay());
             }
         }
         throw new WrongTimeException("Must be consecutive timeblocks together!");

@@ -84,9 +84,4 @@ public abstract class TimePeriod {
                 && getEndTime().isEqual(that.getEndTime())
                 && getSchoolDay().equals(that.getSchoolDay());
     }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
 }
