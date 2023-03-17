@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.service.Part;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 
@@ -62,9 +62,10 @@ class JsonAdaptedService {
         description = source.getDescription();
         estimatedFinishDate = source.getEstimatedFinishDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         status = source.getStatus().getValue();
-        parts.addAll(source.getRequiredParts().stream()
-                .map(JsonAdaptedPart::new)
-                .collect(Collectors.toList()));
+        PartMap sourceRequiredParts = source.getRequiredParts();
+        for (Map.Entry<String, Integer> e : sourceRequiredParts.getEntrySet()) {
+            parts.add(new JsonAdaptedPart(e.getKey(), e.getValue()));
+        }
     }
 
     /**
@@ -89,9 +90,10 @@ class JsonAdaptedService {
      */
     public Service toModelType() throws IllegalValueException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        final List<Part> modelParts = new ArrayList<>();
+        final PartMap modelParts = new PartMap();
         for (JsonAdaptedPart part : parts) {
-            modelParts.add(part.toModelType());
+            Map.Entry<String, Integer> partEntry = part.toModelType();
+            modelParts.addPart(partEntry.getKey(), partEntry.getValue());
         }
 
         if (id <= 0) {

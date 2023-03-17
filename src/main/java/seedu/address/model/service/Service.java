@@ -16,7 +16,7 @@ public class Service {
     private final int id;
     private final int vehicleId;
     private final LocalDate entryDate;
-    private List<Part> requiredParts;
+    private final PartMap requiredParts = new PartMap();
     private final String description;
     private LocalDate estimatedFinishDate;
     private final Set<Integer> assignedToIds = new HashSet<>();
@@ -27,15 +27,15 @@ public class Service {
      * This method is the constructor for a Service.
      */
     public Service(int id, int vehicleId, LocalDate entryDate,
-                   List<Part> requiredParts, String description,
+                   PartMap requiredParts, String description,
                    LocalDate estimatedFinishDate, ServiceStatus status) {
         this.id = id;
         this.vehicleId = vehicleId;
         this.entryDate = entryDate;
-        this.requiredParts = requiredParts;
         this.description = description;
         this.estimatedFinishDate = estimatedFinishDate;
         this.status = status;
+        this.requiredParts.addAll(requiredParts);
     }
 
     /**
@@ -49,7 +49,6 @@ public class Service {
         entryDate = LocalDate.now();
         this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
-        requiredParts = new ArrayList<Part>();
         this.status = ServiceStatus.TO_REPAIR;
     }
 
@@ -67,7 +66,6 @@ public class Service {
         this.vehicleId = vehicleId;
         this.description = description;
         estimatedFinishDate = entryDate.plusDays(estimatedDaysRequired);
-        requiredParts = new ArrayList<Part>();
         this.assignedToIds.addAll(assignedToIds);
     }
 
@@ -128,50 +126,40 @@ public class Service {
     }
 
     /**
-     * This method returns the list of requiredParts needed to perform this Service.
+     * This method returns the PartMap of requiredParts needed to perform this Service.
      *
-     * @return a list of requiredParts needed to repair this.
+     * @return PartMap of requiredParts needed to fulfill this service.
      */
-    public List<Part> getRequiredParts() {
+    public PartMap getRequiredParts() {
         return requiredParts;
     }
 
     /**
      * This method adds a part to this service.
      *
-     * @param part The part to be added.
+     * @param partName Part name
+     * @param quantity Quantity of part to add
      */
-    public void addPart(Part part) {
-        requiredParts.add(part);
+    public void addPart(String partName, int quantity) {
+        requiredParts.addPart(partName, quantity);
     }
 
     /**
-     * This method removes a part from this service.
+     * Removes a part from this service.
      *
-     * @param part The part to be removed.
+     * @param partName Name of the part to be removed.
      */
-    public void removePart(Part part) {
-        requiredParts.remove(part);
+    public void removePart(String partName) {
+        requiredParts.removePart(partName);
     }
 
 
     /**
-     * This method returns the bill of this service.
-     * Currently only returns the requiredParts cost. Assumes that only use one part.
-     * Does not charge Technician cost etc.
+     * Adds parts needed for this service.
      *
-     * @return The cost of this service.
+     * @param parts Another PartMap needed to be added to this service.
      */
-    public int bill() {
-        return requiredParts.stream().mapToInt(i -> i.getCost()).sum();
-    }
-
-    /**
-     * This method adds some parts needed for this service.
-     *
-     * @param parts The part needed to be added.
-     */
-    public void addParts(List<Part> parts) {
+    public void addParts(PartMap parts) {
         requiredParts.addAll(parts);
     }
 
@@ -180,8 +168,8 @@ public class Service {
      *
      * @param parts The part to be removed.
      */
-    public void removeParts(List<Part> parts) {
-        requiredParts.removeAll(parts);
+    public void removeParts(PartMap parts) {
+        requiredParts.removeAll();
     }
 
     /**
@@ -257,12 +245,7 @@ public class Service {
     @Override
     public String toString() {
         String newline = System.lineSeparator();
-        String parts = this.getRequiredParts().stream()
-                .map(Object::toString)
-                .reduce("", (a, b) -> a + "\n" + b);
-        if (parts.length() > 0) {
-            parts = parts.substring(1);
-        }
+        String parts = this.getRequiredParts().toString();
         String technicians = this.getAssignedToIds().stream()
                 .map(Object::toString)
                 .reduce("", (a, b) -> a + "\n" + b);
