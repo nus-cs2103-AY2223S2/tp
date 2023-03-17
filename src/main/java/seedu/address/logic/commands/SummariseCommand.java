@@ -11,7 +11,7 @@ public class SummariseCommand extends Command {
 
     public static final String COMMAND_WORD = "summarise";
 
-    public static final String MESSAGE_SUCCESS = "Summary:\n%1%s\n%2$s\n%3$s";
+    public static final String MESSAGE_SUCCESS = "Summary:\n%1$s\n%2$s\n%3$s";
     public static final String ELDERLY_STATISTICS = "Total elderly: %1$d\n";
     public static final String VOLUNTEER_STATISTICS = "Total volunteers: %1$d\n";
     public static final String PAIR_STATISTICS = "Total pairs: %1$d\n";
