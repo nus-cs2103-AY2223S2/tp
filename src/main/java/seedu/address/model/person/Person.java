@@ -56,7 +56,7 @@ public class Person {
         return address;
     }
 
-    public Remark getRemark() {
+    public Remark getOptionalRemark() {
         return remark;
     }
 
@@ -119,7 +119,7 @@ public class Person {
                 .append(phone)
                 .append(email)
                 .append(address)
-                .append(getRemark())
+                .append(getOptionalRemark())
                 .append(" Tags: ");
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
