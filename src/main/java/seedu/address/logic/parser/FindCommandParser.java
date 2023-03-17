@@ -34,7 +34,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ALLOWED_PREFIXES);
-        Predicate<Person> findPredicate = x -> true; //always false predicate as default
+        Predicate<Person> findPredicate = x -> true; //always true predicate as default
         boolean isPrefixInput = false;
 
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
