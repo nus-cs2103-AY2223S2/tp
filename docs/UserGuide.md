@@ -140,16 +140,17 @@ Examples:
 ---
 ### View
 
-### Viewing specific vehicle/customer/appointment details: `view`
+### Viewing specific vehicle/customer/appointment/service details: `view`
 
-View a specific vehicle/customer/part/appointment detail. Id can be found by using the find or list command.
+View a specific vehicle/customer/part/appointment/service detail. Id can be found by using the find or list command.
 
-Format: `view(vehicle/customer/appointment) ID`
+Format: `view(vehicle/customer/appointment/service) ID`
 
 Examples:
 * `viewvehicle 12`
 * `viewcustomer 2`
 * `viewappointment 56`
+* `viewservice 77`
 
 ### Viewing specific vehicle/customer/part/appointment details: `view`
 
@@ -180,10 +181,10 @@ Examples:
 ---
 ### Delete
 
-### Deleting a vehicle/customer/appointment : `delete`
+### Deleting a vehicle/customer/appointment/service : `delete`
 
-Deletes the specified vehicle/customer/part/appointment from the system and all its related records.
-* Deletes the vehicle/customer/part/appointment at the specified `ID`.
+Deletes the specified vehicle/customer/part/appointment/service from the system and all its related records.
+* Deletes the vehicle/customer/part/appointment/service at the specified `ID`.
 * The id refers to the index number shown in the displayed list from the list or find command.
 * The id **must be a positive integer** 1, 2, 3, …​
 
@@ -199,7 +200,6 @@ Deletes the specified part from the system and all its related records.
 Format: `deletepart NAME`
 
 Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all their related records in the AutoM8 system.
-
 
 ---
 ### Actions
@@ -262,19 +262,19 @@ to be updated
 
 ## Command summary
 
-| Action                                                  | Format, Examples                                                                                                                                                     |
-|---------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Customer**                                        | `add customer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Vehicle**                                         | `add vehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `add vehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                     |
-| **Add Service**                                         | `add service v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `add service v/10 t/standard s/in progress d/Customer says abc`                       |
-| **Add Appointment**                                     | `add appointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`add appointment c/5 d/05/03/2023 t/5pm`                                                                      |
-| **List all Vehicles/Customers/Parts/Appointments**      | `list (vehicles/customers/parts/appointments)`<br> e.g., `list customers`                                                                                            |
-| **Sort Displayed List**                                 | `sort by/BRAND d/DIRECTION`<br> e.g., `list vehicles` then `sort by/brand d/asc`                                                                                     |
-| **Find specific Vehicle/Customer/Part/Appointment**     | `find (vehicle/customer/part/appointment) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                   |
-| **View specific Vehicle/Customer/Part/Appointment**     | `view (vehicle/customer/part/appointment) ID`<br> e.g., `view appointment 56`                                                                                        |
-| **Edit a specific Vehicle/Customer/Part/Appointment**   | `edit (vehicle/customer/part/appointment) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                              |
-| **Delete a specific Vehicle/Customer/Part/Appointment** | `delete (vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                       |
-| **Undo**                                                | `undo`                                                                                                                                                               |
-| **Redo**                                                | `redo`                                                                                                                                                               |
-| **Exit**                                                | `exit`                                                                                                                                                               |
-| **Help**                                                | `help`                                                                                                                                                               |
+| Action                                                  | Format, Examples                                                                                                                                                    |
+|---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Customer**                                        | `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Vehicle**                                         | `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE` <br> e.g., `add vehicle p/SBA1234A b/Toyota c/1 t/4wd`                                                    |
+| **Add Service**                                         | `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`<br> e.g., `add service v/10 t/standard s/in progress d/Customer says abc`                      |
+| **Add Appointment**                                     | `addappointment c/CUSTOMER_ID d/DATE t/TIME`<br> e.g.,`add appointment c/5 d/05/03/2023 t/5pm`                                                                     |
+| **List all Vehicles/Customers/Parts/Appointments**      | `list(vehicles/customers/parts/appointments)`<br> e.g., `list customers`                                                                                           |
+| **Sort Displayed List**                                 | `sort by/BRAND d/DIRECTION`<br> e.g., `list vehicles` then `sort by/brand d/asc`                                                                                    |
+| **Find specific Vehicle/Customer/Part/Appointment**     | `find(vehicle/customer/part/appointment) KEYWORD`<br> e.g., `find vehicle toyota`                                                                                  |
+| **View specific Vehicle/Customer/Part/Appointment**     | `view(vehicle/customer/part/appointment) ID`<br> e.g., `view appointment 56`                                                                                       |
+| **Edit a specific Vehicle/Customer/Part/Appointment**   | `edit(vehicle/customer/part/appointment) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                             |
+| **Delete a specific Vehicle/Customer/Part/Appointment** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                      |
+| **Undo**                                                | `undo`                                                                                                                                                              |
+| **Redo**                                                | `redo`                                                                                                                                                              |
+| **Exit**                                                | `exit`                                                                                                                                                              |
+| **Help**                                                | `help`                                                                                                                                                              |
