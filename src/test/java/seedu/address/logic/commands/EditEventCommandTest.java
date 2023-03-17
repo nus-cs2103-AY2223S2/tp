@@ -116,7 +116,7 @@ public class EditEventCommandTest {
     public void execute_duplicateEventFilteredList_failure() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit event in filtered list into a duplicate in address book
         Event eventInList = model.getAddressBook().getEventList().get(INDEX_SECOND_EVENT.getZeroBased());
         EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT,
                 new EditEventDescriptorBuilder(eventInList).build());

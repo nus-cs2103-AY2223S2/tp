@@ -6,7 +6,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditEventDescriptor objects.
  */
 public class EditEventDescriptorBuilder {
 

@@ -160,7 +160,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given event {@code target} in the list with {@code editedEvent}.
+     * Replaces the given event {@code target} in the event set of all persons in address book with {@code editedEvent}.
      * {@code target} must exist in the address book.
      * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
      */
@@ -187,9 +187,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given event {@code target} in the list with {@code editedEvent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
