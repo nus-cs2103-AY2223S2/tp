@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.TimeSlot;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.TimeSlot;
 import seedu.address.model.person.Type;
 import seedu.address.model.tag.Tag;
 
