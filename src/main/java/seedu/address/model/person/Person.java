@@ -125,8 +125,9 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         String phone = getOptionalPhone().isEmpty() ? "" : String.format("; Phone: %s", getOptionalPhone().get());
-        String email = getOptionalEmail().isEmpty() ? "" : String.format("; Email: %s",getOptionalEmail().get());
-        String address = getOptionalAddress().isEmpty() ? "" : String.format("; Address: %s", getOptionalAddress().get());
+        String email = getOptionalEmail().isEmpty() ? "" : String.format("; Email: %s", getOptionalEmail().get());
+        String address = getOptionalAddress().isEmpty() ? "" : String.format("; Address: %s",
+                getOptionalAddress().get());
         builder.append(getName())
                 .append(phone)
                 .append(email)
