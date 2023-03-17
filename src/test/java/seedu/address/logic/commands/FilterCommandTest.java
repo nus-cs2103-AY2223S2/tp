@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.FieldContainsPartialKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.FilterDescriptorBuilder;
 
 /**
@@ -67,7 +68,7 @@ public class FilterCommandTest {
     public void execute_singleTag_multiplePersonsFound() {
         FilterDescriptor filterDescriptor = new FilterDescriptor();
         filterDescriptor.setTagValues(List.of("friend")); // intentional 's' missing
-        Predicate predicate = preparePredicate(filterDescriptor);
+        Predicate<Person> predicate = preparePredicate(filterDescriptor);
 
         FilterCommand command = new FilterCommand(filterDescriptor);
         expectedModel.updateFilteredPersonList(predicate);
@@ -81,7 +82,7 @@ public class FilterCommandTest {
         personDescriptor.setNameValue("l");
         personDescriptor.setAddressValue("street");
         personDescriptor.setEmailValue("example.co");
-        Predicate predicate = preparePredicate(personDescriptor);
+        Predicate<Person> predicate = preparePredicate(personDescriptor);
 
         FilterCommand command = new FilterCommand(personDescriptor);
         expectedModel.updateFilteredPersonList(predicate);
