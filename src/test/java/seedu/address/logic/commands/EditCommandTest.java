@@ -75,21 +75,17 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
-    /*
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_CLIENT, new EditClientDescriptor());
         Client editedClient = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, editedClient);
+        CommandResult expectedCommandResult = new CommandResult(String.format(expectedMessage, editedClient));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         assertCommandSuccess(editCommand, model, expectedCommandResult, expectedModel);
     }
-     */
-
-
     @Test
     public void execute_filteredList_success() {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
