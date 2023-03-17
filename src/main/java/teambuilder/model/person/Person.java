@@ -67,6 +67,13 @@ public class Person {
     }
 
     /**
+     * Returns number of tags.
+     */
+    public int getNumTags() {
+        return tags.size();
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
