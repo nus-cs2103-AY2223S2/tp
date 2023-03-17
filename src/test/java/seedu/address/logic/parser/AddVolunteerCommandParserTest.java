@@ -35,8 +35,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -111,7 +111,8 @@ public class AddVolunteerCommandParserTest {
                 .withAvailableDates(VALID_START_DATE, VALID_END_DATE)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + REGION_DESC_BOB + TAG_DESC_SINGLE + TAG_DESC_STRONG + AVAILABLE_DATES,
+                + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_BOB + REGION_DESC_BOB + TAG_DESC_SINGLE + TAG_DESC_STRONG
+                + AVAILABLE_DATES,
                 new AddVolunteerCommand(expectedVolunteerMultipleTags));
     }
 
