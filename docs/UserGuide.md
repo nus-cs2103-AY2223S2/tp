@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-SalesPunch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SalesPunch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still 
+having the benefits of a Graphical User Interface (GUI). If you can type fast, SalesPunch can get your contact 
+management tasks done faster than traditional GUI apps.
 
 Salespeople managing client contacts who prefer a CLI
 
@@ -13,7 +15,9 @@ Salespeople managing client contacts who prefer a CLI
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts, prioritise sales tasks
+**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it 
+faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts, 
+prioritise sales tasks
 
 * Table of Contents
 {:toc}
@@ -139,23 +143,42 @@ Examples:
 `status David closed-won` Assigns the status of `David` to be `closed-won`
 
 
-### Finding a contact: `search`
+### Finding a contact tag: `findtag`
+
+Search for a contact based on their tags.
+
+Format: `findtag [<valid tag>]`
+
+* The search is case-insensitive. e.g `[friends]` will match `[Friends]`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full tags will be matched e.g. `friend` will not match `friends`
+* Persons matching at least one tag will be returned (i.e. `OR` search).
+  e.g. `findtag [friends]` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findtag [friends]`  -  returns the contact with valid and associated tag, `Dewy Thompson` or `Majorie Dewy`
+
+### Finding a contact name: `find`
 
 Search for a contact based on a keyword, or by specifying its index number.
 
-Format: `search [INDEX or KEYWORD(S)]`
+Format: `find [INDEX or KEYWORD(S)]`
 
+<<<<<<< HEAD
 * The search is case-insensitive. e.g. `hans` will match `Hans`
+=======
+* The find is case-insensitive. e.g `hans` will match `Hans`
+>>>>>>> 53e0b3e9525bde2e18a61a0e05e6aaf5baa25200
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only the name is found.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `search 1`  -  returns the contact with ID 1, `1 - David Tsao`
-* `search Dewy ` - returns `Dewy Thompson` or `Majorie Dewy`
-
+* `find 1`  -  returns the contact with ID 1, `1 - David Tsao`
+* `find Dewy ` - returns `Dewy Thompson` or `Majorie Dewy`
 
 ### Deleting a person : `delete`
 
@@ -239,8 +262,8 @@ Format: `exit`
 SalesPunch contact data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+<!-- need to update the json -->
+SalesPunch data are saved as a JSON file `[JAR file location]/data/updatethis____.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.

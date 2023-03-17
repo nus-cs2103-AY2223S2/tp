@@ -102,4 +102,5 @@ public interface Model {
     * Updates the filter of the filtered transaction list to filter by the given {@code predicate}
     */
     void updateFilteredTransactionList(Predicate<Transaction> predicate);
+
 }

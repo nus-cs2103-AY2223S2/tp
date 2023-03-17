@@ -148,6 +148,11 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    //@Override
+    //public ObservableList<Transaction> getFilteredTransactionList() {
+    //return filteredTransactions;
+    //}
+
     @Override
     public ObservableList<Transaction> getFilteredTransactionList() {
         return filteredTransactions;
@@ -158,6 +163,11 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    //@Override
+    //public void updateFilteredTransactionsList(Predicate<Transaction> predicate) {
+    // implementation here
+    //}
 
     @Override
     public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
