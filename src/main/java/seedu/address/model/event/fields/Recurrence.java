@@ -1,7 +1,7 @@
 package seedu.address.model.event.fields;
 
+import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import seedu.address.model.event.enums.Interval;
 
