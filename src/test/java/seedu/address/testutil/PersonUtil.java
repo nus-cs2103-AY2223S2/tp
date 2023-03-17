@@ -14,6 +14,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.FilterCommand.FilterDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -43,7 +44,7 @@ public class PersonUtil {
         sb.append(PREFIX_COMPANY + person.getCompany().value + " ");
         sb.append(PREFIX_PLATOON + person.getPlatoon().value + " ");
         person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }
@@ -68,6 +69,38 @@ public class PersonUtil {
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
+        }
+        return sb.toString();
+    }
+
+    public static String getFilterDescriptorDetails(FilterDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        if (!descriptor.getNameValue().isBlank()) {
+            sb.append(PREFIX_NAME).append(descriptor.getNameValue()).append(" ");
+        }
+        if (!descriptor.getPhoneValue().isBlank()) {
+            sb.append(PREFIX_PHONE).append(descriptor.getPhoneValue()).append(" ");
+        }
+        if (!descriptor.getEmailValue().isBlank()) {
+            sb.append(PREFIX_EMAIL).append(descriptor.getEmailValue()).append(" ");
+        }
+        if (!descriptor.getAddressValue().isBlank()) {
+            sb.append(PREFIX_ADDRESS).append(descriptor.getAddressValue()).append(" ");
+        }
+        if (!descriptor.getRankValue().isBlank()) {
+            sb.append(PREFIX_RANK).append(descriptor.getRankValue()).append(" ");
+        }
+        if (!descriptor.getUnitValue().isBlank()) {
+            sb.append(PREFIX_UNIT).append(descriptor.getUnitValue()).append(" ");
+        }
+        if (!descriptor.getCompanyValue().isBlank()) {
+            sb.append(PREFIX_COMPANY).append(descriptor.getCompanyValue()).append(" ");
+        }
+        if (!descriptor.getPlatoonValue().isBlank()) {
+            sb.append(PREFIX_PLATOON).append(descriptor.getPlatoonValue()).append(" ");
+        }
+        if (!descriptor.getTagValues().isEmpty()) {
+            descriptor.getTagValues().forEach(s -> sb.append(PREFIX_TAG).append(s).append(" "));
         }
         return sb.toString();
     }
