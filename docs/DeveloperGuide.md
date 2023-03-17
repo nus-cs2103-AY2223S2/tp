@@ -155,6 +155,42 @@ Classes used by multiple components are in the `seedu.vms.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a Patient
+
+#### Implementation
+
+The **Adding a Patient** mechanism is facilated by `VMS`. The Patient created is stored inside `PatientManager` inside
+
+#### Usage
+
+The activity diagram below illustrates the workflow of patient `addCommand` behaves when executed by a user:
+
+Given below is an sequence diagram that illustrates the **Adding a Patient** mechanism behaves at every step.
+
+### Listing Patients
+
+#### Implementation
+
+#### Usage
+
+### Finding a Patient
+
+#### Implementation
+
+#### Usage
+
+### Editing a Patient
+
+#### Implementation
+
+#### Usage
+
+### Deleting a Patient
+
+#### Implementation
+
+#### Usage
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
