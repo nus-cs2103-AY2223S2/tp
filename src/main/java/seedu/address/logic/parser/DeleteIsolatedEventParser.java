@@ -20,8 +20,13 @@ public class DeleteIsolatedEventParser implements Parser<DeleteIsolatedEventComm
         Index personIndex;
         Index eventIndex;
 
+        String trimmedInput = userInput.trim();
+        if (trimmedInput.isBlank() || trimmedInput.length() == 1) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteIsolatedEventCommand.MESSAGE_USAGE));
+        }
+
         try {
-            String trimmedInput = userInput.trim();
             personIndex = ParserUtil.parseIndex(String.valueOf(trimmedInput.charAt(0)));
             eventIndex = ParserUtil.parseIndex(String.valueOf(trimmedInput.charAt(2)));
         } catch (IllegalValueException ive) {

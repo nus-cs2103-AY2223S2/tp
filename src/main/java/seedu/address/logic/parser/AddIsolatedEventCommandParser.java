@@ -18,7 +18,7 @@ import seedu.address.model.event.IsolatedEvent;
 /**
  * Parser class for Isolated Event
  */
-public class IsolatedEventCommandParser implements Parser<AddIsolatedEventCommand> {
+public class AddIsolatedEventCommandParser implements Parser<AddIsolatedEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddIsolatedEventCommand

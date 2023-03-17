@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.person.Person;
 
 
@@ -52,6 +53,14 @@ public class AddIsolatedEventCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        IsolatedEventList isolatedEventList = personToEdit.getIsolatedEventList();
+        IsolatedEvent checkForEventClash = isolatedEventList.checkClashingIsolatedEvent(eventToAdd.getStartDate(),
+                eventToAdd.getEndDate());
+
+        if (checkForEventClash != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
+        }
+
         model.addIsolatedEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
