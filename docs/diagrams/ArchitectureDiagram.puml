@@ -17,17 +17,18 @@ Class "<$user>" as User USER_COLOR
 Class "<$documents>" as File IMG_COLOR
 
 
-UI -[UI_COLOR]> Logic
-UI -right[UI_COLOR]-> Model
-Logic -[LOGIC_COLOR]-> Storage
-Logic -down[LOGIC_COLOR]-> Model
+UI -[UI_COLOR]left-> Logic
+UI -[UI_COLOR]right-> Model
+Logic -[LOGIC_COLOR]right-> Storage
+Logic -[LOGIC_COLOR]-> Model
 Main -[MAIN_COLOR]-> UI
-Main -[MAIN_COLOR]-> Logic
+Main -[MAIN_COLOR]up-> Logic
 Main -[MAIN_COLOR]-> Storage
-Main -up[MAIN_COLOR]-> Model
-Main -down[hidden]-> Commons
+Main -[MAIN_COLOR]left-> Model
+Main -[hidden]-> Commons
+Logic -[hidden]-> Storage
 
-Storage -up[STORAGE_COLOR].> Model
-Storage .right[STORAGE_COLOR].> File
+Storage -[STORAGE_COLOR].> Model
+Storage .[STORAGE_COLOR]left.> File
 User ..> UI
 @enduml

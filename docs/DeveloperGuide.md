@@ -259,6 +259,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
+<br>
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -286,6 +287,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.2</b> Sequence Diagram for the command `delete 1`
 </div>
+<br>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -298,6 +300,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.3</b> Class Diagram for Component Managers
 </div>
+<br>
 
 The sections below give more details of each component.
 
@@ -311,6 +314,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.2.1</b> Class Diagram for UI Components
 </div>
+<br>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -369,6 +373,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.1</b> Class Diagram for Logic Components
 </div>
+<br>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
@@ -385,11 +390,13 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.2</b> Sequence Diagram for a typical `add` command
 </div>
+<br>
 
 <img src="images/AddParserSequenceDiagram.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.2a</b> Sequence Diagram for parsing `AddCommand` arguments
 </div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -405,11 +412,13 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.3</b> Sequence Diagram for a typical `edit` command
 </div>
+<br>
 
 <img src="images/EditParserSequenceDiagram.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.3a</b> Sequence Diagram for parsing `EditCommand` arguments
 </div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -425,6 +434,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.4</b> Sequence Diagram for a typical `delete` command
 </div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -464,6 +474,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.x</b> Class Diagram for Parser Components
 </div>
+<br>
 
 How the parsing works:
 * When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
@@ -487,6 +498,7 @@ How the parsing works:
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.5.1</b> Class Diagram for Storage Components
 </div>
+<br>
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
