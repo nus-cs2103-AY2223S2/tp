@@ -8,14 +8,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.NricContainsKeywordsPredicate;
 import seedu.address.model.patient.StatusContainsKeywordsPredicate;
-import seedu.address.model.patient.Patient;
-import seedu.address.model.patient.Status;
+
+
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -41,14 +40,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             checkArgsEmpty(trimmedNames);
             String[] nameKeywords = trimmedNames.split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
-        } else if (anyPrefixesPresent(argMultimap, PREFIX_NRIC)){
+        } else if (anyPrefixesPresent(argMultimap, PREFIX_NRIC)) {
             String trimmedNric = argMultimap.getValue(PREFIX_NRIC).get();
             checkArgsEmpty(trimmedNric);
             String [] nricKeywords = trimmedNric.split("\\s+");
             return new FindCommand(new NricContainsKeywordsPredicate(Arrays.asList(nricKeywords)));
-            
-        } else if (anyPrefixesPresent(argMultimap, PREFIX_STATUS)){
+        } else if (anyPrefixesPresent(argMultimap, PREFIX_STATUS)) {
             String trimmedStatus = argMultimap.getValue(PREFIX_STATUS).get();
             checkArgsEmpty(trimmedStatus);
             String [] statusKeywords = trimmedStatus.split("\\s+");

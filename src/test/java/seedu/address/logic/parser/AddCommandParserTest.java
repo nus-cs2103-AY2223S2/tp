@@ -1,7 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPatients.AMY;
@@ -22,13 +29,16 @@ public class AddCommandParserTest {
         Patient expectedPatient = new PatientBuilder(BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + NRIC_DESC_BOB, new AddCommand(expectedPatient));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
+            + NRIC_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + NRIC_DESC_BOB, new AddCommand(expectedPatient));
+        assertParseSuccess(parser, NAME_DESC_AMY
+            + NAME_DESC_BOB + NRIC_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple nrics - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_AMY + NRIC_DESC_BOB, new AddCommand(expectedPatient));
+        assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_AMY
+            + NRIC_DESC_BOB, new AddCommand(expectedPatient));
     }
 
     @Test
