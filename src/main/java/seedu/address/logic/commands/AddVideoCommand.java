@@ -34,7 +34,7 @@ public class AddVideoCommand extends AddCommand {
      * @param video The video to be added.
      */
     public AddVideoCommand(ModuleCode moduleCode, LectureName lectureName, Video video) {
-        requireAllNonNull(lectureName, video);
+        requireAllNonNull(moduleCode, lectureName, video);
 
         this.moduleCode = moduleCode;
         this.lectureName = lectureName;
