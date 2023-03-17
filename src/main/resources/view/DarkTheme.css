@@ -120,21 +120,14 @@
 
 .list-cell {
     /* Horizontal inset and padding to separate from the parent list view,
-     * and bottom inset and padding to separate from the next list cell.
-     * Top inset and padding for the first list cell
-     * is applied programmatically as 'first-cell'.
+     * and vertical inset and padding to separate from the next list cell.
      */
-    -fx-padding: 0 0 10 0;
-    -fx-background-insets: 0 10 10 10;
+    -fx-padding: 3 0 5 0;
+    -fx-background-insets: 5;
     -fx-background-color: transparent;
     -fx-background-radius: 10;
     -fx-label-padding: 0;
     -fx-graphic-text-gap : 0;
-}
-
-.first-cell {
-    -fx-padding: 10 0 10 0;
-    -fx-background-insets: 10;
 }
 
 .list-cell:filled:even {
