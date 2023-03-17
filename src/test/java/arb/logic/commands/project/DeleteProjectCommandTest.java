@@ -81,6 +81,13 @@ public class DeleteProjectCommandTest {
     }
 
     @Test
+    public void execute_currentListShownClient_failure() {
+        Index validIndex = INDEX_FIRST;
+        assertCommandFailure(new DeleteProjectCommand(validIndex),
+                        ListType.CLIENT, model, Messages.MESSAGE_INVALID_LIST_PROJECT);
+    }
+
+    @Test
     public void equals() {
         DeleteProjectCommand deleteFirstCommand = new DeleteProjectCommand(INDEX_FIRST);
         DeleteProjectCommand deleteSecondCommand = new DeleteProjectCommand(INDEX_SECOND);

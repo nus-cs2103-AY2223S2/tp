@@ -24,8 +24,8 @@ public class TitleContainsKeywordsPredicate implements Predicate<Project> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof arb.model.project.TitleContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((arb.model.project.TitleContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof TitleContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TitleContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

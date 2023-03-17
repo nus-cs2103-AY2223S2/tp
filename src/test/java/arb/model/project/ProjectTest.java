@@ -30,6 +30,9 @@ public class ProjectTest {
         assertFalse(sky.equals(editedSky)); // changed title
         editedSky = new ProjectBuilder(sky).withDeadline("5pm 2023-03-01").build();
         assertFalse(sky.equals(editedSky)); // changed deadline
+        editedSky = new ProjectBuilder(sky).build();
+        editedSky.markAsDone();
+        assertFalse(sky.equals(editedSky)); // changed status
 
         assertTrue(defaultProject.equals(defaultProject)); // Same instance
         assertTrue(defaultProject.equals(defaultCopy)); // Same details
@@ -46,6 +49,7 @@ public class ProjectTest {
         assertFalse(defaultProjectWihoutDeadline.equals(defaultProject)); // different deadlines
 
         Project editedSkyWithDeadline = new ProjectBuilder(skyWithoutDeadline).withDeadline("5pm 2023-03-01").build();
+        editedSky = new ProjectBuilder(sky).withDeadline("5pm 2023-03-01").build();
 
         assertTrue(editedSkyWithDeadline.equals(editedSky));
         assertTrue(defaultProjectWihoutDeadline.equals(defaultCopyWithoutDeadline));
@@ -62,6 +66,7 @@ public class ProjectTest {
 
         // same name, all other attributes different -> returns true
         Project editedSkyPainting = new ProjectBuilder(SKY_PAINTING).withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
+        editedSkyPainting.markAsDone();
         assertTrue(SKY_PAINTING.isSameProject(editedSkyPainting));
 
         // different name, all other attributes same -> returns false

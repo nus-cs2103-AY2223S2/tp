@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
+import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
@@ -32,7 +33,7 @@ public class EditProjectCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Project editedProject = new ProjectBuilder().build();
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(editedProject)
                 .build();
         EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST, descriptor);
 
@@ -55,7 +56,7 @@ public class EditProjectCommandTest {
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
                 .build();
 
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_OIL_PAINTING)
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
         EditProjectCommand editProjectCommand = new EditProjectCommand(indexLastProject, descriptor);
@@ -72,7 +73,7 @@ public class EditProjectCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST,
-                new EditProjectCommand.EditProjectDescriptor());
+                new EditProjectDescriptor());
         Project editedProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
@@ -104,7 +105,7 @@ public class EditProjectCommandTest {
     @Test
     public void execute_duplicateProjectUnfilteredList_failure() {
         Project firstProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(firstProject).build();
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(firstProject).build();
         EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editProjectCommand, ListType.PROJECT, model,
@@ -127,7 +128,7 @@ public class EditProjectCommandTest {
     @Test
     public void execute_invalidProjectIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProjectList().size() + 1);
-        EditProjectCommand.EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_OIL_PAINTING).build();
         EditProjectCommand editProjectCommand = new EditProjectCommand(outOfBoundIndex, descriptor);
 
@@ -154,12 +155,18 @@ public class EditProjectCommandTest {
     }
 
     @Test
+    public void execute_currentListShownClient_failure() {
+        Index validIndex = INDEX_FIRST;
+        assertCommandFailure(new EditProjectCommand(validIndex, DESC_SKY_PAINTING),
+                        ListType.CLIENT, model, Messages.MESSAGE_INVALID_LIST_PROJECT);
+    }
+
+    @Test
     public void equals() {
         final EditProjectCommand standardCommand = new EditProjectCommand(INDEX_FIRST, DESC_SKY_PAINTING);
 
         // same values -> returns true
-        EditProjectCommand.EditProjectDescriptor copyDescriptor = new EditProjectCommand
-                .EditProjectDescriptor(DESC_SKY_PAINTING);
+        EditProjectDescriptor copyDescriptor = new EditProjectDescriptor(DESC_SKY_PAINTING);
         EditProjectCommand commandWithSameValues = new EditProjectCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

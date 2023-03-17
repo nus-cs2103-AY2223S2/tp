@@ -24,14 +24,27 @@ import arb.logic.commands.client.EditClientCommand.EditClientDescriptor;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.commands.client.ListClientCommand;
 import arb.logic.commands.client.SortClientCommand;
+import arb.logic.commands.project.AddProjectCommand;
+import arb.logic.commands.project.ClearProjectCommand;
 import arb.logic.commands.project.DeleteProjectCommand;
+import arb.logic.commands.project.EditProjectCommand;
+import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
+import arb.logic.commands.project.FindProjectCommand;
+import arb.logic.commands.project.ListProjectCommand;
+import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.commands.project.SortProjectCommand;
+import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
 import arb.model.client.NameContainsKeywordsPredicate;
+import arb.model.project.Project;
+import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ClientUtil;
 import arb.testutil.EditClientDescriptorBuilder;
+import arb.testutil.EditProjectDescriptorBuilder;
+import arb.testutil.ProjectBuilder;
+import arb.testutil.ProjectUtil;
 import arb.testutil.TypicalProjectSortingOptions;
 
 public class AddressBookParserTest {
@@ -39,16 +52,31 @@ public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addClient() throws Exception {
         Client client = new ClientBuilder().build();
-        AddClientCommand command = (AddClientCommand) parser.parseCommand(ClientUtil.getAddClientCommand(client));
+        AddClientCommand command = (AddClientCommand) parser
+                .parseCommand(ClientUtil.getAddClientCommand(client));
         assertEquals(new AddClientCommand(client), command);
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
+    public void parseCommand_addProject() throws Exception {
+        Project project = new ProjectBuilder().build();
+        AddProjectCommand command = (AddProjectCommand) parser
+                .parseCommand(ProjectUtil.getAddProjectCommand(project));
+        assertEquals(new AddProjectCommand(project), command);
+    }
+
+    @Test
+    public void parseCommand_clearClient() throws Exception {
         assertTrue(parser.parseCommand(ClearClientCommand.COMMAND_WORD) instanceof ClearClientCommand);
         assertTrue(parser.parseCommand(ClearClientCommand.COMMAND_WORD + " 3") instanceof ClearClientCommand);
+    }
+
+    @Test
+    public void parseCommand_clearProject() throws Exception {
+        assertTrue(parser.parseCommand(ClearProjectCommand.COMMAND_WORD) instanceof ClearProjectCommand);
+        assertTrue(parser.parseCommand(ClearProjectCommand.COMMAND_WORD + " 3") instanceof ClearProjectCommand);
     }
 
     @Test
@@ -66,12 +94,23 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_editClient() throws Exception {
         Client client = new ClientBuilder().build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
         EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
                 + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editProject() throws Exception {
+        Project project = new ProjectBuilder().build();
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
+        EditProjectCommand command = (EditProjectCommand) parser
+                .parseCommand(EditProjectCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " "
+                + ProjectUtil.getEditProjectDescriptorDetails(descriptor));
+        assertEquals(new EditProjectCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -81,11 +120,19 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findClient() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindClientCommand command = (FindClientCommand) parser.parseCommand(
                 FindClientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindClientCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findProject() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindProjectCommand command = (FindProjectCommand) parser.parseCommand(
+                FindProjectCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindProjectCommand(new TitleContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -108,9 +155,29 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_listClient() throws Exception {
         assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD) instanceof ListClientCommand);
         assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD + " 3") instanceof ListClientCommand);
+    }
+
+    @Test
+    public void parseCommand_listProject() throws Exception {
+        assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD) instanceof ListProjectCommand);
+        assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD + " 3") instanceof ListProjectCommand);
+    }
+
+    @Test
+    public void parseCommand_markProject() throws Exception {
+        MarkProjectCommand command = (MarkProjectCommand) parser.parseCommand(
+                MarkProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new MarkProjectCommand(INDEX_FIRST), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkProject() throws Exception {
+        UnmarkProjectCommand command = (UnmarkProjectCommand) parser.parseCommand(
+                UnmarkProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UnmarkProjectCommand(INDEX_FIRST), command);
     }
 
     @Test

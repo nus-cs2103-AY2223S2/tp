@@ -45,6 +45,10 @@ public class DeleteClientCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
+        if (currentListBeingShown != ListType.CLIENT) {
+            throw new CommandException(Messages.MESSAGE_INVALID_LIST_CLIENT);
+        }
+
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete), ListType.CLIENT);

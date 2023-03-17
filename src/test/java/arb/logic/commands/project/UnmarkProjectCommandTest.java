@@ -49,6 +49,13 @@ class UnmarkProjectCommandTest {
     }
 
     @Test
+    public void execute_currentListShownClient_failure() {
+        Index validIndex = INDEX_FIRST;
+        assertCommandFailure(new UnmarkProjectCommand(validIndex), ListType.CLIENT,
+                model, Messages.MESSAGE_INVALID_LIST_PROJECT);
+    }
+
+    @Test
     public void equals() {
         UnmarkProjectCommand unmarkFirstCommand = new UnmarkProjectCommand(INDEX_FIRST);
         UnmarkProjectCommand unmarkSecondCommand = new UnmarkProjectCommand(INDEX_SECOND);
