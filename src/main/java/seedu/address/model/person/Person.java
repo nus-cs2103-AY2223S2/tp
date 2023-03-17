@@ -127,16 +127,37 @@ public class Person {
         return address;
     }
 
+    public Favorite getIsFavorite() {
+        return isFavorite;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public CommunicationChannel getComms() {
+        return comms;
+    }
+
+    public Modules getModules() {
+        return modules;
+    }
+
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    public Favorite getIsFavorite() {
-        return isFavorite;
     }
 
     /**
@@ -185,11 +206,16 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+        return otherPerson.getName().equals(this.getName())
+                && otherPerson.getPhone().equals(this.getPhone())
+                && otherPerson.getEmail().equals(this.getEmail())
+                && otherPerson.getAddress().equals(this.getAddress())
+                && otherPerson.getTags().equals(this.getTags())
+                && otherPerson.getGender().equals(this.getGender())
+                && otherPerson.getMajor().equals(this.getMajor())
+                && otherPerson.getRace().equals(this.getRace())
+                && otherPerson.getModules().equals(this.getModules())
+                && otherPerson.getComms().equals(this.getComms());
     }
 
     @Override
@@ -225,24 +251,4 @@ public class Person {
         return builder.toString();
     }
 
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public Major getMajor() {
-        return major;
-    }
-
-    public Modules getModules() {
-        return modules;
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public CommunicationChannel getComms() {
-        return comms;
-    }
 }
