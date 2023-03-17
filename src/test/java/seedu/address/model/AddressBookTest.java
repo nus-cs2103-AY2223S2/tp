@@ -86,7 +86,7 @@ public class AddressBookTest {
     /**
      * A stub ReadOnlyAddressBook whose patients list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AddressBookStub implements ReadOnlyPatientList {
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Patient> patients) {

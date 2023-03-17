@@ -36,7 +36,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Adds a appointment to the list.
+     * Adds an appointment to the list.
      * The appointment must not already exist in the list.
      */
     public void add(Appointment toAdd) {

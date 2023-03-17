@@ -29,7 +29,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     // keeping for backward compatibility temporarily, because storage has not been updated
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPatientList addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
         logger.fine("Initializing with address book: " + addressBook + userPrefs);
         this.addressBook = new AddressBook(addressBook);
@@ -42,7 +42,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, appointmentList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, AppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPatientList addressBook, AppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, appointmentList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook
@@ -108,12 +108,12 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setAddressBook(ReadOnlyPatientList addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyPatientList getAddressBook() {
         return addressBook;
     }
 
