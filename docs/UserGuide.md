@@ -12,7 +12,7 @@ Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant t
   * [Quickstart](#quick-start)
   * [Features](#features)
     * [Help](#viewing-help--help)
-    * [Tanks](#tanks) 
+    * [Tanks](#tanks)
       * [Adding a tank `tank add`](#adding-a-tank-add)
       * [Deleting a tank `tank delete`](#deleting-a-tank-delete-tank)
       * [Listing tanks `list tanks`](#listing-tanks-list-tanks)
@@ -20,7 +20,7 @@ Fish Ahoy! Is a **desktop app for managing your fish, fish tanks, and relevant t
       * [Adding a fish `fish add`](#adding-a-fish-add)
       * [Deleting a fish `fish delete`](#deleting-a-fish-delete-fish)
       * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
-      * [Listing fishes in a tank `list fish /tank`](#listing-fishes-in-a-tank-list-fish-tank)  
+      * [Listing fishes in a tank `list fish /tank`](#listing-fishes-in-a-tank-list-fish-tank)
     * [Tasks](#tasks)
       * [Adding a task `task add`](#adding-a-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-delete-task)
@@ -66,7 +66,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-## Tanks 
+## Tanks
 
 ### Adding a tank: `add`
 
