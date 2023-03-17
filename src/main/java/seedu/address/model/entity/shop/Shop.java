@@ -55,10 +55,11 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// Service-level operations
+
     /**
      * Adds service to the system
      *
-     * @param service   Service to be added to the system
+     * @param service Service to be added to the system
      */
     public void addService(Service service) {
         this.services.add(service);
@@ -116,6 +117,7 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// Appointment-level operations
+
     /**
      * Get appointment list
      *
@@ -249,12 +251,18 @@ public class Shop implements ReadOnlyShop {
 
     // --------------------------------------------------
     //// technician-level operations
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     public boolean hasTechnician(Technician person) {
         requireNonNull(person);
         return technicians.contains(person);
+    }
+
+    public boolean hasTechnician(int technicianId) {
+        return this.getTechnicianList().stream()
+                .anyMatch(p -> p.getId() == technicianId);
     }
 
     /**
@@ -320,7 +328,7 @@ public class Shop implements ReadOnlyShop {
     /**
      * Adds vehicle to the shop
      *
-     * @param vehicle    Vehicle to be added
+     * @param vehicle Vehicle to be added
      */
     public void addVehicle(Vehicle vehicle) {
         this.vehicles.add(vehicle);
@@ -408,7 +416,7 @@ public class Shop implements ReadOnlyShop {
     //    public boolean equals(Object other) {
     //        return other == this // short circuit if same object
     //                || (other instanceof AddressBook // instanceof handles nulls
-    //                && persons.equals(((AddressBook) other).persons));
+    //                && persons.equals((() other).persons));
     //    }
     //
     //    @Override
