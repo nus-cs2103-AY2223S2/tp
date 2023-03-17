@@ -15,6 +15,9 @@ public class TypicalRecipes {
     public static final Recipe CORNDOGS = new RecipeBuilder().withTitle("Corndogs")
             .withDesc("Awesome cheap corndogs").withIngredients("eggs", "flour")
             .withSteps("Test1", "Test2").build();
+    public static final Recipe SOUP = new RecipeBuilder().withTitle("Soup")
+            .withDesc("Tasty delicious soupy goodness").withIngredients("water", "salt")
+            .withSteps("Test1", "Test2").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -32,6 +35,6 @@ public class TypicalRecipes {
     }
 
     public static List<Recipe> getTypicalRecipes() {
-        return new ArrayList<>(Arrays.asList(CORNDOGS));
+        return new ArrayList<>(Arrays.asList(CORNDOGS, SOUP));
     }
 }
