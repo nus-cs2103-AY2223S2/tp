@@ -1,6 +1,5 @@
 package seedu.address;
 
-import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -92,13 +91,13 @@ public class MainApp extends Application {
         Optional<? extends ReadOnlyItemManager<T>> managerOptional;
         try {
             managerOptional = managerSupplier.call();
-            if (managerOptional.isEmpty()) {
-                logger.info(
-                    String.format("Data file for %s is not found.", managerName)
-                );
-                return new ItemManager<>();
+            if (managerOptional.isPresent()) {
+                return managerOptional.get();
             }
-            return managerOptional.get();
+            logger.info(
+                String.format("Data file for %s is not found.", managerName)
+            );
+            return new ItemManager<>();
         } catch (DataConversionException | IOException e) {
             logger.info(String.format(
                 "Exception caught while reading data file for %s: %s",
