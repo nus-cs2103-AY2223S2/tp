@@ -14,7 +14,6 @@ import static seedu.address.testutil.TypicalDoctors.BENSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.doctor.Doctor;
 import seedu.address.testutil.DoctorBuilder;
 
 public class DoctorTest {

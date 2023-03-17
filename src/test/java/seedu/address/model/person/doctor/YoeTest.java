@@ -7,8 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.doctor.Yoe;
-
 public class YoeTest {
     @Test
     public void constructor_validYoe_success() {
