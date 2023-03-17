@@ -10,6 +10,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,6 +25,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NRIC = "S1111111A";
     public static final String DEFAULT_AGE = "40";
+    public static final String DEFAULT_REGION = "CENTRAL";
 
     protected Name name;
     protected Phone phone;
@@ -31,6 +33,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
     protected Address address;
     protected Nric nric;
     protected Age age;
+    protected Region region;
     protected Set<Tag> tags;
 
     /**
@@ -43,6 +46,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         address = new Address(DEFAULT_ADDRESS);
         nric = new Nric(DEFAULT_NRIC);
         age = new Age(DEFAULT_AGE);
+        region = new Region(DEFAULT_REGION);
         tags = new HashSet<>();
     }
 
@@ -56,6 +60,7 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
         address = personToCopy.getAddress();
         nric = personToCopy.getNric();
         age = personToCopy.getAge();
+        region = personToCopy.getRegion();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -117,6 +122,14 @@ public abstract class PersonBuilderScaffold<T extends PersonBuilderScaffold<T>> 
      */
     public T withAge(String age) {
         this.age = new Age(age);
+        return castSelf();
+    }
+
+    /**
+     * Sets the {@code Region} of the {@code Person} that we are building.
+     */
+    public T withRegion(String region) {
+        this.region = new Region(region);
         return castSelf();
     }
 

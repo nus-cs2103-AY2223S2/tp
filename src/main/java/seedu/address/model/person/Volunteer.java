@@ -9,6 +9,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,8 +22,8 @@ public class Volunteer extends Person {
      * Every field must be present and not null.
      */
     public Volunteer(Name name, Phone phone, Email email,
-                     Address address, Nric nric, Age age, Set<Tag> tags) {
-        super(name, phone, email, address, nric, age, tags);
+                     Address address, Nric nric, Age age, Region region, Set<Tag> tags) {
+        super(name, phone, email, address, nric, age, region, tags);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class Volunteer extends Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getTags());
+                getNric(), getAge(), getRegion(), getTags());
     }
 
     @Override
@@ -57,7 +58,9 @@ public class Volunteer extends Person {
                 .append("; NRIC: ")
                 .append(getNric())
                 .append("; Age: ")
-                .append(getAge());
+                .append(getAge())
+                .append("; Region: ")
+                .append(getRegion());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

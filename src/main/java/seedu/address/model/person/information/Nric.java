@@ -9,8 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
-            "NRIC should follow the valid format, and should be 9 characters long";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]{9}$";
+            "The structure of the NRIC should be @xxxxxxx#, where:\n"
+            + "1. @ is a letter that can be \"S\", \"T\", \"F\", \"G\" or \"M\"\n"
+            + "2. xxxxxxx is a 7-digit serial number\n"
+            + "3. # is a letter from A-Z";
+    public static final String VALIDATION_REGEX = "^[STFGMstfgm]\\d{7}[A-Za-z]$";
     public final String value;
 
     /**
@@ -21,7 +24,7 @@ public class Nric {
     public Nric(String nric) {
         requireNonNull(nric);
         checkArgument(isValidNric(nric), MESSAGE_CONSTRAINTS);
-        value = nric;
+        value = nric.toUpperCase();
     }
 
     /**
@@ -40,7 +43,7 @@ public class Nric {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Nric // instanceof handles nulls
-                && value.equals(((Nric) other).value)); // state check
+                && value.equalsIgnoreCase(((Nric) other).value)); // state check
     }
 
     @Override

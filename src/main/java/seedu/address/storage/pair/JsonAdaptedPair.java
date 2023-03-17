@@ -11,8 +11,6 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.exceptions.ElderlyNotFoundException;
-import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 import seedu.address.storage.JsonSerializable;
 
@@ -66,15 +64,15 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
         final Nric modelElderlyNric = new Nric(elderlyNric);
         final Nric modelVolunteerNric = new Nric(volunteerNric);
 
-        try {
-            Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
-            Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
-            return new Pair(elderly, volunteer);
-        } catch (ElderlyNotFoundException e) {
+        Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
+        Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
+        if (elderly == null) {
             throw new IllegalValueException(String.format(MESSAGE_ELDERLY_NOT_FOUND, modelElderlyNric));
-        } catch (VolunteerNotFoundException e) {
+        }
+        if (volunteer == null) {
             throw new IllegalValueException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, modelVolunteerNric));
         }
+        return new Pair(elderly, volunteer);
 
     }
 }

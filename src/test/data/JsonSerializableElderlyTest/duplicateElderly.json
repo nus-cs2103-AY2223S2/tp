@@ -6,6 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "nric" : "S0077007W",
     "age" : "55",
+    "region": "NORTH",
     "riskLevel": "LOW",
     "tagged": [ "friends" ]
   }, {
@@ -15,6 +16,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "nric" : "S0077007W",
     "age" : "55",
+    "region": "NORTH",
     "riskLevel": "LOW",
     "tagged": [ "friends" ]
   } ]

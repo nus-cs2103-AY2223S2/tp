@@ -8,18 +8,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditVolunteerCommand;
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditVolunteerCommand object
  */
-public class EditVolunteerCommandParser extends EditCommandParser implements Parser<EditVolunteerCommand> {
+public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditVolunteerCommand
@@ -30,7 +31,7 @@ public class EditVolunteerCommandParser extends EditCommandParser implements Par
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC_VOLUNTEER, PREFIX_AGE, PREFIX_TAG);
+                        PREFIX_NRIC_VOLUNTEER, PREFIX_AGE, PREFIX_REGION, PREFIX_TAG);
 
         Index index;
 
@@ -66,7 +67,11 @@ public class EditVolunteerCommandParser extends EditCommandParser implements Par
             editVolunteerDescriptor.setAge(
                     ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get()));
         }
-        super.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
+        if (argMultimap.getValue(PREFIX_REGION).isPresent()) {
+            editVolunteerDescriptor.setRegion(
+                    ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get()));
+        }
+        EditCommandParser.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
                 .ifPresent(editVolunteerDescriptor::setTags);
 
         if (!editVolunteerDescriptor.isAnyFieldEdited()) {

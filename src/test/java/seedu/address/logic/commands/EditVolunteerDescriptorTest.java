@@ -10,11 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditVolunteerCommand.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 
 public class EditVolunteerDescriptorTest {
@@ -65,6 +66,11 @@ public class EditVolunteerDescriptorTest {
         // different age -> returns false
         editedAmy = new EditVolunteerDescriptorBuilder(DESC_VOLUNTEER_AMY)
                 .withAge(VALID_AGE_BOB).build();
+        assertFalse(DESC_VOLUNTEER_AMY.equals(editedAmy));
+
+        // different region -> returns false
+        editedAmy = new EditVolunteerDescriptorBuilder(DESC_VOLUNTEER_AMY)
+                .withRegion(VALID_REGION_BOB).build();
         assertFalse(DESC_VOLUNTEER_AMY.equals(editedAmy));
 
         // different tags -> returns false

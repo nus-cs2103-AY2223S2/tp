@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditElderlyCommand.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
@@ -12,6 +12,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
@@ -41,6 +42,7 @@ public class EditElderlyDescriptorBuilder {
         descriptor.setAddress(elderly.getAddress());
         descriptor.setNric(elderly.getNric());
         descriptor.setAge(elderly.getAge());
+        descriptor.setRegion(elderly.getRegion());
         descriptor.setRiskLevel(elderly.getRiskLevel());
         descriptor.setTags(elderly.getTags());
     }
@@ -90,6 +92,14 @@ public class EditElderlyDescriptorBuilder {
      */
     public EditElderlyDescriptorBuilder withAge(String age) {
         descriptor.setAge(new Age(age));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Region} of the {@code EditElderlyDescriptor} that we are building.
+     */
+    public EditElderlyDescriptorBuilder withRegion(String region) {
+        descriptor.setRegion(new Region(region));
         return this;
     }
 
