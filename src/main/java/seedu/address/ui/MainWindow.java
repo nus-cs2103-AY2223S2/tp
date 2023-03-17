@@ -145,7 +145,7 @@ public class MainWindow extends UiPart<Stage> {
      * Updates content of the right pane upon entering a command
      */
     public void changeIndividualPane(Person person, String clearCommand) {
-        if (clearCommand.equals("clear")) {
+        if (person == null || clearCommand.equals("clear")) {
             this.clearPane();
         } else {
             this.clearPane();
