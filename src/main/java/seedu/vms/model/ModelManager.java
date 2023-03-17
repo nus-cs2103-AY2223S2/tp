@@ -156,6 +156,12 @@ public class ModelManager implements Model {
         appointmentManager.set(id, editedAppointment);
     }
 
+
+    @Override
+    public void setAppointmentManager(AppointmentManager manager) {
+        appointmentManager.resetData(manager);
+    }
+
     // =========== VaxTypeManager ==============================================================================
 
     @Override
@@ -169,6 +175,12 @@ public class ModelManager implements Model {
         return vaxTypeManager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+    }
+
+
+    @Override
+    public void setVaxTypeManager(VaxTypeManager manager) {
+        vaxTypeManager.resetData(manager);
     }
 
     // =========== Filtered Patient List Accessors =============================================================

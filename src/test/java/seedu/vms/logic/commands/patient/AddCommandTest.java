@@ -199,6 +199,18 @@ public class AddCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
         }
+
+        @Override
+        public void setVaxTypeManager(VaxTypeManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
+        }
+
+        @Override
+        public void setAppointmentManager(AppointmentManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+        }
     }
 
     /**

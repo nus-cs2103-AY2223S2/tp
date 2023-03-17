@@ -151,4 +151,16 @@ public class VaxTypeModelStub implements Model {
                         "Vaccination type does not exist: %s", vaxName.toString())));
     }
 
+    @Override
+    public void setVaxTypeManager(VaxTypeManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
+    }
+
+    @Override
+    public void setAppointmentManager(AppointmentManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+    }
+
 }

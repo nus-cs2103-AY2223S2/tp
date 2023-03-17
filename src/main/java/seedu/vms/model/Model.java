@@ -138,4 +138,10 @@ public interface Model {
     VaxType performVaxTypeAction(VaxTypeAction action) throws IllegalValueException;
 
     VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException;
+
+
+    void setVaxTypeManager(VaxTypeManager manager);
+
+
+    void setAppointmentManager(AppointmentManager manager);
 }

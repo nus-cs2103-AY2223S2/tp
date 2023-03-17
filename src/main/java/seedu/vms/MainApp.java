@@ -21,8 +21,7 @@ import seedu.vms.model.ModelManager;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.appointment.AppointmentManager;
-import seedu.vms.model.patient.ReadOnlyPatientManager;
-import seedu.vms.model.util.SampleDataUtil;
+import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.JsonPatientManagerStorage;
 import seedu.vms.storage.JsonUserPrefsStorage;
@@ -86,34 +85,11 @@ public class MainApp extends Application {
      * or an empty patient manager will be used instead if errors occur when reading {@code storage}'s patient manager.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        ReadOnlyPatientManager initialData;
-        try {
-            initialData = storage.readPatientManager();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PatientManager");
-            initialData = SampleDataUtil.getSamplePatientManager();
-        }
-
-        VaxTypeManager vaxTypeManager = new VaxTypeManager();
-        try {
-            vaxTypeManager = storage.loadUserVaxTypes();
-        } catch (IOException ioEx) {
-            logger.warning("Unable to load vaccination types, default will be loaded, problem: " + ioEx.getMessage());
-            vaxTypeManager = storage.loadDefaultVaxTypes();
-        } catch (RuntimeException rte) {
-            // not suppose to happen but initialize as empty
-        }
-
-        AppointmentManager appointmentManager = new AppointmentManager();
-        try {
-            appointmentManager = storage.loadAppointments();
-        } catch (IOException ioEx) {
-            logger.warning("Unable to load appointments" + ioEx.getMessage());
-        } catch (RuntimeException rte) {
-            // not suppose to happen but initialize as empty
-        }
-
-        return new ModelManager(initialData, vaxTypeManager, appointmentManager, userPrefs);
+        return new ModelManager(
+                new PatientManager(),
+                new VaxTypeManager(),
+                new AppointmentManager(),
+                userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -186,6 +162,7 @@ public class MainApp extends Application {
         logger.info("Starting PatientManager " + MainApp.VERSION);
         ui.start(primaryStage);
         startRefreshLoop();
+        logic.loadManagers();
     }
 
 
