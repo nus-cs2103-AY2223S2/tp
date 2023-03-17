@@ -250,7 +250,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 ## **Architecture**
 
-<img src="images/ArchitectureDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/ArchitectureDiagram.png" style="width:60%;margin:0 20%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
 </div>
@@ -280,7 +280,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.1.2</b> Sequence Diagram for the command `delete 1`
+    <b>Figure 4.1.2</b> Sequence Diagram for the command <code>delete 1</code>
 </div>
 <br>
 
@@ -425,7 +425,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/DeleteSequenceDiagram.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.4</b> Sequence Diagram for a typical `delete` command
+    <b>Figure 4.4.4</b> Sequence Diagram for a typical <code>delete</code> command
 </div>
 <br>
 
