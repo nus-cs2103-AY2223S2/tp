@@ -1,6 +1,7 @@
 package seedu.vms.logic.parser.vaccination;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
     private static final String FIELD_NAME_GRP_SET = "Group set";
     private static final String FIELD_NAME_MIN_AGE = "Min age";
     private static final String FIELD_NAME_MAX_AGE = "Max age";
-    private static final String FIELD_NAME_ALLERGY = "Allergy requirements";
+    private static final String FIELD_NAME_INGREDIENTS = "Ingredients";
     private static final String FIELD_NAME_HISTORY = "History requirements";
 
     private final boolean isRenameAllowed;
@@ -60,7 +61,7 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
         builder = mapRenamedName(argsMap.getValue(CliSyntax.PREFIX_NAME))
                 .map(builder::setName)
                 .orElse(builder);
-        builder = mapGroupSet(argsMap.getValue(CliSyntax.PREFIX_VAX_GROUPS))
+        builder = mapGroupSet(argsMap.getAllValues(CliSyntax.PREFIX_VAX_GROUPS), FIELD_NAME_GRP_SET)
                 .map(builder::setGroups)
                 .orElse(builder);
         builder = mapAge(argsMap.getValue(CliSyntax.PREFIX_MIN_AGE), FIELD_NAME_MIN_AGE)
@@ -69,8 +70,8 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
         builder = mapAge(argsMap.getValue(CliSyntax.PREFIX_MAX_AGE), FIELD_NAME_MAX_AGE)
                 .map(builder::setMaxAge)
                 .orElse(builder);
-        builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_ALLERGY_REQ), FIELD_NAME_ALLERGY)
-                .map(builder::setAllergyReqs)
+        builder = mapGroupSet(argsMap.getAllValues(CliSyntax.PREFIX_INGREDIENTS), FIELD_NAME_INGREDIENTS)
+                .map(builder::setIngredients)
                 .orElse(builder);
         builder = mapReqList(argsMap.getAllValues(CliSyntax.PREFIX_HISTORY_REQ), FIELD_NAME_HISTORY)
                 .map(builder::setHistoryReqs)
@@ -97,15 +98,15 @@ public abstract class VaxTypeValueParser implements Parser<Command> {
     }
 
 
-    private Optional<HashSet<GroupName>> mapGroupSet(Optional<String> grpSetArg) throws ParseException {
-        if (!grpSetArg.isPresent()) {
+    private Optional<HashSet<GroupName>> mapGroupSet(Collection<String> grpArgs, String fieldName)
+                throws ParseException {
+        if (grpArgs.isEmpty()) {
             return Optional.empty();
         }
         try {
-            return Optional.ofNullable(ParserUtil.parseGroups(grpSetArg.get()))
-                    .map(HashSet::new);
+            return Optional.ofNullable(ParserUtil.parseGroups(grpArgs));
         } catch (ParseException parseEx) {
-            throw new ParseException(String.format("%s: %s", FIELD_NAME_GRP_SET, parseEx.getMessage()));
+            throw new ParseException(String.format("%s: %s", fieldName, parseEx.getMessage()));
         }
     }
 

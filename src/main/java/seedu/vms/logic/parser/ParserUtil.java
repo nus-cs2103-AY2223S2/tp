@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.util.StringUtil;
@@ -275,10 +274,10 @@ public class ParserUtil {
      *
      * @throws ParseException if any of the groups cannot be parsed.
      */
-    public static Set<GroupName> parseGroups(Collection<String> args) throws ParseException {
+    public static HashSet<GroupName> parseGroups(Collection<String> args) throws ParseException {
         requireNonNull(args);
 
-        final Set<GroupName> groups = new HashSet<>();
+        final HashSet<GroupName> groups = new HashSet<>();
         for (String grpString : args) {
             groups.addAll(parseGroups(grpString));
         }

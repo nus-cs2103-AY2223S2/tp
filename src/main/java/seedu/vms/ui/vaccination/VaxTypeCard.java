@@ -23,7 +23,7 @@ public class VaxTypeCard extends UiPart<Region> {
     @FXML private Label titleLabel;
     @FXML private Label ageRangeLabel;
     @FXML private VBox groupBox;
-    @FXML private VBox allergyBox;
+    @FXML private VBox ingredientBox;
     @FXML private VBox historyBox;
 
 
@@ -42,7 +42,12 @@ public class VaxTypeCard extends UiPart<Region> {
                 .stream()
                 .map(GroupName::getName)
                 .collect(Collectors.toList())));
-        addAllReq(allergyBox, vaxType.getAllergyReqs());
+        ingredientBox.getChildren().add(new TagFlowView(
+                vaxType.getIngredients()
+                    .stream()
+                    .map(GroupName::toString)
+                    .collect(Collectors.toList()),
+                TagFlowView.STYLE_CLASS_TAG_RED));
         addAllReq(historyBox, vaxType.getHistoryReqs());
     }
 

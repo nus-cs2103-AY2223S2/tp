@@ -21,7 +21,7 @@ public class EditVaxTypeTest {
             SampleVaxTypeData.GROUPS_REAL,
             ORIGINAL.getMinAge(),
             ORIGINAL.getMaxAge(),
-            ORIGINAL.getAllergyReqs(),
+            ORIGINAL.getIngredients(),
             ORIGINAL.getHistoryReqs());
     private static final VaxType EDITED_RENAME = SampleVaxTypeData.TYPE_REAL;
 
@@ -34,7 +34,7 @@ public class EditVaxTypeTest {
             SampleVaxTypeData.CMD_GROUPS_REAL,
             SampleVaxTypeData.CMD_MIN_AGE_REAL,
             CliSyntax.DELIMITER + CliSyntax.PREFIX_MAX_AGE + " " + Age.MAX_VALUE,
-            SampleVaxTypeData.CMD_ALLERGY_REQS_REAL,
+            SampleVaxTypeData.CMD_INGREDIENTS_REAL,
             SampleVaxTypeData.CMD_HISTORY_REQS_REAL);
     private static final String CMD_NON_EXISTENT_NAME = String.join(" ",
             SampleVaxTypeData.CMD_NAME_REAL,
