@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PHOTOSYNTHESIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -53,11 +53,11 @@ public class EditCommandTest {
         Card lastCard = model.getFilteredCardList().get(indexLastPerson.getZeroBased());
 
         CardBuilder personInList = new CardBuilder(lastCard);
-        Card editedCard = personInList.withQuestion(VALID_NAME_PHOTOSYNTHESIS)
+        Card editedCard = personInList.withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
                 .withTags(VALID_TAG_HARD).build();
 
         EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
-                .withQuestion(VALID_NAME_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
+                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
@@ -85,9 +85,9 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Card cardInFilteredList = model.getFilteredCardList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Card editedCard = new CardBuilder(cardInFilteredList).withQuestion(VALID_NAME_PHOTOSYNTHESIS).build();
+        Card editedCard = new CardBuilder(cardInFilteredList).withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditCardDescriptorBuilder().withQuestion(VALID_NAME_PHOTOSYNTHESIS).build());
+                new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
 
@@ -122,7 +122,7 @@ public class EditCommandTest {
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCardList().size() + 1);
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
-                .withQuestion(VALID_NAME_PHOTOSYNTHESIS).build();
+                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
@@ -140,7 +140,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMasterDeck().getCardList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditCardDescriptorBuilder().withQuestion(VALID_NAME_PHOTOSYNTHESIS).build());
+                new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
     }

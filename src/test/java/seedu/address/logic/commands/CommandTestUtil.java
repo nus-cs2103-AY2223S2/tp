@@ -23,7 +23,7 @@ import seedu.address.testutil.EditCardDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_QUESTION_GRAVITY = "What is gravity";
-    public static final String VALID_NAME_PHOTOSYNTHESIS = "What is photosynthesis";
+    public static final String VALID_QUESTION_PHOTOSYNTHESIS = "What is photosynthesis";
     public static final String VALID_ANSWER_GRAVITY = "A force of attraction between objects due to their mass";
     public static final String VALID_ANSWER_PHOTOSYNTHESIS = "The process by which plants convert sunlight into energy";
     public static final String VALID_TAG_HARD = "Hard";
@@ -31,7 +31,7 @@ public class CommandTestUtil {
     public static final String VALID_DECK_SCIENCE = "Science";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_QUESTION + VALID_QUESTION_GRAVITY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_QUESTION + VALID_NAME_PHOTOSYNTHESIS;
+    public static final String NAME_DESC_BOB = " " + PREFIX_QUESTION + VALID_QUESTION_PHOTOSYNTHESIS;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ANSWER + VALID_ANSWER_GRAVITY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_PHOTOSYNTHESIS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
@@ -51,7 +51,7 @@ public class CommandTestUtil {
         DESC_AMY = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_GRAVITY).withAnswer(VALID_ANSWER_GRAVITY)
                 .withTags(VALID_TAG_MEDIUM).build();
         DESC_BOB = new EditCardDescriptorBuilder()
-                .withQuestion(VALID_NAME_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
+                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
                 .withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
     }
 

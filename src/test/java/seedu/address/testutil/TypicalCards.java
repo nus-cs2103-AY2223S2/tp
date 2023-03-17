@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_GRAVITY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DECK_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_GRAVITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDIUM;
 
@@ -53,7 +53,7 @@ public class TypicalCards {
     // Manually added - Card's details found in {@code CommandTestUtil}
     public static final Card GRAVITY = new CardBuilder().withQuestion(VALID_QUESTION_GRAVITY)
             .withAnswer(VALID_ANSWER_GRAVITY).withTags(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE).build();
-    public static final Card PHOTOSYNTHESIS = new CardBuilder().withQuestion(VALID_NAME_PHOTOSYNTHESIS)
+    public static final Card PHOTOSYNTHESIS = new CardBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
             .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM)
             .withDeck(VALID_DECK_SCIENCE)
             .build();
