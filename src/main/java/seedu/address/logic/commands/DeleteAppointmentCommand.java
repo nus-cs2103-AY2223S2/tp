@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.appointment.Appointment;
 
@@ -35,7 +36,9 @@ public class DeleteAppointmentCommand extends RedoableCommand {
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
         Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        int id = appointmentToDelete.getId();
         model.deleteAppointment(appointmentToDelete);
+        IdGenerator.setAppointmentIdUnused(id);
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
     }
 

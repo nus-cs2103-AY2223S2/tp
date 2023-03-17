@@ -16,9 +16,10 @@ public class ViewPartCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "viewpart";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display part details given the part id."
-            + "Parameters: ID\n"
-            + "Example: " + COMMAND_WORD + " 8";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Displays the part identified by the part name.\n"
+            + "Parameters: STRING\n"
+            + "Example: " + COMMAND_WORD + " CS-2103-T";
 
     private final String userString;
 

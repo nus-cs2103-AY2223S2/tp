@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.service.Vehicle;
 
@@ -35,7 +36,9 @@ public class DeleteVehicleCommand extends RedoableCommand {
         List<Vehicle> lastShownList = model.getFilteredVehicleList();
 
         Vehicle vehicleToDelete = lastShownList.get(targetIndex.getZeroBased());
+        int id = vehicleToDelete.getId();
         model.deleteVehicle(vehicleToDelete);
+        IdGenerator.setVehicleIdUnused(id);
         return new CommandResult(String.format(MESSAGE_DELETE_VEHICLE_SUCCESS, vehicleToDelete));
     }
 

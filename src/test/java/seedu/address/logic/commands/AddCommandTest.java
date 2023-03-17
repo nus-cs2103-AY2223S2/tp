@@ -149,6 +149,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Appointment> getFilteredAppointmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public PartMap getPartMap() {
             throw new AssertionError("This method should not be called.");
         }
@@ -179,6 +184,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteCustomer(Customer target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCustomer(Customer target, Customer editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addVehicle(int customerId, Vehicle vehicle) {
             throw new AssertionError("This method should not be called.");
         }
@@ -189,12 +204,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteVehicle(Vehicle target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addService(int vehicleId, Service service) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasService(int serviceId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -216,14 +241,11 @@ public class AddCommandTest {
         @Override
         public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
             throw new AssertionError("This method should not be called.");
-<<<<<<< HEAD
-=======
         }
 
         @Override
         public void updatePartsMap() {
             throw new AssertionError("This method should not be called.");
->>>>>>> branch-view
         }
     }
 

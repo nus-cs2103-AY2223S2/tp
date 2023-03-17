@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.entity.person.Customer;
 
@@ -35,7 +36,9 @@ public class DeleteCustomerCommand extends RedoableCommand {
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
         Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
+        int id = customerToDelete.getId();
         model.deleteCustomer(customerToDelete);
+        IdGenerator.setCustomerIdUnused(id);
         return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
     }
 
