@@ -284,7 +284,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name  |
 | `* *` | new event planner       | sort upcoming events according to dates                                | prioritize events when I am planning  |
 | `* *` | event planner           | list all contacts from a particular event                                | know the people associated to this event  |
-| `* *` | event planner           | add overall-in-charge for every event                          | know who to approach for issues related to the event  |
+| `* *` | event planner           | edit events                                | change details  |
+| `* *` | event planner           | list all events and contacts                                | conveniently view everything  |
+| `*` | event planner           | add overall-in-charge for every event                          | know who to approach for issues related to the event  |
 | `*` | event planner           | set up a checklist of customer’s requirements                             | account for every need  |
 | `*` | forgetful event planner | set reminders conveniently                                | be on track with things  |
 | `*` | forgetful event planner | receive reminders for upcoming events                                | avoid forgetting about the event  |
