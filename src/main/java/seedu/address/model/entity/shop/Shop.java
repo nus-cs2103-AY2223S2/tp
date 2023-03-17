@@ -75,6 +75,7 @@ public class Shop implements ReadOnlyShop {
             if (vehicle.getId() == vehicleId) {
                 vehicle.addService(service);
                 this.services.add(service);
+                return;
             }
         }
         throw new VehicleNotFoundException();
