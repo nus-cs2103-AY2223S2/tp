@@ -7,8 +7,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
     "points": 0,
-    "cumulativePoints": 0,
-    "orders": [ ]
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name": "Alice Pauline",
@@ -17,7 +16,7 @@
     "address": "4th street",
     "tagged": [ "friends" ],
     "points": 0,
-    "cumulativePoints": 0,
-    "orders": [ ]
-  } ]
+    "cumulativePoints": 0
+  } ],
+  "orders": [ ]
 }
