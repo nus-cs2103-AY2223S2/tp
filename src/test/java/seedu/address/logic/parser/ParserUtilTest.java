@@ -24,6 +24,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Owner;
+import seedu.address.model.transaction.TxnStatus;
+import seedu.address.model.transaction.Value;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -48,6 +52,15 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String INVALID_DESCRIPTION = " ";
+    private static final String INVALID_OWNER = "R@chel";
+    private static final String INVALID_VALUE = "100.12.1";
+    private static final String INVALID_STATUS = "pending";
+    private static final String VALID_DESCRIPTION = "Rent cost";
+    private static final String VALID_OWNER = "Apple Inc";
+    private static final String VALID_VALUE = "10000.12";
+    private static final String VALID_STATUS = "closed";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -289,4 +302,68 @@ public class ParserUtilTest {
         assertEquals(expectedJobTitle, ParserUtil.parseJobTitle(VALID_JOBTITLE));
     }
 
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValue_throwsParseException() throws Exception {
+        Description expectedDescription = new Description(VALID_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseOwner_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseOwner((String) null));
+    }
+
+    @Test
+    public void parseOwner_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOwner(INVALID_OWNER));
+    }
+
+    @Test
+    public void parseOwner_validValue_throwsParseException() throws Exception {
+        Owner expectedOwner = new Owner(VALID_OWNER);
+        assertEquals(expectedOwner, ParserUtil.parseOwner(VALID_OWNER));
+    }
+
+    @Test
+    public void parseValue_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseValue((String) null));
+    }
+
+    @Test
+    public void parseValue_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseValue(INVALID_VALUE));
+    }
+
+    @Test
+    public void parseValue_validValue_throwsParseException() throws Exception {
+        Value expectedValue = new Value(VALID_VALUE);
+        assertEquals(expectedValue, ParserUtil.parseValue(VALID_VALUE));
+    }
+
+    @Test
+    public void parseStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTxnStatus((String) null));
+    }
+
+    @Test
+    public void parseStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTxnStatus(INVALID_STATUS));
+    }
+
+    @Test
+    public void parseStatus_validValue_throwsParseException() throws Exception {
+        TxnStatus expectedStatus = new TxnStatus(VALID_STATUS);
+        assertEquals(expectedStatus, ParserUtil.parseTxnStatus(VALID_STATUS));
+    }
 }
