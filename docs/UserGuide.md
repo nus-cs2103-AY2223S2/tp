@@ -33,7 +33,6 @@ prioritise sales tasks
 3. Copy the file to the folder you want to use as the _home folder_ for your SalesPunch.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar salespunch.jar` command to run the application.<br>
-
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -64,7 +63,7 @@ prioritise sales tasks
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -72,7 +71,7 @@ prioritise sales tasks
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -82,7 +81,7 @@ prioritise sales tasks
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -118,7 +117,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
@@ -136,12 +135,12 @@ If no status is specified, lists the status associated with the contact.
 The lead status follows a set of rules, to be implemented in v1.3
 
 Format:   
-`status INDEX_NUMBER|NAME`   
-`status INDEX_NUMBER|NAME [STATUS …]`  
+`status INDEX_NUMBER|NAME`
+`status INDEX_NUMBER|NAME [STATUS …]`
 
 Examples:
 `status 1` or `status David` Returns the status of ID `1` or the status of `David`
-`status David closed-won` Assigns the status of `David` to be `closed-won`.
+`status David closed-won` Assigns the status of `David` to be `closed-won`
 
 
 ### Finding a contact tag: `findtag`
@@ -166,7 +165,7 @@ Search for a contact based on a keyword, or by specifying its index number.
 
 Format: `find [INDEX or KEYWORD(S)]`
 
-* The find is case-insensitive. e.g `hans` will match `Hans`
+* The find is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is found.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -190,6 +189,57 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+
+### Adding a transaction: `addtxn`
+
+Adds a transaction record to the address book.
+
+Format: `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+All field must be provided, and transaction status should be either 'open' or 'closed'.
+</div>
+
+Examples:
+* `addtxn td/Sample Transaction tv/100 ts/open to/John Doe`
+
+
+### Listing all transaction records : `listtxn`
+
+Shows a list of all transaction records in the sales book.
+
+Format: `listtxn`
+
+
+### Editing a transaction record : `edittxn`
+
+Edits an existing transaction record in the sales book.
+
+Format: `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`
+
+* Edits the transaction record at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed transaction list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+*  `edittxn 1 ts/closed` Edits the transaction status of the 1st transaction record to be 'closed'.
+
+
+### Deleting a transaction record : `deletetxn`
+
+Deletes the specified transaction record from the sales book.
+
+Format: `deletetxn INDEX`
+
+* Deletes the transaction record at the specified `INDEX`.
+* The index refers to the index number shown in the displayed transaction list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listtxn` followed by `deletetxn 2` deletes the 2nd transaction record in the sales book.
+
 
 ### Clearing all entries : `clear`
 
@@ -232,13 +282,18 @@ _Details coming soon ..._
 
 *italic* - optional
 
-Action | Format, Examples
---------|------------------
-**Add** | `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] ...​` <br> e.g., `add n/John Doe p/98765432 c/company X`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Status** | `status INDEX_NUMBER` *`[STATUS …]`*<br> `status NAME` *`[STATUS …]`*<br> e.g., `status 1, status David closed-won`
-**List** | `list`
-**Help** | `help`
+| Action         | Format, Examples                                                                                                                         |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] ...​` <br> e.g., `add n/John Doe p/98765432 c/company X`                            |
+| **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`      |
+| **Clear**      | `clear`                                                                                                                                  |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                      |                                                                                               |
+| **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                |
+| **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                      |
+| **Status**     | `status INDEX_NUMBER` *`[STATUS …]`*<br> `status NAME` *`[STATUS …]`*<br> e.g., `status 1, status David closed-won`                      |
+| **List**       | `list`                                                                                                                                   |
+| **List Txn**   | `listtxn`                                                                                                                                |
+| **Help**       | `help`                                                                                                                                   |
+
 ``
