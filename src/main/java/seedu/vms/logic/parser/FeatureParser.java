@@ -51,6 +51,7 @@ public abstract class FeatureParser {
         StringBuilder builder = new StringBuilder();
         for (Map.Entry<Prefix, List<String>> entry : unusedArgs) {
             Prefix prefix = entry.getKey();
+            System.out.println(prefix);
             for (String arg : entry.getValue()) {
                 builder.append(String.format("\n%s%s %s",
                         CliSyntax.DELIMITER,

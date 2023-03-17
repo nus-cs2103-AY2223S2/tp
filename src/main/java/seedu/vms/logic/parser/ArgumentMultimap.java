@@ -28,7 +28,7 @@ public class ArgumentMultimap {
      * @param argValue Argument value to be associated with the specified prefix key
      */
     public void put(Prefix prefix, String argValue) {
-        List<String> argValues = getAllValues(prefix);
+        List<String> argValues = get(prefix);
         argValues.add(argValue);
         argMultimap.put(prefix, argValues);
     }
@@ -47,11 +47,8 @@ public class ArgumentMultimap {
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
      */
     public List<String> getAllValues(Prefix prefix) {
-        if (!argMultimap.containsKey(prefix)) {
-            return new ArrayList<>();
-        }
         usedPrefixes.add(prefix);
-        return new ArrayList<>(argMultimap.get(prefix));
+        return get(prefix);
     }
 
     /**
@@ -74,5 +71,13 @@ public class ArgumentMultimap {
             }
         }
         return unusedArgs;
+    }
+
+
+    private List<String> get(Prefix prefix) {
+        if (!argMultimap.containsKey(prefix)) {
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(argMultimap.get(prefix));
     }
 }
