@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.model.service.exception.NegativeValueException;
 import seedu.address.model.service.exception.PartLessThanZeroException;
 import seedu.address.model.service.exception.PartNotFoundException;
 
@@ -64,9 +65,9 @@ public class PartMap {
 
         checkArgument(isValidName(partName), MESSAGE_CONSTRAINTS);
 
-        //        if (quantity < 0) {
-        //            throw new NegativeValueException(quantity);
-        //        }
+        if (quantity < 1) {
+            throw new NegativeValueException(quantity);
+        }
 
         if (this.map.containsKey(partName)) {
             this.map.put(partName, map.get(partName) + quantity);
