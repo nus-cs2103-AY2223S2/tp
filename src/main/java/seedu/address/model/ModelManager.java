@@ -15,7 +15,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
-import seedu.address.model.service.Part;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -33,8 +33,9 @@ public class ModelManager implements Model {
     private final FilteredList<Technician> filteredTechnicians;
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
-    //    private final FilteredList<Part> filteredParts;
     private final FilteredList<Appointment> filteredAppointment;
+
+    private final PartMap partMap;
     private final Shop shop;
 
     /**
@@ -55,8 +56,9 @@ public class ModelManager implements Model {
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
         filteredServices = new FilteredList<>(this.shop.getServiceList());
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
-        //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
         filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        partMap = this.shop.getPartMap();
+        //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
     }
 
@@ -242,22 +244,25 @@ public class ModelManager implements Model {
     /**
      * Adds part
      *
-     * @param part Part to add
+     * @param partName Name of the part to add
+     * @param quantity Quantity of the part to add
      */
     @Override
-    public void addPart(Part part) {
-        this.shop.addPart(part);
+    public void addPart(String partName, int quantity) {
+        this.shop.addPart(partName, quantity);
     }
 
     /**
      * Checks if part already exists
      *
-     * @param part Part to check against
+     * @param partName Name of part to check
      */
     @Override
-    public boolean hasPart(Part part) {
-        return this.shop.hasPart(part.getName());
+    public boolean hasPart(String partName) {
+        return this.shop.hasPart(partName);
     }
+
+
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -270,7 +275,6 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-    // public <T> ObservableList<T> getFilteredVehicleList() { // potential generic? no time to explore.
     @Override
     public ObservableList<Customer> getFilteredCustomerList() {
         return filteredCustomers;
@@ -284,6 +288,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
         return filteredAppointment;
+    }
+
+    @Override
+    public PartMap getPartMap() {
+        return partMap;
     }
 
     @Override
@@ -308,6 +317,11 @@ public class ModelManager implements Model {
     public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
+    }
+
+    @Override
+    public void updatePartsMap() {
+        //todo: GUI stuff for printing!
     }
 
     @Override

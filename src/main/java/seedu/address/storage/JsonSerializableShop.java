@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,7 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.shop.Shop;
-import seedu.address.model.service.Part;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 
@@ -55,7 +55,8 @@ class JsonSerializableShop {
         customers.addAll(source.getCustomerList().stream().map(JsonAdaptedCustomer::new).collect(Collectors.toList()));
         vehicles.addAll(source.getVehicleList().stream().map(JsonAdaptedVehicle::new).collect(Collectors.toList()));
         services.addAll(source.getServiceList().stream().map(JsonAdaptedService::new).collect(Collectors.toList()));
-        source.getPartMap().getEntrySet().forEach(entry -> parts.add(new JsonAdaptedPart(entry.getValue())));
+        source.getPartMap().getEntrySet()
+                .forEach(entry -> parts.add(new JsonAdaptedPart(entry.getKey(), entry.getValue())));
     }
 
     /**
@@ -90,11 +91,11 @@ class JsonSerializableShop {
         }
 
         for (JsonAdaptedPart jsonAdaptedPart : parts) {
-            Part part = jsonAdaptedPart.toModelType();
-            if (shop.hasPart(part.getName())) {
+            Map.Entry<String, Integer> partEntry = jsonAdaptedPart.toModelType();
+            if (shop.hasPart(partEntry.getKey())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PART);
             }
-            shop.addPart(part);
+            shop.addPart(partEntry.getKey(), partEntry.getValue());
         }
         return shop;
     }

@@ -2,9 +2,10 @@ package seedu.address.model.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,8 +19,7 @@ import seedu.address.model.entity.person.Name;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Phone;
 import seedu.address.model.entity.shop.Shop;
-import seedu.address.model.service.Part;
-import seedu.address.model.service.PartType;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceStatus;
 import seedu.address.model.service.Vehicle;
@@ -79,44 +79,68 @@ public class SampleDataUtil {
             new Vehicle(3, 2, "SLK9123C", "Grey", "BMW X4", VehicleType.CAR),
             new Vehicle(4, 3, "SBF4567D", "Grey", "Suzuki SV650X ABS", VehicleType.MOTORBIKE),
             new Vehicle(5, 3, "SGC2345F", "Black and White", "Honda Adv 150", VehicleType.MOTORBIKE),
-            new Vehicle(5, 4, "SLM5678K", "Dark Blue", "Hyundai Tucson SUV", VehicleType.CAR),
+            new Vehicle(6, 4, "SLM5678K", "Dark Blue", "Hyundai Tucson SUV", VehicleType.CAR),
         };
     }
 
-    public static Part[] getSampleParts() {
-        return new Part[]{
-            new Part(1, 50, "Part A", "", 10, PartType.FRAME),
-            new Part(2, 1000, "Part B", "Sample Description for Part B", 1, PartType.BOLT),
-            new Part(3, 100, "Part C", "Sample Description for Part C", 100, PartType.HORN),
-            new Part(4, 100, "Part D", "", 20, PartType.LIGHT),
-            new Part(5, 100, "Part E", "", 80, PartType.WHEELS),
-            new Part(6, 50, "Part F", "Sample Description for Part F", 1000, PartType.SUSPENSION),
-            new Part(7, 200, "Part G", "", 1600, PartType.GEARBOX),
-            new Part(8, 20, "Part H", "", 45, PartType.HEADLAMP),
-            new Part(9, 20, "Part I", "", 2000, PartType.STEERING),
-            new Part(10, 20, "Part J", "Some other part", 30, PartType.OTHERS),
-            new Part(11, 20, "Part K", "Some other part", 55, PartType.OTHERS),
-        };
+    public static Map<String, Integer> getSampleParts() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Frame", 50);
+        map.put("Bolt", 1000);
+        map.put("Horn", 100);
+        map.put("Light", 100);
+        map.put("Wheels", 500);
+        map.put("Suspension", 100);
+        map.put("Gearbox", 100);
+        map.put("Headlamp", 20);
+        map.put("Steering", 20);
+        map.put("Engine", 20);
+        map.put("Brake Pads", 50);
+        map.put("Car Battery", 50);
+        return map;
     }
 
+    // NOTE: Ensure Parts added to Services match with the parts added to getSampleParts*
     public static Service[] getSampleServices() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Part[] partsSampleA = new Part[]{
-            new Part(5, 4, "Part E", "", 80, PartType.WHEELS),
-            new Part(6, 4, "Part F", "Sample Description for Part F", 1000, PartType.SUSPENSION),
-        };
+        PartMap samplePartsA = new PartMap();
+        samplePartsA.addPart("Wheels", 4);
+        samplePartsA.addPart("Suspension", 4);
 
-        Part[] partsSampleB = new Part[]{
-            new Part(7, 200, "Part G", "", 1600, PartType.GEARBOX),
-        };
+        PartMap samplePartsB = new PartMap();
+        samplePartsA.addPart("Gearbox", 1);
+
+        PartMap samplePartsC = new PartMap();
+        samplePartsA.addPart("Engine", 1);
+
+        PartMap samplePartsD = new PartMap();
+        samplePartsA.addPart("Car Battery", 1);
+
+        PartMap samplePartsE = new PartMap();
+        samplePartsA.addPart("Brake Pads", 1);
 
         return new Service[]{
-            new Service(1, 1, LocalDate.parse("16/03/2023", dtf),
-                new ArrayList<>(Arrays.asList(partsSampleA)), "Wheels can't make it",
-                LocalDate.parse("28/03/2023", dtf), ServiceStatus.TO_REPAIR),
-            new Service(2, 5, LocalDate.parse("17/02/2023", dtf),
-                new ArrayList<>(Arrays.asList(partsSampleB)), "Gearbox dead",
-                LocalDate.parse("05/04/2023", dtf), ServiceStatus.TO_REPAIR),
+            new Service(1, 1, LocalDate.parse("02/03/2022", dtf),
+                    samplePartsC, "Engine oil leak",
+                    LocalDate.parse("10/04/2022", dtf), ServiceStatus.COMPLETE),
+            new Service(2, 3, LocalDate.parse("15/01/2023", dtf),
+                    samplePartsD, "Battery replacement",
+                    LocalDate.parse("30/01/2023", dtf), ServiceStatus.CANCELLED),
+            new Service(3, 2, LocalDate.parse("15/02/2023", dtf),
+                    samplePartsB, "Gearbox dead",
+                    LocalDate.parse("05/04/2023", dtf), ServiceStatus.IN_PROGRESS),
+            new Service(4, 4, LocalDate.parse("02/03/2022", dtf),
+                    samplePartsC, "Engine oil leak",
+                    LocalDate.parse("10/04/2022", dtf), ServiceStatus.ON_HOLD),
+            new Service(5, 1, LocalDate.parse("16/03/2023", dtf),
+                    samplePartsA, "Wheels and suspension got rekt",
+                    LocalDate.parse("28/03/2023", dtf), ServiceStatus.IN_PROGRESS),
+            new Service(6, 6, LocalDate.parse("16/03/2023", dtf),
+                    samplePartsE, "Brake pads worn out",
+                    LocalDate.parse("02/04/2023", dtf), ServiceStatus.TO_REPAIR),
+            new Service(7, 5, LocalDate.parse("16/03/2023", dtf),
+                    new PartMap(), "Just a simple inspection",
+                    LocalDate.parse("18/03/2023", dtf), ServiceStatus.TO_REPAIR),
         };
     }
 
@@ -136,8 +160,11 @@ public class SampleDataUtil {
         for (Vehicle sampleVehicle : getSampleVehicles()) {
             sampleSh.addVehicle(sampleVehicle);
         }
-        for (Part samplePart : getSampleParts()) {
-            sampleSh.addPart(samplePart);
+
+        for (Map.Entry<String, Integer> entry : getSampleParts().entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            sampleSh.addPart(key, value);
         }
         for (Service sampleService : getSampleServices()) {
             sampleSh.addService(sampleService);

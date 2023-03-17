@@ -1,10 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVAID_PART_REQUESTED;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.service.PartIdPredicate;
+import seedu.address.model.service.PartMap;
+
 
 /**
  * Finds and returns the part details of the provided id.
@@ -17,24 +20,30 @@ public class ViewPartCommand extends RedoableCommand {
             + "Parameters: ID\n"
             + "Example: " + COMMAND_WORD + " 8";
 
-    private final PartIdPredicate predicate;
+    private final String userString;
 
-    public ViewPartCommand(PartIdPredicate predicate) {
-        this.predicate = predicate;
+    public ViewPartCommand(String userString) {
+        this.userString = userString;
     }
 
     @Override
-    public CommandResult executeUndoableCommand(Model model) {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        //        model.updateFilteredPartList(predicate); // todo: FIX
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PART_VIEW_OVERVIEW));
+        PartMap pm = model.getPartMap();
+
+        if (pm.contains(userString) == false) {
+            throw new CommandException(String.format(MESSAGE_INVAID_PART_REQUESTED, ViewPartCommand.MESSAGE_USAGE));
+        } else {
+            model.updatePartsMap(); // Require waiting for list
+        }
+
+        return new CommandResult(String.format(Messages.MESSAGE_PART_VIEW_OVERVIEW));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewPartCommand // instanceof handles nulls
-                && predicate.equals(((ViewPartCommand) other).predicate)); // state check
+                && userString.equals(((ViewPartCommand) other).userString)); // state check
     }
 }

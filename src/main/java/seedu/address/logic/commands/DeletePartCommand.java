@@ -7,8 +7,6 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.service.Part;
-import seedu.address.model.service.Vehicle;
 
 /**
  * Deletes a vehicle identified using it's displayed index from viewpart.
@@ -32,12 +30,13 @@ public class DeletePartCommand extends RedoableCommand {
 
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Part> lastShownList = model.getFilteredPart();
-
-        Part partToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePart(partToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PART_SUCCESS, partToDelete));
+        //        requireNonNull(model);
+        //        List<Part> lastShownList = model.getFilteredPart();
+        //
+        //        Part partToDelete = lastShownList.get(targetIndex.getZeroBased());
+        //        model.deletePart(partToDelete);
+        //        return new CommandResult(String.format(MESSAGE_DELETE_PART_SUCCESS, partToDelete));
+        return null;
     }
 
     @Override

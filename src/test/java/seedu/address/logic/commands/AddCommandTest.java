@@ -21,7 +21,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
-import seedu.address.model.service.Part;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -149,6 +149,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public PartMap getPartMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -160,7 +165,7 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -199,18 +204,26 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPart(Part part) {
+        public void addPart(String partName, int quantity) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPart(Part part) {
+        public boolean hasPart(String partName) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
             throw new AssertionError("This method should not be called.");
+<<<<<<< HEAD
+=======
+        }
+
+        @Override
+        public void updatePartsMap() {
+            throw new AssertionError("This method should not be called.");
+>>>>>>> branch-view
         }
     }
 

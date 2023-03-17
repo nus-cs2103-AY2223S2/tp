@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.service.Part;
 
 /**
  * Command that manages adding parts
@@ -23,17 +22,20 @@ public class AddPartCommand extends RedoableCommand {
             + PREFIX_QUANTITY + "50";
 
     public static final String MESSAGE_SUCCESS = "New part added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PART = "%s quantity increased";
+    public static final String MESSAGE_INCREASE_PART_QUANTITY = "%s quantity increased";
 
-    private final Part toAdd;
+    private final String partName;
+    private final int quantity;
 
     /**
-     * Constructs command that adds vehicle to the model
+     * Constructs command that adds part to the model
      *
-     * @param part Part to be added
+     * @param partName Name of the part to add
+     * @param quantity Quantity of the part to add
      */
-    public AddPartCommand(Part part) {
-        this.toAdd = part;
+    public AddPartCommand(String partName, int quantity) {
+        this.partName = partName;
+        this.quantity = quantity;
     }
 
     /**
@@ -46,19 +48,19 @@ public class AddPartCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasPart(toAdd)) {
-            model.addPart(toAdd);
-            return new CommandResult(String.format(MESSAGE_DUPLICATE_PART, toAdd));
+        if (model.hasPart(partName)) {
+            model.addPart(partName, quantity);
+            return new CommandResult(String.format(MESSAGE_INCREASE_PART_QUANTITY, partName));
         }
 
-        model.addPart(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.addPart(partName, quantity);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, partName));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddPartCommand // instanceof handles nulls
-                && toAdd.equals(((AddPartCommand) other).toAdd));
+                && partName.equalsIgnoreCase((((AddPartCommand) other).partName)));
     }
 }

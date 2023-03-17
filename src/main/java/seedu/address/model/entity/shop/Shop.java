@@ -11,7 +11,6 @@ import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.person.UniqueCustomerList;
 import seedu.address.model.entity.person.UniqueTechnicianList;
 import seedu.address.model.entity.person.exceptions.PersonNotFoundException;
-import seedu.address.model.service.Part;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.ServiceList;
@@ -35,13 +34,13 @@ public class Shop implements ReadOnlyShop {
     private final UniqueAppointmentList appointments = new UniqueAppointmentList();
 
     //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
-    private PartMap partMap;
+    //NOTE: Cannot convert to final due to setParts(newData.getPartMap());
+    private PartMap partMap = new PartMap();
 
     /**
      * Constructor for class Shop.
      */
     public Shop() {
-        this.partMap = new PartMap();
     }
 
     /**
@@ -141,28 +140,29 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
-     * Adds part to the part map
+     * Adds part
      *
-     * @param part Part to be added
+     * @param partName Name of the part to add
+     * @param quantity Quantity of the part to add
      */
-    public void addPart(Part part) {
-        this.getPartMap().addPart(part.getName(), part);
+    public void addPart(String partName, int quantity) {
+        this.getPartMap().addPart(partName, quantity);
     }
 
     /**
-     * Increases part stock
+     * Increases part stock by a specified quantity
      *
      * @param partName Name of part
-     * @param amt      Amount to increase by
+     * @param quantity Quanity to increase by
      */
-    public void addPartStock(String partName, int amt) throws PartNotFoundException {
-        this.partMap.getPart(partName).increaseStock(amt);
+    public void addPartStock(String partName, int quantity) throws PartNotFoundException {
+        this.partMap.increasePartQuantity(partName, quantity);
     }
 
     /**
      * Checks if part already in the system
      *
-     * @param partName Name of part
+     * @param partName Name of part to check
      */
     public boolean hasPart(String partName) {
         return this.partMap.contains(partName);
