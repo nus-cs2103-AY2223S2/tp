@@ -161,6 +161,35 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualFitBookModel} matches {@code expectedFitBookModel}
+     */
+    public static void assertCommandSuccess(Command command, Command commandTwo,
+                                            FitBookModel actualFitBookModel,
+                                            CommandResult expectedCommandResult, FitBookModel expectedFitBookModel) {
+        try {
+            CommandResult result = command.execute(actualFitBookModel);
+            assertEquals(expectedCommandResult, result);
+            commandTwo.execute(actualFitBookModel);
+            assertEquals(expectedFitBookModel, actualFitBookModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, FitBookModel, CommandResult, FitBookModel)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Command commandTwo,
+                                            FitBookModel actualFitBookModel, String expectedMessage,
+                                            FitBookModel expectedFitBookModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, commandTwo, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered client list and selected client in {@code actualFitBookModel} remain unchanged
