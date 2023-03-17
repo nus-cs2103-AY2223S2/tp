@@ -14,16 +14,21 @@ class IdGeneratorState implements Serializable {
     private final Queue<Integer> unusedVehicleIds;
     private final SortedSet<Integer> usedServiceIds;
     private final Queue<Integer> unusedServiceIds;
+    private final SortedSet<Integer> usedStaffIds;
+    private final Queue<Integer> unusedStaffIds;
 
     IdGeneratorState(SortedSet<Integer> usedCustomerIds, Queue<Integer> unusedCustomerIds,
                      SortedSet<Integer> usedVehicleIds, Queue<Integer> unusedVehicleIds,
-                     SortedSet<Integer> usedServiceIds, Queue<Integer> unusedServiceIds) {
+                     SortedSet<Integer> usedServiceIds, Queue<Integer> unusedServiceIds,
+                     SortedSet<Integer> usedStaffIds, Queue<Integer> unusedStaffIds) {
         this.usedCustomerIds = usedCustomerIds;
         this.unusedCustomerIds = unusedCustomerIds;
         this.usedVehicleIds = usedVehicleIds;
         this.unusedVehicleIds = unusedVehicleIds;
         this.usedServiceIds = usedServiceIds;
         this.unusedServiceIds = unusedServiceIds;
+        this.usedStaffIds = usedStaffIds;
+        this.unusedStaffIds = unusedStaffIds;
     }
 
     SortedSet<Integer> getUsedCustomerIds() {
@@ -48,6 +53,14 @@ class IdGeneratorState implements Serializable {
 
     Queue<Integer> getUnusedServiceIds() {
         return unusedServiceIds;
+    }
+
+    SortedSet<Integer> getUsedStaffIds() {
+        return usedStaffIds;
+    }
+
+    Queue<Integer> getUnusedStaffIds() {
+        return unusedStaffIds;
     }
 
 }
