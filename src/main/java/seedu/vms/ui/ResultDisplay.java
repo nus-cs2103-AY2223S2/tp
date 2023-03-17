@@ -15,8 +15,9 @@ import seedu.vms.logic.commands.CommandResult;
  * A ui for the status bar that is displayed at the header of the application.
  */
 public class ResultDisplay extends UiPart<Region> implements Refreshable {
-
     private static final String FXML = "ResultDisplay.fxml";
+
+    private static final int DISPLAY_LIMIT = 30;
 
     @FXML private ScrollPane scrollPane;
     @FXML private VBox displayArea;
@@ -61,5 +62,8 @@ public class ResultDisplay extends UiPart<Region> implements Refreshable {
 
     private void displayMessage(CommandResult commandResult) {
         displayArea.getChildren().add(new ResultMessageBox(commandResult).getRoot());
+        if (displayArea.getChildren().size() > DISPLAY_LIMIT) {
+            displayArea.getChildren().remove(0);
+        }
     }
 }
