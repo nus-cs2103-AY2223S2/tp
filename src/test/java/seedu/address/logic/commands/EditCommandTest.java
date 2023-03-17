@@ -53,7 +53,7 @@ public class EditCommandTest {
         Card lastCard = model.getFilteredCardList().get(indexLastPerson.getZeroBased());
 
         CardBuilder personInList = new CardBuilder(lastCard);
-        Card editedCard = personInList.withName(VALID_NAME_PHOTOSYNTHESIS)
+        Card editedCard = personInList.withQuestion(VALID_NAME_PHOTOSYNTHESIS)
                 .withTags(VALID_TAG_HARD).build();
 
         EditCardDescriptor descriptor = new EditPersonDescriptorBuilder()
@@ -85,7 +85,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Card cardInFilteredList = model.getFilteredCardList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Card editedCard = new CardBuilder(cardInFilteredList).withName(VALID_NAME_PHOTOSYNTHESIS).build();
+        Card editedCard = new CardBuilder(cardInFilteredList).withQuestion(VALID_NAME_PHOTOSYNTHESIS).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_PHOTOSYNTHESIS).build());
 

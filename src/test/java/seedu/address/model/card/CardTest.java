@@ -32,20 +32,20 @@ public class CardTest {
 
         // same name, all other attributes different -> returns true
         Card editedAlice = new CardBuilder(LOOP)
-                .withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
+                .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
         assertTrue(LOOP.isSameCard(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new CardBuilder(LOOP).withName(VALID_NAME_PHOTOSYNTHESIS).build();
+        editedAlice = new CardBuilder(LOOP).withQuestion(VALID_NAME_PHOTOSYNTHESIS).build();
         assertFalse(LOOP.isSameCard(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Card editedBob = new CardBuilder(PHOTOSYNTHESIS).withName(VALID_NAME_PHOTOSYNTHESIS.toLowerCase()).build();
+        Card editedBob = new CardBuilder(PHOTOSYNTHESIS).withQuestion(VALID_NAME_PHOTOSYNTHESIS.toLowerCase()).build();
         assertFalse(PHOTOSYNTHESIS.isSameCard(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_PHOTOSYNTHESIS + " ";
-        editedBob = new CardBuilder(PHOTOSYNTHESIS).withName(nameWithTrailingSpaces).build();
+        editedBob = new CardBuilder(PHOTOSYNTHESIS).withQuestion(nameWithTrailingSpaces).build();
         assertFalse(PHOTOSYNTHESIS.isSameCard(editedBob));
     }
 
@@ -68,11 +68,11 @@ public class CardTest {
         assertFalse(LOOP.equals(PHOTOSYNTHESIS));
 
         // different name -> returns false
-        Card editedAlice = new CardBuilder(LOOP).withName(VALID_NAME_PHOTOSYNTHESIS).build();
+        Card editedAlice = new CardBuilder(LOOP).withQuestion(VALID_NAME_PHOTOSYNTHESIS).build();
         assertFalse(LOOP.equals(editedAlice));
 
         // different address -> returns false
-        editedAlice = new CardBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).build();
+        editedAlice = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).build();
         assertFalse(LOOP.equals(editedAlice));
 
         // different tags -> returns false

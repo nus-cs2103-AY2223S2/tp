@@ -16,8 +16,9 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class CardBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_QUESTION = "What is a default question";
+    public static final String DEFAULT_ANSWER = "A default question is a standard, "
+            + "common question used to provide basic information or understanding";
     public static final String DEFAULT_DECK = "Default";
     private Question question;
     private Answer answer;
@@ -29,8 +30,8 @@ public class CardBuilder {
      * Creates a {@code CardBuilder} with the default details.
      */
     public CardBuilder() {
-        question = new Question(DEFAULT_NAME);
-        answer = new Answer(DEFAULT_ADDRESS);
+        question = new Question(DEFAULT_QUESTION);
+        answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>();
         deck = Optional.of(new Deck(DEFAULT_DECK));
     }
@@ -48,8 +49,8 @@ public class CardBuilder {
     /**
      * Sets the {@code Question} of the {@code Card} that we are building.
      */
-    public CardBuilder withName(String name) {
-        this.question = new Question(name);
+    public CardBuilder withQuestion(String question) {
+        this.question = new Question(question);
         return this;
     }
 
@@ -64,8 +65,8 @@ public class CardBuilder {
     /**
      * Sets the {@code Answer} of the {@code Card} that we are building.
      */
-    public CardBuilder withAddress(String address) {
-        this.answer = new Answer(address);
+    public CardBuilder withAnswer(String answer) {
+        this.answer = new Answer(answer);
         return this;
     }
 
@@ -73,7 +74,7 @@ public class CardBuilder {
      * Sets the {@code Deck} of the {@code Card} that we are building.
      */
     public CardBuilder withDeck(String deckName) {
-        this.deck = Optional.of(new Deck(DEFAULT_DECK));
+        this.deck = Optional.of(new Deck(deckName));
         return this;
     }
 

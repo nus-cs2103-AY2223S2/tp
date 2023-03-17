@@ -42,7 +42,7 @@ public class UniqueDeckListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCardList.add(LOOP);
-        Card editedAlice = new CardBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
+        Card editedAlice = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
         assertTrue(uniqueCardList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueDeckListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniqueCardList.add(LOOP);
-        Card editedAlice = new CardBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
+        Card editedAlice = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
         uniqueCardList.setCard(LOOP, editedAlice);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();

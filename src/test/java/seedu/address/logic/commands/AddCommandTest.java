@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Card alice = new CardBuilder().withName("Alice").build();
-        Card bob = new CardBuilder().withName("Bob").build();
+        Card alice = new CardBuilder().withQuestion("Alice").build();
+        Card bob = new CardBuilder().withQuestion("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
