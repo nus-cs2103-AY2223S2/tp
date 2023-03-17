@@ -14,7 +14,7 @@ import java.util.Set;
  * The appointment class containing a meeting with a customer at a particular date.
  */
 public class Appointment {
-    private static String OUTPUT_FORMAT = "<<Appointment>>" + NEWLINE
+    private static final String OUTPUT_FORMAT = "<<Appointment>>" + NEWLINE
             + "Customer: %d" + NEWLINE
             + "Date: %s";
     private final int id;
