@@ -2,6 +2,7 @@ package seedu.vms.logic.parser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class ArgumentMultimap {
 
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
+    private final HashSet<Prefix> usedPrefixes = new HashSet<>();
 
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
@@ -40,15 +42,16 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns all values of {@code prefix}.
-     * If the prefix does not exist or has no values, this will return an empty list.
+     * Returns all values of {@code prefix}. If the prefix does not exist or
+     * has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
      */
     public List<String> getAllValues(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
             return new ArrayList<>();
         }
-        return new ArrayList<>(argMultimap.get(prefix));
+        usedPrefixes.add(prefix);
+        return new ArrayList<>(argMultimap.remove(prefix));
     }
 
     /**
@@ -56,5 +59,20 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+
+    /**
+     * Returns a list of {@code Map.Entry} representing the list of unused
+     * arguments.
+     */
+    public List<Map.Entry<Prefix, List<String>>> getUsedPrefixes() {
+        ArrayList<Map.Entry<Prefix, List<String>>> unusedArgs = new ArrayList<>();
+        for (Map.Entry<Prefix, List<String>> entry : argMultimap.entrySet()) {
+            if (!usedPrefixes.contains(entry.getKey())) {
+                unusedArgs.add(entry);
+            }
+        }
+        return unusedArgs;
     }
 }
