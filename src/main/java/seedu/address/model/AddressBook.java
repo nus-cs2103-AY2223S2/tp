@@ -101,6 +101,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeImage(Person target) {
         Person newPerson = new Person(
                 target.getName(),
+                target.getStatus(),
                 target.getPhone(),
                 target.getEmail(),
                 target.getAddress(),
