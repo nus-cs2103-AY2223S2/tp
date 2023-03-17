@@ -17,7 +17,7 @@ import seedu.address.model.patient.Patient;
  */
 public class TypicalPatients {
 
-    public static final Patient ALICE = new PatientBuilder().withNric("S1334567A")
+    public static final Patient ALEX = new PatientBuilder().withNric("S1334567A")
             .withName("Alex Smith").build();
     public static final Patient BENSON = new PatientBuilder().withNric("S7654321F")
             .withName("Benson Tillman").build();
@@ -56,6 +56,6 @@ public class TypicalPatients {
     }
 
     public static List<Patient> getTypicalPatients() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALEX, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

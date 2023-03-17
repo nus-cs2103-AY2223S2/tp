@@ -20,7 +20,11 @@ public class Patient {
     private Ward ward = new Ward("Waiting Room");
 
     /**
-     * Every field must be present and not null.
+     * Constructor for Patient taking in nric and name.
+     *
+     * @param nric Patient NRIC
+     * @param name Patient name
+     *             Every field must be present and not null.
      */
     public Patient(Nric nric, Name name) {
         requireAllNonNull(nric, name);
@@ -28,6 +32,14 @@ public class Patient {
         this.name = name;
     }
 
+    /**
+     * Constructor for Patient taking in nric, name, status.
+     *
+     * @param nric   Patient NRIC
+     * @param name   Patient name
+     * @param status Patient status
+     *               Every field must be present and not null.
+     */
     public Patient(Nric nric, Name name, Status status) {
         requireAllNonNull(nric, name, status);
         this.nric = nric;
@@ -35,6 +47,14 @@ public class Patient {
         this.status = status;
     }
 
+    /**
+     * Constructor for Patient taking in nric, name, ward.
+     *
+     * @param nric Patient NRIC
+     * @param name Patient name
+     * @param ward Patient ward
+     *             Every field must be present and not null.
+     */
     public Patient(Nric nric, Name name, Ward ward) {
         requireAllNonNull(nric, name, ward);
         this.nric = nric;
@@ -42,6 +62,15 @@ public class Patient {
         this.ward = ward;
     }
 
+    /**
+     * Constructor for Patient taking in nric, name, status, ward.
+     *
+     * @param nric   Patient NRIC
+     * @param name   Patient name
+     * @param status Patient status
+     * @param ward   Patient ward
+     *               Every field must be present and not null.
+     */
     public Patient(Nric nric, Name name, Status status, Ward ward) {
         requireAllNonNull(nric, name, status, ward);
         this.nric = nric;
@@ -86,8 +115,8 @@ public class Patient {
         }
 
         return otherPatient != null
-                && otherPatient.getNric().equals(getNric())
-                && otherPatient.getName().equals(getName());
+            && otherPatient.getNric().equals(this.getNric())
+            && otherPatient.getName().equals(this.getName());
     }
 
     /**
@@ -106,9 +135,9 @@ public class Patient {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getNric().equals(getNric())
-                && otherPatient.getName().equals(getName())
-                && otherPatient.getStatus().equals(getStatus())
-                && otherPatient.getWard().equals(getWard());
+            && otherPatient.getName().equals(getName())
+            && otherPatient.getStatus().equals(getStatus())
+            && otherPatient.getWard().equals(getWard());
     }
 
     @Override
@@ -121,12 +150,12 @@ public class Patient {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getNric())
-                .append("; Name: ")
-                .append(getName())
-                .append("; Status: ")
-                .append(getStatus())
-                .append("; Ward: ")
-                .append(getWard());
+            .append("; Name: ")
+            .append(getName())
+            .append("; Status: ")
+            .append(getStatus())
+            .append("; Ward: ")
+            .append(getWard());
 
         return builder.toString();
     }

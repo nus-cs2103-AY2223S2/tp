@@ -5,10 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.model.Model;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -20,21 +20,21 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " "
-            + PREFIX_NAME
-            + ": Finds all patients whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie\n"
-            + COMMAND_WORD + " " + PREFIX_NRIC
-            + ": Finds all patients whose NRIC matches any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NRIC + " S1234567A\n"
-            + COMMAND_WORD + " " + PREFIX_STATUS
-            + ": Finds all patients whose Status is any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_STATUS + " GRAY GREEN\n";
+        + PREFIX_NAME
+        + ": Finds all patients whose names contain any of "
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie\n"
+        + COMMAND_WORD + " " + PREFIX_NRIC
+        + ": Finds all patients whose NRIC matches any of "
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_NRIC + " S1234567A\n"
+        + COMMAND_WORD + " " + PREFIX_STATUS
+        + ": Finds all patients whose Status is any of "
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_STATUS + " GRAY GREEN\n";
 
 
     private final Predicate<Patient> predicate;
@@ -48,13 +48,13 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
+            String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+            || (other instanceof FindCommand // instanceof handles nulls
+            && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }
