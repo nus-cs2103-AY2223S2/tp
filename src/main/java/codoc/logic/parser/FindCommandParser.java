@@ -2,6 +2,7 @@ package codoc.logic.parser;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -11,6 +12,7 @@ import java.util.function.Predicate;
 
 import codoc.logic.commands.FindCommand;
 import codoc.logic.parser.exceptions.ParseException;
+import codoc.model.module.ModuleContainsKeywordPredicate;
 import codoc.model.person.CourseContainsKeywordsPredicate;
 import codoc.model.person.NameContainsKeywordsPredicate;
 import codoc.model.person.Person;
@@ -40,7 +42,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                         PREFIX_NAME,
                         PREFIX_YEAR,
                         PREFIX_COURSE,
-                        PREFIX_SKILL
+                        PREFIX_SKILL,
+                        PREFIX_MOD
                 );
 
         if (!argMultimap.getPreamble().isEmpty()) {
@@ -51,11 +54,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         String yearArgs = argMultimap.getValue(PREFIX_YEAR).orElseGet(() -> "").trim();
         String courseArgs = argMultimap.getValue(PREFIX_COURSE).orElseGet(() -> "").trim();
         String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElseGet(() -> "").trim();
+        String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElseGet(() -> "").trim();
 
         String[] nameKeywords = !nameArgs.isEmpty() ? nameArgs.split("\\s+") : new String[0];
         String[] yearKeywords = !yearArgs.isEmpty() ? yearArgs.split("\\s+") : new String[0];
         String[] courseKeywords = !courseArgs.isEmpty() ? courseArgs.split("\\s+") : new String[0];
         String[] skillKeywords = !skillArgs.isEmpty() ? skillArgs.split("\\s+") : new String[0];
+        String[] moduleKeywords = !moduleArgs.isEmpty() ? moduleArgs.split("\\s+") : new String[0];
 
         Predicate<Person> namePredicate = nameKeywords.length > 0
                 ? new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords))
@@ -69,13 +74,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         Predicate<Person> skillPredicate = skillKeywords.length > 0
                 ? new SkillContainsKeywordPredicate(Arrays.asList(skillKeywords))
                 : person -> false;
+        Predicate<Person> modulePredicate = moduleKeywords.length > 0
+                ? new ModuleContainsKeywordPredicate(Arrays.asList(moduleKeywords))
+                : person -> false;
 
         Predicate<Person> combinedPredicate = namePredicate
                 .or(yearPredicate)
                 .or(coursePredicate)
-                .or(skillPredicate);
+                .or(skillPredicate)
+                .or(modulePredicate);
 
-        System.out.println(combinedPredicate);
         return new FindCommand(
                 combinedPredicate
         );

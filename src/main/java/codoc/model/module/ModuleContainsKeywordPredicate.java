@@ -24,7 +24,6 @@ public class ModuleContainsKeywordPredicate implements Predicate<Person> {
         }
 
         String academicYear = "";
-
         for (String word : keywords) {
             if (word.matches(ACAD_YEAR_VALIDATION_REGEX)) {
                 academicYear = word;
