@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.event.IsolatedEventList;
+import seedu.address.model.event.IsolatedEvent;
+import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -29,6 +32,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Set<Group> groups;
+    private List<IsolatedEvent> isolatedEvents;
+    private List<RecurringEvent> recurringEvents;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +45,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         groups = new HashSet<>();
+        isolatedEvents = new ArrayList<>();
+        recurringEvents = new ArrayList<>();
     }
 
     /**
@@ -52,6 +59,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         groups = new HashSet<>(personToCopy.getGroups());
+        isolatedEvents = personToCopy.getIsolatedEventList().getList();
+        recurringEvents = personToCopy.getRecurringEventList().getList();
     }
 
     /**
@@ -102,8 +111,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code IsolatedEventList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withIsolatedEventList(List<IsolatedEvent> isolatedEvents) {
+        this.isolatedEvents = isolatedEvents;
+        return this;
+    }
+
+    /**
+     * Sets the {@code RecurringEventList} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRecurringEventList(List<RecurringEvent> recurringEvents) {
+        this.recurringEvents = recurringEvents;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, groups, new IsolatedEventList());
+        return new Person(name, phone, email, address, tags, groups, isolatedEvents, recurringEvents);
     }
 
 }
