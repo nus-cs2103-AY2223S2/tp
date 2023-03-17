@@ -1,9 +1,6 @@
 package seedu.address.model.flight;
 
-import java.util.Deque;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.commons.util.GetUtil;
@@ -37,7 +34,8 @@ public class Flight implements Item {
     private Location departureLocation;
     private Location arrivalLocation;
 
-    //TODO: Add exceptions to ensure departure and arrival locations are distinct
+    //TODO: Add exceptions to ensure departure and arrival locations are
+    // distinct
 
     /**
      * Creates a new flight
@@ -56,18 +54,14 @@ public class Flight implements Item {
         Plane plane,
         Location departureLocation,
         Location arrivalLocation,
-        Map<FlightPilotType, Deque<String>> pilotLink
-    ) throws LinkException {
+        Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink
+    ) {
         this.id = id;
         this.code = code;
         this.plane = plane;
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
-        if (pilotLink != null) {
-            this.pilotLink = new Link<>(Pilot.SHAPE, pilotLink, Pilot.getLazyLinkResolver());
-        } else {
-            this.pilotLink = new Link<>(Pilot.SHAPE, Pilot.getLazyLinkResolver());
-        }
+        this.pilotLink = pilotLink;
     }
 
     /**
@@ -76,8 +70,11 @@ public class Flight implements Item {
      * @param id   the id for the flight
      * @param code the code of the flight
      */
-    public Flight(String id, String code,
-        Map<FlightPilotType, Deque<String>> pilotLink) throws LinkException {
+    public Flight(
+        String id,
+        String code,
+        Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink
+    ) throws LinkException {
         this(
             id,
             code,
@@ -94,7 +91,10 @@ public class Flight implements Item {
      * @param code the code of the flight
      */
     public Flight(String code) throws LinkException {
-        this(UUID.randomUUID().toString(), code, new HashMap<>());
+        this(UUID.randomUUID().toString(), code, new Link<>(
+            Pilot.SHAPE,
+            Pilot.getLazyLinkResolver()
+        ));
     }
 
     /**
@@ -128,7 +128,11 @@ public class Flight implements Item {
         return List.of(
             String.format("%s: %s", UUID_STRING, id),
             String.format("%s: %s", CODE_STRING, code),
-            String.format("%s: %s", DEPARTURE_STRING, getDepartureLocationName()),
+            String.format(
+                "%s: %s",
+                DEPARTURE_STRING,
+                getDepartureLocationName()
+            ),
             String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName()),
             String.format("%s: %s", "Pilots", pilotLink.toString())
         );
@@ -163,7 +167,8 @@ public class Flight implements Item {
      * If there's a linked plane, it returns it.
      *
      * @return The linked plane.
-     * @throws LinkedPlaneNotFoundException If this flight doesn't have a linked plane.
+     * @throws LinkedPlaneNotFoundException If this flight doesn't have a
+     *                                      linked plane.
      */
     public Plane getLinkedPlane() throws LinkedPlaneNotFoundException {
         if (this.hasLinkedPlane()) {
