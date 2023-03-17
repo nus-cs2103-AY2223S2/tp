@@ -2,7 +2,6 @@ package seedu.address.model.entity.shop;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -18,6 +17,7 @@ import seedu.address.model.service.ServiceList;
 import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
+import seedu.address.model.service.appointment.UniqueAppointmentList;
 import seedu.address.model.service.exception.PartNotFoundException;
 import seedu.address.model.service.exception.VehicleNotFoundException;
 
@@ -31,18 +31,16 @@ public class Shop implements ReadOnlyShop {
     private final ServiceList services = new ServiceList();
 
     //TODO: Implement immutable list for appointments
-    private final List<Appointment> appointments;
+    private final UniqueAppointmentList appointments = new UniqueAppointmentList();
 
     //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
-    private PartMap partMap;
-
+    //NOTE: Cannot convert to final due to setParts(newData.getPartMap());
+    private PartMap partMap = new PartMap();
 
     /**
      * Constructor for class Shop.
      */
     public Shop() {
-        this.appointments = new ArrayList<>();
-        this.partMap = new PartMap();
     }
 
     /**
@@ -119,30 +117,22 @@ public class Shop implements ReadOnlyShop {
     //// Appointment-level operations
 
     /**
-     * Get appointment list
-     *
-     * @return List of appointments
-     */
-    public List<Appointment> getAppointments() {
-        return this.appointments;
-    }
-
-    /**
      * Adds appointment to the appointment list
      *
      * @param appointment Appointment to be added
      */
     public void addAppointment(Appointment appointment) {
-        this.getAppointments().add(appointment);
+        this.appointments.add(appointment);
     }
 
     @Override
     public ObservableList<Appointment> getAppointmentList() {
-
-        //        return this.appointments.asUnmodifiableObservableList();
-        return null;
+        return this.appointments.asUnmodifiableObservableList();
     }
 
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
     // --------------------------------------------------
     //// part-level operations
     @Override
@@ -421,7 +411,7 @@ public class Shop implements ReadOnlyShop {
     //    public boolean equals(Object other) {
     //        return other == this // short circuit if same object
     //                || (other instanceof AddressBook // instanceof handles nulls
-    //                && persons.equals((() other).persons));
+    //                && persons.equals(((AddressBook) other).persons));
     //    }
     //
     //    @Override
