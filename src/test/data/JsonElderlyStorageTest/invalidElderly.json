@@ -5,6 +5,7 @@
     "email": "hans@example.com",
     "address": "4th street",
     "age": "67",
+    "region": "WEST",
     "nric": "t0046357K",
     "riskLevel": "LOW"
   } ]

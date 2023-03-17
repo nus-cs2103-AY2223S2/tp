@@ -13,6 +13,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ public abstract class Person {
     private final Address address;
     private final Nric nric;
     private final Age age;
+    private final Region region;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<AvailableDate> availableDates = new HashSet<>();
 
@@ -37,16 +39,16 @@ public abstract class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Nric nric, Age age, Set<Tag> tags, Set<AvailableDate> availableDates) {
+                  Nric nric, Age age, Region region, Set<Tag> tags, Set<AvailableDate> availableDates) {
 
         requireAllNonNull(name, phone, email, address, tags, availableDates);
-
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.nric = nric;
         this.age = age;
+        this.region = region;
         this.tags.addAll(tags);
         this.availableDates.addAll(availableDates);
     }
@@ -73,6 +75,10 @@ public abstract class Person {
 
     public Age getAge() {
         return age;
+    }
+
+    public Region getRegion() {
+        return region;
     }
 
     /**
@@ -120,6 +126,7 @@ public abstract class Person {
                 && otherPerson.getAddress().equals(address)
                 && otherPerson.getNric().equals(nric)
                 && otherPerson.getAge().equals(age)
+                && otherPerson.getRegion().equals(region)
                 && otherPerson.getTags().equals(tags)
                 && otherPerson.getAvailableDates().equals(availableDates);
     }

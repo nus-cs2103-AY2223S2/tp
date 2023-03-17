@@ -16,6 +16,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.JsonAdaptedAvailableDate;
 import seedu.address.storage.JsonAdaptedPerson;
@@ -35,10 +36,11 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+            @JsonProperty("region") String region,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("availableDates") List<JsonAdaptedAvailableDate> dates) {
 
-        super(name, phone, email, address, nric, age, tagged, dates);
+        super(name, phone, email, address, nric, age, region, tagged, dates);
     }
 
     /**
@@ -61,9 +63,10 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
         Set<Tag> modelTags = super.getTagSet(friendlyLink);
         Nric modelNric = super.getModelNric(MISSING_FIELD_MESSAGE_FORMAT);
         Age modelAge = super.getModelAge(MISSING_FIELD_MESSAGE_FORMAT);
+        Region modelRegion = super.getModelRegion(MISSING_FIELD_MESSAGE_FORMAT);
         Set<AvailableDate> modelAvailableDates = super.getAvailableDateSet();
 
         return new Volunteer(modelName, modelPhone, modelEmail, modelAddress,
-                modelNric, modelAge, modelTags, modelAvailableDates);
+                modelNric, modelAge, modelRegion, modelTags, modelAvailableDates);
     }
 }

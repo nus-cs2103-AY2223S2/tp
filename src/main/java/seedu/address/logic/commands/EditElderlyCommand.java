@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
@@ -38,6 +39,7 @@ public class EditElderlyCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC_ELDERLY + "NRIC] "
             + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "RISK] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -87,6 +89,7 @@ public class EditElderlyCommand extends Command {
         model.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
         return new CommandResult(String.format(MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
     }
+
 
     @Override
     public boolean equals(Object other) {

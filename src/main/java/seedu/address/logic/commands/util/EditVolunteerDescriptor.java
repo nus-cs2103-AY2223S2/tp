@@ -9,6 +9,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,10 +41,11 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
         Nric updatedNric = editPersonDescriptor.getNric().orElse(volunteerToEdit.getNric());
         Age updatedAge = editPersonDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        Region updateRegion = editPersonDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
         return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updatedTags);
+                updatedNric, updatedAge, updateRegion, updatedTags);
     }
 
     @Override
@@ -67,6 +69,7 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
                 && getAddress().equals(e.getAddress())
                 && getNric().equals(e.getNric())
                 && getAge().equals(e.getAge())
+                && getRegion().equals(e.getRegion())
                 && getTags().equals(e.getTags());
     }
 }

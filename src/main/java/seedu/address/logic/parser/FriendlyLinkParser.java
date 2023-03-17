@@ -18,7 +18,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditElderlyCommand;
 import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindNricCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -89,8 +89,8 @@ public class FriendlyLinkParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case FindNricCommand.COMMAND_WORD:
-            return new FindNricCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

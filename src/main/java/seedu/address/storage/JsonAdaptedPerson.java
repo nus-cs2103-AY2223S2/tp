@@ -19,6 +19,7 @@ import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
+import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ public abstract class JsonAdaptedPerson {
     private final String address;
     private final String nric;
     private final String age;
+    private final String region;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAvailableDate> availableDates = new ArrayList<>();
 
@@ -41,15 +43,16 @@ public abstract class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+            @JsonProperty("region") String region,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("tagged") List<JsonAdaptedAvailableDate> availableDates) {
-
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.nric = nric;
         this.age = age;
+        this.region = region;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -68,6 +71,7 @@ public abstract class JsonAdaptedPerson {
         address = source.getAddress().value;
         nric = source.getNric().value;
         age = source.getAge().value;
+        region = String.valueOf(source.getRegion().region);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -95,6 +99,16 @@ public abstract class JsonAdaptedPerson {
             throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
         }
         return new Age(age);
+    }
+
+    protected Region getModelRegion(String missingFieldMessageFormat) throws IllegalValueException {
+        if (region == null) {
+            throw new IllegalValueException(String.format(missingFieldMessageFormat, Region.class.getSimpleName()));
+        }
+        if (!Region.isValidRegion(region)) {
+            throw new IllegalValueException(Region.MESSAGE_CONSTRAINTS);
+        }
+        return new Region(region);
     }
 
     protected Address getModelAddress(String missingFieldMessageFormat) throws IllegalValueException {
