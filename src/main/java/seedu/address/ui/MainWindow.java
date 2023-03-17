@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -26,6 +27,8 @@ import seedu.address.ui.result.ResultDisplay;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String THEME_DARK = "theme-dark";
+    private static final String THEME_LIGHT = "theme-light";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -36,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private BodyPanel bodyPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private boolean isLightMode;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox mainContainer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -68,6 +75,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        toggleTheme(false);
     }
 
     public Stage getPrimaryStage() {
@@ -163,6 +172,20 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    private void handleThemeToggle() {
+        toggleTheme(!isLightMode);
+    }
+
+    private void toggleTheme(boolean isLightMode) {
+        if (this.isLightMode == isLightMode) {
+            return;
+        }
+        this.isLightMode = isLightMode;
+        mainContainer.getStyleClass().add(isLightMode ? THEME_LIGHT : THEME_DARK);
+        mainContainer.getStyleClass().remove(isLightMode ? THEME_DARK : THEME_LIGHT);
     }
 
     /**
