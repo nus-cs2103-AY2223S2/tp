@@ -100,39 +100,45 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
-        mainWindow.changeIndividualPane(target, "clear");
+        changeMainWindowPane(target, "clear");
     }
 
     @Override
     public void deleteImage(Person target) {
         addressBook.removeImage(target);
-        mainWindow.changeIndividualPane(target, "clear");
+        changeMainWindowPane(target, "clear");
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        mainWindow.changeIndividualPane(person, "add");
+        changeMainWindowPane(person, "add");
+
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        mainWindow.changeIndividualPane(editedPerson, "edit");
+        changeMainWindowPane(editedPerson, "edit");
     }
 
     @Override
     public void findOrListContents(Predicate<Person> predicate, String command) {
         requireNonNull(predicate);
         updateFilteredPersonList(predicate);
-        if(command.equals("find")) {
-            mainWindow.changeIndividualPane(filteredPersons.get(0), "find");
-        } else {
-            mainWindow.changeIndividualPane(filteredPersons.get(0), "clear");
-        }
+        changeMainWindowPane(null, command);
+    }
 
+    private void changeMainWindowPane(Person person, String command) {
+        if (mainWindow != null) {
+            if (filteredPersons != null) {
+                mainWindow.changeIndividualPane(person, command);
+            } else {
+                mainWindow.changeIndividualPane(null, command);
+            }
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================

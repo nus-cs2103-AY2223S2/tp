@@ -141,6 +141,9 @@ public class MainWindow extends UiPart<Stage> {
         personalPanePlaceholder.getChildren().add(personalPane.getRoot());
     }
 
+    /**
+     * Updates content of the right pane upon entering a command
+     */
     public void changeIndividualPane(Person person, String clearCommand) {
         if (clearCommand.equals("clear")) {
             this.clearPane();
