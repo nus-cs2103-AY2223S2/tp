@@ -11,19 +11,19 @@ import seedu.address.model.task.Task;
  * A utility class containing a list of {@code Tasks} objects to be used in tests.
  */
 public class TypicalTasks {
-    public static final Task SEND_EMAIL_TO_CLIENT = new TaskBuilder().withSubject("Send email to client")
+    public static final Task SEND_EMAIL_TO_CLIENT = new TaskBuilder().withTitle("Send email to client")
             .withContent("Email Mr. Chan about the recent updates on Project X.").build();
-    public static final Task COMPLETE_SLIDES = new TaskBuilder().withSubject("Complete slides")
+    public static final Task COMPLETE_SLIDES = new TaskBuilder().withTitle("Complete slides")
             .withContent("Finish up slides for meeting on 1st March.").build();
-    public static final Task STOCK_PANTRY = new TaskBuilder().withSubject("Stock pantry")
+    public static final Task STOCK_PANTRY = new TaskBuilder().withTitle("Stock pantry")
             .withContent("Purchase food for the pantry on level 6.").build();
-    public static final Task CHECK_BALANCES = new TaskBuilder().withSubject("Check balances")
+    public static final Task CHECK_BALANCES = new TaskBuilder().withTitle("Check balances")
             .withContent("Check all bank statements.").build();
-    public static final Task DEPOSIT_CASH = new TaskBuilder().withSubject("Deposit cash")
+    public static final Task DEPOSIT_CASH = new TaskBuilder().withTitle("Deposit cash")
             .withContent("Deposit cash from last week at the bank.").build();
-    public static final Task SET_APPOINTMENT = new TaskBuilder().withSubject("Set appointment")
+    public static final Task SET_APPOINTMENT = new TaskBuilder().withTitle("Set appointment")
             .withContent("Set up meeting with Mdm Tay for next Monday").withStatus(true).build();
-    public static final Task DATA_ENTRY = new TaskBuilder().withSubject("Data entry")
+    public static final Task DATA_ENTRY = new TaskBuilder().withTitle("Data entry")
             .withContent("Update spreadsheet with client information.").withStatus(true).build();
 
     private TypicalTasks() {}

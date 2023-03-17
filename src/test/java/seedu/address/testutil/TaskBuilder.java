@@ -11,7 +11,7 @@ import seedu.address.model.task.Title;
  */
 public class TaskBuilder {
 
-    public static final String RANDOM_TASK_SUBJECT = "Random Title";
+    public static final String RANDOM_TASK_TITLE = "Random Title";
     public static final String RANDOM_TASK_CONTENT = "Random Content ABC";
     public static final boolean RANDOM_TASK_STATUS = true;
     public static final String DEFAULT_TITLE = "Recreation day";
@@ -41,12 +41,12 @@ public class TaskBuilder {
     }
 
     private Task buildRandomTask() {
-        return new Task(new Title(RANDOM_TASK_SUBJECT), new Content(RANDOM_TASK_CONTENT),
+        return new Task(new Title(RANDOM_TASK_TITLE), new Content(RANDOM_TASK_CONTENT),
             new Status(RANDOM_TASK_STATUS));
     }
 
     private Task buildRandomTaskWithIndex(int index) {
-        return new Task(new Title(RANDOM_TASK_SUBJECT + " " + index),
+        return new Task(new Title(RANDOM_TASK_TITLE + " " + index),
             new Content(RANDOM_TASK_CONTENT + " " + index),
             new Status(RANDOM_TASK_STATUS));
     }
@@ -73,8 +73,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code Title} of the {@code Task} that we are building.
      */
-    public TaskBuilder withSubject(String subject) {
-        this.title = new Title(subject);
+    public TaskBuilder withTitle(String title) {
+        this.title = new Title(title);
         return this;
     }
 
