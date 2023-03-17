@@ -39,7 +39,7 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.points = new Points(0);
+        this.points = new Points(0, 0);
     }
 
     /**
@@ -122,7 +122,8 @@ public class Customer {
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getAddress().equals(getAddress())
                 && otherCustomer.getTags().equals(getTags())
-                && otherCustomer.getCustomerType().equals(getCustomerType());
+                && otherCustomer.getCustomerType().equals(getCustomerType())
+                && otherCustomer.getPoints().equals(getPoints());
     }
 
     @Override

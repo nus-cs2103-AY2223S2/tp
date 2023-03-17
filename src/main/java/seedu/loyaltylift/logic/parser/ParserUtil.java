@@ -158,7 +158,7 @@ public class ParserUtil {
             // integerTrimmedPoints is an integer that is not within the range of 0 to 999999
             throw new ParseException(Points.MESSAGE_CONSTRAINTS);
         }
-        return new Points(integerTrimmedPoints);
+        return new Points(integerTrimmedPoints, integerTrimmedPoints);
     }
 
     /**

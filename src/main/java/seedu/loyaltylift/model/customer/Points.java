@@ -17,17 +17,17 @@ public class Points {
     public static final Integer MAXIMUM_POINTS = 999999;
     public static final Integer MINIMUM_POINTS = 0;
 
-
     public final Integer value;
-
+    public final Integer cumulative;
     /**
      * Constructs an {@code Points}.
      *
      * @param points A valid amount of points.
      */
-    public Points(Integer points) {
+    public Points(Integer points, Integer maxPoints) {
         requireNonNull(points);
         value = points;
+        cumulative = maxPoints;
     }
 
     public Points editPoints(Points.AddPoints p) throws IllegalValueException {
@@ -39,8 +39,9 @@ public class Points {
 
     private Points addPoints(Points.AddPoints p) throws IllegalValueException {
         Integer newPoints = this.value + p.value;
-        if (isValidPoints(newPoints)) {
-            return new Points(newPoints);
+        Integer newCumulativePoints = this.cumulative + p.value;
+        if (isValidPoints(newPoints) && isValidPoints(newCumulativePoints)) {
+            return new Points(newPoints, newCumulativePoints);
         } else {
             throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
         }
@@ -49,7 +50,7 @@ public class Points {
     private Points subtractPoints(Points.AddPoints p) throws IllegalValueException {
         Integer newPoints = this.value - p.value;
         if (isValidPoints(newPoints)) {
-            return new Points(newPoints);
+            return new Points(newPoints, this.cumulative);
         } else {
             throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
         }
@@ -62,17 +63,20 @@ public class Points {
         return (test >= MINIMUM_POINTS && test <= MAXIMUM_POINTS);
     }
 
-
     @Override
     public String toString() {
-        return value.toString();
+        return value.toString()
+                + " (Cumulative: "
+                + cumulative.toString()
+                + ")";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Points // instanceof handles nulls
-                && value.equals(((Points) other).value)); // state check
+                && value.equals(((Points) other).value)) // state check
+                && cumulative.equals(((Points) other).cumulative);
     }
 
     @Override

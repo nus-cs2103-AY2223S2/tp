@@ -34,6 +34,7 @@ class JsonAdaptedCustomer {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     private final Integer points;
+    private final Integer cumulativePoints;
 
     /**
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
@@ -43,13 +44,15 @@ class JsonAdaptedCustomer {
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("points") Integer points) {
+                               @JsonProperty("points") Integer points,
+                               @JsonProperty("cumulativePoints") Integer cumulativePoints) {
         this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.points = points;
+        this.cumulativePoints = cumulativePoints;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -68,6 +71,7 @@ class JsonAdaptedCustomer {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         points = source.getPoints().value;
+        cumulativePoints = source.getPoints().cumulative;
     }
 
     /**
@@ -132,7 +136,13 @@ class JsonAdaptedCustomer {
         if (!Points.isValidPoints(points)) {
             throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
         }
-        final Points modelPoints = new Points(points);
+        if (cumulativePoints == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Points.class.getSimpleName()));
+        }
+        if (!Points.isValidPoints(cumulativePoints)) {
+            throw new IllegalValueException(Points.MESSAGE_CONSTRAINTS);
+        }
+        final Points modelPoints = new Points(points, cumulativePoints);
 
         return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPoints);
     }
