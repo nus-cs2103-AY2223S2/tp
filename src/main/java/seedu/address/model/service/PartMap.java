@@ -1,15 +1,23 @@
 package seedu.address.model.service;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.address.model.service.exception.PartLessThanZeroException;
 import seedu.address.model.service.exception.PartNotFoundException;
 
 /**
  * Mapping between part name and the part in storage
  */
 public class PartMap {
+
+    public static final String MESSAGE_CONSTRAINTS = "Parts should only contain alphanumeric characters, dashes,"
+            + "underscore and spaces, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}-_ ]*";
     private final Map<String, Integer> map;
 
     public PartMap() {
@@ -26,7 +34,8 @@ public class PartMap {
     }
 
     /**
-     * Gets the quantity of a specified part
+     * Gets the quantity of a specified part.
+     * Returns 0 if part does not exist.
      *
      * @param partName Part name
      * @return Quantity of part
@@ -34,6 +43,7 @@ public class PartMap {
     public int getPartQuantity(String partName) {
         if (!contains(partName)) {
             return 0;
+            // throw new PartNotFoundException(partName);
         }
         return map.get(partName);
     }
@@ -52,6 +62,13 @@ public class PartMap {
      * @param quantity Quantity of part to add
      */
     public void addPart(String partName, int quantity) {
+
+        checkArgument(isValidName(partName), MESSAGE_CONSTRAINTS);
+
+        //        if (quantity < 0) {
+        //            throw new NegativeValueException(quantity);
+        //        }
+
         if (this.map.containsKey(partName)) {
             this.map.put(partName, map.get(partName) + quantity);
         }
@@ -59,7 +76,8 @@ public class PartMap {
     }
 
     /**
-     * Add all content of other map into PartMap
+     * Add all content of other map into PartMap.
+     * Forces all negative part values to 0.
      *
      * @param other Another partMap with values
      */
@@ -117,6 +135,27 @@ public class PartMap {
         this.map.put(partName, map.get(partName) + quantity);
     }
 
+    /**
+     * Decrease the quantity of a part in the PartMap by a specified quantity
+     * If specified quantity is higher than
+     *
+     * @param partName Part name to increase quantity of
+     * @param quantity Amount to decrease
+     * @throws PartNotFoundException If part not in Set
+     */
+    public void decreasePartQuantity(String partName, int quantity) throws PartNotFoundException {
+        // Should this merge with increase such that it becomes editpartquantity?
+        if (!this.map.containsKey(partName)) {
+            throw new PartNotFoundException(partName);
+        }
+
+        if (map.get(partName) < quantity) {
+            throw new PartLessThanZeroException(partName);
+        }
+
+        this.map.put(partName, map.get(partName) - quantity);
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
@@ -131,4 +170,12 @@ public class PartMap {
 
         return result.toString();
     }
+
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
 }
