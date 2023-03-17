@@ -72,7 +72,7 @@ public class Card {
 
         return otherCard != null
                 && otherCard.getQuestion().equals(getQuestion())
-                && otherCard.getAnswer().equals(getAnswer());git p
+                && otherCard.getAnswer().equals(getAnswer());
     }
 
     /**
