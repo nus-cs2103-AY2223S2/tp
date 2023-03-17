@@ -12,12 +12,12 @@ import java.util.function.Predicate;
 
 import codoc.logic.commands.FindCommand;
 import codoc.logic.parser.exceptions.ParseException;
-import codoc.model.module.ModuleContainsKeywordPredicate;
+import codoc.model.module.ModuleContainsKeywordsPredicate;
 import codoc.model.person.CourseContainsKeywordsPredicate;
 import codoc.model.person.NameContainsKeywordsPredicate;
 import codoc.model.person.Person;
 import codoc.model.person.YearContainsKeywordsPredicate;
-import codoc.model.skill.SkillContainsKeywordPredicate;
+import codoc.model.skill.SkillContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -50,43 +50,66 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String nameArgs = argMultimap.getValue(PREFIX_NAME).orElseGet(() -> "").trim();
-        String yearArgs = argMultimap.getValue(PREFIX_YEAR).orElseGet(() -> "").trim();
-        String courseArgs = argMultimap.getValue(PREFIX_COURSE).orElseGet(() -> "").trim();
-        String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElseGet(() -> "").trim();
-        String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElseGet(() -> "").trim();
+        Predicate<Person> combinedPredicate = person -> true;
+        combinedPredicate = addNamePredicate(argMultimap, combinedPredicate);
+        combinedPredicate = addYearPredicate(argMultimap, combinedPredicate);
+        combinedPredicate = addCoursePredicate(argMultimap, combinedPredicate);
+        combinedPredicate = addSkillPredicate(argMultimap, combinedPredicate);
+        combinedPredicate = addModulePredicate(argMultimap, combinedPredicate);
 
-        String[] nameKeywords = !nameArgs.isEmpty() ? nameArgs.split("\\s+") : new String[0];
-        String[] yearKeywords = !yearArgs.isEmpty() ? yearArgs.split("\\s+") : new String[0];
-        String[] courseKeywords = !courseArgs.isEmpty() ? courseArgs.split("\\s+") : new String[0];
-        String[] skillKeywords = !skillArgs.isEmpty() ? skillArgs.split("\\s+") : new String[0];
-        String[] moduleKeywords = !moduleArgs.isEmpty() ? moduleArgs.split("\\s+") : new String[0];
-
-        Predicate<Person> namePredicate = nameKeywords.length > 0
-                ? new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords))
-                : person -> false;
-        Predicate<Person> yearPredicate = yearKeywords.length > 0
-                ? new YearContainsKeywordsPredicate(Arrays.asList(yearKeywords))
-                : person -> false;
-        Predicate<Person> coursePredicate = courseKeywords.length > 0
-                ? new CourseContainsKeywordsPredicate(Arrays.asList(courseKeywords))
-                : person -> false;
-        Predicate<Person> skillPredicate = skillKeywords.length > 0
-                ? new SkillContainsKeywordPredicate(Arrays.asList(skillKeywords))
-                : person -> false;
-        Predicate<Person> modulePredicate = moduleKeywords.length > 0
-                ? new ModuleContainsKeywordPredicate(Arrays.asList(moduleKeywords))
-                : person -> false;
-
-        Predicate<Person> combinedPredicate = namePredicate
-                .or(yearPredicate)
-                .or(coursePredicate)
-                .or(skillPredicate)
-                .or(modulePredicate);
 
         return new FindCommand(
                 combinedPredicate
         );
+    }
+    private Predicate<Person> addNamePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+        String nameArgs = argMultimap.getValue(PREFIX_NAME).orElseGet(() -> "").trim();
+        if (!nameArgs.isEmpty()) {
+            String[] nameKeywords = nameArgs.split("\\s+");
+            Predicate<Person> namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+            combinedPredicate = combinedPredicate.and(namePredicate);
+        }
+        return combinedPredicate;
+    }
+
+    private Predicate<Person> addYearPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+        String yearArgs = argMultimap.getValue(PREFIX_YEAR).orElseGet(() -> "").trim();
+        if (!yearArgs.isEmpty()) {
+            String[]yearKeywords = yearArgs.split("\\s+");
+            Predicate<Person> yearPredicate = new YearContainsKeywordsPredicate(Arrays.asList(yearKeywords));
+            combinedPredicate = combinedPredicate.and(yearPredicate);
+        }
+        return combinedPredicate;
+    }
+
+    private Predicate<Person> addCoursePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+        String courseArgs = argMultimap.getValue(PREFIX_COURSE).orElseGet(() -> "").trim();
+        if (!courseArgs.isEmpty()) {
+            String[] courseKeywords = courseArgs.split("\\s+");
+            Predicate<Person> coursePredicate = new CourseContainsKeywordsPredicate(Arrays.asList(courseKeywords));
+            combinedPredicate = combinedPredicate.and(coursePredicate);
+        }
+        return combinedPredicate;
+    }
+
+    private Predicate<Person> addSkillPredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+        String skillArgs = argMultimap.getValue(PREFIX_SKILL).orElseGet(() -> "").trim();
+        if (!skillArgs.isEmpty()) {
+            String[] skillKeywords = skillArgs.split("\\s+");
+            Predicate<Person> skillPredicate = new SkillContainsKeywordsPredicate(Arrays.asList(skillKeywords));
+            combinedPredicate = combinedPredicate.and(skillPredicate);
+        }
+        return combinedPredicate;
+    }
+
+    private Predicate<Person> addModulePredicate(ArgumentMultimap argMultimap, Predicate<Person> combinedPredicate) {
+        String moduleArgs = argMultimap.getValue(PREFIX_MOD).orElseGet(() -> "").trim();
+        if (!moduleArgs.isEmpty()) {
+            String[] moduleKeywords = moduleArgs.split("\\s+");
+            Predicate<Person> modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords));
+            combinedPredicate = combinedPredicate.and(modulePredicate);
+        }
+        return combinedPredicate;
     }
 
 }

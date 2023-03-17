@@ -3,8 +3,6 @@ package codoc.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import codoc.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Person}'s {@code Course} matches any of the keywords given.
  */
@@ -18,7 +16,7 @@ public class CourseContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getCourse().course, keyword));
+                .anyMatch(keyword -> person.getCourse().course.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

@@ -8,10 +8,10 @@ import codoc.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Skill} matches any of the keywords given.
  */
-public class SkillContainsKeywordPredicate implements Predicate<Person> {
+public class SkillContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public SkillContainsKeywordPredicate(List<String> keywords) {
+    public SkillContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -26,7 +26,7 @@ public class SkillContainsKeywordPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SkillContainsKeywordPredicate // instanceof handles nulls
-                && keywords.equals(((SkillContainsKeywordPredicate) other).keywords)); // state check
+                || (other instanceof SkillContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((SkillContainsKeywordsPredicate) other).keywords)); // state check
     }
 }

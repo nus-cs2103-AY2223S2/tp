@@ -30,7 +30,7 @@ public class SampleDataUtil {
                     new Email("alexyeoh@example.com"),
                     new Linkedin("linkedin.com/in/alexyeoh"),
                     getSkillSet("python"),
-                    getModuleSet("AY2223S2 CS1101")
+                    getModuleSet("AY2223S2 CS1101S")
             ),
             new Person(
                     new Name("Bernice Yu"),
@@ -40,7 +40,7 @@ public class SampleDataUtil {
                     new Email("berniceyu@example.com"),
                     new Linkedin("linkedin.com/in/berNICE"),
                     getSkillSet("java", "python"),
-                    getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S")
+                    getModuleSet("AY2223S2 CS1101S")
             ),
             new Person(
                     new Name("Charlotte Oliveiro"),
@@ -50,7 +50,7 @@ public class SampleDataUtil {
                     new Email("charlotte@example.com"),
                     new Linkedin("linkedin.com/in/charlotte-oliveiro"),
                     getSkillSet("sql"),
-                    getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S", "AY2223S2 CS2040S")
+                    getModuleSet("AY2223S2 CS2030S", "AY2223S2 CS2040S")
             ),
             new Person(
                     new Name("David Li"),
@@ -60,7 +60,7 @@ public class SampleDataUtil {
                     new Email("lidavid@example.com"),
                     new Linkedin("linkedin.com/in/d4v1d-l1"),
                     getSkillSet("c"),
-                    getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S")
+                    getModuleSet("AY2223S2 CS2030S")
             ),
             new Person(
                     new Name("Irfan Ibrahim"),
@@ -70,7 +70,7 @@ public class SampleDataUtil {
                     new Email("irfan@example.com"),
                     new Linkedin("linkedin.com/in/1rf4n"),
                     getSkillSet("javascript"),
-                    getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S")
+                    getModuleSet("AY2223S2 CS2040S")
             ),
             new Person(
                     new Name("Roy Balakrishnan"),
@@ -80,8 +80,18 @@ public class SampleDataUtil {
                     new Email("royb@example.com"),
                     new Linkedin("linkedin.com/in/Roy"),
                     getSkillSet("java"),
-                    getModuleSet("AY2223S2 CS1101", "AY2223S2 CS2030S")
-            )
+                    getModuleSet("AY2223S2 CS2109S")
+            ),
+            new Person(
+                    new Name("Roy Boy"),
+                    new Course("CEG"),
+                    new Year("4"),
+                    new Github("b4l4Kr15H-n4nn"),
+                    new Email("royboy@example.com"),
+                    new Linkedin("linkedin.com/in/Royyy"),
+                    getSkillSet("python"),
+                    getModuleSet("AY2223S2 CS2103T", "AY2223S2 CS2109S")
+            ),
         };
     }
 
