@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Specialty;
-import seedu.address.model.person.Yoe;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.Specialty;
+import seedu.address.model.person.doctor.Yoe;
 
 /**
  * Jackson-friendly version of {@link Doctor}.

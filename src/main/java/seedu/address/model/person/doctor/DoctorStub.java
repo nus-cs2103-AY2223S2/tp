@@ -1,8 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.doctor;
 
 import java.util.HashSet;
 import java.util.List;
 
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 /**
  * Represents a Doctor with pre-filled attributes.
