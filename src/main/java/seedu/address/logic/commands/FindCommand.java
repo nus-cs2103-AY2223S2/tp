@@ -9,7 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import java.util.function.Predicate;
 
-import seedu.address.model.patient.*;
+import seedu.address.model.patient.Patient;
 
 /**
  * Finds and lists all patients in MedInfo whose name contains any of the argument keywords.
