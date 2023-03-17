@@ -60,16 +60,23 @@ AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Comma
 ### Adding a customer: `add customer`
 Adds a customer to the system and assigns a unique customer ID.
 
-Format: `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
+Format: `addcustomer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAGS]`
 
 Example: `addcustomer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
+### Adding a technician: 'add technician'
+Adds a technician to the system and assigns a unique staff ID.
+
+Format: `addtechnician n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAGS]`
+
+Example: `addtechnician n/Robert Low p/90253789 e/roblow@gmail.com a/25 Bedok East Rd, #08-20, SG405100 t/Leader`
+
 ### Adding a vehicle: `add vehicle`
-Adds a vehicle of specified type (i.e. motorbike, 4wd) to the system and assigns a unique vehicle ID.
+Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID.
 
 Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE`
 
-Example: `addvehicle p/SBA1234A b/Toyota c/1 t/4wd`
+Example: `addvehicle p/SBA1234A b/Toyota c/1 t/car`
 
 ### Adding a vehicle part: `add part`
 Adds a vehicle part to the system.
@@ -81,12 +88,13 @@ Example: `addpart n/Cylinder Head q/50`
 ### Adding a service to a vehicle: `add service`
 Adds a service to perform on the specified vehicle plate number.
 
-Format: `addservice v/VEHICLE_ID t/SERVICE_TYPE [s/STATUS] [d/DESCRIPTION]`
+Format: `addservice v/VEHICLE_ID [l/SERIVCE LENGTH (days)] [s/STATUS] [d/DESCRIPTION]`
 
 Examples:
-* `add service v/10 t/standard s/in progress d/Customer says abc`
-* `add service v/10 t/standard` \
-Note: Adding service without specifying the type of service will default to “to repair”
+* `addservice v/10 s/in progress d/Customer says abc`
+* `addservice v/10 t/standard l/10` \
+Note: Adding service without specifying the type of service will default to “to repair” \
+Note: Adding service without specifying the service length will default to 7 days
 
 ### Adding a customer appointment: `add appointment`
 Adds a customer appointment to the system.
