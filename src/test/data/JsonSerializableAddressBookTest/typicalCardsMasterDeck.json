@@ -1,6 +1,6 @@
 {
   "_comment": "MasterDeck save file which contains the same Card values as in TypicalCards#getTypicalMasterDeck()",
-  "persons" : [ {
+  "cards" : [ {
     "question": "What is a loop",
     "answer": "A construct that repeats instructions until a condition is met",
     "tagged" : [ "Hard" ],

@@ -1,5 +1,5 @@
 {
-  "persons": [ {
+  "cards": [ {
     "question": "Person with invalid name field: Ha!ns Mu@ster",
     "answer": "4th street",
     "deck" : "Default"
