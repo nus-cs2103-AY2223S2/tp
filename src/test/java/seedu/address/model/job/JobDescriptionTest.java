@@ -31,8 +31,8 @@ public class JobDescriptionTest {
         // valid addresses
         assertTrue(JobDescription.isValidJobDescription("SWE At Google, prefers penultimate"));
         assertTrue(JobDescription.isValidJobDescription("-")); // one character
-        assertTrue(JobDescription.isValidJobDescription("Sed ut perspiciatis unde omnis iste natus error sit + " +
-                "voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo " +
-                "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.")); // long jd
+        assertTrue(JobDescription.isValidJobDescription("Sed ut perspiciatis unde omnis iste natus error sit + "
+                + "voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo "
+                + "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.")); // long jd
     }
 }
