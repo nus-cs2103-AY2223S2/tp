@@ -20,8 +20,8 @@ import seedu.address.ui.UiPart;
  * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
-
     private static final String FXML = "body/address/PersonListCard.fxml";
+    private static final int EMPTY_INDEX = -1;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -52,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
      * Creates an empty {@code PersonCard}.
      */
     public PersonCard() {
-        this(null, -1);
+        this(null, EMPTY_INDEX);
     }
 
     /**
