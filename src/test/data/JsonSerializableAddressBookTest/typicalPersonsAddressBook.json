@@ -1,39 +1,39 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "MasterDeck save file which contains the same Card values as in TypicalCards#getTypicalMasterDeck()",
   "persons" : [ {
-    "question": "Alice Pauline",
-    "answer": "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ],
-    "deck" : "Default"
+    "question": "What is a loop",
+    "answer": "A construct that repeats instructions until a condition is met",
+    "tagged" : [ "Hard" ],
+    "deck" : "Programming Concepts"
   }, {
-    "question": "Benson Meier",
-    "answer": "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
-    "deck" : "Default"
+    "question": "What is a variable",
+    "answer": "A named memory location that stores a value",
+    "tagged" : [ "Hard" ],
+    "deck" : "Programming Concepts"
   }, {
-    "question": "Carl Kurz",
-    "answer": "wall street",
+    "question": "What is the structure of an atom",
+    "answer": "Atoms consist of a nucleus containing protons and neutrons, surrounded by electrons in shells or energy levels",
     "tagged" : [ ],
-    "deck" : "Default"
+    "deck" : "Science"
   }, {
-    "question": "Daniel Meier",
-    "answer": "10th street",
-    "tagged" : [ "friends" ],
-    "deck" : "Default"
+    "question": "What is the basic unit of life",
+    "answer": "The cell is the basic unit of life",
+    "tagged" : [ "Medium" ],
+    "deck" : "Science"
   }, {
-    "question": "Elle Meyer",
-    "answer": "michegan ave",
+    "question": "Who was the first president of the United States",
+    "answer": "George Washington",
     "tagged" : [ ],
-    "deck" : "Default"
+    "deck" : "History"
   }, {
-    "question": "Fiona Kunz",
-    "answer": "little tokyo",
+    "question": "When did Singapore gain independence",
+    "answer": "9 August 1965",
     "tagged" : [ ],
-    "deck" : "Default"
+    "deck" : "History"
   }, {
-    "question": "George Best",
-    "answer": "4th street",
+    "question": "What is an earthquake",
+    "answer": "An earthquake is a sudden and rapid shaking of the earth caused by the shifting of tectonic plates",
     "tagged" : [ ],
-    "deck" : "Default"
+    "deck" : "Geography"
   } ]
 }

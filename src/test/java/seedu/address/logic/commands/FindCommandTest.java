@@ -67,7 +67,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_CARDS_LISTED_OVERVIEW, 3);
-        QuestionContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        QuestionContainsKeywordsPredicate predicate = preparePredicate("atom president independence");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredCardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

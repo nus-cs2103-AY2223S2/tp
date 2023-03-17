@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -16,7 +15,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.card.Card;
-import seedu.address.model.card.QuestionContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -103,11 +101,9 @@ public class CommandTestUtil {
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCardList().size());
-
         Card card = model.getFilteredCardList().get(targetIndex.getZeroBased());
-        final String[] splitName = card.getQuestion().question.split("\\s+");
-        model.updateFilteredCardList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
+        final String otherQuestion = card.getQuestion().question;
+        model.updateFilteredCardList(c -> c.getQuestion().question.equals(otherQuestion));
         assertEquals(1, model.getFilteredCardList().size());
     }
 

@@ -50,8 +50,8 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
         Card cardToDelete = model.getFilteredCardList().get(INDEX_FIRST_PERSON.getZeroBased());
+
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
