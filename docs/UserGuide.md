@@ -76,7 +76,7 @@ Shows a message explaining how to access the help page.
 Format: `help` 
 
 
-### Adding a person: `add`
+### Adding a module: `add`
 
 Adds an item to the module tracker.
 
@@ -91,7 +91,7 @@ Format: `add n/MODULE_NAME t/TYPE e/TIMESLOT a/VENUE [s/TEACHER] [d/DEADLINES] [
 * REMARKS are additional details about the class you want to add.
 
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A module can have any number of tags (including 0)
 </div> -->
 
 Examples:
@@ -99,22 +99,22 @@ Examples:
 * `add n/CS1101S t/Tutorial e/Monday 10am-12pm a/COM1-0217 s/Sam Wan`
 * `add n/CS2030S t/Lab e/Thursday 12-2pm a/COM1-B112 d/LAB DUE TUESDAY 23:59 r/Attendance not compulsory :)`
 
-### Listing all persons : `list`
+### Listing all modules : `list`
 
 Shows a list of all items in the module tracker.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a module : `edit`
 
 Edits an existing item in the module tracker.
 
 Format: `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]`
 
-* Edits the items at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+* Edits the items at the specified INDEX. The index refers to the index number shown in the displayed module list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the module will be removed i.e adding of tags is not cumulative.
 
 
 Examples:
@@ -122,9 +122,9 @@ Examples:
 *  `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
 *  `edit 5 n/CS1231S d/Assignment 1: due 06/09/2023` Edits the module name and deadline of the 5th item to be `CS1231S` and `Assignment 1: due 06/09/2023` respectively.
 
-<!-- ### Locating persons by name: `find`
+<!-- ### Locating modules by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds modules whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -140,18 +140,18 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png) -->
 
-### Deleting a person : `delete`
+### Deleting a module : `delete`
 
 Deletes the specified item from the module tracker.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the module at the specified `INDEX`.
+* The index refers to the index number shown in the displayed module list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the module tracker.
+* `list` followed by `delete 2` deletes the 2nd module in the module tracker.
 
 <!-- ### Clearing all entries : `clear`
 
@@ -192,13 +192,13 @@ _Details coming soon ..._ -->
  -->
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `n/MODULE_NAME t/TYPE e/TIMESLOT a/VENUE [s/TEACHER] [d/DEADLINES] [r/REMARKS]…​` <br> e.g., `add n/CS2103T t/Lecture e/Friday 2-4pm a/i3-AUD s/Professor Damith d/Weekly Quiz due Friday 13:59 r/Can attend online!`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`
-**List** | `list`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `n/MODULE_NAME t/TYPE e/TIMESLOT a/VENUE [s/TEACHER] [d/DEADLINES] [r/REMARKS]…​` <br> e.g., `add n/CS2103T t/Lecture e/Friday 2-4pm a/i3-AUD s/Professor Damith d/Weekly Quiz due Friday 13:59 r/Can attend online!` |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/MODULE_NAME] [t/TYPE] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS]​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`                                                                       |
+| **List**   | `list`                                                                                                                                                                                                                |
+| **Exit**   | `exit`                                                                                                                                                                                                                |
 
 <!-- **Clear** | `clear` -->
 <!-- **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` -->
