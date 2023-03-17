@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -45,6 +46,7 @@ public class RoleUtil {
         sb.append(PREFIX_WEBSITE + role.getWebsite().value + " ");
         sb.append(PREFIX_SALARY + role.getSalary().salary + " ");
         sb.append(PREFIX_DEADLINE + role.getDeadline().deadline + " ");
+        sb.append(PREFIX_EXPERIENCE + role.getExperience().value + " ");
         role.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -66,6 +68,8 @@ public class RoleUtil {
         descriptor.getSalary().ifPresent(salary -> sb.append(PREFIX_SALARY).append(salary.salary).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
                 .append(deadline.deadline).append(" "));
+        descriptor.getExperience().ifPresent(experience -> sb.append(PREFIX_EXPERIENCE)
+                .append(experience.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -26,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
+import seedu.address.model.job.Experience;
 import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
@@ -61,7 +63,8 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com"
             + PREFIX_JOBDESCRIPTION + "Software Engineer @ Jane Street"
             + PREFIX_SALARY + "4000 "
-            + PREFIX_DEADLINE + "2023-10-20";
+            + PREFIX_DEADLINE + "2023-10-20"
+            + PREFIX_EXPERIENCE + "Javascript - 1 Year";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Role: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -119,8 +122,9 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editRoleDescriptor.getTags().orElse(roleToEdit.getTags());
         Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
         Deadline updatedDeadline = editRoleDescriptor.getDeadline().orElse(roleToEdit.getDeadline());
+        Experience updatedExperience = editRoleDescriptor.getExperience().orElse(roleToEdit.getExperience());
         return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedJd, updatedTags, updatedWebsite,
-                updatedSalary, updatedDeadline);
+                updatedSalary, updatedDeadline, updatedExperience);
     }
 
     @Override
@@ -156,6 +160,8 @@ public class EditCommand extends Command {
         private Salary salary;
         private Deadline deadline;
 
+        private Experience experience;
+
         public EditRoleDescriptor() {
         }
 
@@ -173,13 +179,15 @@ public class EditCommand extends Command {
             setWebsite(toCopy.website);
             setSalary(toCopy.salary);
             setDeadline(toCopy.deadline);
+            setExperience(toCopy.experience);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, website, salary, deadline);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, website,
+                    salary, deadline, experience);
         }
 
         public void setName(Name name) {
@@ -263,6 +271,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(deadline);
         }
 
+        public void setExperience(Experience experience) {
+            this.experience = experience;
+        }
+
+        public Optional<Experience> getExperience() {
+            return Optional.ofNullable(experience);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -287,7 +303,8 @@ public class EditCommand extends Command {
                     && getJobDescription().equals(e.getJobDescription())
                     && getTags().equals(e.getTags())
                     && getSalary().equals(e.getSalary())
-                    && getDeadline().equals(e.getDeadline());
+                    && getDeadline().equals(e.getDeadline())
+                    && getExperience().equals(e.getExperience());
         }
     }
 }

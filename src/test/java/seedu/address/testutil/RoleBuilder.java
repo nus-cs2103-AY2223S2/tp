@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.job.Address;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
+import seedu.address.model.job.Experience;
 import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
@@ -28,6 +29,7 @@ public class RoleBuilder {
     public static final String DEFAULT_SALARY = "4000";
     public static final String DEFAULT_DEADLINE = "2023-10-20";
     public static final String DEFAULT_WEBSITE = "www.google.com";
+    public static final String DEFAULT_EXPERIENCE = "C - 1 Year";
 
     private Name name;
     private Phone phone;
@@ -38,6 +40,7 @@ public class RoleBuilder {
     private Salary salary;
     private Deadline deadline;
     private Website website;
+    private Experience experience;
 
     /**
      * Creates a {@code RoleBuilder} with the default details.
@@ -52,6 +55,7 @@ public class RoleBuilder {
         salary = new Salary(DEFAULT_SALARY);
         deadline = new Deadline(DEFAULT_DEADLINE);
         website = new Website(DEFAULT_WEBSITE);
+        experience = new Experience(DEFAULT_EXPERIENCE);
     }
 
     /**
@@ -67,6 +71,7 @@ public class RoleBuilder {
         deadline = roleToCopy.getDeadline();
         tags = new HashSet<>(roleToCopy.getTags());
         website = roleToCopy.getWebsite();
+        experience = roleToCopy.getExperience();
     }
 
     /**
@@ -141,9 +146,17 @@ public class RoleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Experience} of the {@code Role} that we are building.
+     */
+    public RoleBuilder withExperience(String experience) {
+        this.experience = new Experience(experience);
+        return this;
+    }
+
 
     public Role build() {
-        return new Role(name, phone, email, address, jd, tags, website, salary, deadline);
+        return new Role(name, phone, email, address, jd, tags, website, salary, deadline, experience);
     }
 
 }

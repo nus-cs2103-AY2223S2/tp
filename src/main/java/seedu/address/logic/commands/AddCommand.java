@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPERIENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBDESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALARY;
@@ -29,21 +30,22 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_JOBDESCRIPTION + "JOB DESCRIPTION "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
             + PREFIX_SALARY + "SALARY "
-            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "Software Engineer, Google "
+            + PREFIX_ROLE + "Software Engineer Google "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "google@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_WEBSITE + "www.google.com"
+            + PREFIX_WEBSITE + "www.google.com "
             + PREFIX_JOBDESCRIPTION + "Data Engineering team - penultimate students preferred "
             + PREFIX_TAG + "Tech "
             + PREFIX_SALARY + "4000 "
-            + PREFIX_DEADLINE + "2023-10-20 ";
+            + PREFIX_DEADLINE + "2023-10-20 "
+            + PREFIX_EXPERIENCE + "Javascript - 1 Year ";
 
     public static final String MESSAGE_SUCCESS = "New role added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the Techtrack.";

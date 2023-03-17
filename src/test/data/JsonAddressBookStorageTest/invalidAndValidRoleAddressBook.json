@@ -5,13 +5,15 @@
     "email": "hans@example.com",
     "address": "4th street",
     "website": "www.google.com",
-    "salary": "4000"
+    "salary": "4000",
+    "experience": "Javascript - 1 Year"
   }, {
     "name": "Role With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
     "address": "4th street",
     "website": "www.google.com",
-    "salary": "4r00"
+    "salary": "4r00",
+    "experience": "0 Years of experience, LOL",
   } ]
 }
