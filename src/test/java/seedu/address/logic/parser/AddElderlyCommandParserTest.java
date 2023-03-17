@@ -74,7 +74,7 @@ public class AddElderlyCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NRIC_ELDERLY_DESC_BOB + AGE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG + AVAILABLE_DATES + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -104,7 +104,7 @@ public class AddElderlyCommandParserTest {
         // multiple age - last age accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_ELDERLY_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB + REGION_DESC_BOB + RISK_DESC_BOB
-                + TAG_DESC_STRONG, new AddElderlyCommand(expectedElderly));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddElderlyCommand(expectedElderly));
 
         // multiple region - last region accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

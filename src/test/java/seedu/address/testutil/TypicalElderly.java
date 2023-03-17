@@ -56,11 +56,13 @@ public class TypicalElderly {
             .withNric("S4862780C").withRegion("CENTRAL").withRiskLevel("MEDIUM").build();
     public static final Elderly GEORGE = new ElderlyBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withAge("24")
+            .withAvailableDates("2023-05-01", "2023-05-12")
             .withNric("S2241030Z").withRegion("NORTH").withRiskLevel("LoW").build();
 
     // Manually added
     public static final Elderly HOON = new ElderlyBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india")
+            .build();
     public static final Elderly IDA = new ElderlyBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 

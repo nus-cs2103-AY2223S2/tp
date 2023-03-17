@@ -40,13 +40,11 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
      */
     public AddVolunteerCommand parse(String args) throws ParseException {
         Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC_VOLUNTEER,
-            PREFIX_AGE, PREFIX_AVAILABILITY, PREFIX_REGION, PREFIX_TAG};
-        Prefix[] compulsoryPrefixes = Arrays.copyOfRange(availablePrefixes, 0, 6);
+            PREFIX_AGE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_TAG};
+        Prefix[] compulsoryPrefixes = Arrays.copyOfRange(availablePrefixes, 0, 7);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
 
-        if (!PrefixUtil.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NRIC_VOLUNTEER, PREFIX_AGE, PREFIX_REGION)
         if (!PrefixUtil.arePrefixesPresent(argMultimap, compulsoryPrefixes)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVolunteerCommand.MESSAGE_USAGE));

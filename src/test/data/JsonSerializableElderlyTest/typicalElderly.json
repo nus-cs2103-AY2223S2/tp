@@ -71,6 +71,7 @@
     "age" : "24",
     "region": "NORTH",
     "riskLevel" : "LOW",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "availableDates": ["2023-05-01 to 2023-05-12"]
   } ]
 }

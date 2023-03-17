@@ -52,11 +52,12 @@ public class TypicalVolunteers {
             .withNric("S0203151E").build();
     public static final Volunteer ELLE = new VolunteerBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withAge("28")
-            .withAvailableDates("2022-02-11", "2022-02-12").withRegion("NORTHEAST")
+            .withAvailableDates("2023-05-11", "2023-05-12").withRegion("NORTHEAST")
             .withNric("S7238791J").build();
     public static final Volunteer FIONA = new VolunteerBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withAge("26").withRegion("EAST")
+            .withAvailableDates("2023-02-01", "2023-03-01")
             .withNric("S3576311B").build();
     public static final Volunteer GEORGE = new VolunteerBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
@@ -65,7 +66,9 @@ public class TypicalVolunteers {
 
     // Manually added
     public static final Volunteer HOON = new VolunteerBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india")
+            .build();
+
     public static final Volunteer IDA = new VolunteerBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 

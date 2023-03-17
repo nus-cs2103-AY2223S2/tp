@@ -213,7 +213,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedVolunteer volunteer =
                 new JsonAdaptedVolunteer(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_TAGS, invalidDates);
+                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_TAGS, invalidDates);
         assertThrows(IllegalValueException.class, () -> volunteer.toModelType(appTestCache));
     }
 

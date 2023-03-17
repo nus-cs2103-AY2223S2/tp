@@ -27,8 +27,8 @@ public class Elderly extends Person {
      * Every field must be present and not null.
      */
     public Elderly(Name name, Phone phone, Email email, Address address,
-                   Nric nric, Age age, RiskLevel riskLevel, Set<Tag> tags) {
-        this(name, phone, email, address, nric, age, riskLevel, tags, new HashSet<>());
+                   Nric nric, Age age, Region region, RiskLevel riskLevel, Set<Tag> tags) {
+        this(name, phone, email, address, nric, age, region, riskLevel, tags, new HashSet<>());
     }
 
 
@@ -68,9 +68,8 @@ public class Elderly extends Person {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getRegion(), getRiskLevel(), getTags());
+                getNric(), getAge(), getRegion(), getRiskLevel(), getTags(), getAvailableDates());
     }
 
     @Override

@@ -32,8 +32,8 @@ public class Volunteer extends Person {
      * Every field must be present and not null.
      */
     public Volunteer(Name name, Phone phone, Email email, Address address,
-                     Nric nric, Age age, Set<Tag> tags) {
-        this(name, phone, email, address, nric, age, tags, new HashSet<>());
+                     Nric nric, Age age, Region region, Set<Tag> tags) {
+        this(name, phone, email, address, nric, age, region, tags, new HashSet<>());
     }
 
     @Override
@@ -50,9 +50,8 @@ public class Volunteer extends Person {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getRegion(), getTags());
+                getNric(), getAge(), getRegion(), getTags(), getAvailableDates());
     }
 
     @Override
@@ -70,7 +69,7 @@ public class Volunteer extends Person {
                 .append("; Age: ")
                 .append(getAge())
                 .append("; Dates Available: ")
-                .append(getAvailableDates());
+                .append(getAvailableDates())
                 .append("; Region: ")
                 .append(getRegion());
 

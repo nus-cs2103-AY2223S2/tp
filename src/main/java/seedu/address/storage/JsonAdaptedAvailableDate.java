@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import java.util.Arrays;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -23,10 +21,8 @@ public class JsonAdaptedAvailableDate {
         String[] dates = dateRange.split(" to ");
 
         if (dates.length < 2) {
-            throw new IllegalValueException("Invalid dates specified");
+            throw new IllegalValueException("Start or end date not specified");
         }
-
-        System.out.println(Arrays.toString(dates));
 
         this.startDate = dates[0];
         this.endDate = dates[1];

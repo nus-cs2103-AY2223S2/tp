@@ -175,7 +175,7 @@ public class JsonAdaptedVolunteerTest {
         JsonAdaptedVolunteer volunteer =
                 new JsonAdaptedVolunteer(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, INVALID_REGION, VALID_TAGS);
+                        VALID_NRIC, VALID_AGE, INVALID_REGION, VALID_TAGS, VALID_DATES);
         String expectedMessage = Region.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> volunteer.toModelType(appTestCache));
     }
@@ -184,7 +184,7 @@ public class JsonAdaptedVolunteerTest {
     public void toModelType_nullRegion_throwsIllegalValueException() {
         JsonAdaptedVolunteer volunteer = new JsonAdaptedVolunteer(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, null, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, null, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Region.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> volunteer.toModelType(appTestCache));
     }
@@ -212,7 +212,8 @@ public class JsonAdaptedVolunteerTest {
         JsonAdaptedVolunteer volunteer =
                 new JsonAdaptedVolunteer(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_TAGS, invalidDates);
+                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_TAGS, invalidDates);
+
         assertThrows(IllegalValueException.class, () -> volunteer.toModelType(appTestCache));
     }
 

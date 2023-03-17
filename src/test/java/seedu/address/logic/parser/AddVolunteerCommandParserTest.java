@@ -99,7 +99,7 @@ public class AddVolunteerCommandParserTest {
         // multiple age - last age accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB + REGION_DESC_BOB
-                + TAG_DESC_STRONG, new AddVolunteerCommand(expectedVolunteer));
+                + TAG_DESC_STRONG + AVAILABLE_DATES, new AddVolunteerCommand(expectedVolunteer));
 
         // multiple region - last region accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
