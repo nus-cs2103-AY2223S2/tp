@@ -10,12 +10,14 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 
+import java.util.function.Predicate;
+
+import seedu.address.model.patient.Patient;
+
 /**
  * Finds and lists all patients in MedInfo whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-
-@SuppressWarnings({"unchecked"})
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
@@ -38,9 +40,9 @@ public class FindCommand extends Command {
         + "Example: " + COMMAND_WORD + " " + PREFIX_STATUS + " GRAY GREEN\n";
 
 
-    private final Predicate predicate;
+    private final Predicate<Patient> predicate;
 
-    public FindCommand(Predicate predicate) {
+    public FindCommand(Predicate<Patient> predicate) {
         this.predicate = predicate;
     }
 
