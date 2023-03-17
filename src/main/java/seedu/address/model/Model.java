@@ -316,6 +316,11 @@ public interface Model {
      */
     void updateAllFilteredListAsHidden();
 
+    /**
+     * Returns the last list type to displayed to user.
+     */
+    Level getLastListLevel();
+
     // TODO: Add JavaDocs
     void navigateBack();
 
@@ -382,4 +387,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
 }

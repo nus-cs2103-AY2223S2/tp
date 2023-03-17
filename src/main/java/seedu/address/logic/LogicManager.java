@@ -14,6 +14,7 @@ import seedu.address.logic.injector.Injector;
 import seedu.address.logic.injector.NavigationInjector;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Level;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -104,5 +105,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Level getLastListLevel() {
+        return model.getLastListLevel();
     }
 }
