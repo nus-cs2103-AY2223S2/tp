@@ -139,12 +139,11 @@ public class UntagCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
 
-        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
-
-        if (!model.hasLecture(targetModule, this.lectureName)) {
+        if (!model.hasLecture(this.moduleCode, this.lectureName)) {
             throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
         }
 
+        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture untaggingLecture = targetModule.getLecture(this.lectureName);
 
         Set<Tag> currentTags = untaggingLecture.getTags();
@@ -167,12 +166,11 @@ public class UntagCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
 
-        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
-
-        if (!model.hasLecture(targetModule, this.lectureName)) {
+        if (!model.hasLecture(this.moduleCode, this.lectureName)) {
             throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
         }
 
+        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
 
         if (!model.hasVideo(targetLecture, this.videoName)) {

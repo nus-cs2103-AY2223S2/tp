@@ -29,7 +29,6 @@ public class TagCommandParser implements Parser<TagCommand> {
      */
 
     public TagCommand parse(String args) throws ParseException {
-        //TODO: Change new Prefix
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_TAG, PREFIX_MODULE, PREFIX_LECTURE);
@@ -41,19 +40,19 @@ public class TagCommandParser implements Parser<TagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
-        Set<Tag> tags = ParseArgument.parseMultiTags(argMultimap.getValue(PREFIX_TAG).get());
+        Set<Tag> tags = ParserUtil.parseMultiTags(argMultimap.getValue(PREFIX_TAG).get());
 
         if (isTaggingMod(presentPrefixes)) {
-            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getPreamble());
+            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getPreamble());
             return new TagCommand(tags, moduleCode);
         } else if (isTaggingLec(presentPrefixes)) {
-            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-            LectureName lectureName = ParseArgument.parseLecture(argMultimap.getPreamble());
+            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+            LectureName lectureName = ParserUtil.parseLectureName(argMultimap.getPreamble());
             return new TagCommand(tags, moduleCode, lectureName);
         } else {
-            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-            LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
-            VideoName videoName = ParseArgument.parseVideo(argMultimap.getPreamble());
+            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+            LectureName lectureName = ParserUtil.parseLectureName(argMultimap.getValue(PREFIX_LECTURE).get());
+            VideoName videoName = ParserUtil.parseVideoName(argMultimap.getPreamble());
             return new TagCommand(tags, moduleCode, lectureName, videoName);
         }
 

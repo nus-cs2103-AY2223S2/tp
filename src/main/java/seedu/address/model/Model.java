@@ -27,6 +27,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<? super ReadOnlyModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
+    Predicate<? super ReadOnlyModule> PREDICATE_HIDE_ALL_MODULES = unused -> false;
+
+    Predicate<? super ReadOnlyLecture> PREDICATE_HIDE_ALL_LECTURES = unused -> false;
+
+    Predicate<? super Video> PREDICATE_HIDE_ALL_VIDEOS = unused -> false;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      *
@@ -166,15 +172,6 @@ public interface Model {
     boolean hasLecture(ModuleCode moduleCode, LectureName lectureName);
 
     /**
-     * Returns true if a {@code Module} has a lecture with name {@code lecture}.
-     *
-     * @param module The module to check if it contains the lecture.
-     * @param lecture The lecture to check if exist.
-     * @return True if a lecture with the same name as {@code lecture} exists in {@code module}. Otherwise, false.
-     */
-    boolean hasLecture(ReadOnlyModule module, LectureName lecture);
-
-    /**
      * Returns a lecture with {@code lectureName} in module of {@code moduleCode}
      * The module must exist in the tracker.
      * The lecture must exist in {@code module}
@@ -183,7 +180,6 @@ public interface Model {
      * @return Lecture with {@code lectureName} found in module of {@code moduleCode}
      */
     ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName);
-
 
     /**
      * Deletes the given lecture {@code target}.<p>
@@ -223,13 +219,13 @@ public interface Model {
     boolean hasVideo(ReadOnlyLecture lecture, Video video);
 
     /**
-     * Returns true if a video with the same name as {@code video} exists in {@code lecture}.
+     * Returns true if a video with the name {@code videoName} exists in {@code lecture}.
      *
-     * @param lecture The lecture to check if it contains the video.
-     * @param video The video to check if exist.
-     * @return True if a video with the same name as {@code video} exists in {@code lecture}. Otherwise, false.
+     * @param lecture The lectre to check if t contains the video.
+     * @param videoName The video name to check if exist.
+     * @return True if a video with the name {@code videoName} exists in {@code lecture}. Otherwise, false.
      */
-    boolean hasVideo(ReadOnlyLecture lecture, VideoName video);
+    boolean hasVideo(ReadOnlyLecture lecture, VideoName videoName);
 
     /**
      * Returns the video with {@code videoName} in the lecture {@code lecture}
@@ -241,7 +237,6 @@ public interface Model {
      * @return Video with {@code videoName} found in {@code lecture}
      */
     Video getVideo(ReadOnlyLecture lecture, VideoName videoName);
-
 
     /**
      * Deletes the given video {@code target}.<p>
@@ -271,8 +266,26 @@ public interface Model {
      */
     void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo);
 
-
+    /**
+     * Returns an unmodifiable view of the filtered module list.
+     *
+     * @return An unmodifiable view of the filtered module list.
+     */
     ObservableList<? extends ReadOnlyModule> getFilteredModuleList();
+
+    /**
+     * Returns an unmodifiable view of the filtered lecture list.
+     *
+     * @return An unmodifiable view of the filtered lecture list.
+     */
+    ObservableList<? extends ReadOnlyLecture> getFilteredLectureList();
+
+    /**
+     * Returns an unmodifiable view of the filtered lecture list.
+     *
+     * @return An unmodifiable view of the filtered lecture list.
+     */
+    ObservableList<? extends Video> getFilteredVideoList();
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
@@ -281,6 +294,27 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate);
+
+    /**
+     * Updates the filter of the filtered lecture list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate to filter lecture by.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module);
+
+    /**
+     * Updates the filter of the filtered video list to filter by the given {@code predicate}.
+     *
+     * @param predicate The predicate to filter video by.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture);
+
+    /**
+     * Updates the filter to hide all the contents of a list.
+     */
+    void updateAllFilteredListAsHidden();
 
     // TODO: Add JavaDocs
     void navigateBack();

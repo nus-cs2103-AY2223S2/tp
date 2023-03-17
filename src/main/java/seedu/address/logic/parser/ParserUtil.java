@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -105,9 +108,10 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+
+    public static Tag parseSingleTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
@@ -117,15 +121,48 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String} of comma-separated tags into a {@code Set} of {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+
+    public static Set<Tag> parseMultiTags(String tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+        String[] arrayOfTags = tags.split(",");
+        List<Tag> listOfTags = Arrays.stream(arrayOfTags)
+                .map(tag -> tag.trim())
+                .map(trimmedtag -> new Tag(trimmedtag))
+                .collect(Collectors.toList());
+
+        for (Tag tag : listOfTags) {
+            if (!Tag.isValidTagName(tag.tagName)) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
         }
-        return tagSet;
+        return new HashSet<>(listOfTags);
+    }
+
+    /**
+     * Parses a {@code List<String>} of tag descriptions into a {@code Set} of {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+
+    public static Set<Tag> parseMultiTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        List<Tag> listOfTags = tags.stream()
+                .map(tag -> tag.trim())
+                .map(trimmedtag -> new Tag(trimmedtag))
+                .collect(Collectors.toList());
+
+        for (Tag tag : listOfTags) {
+            if (!Tag.isValidTagName(tag.tagName)) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+        }
+        return new HashSet<>(listOfTags);
     }
 
     // TODO: Consider removing this

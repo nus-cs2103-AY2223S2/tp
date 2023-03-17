@@ -39,19 +39,19 @@ public class UntagCommandParser implements Parser<UntagCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
-        Tag tag = ParseArgument.parseSingleTag(argMultimap.getValue(PREFIX_TAG).get());
+        Tag tag = ParserUtil.parseSingleTag(argMultimap.getValue(PREFIX_TAG).get());
 
         if (isUntaggingMod(presentPrefixes)) {
-            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getPreamble());
+            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode);
         } else if (isUntaggingLec(presentPrefixes)) {
-            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-            LectureName lectureName = ParseArgument.parseLecture(argMultimap.getPreamble());
+            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+            LectureName lectureName = ParserUtil.parseLectureName(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode, lectureName);
         } else {
-            ModuleCode moduleCode = ParseArgument.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
-            LectureName lectureName = ParseArgument.parseLecture(argMultimap.getValue(PREFIX_LECTURE).get());
-            VideoName videoName = ParseArgument.parseVideo(argMultimap.getPreamble());
+            ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+            LectureName lectureName = ParserUtil.parseLectureName(argMultimap.getValue(PREFIX_LECTURE).get());
+            VideoName videoName = ParserUtil.parseVideoName(argMultimap.getPreamble());
             return new UntagCommand(tag, moduleCode, lectureName, videoName);
         }
 

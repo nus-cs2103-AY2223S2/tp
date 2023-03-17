@@ -129,12 +129,11 @@ public class TagCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
 
-        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
-
-        if (!model.hasLecture(targetModule, this.lectureName)) {
+        if (!model.hasLecture(this.moduleCode, this.lectureName)) {
             throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
         }
 
+        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture taggingLecture = targetModule.getLecture(this.lectureName);
 
         Set<Tag> currentTags = taggingLecture.getTags();
@@ -151,12 +150,11 @@ public class TagCommand extends Command {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
 
-        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
-
-        if (!model.hasLecture(targetModule, this.lectureName)) {
+        if (!model.hasLecture(this.moduleCode, this.lectureName)) {
             throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
         }
 
+        ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
 
         if (!model.hasVideo(targetLecture, this.videoName)) {
