@@ -18,6 +18,12 @@ public abstract class FeatureParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
 
+    /**
+     * Parses the given CLI input to a {@code Command}.
+     *
+     * @param commandInput - the command input to parse.
+     * @throws ParseException - if a command cannot be parsed.
+     */
     public ParseResult parse(String commandInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandInput.trim());
         if (!matcher.matches()) {
