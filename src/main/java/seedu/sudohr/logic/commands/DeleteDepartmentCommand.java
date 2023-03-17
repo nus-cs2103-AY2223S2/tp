@@ -8,7 +8,9 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 
 
-
+/**
+ * Deletes a department identified by the department name.
+ */
 public class DeleteDepartmentCommand extends Command {
 
     public static final String COMMAND_WORD = "deldep";
