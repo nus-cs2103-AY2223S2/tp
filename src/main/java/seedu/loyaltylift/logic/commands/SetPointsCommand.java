@@ -73,7 +73,6 @@ public class SetPointsCommand extends Command {
 
     /**
      * Creates and returns a {@code Customer} with the details of {@code customerToEdit}
-     * edited with {@code editCustomerDescriptor}.
      */
     private Customer createEditedCustomer(Customer customerToEdit) {
         assert customerToEdit != null;
@@ -90,7 +89,6 @@ public class SetPointsCommand extends Command {
     /**
      * Generates a command execution success message based on whether
      * the points are set
-     * {@code personToEdit}.
      */
     private String generateSuccessMessage(Customer editedCustomer) {
         String message = MESSAGE_SET_POINTS_SUCCESS;
