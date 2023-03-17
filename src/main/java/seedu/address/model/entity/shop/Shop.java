@@ -30,7 +30,6 @@ public class Shop implements ReadOnlyShop {
     private final UniqueTechnicianList technicians = new UniqueTechnicianList();
     private final ServiceList services = new ServiceList();
 
-    //TODO: Implement immutable list for appointments
     private final UniqueAppointmentList appointments = new UniqueAppointmentList();
 
     //TODO: convert back to final, after figuring out how to properly implement setPartMap immutably
@@ -114,6 +113,10 @@ public class Shop implements ReadOnlyShop {
         this.services.setServices(services);
     }
 
+    public void removeService(Service key) {
+        services.remove(key);
+    }
+
     // --------------------------------------------------
     //// Appointment-level operations
 
@@ -131,6 +134,24 @@ public class Shop implements ReadOnlyShop {
         return this.appointments.asUnmodifiableObservableList();
     }
 
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+        appointments.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Returns true if a customer with the same id or identity as {@code customer}
+     * exists in the autom8 system.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
+    }
     public void removeAppointment(Appointment key) {
         appointments.remove(key);
     }
@@ -144,7 +165,7 @@ public class Shop implements ReadOnlyShop {
     /**
      * Adds part
      *
-     * @param partName Name of the part to add
+     * @param partName Name of the p2art to add
      * @param quantity Quantity of the part to add
      */
     public void addPart(String partName, int quantity) {

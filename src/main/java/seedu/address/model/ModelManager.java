@@ -226,9 +226,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return this.shop.hasAppointment(appointment);
+    }
+
+    @Override
     public void deleteAppointment(Appointment target) {
         this.shop.removeAppointment(target);
     }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+        this.shop.setAppointment(target, editedAppointment);
+    }
+
+    @Override
+    public void deleteService(Service service) {
+        this.shop.removeService(service);
+    }
+
+
 
     // -------------
 
@@ -303,6 +322,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Service> getFilteredServiceList() {
+        return filteredServices;
+    }
+
+    @Override
     public PartMap getPartMap() {
         return partMap;
     }
@@ -329,6 +353,12 @@ public class ModelManager implements Model {
     public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredServiceList(Predicate<Service> predicate) {
+        requireNonNull(predicate);
+        filteredServices.setPredicate(predicate);
     }
 
     @Override

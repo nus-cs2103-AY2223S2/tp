@@ -104,6 +104,8 @@ public interface Model {
 
     ObservableList<Appointment> getFilteredAppointmentList();
 
+    ObservableList<Service> getFilteredServiceList();
+
     PartMap getPartMap();
 
     /**
@@ -166,7 +168,13 @@ public interface Model {
      */
     boolean hasService(int serviceId);
 
+    boolean hasAppointment(Appointment appointment);
+
     void deleteAppointment(Appointment target);
+
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
+    void deleteService(Service service);
 
     /**
      * Adds appointment
@@ -205,6 +213,8 @@ public interface Model {
     boolean hasTechnician(int technicianId);
 
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
+
+    void updateFilteredServiceList(Predicate<Service> predicate);
 
     void updatePartsMap();
 }

@@ -16,18 +16,19 @@ import seedu.address.model.service.appointment.Appointment;
 public class AddAppointmentCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "addappointment";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment with customer. "
             + "Parameters: "
             + PREFIX_CUSTOMER_ID + "CUSTOMER ID "
             + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME "
+            + PREFIX_TIME + "TIME \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CUSTOMER_ID + "5 "
             + PREFIX_DATE + "2023-02-03 "
             + PREFIX_TIME + "17:00";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not registered";
+    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Customer not registered";
 
     private final Appointment toAdd;
 
@@ -52,7 +53,7 @@ public class AddAppointmentCommand extends RedoableCommand {
         requireNonNull(model);
         if (!model.hasCustomer(toAdd.getCustomerId())) {
             IdGenerator.setAppointmentIdUnused(toAdd.getId());
-            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+            throw new CommandException(MESSAGE_APPOINTMENT_NOT_FOUND);
         }
         model.addAppointment(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
