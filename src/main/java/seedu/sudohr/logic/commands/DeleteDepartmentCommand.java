@@ -20,7 +20,7 @@ public class DeleteDepartmentCommand extends Command {
 
     public static final String MESSAGE_DELETE_DEPARTMENT_SUCCESS = "Deleted department: %1$s";
 
-    private static final String MESSAGE_DEPARTMENT_NOT_EXIST = "The given department does not exist.";
+    public static final String MESSAGE_DEPARTMENT_NOT_EXIST = "The given department does not exist.";
 
     private final DepartmentName targetDepartment;
 
@@ -41,6 +41,13 @@ public class DeleteDepartmentCommand extends Command {
         model.removeDepartment(departmentToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DEPARTMENT_SUCCESS, departmentToDelete));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteDepartmentCommand // instanceof handles nulls
+                && targetDepartment.equals(((DeleteDepartmentCommand) other).targetDepartment)); // state check
     }
 
 
