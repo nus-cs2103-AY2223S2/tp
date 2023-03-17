@@ -1,13 +1,12 @@
 package seedu.address.model.person;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Patient in the address book.
@@ -15,6 +14,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class Patient extends Person {
     private final ArrayList<Appointment> patientAppointments;
+
+    /**
+     * Every field must be present and not null.
+     */
     public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
                    ArrayList<Appointment> patientAppointments) {
         super(name, phone, email, nric, address, tags);
@@ -22,6 +25,9 @@ public class Patient extends Person {
         this.patientAppointments = patientAppointments;
     }
 
+    /**
+     * Returns a list of Appointments.
+     */
     public ArrayList<Appointment> getPatientAppointments() {
         return patientAppointments;
     }
@@ -60,10 +66,18 @@ public class Patient extends Person {
         return personString.toString();
     }
 
+    /**
+     * Adds an appointment for the Patient.
+     * @param appointment
+     */
     public void addPatientAppointment(Appointment appointment) {
         patientAppointments.add(appointment);
     }
 
+    /**
+     * Get the patient's appointments as a String in list form.
+     * @return list of patient's appointment bookings in String
+     */
     public String patientAppointmentstoString() {
         ArrayList<Appointment> patientAppointments = getPatientAppointments();
         String string = "";

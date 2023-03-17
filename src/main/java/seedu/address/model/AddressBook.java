@@ -7,8 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.HospitalAppointmentList;
-import seedu.address.model.person.Nric;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -73,6 +73,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code person} by NRIC exists in the address book.
+     */
     public boolean hasPersonByNric(Nric nric) {
         requireNonNull(nric);
         return persons.containsByNric(nric);
@@ -94,7 +97,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.contains(doctor);
     }
 
-    /*
     /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
@@ -139,11 +141,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     // appointment-level operations
+
+    /**
+     * Returns true if {@code Appointment} exists in the address book.
+     */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointments.isADuplicateAppointment(appointment);
     }
 
+    /**
+     * Books appointment.
+     * @param appointment
+     */
     public void bookAppointment(Appointment appointment) {
         appointments.bookAppointment(appointment);
     }

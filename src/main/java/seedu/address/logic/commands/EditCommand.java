@@ -9,8 +9,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.sql.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -18,7 +22,14 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -99,7 +110,8 @@ public class EditCommand extends Command {
         if (personToEdit.isPatient()) {
             Patient patientToEdit = (Patient) personToEdit;
             ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags, patientAppointments);
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags,
+                    patientAppointments);
         }
 
         if (personToEdit.isDoctor()) {

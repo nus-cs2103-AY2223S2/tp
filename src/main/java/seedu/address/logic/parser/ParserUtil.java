@@ -139,10 +139,13 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String booking} into a {@code Booking}.
+     */
     public static Booking parseBooking(String booking) throws ParseException {
         requireNonNull(booking);
         String trimmedBooking = booking.trim();
-        if(!Booking.isValidBookingFormat(trimmedBooking)) {
+        if (!Booking.isValidBookingFormat(trimmedBooking)) {
             throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
         }
 

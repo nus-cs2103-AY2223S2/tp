@@ -1,16 +1,21 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Creates an appointment.
+ */
 public class AppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "appointment";
@@ -22,6 +27,9 @@ public class AppointmentCommand extends Command {
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist";
     private final Appointment appointment;
 
+    /**
+     * Creates an AppointmentCommand to add the specified {@code Person}
+     */
     public AppointmentCommand(Appointment appointment) {
         requireNonNull(appointment);
         this.appointment = appointment;
@@ -57,6 +65,7 @@ public class AppointmentCommand extends Command {
             model.bookAppointment(appointment);
             appointmentPatient.addPatientAppointment(appointment);
         } catch (DuplicateAppointmentException e) {
+            throw new DuplicateAppointmentException();
         }
         // String s = appointmentPatient.patientAppointmentstoString();
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
@@ -68,12 +77,22 @@ public class AppointmentCommand extends Command {
         return new CommandResult(String.format(fullSuccessMessage(appointment), appointment));
     }
 
+    /**
+     * Gets patient NRIC in String from Appointment.
+     * @param appointment
+     * @return NRIC
+     */
     public String getPatientNric(Appointment appointment) {
         Nric patientNric = appointment.getPatientNric();
         String patientNameStr = patientNric.toString();
         return patientNameStr;
     }
 
+    /**
+     * Shows message for successful appointment booked.
+     * @param appointment
+     * @return success message
+     */
     public String fullSuccessMessage(Appointment appointment) {
         String fullMessage = MESSAGE_SUCCESS + getPatientNric(appointment); // todo show the name instead of ic
         return fullMessage;

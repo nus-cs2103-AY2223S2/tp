@@ -1,11 +1,12 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -79,6 +80,10 @@ public abstract class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    /**
+     * Returns true if both persons have the same NRIC.
+     * This defines a weaker notion of equality between two persons.
+     */
     public boolean isSamePersonByNric(Nric otherNric) {
         if (otherNric == this.getNric()) {
             return true;

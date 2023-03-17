@@ -36,6 +36,11 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    /**
+     * Returns true if the list contains an equivalent person identified by NRIC as the given argument.
+     * @param toCheck
+     * @return true if contains, false otherwise
+     */
     public boolean containsByNric(Nric toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(person -> person.isSamePersonByNric(toCheck));
