@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.commons.core.GuiSettings;
-import seedu.socket.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandNamePredicate;
 import seedu.socket.testutil.SocketBuilder;
 
 public class ModelManagerTest {
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new FindCommandNamePredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(socket, userPrefs)));
 
         //different viewedPerson -> returns false

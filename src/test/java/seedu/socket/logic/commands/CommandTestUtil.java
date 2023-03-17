@@ -20,7 +20,7 @@ import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.model.Model;
 import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.person.predicate.NameContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandNamePredicate;
 import seedu.socket.testutil.EditPersonDescriptorBuilder;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
 import seedu.socket.testutil.TypicalPersons;
@@ -149,7 +149,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new FindCommandNamePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

@@ -18,16 +18,16 @@ public class LanguageContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        LanguageContainsKeywordsPredicate firstPredicate = new LanguageContainsKeywordsPredicate(
+        FindCommandLanguagePredicate firstPredicate = new FindCommandLanguagePredicate(
                 firstPredicateKeywordList);
-        LanguageContainsKeywordsPredicate secondPredicate = new LanguageContainsKeywordsPredicate(
+        FindCommandLanguagePredicate secondPredicate = new FindCommandLanguagePredicate(
                 secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        LanguageContainsKeywordsPredicate firstPredicateCopy = new LanguageContainsKeywordsPredicate(
+        FindCommandLanguagePredicate firstPredicateCopy = new FindCommandLanguagePredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -44,7 +44,7 @@ public class LanguageContainsKeywordsPredicateTest {
     @Test
     public void test_languageContainsKeywords_returnsTrue() {
         // One keyword
-        LanguageContainsKeywordsPredicate predicate = new LanguageContainsKeywordsPredicate(
+        FindCommandLanguagePredicate predicate = new FindCommandLanguagePredicate(
                 Collections.singletonList("java"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
@@ -52,21 +52,21 @@ public class LanguageContainsKeywordsPredicateTest {
                 .build()));
 
         // Multiple keywords
-        predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("java", "python"));
+        predicate = new FindCommandLanguagePredicate(Arrays.asList("java", "python"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
                 .withLanguages("java", "python")
                 .build()));
 
         // Only one matching keyword
-        predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("java", "Carol"));
+        predicate = new FindCommandLanguagePredicate(Arrays.asList("java", "Carol"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Carol")
                 .withLanguages("java", "python")
                 .build()));
 
         // Mixed-case keywords
-        predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("JaVa", "pyTHon"));
+        predicate = new FindCommandLanguagePredicate(Arrays.asList("JaVa", "pyTHon"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
                 .withLanguages("java", "python")
@@ -76,21 +76,21 @@ public class LanguageContainsKeywordsPredicateTest {
     @Test
     public void test_languageDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        LanguageContainsKeywordsPredicate predicate = new LanguageContainsKeywordsPredicate(Collections.emptyList());
+        FindCommandLanguagePredicate predicate = new FindCommandLanguagePredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
                 .withLanguages("java", "python")
                 .build()));
 
         // Non-matching keyword
-        predicate = new LanguageContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new FindCommandLanguagePredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
                 .withLanguages("java", "python")
                 .build()));
 
         // Keywords match name, phone, email and address, but does not match language
-        predicate = new LanguageContainsKeywordsPredicate(Arrays.asList(
+        predicate = new FindCommandLanguagePredicate(Arrays.asList(
                 "alice", "12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")

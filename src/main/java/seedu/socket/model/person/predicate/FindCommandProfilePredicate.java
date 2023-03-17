@@ -9,10 +9,10 @@ import seedu.socket.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code GitHubProfile} matches any of the keywords given.
  */
-public class ProfileContainsKeywordsPredicate implements Predicate<Person> {
+public class FindCommandProfilePredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public ProfileContainsKeywordsPredicate(List<String> keywords) {
+    public FindCommandProfilePredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -25,8 +25,8 @@ public class ProfileContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProfileContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((ProfileContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof FindCommandProfilePredicate // instanceof handles nulls
+                && keywords.equals(((FindCommandProfilePredicate) other).keywords)); // state check
     }
 
 }
