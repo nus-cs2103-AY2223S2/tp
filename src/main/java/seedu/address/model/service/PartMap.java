@@ -42,8 +42,7 @@ public class PartMap {
      */
     public int getPartQuantity(String partName) {
         if (!contains(partName)) {
-            return 0;
-            // throw new PartNotFoundException(partName);
+            throw new PartNotFoundException(partName);
         }
         return map.get(partName);
     }
@@ -144,7 +143,6 @@ public class PartMap {
      * @throws PartNotFoundException If part not in Set
      */
     public void decreasePartQuantity(String partName, int quantity) throws PartNotFoundException {
-        // Should this merge with increase such that it becomes editpartquantity?
         if (!this.map.containsKey(partName)) {
             throw new PartNotFoundException(partName);
         }
