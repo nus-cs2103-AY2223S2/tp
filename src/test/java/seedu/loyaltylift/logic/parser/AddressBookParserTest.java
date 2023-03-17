@@ -105,7 +105,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_setpoints() throws Exception {
-        final Points points = new Points(100);
+        final Points points = new Points(100, 100);
         SetPointsCommand command = (SetPointsCommand) parser.parseCommand(SetPointsCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + points.value);
         assertEquals(new SetPointsCommand(INDEX_FIRST_CUSTOMER, points), command);

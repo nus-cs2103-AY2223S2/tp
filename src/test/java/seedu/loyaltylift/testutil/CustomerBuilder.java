@@ -23,6 +23,7 @@ public class CustomerBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_POINTS = 0;
+    public static final Integer DEFAULT_CUMULATIVE_POINTS = 0;
     public static final CustomerType DEFAULT_CUSTOMER_TYPE = CustomerType.INDIVIDUAL;
 
     private Name name;
@@ -42,7 +43,7 @@ public class CustomerBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        points = new Points(DEFAULT_POINTS);
+        points = new Points(DEFAULT_POINTS, DEFAULT_CUMULATIVE_POINTS);
         customerType = DEFAULT_CUSTOMER_TYPE;
     }
 
@@ -102,8 +103,8 @@ public class CustomerBuilder {
     /**
      * Sets the {@code Points} of the {@code Customer} that we are building.
      */
-    public CustomerBuilder withPoints(Integer points) {
-        this.points = new Points(points);
+    public CustomerBuilder withPoints(Integer points, Integer cumulativePoints) {
+        this.points = new Points(points, cumulativePoints);
         return this;
     }
 

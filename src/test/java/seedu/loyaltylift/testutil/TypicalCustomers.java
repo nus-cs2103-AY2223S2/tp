@@ -31,7 +31,7 @@ public class TypicalCustomers {
     public static final Customer BENSON = new CustomerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withPoints(0,0).build();
     public static final Customer CARL = new CustomerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")

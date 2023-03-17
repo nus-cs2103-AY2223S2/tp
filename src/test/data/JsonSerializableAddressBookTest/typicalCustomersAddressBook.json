@@ -7,7 +7,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Benson Meier",
@@ -15,7 +16,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Carl Kurz",
@@ -23,7 +25,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "tagged" : [ ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Daniel Meier",
@@ -31,7 +34,8 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "tagged" : [ "friends" ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Elle Meyer",
@@ -39,7 +43,8 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Fiona Kunz",
@@ -47,7 +52,8 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "tagged" : [ ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "George Best",
@@ -55,7 +61,8 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "ENTERPRISE",
     "name" : "The Chocolate Factory",
@@ -63,7 +70,8 @@
     "email" : "chocofactory@enterprise.com",
     "address" : "30 Chocolate Street, #01-02",
     "tagged" : [ ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   },
   {
     "customerType": "ENTERPRISE",
@@ -72,6 +80,7 @@
     "email": "slyfox@enterprise.com",
     "address": "30 Wolf Street, #01-33",
     "tagged": [],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   } ]
 }

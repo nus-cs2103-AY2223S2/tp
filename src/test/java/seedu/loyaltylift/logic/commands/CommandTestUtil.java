@@ -43,6 +43,9 @@ public class CommandTestUtil {
     public static final Integer VALID_POINTS_BOB = 200;
     public static final Integer VALID_POINTS_ADD = 1;
     public static final Integer VALID_POINTS_SUBTRACT = -1;
+
+    public static final Integer VALID_CUMULATIVE_POINTS_AMY = 100;
+    public static final Integer VALID_CUMULATIVE_POINTS_BOB = 200;
     public static final String VALID_CUSTOMER_TYPE_ENTERPRISE = "ent";
     public static final String VALID_CUSTOMER_TYPE_INDIVIDUAL = "ind";
 
