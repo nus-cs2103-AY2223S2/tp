@@ -13,7 +13,7 @@ public class EffortTest {
 
     public static final long VALID_EFFORT_0 = 0;
     public static final long VALID_EFFORT_1 = 1;
-    public static final long DEFAULT_EFFORT = 2;
+    public static final long DEFAULT_EFFORT = 24;
     public static final long VALID_EFFORT_3 = 3;
     public static final long INVALID_EFFORT = -1;
 
