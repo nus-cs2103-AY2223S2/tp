@@ -19,12 +19,12 @@ Class StorageManager STORAGE_COLOR
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside .right.> Logic
 
-LogicManager .[LOGIC_COLOR]up.|> Logic
-ModelManager .[MODEL_COLOR]up.|> Model
-StorageManager .[STORAGE_COLOR]up.|> Storage
+LogicManager .[LOGIC_COLOR]down.|> Logic
+ModelManager .[MODEL_COLOR]left.|> Model
+StorageManager .[STORAGE_COLOR]left.|> Storage
 
-LogicManager -[LOGIC_COLOR]-> Model
+LogicManager -[LOGIC_COLOR]right-> Model
 LogicManager -[LOGIC_COLOR]-> Storage
 @enduml
