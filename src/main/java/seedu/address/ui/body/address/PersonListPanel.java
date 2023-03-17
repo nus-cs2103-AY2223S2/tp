@@ -58,8 +58,12 @@ public class PersonListPanel extends UiPart<Region> {
          */
         MultipleSelectionModel<PersonListCellData> model = personListView.getSelectionModel();
         model.selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            panel.setPerson(newValue.getPerson());
-            panel.setDisplayedIndex(newValue.getIndex());
+            if (newValue == null) {
+                panel.clearPerson();
+            } else {
+                panel.setPerson(newValue.getPerson());
+                panel.setDisplayedIndex(newValue.getIndex());
+            }
         });
     }
 
@@ -119,7 +123,6 @@ public class PersonListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     static class PersonListCell extends ListCell<PersonListCellData> {
-        private PersonListCellData data;
         private final PersonCard personCard = new PersonCard();
         private final PersonListDivider personListDivider = new PersonListDivider(null);
         private int graphicId = -1;
@@ -145,7 +148,6 @@ public class PersonListPanel extends UiPart<Region> {
             super.updateItem(newData, empty);
 
             if (empty || newData == null) {
-                data = null;
                 setGraphic(null);
                 setText(null);
                 return;
@@ -231,6 +233,7 @@ public class PersonListPanel extends UiPart<Region> {
 
         @Override
         public void updateGraphic(PersonListCell cell) {
+            Objects.requireNonNull(cell);
             cell.getPersonCard().setPerson(person, index);
             if (cell.getGraphicId() != GRAPHIC_ID) {
                 cell.setGraphic(cell.getPersonCard().getRoot());
