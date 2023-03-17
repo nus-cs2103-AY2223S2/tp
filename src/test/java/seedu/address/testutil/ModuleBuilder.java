@@ -5,8 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Deadline;
-import seedu.address.model.module.Name;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
