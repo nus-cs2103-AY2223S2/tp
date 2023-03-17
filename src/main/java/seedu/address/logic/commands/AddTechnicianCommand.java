@@ -10,15 +10,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Staff;
+import seedu.address.model.entity.person.Technician;
 
 /**
- * Manages adding of Staff
+ * Manages adding of technicians
  */
-public class AddStaffCommand extends AddCommand {
-    public static final String COMMAND_WORD = "addstaff";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to the shop. "
+public class AddTechnicianCommand extends AddStaffCommand {
+    public static final String COMMAND_WORD = "addtechnician";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a technician to the shop. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -30,19 +30,19 @@ public class AddStaffCommand extends AddCommand {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "temp intern "
+            + PREFIX_TAG + "leader "
             + PREFIX_TAG + "leaving 2nd march";
-    public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STAFF = "This staff already registered";
+    public static final String MESSAGE_SUCCESS = "New technician added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TECHNICIAN = "This technician already registered";
 
 
     /**
-     * Constructs command that adds staff to the model
+     * Constructs command that adds technician to the model
      *
-     * @param staff Staff to be added
+     * @param technician Technician to be added
      */
-    public AddStaffCommand(Staff staff) {
-        super(staff);
+    public AddTechnicianCommand(Technician technician) {
+        super(technician);
     }
 
     /**
@@ -54,21 +54,20 @@ public class AddStaffCommand extends AddCommand {
      */
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
-//        requireNonNull(model);
-//        Staff toAdd = (Staff) this.toAdd;
-//        if (model.hasStaff(toAdd.getId())) {
-//            throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
-//        }
-//
-//        model.addStaff(toAdd);
-//        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-        throw new CommandException(MESSAGE_UNSUPPORTED_COMMAND);
+        requireNonNull(model);
+        Technician toAdd = (Technician) this.toAdd;
+        if (model.hasTechnician(toAdd.getId())) {
+            throw new CommandException(MESSAGE_DUPLICATE_TECHNICIAN);
+        }
+
+        model.addTechnician(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddStaffCommand // instanceof handles nulls
-                && toAdd.equals(((AddStaffCommand) other).toAdd));
+                || (other instanceof AddTechnicianCommand // instanceof handles nulls
+                && toAdd.equals(((AddTechnicianCommand) other).toAdd));
     }
 }
