@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* COVID-19 vaccination data - [MOH | COVID-19 Vaccination](https://www.moh.gov.sg/covid-19/vaccination)
+* COVID-19 vaccination data - [MOH ｜ COVID-19 Vaccination](https://www.moh.gov.sg/covid-19/vaccination)
 * Chemical name synonyms - [PubChem](https://pubchem.ncbi.nlm.nih.gov/)
 
 --------------------------------------------------------------------------------------------------------------------
