@@ -26,8 +26,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all modules, lectures or videos.\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "cs2103 "
-            + PREFIX_LECTURE + "lecture-1 ";
+            + PREFIX_MODULE + " CS2040S "
+            + PREFIX_LECTURE + " Week 1";
 
     public static final String MESSAGE_SUCCESS_MODULES = "Listed all modules";
 
@@ -40,8 +40,6 @@ public class ListCommand extends Command {
     private ModuleCode moduleCode;
 
     private LectureName lectureName;
-
-    private Exception error;
 
     /**
      * Creates an empty ListCommand
@@ -63,21 +61,12 @@ public class ListCommand extends Command {
         this.lectureName = lectureName;
     }
 
-    /**
-     * Creates an ListCommand with invalid inputs
-     */
-    public ListCommand(IllegalArgumentException e) {
-        error = e;
-    }
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (error != null) {
-            return new CommandResult(MESSAGE_FAIL_CODE, Level.MODULE);
-        }
         if (moduleCode != null && lectureName != null) {
             if (!model.hasLecture(moduleCode, lectureName)) {
+                model.updateAllFilteredListAsHidden();
                 return new CommandResult(
                     String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode), Level.MODULE);
             }
@@ -87,6 +76,7 @@ public class ListCommand extends Command {
         }
         if (moduleCode != null) {
             if (!model.hasModule(moduleCode)) {
+                model.updateAllFilteredListAsHidden();
                 return new CommandResult(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode), Level.LECTURE);
             }
             ReadOnlyModule module = model.getModule(moduleCode);

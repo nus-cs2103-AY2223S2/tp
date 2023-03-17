@@ -295,6 +295,17 @@ public class ModelManager implements Model {
         }
     }
 
+    @Override
+    public void updateAllFilteredListAsHidden() {
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
     //=========== Navigation =================================================================================
 
     @Override

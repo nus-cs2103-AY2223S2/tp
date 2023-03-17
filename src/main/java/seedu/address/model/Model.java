@@ -311,6 +311,11 @@ public interface Model {
      */
     void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture);
 
+    /**
+     * Updates the filter to hide all the contents of a list.
+     */
+    void updateAllFilteredListAsHidden();
+
     // TODO: Add JavaDocs
     void navigateBack();
 
