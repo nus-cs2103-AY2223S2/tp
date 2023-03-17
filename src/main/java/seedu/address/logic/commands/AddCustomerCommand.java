@@ -16,7 +16,7 @@ import seedu.address.model.entity.person.Customer;
  */
 public class AddCustomerCommand extends AddCommand {
     public static final String COMMAND_WORD = "addcustomer";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a customer to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Registers a customer with the shop. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -28,7 +28,7 @@ public class AddCustomerCommand extends AddCommand {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "No insurance "
             + PREFIX_TAG + "owesMoney";
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already registered";
