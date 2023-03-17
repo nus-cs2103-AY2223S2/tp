@@ -112,15 +112,13 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String phone = String.format("; Phone: %s", getOptionalPhone().map(Phone::toString).orElse(""));
-        String email = String.format("; Email: %s", getOptionalEmail().map(Email::toString).orElse(""));
-        String address = String.format("; Address: %s", getOptionalAddress().map(Address::toString).orElse(""));
-        builder.append(getName())
-                .append(phone)
-                .append(email)
-                .append(address)
-                .append(getOptionalRemark())
-                .append(" Tags: ");
+        builder.append(getName());
+
+        getOptionalPhone().ifPresent(phone -> builder.append("; Phone: ").append(phone));
+        getOptionalEmail().ifPresent(email -> builder.append("; Email: ").append(email));
+        getOptionalAddress().ifPresent(address -> builder.append("; Address: ").append(address));
+        getOptionalRemark().ifPresent(remark -> builder.append("; Remark: ").append(remark));
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
