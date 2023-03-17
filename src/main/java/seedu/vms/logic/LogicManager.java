@@ -13,7 +13,6 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -36,7 +35,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final VmsParser vmsParser;
 
-    private Consumer<List<CommandResult>> onExecutionComplete = results -> {};
+    private Consumer<List<CommandMessage>> onExecutionComplete = results -> {};
 
     private final LinkedBlockingDeque<String> commandQueue = new LinkedBlockingDeque<>();
     private volatile boolean isExecuting = false;
@@ -72,9 +71,9 @@ public class LogicManager implements Logic {
         try {
             process.run();
         } catch (Throwable deathEx) {
-            completeExecution(List.of(new CommandResult(
+            completeExecution(List.of(new CommandMessage(
                     deathEx.toString(),
-                    CommandResult.State.DEATH)));
+                    CommandMessage.State.DEATH)));
         }
     }
 
@@ -84,20 +83,20 @@ public class LogicManager implements Logic {
         try {
             execute(vmsParser.parseCommand(commandText));
         } catch (ParseException parseEx) {
-            completeExecution(List.of(new CommandResult(
+            completeExecution(List.of(new CommandMessage(
                     parseEx.getMessage(),
-                    CommandResult.State.ERROR)));
+                    CommandMessage.State.ERROR)));
         }
     }
 
 
     private void execute(Command command) {
-        ArrayList<CommandResult> results = new ArrayList<>();
+        ArrayList<CommandMessage> results = new ArrayList<>();
 
         try {
             results.add(command.execute(model));
         } catch (CommandException ex) {
-            results.add(new CommandResult(ex.getMessage(), CommandResult.State.ERROR));
+            results.add(new CommandMessage(ex.getMessage(), CommandMessage.State.ERROR));
             completeExecution(results);
             return;
         }
@@ -105,31 +104,31 @@ public class LogicManager implements Logic {
         try {
             storage.savePatientManager(model.getPatientManager());
         } catch (IOException ioe) {
-            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+            results.add(new CommandMessage(FILE_OPS_ERROR_MESSAGE + ioe, CommandMessage.State.WARNING));
         }
 
         try {
             storage.saveVaxTypes(model.getVaxTypeManager());
         } catch (IOException ioe) {
-            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+            results.add(new CommandMessage(FILE_OPS_ERROR_MESSAGE + ioe, CommandMessage.State.WARNING));
         }
 
         try {
             storage.saveAppointments(model.getAppointmentManager());
         } catch (IOException ioe) {
-            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+            results.add(new CommandMessage(FILE_OPS_ERROR_MESSAGE + ioe, CommandMessage.State.WARNING));
         }
 
         completeExecution(results, command.getFollowUp());
     }
 
 
-    private void completeExecution(List<CommandResult> results) {
+    private void completeExecution(List<CommandMessage> results) {
         completeExecution(results, Optional.empty());
     }
 
 
-    private synchronized void completeExecution(List<CommandResult> results, Optional<Command> followUp) {
+    private synchronized void completeExecution(List<CommandMessage> results, Optional<Command> followUp) {
         onExecutionComplete.accept(results);
         if (followUp.isPresent()) {
             new Thread(() -> attemptProcess(
@@ -142,7 +141,7 @@ public class LogicManager implements Logic {
 
 
     @Override
-    public void setOnExecutionCompletion(Consumer<List<CommandResult>> onExecutionComplete) {
+    public void setOnExecutionCompletion(Consumer<List<CommandMessage>> onExecutionComplete) {
         this.onExecutionComplete = onExecutionComplete;
     }
 

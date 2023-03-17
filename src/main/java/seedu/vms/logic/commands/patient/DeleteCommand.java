@@ -6,8 +6,8 @@ import java.util.Map;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
         Map<Integer, IdData<Patient>> lastShownList = model.getFilteredPatientList();
 
@@ -45,7 +45,7 @@ public class DeleteCommand extends Command {
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased()).getValue();
         model.deletePatient(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
+        return new CommandMessage(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }
 
     @Override

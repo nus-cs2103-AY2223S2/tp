@@ -10,8 +10,8 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import java.util.Map;
 
 import seedu.vms.commons.core.Messages;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -54,7 +54,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
 
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
@@ -66,7 +66,7 @@ public class AddCommand extends Command {
         Patient patient = patientList.get(patientId).getValue();
 
         model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

@@ -3,8 +3,8 @@ package seedu.vms.logic.commands.vaccination;
 import java.util.Objects;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.Model;
 import seedu.vms.model.vaccination.VaxType;
@@ -31,12 +31,12 @@ public class EditVaxTypeCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandMessage execute(Model model) throws CommandException {
         Objects.requireNonNull(model);
 
         try {
             VaxType vaxType = model.performVaxTypeAction(builder::update);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, vaxType.toString()));
+            return new CommandMessage(String.format(MESSAGE_SUCCESS, vaxType.toString()));
         } catch (IllegalValueException ive) {
             throw new CommandException(ive.getMessage(), ive);
         }

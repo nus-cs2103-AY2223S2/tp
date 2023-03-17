@@ -3,7 +3,7 @@ package seedu.vms.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import seedu.vms.logic.commands.CommandResult;
+import seedu.vms.logic.CommandMessage;
 
 
 /** A GUI representation of a command message to the user. */
@@ -22,7 +22,7 @@ public class ResultMessageBox extends UiPart<Region> {
     /**
      * Constructs a {@code ResultMessageBox}.
      */
-    public ResultMessageBox(CommandResult result) {
+    public ResultMessageBox(CommandMessage result) {
         super(FXML_FILE);
         stateLabel.setText(String.format("[%s]", result.getState().toString()));
         messageLabel.setText(result.getMessage());

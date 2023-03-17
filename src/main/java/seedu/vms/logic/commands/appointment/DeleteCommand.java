@@ -6,8 +6,8 @@ import java.util.Map;
 
 import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.index.Index;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
         Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
 
@@ -45,7 +45,7 @@ public class DeleteCommand extends Command {
 
         Appointment appointmentToDelete = appointmentList.get(targetIndex.getZeroBased()).getValue();
         model.deleteAppointment(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
+        return new CommandMessage(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
     }
 
     @Override

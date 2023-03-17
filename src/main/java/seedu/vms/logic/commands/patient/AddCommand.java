@@ -9,8 +9,8 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.Patient;
@@ -56,11 +56,11 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandMessage execute(Model model) throws CommandException {
         requireNonNull(model);
 
         model.addPatient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

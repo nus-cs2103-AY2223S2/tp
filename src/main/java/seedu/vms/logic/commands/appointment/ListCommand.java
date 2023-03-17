@@ -3,8 +3,8 @@ package seedu.vms.logic.commands.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.Model;
 
 /**
@@ -18,9 +18,9 @@ public class ListCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandMessage execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandMessage(MESSAGE_SUCCESS);
     }
 }

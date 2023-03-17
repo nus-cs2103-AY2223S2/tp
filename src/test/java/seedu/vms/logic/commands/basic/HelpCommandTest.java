@@ -5,7 +5,7 @@ import static seedu.vms.logic.commands.basic.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.vms.logic.commands.CommandResult;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 
@@ -15,7 +15,7 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        CommandMessage expectedCommandResult = new CommandMessage(SHOWING_HELP_MESSAGE, true, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 }

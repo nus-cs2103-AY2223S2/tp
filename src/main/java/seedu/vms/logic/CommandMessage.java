@@ -1,4 +1,4 @@
-package seedu.vms.logic.commands;
+package seedu.vms.logic;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Represents the result of a command execution.
  */
-public class CommandResult {
+public class CommandMessage {
 
     private final String message;
     private final State state;
@@ -23,7 +23,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with {@code showHelp} and {@code exit}
      * set to their default value.
      */
-    public CommandResult(String message, State state) {
+    public CommandMessage(String message, State state) {
         this(message, false, false, state);
     }
 
@@ -32,7 +32,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with {@code state} set to
      * {@link State#INFO}.
      */
-    public CommandResult(String message, boolean showHelp, boolean exit) {
+    public CommandMessage(String message, boolean showHelp, boolean exit) {
         this(message, showHelp, exit, State.INFO);
     }
 
@@ -40,7 +40,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult}.
      */
-    public CommandResult(String message, boolean showHelp, boolean exit, State state) {
+    public CommandMessage(String message, boolean showHelp, boolean exit, State state) {
         this.message = requireNonNull(message);
         this.state = state;
         this.showHelp = showHelp;
@@ -52,7 +52,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
+    public CommandMessage(String feedbackToUser) {
         this(feedbackToUser, false, false);
     }
 
@@ -79,11 +79,11 @@ public class CommandResult {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
+        if (!(other instanceof CommandMessage)) {
             return false;
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
+        CommandMessage otherCommandResult = (CommandMessage) other;
         return message.equals(otherCommandResult.message)
                 && state.equals(otherCommandResult.state)
                 && showHelp == otherCommandResult.showHelp
