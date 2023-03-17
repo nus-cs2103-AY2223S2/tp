@@ -11,6 +11,11 @@ import seedu.sudohr.model.department.DepartmentName;
  */
 public class DeleteDepartmentCommandParser implements Parser<DeleteDepartmentCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeleteDepartmentCommand
+     * and returns a DeleteDepartmentCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public DeleteDepartmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEPARTMENT_NAME);

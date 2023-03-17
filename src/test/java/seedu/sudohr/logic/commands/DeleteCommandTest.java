@@ -5,10 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
+import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES;
+import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
-import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES;
+
+import java.util.stream.IntStream;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.Messages;
@@ -18,7 +21,6 @@ import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.employee.Employee;
 
-import java.util.stream.IntStream;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -105,7 +107,8 @@ public class DeleteCommandTest {
         Checking equality of model does not mean that the cascading succeeded
         as the equality check for department is by name.
 
-        So Checking whether a list of department is equal to other list of department will not check through the employees in the department.
+        So Checking whether a list of department is equal to other list of department will not
+        check through the employees in the department.
          */
         assertFalse(
                 model.getFilteredDepartmentList().stream()

@@ -11,7 +11,6 @@ import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 
 import org.junit.jupiter.api.Test;
 
-
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
@@ -34,7 +33,8 @@ public class DeleteDepartmentCommandTest {
 
         DeleteDepartmentCommand deleteDepartmentCommand = new DeleteDepartmentCommand(targetDepartmentName);
 
-        String expectedMessage = String.format(DeleteDepartmentCommand.MESSAGE_DELETE_DEPARTMENT_SUCCESS, departmentToDelete);
+        String expectedMessage = String.format(DeleteDepartmentCommand.MESSAGE_DELETE_DEPARTMENT_SUCCESS,
+                departmentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
         expectedModel.removeDepartment(departmentToDelete);
