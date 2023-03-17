@@ -30,6 +30,12 @@ public class TypicalDepartments {
     public static final Department SALES = new DepartmentBuilder().withDepartmentName("Sales")
             .withEmployees(GEORGE, HOON, IDA).build();
 
+    public static final Employee EMPLOYEE_IN_HUMAN_RESOURCES = HUMAN_RESOURCES.getEmployees()
+            .stream()
+            .findFirst()
+            .get();
+
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalDepartments() {} // prevents instantiation
