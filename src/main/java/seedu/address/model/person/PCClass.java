@@ -1,10 +1,5 @@
 package seedu.address.model.person;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.UniqueStudentList;
-import seedu.address.model.person.Class;
-
 import java.util.List;
 import java.util.Objects;
 

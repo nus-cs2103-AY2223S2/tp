@@ -209,10 +209,9 @@ public class ModelManager implements Model {
      * @param student
      */
     @Override
-    public void addStudent(Student student) {
-        Class newClass = Class.of("-");
-        newClass.addStudent(student);
-        pcClass.addClass(newClass);
+    public void addStudent(Student student, Class c) {
+        c.addStudent(student);
+        pcClass.addClass(c);
     }
 
     /**
