@@ -8,17 +8,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import java.util.function.Predicate;
-import seedu.address.model.patient.NameContainsKeywordsPredicate;
-import seedu.address.model.patient.NricContainsKeywordsPredicate;
-import seedu.address.model.patient.StatusContainsKeywordsPredicate;
-import seedu.address.model.patient.Status;
+
+import seedu.address.model.patient.*;
 
 /**
  * Finds and lists all patients in MedInfo whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 
-@SuppressWarnings({"unchecked"})
+//@SuppressWarnings({"unchecked"})
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
@@ -41,9 +39,11 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_STATUS + " GRAY GREEN\n";
 
 
-    private final Predicate predicate;
+    private final Predicate<Patient> predicate;
 
-    public FindCommand(Predicate predicate) {
+    //
+    //kkk
+    public FindCommand(Predicate<Patient> predicate) {
         this.predicate = predicate;
     }
 
