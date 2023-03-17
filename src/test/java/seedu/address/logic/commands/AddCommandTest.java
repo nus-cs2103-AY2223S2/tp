@@ -117,7 +117,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addTask(DeadlineTask person) {
+        public void addTask(Task person) {
             throw new AssertionError("This method should not be called.");
         }
 

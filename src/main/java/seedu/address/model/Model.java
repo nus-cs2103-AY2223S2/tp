@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
 
 
@@ -100,9 +99,9 @@ public interface Model {
     /**
      * Adds the given task.
      * {@code task} must not already exist in the address book.
-     * @param person
+     * @param target
      */
-    void addTask(DeadlineTask person);
+    void addTask(Task target);
 
     /**
      * Marks the given task {@code task} as done.

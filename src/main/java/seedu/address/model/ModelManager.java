@@ -13,7 +13,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
 
 /**
@@ -134,7 +133,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTask(DeadlineTask task) {
+    public void addTask(Task task) {
         addressBook.addTask(task);
     }
 
