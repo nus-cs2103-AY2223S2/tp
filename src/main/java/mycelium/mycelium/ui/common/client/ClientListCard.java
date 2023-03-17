@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.client;
+package mycelium.mycelium.ui.common.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

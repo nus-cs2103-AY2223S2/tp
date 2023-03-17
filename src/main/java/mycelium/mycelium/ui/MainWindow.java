@@ -19,11 +19,11 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.project.Project;
-import mycelium.mycelium.ui.client.ClientListCard;
 import mycelium.mycelium.ui.common.ListPanel;
 import mycelium.mycelium.ui.common.TabPage;
 import mycelium.mycelium.ui.common.UiPart;
-import mycelium.mycelium.ui.project.ProjectListCard;
+import mycelium.mycelium.ui.common.client.ClientListCard;
+import mycelium.mycelium.ui.common.project.ProjectListCard;
 
 /**
  * The Main Window. Provides the basic application layout containing

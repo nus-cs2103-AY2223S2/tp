@@ -3,7 +3,6 @@ package mycelium.mycelium.ui.common;
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.BiFunction;
-import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,14 +10,12 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import mycelium.mycelium.commons.core.LogsCenter;
 
 /**
  * Panel containing the list of {@code T}.
  */
 public class ListPanel<T> extends UiPart<Region> {
     private static final String FXML = "ListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ListPanel.class);
 
     @FXML
     private ListView<T> listView;

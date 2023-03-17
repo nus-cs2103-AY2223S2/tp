@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.client;
+package mycelium.mycelium.ui.common.client;
 
 import static mycelium.mycelium.ui.testutil.GuiTestAssert.assertCardDisplaysClient;
 import static org.junit.jupiter.api.Assertions.assertEquals;
