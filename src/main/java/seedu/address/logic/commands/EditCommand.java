@@ -100,10 +100,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(
                 personToEdit.getOptionalAddress().orElse(null)
         );
-        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
+        Remark oldRemark = personToEdit.getOptionalRemark().orElse(null); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, oldRemark, updatedTags);
     }
 
     @Override
