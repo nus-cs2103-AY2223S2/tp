@@ -15,15 +15,6 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class User
-Class Address
-Class Email
-Class Name
-Class Phone
-Class GroupTagSet
-Class GroupTag
-Class ModuleTagSet
-Class ModuleTag
-Class Tag
 }
 
 Class HiddenOutside #FFFFFF
@@ -42,20 +33,6 @@ EduMate *--> "1" UniquePersonList
 EduMate *--> "1" User
 User --|> Person
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> ModuleTagSet
-ModuleTagSet *--> "*" ModuleTag
-Person *--> GroupTagSet
-GroupTagSet *--> "*" GroupTag
-GroupTag ..> Tag
-ModuleTag ..> Tag
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Person
 @enduml

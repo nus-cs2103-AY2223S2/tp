@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+Class Person
+Class Address
+Class Email
+Class Name
+Class Phone
+Class GroupTagSet
+Class GroupTag
+Class ModuleTagSet
+Class ModuleTag
+Class Tag
+Class Location
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Person
+
+Person *--> Name
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+
+Person *--> ModuleTagSet
+ModuleTagSet *--> "*" ModuleTag
+Person *--> GroupTagSet
+GroupTagSet *--> "*" GroupTag
+GroupTag ..|> Tag
+ModuleTag ..|> Tag
+Address --> Location
+
+@enduml

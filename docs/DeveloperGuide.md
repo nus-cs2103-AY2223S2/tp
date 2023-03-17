@@ -23,9 +23,6 @@ title: Developer Guide
      * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
    * [UI Component](#ui-component)
    * [Model Component](#model-component)
-   * [Tag](#tag)
-       * [Group Tag](#group-tag)
-       * [Module Tag](#module-tag)
    * [Person](#person)
        * [Name](#name)
        * [Address](#address)
@@ -34,6 +31,9 @@ title: Developer Guide
        * [Telegram Handle](#telegram-handle)
        * [Group Tag Set](#group-tag-set)
        * [Module Tag Set](#module-tag-set)
+   * [Tag](#tag)
+       * [Group Tag](#group-tag)
+       * [Module Tag](#module-tag)
    * [Utils](#utils)
        * [Sample Data Util](#sample-data-util)
    * [Logic Component](#logic-component)
@@ -50,11 +50,6 @@ title: Developer Guide
    * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
-       * [Add Command Parser](#add-command-parser)
-       * [Edit Command Parser](#edit-command-parser)
-       * [Find Command Parser](#find-command-parser)
-       * [Tag Command Parser](#tag-command-parser)
-       * [Sort Command Parser](#sort-command-parser)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
 5. [Testing](#5-testing)
@@ -347,10 +342,15 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### **Tag**
-#### **Group Tag**
-#### **Module Tag**
 ### **Person**
+
+**API** : [`Person.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
+
+<img src="images/PersonClassDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.3.2</b> Class Diagram for Person Components
+</div>
+
 #### **Name**
 #### **Address**
 #### **Phone**
@@ -358,6 +358,11 @@ The `Model` component,
 #### **Telegram Handle**
 #### **Group Tag Set**
 #### **Module Tag Set**
+
+### **Tag**
+#### **Group Tag**
+#### **Module Tag**
+
 ### **Utils**
 #### **Sample Data Util**
 
@@ -392,12 +397,6 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 </div>
 <br>
 
-<img src="images/AddParserSequenceDiagram.png" style="width:80%;margin:0 10%">
-<div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.2a</b> Sequence Diagram for parsing `AddCommand` arguments
-</div>
-<br>
-
 <div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -411,12 +410,6 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <img src="images/EditSequenceDiagram.png" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.4.3</b> Sequence Diagram for a typical `edit` command
-</div>
-<br>
-
-<img src="images/EditParserSequenceDiagram.png" style="width:80%;margin:0 10%">
-<div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.3a</b> Sequence Diagram for parsing `EditCommand` arguments
 </div>
 <br>
 
