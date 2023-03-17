@@ -20,8 +20,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EventBookBuilder;
 import seedu.address.testutil.ContactListBuilder;
+import seedu.address.testutil.EventBookBuilder;
 
 public class ModelManagerTest {
 

@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.EventBook;
 import seedu.address.model.ContactList;
-import seedu.address.model.ReadOnlyEventBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.ContactPhone;
