@@ -58,7 +58,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getRecipeBook(), new UserPrefs());
         expectedModel.deleteRecipe(recipeToDelete);
-        showNoPerson(expectedModel);
+        showNoRecipe(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

@@ -3,10 +3,10 @@ package seedu.recipe.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
 import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.recipe.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.recipe.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.recipe.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.recipe.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.recipe.logic.commands.CommandTestUtil.DESC_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_CORNDOGS;
 import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
 
@@ -79,8 +79,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_CORNDOGS + INGREDIENT_DESC_CORNDOGS + STEP_DESC_CORNDOGS
+                + DESC_DESC_CORNDOGS;
         Recipe expectedRecipe = new RecipeBuilder(CORNDOGS).withIngredients().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addRecipe(expectedRecipe);

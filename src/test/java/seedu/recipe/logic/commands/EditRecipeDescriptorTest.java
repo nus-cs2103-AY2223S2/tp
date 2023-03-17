@@ -2,13 +2,12 @@ package seedu.recipe.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.recipe.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.recipe.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.DESC_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,39 +19,36 @@ public class EditRecipeDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditRecipeDescriptor descriptorWithSameValues = new EditRecipeDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditRecipeDescriptor descriptorWithSameValues = new EditRecipeDescriptor(DESC_CORNDOGS);
+        assertTrue(DESC_CORNDOGS.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_CORNDOGS.equals(DESC_CORNDOGS));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_CORNDOGS.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_CORNDOGS.equals(5));
 
-        // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_CORNDOGS.equals(DESC_SOUP));
+
 
         // different name -> returns false
-        EditRecipeDescriptor editedAmy = new EditRecipeDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditRecipeDescriptor editedAmy = new EditRecipeDescriptorBuilder(DESC_CORNDOGS).withTitle(VALID_TITLE_SOUP).build();
+        assertFalse(DESC_CORNDOGS.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditRecipeDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditRecipeDescriptorBuilder(DESC_CORNDOGS).withDesc(VALID_DESC_SOUP).build();
+        assertFalse(DESC_CORNDOGS.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditRecipeDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditRecipeDescriptorBuilder(DESC_CORNDOGS).withIngredients(VALID_INGREDIENTS_SOUP).build();
+        assertFalse(DESC_CORNDOGS.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditRecipeDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditRecipeDescriptorBuilder(DESC_CORNDOGS).withSteps(VALID_STEPS_SOUP).build();
+        assertFalse(DESC_CORNDOGS.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditRecipeDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
