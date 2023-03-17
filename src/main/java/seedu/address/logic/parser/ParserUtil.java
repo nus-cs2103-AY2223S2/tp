@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.role.Role;
+import seedu.address.model.task.Comment;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.TaskDescription;
 
@@ -65,6 +66,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new TaskDescription(trimmedDes);
+    }
+
+    /**
+     * Parses a {@code String des} into a {@code Comment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code des} is invalid.
+     */
+    public static Comment parseComment(String com) throws ParseException {
+        requireNonNull(com);
+        String trimmedCom = com.trim();
+        if (!Comment.isValidComment(trimmedCom)) {
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
+        }
+        return new Comment(trimmedCom);
     }
 
     /**

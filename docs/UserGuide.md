@@ -72,6 +72,16 @@ Format: `event task/{TASK_NAME} from/{DD/MM/YYYY} to/{DD/MM/YYYY}`
 Example:
 * `event task/Manage Open House from/11/12/2023 to/16/12/2023`
 
+### Commenting on a task : `comment`
+
+Adds a comment to a task
+
+Format: `comment t/{TASK_ID} c/{COMMENTS} `
+
+
+Example:
+* `comment t/1 c/task was done well and on time`
+
 ### Assigning task to member: `assign`
 
 Assign a task to a person
