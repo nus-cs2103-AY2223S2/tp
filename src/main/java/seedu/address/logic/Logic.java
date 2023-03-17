@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyExecutiveProDb;
 import seedu.address.model.employee.Employee;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ExecutiveProDb.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getExecutiveProDb()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyExecutiveProDb getExecutiveProDb();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Employee> getFilteredEmployeeList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' ExecutivePro database file path.
      */
-    Path getAddressBookFilePath();
+    Path getExecutiveProDbFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_ONE;
 import static seedu.address.testutil.TypicalEmployeeIds.EMPLOYEE_ID_TWO;
-import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalExecutiveProDb;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ import seedu.address.model.employee.EmployeeId;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExecutiveProDb(), new UserPrefs());
 
     //    @Test
     //    public void execute_validIndexUnfilteredList_success() {
