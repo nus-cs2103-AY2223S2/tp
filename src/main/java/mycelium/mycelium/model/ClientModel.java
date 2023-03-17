@@ -5,12 +5,15 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.person.Person;
 
 
 /**
  * The API for operations related to clients.
  */
 public interface ClientModel {
+
+    Predicate<Person> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     /**
      * Finds a single client that matches the specified predicate. Expects to
      * find either zero or one clients. If more than one client matches the

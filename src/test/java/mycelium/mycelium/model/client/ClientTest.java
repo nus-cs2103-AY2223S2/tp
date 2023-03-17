@@ -5,6 +5,7 @@ import static mycelium.mycelium.testutil.TypicalPersons.RANTARO;
 import static mycelium.mycelium.testutil.TypicalPersons.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -41,7 +42,8 @@ public class ClientTest {
         assertFalse(WEST.equals("I love it"));
         // different client -> returns false
         assertFalse(WEST.equals(FUTA));
-        // TODO -> handle case for different name, same email
+        // same name, different client -> returns false
+        assertNotEquals(FUTA, RANTARO);
     }
 
     @Test

@@ -4,9 +4,11 @@ import static mycelium.mycelium.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB
 import static mycelium.mycelium.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalPersons.ALICE;
+import static mycelium.mycelium.testutil.TypicalPersons.WEST;
 import static mycelium.mycelium.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -23,6 +25,7 @@ import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.person.exceptions.DuplicatePersonException;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.util.exceptions.DuplicateItemException;
+import mycelium.mycelium.testutil.AddressBookBuilder;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.PersonBuilder;
 import mycelium.mycelium.testutil.ProjectBuilder;
@@ -171,8 +174,21 @@ public class AddressBookTest {
     public void getProjectList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getProjectList().remove(0));
     }
-
-    // TODO add tests for AddressBook#equals
+    @Test
+    public void equalsAndHashCode() {
+        Project project = new ProjectBuilder().build();
+        AddressBook abA = new AddressBookBuilder().withPerson(ALICE).withClient(WEST).withProject(project).build();
+        AddressBook abB = new AddressBookBuilder().withPerson(ALICE).withClient(WEST).withProject(project).build();
+        // address books have same contents -> returns true
+        // Note: assertEquals calls the object's equals() method
+        assertEquals(abA, abB);
+        assertEquals(abA.hashCode(), abB.hashCode());
+        // different address books -> returns false
+        assertNotEquals(abA, addressBook);
+        assertNotEquals(abA.hashCode(), addressBook.hashCode());
+        // null -> returns false
+        assertNotEquals(abA, null);
+    }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
