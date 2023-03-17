@@ -318,7 +318,7 @@ public interface Model {
     /**
      * Returns true if a flight with the same identity as {@code flight} exists in Wingman
      *
-     * @param flight
+     * @param flight the flight
      * @return true if flight exists, false otherwise
      */
     boolean hasFlight(Flight flight);
