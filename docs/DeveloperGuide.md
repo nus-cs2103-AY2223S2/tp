@@ -298,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. FriendlyLink should work on Microsoft Windows, macOS, and Linux that has `Java 11` is installed.
-1. FriendlyLink Should be able to hold up to 100 persons (elderly and volunteer) without incurring a delay larger than 1 second for any command.
+1. FriendlyLink Should be able to hold up to 100 persons (elderly and volunteer) without incurring a delay larger than 3 second for any command.
 1. A user with above average typing speed (40wpm) for regular English text (i.e. not code, not system admin commands) should be able to perform at least 75% of use cases faster using commands instead of using the mouse.
 1. FriendlyLink will perform minimal checks on correctness of details entered into FriendlyLink (as specified in the user guide advanced section).
 1. FriendlyLink will not be responsible for the privacy and security of the data stored in FriendlyLink.
