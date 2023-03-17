@@ -14,11 +14,10 @@ import seedu.vms.logic.parser.exceptions.ParseException;
 
 
 /** A parser to parse the command of a feature. */
-public abstract class FeatureParser implements Parser<ParseResult> {
+public abstract class FeatureParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
 
-    @Override
     public ParseResult parse(String commandInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandInput.trim());
         if (!matcher.matches()) {
