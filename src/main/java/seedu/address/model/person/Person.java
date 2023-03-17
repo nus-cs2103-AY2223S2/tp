@@ -116,7 +116,7 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("; Description: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();

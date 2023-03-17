@@ -236,6 +236,23 @@ Examples:
 * `filter t/family t/friends t/classmates` returns `3 contacts listed!`
 * ![filterByTags](images/filter/filterByTagsResult.png)
 
+
+### Undo past commands
+
+Undoes previous commands that modified ModCheck.
+Undo will only undo commands that have successfully modified the data in ModCheck. For example, a successful `add`,
+`edit`, or `delete` command can be undone by the undo command.
+Any commands that does not modify the data in ModCheck will NOT be undone. This includes `view`, `find`, and other
+similar commands. Any command that would have modified the data in ModCheck, but was unsuccessful in doing so (eg:
+`add` duplicate person), will NOT be undone.
+
+Chaining of a few undo commands is supported. Once the undo limit has been reached, the error message `No command to
+undo!` will be shown.
+
+Format: `undo`
+
+Use `redo` to reapply the changes undone by undo.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -247,14 +264,16 @@ Examples:
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**View** | `view INDEX`<br> e.g., `view 2`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
-**Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br>
+| Action     | Format, Examples                                                                                                                                                                                                                                                                      |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                 |
+| **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                   |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                            |
+| **List**   | `list`                                                                                                                                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                |
+| **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> |
+| **Undo**   | `undo`                                                                                                                                                                                                                                                                                |
+| **Redo**   | `redo`                                                                                                                                                                                                                                                                                |

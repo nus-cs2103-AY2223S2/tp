@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.Undoable;
 
 
 /**
@@ -22,11 +23,16 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!model.hasUndoableCommand()) {
-            throw new CommandException(MESSAGE_NO_UNDOABLE_COMMAND);
+        if (model instanceof Undoable) {
+            Undoable undoableModel = (Undoable) model;
+            if (!undoableModel.hasUndoableCommand()) {
+                throw new CommandException(MESSAGE_NO_UNDOABLE_COMMAND);
+            }
+            String returnMessage = undoableModel.executeUndo();
+            return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage));
+        } else {
+            throw new IllegalArgumentException("Model passed does not support undo!");
         }
-        String returnMessage = model.executeUndo();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, returnMessage));
     }
 }
 
