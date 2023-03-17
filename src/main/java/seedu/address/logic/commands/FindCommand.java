@@ -9,9 +9,6 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-
-import java.util.function.Predicate;
-
 import seedu.address.model.patient.Patient;
 
 /**
