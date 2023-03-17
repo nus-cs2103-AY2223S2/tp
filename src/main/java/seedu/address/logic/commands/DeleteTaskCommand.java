@@ -23,10 +23,10 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
-    private final Index targetIndex;
+    private final Index taskIndex;
 
     public DeleteTaskCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+        this.taskIndex = targetIndex;
     }
 
     @Override
@@ -34,12 +34,19 @@ public class DeleteTaskCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (taskIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Task taskToDelete = lastShownList.get(taskIndex.getZeroBased());
         model.deleteTask(taskToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteTaskCommand // instanceof handles nulls
+                && taskIndex.equals(((DeleteTaskCommand) other).taskIndex)); // state check
     }
 }
