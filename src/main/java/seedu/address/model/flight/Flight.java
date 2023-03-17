@@ -1,11 +1,9 @@
 package seedu.address.model.flight;
 
-import javax.crypto.spec.DESedeKeySpec;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 import seedu.address.commons.util.GetUtils;
@@ -30,6 +28,7 @@ public class Flight implements Item {
     private static final String DEPARTURE_STRING = "Depart from";
     private static final String ARRIVE_STRING = "Arrive at";
     private static final String NOT_SPECIFIED_STRING = "Not Specified";
+    public final Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink;
     private final String code;
     private final String id;
     private Plane plane;
@@ -39,8 +38,18 @@ public class Flight implements Item {
     private Location arrivalLocation;
 
     //TODO: Add exceptions to ensure departure and arrival locations are distinct
-    public final Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink;
 
+    /**
+     * Creates a new flight
+     *
+     * @param id                the id of the  flight
+     * @param code              the code
+     * @param plane             the plane
+     * @param departureLocation the departure location
+     * @param arrivalLocation   the arrival location
+     * @param pilotLink         the link to the pilot
+     * @throws LinkException if the link cannot be created
+     */
     public Flight(
         String id,
         String code,

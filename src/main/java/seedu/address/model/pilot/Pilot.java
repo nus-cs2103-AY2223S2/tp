@@ -3,7 +3,6 @@ package seedu.address.model.pilot;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.function.Supplier;
 
 import seedu.address.commons.util.GetUtils;
 import seedu.address.model.Model;
@@ -15,6 +14,9 @@ import seedu.address.model.link.LinkResolver;
  * Represents a Pilot in the Wingman app.
  */
 public class Pilot implements Item {
+    public static final Map<FlightPilotType, Integer> SHAPE =
+        Map.of(FlightPilotType.PILOT_FLYING, 1,
+            FlightPilotType.PILOT_MONITORING, 1);
     private static final String UUID_STRING = "UUID";
 
     private static final String NAME_STRING = "Name";
@@ -29,9 +31,6 @@ public class Pilot implements Item {
     /**
      * The shape of the link to the pilot.
      */
-    public static final Map<FlightPilotType, Integer> SHAPE =
-        Map.of(FlightPilotType.PILOT_FLYING, 1,
-            FlightPilotType.PILOT_MONITORING, 1);
     private final String name;
 
     private final int age;

@@ -1,7 +1,5 @@
 package seedu.address.model.link;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import seedu.address.model.ReadOnlyItemManager;
