@@ -16,14 +16,23 @@ public class DeliverySlot {
     public final String value;
 
     /**
-     * Constructs an {@code earning}.
+     * Constructs an {@code DeliverySlot}.
      *
-     * @param value A valid earning.
+     * @param value A valid slot.
      */
     public DeliverySlot(String value) {
         requireNonNull(value);
         checkArgument(isValidDeliverySlot(value), MESSAGE_CONSTRAINTS);
         this.value = value;
+    }
+
+    /**
+     * Constructs an {@code DeliverySlot}.
+     *
+     * @param value A invalid slot.
+     */
+    public DeliverySlot() {
+        this.value = "-1";
     }
 
     /**
@@ -48,6 +57,10 @@ public class DeliverySlot {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public static DeliverySlot placeholder() {
+        return new DeliverySlot();
     }
 
 }

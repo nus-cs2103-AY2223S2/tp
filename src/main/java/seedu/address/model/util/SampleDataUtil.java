@@ -79,8 +79,6 @@ public class SampleDataUtil {
             new DeliveryJob(
                 persons[5].getPersonId(),
                 persons[0].getPersonId(),
-                "2023-03-07",
-                "2",
                 "5.0")
             };
     }

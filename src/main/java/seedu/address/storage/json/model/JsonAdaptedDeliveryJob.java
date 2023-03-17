@@ -57,14 +57,20 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
         this.jobId = source.getJobId();
         this.recepient = source.getRecepientId();
         this.sender = source.getSenderId();
-        this.deliveryDate = source.getDeliveryDate().get().date;
-        this.deliverySlot = source.getDeliverySlot().get().value;
+        this.deliveryDate = source.getDeliveryDate().orElseGet(() -> DeliveryDate.placeholder()).date;
+        this.deliverySlot = source.getDeliverySlot().orElseGet(() -> DeliverySlot.placeholder()).value;
         this.earning = source.getEarning().value;
         this.isDelivered = source.getDeliveredStatus();
     }
 
     @Override
     public DeliveryJob toModelType() throws IllegalValueException {
+        if (deliveryDate.equals(DeliveryDate.placeholder().date)
+                || deliverySlot.equals(DeliverySlot.placeholder().value)) {
+            return new DeliveryJob(jobId, recepient, sender, Optional.empty(),
+                    Optional.empty(),
+                    earning, isDelivered);
+        }
         return new DeliveryJob(jobId, recepient, sender, Optional.of(new DeliveryDate(deliveryDate)),
                 Optional.of(new DeliverySlot(deliverySlot)),
                 earning, isDelivered);

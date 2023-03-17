@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class DeliveryDate {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Dates should only contain numeric characters and spaces, and it should not be blank.\n"
+    public static final String MESSAGE_CONSTRAINTS = "Dates should only contain numeric characters and spaces, "
+            + "and it should not be blank.\n"
             + "Date should have format like this: YYYY-mm-DD";
 
     /*
@@ -39,7 +39,6 @@ public class DeliveryDate {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return date;
@@ -49,12 +48,16 @@ public class DeliveryDate {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeliveryDate // instanceof handles nulls
-                && date.equals(((DeliveryDate) other).date)); // state check
+                        && date.equals(((DeliveryDate) other).date)); // state check
     }
 
     @Override
     public int hashCode() {
         return date.hashCode();
+    }
+
+    public static DeliveryDate placeholder() {
+        return new DeliveryDate("0000-00-00");
     }
 
 }
