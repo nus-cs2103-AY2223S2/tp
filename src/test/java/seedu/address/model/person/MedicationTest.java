@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class MedicationTest {
 
@@ -67,6 +67,7 @@ public class MedicationTest {
     @Test
     public void isValidMedication_threeMedication_returnsTrue() {
         assertTrue(Medication.isValidMedication("20 Paracetamol 500mg; 1 DiHydrogen Monoxide; 1 physiotherapy"));
+
     }
 
 }

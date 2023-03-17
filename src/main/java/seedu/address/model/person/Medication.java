@@ -20,8 +20,8 @@ public class Medication {
      * number medication[;number medication]*
      */
     // ^$|\\d+ [^+;+]+(;\\s*\\d+ [^;]+)*
-    public static final String VALIDATION_REGEX = "^$|\\d+ [^+"  + DELIMITER + "+]+(" + DELIMITER
-            + "\\s*\\d+ [^" + DELIMITER +"]+)*";
+    public static final String VALIDATION_REGEX = "^$|\\d+ [^+" + DELIMITER + "+]+(" + DELIMITER
+            + "\\s*\\d+ [^" + DELIMITER + "]+)*";
 
     public final String value;
 
