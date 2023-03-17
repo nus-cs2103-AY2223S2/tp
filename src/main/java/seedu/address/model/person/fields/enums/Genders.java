@@ -9,7 +9,7 @@ public enum Genders {
     FEMALE("female"),
     DNS("dns");
 
-    public final String gender;
+    private final String gender;
 
     Genders(String gender) {
         this.gender = gender;
