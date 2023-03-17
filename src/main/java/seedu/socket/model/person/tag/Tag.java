@@ -1,4 +1,4 @@
-package seedu.socket.model.tag;
+package seedu.socket.model.person.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.socket.commons.util.AppUtil.checkArgument;
@@ -25,7 +25,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = tagName.toLowerCase();
     }
 
     /**

@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.socket.commons.util.StringUtil;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.tag.Tag;
+import seedu.socket.model.person.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Language} matches any of the keywords given.

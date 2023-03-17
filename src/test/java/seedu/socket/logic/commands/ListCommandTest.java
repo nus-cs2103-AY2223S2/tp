@@ -25,10 +25,10 @@ import seedu.socket.logic.parser.exceptions.ParseException;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.UserPrefs;
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.LanguageContainsKeywordsPredicate;
-import seedu.socket.model.tag.Tag;
-import seedu.socket.model.tag.TagContainsKeywordsPredicate;
+import seedu.socket.model.person.tag.Language;
+import seedu.socket.model.person.predicate.listCommandLanguagePredicate;
+import seedu.socket.model.person.tag.Tag;
+import seedu.socket.model.person.predicate.listCommandTagPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -48,9 +48,9 @@ public class ListCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         Set<Language> languages = new HashSet<>(); // no language keywords are given
-        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        listCommandLanguagePredicate langPredicate = new listCommandLanguagePredicate(languages);
         Set<Tag> tags = new HashSet<>();
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        listCommandTagPredicate tagPredicate = new listCommandTagPredicate(tags);
         ListCommand command = new ListCommand(tagPredicate, langPredicate, false);
         assertCommandSuccess(command,
                 model, ListCommand.MESSAGE_SUCCESS, expectedModel);
@@ -60,9 +60,9 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Set<Language> languages = new HashSet<>(); // no language keywords are given
-        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        listCommandLanguagePredicate langPredicate = new listCommandLanguagePredicate(languages);
         Set<Tag> tags = new HashSet<>();
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        listCommandTagPredicate tagPredicate = new listCommandTagPredicate(tags);
         ListCommand command = new ListCommand(tagPredicate, langPredicate, false);
         assertCommandSuccess(command, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
@@ -84,19 +84,19 @@ public class ListCommandTest {
         firstTags.add(new Tag("friends"));
         Set<Language> firstLanguages = new HashSet<>();
         firstLanguages.add(new Language("python"));
-        TagContainsKeywordsPredicate firstPredicateTag =
-                new TagContainsKeywordsPredicate(firstTags);
-        LanguageContainsKeywordsPredicate firstPredicateLang =
-                new LanguageContainsKeywordsPredicate(firstLanguages);
+        listCommandTagPredicate firstPredicateTag =
+                new listCommandTagPredicate(firstTags);
+        listCommandLanguagePredicate firstPredicateLang =
+                new listCommandLanguagePredicate(firstLanguages);
 
         Set<Tag> secondTags = new HashSet<>();
         firstTags.add(new Tag("friend"));
         Set<Language> secondLanguages = new HashSet<>();
         secondLanguages.add(new Language("java"));
-        TagContainsKeywordsPredicate secondPredicateTag =
-                new TagContainsKeywordsPredicate(secondTags);
-        LanguageContainsKeywordsPredicate secondPredicateLang =
-                new LanguageContainsKeywordsPredicate(secondLanguages);
+        listCommandTagPredicate secondPredicateTag =
+                new listCommandTagPredicate(secondTags);
+        listCommandLanguagePredicate secondPredicateLang =
+                new listCommandLanguagePredicate(secondLanguages);
 
 
         ListCommand listFirstCommand = new ListCommand(firstPredicateTag, firstPredicateLang, true);
@@ -123,10 +123,10 @@ public class ListCommandTest {
     public void execute_zeroTagKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         Set<Language> languages = new HashSet<>(); // no language keywords are given
-        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        listCommandLanguagePredicate langPredicate = new listCommandLanguagePredicate(languages);
         Set<Tag> tags = new HashSet<>();
         tags.add(new Tag("unknownTag"));
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        listCommandTagPredicate tagPredicate = new listCommandTagPredicate(tags);
         ListCommand command = new ListCommand(tagPredicate, langPredicate, true);
         expectedModel.updateFilteredPersonList(tagPredicate.and(langPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -136,10 +136,10 @@ public class ListCommandTest {
     public void execute_zeroLanguagesKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         Set<Tag> tags = new HashSet<>(); // no language keywords are given
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        listCommandTagPredicate tagPredicate = new listCommandTagPredicate(tags);
         Set<Language> languages = new HashSet<>();
         languages.add(new Language("unknownLanguage"));
-        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        listCommandLanguagePredicate langPredicate = new listCommandLanguagePredicate(languages);
         ListCommand command = new ListCommand(tagPredicate, langPredicate, true);
         expectedModel.updateFilteredPersonList(tagPredicate.and(langPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -151,9 +151,9 @@ public class ListCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         Set<Tag> tags = new HashSet<>();
         tags.add(new Tag("friends"));
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        listCommandTagPredicate tagPredicate = new listCommandTagPredicate(tags);
         Set<Language> languages = new HashSet<>();
-        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        listCommandLanguagePredicate langPredicate = new listCommandLanguagePredicate(languages);
         ListCommand command = new ListCommand(tagPredicate, langPredicate, true);
         expectedModel.updateFilteredPersonList(tagPredicate.and(langPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -164,11 +164,11 @@ public class ListCommandTest {
     public void execute_languageKeyword_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         Set<Tag> tags = new HashSet<>();
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        listCommandTagPredicate tagPredicate = new listCommandTagPredicate(tags);
         Set<Language> languages = new HashSet<>();
         languages.add(new Language("Java"));
         languages.add(new Language("JavaScript"));
-        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        listCommandLanguagePredicate langPredicate = new listCommandLanguagePredicate(languages);
         ListCommand command = new ListCommand(tagPredicate, langPredicate, true);
         expectedModel.updateFilteredPersonList(tagPredicate.and(langPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -179,12 +179,12 @@ public class ListCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         Set<Tag> tags = new HashSet<>();
-        TagContainsKeywordsPredicate tagPredicate = new TagContainsKeywordsPredicate(tags);
+        listCommandTagPredicate tagPredicate = new listCommandTagPredicate(tags);
         tags.add(new Tag("friends"));
         Set<Language> languages = new HashSet<>();
         languages.add(new Language("Java"));
         languages.add(new Language("JavaScript"));
-        LanguageContainsKeywordsPredicate langPredicate = new LanguageContainsKeywordsPredicate(languages);
+        listCommandLanguagePredicate langPredicate = new listCommandLanguagePredicate(languages);
         ListCommand command = new ListCommand(tagPredicate, langPredicate, true);
         expectedModel.updateFilteredPersonList(tagPredicate.and(langPredicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

@@ -1,19 +1,20 @@
-package seedu.socket.model.tag;
+package seedu.socket.model.person.predicate;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.socket.model.person.Person;
+import seedu.socket.model.person.tag.Tag;
 
 
 /**
  * Tests that a {@code Person}'s {@code Tag} matches any of the tags given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class listCommandTagPredicate implements Predicate<Person> {
 
     private final Set<Tag> tags;
 
-    public TagContainsKeywordsPredicate(Set<Tag> keywords) {
+    public listCommandTagPredicate(Set<Tag> keywords) {
         this.tags = keywords;
     }
 
@@ -37,7 +38,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
-                && tags.equals(((TagContainsKeywordsPredicate) other).tags)); // state check
+                || (other instanceof listCommandTagPredicate // instanceof handles nulls
+                && tags.equals(((listCommandTagPredicate) other).tags)); // state check
     }
 }

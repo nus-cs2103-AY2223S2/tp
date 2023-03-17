@@ -1,18 +1,19 @@
-package seedu.socket.model.tag;
+package seedu.socket.model.person.predicate;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.socket.model.person.Person;
+import seedu.socket.model.person.tag.Language;
 
 
 /**
  * Tests that a {@code Person}'s {@code Language} matches any of the languages given.
  */
-public class LanguageContainsKeywordsPredicate implements Predicate<Person> {
+public class listCommandLanguagePredicate implements Predicate<Person> {
     private final Set<Language> languages;
 
-    public LanguageContainsKeywordsPredicate(Set<Language> languages) {
+    public listCommandLanguagePredicate(Set<Language> languages) {
         this.languages = languages;
     }
 
@@ -36,7 +37,7 @@ public class LanguageContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof LanguageContainsKeywordsPredicate // instanceof handles nulls
-                && languages.equals(((LanguageContainsKeywordsPredicate) other).languages)); // state check
+                || (other instanceof listCommandLanguagePredicate // instanceof handles nulls
+                && languages.equals(((listCommandLanguagePredicate) other).languages)); // state check
     }
 }

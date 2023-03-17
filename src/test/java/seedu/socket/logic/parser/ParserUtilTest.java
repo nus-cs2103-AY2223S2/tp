@@ -19,8 +19,8 @@ import seedu.socket.model.person.Email;
 import seedu.socket.model.person.GitHubProfile;
 import seedu.socket.model.person.Name;
 import seedu.socket.model.person.Phone;
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.Tag;
+import seedu.socket.model.person.tag.Language;
+import seedu.socket.model.person.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
