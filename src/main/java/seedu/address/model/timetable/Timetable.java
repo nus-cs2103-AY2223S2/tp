@@ -8,12 +8,12 @@ import org.joda.time.LocalTime;
  * Represents a timetable for a person.
  */
 public class Timetable {
-
-    private HashMap<SchoolDay, ArrayList<TimeSlot>> schedule;
-    private String[] startTimings = new String[] {
+    private static final String[] startTimings = new String[] {
         "0800", "0900", "1000", "1100", "1200", "1300", "1400",
         "1500", "1600", "1700", "1800", "1900", "2000", "2100"
     };
+
+    private HashMap<SchoolDay, ArrayList<TimeSlot>> schedule;
 
     /**
      * Constructs a Timetable with no classes.
@@ -23,7 +23,7 @@ public class Timetable {
         for (SchoolDay day : SchoolDay.values()) {
             ArrayList<TimeSlot> grid = new ArrayList<>();
             for (String timings : startTimings) {
-                grid.add(new TimeSlot(new LocalTime(timings)));
+                grid.add(new TimeSlot(new LocalTime(timings), day));
             }
             schedule.put(day, grid);
         }
@@ -37,6 +37,10 @@ public class Timetable {
         schedule.get(day).stream()
                 .filter(timeSlot -> timeSlot.canFitLesson(lesson))
                 .forEachOrdered(timeSlot -> timeSlot.setLesson(lesson));
+    }
+
+    public HashMap<SchoolDay, ArrayList<TimeSlot>> getSchedule() {
+        return schedule;
     }
 
     public ArrayList<TimeSlot> getMondayClasses() {

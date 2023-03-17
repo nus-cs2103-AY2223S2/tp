@@ -2,6 +2,7 @@ package seedu.address.model.timetable;
 
 import java.util.Optional;
 
+import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.timetable.exceptions.LessonClashException;
@@ -11,24 +12,46 @@ import seedu.address.model.timetable.exceptions.WrongTimeException;
 /**
  * Represents an hour timeslot in a Timetable.
  */
-public class TimeSlot {
+public class TimeSlot extends TimePeriod {
 
     public static final String WRONG_TIME_MESSAGE = "Timing does not match!";
     public static final String ALREADY_FILLED_MESSAGE = "Slot is already filled by a class!";
 
-    private LocalTime startTime;
     private Optional<Lesson> lesson = Optional.empty();
 
-    public TimeSlot(LocalTime startTime) {
-        this.startTime = startTime;
+    public TimeSlot(LocalTime startTime, SchoolDay schoolDay) {
+        super(startTime, startTime.plusHours(1), schoolDay);
+    }
+
+    public TimeSlot(TimeSlot timeSlot) {
+        super(timeSlot.getStartTime(), timeSlot.getEndTime(), timeSlot.getSchoolDay());
     }
 
     public LocalTime getStartTime() {
-        return startTime;
+        return super.getStartTime();
     }
 
     public LocalTime getEndTime() {
-        return startTime.plusHours(1);
+        return super.getEndTime();
+    }
+
+    @Override
+    public TimeBlock merge(TimePeriod timePeriod) {
+        if (this.isConsecutiveWith(timePeriod)) {
+            if (this.getStartTime().isBefore(timePeriod.getStartTime())
+                    && getSchoolDay().equals(timePeriod.getSchoolDay())) {
+                return new TimeBlock(this.getStartTime(), timePeriod.getEndTime(), getSchoolDay());
+            } else {
+                return new TimeBlock(timePeriod.getStartTime(), this.getEndTime(), getSchoolDay());
+            }
+        } else {
+            throw new WrongTimeException("Must be consecutive timeblocks together!");
+        }
+    }
+
+    @Override
+    public Hours getHoursBetween() {
+        return Hours.ONE;
     }
 
     public Optional<Lesson> getLesson() {
@@ -61,10 +84,10 @@ public class TimeSlot {
         // or that timeslot start is after lesson start AND timeslot end is before lesson end.
         LocalTime lessonStartTime = lesson.getStartTime();
         LocalTime lessonEndTime = lesson.getEndTime();
-        if (startTime.isEqual(lessonStartTime) || getEndTime().isEqual(lessonEndTime)) {
+        if (getStartTime().isEqual(lessonStartTime) || getEndTime().isEqual(lessonEndTime)) {
             return true;
         }
-        if (startTime.isAfter(lessonStartTime) && getEndTime().isBefore(lessonEndTime)) {
+        if (getStartTime().isAfter(lessonStartTime) && getEndTime().isBefore(lessonEndTime)) {
             return true;
         }
         return false;
@@ -73,7 +96,7 @@ public class TimeSlot {
     @Override
     public String toString() {
         return String.format("[%s, %s]\nClass: %s",
-                startTime, getEndTime(),
+                getStartTime(), getEndTime(),
                 lesson);
     }
 }
