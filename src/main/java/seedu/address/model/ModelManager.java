@@ -161,7 +161,10 @@ public class ModelManager implements Model {
         this.userData.addEvent(event);
     }
 
-
+    @Override
+    public ObservableList<Event> getEvents() {
+        return this.userData.getData().getValue().getEvents().asUnmodifiableObservableList();
+    }
 
 
     //=========== Filtered Person List Accessors =============================================================

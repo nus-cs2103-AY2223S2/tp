@@ -191,6 +191,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getEvents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
         public boolean isValidTabIndex(Index index) {
             throw new AssertionError("This method should not be called.");
         }
