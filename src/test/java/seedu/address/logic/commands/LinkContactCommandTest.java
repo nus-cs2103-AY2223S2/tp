@@ -69,12 +69,28 @@ public class LinkContactCommandTest {
         Contact contact = model.getContactList().getContactList().get(0);
         Event markEvent = new PersonBuilder(event).build();
         markEvent.mark();
-        model.markEvent(event, markEvent);
+        model.markEvent(event);
         markEvent.linkContact(contact);
         LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON, "94351253");
         Event linkEvent = linkContactCommand.createLinkedEvent(markEvent, contact);
 
         assertTrue(linkEvent.equals(markEvent));
+    }
+
+    @Test
+    public void execute_unmarkValidContact() {
+        Event event = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Contact contact = model.getContactList().getContactList().get(0);
+        Event unmarkEvent = new PersonBuilder(event).build();
+        unmarkEvent.mark();
+        unmarkEvent.unmark();
+        model.markEvent(event);
+        model.unmarkEvent(event);
+        unmarkEvent.linkContact(contact);
+        LinkContactCommand linkContactCommand = new LinkContactCommand(INDEX_FIRST_PERSON, "94351253");
+        Event linkEvent = linkContactCommand.createLinkedEvent(unmarkEvent, contact);
+
+        assertTrue(linkEvent.equals(unmarkEvent));
     }
 
     @Test

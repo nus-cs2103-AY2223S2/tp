@@ -12,22 +12,22 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Event;
 
 /**
- * Marks a person identified using it's displayed index from the address book.
+ * Unmarks a person identified using it's displayed index from the address book.
  */
-public class MarkCommand extends Command {
+public class UnmarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
+    public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the event identified by the index number used in the displayed event list.\n"
+            + ": Unmarks the event identified by the index number used in the displayed event list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_EVENT_SUCCESS = "Marked event: %1$s";
+    public static final String MESSAGE_UNMARK_EVENT_SUCCESS = "Unmarked event: %1$s";
 
     private final Index targetIndex;
 
-    public MarkCommand(Index targetIndex) {
+    public UnmarkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -40,16 +40,16 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event eventToMark = lastShownList.get(targetIndex.getZeroBased());
-        model.markEvent(eventToMark);
+        Event eventToUnmark = lastShownList.get(targetIndex.getZeroBased());
+        model.unmarkEvent(eventToUnmark);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_MARK_EVENT_SUCCESS, eventToMark));
+        return new CommandResult(String.format(MESSAGE_UNMARK_EVENT_SUCCESS, eventToUnmark));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MarkCommand // instanceof handles nulls
-                && targetIndex.equals(((MarkCommand) other).targetIndex)); // state check
+                || (other instanceof UnmarkCommand // instanceof handles nulls
+                && targetIndex.equals(((UnmarkCommand) other).targetIndex)); // state check
     }
 }

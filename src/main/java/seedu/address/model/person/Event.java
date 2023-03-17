@@ -85,6 +85,13 @@ public class Event {
     }
 
     /**
+     * Marks event as undone.
+     */
+    public void unmark() {
+        mark.setUndone();
+    }
+
+    /**
      * Link a contact to
      * @param contact
      */
