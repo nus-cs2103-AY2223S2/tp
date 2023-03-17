@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.HOON;
-import static seedu.address.testutil.TypicalPersons.IDA;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCards.FRACTION;
+import static seedu.address.testutil.TypicalCards.LOOP;
+import static seedu.address.testutil.TypicalCards.SMOG;
+import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -65,7 +65,7 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        MasterDeck original = getTypicalAddressBook();
+        MasterDeck original = getTypicalMasterDeck();
         JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
@@ -74,14 +74,14 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new MasterDeck(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addCard(HOON);
-        original.removeCard(ALICE);
+        original.addCard(SMOG);
+        original.removeCard(LOOP);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new MasterDeck(readBack));
 
         // Save and read without specifying file path
-        original.addCard(IDA);
+        original.addCard(FRACTION);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new MasterDeck(readBack));

@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedCard.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalCards.VARIABLE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +20,16 @@ public class JsonAdaptedCardTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getQuestion().toString();
-    private static final String VALID_ADDRESS = BENSON.getAnswer().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = VARIABLE.getQuestion().toString();
+    private static final String VALID_ADDRESS = VARIABLE.getAnswer().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = VARIABLE.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_DECK = BENSON.getDeck().toString();
+    private static final String VALID_DECK = VARIABLE.getDeck().toString();
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedCard person = new JsonAdaptedCard(BENSON);
-        assertEquals(BENSON, person.toModelType());
+        JsonAdaptedCard person = new JsonAdaptedCard(VARIABLE);
+        assertEquals(VARIABLE, person.toModelType());
     }
 
     @Test

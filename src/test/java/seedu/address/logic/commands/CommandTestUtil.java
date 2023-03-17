@@ -22,19 +22,20 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_QUESTION_GRAVITY = "What is gravity";
+    public static final String VALID_NAME_PHOTOSYNTHESIS = "What is photosynthesis";
+    public static final String VALID_ANSWER_GRAVITY = "A force of attraction between objects due to their mass";
+    public static final String VALID_ANSWER_PHOTOSYNTHESIS = "The process by which plants convert sunlight into energy";
+    public static final String VALID_TAG_HARD = "Hard";
+    public static final String VALID_TAG_MEDIUM = "Medium";
+    public static final String VALID_DECK_SCIENCE = "Science";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_QUESTION + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_QUESTION + VALID_NAME_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ANSWER + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ANSWER + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NAME_DESC_AMY = " " + PREFIX_QUESTION + VALID_QUESTION_GRAVITY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_QUESTION + VALID_NAME_PHOTOSYNTHESIS;
+    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ANSWER + VALID_ANSWER_GRAVITY;
+    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_PHOTOSYNTHESIS;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HARD;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_QUESTION + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
@@ -47,10 +48,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditCardDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_QUESTION_GRAVITY).withAddress(VALID_ANSWER_GRAVITY)
+                .withTags(VALID_TAG_MEDIUM).build();
+        DESC_BOB = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_PHOTOSYNTHESIS).withAddress(VALID_ANSWER_PHOTOSYNTHESIS)
+                .withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
     }
 
     /**

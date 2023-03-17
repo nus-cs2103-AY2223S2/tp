@@ -3,11 +3,11 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalCards.LOOP;
+import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -39,7 +39,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        MasterDeck newData = getTypicalAddressBook();
+        MasterDeck newData = getTypicalMasterDeck();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -47,9 +47,9 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two cards with the same identity fields
-        Card editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Card editedAlice = new PersonBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
-        List<Card> newCards = Arrays.asList(ALICE, editedAlice);
+        List<Card> newCards = Arrays.asList(LOOP, editedAlice);
         MasterDeckStub newData = new MasterDeckStub(newCards);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
@@ -62,19 +62,19 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasCard(ALICE));
+        assertFalse(addressBook.hasCard(LOOP));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addCard(ALICE);
-        assertTrue(addressBook.hasCard(ALICE));
+        addressBook.addCard(LOOP);
+        assertTrue(addressBook.hasCard(LOOP));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addCard(ALICE);
-        Card editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        addressBook.addCard(LOOP);
+        Card editedAlice = new PersonBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
         assertTrue(addressBook.hasCard(editedAlice));
     }

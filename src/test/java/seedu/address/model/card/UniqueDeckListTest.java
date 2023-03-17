@@ -3,11 +3,11 @@ package seedu.address.model.card;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalCards.LOOP;
+import static seedu.address.testutil.TypicalCards.PHOTOSYNTHESIS;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,19 +30,19 @@ public class UniqueDeckListTest {
 
     @Test
     public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniqueCardList.contains(ALICE));
+        assertFalse(uniqueCardList.contains(LOOP));
     }
 
     @Test
     public void contains_personInList_returnsTrue() {
-        uniqueCardList.add(ALICE);
-        assertTrue(uniqueCardList.contains(ALICE));
+        uniqueCardList.add(LOOP);
+        assertTrue(uniqueCardList.contains(LOOP));
     }
 
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueCardList.add(ALICE);
-        Card editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueCardList.add(LOOP);
+        Card editedAlice = new PersonBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
         assertTrue(uniqueCardList.contains(editedAlice));
     }
@@ -54,40 +54,40 @@ public class UniqueDeckListTest {
 
     @Test
     public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniqueCardList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniqueCardList.add(ALICE));
+        uniqueCardList.add(LOOP);
+        assertThrows(DuplicatePersonException.class, () -> uniqueCardList.add(LOOP));
     }
 
     @Test
     public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCardList.setCard(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueCardList.setCard(null, LOOP));
     }
 
     @Test
     public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCardList.setCard(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueCardList.setCard(LOOP, null));
     }
 
     @Test
     public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueCardList.setCard(ALICE, ALICE));
+        assertThrows(PersonNotFoundException.class, () -> uniqueCardList.setCard(LOOP, LOOP));
     }
 
     @Test
     public void setPerson_editedPersonIsSamePerson_success() {
-        uniqueCardList.add(ALICE);
-        uniqueCardList.setCard(ALICE, ALICE);
+        uniqueCardList.add(LOOP);
+        uniqueCardList.setCard(LOOP, LOOP);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();
-        expectedUniqueCardList.add(ALICE);
+        expectedUniqueCardList.add(LOOP);
         assertEquals(expectedUniqueCardList, uniqueCardList);
     }
 
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
-        uniqueCardList.add(ALICE);
-        Card editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        uniqueCardList.add(LOOP);
+        Card editedAlice = new PersonBuilder(LOOP).withAddress(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
                 .build();
-        uniqueCardList.setCard(ALICE, editedAlice);
+        uniqueCardList.setCard(LOOP, editedAlice);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();
         expectedUniqueCardList.add(editedAlice);
         assertEquals(expectedUniqueCardList, uniqueCardList);
@@ -95,18 +95,18 @@ public class UniqueDeckListTest {
 
     @Test
     public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniqueCardList.add(ALICE);
-        uniqueCardList.setCard(ALICE, BOB);
+        uniqueCardList.add(LOOP);
+        uniqueCardList.setCard(LOOP, PHOTOSYNTHESIS);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();
-        expectedUniqueCardList.add(BOB);
+        expectedUniqueCardList.add(PHOTOSYNTHESIS);
         assertEquals(expectedUniqueCardList, uniqueCardList);
     }
 
     @Test
     public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniqueCardList.add(ALICE);
-        uniqueCardList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniqueCardList.setCard(ALICE, BOB));
+        uniqueCardList.add(LOOP);
+        uniqueCardList.add(PHOTOSYNTHESIS);
+        assertThrows(DuplicatePersonException.class, () -> uniqueCardList.setCard(LOOP, PHOTOSYNTHESIS));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniqueDeckListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueCardList.remove(ALICE));
+        assertThrows(PersonNotFoundException.class, () -> uniqueCardList.remove(LOOP));
     }
 
     @Test
     public void remove_existingPerson_removesPerson() {
-        uniqueCardList.add(ALICE);
-        uniqueCardList.remove(ALICE);
+        uniqueCardList.add(LOOP);
+        uniqueCardList.remove(LOOP);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();
         assertEquals(expectedUniqueCardList, uniqueCardList);
     }
@@ -134,9 +134,9 @@ public class UniqueDeckListTest {
 
     @Test
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniqueCardList.add(ALICE);
+        uniqueCardList.add(LOOP);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();
-        expectedUniqueCardList.add(BOB);
+        expectedUniqueCardList.add(PHOTOSYNTHESIS);
         uniqueCardList.setCards(expectedUniqueCardList);
         assertEquals(expectedUniqueCardList, uniqueCardList);
     }
@@ -148,17 +148,17 @@ public class UniqueDeckListTest {
 
     @Test
     public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniqueCardList.add(ALICE);
-        List<Card> cardList = Collections.singletonList(BOB);
+        uniqueCardList.add(LOOP);
+        List<Card> cardList = Collections.singletonList(PHOTOSYNTHESIS);
         uniqueCardList.setCards(cardList);
         UniqueCardList expectedUniqueCardList = new UniqueCardList();
-        expectedUniqueCardList.add(BOB);
+        expectedUniqueCardList.add(PHOTOSYNTHESIS);
         assertEquals(expectedUniqueCardList, uniqueCardList);
     }
 
     @Test
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Card> listWithDuplicateCards = Arrays.asList(ALICE, ALICE);
+        List<Card> listWithDuplicateCards = Arrays.asList(LOOP, LOOP);
         assertThrows(DuplicatePersonException.class, () -> uniqueCardList.setCards(listWithDuplicateCards));
     }
 
