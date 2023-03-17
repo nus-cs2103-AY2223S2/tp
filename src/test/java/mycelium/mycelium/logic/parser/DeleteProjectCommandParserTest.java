@@ -52,7 +52,9 @@ public class DeleteProjectCommandParserTest {
     public void parse_validProjectName_success() {
         DeleteProjectCommand want = new DeleteProjectCommand("Luminus");
         Map<String, String> tests = Map.ofEntries(
-                Map.entry("valid project name", "-pn Luminus")
+                Map.entry("valid project name", "-pn Luminus"),
+                Map.entry("valid project name with leading whitespace", "-pn       Luminus"),
+                Map.entry("valid project name with trailing whitespace", "-pn Luminus      ")
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
