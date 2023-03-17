@@ -24,7 +24,7 @@ import seedu.address.model.group.GroupNameContainsKeywordsPredicate;
 import seedu.address.model.person.MemberOfGroupPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code GroupFindCommand}.
  */
 public class GroupFindCommandTest {
 

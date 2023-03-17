@@ -3,6 +3,7 @@ package seedu.address.logic.commands.group;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -11,14 +12,14 @@ import seedu.address.model.group.Group;
 /**
  * Creates a group in the address book.
  */
-public class GroupCreateCommand extends GroupCommand {
-    public static final String SUB_COMMAND_WORD = "create";
+public class GroupCreateCommand extends Command {
+    public static final String COMMAND_WORD = "group_create";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD
             + " : Create a group in the address book. "
             + "Parameters: "
             + PREFIX_GROUP + "GROUP NAME\n"
-            + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_GROUP + "CS2103T ";
 
     public static final String MESSAGE_SUCCESS = "New group added: %1$s";
