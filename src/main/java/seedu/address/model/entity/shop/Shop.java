@@ -313,7 +313,7 @@ public class Shop implements ReadOnlyShop {
         for (var customer : customers) {
             if (customer.getId() == customerId) {
                 customer.addVehicle(vehicle);
-                this.getVehicleList().add(vehicle);
+                this.vehicles.add(vehicle);
                 return;
             }
         }
