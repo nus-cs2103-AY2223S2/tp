@@ -20,48 +20,53 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+public class AddDoctorCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddDoctorCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        ModelStubAcceptingDoctorAdded modelStub = new ModelStubAcceptingDoctorAdded();
+        Doctor validPerson = new PersonBuilder().buildDoctor();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddDoctorCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddDoctorCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.doctorsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Doctor validPerson = new PersonBuilder().buildDoctor();
+        AddDoctorCommand addCommand = new AddDoctorCommand(validPerson);
+        ModelStub modelStub = new ModelStubWithDoctor(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddDoctorCommand.MESSAGE_DUPLICATE_PERSON, ()
+                -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Doctor alice = new PersonBuilder().withName("Alice").buildDoctor();
+        Doctor bob = new PersonBuilder().withName("Bob").buildDoctor();
+        AddDoctorCommand addAliceCommand = new AddDoctorCommand(alice);
+        AddDoctorCommand addBobCommand = new AddDoctorCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddDoctorCommand addAliceCommandCopy = new AddDoctorCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -114,6 +119,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addDoctor(Doctor doctor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -125,6 +140,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDoctor(Doctor doctor) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,6 +172,20 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void bookAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatientByNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -164,6 +203,24 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+    }
+
+    /**
+     * A Model stub that contains a single doctor.
+     */
+    private class ModelStubWithDoctor extends ModelStub {
+        private final Doctor doctor;
+
+        ModelStubWithDoctor(Doctor doctor) {
+            requireNonNull(doctor);
+            this.doctor = doctor;
+        }
+
+        @Override
+        public boolean hasDoctor(Doctor doctor) {
+            requireNonNull(doctor);
+            return this.doctor.isSamePerson(doctor);
         }
     }
 
@@ -191,4 +248,27 @@ public class AddCommandTest {
         }
     }
 
+    /**
+     * A Model stub that always accept the doctor being added.
+     */
+    private class ModelStubAcceptingDoctorAdded extends ModelStub {
+        final ArrayList<Doctor> doctorsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasDoctor(Doctor doctor) {
+            requireNonNull(doctor);
+            return doctorsAdded.stream().anyMatch(doctor::isSamePerson);
+        }
+
+        @Override
+        public void addDoctor(Doctor doctor) {
+            requireNonNull(doctor);
+            doctorsAdded.add(doctor);
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return new AddressBook();
+        }
+    }
 }

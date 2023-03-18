@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.PrescribeCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -13,7 +14,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -68,7 +68,7 @@ public class PrescribeCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         PrescribeCommand prescribeCommand = new PrescribeCommand(outOfBoundIndex, amyMedication);
 
-        assertCommandFailure(prescribeCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(prescribeCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

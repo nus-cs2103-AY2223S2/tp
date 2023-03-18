@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,11 +38,16 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
+    private Label nric;
+    @FXML
     private Label email;
     @FXML
     private Label medication;
     @FXML
     private FlowPane tags;
+
+    @FXML
+    private Label appointments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,14 +56,26 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+
+        if (person.isDoctor()) {
+            name.setText("[Dr] " + person.getName().fullName);
+        } else {
+            name.setText(person.getName().fullName);
+        }
+
+        nric.setText(person.getNric().nric);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        medication.setText(person.getMedication().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        if (person.isPatient()) {
+            Patient patient = (Patient) person;
+            medication.setText(patient.getMedication().value);
+            appointments.setText("Appointments: \n" + patient.patientAppointmentstoString());
+        }
     }
 
     @Override

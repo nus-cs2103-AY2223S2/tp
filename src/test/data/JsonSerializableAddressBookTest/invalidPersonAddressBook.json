@@ -3,6 +3,7 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
+    "nric": "S1234567W",
     "address": "4th street",
     "medication" : "1 histamine"
   } ]

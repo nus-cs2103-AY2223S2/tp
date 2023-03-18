@@ -9,6 +9,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -19,6 +21,7 @@ import seedu.address.model.tag.Tag;
 public class EditPersonDescriptorBuilder {
 
     private EditPersonDescriptor descriptor;
+    private boolean isDoctor;
 
     public EditPersonDescriptorBuilder() {
         descriptor = new EditPersonDescriptor();
@@ -36,9 +39,18 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
+        descriptor.setNric(person.getNric());
         descriptor.setAddress(person.getAddress());
-        descriptor.setMedication(person.getMedication());
         descriptor.setTags(person.getTags());
+        descriptor.setAppointments(person.getPatientAppointments());
+
+        if (person.isDoctor()) {
+            isDoctor = true;
+        } else {
+            // isPatient
+            Patient patient = (Patient) person;
+            descriptor.setMedication(patient.getMedication());
+        }
     }
 
     /**
@@ -62,6 +74,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withNric(String nric) {
+        descriptor.setNric(new Nric(nric));
         return this;
     }
 

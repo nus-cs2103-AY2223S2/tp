@@ -1,12 +1,17 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -20,15 +25,19 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_NRIC = "S1234967G";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_MEDICATION = "";
 
     private Name name;
     private Phone phone;
     private Email email;
+    private Nric nric;
     private Address address;
     private Medication medication;
     private Set<Tag> tags;
+    private ArrayList<Appointment> appointments;
+    private boolean isDoctor;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -37,9 +46,11 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        nric = new Nric(DEFAULT_NRIC);
         address = new Address(DEFAULT_ADDRESS);
         medication = new Medication(DEFAULT_MEDICATION);
         tags = new HashSet<>();
+        appointments = new ArrayList<>();
     }
 
     /**
@@ -49,9 +60,16 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        nric = personToCopy.getNric();
         address = personToCopy.getAddress();
-        medication = personToCopy.getMedication();
+        if (personToCopy.isPatient()) {
+            Patient patientToCopy = (Patient) personToCopy;
+            medication = patientToCopy.getMedication();
+        } else {
+            isDoctor = true;
+        }
         tags = new HashSet<>(personToCopy.getTags());
+        appointments = new ArrayList<>(personToCopy.getPatientAppointments());
     }
 
     /**
@@ -102,8 +120,40 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Appointment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointment(String ... appointment) {
+        this.appointments.add(SampleDataUtil.getAppointment(appointment));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Nric} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNric(String nric) {
+        this.nric = new Nric(nric);
+        return this;
+    }
+
+    /**
+     * Returns {@code Doctor} or {@code Patient} with all the details defined by the with functions.
+     * Undefined attributes will have default values
+     */
     public Person build() {
-        return new Person(name, phone, email, address, medication, tags);
+        if (isDoctor) {
+            return buildDoctor();
+        } else {
+            return buildPatient();
+        }
+    }
+
+    public Patient buildPatient() {
+        return new Patient(name, phone, email, nric, address, medication, tags, appointments);
+    }
+
+    public Doctor buildDoctor() {
+        return new Doctor(name, phone, email, nric, address, tags, appointments);
     }
 
 }

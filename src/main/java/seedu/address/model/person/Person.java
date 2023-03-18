@@ -2,11 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,22 +22,27 @@ public class Person {
     private final Phone phone;
     private final Email email;
 
+    private final Nric nric;
+
     // Data fields
     private final Address address;
-    private final Medication medication;
     private final Set<Tag> tags = new HashSet<>();
+
+    private final ArrayList<Appointment> patientAppointments = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Medication medication, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
+                  ArrayList<Appointment> patientAppointments) {
+        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.nric = nric;
         this.address = address;
-        this.medication = medication;
         this.tags.addAll(tags);
+        this.patientAppointments.addAll(patientAppointments);
     }
 
     public Name getName() {
@@ -50,12 +57,12 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Nric getNric() {
+        return nric;
     }
 
-    public Medication getMedication() {
-        return medication;
+    public Address getAddress() {
+        return address;
     }
 
     /**
@@ -64,6 +71,13 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns a list of Appointments.
+     */
+    public ArrayList<Appointment> getPatientAppointments() {
+        return patientAppointments;
     }
 
     /**
@@ -79,6 +93,18 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
+    /**
+     * Returns true if both persons have the same NRIC.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSamePersonByNric(Nric otherNric) {
+        if (otherNric == this.getNric()) {
+            return true;
+        }
+
+        return otherNric != null
+                && otherNric.equals(this.getNric());
+    }
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -97,9 +123,10 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getNric().equals(getNric())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getMedication().equals(getMedication())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getPatientAppointments().equals(getPatientAppointments());
     }
 
     @Override
@@ -115,12 +142,10 @@ public class Person {
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail());
-        if (!getMedication().isEmpty()) {
-            builder.append("; Medication: ")
-                    .append(getMedication());
-        }
-        builder.append("; Address: ")
+                .append(getEmail())
+                .append("; Nric: ")
+                .append(getNric())
+                .append("; Address: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
@@ -128,7 +153,29 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        ArrayList<Appointment> appointments = getPatientAppointments();
+        if (!appointments.isEmpty()) {
+            builder.append("; Appointments: ");
+            appointments.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
+    public boolean isDoctor() {
+        return false;
+    }
+
+    public boolean isPatient() {
+        return false;
+    }
+
+    /**
+     * Adds an appointment for the Patient.
+     * @param appointment
+     */
+    public void addPatientAppointment(Appointment appointment) {
+        patientAppointments.add(appointment);
+    }
 }

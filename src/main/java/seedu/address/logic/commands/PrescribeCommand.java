@@ -5,11 +5,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Medication;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
 /**
@@ -32,6 +32,9 @@ public class PrescribeCommand extends Command {
 
     public static final String MESSAGE_ADD_PRESCRIBE_SUCCESS = "Added medication to Person: %1$s";
     public static final String MESSAGE_DELETE_PRESCRIBE_SUCCESS = "Removed medication from Person: %1$s";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_SELECTED_DOCTOR_FAILURE = "You have selected a doctor, this command is only "
+            + "applicable for doctors.";
 
     public final Index index;
     private final Medication medication;
@@ -55,13 +58,20 @@ public class PrescribeCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(),
-                medication, personToEdit.getTags()
+
+        if (personToEdit.isDoctor()) {
+            throw new CommandException(MESSAGE_SELECTED_DOCTOR_FAILURE);
+        }
+
+        Patient patientToEdit = (Patient) personToEdit;
+
+        Patient editedPerson = new Patient(
+                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getNric(),
+                patientToEdit.getAddress(), medication, patientToEdit.getTags(), patientToEdit.getPatientAppointments()
         );
 
         model.setPerson(personToEdit, editedPerson);

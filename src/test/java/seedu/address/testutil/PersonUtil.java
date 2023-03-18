@@ -4,13 +4,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddDoctorCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -20,10 +24,17 @@ import seedu.address.model.tag.Tag;
 public class PersonUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an addDoctor command string for adding the {@code doctor}.
      */
-    public static String getAddCommand(Person person) {
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(person);
+    public static String getAddDoctorCommand(Doctor doctor) {
+        return AddDoctorCommand.COMMAND_WORD + " " + getPersonDetails(doctor);
+    }
+
+    /**
+     * Returns an addPatient command string for adding the {@code patient}.
+     */
+    public static String getAddPatientCommand(Patient patient) {
+        return AddPatientCommand.COMMAND_WORD + " " + getPersonDetails(patient);
     }
 
     /**
@@ -34,10 +45,12 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
+        sb.append(PREFIX_NRIC + person.getNric().nric + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        if (!person.getMedication().isEmpty()) {
+
+        if (person.isPatient() && !((Patient) person).getMedication().isEmpty()) {
             sb.append("; Medication: ")
-                    .append(person.getMedication());
+                    .append(((Patient) person).getMedication());
         }
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -53,6 +66,7 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getNric().ifPresent(nric -> sb.append(PREFIX_NRIC).append(nric.nric).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getMedication().ifPresent(medication -> sb.append(PREFIX_MEDICATION).append(medication.value)
                 .append(" "));
