@@ -18,11 +18,9 @@ public class ViewVehicleCommandParser implements Parser<ViewVehicleCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewVehicleCommand parse(String args) throws ParseException {
-
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new ViewVehicleCommand(new VehicleIdPredicate(index));
-        } catch (ParseException pe) {
+            return new ViewVehicleCommand(new VehicleIdPredicate(Integer.parseInt(args.trim())));
+        } catch (NumberFormatException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewVehicleCommand.MESSAGE_USAGE), pe);
         }
