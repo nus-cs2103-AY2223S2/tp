@@ -12,6 +12,9 @@
         <Label text="Events" styleClass="label-h3" />
         <Label text="Note: events (including recurring ones) will only show up once on the next earliest date."
                styleClass="label-p" />
-        <VBox fx:id="calendarContent" spacing="10" />
+        <VBox fx:id="calendarContent" spacing="10">
+            <Label fx:id="calendarContentPlaceholder"
+                   text="No events" styleClass="label-p, tag-accented" />
+        </VBox>
     </VBox>
 </ScrollPane>

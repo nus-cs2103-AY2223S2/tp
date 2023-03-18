@@ -10,6 +10,7 @@ import java.util.Objects;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.event.Event;
@@ -23,6 +24,8 @@ public class CalendarPanel extends UiPart<Region> {
 
     @FXML
     private VBox calendarContent;
+    @FXML
+    private Label calendarContentPlaceholder;
 
     /**
      * Creates a {@code CalendarPanel} of the given {@code eventList}.
@@ -32,13 +35,16 @@ public class CalendarPanel extends UiPart<Region> {
         Objects.requireNonNull(eventList);
 
         fillCalendarContent(eventList);
-        eventList.addListener((ListChangeListener<Event>) c -> {
-            calendarContent.getChildren().clear();
-            fillCalendarContent(eventList);
-        });
+        eventList.addListener((ListChangeListener<Event>) c -> fillCalendarContent(eventList));
     }
 
     private void fillCalendarContent(List<Event> events) {
+        calendarContent.getChildren().clear();
+        if (events == null || events.isEmpty()) {
+            calendarContent.getChildren().add(calendarContentPlaceholder);
+            return;
+        }
+
         Map<LocalDate, List<Event>> dateEventsMap = new HashMap<>();
         for (Event event : events) {
             LocalDate date = event.getStartDateTime().getDateTime().toLocalDate();
