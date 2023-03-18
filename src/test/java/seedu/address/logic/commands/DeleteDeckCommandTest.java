@@ -50,20 +50,20 @@ public class DeleteDeckCommandTest {
         assertCommandFailure(deleteDeckCommand, model, Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
     }
 
-    //    @Test
-    //    public void execute_validIndexFilteredList_success() {
-    //        showDeckAtIndex(model, INDEX_FIRST);
-    //        Deck deckToDelete = model.getFilteredDeckList().get(INDEX_FIRST.getZeroBased());
-    //
-    //        DeleteDeckCommand deleteDeckCommand = new DeleteDeckCommand(INDEX_FIRST);
-    //
-    //        String expectedMessage = String.format(DeleteDeckCommand.MESSAGE_SUCCESS, deckToDelete);
-    //
-    //        Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
-    //        expectedModel.removeDeck(deckToDelete);
-    //        showNoDeck(expectedModel);
-    //        assertCommandSuccess(deleteDeckCommand, model, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        showDeckAtIndex(model, INDEX_FIRST);
+        Deck deckToDelete = model.getFilteredDeckList().get(INDEX_FIRST.getZeroBased());
+
+        DeleteDeckCommand deleteDeckCommand = new DeleteDeckCommand(INDEX_FIRST);
+
+        String expectedMessage = String.format(DeleteDeckCommand.MESSAGE_SUCCESS, deckToDelete);
+
+        Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
+        expectedModel.removeDeck(deckToDelete);
+        showNoDeck(expectedModel);
+        assertCommandSuccess(deleteDeckCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
