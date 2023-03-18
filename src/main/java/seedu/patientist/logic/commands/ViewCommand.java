@@ -40,7 +40,7 @@ public class ViewCommand extends Command {
         }
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                String.format(MESSAGE_VIEW_PERSON_SUCCESS, lastShownList.get(targetIndex.getZeroBased())),
                 targetIndex.getZeroBased(), false, false);
     }
 
