@@ -132,10 +132,11 @@ public class Employee {
     }
 
     /**
-     * Returns true if there is a clash in any of the two fields: email, phone.
+     * Returns true if there is a clash in any of the two fields: email, phone between any two different employees.
      * Name is excluded since several people can share the same names.
      */
     public boolean clashes(Employee otherPerson) {
+        // there is no 'clash' if comparing against the same person
         if (isSameEmployee(otherPerson)) {
             return false;
         }

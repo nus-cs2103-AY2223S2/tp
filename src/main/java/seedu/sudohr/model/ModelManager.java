@@ -96,6 +96,12 @@ public class ModelManager implements Model {
     //=========== Employee-Level Operations ========================
 
     @Override
+    public boolean checkEmployeeExists(Id id) {
+        requireNonNull(id);
+        return sudoHr.checkEmployeeExists(id);
+    }
+
+    @Override
     public Employee getEmployee(Id employeeId) {
         requireNonNull(employeeId);
         return sudoHr.getEmployee(employeeId);

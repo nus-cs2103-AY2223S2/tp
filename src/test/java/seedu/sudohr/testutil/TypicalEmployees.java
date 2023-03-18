@@ -19,11 +19,14 @@ import java.util.List;
 
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 
 /**
  * A utility class containing a list of {@code Employee} objects to be used in tests.
  */
 public class TypicalEmployees {
+
+    public static final Id ID_NOT_EXIST = new Id("999");
 
     public static final Employee ALICE = new EmployeeBuilder().withId("101")
             .withName("Alice Pauline")

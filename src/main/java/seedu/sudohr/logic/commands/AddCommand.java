@@ -19,20 +19,21 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to SudoHR. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to SudoHR. " +
+            "Id field must be positive.\n"
             + "Parameters: "
             + PREFIX_ID + "EMPLOYEE_ID "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ID + "777 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

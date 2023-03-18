@@ -57,6 +57,14 @@ public interface Model {
 
     //=========== Employee-Level Operations ===========================================
 
+    /**
+     * Returns true if an employee with the specified identity exists in SudoHR.
+     */
+    boolean checkEmployeeExists(Id id);
+
+    /**
+     * Gets an employee in SudoHR by its id.
+     */
     Employee getEmployee(Id employeeId);
 
     /**
@@ -160,7 +168,7 @@ public interface Model {
     /**
      * Removes a given employee from a given department
      * @param p The employee to remove
-     * @param d The department to remove the employee fro
+     * @param d The department to remove the employee from
      */
     void removeEmployeeFromDepartment(Employee p, Department d);
 

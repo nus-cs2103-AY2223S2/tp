@@ -74,6 +74,13 @@ public class SudoHr implements ReadOnlySudoHr {
     //=========== Employee-Level Operations ============================
 
     /**
+     * Returns true if an employee with the specified identity exists in SudoHR.
+     */
+    public boolean checkEmployeeExists(Id id) {
+        return employees.checkEmployeeExists(id);
+    }
+
+    /**
      * Returns the employee with the given Id.
      * @param id The Id to find.
      * @return The corresponding employee.

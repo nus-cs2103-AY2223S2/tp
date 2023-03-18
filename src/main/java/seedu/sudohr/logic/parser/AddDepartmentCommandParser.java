@@ -23,7 +23,7 @@ public class AddDepartmentCommandParser implements Parser<AddDepartmentCommand> 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEPARTMENT_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DEPARTMENT_NAME)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DEPARTMENT_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDepartmentCommand.MESSAGE_USAGE));
         }
@@ -33,13 +33,5 @@ public class AddDepartmentCommandParser implements Parser<AddDepartmentCommand> 
         Department department = new Department(name);
 
         return new AddDepartmentCommand(department);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

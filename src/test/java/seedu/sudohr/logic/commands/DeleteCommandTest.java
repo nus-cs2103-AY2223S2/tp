@@ -6,17 +6,18 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
 import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
+import static seedu.sudohr.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.Messages;
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.testutil.TypicalEmployees;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,9 +28,9 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalSudoHr(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIdUnfilteredList_success() {
         Employee employeeToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
@@ -40,19 +41,18 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    public void execute_invalidIdUnfilteredList_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalEmployees.ID_NOT_EXIST);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIdFilteredList_success() {
         showEmployeeAtIndex(model, INDEX_FIRST_PERSON);
 
         Employee employeeToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
@@ -64,28 +64,15 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showEmployeeAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of sudohr book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSudoHr().getEmployeeList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(ID_FIRST_PERSON);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(ID_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(ID_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

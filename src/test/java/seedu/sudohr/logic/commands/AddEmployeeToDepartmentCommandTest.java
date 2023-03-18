@@ -159,6 +159,11 @@ public class AddEmployeeToDepartmentCommandTest {
         }
 
         @Override
+        public boolean checkEmployeeExists(Id id) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
         public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
