@@ -153,6 +153,7 @@ public class EditCommand extends Command {
         private Nric nric;
         private Address address;
         private Set<Tag> tags;
+        private ArrayList<Appointment> appointments;
 
         public EditPersonDescriptor() {}
 
@@ -167,6 +168,7 @@ public class EditCommand extends Command {
             setNric(toCopy.nric);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setAppointments(toCopy.appointments);
         }
 
         /**
@@ -216,6 +218,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nric);
         }
 
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -225,12 +228,31 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code appointments} to this object's {@code appointments}.
+         * A defensive copy of {@code appointments} is used internally.
+         */
+        public void setAppointments(ArrayList<Appointment> appointments) {
+            this.appointments = (appointments != null) ? new ArrayList<>(appointments) : null;
+        }
+
+        /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable appointment list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code appointments} is null.
+         */
+        public Optional<ArrayList<Appointment>> getAppointments() {
+            return (appointments != null)
+                    ? Optional.of((ArrayList<Appointment>) Collections.unmodifiableList(appointments))
+                    : Optional.empty();
         }
 
         @Override
