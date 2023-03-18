@@ -25,8 +25,13 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
-.label {
-    -fx-font-size: 11pt;
+.label-h1,
+.label-h2,
+.label-h3,
+.label-h4,
+.label-h5,
+.label-h6,
+.label-p {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -fx-primary-text;
 }
@@ -244,17 +249,6 @@
     -fx-background-color: derive(#1d1d1d, 30%);
 }
 
-.context-menu {
-    -fx-background-color: -fx-primary-foreground;
-    -fx-background-radius: 5;
-    -fx-background-insets: 10 0 0 0;
-    -fx-padding: 10 0 0 0;
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
 .menu-bar {
     -fx-background-color: -fx-primary-background;
     -fx-padding: 5 10 5 10;
@@ -274,7 +268,19 @@
     -fx-background-radius: 5;
 }
 
+.menu-bar .context-menu {
+    -fx-background-color: -fx-primary-foreground;
+    -fx-background-radius: 5;
+    -fx-background-insets: 10 0 0 0;
+    -fx-padding: 10 0 0 0;
+}
+
+.menu-bar .context-menu .label {
+    -fx-text-fill: -fx-primary-text;
+}
+
 .menu-item {
+    -fx-background-color: transparent;
     -fx-background-radius: 5;
 }
 
