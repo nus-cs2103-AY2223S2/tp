@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -44,14 +43,14 @@ public class CommentCommandTest {
         Comment second = new Comment("Not done well");
         Index firstTaskIndex = Index.fromZeroBased(1);
         Index secondTaskIndex = Index.fromZeroBased(2);
-        CommentCommand addFirstCommand = new CommentCommand(firstTaskIndex,first);
-        CommentCommand addSecondCommand = new CommentCommand(secondTaskIndex,second);
+        CommentCommand addFirstCommand = new CommentCommand(firstTaskIndex, first);
+        CommentCommand addSecondCommand = new CommentCommand(secondTaskIndex, second);
 
         // same object -> returns true
         assertTrue(addFirstCommand.equals(addFirstCommand));
 
         // same values -> returns true
-        CommentCommand addFirstCommandCopy = new CommentCommand(firstTaskIndex,first);
+        CommentCommand addFirstCommandCopy = new CommentCommand(firstTaskIndex, first);
         assertTrue(addFirstCommand.equals(addFirstCommandCopy));
 
         // different types -> returns false
@@ -64,7 +63,7 @@ public class CommentCommandTest {
         assertFalse(addFirstCommand.equals(addSecondCommand));
 
         // different task index -> returns false
-        CommentCommand addSecondCommandCopyDifferentIndex = new CommentCommand(secondTaskIndex,first);
+        CommentCommand addSecondCommandCopyDifferentIndex = new CommentCommand(secondTaskIndex, first);
         assertFalse(addSecondCommand.equals(addSecondCommandCopyDifferentIndex));
     }
 }
