@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -27,11 +28,14 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_TIME = "2023-03-12 0000";
+    public static final String DEFAULT_AGE = "15";
+
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Age age;
     private Set<Tag> tags;
     private LocalDateTime time;
 
@@ -44,6 +48,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         time = LocalDateTime.parse(DEFAULT_TIME.trim(),formatter);
+        age = new Age(DEFAULT_AGE);
         tags = new HashSet<>();
     }
 
@@ -55,6 +60,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        age = personToCopy.getAge();
         tags = new HashSet<>(personToCopy.getTags());
         time = personToCopy.getTime();
     }
@@ -80,6 +86,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Age} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAge(String age) {
+        this.age = new Age(age);
         return this;
     }
 
