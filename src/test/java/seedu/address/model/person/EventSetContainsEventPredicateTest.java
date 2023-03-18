@@ -45,7 +45,7 @@ public class EventSetContainsEventPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_eventSetDoesNotContainEvent_returnsFalse() {
         // Zero event
         EventSetContainsEventPredicate predicate = new EventSetContainsEventPredicate(null);
         assertFalse(predicate.test(new PersonBuilder().withEventSet(WEDDING_DINNER).build()));
