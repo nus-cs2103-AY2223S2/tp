@@ -1,6 +1,5 @@
 package seedu.calidr.model.task;
 
-import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 

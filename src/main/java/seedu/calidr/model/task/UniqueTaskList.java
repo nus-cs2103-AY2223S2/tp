@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.calidr.model.task.exceptions.DuplicateTaskException;
 import seedu.calidr.model.task.exceptions.TaskNotFoundException;
 import seedu.calidr.model.task.params.Priority;
