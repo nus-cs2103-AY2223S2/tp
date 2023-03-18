@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * The API of the Model component.
@@ -15,6 +16,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Doctor> PREDICATE_SHOW_ALL_DOCTORS = unused -> true;
+    Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -65,10 +67,27 @@ public interface Model {
     boolean hasDoctor(Doctor doctor);
 
     /**
+     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     */
+    boolean hasPatient(Patient patient);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Deletes the given doctor.
+     * The person must exist in the address book.
+     */
+    void deleteDoctor(Doctor target);
+
+    /**
+     * Deletes the given patient.
+     * The person must exist in the address book.
+     */
+    void deletePatient(Patient target);
 
     /**
      * Adds the given person.
@@ -82,6 +101,11 @@ public interface Model {
      */
     void addDoctor(Doctor doctor);
 
+    /**
+     * Adds the given patient.
+     * {@code patient} must not already exist in the address book.
+     */
+    void addPatient(Patient patient);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -97,11 +121,22 @@ public interface Model {
      */
     void setDoctor(Doctor target, Doctor editedDoctor);
 
+    /**
+     * Replaces the given patient {@code target} with {@code editedPatient}.
+     * {@code target} must exist in the address book.
+     * The patient identity of {@code editedPatient} must not be the same
+     * as another existing patient in the address book.
+     */
+    void setPatient(Patient target, Patient editedPatient);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered doctor list */
     ObservableList<Doctor> getFilteredDoctorList();
+
+    /** Returns an unmodifiable view of the filtered patient list */
+    ObservableList<Patient> getFilteredPatientList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -115,10 +150,9 @@ public interface Model {
      */
     void updateFilteredDoctorList(Predicate<Doctor> predicate);
 
-
     /**
-     * Deletes the given doctor.
-     * The person must exist in the address book.
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
      */
-    void deleteDoctor(Doctor target);
+    void updateFilteredPatientList(Predicate<Patient> predicate);
 }

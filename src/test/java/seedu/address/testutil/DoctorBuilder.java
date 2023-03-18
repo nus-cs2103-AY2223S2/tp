@@ -10,6 +10,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.doctor.Specialty;
 import seedu.address.model.person.doctor.Yoe;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -30,9 +31,10 @@ public class DoctorBuilder {
     private Specialty specialty;
     private Yoe yoe;
     private Set<Tag> tags;
+    private Set<Patient> patients;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code DoctorBuilder} with the default details.
      */
     public DoctorBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -41,10 +43,11 @@ public class DoctorBuilder {
         specialty = new Specialty(DEFAULT_SPECIALTY);
         yoe = new Yoe(DEFAULT_YOE);
         tags = new HashSet<>();
+        patients = new HashSet<>();
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the DoctorBuilder with the data of {@code doctorToCopy}.
      */
     public DoctorBuilder(Doctor doctorToCopy) {
         name = doctorToCopy.getName();
@@ -53,6 +56,7 @@ public class DoctorBuilder {
         specialty = doctorToCopy.getSpecialty();
         yoe = doctorToCopy.getYoe();
         tags = new HashSet<>(doctorToCopy.getTags());
+        patients = new HashSet<>(doctorToCopy.getPatients());
     }
 
     /**
@@ -64,7 +68,7 @@ public class DoctorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Doctor} that we are building.
      */
     public DoctorBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
