@@ -31,9 +31,9 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
     private static final String NO_FLIGHT_MESSAGE =
             "No flight has been entered. Please enter /fl for the flight.";
 
-    private final Lazy<ReadOnlyItemManager<Pilot>> pilotManager;
+    private final Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy;
 
-    private final Lazy<ReadOnlyItemManager<Flight>> flightManager;
+    private final Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy;
 
     /**
      * Creates a new link command factory with the model registered.
@@ -43,13 +43,44 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
     }
 
     /**
-     * Creates a new link command factory with the given model.
+     * Creates a new link command factory with the given modelLazy.
      *
-     * @param model the model used for the creation of the link command factory.
+     * @param modelLazy the modelLazy used for the creation of the link command factory.
      */
-    public LinkPilotCommandFactory(Lazy<Model> model) {
-        pilotManager = model.map(Model::getPilotManager);
-        flightManager = model.map(Model::getFlightManager);
+    public LinkPilotCommandFactory(Lazy<Model> modelLazy) {
+        this(
+                modelLazy.map(Model::getPilotManager),
+                modelLazy.map(Model::getFlightManager)
+        );
+    }
+
+    /**
+     * Creates a new link pilot command factory with the given pilot manager
+     * lazy and the flight manager lazy.
+     *
+     * @param pilotManagerLazy  the lazy instance of the pilot manager.
+     * @param flightManagerLazy the lazy instance of the flight manager.
+     */
+    public LinkPilotCommandFactory(
+            Lazy<ReadOnlyItemManager<Pilot>> pilotManagerLazy,
+            Lazy<ReadOnlyItemManager<Flight>> flightManagerLazy
+    ) {
+        this.pilotManagerLazy = pilotManagerLazy;
+        this.flightManagerLazy = flightManagerLazy;
+    }
+
+    /**
+     * Creates a new link pilot command factory with the given pilot manager
+     * and the flight manager.
+     *
+     * @param pilotManager  the pilot manager.
+     * @param flightManager the flight manager.
+     */
+    public LinkPilotCommandFactory(
+            ReadOnlyItemManager<Pilot> pilotManager,
+            ReadOnlyItemManager<Flight> flightManager
+    ) {
+        this(Lazy.of(pilotManager), Lazy.of(flightManager));
     }
 
     @Override
@@ -76,7 +107,7 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
             return false;
         }
         Optional<Pilot> pilotOptional =
-                pilotManager.get().getItem(pilotIdOptional.get());
+                pilotManagerLazy.get().getItem(pilotIdOptional.get());
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -91,7 +122,7 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
         Optional<Flight> flightOptional =
-                flightManager.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItem(flightIdOptional.get());
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
