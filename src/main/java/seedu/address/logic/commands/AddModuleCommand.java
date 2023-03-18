@@ -12,7 +12,7 @@ import seedu.address.model.module.Module;
 public class AddModuleCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the tracker";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the tracker.";
 
     private final Module toAdd;
 

@@ -16,7 +16,7 @@ import seedu.address.model.module.ReadOnlyModule;
 public class AddLectureCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New lecture added to module %s: %s";
-    public static final String MESSAGE_DUPLICATE_LECTURE = "This lecture already exists in module %s";
+    public static final String MESSAGE_DUPLICATE_LECTURE = "This lecture already exists in module %s.";
 
     private final ModuleCode moduleCode;
     private final Lecture toAdd;
