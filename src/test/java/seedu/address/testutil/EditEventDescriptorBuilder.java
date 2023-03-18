@@ -31,7 +31,7 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code eventName} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code eventName} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withEventName(String eventName) {
         descriptor.setEventName(new EventName(eventName));

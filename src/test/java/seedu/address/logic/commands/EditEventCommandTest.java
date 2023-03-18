@@ -135,7 +135,7 @@ public class EditEventCommandTest {
     }
 
     /**
-     * Edit filtered list where index is larger than size of filtered list,
+     * Edit filtered list where the index is larger than the size of filtered list,
      * but smaller than size of address book
      */
     @Test

@@ -175,16 +175,16 @@ Examples:
 
 ### Deleting an event : `delevent`
 
-Deletes the specified event from the event list and deletes all occurences of the event tied to persons in the address book, if any.
+Deletes the specified event from the event list and deletes all occurrences of the event tied to persons in the address book, if any.
 
 Format: `delevent EVENT_INDEX`
 
-* Deletes the event at the specified `EVENT_INDEX` and all occurences of the event tied to persons in the address book, if any.
+* Deletes the event at the specified `EVENT_INDEX` and all occurrences of the event tied to persons in the address book, if any.
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listevent` followed by `delevent 2` deletes the 2nd event in the event list and all occurences of the 2nd event tied to persons in the address book, if any.
+* `listevent` followed by `delevent 2` deletes the 2nd event in the event list and all occurrences of the 2nd event tied to persons in the address book, if any.
 
 ### Editing an event : `editevent`
 
@@ -192,9 +192,11 @@ Edits an existing event in the address book.
 
 Format: `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`
 
-* Edits the event at the specified `EVENT_INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the event at the specified `EVENT_INDEX` and edits the relevant event tag tied to all persons in the address book.
+* The event index refers to the index number shown in the displayed event list. The event index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Edits will not allow start date time to be after the end date time.
 
 Examples:
 *  `editevent 1 ev/Birthday Party from/17-07-2023 12:00` Edits the event name and start datetime of the 1st event to be `Birthday Party` and `17-07-2023 12:00` respectively.
