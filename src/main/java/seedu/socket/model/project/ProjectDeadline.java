@@ -15,8 +15,8 @@ public class ProjectDeadline {
     public static final String DATE_TIME_FORMAT = "dd/MM/yy-HHmm";
     public static final String MESSAGE_CONSTRAINTS =
         "Date should be in format dd/MM/yy-HHmm";
+    public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
     public final String deadline;
-    public final DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
 
     /**
      * Constructs a {@code ProjectDeadline}.
@@ -33,9 +33,12 @@ public class ProjectDeadline {
      * @param test {@code String} form of DateTime to check.
      * @return true if {@code String} is of valid DateTime format, else false.
      */
-    private Boolean isValidProjectDeadline(String test) {
+    public static Boolean isValidProjectDeadline(String test) {
+        if (test == "") {
+            return true;
+        }
         try {
-            LocalDateTime.parse(test, format);
+            LocalDateTime.parse(test, FORMAT);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -50,7 +53,7 @@ public class ProjectDeadline {
         if (deadline == "") {
             return null; // this is dangerous TODO consider rethinking implementation
         }
-        return LocalDateTime.parse(deadline, format);
+        return LocalDateTime.parse(deadline, FORMAT);
     }
 
     @Override
