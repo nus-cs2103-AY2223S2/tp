@@ -60,7 +60,6 @@ public class TaskListPanel extends UiPart<VBox> {
     @FXML
     private void handleKeyPressed(KeyEvent event) {
         // System.out.println("You are navigating in TaskListPanel");
-
         switch (event.getText()) {
         case "d":
             System.out.println("You've deleted a task!");
@@ -69,7 +68,6 @@ public class TaskListPanel extends UiPart<VBox> {
             Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
             mainScreen.loadDetailedTaskComponent(selectedTask);
             break;
-
         case "j":
             System.out.println("You've moved down");
             navigateToNextCell();
@@ -79,6 +77,11 @@ public class TaskListPanel extends UiPart<VBox> {
             navigateToPrevCell();
             break;
         }
+    }
+
+    public void setFocusOnFirstTask() {
+        taskListView.getFocusModel().focus(0);
+        taskListView.getSelectionModel().select(0);
     }
 
     private void navigateToNextCell() {

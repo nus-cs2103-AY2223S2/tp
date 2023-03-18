@@ -1,13 +1,16 @@
 package vimification.taskui;
 
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+import javafx.stage.Stage;
 import vimification.logic.Logic;
 import vimification.model.task.Task;
 
@@ -18,6 +21,10 @@ import vimification.model.task.Task;
 public class MainScreen extends UiPart<VBox> {
 
     private static final String FXML = "MainScreen.fxml";
+
+    private ReadOnlyDoubleProperty stageHeight;
+    private DoubleBinding topComponentHeight; // Height of left and right component
+    private DoubleBinding commandInputComponentHeight;
 
     private Logic logic;
 
@@ -38,9 +45,12 @@ public class MainScreen extends UiPart<VBox> {
     /**
      * Creates a {@code MainWindow} with {@code Logic}.
      */
-    public MainScreen(Logic logic) {
+    public MainScreen(Logic logic, Stage stage) {
         super(FXML);
         this.logic = logic;
+        stageHeight = stage.heightProperty();
+        topComponentHeight = stageHeight.multiply(0.9);
+        commandInputComponentHeight = stageHeight.multiply(0.1);
         setup();
     }
 
@@ -52,16 +62,23 @@ public class MainScreen extends UiPart<VBox> {
     private void setup() {
         intializeCommandInput();
         initializeTaskListPanel();
+
+        leftComponent.prefHeightProperty().bind(topComponentHeight);
+        rightComponent.prefHeightProperty().bind(topComponentHeight);
+        commandInputComponent.prefHeightProperty().bind(commandInputComponentHeight);
     }
 
     private void initializeTaskListPanel() {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanel.setMainScreen(this);
         loadLeftComponent(taskListPanel);
+        taskListPanel.setFocusOnFirstTask();
     }
 
     private void intializeCommandInput() {
         commandInput = new CommandInput(this.getRoot());
+        commandInput.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.1));
+
         commandInputComponent.getChildren().add(commandInput.getRoot());
     }
 
@@ -104,13 +121,15 @@ public class MainScreen extends UiPart<VBox> {
         loadRightComponent(detailTask);
     }
 
-    private <T extends Node> void loadLeftComponent(UiPart<T> component) {
+    private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
         leftComponent.getChildren().clear();
         leftComponent.getChildren().add(component.getRoot());
+        component.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.9));
     }
 
-    private <T extends Node> void loadRightComponent(UiPart<T> component) {
+    private <T extends Pane> void loadRightComponent(UiPart<T> component) {
         rightComponent.getChildren().clear();
         rightComponent.getChildren().add(component.getRoot());
+        component.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.9));
     }
 }
