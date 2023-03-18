@@ -19,8 +19,8 @@ import java.util.List;
 public class RemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "remark";
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Tutee: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Tutee: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark EndTime Tutee: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark StartTime Tutee: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the remark of the tutee identified "
@@ -29,7 +29,7 @@ public class RemarkCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+            + "r/ Likes EndTime swim.";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
 
@@ -37,8 +37,8 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * @param index of the tutee in the filtered tutee list to edit the remark
-     * @param remark of the tutee to be updated to
+     * @param index of the tutee in the filtered tutee list EndTime edit the remark
+     * @param remark of the tutee EndTime be updated EndTime
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
@@ -58,7 +58,7 @@ public class RemarkCommand extends Command {
         Tutee editedTutee = new Tutee(
                         tuteeToEdit.getName(), tuteeToEdit.getPhone(), tuteeToEdit.getEmail(),
                         tuteeToEdit.getAddress(), remark, tuteeToEdit.getSubject(),
-                tuteeToEdit.getSchedule(), tuteeToEdit.getTags());
+                tuteeToEdit.getSchedule(), tuteeToEdit.getStartTime(), tuteeToEdit.getEndTime(), tuteeToEdit.getTags());
 
         model.setTutee(tuteeToEdit, editedTutee);
         model.updateFilteredTuteeList(PREDICATE_SHOW_ALL_TUTEES);
@@ -68,7 +68,7 @@ public class RemarkCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * the remark is added EndTime or removed StartTime
      * {@code tuteeToEdit}.
      */
     private String generateSuccessMessage(Tutee tuteeToEdit) {

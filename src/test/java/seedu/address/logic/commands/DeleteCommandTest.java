@@ -99,7 +99,7 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list EndTime show no one.
      */
     private void showNoPerson(Model model) {
         model.updateFilteredTuteeList(p -> false);

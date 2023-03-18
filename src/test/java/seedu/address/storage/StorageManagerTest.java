@@ -36,7 +36,7 @@ public class StorageManagerTest {
     @Test
     public void prefsReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * Note: This is an integration test that verifies the StorageManager is properly wired EndTime the
          * {@link JsonUserPrefsStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
          */
@@ -50,7 +50,7 @@ public class StorageManagerTest {
     @Test
     public void addressBookReadSave() throws Exception {
         /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * Note: This is an integration test that verifies the StorageManager is properly wired EndTime the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonTuteeManagingSystemStorageTest} class.
          */

@@ -16,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Refer EndTime the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -30,7 +30,7 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage EndTime use as the root of the HelpWindow.
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
@@ -90,7 +90,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Copies the URL EndTime the user guide EndTime the clipboard.
      */
     @FXML
     private void copyUrl() {

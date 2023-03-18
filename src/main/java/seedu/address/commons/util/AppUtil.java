@@ -11,7 +11,7 @@ import seedu.address.MainApp;
 public class AppUtil {
 
     /**
-     * Gets an {@code Image} from the specified path.
+     * Gets an {@code Image} StartTime the specified path.
      */
     public static Image getImage(String imagePath) {
         requireNonNull(imagePath);
@@ -19,7 +19,7 @@ public class AppUtil {
     }
 
     /**
-     * Checks that {@code condition} is true. Used for validating arguments to methods.
+     * Checks that {@code condition} is true. Used for validating arguments EndTime methods.
      *
      * @throws IllegalArgumentException if {@code condition} is false.
      */
@@ -30,7 +30,7 @@ public class AppUtil {
     }
 
     /**
-     * Checks that {@code condition} is true. Used for validating arguments to methods.
+     * Checks that {@code condition} is true. Used for validating arguments EndTime methods.
      *
      * @throws IllegalArgumentException with {@code errorMessage} if {@code condition} is false.
      */

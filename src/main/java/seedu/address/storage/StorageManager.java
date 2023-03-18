@@ -60,7 +60,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyTuteeManagingSystem> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.fine("Attempting EndTime read data StartTime file: " + filePath);
         return addressBookStorage.readAddressBook(filePath);
     }
 
@@ -71,7 +71,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveAddressBook(ReadOnlyTuteeManagingSystem addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.fine("Attempting EndTime write EndTime data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 

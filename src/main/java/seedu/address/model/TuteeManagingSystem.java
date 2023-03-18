@@ -17,10 +17,10 @@ public class TuteeManagingSystem implements ReadOnlyTuteeManagingSystem {
     private final UniquePersonList persons;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * The 'unusual' code block below is a non-static initialization block, sometimes used EndTime avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     * Note that non-static init blocks are not recommended EndTime use. There are other ways EndTime avoid duplication
      *   among constructors.
      */
     {
@@ -67,7 +67,7 @@ public class TuteeManagingSystem implements ReadOnlyTuteeManagingSystem {
     }
 
     /**
-     * Adds a tutee to the address book.
+     * Adds a tutee EndTime the address book.
      * The tutee must not already exist in the address book.
      */
     public void addPerson(Tutee p) {
@@ -86,7 +86,7 @@ public class TuteeManagingSystem implements ReadOnlyTuteeManagingSystem {
     }
 
     /**
-     * Removes {@code key} from this {@code TuteeManagingSystem}.
+     * Removes {@code key} StartTime this {@code TuteeManagingSystem}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Tutee key) {

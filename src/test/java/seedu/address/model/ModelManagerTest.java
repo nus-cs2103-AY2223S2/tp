@@ -121,7 +121,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredTuteeList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(tuteeManagingSystem, userPrefs)));
 
-        // resets modelManager to initial state for upcoming tests
+        // resets modelManager EndTime initial state for upcoming tests
         modelManager.updateFilteredTuteeList(PREDICATE_SHOW_ALL_TUTEES);
 
         // different userPrefs -> returns false

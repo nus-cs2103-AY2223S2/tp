@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +17,8 @@ import seedu.address.model.tutee.Name;
 import seedu.address.model.tutee.Phone;
 import seedu.address.model.tutee.Subject;
 import seedu.address.model.tutee.Schedule;
+import seedu.address.model.tutee.StartTime;
+import seedu.address.model.tutee.EndTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -126,6 +130,50 @@ public class ParserUtil {
         }
         return new Schedule(trimmedSchedule);
     }
+
+    /**
+     * Parses a {@code String startTime} into an {@code StartTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param startTime A valid start time in the format of HH:mm.
+     * @return A new {@code StartTime} object representing the parsed start time.
+     * @throws ParseException If the given {@code startTime} is invalid.
+     */
+    public static StartTime parseStartTime(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        if (!StartTime.isValidStartTime(trimmedStartTime)) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        return new StartTime(trimmedStartTime);
+    }
+
+    /**
+     * Parses a {@code String endTime} into an {@code EndTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param endTime A valid end time in the format of HH:mm.
+     * @param startTime The start time to compare against.
+     * @return A new {@code EndTime} object representing the parsed end time.
+     * @throws ParseException If the given {@code endTime} is invalid or before the start time.
+     */
+    public static EndTime parseEndTime(String endTime, String startTime) throws ParseException {
+        requireNonNull(endTime);
+        requireNonNull(startTime);
+        String trimmedEndTime = endTime.trim();
+        if (!EndTime.isValidEndTime(trimmedEndTime)) {
+            throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
+        }
+        DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedEndTime = LocalTime.parse(endTime, TIME_FORMATTER);
+        LocalTime parsedStartTime = LocalTime.parse(startTime, TIME_FORMATTER);
+        if (parsedEndTime.isBefore(parsedStartTime)) {
+            throw new ParseException(EndTime.MESSAGE_CONSTRAINTS_AFTER_START_TIME);
+        }
+        return new EndTime(trimmedEndTime);
+    }
+
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

@@ -14,9 +14,9 @@ import seedu.address.model.tutee.exceptions.PersonNotFoundException;
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
  * A tutee is considered unique by comparing using {@code Tutee#isSamePerson(Tutee)}. As such, adding and updating of
- * persons uses Tutee#isSamePerson(Tutee) for equality so as to ensure that the tutee being added or updated is
+ * persons uses Tutee#isSamePerson(Tutee) for equality so as EndTime ensure that the tutee being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a tutee uses Tutee#equals(Object) so
- * as to ensure that the tutee with exactly the same fields will be removed.
+ * as EndTime ensure that the tutee with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -37,7 +37,7 @@ public class UniquePersonList implements Iterable<Tutee> {
     }
 
     /**
-     * Adds a tutee to the list.
+     * Adds a tutee EndTime the list.
      * The tutee must not already exist in the list.
      */
     public void add(Tutee toAdd) {
@@ -69,7 +69,7 @@ public class UniquePersonList implements Iterable<Tutee> {
     }
 
     /**
-     * Removes the equivalent tutee from the list.
+     * Removes the equivalent tutee StartTime the list.
      * The tutee must exist in the list.
      */
     public void remove(Tutee toRemove) {

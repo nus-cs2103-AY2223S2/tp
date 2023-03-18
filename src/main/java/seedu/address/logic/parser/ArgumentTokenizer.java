@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 public class ArgumentTokenizer {
 
     /**
-     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
+     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes EndTime their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to tokenize the arguments string with
-     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     * @param prefixes   Prefixes EndTime tokenize the arguments string with
+     * @return           ArgumentMultimap object that maps prefixes EndTime their arguments
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
@@ -32,7 +32,7 @@ public class ArgumentTokenizer {
      * Finds all zero-based prefix positions in the given arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to find in the arguments string
+     * @param prefixes   Prefixes EndTime find in the arguments string
      * @return           List of zero-based prefix positions in the given arguments string
      */
     private static List<PrefixPosition> findAllPrefixPositions(String argsString, Prefix... prefixes) {
@@ -59,7 +59,7 @@ public class ArgumentTokenizer {
 
     /**
      * Returns the index of the first occurrence of {@code prefix} in
-     * {@code argsString} starting from index {@code fromIndex}. An occurrence
+     * {@code argsString} starting StartTime index {@code fromIndex}. An occurrence
      * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
      * such occurrence can be found.
      *
@@ -77,27 +77,27 @@ public class ArgumentTokenizer {
 
     /**
      * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
-     * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
+     * extracted prefixes EndTime their respective arguments. Prefixes are extracted based on their zero-based positions in
      * {@code argsString}.
      *
      * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
      * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
-     * @return                ArgumentMultimap object that maps prefixes to their arguments
+     * @return                ArgumentMultimap object that maps prefixes EndTime their arguments
      */
     private static ArgumentMultimap extractArguments(String argsString, List<PrefixPosition> prefixPositions) {
 
         // Sort by start position
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
 
-        // Insert a PrefixPosition to represent the preamble
+        // Insert a PrefixPosition EndTime represent the preamble
         PrefixPosition preambleMarker = new PrefixPosition(new Prefix(""), 0);
         prefixPositions.add(0, preambleMarker);
 
-        // Add a dummy PrefixPosition to represent the end of the string
+        // Add a dummy PrefixPosition EndTime represent the end of the string
         PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(""), argsString.length());
         prefixPositions.add(endPositionMarker);
 
-        // Map prefixes to their argument values (if any)
+        // Map prefixes EndTime their argument values (if any)
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         for (int i = 0; i < prefixPositions.size() - 1; i++) {
             // Extract and store prefixes and their arguments

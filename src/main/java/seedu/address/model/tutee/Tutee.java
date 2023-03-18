@@ -25,14 +25,16 @@ public class Tutee {
     private final Remark remark;
     private final Subject subject;
     private final Schedule schedule;
+    private final StartTime startTime;
+    private final EndTime endTime;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Tutee(Name name, Phone phone, Email email, Address address, Remark remark, Subject subject, Schedule schedule
-            , Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, remark, subject, schedule, tags);
+            , StartTime startTime, EndTime endTime, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, remark, subject, schedule, startTime, endTime, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -40,8 +42,11 @@ public class Tutee {
         this.remark = remark;
         this.subject = subject;
         this.schedule = schedule;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.tags.addAll(tags);
     }
+
 
     public Name getName() {
         return name;
@@ -64,6 +69,10 @@ public class Tutee {
     public Subject getSubject() { return subject; }
 
     public Schedule getSchedule() { return schedule; }
+
+    public StartTime getStartTime() { return startTime; }
+
+    public EndTime getEndTime() { return endTime; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -106,6 +115,8 @@ public class Tutee {
                 && otherTutee.getEmail().equals(getEmail())
                 && otherTutee.getAddress().equals(getAddress())
                 && otherTutee.getSubject().equals(getSubject())
+                && otherTutee.getStartTime().equals(getStartTime())
+                && otherTutee.getEndTime().equals(getEndTime())
                 && otherTutee.getTags().equals(getTags())
                 ;
     }
@@ -113,7 +124,7 @@ public class Tutee {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, subject, schedule, tags);
+        return Objects.hash(name, phone, email, address, subject, schedule, startTime, endTime, tags);
     }
 
     @Override

@@ -27,7 +27,7 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        // calls #setStyleToDefault() whenever there is a change EndTime the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
@@ -50,14 +50,14 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Sets the command box style to use the default style.
+     * Sets the command box style EndTime use the default style.
      */
     private void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
 
     /**
-     * Sets the command box style to indicate a failed command.
+     * Sets the command box style EndTime indicate a failed command.
      */
     private void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();

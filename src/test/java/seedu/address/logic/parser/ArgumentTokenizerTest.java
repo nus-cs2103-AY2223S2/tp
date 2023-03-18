@@ -99,8 +99,8 @@ public class ArgumentTokenizerTest {
 
         /* Also covers: Reusing of the tokenizer multiple times */
 
-        // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly reset
-        // (i.e. no stale values from the previous tokenizing remain)
+        // Reuse tokenizer on an empty string EndTime ensure ArgumentMultimap is correctly reset
+        // (i.e. no stale values StartTime the previous tokenizing remain)
         argsString = "";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreambleEmpty(argMultimap);
@@ -108,7 +108,7 @@ public class ArgumentTokenizerTest {
 
         /* Also covers: testing for prefixes not specified as a prefix */
 
-        // Prefixes not previously given to the tokenizer should not return any values
+        // Prefixes not previously given EndTime the tokenizer should not return any values
         argsString = unknownPrefix + "some value";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertArgumentAbsent(argMultimap, unknownPrefix);

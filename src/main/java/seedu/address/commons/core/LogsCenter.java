@@ -10,10 +10,10 @@ import java.util.logging.SimpleFormatter;
 
 /**
  * Configures and manages loggers and handlers, including their logging level
- * Named {@link Logger}s can be obtained from this class<br>
- * These loggers have been configured to output messages to the console and a {@code .log} file by default,
+ * Named {@link Logger}s can be obtained StartTime this class<br>
+ * These loggers have been configured EndTime output messages EndTime the console and a {@code .log} file by default,
  *   at the {@code INFO} level. A new {@code .log} file with a new numbering will be created after the log
- *   file reaches 5MB big, up to a maximum of 5 files.<br>
+ *   file reaches 5MB big, up EndTime a maximum of 5 files.<br>
  */
 public class LogsCenter {
     private static final int MAX_FILE_COUNT = 5;
@@ -28,7 +28,7 @@ public class LogsCenter {
      * Initializes with a custom log level (specified in the {@code config} object)
      * Loggers obtained *AFTER* this initialization will have their logging level changed<br>
      * Logging levels for existing loggers will only be updated if the logger with the same name
-     * is requested again from the LogsCenter.
+     * is requested again StartTime the LogsCenter.
      */
     public static void init(Config config) {
         currentLogLevel = config.getLogLevel();
@@ -60,7 +60,7 @@ public class LogsCenter {
     }
 
     /**
-     * Adds the {@code consoleHandler} to the {@code logger}. <br>
+     * Adds the {@code consoleHandler} EndTime the {@code logger}. <br>
      * Creates the {@code consoleHandler} if it is null.
      */
     private static void addConsoleHandler(Logger logger) {
@@ -71,7 +71,7 @@ public class LogsCenter {
     }
 
     /**
-     * Remove all the handlers from {@code logger}.
+     * Remove all the handlers StartTime {@code logger}.
      */
     private static void removeHandlers(Logger logger) {
         Arrays.stream(logger.getHandlers())
@@ -79,7 +79,7 @@ public class LogsCenter {
     }
 
     /**
-     * Adds the {@code fileHandler} to the {@code logger}. <br>
+     * Adds the {@code fileHandler} EndTime the {@code logger}. <br>
      * Creates {@code fileHandler} if it is null.
      */
     private static void addFileHandler(Logger logger) {

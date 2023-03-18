@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTEES;
 
@@ -44,15 +46,15 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutee: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field EndTime edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This tutee already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the tutee in the filtered tutee list to edit
-     * @param editPersonDescriptor details to edit the tutee with
+     * @param index of the tutee in the filtered tutee list EndTime edit
+     * @param editPersonDescriptor details EndTime edit the tutee with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -97,10 +99,12 @@ public class EditCommand extends Command {
         Remark updatedRemark = tuteeToEdit.getRemark(); // edit command does not allow editing remarks
         Subject updatedSubject = editPersonDescriptor.getSubject().orElse(tuteeToEdit.getSubject());
         Schedule updatedSchedule = editPersonDescriptor.getSchedule().orElse(tuteeToEdit.getSchedule());
+        StartTime updatedStartTime = editPersonDescriptor.getStartTime().orElse(tuteeToEdit.getStartTime());
+        EndTime updatedEndTime = editPersonDescriptor.getEndTime().orElse(tuteeToEdit.getEndTime());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(tuteeToEdit.getTags());
 
         return new Tutee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedSubject
-                ,updatedSchedule, updatedTags);
+                ,updatedSchedule, updatedStartTime, updatedEndTime, updatedTags);
     }
 
     @Override
@@ -122,7 +126,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the tutee with. Each non-empty field value will replace the
+     * Stores the details EndTime edit the tutee with. Each non-empty field value will replace the
      * corresponding field value of the tutee.
      */
     public static class EditPersonDescriptor {
@@ -132,6 +136,8 @@ public class EditCommand extends Command {
         private Address address;
         private Subject subject;
         private Schedule schedule;
+        private StartTime startTime;
+        private EndTime endTime;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -148,6 +154,8 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setSubject(toCopy.subject);
             setSchedule(toCopy.schedule);
+            setStartTime(toCopy.startTime);
+            setEndTime(toCopy.endTime);
         }
 
         /**
@@ -197,8 +205,16 @@ public class EditCommand extends Command {
 
         public Optional<Schedule> getSchedule() { return Optional.ofNullable(schedule); }
 
+        public void setStartTime(StartTime startTime) { this.startTime = startTime; }
+
+        public Optional<StartTime> getStartTime() { return Optional.ofNullable(startTime); }
+
+        public void setEndTime(EndTime endTime) { this.endTime = endTime; }
+
+        public Optional<EndTime> getEndTime() { return Optional.ofNullable(endTime); }
+
         /**
-         * Sets {@code tags} to this object's {@code tags}.
+         * Sets {@code tags} EndTime this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
         public void setTags(Set<Tag> tags) {
@@ -234,6 +250,9 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getSubject().equals(e.getSubject())
+                    && getSchedule().equals(e.getSchedule())
+                    && getStartTime().equals(e.getStartTime())
+                    && getEndTime().equals(e.getEndTime())
                     && getTags().equals(e.getTags());
         }
     }

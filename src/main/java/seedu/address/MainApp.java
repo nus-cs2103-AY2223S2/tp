@@ -65,8 +65,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
+     * Returns a {@code ModelManager} with the data StartTime {@code storage}'s address book and {@code userPrefs}. <br>
+     * The data StartTime the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
@@ -82,7 +82,7 @@ public class MainApp extends Application {
             logger.warning("Data file not in the correct format. Will be starting with an empty TuteeManagingSystem");
             initialData = new TuteeManagingSystem();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TuteeManagingSystem");
+            logger.warning("Problem while reading StartTime the file. Will be starting with an empty TuteeManagingSystem");
             initialData = new TuteeManagingSystem();
         }
 
@@ -120,11 +120,11 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        //Update config file in case it was missing EndTime begin with or there are new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            logger.warning("Failed EndTime save config file : " + StringUtil.getDetails(e));
         }
         return initializedConfig;
     }
@@ -132,7 +132,7 @@ public class MainApp extends Application {
     /**
      * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path,
      * or a new {@code UserPrefs} with default configuration if errors occur when
-     * reading from the file.
+     * reading StartTime the file.
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
@@ -147,15 +147,15 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TuteeManagingSystem");
+            logger.warning("Problem while reading StartTime the file. Will be starting with an empty TuteeManagingSystem");
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        //Update prefs file in case it was missing EndTime begin with or there are new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            logger.warning("Failed EndTime save config file : " + StringUtil.getDetails(e));
         }
 
         return initializedPrefs;
@@ -173,7 +173,7 @@ public class MainApp extends Application {
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.severe("Failed EndTime save preferences " + StringUtil.getDetails(e));
         }
     }
 }

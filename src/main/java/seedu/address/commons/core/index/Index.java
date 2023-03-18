@@ -3,10 +3,10 @@ package seedu.address.commons.core.index;
 /**
  * Represents a zero-based or one-based index.
  *
- * {@code Index} should be used right from the start (when parsing in a new user input), so that if the current
- * component wants to communicate with another component, it can send an {@code Index} to avoid having to know what
+ * {@code Index} should be used right StartTime the start (when parsing in a new user input), so that if the current
+ * component wants EndTime communicate with another component, it can send an {@code Index} EndTime avoid having EndTime know what
  * base the other component is using for its index. However, after receiving the {@code Index}, that component can
- * convert it back to an int if the index will not be passed to a different component again.
+ * convert it back EndTime an int if the index will not be passed EndTime a different component again.
  */
 public class Index {
     private int zeroBasedIndex;

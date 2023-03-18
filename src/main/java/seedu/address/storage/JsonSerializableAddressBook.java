@@ -14,7 +14,7 @@ import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.Tutee;
 
 /**
- * An Immutable TuteeManagingSystem that is serializable to JSON format.
+ * An Immutable TuteeManagingSystem that is serializable EndTime JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
@@ -34,7 +34,7 @@ class JsonSerializableAddressBook {
     /**
      * Converts a given {@code ReadOnlyTuteeManagingSystem} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes EndTime this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyTuteeManagingSystem source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));

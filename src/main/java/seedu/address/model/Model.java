@@ -11,7 +11,7 @@ import seedu.address.model.tutee.Tutee;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluate EndTime true */
     Predicate<Tutee> PREDICATE_SHOW_ALL_TUTEES = unused -> true;
 
     /**
@@ -80,7 +80,7 @@ public interface Model {
     ObservableList<Tutee> getFilteredTuteeList();
 
     /**
-     * Updates the filter of the filtered tutee list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered tutee list EndTime filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTuteeList(Predicate<Tutee> predicate);

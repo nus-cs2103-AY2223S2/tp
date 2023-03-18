@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,18 +16,22 @@ import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
 
 /**
- * Adds a tutee to the address book.
+ * Adds a tutee EndTime the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutee to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutee information to the system. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_SUBJECT + "SUBJECT "
+            + PREFIX_SCHEDULE + "SCHEDULE "
+            + PREFIX_STARTTIME + "STARTTIME "
+            + PREFIX_ENDTIME + "ENDTIME "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -34,6 +40,8 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_SUBJECT + "Math"
             + PREFIX_SCHEDULE + "monday"
+            + PREFIX_STARTTIME + "08:30"
+            + PREFIX_ENDTIME + "10:30"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
@@ -43,7 +51,7 @@ public class AddCommand extends Command {
     private final Tutee toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Tutee}
+     * Creates an AddCommand EndTime add the specified {@code Tutee}
      */
     public AddCommand(Tutee tutee) {
         requireNonNull(tutee);

@@ -11,7 +11,7 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
+    /** Help information should be shown EndTime the user. */
     private final boolean showHelp;
 
     /** The application should exit. */
@@ -28,7 +28,7 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * and other fields set EndTime their default value.
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false);

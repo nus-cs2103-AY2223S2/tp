@@ -18,7 +18,7 @@ public class PersonCard extends UiPart<Region> {
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
+     * As a consequence, UI elements' variable names cannot be set EndTime such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TuteeManagingSystem level 4</a>
@@ -43,12 +43,16 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label schedule;
     @FXML
+    private Label startTime;
+    @FXML
+    private Label endTime;
+    @FXML
     private Label remark;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Tutee} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Tutee} and index EndTime display.
      */
     public PersonCard(Tutee tutee, int displayedIndex) {
         super(FXML);
@@ -60,6 +64,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText(tutee.getEmail().value);
         subject.setText(tutee.getSubject().subject);
         schedule.setText(tutee.getSchedule().schedule);
+        startTime.setText(tutee.getStartTime().startTime);
+        endTime.setText(tutee.getEndTime().endTime);
         remark.setText(tutee.getRemark().value);
         tutee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

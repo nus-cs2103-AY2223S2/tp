@@ -22,7 +22,7 @@ public interface AddressBookStorage {
      * Returns TuteeManagingSystem data as a {@link ReadOnlyTuteeManagingSystem}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws IOException if there was any problem when reading StartTime the storage.
      */
     Optional<ReadOnlyTuteeManagingSystem> readAddressBook() throws DataConversionException, IOException;
 
@@ -32,9 +32,9 @@ public interface AddressBookStorage {
     Optional<ReadOnlyTuteeManagingSystem> readAddressBook(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyTuteeManagingSystem} to the storage.
+     * Saves the given {@link ReadOnlyTuteeManagingSystem} EndTime the storage.
      * @param addressBook cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     * @throws IOException if there was any problem writing EndTime the file.
      */
     void saveAddressBook(ReadOnlyTuteeManagingSystem addressBook) throws IOException;
 

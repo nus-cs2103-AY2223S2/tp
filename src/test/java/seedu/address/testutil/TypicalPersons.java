@@ -19,7 +19,7 @@ import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.Tutee;
 
 /**
- * A utility class containing a list of {@code Tutee} objects to be used in tests.
+ * A utility class containing a list of {@code Tutee} objects EndTime be used in tests.
  */
 public class TypicalPersons {
 
