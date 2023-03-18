@@ -57,7 +57,7 @@ public class MainScreen extends UiPart<VBox> {
     private void initializeTaskListPanel() {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanel.setMainScreen(this);
-        leftComponent.getChildren().add(taskListPanel.getRoot());
+        loadLeftComponent(taskListPanel);
     }
 
     private void intializeCommandInput() {
@@ -102,6 +102,11 @@ public class MainScreen extends UiPart<VBox> {
     public void loadDetailedTaskComponent(Task task) {
         TaskDetailPanel detailTask = new TaskDetailPanel(task);
         loadRightComponent(detailTask);
+    }
+
+    private <T extends Node> void loadLeftComponent(UiPart<T> component) {
+        leftComponent.getChildren().clear();
+        leftComponent.getChildren().add(component.getRoot());
     }
 
     private <T extends Node> void loadRightComponent(UiPart<T> component) {
