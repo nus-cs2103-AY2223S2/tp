@@ -11,8 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.loyaltylift.commons.core.GuiSettings;
 import seedu.loyaltylift.commons.core.LogsCenter;
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.model.order.Quantity;
+import seedu.loyaltylift.model.order.Status;
 
 /**
  * Represents the in-memory model of the address book data.

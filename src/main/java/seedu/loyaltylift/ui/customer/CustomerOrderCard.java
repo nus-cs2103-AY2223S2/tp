@@ -2,10 +2,12 @@ package seedu.loyaltylift.ui.customer;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.ui.Badge;
 import seedu.loyaltylift.ui.UiPart;
@@ -30,7 +32,7 @@ public class CustomerOrderCard extends UiPart<HBox> {
 
     private final Order order;
     private final Integer index;
-    private final DateFormat dateFormat = new SimpleDateFormat("d MMMM yyyy");
+    private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
 
     /**
@@ -42,8 +44,8 @@ public class CustomerOrderCard extends UiPart<HBox> {
         this.index = index;
 
         id.setText(index.toString());
-        name.setText(order.getName().name);
-        date.setText(dateFormat.format(order.getCreatedDate().value));
+        name.setText(order.getName().fullName);
+        date.setText(DATE_FORMATTER.format(order.getCreatedDate().value));
         address.setText(order.getAddress().value);
 
         Badge statusBadge = Badge.createOrderStatusBadge(order.getStatus());
