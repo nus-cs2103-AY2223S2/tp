@@ -167,12 +167,8 @@ public class Wife implements ReadOnlyWife {
         return other == this // short circuit if same object
                 || (
                     other instanceof Wife // instanceof handles nulls
-                    && foods.equals(
-                        ((Wife) other).foods
-                        )
-                    && tags.equals(
-                        ((Wife) other).tags
-                    )
+                    && foods.equals(((Wife) other).foods)
+                    && tags.equals(((Wife) other).tags)
                 );
     }
 
