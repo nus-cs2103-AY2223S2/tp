@@ -2,8 +2,8 @@ package seedu.sudohr.model;
 
 import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.leave.Leave;
 
 /**
  * Unmodifiable view of a SudoHR

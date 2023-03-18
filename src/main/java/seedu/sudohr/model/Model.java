@@ -7,9 +7,9 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
-import seedu.sudohr.model.employee.Employee;
 
 /**
  * The API of the Model component.

@@ -8,9 +8,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.leave.exceptions.DuplicateLeaveException;
 import seedu.sudohr.model.leave.exceptions.LeaveNotFoundException;
-import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 
 /**
  * A list of leaves that enforces uniqueness between its elements and does not

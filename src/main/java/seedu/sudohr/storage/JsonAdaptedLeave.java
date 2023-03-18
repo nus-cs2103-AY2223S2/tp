@@ -12,9 +12,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.sudohr.commons.exceptions.IllegalValueException;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
-import seedu.sudohr.model.employee.Employee;
+
 /**
  * Jackson-friendly version of {@link Leave}.
  */

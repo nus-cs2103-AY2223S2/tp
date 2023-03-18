@@ -12,8 +12,8 @@ import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
-import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.leave.Leave;
 
 /**
  * An Immutable SudoHr that is serializable to JSON format.

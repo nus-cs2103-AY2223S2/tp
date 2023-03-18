@@ -10,10 +10,10 @@ import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
-import seedu.sudohr.model.employee.Employee;
 
 /**
  * Deletes a employee from a specific leave in sudohr book.
@@ -21,7 +21,8 @@ import seedu.sudohr.model.employee.Employee;
 public class DeleteEmployeeFromLeaveCommand extends Command {
     public static final String COMMAND_WORD = "deleteEmployeeLeave";
 
-    public static final String MESSAGE_EMPLOYEE_DOES_NOT_EXIST = "This employee does not exists in the leave in sudohr book";
+    public static final String MESSAGE_EMPLOYEE_DOES_NOT_EXIST = "This employee does not exists"
+            + "in the leave in sudohr book";
 
     public static final String MESSAGE_SUCCESS = "employee %1$s is deleted from %2$s";
 

@@ -13,10 +13,9 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
-
-import seedu.sudohr.model.employee.Employee;
 
 /**
  * Represents the in-memory model of the SudoHR data.
@@ -327,5 +326,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredEmployees.equals(other.filteredEmployees);
     }
-    
+
 }

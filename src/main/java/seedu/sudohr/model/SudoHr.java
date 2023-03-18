@@ -9,11 +9,12 @@ import javafx.collections.ObservableList;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.department.UniqueDepartmentList;
+import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.UniqueEmployeeList;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.UniqueLeaveList;
-import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.employee.UniqueEmployeeList;
+
 
 /**
  * Wraps all data at the SudoHR-level
@@ -192,7 +193,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Returns the department with the given name.
-     * 
+     *
      * @param name The department name to find.
      * @return The corresponding department.
      */
@@ -234,7 +235,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Adds a given employee from a given department
-     * 
+     *
      * @param p The employee to add
      * @param d The department to add the employee to
      */
@@ -247,7 +248,7 @@ public class SudoHr implements ReadOnlySudoHr {
 
     /**
      * Removes a given employee from a given department
-     * 
+     *
      * @param p The employee to remove
      * @param d The department to remove the employee fro
      */

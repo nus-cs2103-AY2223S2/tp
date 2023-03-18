@@ -10,10 +10,10 @@ import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
-import seedu.sudohr.model.employee.Employee;
 
 /**
  * Adds a employee using it's displayed index to a specific leave using it's
@@ -22,7 +22,8 @@ import seedu.sudohr.model.employee.Employee;
 public class AddEmployeeToLeaveCommand extends Command {
     public static final String COMMAND_WORD = "addEmployeeLeave";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a employee's leave in the sudohr book. ";
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on that day in sudohr book";
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already has a leave on that day"
+            + "in sudohr book";
     public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index is invalid";
     public static final String MESSAGE_SUCCESS = "New employee %1$s is added on %2$s";
 

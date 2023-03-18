@@ -23,6 +23,8 @@ import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.testutil.DepartmentBuilder;
 
 public class AddDepartmentCommandTest {
@@ -221,6 +223,72 @@ public class AddDepartmentCommandTest {
         @Override
         public void updateFilteredDepartmentList(Predicate<Department> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLeave(Leave leave) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addLeave'");
+        }
+
+        @Override
+        public boolean hasLeave(Leave leave) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasLeave'");
+        }
+
+        @Override
+        public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getInternalLeaveIfExist'");
+        }
+
+        @Override
+        public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasEmployeeOnLeave'");
+        }
+
+        @Override
+        public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToLeave'");
+        }
+
+        @Override
+        public ObservableList<Leave> getFilteredLeaveList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredLeaveList'");
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getLeavesList'");
+        }
+
+        @Override
+        public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteEmployeeFromLeave'");
+        }
+
+        @Override
+        public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredLeaveList'");
+        }
+
+        @Override
+        public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'cascadeUpdateUserInLeaves'");
+        }
+
+        @Override
+        public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInLeaves'");
         }
     }
 

@@ -41,6 +41,7 @@ import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
+import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.EmployeeBuilder;
 
@@ -277,7 +278,6 @@ public class SudoHrTest {
         assertThrows(DuplicatePhoneNumberException.class, () -> sudoHr.addEmployee(editedAlice));
     }
 
-
     /** Tests editing of a employee **/
     @Test
     public void setEmployee_nullTargetEmployee_throwsNullPointerException() {
@@ -453,7 +453,6 @@ public class SudoHrTest {
         assertEquals(expectedSudoHr, sudoHr);
     }
 
-
     // edited employee change to duplicated phone number shared with someone SudoHR
     @Test
     public void setEmployee_editedEmployeeDuplicatedPhoneNumber_throwsDuplicatePhoneNumberException() {
@@ -531,7 +530,6 @@ public class SudoHrTest {
 
         assertEquals(expectedSudoHr, sudoHr);
     }
-
 
     // edited employee change to duplicated email as someone SudoHR
     @Test
@@ -632,21 +630,6 @@ public class SudoHrTest {
         @Override
         public ObservableList<Leave> getLeavesList() {
             return leaves;
-        }
-
-        @Override
-        public ObservableList<Department> getDepartmentList() {
-            return departments;
-        }
-
-        @Override
-        public ObservableList<Leave> getLeavesList() {
-            return leaves;
-        }
-
-        @Override
-        public ObservableList<Department> getDepartmentList() {
-            return departments;
         }
     }
 
