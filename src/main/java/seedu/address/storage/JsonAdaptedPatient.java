@@ -107,10 +107,10 @@ class JsonAdaptedPatient extends JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
-        Person doctorPerson = super.toModelType();
-        return new Patient(doctorPerson.getName(), doctorPerson.getPhone(),
-                doctorPerson.getEmail(), modelHeight, modelWeight,
-                modelDiagnosis, modelStatus, modelRemark, doctorPerson.getTags());
+        Person patientPerson = super.toModelType();
+        return new Patient(patientPerson.getName(), patientPerson.getPhone(),
+                patientPerson.getEmail(), modelHeight, modelWeight,
+                modelDiagnosis, modelStatus, modelRemark, patientPerson.getTags());
     }
 
 }
