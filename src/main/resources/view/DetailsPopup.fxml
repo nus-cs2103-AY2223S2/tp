@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,63 +14,92 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="Details" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
-            <HBox id="DetailsPane" fx:id="DetailsPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-                <GridPane HBox.hgrow="ALWAYS">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" prefWidth="300.0" />
-                    </columnConstraints>
-                    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-                        <padding>
-                            <Insets bottom="5" left="15" right="5" top="5" />
-                        </padding>
-                        <HBox alignment="CENTER_LEFT" spacing="5">
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:  " />
-                            <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
+            <HBox id="DetailsPane" fx:id="DetailsPane" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <content>
+                      <GridPane>
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" prefWidth="300.0" />
+                          </columnConstraints>
+                          <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+                              <padding>
+                                  <Insets bottom="5" left="15" right="5" top="5" />
+                              </padding>
+                              <HBox alignment="CENTER_LEFT" spacing="5">
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:  " />
+                                  <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                              </HBox>
+                        <HBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tags:  " />
+                                    <FlowPane fx:id="tags" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
                         </HBox>
-                  <HBox>
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tags:  " />
-                              <FlowPane fx:id="tags" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID No.:  " />
-                              <Label fx:id="idNumber" styleClass="cell_small_label" text="\$idNumber" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone no.:  " />
-                              <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:  " />
-                              <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email:  " />
-                              <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status:  " />
-                              <Label fx:id="status" styleClass="cell_small_label" text="NA" />
-                     </children>
-                  </HBox>
-                    </VBox>
-               <rowConstraints>
-                  <RowConstraints vgrow="ALWAYS" />
-               </rowConstraints>
-                </GridPane>
+                        <HBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID No.:  " />
+                                    <Label fx:id="idNumber" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_small_label" text="\$idNumber" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone no.:  " />
+                                    <Label fx:id="phone" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_small_label" text="\$phone" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:  " />
+                                    <Label fx:id="address" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_small_label" text="\$address" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Email:  " />
+                                    <Label fx:id="email" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_small_label" text="\$email" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status:  " />
+                                    <Label fx:id="status" minHeight="-Infinity" minWidth="-Infinity" styleClass="cell_small_label" text="NA" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                          </VBox>
+                     <rowConstraints>
+                        <RowConstraints vgrow="ALWAYS" />
+                     </rowConstraints>
+                      </GridPane>
+               </content>
+            </ScrollPane>
             </HBox>
         </Scene>
     </scene>
