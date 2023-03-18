@@ -1,11 +1,11 @@
 package seedu.address.ui.body.calendar;
 
 import java.time.LocalDate;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -31,31 +31,25 @@ public class CalendarPanel extends UiPart<Region> {
         super(FXML);
         Objects.requireNonNull(eventList);
 
-        fillCalendarContent(sortEvents(eventList));
+        fillCalendarContent(eventList);
         eventList.addListener((ListChangeListener<Event>) c -> {
             calendarContent.getChildren().clear();
-            fillCalendarContent(sortEvents(eventList));
+            fillCalendarContent(eventList);
         });
     }
 
-    private List<Event> sortEvents(List<Event> events) {
-        return events.stream()
-                .sorted(Comparator.comparing(event -> event.getStartDateTime().getDateTime()))
-                .collect(Collectors.toList());
-    }
-
     private void fillCalendarContent(List<Event> events) {
-        LocalDate date = null;
-        List<Event> dateEvents = new LinkedList<>();
+        Map<LocalDate, List<Event>> dateEventsMap = new HashMap<>();
         for (Event event : events) {
-            if (!Objects.equals(date, event.getStartDateTime().getDateTime().toLocalDate())) {
-                addDayCard(dateEvents, date);
-                date = event.getStartDateTime().getDateTime().toLocalDate();
-                dateEvents.clear();
-            }
+            LocalDate date = event.getStartDateTime().getDateTime().toLocalDate();
+            List<Event> dateEvents = dateEventsMap.getOrDefault(date, new LinkedList<>());
             dateEvents.add(event);
+            dateEventsMap.putIfAbsent(date, dateEvents);
         }
-        addDayCard(dateEvents, date);
+        dateEventsMap.keySet().stream().sorted().forEach(date -> {
+            List<Event> dateEvents = dateEventsMap.get(date);
+            addDayCard(dateEvents, date);
+        });
     }
 
     private void addDayCard(List<Event> events, LocalDate date) {
