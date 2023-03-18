@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.job.Order;
 import seedu.address.model.job.Role;
 
 /**
@@ -84,4 +86,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRoleList(Predicate<Role> predicate);
+
+    /**
+     * Display the RoleList.
+     * @throws NullPointerException if {@code list} is null.
+     */
+    void displaySortedRoleList(Order order);
 }

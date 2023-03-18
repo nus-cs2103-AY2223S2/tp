@@ -4,13 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.job.Order;
 import seedu.address.model.job.Role;
 
 /**
@@ -126,6 +132,20 @@ public class ModelManager implements Model {
     public void updateFilteredRoleList(Predicate<Role> predicate) {
         requireNonNull(predicate);
         filteredRoles.setPredicate(predicate);
+    }
+
+    @Override
+    public void displaySortedRoleList(Order order) {
+        List<Role> roles = filteredRoles.sorted((r1, r2) -> {
+            int s1 = Integer.parseInt(r1.getSalary().toString());
+            int s2 = Integer.parseInt(r2.getSalary().toString());
+            if (order.toString().equals("asc")) {
+                return Integer.compare(s1, s2);
+            } else {
+                return Integer.compare(s2, s1);
+            }
+        });
+        this.addressBook.setRoles(roles);
     }
 
     @Override
