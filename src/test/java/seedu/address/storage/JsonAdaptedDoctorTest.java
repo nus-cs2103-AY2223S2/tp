@@ -60,7 +60,7 @@ public class JsonAdaptedDoctorTest {
         JsonAdaptedDoctor doctor = new JsonAdaptedDoctor(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
                 VALID_YOE, VALID_TAGS, VALID_PATIENTS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Yoe.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Specialty.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, doctor::toModelType);
     }
 

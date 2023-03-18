@@ -1,64 +1,46 @@
 {
   "doctors" : [ {
-    "name" : "Alice Yeoh",
-    "phone" : "87438807",
-    "email" : "alexyeoh@example.com",
-    "specialty" : "Respiratory Care",
-    "yearsOfExperience" : "3",
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "specialty" : "General Medicine",
+    "yearsOfExperience" : "5",
     "tagged" : [ "friends" ],
-    "patients" : [ {
-      "name" : "John Doe",
-      "phone" : "88887777",
-      "email" : "prawn@gmail.com",
-      "height" : "1.7",
-      "weight" : "63.4",
-      "diagnosis" : "None",
-      "status" : "Inpatient",
-      "remark" : "Compliant",
-      "tagged" : [ "Friend", "College" ]
-    } ]
+    "patients" : [ ]
   }, {
-    "name" : "Bernice Yu",
-    "phone" : "99272758",
-    "email" : "berniceyu@example.com",
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
     "specialty" : "Anaesthesia",
     "yearsOfExperience" : "7",
     "tagged" : [ "colleagues", "friends" ],
     "patients" : [ ]
   }, {
-    "name" : "Charlotte Oliveiro",
-    "phone" : "93210283",
-    "email" : "charlotte@example.com",
-    "specialty" : "Orthopaedic",
-    "yearsOfExperience" : "9",
-    "tagged" : [ "neighbours" ],
-    "patients" : [ ]
-  }, {
-    "name" : "Irfan Ibrahim",
-    "phone" : "92492021",
-    "email" : "irfan@example.com",
-    "specialty" : "Brain Surgery",
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "danielm@example.com",
+    "specialty" : "Neurosurgery",
     "yearsOfExperience" : "25",
-    "tagged" : [ "classmates" ],
-    "patients" : [ ]
-  }, {
-    "name" : "Roy Balakrishnan",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "specialty" : "Lung Specialist",
-    "yearsOfExperience" : "5",
-    "tagged" : [ "colleagues" ],
+    "tagged" : [ "HoD" ],
     "patients" : [ {
-      "name" : "John Doe",
-      "phone" : "88887777",
-      "email" : "prawn@gmail.com",
-      "height" : "1.7",
-      "weight" : "63.4",
-      "diagnosis" : "None",
+      "name" : "Zayden Lim",
+      "phone" : "23456978",
+      "email" : "zayden@gmail.com",
+      "height" : "1.6",
+      "weight" : "64",
+      "diagnosis" : "Asthma",
       "status" : "Inpatient",
       "remark" : "Compliant",
-      "tagged" : [ "Friend", "College" ]
+      "tagged" : [ "teenager" ]
     } ]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "carlk@example.com",
+    "specialty" : "Orthopaedic",
+    "yearsOfExperience" : "9",
+    "tagged" : [ ],
+    "patients" : [ ]
   }
   ]
 }

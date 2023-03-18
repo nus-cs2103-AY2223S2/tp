@@ -39,6 +39,7 @@ public class EditDoctorDescriptorBuilder {
         descriptor.setSpecialty(doctor.getSpecialty());
         descriptor.setYoe(doctor.getYoe());
         descriptor.setTags(doctor.getTags());
+        descriptor.setPatients(doctor.getPatients());
     }
 
     /**

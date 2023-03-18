@@ -26,6 +26,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.doctor.Specialty;
 import seedu.address.model.person.doctor.Yoe;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -137,6 +138,7 @@ public class EditDoctorCommand extends Command {
         private Specialty specialty;
         private Yoe yoe;
         private Set<Tag> tags;
+        private Set<Patient> patients;
 
         public EditDoctorDescriptor() {}
 
@@ -151,13 +153,14 @@ public class EditDoctorCommand extends Command {
             setSpecialty(toCopy.specialty);
             setYoe(toCopy.yoe);
             setTags(toCopy.tags);
+            setPatients(toCopy.patients);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, specialty, yoe, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, specialty, yoe, tags, patients);
         }
 
         public void setName(Name name) {
@@ -217,6 +220,23 @@ public class EditDoctorCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code patients} to this object's {@code patients}.
+         * A defensive copy of {@code patients} is used internally.
+         */
+        public void setPatients(Set<Patient> patients) {
+            this.patients = (patients != null) ? new HashSet<>(patients) : null;
+        }
+
+        /**
+         * Returns an unmodifiable patients set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code patients} is null.
+         */
+        public Optional<Set<Patient>> getPatients() {
+            return (patients != null) ? Optional.of(Collections.unmodifiableSet(patients)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -237,7 +257,8 @@ public class EditDoctorCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getSpecialty().equals(e.getSpecialty())
                     && getYoe().equals(e.getYoe())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getPatients().equals(e.getPatients());
         }
     }
 }
