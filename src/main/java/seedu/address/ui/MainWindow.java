@@ -116,25 +116,8 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    @SuppressWarnings("unchecked")
     void fillInnerParts(Level level) {
-        // Sets the list displayed on UI based on the level type
-        if (level.equals(Level.MODULE)) {
-            this.moduleListPanel = new ModuleListPanel(
-                (ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
-            listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
-        }
-        if (level.equals(Level.LECTURE)) {
-            this.lectureListPanel = new LectureListPanel(
-                (ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
-            listPanelPlaceholder.getChildren().add(lectureListPanel.getRoot());
-        }
-        if (level.equals(Level.VIDEO)) {
-            this.videoListPanel = new VideoListPanel(
-                (ObservableList<Video>) logic.getFilteredVideoList());
-            listPanelPlaceholder.getChildren().add(videoListPanel.getRoot());
-        }
-
+        setListPanelPlaceholder(level);
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -156,6 +139,29 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
     }
+
+    /**
+     * Sets the list displayed on UI based on {@code level} type.
+     */
+    @SuppressWarnings("unchecked")
+    private void setListPanelPlaceholder(Level level) {
+        if (level.equals(Level.MODULE)) {
+            this.moduleListPanel = new ModuleListPanel(
+                (ObservableList<ReadOnlyModule>) logic.getFilteredModuleList());
+            listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        }
+        if (level.equals(Level.LECTURE)) {
+            this.lectureListPanel = new LectureListPanel(
+                (ObservableList<ReadOnlyLecture>) logic.getFilteredLectureList());
+            listPanelPlaceholder.getChildren().add(lectureListPanel.getRoot());
+        }
+        if (level.equals(Level.VIDEO)) {
+            this.videoListPanel = new VideoListPanel(
+                (ObservableList<Video>) logic.getFilteredVideoList());
+            listPanelPlaceholder.getChildren().add(videoListPanel.getRoot());
+        }
+    }
+
 
     /**
      * Opens the help window or focuses on it if it's already opened.
@@ -201,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
             if (listLevel == null) {
                 listLevel = logic.getLastListLevel();
             }
-            fillInnerParts(listLevel);
+            setListPanelPlaceholder(listLevel);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
