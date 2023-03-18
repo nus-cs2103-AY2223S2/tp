@@ -35,7 +35,7 @@ public class FoodUtil {
         sb.append(PREFIX_QUANTITY + food.getQuantity().toString() + " ");
         sb.append(PREFIX_EXPIRY_DATE + food.getExpiryDate().toString() + " ");
         food.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.getTagName() + " ")
         );
         return sb.toString();
     }

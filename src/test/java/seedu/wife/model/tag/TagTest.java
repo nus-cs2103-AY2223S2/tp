@@ -20,7 +20,7 @@ public class TagTest {
     @Test
     public void isValidTagName() {
         // null tag name
-        assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
+        assertThrows(NullPointerException.class, () -> TagName.isValidTagName(null));
     }
 
 }

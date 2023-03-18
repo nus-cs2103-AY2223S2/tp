@@ -53,8 +53,8 @@ public class FoodCard extends UiPart<Region> {
         quantity.setText(food.getQuantity().toString());
         expiryDate.setText(food.getExpiryDate().toString());
         food.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.getTagName()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
     }
 
     @Override

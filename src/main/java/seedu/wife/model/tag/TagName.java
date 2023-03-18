@@ -8,6 +8,11 @@ import static seedu.wife.commons.util.AppUtil.checkArgument;
  */
 public class TagName {
     public static final Integer TAG_NAME_MAX_LENGTH = 15;
+    public static final String MESSAGE_CONSTRAINTS = "Your tag name violates the tag name convention. Please follow "
+            + "the below formats: \n"
+            + "1. Tag Name should not be empty\n"
+            + "2. Tag name should only contain letters\n"
+            + "3. Tag name should not be longer than 15 characters";
     public static final String NAME_VALIDATION_REGEX = "^[a-zA-Z\\s]*$";
     public static final String TAG_NAME_NOT_PRESENT = "Tag name should not be empty. "
             + "Please insert a name for your tag.";
@@ -23,14 +28,14 @@ public class TagName {
         requireNonNull(tagName);
         checkArgument(isNamePresent(tagName), TAG_NAME_NOT_PRESENT);
         checkArgument(isNameNotLengthy(tagName), TAG_NAME_LENGTHY);
-        checkArgument(isValidTagName(tagName), INVALID_TAG_NAME);
+        checkArgument(isValidString(tagName), INVALID_TAG_NAME);
         this.tagName = tagName;
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
-    public static boolean isValidTagName(String test) {
+    public static boolean isValidString(String test) {
         return test.matches(NAME_VALIDATION_REGEX);
     }
 
@@ -46,6 +51,10 @@ public class TagName {
      */
     public static Boolean isNameNotLengthy(String tagName) {
         return tagName.length() < TAG_NAME_MAX_LENGTH;
+    }
+
+    public static Boolean isValidTagName(String tagName) {
+        return isNameNotLengthy(tagName) && isNamePresent(tagName) && isValidString(tagName);
     }
 
     @Override
