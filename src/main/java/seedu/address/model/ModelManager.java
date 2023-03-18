@@ -34,6 +34,7 @@ public class ModelManager implements Model {
     private final FilteredList<? extends ReadOnlyModule> filteredModules;
     private FilteredList<? extends ReadOnlyLecture> filteredLectures;
     private FilteredList<? extends Video> filteredVideos;
+    private Level lastListLevel;
 
     private AddressBook addressBook; // TODO: Remove this
     private FilteredList<Person> filteredPersons; // TODO: Remove this
@@ -53,6 +54,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.navigation = new Navigation();
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
+        lastListLevel = Level.MODULE;
 
         addressBook = new AddressBook();
         filteredPersons = new FilteredList<>(addressBook.getPersonList());
@@ -240,6 +242,7 @@ public class ModelManager implements Model {
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
+        setLastListLevel(Level.MODULE);
 
         // Hide other list components
         if (filteredLectures != null) {
@@ -265,6 +268,7 @@ public class ModelManager implements Model {
         }
         requireNonNull(filteredLectures);
         filteredLectures.setPredicate(predicate);
+        setLastListLevel(Level.LECTURE);
 
         // Hide other list components
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
@@ -287,6 +291,7 @@ public class ModelManager implements Model {
         }
         requireNonNull(filteredVideos);
         filteredVideos.setPredicate(predicate);
+        setLastListLevel(Level.VIDEO);
 
         // Hide other list components
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
@@ -305,6 +310,15 @@ public class ModelManager implements Model {
             filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
         }
     }
+
+    @Override
+    public Level getLastListLevel() {
+        return lastListLevel;
+    };
+
+    private Level setLastListLevel(Level listLevel) {
+        return lastListLevel = listLevel;
+    };
 
     //=========== Navigation =================================================================================
 

@@ -31,6 +31,30 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_MODULE_CODE_2103 = "CS2103";
+    public static final String VALID_MODULE_CODE_2040 = "CS2040S";
+    public static final String VALID_MODULE_NAME_2103 = "Software Engineering";
+    public static final String VALID_MODULE_NAME_2040 = "Data Structures and Algorithms";
+    public static final String VALID_LECTURE_NAME_L1 = "lecture1";
+    public static final String VALID_LECTURE_NAME_L2 = "lecture2";
+    public static final String VALID_VIDEO_NAME_V1 = "video1";
+    public static final String VALID_VIDEO_NAME_V2 = "video2";
+
+    public static final String INVALID_MODULE_CODE = "404CS";
+    public static final String INVALID_LECTURE_NAME = "l337ure!";
+    public static final String INVALID_VIDEO_NAME = "v*deo";
+
+    public static final String MODULE_CODE_DESC_2103 = " " + PREFIX_MODULE + VALID_MODULE_CODE_2103;
+    public static final String MODULE_CODE_DESC_2040 = " " + PREFIX_MODULE + VALID_MODULE_CODE_2040;
+    public static final String MODULE_NAME_DESC_2103 = " " + PREFIX_NAME + VALID_MODULE_NAME_2103;
+    public static final String MODULE_NAME_DESC_2040 = " " + PREFIX_NAME + VALID_MODULE_NAME_2040;
+    public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + VALID_LECTURE_NAME_L1;
+    public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + VALID_LECTURE_NAME_L2;
+
+    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + INVALID_MODULE_CODE;
+    public static final String INVALID_LECTURE_NAME_DESC = " " + PREFIX_LECTURE + INVALID_LECTURE_NAME;
+
+    // TODO: Remove this
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -41,12 +65,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_MODULE_CODE_2103 = "CS2103";
-    public static final String VALID_LECTURE_NAME_L1 = "lecture1";
-
-    public static final String MODULE_CODE_DESC_2103 = " " + PREFIX_MODULE + VALID_MODULE_CODE_2103;
-    public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + VALID_LECTURE_NAME_L1;
-
+    // TODO: Remove this
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -57,7 +76,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
+    // TODO: Remove this
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
