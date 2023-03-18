@@ -16,14 +16,13 @@ public class Note {
     private String content;
     private List<String> names = new ArrayList<>(20); // referenced up to 20 students in the notes
 
-
     /**
      * Initates the note object with actual content and parsed referees
-     * @param note {@code String} object that represents the note contents
+     * @param content {@code String} object that represents the note contents
      */
-    public Note(String note) {
-        this.content = validateContent(note);
-        decomposePersonNames(note);
+    public Note(String content) {
+        this.content = validateContent(content);
+        decomposePersonNames(content);
     }
 
     /**
@@ -71,11 +70,11 @@ public class Note {
 
     /**
      * Resets the content with new note content
-     * @param newNote New note content to replace the current content
+     * @param newContent New note content to replace the current content
      */
-    public void setContent(String newNote) {
-        this.content = validateContent(newNote);
-        decomposePersonNames(newNote);
+    public void setContent(String newContent) {
+        this.content = validateContent(newContent);
+        decomposePersonNames(newContent);
     }
 
     /**
@@ -92,7 +91,7 @@ public class Note {
             return EMPTY_CONTENT;
         }
         final StringBuilder builder = new StringBuilder();
-        builder.append("Notes: \n")
+        builder.append("Contents: \n")
                 .append(getContent());
         List<String> referees = getReferees();
         if (!referees.isEmpty()) {
@@ -100,6 +99,13 @@ public class Note {
             referees.stream().map(s -> " " + s).forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Note // instanceof handles nulls
+                && content.equals(((Note) other).content));
     }
 
     /**

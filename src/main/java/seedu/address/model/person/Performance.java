@@ -67,4 +67,8 @@ public class Performance {
     public int hashCode() {
         return value.hashCode();
     }
+
+    public int calculateUrgency() {
+        return 100 - Integer.parseInt(value);
+    }
 }

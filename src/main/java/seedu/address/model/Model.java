@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
@@ -112,6 +113,14 @@ public interface Model {
      */
     void setTutorial(Tutorial target, Tutorial editedTutorial);
 
+    /**
+     * Adds a student to a tutorial.
+     *
+     * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
+     * @param tutName The name of the tutorial that the student will be added into.
+     */
+    void addStudentToTutorial(Index toAdd, String tutName);
+
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
 
@@ -145,6 +154,14 @@ public interface Model {
      * existing lab in the address book.
      */
     void setLab(Lab target, Lab editedLab);
+
+    /**
+     * Adds a student to a lab session.
+     *
+     * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
+     * @param labName The name of the lab session that the student will be added into.
+     */
+    void addStudentToLab(Index toAdd, String labName);
 
     /** Returns an unmodifiable view of the filtered lab list */
     ObservableList<Lab> getFilteredLabList();

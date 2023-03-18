@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
@@ -142,6 +143,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addStudentToTutorial(Index toAdd, String tutName) {
+        Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
+        addressBook.addStudentToTutorial(toAddPerson, tutName);
+    }
+
+    @Override
     public boolean hasLab(Lab lab) {
         requireNonNull(lab);
         return addressBook.hasLab(lab);
@@ -163,6 +170,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedLab);
 
         addressBook.setLab(target, editedLab);
+    }
+
+    @Override
+    public void addStudentToLab(Index toAdd, String labName) {
+        Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
+        addressBook.addStudentToLab(toAddPerson, labName);
     }
 
     //=========== Filtered Person List Accessors =============================================================
