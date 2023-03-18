@@ -94,7 +94,7 @@ public class CommandTestUtil {
 
     public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2103 = new EditModuleDescriptorBuilder()
             .withCode(VALID_MODULE_CODE_2103).withName(VALID_MODULE_NAME_2103).build();
-    public static final EditModuleDescriptor MODULE_EDIT_DESC_CS2040S = new EditModuleDescriptorBuilder()
+    public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2040S = new EditModuleDescriptorBuilder()
             .withCode(VALID_MODULE_CODE_2040).withName(VALID_MODULE_NAME_2040).build();
 
     public static final EditLectureDescriptor EDIT_LECTURE_DESC_L1 = new EditLectureDescriptorBuilder()
