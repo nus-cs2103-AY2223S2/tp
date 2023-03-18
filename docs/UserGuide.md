@@ -37,7 +37,7 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
 
 ## Command line syntax
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" id="CLI-presentation-format">
 
 **:information_source: Command syntaxes presentation**<br>
 
@@ -413,6 +413,19 @@ Locations:
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: JSON syntax presentation**<br>
+
+* The following will have the same meaning as <a href="CLI-presentation-format">CLI presentation</a>.
+  * **Pink italicized bolded capitalized words** (<code><var>PLACEHOLDER_EXAMPLE</var></code>)
+  * **Three dots with no spaces** (<code><var>ARG</var>...</code> and <code>...<var>ARG</var>...</code>)
+  * **Triangle brackets** (`<` and `>`)
+* **Square brackets** (`[` and `]`) will no longer mean an optional argument, instead it will be a required character
+  for JSON syntax.
+
 </div>
 
 ### Vaccination type JSON
