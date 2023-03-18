@@ -2,11 +2,10 @@ package seedu.patientist.logic.parser;
 
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
-
+import seedu.patientist.commons.core.index.Index;
+import seedu.patientist.logic.commands.DeleteCommand;
 import seedu.patientist.logic.commands.ViewCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
-import seedu.patientist.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -19,15 +18,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        try {
+            Index index = ParserUtil.parseIndex(args);
+            return new ViewCommand(index);
+        } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

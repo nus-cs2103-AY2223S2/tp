@@ -11,7 +11,7 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    private final boolean showDetails;
+    private final int showDetails;
 
 
     /** Help information should be shown to the user. */
@@ -23,7 +23,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showDetails, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, int showDetails, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showDetails = showDetails;
         this.showHelp = showHelp;
@@ -35,7 +35,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, -1, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -51,6 +51,10 @@ public class CommandResult {
     }
 
     public boolean isShowDetails() {
+        return showDetails >= 0;
+    }
+
+    public int getShowDetailsIndex() {
         return showDetails;
     }
 

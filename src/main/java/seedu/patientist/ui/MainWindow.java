@@ -16,6 +16,7 @@ import seedu.patientist.logic.Logic;
 import seedu.patientist.logic.commands.CommandResult;
 import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.logic.parser.exceptions.ParseException;
+import seedu.patientist.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -135,8 +136,14 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void handleDetails() {
-        DetailsPopup detailsStage = new DetailsPopup(logic.getFilteredPersonList());
+    /**
+     * Opens the details window.
+     * @param index The index of the person to view.
+     */
+    public void handleDetails(int index) {
+        Person personToView = logic.getFilteredPersonList().get(index);
+        DetailsPopup detailsStage = new DetailsPopup(personToView);
+        detailsStage.show();
     }
 
     /**
@@ -183,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowDetails()) {
-                handleDetails();
+                handleDetails(commandResult.getShowDetailsIndex());
             }
 
             if (commandResult.isShowHelp()) {
