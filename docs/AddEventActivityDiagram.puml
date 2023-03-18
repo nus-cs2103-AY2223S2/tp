@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Type event name;
+if () then ([know event date])
+    :Type event date;
+else ([else])
+    endif
+if () then ([know student details])
+    :Type student details;
+else ([else])
+    endif
+if () then ([attachment(s) available])
+    :Type attachment filepath;
+else ([else])
+    endif
+:Press enter;
+:TrAcker saves new tutorial list;
+:TrAcker displays new tutorial list;
+stop
+
+@enduml

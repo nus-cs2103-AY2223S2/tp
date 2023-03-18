@@ -39,6 +39,10 @@ public class Tutorial extends Event {
         return super.getName();
     }
 
+    public void setName(String name) {
+        super.setName(name);
+    }
+
     /**
      * Gets the list of students
      *
