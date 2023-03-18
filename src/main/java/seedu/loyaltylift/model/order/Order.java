@@ -90,13 +90,14 @@ public class Order {
             return false;
         }
 
-        Order otherPerson = (Order) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getQuantity().equals(getQuantity())
-                && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getCreatedDate().equals(getCreatedDate())
-                && otherPerson.customer.equals(getCustomer());
+        Order otherOrder = (Order) other;
+        return otherOrder.getCustomer().equals(getCustomer())
+                && otherOrder.getName().equals(getName())
+                && otherOrder.getQuantity().equals(getQuantity())
+                && otherOrder.getStatus().equals(getStatus())
+                && otherOrder.getAddress().equals(getAddress())
+                && otherOrder.getCreatedDate().equals(getCreatedDate())
+                && otherOrder.customer.equals(getCustomer());
     }
 
     @Override
@@ -107,7 +108,8 @@ public class Order {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(String.format("[%s]", customer.getName()))
+                .append(getName())
                 .append("; Quantity: ")
                 .append(getQuantity())
                 .append("; Status: ")

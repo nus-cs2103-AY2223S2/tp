@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
@@ -15,12 +16,14 @@ import seedu.loyaltylift.model.util.SampleDataUtil;
  */
 public class OrderBuilder {
 
+    public static final Customer DEFAULT_CUSTOMER = TypicalCustomers.ALICE;
     public static final String DEFAULT_NAME = "Banana Split";
     public static final int DEFAULT_QUANTITY = 2;
     public static final Status DEFAULT_STATUS = Status.PAID;
     public static final String DEFAULT_ADDRESS = "11 Fabordrive, Singapore 3001298";
     public static final LocalDate DEFAULT_DATE = LocalDate.of(2022, 12, 20);
 
+    private Customer customer;
     private Name name;
     private Quantity quantity;
     private Status status;
@@ -31,6 +34,7 @@ public class OrderBuilder {
      * Creates a {@code OrderBuilder} with the default details.
      */
     public OrderBuilder() {
+        customer = DEFAULT_CUSTOMER;
         name = new Name(DEFAULT_NAME);
         quantity = new Quantity(DEFAULT_QUANTITY);
         status = DEFAULT_STATUS;
@@ -42,11 +46,20 @@ public class OrderBuilder {
      * Initializes the OrderBuilder with the data of {@code orderToCopy}.
      */
     public OrderBuilder(Order orderToCopy) {
+        customer = orderToCopy.getCustomer();
         name = orderToCopy.getName();
         quantity = orderToCopy.getQuantity();
         status = orderToCopy.getStatus();
         address = orderToCopy.getAddress();
         createdDate = orderToCopy.getCreatedDate();
+    }
+
+    /**
+     * Sets the {@code Customer} association of the {@code Order} that we are building.
+     */
+    public OrderBuilder withCustomer(Customer customer) {
+        this.customer = customer;
+        return this;
     }
 
     /**
@@ -90,7 +103,7 @@ public class OrderBuilder {
     }
 
     public Order build() {
-        return new Order(name, quantity, status, address, createdDate);
+        return new Order(customer, name, quantity, status, address, createdDate);
     }
 
 }

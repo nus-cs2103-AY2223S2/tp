@@ -21,6 +21,7 @@ import seedu.loyaltylift.model.order.Status;
  */
 public class JsonAdaptedOrder {
 
+    public static final String CUSTOMER_ID_MESSAGE_FIELD = "Customer ID";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
     private final String customerId;
@@ -65,7 +66,7 @@ public class JsonAdaptedOrder {
      */
     public Order toModelType(AddressBook addressBook) throws IllegalValueException {
         if (customerId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Customer ID"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD));
         }
         Customer customer = addressBook.getCustomer(customerId);
 
