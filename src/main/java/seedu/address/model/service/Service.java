@@ -266,11 +266,11 @@ public class Service {
         String formatter = "<<Service>>" + newline
                 + "ID: %d" + newline
                 + "Desc: %s" + newline
+                + "Status: %s" + newline
                 + "Entry Date: %s" + newline
                 + "Est Finish Date: %s" + newline
                 + "Parts Required: %n %s" + newline
-                + "Assigned Technicians: %n %s" + newline
-                + "%s";
+                + "Assigned Technicians: %n %s";
 
         return String.format(formatter,
                 this.getId(),

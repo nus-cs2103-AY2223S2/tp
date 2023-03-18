@@ -79,6 +79,14 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs(), new Shop());
     }
 
+    private void resetMaps() {
+        this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList());
+        this.vehicleDataMap.reset(this.shop.getVehicleList(), this.shop.getCustomerList(),
+                this.shop.getServiceList());
+        this.serviceDataMap.reset(this.shop.getServiceList(), this.shop.getTechnicianList(),
+                this.shop.getVehicleList());
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -126,6 +134,12 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //=========== AddressBook ================================================================================
+    @Override
+    public ReadOnlyShop getShop() {
+        return shop;
+    }
+
     // ==== For persons ===
     @Override
     public boolean hasPerson(Person person) {
@@ -164,8 +178,9 @@ public class ModelManager implements Model {
     @Override
     public void addCustomer(Customer customer) {
         this.shop.addCustomer(customer);
-        // addressBook.addCustomer(person);
-        // updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS); #todo fix 44 allow shops
+        resetMaps();
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS); 
+        //#todo fix 44 allow shops
     }
 
     /**
@@ -209,6 +224,8 @@ public class ModelManager implements Model {
     @Override
     public void addVehicle(int customerId, Vehicle vehicle) {
         this.shop.addVehicle(customerId, vehicle);
+        resetMaps();
+        updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES); 
     }
 
     /**
@@ -242,6 +259,8 @@ public class ModelManager implements Model {
     @Override
     public void addService(int vehicleId, Service service) {
         this.shop.addService(vehicleId, service);
+        resetMaps();
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES); 
     }
 
     /**
