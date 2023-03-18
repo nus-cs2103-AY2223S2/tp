@@ -24,8 +24,7 @@ public class AddEmployeeToDepartmentCommandParser implements Parser<AddEmployeeT
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_DEPARTMENT_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_DEPARTMENT_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_DEPARTMENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddEmployeeToDepartmentCommand.MESSAGE_USAGE));
         }
