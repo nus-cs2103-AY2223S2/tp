@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import seedu.calidr.model.task.exceptions.DuplicateTaskException;
 import seedu.calidr.model.task.exceptions.TaskNotFoundException;
+import seedu.calidr.model.task.params.Priority;
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
@@ -77,6 +79,49 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!internalList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    /**
+     * Marks the given task as done.
+     * The task must exist in the list.
+     *
+     * @param target The task which is to be marked as done
+     */
+    public void mark(Task target) {
+
+        int targetIndex = internalList.indexOf(target);
+
+        if (targetIndex == -1) {
+            throw new TaskNotFoundException();
+        }
+        internalList.get(targetIndex).mark();
+    }
+
+    /**
+     * Marks the given task as undone.
+     * The task must exist in the list.
+     *
+     * @param target The task which is to be marked as undone
+     */
+    public void unmark(Task target) {
+
+        int targetIndex = internalList.indexOf(target);
+
+        if (targetIndex == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        internalList.get(targetIndex).unmark();
+    }
+
+    public void setTaskPriority(Task target, Priority priority) {
+        int targetIndex = internalList.indexOf(target);
+
+        if (targetIndex == -1) {
+            throw new TaskNotFoundException();
+        }
+
+        internalList.get(targetIndex).setPriority(priority);
     }
 
     public void setTasks(seedu.calidr.model.task.UniqueTaskList replacement) {
