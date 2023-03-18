@@ -32,6 +32,7 @@ public class AddPairCommand extends Command {
 
     public static final String MESSAGE_ADD_PAIR_SUCCESS = "New pair consisting of elderly with NRIC %1$s"
             + " and volunteer with NRIC %2$s added";
+    public static final String MESSAGE_WARNING_REGION = "Warning: The volunteer's and elderly's region do not match";
 
     private final Nric elderlyNric;
     private final Nric volunteerNric;
@@ -49,8 +50,13 @@ public class AddPairCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            model.addPair(elderlyNric, volunteerNric);
-            return new CommandResult(String.format(MESSAGE_ADD_PAIR_SUCCESS, elderlyNric, volunteerNric));
+            boolean issueWarning = model.addPair(elderlyNric, volunteerNric);
+            if (!issueWarning) {
+                return new CommandResult(String.format(MESSAGE_ADD_PAIR_SUCCESS, elderlyNric, volunteerNric));
+            } else {
+                return new CommandResult(String.format(
+                        MESSAGE_ADD_PAIR_SUCCESS + "\n" + MESSAGE_WARNING_REGION, elderlyNric, volunteerNric));
+            }
         } catch (ElderlyNotFoundException e) {
             throw new CommandException(String.format(MESSAGE_ELDERLY_NOT_FOUND, elderlyNric));
         } catch (VolunteerNotFoundException e) {

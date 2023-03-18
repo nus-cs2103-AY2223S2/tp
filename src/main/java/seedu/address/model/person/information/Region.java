@@ -46,6 +46,10 @@ public class Region {
         return set.contains(region.toUpperCase());
     }
 
+    public boolean isMatch(Region anotherRegion) {
+        return region.equals(anotherRegion.region);
+    }
+
     @Override
     public String toString() {
         return region.toString().toLowerCase();

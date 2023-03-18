@@ -141,11 +141,12 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
             if (pair.getElderly().getNric().equals(elderlyNric)
                 && pair.getVolunteer().getNric().equals(volunteerNric)) {
                 throw new DuplicatePairException();
             }
+            return false; // dummy return
         }
 
     }
@@ -171,7 +172,7 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
             if (!elderlyNric.equals(elderly.getNric())) {
                 throw new ElderlyNotFoundException();
             } else if (!volunteerNric.equals(volunteer.getNric())) {
@@ -182,6 +183,7 @@ public class AddPairCommandTest {
                 throw new DuplicatePairException();
             }
             this.pair = new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric));
+            return false; // dummy return
         }
 
         @Override

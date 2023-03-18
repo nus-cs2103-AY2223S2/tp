@@ -45,6 +45,8 @@ public class ElderlyCard extends UiPart<Region> {
     @FXML
     private FlowPane riskLevel;
     @FXML
+    private FlowPane region;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -60,8 +62,15 @@ public class ElderlyCard extends UiPart<Region> {
         address.setText(elderly.getAddress().value);
         age.setText(elderly.getAge().value);
         email.setText(elderly.getEmail().value);
-        riskLevel.getChildren().add(
-                new Label(elderly.getRiskLevel().riskStatus.name()));
+        region.getChildren().add(
+                new Label(elderly.getRegion().region.name())
+        );
+//        riskLevel.getChildren().add(
+//                new Label(elderly.getRiskLevel().riskStatus.name()));
+        Label riskLabel = new Label(elderly.getRiskLevel().riskStatus.name());
+        riskLabel.getStyleClass().add("risk-" + elderly.getRiskLevel().riskStatus.name());
+
+        riskLevel.getChildren().add(riskLabel);
         elderly.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

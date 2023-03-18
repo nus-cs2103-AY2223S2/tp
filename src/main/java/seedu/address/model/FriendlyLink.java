@@ -11,6 +11,8 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
+import seedu.address.model.person.information.Region;
+
 
 /**
  * Wraps all data at the friendly-link level
@@ -225,8 +227,23 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param elderlyNric Nric of elderly.
      * @param volunteerNric Nric of volunteer.
      */
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
+        // pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
+        Elderly elderly = getElderly(elderlyNric);
+        Volunteer volunteer = getVolunteer(volunteerNric);
+
+        Region elderlyRegion = elderly.getRegion();
+        Region volunteerRegion = volunteer.getRegion();
+
+        // check if region match. If does not match, issue a warning in feedback
+        boolean issueWarning;
+        if (!elderlyRegion.isMatch(volunteerRegion)) {
+            issueWarning = true;
+        } else {
+            issueWarning = false;
+        }
         pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
+        return issueWarning;
     }
 
     /**

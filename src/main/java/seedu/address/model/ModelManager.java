@@ -163,8 +163,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
-        friendlyLink.addPair(elderlyNric, volunteerNric);
+    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
+        return friendlyLink.addPair(elderlyNric, volunteerNric);
         // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
     }
 

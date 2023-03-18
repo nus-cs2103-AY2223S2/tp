@@ -63,7 +63,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
         throw new AssertionError("This method should not be called.");
     }
 

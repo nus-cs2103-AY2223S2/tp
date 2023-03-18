@@ -27,6 +27,7 @@
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <FlowPane fx:id="riskLevel" />
+            <FlowPane fx:id="region" />
             <FlowPane fx:id="tags" />
             <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />

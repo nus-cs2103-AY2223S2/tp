@@ -134,7 +134,7 @@ public interface Model {
      * The pair consisting of elderly with {@code elderlyNric} and volunteer with {@code volunteerNric}
      * must not already exist in FriendlyLink.
      */
-    void addPair(Nric elderlyNric, Nric volunteerNric);
+    boolean addPair(Nric elderlyNric, Nric volunteerNric);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
