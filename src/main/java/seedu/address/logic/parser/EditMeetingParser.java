@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingsCommand;
@@ -37,8 +37,8 @@ public class EditMeetingParser implements Parser<EditMeetingsCommand> {
         }
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
-        if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editMeetingDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
+        if (argMultimap.getValue(PREFIX_MEETING_TITLE).isPresent()) {
+            editMeetingDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MEETING_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editMeetingDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));
