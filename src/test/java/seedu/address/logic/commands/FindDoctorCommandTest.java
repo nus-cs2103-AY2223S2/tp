@@ -7,7 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_DOCTORS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalDoctors.ALICE;
 import static seedu.address.testutil.TypicalDoctors.BENSON;
-import static seedu.address.testutil.TypicalDoctors.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
 import java.util.List;
