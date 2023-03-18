@@ -324,7 +324,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </pre>
 </details>
 
-
 <details>
 <summary><b>[DE2] Add a delivery job</b></summary>
 <pre>
@@ -335,7 +334,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 </pre>
 </details>
-
 
 <details>
 <summary><b>[DE3] Delete a job</b></summary>
@@ -364,7 +362,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to display timetable by selecting Timetable option on homepage.
 2. System displays timetable of uncompleted/upcoming jobs in current week.
    Use case ends.
-
 </pre>
 </details>
 
@@ -375,7 +372,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to display timetable of specific week containing a specific date.
 2. System displays timetable of uncompleted/upcoming jobs in the week.
    Use case ends.
-
 </pre>
 </details>
 
@@ -390,12 +386,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. System runs in the background to check against the list of reminders before each block in the timetable.
    System will repeat the check at step 3a.
    Use case ends.
-   
-<b>Extensions:>/b>
+
+<b>Extensions:</b>
 * 3a. A few minutes before the next schedule, System will check if there is an job.
     * 3a1. If there is an upcoming job, fire a pop up notification. 
     Use case resumes from step 4.
-
 </pre>
 </details>
  
@@ -406,26 +401,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User details the description, date and time of a reminder to the System.
 2. System adds the reminder into the reminder list.
    Use case ends.
-   
+
 <b>Extensions:</b>
 * 2a. date and time of reminder is not provide.
     * 2a1. System will promopt user again.
     Use case resumes from step 1.
 </pre>
 </details>
- 
- <details>
+
+<details>
 <summary><b>[RE3] Delete reminders</b></summary>
 <pre>
 <b>MSS</b>
 1. User specifies a reminder to be deleted based on its index number.
 2. System finds the corresponding reminder, and deletes it from the reminder list.
    Use case ends.
-   
+
 <b>Extensions:</b>
 * 2a. Index provided by user is not found in reminder list.
     * 2a1. System will promopt user again.
-    Use case resumes from step 1.
+      Use case resumes from step 1.
 </pre>
 </details>
  
