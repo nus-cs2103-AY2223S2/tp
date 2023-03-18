@@ -22,7 +22,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox prefHeight="400.0" prefWidth="470.0">
         <MenuBar fx:id="menuBar" prefHeight="31.0" prefWidth="340.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -38,7 +38,7 @@
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" prefHeight="90.0" prefWidth="318.0" VBox.vgrow="ALWAYS" />
         </VBox>
-           <StackPane fx:id="resultDisplayPlaceholder" prefHeight="123.0" prefWidth="580.0" styleClass="pane-with-border">
+           <StackPane fx:id="resultDisplayPlaceholder" prefHeight="100.0" prefWidth="470.0" styleClass="pane-with-border">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
