@@ -159,6 +159,8 @@ public class CommandTestUtil {
             " " + PREFIX_STATUS + VALID_ORDER_STATUS_DONE;
     public static final String ORDER_STATUS_DESC_NOT_DONE =
             " " + PREFIX_STATUS + VALID_ORDER_STATUS_NOT_DONE;
+    public static final String ORDER_STATUS_DESC_IN_PROGRESS =
+            " " + PREFIX_STATUS + VALID_ORDER_STATUS_IN_PROGRESS;
     public static final String ORDER_QUANTITY_DESC_ONE =
             " " + PREFIX_ORDERQUANTITY + VALID_ORDER_QUANTITY_ONE;
     public static final String ORDER_QUANTITY_DESC_TWO =

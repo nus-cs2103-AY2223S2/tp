@@ -66,33 +66,37 @@ public class OrderDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code orderStatus} of the {@code orderDescriptor} that we are building.
+     * Sets the {@code orderQuantity} of the {@code orderDescriptor} that we are building.
      */
     public OrderDescriptorBuilder withOrderQuantity(String orderQuantity) {
         orderDescriptor.setOrderQuantity(new OrderQuantity(orderQuantity));
         return this;
     }
 
+
     /**
-     * Sets the {@code orderStatus} of the {@code orderDescriptor} that we are building.
+     * Sets the {@code customerName} of the {@code orderDescriptor} that we are building.
      */
-    @SuppressWarnings("checkstyle:LineLength")
     public OrderDescriptorBuilder withCustomerName(String customerName) {
         orderDescriptor.setCustomerName(new CustomerName(customerName));
         return this;
     }
 
+    /**
+     * Sets the {@code customerPhone} of the {@code orderDescriptor} that we are building.
+     */
     public OrderDescriptorBuilder withCustomerPhone(String customerPhone) {
         orderDescriptor.setCustomerPhone(new CustomerPhone(customerPhone));
         return this;
     }
 
+    /**
+     * Sets the {@code customerAddress} of the {@code orderDescriptor} that we are building.
+     */
     public OrderDescriptorBuilder withCustomerAddress(String customerAddress) {
         orderDescriptor.setCustomerAddress(new CustomerAddress(customerAddress));
         return this;
     }
-
-
 
     public OrderDescriptor build() {
         return orderDescriptor;

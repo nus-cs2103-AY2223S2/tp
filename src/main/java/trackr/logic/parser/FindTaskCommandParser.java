@@ -2,8 +2,10 @@ package trackr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
+import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.Arrays;
@@ -26,7 +28,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
     public FindTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
 
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

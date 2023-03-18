@@ -19,6 +19,7 @@ import trackr.logic.commands.EditOrderCommand;
 import trackr.logic.commands.EditSupplierCommand;
 import trackr.logic.commands.EditTaskCommand;
 import trackr.logic.commands.ExitCommand;
+import trackr.logic.commands.FindOrderCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
@@ -100,6 +101,10 @@ public class TrackrParser {
         case FindTaskCommand.COMMAND_WORD:
         case FindTaskCommand.COMMAND_WORD_SHORTCUT:
             return new FindTaskCommandParser().parse(arguments);
+
+        case FindOrderCommand.COMMAND_WORD:
+        case FindOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new FindOrderCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

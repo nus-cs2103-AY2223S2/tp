@@ -39,7 +39,7 @@ public class TypicalOrders {
 
     public static final Order VANILLA_CAKE = new OrderBuilder().withOrderName("Vanilla Cake")
             .withOrderDeadline("31/12/2024")
-            .withOrderStatus("N")
+            .withOrderStatus("D")
             .withOrderQuantity("100")
             .withCustomerName("Alex Lim")
             .withCustomerPhone("24681357")
