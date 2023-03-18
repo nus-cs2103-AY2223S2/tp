@@ -301,7 +301,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public boolean hasEmployeeOnLeave(Date date, Employee employee) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
-            if (leave.getTitle().equals(date) & leave.hasEmployee(employee)) {
+            if (leave.getDate().equals(date) & leave.hasEmployee(employee)) {
                 return true;
             }
         }

@@ -42,7 +42,7 @@ public class JsonAdaptedLeave {
      * Converts a given {@code Leave} into this class for Jackson use.
      */
     public JsonAdaptedLeave(Leave source) {
-        date = source.getTitle().value.toString();
+        date = source.getDate().value.toString();
         this.employees.addAll(source.getAttendees().stream()
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));

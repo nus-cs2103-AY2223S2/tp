@@ -145,10 +145,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String title} into a {@code Title}.
+     * Parses a {@code String date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code title} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseLeaveDate(String date) throws ParseException {
         requireNonNull(date);

@@ -9,16 +9,15 @@ import java.time.LocalDate;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Titles should only contain alphanumeric characters"
-            + "and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Dates should only be of the form YYYY-MM-DD";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final LocalDate value;
 
     /**
-     * Constructs a {@code Title}.
+     * Constructs a {@code Date}.
      *
-     * @param title A leave date.
+     * @param date A LocalDate object representing the leave date.
      */
     public Date(LocalDate date) {
         requireNonNull(date);
