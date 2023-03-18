@@ -147,6 +147,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Listing persons from an event: `listevcontact`
+
+Shows a list of persons in the address book whose event set contains the specified event.
+
+Format: `listevcontact EVENT_INDEX`
+
+* Lists all persons from the event at the specified `EVENT_INDEX` in the address book.
+* The event index refers to the index number shown in the displayed event list.
+* The event index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listevent` followed by `listevcontact 2` lists all the persons whose event set contains the 2nd event in the event list.
+
 ### Adding a new event : `addevent`
 
 Adds a new event with the given event name, start date time, and end date time.
@@ -227,14 +240,15 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [ev/EVENTINDEX] …​` <br> e.g., `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 ev/1`
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX] …​` <br> e.g., `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 evt/1`
 **Add Event** | `addevent ev/EVENT from/DATETIME to/DATETIME` <br> e.g., `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Event** | `delevent EVENTINDEX` <br> e.g., `delevent 2`
-**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **List Contact** | `list`
 **List Event** | `listevent`
+**List Contact From event** | `listevcontact`
 **Help** | `help`
 
 

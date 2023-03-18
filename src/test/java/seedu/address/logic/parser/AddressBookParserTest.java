@@ -27,6 +27,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListEvContactCommand;
 import seedu.address.logic.commands.ListEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
@@ -117,6 +118,13 @@ public class AddressBookParserTest {
         DelEventCommand command = (DelEventCommand) parser.parseCommand(
                 DelEventCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
         assertEquals(new DelEventCommand(INDEX_FIRST_EVENT), command);
+    }
+
+    @Test
+    public void parseCommand_listEvContact() throws Exception {
+        ListEvContactCommand command = (ListEvContactCommand) parser.parseCommand(
+                ListEvContactCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
+        assertEquals(new ListEvContactCommand(INDEX_FIRST_EVENT), command);
     }
 
     @Test
