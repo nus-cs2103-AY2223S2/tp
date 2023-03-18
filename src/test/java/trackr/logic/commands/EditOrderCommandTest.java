@@ -191,7 +191,7 @@ public class EditOrderCommandTest {
         assertFalse(standardOrderCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardOrderCommand.equals(new ClearCommand()));
+        assertFalse(standardOrderCommand.equals(new ClearOrderCommand()));
 
         // different index -> returns false
         assertFalse(standardOrderCommand.equals(
