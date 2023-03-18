@@ -16,6 +16,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -73,9 +74,10 @@ public class MarkCustomerCommand extends Command {
         Address address = customerToMark.getAddress();
         Set<Tag> tags = customerToMark.getTags();
         Points points = customerToMark.getPoints();
+        Note note = customerToMark.getNote();
         Marked marked = new Marked(true);
 
-        return new Customer(customerType, name, phone, email, address, tags, points, marked);
+        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
     }
 
     @Override

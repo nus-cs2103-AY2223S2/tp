@@ -13,6 +13,7 @@ import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Quantity;
@@ -209,5 +210,15 @@ public class ParserUtil {
             throw new ParseException(Points.MESSAGE_CONSTRAINTS_ADDITION);
         }
         return integerTrimmedPoints;
+    }
+
+    /**
+     * Parses a {@code String note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Note parseNote(String note) {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        return new Note(trimmedNote);
     }
 }

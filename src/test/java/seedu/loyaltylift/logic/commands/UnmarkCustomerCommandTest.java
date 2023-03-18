@@ -24,6 +24,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -45,8 +46,9 @@ public class UnmarkCustomerCommandTest {
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
+        Note note = customerToUnmark.getNote();
         Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
-                new Marked(false));
+                new Marked(false), note);
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
 
         String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);
@@ -77,8 +79,9 @@ public class UnmarkCustomerCommandTest {
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
+        Note note = customerToUnmark.getNote();
         Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
-                new Marked(false));
+                new Marked(false), note);
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
 
         String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);

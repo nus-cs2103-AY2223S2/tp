@@ -18,6 +18,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -88,6 +89,7 @@ public class AddPointsCommand extends Command {
         Set<Tag> tags = customerToEdit.getTags();
         Points points = customerToEdit.getPoints();
         Marked marked = customerToEdit.getMarked();
+        Note note = customerToEdit.getNote();
 
         Points newPoints;
         try {
@@ -96,7 +98,7 @@ public class AddPointsCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_POINTS);
         }
 
-        return new Customer(customerType, name, phone, email, address, tags, newPoints, marked);
+        return new Customer(customerType, name, phone, email, address, tags, newPoints, marked, note);
     }
 
 

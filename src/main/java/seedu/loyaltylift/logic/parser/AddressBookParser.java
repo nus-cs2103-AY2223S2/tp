@@ -20,6 +20,7 @@ import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.commands.MarkCustomerCommand;
+import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
 import seedu.loyaltylift.logic.commands.UnmarkCustomerCommand;
 import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
@@ -99,6 +100,9 @@ public class AddressBookParser {
 
         case AddPointsCommand.COMMAND_WORD:
             return new AddPointsCommandParser().parse(arguments);
+
+        case SetCustomerNoteCommand.COMMAND_WORD:
+            return new SetCustomerNoteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

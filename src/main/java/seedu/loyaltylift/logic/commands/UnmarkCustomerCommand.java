@@ -16,6 +16,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -72,9 +73,10 @@ public class UnmarkCustomerCommand extends Command {
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
         Points points = customerToUnmark.getPoints();
+        Note note = customerToUnmark.getNote();
         Marked marked = new Marked(false);
 
-        return new Customer(customerType, name, phone, email, address, tags, points, marked);
+        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
     }
 
     @Override

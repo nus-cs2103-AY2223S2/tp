@@ -16,6 +16,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -33,10 +34,11 @@ class JsonAdaptedCustomer {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final Boolean marked;
 
     private final Integer points;
     private final Integer cumulativePoints;
+    private final Boolean marked;
+    private final String note;
 
     /**
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
@@ -48,7 +50,8 @@ class JsonAdaptedCustomer {
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("points") Integer points,
                                @JsonProperty("cumulativePoints") Integer cumulativePoints,
-                               @JsonProperty("marked") Boolean marked) {
+                               @JsonProperty("marked") Boolean marked,
+                               @JsonProperty("note") String note) {
         this.customerType = customerType;
         this.name = name;
         this.phone = phone;
@@ -57,6 +60,7 @@ class JsonAdaptedCustomer {
         this.points = points;
         this.cumulativePoints = cumulativePoints;
         this.marked = marked;
+        this.note = note;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -77,6 +81,7 @@ class JsonAdaptedCustomer {
         points = source.getPoints().value;
         cumulativePoints = source.getPoints().cumulative;
         marked = source.getMarked().value;
+        note = source.getNote().value;
     }
 
     /**
@@ -154,8 +159,13 @@ class JsonAdaptedCustomer {
         }
         final Marked modelMarked = new Marked(marked);
 
-        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPoints,
-                modelMarked);
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
+        }
+        final Note modelNote = new Note(note);
+
+        return new Customer(modelCustomerType, modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                modelPoints, modelMarked, modelNote);
     }
 
 }

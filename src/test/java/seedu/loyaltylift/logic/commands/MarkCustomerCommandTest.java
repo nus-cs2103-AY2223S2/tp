@@ -24,6 +24,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -45,8 +46,9 @@ public class MarkCustomerCommandTest {
         Address address = customerToMark.getAddress();
         Set<Tag> tags = customerToMark.getTags();
         Points points = customerToMark.getPoints();
+        Note note = customerToMark.getNote();
         Customer markedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
-                new Marked(true));
+                new Marked(true), note);
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(INDEX_FIRST_CUSTOMER);
 
         String expectedMessage = String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer);
@@ -77,8 +79,9 @@ public class MarkCustomerCommandTest {
         Address address = customerToMark.getAddress();
         Set<Tag> tags = customerToMark.getTags();
         Points points = customerToMark.getPoints();
+        Note note = customerToMark.getNote();
         Customer markedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
-                new Marked(true));
+                new Marked(true), note);
         MarkCustomerCommand markCustomerCommand = new MarkCustomerCommand(INDEX_FIRST_CUSTOMER);
 
         String expectedMessage = String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer);
