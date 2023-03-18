@@ -1,5 +1,6 @@
 package seedu.socket.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.socket.testutil.Assert.assertThrows;
@@ -49,5 +50,11 @@ public class ClearCommandTest {
 
         // same object -> returns true
         assertTrue(clearCommand.equals(clearCommand));
+
+        // different type -> returns false
+        assertFalse(clearCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(clearCommand.equals(null));
     }
 }
