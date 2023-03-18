@@ -1,5 +1,6 @@
 package seedu.sudohr.logic.parser;
 
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 
 import seedu.sudohr.logic.commands.DeleteDepartmentCommand;
@@ -20,9 +21,26 @@ public class DeleteDepartmentCommandParser implements Parser<DeleteDepartmentCom
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEPARTMENT_NAME);
 
-        DepartmentName name = ParserUtil.parseDepartmentName(argMultimap.getValue(PREFIX_DEPARTMENT_NAME).get());
+        if (argMultimap.getValue(PREFIX_DEPARTMENT_NAME).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteDepartmentCommand.MESSAGE_USAGE));
+        }
 
-        return new DeleteDepartmentCommand(name);
+        assert argMultimap.getValue(PREFIX_DEPARTMENT_NAME).isPresent();
+
+        String departmentNameInput = argMultimap.getValue(PREFIX_DEPARTMENT_NAME).get();
+
+        DepartmentName departmentName;
+
+        try {
+            departmentName = ParserUtil.parseDepartmentName(departmentNameInput);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteDepartmentCommand.MESSAGE_USAGE), pe);
+        }
+
+
+        return new DeleteDepartmentCommand(departmentName);
 
 
     }
