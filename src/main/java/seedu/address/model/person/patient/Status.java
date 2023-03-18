@@ -37,6 +37,15 @@ public class Status {
     }
 
     /**
+     * Returns a valid Status string.
+     *
+     * @return a valid Status string.
+     */
+    public static String getDummyValidStatus() {
+        return "Inpatient";
+    }
+
+    /**
      * Converts the input string to title case.
      *
      * @param input the input string
