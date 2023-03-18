@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.logic.commands.exceptions.CommandException;
-import seedu.wife.model.Wife;
 import seedu.wife.model.ReadOnlyWife;
+import seedu.wife.model.Wife;
 import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.TagBuilder;
 
@@ -54,16 +54,16 @@ public class AddTagCommandTest {
     @Test
     public void equals() {
         Tag dairyTag = new TagBuilder().withTagName("dairy").build();
-        Tag dairyTag_differentCase = new TagBuilder().withTagName("daIRy").build();
+        Tag dairyTagDifferentCase = new TagBuilder().withTagName("daIRy").build();
         Tag vegetableTag = new TagBuilder().withTagName("vegetable").build();
 
         AddTagCommand addFruitsTag = new AddTagCommand(dairyTag);
-        AddTagCommand addFruitsTag_differentCase = new AddTagCommand(dairyTag_differentCase);
+        AddTagCommand addFruitsTagDifferentCase = new AddTagCommand(dairyTagDifferentCase);
         AddTagCommand addVegetableTag = new AddTagCommand(vegetableTag);
 
         // same object -> returns true
         assertEquals(addFruitsTag, addFruitsTag);
-        assertEquals(addFruitsTag, addFruitsTag_differentCase);
+        assertEquals(addFruitsTag, addFruitsTagDifferentCase);
 
         // same values -> returns true
         AddTagCommand addFruitsTagCopy = new AddTagCommand(dairyTag);
