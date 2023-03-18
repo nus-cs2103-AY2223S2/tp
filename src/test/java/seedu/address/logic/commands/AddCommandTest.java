@@ -254,6 +254,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Technician> getFilteredTechnicianList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasTechnician(int id) {
             throw new AssertionError("This method should not be called.");
         }
@@ -265,6 +270,11 @@ public class AddCommandTest {
 
         @Override
         public void updatePartsMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTechnician(Technician target) {
             throw new AssertionError("This method should not be called.");
         }
 

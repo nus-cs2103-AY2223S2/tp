@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
@@ -15,7 +14,7 @@ import seedu.address.model.service.Service;
  */
 public class DeleteServiceCommand extends RedoableCommand {
 
-    public static final String COMMAND_WORD = "deletevehicle";
+    public static final String COMMAND_WORD = "deleteservice";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the vehicle identified by the id number displayed by the list command.\n"
@@ -24,10 +23,14 @@ public class DeleteServiceCommand extends RedoableCommand {
 
     public static final String MESSAGE_DELETE_SERVICE_SUCCESS = "Deleted Service: %1$s";
 
-    private final Index targetIndex;
+    public static final String MESSAGE_SERVICE_NOT_FOUND = "Deleted Service: %1$s";
 
-    public DeleteServiceCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public static final Service SERVICE_DOES_NOT_EXIST = null;
+
+    private final int id;
+
+    public DeleteServiceCommand(int id) {
+        this.id = id;
     }
 
     @Override
@@ -35,8 +38,13 @@ public class DeleteServiceCommand extends RedoableCommand {
         requireNonNull(model);
         List<Service> lastShownList = model.getFilteredServiceList();
 
-        Service serviceToDeletes = lastShownList.get(targetIndex.getZeroBased());
-        int id = serviceToDeletes.getId();
+        Service serviceToDeletes = lastShownList.stream().filter(service->
+                id == service.getId()).findFirst().orElse(null);
+
+        if (serviceToDeletes == SERVICE_DOES_NOT_EXIST) {
+            throw new CommandException(MESSAGE_SERVICE_NOT_FOUND);
+        }
+
         model.deleteService(serviceToDeletes);
         IdGenerator.setServiceIdUnused(id);
         return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, serviceToDeletes));
@@ -46,6 +54,6 @@ public class DeleteServiceCommand extends RedoableCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteServiceCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteServiceCommand) other).targetIndex)); // state check
+                && id == (((DeleteServiceCommand) other).id)); // state check
     }
 }

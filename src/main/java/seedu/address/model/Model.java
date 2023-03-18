@@ -225,6 +225,8 @@ public interface Model {
      */
     boolean hasPart(String partName);
 
+    ObservableList<Technician> getFilteredTechnicianList();
+
     /**
      * Adds Technician
      *
@@ -246,6 +248,8 @@ public interface Model {
     void updateFilteredServiceList(Predicate<Service> predicate);
 
     void updatePartsMap();
+
+    void deleteTechnician(Technician target);
 
     CustomerVehicleMap getCustomerVehicleMap();
 

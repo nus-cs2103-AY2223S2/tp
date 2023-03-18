@@ -244,6 +244,7 @@ public class ModelManager implements Model {
         this.shop.removeVehicle(target);
     }
 
+    // ==== For Services ==
     @Override
     public ObservableList<Service> getFilteredServiceList() {
         return filteredServices;
@@ -330,6 +331,11 @@ public class ModelManager implements Model {
         return this.shop.hasPart(partName);
     }
 
+    @Override
+    public ObservableList<Technician> getFilteredTechnicianList() {
+        return filteredTechnicians;
+    }
+
     // ==== For Technician ==
     @Override
     public void addTechnician(Technician technician) {
@@ -339,6 +345,11 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTechnician(int technicianId) {
         return this.shop.hasTechnician(technicianId);
+    }
+
+    @Override
+    public void deleteTechnician(Technician target) {
+        this.shop.removeTechnician(target);
     }
 
     // ==== Mapped ==
@@ -378,8 +389,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
-
 
     @Override
     public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
