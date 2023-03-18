@@ -55,7 +55,7 @@ public class ViewCommand extends Command {
      * @return
      */
     public Optional<Person> retrievePerson(Model model) {
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getObservablePersonList();
         if (index.isPresent()) {
             return Optional.ofNullable(personList
                     .stream()

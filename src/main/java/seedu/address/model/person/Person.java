@@ -115,7 +115,7 @@ public class Person {
     }
 
     /**
-     * Creates a duplicate of the person and sets the contact index.
+     * Creates a new person and sets the contact index.
      */
     public Person setContactIndex(ContactIndex contactIndex) {
         return new Person(name, phone, email, address, telegramHandle,

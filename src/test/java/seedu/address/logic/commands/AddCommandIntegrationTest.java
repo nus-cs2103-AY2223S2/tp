@@ -33,10 +33,10 @@ public class AddCommandIntegrationTest {
         validPerson.setContactIndex(indexHandler.assignIndex());
 
         Model expectedModel = new ModelManager(model.getEduMate(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        Person indexedPerson = expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+                String.format(AddCommand.MESSAGE_SUCCESS, indexedPerson), expectedModel);
     }
 
     @Test

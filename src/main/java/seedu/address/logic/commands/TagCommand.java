@@ -75,7 +75,7 @@ public class TagCommand extends Command {
         // intersection is expensive if we only use it in the compareTo method
         personToEdit.setCommonModules(userModuleTags);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateObservablePersonList();
         return new CommandResult(String.format(MESSAGE_TAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
                 + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
@@ -95,7 +95,7 @@ public class TagCommand extends Command {
 
         userModuleTags.addAll(this.moduleTags);
 
-        model.getFilteredPersonList().forEach(person ->
+        model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
         return new CommandResult(String.format(MESSAGE_TAG_USER_SUCCESS

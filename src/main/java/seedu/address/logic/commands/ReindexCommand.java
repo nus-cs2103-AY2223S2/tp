@@ -21,7 +21,7 @@ public class ReindexCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        List<Person> sortedPersonList = model.getFilteredPersonList().stream()
+        List<Person> sortedPersonList = model.getObservablePersonList().stream()
                 .sorted(Comparator.comparing(Person::getContactIndex))
                 .collect(Collectors.toList());
 

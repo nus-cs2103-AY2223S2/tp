@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -60,8 +59,9 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(candidatePerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.candidatePerson));
+        Person indexedPerson = model.addPerson(candidatePerson);
+        model.updateObservablePersonList();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, indexedPerson));
     }
 
     @Override

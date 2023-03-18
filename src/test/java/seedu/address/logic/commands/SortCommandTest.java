@@ -68,7 +68,7 @@ public class SortCommandTest {
     private void testComparator(Comparator<Person> comparator) {
         SortCommand sortCommand = new SortCommand(comparator, "");
         sortCommand.execute(model);
-        List<Person> personList = model.getFilteredPersonList();
+        List<Person> personList = model.getObservablePersonList();
 
         for (int i = 0; i < personList.size() - 1; i++) {
             assertTrue(comparator.compare(personList.get(i), personList.get(i + 1)) <= 0);

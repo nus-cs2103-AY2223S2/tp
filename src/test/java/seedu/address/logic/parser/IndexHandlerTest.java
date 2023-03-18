@@ -36,7 +36,7 @@ class IndexHandlerTest {
     public void execute_emptyList_assignContactIndex1() {
         model = new ModelManager();
         IndexHandler indexHandler = new IndexHandler(model);
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getObservablePersonList().isEmpty());
         assertEquals(indexHandler.assignIndex(), new ContactIndex(1));
     }
 

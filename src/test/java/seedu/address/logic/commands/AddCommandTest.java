@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -85,10 +86,10 @@ public class AddCommandTest {
     @Test
     public void checkAssignedIndex_emptyModel_assign1() throws CommandException {
         Model model = new ModelManager();
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        assertTrue(model.getObservablePersonList().isEmpty());
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getObservablePersonList().size());
         assertEquals(new ContactIndex(1), validPerson.getContactIndex());
     }
 
@@ -111,7 +112,7 @@ public class AddCommandTest {
     public void checkAssignedIndex_consecutiveIndexPresent_assignLastIndex() throws CommandException {
         Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
         IndexHandler indexHandler = new IndexHandler(model);
-        int size = model.getFilteredPersonList().size();
+        int size = model.getObservablePersonList().size();
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
         assertEquals(validPerson,
@@ -153,7 +154,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public Person addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -198,13 +199,23 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getObservablePersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateObservablePersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateObservablePersonList(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateObservablePersonList() {
+            return;
         }
     }
 
@@ -241,9 +252,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public Person addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+            return person;
         }
 
         @Override
@@ -252,7 +264,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getObservablePersonList() {
             return filteredList;
         }
     }

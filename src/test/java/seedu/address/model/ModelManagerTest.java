@@ -100,8 +100,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getObservablePersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getObservablePersonList().remove(0));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class ModelManagerTest {
                 eduMate, userPrefs);
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateObservablePersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
@@ -167,7 +167,7 @@ public class ModelManagerTest {
     }
 
     public void createEqualsFilteredList(Prefix prefix, String[] keywords, EduMate eduMate, UserPrefs userPrefs) {
-        modelManager.updateFilteredPersonList(
+        modelManager.updateObservablePersonList(
                 new ContainsKeywordsPredicate(Arrays.asList(keywords), prefix));
         assertNotEquals(modelManager, new ModelManager(eduMate, userPrefs));
     }
