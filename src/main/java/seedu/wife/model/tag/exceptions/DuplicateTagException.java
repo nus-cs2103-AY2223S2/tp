@@ -6,9 +6,12 @@ package seedu.wife.model.tag.exceptions;
  */
 public class DuplicateTagException extends RuntimeException {
 
-  public DuplicateTagException() {
-    super(
-      "Operation would result in duplicate tag, try adding tags that are not in the list?"
-    );
-  }
+    /**
+     * Constructor
+     */
+    public DuplicateTagException() {
+        super(
+            "Operation would result in duplicate tag, try adding tags that are not in the list?"
+        );
+    }
 }

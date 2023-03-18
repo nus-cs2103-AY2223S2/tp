@@ -23,7 +23,7 @@ import seedu.wife.model.tag.exceptions.TagNotFoundException;
  * @see Tag#isSameTag(Tag)
  */
 public class UniqueTagList implements Iterable<Tag> {
-    
+
     public static final Integer TAG_LIST_MAX_SIZE = 50;
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =
