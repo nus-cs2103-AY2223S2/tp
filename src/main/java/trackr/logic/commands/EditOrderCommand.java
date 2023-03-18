@@ -112,6 +112,7 @@ public class EditOrderCommand extends Command {
 
         return new Order(updatedOrderName, updatedOrderDeadline, updatedOrderStatus,
                 updatedOrderQuantity, updatedCustomer);
+
     }
 
     @Override
