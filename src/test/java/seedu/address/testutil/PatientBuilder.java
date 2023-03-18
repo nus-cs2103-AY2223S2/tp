@@ -3,11 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,21 +22,27 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_ID = PatientId.generateUniqueId();
+    public static final String DEFAULT_REMARK = "";
 
+    private PatientId id;
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Remark remark;
     private Set<Tag> tags;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
      */
     public PatientBuilder() {
+        id = new PatientId(DEFAULT_ID);
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -42,10 +50,12 @@ public class PatientBuilder {
      * Initializes the PatientBuilder with the data of {@code patientToCopy}.
      */
     public PatientBuilder(Patient patientToCopy) {
+        id = patientToCopy.getId();
         name = patientToCopy.getName();
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
+        remark = patientToCopy.getRemark();
         tags = new HashSet<>(patientToCopy.getTags());
     }
 
@@ -89,8 +99,24 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code PatientId} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withId(String id) {
+        this.id = new PatientId(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Remark} of the {@code Person} that we are building.
+     */
+    public PatientBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
     public Patient build() {
-        return new Patient(name, phone, email, address, tags);
+        return new Patient(id, name, phone, email, address, remark, tags);
     }
 
 }

@@ -26,10 +26,12 @@ public class TypicalPatients {
     public static final Patient ALICE = new PatientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
+            .withRemark("My name was not Alice.")
             .withTags("friends").build();
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
+            .withRemark("I like rice.")
             .withTags("owesMoney", "friends").build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();

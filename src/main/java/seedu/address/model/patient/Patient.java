@@ -11,11 +11,13 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.id.PatientId;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Patient in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
+ * dummy line
  */
 public class Patient {
 
@@ -26,17 +28,21 @@ public class Patient {
 
     // Data fields
     private final Address address;
+    private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final PatientId id;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Patient(PatientId id, Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, remark, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         this.tags.addAll(tags);
     }
 
@@ -54,6 +60,15 @@ public class Patient {
 
     public Address getAddress() {
         return address;
+    }
+
+
+    public PatientId getId() {
+        return id;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -128,7 +143,9 @@ public class Patient {
             .append("; Email: ")
             .append(getEmail())
             .append("; Address: ")
-            .append(getAddress());
+            .append(getAddress())
+            .append("; Remark: ")
+            .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

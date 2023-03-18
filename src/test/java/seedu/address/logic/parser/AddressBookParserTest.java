@@ -59,6 +59,10 @@ public class AddressBookParserTest {
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
+        System.out.println("Expected command: " + command.toString());
+        System.out.println("Actual command: " + new EditCommand(INDEX_FIRST_PATIENT, descriptor));
+        System.out.println("Expected parsed string: " + EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PATIENT, descriptor), command);
     }
 

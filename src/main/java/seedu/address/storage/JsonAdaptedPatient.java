@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,23 +26,29 @@ class JsonAdaptedPatient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
+    private final String id;
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
+    private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPatient(@JsonProperty("id") String id, @JsonProperty("name") String name,
+                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                              @JsonProperty("address") String address,
+                             @JsonProperty("remark") String remark,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,10 +58,12 @@ class JsonAdaptedPatient {
      * Converts a given {@code Patient} into this class for Jackson use.
      */
     public JsonAdaptedPatient(Patient source) {
+        id = source.getId().id;
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -102,8 +112,15 @@ class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
+
         final Set<Tag> modelTags = new HashSet<>(patientTags);
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        final PatientId modelId = new PatientId(id);
+        return new Patient(modelId, modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
     }
 
 }

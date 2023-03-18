@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.id.AppointmentId;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -16,7 +17,9 @@ public class AppointmentBuilder {
     public static final String DEFAULT_TIMESLOT = "01012023 00:00,01012023 01:00";
     public static final String DEFAULT_DESCRIPTION = "Regular checkup";
     public static final String DEFAULT_PATIENT = "John";
+    public static final String DEFAULT_ID = AppointmentId.generateUniqueId();
 
+    private AppointmentId id;
     private Timeslot timeslot;
     private Description description;
     private Patient patient;
@@ -26,6 +29,7 @@ public class AppointmentBuilder {
      * Creates a {@code PatientBuilder} with the default details.
      */
     public AppointmentBuilder() {
+        id = new AppointmentId(DEFAULT_ID);
         timeslot = new Timeslot(DEFAULT_TIMESLOT);
         description = new Description(DEFAULT_DESCRIPTION);
         PatientBuilder patientBuilder = new PatientBuilder();
@@ -34,6 +38,6 @@ public class AppointmentBuilder {
     }
 
     public Appointment build() {
-        return new Appointment(timeslot, description, patient, tags);
+        return new Appointment(id, timeslot, description, patient, tags);
     }
 }
