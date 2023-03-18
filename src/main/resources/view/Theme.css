@@ -112,6 +112,9 @@
 
 .stack-pane {
      -fx-background-color: derive(#ffffff, 20%);
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 .pane-with-border {
@@ -130,6 +133,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+
 }
 
 .result-display .label {
@@ -146,7 +150,9 @@
 .status-bar-with-border {
     -fx-background-color: derive(#1d1d1d, 30%);
     -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 .status-bar-with-border .label {
@@ -157,10 +163,16 @@
     -fx-background-color: derive(#1d1d1d, 30%);
     -fx-border-color: derive(#f9f9f9, 30%);
     -fx-border-width: 1px;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 .grid-pane .stack-pane {
     -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 .context-menu {
@@ -297,15 +309,23 @@
 
 #deckPane {
     -fx-background-color: #ededed;
+
 }
 
 #deckPane .label{
     -fx-font-size: 20px;
     -fx-text-fill: black;
+
 }
 
 #titlePanel{
     -fx-font-size: 30px;
+}
+
+#panel{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 
@@ -328,7 +348,9 @@
 
 #resultDisplay .content {
     -fx-background-color: transparent, #ededed, transparent, #ededed;
-    -fx-background-radius: 0;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 #tags {
