@@ -2,7 +2,7 @@ package expresslibrary.model.book;
 
 import static expresslibrary.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import expresslibrary.model.person.Person;
@@ -15,8 +15,8 @@ public class Book {
     private final Author author;
     private final Isbn isbn;
     private Person borrower = null;
-    private Date borrowDate = null;
-    private Date dueDate = null;
+    private LocalDate borrowDate = null;
+    private LocalDate dueDate = null;
 
     /**
      * Constructor for book object if book is not borrowed.
@@ -41,7 +41,7 @@ public class Book {
      * @param borrowDate   Date book was borrowed
      * @param dueDate      Date book is due
      */
-    public Book(Title title, Author author, Isbn isbn, Date borrowDate, Date dueDate) {
+    public Book(Title title, Author author, Isbn isbn, LocalDate borrowDate, LocalDate dueDate) {
         requireAllNonNull(isbn, author, title, borrowDate, dueDate);
         this.title = title;
         this.author = author;
@@ -66,11 +66,11 @@ public class Book {
         return borrower;
     }
 
-    public Date getBorrowDate() {
+    public LocalDate getBorrowDate() {
         return borrowDate;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 

@@ -20,17 +20,17 @@ import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.ReadOnlyExpressLibrary;
 
 public class JsonExpressLibraryStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonExpressLibraryStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readExpressLibrary_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readExpressLibrary(null));
     }
 
-    private java.util.Optional<ReadOnlyExpressLibrary> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyExpressLibrary> readExpressLibrary(String filePath) throws Exception {
         return new JsonExpressLibraryStorage(Paths.get(filePath))
                 .readExpressLibrary(addToTestDataPathIfNotNull(filePath));
     }
@@ -43,69 +43,70 @@ public class JsonExpressLibraryStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readExpressLibrary("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readExpressLibrary("notJsonFormatExpressLibrary.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readExpressLibrary_invalidPersonExpressLibrary_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readExpressLibrary("invalidPersonExpressLibrary.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readExpressLibrary_invalidAndValidPersonExpressLibrary_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () ->
+                readExpressLibrary("invalidAndValidPersonExpressLibrary.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-    //        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveExpressLibrary_allInOrder_success() throws Exception {
+    //        Path filePath = testFolder.resolve("TempExpressLibrary.json");
     //        ExpressLibrary original = getTypicalExpressLibrary();
-    //        JsonExpressLibraryStorage jsonAddressBookStorage = new JsonExpressLibraryStorage(filePath);
+    //        JsonExpressLibraryStorage jsonExpressLibraryStorage = new JsonExpressLibraryStorage(filePath);
     //
     //        // Save in new file and read back
-    //        jsonAddressBookStorage.saveExpressLibrary(original, filePath);
-    //        ReadOnlyExpressLibrary readBack = jsonAddressBookStorage.readExpressLibrary(filePath).get();
+    //        jsonExpressLibraryStorage.saveExpressLibrary(original, filePath);
+    //        ReadOnlyExpressLibrary readBack = jsonExpressLibraryStorage.readExpressLibrary(filePath).get();
     //        assertEquals(original, new ExpressLibrary(readBack));
     //
     //        // Modify data, overwrite exiting file, and read back
     //        original.addPerson(HOON);
     //        original.removePerson(ALICE);
-    //        jsonAddressBookStorage.saveExpressLibrary(original, filePath);
-    //        readBack = jsonAddressBookStorage.readExpressLibrary(filePath).get();
+    //        jsonExpressLibraryStorage.saveExpressLibrary(original, filePath);
+    //        readBack = jsonExpressLibraryStorage.readExpressLibrary(filePath).get();
     //        assertEquals(original, new ExpressLibrary(readBack));
     //
     //        // Save and read without specifying file path
     //        original.addPerson(IDA);
-    //        jsonAddressBookStorage.saveExpressLibrary(original); // file path not specified
-    //        readBack = jsonAddressBookStorage.readExpressLibrary().get(); // file path not specified
+    //        jsonExpressLibraryStorage.saveExpressLibrary(original); // file path not specified
+    //        readBack = jsonExpressLibraryStorage.readExpressLibrary().get(); // file path not specified
     //        assertEquals(original, new ExpressLibrary(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveExpressLibrary_nullExpressLibrary_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveExpressLibrary(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code expressLibrary} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyExpressLibrary addressBook, String filePath) {
+    private void saveExpressLibrary(ReadOnlyExpressLibrary expressLibrary, String filePath) {
         try {
             new JsonExpressLibraryStorage(Paths.get(filePath))
-                    .saveExpressLibrary(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveExpressLibrary(expressLibrary, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new ExpressLibrary(), null));
+    public void saveExpressLibrary_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveExpressLibrary(new ExpressLibrary(), null));
     }
 }

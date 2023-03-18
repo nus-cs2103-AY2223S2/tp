@@ -1,24 +1,24 @@
 package expresslibrary.commons.util;
 
-import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-import org.apache.commons.lang3.time.FastDateFormat;
 
 /**
  * A class for accessing the Date File.
  */
 public final class DateUtil {
-    private static FastDateFormat dateFormatter = FastDateFormat.getInstance("dd/MM/yyyy");
+    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private DateUtil() {
         throw new IllegalStateException("DateUtil class");
     }
 
-    public static String formatDate(Date date) {
-        return dateFormatter.format(date);
+    public static String formatDate(LocalDate date) {
+        return date.format(dateFormatter);
     }
 
-    public static Date parseDate(String dateString) throws ParseException {
-        return dateFormatter.parse(dateString);
+    public static LocalDate parseDate(String dateString) throws DateTimeParseException {
+        return LocalDate.parse(dateString, dateFormatter);
     }
 }

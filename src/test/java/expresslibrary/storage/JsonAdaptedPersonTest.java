@@ -12,15 +12,10 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import expresslibrary.commons.exceptions.IllegalValueException;
-//import expresslibrary.model.book.Author;
-//import expresslibrary.model.book.Book;
-//import expresslibrary.model.book.Isbn;
-//import expresslibrary.model.book.Title;
 import expresslibrary.model.person.Address;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Phone;
-//import expresslibrary.testutil.BookBuilder;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";

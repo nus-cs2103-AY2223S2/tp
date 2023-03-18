@@ -1,7 +1,7 @@
 package expresslibrary.testutil;
 
-import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
 
 import expresslibrary.commons.core.LogsCenter;
@@ -24,8 +24,8 @@ public class BookBuilder {
     private Title title;
     private Author author;
     private Isbn isbn;
-    private Date borrowDate;
-    private Date dueDate;
+    private LocalDate borrowDate;
+    private LocalDate dueDate;
 
     /**
      * Creates a {@code BookBuilder} with the default details.
@@ -76,7 +76,7 @@ public class BookBuilder {
         try {
             this.borrowDate = DateUtil.parseDate(borrowDate);
             this.dueDate = DateUtil.parseDate(returnDate);
-        } catch (ParseException e) {
+        } catch (DateTimeParseException e) {
             logger.info("Date format is invalid");
             e.printStackTrace();
         }

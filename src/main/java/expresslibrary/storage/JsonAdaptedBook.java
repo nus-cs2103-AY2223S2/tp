@@ -1,7 +1,7 @@
 package expresslibrary.storage;
 
-import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -109,10 +109,10 @@ class JsonAdaptedBook {
             return new Book(modelTitle, modelAuthor, modelIsbn);
         }
         try {
-            Date modelBorrowDate = DateUtil.parseDate(borrowDate);
-            Date modelDueDate = DateUtil.parseDate(dueDate);
+            LocalDate modelBorrowDate = DateUtil.parseDate(borrowDate);
+            LocalDate modelDueDate = DateUtil.parseDate(dueDate);
             return new Book(modelTitle, modelAuthor, modelIsbn, modelBorrowDate, modelDueDate);
-        } catch (ParseException e) {
+        } catch (DateTimeParseException e) {
             throw new IllegalValueException("Date format is invalid");
         }
     }
