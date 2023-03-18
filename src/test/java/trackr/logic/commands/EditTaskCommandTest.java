@@ -180,7 +180,7 @@ public class EditTaskCommandTest {
         assertFalse(standardTaskCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardTaskCommand.equals(new ClearCommand()));
+        assertFalse(standardTaskCommand.equals(new ClearSupplierCommand()));
 
         // different index -> returns false
         assertFalse(standardTaskCommand.equals(

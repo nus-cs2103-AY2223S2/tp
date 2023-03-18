@@ -1,7 +1,7 @@
 package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static trackr.logic.commands.CommandTestUtil.showSupplierAtIndex;
+import static trackr.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
@@ -15,9 +15,9 @@ import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListOrderCommand.
  */
-public class ListSupplierCommandTest {
+public class ListOrderCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -31,13 +31,13 @@ public class ListSupplierCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListSupplierCommand(), model, ListSupplierCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_orderListIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_showsEverything() {
-        showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
-        assertCommandSuccess(new ListSupplierCommand(), model, ListSupplierCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_taskListIsFiltered_showsEverything() {
+        showOrderAtIndex(model, INDEX_FIRST_OBJECT);
+        assertCommandSuccess(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

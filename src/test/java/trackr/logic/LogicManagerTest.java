@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.CommandResult;
-import trackr.logic.commands.ListCommand;
+import trackr.logic.commands.ListSupplierCommand;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
@@ -70,8 +70,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listSupplierCommand = ListSupplierCommand.COMMAND_WORD;
+        assertCommandSuccess(listSupplierCommand, ListSupplierCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
