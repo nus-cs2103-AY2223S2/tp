@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import trackr.logic.commands.AddOrderCommand;
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.AddTaskCommand;
+import trackr.logic.commands.ClearOrderCommand;
 import trackr.logic.commands.ClearSupplierCommand;
 import trackr.logic.commands.ClearTaskCommand;
 import trackr.logic.commands.Command;
@@ -21,6 +22,7 @@ import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
+import trackr.logic.commands.ListOrderCommand;
 import trackr.logic.commands.ListSupplierCommand;
 import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
@@ -92,6 +94,10 @@ public class TrackrParser {
         case ClearTaskCommand.COMMAND_WORD_SHORTCUT:
             return new ClearTaskCommand();
 
+        case ClearOrderCommand.COMMAND_WORD:
+        case ClearOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new ClearOrderCommand();
+
         case FindSupplierCommand.COMMAND_WORD:
         case FindSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new FindSupplierCommandParser().parse(arguments);
@@ -103,6 +109,10 @@ public class TrackrParser {
         case ListSupplierCommand.COMMAND_WORD:
         case ListSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new ListSupplierCommand();
+
+        case ListOrderCommand.COMMAND_WORD:
+        case ListOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new ListOrderCommand();
 
         case ListTaskCommand.COMMAND_WORD:
         case ListTaskCommand.COMMAND_WORD_SHORTCUT:
