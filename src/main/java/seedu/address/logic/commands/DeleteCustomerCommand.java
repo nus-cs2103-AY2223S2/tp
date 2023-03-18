@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
@@ -24,10 +23,14 @@ public class DeleteCustomerCommand extends RedoableCommand {
 
     public static final String MESSAGE_DELETE_CUSTOMER_SUCCESS = "Deleted Customer: %1$s";
 
-    private final Index targetIndex;
+    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer is not registered";
 
-    public DeleteCustomerCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    private static final Customer CUSTOMER_DOES_NOT_EXIST = null;
+
+    private final int id;
+
+    public DeleteCustomerCommand(int id) {
+        this.id = id;
     }
 
     @Override
@@ -35,8 +38,13 @@ public class DeleteCustomerCommand extends RedoableCommand {
         requireNonNull(model);
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
-        Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
-        int id = customerToDelete.getId();
+        Customer customerToDelete = lastShownList.stream().filter(customer->
+                id == customer.getId()).findFirst().orElse(CUSTOMER_DOES_NOT_EXIST);
+
+        if (customerToDelete == CUSTOMER_DOES_NOT_EXIST) {
+            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+        }
+
         model.deleteCustomer(customerToDelete);
         IdGenerator.setCustomerIdUnused(id);
         return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
@@ -46,6 +54,6 @@ public class DeleteCustomerCommand extends RedoableCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCustomerCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCustomerCommand) other).targetIndex)); // state check
+                && id == ((DeleteCustomerCommand) other).id); // state check
     }
 }
