@@ -8,4 +8,5 @@ import seedu.sudohr.model.employee.Id;
 public class TypicalIds {
     public static final Id ID_FIRST_PERSON = new Id("1");
     public static final Id ID_SECOND_PERSON = new Id("2");
+    public static final Id ID_THIRD_PERSON = new Id("3");
 }

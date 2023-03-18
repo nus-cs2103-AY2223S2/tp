@@ -7,7 +7,6 @@ import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,8 +59,8 @@ public class SudoHrParserTest {
         Employee employee = new EmployeeBuilder().build();
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + EID_DESC_BOB + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(new Id(VALID_ID_BOB), descriptor), command);
     }
 
     @Test

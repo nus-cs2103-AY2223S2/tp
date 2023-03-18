@@ -1,9 +1,17 @@
 package seedu.sudohr.logic.parser;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EID_DESC;
+import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EID_DESC_ZERO;
+import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +31,8 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " eid/1", new DeleteCommand(ID_FIRST_PERSON));
+        Id expectedId = new Id(VALID_ID_BOB);
+        assertParseSuccess(parser,  EID_DESC_BOB, new DeleteCommand(expectedId));
     }
 
     @Test
@@ -31,17 +40,20 @@ public class DeleteCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, "", expectedMessage);
-        assertParseFailure(parser, "1", expectedMessage);
-        assertParseFailure(parser, "n/bobby a/nus", expectedMessage);
+        assertParseFailure(parser, VALID_ID_BOB, expectedMessage);
+        assertParseFailure(parser, NAME_DESC_AMY + PHONE_DESC_AMY, expectedMessage);
     }
 
     @Test
     public void parse_additionalFieldsProvided_failure() {
-        assertParseFailure(parser, " eid/1 n/bobby a/nus", Id.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser,  EID_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY, Id.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidValue_throwsParseException() {
-        assertParseFailure(parser, " eid/a ", Id.MESSAGE_CONSTRAINTS);
+        String expectedMessage = Id.MESSAGE_CONSTRAINTS;
+        assertParseFailure(parser, INVALID_EID_DESC_ZERO, expectedMessage);
+        assertParseFailure(parser, INVALID_EID_DESC, expectedMessage);
+
     }
 }
