@@ -11,18 +11,20 @@ import seedu.address.model.event.Event;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
-
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
+     * {@code Predicate} that always evaluate to true
      */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
+
+    /**
+     * Replaces user prefs data with the data in {@code userPrefs}.
+     */
+    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
     /**
      * Returns the user prefs' GUI settings.
@@ -35,25 +37,27 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' scheduler file path.
      */
-    Path getAddressBookFilePath();
+    Path getSchedulerFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' scheduler file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setSchedulerFilePath(Path schedulerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces scheduler data with the data in {@code scheduler}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
-
-    /** Returns the Scheduler */
-    ReadOnlyAddressBook getAddressBook();
+    void setScheduler(ReadOnlyScheduler scheduler);
 
     /**
-     * Returns true if a event with the same identity as {@code event} exists in the Scheduler.
+     * Returns the Scheduler
+     */
+    ReadOnlyScheduler getScheduler();
+
+    /**
+     * Returns true if an event with the same identity as {@code event} exists in the Scheduler.
      */
     boolean hasEvent(Event event);
 
@@ -71,16 +75,19 @@ public interface Model {
 
     /**
      * Replaces the given person {@code target} with {@code editedEvent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the scheduler.
      * The event identity of {@code editedEvent} must not be the same as another existing Event in the scheduler.
      */
     void setEvent(Event target, Event editedEvent);
 
-    /** Returns an unmodifiable view of the filtered event list */
+    /**
+     * Returns an unmodifiable view of the filtered event list
+     */
     ObservableList<Event> getFilteredEventList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);

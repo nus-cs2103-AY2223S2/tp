@@ -14,30 +14,30 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the scheduler data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Scheduler scheduler;
     private final UserPrefs userPrefs;
     private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyScheduler scheduler, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(scheduler, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with scheduler: " + scheduler + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.scheduler = new Scheduler(scheduler);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        filteredEvents = new FilteredList<>(this.scheduler.getEventList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Scheduler(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,56 +65,56 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getSchedulerFilePath() {
+        return userPrefs.getSchedulerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setSchedulerFilePath(Path schedulerFilePath) {
+        requireNonNull(schedulerFilePath);
+        userPrefs.setSchedulerFilePath(schedulerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Scheduler ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyScheduler getScheduler() {
+        return scheduler;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setScheduler(ReadOnlyScheduler scheduler) {
+        this.scheduler.resetData(scheduler);
     }
 
     @Override
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return addressBook.hasEvent(event);
+        return scheduler.hasEvent(event);
     }
 
     @Override
     public void deleteEvent(Event target) {
-        addressBook.removeEvent(target);
+        scheduler.removeEvent(target);
     }
 
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        scheduler.addEvent(event);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-        addressBook.setEvent(target, editedEvent);
+        scheduler.setEvent(target, editedEvent);
     }
 
     //=========== Filtered Event List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedScheduler}
      */
     @Override
     public ObservableList<Event> getFilteredEventList() {
@@ -141,7 +141,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return scheduler.equals(other.scheduler)
             && userPrefs.equals(other.userPrefs)
             && filteredEvents.equals(other.filteredEvents);
     }

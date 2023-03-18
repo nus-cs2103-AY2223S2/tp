@@ -12,7 +12,7 @@ import seedu.address.model.event.UniqueEventList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Scheduler implements ReadOnlyScheduler {
 
     private final UniqueEventList events;
 
@@ -22,18 +22,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         events = new UniqueEventList();
     }
 
-    public AddressBook() {
+    public Scheduler() {
     }
 
     /**
-     * Creates an AddressBook using the Events in the {@code toBeCopied}
+     * Creates a Scheduler using the Events in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Scheduler(ReadOnlyScheduler toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyScheduler newData) {
         requireNonNull(newData);
 
         setEvents(newData.getEventList());
@@ -60,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// event-level operations
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the scheduler.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -68,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an event to the address book.
-     * The event must not already exist in the address book.
+     * Adds an event to the address scheduler.
+     * The event must not already exist in the scheduler.
      */
     public void addEvent(Event e) {
         events.add(e);
@@ -77,8 +76,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given event {@code target} in the list with {@code editedEvent}.
-     * {@code target} must exist in the address book.
-     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     * {@code target} must exist in the scheduler.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the scheduler.
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
@@ -86,8 +85,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Scheduler}.
+     * {@code key} must exist in the scheduler
      */
     public void removeEvent(Event key) {
         events.remove(key);
@@ -109,8 +108,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof AddressBook // instanceof handles nulls
-            && events.equals(((AddressBook) other).events));
+            || (other instanceof Scheduler // instanceof handles nulls
+            && events.equals(((Scheduler) other).events));
     }
 
     @Override

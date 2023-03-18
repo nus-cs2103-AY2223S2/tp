@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyScheduler;
 import seedu.address.model.event.Event;
 
 /**
@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Scheduler.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getScheduler()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyScheduler getScheduler();
 
     /**
      * Returns an unmodifiable view of the filtered list of events
@@ -39,9 +39,9 @@ public interface Logic {
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' scheduler file path.
      */
-    Path getAddressBookFilePath();
+    Path getSchedulerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
