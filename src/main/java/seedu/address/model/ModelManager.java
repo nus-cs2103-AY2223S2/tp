@@ -13,6 +13,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
+import seedu.address.model.todo.InternshipTodo;
+import seedu.address.model.todo.Note;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +25,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<InternshipApplication> filteredInternships;
+    private final FilteredList<InternshipTodo> filteredTodo;
+    private final FilteredList<Note> filteredNote;
     private final FilteredList<Person> filteredPersons;
 
     /**
@@ -37,6 +41,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
+        filteredTodo = new FilteredList<>(this.addressBook.getTodoList());
+        filteredNote = new FilteredList<>(this.addressBook.getNoteList());
     }
 
     public ModelManager() {
@@ -97,6 +103,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTodo(InternshipTodo todo) {
+        requireNonNull(todo);
+        return addressBook.hasTodo(todo);
+    }
+
+    @Override
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return addressBook.hasNote(note);
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -113,8 +131,40 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTodo(InternshipTodo target) {
+        addressBook.removeTodo(target);
+    }
+
+    @Override
+    public void deleteNote(Note target) {
+        addressBook.removeNote(target);
+    }
+
+    @Override
+    public void clearTodo(ReadOnlyAddressBook internEase) {
+        addressBook.clearTodo(internEase);
+    }
+
+    @Override
+    public void clearNote(ReadOnlyAddressBook internEase) {
+        addressBook.clearNote(internEase);
+    }
+
+    @Override
     public void addApplication(InternshipApplication application) {
         addressBook.addApplication(application);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+    }
+
+    @Override
+    public void addTodo(InternshipTodo todo) {
+        addressBook.addTodo(todo);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+    }
+
+    @Override
+    public void addNote(Note note) {
+        addressBook.addNote(note);
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
@@ -130,11 +180,26 @@ public class ModelManager implements Model {
 
         addressBook.setApplication(target, editedApplication);
     }
+
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+
+        addressBook.setTodo(target, editedTodo);
+    }
+
+    @Override
+    public void setNote(Note target, Note editedNote) {
+        requireAllNonNull(target, editedNote);
+
+        addressBook.setNote(target, editedNote);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -152,6 +217,28 @@ public class ModelManager implements Model {
     public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
         requireNonNull(predicate);
         filteredInternships.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<InternshipTodo> getFilteredTodoList() {
+        return filteredTodo;
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<InternshipTodo> predicate) {
+        requireNonNull(predicate);
+        filteredTodo.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return filteredNote;
+    }
+
+    @Override
+    public void updateFilteredNoteList(Predicate<Note> predicate) {
+        requireNonNull(predicate);
+        filteredNote.setPredicate(predicate);
     }
 
     @Override

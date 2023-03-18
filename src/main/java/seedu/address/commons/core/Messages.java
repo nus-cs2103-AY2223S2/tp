@@ -10,5 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX =
             "The application index provided is invalid";
     public static final String MESSAGE_APPLICATION_LISTED_OVERVIEW = "%1$d applications listed!";
-
+    public static String MESSAGE_INVALID_DISPLAYED_INDEX = "This provided index is invalid!";
+    public static final String MESSAGE_RESULT_LISTED_OVERVIEW = "%1$d tasks listed!";
 }

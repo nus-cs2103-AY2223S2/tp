@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,8 @@ import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.todo.ApplicationDeadline;
+import seedu.address.model.todo.NoteContent;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -168,5 +171,40 @@ public class ParserUtil {
             throw new ParseException(InternshipStatus.MESSAGE_CONSTRAINTS);
         }
         return InternshipStatus.valueOf(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code ApplicationDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static ApplicationDeadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+
+        String trimmedDeadline = deadline.trim();
+        LocalDate formattedDate = LocalDate.parse(trimmedDeadline);
+
+        if (!ApplicationDeadline.isValidDate(formattedDate)) {
+            throw new ParseException(ApplicationDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new ApplicationDeadline(formattedDate);
+    }
+
+    /**
+     * Parses a {@code String content} into a {@code NoteContent}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code content} is invalid.
+     */
+    public static NoteContent parseContent(String content) throws ParseException {
+        requireNonNull(content);
+
+        String trimmedContent = content.trim();
+
+        if (!NoteContent.isValidContent(content)) {
+            throw new ParseException(NoteContent.MESSAGE_CONSTRAINTS);
+        }
+        return new NoteContent(trimmedContent);
     }
 }
