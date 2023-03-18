@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.model.tag.Tag;
 /**
  * Represents a Doctor in the address book.
@@ -18,21 +19,28 @@ public class Doctor extends Person {
     // Identity fields
     private final Specialty specialty;
     private final Yoe yoe;
+    private final Set<Patient> patients;
     /**
      * Every field must be present and not null.
      */
-    public Doctor(Name name, Phone phone, Email email, Specialty specialty, Yoe yoe, Set<Tag> tags) {
+    public Doctor(Name name, Phone phone, Email email, Specialty specialty, Yoe yoe, Set<Tag> tags, Set<Patient> patients) {
         super(name, phone, email, tags);
-        requireAllNonNull(name, phone, email, specialty, yoe, tags);
+        requireAllNonNull(name, phone, email, specialty, yoe, tags, patients);
         this.specialty = specialty;
         this.yoe = yoe;
+        this.patients = patients;
     }
 
     public Specialty getSpecialty() {
         return specialty;
     }
+
     public Yoe getYoe() {
         return yoe;
+    }
+
+    public Set<Patient> getPatients() {
+        return patients;
     }
 
     /**
@@ -94,6 +102,14 @@ public class Doctor extends Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Patient> patients = getPatients();
+        if (!patients.isEmpty()) {
+            builder.append("; Patients: ");
+            patients.forEach((Patient patient) -> {
+                builder.append(patient.getName());
+            });
         }
         return builder.toString();
     }
