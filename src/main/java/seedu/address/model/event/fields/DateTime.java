@@ -13,9 +13,9 @@ public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Date and Time must be specified! "
                     + "The following format must be adhered: YYYY-MM-DD HHMM e.g. 2023-03-23 1200!";
-    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
-    public final LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
     public DateTime(String dateTime) {
         this.dateTime = LocalDateTime.parse(dateTime, dateTimeFormatter);
@@ -32,8 +32,24 @@ public class DateTime {
         try {
             LocalDateTime.parse(duration, dateTimeFormatter);
             return true;
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | NullPointerException e) {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return dateTime.format(dateTimeFormatter);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof DateTime)) {
+            return false;
+        }
+        return dateTime.equals(((DateTime) other).dateTime);
     }
 }

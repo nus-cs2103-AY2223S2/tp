@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<VBox spacing="10"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <Label fx:id="date" styleClass="label-h6" />
+    <Separator />
+    <VBox fx:id="entryContainer" spacing="10">
+        <Label fx:id="entryPlaceholder" styleClass="label-p" text="No entries." />
+    </VBox>
+</VBox>

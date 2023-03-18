@@ -74,6 +74,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setUserDateFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setUserDataFilePath(null));
+    }
+
+    @Test
+    public void setUserDataFilePath_validPath_setsUserDataFilePath() {
+        Path path = Paths.get("user/data/file/path");
+        modelManager.setUserDataFilePath(path);
+        assertEquals(path, modelManager.getUserDataFilePath());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }

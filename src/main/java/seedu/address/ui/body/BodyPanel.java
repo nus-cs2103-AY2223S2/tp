@@ -35,7 +35,7 @@ public class BodyPanel extends UiPart<Region> {
 
         this.logic = logic;
         this.addressPanel = new AddressPanel(logic.getFilteredPersonList());
-        this.calendarPanel = new CalendarPanel();
+        this.calendarPanel = new CalendarPanel(logic.getEventList());
         this.userPanel = new UserPanel(logic.getUserData());
 
         fillTabs();

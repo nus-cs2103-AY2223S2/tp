@@ -21,11 +21,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.ui.tab.TabType;
+import seedu.address.logic.ui.tab.TabUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -43,7 +47,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
@@ -99,8 +103,60 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getAddressBook_modify_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getAddressBook().getData().remove(0));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getAddressBookFilePath_equalsExpected() {
+        assertEquals(model.getAddressBookFilePath(), logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_equalsDefault() {
+        assertEquals(new GuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_setNull_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_success() {
+        GuiSettings expectedSettings = new GuiSettings();
+        logic.setGuiSettings(expectedSettings);
+        assertEquals(expectedSettings, logic.getGuiSettings());
+    }
+
+    @Test
+    public void getUserData_equalsExpected() {
+        assertEquals(model.getUserData(), logic.getUserData());
+    }
+
+    @Test
+    public void getTabInfoList_hasAllTabs() {
+        assertEquals(new TabUtil(TabType.getAll()).getTabInfoList(), logic.getTabInfoList());
+    }
+
+    @Test
+    public void setSelectedTab_validIndex_success() {
+        Index expectedIndex = Index.fromZeroBased(1);
+        model.setSelectedTab(expectedIndex);
+        assertEquals(expectedIndex, model.getSelectedTab().get().getIndex());
+    }
+
+    @Test
+    public void setSelectedTab_invalidIndex_noChange() {
+        Index expectedIndex = model.getSelectedTab().get().getIndex();
+        Index invalidIndex = Index.fromZeroBased(TabType.getAll().length);
+        model.setSelectedTab(invalidIndex);
+        assertEquals(expectedIndex, model.getSelectedTab().get().getIndex());
     }
 
     /**
