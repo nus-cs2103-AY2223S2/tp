@@ -25,10 +25,6 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
-.background-test {
-    -fx-background-color: white;
-}
-
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";

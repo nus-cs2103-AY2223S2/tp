@@ -3,6 +3,7 @@ package seedu.address.ui.body.calendar;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -40,11 +41,9 @@ public class CalendarDayCard extends UiPart<Region> {
         dateNumber.setText(date.format(DATE_NUMBER_FORMATTER));
         dateMonthYear.setText(date.format(DATE_MONTH_YEAR_FORMATTER));
         day.setText(date.format(DAY_FORMATTER));
-
-        int i = 0;
-        for (CalendarPanel.IndexedEvent event : events) {
-            eventsContainer.getChildren().add(new CalendarEventCard(event).getRoot());
-            i += 1;
-        }
+        eventsContainer.getChildren().addAll(events.stream()
+                .map(CalendarEventCard::new)
+                .map(UiPart::getRoot)
+                .collect(Collectors.toList()));
     }
 }
