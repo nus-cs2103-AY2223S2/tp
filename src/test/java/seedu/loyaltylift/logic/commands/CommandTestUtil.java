@@ -90,6 +90,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_B = "11 Fabordrive, Singapore 3001298";
     public static final String VALID_CREATED_DATE_A = "2023/01/09";
     public static final String VALID_CREATED_DATE_B = "2022/12/20";
+    public static final String VALID_NOTE_A = "Note A";
+    public static final String VALID_NOTE_B = "Note B";
 
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)

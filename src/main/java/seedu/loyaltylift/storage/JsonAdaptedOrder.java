@@ -61,7 +61,7 @@ public class JsonAdaptedOrder {
         status = source.getStatus().toString().toUpperCase();
         address = source.getAddress().value;
         createdDate = source.getCreatedDate().toString();
-        note = source.getNote().toString();
+        note = source.getNote().value;
     }
 
     /**

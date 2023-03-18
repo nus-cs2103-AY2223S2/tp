@@ -17,6 +17,7 @@ import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.ReadOnlyAddressBook;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
@@ -148,6 +149,15 @@ public class JsonAdaptedOrderTest {
                 VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
                 VALID_ADDRESS, null, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, CreatedDate.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
+    }
+
+    @Test
+    public void toModelType_nullNote_throwsIllegalValueException() {
+        JsonAdaptedOrder order = new JsonAdaptedOrder(
+                VALID_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS,
+                VALID_ADDRESS, VALID_CREATED_DATE, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
 

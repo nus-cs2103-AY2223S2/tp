@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.AppendCustomerNoteCommand;
+import seedu.loyaltylift.logic.commands.AppendOrderNoteCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
@@ -27,6 +28,7 @@ import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
 import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
+import seedu.loyaltylift.logic.commands.SetOrderNoteCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
 import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
@@ -138,6 +140,26 @@ public class AddressBookParserTest {
                 + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_NOTE + noteToAppend);
         assertEquals(new AppendCustomerNoteCommand(INDEX_FIRST, noteToAppend), command);
+    }
+
+    @Test
+    public void parseCommand_setnoteo() throws Exception {
+        final Note note = new Note("Test Note");
+        SetOrderNoteCommand command = (SetOrderNoteCommand) parser.parseCommand(
+                SetOrderNoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " "
+                + PREFIX_NOTE + note.value);
+        assertEquals(new SetOrderNoteCommand(INDEX_FIRST, note), command);
+    }
+
+    @Test
+    public void parseCommand_appendnoteo() throws Exception {
+        final String noteToAppend = "Extra note";
+        AppendOrderNoteCommand command = (AppendOrderNoteCommand) parser.parseCommand(
+                AppendOrderNoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " "
+                + PREFIX_NOTE + noteToAppend);
+        assertEquals(new AppendOrderNoteCommand(INDEX_FIRST, noteToAppend), command);
     }
 
     @Test
