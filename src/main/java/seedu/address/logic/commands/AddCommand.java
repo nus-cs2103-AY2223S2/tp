@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
- * Adds a person to the address book.
+ * Adds a module, lecture, or video to the tracker.
  */
 public abstract class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
