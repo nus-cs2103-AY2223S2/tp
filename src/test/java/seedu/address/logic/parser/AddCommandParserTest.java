@@ -1,141 +1,160 @@
-// package seedu.address.logic.parser;
+package seedu.address.logic.parser;
 
-// import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-// import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-// import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-// import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-// import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-// import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-// import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-// import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-// import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-// import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-// import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-// import static seedu.address.testutil.TypicalPersons.AMY;
-// import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_VIDEO_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
+import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L2;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2040;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2103;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_NAME_DESC_2040;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_NAME_DESC_2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2103;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-// import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 
-// import seedu.address.logic.commands.AddCommand;
-// import seedu.address.model.person.Address;
-// import seedu.address.model.person.Email;
-// import seedu.address.model.person.Name;
-// import seedu.address.model.person.Person;
-// import seedu.address.model.person.Phone;
-// import seedu.address.model.tag.Tag;
-// import seedu.address.testutil.PersonBuilder;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddLectureCommand;
+import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.AddVideoCommand;
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
+import seedu.address.testutil.LectureBuilder;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.VideoBuilder;
 
-// public class AddCommandParserTest {
-//     private AddCommandParser parser = new AddCommandParser();
+public class AddCommandParserTest {
+    private static final String MESSAGE_COMMAND_FORMAT_ERROR =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-//     @Test
-//     public void parse_allFieldsPresent_success() {
-//         Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+    private AddCommandParser parser = new AddCommandParser();
 
-//         // whitespace only preamble
-//         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+    @Test
+    public void parse_noFields_failure() {
+        assertParseFailure(parser, "", MESSAGE_COMMAND_FORMAT_ERROR);
+    }
 
-//         // multiple names - last name accepted
-//         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+    @Test
+    public void parse_allAddModuleFields_success() {
+        Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103)
+                .withName(VALID_MODULE_NAME_2103).withTags().withLectures().build();
+        AddModuleCommand command = new AddModuleCommand(module);
 
-//         // multiple phones - last phone accepted
-//         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // no duplicate fields
+        assertParseSuccess(parser, VALID_MODULE_CODE_2103 + MODULE_NAME_DESC_2103, command);
 
-//         // multiple emails - last email accepted
-//         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-//                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+        // multiple names - last name accepted
+        assertParseSuccess(parser, VALID_MODULE_CODE_2103 + MODULE_NAME_DESC_2040 + MODULE_NAME_DESC_2103, command);
+    }
 
-//         // multiple addresses - last address accepted
-//         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-//                 + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+    @Test
+    public void parse_addModuleFieldsMissingModuleNameField_success() {
+        Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2103)
+                .withName("").withTags().withLectures().build();
 
-//         // multiple tags - all accepted
-//         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-//                 .build();
-//         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
-//     }
+        assertParseSuccess(parser, VALID_MODULE_CODE_2103, new AddModuleCommand(module));
+    }
 
-//     @Test
-//     public void parse_optionalFieldsMissing_success() {
-//         // zero tags
-//         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-//         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-//                 new AddCommand(expectedPerson));
-//     }
+    @Test
+    public void parse_addModuleFieldsMissingModuleCodeField_failure() {
+        assertParseFailure(parser, MODULE_NAME_DESC_2103, MESSAGE_COMMAND_FORMAT_ERROR);
+    }
 
-//     @Test
-//     public void parse_compulsoryFieldMissing_failure() {
-//         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+    @Test
+    public void parse_addModuleFieldInvalidModuleCodeValue_failure() {
+        assertParseFailure(parser, INVALID_MODULE_CODE, ModuleCode.MESSAGE_CONSTRAINTS);
+    }
 
-//         // missing name prefix
-//         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-//                 expectedMessage);
+    @Test
+    public void parse_allAddLectureFields_success() {
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        Lecture lecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L1).withVideos().withTags().build();
 
-//         // missing phone prefix
-//         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-//                 expectedMessage);
+        AddLectureCommand command = new AddLectureCommand(moduleCode, lecture);
 
-//         // missing email prefix
-//         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-//                 expectedMessage);
+        // no duplicate fields
+        assertParseSuccess(parser, VALID_LECTURE_NAME_L1 + MODULE_CODE_DESC_2103, command);
 
-//         // missing address prefix
-//         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
-//                 expectedMessage);
+        // multiple module codes - last module code accepted
+        assertParseSuccess(parser, VALID_LECTURE_NAME_L1 + MODULE_CODE_DESC_2040 + MODULE_CODE_DESC_2103, command);
+    }
 
-//         // all prefixes missing
-//         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
-//                 expectedMessage);
-//     }
+    @Test
+    public void parse_addLectureFieldsMissingLectureNameField_failure() {
+        assertParseFailure(parser, MODULE_CODE_DESC_2040, MESSAGE_COMMAND_FORMAT_ERROR);
+    }
 
-//     @Test
-//     public void parse_invalidValue_failure() {
-//         // invalid name
-//         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+    @Test
+    public void parse_addLectureFieldsInvalidModuleCodeValue_failure() {
+        assertParseFailure(parser, VALID_LECTURE_NAME_L1 + INVALID_MODULE_CODE_DESC, ModuleCode.MESSAGE_CONSTRAINTS);
+    }
 
-//         // invalid phone
-//         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+    @Test
+    public void parse_addLectureFieldsInvalidLectureNameValue_failure() {
+        assertParseFailure(parser, INVALID_LECTURE_NAME + MODULE_CODE_DESC_2103, LectureName.MESSAGE_CONSTRAINTS);
+    }
 
-//         // invalid email
-//         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-//                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+    @Test
+    public void parse_allAddVideoFields_success() {
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
 
-//         // invalid address
-//         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-//                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+        Video video = new VideoBuilder().withName(VALID_VIDEO_NAME_V1).withTags().build();
 
-//         // invalid tag
-//         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
 
-//         // two invalid values, only first invalid value reported
-//         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-//                 Name.MESSAGE_CONSTRAINTS);
+        // no duplicate fields, module code before lecture name
+        assertParseSuccess(parser, VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1, command);
 
-//         // non-empty preamble
-//         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-//                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-//     }
-// }
+        // no duplicate fields, lecture name before module code
+        assertParseSuccess(parser, VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1 + MODULE_CODE_DESC_2103, command);
+
+        // multiple module codes - last module code accepted
+        assertParseSuccess(parser,
+                VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2040 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1, command);
+
+        // multiple lecture names - last lecture name accepted
+        assertParseSuccess(parser,
+                VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L2 + LECTURE_NAME_DESC_L1, command);
+    }
+
+    @Test
+    public void parse_addVideoFieldsMissingVideoNameField_failure() {
+        assertParseFailure(parser, MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1, MESSAGE_COMMAND_FORMAT_ERROR);
+    }
+
+    @Test
+    public void parse_addVideoFieldsMissingModuleCodeField_failure() {
+        assertParseFailure(parser, VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1, MESSAGE_COMMAND_FORMAT_ERROR);
+    }
+
+    @Test
+    public void parse_addVideoFieldsInvalidModuleCodeValue_failure() {
+        assertParseFailure(parser, VALID_VIDEO_NAME_V1 + INVALID_MODULE_CODE_DESC + LECTURE_NAME_DESC_L1,
+                ModuleCode.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addVideoFieldsInvalidLectureNameValue_failure() {
+        assertParseFailure(parser, VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC,
+                LectureName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addVideoFieldsInvalidVideoNameValue_failure() {
+        assertParseFailure(parser, INVALID_VIDEO_NAME + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1,
+                VideoName.MESSAGE_CONSTRAINTS);
+    }
+}
