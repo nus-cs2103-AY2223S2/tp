@@ -39,15 +39,16 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_CUSTOMER_TYPE_ENTERPRISE = "ent";
+    public static final String VALID_CUSTOMER_TYPE_INDIVIDUAL = "ind";
     public static final Integer VALID_POINTS_AMY = 100;
     public static final Integer VALID_POINTS_BOB = 200;
     public static final Integer VALID_POINTS_ADD = 1;
     public static final Integer VALID_POINTS_SUBTRACT = -1;
-
     public static final Integer VALID_CUMULATIVE_POINTS_AMY = 100;
     public static final Integer VALID_CUMULATIVE_POINTS_BOB = 200;
-    public static final String VALID_CUSTOMER_TYPE_ENTERPRISE = "ent";
-    public static final String VALID_CUSTOMER_TYPE_INDIVIDUAL = "ind";
+    public static final String VALID_NOTE_AMY = "Amy's Note";
+    public static final String VALID_NOTE_BOB = "Bob's Note";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

@@ -16,6 +16,7 @@ import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 
@@ -186,6 +187,14 @@ public class JsonAdaptedCustomerTest {
                 VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_POINTS, VALID_CUMULATIVE_POINTS, null,
                 VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Marked.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
+    }
+
+    public void toModelType_nullNote_throwsIllegalValueException() {
+        JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_CUSTOMER_TYPE, VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, VALID_POINTS, VALID_CUMULATIVE_POINTS, VALID_MARKED,
+                null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 }

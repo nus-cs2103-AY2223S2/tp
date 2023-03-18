@@ -24,8 +24,8 @@ import seedu.loyaltylift.model.customer.CustomerType;
 public class TypicalCustomers {
 
     public static final Customer ALICE = new CustomerBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withAddress("123, Jurong West Ave 6, #08-111")
+            .withEmail("alice@example.com").withPhone("94351253")
             .withTags("friends").build();
     public static final Customer BENSON = new CustomerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")

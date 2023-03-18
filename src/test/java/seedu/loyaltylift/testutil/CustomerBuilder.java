@@ -9,6 +9,7 @@ import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
 import seedu.loyaltylift.model.customer.Marked;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -23,19 +24,21 @@ public class CustomerBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final CustomerType DEFAULT_CUSTOMER_TYPE = CustomerType.INDIVIDUAL;
     public static final Integer DEFAULT_POINTS = 0;
     public static final Integer DEFAULT_CUMULATIVE_POINTS = 0;
-    public static final CustomerType DEFAULT_CUSTOMER_TYPE = CustomerType.INDIVIDUAL;
     public static final Boolean DEFAULT_MARKED = false;
+    public static final String DEFAULT_NOTE = "";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private Points points;
     private CustomerType customerType;
+    private Points points;
     private Marked marked;
+    private Note note;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -46,9 +49,10 @@ public class CustomerBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        points = new Points(DEFAULT_POINTS, DEFAULT_CUMULATIVE_POINTS);
         customerType = DEFAULT_CUSTOMER_TYPE;
+        points = new Points(DEFAULT_POINTS, DEFAULT_CUMULATIVE_POINTS);
         marked = new Marked(DEFAULT_MARKED);
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -60,9 +64,10 @@ public class CustomerBuilder {
         email = customerToCopy.getEmail();
         address = customerToCopy.getAddress();
         tags = new HashSet<>(customerToCopy.getTags());
-        points = customerToCopy.getPoints();
         customerType = customerToCopy.getCustomerType();
+        points = customerToCopy.getPoints();
         marked = customerToCopy.getMarked();
+        note = customerToCopy.getNote();
     }
 
     /**
@@ -106,18 +111,18 @@ public class CustomerBuilder {
     }
 
     /**
-     * Sets the {@code Points} of the {@code Customer} that we are building.
-     */
-    public CustomerBuilder withPoints(Integer points, Integer cumulativePoints) {
-        this.points = new Points(points, cumulativePoints);
-        return this;
-    }
-
-    /**
      * Sets the {@code CustomerType} of the {@code Customer} that we are building.
      */
     public CustomerBuilder withCustomerType(CustomerType customerType) {
         this.customerType = customerType;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Points} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withPoints(Integer points, Integer cumulativePoints) {
+        this.points = new Points(points, cumulativePoints);
         return this;
     }
 
@@ -129,8 +134,16 @@ public class CustomerBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
     public Customer build() {
-        return new Customer(customerType, name, phone, email, address, tags);
+        return new Customer(customerType, name, phone, email, address, tags, points, marked, note);
     }
 
 }

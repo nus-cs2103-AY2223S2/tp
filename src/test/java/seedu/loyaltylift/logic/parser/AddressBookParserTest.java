@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
+import seedu.loyaltylift.logic.commands.AppendCustomerNoteCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
@@ -24,11 +26,13 @@ import seedu.loyaltylift.logic.commands.ExitCommand;
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
 import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.NameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 import seedu.loyaltylift.testutil.CustomerUtil;
@@ -115,6 +119,25 @@ public class AddressBookParserTest {
         AddPointsCommand command = (AddPointsCommand) parser.parseCommand(AddPointsCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + addPoints);
         assertEquals(new AddPointsCommand(INDEX_FIRST_CUSTOMER, addPoints), command);
+    }
+
+    public void parseCommand_setnotec() throws Exception {
+        final Note note = new Note("Test Note");
+        SetCustomerNoteCommand command = (SetCustomerNoteCommand) parser.parseCommand(
+                SetCustomerNoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " "
+                + PREFIX_NOTE + note.value);
+        assertEquals(new SetCustomerNoteCommand(INDEX_FIRST_CUSTOMER, note), command);
+    }
+
+    @Test
+    public void parseCommand_appendnotec() throws Exception {
+        final String noteToAppend = "Extra note";
+        AppendCustomerNoteCommand command = (AppendCustomerNoteCommand) parser.parseCommand(
+                AppendCustomerNoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " "
+                + PREFIX_NOTE + noteToAppend);
+        assertEquals(new AppendCustomerNoteCommand(INDEX_FIRST_CUSTOMER, noteToAppend), command);
     }
 
     @Test
