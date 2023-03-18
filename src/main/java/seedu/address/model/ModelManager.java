@@ -31,7 +31,7 @@ public class ModelManager implements Model {
     private final Tracker tracker;
     private final UserPrefs userPrefs;
     private final Navigation navigation;
-    private final FilteredList<? extends ReadOnlyModule> filteredModules;
+    private FilteredList<? extends ReadOnlyModule> filteredModules;
     private FilteredList<? extends ReadOnlyLecture> filteredLectures;
     private FilteredList<? extends Video> filteredVideos;
     private Level lastListLevel;
@@ -241,6 +241,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
         filteredModules.setPredicate(predicate);
         setLastListLevel(Level.MODULE);
 
@@ -263,10 +264,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module) {
         requireNonNull(predicate);
-        if (filteredLectures == null) {
-            filteredLectures = new FilteredList<>(module.getLectureList());
-        }
-        requireNonNull(filteredLectures);
+        filteredLectures = new FilteredList<>(module.getLectureList());
         filteredLectures.setPredicate(predicate);
         setLastListLevel(Level.LECTURE);
 
@@ -286,10 +284,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture) {
         requireNonNull(predicate);
-        if (filteredVideos == null) {
-            filteredVideos = new FilteredList<>(lecture.getVideoList());
-        }
-        requireNonNull(filteredVideos);
+        filteredVideos = new FilteredList<>(lecture.getVideoList());
         filteredVideos.setPredicate(predicate);
         setLastListLevel(Level.VIDEO);
 
