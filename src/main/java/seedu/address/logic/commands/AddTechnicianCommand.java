@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.Model;
 import seedu.address.model.entity.person.Technician;
 
@@ -56,7 +55,6 @@ public class AddTechnicianCommand extends AddStaffCommand {
         requireNonNull(model);
         Technician toAdd = (Technician) this.toAdd;
         if (model.hasTechnician(toAdd.getId())) {
-            IdGenerator.setStaffIdUnused(toAdd.getId());
             throw new CommandException(MESSAGE_DUPLICATE_TECHNICIAN);
         }
 
