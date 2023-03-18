@@ -15,6 +15,8 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -38,6 +40,10 @@ public class ModelManager implements Model {
     private final PartMap partMap;
     private final Shop shop;
 
+    // Mapped
+    private final CustomerVehicleMap customerVehicleMap;
+    private final VehicleDataMap vehicleDataMap;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -60,6 +66,9 @@ public class ModelManager implements Model {
         partMap = this.shop.getPartMap();
         //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
+        customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
+        vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
+                this.shop.getServiceList());
     }
 
     public ModelManager() {
@@ -138,6 +147,11 @@ public class ModelManager implements Model {
 
     // ==== For Customers ==
 
+    @Override
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return filteredCustomers;
+    }
+
     /**
      * Adds customer to the shop
      *
@@ -177,6 +191,11 @@ public class ModelManager implements Model {
     }
 
     // ==== For Vehicles ==
+
+    @Override
+    public ObservableList<Vehicle> getFilteredVehicleList() {
+        return filteredVehicles;
+    }
 
     /**
      * Adds vehicle to the shop
@@ -276,6 +295,17 @@ public class ModelManager implements Model {
         return this.shop.hasTechnician(technicianId);
     }
 
+    // ==== Mapped ==
+    @Override
+    public CustomerVehicleMap getCustomerVehicleMap() {
+        return this.customerVehicleMap;
+    }
+
+    @Override
+    public VehicleDataMap getVehicleDataMap() {
+        return this.vehicleDataMap;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -285,26 +315,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
-    }
-
-    @Override
-    public ObservableList<Customer> getFilteredCustomerList() {
-        return filteredCustomers;
-    }
-
-    @Override
-    public ObservableList<Vehicle> getFilteredVehicleList() {
-        return filteredVehicles;
-    }
-
-    @Override
-    public ObservableList<Appointment> getFilteredAppointmentList() {
-        return filteredAppointment;
-    }
-
-    @Override
-    public PartMap getPartMap() {
-        return partMap;
     }
 
     @Override
@@ -320,6 +330,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointment;
+    }
+
+    @Override
+    public PartMap getPartMap() {
+        return partMap;
+    }
+
+    @Override
+    public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
+        requireNonNull(predicate);
+        filteredTechnicians.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredServiceList(Predicate<Service> predicate) {
+        requireNonNull(predicate);
+        filteredServices.setPredicate(predicate);
+    }
+
+    @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
@@ -331,6 +363,17 @@ public class ModelManager implements Model {
         filteredVehicles.setPredicate(predicate);
     }
 
+    //    @Override
+    //    public void updateFilteredPartList(Predicate<Part> predicate) {
+    //        requireNonNull(predicate);
+    //        filteredParts.setPredicate(predicate);
+    //    }
+
+    //    @Override
+    //    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+    //        requireNonNull(predicate);
+    //        filteredAppointment.setPredicate(predicate);
+    //    }
     @Override
     public void updatePartsMap() {
         //todo: GUI stuff for printing!

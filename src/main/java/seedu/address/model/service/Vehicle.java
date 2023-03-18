@@ -223,6 +223,11 @@ public class Vehicle {
     }
 
     @Override
+    public int hashCode() {
+        return plateNumber.hashCode();
+    }
+
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         return builder.append(String.format("ID: %s", this.getId()))
