@@ -1,5 +1,7 @@
 package seedu.address.ui.body.calendar;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -12,6 +14,8 @@ import seedu.address.ui.UiPart;
  */
 public class CalendarEventCard extends UiPart<Region> {
     private static final String FXML = "body/calendar/CalendarEventCard.fxml";
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a");
 
     @FXML
     private Label description;
@@ -31,8 +35,8 @@ public class CalendarEventCard extends UiPart<Region> {
         super(FXML);
 
         description.setText(event.getDescription().getDescription());
-        startDateTime.setText(event.getStartDateTime().toString());
-        endDateTime.setText(event.getEndDateTime().toString());
+        startDateTime.setText(event.getStartDateTime().getDateTime().format(FORMATTER));
+        endDateTime.setText(event.getEndDateTime().getDateTime().format(FORMATTER));
         recurrence.setText(event.getRecurrence().toString());
         indexTag.setText(String.format("Index %d", index.getOneBased()));
     }

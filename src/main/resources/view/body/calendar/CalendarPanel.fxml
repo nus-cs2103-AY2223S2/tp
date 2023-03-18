@@ -4,14 +4,16 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Separator?>
 <ScrollPane fx:id="calendarPlaceholder" styleClass="pane-with-rounded-corner, p0"
             fitToWidth="true" hbarPolicy="NEVER"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="10" styleClass="pa">
-        <Label text="Events" styleClass="label-h3" />
+        <Label text="Events" styleClass="label-h1" />
         <Label text="Note: events (including recurring ones) will only show up once on the next earliest date."
                styleClass="label-p" />
+        <Separator />
         <VBox fx:id="calendarContent" spacing="10">
             <Label fx:id="calendarContentPlaceholder"
                    text="No events" styleClass="label-p, tag-accented" />
