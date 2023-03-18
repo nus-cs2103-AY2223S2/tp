@@ -234,6 +234,25 @@ Examples
 * `delete_pair enr/S2235243I vnr/t0123423a` unpairs the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
 * `delete_pair enr/s1135243A vnr/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
+### Show Summary Statistics: `stats`
+
+Shows the statistics of FriendlyLink.
+
+This shows the total number of elderly, volunteers and pairs. It also shows the average number of elderly paired to volunteers and vice versa.
+This command can be entered after the `find` command to show statistics on a subset of data (e.g. Find statistics of people in a particular region)
+
+Format `stats`
+
+* The summary is shown in the feedback box below your input. 
+
+Examples
+* `stats` Display summary statistics on every person and pair.
+* ```
+  find n/alice
+  stats
+  ```
+  Display summary statistics for all persons (and associated pairs) with `alice` in their name.
+
 ### Exiting the program : `exit`
 
 Exits the program.
