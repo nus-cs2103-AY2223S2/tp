@@ -115,7 +115,7 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(Tag.MESSAGE_CONSTRAINTS, trimmedTag));
         }
         return new Tag(trimmedTag);
     }
@@ -135,11 +135,14 @@ public class ParserUtil {
 
         String[] arrayOfTags = tags.split(",");
 
-        for (String tagName : arrayOfTags) {
-            tagName = tagName.trim();
-            if (!Tag.isValidTagName(tagName)) {
-                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-            }
+        List<String> listOfUnvalidTagName = Arrays.stream(arrayOfTags)
+                .map(tag -> tag.trim())
+                .filter(trimmedTag -> !Tag.isValidTagName(trimmedTag))
+                .collect(Collectors.toList());
+
+        if (listOfUnvalidTagName.size() > 0) {
+            throw new ParseException(String.format(Tag.MESSAGE_CONSTRAINTS,
+                    String.join(", ", listOfUnvalidTagName)));
         }
 
         List<Tag> listOfTags = Arrays.stream(arrayOfTags)
