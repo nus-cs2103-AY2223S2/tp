@@ -179,7 +179,7 @@ public class ModelManager implements Model {
     public void addCustomer(Customer customer) {
         this.shop.addCustomer(customer);
         resetMaps();
-        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS); 
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         //#todo fix 44 allow shops
     }
 
@@ -225,7 +225,7 @@ public class ModelManager implements Model {
     public void addVehicle(int customerId, Vehicle vehicle) {
         this.shop.addVehicle(customerId, vehicle);
         resetMaps();
-        updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES); 
+        updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
     }
 
     /**
@@ -260,7 +260,7 @@ public class ModelManager implements Model {
     public void addService(int vehicleId, Service service) {
         this.shop.addService(vehicleId, service);
         resetMaps();
-        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES); 
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
     }
 
     /**

@@ -58,7 +58,7 @@ public class VehicleDataMap {
 
     /**
      * Resets the mapping of vehicles to their associated customer and services
-     * 
+     *
      * @param customers The list of customers.
      * @param vehicles  The list of vehicles.
      * @param services  The list of services.

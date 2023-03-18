@@ -30,7 +30,7 @@ public class ServiceDataMap {
 
     /**
      * Resets the mapping of services to their associated technicians and vehicle
-     * 
+     *
      * @param services  The list of services.
      * @param technicians  The list of technicians.
      * @param vehicles  The list of vehicles.
