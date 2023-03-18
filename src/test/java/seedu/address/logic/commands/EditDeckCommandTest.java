@@ -48,39 +48,6 @@ public class EditDeckCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredCardList().size());
-        Card lastCard = model.getFilteredCardList().get(indexLastPerson.getZeroBased());
-
-        CardBuilder personInList = new CardBuilder(lastCard);
-        Card editedCard = personInList.withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
-                .withTags(VALID_TAG_HARD).build();
-
-        EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
-                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
-
-        Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
-        expectedModel.setCard(lastCard, editedCard);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST, new EditCommand.EditCardDescriptor());
-        Card editedCard = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
-
-        Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST);
 
