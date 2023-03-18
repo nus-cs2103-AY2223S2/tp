@@ -102,7 +102,6 @@ public class AddressBookParser {
         case GroupDeleteCommand.COMMAND_WORD:
             return new GroupDeleteCommandParser().parse(arguments);
 
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

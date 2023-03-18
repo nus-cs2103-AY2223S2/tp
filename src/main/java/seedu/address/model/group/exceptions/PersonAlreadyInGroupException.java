@@ -6,6 +6,6 @@ package seedu.address.model.group.exceptions;
  */
 public class PersonAlreadyInGroupException extends RuntimeException {
     public PersonAlreadyInGroupException() {
-        super("Operation would result in duplicate groups in a Person");
+        super("Operation would result in a person having duplicate groups");
     }
 }

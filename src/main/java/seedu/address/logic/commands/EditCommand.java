@@ -54,20 +54,26 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_NO_TAG_ADDED = "Tag added cannot be empty unless overwriting";
+    public static final String MESSAGE_NO_GROUP_ADDED = "Group added cannot be empty unless overwriting";
+
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private final Boolean shouldOverwrite;
+
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor, Boolean shouldOverwrite) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.shouldOverwrite = shouldOverwrite;
     }
 
     @Override
@@ -82,7 +88,19 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, shouldOverwrite);
+        if (!shouldOverwrite) {
+            // If no overwrite, tag prefix is present but input is empty
+            if (!editPersonDescriptor.getTags().isEmpty() && editPersonDescriptor.getTags().get().isEmpty()) {
+                throw new CommandException(MESSAGE_NO_TAG_ADDED);
+            }
+
+            // If no overwrite, group prefix is present but input is empty
+            if (!editPersonDescriptor.getGroups().isEmpty() && editPersonDescriptor.getGroups().get().isEmpty()) {
+                throw new CommandException(MESSAGE_NO_GROUP_ADDED);
+            }
+        }
+
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -103,7 +121,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}. Does not modify the {@code PersonEventList} of the {@code Person}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor,
+                                             Boolean shouldOverwrite) {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -115,7 +134,22 @@ public class EditCommand extends Command {
         Set<IsolatedEvent> originalIsolatedEvents = personToEdit.getIsolatedEventList().getSet();
         Set<RecurringEvent> originalRecurringEvents = personToEdit.getRecurringEventList().getSet();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedGroups,
+        Set<Tag> finalTags = new HashSet<>();
+        Set<Group> finalGroups = new HashSet<>();
+        finalTags.addAll(updatedTags);
+        finalGroups.addAll(updatedGroups);
+
+        // If tag(s) included and no overwrite, append tags to person
+        if (editPersonDescriptor.getTags() != null && !shouldOverwrite) {
+            finalTags.addAll(personToEdit.getTags());
+        }
+        // If group(s) included and no overwrite, append groups to person
+        if (editPersonDescriptor.getGroups() != null && !shouldOverwrite) {
+            finalGroups.addAll(personToEdit.getGroups());
+        }
+
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, finalTags, finalGroups,
                 originalIsolatedEvents, originalRecurringEvents);
     }
 
