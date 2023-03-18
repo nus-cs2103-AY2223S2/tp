@@ -10,11 +10,13 @@ features in mind so you can always find the recipe you need! Make use of ***RIZZ
 
 ## Table of Contents
 1. [Features](#features)
-   1. [Adding a recipe](#adding-a-recipe--add)
-   2. [Listing recipes](#listing-all-recipes--list)
-   3. [Viewing recipes](#viewing-recipes--view)
-   4. [Deleting a recipe](#deleting-a-recipe--delete)
-   5. [Exiting the program](#exiting-the-program--exit)
+   1. [Adding a recipe](#adding-a-recipe-add)
+   2. [Listing recipes](#listing-all-recipes-list)
+   3. [Finding a recipe by name](#finding-a-recipe-by-name-find)
+   4. [Deleting a recipe](#deleting-a-recipe-delete)
+   5. [Clearing the recipe book](#clearing-the-recipe-book-clear)
+   6. [Asking for assistance](#asking-for-assistance-help)
+   7. [Exiting the program](#exiting-the-program-exit)
 2. [Managing Data](#managing-the-data)
    1. [Saving the data](#saving-the-data)
    2. [Editing the data file](#editing-the-data-file)
@@ -31,10 +33,21 @@ features in mind so you can always find the recipe you need! Make use of ***RIZZ
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add NAME`, `NAME` is a parameter which can be used as `add Grilled Salmon`.
+  i.e. in `add NAME`, `NAME` is a parameter which can be used as `add Grilled Salmon`.
+
+* Parameters in square brackets `[]` refer to optional parameters that can be excluded.
+  i.e. `n/RECIPE_NAME [d/RECIPE_DURATION]` can be used as `n/Cheese Sandwich d/10 minutes` or `n/Cheese Sandwich`.
+
+* Parameters with `...` behind them can be used multiple times, including 0.
+  i.e. `[t/TAGS]` can be used as ` ` (zero times), `t/HALAL`, `t/HALAL t/BREAKFAST` etc.
+
+* Parameters can be in any order
+  i.e. if a command specifies `n/RECIPE_NAME d/RECIPE_DURATION`, `d/RECIPE_DURATION n/RECIPE_NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+
 
 </div>
 
@@ -43,174 +56,102 @@ features in mind so you can always find the recipe you need! Make use of ***RIZZ
 Come up with a new innovative recipe and want to store it for future reference,
 and want to classify it by ingredients? Simply run the `add` command, and follow the prompts!
 
-Format: 
-```text
-add RECIPE_NAME
-```
+Format:
+`add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]... [s/RECIPE_STEPS]... [i/RECIPE_INGREDIENTS]...`
 
-> A recipe can have any number of Ingredients!
-> :bulb: Tip: It is okay to not add a list of ingredients when you first upload
-> your recipe (you can add them later!).
-> We do however recommend you add quantity when you add ingredients
-> The same applies for steps.
+> :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
+> :bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
+> Although optional, we do however still suggest adding in the other fields if possible for your own convenience.
+> We recommend you add in your own units of measurement for the optional fields! (i.e g/kg for ingredient weights)
+> If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e s/Step1 s/step2)
+> Each field does not have to be input in order (/p can come before /d etc.)
+> However, for steps, please input the steps in the order that they are intended to be performed
 
 **Example(s) of usage**:
+* `add n/Honey Chicken Rice`
+* `add n/Chicken Noodles d/20 minutes p/1-2 people i/chicken thigh i/noodle i/soy sauce`
+* `add n/Peanut Butter Sandwich t/breakfast s/Prepare bread and spread s/Using a knife, spread 2-3 scoops of peanut
+butter s/Serve`
 
-```text
-add Honey Chicken Rice
-```
 
-**Expected Output**:
-
-```text
->>> RECIPE NAME: Honey Chicken Rice
->>> Got it. How many people does it feed?
-3-4
-
->>> Got it. What is the recipe duration?
-1 hour
-
->>> Would you like to add any tags? 
->>> You can add multiple (separate them with a "|").
->>> Enter `-SKIP` to skip, and once done enter `-DONE`.
-Thai | Fusion
-
->>> I've added these tags: "Thai", "Fusion". Would you like to add more?
--DONE
-
->>> INGREDIENTS
->>> Add some ingredients! 
->>> You can add multiple (separate them with a "|").
->>> To skip, enter `-SKIP`. Once done, enter `-DONE`.
-1 Whole Chicken
-
->>> Added: 1 Whole Chicken
->>> Any more?
-2 cups rice | 4 tbsp honey | 2 stalks lemongrass -DONE
-
->>> Added: "2 cups rice", "4 tbsp honey", "2 stalks lemongrass"
-
->>> STEPS
->>> Would you like to add some steps? To skip, enter `-SKIP`. Once done, enter `-DONE`.
->>> Add Step #1:
-Soak the rice in water.
-
->>> `Step #1: Soak the rice in water` added.  
->>> Add Step #2:
--SKIP
-
->>> Got it. I've added the recipe:
-|---------------------------------|
-| 1. Honey Chicken Rice           |
-|    Feeds 3-4 Tags: Thai, Fusion |
-|    ~ 15 mins                    |
-|                                 |
-|    Ingredients:                 |
-|    1 Whole Chicken              |
-|    2 cups rice                  |
-|    ...                          |
-|    Steps:                       |
-|    1. Soak the rice in water.   |
-|    ...                          |
-|---------------------------------|
->>> You may always come back to add/delete/edit steps, tags or ingredients.
-```
-
-### Listing all recipes : `list`
-
-Lists all recipes in the current cook book.
+### Listing all recipes: `list`
 
 Ever forget how many recipes you have in your storage? Want to view 'em all? Or
 simply want to pick a recipe at random? Just run the `list` command.
 
-**Example of usage**:
+Format:
+`list`
 
-```text
-list
-```
-
-**Expected output**:
-
-```text
-| 1. Aglio e Olio                      |
-|    Feeds 3-4          Tags:  Italian |
-|    ~ 15 mins                         |
-|    Ingredients:                      |
-|    .....                             |
-|--------------------------------------|
-| 2. Egg Fried Rice                    |
-|    Feeds 3-4          Tags:  Asian   |
-|    ~ 10 mins                         |
-|    Ingredients:                      |
-|    .....                             |
-|--------------------------------------|
-|             ....                     |
-```
-
-Lists all recipes that are in the storage, in the chronological order they were
-added. Depending on the size of the window, may add multiple columns to display
+> Lists all recipes that are in the storage, in the chronological order they were
+added. 
+> Depending on the size of the window, the user may add multiple columns to display
 more recipes.
+> :bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
+> In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe
 
-### Viewing recipes: `view`
 
-View a selected recipe based on specified index on current list. Current list may
-change when using find or filter(coming soon).
+### Finding a recipe by name: `find`
+
+Have a certain recipe at the back of your mind that you want to refer to? `find` helps to save your time scrolling through your whole list of recipes by displaying
+only those that match any of your specified keywords straight away.
+
+Format:
+`find KEYWORD [KEYWORDS]...`
+
+> Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will return the search results `cheese fries` and `ham sandwich`
+> Recipes are listed in the chronological order that they were added.
+> Only the name of the recipe is searched
+> The search is case-insensitive. e.g. chicken will match Chicken
+> The order of the keywords does not matter. e.g. ham sandwich will match sandwich ham
+> Only full words will be matched. e.g. chick will **not** match chicken
 
 Example of usage:
+* `find cheese` returns all recipes with the keyword `cheese`
+* `find prawn tofu` returns all recipes with the keyword `prawn` and all recipes with the keyword `tofu`
 
-```text
-view 2
-```
 
-Expected outcome:
-
-```text
-| 2. Curry Chicken                  |
-|    Feeds 3-4         Tags: Indian |
-|    ~ 1 hour                       |
-|    Ingredients:                   |
-|    Curry paste 8 oz./250 g        |
-| ......                            |
-| Steps:                            |
-| 1. Cut the chicken into pieces... |
-| ......                            |
-| ......                            |
-```
-
-Recipe descriptions are returned, which display mainly its ingredients and lists the steps
-to cook it.
-
-### Deleting a recipe: `Delete`
+### Deleting a recipe: `delete`
 
 No longer like a certain recipe? Simply delete it from the database by its index!
 
-Format: `delete [index]`
-- Deletes the dish at the specified `INDEX`.
-- The index **must be a positive integer** 1, 2, 3, …
+Format: 
+`delete INDEX`
+
+> Deletes the dish at the specified `INDEX` of the latest list that was displayed.
+> The index **must be a positive integer** 1, 2, 3, …
 
 Example of usage:
+* `list` followed by `delete 2` deletes the 2nd item stored in the recipe book.
+*  `find chicken` followed by `delete 1` will delete the 1st recipe in the displayed results of the find command.
 
-`delete 1`
 
-Expected output:
-```
-Deleted recipe: Egg Fried Rice.
-```
+### Clearing the recipe book: `clear`
 
-### Exiting the program : `exit`
+Want to change things up and start a new recipe book afresh? Simply run the `clear` command to wipe the memory
+and start afresh!
+
+Format:
+`clear`
+
+
+### Asking for assistance: `help`
+
+Unsure or unable to remember our list of commands and how to format your inputs? Fret not, as simply inputting
+`help` will save you from your woes.
+
+Format:
+`help`
+
+> :bulb: Tip: `help` links to this user guide, which is a quick way to refresh your memory on any command that might have slipped your mind!
+
+
+### Exiting the program: `exit`
 
 Exits the program and closes the window. 
 
-Example of usage: 
+Format:
+`exit`
 
-```text
-exit
-```
-
-Expected output:
-```text
-We hope you have attained that ~chef RIZZ :) See you later (with rizz)
-```
 
 ## Managing the Data 
 
@@ -241,13 +182,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                           |
-|------------|--------------------------------------------|
-| **Add**    | `add NAME`<br/> e.g., `add Grilled Salmon` |                                                                                                                                                             |            |                                      |
-| **List**   | `list`                                     |                                                                                                                                                                                                                                                                                                                             |            |                                      |
-| **View**   | `view INDEX`<br/> e.g., `view 2`           |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`        |                                                                                                                                                                          |            |                                      |
-| **Exit**   | `exit`                                     |   
+| Action     | Format, Examples                                                                                                                                                                                                              |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]... [s/RECIPE_STEPS]... [i/RECIPE_INGREDIENTS]...`<br/> e.g., `add n/Chicken Noodles d/20 minutes p/1-2 people i/chicken thigh i/noodle i/soy sauce` |                                                                                                                                                             |            |                                      |
+| **List**   | `list`                                                                                                                                                                                                                        |                                                                                                                                                                                                                                                                                                                             |            |                                      |
+| **Find**   | `find KEYWORD [KEYWORDS]...    `<br/> e.g., `find cheese rice`                                                                                                                                                                |
+| **Delete** | `delete INDEX`<br/> e.g., `delete 2`                                                                                                                                                                                          |
+| **Clear**  | `clear`                                                                                                                                                                                                                       |                                                                                                                                                                          |            |                                      |
+| **Help**   | `help`                                                                                                                                                                                                                        |
+| **Exit**   | `exit`                                                                                                                                                                                                                        |   
 
 
 

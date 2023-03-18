@@ -29,8 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyRecipeBook recipeBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(recipeBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + recipeBook + " and user prefs " + userPrefs);
-
+        logger.fine("Initializing with recipe book: " + recipeBook + " and user prefs " + userPrefs);
         this.recipeBook = new RecipeBook(recipeBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredRecipes = new FilteredList<>(this.recipeBook.getRecipeList());

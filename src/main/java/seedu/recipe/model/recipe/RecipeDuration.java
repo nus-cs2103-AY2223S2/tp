@@ -32,6 +32,11 @@ public class RecipeDuration {
         this.timeUnit = timeUnit;
     }
 
+    /**
+     * Returns whether a given String is a valid RecipeDuration.
+     * @param test the string to test.
+     * @return true if the String is a valid RecipeDuration in accordance to the regex, false otherwise.
+     */
     public static boolean isValidRecipeDuration(String test) {
         return test.matches(VALIDATION_REGEX);
     }

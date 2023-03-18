@@ -8,7 +8,8 @@ import seedu.recipe.model.recipe.exceptions.RecipePortionInvalidArgumentExceptio
 import seedu.recipe.model.recipe.unit.PortionUnit;
 
 /**
- * Represents the Portion Size of a Recipe, i.e. "1-2 servings"
+ * Represents a Recipe's portion in the RecipeBook.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRecipePortion(String)}
  */
 public class RecipePortion {
     public static final String MESSAGE_CONSTRAINTS =

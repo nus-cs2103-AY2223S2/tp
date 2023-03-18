@@ -1,11 +1,11 @@
 package seedu.recipe.model;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.model.recipe.Recipe;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -45,34 +45,34 @@ public interface Model {
     void setRecipeBookFilePath(Path recipeBookFilePath);
 
     /**
-     * Replaces RIZZ-ipe data with the data in {@code recipeBook}.
+     * Replaces recipe book data with the data in {@code recipeBook}.
      */
     void setRecipeBook(ReadOnlyRecipeBook recipeBook);
 
-    /** Returns the AddressBook */
+    /** Returns the RecipeBook */
     ReadOnlyRecipeBook getRecipeBook();
 
     /**
-     * Returns true if a recipe with the same identity as {@code recipe} exists in the address book.
+     * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe book.
      */
     boolean hasRecipe(Recipe recipe);
 
     /**
      * Deletes the given recipe.
-     * The recipe must exist in the address book.
+     * The recipe must exist in the recipe book.
      */
     void deleteRecipe(Recipe target);
 
     /**
      * Adds the given recipe.
-     * {@code recipe} must not already exist in the address book.
+     * {@code recipe} must not already exist in the recipe book.
      */
     void addRecipe(Recipe recipe);
 
     /**
      * Replaces the given recipe {@code target} with {@code editedRecipe}.
-     * {@code target} must exist in the address book.
-     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
+     * {@code target} must exist in the recipe book.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the recipe book.
      */
     void setRecipe(Recipe target, Recipe editedRecipe);
 

@@ -52,6 +52,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return recipeBookFilePath;
     }
 
+
     public void setRecipeBookFilePath(Path recipeBookFilePath) {
         requireNonNull(recipeBookFilePath);
         this.recipeBookFilePath = recipeBookFilePath;

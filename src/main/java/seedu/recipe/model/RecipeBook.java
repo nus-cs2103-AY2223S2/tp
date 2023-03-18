@@ -9,7 +9,7 @@ import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.UniqueRecipeList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the recipe-book level
  * Duplicates are not allowed (by .isSameRecipe comparison)
  */
 public class RecipeBook implements ReadOnlyRecipeBook {
@@ -30,7 +30,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     public RecipeBook() {}
 
     /**
-     * Creates an RecipeBook using the Recipes in the {@code toBeCopied}
+     * Creates a RecipeBook using the Recipes in the {@code toBeCopied}
      */
     public RecipeBook(ReadOnlyRecipeBook toBeCopied) {
         this();
@@ -59,7 +59,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     //// recipe-level operations
 
     /**
-     * Returns true if a recipe with the same identity as {@code recipe} exists in the address book.
+     * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe book.
      */
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
@@ -67,8 +67,8 @@ public class RecipeBook implements ReadOnlyRecipeBook {
     }
 
     /**
-     * Adds a recipe to the address book.
-     * The recipe must not already exist in the address book.
+     * Adds a recipe to the recipe book.
+     * The recipe must not already exist in the recipe book.
      */
     public void addRecipe(Recipe p) {
         recipes.add(p);
@@ -76,8 +76,8 @@ public class RecipeBook implements ReadOnlyRecipeBook {
 
     /**
      * Replaces the given recipe {@code target} in the list with {@code editedRecipe}.
-     * {@code target} must exist in the address book.
-     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
+     * {@code target} must exist in the recipe book.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the recipe book.
      */
     public void setRecipe(Recipe target, Recipe editedRecipe) {
         requireNonNull(editedRecipe);
@@ -87,7 +87,7 @@ public class RecipeBook implements ReadOnlyRecipeBook {
 
     /**
      * Removes {@code key} from this {@code RecipeBook}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the recipe book.
      */
     public void removeRecipe(Recipe key) {
         recipes.remove(key);
