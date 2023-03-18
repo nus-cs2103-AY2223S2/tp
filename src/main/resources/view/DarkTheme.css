@@ -365,7 +365,7 @@
     -fx-font-size: 11;
 }
 
-#plateNumber {
+#plateNumber, #vehiclePlateNumber {
     -fx-hgap: 7;
     -fx-vgap: 3;
     -fx-text-fill: white;

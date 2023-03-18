@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
@@ -244,6 +245,11 @@ public class Service {
             return this.getId() == otherService.getId() || super.equals(other);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, vehicleId, description);
     }
 
     @Override

@@ -23,6 +23,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -278,6 +279,16 @@ public class AddCommandTest {
 
         @Override
         public VehicleDataMap getVehicleDataMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Service> getFilteredServiceList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ServiceDataMap getServiceDataMap() {
             throw new AssertionError("This method should not be called.");
         }
     }

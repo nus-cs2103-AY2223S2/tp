@@ -9,6 +9,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -169,6 +170,13 @@ public interface Model {
 
     void deleteVehicle(Vehicle target);
 
+    // ==== For Services ==
+
+    /**
+     * Returns an unmodifiable view of the filtered service list
+     */
+    ObservableList<Service> getFilteredServiceList();
+
     /**
      * Adds service
      *
@@ -231,4 +239,6 @@ public interface Model {
     CustomerVehicleMap getCustomerVehicleMap();
 
     VehicleDataMap getVehicleDataMap();
+
+    ServiceDataMap getServiceDataMap();
 }
