@@ -65,7 +65,7 @@ public class DoctorListPanel extends UiPart<Region> {
     private void showSelectedDoctorInfo(EnlargedContactCard enlargedContactCard) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
-            enlargedContactCard.updateSelectedDoctorOptional(Optional.of(selectedDoctor));
+            enlargedContactCard.updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));
         };
         doctorListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }

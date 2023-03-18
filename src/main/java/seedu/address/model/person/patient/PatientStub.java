@@ -18,7 +18,7 @@ public class PatientStub extends Patient {
     public PatientStub() {
         super(new Name("John Doe"), new Phone("88887777"),
                 new Email("prawn@gmail.com"), new Height("1.7"), new Weight("63.4"), new Diagnosis("None"),
-                new Status("Processed"), new Remark("Compliant"),
+                new Status("Inpatient"), new Remark("Compliant"),
                 new HashSet<>(List.of(new Tag("Friend"), new Tag("College"))));
     }
 

@@ -16,6 +16,7 @@ import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.doctor.Specialty;
 import seedu.address.model.person.doctor.Yoe;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientStub;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -86,6 +87,7 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
             patientsList.add(patient.toModelType());
         }
         final Set<Patient> modelPatients = new HashSet<>(patientsList);
+//        final Set<Patient> modelPatients = new HashSet<>(List.of(new PatientStub()));
 
         Person doctorPerson = super.toModelType();
         return new Doctor(doctorPerson.getName(), doctorPerson.getPhone(), doctorPerson.getEmail(),

@@ -3,6 +3,7 @@ package seedu.address.model.person.doctor;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.PatientStub;
 import seedu.address.model.tag.Tag;
 /**
  * Represents a Doctor in the address book.
