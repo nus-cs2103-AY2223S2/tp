@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -19,6 +18,7 @@ import seedu.address.logic.commands.MarkAsUnwatchedCommand;
 import seedu.address.logic.commands.MarkAsWatchedCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.UntagCommand;
+import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.navigation.BackNavCommand;
 import seedu.address.logic.commands.navigation.NavCommand;
 import seedu.address.logic.parser.exceptions.ParseException;

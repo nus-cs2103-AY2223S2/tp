@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import seedu.address.logic.commands.AddVideoCommand;
+import seedu.address.logic.commands.add.AddVideoCommand;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.video.Video;
