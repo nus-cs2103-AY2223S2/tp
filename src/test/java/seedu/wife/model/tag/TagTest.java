@@ -1,7 +1,10 @@
 package seedu.wife.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.wife.testutil.Assert.assertThrows;
 
+import javafx.scene.control.TableFocusModel;
 import org.junit.jupiter.api.Test;
 
 public class TagTest {
@@ -23,4 +26,9 @@ public class TagTest {
         assertThrows(NullPointerException.class, () -> TagName.isValidTagName(null));
     }
 
+    @Test
+    public void isValidStringRepresentation() {
+        Tag testTag = new Tag("test");
+        assertEquals("[Test]", testTag.toString());
+    }
 }

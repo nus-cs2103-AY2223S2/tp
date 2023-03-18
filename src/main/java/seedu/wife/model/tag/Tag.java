@@ -3,7 +3,7 @@ package seedu.wife.model.tag;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in the WIFE.
  * Guarantees: immutable; name is valid as declared in {@link seedu.wife.model.tag.TagName#isValidTagName(String)}
  */
 public class Tag {
