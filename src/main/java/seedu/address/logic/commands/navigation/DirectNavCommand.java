@@ -51,4 +51,18 @@ public class DirectNavCommand extends NavCommand {
 
         return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DirectNavCommand)) {
+            return false;
+        }
+
+        DirectNavCommand otherCmd = (DirectNavCommand) other;
+        return moduleCode.equals(otherCmd.moduleCode) && lectureName.equals(otherCmd.lectureName);
+    }
 }

@@ -48,4 +48,18 @@ public class RelativeNavCommand extends NavCommand {
 
         return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RelativeNavCommand)) {
+            return false;
+        }
+
+        RelativeNavCommand otherCmd = (RelativeNavCommand) other;
+        return target.equals(otherCmd.target);
+    }
 }

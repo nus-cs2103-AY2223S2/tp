@@ -25,7 +25,7 @@ public class NavCommandParser implements Parser<NavCommand> {
     @Override
     public NavCommand parse(String args) throws ParseException {
         // Navigate to root.
-        if (args == null || args.isEmpty()) {
+        if (args.isEmpty()) {
             return new RootNavCommand();
         }
 

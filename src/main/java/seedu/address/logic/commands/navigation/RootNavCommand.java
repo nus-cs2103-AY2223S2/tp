@@ -14,4 +14,9 @@ public class RootNavCommand extends NavCommand {
         model.navigateToRoot();
         return new CommandResult(getSuccessfulNavMessage(model.getCurrentNavContext()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || (other instanceof RootNavCommand);
+    }
 }
