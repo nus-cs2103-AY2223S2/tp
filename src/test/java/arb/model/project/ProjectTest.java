@@ -33,27 +33,34 @@ public class ProjectTest {
         editedSky = new ProjectBuilder(sky).build();
         editedSky.markAsDone();
         assertFalse(sky.equals(editedSky)); // changed status
+        editedSky.markAsUndone();
+        assertTrue(sky.equals(editedSky)); // reverted status
 
         assertTrue(defaultProject.equals(defaultProject)); // Same instance
         assertTrue(defaultProject.equals(defaultCopy)); // Same details
 
-        Project defaultProjectWihoutDeadline = new ProjectBuilder().withDeadline(null).build();
+        Project defaultProjectWithoutDeadline = new ProjectBuilder().withDeadline(null).build();
         Project defaultCopyWithoutDeadline = new ProjectBuilder().withDeadline(null).build();
 
         Project skyWithoutDeadline = new ProjectBuilder().withTitle("Sky").withDeadline(null).build();
 
-        assertFalse(defaultProjectWihoutDeadline.equals(null)); // null
-        assertFalse(defaultProjectWihoutDeadline.equals(3)); // different type
-        assertFalse(defaultProjectWihoutDeadline.equals(skyWithoutDeadline)); //different project
+        assertFalse(defaultProjectWithoutDeadline.equals(null)); // null
+        assertFalse(defaultProjectWithoutDeadline.equals(3)); // different type
+        assertFalse(defaultProjectWithoutDeadline.equals(skyWithoutDeadline)); //different project
 
-        assertFalse(defaultProjectWihoutDeadline.equals(defaultProject)); // different deadlines
+        assertFalse(defaultProjectWithoutDeadline.equals(defaultProject)); // different deadlines
 
         Project editedSkyWithDeadline = new ProjectBuilder(skyWithoutDeadline).withDeadline("5pm 2023-03-01").build();
         editedSky = new ProjectBuilder(sky).withDeadline("5pm 2023-03-01").build();
 
+        editedSkyWithDeadline.markAsDone();
+        assertFalse(editedSkyWithDeadline.equals(editedSky));
+        editedSkyWithDeadline.markAsUndone();
         assertTrue(editedSkyWithDeadline.equals(editedSky));
-        assertTrue(defaultProjectWihoutDeadline.equals(defaultCopyWithoutDeadline));
-        assertTrue(defaultCopyWithoutDeadline.equals(defaultProjectWihoutDeadline));
+
+        assertTrue(editedSkyWithDeadline.equals(editedSky));
+        assertTrue(defaultProjectWithoutDeadline.equals(defaultCopyWithoutDeadline));
+        assertTrue(defaultCopyWithoutDeadline.equals(defaultProjectWithoutDeadline));
     }
 
     @Test
