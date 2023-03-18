@@ -129,6 +129,10 @@ public interface Model {
      */
     void addIsolatedEvent(Person person, IsolatedEvent eventToAdd);
 
+    void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event);
+
+    void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent, IsolatedEvent editedIsolatedEvent);
+
     /**
      * Add Recurring Event object to the person's isolated event list
      * @param personToEdit
@@ -136,8 +140,7 @@ public interface Model {
      */
     void addRecurringEvent(Person personToEdit, RecurringEvent eventToAdd);
 
-    void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event);
+    void deleteRecurringEvent(Person personToEdit, RecurringEvent event);
 
-    void setIsolatedEvent(Person personToEdit, IsolatedEvent originalEvent, IsolatedEvent editedIsolatedEvent);
-
+    void setRecurringEvent(Person personToEdit, RecurringEvent originalEvent, RecurringEvent editedRecurringEvent);
 }
