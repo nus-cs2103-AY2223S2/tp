@@ -53,6 +53,14 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_noSelectedDeck_throwsCommandException() {
+        Card validCard = new CardBuilder().build();
+        AddCommand addCommand = new AddCommand(validCard);
+        ModelStub modelStub = new ModelStubWithoutSelectedDeck();
+        assertThrows(CommandException.class, AddCommand.MESSAGE_NO_SELECTED_DECK, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Card alice = new CardBuilder().withQuestion("Alice").build();
         Card bob = new CardBuilder().withQuestion("Bob").build();
@@ -77,7 +85,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -213,7 +221,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
         public Optional<Review> getReview() {
             throw new AssertionError("This method should not be called.");
         }
@@ -298,6 +305,22 @@ public class AddCommandTest {
         @Override
         public ReadOnlyMasterDeck getMasterDeck() {
             return new MasterDeck();
+        }
+    }
+
+    /**
+     * A Model stub that does not have any deck selected.
+     */
+    private class ModelStubWithoutSelectedDeck extends ModelStub {
+
+        @Override
+        public boolean hasCard(Card card) {
+            return false;
+        }
+
+        @Override
+        public Optional<Deck> getSelectedDeck() {
+            return Optional.empty();
         }
     }
 

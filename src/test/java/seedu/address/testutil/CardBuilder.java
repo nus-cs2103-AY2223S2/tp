@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.card.Answer;
@@ -23,7 +22,7 @@ public class CardBuilder {
     private Question question;
     private Answer answer;
     private Set<Tag> tags;
-    private Optional<Deck> deck;
+    private Deck deck;
 
 
     /**
@@ -33,7 +32,7 @@ public class CardBuilder {
         question = new Question(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>();
-        deck = Optional.of(new Deck(DEFAULT_DECK));
+        deck = new Deck(DEFAULT_DECK);
     }
 
     /**
@@ -43,7 +42,7 @@ public class CardBuilder {
         question = cardToCopy.getQuestion();
         answer = cardToCopy.getAnswer();
         tags = new HashSet<>(cardToCopy.getTags());
-        deck = cardToCopy.getDeck();
+        deck = cardToCopy.getDeck().get();
     }
 
     /**
@@ -74,7 +73,7 @@ public class CardBuilder {
      * Sets the {@code Deck} of the {@code Card} that we are building.
      */
     public CardBuilder withDeck(String deckName) {
-        this.deck = Optional.of(new Deck(deckName));
+        this.deck = new Deck(deckName);
         return this;
     }
 
