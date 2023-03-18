@@ -97,6 +97,11 @@
 .list-cell .label {
     -fx-text-fill: white;
 }
+.list-cell{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+}
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
@@ -309,6 +314,7 @@
 
 #deckPane {
     -fx-background-color: #ededed;
+
 
 }
 
