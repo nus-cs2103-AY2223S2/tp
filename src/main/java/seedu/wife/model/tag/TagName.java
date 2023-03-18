@@ -53,6 +53,9 @@ public class TagName {
         return tagName.length() < TAG_NAME_MAX_LENGTH;
     }
 
+    /**
+     * Returns true is tag name satisfies the tag naming convention.
+     */
     public static Boolean isValidTagName(String tagName) {
         return isNameNotLengthy(tagName) && isNamePresent(tagName) && isValidString(tagName);
     }
