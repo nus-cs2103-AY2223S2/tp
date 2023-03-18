@@ -3,7 +3,6 @@ package seedu.address.files;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
 
@@ -21,7 +20,7 @@ public class PdfReader implements FileReader<PDDocument> {
     @Override
     public PDDocument loadFile(Path path) {
         try {
-            return Loader.loadPDF(path.toFile());
+            return PDDocument.load(path.toFile());
         } catch (IOException e) {
             e.printStackTrace();
             return null;

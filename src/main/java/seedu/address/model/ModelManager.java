@@ -113,6 +113,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         FileStorage fileStorage = new FileStorage(person.getName().fullName);
+        //FileGenerator fileGenerator = new FileGenerator(person, "SUPER", "Sick", 2);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
