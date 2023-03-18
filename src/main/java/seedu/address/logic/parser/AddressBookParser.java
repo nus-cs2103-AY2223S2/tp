@@ -21,9 +21,14 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.group.GroupCommand;
+import seedu.address.logic.commands.group.GroupCreateCommand;
+import seedu.address.logic.commands.group.GroupDeleteCommand;
+import seedu.address.logic.commands.group.GroupFindCommand;
+import seedu.address.logic.commands.group.GroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.group.GroupCommandParser;
+import seedu.address.logic.parser.group.GroupCreateCommandParser;
+import seedu.address.logic.parser.group.GroupDeleteCommandParser;
+import seedu.address.logic.parser.group.GroupFindCommandParser;
 
 /**
  * Parses user input.
@@ -94,8 +99,16 @@ public class AddressBookParser {
         case EditRecurringEventCommand.COMMAND_WORD:
             return new EditRecurringEventCommandParser().parse(arguments);
 
-        case GroupCommand.COMMAND_WORD:
-            return new GroupCommandParser().parse(arguments);
+        case GroupListCommand.COMMAND_WORD:
+            return new GroupListCommand();
+        case GroupCreateCommand.COMMAND_WORD:
+            return new GroupCreateCommandParser().parse(arguments);
+
+        case GroupFindCommand.COMMAND_WORD:
+            return new GroupFindCommandParser().parse(arguments);
+
+        case GroupDeleteCommand.COMMAND_WORD:
+            return new GroupDeleteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

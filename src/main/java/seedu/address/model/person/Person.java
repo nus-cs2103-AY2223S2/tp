@@ -33,19 +33,21 @@ public class Person {
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
     private final RecurringEventList recurringEventList = new RecurringEventList();
     private Set<Group> groups = new HashSet<>();
-
-
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups) {
-        requireAllNonNull(name, phone, email, address, tags);
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups,
+                  Set<IsolatedEvent> isolatedEvents, Set<RecurringEvent> recurringEvents) {
+        requireAllNonNull(name, phone, email, address, tags, groups, isolatedEvents, recurringEvents);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.groups.addAll(groups);
+        this.isolatedEventList.addAll(isolatedEvents);
+        this.recurringEventList.addAll(recurringEvents);
     }
 
     /**

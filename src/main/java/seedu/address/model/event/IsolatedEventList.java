@@ -1,7 +1,9 @@
 package seedu.address.model.event;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeSet;
 
 import seedu.address.model.event.exceptions.EventNotFoundException;
@@ -96,12 +98,23 @@ public class IsolatedEventList {
         isolatedEvents.remove(originalEvent);
         isolatedEvents.add(editedEvent);
     }
+    public void addAll(Set<IsolatedEvent> isolatedEvents) {
+        this.isolatedEvents.addAll(isolatedEvents);
+    }
+    public ArrayList<IsolatedEvent> getList() {
+        return new ArrayList<>(this.isolatedEvents);
+    }
+    public Set<IsolatedEvent> getSet() {
+        return new TreeSet<>(this.isolatedEvents);
+    }
 
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder();
+        StringBuilder output = new StringBuilder("Isolated Events\n");
+        int count = 1;
         for (IsolatedEvent ie : isolatedEvents) {
-            output.append(ie.toString()).append("\n");
+            output.append(count).append(". ").append(ie.toString()).append("\n");
+            count++;
         }
         return output.toString();
     }

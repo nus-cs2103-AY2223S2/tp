@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -67,10 +68,11 @@ public class AddIsolatedEventCommand extends Command {
                 eventToAdd.getEndDate());
 
         if (checkForEventClash != null) {
-            throw new CommandException(String.format(Messages.MESSAGE_EVENT_ClASH, checkForEventClash));
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
         }
 
         model.addIsolatedEvent(personToEdit, eventToAdd);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) + " to "
                 + personToEdit.getName());

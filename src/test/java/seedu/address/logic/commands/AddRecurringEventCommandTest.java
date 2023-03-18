@@ -46,7 +46,7 @@ public class AddRecurringEventCommandTest {
 
         String expectedList = editedPerson.getRecurringEventList().toString();
 
-        assertEquals(expectedList, "1. biking\n");
+        assertEquals("Recurring Events\n1. biking on MONDAY from 12:00 to 14:00\n", expectedList);
 
     }
 
