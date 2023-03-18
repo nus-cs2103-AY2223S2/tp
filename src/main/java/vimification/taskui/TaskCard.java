@@ -4,17 +4,14 @@ package vimification.taskui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import vimification.model.task.Description;
+// import javafx.scene.layout.Region;
 import vimification.model.task.Task;
-import vimification.taskui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Task}.
  */
-public class TaskCard extends UiPart<Region> {
+public class TaskCard extends UiPart<HBox> {
 
     private static final String FXML = "TaskCard.fxml";
 
@@ -28,7 +25,7 @@ public class TaskCard extends UiPart<Region> {
     // private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);

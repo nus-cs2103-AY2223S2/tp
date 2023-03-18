@@ -64,21 +64,21 @@ public class MainScreen extends UiPart<VBox> {
             System.out.println("You've created a task!");
             handleTaskCreation();
             break;
-        case "d":
-            System.out.println("You've deleted a task!");
-            break;
-        case "h":
-            System.out.println("You've moved to the left");
-            break;
-        case "l":
-            System.out.println("You've moved to the right");
-            break;
-        case "j":
-            System.out.println("You've moved up");
-            break;
-        case "k":
-            System.out.println("You've moved down");
-            break;
+        // case "d":
+        // System.out.println("You've deleted a task!");
+        // break;
+        // case "h":
+        // System.out.println("You've moved to the left");
+        // break;
+        // case "l":
+        // System.out.println("You've moved to the right");
+        // break;
+        // case "j":
+        // System.out.println("You've moved up");
+        // break;
+        // case "k":
+        // System.out.println("You've moved down");
+        // break;
         }
     }
 
