@@ -25,7 +25,17 @@ public class ServiceDataMap {
      * @param vehicles  The list of vehicles.
      */
     public ServiceDataMap(List<Service> services, List<Technician> technicians, List<Vehicle> vehicles) {
+        reset(services, technicians, vehicles);
+    }
 
+    /**
+     * Resets the mapping of services to their associated technicians and vehicle
+     *
+     * @param services  The list of services.
+     * @param technicians  The list of technicians.
+     * @param vehicles  The list of vehicles.
+     */
+    public void reset(List<Service> services, List<Technician> technicians, List<Vehicle> vehicles) {
         Map<Integer, Technician> idToStaffMap = new HashMap<>();
         for (Technician technician : technicians) {
             idToStaffMap.put(technician.getId(), technician);

@@ -61,7 +61,7 @@ public class AddServiceCommand extends RedoableCommand {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_SERVICE, toAdd.getId()));
         }
         model.addService(toAdd.getVehicleId(), toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ResultType.LISTED_SERVICES);
     }
 
     @Override
