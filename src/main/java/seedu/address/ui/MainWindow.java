@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.Entity;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar and space where other JavaFX elements
@@ -35,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private ViewModePanel viewModePanel;
     private EntityListPanel viewModeEntityListPanel;
+    private EntityDetailsPanel entityDetailsPanel;
 
     private ListModePanel listModePanel;
     private EntityListPanel listModeEntityListPanel;
@@ -128,7 +130,8 @@ public class MainWindow extends UiPart<Stage> {
         listModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
         viewModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
         listModePanel = new ListModePanel(listModeEntityListPanel);
-        viewModePanel = new ViewModePanel(viewModeEntityListPanel);
+        entityDetailsPanel = new EntityDetailsPanel();
+        viewModePanel = new ViewModePanel(viewModeEntityListPanel, entityDetailsPanel);
         modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -235,6 +238,11 @@ public class MainWindow extends UiPart<Stage> {
             default:
                 logger.info("UiSwitchMode enum switch case defaulted!");
                 assert (false);
+            }
+
+            if (logic.getIsInEditMode()) {
+                Entity entity = logic.getCurrentSelectedEntity();
+                entityDetailsPanel.UpdateEntityDetails(entity);
             }
 
             return commandResult;

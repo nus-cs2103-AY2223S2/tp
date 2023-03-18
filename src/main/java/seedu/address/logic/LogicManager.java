@@ -91,6 +91,16 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
+    @Override
+    public boolean getIsInEditMode() {
+        return isInEditMode;
+    }
+
+    @Override
+    public Entity getCurrentSelectedEntity() {
+        return model.getCurrentSelectedEntity();
+    }
+
     private void SetMode(UiSwitchMode switchMode) {
         switch (switchMode) {
         case LIST:

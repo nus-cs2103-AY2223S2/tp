@@ -39,7 +39,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the person identified by the index number used in the displayed person list.\n"
-        + "Parameters: CLASSIFICATION (char, mob or item)\n"
+        + "Parameters: CLASSIFICATION (char, mob or item) NAME (name of entity)\n"
         + "Example: " + COMMAND_WORD + " item short dagger";
 
     private final String toEditName;

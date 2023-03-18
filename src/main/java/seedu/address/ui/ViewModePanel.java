@@ -24,9 +24,10 @@ public class ViewModePanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public ViewModePanel(EntityListPanel entityListPanel) {
+    public ViewModePanel(EntityListPanel entityListPanel, EntityDetailsPanel entityDetailsPanel) {
         super(FXML);
         entityListPanelPlaceholder.getChildren().add(entityListPanel.getRoot());
+        entityDetailsPlaceholder.getChildren().add(entityDetailsPanel.getRoot());
     }
 
 }

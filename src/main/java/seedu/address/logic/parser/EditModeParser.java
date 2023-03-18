@@ -39,7 +39,10 @@ public class EditModeParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<fieldWord>\\S+)(?<arguments>.*)");
 
-    public static final String MESSAGE_INVALID_FIELD = "%s is not a valid editable field!";
+    public static final String MESSAGE_INVALID_FIELD = "%s is not a valid editable field! \n"
+        + "Use commands of the form FIELD (name of the field you wish to edit) VALUE (desired value). \n"
+        + "Example: name Johnny Depp \n"
+        + "You may also type 'back' to exit Edit Mode and return to the list view.";
     public static final String MESSAGE_INVALID_VALUE_FORMAT = "%s is not a valid value for %s!";
 
     private final Model model;
