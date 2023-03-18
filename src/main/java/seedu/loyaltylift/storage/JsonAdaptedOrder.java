@@ -51,7 +51,7 @@ public class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        customerId = source.getCustomer().getUID();
+        customerId = source.getCustomer().getUid();
         name = source.getName().fullName;
         quantity = source.getQuantity().value;
         status = source.getStatus().toString().toUpperCase();

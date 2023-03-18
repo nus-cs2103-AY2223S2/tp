@@ -94,7 +94,7 @@ public class Customer {
      * No 2 customer should exist with the same unique ID.
      * @return A string representation of the unique identification of the customer.
      */
-    public final String getUID() {
+    public final String getUid() {
         return getName().fullName;
     }
 
@@ -108,7 +108,7 @@ public class Customer {
         }
 
         return otherCustomer != null
-                && otherCustomer.getUID().equals(getUID());
+                && otherCustomer.getUid().equals(getUid());
     }
 
     /**

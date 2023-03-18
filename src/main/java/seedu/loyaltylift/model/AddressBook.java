@@ -76,9 +76,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns {@code customer} if a customer exists in the address book with its uid.
      */
-    public Customer getCustomer(String customerUID) {
-        requireNonNull(customerUID);
-        return customers.getCustomer(customerUID);
+    public Customer getCustomer(String customerUid) {
+        requireNonNull(customerUid);
+        return customers.getCustomer(customerUid);
     }
 
     /**

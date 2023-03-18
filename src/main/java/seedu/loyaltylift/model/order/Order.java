@@ -5,10 +5,9 @@ import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import seedu.loyaltylift.model.customer.Customer;
-
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.customer.Customer;
 
 /**
  * Represents an Order in the address book.
