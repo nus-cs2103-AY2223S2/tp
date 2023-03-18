@@ -3,8 +3,6 @@ package vimification.taskui;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
-// import javafx.scene.control.SelectionMode;
-// import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import vimification.model.task.Task;
 import javafx.collections.ObservableList;
@@ -16,6 +14,8 @@ import javafx.fxml.FXML;
 public class TaskListPanel extends UiPart<VBox> {
     private static final String FXML = "TaskListPanel.fxml";
 
+    private MainScreen mainScreen;
+
     @FXML
     private ListView<Task> taskListView;
 
@@ -26,6 +26,10 @@ public class TaskListPanel extends UiPart<VBox> {
         super(FXML);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
+    }
+
+    public void setMainScreen(MainScreen parent) {
+        this.mainScreen = parent;
     }
 
     /**
@@ -61,19 +65,18 @@ public class TaskListPanel extends UiPart<VBox> {
         case "d":
             System.out.println("You've deleted a task!");
             break;
-        // case "h":
-        // System.out.println("You've moved to the left");
-        // break;
         case "l":
-            System.out.println("You've moved to the right");
+            Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
+            mainScreen.loadDetailedTaskComponent(selectedTask);
             break;
+
         case "j":
-            System.out.println("You've moved up");
-            navigateToPrevCell();
-            break;
-        case "k":
             System.out.println("You've moved down");
             navigateToNextCell();
+            break;
+        case "k":
+            System.out.println("You've moved up");
+            navigateToPrevCell();
             break;
         }
     }
@@ -82,6 +85,7 @@ public class TaskListPanel extends UiPart<VBox> {
         int currIndex = taskListView.getFocusModel().getFocusedIndex();
         int lastIndex = taskListView.getItems().size();
 
+        // We can only navigate to the next cell if we are not the last cell.
         boolean isCurrLastCell = currIndex == lastIndex;
         if (!isCurrLastCell) {
             taskListView.getFocusModel().focusNext();

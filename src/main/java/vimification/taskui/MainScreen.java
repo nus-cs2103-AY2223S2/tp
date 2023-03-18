@@ -1,6 +1,7 @@
 package vimification.taskui;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -8,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import vimification.logic.Logic;
+import vimification.model.task.Task;
 
 /**
  * The Main Scene. Provides the basic application layout containing a menu bar and space where other
@@ -42,42 +44,6 @@ public class MainScreen extends UiPart<VBox> {
         setup();
     }
 
-    /**
-     * Listener for handling all keyboard events to Vimification.
-     *
-     * @param event
-     */
-    @FXML
-    private void handleKeyPressed(KeyEvent event) {
-        KeyCodeCombination colonKey =
-                new KeyCodeCombination(KeyCode.SEMICOLON, KeyCombination.SHIFT_DOWN);
-        boolean isKeyPressedColon = colonKey.match(event);
-
-        if (isKeyPressedColon) {
-            handleCommand();
-            return;
-        }
-
-        switch (event.getText()) {
-        case "i":
-            System.out.println("You've created a task!");
-            handleTaskCreation();
-            break;
-        }
-    }
-
-    private void handleTaskCreation() {
-        taskCreationPanel = new TaskCreationPanel(this.getRoot());
-        rightComponent.getChildren().clear();
-        rightComponent.getChildren().add(taskCreationPanel.getRoot());
-        taskCreationPanel.requestFocus();
-    }
-
-    private void handleCommand() {
-        commandInput.setVisible(true);
-        commandInput.requestFocus();
-    }
-
     @FXML
     private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
@@ -90,11 +56,56 @@ public class MainScreen extends UiPart<VBox> {
 
     private void initializeTaskListPanel() {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel.setMainScreen(this);
         leftComponent.getChildren().add(taskListPanel.getRoot());
     }
 
     private void intializeCommandInput() {
         commandInput = new CommandInput(this.getRoot());
         commandInputComponent.getChildren().add(commandInput.getRoot());
+    }
+
+    /**
+     * Listener for handling all keyboard events to Vimification.
+     *
+     * @param event
+     */
+    @FXML
+    private void handleKeyPressed(KeyEvent event) {
+        KeyCodeCombination colonKey =
+                new KeyCodeCombination(KeyCode.SEMICOLON, KeyCombination.SHIFT_DOWN);
+        boolean isKeyPressedColon = colonKey.match(event);
+
+        if (isKeyPressedColon) {
+            loadCommandInputComponent();
+            return;
+        }
+
+        switch (event.getText()) {
+        case "i":
+            loadTaskCreationPanelComponent();
+            break;
+        }
+    }
+
+    private void loadTaskCreationPanelComponent() {
+        taskCreationPanel = new TaskCreationPanel(this.getRoot());
+        loadRightComponent(taskCreationPanel);
+        taskCreationPanel.requestFocus();
+    }
+
+    private void loadCommandInputComponent() {
+        commandInput.setVisible(true);
+        commandInput.requestFocus();
+    }
+
+    public void loadDetailedTaskComponent(Task task) {
+        TaskDetailPanel detailTask = new TaskDetailPanel(task);
+        loadRightComponent(detailTask);
+    }
+
+    private <T extends Node> void loadRightComponent(UiPart<T> component) {
+        rightComponent.getChildren().clear();
+        rightComponent.getChildren().add(component.getRoot());
     }
 }
