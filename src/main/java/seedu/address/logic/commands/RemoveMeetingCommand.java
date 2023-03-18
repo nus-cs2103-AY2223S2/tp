@@ -52,7 +52,7 @@ public class RemoveMeetingCommand extends Command {
 
         Person personToEdit = lastShownList.get(indexPerson.getZeroBased());
 
-        if (indexMeeting.getOneBased() >= personToEdit.getMeetings().size()) {
+        if (indexMeeting.getZeroBased() > personToEdit.getMeetings().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 

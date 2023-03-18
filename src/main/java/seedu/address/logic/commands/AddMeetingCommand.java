@@ -19,12 +19,12 @@ import seedu.address.model.person.Person;
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "meetingAdd";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a meeting to the person identified"
-            + "by the index number used in the last person listing.\n"
-            + "A new meeting will not be added if there are clashes with"
-            + "other meetings on the day or period specified.\n"
-            + "Parameters: [INDEX] m/ [DATE START] [DATE END]\n"
-            + "Example: " + COMMAND_WORD + " 1 m/ 30-03-2020 20:10 22:10";
+        + ": Adds a meeting to the person identified"
+        + "by the index number used in the last person listing.\n"
+        + "A new meeting will not be added if there are clashes with"
+        + "other meetings on the day or period specified.\n"
+        + "Parameters: [INDEX] m/ [DATE START] [DATE END]\n"
+        + "Example: " + COMMAND_WORD + " 1 m/ 30-03-2020 20:10 22:10";
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting to Person: %1$s";
 
     private final Index index;
@@ -32,7 +32,8 @@ public class AddMeetingCommand extends Command {
 
     /**
      * Adds meeting to the specified {@code Person}
-     * @param index index of person
+     *
+     * @param index   index of person
      * @param meeting meeting to add
      */
     public AddMeetingCommand(Index index, Meeting meeting) {
@@ -44,6 +45,7 @@ public class AddMeetingCommand extends Command {
 
     /**
      * Executes meetingAdd command.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return CommandResult Object
      * @throws CommandException when index specified is invalid or out of range
@@ -71,8 +73,8 @@ public class AddMeetingCommand extends Command {
 
         personToEdit.getMeetings().add(meeting);
         Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+            personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -84,6 +86,7 @@ public class AddMeetingCommand extends Command {
      * Checks if any 2 AddMeetingCommand are the same. This is done
      * by checking if both Meeting objects are assigned to the same person
      * and have same day, start and end time.
+     *
      * @param other Other AddMeetingCommand object to compare to
      * @return boolean value on whether both objects are the same or not
      */
@@ -118,7 +121,8 @@ public class AddMeetingCommand extends Command {
     /**
      * Checks if meeting provided clashes with other meetings that the person
      * has
-     * @param meetingToCheck Meeting object provided
+     *
+     * @param meetingToCheck        Meeting object provided
      * @param personUnderInspection Person the Meeting object is being assigned to
      * @return boolean value
      */
@@ -126,7 +130,7 @@ public class AddMeetingCommand extends Command {
         requireNonNull(personUnderInspection);
         requireNonNull(meetingToCheck);
         ArrayList<Meeting> currentMeetings = personUnderInspection.getMeetings();
-        for (Meeting meeting: currentMeetings) {
+        for (Meeting meeting : currentMeetings) {
             if (meetingToCheck.checkTimeClash(meeting)) {
                 return true;
             }

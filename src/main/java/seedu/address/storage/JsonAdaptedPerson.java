@@ -30,20 +30,25 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
+    private final ArrayList<JsonAdaptedMeeting> meetings = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("meetings") ArrayList<JsonAdaptedMeeting> meetings) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+
+        if (meetings != null) {
+            this.meetings.addAll(meetings);
         }
     }
 
@@ -69,6 +74,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final ArrayList<Meeting> personMeetings = new ArrayList<>();
+        for (JsonAdaptedMeeting meeting : meetings) {
+            personMeetings.add(meeting.toModelType());
         }
 
         if (name == null) {

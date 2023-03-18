@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.parser.ParserUtil;
@@ -67,7 +68,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -104,15 +105,17 @@ public class PersonBuilder {
         return this;
     }
 
-    /*
-    public PersonBuilder withMeetings() {
-
     public PersonBuilder withMeetings(String dateTime) {
-        LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
-        Meeting meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
-        this.meetings.add(meetingToAdd);
+        if (dateTime.isEmpty()) {
+            this.meetings.add(new Meeting());
+        } else {
+            LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
+            Meeting meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
+            this.meetings.add(meetingToAdd);
+        }
+
         return this;
-    }*/
+    }
 
     public Person build() {
         return new Person(name, phone, email, address, tags, meetings);

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,11 +25,23 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Meeting> meetings = new ArrayList<>();
-
+    private final ArrayList<Meeting> meetings;
 
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.meetings = new ArrayList<>();
+    }
+
+    /**
+     * Overloaded constructor to take in meetings as an argument
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                   ArrayList<Meeting> meetings) {
@@ -38,7 +51,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.meetings.addAll(meetings);
+        this.meetings = meetings;
     }
 
     public Name getName() {
@@ -144,7 +157,7 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        ArrayList<Meeting> meetings = getMeetings();
+        List<Meeting> meetings = getMeetings();
         String meetingHeader = meetings.size() == 1
             ? "; Meeting: "
             : "; Meetings: ";
