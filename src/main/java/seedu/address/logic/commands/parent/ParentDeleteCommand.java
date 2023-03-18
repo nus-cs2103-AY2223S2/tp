@@ -22,7 +22,6 @@ import seedu.address.model.person.parent.Parent;
 public class ParentDeleteCommand extends ParentCommand {
 
     public static final String COMMAND_WORD = "delete";
-    
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the parent identified by their phone number used in the displayed person list.\n"
             + "Parameters: "
