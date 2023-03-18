@@ -97,7 +97,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Meeting} of the {@code Person} that we are building. 
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
      */
     public PersonBuilder withMeeting(ArrayList<Meeting> meetings) {
         this.meetings = meetings;
