@@ -23,7 +23,7 @@ public class SampleDataUtil {
 
         Set<NusMod> mods = new HashSet<>();
         mods.add(new NusMod("CS2103T"));
-        Gender gender = new Gender("m");
+        Gender gender = new Gender("Male");
         Major major = new Major("Computer Science");
         Modules modules = new Modules(mods);
         Race race = new Race("Chinese");
