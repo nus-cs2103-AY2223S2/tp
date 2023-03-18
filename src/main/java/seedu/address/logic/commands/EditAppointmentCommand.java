@@ -45,21 +45,17 @@ public class EditAppointmentCommand extends RedoableCommand {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in AutoM8";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment not in AutoM8";
 
-
     private static final Appointment APPOINTMENT_DOES_NOT_EXIST = null;
 
-    private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
+    private int id;
+
     /**
-     * @param index of the person in the filtered person list to edit
      * @param editAppointmentDescriptor details to edit the person with
      */
-    public EditAppointmentCommand(Index index, EditAppointmentDescriptor editAppointmentDescriptor) {
-        requireNonNull(index);
+    public EditAppointmentCommand(EditAppointmentDescriptor editAppointmentDescriptor) {
         requireNonNull(editAppointmentDescriptor);
-
-        this.index = index;
         this.editAppointmentDescriptor = new EditAppointmentDescriptor(editAppointmentDescriptor);
     }
 
@@ -70,7 +66,7 @@ public class EditAppointmentCommand extends RedoableCommand {
 
         // Locate Appointment containing id. By right each ID is unique.
         Appointment appointmentToEdit = lastShownList.stream().filter(appointment ->
-                        this.index.getZeroBased() == appointment.getId()).findAny()
+                        editAppointmentDescriptor.getId() == appointment.getId()).findAny()
                 .orElse(APPOINTMENT_DOES_NOT_EXIST);
 
         // If appointment doesn't exist
@@ -120,8 +116,7 @@ public class EditAppointmentCommand extends RedoableCommand {
 
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
-        return index.equals(e.index)
-                && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
+        return editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
     }
 
     /**
@@ -161,8 +156,8 @@ public class EditAppointmentCommand extends RedoableCommand {
             this.id = id;
         }
 
-        public Optional<Integer> getId() {
-            return Optional.ofNullable(id);
+        public int getId() {
+            return id;
         }
 
         public void setCustomerId(int id) {
@@ -205,7 +200,7 @@ public class EditAppointmentCommand extends RedoableCommand {
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return getId().equals(e.getId())
+            return getId() == (e.getId())
                     && getCustomerId().equals(e.getCustomerId())
                     && getTimeDate().equals(e.getTimeDate())
                     && getStaffIds().equals(e.getStaffIds());

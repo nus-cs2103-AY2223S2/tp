@@ -50,7 +50,7 @@ public class EditAppointmentParser implements Parser<EditAppointmentCommand> {
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
         // Todo: check if ParseUtil.parseInt throws errors for non-Int
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INTERNAL_ID).get());
+        int id = ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get());
         editAppointmentDescriptor.setId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get()));
 
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {
@@ -80,7 +80,7 @@ public class EditAppointmentParser implements Parser<EditAppointmentCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditAppointmentCommand(index, editAppointmentDescriptor);
+        return new EditAppointmentCommand(editAppointmentDescriptor);
     }
 
     /**
