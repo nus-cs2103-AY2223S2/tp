@@ -19,14 +19,12 @@ import seedu.address.model.person.doctor.Doctor;
 @JsonRootName(value = "docedex")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_DOCTOR = "Doctors list contains duplicate doctors(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedDoctor> doctors = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given doctors.
+     * Constructs a {@code JsonSerializableAddressBook} with the given doctors and patients.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("doctors") List<JsonAdaptedDoctor> doctors) {
