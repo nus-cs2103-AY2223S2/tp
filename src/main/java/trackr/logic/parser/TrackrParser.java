@@ -16,9 +16,11 @@ import trackr.logic.commands.Command;
 import trackr.logic.commands.DeleteOrderCommand;
 import trackr.logic.commands.DeleteSupplierCommand;
 import trackr.logic.commands.DeleteTaskCommand;
+import trackr.logic.commands.EditOrderCommand;
 import trackr.logic.commands.EditSupplierCommand;
 import trackr.logic.commands.EditTaskCommand;
 import trackr.logic.commands.ExitCommand;
+import trackr.logic.commands.FindOrderCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
@@ -77,6 +79,10 @@ public class TrackrParser {
         case DeleteSupplierCommand.COMMAND_WORD:
         case DeleteSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new DeleteSupplierCommandParser().parse(arguments);
+        case EditOrderCommand.COMMAND_WORD:
+        case EditOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new EditOrderCommandParser().parse(arguments);
+
 
         case DeleteTaskCommand.COMMAND_WORD:
         case DeleteTaskCommand.COMMAND_WORD_SHORTCUT:
@@ -105,6 +111,10 @@ public class TrackrParser {
         case FindTaskCommand.COMMAND_WORD:
         case FindTaskCommand.COMMAND_WORD_SHORTCUT:
             return new FindTaskCommandParser().parse(arguments);
+
+        case FindOrderCommand.COMMAND_WORD:
+        case FindOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new FindOrderCommandParser().parse(arguments);
 
         case ListSupplierCommand.COMMAND_WORD:
         case ListSupplierCommand.COMMAND_WORD_SHORTCUT:

@@ -117,5 +117,4 @@ public class OrderList implements ReadOnlyOrderList {
     public int hashCode() {
         return orders.hashCode();
     }
-
 }
