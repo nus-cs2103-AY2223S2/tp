@@ -57,6 +57,10 @@ public class Doctor extends Person {
         return patients;
     }
 
+    public boolean hasPatients() {
+        return patients.size() > 0;
+    }
+
     /**
      * Returns true if both doctors have the same name.
      * This defines a weaker notion of equality between two doctors.

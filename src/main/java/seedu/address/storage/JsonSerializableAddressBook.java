@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,14 +20,12 @@ import seedu.address.model.person.doctor.Doctor;
 @JsonRootName(value = "docedex")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_DOCTOR = "Doctors list contains duplicate doctors(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedDoctor> doctors = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given doctors.
+     * Constructs a {@code JsonSerializableAddressBook} with the given doctors and patients.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("doctors") List<JsonAdaptedDoctor> doctors) {
@@ -66,6 +65,15 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DOCTOR);
             }
             addressBook.addDoctor(doctor);
+
+            // Add Patients of the doctor into single patient list in AddressBook
+            if (doctor.hasPatients()) {
+                doctor.getPatients().forEach((Patient patient) -> {
+                    if (!addressBook.hasPatient(patient)) {
+                        addressBook.addPatient(patient);
+                    }
+                });
+            }
         }
         return addressBook;
     }
