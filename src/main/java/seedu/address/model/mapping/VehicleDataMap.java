@@ -57,6 +57,44 @@ public class VehicleDataMap {
     }
 
     /**
+     * Resets the mapping of vehicles to their associated customer and services
+     *
+     * @param customers The list of customers.
+     * @param vehicles  The list of vehicles.
+     * @param services  The list of services.
+     */
+    public void reset(List<Vehicle> vehicles, List<Customer> customers,
+            List<Service> services) {
+
+        Map<Integer, Customer> idToCustomerMap = new HashMap<>();
+        for (Customer customer : customers) {
+            idToCustomerMap.put(customer.getId(), customer);
+        }
+
+        Map<Integer, Service> idToServiceMap = new HashMap<>();
+        for (Service service : services) {
+            idToServiceMap.put(service.getId(), service);
+        }
+
+        for (Vehicle vehicle : vehicles) {
+            ServiceList vehicleServiceList = new ServiceList();
+            Customer vehicleCustomer = idToCustomerMap.get(vehicle.getOwnerId());
+
+            if (vehicleCustomer != null) {
+                this.vehicleToCustomerMap.put(vehicle, vehicleCustomer);
+            }
+
+            for (int serviceId : vehicle.getServiceIds()) {
+                Service service = idToServiceMap.get(serviceId);
+                if (service != null) {
+                    vehicleServiceList.add(service);
+                }
+            }
+            this.vehicleToServicesMap.put(vehicle, vehicleServiceList);
+        }
+    }
+
+    /**
      * Returns an unmodifiable observable list of services associated with the
      * specified vehicle.
      *
