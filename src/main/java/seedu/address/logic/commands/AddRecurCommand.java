@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.AddLabCommand.MESSAGE_DUPLICATE_LAB;
 import static seedu.address.logic.commands.AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECUR;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -46,20 +45,20 @@ public class AddRecurCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (tutorial && model.hasTutorial((Tutorial)toAdd)) {
+        if (tutorial && model.hasTutorial((Tutorial) toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
 
-        if (lab && model.hasLab((Lab)toAdd)) {
+        if (lab && model.hasLab((Lab) toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_LAB);
         }
 
-        for (int i=0;i<count;i++) {
+        for (int i = 0; i < count; i++) {
             toAdd.setName(toAdd.getName() + i + i);
             if (lab) {
-                model.addLab((Lab)toAdd);
+                model.addLab((Lab) toAdd);
             } else if (tutorial) {
-                model.addTutorial((Tutorial)toAdd);
+                model.addTutorial((Tutorial) toAdd);
             }
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

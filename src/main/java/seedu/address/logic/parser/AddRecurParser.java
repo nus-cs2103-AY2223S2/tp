@@ -50,6 +50,14 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
         }
     }
 
+    /**
+     * Checks to if the recurring event is a lab or tutorial or consultation.
+     * Do a typecasting for the respective events.
+     * @param newArgs
+     * @param prefix
+     * @return AddRecurCommand
+     * @throws ParseException
+     */
     public AddRecurCommand parseEvent(String newArgs, Prefix prefix) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(newArgs, prefix, PREFIX_COUNT);

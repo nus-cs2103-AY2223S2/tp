@@ -181,9 +181,9 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         //Add custom regex
-//        if (!Name.isValidName(trimmedName)) {
-//            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-//        }
+        //if (!Name.isValidName(trimmedName)) {
+        //    throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        //}
         return trimmedName;
     }
 
