@@ -20,7 +20,7 @@ public class Status {
 
     private static final ArrayList<String> possibleStatuses = new ArrayList<>(
             List.of("Inpatient", "Outpatient", "Observation", "Emergency Department",
-                    "Intensive Care Unit" ,"Transitional Care"));
+                    "Intensive Care Unit", "Transitional Care"));
 
     private final String status;
 

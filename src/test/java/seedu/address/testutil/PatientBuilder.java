@@ -1,16 +1,12 @@
 package seedu.address.testutil;
 
 
-import java.io.StringBufferInputStream;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.doctor.Specialty;
-import seedu.address.model.person.doctor.Yoe;
 import seedu.address.model.person.patient.Diagnosis;
 import seedu.address.model.person.patient.Height;
 import seedu.address.model.person.patient.Patient;
@@ -32,8 +28,8 @@ public class PatientBuilder {
     public static final String DEFAULT_WEIGHT = "65";
     public static final String DEFAULT_DIAGNOSIS = "Asthma";
     public static final String DEFAULT_STATUS = Status.getDummyValidStatus();
-    public static final String DEFAULT_REMARK = "Prescribed 2 doses of budesonide, " +
-            "to be taken morning and night daily.";
+    public static final String DEFAULT_REMARK = "Prescribed 2 doses of budesonide, "
+            + "to be taken morning and night daily.";
 
     private Name name;
     private Phone phone;
@@ -147,6 +143,11 @@ public class PatientBuilder {
         return this;
     }
 
+    /**
+     * Builds the {@code Patient}.
+     *
+     * @return a Patient object.
+     */
     public Patient build() {
         return new Patient(name, phone, email, height,
                 weight, diagnosis, status, remark, tags);
