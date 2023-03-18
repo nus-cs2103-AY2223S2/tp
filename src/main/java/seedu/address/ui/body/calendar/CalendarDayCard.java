@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.Event;
 import seedu.address.ui.UiPart;
 
@@ -36,6 +37,7 @@ public class CalendarDayCard extends UiPart<Region> {
      */
     public CalendarDayCard(List<Event> events, LocalDate date) {
         super(FXML);
+        CollectionUtil.requireAllNonNull(events, date);
 
         dateNumber.setText(date.format(DATE_NUMBER_FORMATTER));
         dateMonthYear.setText(date.format(DATE_MONTH_YEAR_FORMATTER));

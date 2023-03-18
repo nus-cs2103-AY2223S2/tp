@@ -1,11 +1,13 @@
 package seedu.address.ui.body.calendar;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.Event;
 import seedu.address.ui.UiPart;
 
@@ -33,11 +35,16 @@ public class CalendarEventCard extends UiPart<Region> {
      */
     public CalendarEventCard(Event event, Index index) {
         super(FXML);
+        CollectionUtil.requireAllNonNull(event, index);
 
         description.setText(event.getDescription().getDescription());
         startDateTime.setText(event.getStartDateTime().getDateTime().format(FORMATTER));
         endDateTime.setText(event.getEndDateTime().getDateTime().format(FORMATTER));
         recurrence.setText(event.getRecurrence().toString());
         indexTag.setText(String.format("Index %d", index.getOneBased()));
+
+        if (event.getEndDateTime().getDateTime().isBefore(LocalDateTime.now())) {
+            getRoot().setOpacity(0.5);
+        }
     }
 }
