@@ -114,6 +114,14 @@ public class Shop implements ReadOnlyShop {
         this.services.setServices(services);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeService(Service key) {
+        services.remove(key);
+    }
+
     // --------------------------------------------------
     //// Appointment-level operations
 
@@ -375,11 +383,12 @@ public class Shop implements ReadOnlyShop {
         vehicles.remove(key);
     }
 
-
     @Override
     public ObservableList<Vehicle> getVehicleList() {
         return this.vehicles.asUnmodifiableObservableList();
     }
+
+
 
     // --------------------------------------------------
 

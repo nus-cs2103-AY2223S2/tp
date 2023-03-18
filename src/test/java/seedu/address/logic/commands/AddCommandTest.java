@@ -149,6 +149,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Service> getFilteredServiceList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public PartMap getPartMap() {
             throw new AssertionError("This method should not be called.");
         }
@@ -219,6 +224,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteService(Service service) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
@@ -230,6 +240,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPart(String partName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Technician> getFilteredTechnicianList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -249,6 +264,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteTechnician(Technician target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public CustomerVehicleMap getCustomerVehicleMap() {
             throw new AssertionError("This method should not be called.");
         }
@@ -259,16 +279,15 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredServiceList(Predicate<Service> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void updateFilteredServiceList(Predicate<Service> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public ObservableList<Customer> getFilteredCustomerList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -280,11 +299,6 @@ public class AddCommandTest {
 
         @Override
         public VehicleDataMap getVehicleDataMap() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Service> getFilteredServiceList() {
             throw new AssertionError("This method should not be called.");
         }
 
