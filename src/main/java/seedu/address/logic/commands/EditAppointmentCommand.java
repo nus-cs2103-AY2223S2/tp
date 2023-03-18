@@ -30,7 +30,7 @@ public class EditAppointmentCommand extends RedoableCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
             + "by the id number displayed by listappointments. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Note that if " +PREFIX_DATE+" is used, then "+PREFIX_TIME+" must accompany it, and vice versa."
+            + "Note that if " + PREFIX_DATE + " is used, then " + PREFIX_TIME + " must accompany it, and vice versa."
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_CUSTOMER_ID + "CUSTOMER ID]"
             + "[" + PREFIX_DATE + "DATE  "
@@ -69,7 +69,7 @@ public class EditAppointmentCommand extends RedoableCommand {
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
 
         // Locate Appointment containing id. By right each ID is unique.
-        Appointment appointmentToEdit= lastShownList.stream().filter(appointment ->
+        Appointment appointmentToEdit = lastShownList.stream().filter(appointment ->
                         this.index.getZeroBased() == appointment.getId()).findAny()
                 .orElse(APPOINTMENT_DOES_NOT_EXIST);
 

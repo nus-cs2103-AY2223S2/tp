@@ -3,15 +3,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNAL_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,11 +18,9 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -50,7 +43,7 @@ public class EditAppointmentParser implements Parser<EditAppointmentCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_INTERNAL_ID, PREFIX_CUSTOMER_ID, PREFIX_DATE, PREFIX_TIME);
 
         // If no appt id present, don't know what to edit, throw error.
-        if (!argMultimap.getValue(PREFIX_INTERNAL_ID).isPresent()){
+        if (!argMultimap.getValue(PREFIX_INTERNAL_ID).isPresent()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE));
         }
@@ -61,7 +54,8 @@ public class EditAppointmentParser implements Parser<EditAppointmentCommand> {
         editAppointmentDescriptor.setId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get()));
 
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {
-            editAppointmentDescriptor.setCustomerId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
+            editAppointmentDescriptor.setCustomerId(
+                    ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
         }
         // If either is present, enforce that both must be present.
         if (argMultimap.getValue(PREFIX_DATE).isPresent() || argMultimap.getValue(PREFIX_TIME).isPresent()) {
