@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+
 /**
  * Represents a Person's meetings in the address book.
  */
@@ -14,14 +16,23 @@ public class Meeting {
      * Constructor for Meeting
      *
      * @param start start date and time of meeting
-     * @param end   end date and time of meeting. Must be after start
+     * @param end   end date and time of meeting
+     * @throws IllegalValueException if meeting ends before it starts
      */
-    public Meeting(LocalDateTime start, LocalDateTime end) throws Exception {
+    public Meeting(LocalDateTime start, LocalDateTime end) throws IllegalValueException {
         if (end.isBefore(start)) {
-            throw new Exception("End time is after start!");
+            throw new IllegalValueException("End time is after start!");
         }
         this.start = start;
         this.end = end;
+    }
+
+    public LocalDateTime getStart() {
+        return this.start;
+    }
+
+    public LocalDateTime getEnd() {
+        return this.end;
     }
 
     /**
