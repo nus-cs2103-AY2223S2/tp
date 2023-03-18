@@ -18,16 +18,16 @@ public class ProfileContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        ProfileContainsKeywordsPredicate firstPredicate = new ProfileContainsKeywordsPredicate(
+        FindCommandProfilePredicate firstPredicate = new FindCommandProfilePredicate(
                 firstPredicateKeywordList);
-        ProfileContainsKeywordsPredicate secondPredicate = new ProfileContainsKeywordsPredicate(
+        FindCommandProfilePredicate secondPredicate = new FindCommandProfilePredicate(
                 secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ProfileContainsKeywordsPredicate firstPredicateCopy = new ProfileContainsKeywordsPredicate(
+        FindCommandProfilePredicate firstPredicateCopy = new FindCommandProfilePredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -44,7 +44,7 @@ public class ProfileContainsKeywordsPredicateTest {
     @Test
     public void test_profileContainsKeywords_returnsTrue() {
         // One keyword
-        ProfileContainsKeywordsPredicate predicate = new ProfileContainsKeywordsPredicate(
+        FindCommandProfilePredicate predicate = new FindCommandProfilePredicate(
                 Collections.singletonList("alice-nus"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
@@ -52,14 +52,14 @@ public class ProfileContainsKeywordsPredicateTest {
                 .build()));
 
         // Only one matching keyword
-        predicate = new ProfileContainsKeywordsPredicate(Arrays.asList("alice-nus", "Carol-nus"));
+        predicate = new FindCommandProfilePredicate(Arrays.asList("alice-nus", "Carol-nus"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Carol")
                 .withProfile("alice-nus")
                 .build()));
 
         // Mixed-case keywords
-        predicate = new ProfileContainsKeywordsPredicate(Arrays.asList("ALiCE-NuS"));
+        predicate = new FindCommandProfilePredicate(Arrays.asList("ALiCE-NuS"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
                 .withProfile("alice-nus")
@@ -69,21 +69,21 @@ public class ProfileContainsKeywordsPredicateTest {
     @Test
     public void test_profileDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ProfileContainsKeywordsPredicate predicate = new ProfileContainsKeywordsPredicate(Collections.emptyList());
+        FindCommandProfilePredicate predicate = new FindCommandProfilePredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
                 .withProfile("alice-nus")
                 .build()));
 
         // Non-matching keyword
-        predicate = new ProfileContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new FindCommandProfilePredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
                 .withProfile("alice-nus")
                 .build()));
 
         // Keywords match name, phone, email and address, but does not match profile
-        predicate = new ProfileContainsKeywordsPredicate(Arrays.asList(
+        predicate = new FindCommandProfilePredicate(Arrays.asList(
                 "Alice", "12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")

@@ -8,11 +8,10 @@ import java.util.stream.Stream;
 
 import seedu.socket.logic.commands.ListCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.LanguageContainsKeywordsPredicate;
-import seedu.socket.model.tag.Tag;
-import seedu.socket.model.tag.TagContainsKeywordsPredicate;
-
+import seedu.socket.model.person.predicate.ListCommandLanguagePredicate;
+import seedu.socket.model.person.predicate.ListCommandTagPredicate;
+import seedu.socket.model.person.tag.Language;
+import seedu.socket.model.person.tag.Tag;
 
 /**
  * Parses the list command entered by user
@@ -37,8 +36,8 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         Set<Language> langList = ParserUtil.parseLanguages(argMultimap.getAllValues(PREFIX_LANGUAGE));
 
-        return new ListCommand(new TagContainsKeywordsPredicate(tagList),
-                new LanguageContainsKeywordsPredicate(langList), areKeywordsPresent);
+        return new ListCommand(new ListCommandTagPredicate(tagList),
+                new ListCommandLanguagePredicate(langList), areKeywordsPresent);
     }
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

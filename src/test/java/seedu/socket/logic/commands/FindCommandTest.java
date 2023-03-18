@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.UserPrefs;
-import seedu.socket.model.person.predicate.PersonContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -32,7 +32,7 @@ public class FindCommandTest {
     public void testEquals() {
         List<String> firstSingletonList = Collections.singletonList("first");
         List<String> secondSingletonList = Collections.singletonList("second");
-        PersonContainsKeywordsPredicate firstPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate firstPersonPredicate = new FindCommandPersonPredicate(
                         firstSingletonList,
                         firstSingletonList,
                         firstSingletonList,
@@ -40,7 +40,7 @@ public class FindCommandTest {
                         firstSingletonList,
                         firstSingletonList,
                         firstSingletonList);
-        PersonContainsKeywordsPredicate secondNamePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondNamePersonPredicate = new FindCommandPersonPredicate(
                 secondSingletonList,
                 firstSingletonList,
                 firstSingletonList,
@@ -48,7 +48,7 @@ public class FindCommandTest {
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList);
-        PersonContainsKeywordsPredicate secondProfilePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondProfilePersonPredicate = new FindCommandPersonPredicate(
                 firstSingletonList,
                 secondSingletonList,
                 firstSingletonList,
@@ -56,7 +56,7 @@ public class FindCommandTest {
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList);
-        PersonContainsKeywordsPredicate secondPhonePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondPhonePersonPredicate = new FindCommandPersonPredicate(
                 firstSingletonList,
                 firstSingletonList,
                 secondSingletonList,
@@ -64,7 +64,7 @@ public class FindCommandTest {
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList);
-        PersonContainsKeywordsPredicate secondEmailPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondEmailPersonPredicate = new FindCommandPersonPredicate(
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList,
@@ -72,7 +72,7 @@ public class FindCommandTest {
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList);
-        PersonContainsKeywordsPredicate secondAddressPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondAddressPersonPredicate = new FindCommandPersonPredicate(
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList,
@@ -80,7 +80,7 @@ public class FindCommandTest {
                 secondSingletonList,
                 firstSingletonList,
                 firstSingletonList);
-        PersonContainsKeywordsPredicate secondLanguagePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondLanguagePersonPredicate = new FindCommandPersonPredicate(
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList,
@@ -88,7 +88,7 @@ public class FindCommandTest {
                 firstSingletonList,
                 secondSingletonList,
                 firstSingletonList);
-        PersonContainsKeywordsPredicate secondTagPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondTagPersonPredicate = new FindCommandPersonPredicate(
                 firstSingletonList,
                 firstSingletonList,
                 firstSingletonList,
@@ -168,7 +168,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonContainsKeywordsPredicate predicate = preparePersonPredicate(" ",
+        FindCommandPersonPredicate predicate = preparePersonPredicate(" ",
                 " ",
                 " ",
                 " ",
@@ -184,7 +184,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsKeywordsPredicate predicate = preparePersonPredicate("Kurz Elle Kunz",
+        FindCommandPersonPredicate predicate = preparePersonPredicate("Kurz Elle Kunz",
                 " ",
                 " ",
                 " ",
@@ -198,15 +198,15 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code PersonContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code FindCommandPersonPredicate}.
      */
-    private PersonContainsKeywordsPredicate preparePersonPredicate(String nameInput,
-                                                                   String profileInput,
-                                                                   String phoneInput,
-                                                                   String emailInput,
-                                                                   String addressInput,
-                                                                   String languageInput,
-                                                                   String tagInput) {
+    private FindCommandPersonPredicate preparePersonPredicate(String nameInput,
+                                                              String profileInput,
+                                                              String phoneInput,
+                                                              String emailInput,
+                                                              String addressInput,
+                                                              String languageInput,
+                                                              String tagInput) {
         List<String> nameList = Arrays.asList(nameInput.split("\\s+"));
         List<String> profileList = Arrays.asList(profileInput.split("\\s+"));
         List<String> phoneList = Arrays.asList(phoneInput.split("\\s+"));
@@ -215,7 +215,7 @@ public class FindCommandTest {
         List<String> languageList = Arrays.asList(languageInput.split("\\s+"));
         List<String> tagList = Arrays.asList(tagInput.split("\\s+"));
 
-        return new PersonContainsKeywordsPredicate(nameList,
+        return new FindCommandPersonPredicate(nameList,
                 profileList,
                 phoneList,
                 emailList,

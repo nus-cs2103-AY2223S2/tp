@@ -6,15 +6,15 @@ import java.util.function.Predicate;
 
 import seedu.socket.commons.util.StringUtil;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.tag.Tag;
+import seedu.socket.model.person.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Language} matches any of the keywords given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class FindCommandTagPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public TagContainsKeywordsPredicate(List<String> keywords) {
+    public FindCommandTagPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -29,8 +29,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof FindCommandTagPredicate // instanceof handles nulls
+                && keywords.equals(((FindCommandTagPredicate) other).keywords)); // state check
     }
 
 }
