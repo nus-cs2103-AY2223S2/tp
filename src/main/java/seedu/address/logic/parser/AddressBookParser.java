@@ -17,6 +17,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkAsUnwatchedCommand;
 import seedu.address.logic.commands.MarkAsWatchedCommand;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.commands.navigation.BackNavCommand;
 import seedu.address.logic.commands.navigation.NavCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -53,6 +55,12 @@ public class AddressBookParser {
 
         case BackNavCommand.COMMAND_WORD:
             return new BackNavCommand();
+
+        case UntagCommand.COMMAND_WORD:
+            return new UntagCommandParser().parse(arguments);
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);

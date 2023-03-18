@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag of a lecture.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
@@ -17,12 +17,21 @@ public class Tag {
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagDescription A valid tag name.
      */
-    public Tag(String tagName) {
-        requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+    public Tag(String tagDescription) {
+        requireNonNull(tagDescription);
+        checkArgument(isValidTagName(tagDescription), MESSAGE_CONSTRAINTS);
+        this.tagName = tagDescription;
+    }
+
+    /**
+     * Return the name of a {@code Tag}
+     * @return the tag name
+     */
+
+    public String getTagName() {
+        return tagName;
     }
 
     /**
@@ -32,12 +41,27 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if both tags have the same {@code tagName}.<p>
+     * This defines a stronger notion of equality between two modules.
+     *
+     * @param other The module to check if it is equivalent to this module.
+     * @return True if both modules have the same fields. Otherwise, false.
+     */
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Tag)) {
+            return false;
+        }
+
+        Tag otherTag = (Tag) other;
+        return otherTag.getTagName().equals(this.tagName);
     }
+
 
     @Override
     public int hashCode() {

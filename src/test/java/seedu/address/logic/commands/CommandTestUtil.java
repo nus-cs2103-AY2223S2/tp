@@ -79,6 +79,10 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String VALID_MODULE_CODE = "CS2103T";
+    public static final String VALID_LECTURE_NAME = "Class Diagrams";
+    public static final String VALID_VIDEO_NAME = "Test Video";
+    public static final String MODULE_DESC = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

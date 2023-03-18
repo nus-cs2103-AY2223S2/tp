@@ -16,6 +16,7 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.lecture.UniqueLectureList;
 import seedu.address.model.lecture.exceptions.DuplicateLectureException;
+import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -131,7 +132,7 @@ public class Module implements ReadOnlyModule {
      * @throws DuplicateLectureException Indicates that {@code editedLecture} is the same as another existing
      *                                   lecture in the module.
      */
-    public void setLecture(ReadOnlyLecture target, Lecture editedLecture) {
+    public void setLecture(ReadOnlyLecture target, Lecture editedLecture) throws LectureNotFoundException {
         requireNonNull(editedLecture);
 
         lectures.setLecture((Lecture) target, editedLecture);
