@@ -30,9 +30,9 @@ public class TankViewCommand extends TankCommand {
     private final Index targetIndex;
 
     /**
-     * Constructs an {@code TankDeleteCommand} to delete an existing {@code Tank}.
+     * Constructs an {@code TankViewCommand} to view an existing {@code Tank}.
      *
-     * @param targetIndex The index of the {@code Tank} to delete.
+     * @param targetIndex The index of the {@code Tank} to view.
      */
     public TankViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

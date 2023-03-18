@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.fish.Fish;
 
 /**
- * Deletes a {@code Fish} identified using it's displayed index from the {@code FishList}.
+ * Views a {@code Fish} identified using it's displayed index from the {@code FishList}.
  */
 public class FishViewCommand extends FishCommand {
     public static final String FISH_COMMAND_WORD = "view";
@@ -22,14 +22,14 @@ public class FishViewCommand extends FishCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_TANK_SUCCESS = "Viewing Fish: %1$s";
+    public static final String MESSAGE_VIEW_FISH_SUCCESS = "Viewing Fish: %1$s";
 
     private final Index targetIndex;
 
     /**
-     * Constructs an {@code TankDeleteCommand} to delete an existing {@code Tank}.
+     * Constructs an {@code FishViewCommand} to view an existing {@code Tank}.
      *
-     * @param targetIndex The index of the {@code Tank} to delete.
+     * @param targetIndex The index of the {@code Fish} to view.
      */
     public FishViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -41,13 +41,13 @@ public class FishViewCommand extends FishCommand {
         List<Fish> lastShownList = model.getFilteredFishList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TANK_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
         }
 
         Fish fishToView = lastShownList.get(targetIndex.getZeroBased());
-        //DISPLAY tankToView TO UI @avery
+        model.updateFilteredFishList(fish -> fish == fishToView);
 
-        return new CommandResult(String.format(MESSAGE_VIEW_TANK_SUCCESS, fishToView));
+        return new CommandResult(String.format(MESSAGE_VIEW_FISH_SUCCESS, fishToView));
     }
 
     @Override
