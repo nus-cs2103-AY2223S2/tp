@@ -27,6 +27,18 @@ public class Tag {
         return this.tagName.toString();
     }
 
+    /**
+     * Returns True if two food items are the same.
+     * This uses a weaker equivalence relation as it checks only if two food items have the same name.
+     */
+    public boolean isSameTag(Tag otherTag) {
+        if (otherTag == this) {
+            return true;
+        }
+        return otherTag != null
+                && tagName.equals(otherTag.getTagName());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

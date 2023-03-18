@@ -34,9 +34,13 @@ class JsonAdaptedFood {
      * Constructs a {@code JsonAdaptedFood} with the given food details.
      */
     @JsonCreator
-    public JsonAdaptedFood(@JsonProperty("name") String name, @JsonProperty("unit") String unit,
-                             @JsonProperty("quantity") String quantity, @JsonProperty("expiryDate") String expiryDate,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedFood(
+        @JsonProperty("name") String name,
+        @JsonProperty("unit") String unit,
+        @JsonProperty("quantity") String quantity,
+        @JsonProperty("expiryDate") String expiryDate,
+        @JsonProperty("tagged") List<JsonAdaptedTag> tagged
+    ) {
         this.name = name;
         this.unit = unit;
         this.quantity = quantity;
