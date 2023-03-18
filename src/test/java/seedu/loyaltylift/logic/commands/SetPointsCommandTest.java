@@ -8,8 +8,8 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_AMY;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_BOB;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,11 +37,11 @@ public class SetPointsCommandTest {
 
     @Test
     public void equals() {
-        final SetPointsCommand standardCommand = new SetPointsCommand(INDEX_FIRST_CUSTOMER,
+        final SetPointsCommand standardCommand = new SetPointsCommand(INDEX_FIRST,
                 new Points(VALID_POINTS_AMY, VALID_CUMULATIVE_POINTS_AMY));
 
         // same values -> returns true
-        SetPointsCommand commandWithSameValues = new SetPointsCommand(INDEX_FIRST_CUSTOMER,
+        SetPointsCommand commandWithSameValues = new SetPointsCommand(INDEX_FIRST,
                 new Points(VALID_POINTS_AMY, VALID_CUMULATIVE_POINTS_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -55,11 +55,11 @@ public class SetPointsCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new SetPointsCommand(INDEX_SECOND_CUSTOMER,
+        assertFalse(standardCommand.equals(new SetPointsCommand(INDEX_SECOND,
                 new Points(VALID_POINTS_AMY, VALID_CUMULATIVE_POINTS_AMY))));
 
         // different Points -> returns false
-        assertFalse(standardCommand.equals(new SetPointsCommand(INDEX_FIRST_CUSTOMER,
+        assertFalse(standardCommand.equals(new SetPointsCommand(INDEX_FIRST,
                 new Points(VALID_POINTS_BOB, VALID_CUMULATIVE_POINTS_BOB))));
     }
 }

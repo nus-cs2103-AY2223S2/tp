@@ -3,7 +3,7 @@ package seedu.loyaltylift.logic.parser;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteCustomerCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCustomerCommand(INDEX_FIRST_CUSTOMER));
+        assertParseSuccess(parser, "1", new DeleteCustomerCommand(INDEX_FIRST));
     }
 
     @Test

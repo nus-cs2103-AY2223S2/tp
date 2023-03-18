@@ -7,7 +7,7 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,8 +59,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deletec() throws Exception {
         DeleteCustomerCommand command = (DeleteCustomerCommand) parser.parseCommand(
-                DeleteCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
-        assertEquals(new DeleteCustomerCommand(INDEX_FIRST_CUSTOMER), command);
+                DeleteCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteCustomerCommand(INDEX_FIRST), command);
     }
 
     @Test
@@ -68,8 +68,8 @@ public class AddressBookParserTest {
         Customer customer = new CustomerBuilder().build();
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
         EditCustomerCommand command = (EditCustomerCommand) parser.parseCommand(EditCustomerCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
-        assertEquals(new EditCustomerCommand(INDEX_FIRST_CUSTOMER, descriptor), command);
+                + INDEX_FIRST.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
+        assertEquals(new EditCustomerCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
@@ -101,33 +101,33 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_viewc() throws Exception {
         ViewCustomerCommand command = (ViewCustomerCommand) parser.parseCommand(
-                ViewCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST_CUSTOMER.getOneBased());
-        assertEquals(new ViewCustomerCommand(INDEX_FIRST_CUSTOMER), command);
+                ViewCustomerCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new ViewCustomerCommand(INDEX_FIRST), command);
     }
 
     @Test
     public void parseCommand_setpoints() throws Exception {
         final Points points = new Points(100, 100);
         SetPointsCommand command = (SetPointsCommand) parser.parseCommand(SetPointsCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + points.value);
-        assertEquals(new SetPointsCommand(INDEX_FIRST_CUSTOMER, points), command);
+                + INDEX_FIRST.getOneBased() + " " + PREFIX_POINTS + points.value);
+        assertEquals(new SetPointsCommand(INDEX_FIRST, points), command);
     }
 
     @Test
     public void parseCommand_addpoints() throws Exception {
         final Integer addPoints = 100;
         AddPointsCommand command = (AddPointsCommand) parser.parseCommand(AddPointsCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + addPoints);
-        assertEquals(new AddPointsCommand(INDEX_FIRST_CUSTOMER, addPoints), command);
+                + INDEX_FIRST.getOneBased() + " " + PREFIX_POINTS + addPoints);
+        assertEquals(new AddPointsCommand(INDEX_FIRST, addPoints), command);
     }
 
     public void parseCommand_setnotec() throws Exception {
         final Note note = new Note("Test Note");
         SetCustomerNoteCommand command = (SetCustomerNoteCommand) parser.parseCommand(
                 SetCustomerNoteCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " "
+                + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_NOTE + note.value);
-        assertEquals(new SetCustomerNoteCommand(INDEX_FIRST_CUSTOMER, note), command);
+        assertEquals(new SetCustomerNoteCommand(INDEX_FIRST, note), command);
     }
 
     @Test
@@ -135,9 +135,9 @@ public class AddressBookParserTest {
         final String noteToAppend = "Extra note";
         AppendCustomerNoteCommand command = (AppendCustomerNoteCommand) parser.parseCommand(
                 AppendCustomerNoteCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " "
+                + INDEX_FIRST.getOneBased() + " "
                 + PREFIX_NOTE + noteToAppend);
-        assertEquals(new AppendCustomerNoteCommand(INDEX_FIRST_CUSTOMER, noteToAppend), command);
+        assertEquals(new AppendCustomerNoteCommand(INDEX_FIRST, noteToAppend), command);
     }
 
     @Test

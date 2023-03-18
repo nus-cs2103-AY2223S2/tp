@@ -13,6 +13,7 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.attribute.Note;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
@@ -75,13 +76,14 @@ public class AppendOrderNoteCommand extends Command {
     private static Order createEditedOrder(Order orderToEdit, Note note) {
         assert orderToEdit != null;
 
+        Customer customer = orderToEdit.getCustomer();
         Name name = orderToEdit.getName();
         Quantity quantity = orderToEdit.getQuantity();
         Status status = orderToEdit.getStatus();
         Address address = orderToEdit.getAddress();
         CreatedDate createdDate = orderToEdit.getCreatedDate();
 
-        return new Order(name, quantity, status, address, createdDate, note);
+        return new Order(customer, name, quantity, status, address, createdDate, note);
     }
 
     @Override

@@ -4,7 +4,7 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.loyaltylift.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,17 +17,17 @@ public class AppendCustomerNoteCommandParserTest {
 
     @Test
     public void parse_emptyString_success() {
-        Index targetIndex = INDEX_FIRST_CUSTOMER;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE;
-        AppendCustomerNoteCommand expectedCommand = new AppendCustomerNoteCommand(INDEX_FIRST_CUSTOMER, "");
+        AppendCustomerNoteCommand expectedCommand = new AppendCustomerNoteCommand(INDEX_FIRST, "");
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_nonEmptyString_success() {
-        Index targetIndex = INDEX_FIRST_CUSTOMER;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + " " + PREFIX_NOTE + nonEmptyString;
-        AppendCustomerNoteCommand expectedCommand = new AppendCustomerNoteCommand(INDEX_FIRST_CUSTOMER, nonEmptyString);
+        AppendCustomerNoteCommand expectedCommand = new AppendCustomerNoteCommand(INDEX_FIRST, nonEmptyString);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

@@ -7,8 +7,8 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,13 +57,13 @@ public class AppendCustomerNoteCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
+        showCustomerAtIndex(model, INDEX_FIRST);
 
-        Customer customerInFilteredList = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        Customer customerInFilteredList = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         String newNote = customerInFilteredList.getNote().value + nonEmptyString;
         Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withNote(newNote).build();
         AppendCustomerNoteCommand appendCustomerNoteCommand = new AppendCustomerNoteCommand(
-                INDEX_FIRST_CUSTOMER, nonEmptyString);
+                INDEX_FIRST, nonEmptyString);
 
         String expectedMessage = String.format(AppendCustomerNoteCommand.MESSAGE_APPEND_NOTE_SUCCESS, editedCustomer);
 
@@ -88,8 +88,8 @@ public class AppendCustomerNoteCommandTest {
      */
     @Test
     public void execute_invalidCustomerIndexFilteredList_failure() {
-        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
-        Index outOfBoundIndex = INDEX_SECOND_CUSTOMER;
+        showCustomerAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCustomerList().size());
 
@@ -102,11 +102,11 @@ public class AppendCustomerNoteCommandTest {
     @Test
     public void equals() {
         final AppendCustomerNoteCommand standardCommand = new AppendCustomerNoteCommand(
-                INDEX_FIRST_CUSTOMER, nonEmptyString);
+                INDEX_FIRST, nonEmptyString);
 
         // same values -> returns true
         AppendCustomerNoteCommand commandWithSameValues = new AppendCustomerNoteCommand(
-                INDEX_FIRST_CUSTOMER, nonEmptyString);
+                INDEX_FIRST, nonEmptyString);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -120,10 +120,10 @@ public class AppendCustomerNoteCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new AppendCustomerNoteCommand(
-                INDEX_SECOND_CUSTOMER, nonEmptyString)));
+                INDEX_SECOND, nonEmptyString)));
 
         // different remark -> returns false
         assertFalse(standardCommand.equals(new AppendCustomerNoteCommand(
-                INDEX_FIRST_CUSTOMER, nonEmptyString + " EXTRA")));
+                INDEX_FIRST, nonEmptyString + " EXTRA")));
     }
 }

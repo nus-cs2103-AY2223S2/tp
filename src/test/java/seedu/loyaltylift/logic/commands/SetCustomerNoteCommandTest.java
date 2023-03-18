@@ -9,8 +9,8 @@ import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSucc
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -57,11 +57,11 @@ public class SetCustomerNoteCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
+        showCustomerAtIndex(model, INDEX_FIRST);
 
-        Customer customerInFilteredList = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        Customer customerInFilteredList = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         Customer editedCustomer = new CustomerBuilder(customerInFilteredList).withNote(VALID_NOTE_BOB).build();
-        SetCustomerNoteCommand setCustomerNoteCommand = new SetCustomerNoteCommand(INDEX_FIRST_CUSTOMER,
+        SetCustomerNoteCommand setCustomerNoteCommand = new SetCustomerNoteCommand(INDEX_FIRST,
                 new Note(VALID_NOTE_BOB));
 
         String expectedMessage = String.format(SetCustomerNoteCommand.MESSAGE_SET_NOTE_SUCCESS, editedCustomer);
@@ -87,8 +87,8 @@ public class SetCustomerNoteCommandTest {
      */
     @Test
     public void execute_invalidCustomerIndexFilteredList_failure() {
-        showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
-        Index outOfBoundIndex = INDEX_SECOND_CUSTOMER;
+        showCustomerAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCustomerList().size());
 
@@ -100,11 +100,11 @@ public class SetCustomerNoteCommandTest {
 
     @Test
     public void equals() {
-        final SetCustomerNoteCommand standardCommand = new SetCustomerNoteCommand(INDEX_FIRST_CUSTOMER,
+        final SetCustomerNoteCommand standardCommand = new SetCustomerNoteCommand(INDEX_FIRST,
                 new Note(VALID_NOTE_AMY));
 
         // same values -> returns true
-        SetCustomerNoteCommand commandWithSameValues = new SetCustomerNoteCommand(INDEX_FIRST_CUSTOMER,
+        SetCustomerNoteCommand commandWithSameValues = new SetCustomerNoteCommand(INDEX_FIRST,
                 new Note(VALID_NOTE_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -118,11 +118,11 @@ public class SetCustomerNoteCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new SetCustomerNoteCommand(INDEX_SECOND_CUSTOMER,
+        assertFalse(standardCommand.equals(new SetCustomerNoteCommand(INDEX_SECOND,
                 new Note(VALID_NOTE_AMY))));
 
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new SetCustomerNoteCommand(INDEX_FIRST_CUSTOMER,
+        assertFalse(standardCommand.equals(new SetCustomerNoteCommand(INDEX_FIRST,
                 new Note(VALID_NOTE_BOB))));
     }
 }
