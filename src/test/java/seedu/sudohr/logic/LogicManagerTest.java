@@ -1,7 +1,9 @@
 package seedu.sudohr.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.sudohr.commons.core.Messages.*;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.sudohr.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_AMY;

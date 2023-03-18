@@ -9,7 +9,6 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

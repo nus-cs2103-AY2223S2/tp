@@ -19,8 +19,8 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to SudoHR. " +
-            "Id field must be positive.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to SudoHR. "
+            + "Id field must be positive.\n"
             + "Parameters: "
             + PREFIX_ID + "EMPLOYEE_ID "
             + PREFIX_NAME + "NAME "
