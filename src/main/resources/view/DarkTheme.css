@@ -1,3 +1,11 @@
+.root {
+    -fx-dark-green: #457C51;
+    -fx-evening-green: #A3CEA2;
+    -fx-medium-green: #B5C89C;
+    -fx-light-green: #D4E5B1;
+    -fx-morning-green: #F0FFE3;
+}
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -34,7 +42,7 @@
 }
 
 .tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
 }
@@ -90,8 +98,8 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #A3CEA2;
-    -fx-border-color: #457C51;
+    -fx-background-color: -fx-evening-green;
+    -fx-border-color: -fx-dark-green;
 }
 
 .list-cell {
@@ -102,19 +110,19 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #B5C89C;
+    -fx-background-color: -fx-medium-green;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #B5C89C;
+    -fx-background-color: -fx-medium-green;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #A3CEA2;
+    -fx-background-color: -fx-evening-green;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #F0FFE3;
+    -fx-border-color: -fx-morning-green;
     -fx-border-width: 1;
 }
 
@@ -141,12 +149,12 @@
 }
 
 .pane-with-border {
-     -fx-background-color:  #D4E5B1;
-     -fx-border-color:  #D4E5B1;
+     -fx-background-color: -fx-light-green;
+     -fx-border-color:  -fx-light-green;
 }
 
 .status-bar {
-    -fx-background-color: #457C51;
+    -fx-background-color: -fx-dark-green;
 }
 
 .result-display {
@@ -161,11 +169,11 @@
 }
 
 #resultBox {
-    -fx-border-color: #457C51 ;
+    -fx-border-color: -fx-dark-green;
 }
 
 #resultDisplay .content {
-    -fx-background-color: #F0FFE3;
+    -fx-background-color: -fx-morning-green;
 }
 
 .status-bar .label {
@@ -293,13 +301,13 @@
 }
 
 .scroll-bar {
-    -fx-background-color: #B5C89C;
+    -fx-background-color: -fx-medium-green;
     -fx-border-radius: 0 10 10 0;
     -fx-background-radius: 0 10 10 0;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #F0FFE3;
+    -fx-background-color: -fx-morning-green;
     -fx-background-insets: 3;
 }
 
