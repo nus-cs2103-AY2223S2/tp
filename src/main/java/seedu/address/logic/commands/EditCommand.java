@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,6 +26,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
@@ -48,6 +50,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_MEDICATION + "MEDICATION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -109,9 +112,10 @@ public class EditCommand extends Command {
 
         if (personToEdit.isPatient()) {
             Patient patientToEdit = (Patient) personToEdit;
+            Medication updatedMedication = editPersonDescriptor.getMedication().orElse(patientToEdit.getMedication());
             ArrayList<Appointment> patientAppointments = patientToEdit.getPatientAppointments();
-            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags,
-                    patientAppointments);
+            return new Patient(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedMedication,
+                    updatedTags, patientAppointments);
         }
 
         if (personToEdit.isDoctor()) {
@@ -152,6 +156,7 @@ public class EditCommand extends Command {
         private Email email;
         private Nric nric;
         private Address address;
+        private Medication medication;
         private Set<Tag> tags;
         private ArrayList<Appointment> appointments;
 
@@ -167,6 +172,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setNric(toCopy.nric);
             setAddress(toCopy.address);
+            setMedication(toCopy.medication);
             setTags(toCopy.tags);
             setAppointments(toCopy.appointments);
         }
@@ -210,6 +216,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setMedication(Medication medication) {
+            this.medication = medication;
+        }
+
+        public Optional<Medication> getMedication() {
+            return Optional.ofNullable(medication);
+        }
+
         public void setNric(Nric nric) {
             this.nric = nric;
         }
@@ -217,7 +231,6 @@ public class EditCommand extends Command {
         public Optional<Nric> getNric() {
             return Optional.ofNullable(nric);
         }
-
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -275,6 +288,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getNric().equals(e.getNric())
                     && getAddress().equals(e.getAddress())
+                    && getMedication().equals(e.getMedication())
                     && getTags().equals(e.getTags());
         }
     }

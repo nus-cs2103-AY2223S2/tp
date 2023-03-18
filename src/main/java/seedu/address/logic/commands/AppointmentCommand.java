@@ -70,7 +70,8 @@ public class AppointmentCommand extends Command {
         // String s = appointmentPatient.patientAppointmentstoString();
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
                 appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
-                appointmentPatient.getTags(), appointmentPatient.getPatientAppointments());
+                appointmentPatient.getMedication(), appointmentPatient.getTags(),
+                appointmentPatient.getPatientAppointments());
 
         model.setPerson(appointmentPatient, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

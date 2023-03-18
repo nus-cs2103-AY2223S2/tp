@@ -127,7 +127,6 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getPatientAppointments().equals(getPatientAppointments());
-
     }
 
     @Override

@@ -14,15 +14,21 @@ import seedu.address.model.tag.Tag;
  */
 public class Patient extends Person {
     private final ArrayList<Appointment> patientAppointments;
+    private final Medication medication;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
-                   ArrayList<Appointment> patientAppointments) {
+    public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Medication medication,
+                   Set<Tag> tags, ArrayList<Appointment> patientAppointments) {
         super(name, phone, email, nric, address, tags, patientAppointments);
         requireAllNonNull(name, phone, email, address, tags, patientAppointments);
+        this.medication = medication;
         this.patientAppointments = patientAppointments;
+    }
+
+    public Medication getMedication() {
+        return medication;
     }
 
     /**
@@ -48,22 +54,26 @@ public class Patient extends Person {
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getNric().equals(getNric())
                 && otherPatient.getAddress().equals(getAddress())
+                && otherPatient.getMedication().equals(getMedication())
                 && otherPatient.getTags().equals(getTags())
                 && otherPatient.getPatientAppointments().equals(getPatientAppointments());
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        String personString = super.toString();
-        builder.append(personString);
+        final StringBuilder builder = new StringBuilder(super.toString());
+
+        if (!getMedication().isEmpty()) {
+            builder.append("; Medication: ")
+                    .append(getMedication());
+        }
 
         ArrayList<Appointment> appointments = getPatientAppointments();
         if (!appointments.isEmpty()) {
             builder.append("; Appointments: ");
             appointments.forEach(builder::append);
         }
-        return personString.toString();
+        return builder.toString();
     }
 
     /**

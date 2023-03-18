@@ -5,11 +5,13 @@
     "email": "alice@example.com",
     "nric": "S1234567W",
     "address": "123, Jurong West Ave 6, #08-111",
+    "medication": "",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "medication": "",
     "nric": "S1234567W",
     "address": "4th street"
   } ]

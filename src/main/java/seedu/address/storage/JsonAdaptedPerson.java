@@ -14,6 +14,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String nric;
     private final String address;
+    private final String medication;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final ArrayList<JsonAdaptedAppointment> patientAppointments = new ArrayList<>();
 
@@ -41,15 +43,18 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+
             @JsonProperty("email") String email, @JsonProperty("nric") String nric, @JsonProperty("address") String
-                                         address,
+                                         address, @JsonProperty("medication") String medication,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("patientAppointments") ArrayList<JsonAdaptedAppointment> patientAppointments) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.nric = nric;
         this.address = address;
+        this.medication = medication;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -73,9 +78,13 @@ class JsonAdaptedPerson {
 
         if (source.isPatient()) {
             Patient sourcePatient = (Patient) source;
+
+            medication = sourcePatient.getMedication().value;
             patientAppointments.addAll(sourcePatient.getPatientAppointments().stream()
                     .map(JsonAdaptedAppointment::new)
                     .collect(Collectors.toList()));
+        } else {
+            medication = null;
         }
 
         if (source.isDoctor()) {
@@ -138,10 +147,21 @@ class JsonAdaptedPerson {
 
         final Address modelAddress = new Address(address);
 
+        if (medication == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Medication.class.getSimpleName()));
+        }
+        if (!Medication.isValidMedication(medication)) {
+            throw new IllegalValueException(Medication.MESSAGE_CONSTRAINTS);
+        }
+        final Medication modelMedication = new Medication(medication);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
+
         final ArrayList<Appointment> modelAppointments = new ArrayList<>(appointments);
-        return new Patient(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelTags, modelAppointments);
+        return new Patient(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelMedication, modelTags,
+                modelAppointments);
     }
     // todo this should be for JsonAdaptedPatient, create another for JsonAdaptedDoctor
 }

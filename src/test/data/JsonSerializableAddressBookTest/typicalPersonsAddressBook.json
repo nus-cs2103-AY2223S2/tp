@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "nric": "S1234565Q",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "medication" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +14,7 @@
     "email" : "johnd@example.com",
     "nric": "S1234567P",
     "address" : "311, Clementi Ave 2, #02-25",
+    "medication" : "20 Paracetamol",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +22,7 @@
     "email" : "heinz@example.com",
     "nric": "S1234560L",
     "address" : "wall street",
+    "medication" : "20 Paracetamol; 20 Oprhenadrine",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "email" : "cornelia@example.com",
     "nric": "T1234537W",
     "address" : "10th street",
+    "medication" : "1 Cough Syrup",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "nric": "S1234532D",
     "address" : "michegan ave",
+    "medication" : "1 Physiotherapy",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "nric": "S1254561C",
     "address" : "little tokyo",
+    "medication" : "1 Drug A; 2 Drug B; 3 Drug C; 4 Drug D",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -66,6 +72,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "medication" : "1 annual checkup",
     "tagged" : [ ]
   } ]
 }
