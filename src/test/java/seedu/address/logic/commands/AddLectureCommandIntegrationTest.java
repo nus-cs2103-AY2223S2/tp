@@ -36,14 +36,14 @@ public class AddLectureCommandIntegrationTest {
         ModuleCode moduleCode = module.getCode();
         Lecture validLecture = TypicalLectures.ST2334_TOPIC_1;
 
-        // make sure that the module modified by the command is not the original TypicalModules.CS2040S
+        // Prevents the original module from TypicalModules from being modified
         model.deleteModule(module);
         model.addModule(module);
 
         Model expectedModel = new ModelManager(model.getTracker(), model.getUserPrefs());
-        Module moduleCopy = new ModuleBuilder(module).build();
 
-        // make sure that validLecture is added to a copy of the module and not the same Module object that model has
+        // Prevents the module in model from being modified
+        Module moduleCopy = new ModuleBuilder(module).build();
         expectedModel.deleteModule(module);
         expectedModel.addModule(moduleCopy);
         expectedModel.addLecture(moduleCopy, validLecture);

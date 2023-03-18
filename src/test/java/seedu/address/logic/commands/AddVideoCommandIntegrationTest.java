@@ -43,12 +43,15 @@ public class AddVideoCommandIntegrationTest {
         LectureName lectureName = lecture.getName();
         Video validVideo = TypicalVideos.CONTENT_VIDEO;
 
+        // Prevents the original module from TypicalModules and lecture from TypicalLectures from being modified
         model.deleteModule(module);
         model.addModule(module);
         model.deleteLecture(module, lecture);
         model.addLecture(module, lecture);
 
         Model expectedModel = new ModelManager(model.getTracker(), model.getUserPrefs());
+
+        // Prevents the module and lecture in model from being modified
         Module moduleCopy = new ModuleBuilder(module).build();
         Lecture lectureCopy = new LectureBuilder(lecture).build();
 

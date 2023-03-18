@@ -100,7 +100,7 @@ public class AddVideoCommandTest {
     }
 
     @Test
-    public void execute_duplicateVideos_throwsCommandException() {
+    public void execute_duplicateVideo_throwsCommandException() {
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
         Lecture lecture = TypicalLectures.CS2040S_WEEK_1;
         LectureName lectureName = lecture.getName();
