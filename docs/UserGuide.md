@@ -210,6 +210,38 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 ct/ind n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Setting a customer's note : `setnotec`
+
+Sets a customer's note.
+
+Format: `setnotec INDEX nt/NOTE`
+
+* Sets the note of the customer at the specified `INDEX` to `NOTE`.
+* Customers, by default, have a blank note.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note refers to the customer's new note.
+* Any existing note will be overwritten.
+
+Examples:
+* `listc` followed by `setnotec 2 nt/Very friendly!` sets the 2nd customer's note as "Very friendly!".
+* `findc Betsy` followed by `setnotec 1 nt/Vegetarian` sets the 1st customer's note as "Vegetarian" in the results of the `findc` command.
+
+### Appending a customer's note : `appendnotec`
+
+Adds more text to a customer's note.
+
+Format: `appendnotec INDEX nt/NOTE`
+
+* Adds `NOTE` to any existing note of the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note refers to the new text that will be added to the end of the customer's existing note.
+
+Examples:
+* `listc` followed by `setnotec 2 nt/Very friendly!` will add "Very friendly!" to the 2nd customer's existing note.
+* `findc Betsy` followed by `setnotec 1 nt/Vegetarian` adds "Vegetarian" to the note of the 1st customer in the results of the `findc` command.
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -288,6 +320,38 @@ Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS] [s/STATUS]`
 Examples:
 *  `edito 1 s/paid` Edits order of id 1, and changes the status to "paid".
 *  `edito 2 n/Brownies q/10` Edits the name of the 2nd order to be `Brownies` and the quantity to 10.
+
+### Setting an order's note : `setnoteo`
+
+Sets an order's note.
+
+Format: `setnoteo INDEX nt/NOTE`
+
+* Sets the note of the order at the specified `INDEX` to `NOTE`.
+* Orders, by default, have a blank note.
+* The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note refers to the order's new note.
+* Any existing note will be overwritten.
+
+Examples:
+* `listo` followed by `setnoteo 2 nt/Keep cool` sets the 2nd order's note as "Keep cool".
+* `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` sets the 1st order's note as "Vegan-friendly" in the results of the `findo` command.
+
+### Appending an order's note : `appendnoteo`
+
+Adds more text to an order's note.
+
+Format: `appendnoteo INDEX nt/NOTE`
+
+* Adds `NOTE` to any existing note of the order at the specified `INDEX`.
+* The index refers to the index number shown in the displayed order list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The note refers to the new text that will be added to the end of the order's existing note.
+
+Examples:
+* `listo` followed by `setnoteo 2 nt/Keep cool` will add "Keep cool" to the 2nd order's existing note.
+* `findo Brownies` followed by `setnoteo 1 nt/Vegan-friendly` adds "Vegan-friendly" to the note of the 1st order in the results of the `findo` command.
 
 ### Locating orders by name: `findo`
 
