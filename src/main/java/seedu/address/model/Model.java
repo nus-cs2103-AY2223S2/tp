@@ -134,11 +134,11 @@ public interface Model {
 
     void flipCard();
 
-    void markWrong();
+    boolean markWrong();
 
-    void markCorrect();
+    boolean markCorrect();
 
-    void goToPrevCard();
+    boolean goToPrevCard();
 
-    void goToNextCard();
+    boolean goToNextCard();
 }

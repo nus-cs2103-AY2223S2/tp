@@ -72,28 +72,39 @@ public class Review {
 
     /**
      * Move to the next card to be under review.
+     * @return
      */
-    public void goToNextCard() {
+    public boolean goToNextCard() {
+        boolean priorStateIsFlipped = currCard.isFlipped();
         currCard.setAsUnflipped(); // always unflip current card before moving to next
         currCardNum++;
         if (currCardNum > cardList.size()) {
-            currCardNum--; //TODO throw exception
+            currCardNum--;
+            if (priorStateIsFlipped) {
+                currCard.setAsFlipped();
+            }
+            return false;
         } else {
             currCard = cardList.get(currCardNum - 1);
             currCard.setAsUnflipped();
+            return true;
         }
     }
 
     /**
      * Move back to previous card to be under review.
+     * @return
      */
-    public void goToPrevCard() {
-        currCard.setAsUnflipped();
+    public boolean goToPrevCard() {
+        currCard.setAsUnflipped(); // always unflip current card before moving to prev
         currCardNum--;
         if (currCardNum <= 0) {
             currCardNum++; //TODO throw exception
+            return false;
         } else {
             currCard = cardList.get(currCardNum - 1);
+            currCard.setAsUnflipped();
+            return true;
         }
     }
 
@@ -103,7 +114,6 @@ public class Review {
      */
     public void markCurrCardAsCorrect() {
         scoreList.set(currCardNum - 1, true);
-        goToNextCard();
     }
 
     /**
@@ -112,7 +122,6 @@ public class Review {
      */
     public void markCurrCardAsWrong() {
         scoreList.set(currCardNum - 1, false);
-        goToNextCard();
     }
 
     public void unflipAllCards() {
