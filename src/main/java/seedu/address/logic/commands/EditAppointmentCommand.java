@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -14,18 +13,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.entity.person.Address;
-import seedu.address.model.entity.person.Email;
-import seedu.address.model.entity.person.Name;
-import seedu.address.model.entity.person.Person;
-import seedu.address.model.entity.person.Phone;
 import seedu.address.model.service.appointment.Appointment;
-import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of an existing person in the address book.
@@ -37,10 +30,11 @@ public class EditAppointmentCommand extends RedoableCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
             + "by the id number displayed by listappointments. "
             + "Existing values will be overwritten by the input values.\n"
+            + "Note that if " +PREFIX_DATE+" is used, then "+PREFIX_TIME+" must accompany it, and vice versa."
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_CUSTOMER_ID + "CUSTOMER ID]"
-            + "[" + PREFIX_DATE + "DATE]  "
-            + "[" + PREFIX_TIME + "TIME]\n"
+            + "[" + PREFIX_DATE + "DATE  "
+            + PREFIX_TIME + "TIME]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CUSTOMER_ID + "5 "
             + PREFIX_DATE + "2023-02-03 "
@@ -50,6 +44,9 @@ public class EditAppointmentCommand extends RedoableCommand {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in AutoM8";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment not in AutoM8";
+
+
+    private static final Appointment APPOINTMENT_DOES_NOT_EXIST = null;
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -70,11 +67,15 @@ public class EditAppointmentCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         List<Appointment> lastShownList = model.getFilteredAppointmentList();
-        Appointment appointmentToEdit= lastShownList.stream().filter(appointment ->
-                this.index.getZeroBased() == appointment.getId()? true:false).findFirst().orElse(null);
 
+        // Locate Appointment containing id. By right each ID is unique.
+        Appointment appointmentToEdit= lastShownList.stream().filter(appointment ->
+                        this.index.getZeroBased() == appointment.getId()).findAny()
+                .orElse(APPOINTMENT_DOES_NOT_EXIST);
+
+        // If appointment doesn't exist
         if (appointmentToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_INDEX);
+            throw new CommandException(MESSAGE_APPOINTMENT_NOT_FOUND);
         }
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
@@ -92,10 +93,11 @@ public class EditAppointmentCommand extends RedoableCommand {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Appointment createEditedAppointment(Appointment appointmentToEdit, EditAppointmentDescriptor editAppointmentDescriptor) {
+    private static Appointment createEditedAppointment(Appointment appointmentToEdit,
+                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
-        int id = editAppointmentDescriptor.getId().orElse(appointmentToEdit.getId());
+        int id = appointmentToEdit.getId(); // Can't have them custom inserting id.
         int customerId = editAppointmentDescriptor.getCustomerId().orElse(appointmentToEdit.getCustomerId());
         LocalDateTime timeDate = editAppointmentDescriptor.getTimeDate().orElse(appointmentToEdit.getTimeDate());
         Set<Integer> staffIds = editAppointmentDescriptor.getStaffIds().orElse(
@@ -150,13 +152,11 @@ public class EditAppointmentCommand extends RedoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            // todo: ensure id > 0
-            // todo: See #71
-            // todo: check if this matches EditCommand
 
-            return CollectionUtil.isAnyNonNull(id, customerId, timeDate, staffIds);
+            return CollectionUtil.isAnyNonNull(customerId, timeDate, staffIds);
         }
 
+        // Users should not be allowed to run this, but is needed for creating the class
         public void setId(int id) {
             this.id = id;
         }

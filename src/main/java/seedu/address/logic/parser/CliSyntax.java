@@ -24,6 +24,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_TIME = new Prefix("t/");
     public static final Prefix PREFIX_VEHICLE_COLOR = new Prefix("cl/");
+
+    // Prefix internal id == view <ID> <--
+    public static final Prefix PREFIX_INTERNAL_ID = new Prefix("i/");
     public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
     public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("d/");
 }
