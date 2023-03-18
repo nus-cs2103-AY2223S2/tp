@@ -15,44 +15,44 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyMasterDeck;
 
 /**
- * A class to access Deck data stored as a json file on the hard disk.
+ * A class to access MasterDeck data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonMasterDeckStorage implements MasterDeckStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonMasterDeckStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonMasterDeckStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getMasterDeckFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyMasterDeck> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyMasterDeck> readMasterDeck() throws DataConversionException {
+        return readMasterDeck(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readMasterDeck()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyMasterDeck> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyMasterDeck> readMasterDeck(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableMasterDeck> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableMasterDeck> jsonMasterDeck = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMasterDeck.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (jsonMasterDeck.isEmpty()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonMasterDeck.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,20 +60,20 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMasterDeck addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveMasterDeck(ReadOnlyMasterDeck masterDeck) throws IOException {
+        saveMasterDeck(masterDeck, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyMasterDeck)}.
+     * Similar to {@link #saveMasterDeck(ReadOnlyMasterDeck)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyMasterDeck addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveMasterDeck(ReadOnlyMasterDeck masterDeck, Path filePath) throws IOException {
+        requireNonNull(masterDeck);
         requireNonNull(filePath);
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMasterDeck(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMasterDeck(masterDeck), filePath);
     }
 
 }

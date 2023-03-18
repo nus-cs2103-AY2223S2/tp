@@ -64,7 +64,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getMasterDeck());
+            storage.saveMasterDeck(model.getMasterDeck());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
