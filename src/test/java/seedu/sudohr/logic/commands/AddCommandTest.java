@@ -273,26 +273,22 @@ public class AddCommandTest {
 
         @Override
         public void addEmployeeToDepartment(Employee p, Department d) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToDepartment'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void removeEmployeeFromDepartment(Employee p, Department d) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'removeEmployeeFromDepartment'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Department> getFilteredDepartmentList() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getFilteredDepartmentList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredDepartmentList(Predicate<Department> predicate) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredDepartmentList'");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
