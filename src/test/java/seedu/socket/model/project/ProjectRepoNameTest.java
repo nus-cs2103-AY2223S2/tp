@@ -28,11 +28,11 @@ public class ProjectRepoNameTest {
         // null repo
         assertThrows(NullPointerException.class, () -> ProjectRepoName.isValidProjectRepoName(null));
 
-        // reserved repo names
+        // reserved repository names
         assertFalse(ProjectRepoName.isValidProjectRepoName(".")); // .
         assertFalse(ProjectRepoName.isValidProjectRepoName("..")); // ..
 
-        // invalid repo
+        // invalid repository names
         assertFalse(ProjectRepoName.isValidProjectRepoName(" ")); // spaces only
         assertFalse(ProjectRepoName.isValidProjectRepoName("^")); // only invalid non-alphanumeric characters
         assertFalse(ProjectRepoName.isValidProjectRepoName("chiayh*")); // contains invalid non-alphanumeric characters
@@ -40,7 +40,7 @@ public class ProjectRepoNameTest {
         assertFalse(ProjectRepoName.isValidProjectRepoName("01234567890123456789012345678901234567890123456789"
                 + "012345678901234567890123456789012345678901234567890")); // 101 chars
 
-        // valid repo
+        // valid repository names
         assertTrue(ProjectRepoName.isValidProjectRepoName("-")); // hyphen only
         assertTrue(ProjectRepoName.isValidProjectRepoName("_")); // underscore only
         assertTrue(ProjectRepoName.isValidProjectRepoName("chiayh")); // alphabets only
@@ -93,7 +93,7 @@ public class ProjectRepoNameTest {
         // different type -> returns false
         assertFalse(ALPHA_REPO_NAME.equals(5));
 
-        // different profile -> returns false
+        // different repository -> returns false
         assertFalse(ALPHA_REPO_NAME.equals(BRAVO_REPO_NAME));
     }
 }

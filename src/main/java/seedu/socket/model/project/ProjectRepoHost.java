@@ -10,6 +10,8 @@ import static seedu.socket.commons.util.AppUtil.checkArgument;
 public class ProjectRepoHost {
     /**
      * As specified in form validation on
+     * <a href="https://github.com/join">Join GitHub</a>
+     * and
      * <a href="https://github.com/account/organizations/new?plan=free">Set up your organization</a>
      * */
     public static final String MESSAGE_CONSTRAINTS =

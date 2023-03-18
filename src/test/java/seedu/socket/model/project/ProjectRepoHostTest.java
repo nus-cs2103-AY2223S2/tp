@@ -18,17 +18,17 @@ class ProjectRepoHostTest {
     }
 
     @Test
-    public void constructor_invalidProfile_throwsIllegalArgumentException() {
+    public void constructor_invalidHost_throwsIllegalArgumentException() {
         String invalidProfile = " ";
         assertThrows(IllegalArgumentException.class, () -> new ProjectRepoHost(invalidProfile));
     }
 
     @Test
-    public void testIsValidProfile() {
-        // null profile
+    public void testIsValidHost() {
+        // null host
         assertThrows(NullPointerException.class, () -> ProjectRepoHost.isValidProjectRepoHost(null));
 
-        // invalid profile
+        // invalid host
         assertFalse(ProjectRepoHost.isValidProjectRepoHost(" ")); // spaces only
         assertFalse(ProjectRepoHost.isValidProjectRepoHost("^")); // only non-alphanumeric characters
         assertFalse(ProjectRepoHost.isValidProjectRepoHost("-chiayh")); // starts with hyphen
@@ -38,7 +38,7 @@ class ProjectRepoHostTest {
         assertFalse(ProjectRepoHost.isValidProjectRepoHost("chia--yh")); // contains two consecutive hyphens
         assertFalse(ProjectRepoHost.isValidProjectRepoHost("0123456789012345678901234567890123456789")); // 40 chars
 
-        // valid profile
+        // valid host
         assertTrue(ProjectRepoHost.isValidProjectRepoHost("chiayh")); // alphabets only
         assertTrue(ProjectRepoHost.isValidProjectRepoHost("123456")); // numbers only
         assertTrue(ProjectRepoHost.isValidProjectRepoHost("chiayh2")); // alphanumeric characters
@@ -72,7 +72,7 @@ class ProjectRepoHostTest {
         // different type -> returns false
         assertFalse(ALPHA_REPO_HOST.equals(5));
 
-        // different profile -> returns false
+        // different host -> returns false
         assertFalse(ALPHA_REPO_HOST.equals(BRAVO_REPO_HOST));
     }
 }
