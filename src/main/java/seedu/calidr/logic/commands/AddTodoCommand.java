@@ -22,7 +22,7 @@ public class AddTodoCommand extends Command {
             + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Assignment "
-            + PREFIX_BY + "2023-05-04 2359";
+            + PREFIX_BY + "05-04-2023 2359";
 
     public static final String MESSAGE_SUCCESS = "New to-do added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This to-do already exists in the task list.";
