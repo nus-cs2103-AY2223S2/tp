@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.customer.Note;
+import seedu.loyaltylift.model.attribute.Note;
 
 /**
  * Parses input arguments and creates a new SetCustomerNoteCommand object

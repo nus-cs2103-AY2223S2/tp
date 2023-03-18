@@ -20,8 +20,8 @@ import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.customer.Note;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class SetCustomerNoteCommandTest {

@@ -1,4 +1,4 @@
-package seedu.loyaltylift.model.customer;
+package seedu.loyaltylift.model.attribute;
 
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 

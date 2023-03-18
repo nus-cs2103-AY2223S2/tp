@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.SetCustomerNoteCommand;
-import seedu.loyaltylift.model.customer.Note;
+import seedu.loyaltylift.model.attribute.Note;
 
 public class SetCustomerNoteCommandParserTest {
     private SetCustomerNoteCommandParser parser = new SetCustomerNoteCommandParser();

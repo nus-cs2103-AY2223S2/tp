@@ -1,9 +1,9 @@
-package seedu.loyaltylift.model.customer;
+package seedu.loyaltylift.model.attribute;
 
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Customer's note in the address book.
+ * Represents a Customers or Order's note in the address book.
  * Guarantees: immutable.
  */
 public class Note {

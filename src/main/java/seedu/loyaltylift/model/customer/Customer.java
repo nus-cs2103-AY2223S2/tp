@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
