@@ -13,13 +13,14 @@ import seedu.address.model.person.Person;
  */
 public abstract class Event {
 
+    public static final String MESSAGE_CONSTRAINTS = "Repititon for recur must be a number between 0 and 10";
+
     private String name;
     private LocalDate eventDate;
     private final List<Person> students;
     private final List<File> attachments;
     private final List<Note> notes;
 
-    public static final String MESSAGE_CONSTRAINTS = "Repititon for recur must be a number between 0 and 10";
     /**
      * Constructor with name parameter only. The time of the event will be
      * assumed to be the current time the constructor is executed
