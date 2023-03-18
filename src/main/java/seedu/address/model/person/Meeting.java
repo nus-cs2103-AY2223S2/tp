@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Person's meetings in the address book.
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting>{
     protected LocalDateTime start;
     protected LocalDateTime end;
 
@@ -17,9 +17,6 @@ public class Meeting {
      * @param end   end date and time of meeting. Must be after start
      */
     public Meeting(LocalDateTime start, LocalDateTime end) {
-        //if (end.isBefore(start)) {
-        //    throw new ParseException(MEETING_CONSTRAINTS);
-        //}
         this.start = start;
         this.end = end;
     }
@@ -28,8 +25,8 @@ public class Meeting {
      * Default Constructor that generates an empty meeting
      */
     public Meeting() {
-        this.start = LocalDateTime.MIN;
-        this.end = LocalDateTime.MIN;
+        this.start = LocalDateTime.MAX;
+        this.end = LocalDateTime.MAX;
     }
 
     /**
@@ -81,7 +78,7 @@ public class Meeting {
     @Override
     public String toString() {
         if (isEmpty()) {
-            return "";
+            return "No Meeting!";
         }
 
         DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("eeee MMMM d u HH:mm");
@@ -91,9 +88,20 @@ public class Meeting {
         return "(Starts at: " + startDnT + " Ends at: " + endDnT + ")";
     }
 
+    @Override
+    public int compareTo(Meeting otherMeeting) {
+        if (this.start.isBefore(otherMeeting.start)) {
+            return  -1;
+        } else if (this.start.equals(otherMeeting.start)) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     public boolean isEmpty() {
-        return this.start.isEqual(LocalDateTime.MIN)
-            && this.end.isEqual(LocalDateTime.MIN);
+        return this.start.isEqual(LocalDateTime.MAX)
+            && this.end.isEqual(LocalDateTime.MAX);
     }
 
     public boolean isCorrectPeriod() {

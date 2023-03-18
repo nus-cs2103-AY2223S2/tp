@@ -43,7 +43,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane meetings;
+    private Label meeting;
     @FXML
     private FlowPane tags;
 
@@ -62,8 +62,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        //person.getMeetings().stream()
-        //        .forEach(meeting -> meetings.getChildren().add(new Label(meeting.toString())));
+        meeting.setText(person.getUpcomingMeeting().toString());
+
+
     }
 
     @Override

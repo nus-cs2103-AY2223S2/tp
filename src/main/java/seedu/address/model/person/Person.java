@@ -61,6 +61,22 @@ public class Person {
         return meetings;
     }
 
+    public Meeting getUpcomingMeeting() {
+        if (meetings.isEmpty()) {
+            return new Meeting();
+        }
+
+        Meeting mostUpcomingMeeting = meetings.get(0);
+
+        for (Meeting meeting : meetings) {
+            if (mostUpcomingMeeting.compareTo(meeting) > 0) {
+                mostUpcomingMeeting = meeting;
+            }
+        }
+
+        return mostUpcomingMeeting;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -79,7 +95,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -98,11 +114,11 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getMeetings().equals(getMeetings());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getTags().equals(getTags())
+            && otherPerson.getMeetings().equals(getMeetings());
     }
 
     @Override
@@ -115,12 +131,12 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Address: ")
+            .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -130,8 +146,8 @@ public class Person {
 
         ArrayList<Meeting> meetings = getMeetings();
         String meetingHeader = meetings.size() == 1
-                ? "; Meeting: "
-                : "; Meetings: ";
+            ? "; Meeting: "
+            : "; Meetings: ";
         if (!meetings.isEmpty()) {
             builder.append(meetingHeader);
             meetings.forEach(builder::append);

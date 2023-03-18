@@ -57,11 +57,16 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        if (meeting.isCorrectPeriod()) {
+            String incorrectDateTimeMsg = "Start date and time should be before end date and time!";
+            throw new CommandException(incorrectDateTimeMsg);
+        }
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         if (hasClash(meeting, personToEdit)) {
-            String meetingClash = "Meeting specified clashes with other meetings!";
-            throw new CommandException(meetingClash);
+            String meetingClashMsg = "Meeting specified clashes with other meetings!";
+            throw new CommandException(meetingClashMsg);
         }
 
         personToEdit.getMeetings().add(meeting);
