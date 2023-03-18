@@ -44,6 +44,7 @@ public class AddLectureCommandTest {
         Lecture lecture = TypicalLectures.ST2334_TOPIC_1;
 
         ModelStubAcceptingLectureAdded modelStub = new ModelStubAcceptingLectureAdded();
+
         CommandResult result = new AddLectureCommand(moduleCode, lecture).execute(modelStub);
 
         assertEquals(String.format(AddLectureCommand.MESSAGE_SUCCESS, moduleCode, lecture), result.getFeedbackToUser());
@@ -76,9 +77,8 @@ public class AddLectureCommandTest {
         ModuleCode moduleCode = module.getCode();
         Lecture lecture = TypicalLectures.CS2040S_WEEK_1;
 
-        AddLectureCommand command = new AddLectureCommand(moduleCode, lecture);
-
         ModelStub modelStub = new ModelStubWithLecture(module, lecture);
+        AddLectureCommand command = new AddLectureCommand(moduleCode, lecture);
 
         assertThrows(CommandException.class,
                 String.format(AddLectureCommand.MESSAGE_DUPLICATE_LECTURE, moduleCode), () ->
@@ -88,24 +88,27 @@ public class AddLectureCommandTest {
     @Test
     public void equals() {
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        AddLectureCommand addCs2040sW1Command = new AddLectureCommand(moduleCode, TypicalLectures.CS2040S_WEEK_1);
-        AddLectureCommand addCs2040sW2Command = new AddLectureCommand(moduleCode, TypicalLectures.CS2040S_WEEK_2);
+        AddLectureCommand addCs2040sW1LectureCommand =
+                new AddLectureCommand(moduleCode, TypicalLectures.CS2040S_WEEK_1);
+        AddLectureCommand addCs2040sW2LectureCommand =
+                new AddLectureCommand(moduleCode, TypicalLectures.CS2040S_WEEK_2);
 
         // same object -> returns true
-        assertTrue(addCs2040sW1Command.equals(addCs2040sW1Command));
+        assertTrue(addCs2040sW1LectureCommand.equals(addCs2040sW1LectureCommand));
 
         // same values -> returns true
-        AddLectureCommand addCs2040sW1CommandCopy = new AddLectureCommand(moduleCode, TypicalLectures.CS2040S_WEEK_1);
-        assertTrue(addCs2040sW1Command.equals(addCs2040sW1CommandCopy));
+        AddLectureCommand addCs2040sW1LectureCommandCopy =
+                new AddLectureCommand(moduleCode, TypicalLectures.CS2040S_WEEK_1);
+        assertTrue(addCs2040sW1LectureCommand.equals(addCs2040sW1LectureCommandCopy));
 
         // different types -> returns false
-        assertFalse(addCs2040sW1Command.equals(1));
+        assertFalse(addCs2040sW1LectureCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addCs2040sW1Command.equals(null));
+        assertFalse(addCs2040sW1LectureCommand.equals(null));
 
         // different lecture -> return false
-        assertFalse(addCs2040sW1Command.equals(addCs2040sW2Command));
+        assertFalse(addCs2040sW1LectureCommand.equals(addCs2040sW2LectureCommand));
     }
 
     /**

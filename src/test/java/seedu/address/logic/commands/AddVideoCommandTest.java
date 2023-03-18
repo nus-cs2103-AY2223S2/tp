@@ -55,6 +55,7 @@ public class AddVideoCommandTest {
         Video video = TypicalVideos.REVISION_VIDEO;
 
         ModelStubAcceptingVideoAdded modelStub = new ModelStubAcceptingVideoAdded();
+
         CommandResult result = new AddVideoCommand(moduleCode, lectureName, video).execute(modelStub);
 
         assertEquals(String.format(AddVideoCommand.MESSAGE_SUCCESS, moduleCode, lectureName, video),
@@ -105,9 +106,8 @@ public class AddVideoCommandTest {
         LectureName lectureName = lecture.getName();
         Video video = TypicalVideos.CONTENT_VIDEO;
 
-        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
-
         ModelStub modelStub = new ModelStubWithVideo(lecture, video);
+        AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
 
         assertThrows(CommandException.class,
                 String.format(AddVideoCommand.MESSAGE_DUPLICATE_VIDEO, lectureName, moduleCode), () ->

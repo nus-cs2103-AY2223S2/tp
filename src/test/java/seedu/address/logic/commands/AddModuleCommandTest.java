@@ -28,6 +28,7 @@ public class AddModuleCommandTest {
     public void execute_moduleAcceptedByModel_addSuccessful() throws CommandException {
         Module module = TypicalModules.CS2040S;
         ModelStubAcceptingModuleAdded modelStub = new ModelStubAcceptingModuleAdded();
+
         CommandResult result = new AddModuleCommand(module).execute(modelStub);
 
         assertEquals(String.format(AddModuleCommand.MESSAGE_SUCCESS, module),
