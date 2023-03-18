@@ -9,7 +9,6 @@ import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.Link;
-import seedu.address.model.link.LinkResolver;
 import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
@@ -25,7 +24,7 @@ public class Flight implements Item {
     private static final String DEPARTURE_STRING = "Depart from";
     private static final String ARRIVE_STRING = "Arrive at";
     private static final String NOT_SPECIFIED_STRING = "Not Specified";
-    public final Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink;
+    public final Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink;
     private final String code;
     private final String id;
     private Plane plane;
@@ -49,12 +48,12 @@ public class Flight implements Item {
      * @throws LinkException if the link cannot be created
      */
     public Flight(
-        String id,
-        String code,
-        Plane plane,
-        Location departureLocation,
-        Location arrivalLocation,
-        Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink
+            String id,
+            String code,
+            Plane plane,
+            Location departureLocation,
+            Location arrivalLocation,
+            Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink
     ) {
         this.id = id;
         this.code = code;
@@ -71,17 +70,17 @@ public class Flight implements Item {
      * @param code the code of the flight
      */
     public Flight(
-        String id,
-        String code,
-        Link<FlightPilotType, Pilot, LinkResolver<Pilot>> pilotLink
+            String id,
+            String code,
+            Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink
     ) throws LinkException {
         this(
-            id,
-            code,
-            null,
-            null,
-            null,
-            pilotLink
+                id,
+                code,
+                null,
+                null,
+                null,
+                pilotLink
         );
     }
 
@@ -92,31 +91,9 @@ public class Flight implements Item {
      */
     public Flight(String code) throws LinkException {
         this(UUID.randomUUID().toString(), code, new Link<>(
-            Pilot.SHAPE,
-            Pilot.getLazyLinkResolver()
+                Pilot.SHAPE,
+                GetUtil.getLazy(Model.class).map(Model::getPilotManager)
         ));
-    }
-
-    /**
-     * Returns the resolver for {@link Flight}s.
-     *
-     * @param manager the manager.
-     * @return the resolver for the flights.
-     */
-    public static LinkResolver<Flight> getResolver(
-        ReadOnlyItemManager<Flight> manager
-    ) {
-        return new LinkResolver<>(manager);
-    }
-
-
-    /**
-     * Returns the resolver for {@link Flight}s.
-     *
-     * @return the resolver for the flights.
-     */
-    public static LinkResolver<Flight> getResolver() {
-        return getResolver(GetUtil.get(Model.class).getFlightManager());
     }
 
     public String getCode() {
@@ -126,15 +103,19 @@ public class Flight implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-            String.format("%s: %s", UUID_STRING, id),
-            String.format("%s: %s", CODE_STRING, code),
-            String.format(
-                "%s: %s",
-                DEPARTURE_STRING,
-                getDepartureLocationName()
-            ),
-            String.format("%s: %s", ARRIVE_STRING, getArrivalLocationName()),
-            String.format("%s: %s", "Pilots", pilotLink.toString())
+                String.format("%s: %s", UUID_STRING, id),
+                String.format("%s: %s", CODE_STRING, code),
+                String.format(
+                        "%s: %s",
+                        DEPARTURE_STRING,
+                        getDepartureLocationName()
+                ),
+                String.format(
+                        "%s: %s",
+                        ARRIVE_STRING,
+                        getArrivalLocationName()
+                ),
+                String.format("%s: %s", "Pilots", pilotLink.toString())
         );
     }
 

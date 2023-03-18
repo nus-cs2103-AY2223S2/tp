@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.fp.Lazy;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.exceptions.LinkDuplicateException;
 import seedu.address.model.link.exceptions.LinkException;
@@ -29,23 +30,23 @@ import seedu.address.model.link.exceptions.LinkItemNotFoundException;
  * The link to a target.
  *
  * @param <T> target.
- * @param <R> the resolver for the item, see {@link LinkResolver}
+ * @param <M> the manager for the item.
  */
 public class Link<K, T extends Item,
-                     R extends LinkResolver<T>> {
+                         M extends ReadOnlyItemManager<T>> {
     private static final String KEY_NOT_FOUND_MESSAGE = "Key %s not found.";
 
     private static final String ILLEGAL_SIZE_MESSAGE =
-        "Illegal Size: key %s can only have %d keys, but got %d keys";
+            "Illegal Size: key %s can only have %d keys, but got %d keys";
     private static final String CANNOT_PUT_MESSAGE =
-        "Cannot put %d values into key %s which allows a maximum of %d values"
-            + " but already contains %d keys.";
+            "Cannot put %d values into key %s which allows a maximum of %d values"
+                    + " but already contains %d keys.";
 
     private static final String DUPLICATE_FOUND_MESSAGE =
-        "Has found a duplicate in %s for %s.";
+            "Has found a duplicate in %s for %s.";
 
     private static final String DELETE_BROKEN_LINK_MESSAGE =
-        "Deleted broken link %s from link %s";
+            "Deleted broken link %s from link %s";
 
     private static final Logger _logger = LogsCenter.getLogger(Link.class);
 
@@ -63,22 +64,25 @@ public class Link<K, T extends Item,
     /**
      * The resolver that's used to resolve the links.
      */
-    private final Lazy<R> resolverLazy;
+    private final Lazy<M> managerLazy;
 
     /**
      * Creates a link with the given shape.
      *
-     * @param shape        the shape of the link.
-     * @param contents     the contents that this link contains.
-     * @param resolverLazy the {@link LinkResolver} that resolves to an item from
-     *                     the id.
+     * @param shape       the shape of the link.
+     * @param contents    the contents that this link contains.
+     * @param managerLazy the {@link ReadOnlyItemManager} that resolves to an
+     *                    item from the id.
      */
-    public Link(Map<K, Integer> shape,
-        Map<K, Deque<String>> contents, Lazy<R> resolverLazy) throws LinkException {
+    public Link(
+            Map<K, Integer> shape,
+            Map<K, Deque<String>> contents,
+            Lazy<M> managerLazy
+    ) throws LinkException {
         fitShapeOrThrow(shape, contents);
         this.shape = deepCopy(shape);
         this.contents = deepCopyMapDq(contents);
-        this.resolverLazy = resolverLazy;
+        this.managerLazy = managerLazy;
         fill(this.shape, this.contents);
     }
 
@@ -87,10 +91,10 @@ public class Link<K, T extends Item,
      *
      * @param shape the shape of the field.
      */
-    public Link(Map<K, Integer> shape, Lazy<R> resolverLazy) {
+    public Link(Map<K, Integer> shape, Lazy<M> managerLazy) {
         this.shape = deepCopy(shape);
         this.contents = new HashMap<>();
-        this.resolverLazy = resolverLazy;
+        this.managerLazy = managerLazy;
         fill(this.shape, this.contents);
     }
 
@@ -101,16 +105,21 @@ public class Link<K, T extends Item,
      * @param contents the contents of teh link.
      * @throws LinkException if the contents does not fit the shape.
      */
-    private static <K> void fitShapeOrThrow(Map<K, Integer> shape,
-        Map<K, Deque<String>> contents) throws LinkException {
+    private static <K> void fitShapeOrThrow(
+            Map<K, Integer> shape,
+            Map<K, Deque<String>> contents
+    ) throws LinkException {
         for (K key : contents.keySet()) {
             if (!shape.containsKey(key)) {
-                throw new LinkException(String.format(KEY_NOT_FOUND_MESSAGE,
-                    key));
+                throw new LinkException(String.format(
+                        KEY_NOT_FOUND_MESSAGE,
+                        key
+                ));
             }
             if (contents.get(key).size() > shape.get(key)) {
                 throw new LinkException(String.format(ILLEGAL_SIZE_MESSAGE,
-                    key, shape.get(key), contents.get(key).size()));
+                        key, shape.get(key), contents.get(key).size()
+                ));
             }
         }
     }
@@ -122,8 +131,10 @@ public class Link<K, T extends Item,
      * @param shape    the shape of the link.
      * @param contents the contents in the link
      */
-    private static <K> void fill(Map<K, Integer> shape,
-        Map<K, Deque<String>> contents) {
+    private static <K> void fill(
+            Map<K, Integer> shape,
+            Map<K, Deque<String>> contents
+    ) {
         for (K key : shape.keySet()) {
             if (contents.containsKey(key)) {
                 continue;
@@ -204,7 +215,8 @@ public class Link<K, T extends Item,
     private void canPutOrThrow(K key, int size) throws LinkException {
         if (getRemainingSizeOfKey(key) < size) {
             throw new LinkException(String.format(CANNOT_PUT_MESSAGE, size,
-                key, shape.get(key), contents.get(key).size()));
+                    key, shape.get(key), contents.get(key).size()
+            ));
         }
     }
 
@@ -226,11 +238,14 @@ public class Link<K, T extends Item,
      * @throws LinkDuplicateException if the id is already duplicated under
      *                                the key.
      */
-    private void noDuplicateOrThrow(K key, String id) throws LinkDuplicateException {
+    private void noDuplicateOrThrow(
+            K key,
+            String id
+    ) throws LinkDuplicateException {
         for (String cid : contents.get(key)) {
             if (id.equals(cid)) {
                 throw new LinkDuplicateException(
-                    String.format(DUPLICATE_FOUND_MESSAGE, key, cid)
+                        String.format(DUPLICATE_FOUND_MESSAGE, key, cid)
                 );
             }
         }
@@ -356,9 +371,9 @@ public class Link<K, T extends Item,
     public List<Optional<T>> get(K key) throws LinkException {
         keyValidOrThrow(key);
         return contents.get(key)
-                   .stream()
-                   .map(resolverLazy.get()::resolve)
-                   .collect(Collectors.toList());
+                       .stream()
+                       .map((id) -> managerLazy.get().getItem(id))
+                       .collect(Collectors.toList());
     }
 
     /**
@@ -367,7 +382,7 @@ public class Link<K, T extends Item,
      *
      * @param key the key.
      * @return the list of valid items, and at the same time remove those
-     *     which are not valid from this list
+     *         which are not valid from this list
      * @throws LinkException if the key is not valid.
      */
     public List<T> getAndRemoveInvalid(K key) throws LinkException {
@@ -375,7 +390,7 @@ public class Link<K, T extends Item,
         final List<T> result = new ArrayList<>();
         final List<String> tbd = new ArrayList<>();
         for (String id : contents.get(key)) {
-            final Optional<T> tmp = resolverLazy.get().resolve(id);
+            final Optional<T> tmp = managerLazy.get().getItem(id);
             if (tmp.isPresent()) {
                 result.add(tmp.get());
             } else {
@@ -385,10 +400,10 @@ public class Link<K, T extends Item,
         for (String id : tbd) {
             contents.get(key).remove(id);
             _logger.warning(String.format(
-                    DELETE_BROKEN_LINK_MESSAGE,
-                    id,
-                    this
-                )
+                            DELETE_BROKEN_LINK_MESSAGE,
+                            id,
+                            this
+                    )
             );
         }
         return result;
@@ -398,7 +413,7 @@ public class Link<K, T extends Item,
         keyValidOrThrow(key);
         final List<T> result = new ArrayList<>();
         for (String id : contents.get(key)) {
-            final Optional<T> tmp = resolverLazy.get().resolve(id);
+            final Optional<T> tmp = managerLazy.get().getItem(id);
             tmp.ifPresent(result::add);
         }
         return result;
@@ -420,7 +435,7 @@ public class Link<K, T extends Item,
      * @param key  the key.
      * @param item the item.
      * @return true if the item is contained inside this link corresponding
-     *     to the given key.
+     *         to the given key.
      */
     public boolean contains(K key, T item) {
         return contains(key, item.getId());
@@ -432,7 +447,7 @@ public class Link<K, T extends Item,
      * @param key the key.
      * @param id  the item.
      * @return true if the item is contained inside this link corresponding
-     *     to the given key.
+     *         to the given key.
      */
     public boolean contains(K key, String id) {
         return contents.get(key).contains(id);
@@ -448,7 +463,10 @@ public class Link<K, T extends Item,
             builder.append(key).append(": ");
             try {
                 final List<T> items = getValid(key);
-                builder.append(items.stream().map(Object::toString).collect(Collectors.joining(", ")));
+                builder.append(items
+                                       .stream()
+                                       .map(Object::toString)
+                                       .collect(Collectors.joining(", ")));
             } catch (LinkException e) {
                 builder.append("Failed to load: ").append(e.getMessage());
             }

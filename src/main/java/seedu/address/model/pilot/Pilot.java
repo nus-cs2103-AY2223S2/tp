@@ -4,20 +4,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import seedu.address.commons.fp.Lazy;
-import seedu.address.commons.util.GetUtil;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.item.Item;
-import seedu.address.model.link.LinkResolver;
 
 /**
  * Represents a Pilot in the Wingman app.
  */
 public class Pilot implements Item {
     public static final Map<FlightPilotType, Integer> SHAPE =
-        Map.of(FlightPilotType.PILOT_FLYING, 1,
-            FlightPilotType.PILOT_MONITORING, 1);
+            Map.of(FlightPilotType.PILOT_FLYING, 1,
+                    FlightPilotType.PILOT_MONITORING, 1
+            );
     private static final String UUID_STRING = "UUID";
 
     private static final String NAME_STRING = "Name";
@@ -53,7 +49,13 @@ public class Pilot implements Item {
      * @param rank       the rank of the pilot.
      * @param flightHour the flight hour of the pilot.
      */
-    public Pilot(String name, int age, Gender gender, PilotRank rank, int flightHour) {
+    public Pilot(
+            String name,
+            int age,
+            Gender gender,
+            PilotRank rank,
+            int flightHour
+    ) {
         this(UUID.randomUUID().toString(), name, age, gender, rank, flightHour);
     }
 
@@ -67,38 +69,20 @@ public class Pilot implements Item {
      * @param rank       the rank of the pilot.
      * @param flightHour the flight hour of the pilot.
      */
-    public Pilot(String id, String name, int age, Gender gender, PilotRank rank, int flightHour) {
+    public Pilot(
+            String id,
+            String name,
+            int age,
+            Gender gender,
+            PilotRank rank,
+            int flightHour
+    ) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.rank = rank;
         this.flightHour = flightHour;
-    }
-
-    /**
-     * Gets the link resolver for this class, from the manager specified.
-     *
-     * @param manager the manager from which the links are resolved.
-     * @return the link resolver.
-     */
-    public static LinkResolver<Pilot> getLinkResolver(
-        ReadOnlyItemManager<Pilot> manager
-    ) {
-        return new LinkResolver<>(manager);
-    }
-
-    public static LinkResolver<Pilot> getLinkResolver() {
-        return getLinkResolver(GetUtil.get(Model.class).getPilotManager());
-    }
-
-    /**
-     * Gets the link resolver for this class resolved from the service locator.
-     *
-     * @return the link resolver.
-     */
-    public static Lazy<LinkResolver<Pilot>> getLazyLinkResolver() {
-        return GetUtil.getLazy(Model.class).map((manager) -> getLinkResolver(manager.getPilotManager()));
     }
 
     /**
@@ -149,12 +133,12 @@ public class Pilot implements Item {
     @Override
     public List<String> getDisplayList() {
         return List.of(
-            String.format("%s: %s", UUID_STRING, id),
-            String.format("%s: %s", NAME_STRING, name),
-            String.format("%s: %s", GENDER_STRING, gender),
-            String.format("%s: %s", AGE_STRING, age),
-            String.format("%s: %s", RANK_STRING, rank),
-            String.format("%s: %s", FLIGHT_HR_STRING, flightHour)
+                String.format("%s: %s", UUID_STRING, id),
+                String.format("%s: %s", NAME_STRING, name),
+                String.format("%s: %s", GENDER_STRING, gender),
+                String.format("%s: %s", AGE_STRING, age),
+                String.format("%s: %s", RANK_STRING, rank),
+                String.format("%s: %s", FLIGHT_HR_STRING, flightHour)
         );
     }
 

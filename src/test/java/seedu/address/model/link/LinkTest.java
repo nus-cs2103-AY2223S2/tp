@@ -24,6 +24,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import seedu.address.commons.fp.Lazy;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.exceptions.LinkDuplicateException;
 import seedu.address.model.link.exceptions.LinkException;
@@ -32,34 +33,37 @@ import seedu.address.model.link.exceptions.LinkItemNotFoundException;
 @ExtendWith(MockitoExtension.class)
 public class LinkTest {
     @Mock
-    private LinkResolver<ItemStub> resolver;
+    private ReadOnlyItemManager<ItemStub> manager;
     private ItemStub testItem;
-    private Link<CategoryStub, ItemStub, LinkResolver<ItemStub>> sut;
+    private Link<CategoryStub, ItemStub, ReadOnlyItemManager<ItemStub>> sut;
     private Map<CategoryStub, Integer> shape;
     private Map<CategoryStub, Deque<String>> contents;
 
     @BeforeEach
     void setUp() throws LinkException {
         testItem = new ItemStub("test-id");
-        Mockito.lenient().when(resolver.resolve(any())).thenReturn(Optional.of(testItem));
+        Mockito
+                .lenient()
+                .when(manager.getItem(any()))
+                .thenReturn(Optional.of(testItem));
         contents = new HashMap<>();
         contents.put(CategoryStub.CATEGORY_A, new ArrayDeque<>());
         contents.put(CategoryStub.CATEGORY_B, new ArrayDeque<>());
         shape = Map.of(CategoryStub.CATEGORY_A, 1, CategoryStub.CATEGORY_B, 2);
-        sut = new Link<>(shape, contents, Lazy.of(resolver));
+        sut = new Link<>(shape, contents, Lazy.of(manager));
     }
 
     void setUpLinkAsFull() throws LinkException {
         contents.get(CategoryStub.CATEGORY_A).push("test-id-1");
         contents.get(CategoryStub.CATEGORY_B).push("test-id-2");
         contents.get(CategoryStub.CATEGORY_B).push("test-id-3");
-        sut = new Link<>(shape, contents, Lazy.of(resolver));
+        sut = new Link<>(shape, contents, Lazy.of(manager));
     }
 
     @Test
     void constructor_twoValidParam_shouldCreateNewInstance() throws LinkException {
-        final Link<CategoryStub, ItemStub, LinkResolver<ItemStub>> result =
-            new Link<>(shape, Lazy.of(resolver));
+        final Link<CategoryStub, ItemStub, ReadOnlyItemManager<ItemStub>> result =
+                new Link<>(shape, Lazy.of(manager));
         assertNotNull(result);
         for (CategoryStub key : shape.keySet()) {
             assertTrue(result.getUnmodifiableContents().containsKey(key));
@@ -68,8 +72,8 @@ public class LinkTest {
 
     @Test
     void constructor_threeValidParam_shouldCreateNewInstance() throws LinkException {
-        final Link<CategoryStub, ItemStub, LinkResolver<ItemStub>> result =
-            new Link<>(shape, contents, Lazy.of(resolver));
+        final Link<CategoryStub, ItemStub, ReadOnlyItemManager<ItemStub>> result =
+                new Link<>(shape, contents, Lazy.of(manager));
         assertNotNull(result);
         for (CategoryStub key : shape.keySet()) {
             assertTrue(result.getUnmodifiableContents().containsKey(key));
@@ -80,7 +84,8 @@ public class LinkTest {
     void constructor_threeParamUnspecifiedKey_shouldThrowLinkException() {
         contents.put(CategoryStub.UNSUPPORTED, new ArrayDeque<>());
         assertThrows(LinkException.class, () -> new Link<>(shape, contents,
-            Lazy.of(resolver)));
+                Lazy.of(manager)
+        ));
     }
 
     @Test
@@ -89,7 +94,8 @@ public class LinkTest {
         contents.get(CategoryStub.CATEGORY_A).push("test-id-2");
         contents.get(CategoryStub.CATEGORY_A).push("test-id-3");
         assertThrows(LinkException.class, () -> new Link<>(shape, contents,
-            Lazy.of(resolver)));
+                Lazy.of(manager)
+        ));
     }
 
     @Test
@@ -97,7 +103,9 @@ public class LinkTest {
         assertNotEquals(sut.getUnmodifiableContents(), contents);
         assertNotEquals(sut.getCopiedContents(), contents);
         contents.get(CategoryStub.CATEGORY_A).push("hello");
-        final Deque<String> result = sut.getCopiedContents().get(CategoryStub.CATEGORY_A);
+        final Deque<String> result = sut
+                                             .getCopiedContents()
+                                             .get(CategoryStub.CATEGORY_A);
         assertFalse(result.contains("hello"));
     }
 
@@ -125,17 +133,23 @@ public class LinkTest {
         Map<CategoryStub, Collection<String>> result = sut.getUnmodifiableContents();
 
         assertThrows(
-            UnsupportedOperationException.class, () -> result.put(CategoryStub.UNSUPPORTED, new ArrayDeque<>())
+                UnsupportedOperationException.class, () -> {
+                    result.put(CategoryStub.UNSUPPORTED, new ArrayDeque<>());
+                }
         );
         assertThrows(
-            UnsupportedOperationException.class, () -> result.get(CategoryStub.CATEGORY_A).add("test-id-4")
+                UnsupportedOperationException.class, () -> {
+                    result.get(CategoryStub.CATEGORY_A).add("test-id-4");
+                }
         );
     }
 
     @Test
     void getRemainingSizeOfKey_invalidKey_throwsLinkException() {
         assertThrows(
-            LinkException.class, () -> sut.getRemainingSizeOfKey(CategoryStub.UNSUPPORTED)
+                LinkException.class, () -> {
+                    sut.getRemainingSizeOfKey(CategoryStub.UNSUPPORTED);
+                }
         );
     }
 
@@ -160,17 +174,25 @@ public class LinkTest {
 
     @Test
     void put_invalidKey_throwsLinkException() {
-        assertThrows(LinkException.class, () -> sut.put(CategoryStub.UNSUPPORTED, "hello"));
+        assertThrows(
+                LinkException.class, () -> {
+                    sut.put(CategoryStub.UNSUPPORTED, "hello");
+                }
+        );
     }
 
     @Test
     void put_alreadyFull_throwsLinkException() throws LinkException {
         setUpLinkAsFull();
         assertThrows(
-            LinkException.class, () -> sut.put(CategoryStub.CATEGORY_A, "hello")
+                LinkException.class, () -> {
+                    sut.put(CategoryStub.CATEGORY_A, "hello");
+                }
         );
         assertThrows(
-            LinkException.class, () -> sut.put(CategoryStub.CATEGORY_B, "hello")
+                LinkException.class, () -> {
+                    sut.put(CategoryStub.CATEGORY_B, "hello");
+                }
         );
     }
 
@@ -178,7 +200,9 @@ public class LinkTest {
     void put_hasDuplicate_throwsLinkDuplicateException() throws LinkException {
         sut.put(CategoryStub.CATEGORY_B, "hello");
         assertThrows(
-            LinkDuplicateException.class, () -> sut.put(CategoryStub.CATEGORY_B, "hello")
+                LinkDuplicateException.class, () -> {
+                    sut.put(CategoryStub.CATEGORY_B, "hello");
+                }
         );
     }
 
@@ -202,53 +226,63 @@ public class LinkTest {
         setUpLinkAsFull();
         Map<CategoryStub, Deque<String>> before = sut.getCopiedContents();
 
-        assertDoesNotThrow(() -> sut.putRevolve(CategoryStub.CATEGORY_A, "new-id"));
-        assertDoesNotThrow(() -> sut.putRevolve(CategoryStub.CATEGORY_B, "new-id"));
+        assertDoesNotThrow(() -> sut.putRevolve(
+                CategoryStub.CATEGORY_A,
+                "new-id"
+        ));
+        assertDoesNotThrow(() -> sut.putRevolve(
+                CategoryStub.CATEGORY_B,
+                "new-id"
+        ));
 
         Map<CategoryStub, Deque<String>> after = sut.getCopiedContents();
 
         assertNotEquals(
-            after.get(CategoryStub.CATEGORY_A).getFirst(),
-            before.get(CategoryStub.CATEGORY_A).getFirst()
+                after.get(CategoryStub.CATEGORY_A).getFirst(),
+                before.get(CategoryStub.CATEGORY_A).getFirst()
         );
         assertEquals(
-            before.get(CategoryStub.CATEGORY_B).getLast(),
-            after.get(CategoryStub.CATEGORY_B).getFirst()
+                before.get(CategoryStub.CATEGORY_B).getLast(),
+                after.get(CategoryStub.CATEGORY_B).getFirst()
         );
         assertNotEquals(
-            before.get(CategoryStub.CATEGORY_B).getFirst(),
-            after.get(CategoryStub.CATEGORY_B).getFirst()
+                before.get(CategoryStub.CATEGORY_B).getFirst(),
+                after.get(CategoryStub.CATEGORY_B).getFirst()
         );
         assertNotEquals(
-            before.get(CategoryStub.CATEGORY_B).getLast(),
-            after.get(CategoryStub.CATEGORY_B).getLast()
+                before.get(CategoryStub.CATEGORY_B).getLast(),
+                after.get(CategoryStub.CATEGORY_B).getLast()
         );
     }
 
     @Test
     void clear_invalidKeySpecified_throwsLinkException() throws LinkException {
         setUpLinkAsFull();
-        assertThrows(LinkException.class, () -> sut.clear(CategoryStub.UNSUPPORTED));
+        assertThrows(
+                LinkException.class, () -> {
+                    sut.clear(CategoryStub.UNSUPPORTED);
+                }
+        );
     }
 
     @Test
     void clear_validKeySpecified_clearsTheKey() throws LinkException {
         setUpLinkAsFull();
         assertFalse(
-            sut.getCopiedContents().get(CategoryStub.CATEGORY_A).isEmpty()
+                sut.getCopiedContents().get(CategoryStub.CATEGORY_A).isEmpty()
         );
         assertDoesNotThrow(() -> sut.clear(CategoryStub.CATEGORY_A));
         assertTrue(
-            sut.getCopiedContents().get(CategoryStub.CATEGORY_A).isEmpty()
+                sut.getCopiedContents().get(CategoryStub.CATEGORY_A).isEmpty()
         );
 
 
         assertFalse(
-            sut.getCopiedContents().get(CategoryStub.CATEGORY_B).isEmpty()
+                sut.getCopiedContents().get(CategoryStub.CATEGORY_B).isEmpty()
         );
         assertDoesNotThrow(() -> sut.clear(CategoryStub.CATEGORY_B));
         assertTrue(
-            sut.getCopiedContents().get(CategoryStub.CATEGORY_B).isEmpty()
+                sut.getCopiedContents().get(CategoryStub.CATEGORY_B).isEmpty()
         );
     }
 
@@ -271,7 +305,9 @@ public class LinkTest {
     void delete_invalidKey_throwsLinkException() throws LinkException {
         setUpLinkAsFull();
         assertThrows(
-            LinkException.class, () -> sut.delete(CategoryStub.UNSUPPORTED, "test-id-1")
+                LinkException.class, () -> {
+                    sut.delete(CategoryStub.UNSUPPORTED, "test-id-1");
+                }
         );
     }
 
@@ -279,15 +315,23 @@ public class LinkTest {
     void delete_itemNotContained_throwsLinkItemNotFoundException() throws LinkException {
         setUpLinkAsFull();
         assertThrows(
-            LinkItemNotFoundException.class, () -> sut.delete(CategoryStub.CATEGORY_A, "hello-world")
+                LinkItemNotFoundException.class, () -> {
+                    sut.delete(CategoryStub.CATEGORY_A, "hello-world");
+                }
         );
     }
 
     @Test
     void delete_validItem_removesTheItem() throws LinkException {
         setUpLinkAsFull();
-        assertDoesNotThrow(() -> sut.delete(CategoryStub.CATEGORY_A, "test-id-1"));
-        assertTrue(sut.getCopiedContents().get(CategoryStub.CATEGORY_A).isEmpty());
+        assertDoesNotThrow(() -> sut.delete(
+                CategoryStub.CATEGORY_A,
+                "test-id-1"
+        ));
+        assertTrue(sut
+                           .getCopiedContents()
+                           .get(CategoryStub.CATEGORY_A)
+                           .isEmpty());
     }
 
     private enum CategoryStub {

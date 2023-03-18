@@ -7,9 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.GetUtil;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.Link;
-import seedu.address.model.link.LinkResolver;
 import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
@@ -126,9 +128,11 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
 
         Flight flight;
         try {
-            Link<FlightPilotType, Pilot, LinkResolver<Pilot>> link =
+            Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> link =
                     new Link<>(Pilot.SHAPE, pilotLink,
-                            Pilot.getLazyLinkResolver()
+                            GetUtil
+                                    .getLazy(Model.class)
+                                    .map(Model::getPilotManager)
                     );
             flight = new Flight(id, code, link);
         } catch (LinkException e) {
