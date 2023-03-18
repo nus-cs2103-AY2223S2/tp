@@ -16,7 +16,6 @@ import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.UniqueLeaveList;
 
-
 /**
  * Wraps all data at the SudoHR-level
  * Duplicates are not allowed (by :isSameEmployee comparison)
@@ -193,8 +192,6 @@ public class SudoHr implements ReadOnlySudoHr {
     // ==========================================================================
 
     /**
-=======
->>>>>>> 274c3245992792161eb4cc7606b0227c32e31c97
      * Returns the department with the given name.
      *
      * @param name The department name to find.
