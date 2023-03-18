@@ -2,12 +2,12 @@ package seedu.address.ui.body.calendar;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.Event;
 import seedu.address.ui.UiPart;
 
@@ -31,12 +31,14 @@ public class CalendarEventCard extends UiPart<Region> {
     private Label indexTag;
 
     /**
-     * Creates a {@code CalendarEventCard} with the given {@code event} and {@code index}.
+     * Creates a {@code CalendarEventCard} with the given {@code indexedEvent}.
      */
-    public CalendarEventCard(Event event, Index index) {
+    public CalendarEventCard(CalendarPanel.IndexedEvent indexedEvent) {
         super(FXML);
-        CollectionUtil.requireAllNonNull(event, index);
+        Objects.requireNonNull(indexedEvent);
 
+        Index index = indexedEvent.getIndex();
+        Event event = indexedEvent.getEvent();
         description.setText(event.getDescription().getDescription());
         startDateTime.setText(event.getStartDateTime().getDateTime().format(FORMATTER));
         endDateTime.setText(event.getEndDateTime().getDateTime().format(FORMATTER));

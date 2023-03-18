@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.event.Event;
 import seedu.address.ui.UiPart;
 
@@ -45,20 +47,20 @@ public class CalendarPanel extends UiPart<Region> {
             return;
         }
 
-        Map<LocalDate, List<Event>> dateEventsMap = new HashMap<>();
-        for (Event event : events) {
-            LocalDate date = event.getStartDateTime().getDateTime().toLocalDate();
-            List<Event> dateEvents = dateEventsMap.getOrDefault(date, new LinkedList<>());
+        Map<LocalDate, List<IndexedEvent>> dateEventsMap = new HashMap<>();
+        for (IndexedEvent event : getIndexedEvents(events)) {
+            LocalDate date = event.getDateKey();
+            List<IndexedEvent> dateEvents = dateEventsMap.getOrDefault(date, new LinkedList<>());
             dateEvents.add(event);
             dateEventsMap.putIfAbsent(date, dateEvents);
         }
         dateEventsMap.keySet().stream().sorted().forEach(date -> {
-            List<Event> dateEvents = dateEventsMap.get(date);
+            List<IndexedEvent> dateEvents = dateEventsMap.get(date);
             addDayCard(dateEvents, date);
         });
     }
 
-    private void addDayCard(List<Event> events, LocalDate date) {
+    private void addDayCard(List<IndexedEvent> events, LocalDate date) {
         if (events == null || events.isEmpty()) {
             return;
         }
@@ -66,5 +68,38 @@ public class CalendarPanel extends UiPart<Region> {
             return;
         }
         calendarContent.getChildren().add(new CalendarDayCard(events, date).getRoot());
+    }
+
+    private List<IndexedEvent> getIndexedEvents(List<Event> events) {
+        List<IndexedEvent> indexedEvents = new LinkedList<>();
+        int i = 0;
+        for (Event event : events) {
+            indexedEvents.add(new IndexedEvent(Index.fromZeroBased(i), event));
+            i += 1;
+        }
+        return indexedEvents;
+    }
+
+    static class IndexedEvent {
+        private final Index index;
+        private final Event event;
+
+        public IndexedEvent(Index index, Event event) {
+            CollectionUtil.requireAllNonNull(index, event);
+            this.index = index;
+            this.event = event;
+        }
+
+        public Index getIndex() {
+            return index;
+        }
+
+        public Event getEvent() {
+            return event;
+        }
+
+        public LocalDate getDateKey() {
+            return event.getStartDateTime().getDateTime().toLocalDate();
+        }
     }
 }

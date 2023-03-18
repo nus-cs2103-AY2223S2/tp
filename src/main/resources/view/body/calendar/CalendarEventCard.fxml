@@ -8,7 +8,7 @@
 <StackPane styleClass="pane-with-rounded-corner, pa"
            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="5">
-        <Label fx:id="description" text="\$description" styleClass="label-h5" />
+        <Label fx:id="description" text="\$description" wrapText="true" styleClass="label-h5" />
         <HBox spacing="5">
             <Label fx:id="startDateTime" text="\$startDateTime" styleClass="label-p" />
             <Label text="-" styleClass="label-p" />

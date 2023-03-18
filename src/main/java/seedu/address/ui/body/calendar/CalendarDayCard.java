@@ -8,9 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.model.event.Event;
 import seedu.address.ui.UiPart;
 
 /**
@@ -35,7 +33,7 @@ public class CalendarDayCard extends UiPart<Region> {
      * Creates a {@code CalendarDayCard} with the given {@code events}
      * on the specified {@code date}.
      */
-    public CalendarDayCard(List<Event> events, LocalDate date) {
+    public CalendarDayCard(List<CalendarPanel.IndexedEvent> events, LocalDate date) {
         super(FXML);
         CollectionUtil.requireAllNonNull(events, date);
 
@@ -44,8 +42,8 @@ public class CalendarDayCard extends UiPart<Region> {
         day.setText(date.format(DAY_FORMATTER));
 
         int i = 0;
-        for (Event event : events) {
-            eventsContainer.getChildren().add(new CalendarEventCard(event, Index.fromZeroBased(i)).getRoot());
+        for (CalendarPanel.IndexedEvent event : events) {
+            eventsContainer.getChildren().add(new CalendarEventCard(event).getRoot());
             i += 1;
         }
     }
