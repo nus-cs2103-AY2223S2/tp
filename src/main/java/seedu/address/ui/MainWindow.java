@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private CustomerListPanel customerListPanel;
     private VehicleListPanel vehicleListPanel;
+    private ServiceListPanel serviceListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -121,6 +122,12 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
     }
 
+    private void initServiceListPanel() {
+        serviceListPanel = new ServiceListPanel(logic.getFilteredServiceList(),
+                logic.getServiceDataMap());
+        listPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
@@ -201,6 +208,9 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case LISTED_VEHICLES:
                 initVehicleListPanel();
+                break;
+            case LISTED_SERVICES:
+                initServiceListPanel();
                 break;
             default:
             }

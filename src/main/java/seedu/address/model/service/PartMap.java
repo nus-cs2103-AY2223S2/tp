@@ -155,6 +155,13 @@ public class PartMap {
         this.map.put(partName, map.get(partName) - quantity);
     }
 
+    /**
+     * Gets the size of the map
+     */
+    public int getSize() {
+        return map.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();

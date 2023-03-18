@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
@@ -247,6 +248,11 @@ public class Service {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(id, vehicleId, description);
+    }
+
+    @Override
     public String toString() {
         String newline = System.lineSeparator();
         String parts = this.getRequiredParts().toString();
@@ -260,11 +266,11 @@ public class Service {
         String formatter = "<<Service>>" + newline
                 + "ID: %d" + newline
                 + "Desc: %s" + newline
+                + "Status: %s" + newline
                 + "Entry Date: %s" + newline
                 + "Est Finish Date: %s" + newline
                 + "Parts Required: %n %s" + newline
-                + "Assigned Technicians: %n %s" + newline
-                + "%s";
+                + "Assigned Technicians: %n %s";
 
         return String.format(formatter,
                 this.getId(),

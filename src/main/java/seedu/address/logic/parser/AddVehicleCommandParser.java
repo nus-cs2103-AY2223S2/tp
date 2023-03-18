@@ -30,7 +30,8 @@ public class AddVehicleCommandParser implements Parser<AddVehicleCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_PLATE_NUM, PREFIX_BRAND, PREFIX_CUSTOMER_ID,
                         PREFIX_VEHICLE_TYPE, PREFIX_VEHICLE_COLOR);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PLATE_NUM, PREFIX_BRAND, PREFIX_CUSTOMER_ID, PREFIX_VEHICLE_TYPE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_PLATE_NUM, PREFIX_BRAND, PREFIX_CUSTOMER_ID, PREFIX_VEHICLE_TYPE,
+            PREFIX_VEHICLE_COLOR)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVehicleCommand.MESSAGE_USAGE));
         }
