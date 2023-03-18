@@ -4,12 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.socket.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.socket.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.socket.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.socket.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.socket.logic.commands.CommandTestUtil.VALID_GITHUBPROFILE_AMY;
-import static seedu.socket.logic.commands.CommandTestUtil.VALID_LANGUAGE_PYTHON;
-import static seedu.socket.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.socket.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.socket.logic.commands.CommandTestUtil.*;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_LANGUAGE;
@@ -64,7 +59,7 @@ public class SocketParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + TAG_DESC_FRIEND) instanceof ClearCommand);
     }
 
     @Test

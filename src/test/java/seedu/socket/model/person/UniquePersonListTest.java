@@ -137,6 +137,19 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void removeAll_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.removeAll(null));
+    }
+
+    @Test
+    public void removeAll_existingPerson_removesPerson() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.removeAll(x -> x.isSamePerson(ALICE));
+        UniquePersonList expectedUniquePersonList = new UniquePersonList();
+        assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
     }
