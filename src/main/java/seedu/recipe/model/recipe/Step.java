@@ -1,5 +1,8 @@
 package seedu.recipe.model.recipe;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.recipe.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents one of a recipe's steps for a recipe in the recipe book.
  * Guarantees: immutable, is valid as declared in {@link #isValidStep(String)}
@@ -7,14 +10,18 @@ package seedu.recipe.model.recipe;
 public class Step {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Steps should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Steps should consist of 2 or more space separated alphanumeric words, and " +
+            "should not be blank. Singular tokens such as '.', ',', ':', ';', '(', ')' are allowed," +
+            "but their use should be kept to a minimum.";
 
     /*
      * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * otherwise " " (a blank string) becomes a valid input. The string
+     * should also not end with whitespace.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
+    public static final String VALIDATION_REGEX =
+            "^[A-Za-z0-9]+([\\-,/.][A-Za-z0-9]+)?[.,:;]?" +
+            "(\\s+[(]?([A-Za-z0-9]+|[0-9]+\\.[0-9]+)([\\-,/.]([A-Za-z0-9]+|([0-9]+\\.[0-9]+)))?[.,!:;)]{0,2})+";
     public final String description;
 
     /**
@@ -22,6 +29,8 @@ public class Step {
      * @param description A valid description for the step
      */
     public Step(String description) {
+        requireNonNull(description);
+        checkArgument(isValidStep(description), MESSAGE_CONSTRAINTS);
         this.description = description;
     }
 

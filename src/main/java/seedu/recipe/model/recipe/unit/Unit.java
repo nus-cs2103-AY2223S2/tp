@@ -11,6 +11,11 @@ public abstract class Unit {
         this.unit = unit;
     }
 
+    @Override
+    public String toString() {
+        return this.unit;
+    }
+
     public String getUnit() {
         return this.unit;
     }

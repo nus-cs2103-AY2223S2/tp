@@ -1,41 +1,35 @@
 package seedu.recipe.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.recipe.model.recipe.Address;
-import seedu.recipe.model.recipe.Email;
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Name;
-import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.*;
 import seedu.recipe.model.tag.Tag;
-import seedu.recipe.model.util.SampleDataUtil;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * A utility class to help with building Recipe objects.
  */
 public class RecipeBuilder {
-
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-
     private Name name;
-    private Ingredient ingredient;
-    private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private RecipeDuration duration;
+    private RecipePortion portion;
+    private Set<Tag> tags = new HashSet<>();
+    private List<Ingredient> ingredients = new ArrayList<>();
+    private List<Step> steps = new ArrayList<>();
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
      */
-    public RecipeBuilder() {
-        name = new Name(DEFAULT_NAME);
-        ingredient = new Ingredient(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+    public RecipeBuilder(Name name, RecipePortion portion, RecipeDuration duration,
+                         Set<Tag> tags, List<Ingredient> ingredients, List<Step> steps) {
+        this.name = name;
+        this.portion = portion;
+        this.duration = duration;
+        this.tags.addAll(tags);
+        this.ingredients.addAll(ingredients);
+        this.steps.addAll(steps);
     }
 
     /**
@@ -43,54 +37,19 @@ public class RecipeBuilder {
      */
     public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
-        ingredient = recipeToCopy.getIngredient();
-        email = recipeToCopy.getEmail();
-        address = recipeToCopy.getAddress();
+        duration = recipeToCopy.getDuration();
+        portion = recipeToCopy.getPortion();
         tags = new HashSet<>(recipeToCopy.getTags());
-    }
-
-    /**
-     * Sets the {@code Name} of the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withName(String name) {
-        this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Ingredient} of the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withPhone(String phone) {
-        this.ingredient = new Ingredient(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code Recipe} that we are building.
-     */
-    public RecipeBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
+        ingredients = recipeToCopy.getIngredients();
     }
 
     public Recipe build() {
-        return new Recipe(name, ingredient, email, address, tags);
+        Recipe out = new Recipe(name);
+        out.setDuration(duration);
+        out.setPortion(portion);
+        out.setTags(tags.toArray(Tag[]::new));
+        out.setIngredients(ingredients.toArray(Ingredient[]::new));
+        out.setSteps(steps.toArray(Step[]::new));
+        return out;
     }
-
 }

@@ -3,7 +3,6 @@ package seedu.recipe.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.storage.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalRecipes.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +11,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.Address;
-import seedu.recipe.model.recipe.Email;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 
@@ -24,13 +21,13 @@ public class JsonAdaptedRecipeTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getIngredient().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
-            .map(JsonAdaptedTag::new)
-            .collect(Collectors.toList());
+//    private static final String VALID_NAME = BENSON.getName().toString();
+//    private static final String VALID_PHONE = BENSON.getIngredient().toString();
+//    private static final String VALID_EMAIL = BENSON.getEmail().toString();
+//    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+//    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+//            .map(JsonAdaptedTag::new)
+//            .collect(Collectors.toList());
 
 //    @Test
 //    public void toModelType_validRecipeDetails_returnsRecipe() throws Exception {
