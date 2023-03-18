@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -36,6 +37,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of doctors */
     ObservableList<Doctor> getFilteredDoctorList();
+
+    /** Returns an Optional containing a doctor if the filtered list of doctors is not empty */
+    Optional<Doctor> getDoctorIfPresent();
 
     /**
      * Returns the user prefs' address book file path.

@@ -50,6 +50,14 @@ public class EnlargedContactCard extends UiPart<Region> {
     }
 
     /**
+     * Creates an empty {@code EnlargedContactCard}.
+     */
+    public EnlargedContactCard() {
+        super(FXML);
+        clearDisplay();
+    }
+
+    /**
      * Updates the selected doctor stored in {@code EnlargedContactCard}.
      *
      * @param selectedDoctor the given {@code Optional< Doctor >}
@@ -85,11 +93,11 @@ public class EnlargedContactCard extends UiPart<Region> {
      * Clears the information shown on the {@code EnlargedContactCard}.
      */
     public void clearDisplay() {
-        name.setText("N/A");
-        phone.setText("N/A");
-        email.setText("N/A");
-        specialty.setText("N/A");
-        yearsOfExperience.setText("N/A");
+        name.setText("No Doctor Selected");
+        phone.setText("");
+        email.setText("");
+        specialty.setText("");
+        yearsOfExperience.setText("");
         tags.getChildren().clear();
     }
 
