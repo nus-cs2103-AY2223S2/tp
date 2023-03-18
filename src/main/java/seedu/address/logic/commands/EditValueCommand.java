@@ -30,17 +30,17 @@ import seedu.address.model.tag.Tag;
 public class EditValueCommand extends Command {
 
     public static final String MESSAGE_USAGE = "Edits the details of the person identified "
-        + "by the index number used in the displayed person list. "
-        + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_PHONE + "PHONE] "
-        + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_ADDRESS + "ADDRESS] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
-        + "Example: " + " 1 "
-        + PREFIX_PHONE + "91234567 "
-        + PREFIX_EMAIL + "johndoe@example.com";
+            + "by the index number used in the displayed person list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + " 1 "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_ENTITY_SUCCESS = "Edited Entity: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -80,7 +80,7 @@ public class EditValueCommand extends Command {
     }
 
     private static Entity createEditedEntity(Entity entityToEdit, EditEntityDescriptor editEntityDescriptor)
-        throws CommandException {
+            throws CommandException {
         assert entityToEdit != null;
 
         if (entityToEdit instanceof Character) {
@@ -153,7 +153,7 @@ public class EditValueCommand extends Command {
         // state check
         EditValueCommand e = (EditValueCommand) other;
         return entityToEdit.equals(e.entityToEdit)
-            && editEntityDescriptor.equals(e.editEntityDescriptor);
+                && editEntityDescriptor.equals(e.editEntityDescriptor);
     }
 
     /**
@@ -222,7 +222,7 @@ public class EditValueCommand extends Command {
             EditEntityDescriptor e = (EditEntityDescriptor) other;
 
             return getName().equals(e.getName())
-                && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags());
         }
     }
 
@@ -242,6 +242,9 @@ public class EditValueCommand extends Command {
         public EditCharacterDescriptor() {
         }
 
+        /**
+         * Creates a character detail storage container from the provided data.
+         */
         public EditCharacterDescriptor(EditCharacterDescriptor toCopy) {
             super(toCopy);
             setStats(toCopy.stats);
@@ -287,7 +290,7 @@ public class EditValueCommand extends Command {
             EditCharacterDescriptor e = (EditCharacterDescriptor) other;
 
             return getXp().equals(e.getXp())
-                && getLevel().equals(e.getLevel());
+                    && getLevel().equals(e.getLevel());
         }
     }
 
@@ -307,6 +310,9 @@ public class EditValueCommand extends Command {
         public EditMobDescriptor() {
         }
 
+        /**
+         * Creates a Mob detail storage container from the provided data.
+         */
         public EditMobDescriptor(EditMobDescriptor toCopy) {
             super(toCopy);
             setStats(toCopy.stats);
@@ -352,7 +358,7 @@ public class EditValueCommand extends Command {
             EditMobDescriptor e = (EditMobDescriptor) other;
 
             return getChallengeRating().equals(e.challengeRating)
-                && getWeight().equals(e.getWeight());
+                    && getWeight().equals(e.getWeight());
         }
 
     }
@@ -372,6 +378,9 @@ public class EditValueCommand extends Command {
         public EditItemDescriptor() {
         }
 
+        /**
+         * Creates an Item detail storage container from the provided data.
+         */
         public EditItemDescriptor(EditItemDescriptor toCopy) {
             super(toCopy);
             setCost(toCopy.cost);
@@ -408,7 +417,7 @@ public class EditValueCommand extends Command {
             EditItemDescriptor e = (EditItemDescriptor) other;
 
             return getCost().equals(e.getCost())
-                && getWeight().equals(e.getWeight());
+                    && getWeight().equals(e.getWeight());
         }
     }
 }
