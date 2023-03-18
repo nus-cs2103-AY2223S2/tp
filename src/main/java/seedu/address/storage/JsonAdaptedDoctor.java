@@ -9,15 +9,12 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javafx.scene.shape.PathElement;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.doctor.Specialty;
 import seedu.address.model.person.doctor.Yoe;
 import seedu.address.model.person.patient.Patient;
-import seedu.address.model.person.patient.PatientStub;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Doctor}.
@@ -87,7 +84,7 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
             patientsList.add(patient.toModelType());
         }
         final Set<Patient> modelPatients = new HashSet<>(patientsList);
-//        final Set<Patient> modelPatients = new HashSet<>(List.of(new PatientStub()));
+        // final Set<Patient> modelPatients = new HashSet<>(List.of(new PatientStub()));
 
         Person doctorPerson = super.toModelType();
         return new Doctor(doctorPerson.getName(), doctorPerson.getPhone(), doctorPerson.getEmail(),
