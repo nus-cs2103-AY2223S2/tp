@@ -1,6 +1,7 @@
 package seedu.sudohr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
@@ -18,7 +19,7 @@ public class DeleteDepartmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the department identified by the department name.\n"
             + "Parameters: DEPARTMENT_NAME (must be a string)\n"
-            + "Example: " + COMMAND_WORD + " Human Resources";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_DEPARTMENT_NAME + "Human Resources";
 
     public static final String MESSAGE_DELETE_DEPARTMENT_SUCCESS = "Deleted department: %1$s";
 
