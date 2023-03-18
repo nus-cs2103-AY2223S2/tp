@@ -74,6 +74,9 @@ public class Person {
         return meetings;
     }
 
+    /**
+     * Gets the most recent meeting that the person has
+     */
     public Meeting getUpcomingMeeting() {
         if (meetings.isEmpty()) {
             return new Meeting();

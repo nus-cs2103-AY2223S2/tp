@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.parser.ParserUtil;
@@ -105,6 +104,11 @@ public class PersonBuilder {
         return this;
     }
 
+
+    /**
+     * Sets the {@code Meeting} of the  {@code Person} that we are building
+     * using String inputs
+     */
     public PersonBuilder withMeetings(String dateTime) {
         if (dateTime.isEmpty()) {
             this.meetings.add(new Meeting());
