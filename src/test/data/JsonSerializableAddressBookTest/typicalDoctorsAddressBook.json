@@ -1,0 +1,46 @@
+{
+  "doctors" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "specialty" : "General Medicine",
+    "yearsOfExperience" : "5",
+    "tagged" : [ "friends" ],
+    "patients" : [ ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "specialty" : "Anaesthesia",
+    "yearsOfExperience" : "7",
+    "tagged" : [ "colleagues", "friends" ],
+    "patients" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "danielm@example.com",
+    "specialty" : "Neurosurgery",
+    "yearsOfExperience" : "25",
+    "tagged" : [ "HoD" ],
+    "patients" : [ {
+      "name" : "Zayden Lim",
+      "phone" : "23456978",
+      "email" : "zayden@gmail.com",
+      "height" : "1.6",
+      "weight" : "64",
+      "diagnosis" : "Asthma",
+      "status" : "Inpatient",
+      "remark" : "Compliant",
+      "tagged" : [ "teenager" ]
+    } ]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "carlk@example.com",
+    "specialty" : "Orthopaedic",
+    "yearsOfExperience" : "9",
+    "tagged" : [ ],
+    "patients" : [ ]
+  }
+  ]
+}

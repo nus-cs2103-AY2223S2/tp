@@ -1,0 +1,22 @@
+{
+  "doctors" : [ {
+    "name" : "Alice Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "specialty" : "#invalid-specialty!",
+    "yearsOfExperience" : "-4",
+    "tagged" : [ "friends" ],
+    "patients" : [ {
+      "name" : "John Doe",
+      "phone" : "88887777",
+      "email" : "prawn@gmail.com",
+      "height" : "1.7",
+      "weight" : "63.4",
+      "diagnosis" : "None",
+      "status" : "Inpatient",
+      "remark" : "Compliant",
+      "tagged" : [ "Friend", "College" ]
+    } ]
+  }
+  ]
+}
