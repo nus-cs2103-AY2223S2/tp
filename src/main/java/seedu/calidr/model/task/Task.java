@@ -1,5 +1,6 @@
 package seedu.calidr.model.task;
 
+import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 
@@ -67,6 +68,17 @@ public abstract class Task {
 
     public void setDone(boolean isDone) {
         this.isDone = isDone;
+    }
+
+    /**
+     * Returns true if both Tasks have the same details.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return equals(otherTask);
     }
 
     @Override
