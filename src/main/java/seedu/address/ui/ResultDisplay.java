@@ -16,6 +16,9 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Make the ResultDisplay break lines automatically.
+     */
     public ResultDisplay() {
         super(FXML);
         resultDisplay.setWrapText(true);
