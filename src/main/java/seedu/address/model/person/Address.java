@@ -61,4 +61,8 @@ public class Address {
     public String getRegionString() {
         return region.getDisplayString();
     }
+
+    public Regions getRegion() {
+        return this.region;
+    }
 }

@@ -96,13 +96,23 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building. 
+     */
+    public PersonBuilder withMeeting(ArrayList<Meeting> meetings) {
+        this.meetings = meetings;
+        return this;
+    }
+
+    /*
+    public PersonBuilder withMeetings() {
 
     public PersonBuilder withMeetings(String dateTime) {
         LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
         Meeting meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
         this.meetings.add(meetingToAdd);
         return this;
-    }
+    }*/
 
     public Person build() {
         return new Person(name, phone, email, address, tags, meetings);
