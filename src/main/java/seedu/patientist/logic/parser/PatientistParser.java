@@ -16,6 +16,7 @@ import seedu.patientist.logic.commands.FindCommand;
 import seedu.patientist.logic.commands.HelpCommand;
 import seedu.patientist.logic.commands.ListCommand;
 import seedu.patientist.logic.commands.ListPatientsCommand;
+import seedu.patientist.logic.commands.ListWardPatientsCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 
 /**
@@ -72,6 +73,8 @@ public class PatientistParser {
         case ListPatientsCommand.COMMAND_WORD:
             return new ListPatientsCommand();
 
+        case ListWardPatientsCommand.COMMAND_WORD:
+            return new ListWardPatientsCommand(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
