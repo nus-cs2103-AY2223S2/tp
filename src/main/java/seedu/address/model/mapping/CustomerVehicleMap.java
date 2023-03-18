@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.UniqueVehicleList;
 import seedu.address.model.service.Vehicle;
@@ -22,7 +21,7 @@ public class CustomerVehicleMap {
      * @param customers The list of customers.
      * @param vehicles  The list of vehicles.
      */
-    public CustomerVehicleMap(FilteredList<Customer> customers, List<Vehicle> vehicles) {
+    public CustomerVehicleMap(List<Customer> customers, List<Vehicle> vehicles) {
 
         Map<Integer, Vehicle> idToVehicleMap = new HashMap<>();
         for (Vehicle vehicle : vehicles) {

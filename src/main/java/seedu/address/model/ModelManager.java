@@ -16,6 +16,7 @@ import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
 
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
+    private final VehicleDataMap vehicleDataMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -61,7 +63,9 @@ public class ModelManager implements Model {
         //        filteredParts = new FilteredList<>(this.shop.getPartList());
         //        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
 
-        customerVehicleMap = new CustomerVehicleMap(filteredCustomers, filteredVehicles);
+        customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
+        vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
+                this.shop.getServiceList());
     }
 
     public ModelManager() {
@@ -183,6 +187,11 @@ public class ModelManager implements Model {
     //    }
 
     // ==== For Vehicles ==
+    @Override
+    public ObservableList<Vehicle> getFilteredVehicleList() {
+        return filteredVehicles;
+    }
+
     /**
      * Adds vehicle to the shop
      *
@@ -257,10 +266,15 @@ public class ModelManager implements Model {
         return this.shop.hasPart(partName);
     }
 
-    // ==== Maps ==
+    // ==== Mapped ==
     @Override
     public CustomerVehicleMap getCustomerVehicleMap() {
         return this.customerVehicleMap;
+    }
+
+    @Override
+    public VehicleDataMap getVehicleDataMap() {
+        return this.vehicleDataMap;
     }
 
     //=========== Filtered Person List Accessors =============================================================

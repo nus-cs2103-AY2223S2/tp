@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private CustomerListPanel customerListPanel;
+    private VehicleListPanel vehicleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -79,6 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -107,13 +109,23 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    private void initCustomerListPanel() {
+        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(),
+                logic.getCustomerVehicleMap());
+        listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+    }
+
+    private void initVehicleListPanel() {
+        vehicleListPanel = new VehicleListPanel(logic.getFilteredVehicleList(),
+                logic.getVehicleDataMap());
+        listPanelPlaceholder.getChildren().add(vehicleListPanel.getRoot());
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(),
-                logic.getCustomerVehicleMap());
-        listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+        initCustomerListPanel();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -179,6 +191,19 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            listPanelPlaceholder.getChildren().clear();
+
+            // Handle UI Updates
+            switch (commandResult.getType()) {
+            case LISTED_CUSTOMERS:
+                initCustomerListPanel();
+                break;
+            case LISTED_VEHICLES:
+                initVehicleListPanel();
+                break;
+            default:
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

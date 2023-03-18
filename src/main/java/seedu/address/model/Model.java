@@ -9,6 +9,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -135,6 +136,13 @@ public interface Model {
      */
     boolean hasCustomer(int customerId);
 
+    // ==== For Vehicles ==
+
+    /**
+     * Returns an unmodifiable view of the filtered vehicle list
+     */
+    ObservableList<Vehicle> getFilteredVehicleList();
+
     /**
      * Adds vehicle to the shop
      *
@@ -191,4 +199,6 @@ public interface Model {
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
 
     CustomerVehicleMap getCustomerVehicleMap();
+
+    VehicleDataMap getVehicleDataMap();
 }

@@ -18,6 +18,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.VehicleDataMap;
+import seedu.address.model.service.Vehicle;
 import seedu.address.storage.Storage;
 
 /**
@@ -92,8 +94,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Vehicle> getFilteredVehicleList() {
+        return model.getFilteredVehicleList();
+    }
+
+    @Override
     public CustomerVehicleMap getCustomerVehicleMap() {
         return model.getCustomerVehicleMap();
+    }
+
+    @Override
+    public VehicleDataMap getVehicleDataMap() {
+        return model.getVehicleDataMap();
     }
 
 }
