@@ -23,18 +23,18 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest clipboard.jar from [here](https://github.com/AY2223S2-CS2103T-T15-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your CLIpboard.
-4. Open a command terminal, cd into the folder you put the jar file in, and use the java -jar clipboard.jar command to run the application.&nbsp;
+4. Open a command terminal, cd into the folder you put the jar file in, and use the `java -jar clipboard.jar` command to run the application.&nbsp;
+<br>e.g. your clipboard.jar is stored in `user/app/task/`, you run `cd user/app/task/` then `java -jar clipboard.jar`
+<br>A GUI similar to the above should appear in a few seconds. Note how the app contains some sample data.
 
-&emsp;&emsp;e.g. your clipboard.jar is stored in user/app/task/,&nbsp; you run cd user/app/task/
-<br>&emsp;&emsp;A GUI similar to the above should appear in a few seconds. Note how the app contains some sample data.
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing <strong>help </strong>and pressing Enter will open the help window.
+5. Type the command in the command box and press Enter to execute it. 
+<br>e.g. typing `help` and pressing Enter will open the help window.
     <br>Some example commands you can try:
     1. `list` : Lists all students.
-    2. `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X m/CS2103T` : Adds a student named John Doe with the particulars to the CLIpboard.
-    4. `delete 3` : Deletes the 3rd student shown in the current list.
-    5. `exit` : Exits the app.
-6. Refer to the [<ins>Commands</ins>](https://docs.google.com/document/d/129glYXctEtL77of9dMmzea-TjVfZh727fVPrv_e9AyI/edit#bookmark=id.1r9lnvft19co) list below for a detailed description&nbsp; of of each command.
+    2. `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X m/CS2103T` : Adds a student named John Doe with the particulars to the list.
+    3. `delete 3` : Deletes the 3rd student shown in the current list.
+    4. `exit` : Exits the app.
+7. Refer to the commands list below for a detailed description for each command.
 
 ## Commands
 
