@@ -61,7 +61,10 @@ public class TypicalVolunteers {
     public static final Volunteer HOON = new VolunteerBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
     public static final Volunteer IDA = new VolunteerBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave")
+            .withAge("26").withRegion("EAST")
+            .withNric("S8866775G").withMedicalTags("CPR ADVANCED", "BLS BASIC")
+            .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Volunteer AMY = new VolunteerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
