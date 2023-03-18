@@ -19,12 +19,20 @@ public class Meeting {
      * @param end   end date and time of meeting
      * @throws IllegalValueException if meeting ends before it starts
      */
-    public Meeting(LocalDateTime start, LocalDateTime end) throws IllegalValueException {
-        if (end.isBefore(start)) {
-            throw new IllegalValueException("End time is after start!");
-        }
+    public Meeting(LocalDateTime start, LocalDateTime end) {
+        // if (end.isBefore(start)) {
+        //     throw new IllegalValueException("End time is after start!");
+        // }
         this.start = start;
         this.end = end;
+    }
+
+    /**
+     * Default Constructor that generates an empty meeting
+     */
+    public Meeting() {
+        this.start = LocalDateTime.MAX;
+        this.end = LocalDateTime.MAX;
     }
 
     public LocalDateTime getStart() {

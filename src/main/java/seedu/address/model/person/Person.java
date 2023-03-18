@@ -81,8 +81,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Meeting> getMeetings() {
-        return Collections.unmodifiableList(meetings);
+    public ArrayList<Meeting> getMeetings() {
+        return meetings;
     }
 
     /**
