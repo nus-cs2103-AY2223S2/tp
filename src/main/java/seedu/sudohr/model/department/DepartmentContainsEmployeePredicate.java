@@ -15,6 +15,7 @@ public class DepartmentContainsEmployeePredicate implements Predicate<Department
     }
 
     public Id getId() {
+        assert id != null : "Predicate should not accept null value!";
         return id;
     }
 
