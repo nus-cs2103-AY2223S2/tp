@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.location.Location;
+import seedu.address.model.timetable.time.SchoolDay;
+import seedu.address.model.timetable.time.TimeSlot;
 
 
 /**

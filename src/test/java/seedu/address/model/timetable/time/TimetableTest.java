@@ -1,4 +1,4 @@
-package seedu.address.model.timetable;
+package seedu.address.model.timetable.time;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_MORNING_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_NIGHT_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_ANOTHER_FIRST_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_FIRST_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_SECOND_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_7PM_3HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_8AM_1HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_10AM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_8AM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_ANOTHER_8AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_11AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_4PM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_5PM_4HR_LESSON;
@@ -28,6 +28,7 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.timetable.Timetable;
 import seedu.address.model.timetable.exceptions.LessonClashException;
 
 class TimetableTest {
@@ -56,7 +57,7 @@ class TimetableTest {
     @Test
     public void initialise_oneLesson_success() {
         Timetable timetable = new Timetable();
-        timetable.addLesson(MONDAY_FIRST_LESSON);
+        timetable.addLesson(MONDAY_8AM_2HR_LESSON);
         // make sure Monday got the lesson
         ArrayList<TimeSlot> mondayTime = timetable.getMondayClasses();
         assertFalse(mondayTime.get(0).isFree());
@@ -69,8 +70,8 @@ class TimetableTest {
     @Test
     public void initialise_twoLessons_success() {
         Timetable timetable = new Timetable();
-        timetable.addLesson(MONDAY_FIRST_LESSON);
-        timetable.addLesson(FRIDAY_MORNING_LESSON);
+        timetable.addLesson(MONDAY_8AM_2HR_LESSON);
+        timetable.addLesson(FRIDAY_8AM_1HR_LESSON);
         ArrayList<TimeSlot> mondayTime = timetable.getMondayClasses();
         ArrayList<TimeSlot> fridayTime = timetable.getFridayClasses();
         assertFalse(mondayTime.get(0).isFree());
@@ -87,18 +88,18 @@ class TimetableTest {
     @Test
     public void initialise_clashLessons_throwLessonClashException() {
         Timetable timetable = new Timetable();
-        timetable.addLesson(MONDAY_FIRST_LESSON);
-        assertThrows(LessonClashException.class, () -> timetable.addLesson(MONDAY_ANOTHER_FIRST_LESSON));
+        timetable.addLesson(MONDAY_8AM_2HR_LESSON);
+        assertThrows(LessonClashException.class, () -> timetable.addLesson(MONDAY_ANOTHER_8AM_2HR_LESSON));
         Timetable anotherTimetable = new Timetable();
-        anotherTimetable.addLesson(MONDAY_ANOTHER_FIRST_LESSON);
-        assertThrows(LessonClashException.class, () -> timetable.addLesson(MONDAY_FIRST_LESSON));
+        anotherTimetable.addLesson(MONDAY_ANOTHER_8AM_2HR_LESSON);
+        assertThrows(LessonClashException.class, () -> timetable.addLesson(MONDAY_8AM_2HR_LESSON));
     }
 
     @Test
     public void initialise_consecutiveLessonsSameDay_success() {
         Timetable timetable = new Timetable();
-        timetable.addLesson(MONDAY_FIRST_LESSON);
-        timetable.addLesson(MONDAY_SECOND_LESSON);
+        timetable.addLesson(MONDAY_8AM_2HR_LESSON);
+        timetable.addLesson(MONDAY_10AM_2HR_LESSON);
         testSlotsFalse(0, 4, timetable.getMondayClasses());
         testSlotsTrue(4, 10, timetable.getMondayClasses());
     }
@@ -106,10 +107,10 @@ class TimetableTest {
     @Test
     public void initialise_lessonsDifferentDaysSameTiming_success() {
         Timetable timetable = new Timetable();
-        assertEquals(MONDAY_SECOND_LESSON.getStartTime(), TUESDAY_10AM_2HR_LESSON.getStartTime());
-        assertEquals(MONDAY_SECOND_LESSON.getEndTime(), TUESDAY_10AM_2HR_LESSON.getEndTime());
-        assertNotEquals(MONDAY_SECOND_LESSON.getDay(), TUESDAY_10AM_2HR_LESSON.getDay());
-        assertDoesNotThrow(() -> timetable.addLesson(MONDAY_SECOND_LESSON));
+        assertEquals(MONDAY_10AM_2HR_LESSON.getStartTime(), TUESDAY_10AM_2HR_LESSON.getStartTime());
+        assertEquals(MONDAY_10AM_2HR_LESSON.getEndTime(), TUESDAY_10AM_2HR_LESSON.getEndTime());
+        assertNotEquals(MONDAY_10AM_2HR_LESSON.getDay(), TUESDAY_10AM_2HR_LESSON.getDay());
+        assertDoesNotThrow(() -> timetable.addLesson(MONDAY_10AM_2HR_LESSON));
         assertDoesNotThrow(() -> timetable.addLesson(TUESDAY_10AM_2HR_LESSON));
     }
 
@@ -149,7 +150,7 @@ class TimetableTest {
     public void equalityCheck_sameTimetable_equals() {
         Timetable timetable1 = new Timetable();
         timetable1.addLesson(WEDNESDAY_2PM_2HR_LESSON);
-        timetable1.addLesson(FRIDAY_MORNING_LESSON);
+        timetable1.addLesson(FRIDAY_8AM_1HR_LESSON);
         timetable1.addLesson(THURSDAY_11AM_2HR_LESSON);
         timetable1.addLesson(THURSDAY_4PM_2HR_LESSON);
 
@@ -157,7 +158,7 @@ class TimetableTest {
         timetable2.addLesson(THURSDAY_4PM_2HR_LESSON);
         timetable2.addLesson(WEDNESDAY_2PM_2HR_LESSON);
         timetable2.addLesson(THURSDAY_11AM_2HR_LESSON);
-        timetable2.addLesson(FRIDAY_MORNING_LESSON);
+        timetable2.addLesson(FRIDAY_8AM_1HR_LESSON);
 
         assertEquals(timetable1.toString(), timetable2.toString());
         assertEquals(timetable1.getSchedule(), timetable2.getSchedule());
@@ -179,7 +180,7 @@ class TimetableTest {
     public void equalityCheck_slightlyDifferentTimetable_notEquals() {
         Timetable timetable1 = new Timetable();
         timetable1.addLesson(WEDNESDAY_2PM_2HR_LESSON);
-        timetable1.addLesson(FRIDAY_NIGHT_LESSON);
+        timetable1.addLesson(FRIDAY_7PM_3HR_LESSON);
         timetable1.addLesson(THURSDAY_11AM_2HR_LESSON);
         timetable1.addLesson(THURSDAY_4PM_2HR_LESSON);
 
@@ -187,7 +188,7 @@ class TimetableTest {
         timetable2.addLesson(THURSDAY_4PM_2HR_LESSON);
         timetable2.addLesson(WEDNESDAY_2PM_2HR_LESSON);
         timetable2.addLesson(THURSDAY_11AM_2HR_LESSON);
-        timetable2.addLesson(FRIDAY_MORNING_LESSON);
+        timetable2.addLesson(FRIDAY_8AM_1HR_LESSON);
 
         assertNotEquals(timetable1.getSchedule(), timetable2.getSchedule());
         assertTrue(arrayListAllEqualsTest(timetable1.getWednesdayClasses(), timetable2.getWednesdayClasses()));

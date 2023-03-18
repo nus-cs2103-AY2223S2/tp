@@ -1,4 +1,4 @@
-package seedu.address.model.timetable;
+package seedu.address.model.timetable.time;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;

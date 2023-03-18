@@ -1,4 +1,4 @@
-package seedu.address.model.timetable;
+package seedu.address.model.timetable.time;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

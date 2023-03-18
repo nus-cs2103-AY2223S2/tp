@@ -6,6 +6,8 @@ import java.util.HashMap;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.timetable.exceptions.LessonClashException;
+import seedu.address.model.timetable.time.SchoolDay;
+import seedu.address.model.timetable.time.TimeSlot;
 
 /**
  * Represents a timetable for a person.

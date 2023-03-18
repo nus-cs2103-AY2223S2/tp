@@ -1,4 +1,4 @@
-package seedu.address.model.timetable;
+package seedu.address.model.timetable.time;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
@@ -16,6 +16,11 @@ public class TimeBlock extends TimePeriod {
     public TimeBlock(LocalTime startTime, LocalTime endTime, SchoolDay schoolDay) {
         super(startTime, endTime, schoolDay);
     }
+
+    public TimeBlock(TimePeriod timePeriod) {
+        super(timePeriod.getStartTime(), timePeriod.getEndTime(), timePeriod.getSchoolDay());
+    }
+
     public LocalTime getStartTime() {
         return super.getStartTime();
     }

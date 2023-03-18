@@ -1,4 +1,4 @@
-package seedu.address.model.timetable;
+package seedu.address.model.timetable.time;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_MORNING_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_NIGHT_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_ANOTHER_FIRST_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_FIRST_LESSON;
-import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_SECOND_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_7PM_3HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.FRIDAY_8AM_1HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_10AM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_8AM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalLesson.MONDAY_ANOTHER_8AM_2HR_LESSON;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
@@ -38,31 +38,31 @@ class TimeSlotTest {
     @Test
     public void initialise_morningSlotWithLesson_success() {
         TimeSlot timeSlot = new TimeSlot(MORNING_START, SchoolDay.MONDAY);
-        assertTrue(timeSlot.canFitLesson(MONDAY_FIRST_LESSON));
-        assertDoesNotThrow(() -> timeSlot.setLesson(MONDAY_FIRST_LESSON));
+        assertTrue(timeSlot.canFitLesson(MONDAY_8AM_2HR_LESSON));
+        assertDoesNotThrow(() -> timeSlot.setLesson(MONDAY_8AM_2HR_LESSON));
         assertFalse(timeSlot.isFree());
     }
 
     @Test
     public void initialise_dayMismatchTimeCorrect_failure() {
         TimeSlot timeSlot = new TimeSlot(MORNING_START, SchoolDay.MONDAY);
-        assertFalse(timeSlot.canFitLesson(FRIDAY_MORNING_LESSON));
-        assertThrows(WrongTimeException.class, () -> timeSlot.setLesson(FRIDAY_MORNING_LESSON));
+        assertFalse(timeSlot.canFitLesson(FRIDAY_8AM_1HR_LESSON));
+        assertThrows(WrongTimeException.class, () -> timeSlot.setLesson(FRIDAY_8AM_1HR_LESSON));
     }
 
     @Test
     public void initialise_dayMatchTimeWrong_throwsWrongTimeException() {
         TimeSlot timeSlot = new TimeSlot(MORNING_START, SchoolDay.MONDAY);
-        assertFalse(timeSlot.canFitLesson(MONDAY_SECOND_LESSON));
-        assertThrows(WrongTimeException.class, () -> timeSlot.setLesson(MONDAY_SECOND_LESSON));
+        assertFalse(timeSlot.canFitLesson(MONDAY_10AM_2HR_LESSON));
+        assertThrows(WrongTimeException.class, () -> timeSlot.setLesson(MONDAY_10AM_2HR_LESSON));
     }
 
     @Test
     public void initialise_dayMatchLaterHalfLesson_success() {
         TimeSlot timeSlot = new TimeSlot(MORNING_SECOND, SchoolDay.MONDAY);
         assertTrue(timeSlot.isFree());
-        assertTrue(timeSlot.canFitLesson(MONDAY_FIRST_LESSON));
-        assertDoesNotThrow(() -> timeSlot.setLesson(MONDAY_FIRST_LESSON));
+        assertTrue(timeSlot.canFitLesson(MONDAY_8AM_2HR_LESSON));
+        assertDoesNotThrow(() -> timeSlot.setLesson(MONDAY_8AM_2HR_LESSON));
         assertFalse(timeSlot.isFree());
     }
 
@@ -70,17 +70,17 @@ class TimeSlotTest {
     public void initialise_dayMatchMiddleSlot_success() {
         TimeSlot timeSlot = new TimeSlot(new LocalTime(20, 0), SchoolDay.FRIDAY);
         assertTrue(timeSlot.isFree());
-        assertTrue(timeSlot.canFitLesson(FRIDAY_NIGHT_LESSON));
-        assertDoesNotThrow(() -> timeSlot.setLesson(FRIDAY_NIGHT_LESSON));
+        assertTrue(timeSlot.canFitLesson(FRIDAY_7PM_3HR_LESSON));
+        assertDoesNotThrow(() -> timeSlot.setLesson(FRIDAY_7PM_3HR_LESSON));
         assertFalse(timeSlot.isFree());
-        assertEquals(FRIDAY_NIGHT_LESSON, timeSlot.getLesson().get());
+        assertEquals(FRIDAY_7PM_3HR_LESSON, timeSlot.getLesson().get());
     }
 
     @Test
     public void addLesson_emptyTimeSlot_success() {
         TimeSlot timeSlot = new TimeSlot(MORNING_START, SchoolDay.MONDAY);
         assertTrue(timeSlot.isFree());
-        timeSlot.setLesson(MONDAY_FIRST_LESSON);
+        timeSlot.setLesson(MONDAY_8AM_2HR_LESSON);
         assertFalse(timeSlot.isFree());
     }
 
@@ -88,11 +88,11 @@ class TimeSlotTest {
     public void addLesson_occupiedTimeSlot_throwsLessonClashException() {
         TimeSlot timeSlot = new TimeSlot(MORNING_START, SchoolDay.MONDAY);
         assertTrue(timeSlot.isFree());
-        timeSlot.setLesson(MONDAY_FIRST_LESSON);
+        timeSlot.setLesson(MONDAY_8AM_2HR_LESSON);
         assertFalse(timeSlot.isFree());
         // check to see if lesson can even fit inside the slot.
-        assertTrue(timeSlot.canFitLesson(MONDAY_ANOTHER_FIRST_LESSON));
-        assertThrows(LessonClashException.class, () -> timeSlot.setLesson(MONDAY_ANOTHER_FIRST_LESSON));
+        assertTrue(timeSlot.canFitLesson(MONDAY_ANOTHER_8AM_2HR_LESSON));
+        assertThrows(LessonClashException.class, () -> timeSlot.setLesson(MONDAY_ANOTHER_8AM_2HR_LESSON));
     }
 
     @Test
@@ -200,7 +200,7 @@ class TimeSlotTest {
     public void equalityCheck_sameTimeDifferentLesson_notEqual() {
         TimeSlot timeSlotA = new TimeSlot(MORNING_START, SchoolDay.MONDAY);
         TimeSlot timeSlotB = new TimeSlot(MORNING_START, SchoolDay.MONDAY);
-        timeSlotA.setLesson(MONDAY_FIRST_LESSON);
+        timeSlotA.setLesson(MONDAY_8AM_2HR_LESSON);
         assertNotEquals(timeSlotA, timeSlotB);
     }
 

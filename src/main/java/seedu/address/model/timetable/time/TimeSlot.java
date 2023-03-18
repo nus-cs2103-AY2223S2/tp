@@ -1,10 +1,11 @@
-package seedu.address.model.timetable;
+package seedu.address.model.timetable.time;
 
 import java.util.Optional;
 
 import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
+import seedu.address.model.timetable.Lesson;
 import seedu.address.model.timetable.exceptions.LessonClashException;
 import seedu.address.model.timetable.exceptions.WrongTimeException;
 
