@@ -39,7 +39,7 @@ public class Lab extends Event {
         return super.getName();
     }
 
-    public void SetName(String name) {
+    public void setName(String name) {
         super.setName(name);
     }
 
