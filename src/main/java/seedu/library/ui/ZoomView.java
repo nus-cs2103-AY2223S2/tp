@@ -33,25 +33,31 @@ public class ZoomView extends UiPart<Region> {
         private FlowPane tagsView;
         @FXML
         private Label progressView;
+        @FXML
+        private Label zoomTag;
 
 
 
         public ZoomView(Bookmark bookmark) {
             super(FXML);
             this.bookmark = bookmark;
-            view_Title.setText(bookmark.getTitle().value);
-            authorView.setText(bookmark.getAuthor().value);
-            GenreView.setText(bookmark.getGenre().value);
-            progressView.setText(bookmark.getProgress().value);
+            view_Title.setText("Title: " + bookmark.getTitle().value);
+            authorView.setText("Author: " + bookmark.getAuthor().value);
+            GenreView.setText("Genre: " + bookmark.getGenre().value);
+            progressView.setText("Progress: " + bookmark.getProgress().value);
             bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
 
         }
 
+        public void hideFields() {
+            view_Title.setVisible(false);
+            authorView.setVisible(false);
+            GenreView.setVisible(false);
+            progressView.setVisible(false);
+            tagsView.setVisible(false);
+            zoomTag.setVisible(false);
 
-//        public void setFeedbackToUser(String feedbackToUser) {
-//            requireNonNull(feedbackToUser);
-//            resultDisplay.setText(feedbackToUser);
-//        }
+        }
 
     }

@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import seedu.library.commons.core.GuiSettings;
 import seedu.library.commons.core.LogsCenter;
@@ -129,6 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         LocalDate today = LocalDate.now();
         DayOfWeek day = today.getDayOfWeek();
         date.setText(day.name());
+        date.setTextFill(Color.BLACK);
 
     }
     /**
@@ -150,8 +152,14 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        Boolean flag = bookmarkListPanel.isChangedSelect();
         zoomView = new ZoomView(bookmarkListPanel.getFirstItem());
+        if(!flag){
+            zoomView.hideFields();
+        }
         zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
+
+
 
 
 
@@ -189,7 +197,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             ZoomView newView = new ZoomView(selectedItem);
             zoomViewPlaceholder.getChildren().add(newView.getRoot());
-            zoomViewPlaceholder.setVisible(true);
+
         }
 
         }
@@ -210,6 +218,25 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    private void handleUpdate(){
+        Bookmark currentSelect = bookmarkListPanel.getSelectedItem();
+//
+        if (currentSelect == null) {
+
+            zoomView = new ZoomView(bookmarkListPanel.getFirstItem());
+            zoomView.hideFields();
+            zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
+
+
+
+        } else {
+            zoomView = new ZoomView(currentSelect);
+            zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
+        }
+//
+
     }
 
     public BookmarkListPanel getBookmarkListPanel() {
@@ -233,6 +260,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+            if (commandResult.isUpdate()){
+                handleUpdate();
             }
 
             return commandResult;
