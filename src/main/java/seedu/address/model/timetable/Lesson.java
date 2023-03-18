@@ -1,5 +1,7 @@
 package seedu.address.model.timetable;
 
+import java.util.ArrayList;
+
 import org.joda.time.LocalTime;
 
 import seedu.address.model.location.Location;
@@ -73,8 +75,14 @@ public class Lesson {
                 && module.equals(lesson.getModule());
     }
 
-    @Override
-    public int hashCode() {
-        return 0;
+    /**
+     * Checks if there is a sequence of timeslots to fit lesson.
+     */
+    public boolean canFitLessonIntoDaySchedule(ArrayList<TimeSlot> slots) {
+        boolean canFit = true;
+        for (int i = startTime.getHourOfDay() - 8; i < endTime.getHourOfDay() - 8; i++) {
+            canFit &= slots.get(i).isFree();
+        }
+        return canFit;
     }
 }

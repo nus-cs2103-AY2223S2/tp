@@ -377,5 +377,6 @@ class TimeBlockTest {
     public void equalityCheck_sameObjectReference_equals() {
         TimeBlock timeBlock1 = new TimeBlock(EIGHT_AM, TWELVE_PM, SchoolDay.MONDAY);
         assertEquals(timeBlock1, timeBlock1);
+        assertEquals(timeBlock1.toString(), timeBlock1.toString());
     }
 }

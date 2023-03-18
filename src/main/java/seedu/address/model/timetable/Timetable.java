@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.joda.time.LocalTime;
+
+import seedu.address.model.timetable.exceptions.LessonClashException;
+
 /**
  * Represents a timetable for a person.
  */
@@ -33,9 +36,32 @@ public class Timetable {
      */
     public void addLesson(Lesson lesson) {
         SchoolDay day = lesson.getDay();
-        schedule.get(day).stream()
-                .filter(timeSlot -> timeSlot.canFitLesson(lesson))
-                .forEachOrdered(timeSlot -> timeSlot.setLesson(lesson));
+        ArrayList<TimeSlot> availableSlots = schedule.get(day);
+        if (!lesson.canFitLessonIntoDaySchedule(availableSlots)) {
+            throw new LessonClashException("There is lesson clash!");
+        } else {
+            for (int i = lesson.getStartTime().getHourOfDay() - 8;
+                 i < lesson.getEndTime().getHourOfDay() - 8; i++) {
+                availableSlots.get(i).setLesson(lesson);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Classes: \n");
+        for (SchoolDay day : SchoolDay.values()) {
+            sb.append(day).append("\n");
+            ArrayList<TimeSlot> dayTime = schedule.get(day);
+            for (TimeSlot timeSlot : dayTime) {
+                if (!timeSlot.isFree()) {
+                    sb.append(timeSlot).append("\n");
+                }
+            }
+        }
+        sb.append("\n");
+        return sb.toString();
     }
 
     public HashMap<SchoolDay, ArrayList<TimeSlot>> getSchedule() {

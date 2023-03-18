@@ -105,4 +105,19 @@ public class TimeSlot extends TimePeriod {
                 getStartTime(), getEndTime(),
                 lesson);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        TimeSlot timeSlot = (TimeSlot) o;
+        return lesson.equals(timeSlot.getLesson());
+    }
 }
