@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.AddOrderCommand;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
+import seedu.loyaltylift.logic.commands.AppendCustomerNoteCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.Command;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
@@ -103,6 +104,9 @@ public class AddressBookParser {
 
         case SetCustomerNoteCommand.COMMAND_WORD:
             return new SetCustomerNoteCommandParser().parse(arguments);
+
+        case AppendCustomerNoteCommand.COMMAND_WORD:
+            return new AppendCustomerNoteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
