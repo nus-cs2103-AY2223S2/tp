@@ -11,12 +11,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import seedu.address.experimental.model.Model;
+import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.EditValueCommand;
 import seedu.address.logic.commands.EditValueCommand.EditCharacterDescriptor;
 import seedu.address.logic.commands.EditValueCommand.EditEntityDescriptor;
 import seedu.address.logic.commands.EditValueCommand.EditItemDescriptor;
 import seedu.address.logic.commands.EditValueCommand.EditMobDescriptor;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Character;
@@ -61,6 +63,10 @@ public class EditModeParser {
 
         final String fieldWord = matcher.group("fieldWord");
         final String arguments = matcher.group("arguments").trim();
+
+        if (fieldWord.equalsIgnoreCase("back")) {
+            return new BackCommand();
+        }
 
         EditEntityDescriptor editData = new EditEntityDescriptor();
         Entity toEdit = model.getCurrentSelectedEntity();
@@ -108,6 +114,8 @@ public class EditModeParser {
         case "exp":
             outData.setXp(Integer.valueOf(value));
             break;
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
         }
         return outData;
     }
@@ -144,6 +152,8 @@ public class EditModeParser {
         case "l":
             outData.setIsLegendary(Boolean.getBoolean(value));
             break;
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
         }
         return outData;
     }
@@ -167,6 +177,8 @@ public class EditModeParser {
         case "w":
             outData.setWeight(Float.valueOf(value));
             break;
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_FIELD, fieldWord));
         }
         return outData;
     }

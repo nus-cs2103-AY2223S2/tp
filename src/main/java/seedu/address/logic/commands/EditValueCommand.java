@@ -73,6 +73,7 @@ public class EditValueCommand extends Command {
         }
 
         model.setEntity(entityToEdit, editedEntity);
+        model.setCurrentSelectedEntity(editedEntity);
         model.updateFilteredEntityList(Model.PREDICATE_SHOW_ALL_ENTITIES);
         return new CommandResult(String.format(MESSAGE_EDIT_ENTITY_SUCCESS, editedEntity));
     }

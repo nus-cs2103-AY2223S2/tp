@@ -57,7 +57,6 @@ public class LogicManager implements Logic {
         }
         commandResult = command.execute(model);
         SetMode(commandResult.getSwitchMode());
-        System.out.println(model.getFilteredEntityList().size());
         try {
             storage.saveReroll(model.getReroll());
         } catch (IOException ioe) {

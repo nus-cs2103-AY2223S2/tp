@@ -35,7 +35,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_SUCCESS = "Toggled view mode";
+    public static final String MESSAGE_SUCCESS = "Entered Edit Mode";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the person identified by the index number used in the displayed person list.\n"
