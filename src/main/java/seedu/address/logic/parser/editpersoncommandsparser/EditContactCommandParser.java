@@ -23,7 +23,7 @@ public class EditContactCommandParser extends EditPersonCommandParser implements
     public EditContactCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        EditPersonDescriptor editPersonDescriptor = this.parseForTags(args);
+        PersonDescriptor editPersonDescriptor = this.parseForTags(args);
 
         return new EditContactCommand(editPersonDescriptor);
     }

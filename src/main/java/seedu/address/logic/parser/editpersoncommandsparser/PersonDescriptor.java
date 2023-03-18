@@ -19,10 +19,9 @@ import seedu.address.model.person.fields.Race;
 import seedu.address.model.person.fields.subfields.Tag;
 
 /**
- * Stores the details to edit the person with. Each non-empty field value will replace the
- * corresponding field value of the person.
+ * Stores the details of the person.
  */
-public class EditPersonDescriptor {
+public class PersonDescriptor {
 
     private Optional<Index> index;
     private Name name;
@@ -36,13 +35,13 @@ public class EditPersonDescriptor {
     private Modules modules;
     private CommunicationChannel comms;
 
-    public EditPersonDescriptor() {}
+    public PersonDescriptor() {}
 
     /**
      * Copy constructor.
      * A defensive copy of {@code tags} is used internally.
      */
-    public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+    public PersonDescriptor(PersonDescriptor toCopy) {
         setIndex(toCopy.index);
         setName(toCopy.name);
         setPhone(toCopy.phone);
@@ -170,12 +169,12 @@ public class EditPersonDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditPersonDescriptor)) {
+        if (!(other instanceof PersonDescriptor)) {
             return false;
         }
 
         // state check
-        EditPersonDescriptor e = (EditPersonDescriptor) other;
+        PersonDescriptor e = (PersonDescriptor) other;
 
         return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())

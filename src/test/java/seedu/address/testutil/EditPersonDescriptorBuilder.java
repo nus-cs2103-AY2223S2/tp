@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
+import seedu.address.logic.parser.editpersoncommandsparser.PersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
@@ -23,21 +23,21 @@ import seedu.address.model.person.fields.subfields.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditPersonDescriptor descriptor;
+    private PersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new PersonDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
-        this.descriptor = new EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(PersonDescriptor descriptor) {
+        this.descriptor = new PersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditPersonDescriptor();
+        descriptor = new PersonDescriptor();
         descriptor.setIndex(Optional.of(Index.fromOneBased(1)));
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
@@ -120,7 +120,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditPersonDescriptor build() {
+    public PersonDescriptor build() {
         return descriptor;
     }
 }
