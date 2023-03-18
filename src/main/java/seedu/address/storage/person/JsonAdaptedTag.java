@@ -1,15 +1,16 @@
-package seedu.address.storage;
+package seedu.address.storage.person;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.JsonAdapted;
 
 /**
  * Jackson-friendly version of {@link Tag}.
  */
-class JsonAdaptedTag {
+public class JsonAdaptedTag implements JsonAdapted<Tag> {
 
     private final String tagName;
 

@@ -45,7 +45,7 @@ public class StudentDeleteCommand extends StudentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> students = model.getFilteredStudentList();
+        List<Student> students = model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
 
         for (Student student : students) {
             if (student.getIndexNumber().equals(targetIndex)

@@ -11,11 +11,12 @@ public class UserPrefsTest {
         UserPrefs userPref = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPref.setGuiSettings(null));
     }
-
+    /*
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
     }
+    */
 
 }

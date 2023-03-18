@@ -7,9 +7,10 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.Model;
+import seedu.address.model.person.ReadOnlyPcClass;
 import seedu.address.model.person.parent.Parent;
+import seedu.address.model.person.parent.ReadOnlyParents;
 import seedu.address.model.person.student.Student;
 
 /**
@@ -26,22 +27,35 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the parents.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getParents()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyParents getParents();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /**
+     * Returns the PCClass.
+     *
+     * @see Model#getPcClass()
+     */
+    ReadOnlyPcClass getPcClass();
 
+
+    /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the filtered list of parents */
     ObservableList<Parent> getFilteredParentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' PCClass file path.
      */
-    Path getAddressBookFilePath();
+    Path getPcClassFilePath();
+
+    /**
+     * Returns the user prefs' parents file path.
+     */
+    Path getParentsFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
