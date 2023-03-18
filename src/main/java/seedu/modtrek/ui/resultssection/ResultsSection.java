@@ -20,6 +20,8 @@ public class ResultsSection extends UiPart<Region> {
 
     private ObservableList<Module> modules;
 
+    private FooterButtonGroup footerButtonGroup;
+
     @FXML
     private VBox resultsSection;
 
@@ -39,17 +41,34 @@ public class ResultsSection extends UiPart<Region> {
     public ResultsSection(ObservableList<Module> modules) {
         super(FXML);
 
-        String[] buttonLabels = new String[] {"Degree Progress", "Module List"};
-        Runnable[] buttonHandlers = new Runnable[] {() -> displayProgress(), () -> displayAllModules(modules)};
-        displayFooter(buttonLabels, buttonHandlers);
-
-//        displayAllModules(modules);
+        displayFooter("Degree Progress", "Module List",
+                () -> displayProgress(), () -> displayAllModules(modules));
 
         displayProgress();
     }
 
+    /**
+     * Displays the footer buttons that enables user to toggle between displaying progress
+     * and displaying module list.
+     * @param progressButtonLabel The text label of the progress button.
+     * @param modulelistButtonLabel The text label of the module-list button.
+     * @param progressButtonHandler The function to execute on clicking the progress button.
+     * @param modulelistButtonHandler The function to execute on clicking the module-list button.
+     */
+    private void displayFooter(String progressButtonLabel, String modulelistButtonLabel,
+                               Runnable progressButtonHandler, Runnable modulelistButtonHandler) {
+        FooterButtonGroup footerButtonGroup =
+                new FooterButtonGroup(progressButtonLabel, modulelistButtonLabel,
+                        progressButtonHandler, modulelistButtonHandler);
+        this.footerButtonGroup = footerButtonGroup;
+        resultsSection.getChildren().remove(resultsSection.lookup(".footer-button-group"));
+        resultsSection.getChildren().add(footerButtonGroup.getRoot());
+    }
+
     // TODO: next iteration
     public void displayProgress() {
+        footerButtonGroup.selectProgressButton();
+
         body.getChildren().clear();
 
         headerTitle.setText("Your Degree Progress");
@@ -113,17 +132,16 @@ public class ResultsSection extends UiPart<Region> {
      * @param modules the list of modules.
      */
     private void displayModules(ObservableList<Module> modules) {
+        footerButtonGroup.selectModulelistButton();
         ModuleSection moduleSection = new ModuleSection(modules);
         renderSection(moduleSection.getRoot());
     }
 
-    private void displayFooter(String[] buttonLabels, Runnable[] buttonHandlers) {
-        FooterButtonGroup footerButtonGroup =
-                new FooterButtonGroup(buttonLabels, buttonHandlers);
-        resultsSection.getChildren().remove(resultsSection.lookup(".footer-button-group"));
-        resultsSection.getChildren().add(footerButtonGroup.getRoot());
-    }
-
+    /**
+     * Renders a given subsection in ResultsSection. In this case there are only two possible
+     * subsections: ProgressSection and ModuleSection.
+     * @param section The given subsection to be rendered.
+     */
     private void renderSection(Node section) {
         body.getChildren().clear();
         body.getChildren().add(section);

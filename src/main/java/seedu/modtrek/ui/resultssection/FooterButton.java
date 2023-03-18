@@ -13,16 +13,6 @@ import seedu.modtrek.ui.UiPart;
 public class FooterButton extends UiPart<Region> {
     private static final String FXML = "resultssection/FooterButton.fxml";
 
-    /**
-     * The function to be executed on clicking the button.
-     */
-    private Runnable handler;
-
-    /**
-     * The group of buttons in the footer, including this button.
-     */
-    private FooterButtonGroup buttonGroup;
-
     @FXML
     private VBox footerButtonContainer;
 
@@ -33,35 +23,14 @@ public class FooterButton extends UiPart<Region> {
      * Creates a {@code FooterButton}.
      * @param label The label of the button.
      * @param handler The function to be executed on clicking the button.
-     * @param isSelected Whether the button is initially selected on first render of this button.
-     * @param buttonGroup The group of buttons in the footer, including this button.
      */
-    public FooterButton(String label, Runnable handler, boolean isSelected,
-                        FooterButtonGroup buttonGroup) {
+    public FooterButton(String label, Runnable handler) {
         super(FXML);
-
-        this.handler = handler;
-        this.buttonGroup = buttonGroup;
 
         footerButton.setText(label);
         footerButton.setOnAction((event) -> {
-            handleOnClick();
+            handler.run();
         });
-
-        if (isSelected) {
-            addSelectedStyle();
-        }
-    }
-
-    /**
-     * Executes the handler and styles the button accordingly on clicking this button.
-     */
-    private void handleOnClick() {
-        handler.run();
-
-        buttonGroup.clearButtonsSelectedStyle();
-
-        addSelectedStyle();
     }
 
     /**
