@@ -14,6 +14,7 @@ import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
 import seedu.wife.model.tag.Tag;
+import seedu.wife.model.tag.TagName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -104,8 +105,8 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!TagName.isValidTagName(trimmedTag)) {
+            throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
     }
