@@ -51,6 +51,9 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
     public LocalTime getEndTime() {
         return endTime;
     }
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
 
     /**
      * Get the value for the day of the week
