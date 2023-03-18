@@ -36,15 +36,12 @@ public class DeleteDeckCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Deck> deckList = model.getFilteredDeckList();
-
         if (deckIndex.getZeroBased() >= deckList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
         }
 
         Deck targetDeck = deckList.get(deckIndex.getZeroBased());
-
         model.removeDeck(targetDeck);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetDeck.getDeckName()));

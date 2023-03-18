@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDecks.VALID_DECK_HISTORY;
+import static seedu.address.testutil.TypicalDecks.VALID_DECK_SCIENCE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,66 +20,65 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
-import seedu.address.testutil.CardBuilder;
 
-public class AddCommandTest {
+public class AddDeckCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullDeck_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddDeckCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Card validCard = new CardBuilder().build();
-        CommandResult commandResult = new AddCommand(validCard).execute(modelStub);
+    public void execute_deckAcceptedByModel_success() throws Exception {
+        ModelStubAcceptingDeckAdded modelStub = new ModelStubAcceptingDeckAdded();
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCard), modelStub.personsAdded);
+        CommandResult commandResult = new AddDeckCommand(VALID_DECK_HISTORY).execute(modelStub);
+
+        assertEquals(String.format(AddDeckCommand.MESSAGE_SUCCESS, VALID_DECK_HISTORY.getDeckName()),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(VALID_DECK_HISTORY), modelStub.decksAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Card validCard = new CardBuilder().build();
-        AddCommand addCommand = new AddCommand(validCard);
-        ModelStub modelStub = new ModelStubWithPerson(validCard);
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
+    public void execute_duplicateDeck_throwsCommandException() {
+        Deck validDeck = new Deck("Biology");
+        AddDeckCommand addDeckCommand = new AddDeckCommand(validDeck);
+        ModelStub modelStub = new ModelStubWithDeck(validDeck);
+
+        assertThrows(CommandException.class,
+                AddDeckCommand.MESSAGE_DUPLICATE_DECK, () -> addDeckCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Card alice = new CardBuilder().withQuestion("Alice").build();
-        Card bob = new CardBuilder().withQuestion("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddDeckCommand addValidScienceDeckCommand = new AddDeckCommand(VALID_DECK_SCIENCE);
+        AddDeckCommand addValidHistoryDeckCommand = new AddDeckCommand(VALID_DECK_HISTORY);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addValidScienceDeckCommand.equals(addValidScienceDeckCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddDeckCommand addValidScienceDeckCommandCopy = new AddDeckCommand(VALID_DECK_SCIENCE);
+        assertTrue(addValidScienceDeckCommand.equals(addValidScienceDeckCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addValidScienceDeckCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addValidScienceDeckCommand.equals(null));
 
-        // different card -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different flashcard -> returns false
+        assertFalse(addValidScienceDeckCommand.equals(addValidHistoryDeckCommand));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -254,44 +255,40 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single card.
+     * A Model stub that contains a single deck.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Card card;
+    private class ModelStubWithDeck extends ModelStub {
+        private final Deck deck;
 
-        ModelStubWithPerson(Card card) {
-            requireNonNull(card);
-            this.card = card;
+        ModelStubWithDeck(Deck deck) {
+            requireNonNull(deck);
+            this.deck = deck;
         }
 
         @Override
-        public boolean hasCard(Card card) {
-            requireNonNull(card);
-            return this.card.isSameCard(card);
+        public boolean hasDeck(Deck deck) {
+            requireNonNull(deck);
+            return this.deck.isSameDeck(deck);
         }
     }
 
     /**
-     * A Model stub that always accept the card being added.
+     * A Model stub that always accept the deck being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Card> personsAdded = new ArrayList<>();
-        @Override
-        public boolean hasCard(Card card) {
-            requireNonNull(card);
-            return personsAdded.stream().anyMatch(card::isSameCard);
-        }
+    private class ModelStubAcceptingDeckAdded extends ModelStub {
+        final ArrayList<Deck> decksAdded = new ArrayList<>();
 
         @Override
-        public void addCard(Card card) {
-            requireNonNull(card);
-            personsAdded.add(card);
+        public boolean hasDeck(Deck deck) {
+            requireNonNull(deck);
+            return decksAdded.stream().anyMatch(deck::isSameDeck);
+        }
+        @Override
+        public void addDeck(Deck deck) {
+            requireNonNull(deck);
+            decksAdded.add(deck);
         }
 
-        @Override
-        public ReadOnlyMasterDeck getMasterDeck() {
-            return new MasterDeck();
-        }
     }
 
 }

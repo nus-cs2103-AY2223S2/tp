@@ -55,8 +55,8 @@ public class Deck {
             return false;
         }
 
-        Deck otherCard = (Deck) other;
-        return otherCard.getDeckName().equals(getDeckName());
+        Deck otherDeck = (Deck) other;
+        return otherDeck.getDeckName().equals(getDeckName());
     }
 
     @Override
