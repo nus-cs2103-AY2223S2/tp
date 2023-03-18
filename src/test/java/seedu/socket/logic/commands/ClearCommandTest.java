@@ -50,5 +50,4 @@ public class ClearCommandTest {
         // same object -> returns true
         assertTrue(clearCommand.equals(clearCommand));
     }
-
 }
