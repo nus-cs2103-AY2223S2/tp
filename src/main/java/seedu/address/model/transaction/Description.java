@@ -1,6 +1,7 @@
 package seedu.address.model.transaction;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Transaction's description in the address book.
@@ -19,6 +20,7 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
+        checkArgument(isValidDescription(description));
         value = description;
     }
 
