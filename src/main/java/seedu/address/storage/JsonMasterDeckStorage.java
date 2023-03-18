@@ -21,7 +21,7 @@ public class JsonMasterDeckStorage implements MasterDeckStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonMasterDeckStorage.class);
 
-    private Path filePath;
+    private final Path filePath;
 
     public JsonMasterDeckStorage(Path filePath) {
         this.filePath = filePath;
@@ -47,7 +47,7 @@ public class JsonMasterDeckStorage implements MasterDeckStorage {
 
         Optional<JsonSerializableMasterDeck> jsonMasterDeck = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMasterDeck.class);
-        if (!jsonMasterDeck.isPresent()) {
+        if (jsonMasterDeck.isEmpty()) {
             return Optional.empty();
         }
 

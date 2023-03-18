@@ -48,7 +48,7 @@ class JsonSerializableMasterDeck {
     }
 
     /**
-     * Converts this address book into the model's {@code Deck} object.
+     * Converts this JSON MasterDeck into the model's {@code Deck} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

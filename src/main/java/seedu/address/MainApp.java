@@ -78,7 +78,7 @@ public class MainApp extends Application {
         ReadOnlyMasterDeck initialData;
         try {
             addressBookOptional = storage.readMasterDeck();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample Deck");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleMasterDeck);
