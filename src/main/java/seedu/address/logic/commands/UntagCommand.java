@@ -31,7 +31,7 @@ public class UntagCommand extends Command {
     //TODO: MODIFY THIS
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Untag a specified video, module, or lecture ";
     //TODO: MODIFY THIS
-    public static final String MESSAGE_SUCCESS = "Item untagged";
+    public static final String MESSAGE_SUCCESS = "%1$s untagged";
     private final Tag tag;
     private final VideoName videoName;
     private final LectureName lectureName;
@@ -93,16 +93,15 @@ public class UntagCommand extends Command {
         requireNonNull(model);
 
         if (this.isUntaggingMod) {
-            untagModule(model);
+            return untagModule(model);
         } else if (this.isUntaggingLec) {
-            untagLecture(model);
-        } else if (this.isUntaggingLec) {
-            untagVideo(model);
+            return untagLecture(model);
+        } else {
+            return untagVideo(model);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    private void untagModule(Model model) throws CommandException {
+    private CommandResult untagModule(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
@@ -126,9 +125,10 @@ public class UntagCommand extends Command {
         Module untaggedModule = new Module(untaggingModule.getCode(),
                 untaggingModule.getName(), newTags, currentLectureList);
         model.setModule(untaggingModule, untaggedModule);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode));
     }
 
-    private void untagLecture(Model model) throws CommandException {
+    private CommandResult untagLecture(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
@@ -155,9 +155,10 @@ public class UntagCommand extends Command {
 
         Lecture untaggedLecture = new Lecture(untaggingLecture.getName(), newTags, untaggingLecture.getVideoList());
         model.setLecture(targetModule, untaggingLecture, untaggedLecture);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName));
     }
 
-    private void untagVideo(Model model) throws CommandException {
+    private CommandResult untagVideo(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
@@ -191,5 +192,6 @@ public class UntagCommand extends Command {
 
         Video taggedVideo = new Video(untaggingVideo.getName(), untaggingVideo.hasWatched(), newTags);
         model.setVideo(targetLecture, untaggingVideo, taggedVideo);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
     }
 }
