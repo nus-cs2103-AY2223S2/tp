@@ -19,7 +19,7 @@ public class ViewCustomerCommandParser implements Parser<ViewCustomerCommand> {
     public ViewCustomerCommand parse(String args) throws ParseException {
 
         try {
-            int index = ParserUtil.parseInt(args);
+            int index = ParserUtil.parseInt(args.trim());
             return new ViewCustomerCommand(new CustomerIdPredicate(index));
         } catch (ParseException pe) {
             throw new ParseException(

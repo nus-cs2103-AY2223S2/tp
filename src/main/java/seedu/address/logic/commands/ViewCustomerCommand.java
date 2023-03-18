@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.CustomerIdPredicate;
 
 /**
@@ -27,8 +28,10 @@ public class ViewCustomerCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(predicate);
+        Customer current = model.getFilteredCustomerList().get(0);
+        // TODO: Show all nested objects associated with customer
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW));
+                String.format(Messages.MESSAGE_CUSTOMER_VIEW_OVERVIEW, current), ResultType.LISTED_CUSTOMERS);
     }
 
     @Override

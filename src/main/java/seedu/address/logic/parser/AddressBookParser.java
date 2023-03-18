@@ -116,7 +116,6 @@ public class AddressBookParser {
         case AddTechnicianCommand.COMMAND_WORD:
             return new AddTechnicianCommandParser().parse(arguments);
 
-
         case ListCustomersCommand.COMMAND_WORD:
             return new ListCustomersCommand();
 
