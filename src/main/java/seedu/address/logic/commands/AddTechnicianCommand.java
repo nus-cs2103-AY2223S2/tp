@@ -56,7 +56,6 @@ public class AddTechnicianCommand extends AddStaffCommand {
         requireNonNull(model);
         Technician toAdd = (Technician) this.toAdd;
         if (model.hasTechnician(toAdd.getId())) {
-            IdGenerator.setStaffIdUnused(toAdd.getId());
             throw new CommandException(MESSAGE_DUPLICATE_TECHNICIAN);
         }
 
