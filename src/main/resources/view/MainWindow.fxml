@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="SudoHR" minWidth="450" minHeight="600" onCloseRequest="#handleExit" >
+         title="SudoHR" minWidth="750" minHeight="600" onCloseRequest="#handleExit" >
   <icons>
     <Image url="@/images/SudoHR_icon.png"/>
   </icons>
@@ -24,7 +24,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox >
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -47,24 +47,21 @@
           </padding>
         </StackPane>
 
-        <HBox>
-          <VBox fx:id="employeeList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+        <HBox prefHeight="5000">
+          <VBox fx:id="employeeList" styleClass="pane-with-border" minWidth="340" prefWidth="5000" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="employeeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="departmentList" styleClass="pane-with-border" minWidth="340" prefWidth="400" VBox.vgrow="ALWAYS">
+          <VBox fx:id="departmentList" styleClass="pane-with-border" minWidth="340" prefWidth="5000" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="departmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
-
-
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
