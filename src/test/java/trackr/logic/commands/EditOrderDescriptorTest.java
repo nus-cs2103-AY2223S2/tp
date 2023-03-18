@@ -6,16 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.DESC_CHOCO_COOKIE;
 import static trackr.logic.commands.CommandTestUtil.DESC_CUPCAKE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_ADDRESS;
-import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_NAME;
-import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_PHONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2023;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CUPCAKES;
-import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_ONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_TWO;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_DONE;
-import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 
 import org.junit.jupiter.api.Test;
