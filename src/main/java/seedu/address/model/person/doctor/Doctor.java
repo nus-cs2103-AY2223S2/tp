@@ -2,6 +2,7 @@ package seedu.address.model.person.doctor;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,6 +30,18 @@ public class Doctor extends Person {
         this.specialty = specialty;
         this.yoe = yoe;
         this.patients = patients;
+    }
+
+    /**
+     * Initializes {@code Doctor} object without {@code patients}.
+     * Every field must be present and not null.
+     */
+    public Doctor(Name name, Phone phone, Email email, Specialty specialty, Yoe yoe, Set<Tag> tags) {
+        super(name, phone, email, tags);
+        requireAllNonNull(name, phone, email, specialty, yoe, tags);
+        this.specialty = specialty;
+        this.yoe = yoe;
+        this.patients = new HashSet<>();
     }
 
     public Specialty getSpecialty() {

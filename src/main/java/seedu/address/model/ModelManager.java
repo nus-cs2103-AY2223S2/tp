@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Doctor> filteredDoctors;
+    private final FilteredList<Patient> filteredPatients;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredDoctors = new FilteredList<>(this.addressBook.getDoctorList());
+        filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
     }
 
     public ModelManager() {
@@ -103,6 +106,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return addressBook.hasPatient(patient);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -110,6 +119,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteDoctor(Doctor target) {
         addressBook.removeDoctor(target);
+    }
+
+    @Override
+    public boolean deletePatient(Patient patient) {
+        addressBook.removePatient(patient);
     }
 
     @Override
@@ -125,6 +139,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean addPatient(Patient patient) {
+        addressBook.addPatient(patient);
+        updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -136,6 +156,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedDoctor);
 
         addressBook.setDoctor(target, editedDoctor);
+    }
+
+    @Override
+    public boolean setPatient(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
+
+        addressBook.setPatient(target, editedPatient);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -155,6 +182,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Patient> getFilteredPatientList() {
+        return filteredPatients;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -164,6 +196,12 @@ public class ModelManager implements Model {
     public void updateFilteredDoctorList(Predicate<Doctor> predicate) {
         requireNonNull(predicate);
         filteredDoctors.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPatientList(Predicate<Patient> predicate) {
+        requireNonNull(predicate);
+        filteredPatients.setPredicate(predicate);
     }
 
     @Override
@@ -183,7 +221,8 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredDoctors.equals(other.filteredDoctors);
+                && filteredDoctors.equals(other.filteredDoctors)
+                && filteredPatients.equals(other.filteredPatients);
     }
 
 }
