@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.util.Arrays;
 
+import seedu.address.logic.commands.AutocompleteResult;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -30,4 +31,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
+    @Override
+    public AutocompleteResult getAutocompleteSuggestion(String args) {
+        return new AutocompleteResult(null, false);
+    }
 }

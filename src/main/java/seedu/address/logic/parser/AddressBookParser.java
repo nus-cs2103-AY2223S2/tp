@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
+import seedu.address.logic.commands.AutocompleteResult;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -88,6 +89,40 @@ public class AddressBookParser {
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    /**
+     * Parses user input into command for autocomplete suggestion.
+     *
+     * @param userInput full user input string
+     * @return the {@code AutocompleteResult} based on the user input
+     */
+    public AutocompleteResult getAutocompleteSuggestion(String userInput) {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return new AutocompleteResult(null, false);
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+
+        switch (commandWord) {
+
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().getAutocompleteSuggestion(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().getAutocompleteSuggestion(arguments);
+
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().getAutocompleteSuggestion(arguments);
+
+        case EditMeetingsCommand.COMMAND_WORD:
+            return new EditMeetingParser().getAutocompleteSuggestion(arguments);
+
+        default:
+            return new AutocompleteResult(null, false);
         }
     }
 
