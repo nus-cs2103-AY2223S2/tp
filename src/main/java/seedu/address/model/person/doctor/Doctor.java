@@ -24,7 +24,8 @@ public class Doctor extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Doctor(Name name, Phone phone, Email email, Specialty specialty, Yoe yoe, Set<Tag> tags, Set<Patient> patients) {
+    public Doctor(Name name, Phone phone, Email email,
+                  Specialty specialty, Yoe yoe, Set<Tag> tags, Set<Patient> patients) {
         super(name, phone, email, tags);
         requireAllNonNull(name, phone, email, specialty, yoe, tags, patients);
         this.specialty = specialty;

@@ -130,7 +130,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The patient must not already exist in the address book.
      * @param patient
      */
-    public void addPatient(Patient patient) {patients.add(patient);
+    public void addPatient(Patient patient) {
+        patients.add(patient);
     }
 
     /**
@@ -158,7 +159,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given patient {@code target} in the list with {@code editedPatient}.
      * {@code target} must exist in the address book.
-     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the address book.
+     * The patient identity of {@code editedPatient} must not be the same as
+     * another existing patient in the address book.
      */
     public void setPatient(Patient target, Patient editedPerson) {
         requireNonNull(editedPerson);
