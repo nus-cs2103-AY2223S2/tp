@@ -14,6 +14,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalElderly.BOB;
+import static seedu.address.testutil.TypicalVolunteers.ALICE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +31,16 @@ import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.predicates.AddressContainsKeywordPredicate;
+import seedu.address.model.person.predicates.AgeIsEqualPredicate;
+import seedu.address.model.person.predicates.EmailContainsKeywordPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
+import seedu.address.model.person.predicates.NricContainsKeywordPredicate;
+import seedu.address.model.person.predicates.PhoneContainsDigitsPredicate;
+import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
+import seedu.address.model.person.predicates.TagIsEqualPredicate;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditVolunteerDescriptorBuilder;
@@ -116,6 +127,23 @@ public class CommandTestUtil {
     public static final EditVolunteerDescriptor DESC_VOLUNTEER_BOB;
     public static final EditPersonDescriptor DESC_PERSON_AMY;
     public static final EditPersonDescriptor DESC_PERSON_BOB;
+
+    public static final NameContainsKeywordPredicate<Person> PREDICATE_HAS_NAME =
+            new NameContainsKeywordPredicate<>(ALICE.getName().fullName);
+    public static final EmailContainsKeywordPredicate<Person> PREDICATE_HAS_EMAIL =
+            new EmailContainsKeywordPredicate<>(ALICE.getEmail().value);
+    public static final PhoneContainsDigitsPredicate<Person> PREDICATE_HAS_DIGITS =
+            new PhoneContainsDigitsPredicate<>(ALICE.getPhone().value);
+    public static final AddressContainsKeywordPredicate<Person> PREDICATE_HAS_ADDRESS =
+            new AddressContainsKeywordPredicate<>(ALICE.getAddress().value);
+    public static final AgeIsEqualPredicate<Person> PREDICATE_HAS_AGE =
+            new AgeIsEqualPredicate<>(ALICE.getAge().value);
+    public static final NricContainsKeywordPredicate<Person> PREDICATE_HAS_NRIC =
+            new NricContainsKeywordPredicate<>(ALICE.getNric().value);
+    public static final RiskLevelIsEqualPredicate<Elderly> PREDICATE_HAS_RISKLEVEL =
+            new RiskLevelIsEqualPredicate<>(BOB.getRiskLevel().riskStatus);
+    public static final TagIsEqualPredicate<Person> PREDICATE_HAS_TAG =
+            new TagIsEqualPredicate<>(ALICE.getTags().iterator().next().tagName);
 
     static {
         DESC_ELDERLY_AMY = new EditElderlyDescriptorBuilder().withName(VALID_NAME_AMY)
