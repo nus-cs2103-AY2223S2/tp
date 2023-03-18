@@ -40,15 +40,19 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 
 List of commands:
 
-- Adding
-- Deleting
-- Listing students
-- Show
-- Exit
+- Adding a student: `add`
+- Deleting a student: `delete`
+- Editing a student: `edit`
+- Listing all students: `list`
+- View a student's information: `view`
+- Finding students by name: `find`
+- Clearing all entries: `clear`
+- Upload a student's photo: `upload`
+- Exiting the program: `exit`
 
 ### Adding a student: `add`
 
-Adds a student into the student roster.
+Adds a student to the student roster.
 
 Format: 
 ```
@@ -57,6 +61,7 @@ add n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_NUMBER> m/<MODULES> [t/<TAG
 
 Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X m/CS2103T`
+- `add n/Roy Balakrishnan p/92624417 e/royb@example.com sid/A7356561X m/CS2105 t/T06`
 
 ### Deleting a student: `delete`
 
@@ -80,7 +85,8 @@ edit <INDEX> [n/<NAME>] [p/<PHONE_NUMBER>] [e/<EMAIL>] [sid/<STUDENT_NUMBER>] [m
 ```
 
 Examples:
-- `delete 1`
+- `edit 1 n/John Doe`
+- `edit 4 m/CS2105`
 
 ### Listing all students: `list`
 
@@ -121,6 +127,8 @@ Examples:
 
 ### Clearing all entries: `clear`
 
+Clears all entries in the student roster.
+
 Format: 
 ```
 clear
@@ -141,7 +149,7 @@ Only images of file type .png is accepted
 Examples:
 - `upload /Users/AlexYeoh/Desktop/A0123456X.png`
 
-### Exiting the program: exit
+### Exiting the program: `exit`
 
 Exits the program.
 
