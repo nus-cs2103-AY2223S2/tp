@@ -17,6 +17,11 @@ import static seedu.address.model.timetable.util.TypicalLesson.THURSDAY_5PM_4HR_
 import static seedu.address.model.timetable.util.TypicalLesson.TUESDAY_10AM_1HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.TUESDAY_10AM_2HR_LESSON;
 import static seedu.address.model.timetable.util.TypicalLesson.WEDNESDAY_2PM_2HR_LESSON;
+import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_A;
+import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_B;
+import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_C;
+import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_D;
+import static seedu.address.model.timetable.util.TypicalTimetable.TIMETABLE_E;
 
 import java.util.ArrayList;
 import java.util.stream.IntStream;
@@ -37,6 +42,15 @@ class TimetableTest {
         IntStream.iterate(start, x -> x + 1)
                 .limit(limit)
                 .forEach(x -> assertFalse(timeSlots.get(x).isFree()));
+    }
+
+    @Test
+    public void test_typicalTimetables_allValid() {
+        assertDoesNotThrow(() -> TIMETABLE_A);
+        assertDoesNotThrow(() -> TIMETABLE_B);
+        assertDoesNotThrow(() -> TIMETABLE_C);
+        assertDoesNotThrow(() -> TIMETABLE_D);
+        assertDoesNotThrow(() -> TIMETABLE_E);
     }
 
     @Test

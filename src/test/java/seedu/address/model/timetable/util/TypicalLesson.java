@@ -19,6 +19,12 @@ public class TypicalLesson {
             SchoolDay.MONDAY,
             new Location("NUS", 1.34, 103.7));
 
+    public static final Lesson MONDAY_9AM_1HR_LESSON = new Lesson(new Module("CS2103T"),
+            new LocalTime(9, 0),
+            new LocalTime(10, 0),
+            SchoolDay.MONDAY,
+            new Location("NUS", 1.34, 103.7));
+
     public static final Lesson MONDAY_ANOTHER_FIRST_LESSON = new Lesson(new Module("CS2101"),
             new LocalTime(8, 0),
             new LocalTime(10, 0),
@@ -126,4 +132,10 @@ public class TypicalLesson {
             new LocalTime(9, 0),
             SchoolDay.FRIDAY,
             new Location("NUS", 1.34, 103.7));
+
+    public static final Lesson FRIDAY_ANOTHER_MORNING_LESSON = new Lesson(new Module("MA2104"),
+            new LocalTime(8, 0),
+            new LocalTime(9, 0),
+            SchoolDay.FRIDAY,
+            new Location("NUS", 1.341, 103.71));
 }
