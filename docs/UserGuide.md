@@ -203,12 +203,12 @@ help
 
 ##### Patient data
 
-| Variable      | Is needed | Type                  | Accept multiple |
-| ------------- | --------- | --------------------- | --------------- |
-| `name`        | YES       | `<name>`              | NO              |
-| `phone`       | YES       | `<phone-number>`      | NO              |
-| `dateOfBirth` | YES       | `<date>`              | NO              |
-| `bloodType`   | YES       | `<bloodType>`         | NO              |
+| Variable      | Is needed | Type                   | Accept multiple |
+| ------------- | --------- | ---------------------- | --------------- |
+| `name`        | YES       | `<name>`               | NO              |
+| `phone`       | YES       | `<phone-number>`       | NO              |
+| `dateOfBirth` | YES       | `<date>`               | NO              |
+| `bloodType`   | YES       | `<bloodType>`          | NO              |
 | `allergy`     | NO        | list of `<group-name>` | YES             |
 | `vaccine`     | NO        | list of `<group-name>` | YES             |
 
@@ -445,7 +445,7 @@ Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.
 * <code><var>MIN_AGE</var></code> : `<age>`
 * <code><var>MAX_AGE</var></code> : `<age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
-* <code><var>HISTORY_REQ</var></code> : `<req>`
+* <code><var>REQUIREMENT</var></code> : `<req>`
 
 ###### Notes
 
