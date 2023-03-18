@@ -21,8 +21,8 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 - List
   - `list`: Lists the names of all the recorded modules
-  - `list /mod /{module_code}`: Lists all the lectures in the specified module
-  - `list /mod /{module_code} /lec {lecture_name}`: Lists all the videos in the specified module and lecture
+  - `list /mod {module_code}`: Lists all the lectures in the specified module
+  - `list /mod {module_code} /lec {lecture_name}`: Lists all the videos in the specified module and lecture
 - Add
   - `add-module /code {module_code} [/name {module_name}]`: Adds a module to Le Tracker
   - `add-lecture /module {module_code}`: Adds a lecture to a module
