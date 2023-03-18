@@ -58,9 +58,10 @@ public class Shop implements ReadOnlyShop {
      * Adds service to the system
      *
      * @param service Service to be added to the system
+     * @throws VehicleNotFoundException If vehicle not in the system
      */
-    public void addService(Service service) {
-        this.services.add(service);
+    public void addService(Service service) throws VehicleNotFoundException {
+        this.addService(service.getVehicleId(), service);
     }
 
     /**
@@ -68,7 +69,7 @@ public class Shop implements ReadOnlyShop {
      *
      * @param vehicleId Id of vehicle
      * @param service   Service to be added to vehicle
-     * @throws VehicleNotFoundException if customer does not have specific vehicle
+     * @throws VehicleNotFoundException If vehicle not in the system
      */
     public void addService(int vehicleId, Service service) throws VehicleNotFoundException {
         for (var vehicle : this.getVehicleList()) {
