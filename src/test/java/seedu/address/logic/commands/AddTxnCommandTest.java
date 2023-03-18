@@ -23,7 +23,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TransactionBuilder;
 
 public class AddTxnCommandTest {
@@ -50,7 +49,8 @@ public class AddTxnCommandTest {
         AddTxnCommand addTxnCommand = new AddTxnCommand(validTxn);
         ModelStub modelStub = new ModelStubWithTxn(validTxn);
 
-        assertThrows(CommandException.class, AddTxnCommand.MESSAGE_DUPLICATE_TRANSACTION, () -> addTxnCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddTxnCommand.MESSAGE_DUPLICATE_TRANSACTION, (
+                ) -> addTxnCommand.execute(modelStub));
     }
 
     @Test

@@ -148,11 +148,6 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-    //@Override
-    //public ObservableList<Transaction> getFilteredTransactionList() {
-    //return filteredTransactions;
-    //}
-
     @Override
     public ObservableList<Transaction> getFilteredTransactionList() {
         return filteredTransactions;

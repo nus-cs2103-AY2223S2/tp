@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -48,4 +53,20 @@ public class TypicalTransactions {
             .withStatus("closed")
             .withValue("60000")
             .build();
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Transaction txn : getTypicalTransactions()) {
+            ab.addTransaction(txn);
+        }
+        return ab;
+    }
+
+    public static List<Transaction> getTypicalTransactions() {
+        return new ArrayList<>(Arrays.asList(COFFEE_MACHINES_A, COFFEE_MACHINES_B, COFFEE_BEANS, ESPRESSO_MACHINES,
+                COFFEE_FILTERS, COFFEE_POUROVER_SETS, COFFEE_GRINDER_LEASE));
+    }
 }
