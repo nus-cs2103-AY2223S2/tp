@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.sudohr.logic.commands.CommandTestUtil.ID_DESC_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -51,7 +51,7 @@ public class SudoHrParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + ID_DESC_BOB);
+                DeleteCommand.COMMAND_WORD + EID_DESC_BOB);
         assertEquals(new DeleteCommand(new Id(VALID_ID_BOB)), command);
     }
 

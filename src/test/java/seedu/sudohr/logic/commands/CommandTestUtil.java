@@ -2,13 +2,7 @@ package seedu.sudohr.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.sudohr.logic.parser.CliSyntax.*;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -45,6 +39,7 @@ public class CommandTestUtil {
 
     public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
+    public static final String EID_DESC_BOB = " " + PREFIX_EMPLOYEE + VALID_ID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;

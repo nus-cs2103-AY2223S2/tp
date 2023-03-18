@@ -75,7 +75,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete id/1";
+        String deleteCommand = "delete eid/1";
         assertCommandException(deleteCommand, MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND);
     }
 
