@@ -51,6 +51,11 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
     public LocalTime getEndTime() {
         return endTime;
     }
+
+    /**
+     * Gets the day that the event takes place
+     * @return the dayOfWeek
+     */
     public DayOfWeek getDayOfWeek() {
         return dayOfWeek;
     }
@@ -128,7 +133,7 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
             count++;
         }
 
-        if (!isDayBetweenPeriod && count != 0) {
+        if (!isDayBetweenPeriod && !eventDay.equals(this.dayOfWeek)) {
             //day does not fall between start and end day. E.g. FRIDAY does not fall between MONDAY and Thursday
             return false;
         }

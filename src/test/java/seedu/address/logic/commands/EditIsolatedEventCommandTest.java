@@ -6,10 +6,11 @@ import static seedu.address.testutil.SampleDateTimeUtil.THREE_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleDateTimeUtil.TWO_O_CLOCK_VALID;
 import static seedu.address.testutil.SampleEventUtil.SKIING_ISOLATED_EVENT;
 import static seedu.address.testutil.SampleEventUtil.SLEEPING_ISOLATED_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditIsolatedEventCommand.EditEventDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -31,8 +32,8 @@ public class EditIsolatedEventCommandTest {
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptorBuilder("Sleep", TWO_O_CLOCK_VALID,
                 THREE_O_CLOCK_VALID).build();
-        EditIsolatedEventCommand command = new EditIsolatedEventCommand(Index.fromOneBased(1),
-                Index.fromOneBased(1), editEventDescriptor);
+        EditIsolatedEventCommand command = new EditIsolatedEventCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_EVENT, editEventDescriptor);
 
         String expectedMessage = String.format(MESSAGE_SUCCESS, SLEEPING_ISOLATED_EVENT)
                 + " from " + SKIING_ISOLATED_EVENT + " for " + editedPerson.getName();
