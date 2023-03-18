@@ -3,8 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.function.Predicate;
 
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
@@ -16,7 +19,7 @@ import seedu.address.model.person.Volunteer;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
     public static final String MESSAGE_SUCCESS = "Listed all elderly, volunteers and pairs";
 
     @Override

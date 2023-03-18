@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import java.util.HashMap;
+
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
 /**
@@ -9,7 +12,9 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new HashMap<>();
+
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting FriendlyLink as requested ...";
 
     @Override
     public CommandResult execute(Model model) {

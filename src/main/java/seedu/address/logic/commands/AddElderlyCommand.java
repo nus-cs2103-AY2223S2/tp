@@ -12,8 +12,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 
@@ -23,8 +27,22 @@ import seedu.address.model.person.Elderly;
 public class AddElderlyCommand extends Command {
 
     public static final String COMMAND_WORD = "add_elderly";
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database. "
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC_ELDERLY, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+    }
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an elderly to the database.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -33,7 +51,7 @@ public class AddElderlyCommand extends Command {
             + PREFIX_NRIC_ELDERLY + "NRIC "
             + PREFIX_AGE + "AGE "
             + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH) "
-            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -45,8 +63,8 @@ public class AddElderlyCommand extends Command {
             + PREFIX_REGION + "WEST "
             + PREFIX_RISK + "LOW "
             + PREFIX_TAG + "diabetes "
-            + PREFIX_TAG + "lonely"
-            + PREFIX_AVAILABILITY + "2023-05-11 to 2023-05-12";
+            + PREFIX_TAG + "lonely "
+            + PREFIX_AVAILABILITY + "2023-05-11,2023-05-12";
 
     public static final String MESSAGE_SUCCESS = "New elderly added: %1$s";
 

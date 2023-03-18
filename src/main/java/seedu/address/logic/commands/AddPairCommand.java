@@ -8,7 +8,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.pair.exceptions.DuplicatePairException;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
@@ -21,6 +25,13 @@ import seedu.address.model.person.information.Nric;
 public class AddPairCommand extends Command {
 
     public static final String COMMAND_WORD = "add_pair";
+
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
+
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NRIC_ELDERLY, "<elderly_nric>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC_VOLUNTEER, "<volunteer_nric>");
+    }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pairs an elderly and volunteer in FriendlyLink. "
             + "Parameters: "

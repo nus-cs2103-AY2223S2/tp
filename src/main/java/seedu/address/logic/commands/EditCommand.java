@@ -3,14 +3,18 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -18,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -31,18 +36,34 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
+
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+    }
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the NRIC of the person. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: NRIC "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "" + PREFIX_NAME + "NAME "
+            + "" + PREFIX_NRIC + "NRIC "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_AGE + "AGE] "
-            + "[" + PREFIX_NRIC + "NEW_NRIC] "
             + "[" + PREFIX_REGION + "NEW_REGION] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " S4263131J "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"

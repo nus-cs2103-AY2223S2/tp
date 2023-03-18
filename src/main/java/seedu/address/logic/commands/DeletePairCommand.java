@@ -8,9 +8,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.pair.exceptions.PairNotFoundException;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
@@ -22,6 +24,13 @@ import seedu.address.model.person.information.Nric;
  */
 public class DeletePairCommand extends Command {
     public static final String COMMAND_WORD = "delete_pair";
+
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new HashMap<>();
+
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NRIC_ELDERLY, "<elderly_nric>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC_VOLUNTEER, "<volunteer nric>");
+    }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the pair identified by the nric of an elderly and their volunteer.\n"

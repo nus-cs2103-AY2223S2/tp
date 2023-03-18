@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
@@ -12,6 +13,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,6 +22,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 
@@ -28,6 +32,21 @@ import seedu.address.model.person.Elderly;
 public class EditElderlyCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_elderly";
+
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
+
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC_ELDERLY, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+    }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the elderly identified "
             + "by the index number used in the displayed elderly list. "
@@ -41,7 +60,8 @@ public class EditElderlyCommand extends Command {
             + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "RISK] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"

@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,6 +21,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
 
@@ -28,6 +31,21 @@ import seedu.address.model.person.Volunteer;
 public class EditVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_volunteer";
+
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
+
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC_VOLUNTEER, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+    }
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
             + "by the index number used in the displayed volunteer list. "

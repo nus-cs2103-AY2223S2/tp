@@ -3,18 +3,23 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
@@ -24,11 +29,26 @@ import seedu.address.model.person.Volunteer;
 /**
  * Finds and lists all volunteers and elderly in FriendlyLink whose attributes contains any of
  * the specified attributes and their relevant pairs.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
+
+    public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
+
+    static {
+        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
+        COMMAND_PROMPTS.put(PREFIX_AGE, "<age>");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+    }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all volunteers and elderly whose attributes"
             + "matches the given attributes (case-insensitive) and displays them in their respective lists. "
@@ -42,7 +62,8 @@ public class FindCommand extends Command {
             + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_AGE + "AGE] "
             + "[" + PREFIX_RISK + "RISK LEVEL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " n/John";
 
     private final List<Predicate<Person>> sharedFilterList;
