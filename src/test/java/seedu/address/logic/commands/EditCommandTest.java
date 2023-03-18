@@ -154,6 +154,24 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_noOverwrite_NoTagInput_failure() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withTags().build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor, false);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_TAG_ADDED);
+    }
+
+    @Test
+    public void execute_noOverwrite_NoGroupInput_failure() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withGroups().build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor, false);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_GROUP_ADDED);
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY, true);
 
