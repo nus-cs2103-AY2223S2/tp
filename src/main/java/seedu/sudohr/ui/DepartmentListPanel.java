@@ -28,10 +28,10 @@ public class DepartmentListPanel extends UiPart<Region> {
     public DepartmentListPanel(ObservableList<Department> departmentList) {
         super(FXML);
         departmentListView.setItems(departmentList);
-        departmentListView.setCellFactory(listView -> new PersonListViewCell());
+        departmentListView.setCellFactory(listView -> new DepartmentListViewCell());
     }
 
-    class PersonListViewCell extends ListCell<Department> {
+    class DepartmentListViewCell extends ListCell<Department> {
         @Override
         protected void updateItem(Department department, boolean empty) {
             super.updateItem(department, empty);
