@@ -10,7 +10,7 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="always" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="25" GridPane.columnIndex="0">
       <padding>
