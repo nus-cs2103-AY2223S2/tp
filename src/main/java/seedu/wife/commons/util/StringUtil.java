@@ -74,10 +74,12 @@ public class StringUtil {
         requireNonNull(s);
         String capitalizedString = s;
         String[] words = capitalizedString.split(" ");
-        for(int i = 0; i < words.length; i++) {
+
+        for (int i = 0; i < words.length; i++) {
             words[i] = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
             System.out.println(words[i]);
         }
+
         capitalizedString = String.join(" ", words);
         return capitalizedString;
     }
