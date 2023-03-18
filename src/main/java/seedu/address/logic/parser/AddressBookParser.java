@@ -15,8 +15,10 @@ import seedu.address.logic.commands.AddTechnicianCommand;
 import seedu.address.logic.commands.AddVehicleCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteCustomerCommand;
+import seedu.address.logic.commands.DeleteServiceCommand;
 import seedu.address.logic.commands.DeleteVehicleCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -28,6 +30,7 @@ import seedu.address.logic.commands.ListVehiclesCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
+import seedu.address.logic.commands.ViewCustomerCommand;
 import seedu.address.logic.commands.ViewPartCommand;
 import seedu.address.logic.commands.ViewVehicleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -110,8 +113,6 @@ public class AddressBookParser {
         case AddTechnicianCommand.COMMAND_WORD:
             return new AddTechnicianCommandParser().parse(arguments);
 
-        case ViewVehicleCommand.COMMAND_WORD:
-            return new ViewVehicleCommandParser().parse(arguments);
 
         case ListCustomersCommand.COMMAND_WORD:
             return new ListCustomersCommand();
@@ -119,17 +120,30 @@ public class AddressBookParser {
         case ListVehiclesCommand.COMMAND_WORD:
             return new ListVehiclesCommand();
 
+
         case ViewPartCommand.COMMAND_WORD:
             return new ViewPartCommand(arguments.trim());
 
+        case ViewVehicleCommand.COMMAND_WORD:
+            return new ViewVehicleCommandParser().parse(arguments);
+
         case ViewAppointmentCommand.COMMAND_WORD:
             return new ViewAppointmentCommandParser().parse(arguments);
+
+        case ViewCustomerCommand.COMMAND_WORD:
+            return new ViewCustomerCommandParser().parse(arguments);
 
         case DeleteVehicleCommand.COMMAND_WORD:
             return new DeleteVehicleCommandParser().parse(arguments);
 
         case DeleteCustomerCommand.COMMAND_WORD:
             return new DeleteCustomerCommandParser().parse(arguments);
+
+        case DeleteServiceCommand.COMMAND_WORD:
+            return new DeleteServiceCommandParser().parse(arguments);
+
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
