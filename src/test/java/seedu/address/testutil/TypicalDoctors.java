@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
@@ -29,6 +30,14 @@ public class TypicalDoctors {
     public static final Doctor DANIEL = new DoctorBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("danielm@example.com").withSpecialty("Neurosurgery").withYoe("10")
             .withTags("HoD").build();
+
+    // Manually added
+    public static final Doctor ELLA = new DoctorBuilder().withName("Ella Belle").withPhone("87345633")
+            .withEmail("ellab@example.com").withSpecialty("Lung Specialist").withYoe("5")
+            .withTags("Department Head").build();
+    public static final Doctor FIONA = new DoctorBuilder().withName("Fiona Ellen").withPhone("8398631")
+            .withEmail("fiona.ellen@example.com").withSpecialty("Orthopaedic").withYoe("15")
+            .withTags("Surgeon").build();
 
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
