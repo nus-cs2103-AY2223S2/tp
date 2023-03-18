@@ -28,7 +28,8 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
     public FindTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE,
+                        PREFIX_STATUS, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
 
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
