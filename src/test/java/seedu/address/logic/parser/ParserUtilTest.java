@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
@@ -180,12 +181,11 @@ public class ParserUtilTest {
     public void parseTags_collectionWithInvalidTags_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(VALID_TAG_1 + ", " + INVALID_TAG));
     }
-    //TODO: Implement this
-    /*
+
     @Test
     public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseMultiTags(" ").isEmpty());
-    }*/
+    }
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {

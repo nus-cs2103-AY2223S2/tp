@@ -129,6 +129,10 @@ public class ParserUtil {
 
     public static Set<Tag> parseMultiTags(String tags) throws ParseException {
         requireNonNull(tags);
+        if (tags.trim().equals("")) {
+            return new HashSet<>();
+        }
+
         String[] arrayOfTags = tags.split(",");
 
         for (String tagName : arrayOfTags) {
