@@ -37,7 +37,7 @@ Vaccination Management System (VMS) is a **desktop app for managing vaccination 
 
 ## Command line syntax
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info" id="CLI-presentation-format">
 
 **:information_source: Command syntaxes presentation**<br>
 
@@ -88,6 +88,7 @@ The general command line syntax is as follows:<br>
 ##### Additional points
 
 * `--` is used to delimit flags and cannot be present in any of the argument placeholders.
+* Some arguments may require parts which are delimited by `::`.
 * Leading and trailing white spaces in <code><var>ARGUMENTS</var></code> and elements in lists will be ignored.
 
 ### Types
@@ -100,9 +101,10 @@ The list of available components are given in the [components section](#componen
 
 Strings can take on any character sequence that do not contain `--` or new line characters.
 
-#### `<groupName>`
+#### `<group-name>`
 
-A character sequence consisting of only alphanumeric characters, spaces and brackets excluding `<` and `>`.
+A non-blank character sequence consisting of only alphanumeric character and all brackets excluding triangle brackets
+(`<` and `>`). The character limit is **30** characters.
 
 #### `<integer>`
 
@@ -110,7 +112,9 @@ An integer value between `-2147483648` and `2147483647`.
 
 #### `<age>`
 
-An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max value will be evaluated to be equal.
+An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is
+allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max
+value will be evaluated to be equal.
 
 #### `<bloodType>`
 
@@ -144,25 +148,38 @@ The supported date formats are:
 
 Only 8 digit Singapore numbers are allowed.
 
-#### `<requirement>`
+#### `<req>`
 
-`<requirement>` arguments require 2 and only 2 parts. The general syntax is as follows:
+`<req>` represents a requirement. It is used to evaluate if a patient's vaccination records meets a vaccination history
+requirement. For every vaccination that a patient has taken, that vaccination's groups are tested on all requirements
+that the vaccination has. A check is done to check if that vaccination's groups contains any or all of the groups
+within the requirement set and its truth value depends on the [type](#req-type) of the requirement. If all requirements
+are satisfied, the check passes and the patient satisfies the history requirement of the vaccination and vice versa.
 
-```text
-{reqType <reqType>} :: {reqSet <list <groupName>>}
-```
+`<req>` arguments require 2 and only 2 parts. The general syntax is as follows:
 
-* The position of `reqType` and `reqSet` arguments are not substitutable.
-* `reqSet` cannot be an empty list
-* Duplicates withing `reqSet` are allowed but are omitted.
+<pre>
+<var>REQ_TYPE</var> :: ...<var>REQUIREMENT</var>...
+</pre>
 
-#### `<reqType>`
+* <code><var>REQ_TYPE</var></code> : `<req-type>` - The type of the requirement.
+* <code><var>REQUIREMENT</var></code> : `<group-name>` - An element that makes up the requirement set.
+
+#### `<req-type>`
 
 Only the following values are allowed:
 
-* `ALL` - all groups withing the `grpSet` of the requirement are required for a `true` evaluation.
-* `ANY` - at least one occurrence of a group within the `grpSet` of the requirement is required for a `true` evaluation.
-* `NONE` - zero occurrence of any groups in the `grpSet` of the requirement is required for a `true` evaluation.
+* `ALL` - all groups of the requirement set must be present to pass. Example, a vaccination requirement of `G1, G2, G3`
+  will require a patient to have taken a vaccination with all 3 groups. A vaccination with `G1, G2, G3` and
+  `G1, G2, G3, G4` will pass but a vaccination with `G1, G2` groups will not.
+* `ANY` - at least one group within the requirement set must be present to pass. Example, a vaccination requirement of
+  `G1, G2, G3` will require the patient to have taken a vaccination that has any of the 3 groups. A vaccination with
+  `G1` and `G1, G3` will pass but a vaccination with `G4, G5` groups will not.
+* `NONE` - none of the groups within the requirement set must be present to pass. Example, a requirement with
+  `G1, G2, G3` will require the patient to not have taken any vaccination that are classified as any of the 3 groups. A
+  vaccination with `G1` and `G1, G3` will fail while a vaccination with `G4, G5` will pass. A failure on this type will
+  break the testing process of the patient and the patient will immediately fail the history requirement of the
+  vaccination. In other words, the patient will not be able to take that vaccination.
 
 ## Components
 
@@ -186,19 +203,19 @@ help
 
 ##### Patient data
 
-| Variable      | Is needed | Type                  | Accept multiple |
-| ------------- | --------- | --------------------- | --------------- |
-| `name`        | YES       | `<name>`              | NO              |
-| `phone`       | YES       | `<phone-number>`      | NO              |
-| `dateOfBirth` | YES       | `<date>`              | NO              |
-| `bloodType`   | YES       | `<bloodType>`         | NO              |
-| `allergy`     | NO        | list of `<groupName>` | YES             |
-| `vaccine`     | NO        | list of `<groupName>` | YES             |
+| Variable      | Is needed | Type                   | Accept multiple |
+| ------------- | --------- | ---------------------- | --------------- |
+| `name`        | YES       | `<name>`               | NO              |
+| `phone`       | YES       | `<phone-number>`       | NO              |
+| `dateOfBirth` | YES       | `<date>`               | NO              |
+| `bloodType`   | YES       | `<bloodType>`          | NO              |
+| `allergy`     | NO        | list of `<group-name>` | YES             |
+| `vaccine`     | NO        | list of `<group-name>` | YES             |
 
 #### `add` - Add a patient
 
 ```text
-patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string> --a <groupName> --v <groupName>
+patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string> --a <group-name> --v <group-name>
 patient add --name <string> --phone <phone-number> --d <date> --bloodtype <string>
 ```
 
@@ -275,6 +292,17 @@ appointment list
 
 ### `vaccination` - Vaccination functionalities
 
+Vaccinations are uniquely identified by their names. Below shows a table describing the attributes vaccination has.
+
+| Attribute               | Type                 | Description                                                       | Default value |
+| ----------------------- | -------------------- | ----------------------------------------------------------------- | ------------- |
+| Name                    | `<group-name>`       | The name of the vaccination.                                      | -             |
+| Groups                  | `...<group-name>...` | The groups the vaccination<br>classifies under                    | `empty list`  |
+| Minimum<br>age          | `<age>`              | The minimum age (inclusive)<br>to take the vaccination            | `0`           |
+| Maximum<br>age          | `<age>`              | The maximum age (inclusive)<br>to take the vaccination            | `200`         |
+| Ingredients             | `<group-name>`       | Ingredients of the vaccination.<br>Similar to patient's allergies | `empty list`  |
+| History<br>requirements | `...<req>...`        | The list of requirements to<br>take the vaccination               | `empty list`  |
+
 #### `add` - Add a vaccination type
 
 Adds a new vaccination type as defined in the command into the system. If any of the optional arguments are omitted,
@@ -287,13 +315,12 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
     [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
 </pre>
 
-* <code><var>VAX_NAME</var></code> : `<groupName>` - the vaccination to create.
-* <code><var>GROUP</var></code> : `<groupName>` - the groups the vaccination type classifies under.
-* <code><var>MIN_AGE</var></code> : `<age>` - the minimum required age (inclusive) to take the vaccine.
-* <code><var>MAX_AGE</var></code> : `<age>` - the maximum require age (inclusive) to take the vaccine.
-* <code><var>INGREDIENT</var></code> : `<requirement>` - ingredient of the vaccine.
-* <code><var>HISTORY_REQ</var></code> : `<requirement>` - the vaccination group history requirement to
-  take the vaccine.
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>GROUP</var></code> : `<group-name>`
+* <code><var>MIN_AGE</var></code> : `<Age>`
+* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>INGREDIENT</var></code> : `<group-name>`
+* <code><var>HISTORY_REQ</var></code> : `<req>`
 
 ##### Example
 
@@ -310,23 +337,70 @@ Copy and paste:<br>
 Output:<br>
 {some ss}
 
+##### Restrictions
+
+* The name of the vaccination being added must not exist in the system.
+
 #### `edit` - Edit a vaccination type
 
+Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
+are omitted, they will be set to what they were before.
+
+<pre>
+vaccination add <var>VAX_NAME</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
+    [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
+    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>NEW_NAME</var></code> : `<group-name>`
+* <code><var>GROUP</var></code> : `<group-name>`
+* <code><var>MIN_AGE</var></code> : `<Age>`
+* <code><var>MAX_AGE</var></code> : `<Age>`
+* <code><var>INGREDIENT</var></code> : `<group-name>`
+* <code><var>HISTORY_REQ</var></code> : `<req>`
+
+##### Example
+
+After the vaccination add example,
+
 ```text
-vaccination edit <groupName> [{--name <groupName>}] [{groups <list <groupName>>}] [--lal {minAge <age>}] [--ual {maxAge <age>}] [--s {spacing <integer>}] [--a {allergyReq {requirement}}]... [--h {historyReq <requirement>}]...
+vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) \
+    --groups DOSE 1, PFIZER, VACCINATION \
+    --a allergy1, allergy2, allergy3 \
+    --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER \
 ```
 
-* **name** - the name of the vaccination type to edit.
-* **groups** - the list of groups the vaccination type classifies under.
-* **minAge** - the minimum required age (inclusive) to take the vaccine.
-* **maxAge** - the maximum require age (inclusive) to take the vaccine.
-* **spacing** - the minimum time in days from the last vaccination taken to take this vaccine.
-* **allergyReq** - the allergy requirement to take the vaccine.
-* **historyReq** - the vaccination group history requirement to take the vaccine.
+Copy and paste:<br>
+`vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 1, PFIZER, VACCINATION --a allergy1, allergy2, allergy3 --h NONE::DOES 2 --h ALL::DOSE 1, PFIZER`
+<br><br>
+Output:<br>
+{some ss}
 
-Example:
+##### Restrictions
 
-* `vaccination edit Pfizer (Dose 1) --n Pfizer (Dose 2) --groups DOSE 2, PFIZER, VACCINATION --lal 5 --s 56 --a NONE::allergy1, allergy2, allergy4 --h NONE::DOES 1`
+* <code><var>VAX_NAME</var></code> must exist in the system.
+* <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as <code><var>VAX_NAME</var></code>.
+
+#### `delete` - Deletes a vaccination
+
+Deletes the vaccination with the specified name from the system.
+
+<pre>
+vaccination delete <var>VAX_NAME</var>
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+
+##### Example
+
+After the vaccination add example,
+
+```text
+vaccination delete Pfizer (Dose 1)
+```
+Output:<br>
+{some ss}
 
 ## Advance
 
@@ -341,34 +415,66 @@ Locations:
 If your changes to the data file makes its format invalid, VMS will discard all data and start with an empty data file at the next run.
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: JSON syntax presentation**<br>
+
+* The following will have the same meaning as <a href="CLI-presentation-format">CLI presentation</a>.
+  * **Pink italicized bolded capitalized words** (<code><var>PLACEHOLDER_EXAMPLE</var></code>)
+  * **Three dots with no spaces** (<code><var>ARG</var>...</code> and <code>...<var>ARG</var>...</code>)
+  * **Triangle brackets** (`<` and `>`)
+* **Square brackets** (`[` and `]`) will no longer mean an optional argument, instead it will be a required character
+  for JSON syntax.
+
+</div>
+
 ### Vaccination type JSON
 
-Vaccination type JSON files will have the following format:
+Vaccination data are stored as a JSON file in `[JAR file location]/data/vaxtype.json`. It has the following syntax
 
 ##### Overall file
 
-| Variable | Is needed | Type                      | Default value |
-| -------- | --------- | ------------------------- | ------------- |
-| `types`  | YES       | List of vaccination types | -             |
+<pre>
+{
+  "types": [...<var>VACCINATION</var>...]
+}
+</pre>
 
-##### Vaccination type
+##### Vaccination
 
-| Variable      | Is needed | Type                    | Default value |
-| ------------- | --------- | ----------------------- | ------------- |
-| `name`        | YES       | `<groupName>`           | -             |
-| `groups`      | NO        | list of `<groupName>`   | `[]`          |
-| `minAge`      | NO        | `<age>`                 | `0`           |
-| `maxAge`      | NO        | `<age>`                 | `200`         |
-| `minSpacing`  | NO        | `integer`               | `2147483647`  |
-| `historyReqs` | NO        | list of `<requirement>` | `[]`          |
-| `allergyReqs` | NO        | list of `<requirement>` | `[]`          |
+<pre>
+{
+  "name": <var>VAX_NAME</var>,
+  "groups": [...<var>GROUP</var>...],
+  "minAge": <var>MIN_AGE</var>,
+  "maxAge": <var>MAX_AGE</var>,
+  "ingredients": [...<var>INGREDIENT</var>],
+  "historyReqs": [...<var>REQUIREMENT</var>...]
+}
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<group-name>`
+* <code><var>GROUP</var></code> : `<group-name>`
+* <code><var>MIN_AGE</var></code> : `<age>`
+* <code><var>MAX_AGE</var></code> : `<age>`
+* <code><var>INGREDIENT</var></code> : `<group-name>`
+* <code><var>REQUIREMENT</var></code> : `<req>`
+
+###### Notes
+
+* All nodes are optional except for `"name"`.
 
 ##### Requirement
 
-| Variable  | Is needed             | Type                  | Default value |
-| --------- | --------------------- | --------------------- | ------------- |
-| `reqType` | YES                   | `<reqType>`           | -             |
-| `reqSet`  | YES (cannot be empty) | list of `<groupName>` | -             |
+<pre>
+{
+  "reqType": <var>REQ_TYPE</var>,
+  "reqSet": [...<var>REQUIREMENT</var>...]
+}
+</pre>
+
+* <code><var>REQ_TYPE</var></code> : `<req-type>`
+* <code><var>REQUIREMENT</var></code> : `<group-name>`
 
 ##### Example
 
@@ -379,27 +485,21 @@ Vaccination type JSON files will have the following format:
       "name": "Dose 1 (Pfizer)",
       "groups": ["DOSE 1", "Pfizer", "Vaccination"],
       "minAge": 5,
-      "minSpacing": 56,
       "historyReqs": [
         {
           "reqType": "NONE",
           "reqSet": ["DOSE 1"]
         }
       ],
-      "allergyReqs": [
-        {
-          "reqType": "NONE",
-          "reqSet": [
-            "ALC-0315",
-            "ALC-0159",
-            "DSPC",
-            "Cholesterol",
-            "Sucrose",
-            "Phosphate",
-            "Tromethamine",
-            "Tromethamine hydrochloride"
-          ]
-        }
+      "ingredients": [
+        "ALC-0315",
+        "ALC-0159",
+        "DSPC",
+        "Cholesterol",
+        "Sucrose",
+        "Phosphate",
+        "Tromethamine",
+        "Tromethamine hydrochloride"
       ]
     }
   ]
