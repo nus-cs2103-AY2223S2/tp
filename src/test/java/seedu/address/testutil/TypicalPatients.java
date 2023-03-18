@@ -7,47 +7,67 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.Status;
 
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
 public class TypicalPatients {
 
-    public static final Patient ALICE = new DoctorBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends")
-            .withSpecialty("General Medicine")
-            .withYoe("5")
+    public static final Patient ZAYDEN = new PatientBuilder()
+            .withName("Zayden Lim")
+            .withEmail("zayden@gmail.com")
+            .withPhone("23456978")
+            .withTags("teenager")
+            .withHeight("1.6")
+            .withWeight("64")
+            .withDiagnosis("Asthma")
+            .withStatus(Status.getDummyValidStatus(0))
+            .withRemark("Compliant")
             .build();
-    public static final Doctor BENSON = new DoctorBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withPhone("98765432").withSpecialty("General Medicine")
-            .withYoe("5").withTags("owesMoney", "friends").build();
 
-    public static final Doctor CARL = new DoctorBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("carlk@example.com").withSpecialty("General Medicine").withYoe("5").build();
+    public static final Patient YANNIE = new PatientBuilder()
+            .withName("Yannie Teo")
+            .withEmail("yannie@hotmail.com")
+            .withPhone("23456234")
+            .withTags("high-priority")
+            .withHeight("1.57")
+            .withWeight("56")
+            .withDiagnosis("Cancer")
+            .withStatus(Status.getDummyValidStatus(1))
+            .withRemark("Special Attention Needed")
+            .build();
 
-    public static final Doctor DANIEL = new DoctorBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("danielm@example.com").withSpecialty("Neurosurgery").withYoe("10")
-            .withTags("HoD").build();
+    public static final Patient XANNY = new PatientBuilder()
+            .withName("Xanny Peters")
+            .withEmail("xannypeters@outlook.com")
+            .withPhone("25466234")
+            .withTags("low-priority")
+            .withHeight("1.8")
+            .withWeight("76")
+            .withDiagnosis("Pneumonia")
+            .withStatus(Status.getDummyValidStatus(3))
+            .withRemark("Needs to be warded")
+            .build();
+
+    public static final Patient WALTER = new PatientBuilder()
+            .withName("Walter White")
+            .withEmail("breakingbad@outlook.com")
+            .withPhone("18001800")
+            .withTags("severe-priority")
+            .withHeight("1.9")
+            .withWeight("68")
+            .withDiagnosis("Eating Disorder")
+            .withStatus(Status.getDummyValidStatus(5))
+            .withRemark("Check back regarding meal plan")
+            .build();
 
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalDoctors() {} // prevents instantiation
+    private TypicalPatients() {} // prevents instantiation
 
-    /**
-     * Returns an {@code AddressBook} with all the typical doctors.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Doctor doctor : getTypicalDoctors()) {
-            ab.addDoctor(doctor);
-        }
-        return ab;
-    }
-
-    public static List<Doctor> getTypicalDoctors() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL));
+    public static List<Patient> getTypicalPatients() {
+        return new ArrayList<>(Arrays.asList(ZAYDEN));
     }
 }

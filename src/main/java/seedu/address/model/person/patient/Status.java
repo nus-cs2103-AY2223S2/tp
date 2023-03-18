@@ -2,6 +2,9 @@ package seedu.address.model.person.patient;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a Patient's hospitalization status in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String)}
@@ -14,6 +17,10 @@ public class Status {
 
     public static final String VALIDATION_REGEX = "(?i)^(Inpatient|Outpatient|Observation|Emergency Department"
             + "|Intensive Care Unit|Transitional Care)$";
+
+    private static final ArrayList<String> possibleStatuses = new ArrayList<>(
+            List.of("Inpatient", "Outpatient", "Observation", "Emergency Department",
+                    "Intensive Care Unit" ,"Transitional Care"));
 
     private final String status;
 
@@ -42,7 +49,18 @@ public class Status {
      * @return a valid Status string.
      */
     public static String getDummyValidStatus() {
-        return "Inpatient";
+        return getDummyValidStatus(0);
+    }
+
+    /**
+     * Returns a valid Status string corresponding with the given index.
+     *
+     * @param i an index specifying the status to retrieve.
+     * @return a valid Status string.
+     */
+    public static String getDummyValidStatus(int i) {
+        assert (i < possibleStatuses.size());
+        return possibleStatuses.get(i);
     }
 
     /**
