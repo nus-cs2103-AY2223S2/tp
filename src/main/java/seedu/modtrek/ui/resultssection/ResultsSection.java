@@ -2,6 +2,7 @@ package seedu.modtrek.ui.resultssection;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -16,6 +17,8 @@ import seedu.modtrek.ui.progresssection.ProgressSection;
  */
 public class ResultsSection extends UiPart<Region> {
     private static final String FXML = "resultssection/ResultsSection.fxml";
+
+    private ObservableList<Module> modules;
 
     @FXML
     private VBox resultsSection;
@@ -35,16 +38,24 @@ public class ResultsSection extends UiPart<Region> {
      */
     public ResultsSection(ObservableList<Module> modules) {
         super(FXML);
+
+        String[] buttonLabels = new String[] {"Degree Progress", "Module List"};
+        Runnable[] buttonHandlers = new Runnable[] {() -> displayProgress(), () -> displayAllModules(modules)};
+        displayFooter(buttonLabels, buttonHandlers);
+
 //        displayAllModules(modules);
+
         displayProgress();
     }
 
     // TODO: next iteration
     public void displayProgress() {
+        body.getChildren().clear();
+
         headerTitle.setText("Your Degree Progress");
         headerSubtitle.setText("in summary");
 
-        body.getChildren().add(new ProgressSection().getRoot());
+        renderSection(new ProgressSection().getRoot());
     }
 
     /**
@@ -54,7 +65,7 @@ public class ResultsSection extends UiPart<Region> {
      */
     public void displayAllModules(ObservableList<Module> modules) {
         headerTitle.setText("Your Modules");
-        headerSubtitle.setText("sorted by year");
+        headerSubtitle.setText("in total");
 
         String[] buttonLabels = new String[] {"Year 1", "Year 2", "Year 3", "Year 4"};
 
@@ -74,10 +85,10 @@ public class ResultsSection extends UiPart<Region> {
         buttonHandlers[3] = year4ModulesRenderer;
 
 
-        FooterButtonGroup footerButtonGroup =
-                new FooterButtonGroup(buttonLabels, buttonHandlers);
-        resultsSection.getChildren().remove(resultsSection.lookup(".footer-button-group"));
-        resultsSection.getChildren().add(footerButtonGroup.getRoot());
+//        FooterButtonGroup footerButtonGroup =
+//                new FooterButtonGroup(buttonLabels, buttonHandlers);
+//        resultsSection.getChildren().remove(resultsSection.lookup(".footer-button-group"));
+//        resultsSection.getChildren().add(footerButtonGroup.getRoot());
 
         displayModules(modules);
     }
@@ -103,8 +114,19 @@ public class ResultsSection extends UiPart<Region> {
      */
     private void displayModules(ObservableList<Module> modules) {
         ModuleSection moduleSection = new ModuleSection(modules);
+        renderSection(moduleSection.getRoot());
+    }
+
+    private void displayFooter(String[] buttonLabels, Runnable[] buttonHandlers) {
+        FooterButtonGroup footerButtonGroup =
+                new FooterButtonGroup(buttonLabels, buttonHandlers);
+        resultsSection.getChildren().remove(resultsSection.lookup(".footer-button-group"));
+        resultsSection.getChildren().add(footerButtonGroup.getRoot());
+    }
+
+    private void renderSection(Node section) {
         body.getChildren().clear();
-        body.getChildren().add(moduleSection.getRoot());
+        body.getChildren().add(section);
     }
 
     /**

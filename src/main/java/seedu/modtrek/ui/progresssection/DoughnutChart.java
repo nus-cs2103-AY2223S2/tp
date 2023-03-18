@@ -126,7 +126,7 @@ public class DoughnutChart extends PieChart {
 
             String tag = completeData.getName().split("_")[0];
             Text completeLabel = new Text(labelTexts.get(tag));
-            completeLabel.getStyleClass().addAll("h4");
+            completeLabel.getStyleClass().addAll("p1");
             completeLabel.setStyle("-fx-fill: -tag-" + tagColors.get(tag) + ";");
             completeLabel.setTextAlignment(TextAlignment.CENTER);
 
