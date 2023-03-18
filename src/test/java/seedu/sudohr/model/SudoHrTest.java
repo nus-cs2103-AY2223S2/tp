@@ -453,6 +453,7 @@ public class SudoHrTest {
         assertEquals(expectedSudoHr, sudoHr);
     }
 
+
     // edited employee change to duplicated phone number shared with someone SudoHR
     @Test
     public void setEmployee_editedEmployeeDuplicatedPhoneNumber_throwsDuplicatePhoneNumberException() {
@@ -530,6 +531,7 @@ public class SudoHrTest {
 
         assertEquals(expectedSudoHr, sudoHr);
     }
+
 
     // edited employee change to duplicated email as someone SudoHR
     @Test
