@@ -19,6 +19,7 @@ import seedu.address.logic.location.linklocation.LinkLocationCommandFactory;
 import seedu.address.logic.location.unlinklocation.UnlinkLocationCommandFactory;
 import seedu.address.logic.pilot.addpilot.AddPilotCommandFactory;
 import seedu.address.logic.pilot.deletepilot.DeletePilotCommandFactory;
+import seedu.address.logic.pilot.linkpilot.LinkPilotCommandFactory;
 import seedu.address.logic.plane.addplane.AddPlaneCommandFactory;
 import seedu.address.logic.plane.deleteplane.DeletePlaneCommandFactory;
 import seedu.address.logic.toplevel.changemode.ChangeModeCommandFactory;
@@ -35,27 +36,29 @@ public class WingmanParser extends FactoryParser {
     private static final List<CommandGroup> COMMAND_GROUPS = List.of(
         new CommandGroup(OperationMode.PILOT, List.of(
             new AddPilotCommandFactory(),
-            new DeletePilotCommandFactory()
+            new DeletePilotCommandFactory(),
+            new LinkPilotCommandFactory()
         )),
         new CommandGroup(OperationMode.CREW, List.of(
-                new AddCrewCommandFactory(),
-                new DeleteCrewCommandFactory()
+            new AddCrewCommandFactory(),
+            new DeleteCrewCommandFactory()
         )),
         new CommandGroup(OperationMode.PLANE, List.of(
-                new AddPlaneCommandFactory(),
-                new DeletePlaneCommandFactory()
+            new AddPlaneCommandFactory(),
+            new DeletePlaneCommandFactory(),
+            new LinkPlaneCommandFactory()
         )),
         new CommandGroup(OperationMode.LOCATION, List.of(
-                new AddLocationCommandFactory(),
-                new DeleteLocationCommandFactory(),
-                new LinkLocationCommandFactory(),
-                new UnlinkLocationCommandFactory()
+            new AddLocationCommandFactory(),
+            new DeleteLocationCommandFactory(),
+            new LinkLocationCommandFactory(),
+            new UnlinkLocationCommandFactory()
         )),
         new CommandGroup(OperationMode.FLIGHT, List.of(
-                new AddFlightCommandFactory(),
-                new DeleteFlightCommandFactory(),
-                new LinkPlaneCommandFactory(),
-                new UnlinkPlaneCommandFactory()
+            new AddFlightCommandFactory(),
+            new DeleteFlightCommandFactory(),
+            new LinkPlaneCommandFactory(),
+            new UnlinkPlaneCommandFactory()
         ))
     );
 
