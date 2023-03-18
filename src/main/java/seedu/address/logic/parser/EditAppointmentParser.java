@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditCommand;
@@ -49,8 +48,7 @@ public class EditAppointmentParser implements Parser<EditAppointmentCommand> {
         }
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
-        // Todo: check if ParseUtil.parseInt throws errors for non-Int
-        int id = ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get());
+
         editAppointmentDescriptor.setId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get()));
 
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {

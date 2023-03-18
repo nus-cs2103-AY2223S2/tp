@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -200,7 +199,7 @@ public class EditAppointmentCommand extends RedoableCommand {
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return getId() == (e.getId())
+            return getId() == (e.getId()) //not sure if need this id checking
                     && getCustomerId().equals(e.getCustomerId())
                     && getTimeDate().equals(e.getTimeDate())
                     && getStaffIds().equals(e.getStaffIds());
