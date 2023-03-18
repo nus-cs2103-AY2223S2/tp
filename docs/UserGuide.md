@@ -18,7 +18,11 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 2. Type the command in the command box.
 
 3. Press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
-
+- Nav
+  - `nav`: Navigates to the top-most context (root)
+  - `nav {module_code / lecture_name}`: Navigates relative to the current context to a module or lecture context
+  - `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`: Navigates directly to the specified module or lecture context
+  - `navb`: Navigates to the parent context of the current context
 - List
   - `list /module`: Lists the names of all the recorded modules
   - `list /module /{module_code}`: Lists all the videos recorded in that module code
@@ -63,6 +67,30 @@ Refer to the [Features](#features) below for details of each command.
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
+
+### Navigate to the Root Context
+Sets the current context to the root context
+
+Format: `nav`
+
+### Navigate Relatively
+Navigates relative to the current context to a module or lecture context
+
+Format: `nav {module_code / lecture_name}`
+- `module_code` has to belong to an existing module that is a child of the current context
+- `lecture_name` has to belong to an existing lecture that is a child of the current context
+
+### Navigate Directly
+Navigates directly to the specified module or lecture context
+
+Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
+- `module_code` has to belong to an existing module
+- `lecture_name` has to belong to an existing lecture
+
+### Navigate Backwards
+Navigates to the parent context of the current context
+
+Format: `navb`
 
 ### Add a Module
 Adds a module to Le Tracker
@@ -113,7 +141,7 @@ Format: `delete-module CS2040`
 - Deletes the module of the specified `module_code`
 - If the module does not exist, nothing happens
 
-Examples: 
+Examples:
 - `delete-module CS2040`
 
 ### Delete a Lecture
