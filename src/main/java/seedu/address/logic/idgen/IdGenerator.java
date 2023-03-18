@@ -23,6 +23,8 @@ public class IdGenerator {
     private static final Queue<Integer> unusedServiceIds = new PriorityQueue<>();
     private static final SortedSet<Integer> usedAppointmentIds = new TreeSet<>();
     private static final Queue<Integer> unusedAppointmentIds = new PriorityQueue<>();
+    private static final SortedSet<Integer> usedStaffIds = new TreeSet<>();
+    private static final Queue<Integer> unusedStaffIds = new PriorityQueue<>();
 
     private IdGenerator() {
     }
@@ -56,6 +58,10 @@ public class IdGenerator {
         return generateId(usedAppointmentIds, unusedAppointmentIds);
     }
 
+    public static int generateStaffId() {
+        return generateId(usedStaffIds, unusedStaffIds);
+    }
+
     /**
      * Saves state of ID generator to specified path
      *
@@ -63,8 +69,11 @@ public class IdGenerator {
      * @throws IOException If error occurs while saving state
      */
     public static void saveState(Path path) throws IOException {
-        IdGeneratorState state = new IdGeneratorState(usedCustomerIds, unusedCustomerIds, usedVehicleIds,
-                unusedVehicleIds, usedServiceIds, unusedServiceIds);
+        IdGeneratorState state = new IdGeneratorState(
+            usedCustomerIds, unusedCustomerIds,
+            usedVehicleIds, unusedVehicleIds,
+            usedServiceIds, unusedServiceIds,
+            usedStaffIds, unusedStaffIds);
         Files.createDirectories(path);
         path = path.resolve(FILE_NAME);
         ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(path));
@@ -93,6 +102,8 @@ public class IdGenerator {
             unusedVehicleIds.addAll(state.getUnusedVehicleIds());
             usedServiceIds.addAll(state.getUsedServiceIds());
             unusedServiceIds.addAll(state.getUnusedServiceIds());
+            usedStaffIds.addAll(state.getUsedStaffIds());
+            unusedStaffIds.addAll(state.getUnusedStaffIds());
         } else {
             throw new ClassCastException();
         }
@@ -115,6 +126,30 @@ public class IdGenerator {
         unusedAppointmentIds.add(id);
     }
 
+    public static void setStaffIdUnused(int id) {
+        unusedStaffIds.add(id);
+    }
+
+    public static void setCustomerIdUsed(int id) {
+        usedCustomerIds.add(id);
+    }
+
+    public static void setVehicleIdUsed(int id) {
+        usedVehicleIds.add(id);
+    }
+
+    public static void setServiceIdUsed(int id) {
+        usedServiceIds.add(id);
+    }
+
+    public static void setAppointmentIdUsed(int id) {
+        usedAppointmentIds.add(id);
+    }
+
+    public static void setStaffIdUsed(int id) {
+        usedStaffIds.add(id);
+    }
+
     /**
      * Resets the ID generator to default state
      */
@@ -125,5 +160,7 @@ public class IdGenerator {
         unusedVehicleIds.clear();
         usedServiceIds.clear();
         unusedServiceIds.clear();
+        usedStaffIds.clear();
+        unusedStaffIds.clear();
     }
 }

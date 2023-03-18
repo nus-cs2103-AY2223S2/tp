@@ -15,6 +15,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.Service;
@@ -34,8 +35,9 @@ public class ModelManager implements Model {
     private final FilteredList<Technician> filteredTechnicians;
     private final FilteredList<Service> filteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
-    //    private final FilteredList<Part> filteredParts;
-    //    private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Appointment> filteredAppointment;
+
+    private final PartMap partMap;
     private final Shop shop;
 
     // Mapped
@@ -60,8 +62,9 @@ public class ModelManager implements Model {
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
         filteredServices = new FilteredList<>(this.shop.getServiceList());
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
-        //        filteredParts = new FilteredList<>(this.shop.getPartList());
-        //        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        filteredAppointment = new FilteredList<>(this.shop.getAppointmentList());
+        partMap = this.shop.getPartMap();
+        //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
         customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
         vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
@@ -143,6 +146,7 @@ public class ModelManager implements Model {
     }
 
     // ==== For Customers ==
+
     @Override
     public ObservableList<Customer> getFilteredCustomerList() {
         return filteredCustomers;
@@ -175,18 +179,19 @@ public class ModelManager implements Model {
         //        }
     }
 
-    //    @Override
-    //    public void deleteCustomer(Customer target) {
-    //        addressBook.removeCustomer(target);
-    //    }
-    //
-    //    @Override
-    //    public void setCustomer(Customer target, Customer editedPerson) {
-    //        requireAllNonNull(target, editedPerson);
-    //        addressBook.setCustomer(target, editedPerson);
-    //    }
+    @Override
+    public void deleteCustomer(Customer target) {
+        this.shop.removeCustomer(target);
+    }
+
+    @Override
+    public void setCustomer(Customer target, Customer editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        this.shop.setCustomer(target, editedPerson);
+    }
 
     // ==== For Vehicles ==
+
     @Override
     public ObservableList<Vehicle> getFilteredVehicleList() {
         return filteredVehicles;
@@ -212,7 +217,14 @@ public class ModelManager implements Model {
         return this.shop.hasVehicle(vehicleId);
     }
 
+    @Override
+    public void deleteVehicle(Vehicle target) {
+        this.shop.removeVehicle(target);
+    }
+
+
     // -------------
+
     /**
      * Adds service
      *
@@ -232,6 +244,11 @@ public class ModelManager implements Model {
         return this.shop.hasService(serviceId);
     }
 
+    @Override
+    public void deleteAppointment(Appointment target) {
+        this.shop.removeAppointment(target);
+    }
+
     // -------------
 
     /**
@@ -244,7 +261,9 @@ public class ModelManager implements Model {
         this.shop.addAppointment(appointment);
     }
 
+
     // -------------
+
     /**
      * Adds part
      *
@@ -264,6 +283,16 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPart(String partName) {
         return this.shop.hasPart(partName);
+    }
+
+    @Override
+    public void addTechnician(Technician technician) {
+        this.shop.addTechnician(technician);
+    }
+
+    @Override
+    public boolean hasTechnician(int technicianId) {
+        return this.shop.hasTechnician(technicianId);
     }
 
     // ==== Mapped ==
@@ -301,6 +330,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointment;
+    }
+
+    @Override
+    public PartMap getPartMap() {
+        return partMap;
+    }
+
+    @Override
     public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
         requireNonNull(predicate);
         filteredTechnicians.setPredicate(predicate);
@@ -310,6 +349,12 @@ public class ModelManager implements Model {
     public void updateFilteredServiceList(Predicate<Service> predicate) {
         requireNonNull(predicate);
         filteredServices.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointment.setPredicate(predicate);
     }
 
     @Override
@@ -329,6 +374,11 @@ public class ModelManager implements Model {
     //        requireNonNull(predicate);
     //        filteredAppointment.setPredicate(predicate);
     //    }
+    @Override
+    public void updatePartsMap() {
+        //todo: GUI stuff for printing!
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
