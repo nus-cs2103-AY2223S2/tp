@@ -3,8 +3,8 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DECK_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDIUM;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCards.LOOP;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
@@ -47,9 +47,9 @@ public class MasterDeckTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two cards with the same identity fields
-        Card editedAlice = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
+        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE)
                 .build();
-        List<Card> newCards = Arrays.asList(LOOP, editedAlice);
+        List<Card> newCards = Arrays.asList(LOOP, editedLoop);
         MasterDeckStub newData = new MasterDeckStub(newCards);
 
         assertThrows(DuplicatePersonException.class, () -> masterDeck.resetData(newData));
@@ -74,9 +74,9 @@ public class MasterDeckTest {
     @Test
     public void hasCard_cardWithSameIdentityFieldsInMasterDeck_returnsTrue() {
         masterDeck.addCard(LOOP);
-        Card editedAlice = new CardBuilder(LOOP).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD)
+        Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE)
                 .build();
-        assertTrue(masterDeck.hasCard(editedAlice));
+        assertTrue(masterDeck.hasCard(editedLoop));
     }
 
     @Test

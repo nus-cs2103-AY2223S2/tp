@@ -1,15 +1,17 @@
 {
   "cards": [ {
-    "question": "Alice Pauline",
-    "answer": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ],
-    "deck" : "Default"
+    "question": "What is a loop",
+    "answer": "A construct that repeats instructions until a condition is met",
+    "tagged": [ "Hard" ],
+    "deck" : "Programming Concepts"
   }, {
-    "question": "Alice Pauline",
-    "answer": "4th street",
-    "deck" : "Default"
+    "question": "What is a loop",
+    "answer": "A construct that repeats instructions until a condition is met",
+    "deck" : "Science"
   } ],
   "decks" : [ {
-    "deckName" : "Default"
+    "deckName" : "Science"
+  }, {
+    "deckName" : "Programming Concepts"
   } ]
 }
