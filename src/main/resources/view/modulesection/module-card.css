@@ -7,6 +7,9 @@
 
     -fx-background-color: -dark-grey;
 }
+.module-card-incomplete {
+    -fx-opacity: 0.5;
+}
 .module-card-placeholder {
     visibility: hidden;
 }
