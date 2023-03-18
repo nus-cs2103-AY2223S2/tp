@@ -20,7 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Person} objects with Time to be used in tests.
  */
 public class PersonWithTime {
 
@@ -62,7 +62,7 @@ public class PersonWithTime {
   private PersonWithTime() {} // prevents instantiation
 
   /**
-   * Returns an {@code AddressBook} with all the typical persons.
+   * Returns an {@code AddressBook} with all the persons with Time.
    */
   public static AddressBook getWithTimeAddressBook() {
     AddressBook ab = new AddressBook();
