@@ -70,7 +70,14 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
+    public static final String VALID_PROJECT_NAME_ALPHA = "Alpha Project";
+    public static final String VALID_PROJECT_NAME_BRAVO = "Bravo Project";
+    public static final String VALID_PROJECT_REPO_HOST_ALPHA = "alice-pauline";
+    public static final String VALID_PROJECT_REPO_HOST_BRAVO = "carl-kurz";
+    public static final String VALID_PROJECT_REPO_NAME_ALPHA = "AlphaRepo";
+    public static final String VALID_PROJECT_REPO_NAME_BRAVO = "BravoRepo";
+    public static final String VALID_PROJECT_DEADLINE_ALPHA = "01/01/23-2359";
+    public static final String VALID_PROJECT_DEADLINE_BRAVO = "02/01/23-2359";
     public static final EditCommand.EditPersonDescriptor EDIT_DESC_AMY;
     public static final EditCommand.EditPersonDescriptor EDIT_DESC_BOB;
     public static final RemoveCommand.RemovePersonDescriptor REMOVE_DESC_AMY;
