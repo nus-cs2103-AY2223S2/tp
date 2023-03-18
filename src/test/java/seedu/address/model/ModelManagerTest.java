@@ -21,7 +21,6 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Volunteer;
@@ -265,7 +264,8 @@ public class ModelManagerTest {
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
         modelManager.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
-        modelManager.updateFilteredPairList((Predicate<Pair>) PREDICATE_SHOW_ALL);
+
+        // TODO: reset pair list in modelManager to initial state for upcoming tests
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

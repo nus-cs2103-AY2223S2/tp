@@ -201,17 +201,13 @@ public class ModelManager implements Model {
     @Override
     public void addPair(Nric elderlyNric, Nric volunteerNric) {
         friendlyLink.addPair(elderlyNric, volunteerNric);
-        @SuppressWarnings("unchecked")
-        Predicate<Pair> predicate = (Predicate<Pair>) PREDICATE_SHOW_ALL;
-        updateFilteredPairList(predicate);
+        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
     }
 
     @Override
     public void addPair(Pair pair) {
         friendlyLink.addPair(pair);
-        @SuppressWarnings("unchecked")
-        Predicate<Pair> predicate = (Predicate<Pair>) PREDICATE_SHOW_ALL;
-        updateFilteredPairList(predicate);
+        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
     }
 
     @Override
@@ -278,7 +274,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPairList(Predicate<Pair> predicate) {
         requireNonNull(predicate);
-        filteredPairs.setPredicate(predicate);
+        // TODO: implement filteredPairs.setPredicate(predicate);
     }
 
     @Override
