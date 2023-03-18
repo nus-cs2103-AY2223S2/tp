@@ -5,8 +5,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
+import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
-import static trackr.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 import static trackr.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
@@ -41,7 +41,7 @@ public class EditOrderCommand extends Command {
             + "[" + PREFIX_ORDERNAME + "ORDER NAME] "
             + "[" + PREFIX_DEADLINE + "ORDER DEADLINE] "
             + "[" + PREFIX_STATUS + "ORDER STATUS]"
-            + "[" + PREFIX_QUANTITY + "ORDER QUANTITY]"
+            + "[" + PREFIX_ORDERQUANTITY + "ORDER QUANTITY]"
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "

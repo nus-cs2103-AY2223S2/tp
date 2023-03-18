@@ -3,10 +3,12 @@ package trackr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
-import static trackr.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
+import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.commons.core.index.Index;
@@ -27,7 +29,8 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
     public EditOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ORDERNAME, PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_QUANTITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_ORDERNAME, PREFIX_DEADLINE,
+                        PREFIX_STATUS, PREFIX_ORDERQUANTITY, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
 
         Index index;
 
@@ -41,7 +44,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         OrderDescriptor editOrderDescriptor = new OrderDescriptor();
         if (argMultimap.getValue(PREFIX_ORDERNAME).isPresent()) {
             editOrderDescriptor.setOrderName(
-                    ParserUtil.parseOrderName(argMultimap.getValue(PREFIX_NAME).get()));
+                    ParserUtil.parseOrderName(argMultimap.getValue(PREFIX_ORDERNAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editOrderDescriptor.setOrderDeadline(
@@ -52,11 +55,30 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
                     ParserUtil.parseOrderStatus(argMultimap.getValue(PREFIX_STATUS)));
         }
 
+        if (argMultimap.getValue(PREFIX_ORDERQUANTITY).isPresent()) {
+            editOrderDescriptor.setOrderQuantity(
+                    ParserUtil.parseOrderQuantity(argMultimap.getValue(PREFIX_ORDERQUANTITY).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editOrderDescriptor.setCustomerName(
+                    ParserUtil.parseCustomerName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editOrderDescriptor.setCustomerPhone(
+                    ParserUtil.parseCustomerPhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            editOrderDescriptor.setCustomerAddress(
+                    ParserUtil.parseCustomerAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+
         if (!editOrderDescriptor.isAnyFieldNonNull()) {
             throw new ParseException(EditOrderCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditOrderCommand(index, editOrderDescriptor);
     }
-
 }

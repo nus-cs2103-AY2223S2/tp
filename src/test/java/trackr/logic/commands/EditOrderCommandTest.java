@@ -75,7 +75,9 @@ public class EditOrderCommandTest {
                 .withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
                 .withOrderStatus(VALID_ORDER_STATUS_DONE)
                 .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
-                .withCustomer(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS).build();
+                .withCustomerName(VALID_CUSTOMER_NAME)
+                .withCustomerPhone(VALID_CUSTOMER_PHONE)
+                .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
 
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(indexLastOrder, descriptor);

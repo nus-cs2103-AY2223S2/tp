@@ -105,12 +105,14 @@ public class EditTaskCommandParserTest {
         String userInput = targetIndex.getOneBased() + TASK_NAME_DESC_SORT_INVENTORY
                 + TASK_DEADLINE_DESC_2024 + TASK_STATUS_DESC_NOT_DONE;
 
+
         TaskDescriptor descriptor =
                 new TaskDescriptorBuilder()
                         .withTaskName(VALID_TASK_NAME_SORT_INVENTORY)
                         .withTaskDeadline(VALID_TASK_DEADLINE_2024)
                         .withTaskStatus(VALID_TASK_STATUS_NOT_DONE).build();
         EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
+
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

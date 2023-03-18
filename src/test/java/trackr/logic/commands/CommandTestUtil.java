@@ -6,6 +6,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
+import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
+import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
@@ -145,6 +147,46 @@ public class CommandTestUtil {
     public static final String INVALID_CUSTOMER_PHONE = "912345674554";
     public static final String INVALID_CUSTOMER_ADDRESS = "  ";
 
+    public static final String ORDER_NAME_DESC_CHOCO_COOKIE =
+            " " + PREFIX_ORDERNAME + VALID_ORDER_NAME_CHOCOLATE_COOKIES;
+    public static final String ORDER_NAME_DESC_CUPCAKES =
+            " " + PREFIX_ORDERNAME + VALID_ORDER_NAME_CUPCAKES;
+    public static final String ORDER_DEADLINE_DESC_2023 =
+            " " + PREFIX_DEADLINE + VALID_ORDER_DEADLINE_2023;
+    public static final String ORDER_DEADLINE_DESC_2024 =
+            " " + PREFIX_DEADLINE + VALID_ORDER_DEADLINE_2024;
+    public static final String ORDER_STATUS_DESC_DONE =
+            " " + PREFIX_STATUS + VALID_ORDER_STATUS_DONE;
+    public static final String ORDER_STATUS_DESC_NOT_DONE =
+            " " + PREFIX_STATUS + VALID_ORDER_STATUS_NOT_DONE;
+    public static final String ORDER_QUANTITY_DESC_ONE =
+            " " + PREFIX_ORDERQUANTITY + VALID_ORDER_QUANTITY_ONE;
+    public static final String ORDER_QUANTITY_DESC_TWO =
+            " " + PREFIX_DEADLINE + VALID_ORDER_QUANTITY_TWO;
+    public static final String CUSTOMER_NAME_DESC_NIGEL =
+            " " + PREFIX_NAME + VALID_CUSTOMER_NAME;
+    public static final String CUSTOMER_PHONE_DESC =
+            " " + PREFIX_PHONE + VALID_CUSTOMER_PHONE;
+    public static final String CUSTOMER_ADDRESS_DESC =
+            " " + PREFIX_ADDRESS + VALID_CUSTOMER_ADDRESS;
+
+
+
+    public static final String INVALID_ORDER_NAME_DESC =
+            " " + PREFIX_ORDERNAME + INVALID_ORDER_NAME;
+    public static final String INVALID_ORDER_DEADLINE_DESC =
+            " " + PREFIX_DEADLINE + INVALID_ORDER_DEADLINE;
+    public static final String INVALID_ORDER_STATUS_DESC =
+            " " + PREFIX_STATUS + INVALID_ORDER_STATUS;
+    public static final String INVALID_ORDER_QUANTITY_DESC =
+            " " + PREFIX_ORDERQUANTITY + INVALID_ORDER_QUANTITY;
+    public static final String INVALID_CUSTOMER_NAME_DESC =
+            " " + PREFIX_NAME + INVALID_CUSTOMER_NAME; // quantity cannot be negative
+    public static final String INVALID_CUSTOMER_PHONE_DESC =
+            " " + PREFIX_PHONE + INVALID_CUSTOMER_PHONE;
+    public static final String INVALID_CUSTOMER_ADDRESS_DESC =
+            " " + PREFIX_PHONE + INVALID_CUSTOMER_ADDRESS;
+
     public static final OrderDescriptor DESC_CHOCO_COOKIE;
     public static final OrderDescriptor DESC_CUPCAKE;
 
@@ -154,14 +196,18 @@ public class CommandTestUtil {
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
                 .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
                 .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
-                .withCustomer(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS).build();
+                .withCustomerName(VALID_CUSTOMER_NAME)
+                .withCustomerPhone(VALID_CUSTOMER_PHONE)
+                .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
 
         DESC_CUPCAKE = new OrderDescriptorBuilder()
                 .withOrderName(VALID_ORDER_NAME_CUPCAKES)
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
                 .withOrderStatus(VALID_ORDER_STATUS_DONE)
                 .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
-                .withCustomer(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS).build();
+                .withCustomerName(VALID_CUSTOMER_NAME)
+                .withCustomerPhone(VALID_CUSTOMER_PHONE)
+                .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
     }
     /**
      * Executes the given {@code command}, confirms that <br>

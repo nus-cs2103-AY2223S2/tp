@@ -36,7 +36,9 @@ public class OrderDescriptorBuilder {
         orderDescriptor.setOrderDeadline(order.getOrderDeadline());
         orderDescriptor.setOrderStatus(order.getOrderStatus());
         orderDescriptor.setOrderQuantity(order.getOrderQuantity());
-        orderDescriptor.setCustomer(order.getCustomer());
+        orderDescriptor.setCustomerName(order.getCustomer().getCustomerName());
+        orderDescriptor.setCustomerPhone(order.getCustomer().getCustomerPhone());
+        orderDescriptor.setCustomerAddress(order.getCustomer().getCustomerAddress());
     }
 
     /**
@@ -75,9 +77,18 @@ public class OrderDescriptorBuilder {
      * Sets the {@code orderStatus} of the {@code orderDescriptor} that we are building.
      */
     @SuppressWarnings("checkstyle:LineLength")
-    public OrderDescriptorBuilder withCustomer(String customerName, String customerPhone, String customerAddress) {
-        orderDescriptor.setCustomer(new Customer(new CustomerName(customerName),
-                new CustomerPhone(customerPhone), new CustomerAddress(customerAddress)));
+    public OrderDescriptorBuilder withCustomerName(String customerName) {
+        orderDescriptor.setCustomerName(new CustomerName(customerName));
+        return this;
+    }
+
+    public OrderDescriptorBuilder withCustomerPhone(String customerPhone) {
+        orderDescriptor.setCustomerPhone(new CustomerPhone(customerPhone));
+        return this;
+    }
+
+    public OrderDescriptorBuilder withCustomerAddress(String customerAddress) {
+        orderDescriptor.setCustomerAddress(new CustomerAddress(customerAddress));
         return this;
     }
 
