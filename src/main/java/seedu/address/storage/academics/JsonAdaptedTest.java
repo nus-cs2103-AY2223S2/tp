@@ -1,4 +1,4 @@
-package seedu.address.storage.adaptedassignment;
+package seedu.address.storage.academics;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

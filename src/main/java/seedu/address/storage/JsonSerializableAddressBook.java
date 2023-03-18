@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.student.Student;
+import seedu.address.storage.person.JsonAdaptedStudent;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -21,7 +22,6 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**

@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import seedu.address.model.person.student.Student;
 /**
  * Jackson-friendly version of {@link Parent}.
  */
-class JsonAdaptedParent extends JsonAdaptedPerson {
+public class JsonAdaptedParent extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Parent's %s field is missing!";
     private final String age;

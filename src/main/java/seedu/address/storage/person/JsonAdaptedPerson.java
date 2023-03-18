@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.person;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,11 +17,12 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.JsonAdapted;
 
 /**
  * Jackson-friendly version of {@link Person}.
  */
-class JsonAdaptedPerson {
+public class JsonAdaptedPerson implements JsonAdapted<Person> {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 

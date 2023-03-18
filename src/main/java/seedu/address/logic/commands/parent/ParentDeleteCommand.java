@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.parent;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
@@ -17,10 +18,10 @@ public class ParentDeleteCommand extends ParentCommand {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the parent identified by their phone number used in the displayed person list.\n"
-            + "Parameters: PHONE NUMBER (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String MESSAGE_USAGE = "student " + COMMAND_WORD
+            + ": Deletes the parent identified by their phone number.\n"
+            + "Parameters: Phone Number (must be a positive integer)\n"
+            + "Example: parent delete " + PREFIX_PHONEPARENT + "91234567";
 
     public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s";
 
@@ -37,8 +38,6 @@ public class ParentDeleteCommand extends ParentCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ObservableList<Parent> parents = model.getFilteredParentList();
-        System.out.println(parents);
-
         for (Parent parent : parents) {
             if (parent.getPhone().equals(phoneNumber)) {
                 model.deleteParent(parent);

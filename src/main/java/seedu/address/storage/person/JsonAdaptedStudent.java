@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.person;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,15 +24,15 @@ import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.Test;
-import seedu.address.storage.adaptedassignment.JsonAdaptedHomework;
-import seedu.address.storage.adaptedassignment.JsonAdaptedTest;
+import seedu.address.storage.academics.JsonAdaptedHomework;
+import seedu.address.storage.academics.JsonAdaptedTest;
 
 
 
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedStudent extends JsonAdaptedPerson {
+public class JsonAdaptedStudent extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
     private final String indexNumber;
@@ -55,15 +55,17 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("comment") String comment, @JsonProperty("id") String indexNumber,
+                              @JsonProperty("comment") String comment,
                               @JsonProperty("sex") String sex, @JsonProperty("age") String age,
                               @JsonProperty("image") String image, @JsonProperty("cca") String cca,
-                              @JsonProperty("class") String sc, @JsonProperty("attendance") String attendance,
+                              @JsonProperty("attendance") String attendance,
                               @JsonProperty("homework") Set<JsonAdaptedHomework> homework,
                               @JsonProperty("test") Set<JsonAdaptedTest> test,
                               @JsonProperty("parentNumber") String parentNumber,
                               @JsonProperty("parentName") String parentName,
-                              @JsonProperty("rls") String rls) {
+                              @JsonProperty("rls") String rls,
+                              @JsonProperty("class") String sc,
+                              @JsonProperty("id") String indexNumber) {
         super(name, phone, email, address, tagged, comment);
         this.indexNumber = indexNumber;
         this.sex = sex;

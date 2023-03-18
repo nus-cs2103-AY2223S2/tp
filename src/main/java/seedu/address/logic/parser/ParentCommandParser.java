@@ -16,7 +16,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.parent.ParentAddCommand;
 import seedu.address.logic.commands.parent.ParentCommand;
 import seedu.address.logic.commands.parent.ParentDeleteCommand;
@@ -104,7 +103,7 @@ public class ParentCommandParser {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONEPARENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParentDeleteCommand.MESSAGE_USAGE));
         }
         Phone phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         return new ParentDeleteCommand(phoneNumber);
