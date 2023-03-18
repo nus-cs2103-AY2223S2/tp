@@ -12,25 +12,25 @@ import trackr.model.ModelManager;
 import trackr.model.SupplierList;
 import trackr.model.UserPrefs;
 
-public class ClearCommandTest {
+public class ClearSupplierCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptySupplierList_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearSupplierCommand(), model, ClearSupplierCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptySupplierList_success() {
         Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalOrderList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalOrderList(), new UserPrefs());
         expectedModel.setSupplierList(new SupplierList());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearSupplierCommand(), model, ClearSupplierCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
