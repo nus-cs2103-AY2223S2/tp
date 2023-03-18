@@ -10,11 +10,13 @@
     <VBox spacing="5">
         <Label fx:id="description" text="\$description" wrapText="true" styleClass="label-h5" />
         <HBox spacing="5">
+            <Label fx:id="indexTag" text="\$index" StackPane.alignment="TOP_RIGHT" styleClass="label-p, tag-accented" />
+            <Label fx:id="recurrence" text="\$recurrence" styleClass="label-p, tag-accented" />
+        </HBox>
+        <HBox spacing="5">
             <Label fx:id="startDateTime" text="\$startDateTime" styleClass="label-p" />
             <Label text="-" styleClass="label-p" />
             <Label fx:id="endDateTime" text="\$endDateTime" styleClass="label-p" />
         </HBox>
-        <Label fx:id="recurrence" text="\$recurrence" styleClass="label-p, tag-accented" />
     </VBox>
-    <Label fx:id="indexTag" text="\$index" StackPane.alignment="TOP_RIGHT" styleClass="label-p, tag-accented" />
 </StackPane>
