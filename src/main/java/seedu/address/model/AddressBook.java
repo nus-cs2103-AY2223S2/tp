@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.event.UniqueLabList;
@@ -61,6 +60,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.tutorials.setTutorials(tutorials);
     }
 
+    /**
+     * Allows student to be assigned to a specific tutorial
+     * @param toAdd
+     * @param name
+     */
     public void addStudentToTutorial(Person toAdd, String name) {
         Tutorial original = tutorials.get(0);
         for (int i = 0; i < tutorials.size(); i++) {
@@ -74,6 +78,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.setTutorial(original, added);
     }
 
+    /**
+     * Allows student to be assigned to a specific lab
+     * @param toAdd
+     * @param name
+     */
     public void addStudentToLab(Person toAdd, String name) {
         Lab original = labs.get(0);
         for (int i = 0; i < labs.size(); i++) {
