@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,7 +24,7 @@ public class EnlargedContactCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    private Doctor selectedDoctor;
+    private Optional<Doctor> selectedDoctorOptional;
 
     @javafx.fxml.FXML
     private VBox enlargedContactCard;
@@ -41,21 +42,42 @@ public class EnlargedContactCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code EnlargedContactCard} with the given {@code Doctor}.
+     * Creates a {@code EnlargedContactCard} with the given {@code Optional< Doctor >}.
      */
-    public EnlargedContactCard(Doctor selectedDoctor) {
+    public EnlargedContactCard(Optional<Doctor> selectedDoctorOptional) {
         super(FXML);
-        updateSelectedDoctor(selectedDoctor);
+        updateSelectedDoctorOptional(selectedDoctorOptional);
+    }
+
+    /**
+     * Creates an empty {@code EnlargedContactCard}.
+     */
+    public EnlargedContactCard() {
+        super(FXML);
+        clearDisplay();
+    }
+
+    /**
+     * Updates the selected doctor stored in {@code EnlargedContactCard}.
+     *
+     * @param selectedDoctor the given {@code Optional< Doctor >}
+     */
+    public void updateSelectedDoctorOptional(Optional<Doctor> selectedDoctor) {
+        this.selectedDoctorOptional = selectedDoctor;
+        updateDisplay();
     }
 
     /**
      * Updates the information shown on the {@code EnlargedContactCard}
-     * with that of the given {@code Doctor}.
-     *
-     * @param selectedDoctor the given {@code Doctor}
+     * with that of the stored {@code Optional< Doctor >}.
+     * If no doctor is stored, then the {@code EnlargedContactCard} is cleared.
      */
-    public void updateSelectedDoctor(Doctor selectedDoctor) {
-        this.selectedDoctor = selectedDoctor;
+    private void updateDisplay() {
+        if (selectedDoctorOptional.isEmpty()) {
+            clearDisplay();
+            return;
+        }
+        Doctor selectedDoctor = selectedDoctorOptional.get();
         name.setText(selectedDoctor.getName().fullName);
         phone.setText(selectedDoctor.getPhone().value);
         email.setText(selectedDoctor.getEmail().value);
@@ -65,6 +87,18 @@ public class EnlargedContactCard extends UiPart<Region> {
         selectedDoctor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Clears the information shown on the {@code EnlargedContactCard}.
+     */
+    public void clearDisplay() {
+        name.setText("No Doctor Selected");
+        phone.setText("");
+        email.setText("");
+        specialty.setText("");
+        yearsOfExperience.setText("");
+        tags.getChildren().clear();
     }
 
     @Override
@@ -81,6 +115,6 @@ public class EnlargedContactCard extends UiPart<Region> {
 
         // state check
         EnlargedContactCard card = (EnlargedContactCard) other;
-        return selectedDoctor.equals(card.selectedDoctor);
+        return selectedDoctorOptional.equals(card.selectedDoctorOptional);
     }
 }

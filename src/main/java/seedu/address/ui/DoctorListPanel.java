@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
@@ -64,7 +65,7 @@ public class DoctorListPanel extends UiPart<Region> {
     private void showSelectedDoctorInfo(EnlargedContactCard enlargedContactCard) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
-            enlargedContactCard.updateSelectedDoctor(selectedDoctor);
+            enlargedContactCard.updateSelectedDoctorOptional(Optional.of(selectedDoctor));
         };
         doctorListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }

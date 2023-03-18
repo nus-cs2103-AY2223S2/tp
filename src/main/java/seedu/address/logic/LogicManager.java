@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -68,6 +69,15 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Doctor> getFilteredDoctorList() {
         return model.getFilteredDoctorList();
+    }
+
+    @Override
+    public Optional<Doctor> getDoctorIfPresent() {
+        Optional<Doctor> optionalDoctor = Optional.empty();
+        if (!model.getFilteredDoctorList().isEmpty()) {
+            optionalDoctor = Optional.of(model.getFilteredDoctorList().get(0));
+        }
+        return optionalDoctor;
     }
 
     @Override
