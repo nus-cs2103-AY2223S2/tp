@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import java.util.ArrayList;
 
@@ -11,11 +12,10 @@ import seedu.address.logic.Summary;
 import seedu.address.logic.aggregatefunction.Count;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
+import seedu.address.testutil.ModelManagerBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -27,9 +27,9 @@ public class StatsCommandTest {
 
     @Test
     public void execute_emptyModel() {
-        model = new ModelManager(new FriendlyLink(), new UserPrefs());
+        model = new ModelManagerBuilder().build();
 
-        expectedModel = new ModelManager(new FriendlyLink(), new UserPrefs());
+        expectedModel = new ModelManagerBuilder().build();
         Summary summary = new Summary();
         summary.describe(new Count<>(new ArrayList<>(), Elderly.class));
         summary.describe(new Count<>(new ArrayList<>(), Volunteer.class));
@@ -41,10 +41,10 @@ public class StatsCommandTest {
 
     @Test
     public void execute_typicalModel() {
-        model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
+        model = getTypicalModelManager();
 
         FriendlyLink friendlyLink = getTypicalFriendlyLink();
-        expectedModel = new ModelManager(friendlyLink, new UserPrefs());
+        expectedModel = getTypicalModelManager();
         Summary summary = new Summary();
         summary.describe(new Count<>(friendlyLink.getElderlyList(), Elderly.class));
         summary.describe(new Count<>(friendlyLink.getVolunteerList(), Volunteer.class));
