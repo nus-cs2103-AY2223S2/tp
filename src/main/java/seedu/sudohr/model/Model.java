@@ -8,6 +8,7 @@ import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 
@@ -60,6 +61,8 @@ public interface Model {
     ReadOnlySudoHr getSudoHr();
 
     //=========== Employee-Level Operations ===========================================
+
+    Employee getEmployee(Id employeeId);
 
     /**
      * Returns true if an employee with the same identity as {@code employee} exists in SudoHR.

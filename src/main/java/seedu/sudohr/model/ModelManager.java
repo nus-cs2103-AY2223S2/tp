@@ -14,6 +14,7 @@ import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 
@@ -100,6 +101,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Employee-Level Operations ========================
+
+    @Override
+    public Employee getEmployee(Id employeeId) {
+        requireNonNull(employeeId);
+        return sudoHr.getEmployee(employeeId);
+    }
 
     @Override
     public boolean hasEmployee(Employee employee) {

@@ -221,6 +221,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Employee getEmployee(Id id) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteEmployee(Employee target) {
             throw new AssertionError("This method should not be called.");
         }

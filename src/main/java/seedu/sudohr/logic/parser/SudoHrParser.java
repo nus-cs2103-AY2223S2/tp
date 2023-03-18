@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.sudohr.logic.commands.AddCommand;
 import seedu.sudohr.logic.commands.AddDepartmentCommand;
+import seedu.sudohr.logic.commands.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.logic.commands.ClearCommand;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.DeleteCommand;
@@ -63,6 +64,9 @@ public class SudoHrParser {
 
         case EditDepartmentCommand.COMMAND_WORD:
             return new EditDepartmentCommandParser().parse(arguments);
+
+        case AddEmployeeToDepartmentCommand.COMMAND_WORD:
+            return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

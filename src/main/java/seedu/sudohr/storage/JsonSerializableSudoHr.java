@@ -2,6 +2,7 @@ package seedu.sudohr.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -13,6 +14,7 @@ import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.sudohr.model.leave.Leave;
 
 /**
@@ -83,6 +85,14 @@ class JsonSerializableSudoHr {
             if (sudoHr.hasDepartment(department)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_DEPARTMENTS);
             }
+
+            Set<Employee> employees = department.getEmployees();
+            for (Employee employee: employees) {
+                if (!sudoHr.hasEmployee(employee)) {
+                    throw new EmployeeNotFoundException();
+                }
+            }
+
             sudoHr.addDepartment(department);
         }
 

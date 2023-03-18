@@ -3,9 +3,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +31,7 @@ public class UniqueEmployeeList implements Iterable<Employee> {
     private final ObservableList<Employee> internalList = FXCollections.observableArrayList();
     private final ObservableList<Employee> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
     /**
      * Returns true if the list contains an equivalent employee as the given argument.
      */
@@ -89,6 +92,17 @@ public class UniqueEmployeeList implements Iterable<Employee> {
                 .anyMatch(toCheck::phoneClashes);
     }
 
+    /**
+     * Returns an employee with the specified ID.
+     */
+    public Employee get(Id id) {
+        for (Employee employee: internalList) {
+            if (employee.getId().equals(id)) {
+                return employee;
+            }
+        }
+        return null;
+    }
 
     /**
      * Adds an employee to the list.
@@ -107,6 +121,17 @@ public class UniqueEmployeeList implements Iterable<Employee> {
             throw new DuplicateEmailException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Adds all employees in the set to the list.
+     * The employee must not already exist in the list.
+     */
+    public void addAll(Set<Employee> employees) {
+        requireNonNull(employees);
+        for (Employee employee: employees) {
+            add(employee);
+        }
     }
 
     /**
@@ -145,10 +170,7 @@ public class UniqueEmployeeList implements Iterable<Employee> {
             throw new EmployeeNotFoundException();
         }
     }
-    public void setEmployees(UniqueEmployeeList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
+
     /**
      * Replaces the contents of this list with {@code employees}.
      * {@code employees} must not contain duplicate employees.
@@ -167,12 +189,28 @@ public class UniqueEmployeeList implements Iterable<Employee> {
 
         internalList.setAll(employees);
     }
+
+    public void setEmployees(UniqueEmployeeList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Employee> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
+
+    /**
+     * Returns the backing list as a set {@code employeeSet}.
+     */
+    public Set<Employee> asSet() {
+        Set<Employee> employeeSet = new HashSet<>();
+        employeeSet.addAll(internalList);
+        return employeeSet;
+    }
+
     @Override
     public Iterator<Employee> iterator() {
         return internalList.iterator();
@@ -223,6 +261,7 @@ public class UniqueEmployeeList implements Iterable<Employee> {
         }
         return false;
     }
+
     @Override
     public int hashCode() {
         return internalList.hashCode();
