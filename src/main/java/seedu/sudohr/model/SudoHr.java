@@ -222,10 +222,6 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * <<<<<<< HEAD
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     * =======
      * Removes {@code key} from this {@code SudoHr}.
      * {@code key} must exist in SudoHR.
      */
