@@ -9,6 +9,9 @@ import seedu.wife.model.Model;
 import seedu.wife.model.tag.Tag;
 import seedu.wife.model.tag.exceptions.TagStorageFullException;
 
+/**
+ * Add a new pre-defined tag.
+ */
 public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "addtag";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -17,13 +20,16 @@ public class AddTagCommand extends Command {
     public static final String TAG_ADD_SUCCESS_MESSAGE = "Tag successfully added: %s";
     private Tag toAdd;
 
+    /**
+     * Constructor to create a new AddTagCommand object.
+     */
     public AddTagCommand(Tag tag) {
         requireNonNull(tag);
         this.toAdd = tag;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasTag(toAdd)) {
