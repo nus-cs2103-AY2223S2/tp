@@ -15,6 +15,7 @@ import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
 import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
+import seedu.address.model.job.Order;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Salary;
 import seedu.address.model.job.Website;
@@ -200,5 +201,20 @@ public class ParserUtil {
             throw new ParseException(Experience.getMessageConstraint());
         }
         return new Experience(trimmedExperience);
+    }
+
+    /**
+     * Parses {@code String order} into an {@code order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Order.isValidOrder(trimmedOrder)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
     }
 }

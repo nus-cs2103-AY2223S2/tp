@@ -14,7 +14,7 @@ import seedu.address.model.job.UniqueRoleList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueRoleList roles;
+    private UniqueRoleList roles;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
