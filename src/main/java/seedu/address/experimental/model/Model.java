@@ -11,7 +11,10 @@ import seedu.address.model.entity.Entity;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Entity> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
 
     /**
@@ -49,7 +52,9 @@ public interface Model {
      */
     void setReroll(ReadOnlyReroll reroll);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyReroll getReroll();
 
     /**
@@ -58,50 +63,58 @@ public interface Model {
     boolean hasEntity(Entity entity);
 
     /**
-     * Deletes the given entity.
-     * The entity must exist in the address book.
+     * Deletes the given entity. The entity must exist in the address book.
      */
     void deleteEntity(Entity target);
 
     /**
-     * Adds the given entity.
-     * {@code entity} must not already exist in the address book.
+     * Adds the given entity. {@code entity} must not already exist in the address book.
      */
     void addEntity(Entity entity);
 
     /**
-     * Replaces the given entity {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The entity identity of {@code editedPerson} must not be the same as another existing entity in the address book.
+     * Replaces the given entity {@code target} with {@code editedPerson}. {@code target} must exist in the address
+     * book. The entity identity of {@code editedPerson} must not be the same as another existing entity in the address
+     * book.
      */
     void setEntity(Entity target, Entity editedEntity);
 
     // ============== Filtered entity list =================
-    /** Returns an unmodifiable view of the filtered entity list */
+
+    /**
+     * Returns an unmodifiable view of the filtered entity list
+     */
     ObservableList<Entity> getFilteredEntityList();
 
     /**
      * Updates the filter of the filtered entity list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEntityList(Predicate<Entity> predicate);
 
     /**
-     * Resets filtered entity list back to all entities
-     * Can be used before tag/name find function
+     * Resets filtered entity list back to all entities Can be used before tag/name find function
      */
     void resetFilteredEntityList();
 
-    /** Set filtered list to items only */
+    /**
+     * Set filtered list to items only
+     */
     void listItems();
 
-    /** Set filtered list to characters only */
+    /**
+     * Set filtered list to characters only
+     */
     void listCharacters();
 
-    /** Set filtered list to mobs only */
+    /**
+     * Set filtered list to mobs only
+     */
     void listMobs();
 
     // =============== Edit mode ===================
+
     /**
      * Sets the current selected entity
      */

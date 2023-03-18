@@ -43,7 +43,7 @@ public class EntityListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(entity, getIndex() + 1).getRoot());
+                setGraphic(new EntityCard(entity, getIndex() + 1).getRoot());
             }
         }
     }

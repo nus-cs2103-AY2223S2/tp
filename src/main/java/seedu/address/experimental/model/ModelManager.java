@@ -20,6 +20,7 @@ import seedu.address.model.entity.Mob;
  * Represents the in-memory model of the Reroll data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Reroll reroll;
@@ -32,9 +33,12 @@ public class ModelManager implements Model {
     private FilteredList<Entity> filteredActive;
     private Entity active = null;
 
+    private Entity currentSelectedEntity;
+
     /**
      * Initializes a ModelManager with the given reroll and userPrefs.
      */
+
     public ModelManager(ReadOnlyReroll reroll, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(reroll, userPrefs);
 
@@ -153,7 +157,9 @@ public class ModelManager implements Model {
             reroll.setMob((Mob) target, (Mob) edited);
         } else {
         }
+
     }
+
     // =========== List operations
 
     @Override
@@ -174,7 +180,7 @@ public class ModelManager implements Model {
         updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
     }
 
-    //=========== Filtered Entity List Accessors ==========================================================//
+    //=========== Filtered Entity List Accessors =============================================================
 
     @Override
     public ObservableList<Entity> getFilteredEntityList() {
@@ -186,6 +192,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredActive.setPredicate(predicate);
     }
+
     // Reset
     @Override
     public void resetFilteredEntityList() {
@@ -193,19 +200,15 @@ public class ModelManager implements Model {
         updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
     }
 
-    // ============= Edit Mode ==================
-
-    @Override
-    public void setCurrentSelectedEntity(Entity newSelection) {
-        this.active = newSelection;
-    }
+    //=========== Edit Mode =============================================================
 
     @Override
     public Entity getCurrentSelectedEntity() {
-        if (active == null) {
-            // Should throw some error.
-        }
-        return active;
+        return currentSelectedEntity;
     }
 
+    @Override
+    public void setCurrentSelectedEntity(Entity newSelection) {
+        currentSelectedEntity = newSelection;
+    }
 }
