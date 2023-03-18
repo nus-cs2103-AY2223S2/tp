@@ -18,6 +18,7 @@ public class AddTagCommand extends Command {
             + ": Add a new pre-defined tag\n"
             + "Example: " + COMMAND_WORD + " vegetable";
     public static final String TAG_ADD_SUCCESS_MESSAGE = "Tag successfully added: %s";
+    public static final String DUPLICATE_TAG_MESSAGE = "The tag you try to add is already in the tag list.";
     private Tag toAdd;
 
     /**
@@ -33,7 +34,7 @@ public class AddTagCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTag(toAdd)) {
-            throw new CommandException("The tag you try to add is already in the tag list.");
+            throw new CommandException(DUPLICATE_TAG_MESSAGE);
         }
 
         try {
