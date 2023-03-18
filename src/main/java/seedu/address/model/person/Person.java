@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -32,13 +33,15 @@ public abstract class Person {
     private final Age age;
     private final Region region;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<AvailableDate> availableDates = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Nric nric, Age age, Region region, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+                  Nric nric, Age age, Region region, Set<Tag> tags, Set<AvailableDate> availableDates) {
+
+        requireAllNonNull(name, phone, email, address, tags, availableDates);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +50,7 @@ public abstract class Person {
         this.age = age;
         this.region = region;
         this.tags.addAll(tags);
+        this.availableDates.addAll(availableDates);
     }
 
     public Name getName() {
@@ -84,6 +88,9 @@ public abstract class Person {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    public Set<AvailableDate> getAvailableDates() {
+        return Collections.unmodifiableSet(availableDates);
+    }
 
     /**
      * Returns true if both persons have the same name.
@@ -94,8 +101,8 @@ public abstract class Person {
             return true;
         }
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getNric().equals(getNric());
+                && otherPerson.getName().equals(name)
+                && otherPerson.getNric().equals(nric);
     }
 
     /**
@@ -120,7 +127,8 @@ public abstract class Person {
                 && otherPerson.getNric().equals(nric)
                 && otherPerson.getAge().equals(age)
                 && otherPerson.getRegion().equals(region)
-                && otherPerson.getTags().equals(tags);
+                && otherPerson.getTags().equals(tags)
+                && otherPerson.getAvailableDates().equals(availableDates);
     }
 
 }

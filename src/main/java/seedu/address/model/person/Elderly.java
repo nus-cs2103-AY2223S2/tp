@@ -1,10 +1,12 @@
 package seedu.address.model.person;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -24,10 +26,19 @@ public class Elderly extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Elderly(Name name, Phone phone, Email email,
-                   Address address, Nric nric, Age age, Region region,
-                   RiskLevel riskLevel, Set<Tag> tags) {
-        super(name, phone, email, address, nric, age, region, tags);
+    public Elderly(Name name, Phone phone, Email email, Address address,
+                   Nric nric, Age age, Region region, RiskLevel riskLevel, Set<Tag> tags) {
+        this(name, phone, email, address, nric, age, region, riskLevel, tags, new HashSet<>());
+    }
+
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Elderly(Name name, Phone phone, Email email, Address address,
+            Nric nric, Age age, Region region,
+                   RiskLevel riskLevel, Set<Tag> tags, Set<AvailableDate> availableDates) {
+        super(name, phone, email, address, nric, age, region, tags, availableDates);
         this.riskLevel = riskLevel;
     }
 
@@ -57,9 +68,8 @@ public class Elderly extends Person {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getRegion(), getRiskLevel(), getTags());
+                getNric(), getAge(), getRegion(), getRiskLevel(), getTags(), getAvailableDates());
     }
 
     @Override
@@ -79,7 +89,9 @@ public class Elderly extends Person {
                 .append("; Region: ")
                 .append(getRegion())
                 .append("; RiskLevel: ")
-                .append(getRiskLevel());
+                .append(getRiskLevel())
+                .append("; Dates Available: ")
+                .append(getAvailableDates());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

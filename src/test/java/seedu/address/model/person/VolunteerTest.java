@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINGLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVolunteers.ALICE;
@@ -19,6 +21,7 @@ import static seedu.address.testutil.TypicalVolunteers.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TypicalElderly;
 import seedu.address.testutil.VolunteerBuilder;
 
 public class VolunteerTest {
@@ -111,5 +114,9 @@ public class VolunteerTest {
         // different tags -> returns false
         editedAlice = new VolunteerBuilder(ALICE).withTags(VALID_TAG_SINGLE).build();
         assertNotEquals(ALICE, editedAlice);
+
+        // different available dates -> returns false
+        editedAlice = new VolunteerBuilder(ALICE).withAvailableDates(VALID_START_DATE_ONE, VALID_END_DATE_ONE).build();
+        assertNotEquals(TypicalElderly.ALICE, editedAlice);
     }
 }
