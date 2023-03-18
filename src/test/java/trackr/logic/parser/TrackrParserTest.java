@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import trackr.logic.commands.AddOrderCommand;
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.AddTaskCommand;
+import trackr.logic.commands.ClearOrderCommand;
 import trackr.logic.commands.ClearSupplierCommand;
 import trackr.logic.commands.ClearTaskCommand;
 import trackr.logic.commands.DeleteOrderCommand;
@@ -28,6 +29,7 @@ import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
+import trackr.logic.commands.ListOrderCommand;
 import trackr.logic.commands.ListSupplierCommand;
 import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
@@ -100,6 +102,19 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(ClearSupplierCommand.COMMAND_WORD_SHORTCUT) instanceof ClearSupplierCommand);
         assertTrue(parser.parseCommand(
                 ClearSupplierCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ClearSupplierCommand);
+    }
+
+    @Test
+    public void parseCommand_clearOrder() throws Exception {
+        assertTrue(parser.parseCommand(ClearOrderCommand.COMMAND_WORD) instanceof ClearOrderCommand);
+        assertTrue(parser.parseCommand(ClearOrderCommand.COMMAND_WORD + " 3") instanceof ClearOrderCommand);
+    }
+
+    @Test
+    public void parseCommand_clearOrderShortcut() throws Exception {
+        assertTrue(parser.parseCommand(ClearOrderCommand.COMMAND_WORD_SHORTCUT) instanceof ClearOrderCommand);
+        assertTrue(parser.parseCommand(
+                ClearOrderCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ClearOrderCommand);
     }
 
     @Test
@@ -234,6 +249,19 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD_SHORTCUT) instanceof ListSupplierCommand);
         assertTrue(parser.parseCommand(
                 ListSupplierCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ListSupplierCommand);
+    }
+
+    @Test
+    public void parseCommand_listOrder() throws Exception {
+        assertTrue(parser.parseCommand(ListOrderCommand.COMMAND_WORD) instanceof ListOrderCommand);
+        assertTrue(parser.parseCommand(ListOrderCommand.COMMAND_WORD + " 3") instanceof ListOrderCommand);
+    }
+
+    @Test
+    public void parseCommand_listOrderShortcut() throws Exception {
+        assertTrue(parser.parseCommand(ListOrderCommand.COMMAND_WORD_SHORTCUT) instanceof ListOrderCommand);
+        assertTrue(parser.parseCommand(
+                ListOrderCommand.COMMAND_WORD_SHORTCUT + " 3") instanceof ListOrderCommand);
     }
 
     @Test
