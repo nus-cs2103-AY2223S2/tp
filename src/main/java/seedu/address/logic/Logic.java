@@ -11,6 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * API of the Logic component
@@ -37,6 +38,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of doctors */
     ObservableList<Doctor> getFilteredDoctorList();
+
+    /** Returns an unmodifiable view of the filtered list of patients */
+    ObservableList<Patient> getFilteredPatientList();
 
     /** Returns an Optional containing a doctor if the filtered list of doctors is not empty */
     Optional<Doctor> getDoctorIfPresent();

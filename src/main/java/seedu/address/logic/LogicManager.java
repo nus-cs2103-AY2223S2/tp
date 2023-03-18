@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.storage.Storage;
 
 /**
@@ -69,6 +70,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Doctor> getFilteredDoctorList() {
         return model.getFilteredDoctorList();
+    }
+
+    @Override
+    public ObservableList<Patient> getFilteredPatientList() {
+        return model.getFilteredPatientList();
     }
 
     @Override
