@@ -2,5 +2,6 @@
   "employees": [],
   "departments": [ {
     "name": "@Engineering"
-  } ]
+  } ],
+  "leaves":[]
 }
