@@ -37,7 +37,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HARD;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_QUESTION + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_QUESTION + " "; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
