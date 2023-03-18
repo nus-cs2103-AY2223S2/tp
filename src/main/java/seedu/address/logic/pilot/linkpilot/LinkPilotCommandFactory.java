@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
@@ -30,15 +31,15 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
     private static final String NO_FLIGHT_MESSAGE =
             "No flight has been entered. Please enter /fl for the flight.";
 
-    private final ReadOnlyItemManager<Pilot> pilotManager;
+    private final Lazy<ReadOnlyItemManager<Pilot>> pilotManager;
 
-    private final ReadOnlyItemManager<Flight> flightManager;
+    private final Lazy<ReadOnlyItemManager<Flight>> flightManager;
 
     /**
      * Creates a new link command factory with the model registered.
      */
     public LinkPilotCommandFactory() {
-        this(GetUtil.get(Model.class));
+        this(GetUtil.getLazy(Model.class));
     }
 
     /**
@@ -46,9 +47,9 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
      *
      * @param model the model used for the creation of the link command factory.
      */
-    public LinkPilotCommandFactory(Model model) {
-        pilotManager = model.getPilotManager();
-        flightManager = model.getFlightManager();
+    public LinkPilotCommandFactory(Lazy<Model> model) {
+        pilotManager = model.map(Model::getPilotManager);
+        flightManager = model.map(Model::getFlightManager);
     }
 
     @Override
@@ -75,7 +76,7 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
             return false;
         }
         Optional<Pilot> pilotOptional =
-                pilotManager.getItem(pilotIdOptional.get());
+                pilotManager.get().getItem(pilotIdOptional.get());
         if (pilotOptional.isEmpty()) {
             return false;
         }
@@ -90,7 +91,7 @@ public class LinkPilotCommandFactory implements CommandFactory<LinkPilotCommand>
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
         Optional<Flight> flightOptional =
-                flightManager.getItem(flightIdOptional.get());
+                flightManager.get().getItem(flightIdOptional.get());
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
