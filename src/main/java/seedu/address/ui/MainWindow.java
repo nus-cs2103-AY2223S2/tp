@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -16,8 +17,11 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicatePhoneException;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.UniqueStudentList;
 import seedu.address.ui.parent.ParentListPanel;
 import seedu.address.ui.student.StudentListPanel;
 
@@ -126,15 +130,17 @@ public class MainWindow extends UiPart<Stage> {
 
         //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        if (logic.getPcClass().getClassList().size() > 0) {
-            studentListPanel = new StudentListPanel(
-                    logic.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList());
-            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-        } else {
-            studentListPanel = new StudentListPanel(
-                    logic.getFilteredStudentList());
-            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        UniqueStudentList list= new UniqueStudentList();
+        for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
+            UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
+            Iterator<Student> it = curr.iterator();
+            while(it.hasNext()) {
+                list.add(it.next());
+            }
         }
+
+        studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         parentListPanel = new ParentListPanel(logic.getFilteredParentList());
         parentListPanelPlaceholder.getChildren().add(parentListPanel.getRoot());
 
