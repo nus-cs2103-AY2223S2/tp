@@ -30,13 +30,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyElderly;
 import seedu.address.model.ReadOnlyPair;
 import seedu.address.model.ReadOnlyVolunteer;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Volunteer;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.elderly.JsonElderlyStorage;
 import seedu.address.storage.pair.JsonPairStorage;
 import seedu.address.storage.volunteer.JsonVolunteerStorage;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.VolunteerBuilder;
 
 public class LogicManagerTest {
@@ -45,7 +45,7 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private final Model model = new ModelManager();
+    private final Model model = new ModelManagerBuilder().build();
     private Logic logic;
 
     @BeforeEach
@@ -88,7 +88,7 @@ public class LogicManagerTest {
                 new JsonPairIoExceptionThrowingStub(
                         temporaryFolder.resolve("ioExceptionFriendlyLink.json"));
         JsonElderlyStorage elderlyStorage =
-                new JsonElderlyStorage(
+                new JsonElderlyIoExceptionThrowingStub(
                         temporaryFolder.resolve("ioExceptionElderly.json"));
         JsonVolunteerStorage volunteerStorage =
                 new JsonVolunteerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionVolunteer.json"));
@@ -103,7 +103,7 @@ public class LogicManagerTest {
         String addVolunteerCommand = AddVolunteerCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NRIC_VOLUNTEER_DESC_AMY + AGE_DESC_AMY + REGION_DESC_AMY;
         Volunteer expectedVolunteer = new VolunteerBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
+        ModelManager expectedModel = new ModelManagerBuilder().build();
         expectedModel.addVolunteer(expectedVolunteer);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addVolunteerCommand, CommandException.class, expectedMessage, expectedModel);
@@ -117,6 +117,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredElderlyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredElderlyList().remove(0));
+    }
+
+    @Test
+    public void getFilteredPairList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPairList().remove(0));
     }
 
     /**
@@ -155,7 +160,9 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getFriendlyLink(), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

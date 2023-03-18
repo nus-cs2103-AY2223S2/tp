@@ -57,6 +57,8 @@ public class AddPairCommand extends Command {
             throw new CommandException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, volunteerNric));
         } catch (DuplicatePairException e) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PAIR, elderlyNric, volunteerNric));
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
         }
     }
 

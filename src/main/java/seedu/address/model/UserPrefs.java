@@ -14,9 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path friendlyLinkFilePath = Paths.get("data" , "friendlylink.json");
-    private final Path elderlyFilePath = Paths.get("data" , "elderly.json");
-    private final Path volunteerFilePath = Paths.get("data" , "volunteer.json");
+    private Path elderlyFilePath = Paths.get("data" , "elderly.json");
+    private Path volunteerFilePath = Paths.get("data" , "volunteer.json");
+    private Path pairFilePath = Paths.get("data" , "pair.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -37,9 +37,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setFriendlyLinkFilePath(newUserPrefs.getFriendlyLinkFilePath());
+        setElderlyFilePath(newUserPrefs.getElderlyFilePath());
+        setVolunteerFilePath(newUserPrefs.getVolunteerFilePath());
+        setPairFilePath(newUserPrefs.getPairFilePath());
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -49,21 +52,34 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getFriendlyLinkFilePath() {
-        return friendlyLinkFilePath;
-    }
-
+    @Override
     public Path getElderlyFilePath() {
         return elderlyFilePath;
     }
 
+    public void setElderlyFilePath(Path elderlyFilePath) {
+        requireNonNull(elderlyFilePath);
+        this.elderlyFilePath = elderlyFilePath;
+    }
+
+    @Override
     public Path getVolunteerFilePath() {
         return volunteerFilePath;
     }
 
-    public void setFriendlyLinkFilePath(Path friendlyLinkFilePath) {
-        requireNonNull(friendlyLinkFilePath);
-        this.friendlyLinkFilePath = friendlyLinkFilePath;
+    public void setVolunteerFilePath(Path volunteerFilePath) {
+        requireNonNull(volunteerFilePath);
+        this.volunteerFilePath = volunteerFilePath;
+    }
+
+    @Override
+    public Path getPairFilePath() {
+        return pairFilePath;
+    }
+
+    public void setPairFilePath(Path pairFilePath) {
+        requireNonNull(pairFilePath);
+        this.pairFilePath = pairFilePath;
     }
 
     @Override
@@ -78,18 +94,22 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && friendlyLinkFilePath.equals(o.friendlyLinkFilePath);
+                && elderlyFilePath.equals(o.elderlyFilePath)
+                && volunteerFilePath.equals(o.volunteerFilePath)
+                && pairFilePath.equals(o.pairFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, friendlyLinkFilePath);
+        return Objects.hash(guiSettings, elderlyFilePath, volunteerFilePath, pairFilePath);
     }
 
     @Override
     public String toString() {
         return "Gui Settings : " + guiSettings
-                + "\nLocal data file location : " + friendlyLinkFilePath;
+                + "\nLocal elderly data file location : " + elderlyFilePath
+                + "\nLocal volunteer data file location : " + volunteerFilePath
+                + "\nLocal pair data file location : " + pairFilePath;
     }
 
 }

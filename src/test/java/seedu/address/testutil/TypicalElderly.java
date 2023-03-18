@@ -40,7 +40,8 @@ public class TypicalElderly {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withTags("owesMoney", "friends")
             .withRegion("NORTHEAST")
-            .withAge("23").withNric("S0116088E").withRiskLevel("medium").build();
+            .withAge("23").withNric("S0116088E").withRiskLevel("medium")
+            .withAvailableDates("2023-05-01", "2023-05-12").build();
     public static final Elderly CARL = new ElderlyBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withAge("31").withNric("S1604578J").withRegion("CENTRAL").withRiskLevel("high").build();
@@ -49,17 +50,19 @@ public class TypicalElderly {
             .withRegion("WEST").withNric("S6414118Z").withRiskLevel("LOW").build();
     public static final Elderly ELLE = new ElderlyBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withAge("28").withRegion("EAST")
-            .withNric("S3271607E").withRiskLevel("HIGH").build();
+            .withNric("S3271607E").withRiskLevel("HIGH").withAvailableDates("2023-04-01", "2023-04-12").build();
     public static final Elderly FIONA = new ElderlyBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withAge("26")
             .withNric("S4862780C").withRegion("CENTRAL").withRiskLevel("MEDIUM").build();
     public static final Elderly GEORGE = new ElderlyBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withAge("24")
+            .withAvailableDates("2023-05-01", "2023-05-12")
             .withNric("S2241030Z").withRegion("NORTH").withRiskLevel("LoW").build();
 
     // Manually added
     public static final Elderly HOON = new ElderlyBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india")
+            .build();
     public static final Elderly IDA = new ElderlyBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 

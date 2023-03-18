@@ -15,7 +15,7 @@ import java.util.List;
 import seedu.address.model.pair.Pair;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Pair} objects to be used in tests.
  */
 public class TypicalPairs {
 

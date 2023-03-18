@@ -29,11 +29,11 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPairStorage friendlyLinkStorage = new JsonPairStorage(getTempFilePath("friendlylink"));
+        JsonPairStorage pairStorage = new JsonPairStorage(getTempFilePath("pair"));
         JsonElderlyStorage elderlyStorage = new JsonElderlyStorage(getTempFilePath("elderly"));
         JsonVolunteerStorage volunteerStorage = new JsonVolunteerStorage(getTempFilePath("volunteer"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(friendlyLinkStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
+        storageManager = new StorageManager(pairStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -78,6 +78,17 @@ public class StorageManagerTest {
         ReadOnlyVolunteer retrieved = storageManager.readVolunteer(new FriendlyLink()).get();
         assertEquals(original.getVolunteerList(),
                 new FriendlyLink((ReadOnlyFriendlyLink) retrieved).getVolunteerList());
+    }
+
+    @Test
+    public void readSave() throws Exception {
+        FriendlyLink original = getTypicalFriendlyLink();
+        storageManager.saveElderly(original);
+        storageManager.saveVolunteer(original);
+        storageManager.savePair(original);
+        FriendlyLink retrieved = storageManager.read();
+        assertEquals(original.getPairList(),
+                new FriendlyLink(retrieved).getPairList());
     }
 
     @Test
