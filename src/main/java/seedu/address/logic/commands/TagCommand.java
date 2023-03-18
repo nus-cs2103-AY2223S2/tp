@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -26,14 +27,9 @@ import seedu.address.model.video.VideoName;
 public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
-    //TODO: MODIFY THIS
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tag a specified video, module, or lecture ";
-    //TODO: MODIFY THIS
-    public static final String MESSAGE_SUCCESS = "Item tagged";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "Module doesn't exist in Le Tracker";
-    public static final String MESSAGE_LECTURE_NOT_FOUND = "Lecture doesn't exist in this module";
-    public static final String MESSAGE_VIDEO_NOT_FOUND = "Video doesn't exist in this lecture";
 
+    public static final String MESSAGE_SUCCESS = "%1$s tagged";
 
     private final Set<Tag> tags;
 
@@ -95,18 +91,17 @@ public class TagCommand extends Command {
         requireNonNull(model);
 
         if (this.isTaggingMod) {
-            tagModule(model);
+            return tagModule(model);
         } else if (this.isTaggingLec) {
-            tagLecture(model);
-        } else if (this.isTaggingVid) {
-            tagVideo(model);
+            return tagLecture(model);
+        } else {
+            return tagVideo(model);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    private void tagModule(Model model) throws CommandException {
+    private CommandResult tagModule(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         ReadOnlyModule taggingModule = model.getModule(this.moduleCode);
@@ -122,15 +117,17 @@ public class TagCommand extends Command {
         Module taggedModule = new Module(taggingModule.getCode(),
                 taggingModule.getName(), newTags, currentLectureList);
         model.setModule(taggingModule, taggedModule);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode));
     }
 
-    private void tagLecture(Model model) throws CommandException {
+    private CommandResult tagLecture(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         if (!model.hasLecture(this.moduleCode, this.lectureName)) {
-            throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST, this.lectureName,
+                    moduleCode));
         }
 
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
@@ -143,22 +140,26 @@ public class TagCommand extends Command {
 
         Lecture taggedLecture = new Lecture(taggingLecture.getName(), newTags, taggingLecture.getVideoList());
         model.setLecture(targetModule, taggingLecture, taggedLecture);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName));
     }
 
-    private void tagVideo(Model model) throws CommandException {
+    private CommandResult tagVideo(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         if (!model.hasLecture(this.moduleCode, this.lectureName)) {
-            throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST, this.lectureName,
+                    moduleCode));
         }
 
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
 
         if (!model.hasVideo(targetLecture, this.videoName)) {
-            throw new CommandException(MESSAGE_VIDEO_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST, this.videoName,
+                    this.lectureName,
+                    this.moduleCode));
         }
 
         Video taggingVideo = targetLecture.getVideo(this.videoName);
@@ -170,5 +171,6 @@ public class TagCommand extends Command {
 
         Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(), newTags);
         model.setVideo(targetLecture, taggingVideo, taggedVideo);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
     }
 }
