@@ -13,6 +13,7 @@ import seedu.sudohr.commons.exceptions.IllegalValueException;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 
 /**
  * Jackson-friendly version of {@link Employee}.
@@ -54,7 +55,11 @@ class JsonAdaptedDepartment {
     public Department toModelType() throws IllegalValueException {
         final List<Employee> departmentEmployees = new ArrayList<>();
         for (JsonAdaptedEmployee employee : employees) {
-            departmentEmployees.add(employee.toModelType());
+            Employee e = employee.toModelType();
+            if (departmentEmployees.stream().anyMatch(e::isSameEmployee)) {
+                throw new DuplicateEmployeeException();
+            }
+            departmentEmployees.add(e);
         }
 
         if (name == null) {

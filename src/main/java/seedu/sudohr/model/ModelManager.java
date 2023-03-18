@@ -14,6 +14,7 @@ import seedu.sudohr.commons.core.LogsCenter;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 
 /**
  * Represents the in-memory model of the SudoHR data.
@@ -93,6 +94,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Employee-Level Operations ========================
+
+    @Override
+    public Employee getEmployee(Id employeeId) {
+        requireNonNull(employeeId);
+        return sudoHr.getEmployee(employeeId);
+    }
 
     @Override
     public boolean hasEmployee(Employee employee) {
