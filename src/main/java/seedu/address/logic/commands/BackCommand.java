@@ -2,10 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.experimental.model.ReadOnlyEntities;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UiSwitchMode;
-import seedu.address.model.entity.Entity;
 
 /**
  * Edits the details of an existing person in the address book.

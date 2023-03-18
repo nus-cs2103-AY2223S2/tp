@@ -242,7 +242,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (logic.getIsInEditMode()) {
                 Entity entity = logic.getCurrentSelectedEntity();
-                entityDetailsPanel.UpdateEntityDetails(entity);
+                entityDetailsPanel.updateEntityDetails(entity);
             }
 
             return commandResult;

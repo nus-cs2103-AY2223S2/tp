@@ -1,7 +1,5 @@
 package seedu.address.model.entity;
 
-import seedu.address.logic.commands.EditValueCommand.EditEntityDescriptor;
-
 /**
  * Represents the stats of a single character/mob
  */

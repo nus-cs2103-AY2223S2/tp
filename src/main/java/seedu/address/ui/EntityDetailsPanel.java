@@ -1,12 +1,12 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.entity.Entity;
 
+/**
+ * Panel containing the detailed view of the entity.
+ */
 public class EntityDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "EntityDetailsPanel.fxml";
@@ -24,7 +24,10 @@ public class EntityDetailsPanel extends UiPart<Region> {
         super(FXML);
     }
 
-    public void UpdateEntityDetails(Entity entity) {
+    /**
+     * Updates the detail panel with the specified entity.
+     */
+    public void updateEntityDetails(Entity entity) {
         entityNameLabel.setText(entity.getName().fullName);
         entityClassificationLabel.setText(entity.getClass().getSimpleName());
         String detailsText = "";

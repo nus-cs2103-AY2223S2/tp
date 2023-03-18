@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -56,7 +57,7 @@ public class LogicManager implements Logic {
             command = editModeParser.parseCommand(commandText);
         }
         commandResult = command.execute(model);
-        SetMode(commandResult.getSwitchMode());
+        setMode(commandResult.getSwitchMode());
         try {
             storage.saveReroll(model.getReroll());
         } catch (IOException ioe) {
@@ -101,7 +102,7 @@ public class LogicManager implements Logic {
         return model.getCurrentSelectedEntity();
     }
 
-    private void SetMode(UiSwitchMode switchMode) {
+    private void setMode(UiSwitchMode switchMode) {
         switch (switchMode) {
         case LIST:
             isInEditMode = false;
@@ -111,6 +112,8 @@ public class LogicManager implements Logic {
             break;
         case TOGGLE:
             isInEditMode = !isInEditMode;
+            break;
+        default:
             break;
         }
 

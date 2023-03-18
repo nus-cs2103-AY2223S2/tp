@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.BackCommand;
 import seedu.address.logic.commands.Command;
@@ -18,7 +19,6 @@ import seedu.address.logic.commands.EditValueCommand.EditCharacterDescriptor;
 import seedu.address.logic.commands.EditValueCommand.EditEntityDescriptor;
 import seedu.address.logic.commands.EditValueCommand.EditItemDescriptor;
 import seedu.address.logic.commands.EditValueCommand.EditMobDescriptor;
-import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Character;
@@ -34,16 +34,16 @@ import seedu.address.model.tag.Tag;
  */
 public class EditModeParser {
 
-    /**
-     * Used for initial separation of command word and args.
-     */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<fieldWord>\\S+)(?<arguments>.*)");
-
     public static final String MESSAGE_INVALID_FIELD = "%s is not a valid editable field! \n"
         + "Use commands of the form FIELD (name of the field you wish to edit) VALUE (desired value). \n"
         + "Example: name Johnny Depp \n"
         + "You may also type 'back' to exit Edit Mode and return to the list view.";
     public static final String MESSAGE_INVALID_VALUE_FORMAT = "%s is not a valid value for %s!";
+
+    /**
+     * Used for initial separation of command word and args.
+     */
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<fieldWord>\\S+)(?<arguments>.*)");
 
     private final Model model;
 

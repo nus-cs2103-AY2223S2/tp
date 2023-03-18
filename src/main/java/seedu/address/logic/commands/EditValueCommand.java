@@ -12,15 +12,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
-import seedu.address.experimental.model.Model;
-import seedu.address.model.entity.Entity;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -235,10 +236,11 @@ public class EditValueCommand extends Command {
         private Integer level;
         private Integer xp;
 
+        /**
+         * Creates a character detail storage container to be edited.
+         */
         public EditCharacterDescriptor() {
         }
-
-        ;
 
         public EditCharacterDescriptor(EditCharacterDescriptor toCopy) {
             super(toCopy);
@@ -299,10 +301,11 @@ public class EditValueCommand extends Command {
         private int challengeRating;
         private Boolean isLegendary;
 
+        /**
+         * Creates a Mob detail storage container to be edited.
+         */
         public EditMobDescriptor() {
         }
-
-        ;
 
         public EditMobDescriptor(EditMobDescriptor toCopy) {
             super(toCopy);
@@ -363,6 +366,9 @@ public class EditValueCommand extends Command {
         private Integer cost;
         private Float weight;
 
+        /**
+         * Creates an Item detail storage container to be edited.
+         */
         public EditItemDescriptor() {
         }
 
