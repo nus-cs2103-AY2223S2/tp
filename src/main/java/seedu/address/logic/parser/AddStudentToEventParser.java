@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
@@ -13,7 +12,11 @@ import seedu.address.logic.commands.AddStudentToEventCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parsers the user input to check for validity of student added to event
+ */
 public class AddStudentToEventParser implements Parser<AddStudentToEventCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddStudentToEventCommand
      * and returns an AddStudentToEventCommand object for execution.
