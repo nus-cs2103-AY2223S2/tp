@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox spacing="10" minHeight="100"
-      styleClass="pane-with-rounded-corner-accented, pa"
+      styleClass="pane-with-rounded-corner-muted, pa"
       xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="5" minWidth="160">
         <Label fx:id="dateNumber" text="10" styleClass="label-h4" />
