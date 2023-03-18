@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.recipe.commons.core.GuiSettings;
-import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.ReadOnlyRecipeBook;
+import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -65,4 +65,8 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getRecipeBookFilePath());
     }
 
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
 }

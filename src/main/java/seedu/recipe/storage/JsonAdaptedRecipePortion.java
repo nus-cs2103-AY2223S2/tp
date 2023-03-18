@@ -5,11 +5,10 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipePortion;
-
-import java.util.Optional;
 
 /**
  * Jackson-friendly version of {@link Name}.
@@ -66,16 +65,10 @@ class JsonAdaptedRecipePortion {
      */
     public RecipePortion toModelType() throws IllegalValueException {
         //WIP
-        return new RecipePortion(lowerRange, upperRange, portionUnit.toModelType());
-    }
-
-    public Optional<RecipePortion> toModelTypeOptional() {
         try {
-            RecipePortion out = this.toModelType();
-            return Optional.ofNullable(out);
-        } catch (IllegalValueException e) {
-            //log
-            return Optional.empty();
+            return new RecipePortion(lowerRange, upperRange, portionUnit.toModelType());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(RecipePortion.MESSAGE_CONSTRAINTS);
         }
     }
 }

@@ -1,6 +1,9 @@
 package seedu.recipe.model.recipe;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -14,22 +17,11 @@ public class IngredientTest {
     private static final String TRAILING_WHITESPACE = "watermelon juice ";
     private static final String WHITESPACE = "  ";
     private static final String LEADING_WHITESPACE = " juice of 1 carrot";
+    private static final String SLASH_UNIT = "1/3 cup milk";
 
     @Test
     public void null_name() {
         assertThrows(NullPointerException.class, () -> new Ingredient(null));
-    }
-
-    @Test
-    public void ingredient_name_regex() {
-        assertTrue(Ingredient.isValidIngredient(VALID_INTEGER));
-        assertTrue(Ingredient.isValidIngredient(VALID_DECIMAL));
-        assertTrue(Ingredient.isValidIngredient(VALID_INTEGER_CONCAT_UNIT));
-        assertTrue(Ingredient.isValidIngredient(VALID_DECIMAL_CONCAT_UNIT));
-        assertTrue(Ingredient.isValidIngredient(VALID_ALPHA));
-        assertFalse(Ingredient.isValidIngredient(TRAILING_WHITESPACE));
-        assertFalse(Ingredient.isValidIngredient(WHITESPACE));
-        assertFalse(Ingredient.isValidIngredient(LEADING_WHITESPACE));
     }
 
     @Test
@@ -42,6 +34,26 @@ public class IngredientTest {
     @Test
     public void test_toString() {
         assertEquals(VALID_INTEGER_CONCAT_UNIT, new Ingredient(VALID_INTEGER_CONCAT_UNIT).toString());
+    }
+
+    @Test
+    public void constructor_invalidIngredient_throwsIllegalArgumentException() {
+        String invalidIngredient = "";
+        assertThrows(IllegalArgumentException.class, () -> new Ingredient(invalidIngredient));
+    }
+
+    @Test
+    public void ingredient_name_regex() {
+        assertTrue(Ingredient.isValidIngredient(VALID_INTEGER));
+        assertTrue(Ingredient.isValidIngredient(VALID_DECIMAL));
+        assertTrue(Ingredient.isValidIngredient(VALID_INTEGER_CONCAT_UNIT));
+        assertTrue(Ingredient.isValidIngredient(VALID_DECIMAL_CONCAT_UNIT));
+        assertTrue(Ingredient.isValidIngredient(VALID_ALPHA));
+        assertTrue(Ingredient.isValidIngredient(SLASH_UNIT));
+
+        assertFalse(Ingredient.isValidIngredient(TRAILING_WHITESPACE));
+        assertFalse(Ingredient.isValidIngredient(WHITESPACE));
+        assertFalse(Ingredient.isValidIngredient(LEADING_WHITESPACE));
     }
 
     @Test

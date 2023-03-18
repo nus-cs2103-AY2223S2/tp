@@ -108,9 +108,19 @@ public class RecipeBook implements ReadOnlyRecipeBook {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof RecipeBook // instanceof handles nulls
-                && recipes.equals(((RecipeBook) other).recipes));
+        if (!(other instanceof RecipeBook)) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        ObservableList<Recipe> r = ((RecipeBook) other).getRecipeList();
+        for (Recipe recipe: r) {
+            if (!this.hasRecipe(recipe)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

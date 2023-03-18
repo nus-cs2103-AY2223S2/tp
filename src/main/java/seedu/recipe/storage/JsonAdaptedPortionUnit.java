@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.unit.PortionUnit;
-
-import java.util.Optional;
 
 /**
  * Jackson-friendly version of {@link PortionUnit}.
@@ -43,17 +42,10 @@ class JsonAdaptedPortionUnit {
      * @throws IllegalValueException if there were any data constraints violated in the adapted PortionUnit.
      */
     public PortionUnit toModelType() throws IllegalValueException {
-        //WIP
-        return new PortionUnit(unit);
-    }
-
-    public Optional<PortionUnit> toModelTypeOptional() {
         try {
-            PortionUnit out = this.toModelType();
-            return Optional.ofNullable(out);
-        } catch (IllegalValueException e) {
-            //log
-            return Optional.empty();
+            return new PortionUnit(unit);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(PortionUnit.class.getSimpleName());
         }
     }
 }

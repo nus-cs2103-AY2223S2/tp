@@ -2,13 +2,11 @@ package seedu.recipe.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.tag.Tag;
-
-import java.util.Optional;
 
 /**
  * Jackson-friendly version of {@link Tag}.
@@ -48,15 +46,5 @@ class JsonAdaptedTag {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(tagName);
-    }
-
-    public Optional<Tag> toModelTypeOptional() {
-        try {
-            Tag out = this.toModelType();
-            return Optional.ofNullable(out);
-        } catch (IllegalValueException e) {
-            //log
-            return Optional.empty();
-        }
     }
 }

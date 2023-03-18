@@ -1,18 +1,16 @@
 package seedu.recipe.model.recipe;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import seedu.recipe.testutil.RecipeBuilder;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
 import seedu.recipe.model.tag.Tag;
 
 public class NameContainsKeywordsPredicateTest {
@@ -41,11 +39,11 @@ public class NameContainsKeywordsPredicateTest {
         // different recipe -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
     }
-//
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Lasagna"));
+        NameContainsKeywordsPredicate predicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("Lasagna"));
         assertTrue(predicate.test(new Recipe(new Name("Lasagna"))));
 
         // Multiple keywords
@@ -73,13 +71,12 @@ public class NameContainsKeywordsPredicateTest {
 
         // Keywords match fields, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Butter", "Onions", "Halibut", "Mediterranean"));
-        assertFalse(predicate.test(new RecipeBuilder(
-                new Name("Pan-roasted fish"),
-                RecipePortion.of("1 serving"),
-                RecipeDuration.of("2 h"),
-                Set.of(new Tag("Mediterranean")),
-                List.of(new Ingredient("Butter"), new Ingredient("Onions"), new Ingredient("Halibut")),
-                List.of(new Step("Descale the fish with a paring knife."))
-        ).build()));
+        Recipe r = new Recipe(new Name("Pan-roasted fish"));
+        r.setPortion(RecipePortion.of("1 serving"));
+        r.setDuration(RecipeDuration.of("2 h"));
+        r.setTags(new Tag("Mediterranean"));
+        r.setIngredients(new Ingredient("Butter"), new Ingredient("Onions"), new Ingredient("Halibut"));
+        r.setSteps(new Step("Descale the fish with a paring knife."));
+        assertFalse(predicate.test(r));
     }
 }
