@@ -10,6 +10,7 @@ import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
@@ -30,6 +31,7 @@ public class JsonAdaptedOrder {
     private final String status;
     private final String address;
     private final String createdDate;
+    private final String note;
 
     /**
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
@@ -38,13 +40,15 @@ public class JsonAdaptedOrder {
     public JsonAdaptedOrder(@JsonProperty("customerId") String customerId,
                             @JsonProperty("name") String name, @JsonProperty("phone") Integer quantity,
                             @JsonProperty("email") String status, @JsonProperty("address") String address,
-                            @JsonProperty("createdDate") String createdDate) {
+                            @JsonProperty("createdDate") String createdDate,
+                            @JsonProperty("note") String note) {
         this.customerId = customerId;
         this.name = name;
         this.quantity = quantity;
         this.status = status;
         this.address = address;
         this.createdDate = createdDate;
+        this.note = note;
     }
 
     /**
@@ -57,6 +61,7 @@ public class JsonAdaptedOrder {
         status = source.getStatus().toString().toUpperCase();
         address = source.getAddress().value;
         createdDate = source.getCreatedDate().toString();
+        note = source.getNote().toString();
     }
 
     /**
@@ -117,6 +122,11 @@ public class JsonAdaptedOrder {
         }
         final CreatedDate modelCreatedDate = new CreatedDate(dateObject);
 
-        return new Order(customer, modelName, modelQuantity, modelStatus, modelAddress, modelCreatedDate);
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
+        }
+        final Note modelNote = new Note(note);
+
+        return new Order(customer, modelName, modelQuantity, modelStatus, modelAddress, modelCreatedDate, modelNote);
     }
 }

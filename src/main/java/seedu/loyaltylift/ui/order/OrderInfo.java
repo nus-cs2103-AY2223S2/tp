@@ -6,8 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.ui.Badge;
+import seedu.loyaltylift.ui.NotePanel;
 import seedu.loyaltylift.ui.UiPart;
 
 /**
@@ -41,6 +43,13 @@ public class OrderInfo extends UiPart<ScrollPane> {
         // General Info
         OrderGeneralInfo orderGeneralInfo = new OrderGeneralInfo(order);
         insertSection("General", orderGeneralInfo.getRoot());
+
+        // Note
+        Note note = order.getNote();
+        if (!note.value.trim().isBlank()) {
+            NotePanel orderNote = new NotePanel(note);
+            insertSection("Note", orderNote.getRoot());
+        }
     }
 
     private void insertSection(String sectionTitle, Node node) {
