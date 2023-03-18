@@ -5,8 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
@@ -21,8 +19,6 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -30,7 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_TIME = "2023-03-12 0000";
     public static final String DEFAULT_AGE = "15";
 
-
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     private Name name;
     private Phone phone;
     private Email email;
@@ -47,7 +43,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        time = LocalDateTime.parse(DEFAULT_TIME.trim(),formatter);
+        time = LocalDateTime.parse(DEFAULT_TIME.trim(), formatter);
         age = new Age(DEFAULT_AGE);
         tags = new HashSet<>();
     }
