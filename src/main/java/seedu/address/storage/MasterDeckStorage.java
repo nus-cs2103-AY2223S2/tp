@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyMasterDeck;
 /**
  * Represents a storage for {@link MasterDeck}.
  */
-public interface AddressBookStorage {
+public interface MasterDeckStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getMasterDeckFilePath();
 
     /**
      * Returns Deck data as a {@link ReadOnlyMasterDeck}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyMasterDeck> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMasterDeck> readMasterDeck() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getMasterDeckFilePath()
      */
-    Optional<ReadOnlyMasterDeck> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMasterDeck> readMasterDeck(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyMasterDeck} to the storage.
-     * @param addressBook cannot be null.
+     * @param masterDeck cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyMasterDeck addressBook) throws IOException;
+    void saveMasterDeck(ReadOnlyMasterDeck masterDeck) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyMasterDeck)
+     * @see #saveMasterDeck(ReadOnlyMasterDeck)
      */
-    void saveAddressBook(ReadOnlyMasterDeck addressBook, Path filePath) throws IOException;
+    void saveMasterDeck(ReadOnlyMasterDeck masterDeck, Path filePath) throws IOException;
 
 }

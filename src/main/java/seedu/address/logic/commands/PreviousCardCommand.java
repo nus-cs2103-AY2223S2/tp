@@ -15,13 +15,17 @@ public class PreviousCardCommand extends Command {
             + "\nEnter [ to flip card and show answer!"
             + "\nEnter ] to return to previous card."
             + "\nEnter \\ to skip to next card.";
+    public static final String MESSAGE_NO_MORE_PREV_CARD = "This is the first card.";
 
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.goToPrevCard();
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (model.goToPrevCard()) {
+            return new CommandResult(MESSAGE_SUCCESS);
+        } else {
+            return new CommandResult(MESSAGE_NO_MORE_PREV_CARD);
+        }
     }
 }

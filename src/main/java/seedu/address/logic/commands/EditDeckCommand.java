@@ -27,7 +27,7 @@ public class EditDeckCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "LAC1201";
 
-    public static final String MESSAGE_EDIT_DECK_SUCCESS = "Edited Deck: %1$s";
+    public static final String MESSAGE_EDIT_DECK_SUCCESS = "Successfully renamed deck to %1$s";
     public static final String MESSAGE_DUPLICATE_DECK = "This deck name already exists.";
 
     private final Index index;
