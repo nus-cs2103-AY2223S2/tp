@@ -31,6 +31,7 @@ public class CalendarPanel extends UiPart<Region> {
         super(FXML);
         Objects.requireNonNull(eventList);
 
+        fillCalendarContent(sortEvents(eventList));
         eventList.addListener((ListChangeListener<Event>) c -> {
             calendarContent.getChildren().clear();
             fillCalendarContent(sortEvents(eventList));
@@ -54,6 +55,7 @@ public class CalendarPanel extends UiPart<Region> {
             }
             dateEvents.add(event);
         }
+        addDayCard(dateEvents, date);
     }
 
     private void addDayCard(List<Event> events, LocalDate date) {

@@ -27,8 +27,8 @@ public class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("description") String description,
-                            @JsonProperty("start") String startDateTime,
-                            @JsonProperty("end") String endDateTime,
+                            @JsonProperty("startDateTime") String startDateTime,
+                            @JsonProperty("endDateTime") String endDateTime,
                             @JsonProperty("recurrence") String recurrence) {
         this.description = description;
         this.startDateTime = startDateTime;
@@ -41,8 +41,8 @@ public class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event source) {
         this.description = source.getDescription().description;
-        this.startDateTime = source.getStartDateTime().dateTime.toString();
-        this.endDateTime = source.getEndDateTime().dateTime.toString();
+        this.startDateTime = source.getStartDateTime().toString();
+        this.endDateTime = source.getEndDateTime().toString();
         this.recurrence = source.getRecurrence().interval.getValue();
     }
 

@@ -36,4 +36,9 @@ public class DateTime {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return dateTime.format(dateTimeFormatter);
+    }
 }
