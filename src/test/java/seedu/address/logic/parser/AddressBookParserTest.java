@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_204
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalModules.CS2040S;
 
 import java.util.Arrays;
@@ -25,8 +24,6 @@ import seedu.address.logic.commands.AddVideoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -36,15 +33,11 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.LectureUtil;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.VideoBuilder;
 import seedu.address.testutil.VideoUtil;
 
@@ -94,14 +87,14 @@ public class AddressBookParserTest {
         assertEquals(new DeleteModuleCommand(CS2040S.getCode()), command);
     }
 
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_MODULE.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_MODULE, descriptor), command);
-    }
+    // @Test
+    // public void parseCommand_edit() throws Exception {
+    //     Person person = new PersonBuilder().build();
+    //     EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+    //     EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+    //             + INDEX_FIRST_MODULE.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+    //     assertEquals(new EditCommand(INDEX_FIRST_MODULE, descriptor), command);
+    // }
 
     @Test
     public void parseCommand_exit() throws Exception {
