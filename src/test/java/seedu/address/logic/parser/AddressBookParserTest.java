@@ -17,16 +17,16 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLectureCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.AddVideoCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.add.AddCommand;
+import seedu.address.logic.commands.add.AddLectureCommand;
+import seedu.address.logic.commands.add.AddModuleCommand;
+import seedu.address.logic.commands.add.AddVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
@@ -87,6 +87,7 @@ public class AddressBookParserTest {
         assertEquals(new DeleteModuleCommand(CS2040S.getCode()), command);
     }
 
+    // TODO: Test this
     // @Test
     // public void parseCommand_edit() throws Exception {
     //     Person person = new PersonBuilder().build();

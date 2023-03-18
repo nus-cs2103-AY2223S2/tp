@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import seedu.address.logic.commands.AddLectureCommand;
+import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.module.ModuleCode;
 

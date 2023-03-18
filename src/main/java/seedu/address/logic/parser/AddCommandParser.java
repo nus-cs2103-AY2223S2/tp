@@ -8,10 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLectureCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.AddVideoCommand;
+import seedu.address.logic.commands.add.AddCommand;
+import seedu.address.logic.commands.add.AddLectureCommand;
+import seedu.address.logic.commands.add.AddModuleCommand;
+import seedu.address.logic.commands.add.AddVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;

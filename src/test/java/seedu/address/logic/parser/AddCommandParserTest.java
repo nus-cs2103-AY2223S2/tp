@@ -21,10 +21,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLectureCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.AddVideoCommand;
+import seedu.address.logic.commands.add.AddCommand;
+import seedu.address.logic.commands.add.AddLectureCommand;
+import seedu.address.logic.commands.add.AddModuleCommand;
+import seedu.address.logic.commands.add.AddVideoCommand;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
