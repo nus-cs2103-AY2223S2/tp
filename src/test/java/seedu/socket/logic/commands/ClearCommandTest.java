@@ -34,8 +34,8 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSocket(), new UserPrefs());
         expectedModel.setSocket(new Socket());
-        TagContainsKeywordsPredicate empty_predicate = new TagContainsKeywordsPredicate(new ArrayList<>());
-        assertCommandSuccess(new ClearCommand(empty_predicate), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        TagContainsKeywordsPredicate emptyPredicate = new TagContainsKeywordsPredicate(new ArrayList<>());
+        assertCommandSuccess(new ClearCommand(emptyPredicate), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
