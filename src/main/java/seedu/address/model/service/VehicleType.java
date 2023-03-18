@@ -4,8 +4,8 @@ package seedu.address.model.service;
  * Represents the possible types of VehicleTypes that AutoM8 can add to the system.
  */
 public enum VehicleType {
-    MOTORBIKE("motorbike"),
-    CAR("car");
+    MOTORBIKE("Motorbike"),
+    CAR("Car");
 
     public static final String MESSAGE_CONSTRAINTS = "Vehicle type should only be 'motorbike' or 'car'";
 

@@ -3,6 +3,7 @@ package seedu.address.model.entity.person;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
@@ -94,6 +95,11 @@ public class Customer extends Person {
             return this.getId() == otherCustomer.getId() || super.equals(other);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, super.getName(), super.getPhone(), super.getEmail(), super.getAddress());
     }
 
     @Override

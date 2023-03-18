@@ -79,23 +79,14 @@ public class SampleDataUtil {
     }
 
     public static Vehicle[] getSampleVehicles() {
-        return new Vehicle[]{
-            new Vehicle(IdGenerator.generateVehicleId(), 1, "SKA1234A", "Red",
-                "Toyota Corolla", VehicleType.CAR),
-            new Vehicle(IdGenerator.generateVehicleId(), 1, "SGP5678B", "Blue",
-                "Toyota Prius", VehicleType.CAR),
-            new Vehicle(IdGenerator.generateVehicleId(), 2, "SLK9123C", "Grey",
-                "BMW X4", VehicleType.CAR),
-            new Vehicle(IdGenerator.generateVehicleId(), 3, "SBF4567D", "Grey",
-                "Suzuki SV650X ABS",
-                VehicleType.MOTORBIKE),
-            new Vehicle(IdGenerator.generateVehicleId(), 3, "SGC2345F", "Black and White",
-                "Honda Adv 150",
-                VehicleType.MOTORBIKE),
-            new Vehicle(IdGenerator.generateVehicleId(), 4, "SLM5678K", "Dark Blue",
-                "Hyundai Tucson SUV",
-                VehicleType.CAR),
-            };
+        return new Vehicle[] {
+            new Vehicle(1, 1, "SKA1234A", "Red", "Toyota Corolla", VehicleType.CAR, getIntegerSet(1, 5)),
+            new Vehicle(2, 1, "SGP5678B", "Blue", "Toyota Prius", VehicleType.CAR, getIntegerSet(3)),
+            new Vehicle(3, 2, "SLK9123C", "Grey", "BMW X4", VehicleType.CAR, getIntegerSet(2)),
+            new Vehicle(4, 3, "SBF4567D", "Grey", "Suzuki SV650X ABS", VehicleType.MOTORBIKE, getIntegerSet(4)),
+            new Vehicle(5, 3, "SGC2345F", "Black and White", "Honda Adv 150", VehicleType.MOTORBIKE, getIntegerSet(7)),
+            new Vehicle(6, 4, "SLM5678K", "Dark Blue", "Hyundai Tucson SUV", VehicleType.CAR),
+        };
     }
 
     public static Map<String, Integer> getSampleParts() {

@@ -22,6 +22,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
@@ -140,16 +142,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Customer> getFilteredCustomerList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Vehicle> getFilteredVehicleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -260,17 +252,41 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updatePartsMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CustomerVehicleMap getCustomerVehicleMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTechnicianList(Predicate<Technician> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredVehicleList(Predicate<Vehicle> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredServiceList(Predicate<Service> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        public ObservableList<Customer> getFilteredCustomerList() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updatePartsMap() {
+        public ObservableList<Vehicle> getFilteredVehicleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public VehicleDataMap getVehicleDataMap() {
             throw new AssertionError("This method should not be called.");
         }
     }

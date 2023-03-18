@@ -70,10 +70,10 @@ public class IdGenerator {
      */
     public static void saveState(Path path) throws IOException {
         IdGeneratorState state = new IdGeneratorState(
-                usedCustomerIds, unusedCustomerIds,
-                usedVehicleIds, unusedVehicleIds,
-                usedServiceIds, unusedServiceIds,
-                usedStaffIds, unusedStaffIds);
+            usedCustomerIds, unusedCustomerIds,
+            usedVehicleIds, unusedVehicleIds,
+            usedServiceIds, unusedServiceIds,
+            usedStaffIds, unusedStaffIds);
         Files.createDirectories(path);
         path = path.resolve(FILE_NAME);
         ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(path));
@@ -128,6 +128,26 @@ public class IdGenerator {
 
     public static void setStaffIdUnused(int id) {
         unusedStaffIds.add(id);
+    }
+
+    public static void setCustomerIdUsed(int id) {
+        usedCustomerIds.add(id);
+    }
+
+    public static void setVehicleIdUsed(int id) {
+        usedVehicleIds.add(id);
+    }
+
+    public static void setServiceIdUsed(int id) {
+        usedServiceIds.add(id);
+    }
+
+    public static void setAppointmentIdUsed(int id) {
+        usedAppointmentIds.add(id);
+    }
+
+    public static void setStaffIdUsed(int id) {
+        usedStaffIds.add(id);
     }
 
     /**
