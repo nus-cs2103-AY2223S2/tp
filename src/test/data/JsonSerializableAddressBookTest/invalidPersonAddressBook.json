@@ -1,7 +1,10 @@
 {
   "cards": [ {
-    "question": "Hans Muster",
-    "answer": "4th street",
+    "question": "!nvalid question",
+    "answer": " Invalid answer",
     "deck" : "Default"
+  } ],
+  "decks" : [ {
+    "deckName" : "Default"
   } ]
 }

@@ -17,26 +17,29 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code Deck} with sample data.
  */
 public class SampleDataUtil {
-    public static Card[] getSampleCards() {
-        return new Card[] {
-            new Card(new Question("Alex Yeoh"),
-                    new Answer("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), Optional.of(new Deck("Default Deck"))),
-            new Card(new Question("Bernice Yu"),
-                new Answer("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), Optional.of(new Deck("Default Deck"))),
-            new Card(new Question("Charlotte Oliveiro"),
-                new Answer("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), Optional.of(new Deck("Default Deck"))),
-            new Card(new Question("David Li"),
-                new Answer("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), Optional.of(new Deck("Default Deck"))),
-            new Card(new Question("Irfan Ibrahim"),
-                new Answer("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), Optional.of(new Deck("Default Deck"))),
-            new Card(new Question("Roy Balakrishnan"),
-                new Answer("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), Optional.of(new Deck("Default Deck")))
+    private static final Deck defaultDeck = new Deck("Default Deck");
+
+    public static Card[] getSampleCards() { // Todo: initilize new cards?
+        return new Card[]{
+            new Card(new Question("What is a loop"),
+                    new Answer("A construct that repeats instructions until a condition is met"),
+                    getTagSet("easy"), Optional.of(defaultDeck)),
+            new Card(new Question("What is a variable"),
+                    new Answer("A named memory location that stores a value"),
+                    getTagSet("easy"), Optional.of(defaultDeck)),
+            new Card(new Question("What is the structure of an atom"),
+                    new Answer("Atoms consist of a nucleus containing protons and neutrons, "
+                            + "surrounded by electrons in shells or energy levels"),
+                    getTagSet("medium"), Optional.of(defaultDeck)),
+            new Card(new Question("What is the basic unit of life"),
+                    new Answer("The cell is the basic unit of life"),
+                    getTagSet("easy"), Optional.of(defaultDeck)),
+            new Card(new Question("Who was the first president of the United States"),
+                    new Answer("George Washington"),
+                    getTagSet("medium"), Optional.of(defaultDeck)),
+            new Card(new Question("When did Singapore gain independence"),
+                    new Answer("9 August 1965"),
+                    getTagSet("hard"), Optional.of(defaultDeck))
         };
     }
 
