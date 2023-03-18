@@ -5,6 +5,7 @@ import static seedu.calidr.logic.parser.CliSyntax.PREFIX_BY;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TO;
+import static seedu.calidr.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -75,7 +76,8 @@ public class EditTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.setTask(index, editedTask);
+        model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
