@@ -100,10 +100,6 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonList();
 
-    ObservableList<Customer> getFilteredCustomerList();
-
-    ObservableList<Vehicle> getFilteredVehicleList();
-
     ObservableList<Appointment> getFilteredAppointmentList();
 
     PartMap getPartMap();
@@ -114,8 +110,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    void updateFilteredCustomerList(Predicate<Customer> predicate);
 
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
