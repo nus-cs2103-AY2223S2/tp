@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 
 /**
@@ -60,4 +61,6 @@ public interface Logic {
     ReadOnlyObjectProperty<TabInfo> getSelectedTab();
 
     void setSelectedTab(Index index);
+
+    ObservableList<Event> getEventList();
 }

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
 <StackPane styleClass="pane-with-rounded-corner, pa"
            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <VBox spacing="5">
-        <Label fx:id="description" text="CS2103T Lecture" styleClass="label-h6" />
+        <Label fx:id="description" text="\$description" styleClass="label-h6" />
         <HBox spacing="5">
-            <Label fx:id="startDateTime" text="2023-01-01 0000" styleClass="label-p" />
+            <Label fx:id="startDateTime" text="\$startDateTime" styleClass="label-p" />
             <Label text="to" styleClass="label-p" />
-            <Label fx:id="endDateTime" text="2023-12-31 0000" styleClass="label-p" />
+            <Label fx:id="endDateTime" text="\$endDateTime" styleClass="label-p" />
         </HBox>
-        <Label fx:id="recurrence" text="weekly" styleClass="label-p" />
+        <Label fx:id="recurrence" text="\$recurrence" styleClass="label-p" />
     </VBox>
-    <Label fx:id="modules" text="Index: 1" StackPane.alignment="TOP_RIGHT" styleClass="label-p" />
+    <Label fx:id="indexTag" text="\$index" StackPane.alignment="TOP_RIGHT" styleClass="label-p, tag-accented" />
 </StackPane>
