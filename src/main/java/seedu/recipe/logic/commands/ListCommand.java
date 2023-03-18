@@ -1,12 +1,12 @@
 package seedu.recipe.logic.commands;
 
+import seedu.recipe.model.Model;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPE;
 
-import seedu.recipe.model.Model;
-
 /**
- * Lists all recipes in the address book to the user.
+ * Lists all persons in the recipe book to the user.
  */
 public class ListCommand extends Command {
 

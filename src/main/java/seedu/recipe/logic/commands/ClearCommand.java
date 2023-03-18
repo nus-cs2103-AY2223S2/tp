@@ -6,7 +6,7 @@ import seedu.recipe.model.Model;
 import seedu.recipe.model.RecipeBook;
 
 /**
- * Clears the address book.
+ * Clears the recipe book.
  */
 public class ClearCommand extends Command {
 

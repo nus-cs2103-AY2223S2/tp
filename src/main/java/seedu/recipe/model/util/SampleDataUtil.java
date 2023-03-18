@@ -206,20 +206,18 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyRecipeBook getSampleRecipeBook() {
-        RecipeBook sampleAb = new RecipeBook();
+        RecipeBook sampleRb = new RecipeBook();
         for (Recipe sampleRecipe : getSampleRecipes()) {
-            sampleAb.addRecipe(sampleRecipe);
+            sampleRb.addRecipe(sampleRecipe);
         }
-        return sampleAb;
+        return sampleRb;
     }
 
     /**
      * Returns a tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+        return Arrays.stream(strings).map(Tag::new).collect(Collectors.toSet());
     }
 
     private static Recipe build(

@@ -232,17 +232,18 @@ public class TypicalRecipes {
     // Manually added - Recipe's details found in {@code CommandTestUtil}
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalRecipes() {} // prevents instantiation
+    private TypicalRecipes() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code RecipeBook} with all the typical recipes.
      */
     public static RecipeBook getTypicalRecipeBook() {
-        RecipeBook ab = new RecipeBook();
+        RecipeBook rb = new RecipeBook();
         for (Recipe recipe : getTypicalRecipes()) {
-            ab.addRecipe(recipe);
+            rb.addRecipe(recipe);
         }
-        return ab;
+        return rb;
     }
 
     public static List<Recipe> getTypicalRecipes() {

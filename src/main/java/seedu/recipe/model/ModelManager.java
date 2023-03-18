@@ -1,20 +1,20 @@
 package seedu.recipe.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.model.recipe.Recipe;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
+
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the recipe book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

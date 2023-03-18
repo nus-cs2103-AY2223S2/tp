@@ -1,7 +1,5 @@
 package seedu.recipe.logic;
 
-import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.logic.commands.CommandResult;
@@ -9,6 +7,8 @@ import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.recipe.Recipe;
+
+import java.nio.file.Path;
 
 /**
  * API of the Logic component
@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Recipe> getFilteredRecipeList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' recipe book file path.
      */
     Path getRecipeBookFilePath();
 

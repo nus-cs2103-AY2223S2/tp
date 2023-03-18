@@ -1,11 +1,11 @@
 package seedu.recipe.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.model.recipe.Recipe;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -35,21 +35,21 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' recipe book file path.
      */
     Path getRecipeBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' recipe book file path.
      */
     void setRecipeBookFilePath(Path recipeBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code recipeBook}.
+     * Replaces RIZZ-ipe data with the data in {@code recipeBook}.
      */
     void setRecipeBook(ReadOnlyRecipeBook recipeBook);
 
-    /** Returns the RecipeBook */
+    /** Returns the AddressBook */
     ReadOnlyRecipeBook getRecipeBook();
 
     /**

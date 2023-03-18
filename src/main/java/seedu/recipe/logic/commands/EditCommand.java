@@ -30,7 +30,7 @@ import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
 
 /**
- * Edits the details of an existing recipe in the address book.
+ * Edits the details of an existing recipe in the recipe book.
  */
 public class EditCommand extends Command {
 
@@ -58,7 +58,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book.";
 
     private final Index index;
     private final EditRecipeDescriptor editRecipeDescriptor;

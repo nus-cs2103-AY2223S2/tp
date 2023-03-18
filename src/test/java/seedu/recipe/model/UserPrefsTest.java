@@ -6,6 +6,8 @@ import static seedu.recipe.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import static seedu.recipe.testutil.Assert.assertThrows;
+
 public class UserPrefsTest {
 
     @Test

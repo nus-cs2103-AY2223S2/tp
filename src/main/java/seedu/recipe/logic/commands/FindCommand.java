@@ -1,13 +1,13 @@
 package seedu.recipe.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.NameContainsKeywordsPredicate;
 
+import static java.util.Objects.requireNonNull;
+
 /**
- * Finds and lists all recipes in address book whose name contains any of the argument keywords.
+ * Finds and lists all recipes in recipe book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
