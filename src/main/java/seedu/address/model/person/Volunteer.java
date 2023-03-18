@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.MedicalQualificationTag;
 
 /**
  * Represents an Volunteer in the database.
@@ -18,12 +21,20 @@ import seedu.address.model.tag.Tag;
  */
 public class Volunteer extends Person {
 
+    private final Set<MedicalQualificationTag> medicalTags = new HashSet<>();
+
     /**
      * Every field must be present and not null.
      */
     public Volunteer(Name name, Phone phone, Email email,
-                     Address address, Nric nric, Age age, Region region, Set<Tag> tags) {
+                     Address address, Nric nric, Age age,
+                     Region region, Set<Tag> tags, Set<MedicalQualificationTag> medicalTags) {
         super(name, phone, email, address, nric, age, region, tags);
+        this.medicalTags.addAll(medicalTags);
+    }
+
+    public Set<MedicalQualificationTag> getMedicalTags() {
+        return Collections.unmodifiableSet(medicalTags);
     }
 
     @Override
@@ -42,7 +53,7 @@ public class Volunteer extends Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(getName(), getPhone(), getEmail(), getAddress(),
-                getNric(), getAge(), getRegion(), getTags());
+                getNric(), getAge(), getRegion(), getTags(), getMedicalTags());
     }
 
     @Override
@@ -66,6 +77,11 @@ public class Volunteer extends Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        Set<MedicalQualificationTag> medicalTags = getMedicalTags();
+        if (!medicalTags.isEmpty()) {
+            builder.append("; Medical qualifications: ");
+            medicalTags.forEach(builder::append);
         }
         return builder.toString();
     }

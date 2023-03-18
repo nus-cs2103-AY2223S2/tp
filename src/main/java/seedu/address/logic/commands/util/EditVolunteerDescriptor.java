@@ -1,5 +1,8 @@
 package seedu.address.logic.commands.util;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Volunteer;
@@ -11,12 +14,16 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.MedicalQualificationTag;
 
 /**
  * Stores the details to edit the volunteer with. Each non-empty field value will replace the
  * corresponding field value of the volunteer.
  */
 public class EditVolunteerDescriptor extends EditPersonDescriptor {
+
+    private Set<MedicalQualificationTag> medicalTags;
+
     public EditVolunteerDescriptor() {}
 
     /**
@@ -25,6 +32,7 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
      */
     public EditVolunteerDescriptor(EditVolunteerDescriptor toCopy) {
         super(toCopy);
+        setMedicalTags(toCopy.medicalTags);
     }
 
     /**
@@ -44,8 +52,25 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
         Region updateRegion = editPersonDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(volunteerToEdit.getTags());
 
+        Set<MedicalQualificationTag> updatedMedicalTags = volunteerToEdit.getMedicalTags();
+        if (editPersonDescriptor instanceof EditVolunteerDescriptor) {
+            EditVolunteerDescriptor editVolunteerDescriptor = (EditVolunteerDescriptor) editPersonDescriptor;
+            updatedMedicalTags = editVolunteerDescriptor.getMedicalTags()
+                    .orElse(volunteerToEdit.getMedicalTags());
+        }
+
         return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updateRegion, updatedTags);
+                updatedNric, updatedAge, updateRegion, updatedTags, updatedMedicalTags);
+    }
+
+    public void setMedicalTags(Set<MedicalQualificationTag> tags) {
+        this.medicalTags = (tags != null) ? new HashSet<>(tags) : null;
+    }
+
+    public Optional<Set<MedicalQualificationTag>> getMedicalTags() {
+        return (medicalTags != null) ? Optional.of(
+                Collections.unmodifiableSet(medicalTags)
+        ) : Optional.empty();
     }
 
     @Override
@@ -70,6 +95,7 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
                 && getNric().equals(e.getNric())
                 && getAge().equals(e.getAge())
                 && getRegion().equals(e.getRegion())
-                && getTags().equals(e.getTags());
+                && getTags().equals(e.getTags())
+                && getMedicalTags().equals(e.getMedicalTags());
     }
 }
