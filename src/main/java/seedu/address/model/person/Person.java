@@ -208,6 +208,10 @@ public class Person {
                 .append(getAddress())
                 .append("; Status: ")
                 .append(getStatus());
+        if (interviewDateTime.isPresent()) {
+            builder.append("; InterviewDateTime: ")
+                    .append(interviewDateTime.get());
+        }
 
         Set<Note> notes = getNotes();
         if (!notes.isEmpty()) {
