@@ -149,7 +149,8 @@ public class Wife implements ReadOnlyWife {
     public String toString() {
         return foods.asUnmodifiableObservableList().size()
             + " foods \n"
-            + tags.asUnmodifiableObservableList().size() + " available tags";
+            + tags.asUnmodifiableObservableList().size()
+            + " available tags";
     }
 
     @Override

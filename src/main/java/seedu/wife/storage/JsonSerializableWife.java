@@ -12,6 +12,7 @@ import seedu.wife.commons.exceptions.IllegalValueException;
 import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
+import seedu.wife.model.tag.Tag;
 
 /**
  * An Immutable Wife that is serializable to JSON format.
@@ -20,8 +21,10 @@ import seedu.wife.model.food.Food;
 class JsonSerializableWife {
 
     public static final String MESSAGE_DUPLICATE_FOODS = "Food list contains duplicate food(s).";
+    public static final String MESSAGE_DUPLICATE_TAGS = "Tag list contains duplicate tag(s).";
 
     private final List<JsonAdaptedFood> foods = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFood} with the given foods.
@@ -38,6 +41,7 @@ class JsonSerializableWife {
      */
     public JsonSerializableWife(ReadOnlyWife source) {
         foods.addAll(source.getFoodList().stream().map(JsonAdaptedFood::new).collect(Collectors.toList()));
+        tags.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +51,8 @@ class JsonSerializableWife {
      */
     public Wife toModelType() throws IllegalValueException {
         Wife wife = new Wife();
+
+        // Add food to WIFE
         for (JsonAdaptedFood jsonAdaptedFood : foods) {
             Food food = jsonAdaptedFood.toModelType();
             if (wife.hasFood(food)) {
@@ -54,6 +60,16 @@ class JsonSerializableWife {
             }
             wife.addFood(food);
         }
+
+        // Add Tags to WIFE
+        for (JsonAdaptedTag jsonAdaptedTag : tags) {
+            Tag tag = jsonAdaptedTag.toModelType();
+            if (wife.hasTag(tag)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TAGS);
+            }
+            wife.addTag(tag);
+        }
+
         return wife;
     }
 
