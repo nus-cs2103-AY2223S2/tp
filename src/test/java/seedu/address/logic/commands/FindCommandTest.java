@@ -77,7 +77,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_oneFieldSpecified_success() {
-        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 1, 3);
+        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 1, 1);
 
         @SuppressWarnings("unchecked")
         FindCommand command = new FindCommand(listWithOnePersonPredicate,
@@ -87,7 +87,8 @@ public class FindCommandTest {
                 elderly.getName().fullName.equals(ALICE.getName().fullName));
         expectedModel.updateFilteredVolunteerList(volunteer ->
                 volunteer.getName().fullName.equals(ALICE.getName().fullName));
-        expectedModel.updateFilteredPairList(unused -> false);
+        expectedModel.updateFilteredPairList(pair ->
+                pair.getElderly().getName().fullName.equals(ALICE.getName().fullName));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         // TODO: uncomment after updatefilteredPairList is done
@@ -96,7 +97,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_twoFieldsSpecified_success() {
-        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 0, 3);
+        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 0, 0);
 
         @SuppressWarnings("unchecked")
         FindCommand command = new FindCommand(listWithTwoPersonPredicate,
@@ -114,7 +115,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_fourFieldsSpecified_success() {
-        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 1, 3);
+        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 1, 1);
 
         @SuppressWarnings("unchecked")
         FindCommand command = new FindCommand(listWithFourPersonPredicate,
@@ -124,9 +125,11 @@ public class FindCommandTest {
                 elderly.getName().fullName.equals(ALICE.getName().fullName));
         expectedModel.updateFilteredVolunteerList(volunteer ->
                 volunteer.getName().fullName.equals(ALICE.getName().fullName));
-        expectedModel.updateFilteredPairList(unused -> false);
+        expectedModel.updateFilteredPairList(pair ->
+                pair.getElderly().getName().fullName.equals(ALICE.getName().fullName));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
         // TODO: uncomment after updatefilteredPairList is done
         //assertEquals(Collections.emptyList(), model.getFilteredPairList());
     }
@@ -135,7 +138,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_allElderlyFieldsSpecified_success() {
-        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 0, 3);
+        String expectedMessage = String.format(MESSAGE_LISTED_OVERVIEW, 1, 0, 0);
 
         @SuppressWarnings("unchecked")
         FindCommand command = new FindCommand(listWithAllPersonPredicate,
