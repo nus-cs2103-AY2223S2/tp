@@ -8,6 +8,7 @@ public enum ResultType {
     LISTED_CUSTOMERS,
     LISTED_VEHICLES,
     LISTED_SERVICES,
+    VIEW_VEHICLE,
     OTHERS;
 
     @Override

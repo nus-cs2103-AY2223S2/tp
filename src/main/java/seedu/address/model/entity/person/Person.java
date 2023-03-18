@@ -106,11 +106,11 @@ public class Person extends Entity {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("; \nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("; \nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append(" \nAddress: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
