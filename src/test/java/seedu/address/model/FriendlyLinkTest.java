@@ -177,7 +177,7 @@ public class FriendlyLinkTest {
 
     @Test
     public void getPairList_modifyList_throwsUnsupportedOperationException() {
-        // TODO: assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getPairList().remove(0));
     }
 
     @Test
@@ -187,7 +187,6 @@ public class FriendlyLinkTest {
         assertThrows(IllegalArgumentException.class, () ->
                 friendlyLink.addPair(GEORGE.getNric(), FIONA.getNric()));
     }
-
 
     /**
      * A stub ReadOnlyFriendlyLink whose persons list can violate interface constraints.

@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_RISKLEVEL;
 import static seedu.address.logic.commands.CommandTestUtil.PREDICATE_HAS_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 import static seedu.address.testutil.TypicalVolunteers.ALICE;
 
 import java.util.Arrays;
@@ -23,15 +23,13 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 
 public class FindCommandTest {
-    private final Model model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
+    private final Model model = getTypicalModelManager();
+    private final Model expectedModel = getTypicalModelManager();
     private final List<?> emptyList = Collections.emptyList();
     private final List<Predicate<Person>> listWithOnePersonPredicate =
             Collections.singletonList(PREDICATE_HAS_NAME);
