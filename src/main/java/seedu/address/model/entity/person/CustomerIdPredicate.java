@@ -2,8 +2,6 @@ package seedu.address.model.entity.person;
 
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.index.Index;
-
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */

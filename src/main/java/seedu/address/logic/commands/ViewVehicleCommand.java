@@ -34,7 +34,7 @@ public class ViewVehicleCommand extends RedoableCommand {
         Customer vehicleOwner = model.getVehicleDataMap().getVehicleCustomer(current);
         // TODO: Show all nested objects associated with vehicle
         return new CommandResult(
-                String.format(Messages.MESSAGE_VEHICLE_VIEW_OVERVIEW, current, vehicleOwner), 
+                String.format(Messages.MESSAGE_VEHICLE_VIEW_OVERVIEW, current, vehicleOwner),
                 ResultType.LISTED_VEHICLES);
     }
 
