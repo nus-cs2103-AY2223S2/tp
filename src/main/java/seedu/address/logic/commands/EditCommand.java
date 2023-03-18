@@ -87,7 +87,9 @@ public class EditCommand extends Command {
         Question updatedQuestion = editCardDescriptor.getQuestion().orElse(cardToEdit.getQuestion());
         Answer updatedAnswer = editCardDescriptor.getAnswer().orElse(cardToEdit.getAnswer());
         Set<Tag> updatedTags = editCardDescriptor.getTags().orElse(cardToEdit.getTags());
-        Optional<Deck> updatedDeck = editCardDescriptor.getDeck().orElse(Optional.of(cardToEdit.getDeck().get()));
+
+        assert cardToEdit.getDeck().isPresent() : "The edited card must be inside a deck";
+        Deck updatedDeck = editCardDescriptor.getDeck().orElse(cardToEdit.getDeck().get());
 
         return new Card(updatedQuestion, updatedAnswer, updatedTags, updatedDeck);
     }
@@ -118,7 +120,7 @@ public class EditCommand extends Command {
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
-        private Optional<Deck> deck;
+        private Deck deck;
 
         public EditCardDescriptor() {}
 
@@ -155,10 +157,12 @@ public class EditCommand extends Command {
         public Optional<Answer> getAnswer() {
             return Optional.ofNullable(answer);
         }
-        public void setDeck(Optional<Deck> deck) {
+
+        public void setDeck(Deck deck) {
             this.deck = deck;
         }
-        public Optional<Optional<Deck>> getDeck() {
+
+        public Optional<Deck> getDeck() {
             return Optional.ofNullable(deck);
         }
 

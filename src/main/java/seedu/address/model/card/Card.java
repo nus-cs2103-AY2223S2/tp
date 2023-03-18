@@ -23,13 +23,13 @@ public class Card {
     // Data fields
     private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
-    private Optional<Deck> deck;
+    private Deck deck;
     private boolean isFlipped = true;
 
     /**
      * Every field must be present and not null.
      */
-    public Card(Question question, Answer answer, Set<Tag> tags, Optional<Deck> deck) {
+    public Card(Question question, Answer answer, Set<Tag> tags, Deck deck) {
         requireAllNonNull(question, answer, tags);
         this.question = question;
         this.answer = answer;
@@ -54,10 +54,10 @@ public class Card {
     }
 
     public Optional<Deck> getDeck() {
-        return deck;
+        return Optional.of(deck);
     }
 
-    public void setDeck(Optional<Deck> newDeck) {
+    public void setDeck(Deck newDeck) {
         this.deck = newDeck;
     }
 
