@@ -62,7 +62,7 @@ public class AddressBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments").trim();
+        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -127,35 +127,35 @@ public class AddressBookParser {
 
 
         case ViewPartCommand.COMMAND_WORD:
-            return new ViewPartCommand(arguments);
+            return new ViewPartCommand(arguments.trim());
 
         case ViewVehicleCommand.COMMAND_WORD:
-            return new ViewVehicleCommandParser().parse(arguments);
+            return new ViewVehicleCommandParser().parse(arguments.trim());
 
         case ViewAppointmentCommand.COMMAND_WORD:
-            return new ViewAppointmentCommandParser().parse(arguments);
+            return new ViewAppointmentCommandParser().parse(arguments.trim());
 
         case ViewCustomerCommand.COMMAND_WORD:
-            return new ViewCustomerCommandParser().parse(arguments);
+            return new ViewCustomerCommandParser().parse(arguments.trim());
 
         case ViewTechnicianCommand.COMMAND_WORD:
-            return new ViewTechnicianCommandParser().parse(arguments);
+            return new ViewTechnicianCommandParser().parse(arguments.trim());
 
 
         case DeleteVehicleCommand.COMMAND_WORD:
-            return new DeleteVehicleCommandParser().parse(arguments);
+            return new DeleteVehicleCommandParser().parse(arguments.trim());
 
         case DeleteCustomerCommand.COMMAND_WORD:
-            return new DeleteCustomerCommandParser().parse(arguments);
+            return new DeleteCustomerCommandParser().parse(arguments.trim());
 
         case DeleteServiceCommand.COMMAND_WORD:
-            return new DeleteServiceCommandParser().parse(arguments);
+            return new DeleteServiceCommandParser().parse(arguments.trim());
 
         case DeleteAppointmentCommand.COMMAND_WORD:
-            return new DeleteAppointmentCommandParser().parse(arguments);
+            return new DeleteAppointmentCommandParser().parse(arguments.trim());
 
         case DeleteTechnicianCommand.COMMAND_WORD:
-            return new DeleteTechnicianCommandParser().parse(arguments);
+            return new DeleteTechnicianCommandParser().parse(arguments.trim());
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
