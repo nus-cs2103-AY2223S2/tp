@@ -17,14 +17,14 @@ import seedu.address.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final MasterDeckStorage masterDeckStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code MasterDeckStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(MasterDeckStorage masterDeckStorage, UserPrefsStorage userPrefsStorage) {
+        this.masterDeckStorage = masterDeckStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -49,30 +49,30 @@ public class StorageManager implements Storage {
     // ================ Deck methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getMasterDeckFilePath() {
+        return masterDeckStorage.getMasterDeckFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyMasterDeck> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyMasterDeck> readMasterDeck() throws DataConversionException, IOException {
+        return readMasterDeck(masterDeckStorage.getMasterDeckFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyMasterDeck> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyMasterDeck> readMasterDeck(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return masterDeckStorage.readMasterDeck(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMasterDeck addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveMasterDeck(ReadOnlyMasterDeck masterDeck) throws IOException {
+        saveMasterDeck(masterDeck, masterDeckStorage.getMasterDeckFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyMasterDeck addressBook, Path filePath) throws IOException {
+    public void saveMasterDeck(ReadOnlyMasterDeck masterDeck, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        masterDeckStorage.saveMasterDeck(masterDeck, filePath);
     }
 
 }

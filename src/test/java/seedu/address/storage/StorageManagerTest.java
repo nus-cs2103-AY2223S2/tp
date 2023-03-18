@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonMasterDeckStorage addressBookStorage = new JsonMasterDeckStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -51,18 +51,18 @@ public class StorageManagerTest {
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
+         * {@link JsonMasterDeckStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonMasterDeckStorageTest} class.
          */
         MasterDeck original = getTypicalMasterDeck();
-        storageManager.saveAddressBook(original);
-        ReadOnlyMasterDeck retrieved = storageManager.readAddressBook().get();
+        storageManager.saveMasterDeck(original);
+        ReadOnlyMasterDeck retrieved = storageManager.readMasterDeck().get();
         assertEquals(original, new MasterDeck(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getMasterDeckFilePath());
     }
 
 }

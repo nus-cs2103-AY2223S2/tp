@@ -31,7 +31,7 @@ public class JsonMasterDeckStorageTest {
     }
 
     private java.util.Optional<ReadOnlyMasterDeck> readMasterDeck(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonMasterDeckStorage(Paths.get(filePath)).readMasterDeck(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -65,24 +65,24 @@ public class JsonMasterDeckStorageTest {
     public void readAndSaveMasterDeck_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         MasterDeck original = getTypicalMasterDeck();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonMasterDeckStorage jsonMasterDeckStorage = new JsonMasterDeckStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyMasterDeck readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonMasterDeckStorage.saveMasterDeck(original, filePath);
+        ReadOnlyMasterDeck readBack = jsonMasterDeckStorage.readMasterDeck(filePath).get();
         assertEquals(original, new MasterDeck(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addCard(SMOG);
         original.removeCard(LOOP);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonMasterDeckStorage.saveMasterDeck(original, filePath);
+        readBack = jsonMasterDeckStorage.readMasterDeck(filePath).get();
         assertEquals(original, new MasterDeck(readBack));
 
         // Save and read without specifying file path
         original.addCard(GRAVITY);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonMasterDeckStorage.saveMasterDeck(original); // file path not specified
+        readBack = jsonMasterDeckStorage.readMasterDeck().get(); // file path not specified
         assertEquals(original, new MasterDeck(readBack));
 
     }
@@ -97,8 +97,8 @@ public class JsonMasterDeckStorageTest {
      */
     private void saveMasterDeck(ReadOnlyMasterDeck addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonMasterDeckStorage(Paths.get(filePath))
+                    .saveMasterDeck(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

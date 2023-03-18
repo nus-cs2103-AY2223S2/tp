@@ -60,9 +60,9 @@ class JsonAdaptedCard {
      * @throws IllegalValueException if there were any data constraints violated in the adapted card.
      */
     public Card toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> cardTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            cardTags.add(tag.toModelType());
         }
 
         if (question == null) {
@@ -83,8 +83,9 @@ class JsonAdaptedCard {
         }
         final Answer modelAnswer = new Answer(answer);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(cardTags);
         final Deck modelDeck = new Deck(deck); // todo: any constraints on deck name?
+        
         return new Card(modelQuestion, modelAnswer, modelTags, modelDeck);
     }
 
