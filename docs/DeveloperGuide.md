@@ -157,8 +157,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding a Patient
 
-#### Implementation
-
 The **Adding a Patient** mechanism is facilated by `VMS`. The Patient created is stored inside `PatientManager` inside
 
 #### Usage
@@ -169,25 +167,17 @@ Given below is an sequence diagram that illustrates the **Adding a Patient** mec
 
 ### Listing Patients
 
-#### Implementation
-
 #### Usage
 
 ### Finding a Patient
-
-#### Implementation
 
 #### Usage
 
 ### Editing a Patient
 
-#### Implementation
-
 #### Usage
 
 ### Deleting a Patient
-
-#### Implementation
 
 #### Usage
 
