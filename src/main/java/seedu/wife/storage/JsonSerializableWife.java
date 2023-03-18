@@ -14,7 +14,7 @@ import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Wife that is serializable to JSON format.
  */
 @JsonRootName(value = "wife")
 class JsonSerializableWife {
