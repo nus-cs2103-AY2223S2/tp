@@ -12,7 +12,7 @@ public abstract class StudentCommand extends Command {
                                               + "2. student <CLASS_NAME> comment\n"
                                               + "3. student <CLASS_NAME> grade\n"
                                               + "4. student <CLASS_NAME> delete\n"
-                                              + "5. student <CLASS_NAME> gradedelete";
+                                              + "5. student <CLASS_NAME> gradedelete\n";
 
     public static final String MESSAGE_SUCCESS = "New student added: <STUDENT_NAME>";
 }

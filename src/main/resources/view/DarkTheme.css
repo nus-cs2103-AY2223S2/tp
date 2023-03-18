@@ -266,7 +266,7 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1;
+    -fx-background-color: #1d1d1d;
 }
 
 .dialog-pane > *.button-bar > *.container {
