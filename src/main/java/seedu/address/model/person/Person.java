@@ -64,16 +64,16 @@ public class Person {
     public void addTag(Tag toAdd) {
         tags.add(toAdd);
     }
-    
+
     /**
      * Deletes a tag from the person.
-     * 
+     *
      * @param toDelete the tag to deleted from the person.
      */
     public void deleteTag(Tag toDelete) {
         tags.remove(toDelete);
     }
-    
+
     /**
      * Returns an immutable tag set, which throws
      * {@code UnsupportedOperationException}

@@ -30,8 +30,9 @@ import seedu.address.model.tag.Tag;
 public class UniquePersonList implements Iterable<Person> {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
-    
+    private final ObservableList<Person> internalUnmodifiableList =
+        FXCollections.unmodifiableObservableList(internalList);
+
     /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
@@ -68,16 +69,21 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Delete a tag from a person
      * The person and the tag must already exist in the list
-     * 
+     *
      * @param person The person to delete tag from.
      * @param toDelete The tag to delete.
      */
     public void deleteTag(Person person, Tag toDelete) {
-        requireNonNull(person);
-        requireNonNull(toDelete);
-        findPerson(person).deleteTag(toDelete);
+        requireAllNonNull(person, toDelete);
+        int index = internalList.indexOf(person);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+        Person target = findPerson(person);
+        target.deleteTag(toDelete);
+        internalList.set(index, target);
     }
-    
+
     /**
      * Finds the person
      */

@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in the e-lister.
  */
 public class TagCommand extends Command {
 
@@ -30,7 +30,10 @@ public class TagCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an TagCommand to add the specified tag to the person {@code Tag}
+     * Creates a TagCommand to add a specified tag to the person at a supplied index.
+     *
+     * @param index The index of the person to add the tag to
+     * @param tag The tag to add
      */
     public TagCommand(Index index, Tag tag) {
         this.tagToAdd = tag;
@@ -54,8 +57,8 @@ public class TagCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagCommand // instanceof handles nulls
-                        && targetIndex.equals(((TagCommand) other).targetIndex)
-                        && tagToAdd.equals(((TagCommand) other).tagToAdd));
+                && targetIndex.equals(((TagCommand) other).targetIndex)
+                && tagToAdd.equals(((TagCommand) other).tagToAdd));
     }
 
 }

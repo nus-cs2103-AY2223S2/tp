@@ -17,7 +17,10 @@ public class TagCommandParser implements Parser<TagCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TagCommand
      * and returns a TagCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args The arguments to the TagCommand
+     * @return The parsed TagCommand
+     * @throws ParseException if {@code args} does not conform the expected format
      */
     public TagCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -28,7 +31,11 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         String[] nameKeywords = trimmedArgs.split(" ");
         Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
-        Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
+        String tagName = "";
+        for (int i = TAG_INDEX; i < nameKeywords.length; i++) {
+            tagName += nameKeywords[i];
+        }
+        Tag tag = ParserUtil.parseTag(tagName);
 
         return new TagCommand(index, tag);
     }
