@@ -13,6 +13,7 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
   - [Viewing help : `help`](#viewing-help--help)
   - [Adding a person: `add`](#adding-a-person-add)
   - [Listing all persons : `list`](#listing-all-persons--list)
+  - [Copy information of a person : `copy`](#copy-information-of-a-person--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Locating persons by name: `find`](#locating-persons-by-name-find)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
@@ -146,6 +147,20 @@ Shows a list of all persons in the FAILS.
 
 Format: `list`
 
+### Copy information of a person : `copy`
+
+Copies the information of a person to the user's clipboard.
+
+Format: `copy INDEX`
+
+- Copies the information of the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `copy 3`
+
 ### Editing a person : `edit`
 
 Edits an existing person in the FAILS.
@@ -245,6 +260,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/RCT u/BRAVO c/207 pl/1`
 **Clear** | `clear`
+**Copy** | `copy INDEX`<br> e.g., `copy 1`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
