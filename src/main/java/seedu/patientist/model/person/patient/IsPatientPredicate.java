@@ -1,7 +1,8 @@
-package seedu.patientist.model.person;
+package seedu.patientist.model.person.patient;
 
 import java.util.function.Predicate;
 
+import seedu.patientist.model.person.Person;
 import seedu.patientist.model.tag.Tag;
 
 /**

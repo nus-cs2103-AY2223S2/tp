@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.patientist.testutil.Assert.assertThrows;
@@ -52,8 +52,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String PID_DESC_AMY = " " + PREFIX_PID + VALID_PID_AMY;
-    public static final String PID_DESC_BOB = " " + PREFIX_PID + VALID_PID_BOB;
+    public static final String PID_DESC_AMY = " " + PREFIX_ID + VALID_PID_AMY;
+    public static final String PID_DESC_BOB = " " + PREFIX_ID + VALID_PID_BOB;
     public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
     public static final String STATUS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_STATUS_BOB;
 
@@ -65,7 +65,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_PID_DESC = " " + PREFIX_PID + "@3544"; // PID must be alnum
+    public static final String INVALID_PID_DESC = " " + PREFIX_ID + "@3544"; // PID must be alnum
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

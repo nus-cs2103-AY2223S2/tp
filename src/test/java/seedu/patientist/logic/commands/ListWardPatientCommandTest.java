@@ -3,8 +3,8 @@ package seedu.patientist.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.patientist.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.patientist.testutil.TypicalPatients.CHARLIE;
 import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
-
 
 import java.util.Arrays;
 
@@ -23,11 +23,11 @@ public class ListWardPatientCommandTest {
     @Test
     public void execute_onlyPatients_found() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        PatientInWardPredicate predicate = new PatientInWardPredicate("Block2WardC");
-        ListWardPatientsCommand command = new ListWardPatientsCommand("Block2WardC");
+        PatientInWardPredicate predicate = new PatientInWardPredicate("Block2WardA");
+        ListWardPatientsCommand command = new ListWardPatientsCommand("Block2WardA");
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BOB), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CHARLIE), model.getFilteredPersonList());
     }
 
 }

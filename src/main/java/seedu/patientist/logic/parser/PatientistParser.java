@@ -7,15 +7,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.patientist.logic.commands.AddCommand;
+import seedu.patientist.logic.commands.AddStaffCommand;
 import seedu.patientist.logic.commands.ClearCommand;
 import seedu.patientist.logic.commands.Command;
 import seedu.patientist.logic.commands.DeleteCommand;
 import seedu.patientist.logic.commands.EditCommand;
 import seedu.patientist.logic.commands.ExitCommand;
 import seedu.patientist.logic.commands.FindCommand;
+import seedu.patientist.logic.commands.FindPatientCommand;
 import seedu.patientist.logic.commands.HelpCommand;
 import seedu.patientist.logic.commands.ListCommand;
 import seedu.patientist.logic.commands.ListPatientsCommand;
+import seedu.patientist.logic.commands.ListStaffCommand;
 import seedu.patientist.logic.commands.ListWardPatientsCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 
@@ -49,6 +52,9 @@ public class PatientistParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case AddStaffCommand.COMMAND_WORD:
+            return new AddStaffCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
@@ -75,6 +81,13 @@ public class PatientistParser {
 
         case ListWardPatientsCommand.COMMAND_WORD:
             return new ListWardPatientsCommand(arguments);
+
+        case ListStaffCommand.COMMAND_WORD:
+            return new ListStaffCommand();
+
+        case FindPatientCommand.COMMAND_WORD:
+            return new FindPatientCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

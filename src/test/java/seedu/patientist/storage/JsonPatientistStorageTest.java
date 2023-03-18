@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.patientist.testutil.Assert.assertThrows;
 import static seedu.patientist.testutil.TypicalPatients.ADAM;
 import static seedu.patientist.testutil.TypicalPatients.AMY;
-import static seedu.patientist.testutil.TypicalPatients.CHARLIE;
+import static seedu.patientist.testutil.TypicalPatients.BOB;
 import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
 
 import java.io.IOException;
@@ -69,10 +69,11 @@ public class JsonPatientistStorageTest {
         // Save in new file and read back
         jsonAddressBookStorage.savePatientist(original, filePath);
         ReadOnlyPatientist readBack = jsonAddressBookStorage.readPatientist(filePath).get();
-        assertEquals(original, new Patientist(readBack));
+        Patientist p = new Patientist(readBack);
+        assertEquals(original, p);
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(CHARLIE);
+        original.addPerson(BOB);
         original.removePerson(ADAM);
         jsonAddressBookStorage.savePatientist(original, filePath);
         readBack = jsonAddressBookStorage.readPatientist(filePath).get();

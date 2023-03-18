@@ -11,9 +11,9 @@ import seedu.patientist.commons.util.StringUtil;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
-import seedu.patientist.model.person.patient.PatientIdNumber;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.tag.Tag;
 
@@ -55,18 +55,18 @@ public class ParserUtil {
     /**
      * Parses a {@code String id} into a {@code PatientIdNumber}.
      * Leading and trailing whitespaces will be trimmed.
-     * @param pid The string to be converted.
+     * @param id The string to be converted.
      * @return PatientIdNumber.
      *
      * @throws ParseException id the given {@code pid} is invalid.
      */
-    public static PatientIdNumber parsePid(String pid) throws ParseException {
-        requireNonNull(pid);
-        String trimmedPid = pid.trim();
-        if (!PatientIdNumber.isValidPid(trimmedPid)) {
-            throw new ParseException(PatientIdNumber.MESSAGE_CONSTRAINTS);
+    public static IdNumber parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedPid = id.trim();
+        if (!IdNumber.isValidPid(trimmedPid)) {
+            throw new ParseException(IdNumber.MESSAGE_CONSTRAINTS);
         }
-        return new PatientIdNumber(trimmedPid);
+        return new IdNumber(trimmedPid);
     }
 
     /**
