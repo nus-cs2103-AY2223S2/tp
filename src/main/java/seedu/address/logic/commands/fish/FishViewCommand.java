@@ -22,7 +22,7 @@ public class FishViewCommand extends FishCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + FISH_COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_TANK_SUCCESS = "Viewed Fish: %1$s";
+    public static final String MESSAGE_VIEW_TANK_SUCCESS = "Viewing Fish: %1$s";
 
     private final Index targetIndex;
 
@@ -53,7 +53,7 @@ public class FishViewCommand extends FishCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FishDeleteCommand // instanceof handles nulls
+                || (other instanceof FishViewCommand // instanceof handles nulls
                 && targetIndex.equals(((FishViewCommand) other).targetIndex)); // state check
     }
 }

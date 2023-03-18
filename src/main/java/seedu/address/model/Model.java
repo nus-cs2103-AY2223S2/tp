@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -16,6 +17,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Fish> PREDICATE_SHOW_ALL_FISHES = unused -> true;
     Predicate<Tank> PREDICATE_SHOW_ALL_TANKS = unused -> true;
+    Function<Tank, Predicate<Fish>> SHOW_FISHES_IN_TANK = tank -> (fish -> fish.isInTank(tank));
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

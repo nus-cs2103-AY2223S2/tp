@@ -1,9 +1,11 @@
 package seedu.address.logic.commands.tank;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.SHOW_FISHES_IN_TANK;
 
 import java.util.List;
 
+import seedu.address.commons.core.GuiSettings.GuiMode;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -23,7 +25,7 @@ public class TankViewCommand extends TankCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + TANK_COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_TANK_SUCCESS = "Viewed Tank: %1$s";
+    public static final String MESSAGE_VIEW_TANK_SUCCESS = "Viewing Tank: %1$s";
 
     private final Index targetIndex;
 
@@ -46,15 +48,16 @@ public class TankViewCommand extends TankCommand {
         }
 
         Tank tankToView = lastShownList.get(targetIndex.getZeroBased());
-        //DISPLAY tankToView TO UI @avery
+        model.updateFilteredFishList(SHOW_FISHES_IN_TANK.apply(tankToView));
+        model.setGuiMode(GuiMode.DISPLAY_FISHES_TASKS);
 
-        return new CommandResult(String.format(MESSAGE_VIEW_TANK_SUCCESS, tankToView));
+        return new CommandResult(String.format(MESSAGE_VIEW_TANK_SUCCESS, tankToView), false, false, true);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TankDeleteCommand // instanceof handles nulls
+                || (other instanceof TankViewCommand // instanceof handles nulls
                 && targetIndex.equals(((TankViewCommand) other).targetIndex)); // state check
     }
 }
