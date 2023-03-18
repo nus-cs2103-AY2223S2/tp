@@ -9,6 +9,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.doctor.Doctor;
 import seedu.address.model.person.doctor.UniqueDoctorList;
+import seedu.address.model.person.patient.Patient;
+import seedu.address.model.person.patient.UniquePatientList;
 
 /**
  * Wraps all data at the address-book level
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueDoctorList doctors;
+    private final UniquePatientList patients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         doctors = new UniqueDoctorList();
+        patients = new UniquePatientList();
     }
 
     public AddressBook() {}
@@ -60,6 +64,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the patients list with {@code patients}.
+     * {@code patients} must not contain duplicate patients.
+     */
+    public void setPatients(List<Patient> patients) {
+        this.patients.setPatients(patients);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -67,6 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setDoctors(newData.getDoctorList());
+        setPatients(newData.getPatientList());
     }
 
     //// person-level operations
@@ -88,6 +101,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     */
+    public boolean hasPatient(Patient patient) {
+        requireNonNull(patient);
+        return patients.contains(patient);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
@@ -102,6 +123,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
+    }
+
+    /**
+     * Adds a patient to the address book.
+     * The patient must not already exist in the address book.
+     * @param patient
+     */
+    public void addPatient(Patient patient) {patients.add(patient);
     }
 
     /**
@@ -127,19 +156,38 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Replaces the given patient {@code target} in the list with {@code editedPatient}.
+     * {@code target} must exist in the address book.
+     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the address book.
+     */
+    public void setPatient(Patient target, Patient editedPerson) {
+        requireNonNull(editedPerson);
+
+        patients.setPatient(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from {@code persons}.
+     * {@code key} must exist in {@code persons}.
      */
     public void removePerson(Person key) {
         persons.remove(key);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from {@code doctors}.
+     * {@code key} must exist in {@code doctors}.
      */
     public void removeDoctor(Doctor key) {
         doctors.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from {@code patients}.
+     * {@code key} must exist in {@code patients}.
+     */
+    public void removePatient(Patient key) {
+        patients.remove(key);
     }
 
     //// util methods
@@ -161,14 +209,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Patient> getPatientList() {
+        return patients.asUnmodifiableObservableList();
+    }
+
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && doctors.equals(((AddressBook) other).doctors)
+                && patients.equals(((AddressBook) other).patients));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return doctors.hashCode();
     }
 }
