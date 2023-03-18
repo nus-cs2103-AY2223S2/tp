@@ -1,6 +1,6 @@
 package seedu.sudohr.model.leave;
 
-import java.util.Set;
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.sudohr.model.employee.Employee;
@@ -9,9 +9,9 @@ import seedu.sudohr.model.employee.Employee;
  * Tests that a {@code Employee}'s exists in a set of {@code employeesOnLeave}.
  */
 public class LeaveContainsEmployeePredicate implements Predicate<Employee> {
-    private final Set<Employee> employeesOnLeave;
+    private final List<Employee> employeesOnLeave;
 
-    public LeaveContainsEmployeePredicate(Set<Employee> employeesOnLeave) {
+    public LeaveContainsEmployeePredicate(List <Employee> employeesOnLeave) {
         this.employeesOnLeave = employeesOnLeave;
     }
 

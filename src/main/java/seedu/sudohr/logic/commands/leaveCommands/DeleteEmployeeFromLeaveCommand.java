@@ -3,7 +3,6 @@ package seedu.sudohr.logic.commands.leavecommands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.Command;
@@ -66,7 +65,7 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         leaveToDelete = model.getInternalLeaveIfExist(leaveToDelete);
         model.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
 
-        Set<Employee> employeesToList = leaveToDelete.getEmployees();
+        List<Employee> employeesToList = leaveToDelete.getEmployees();
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);

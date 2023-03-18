@@ -2,12 +2,12 @@ package seedu.sudohr.model.leave;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.sudohr.model.employee.Employee;
-
+import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
  * Represents a Leave in the sudohr book.
@@ -16,14 +16,22 @@ import seedu.sudohr.model.employee.Employee;
 public class Leave {
 
     private final Date date;
-    private final Set<Employee> employees;
+    private final UniqueEmployeeList employees;
 
     /**
      * Every field must be present and not null.
      */
     public Leave(Date date) {
         this.date = date;
-        this.employees = new HashSet<Employee>();
+        this.employees = new UniqueEmployeeList();
+    }
+
+    /**
+     * Creates a new leave with the specified date {@code date} and employees{@code employees}
+     */
+    public Leave(Date date, UniqueEmployeeList employees) {
+        this.date = date;
+        this.employees = employees;
     }
 
     /**
@@ -31,15 +39,16 @@ public class Leave {
      */
     public Leave(Date date, Set<Employee> employees) {
         this.date = date;
-        this.employees = employees;
+        this.employees = new UniqueEmployeeList();
+        this.employees.addAll(employees);
     }
 
     public Date getDate() {
         return date;
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
+    public List<Employee> getEmployees() {
+        return employees.asUnmodifiableObservableList();
     }
 
     /**
@@ -77,6 +86,7 @@ public class Leave {
         return otherLeave != null
                 && otherLeave.getDate().equals(this.getDate());
     }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

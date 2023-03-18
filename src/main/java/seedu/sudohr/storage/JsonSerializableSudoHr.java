@@ -102,7 +102,7 @@ class JsonSerializableSudoHr {
             if (sudoHr.hasLeave(leave)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LEAVES);
             }
-            Set<Employee> employees = leave.getEmployees();
+            List<Employee> employees = leave.getEmployees();
             for (Employee employee: employees) {
                 if (!sudoHr.hasEmployee(employee)) {
                     throw new EmployeeNotFoundException();

@@ -2,7 +2,7 @@ package seedu.sudohr.logic.commands.leavecommands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Set;
+import java.util.List;
 
 import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.Command;
@@ -44,7 +44,7 @@ public class ListEmployeeInLeaveCommand extends Command {
         requireNonNull(model);
 
         Leave targetLeave = model.getInternalLeaveIfExist(new Leave(this.targetDate));
-        Set<Employee> employeesToList = targetLeave.getEmployees();
+        List<Employee> employeesToList = targetLeave.getEmployees();
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);
