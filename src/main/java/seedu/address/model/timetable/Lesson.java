@@ -12,11 +12,11 @@ import seedu.address.model.location.Location;
  */
 public class Lesson {
 
-    private SchoolDay day;
-    private LocalTime startTime;
-    private LocalTime endTime;
-    private Location location;
-    private Module module;
+    private final SchoolDay day;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
+    private final Location location;
+    private final Module module;
 
     /**
      * Constructs a lesson.
