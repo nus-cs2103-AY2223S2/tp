@@ -1,14 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,6 +24,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_NRIC_VOLUNTEER + "NRIC "
             + PREFIX_AGE + "AGE "
             + PREFIX_REGION + "REGION "
+            + "[" + PREFIX_MEDICAL_TAG + "MEDICAL TAG] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -40,6 +34,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_NRIC_VOLUNTEER + "S1234567A "
             + PREFIX_AGE + "20 "
             + PREFIX_REGION + "NORTH "
+            + PREFIX_MEDICAL_TAG + "CPR BASIC "
             + PREFIX_TAG + "new "
             + PREFIX_TAG + "undergradStudent";
 

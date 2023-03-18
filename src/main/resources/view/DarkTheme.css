@@ -374,7 +374,7 @@
 }
 
 #riskLevel .risk-MEDIUM {
-    -fx-background-color: yellow;
+    -fx-background-color: orange;
 }
 
 #riskLevel .risk-HIGH {

@@ -1,86 +1,51 @@
 package seedu.address.model.tag;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
 public class MedicalQualificationTagTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new MedicalQualificationTag(
-                null, MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2040, 5, 12)));
+        assertThrows(NullPointerException.class, () -> new MedicalQualificationTag(null, null));
     }
 
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidMedicalQualificationTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new MedicalQualificationTag(
-                invalidMedicalQualificationTagName, MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2040, 5, 12)));
-    }
-    @Test
-    public void getQualificationLevel() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag(
-                "CPR", MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2040, 5, 12));
-
-        assertEquals(MedicalQualificationTag.SkillLevel.ADVANCED,
-                medicalQualificationTag.getQualificationLevel());
+    public void constructor_invalidQualification_throwsIllegalArgumentException() {
+        String invalidMedicalQualification1 = "";
+        String invalidMedicalQualification2 = "random";
+        assertThrows(IllegalArgumentException.class, () -> new MedicalQualificationTag("CPR", invalidMedicalQualification1));
+        assertThrows(IllegalArgumentException.class, () -> new MedicalQualificationTag("AED", invalidMedicalQualification2));
     }
 
     @Test
-    public void getExpiryDate() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag(
-                "CPR", MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2040, 5, 12));
+    public void isValidQualification() {
+        // invalid
+        assertFalse(MedicalQualificationTag.isValidQualification(""));
+        assertFalse(MedicalQualificationTag.isValidQualification("something"));
 
-        assertEquals(LocalDate.of(2040, 5, 12),
-                medicalQualificationTag.getExpiryDate());
+        // valid
+        assertTrue(MedicalQualificationTag.isValidQualification("BASIC"));
+        assertTrue(MedicalQualificationTag.isValidQualification("adVanCed"));
     }
 
-    @Test
-    public void isExpired_expired_returnTrue() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag(
-                "CPR", MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2000, 5, 12));
-
-        assertTrue(medicalQualificationTag.isExpired());
-    }
 
     @Test
     public void changeQualificationLevel() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag(
-                "CPR", MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2040, 5, 12));
+        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag("CPR", "ADVANCED");
 
-        medicalQualificationTag.setQualificationLevel(MedicalQualificationTag.SkillLevel.BASIC);
-        assertEquals(MedicalQualificationTag.SkillLevel.BASIC,
+        medicalQualificationTag.setQualificationLevel("BASIC");
+        assertEquals("BASIC",
                 medicalQualificationTag.getQualificationLevel());
     }
 
-    @Test
-    public void changeExpiryDate() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag(
-                "CPR", MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2040, 5, 12));
-
-        medicalQualificationTag.setExpiryDate(LocalDate.of(2050, 7, 1));
-        assertEquals(LocalDate.of(2050, 7, 1),
-                medicalQualificationTag.getExpiryDate());
-    }
 
     @Test
     public void testFullStringConversion() {
-        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag(
-                "CPR", MedicalQualificationTag.SkillLevel.ADVANCED,
-                LocalDate.of(2040, 5, 12));
+        MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag("AED", "ADVANCED");
 
-        String fullString = "[CPR] ADVANCED 2040-05-12";
+        String fullString = "AED ADVANCED";
         assertEquals(fullString, medicalQualificationTag.toFullString());
     }
 }

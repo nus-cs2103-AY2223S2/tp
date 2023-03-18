@@ -1,6 +1,7 @@
 package seedu.address.model.tag;
 
-import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Represents medical qualifications that a volunteer might have.
@@ -8,6 +9,13 @@ import java.time.LocalDate;
  * @author wz2k
  */
 public class MedicalQualificationTag extends Tag {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Medical qualification must be a skill, followed by a skill-level. "
+            + "format: [Skill] [Level]";
+    public static final String MESSAGE_CONSTRAINTS_SKILL =
+            "SkillLevel should only contain 3 types of values, "
+            + "basic, intermediate, advanced";
+
     /**
      * Represents the different skill level a person can have.
      */
@@ -21,48 +29,32 @@ public class MedicalQualificationTag extends Tag {
     private SkillLevel qualificationLevel;
 
     /* Date where qualification becomes invalid */
-    private LocalDate expiryDate;
+    // private LocalDate expiryDate;
 
     /**
      * Constructs a {@code MedicalQualification}
-     *
-     * @param tagName A valid tag name.
+     * Use "Medical" as the common prefix for medical tags.
      * @param qualificationLevel How qualified it is.
-     * @param expiryDate Validity end date.
      */
-    public MedicalQualificationTag(String tagName, SkillLevel qualificationLevel, LocalDate expiryDate) {
-        super(tagName);
-        this.qualificationLevel = qualificationLevel;
-        this.expiryDate = expiryDate;
+    public MedicalQualificationTag(String skill, String qualificationLevel) {
+        super(skill);
+        this.qualificationLevel = SkillLevel
+                .valueOf(qualificationLevel.toUpperCase());
     }
+
+//    public MedicalQualificationTag(String tagName, SkillLevel qualificationLevel, LocalDate expiryDate) {
+//        super(tagName);
+//        this.qualificationLevel = qualificationLevel;
+//        this.expiryDate = expiryDate;
+//    }
 
     /**
      * Returns the level of training attained.
      *
      * @return Level of training.
      */
-    public SkillLevel getQualificationLevel() {
-        return qualificationLevel;
-    }
-
-    /**
-     * Returns the date where qualification becomes invalid.
-     *
-     * @return Qualification expiry date.
-     */
-    public LocalDate getExpiryDate() {
-        return expiryDate;
-    }
-
-    /**
-     * Returns whether the qualification has expired.
-     *
-     * @return True is the expiry date is over and false otherwise
-     */
-    public boolean isExpired() {
-        LocalDate currentDate = LocalDate.now();
-
-        return currentDate.isAfter(expiryDate);
+    public String getQualificationLevel() {
+        return qualificationLevel.name();
     }
 
     /**
@@ -70,17 +62,30 @@ public class MedicalQualificationTag extends Tag {
      *
      * @param qualificationLevel The new level.
      */
-    public void setQualificationLevel(SkillLevel qualificationLevel) {
-        this.qualificationLevel = qualificationLevel;
+    public void setQualificationLevel(String qualificationLevel) {
+        this.qualificationLevel = SkillLevel.valueOf(qualificationLevel);
     }
 
-    /**
-     * Changes the expiry date of the medical qualification to the given date.
-     *
-     * @param expiryDate The new end date.
-     */
-    public void setExpiryDate(LocalDate expiryDate) {
-        this.expiryDate = expiryDate;
+    public static boolean isValidQualification(String qualification) {
+        if (qualification != null) {
+            return Arrays.stream(SkillLevel.values())
+                    .anyMatch(r -> r.toString().equals(qualification.toUpperCase()));
+        }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof MedicalQualificationTag
+                && tagName.equals(((MedicalQualificationTag) other).tagName)
+                && qualificationLevel.equals(((MedicalQualificationTag) other).qualificationLevel)
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tagName, qualificationLevel);
     }
 
     /**
@@ -90,9 +95,7 @@ public class MedicalQualificationTag extends Tag {
      */
     public String toFullString() {
         String qualificationLevelString = qualificationLevel.name();
-        String expiryDateString = expiryDate.toString();
 
-        return super.toString() + " "
-                + qualificationLevelString + " " + expiryDateString;
+        return super.toString() + " " + qualificationLevelString;
     }
 }
