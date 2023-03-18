@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.tag.Tag;
@@ -91,6 +90,15 @@ public class Customer {
     }
 
     /**
+     * Returns a unique ID for the {@code Customer}.
+     * No 2 customer should exist with the same unique ID.
+     * @return A string representation of the unique identification of the customer.
+     */
+    public final String getUID() {
+        return getName().fullName;
+    }
+
+    /**
      * Returns true if both customers have the same name.
      * This defines a weaker notion of equality between two customers.
      */
@@ -100,7 +108,7 @@ public class Customer {
         }
 
         return otherCustomer != null
-                && otherCustomer.getName().equals(getName());
+                && otherCustomer.getUID().equals(getUID());
     }
 
     /**

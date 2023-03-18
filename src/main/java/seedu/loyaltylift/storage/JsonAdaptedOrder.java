@@ -50,7 +50,7 @@ public class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
-        customerId = source.getCustomer().getName().fullName;
+        customerId = source.getCustomer().getUID();
         name = source.getName().fullName;
         quantity = source.getQuantity().value;
         status = source.getStatus().toString().toUpperCase();
@@ -68,7 +68,6 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Customer ID"));
         }
         Customer customer = addressBook.getCustomer(customerId);
-        System.out.println(customer);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));

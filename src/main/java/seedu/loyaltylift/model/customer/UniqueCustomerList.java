@@ -84,13 +84,14 @@ public class UniqueCustomerList implements Iterable<Customer> {
 
     public Customer getCustomer(String customerUID) {
         requireNonNull(customerUID);
+
         List<Customer> customers = internalList.stream()
-                .filter(c -> c.getName().fullName.equals(customerUID)).collect(Collectors.toList());
+                .filter(c -> c.getUID().equals(customerUID))
+                .collect(Collectors.toList());
         if (customers.size() > 1) {
             throw new DuplicateCustomerException();
-        }
-        else if (customers.size() == 0) {
-            throw new RuntimeException(); // TODO: NEW EXCEPTION
+        } else if (customers.size() == 0) {
+            throw new CustomerNotFoundException();
         }
         return customers.get(0);
     }
