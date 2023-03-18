@@ -86,11 +86,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CODE = "CS2103T";
     public static final String VALID_LECTURE_NAME = "Class Diagrams";
     public static final String VALID_VIDEO_NAME = "Test Video";
-    public static final String VALID_TAG_DESCRIPTION = "Very Cool";
-    public static final Set<Tag> VALID_TAG_SET = new HashSet<>(List.of(new Tag(VALID_TAG_DESCRIPTION)));
     public static final String MODULE_DESC = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE;
-    public static final String TAG_DESC_MODULE = " " + PREFIX_TAG + " " + VALID_TAG_DESCRIPTION;
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

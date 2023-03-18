@@ -130,16 +130,19 @@ public class ParserUtil {
     public static Set<Tag> parseMultiTags(String tags) throws ParseException {
         requireNonNull(tags);
         String[] arrayOfTags = tags.split(",");
+
+        for (String tagName : arrayOfTags) {
+            tagName = tagName.trim();
+            if (!Tag.isValidTagName(tagName)) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+        }
+
         List<Tag> listOfTags = Arrays.stream(arrayOfTags)
                 .map(tag -> tag.trim())
                 .map(trimmedtag -> new Tag(trimmedtag))
                 .collect(Collectors.toList());
 
-        for (Tag tag : listOfTags) {
-            if (!Tag.isValidTagName(tag.tagName)) {
-                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-            }
-        }
         return new HashSet<>(listOfTags);
     }
 
