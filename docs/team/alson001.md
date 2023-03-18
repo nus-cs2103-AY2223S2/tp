@@ -9,7 +9,11 @@ RIZZipe is a desktop recipe book application used for busy cooks who want to tra
 
 Given below are my contributions to the project.
 
+<<<<<<< HEAD
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=alson001&breakdown=true)
+=======
+* **Code contributed**: [RepoSense link]()
+>>>>>>> tutorial-adding-command
 
 * **Project management**:
 

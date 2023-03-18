@@ -5,16 +5,30 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+## **Appendix: Requirements**
+
+### Product scope
+**Target user profile:**
+* has a need to manage a large number of recipes and their relevant information
+* prefers desktop applications to mobile applications
+* types fast
+* prefers typing to mouse interactions
+
+**Value proposition:** manage recipes more conveniently and quickly as opposed to a typical mouse app
+
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (possible but unlikely to add) - `*`
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                 | So that I can…​                                |
-|----------|---------|------------------------------|------------------------------------------------|
-| `* * *`  | user    | add a new recipe             | reference it in the future                     |
-| `* * *`  | user    | list all my existing recipes | get an overview of my whole cook book          |
-| `* * *`  | user    | view an existing recipe      | recall details of what I have previously added |
-| `* * *`  | user    | delete an existing recipe    | remove recipes I no longer like                |
+| Priority | As a …​  | I want to …​                 | So that I can…​                                        |
+|----------|----------|------------------------------|--------------------------------------------------------|
+| `* * *`  | new user | see usage instructions       | refer to instructions when I forget how to use the app |
+| `* * *`  | user     | add a new recipe             | reference it in the future                             |
+| `* * *`  | user     | list all my existing recipes | get an overview of my whole cook book                  |
+| `* * *`  | user     | view an existing recipe      | recall details of what I have previously added         |
+| `* * *`  | user     | delete an existing recipe    | remove recipes I no longer like                        |
+| `* *  `  | user     | clear my recipe book         | start afresh and save a new set of recipes             |
+
 
 *{More to be added soon!}*
 
@@ -82,7 +96,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
 1. Chef requests to list recipes
 2. Book shows a list of ***all*** recipes
 3. Chef requests to delete a specific recipe in the list
-4. Book deletes the person
+4. Book deletes the recipe
 
     Use case ends.
 
@@ -120,6 +134,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (poss
   * 3a1. Book shows an error message.
   
     Use case resumes from step 2.
+
+#### **Use case: Ask for help**
+
+**MSS**
+
+1. Chef requests for help
+2. Book shows the link to the user guide
+
+    Use case ends.
+
+#### **Use case: Clear recipe book**
+
+**MSS**
+
+1. Chef requests to clear recipe book
+2. Book clears itself of all recipes
+
+    Use case ends.
 
 *{More to be added}*
 
