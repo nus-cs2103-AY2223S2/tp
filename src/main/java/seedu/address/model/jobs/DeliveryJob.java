@@ -3,6 +3,7 @@ package seedu.address.model.jobs;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -15,7 +16,8 @@ public class DeliveryJob {
     // Delivery informations
     private final String recepient;
     private final String sender; // aka customer
-    private final String deliverSlot; // TODO: Update data type when confirmed
+    private final Optional<DeliveryDate> deliveryDate;
+    private final Optional<DeliverySlot> deliverySlot;
     private final Earning earning;
     private final boolean isDelivered;
 
@@ -24,11 +26,25 @@ public class DeliveryJob {
      *
      * @param recepient
      * @param sender
-     * @param deliverSlot
+     * @param deliverySlot
      * @param earning
      */
-    public DeliveryJob(String recepient, String sender, String deliverSlot, String earning) {
-        this(genJobId(recepient, sender), recepient, sender, deliverSlot, earning, false);
+    public DeliveryJob(String recepient, String sender, String earning) {
+        this(genJobId(recepient, sender), recepient, sender, Optional.empty(), Optional.empty(), earning, false);
+    }
+
+    /**
+     * Constructs a job entity.
+     *
+     * @param recepient
+     * @param sender
+     * @param deliveryDate
+     * @param deliverySlot
+     * @param earning
+     */
+    public DeliveryJob(String recepient, String sender, String deliveryDate, String deliverySlot, String earning) {
+        this(genJobId(recepient, sender), recepient, sender, Optional.of(new DeliveryDate(deliveryDate)),
+                Optional.of(new DeliverySlot(deliverySlot)), earning, false);
     }
 
     /**
@@ -36,17 +52,20 @@ public class DeliveryJob {
      *
      * @param jobId
      * @param recepient
-     * @param deliverSlot
+     * @param deliverySlot
      * @param sender
      * @param earning
      * @param isDelivered
      */
-    public DeliveryJob(String jobId, String recepient, String sender, String deliverSlot, String earning,
+    public DeliveryJob(String jobId, String recepient, String sender, Optional<DeliveryDate> deliveryDate,
+            Optional<DeliverySlot> deliverySlot,
+            String earning,
             boolean isDelivered) {
         this.jobId = jobId;
         this.recepient = recepient;
         this.sender = sender;
-        this.deliverSlot = deliverSlot;
+        this.deliveryDate = deliveryDate;
+        this.deliverySlot = deliverySlot;
         this.earning = new Earning(earning);
         this.isDelivered = isDelivered;
     }
@@ -71,8 +90,12 @@ public class DeliveryJob {
         return sender;
     }
 
-    public String getDeliverSlot() {
-        return deliverSlot;
+    public Optional<DeliveryDate> getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public Optional<DeliverySlot> getDeliverySlot() {
+        return deliverySlot;
     }
 
     public Earning getEarning() {
@@ -82,10 +105,19 @@ public class DeliveryJob {
     public boolean getDeliveredStatus() {
         return isDelivered;
     }
+
     public LocalDate getDeliverDate() {
         return LocalDate.now();
     }
 
+    /**
+     * Checks if job has delivery date and slot.
+     *
+     * @return boolean
+     */
+    public boolean isScheduled() {
+        return getDeliveryDate().isPresent() && getDeliverySlot().isPresent();
+    }
 
     /**
      * isSameDeliveryJob.
@@ -108,7 +140,8 @@ public class DeliveryJob {
         String outString = "Job [%s]\n"
                 + "receipent: %s\n"
                 + "sender: %s\n"
-                + "slot: %s\n"
+                + "deliver date: %s\n"
+                + "deliver slot: %s\n"
                 + "earn: $%s\n"
                 + "status: $%s\n";
 
@@ -117,7 +150,8 @@ public class DeliveryJob {
                         jobId,
                         getRecepientId(),
                         getSenderId(),
-                        getDeliverSlot(),
+                        getDeliveryDate().isPresent() ? getDeliveryDate().get() : "",
+                        getDeliverySlot().isPresent() ? getDeliverySlot().get() : "",
                         getEarning(),
                         getDeliveredStatus()));
 

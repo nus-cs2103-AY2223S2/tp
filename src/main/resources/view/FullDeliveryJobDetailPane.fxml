@@ -55,6 +55,7 @@
          <children>
             <VBox alignment="CENTER_LEFT" minHeight="100.0" minWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <Label fx:id="deliveryTimeDate" styleClass="cell_small_label" text="\$delivery_time_date" />
                   <Label fx:id="deliveryTimeSlot" styleClass="cell_small_label" text="\$delivery_time_slot" />
                </children>
                <padding>

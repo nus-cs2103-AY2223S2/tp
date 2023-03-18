@@ -49,32 +49,36 @@ public class SampleDataUtil {
             new DeliveryJob(
                 persons[0].getPersonId(),
                 persons[1].getPersonId(),
-                "dummy slot",
+                "2023-03-01",
+                "1",
                 "0.0"),
             new DeliveryJob(
                 persons[1].getPersonId(),
                 persons[2].getPersonId(),
-                "dummy slot",
+                "2023-03-01",
+                "2",
                 "1.0"),
             new DeliveryJob(
                 persons[2].getPersonId(),
                 persons[3].getPersonId(),
-                "dummy slot",
+                "2023-03-01",
+                "2",
                 "2.0"),
             new DeliveryJob(
                 persons[3].getPersonId(),
                 persons[4].getPersonId(),
-                "dummy slot",
+                "2023-03-01",
+                "3",
                 "3.0"),
             new DeliveryJob(
                 persons[4].getPersonId(),
                 persons[5].getPersonId(),
-                "dummy slot",
+                "2023-03-02",
+                "5",
                 "4.0"),
             new DeliveryJob(
                 persons[5].getPersonId(),
                 persons[0].getPersonId(),
-                "dummy slot",
                 "5.0")
             };
     }
