@@ -73,6 +73,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         descriptor.setCode(updatedCode);
         descriptor.setName(updatedName);
 
+        if (!descriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
         return new EditModuleCommand(moduleCode, descriptor);
     }
 
@@ -99,6 +103,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditLectureDescriptor descriptor = new EditLectureDescriptor();
         descriptor.setName(updatedName);
+
+        if (!descriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
 
         return new EditLectureCommand(moduleCode, lectureName, descriptor);
     }
@@ -127,6 +135,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditVideoDescriptor descriptor = new EditVideoDescriptor();
         descriptor.setName(updatedName);
+
+        if (!descriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
 
         return new EditVideoCommand(moduleCode, lectureName, videoName, descriptor);
     }
