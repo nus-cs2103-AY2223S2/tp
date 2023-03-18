@@ -78,7 +78,20 @@ public class Person {
         return interviewDateTime;
     }
 
+    /**
+     * Returns String representation of {@code Optional<InterviewDateTime>}
+     * for conversion to {@code JsonAdaptedPerson}
+     * @return InterviewDateTime as String
+     */
     public String getInterviewDateTimeString() {
+        return interviewDateTime.map(InterviewDateTime::toString).orElse("");
+    }
+
+    /**
+     * Returns a String to be displayed in the UI
+     * @return desired String to be displayed for InterviewDateTime
+     */
+    public String getInterviewDateTimeDisplay() {
         if (this.getStatus() == Status.SHORTLISTED) {
             return interviewDateTime.map(InterviewDateTime::toString).orElse("");
         } else {
