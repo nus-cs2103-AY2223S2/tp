@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalElderly.CARL;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalVolunteers.BENSON;
 import static seedu.address.testutil.TypicalVolunteers.DANIEL;
+import static seedu.address.testutil.TypicalVolunteers.ELLE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -159,6 +160,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasPair_pairInFriendlyLink_returnsTrue() {
+        modelManager.addElderly(ALICE);
+        modelManager.addVolunteer(ELLE);
         modelManager.addPair(PAIR1);
         assertTrue(modelManager.hasPair(PAIR1));
     }

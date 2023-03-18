@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ public class AddElderlyCommandTest {
 
         assertEquals(String.format(AddElderlyCommand.MESSAGE_SUCCESS, validElderly),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validElderly), modelStub.elderlyAdded);
+        assertEquals(Collections.singletonList(validElderly), modelStub.elderlyAdded);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AddElderlyCommandTest {
     /**
      * A Model stub that contains a single elderly.
      */
-    private class ModelStubWithElderly extends ModelStub {
+    private static class ModelStubWithElderly extends ModelStub {
         private final Elderly elderly;
 
         ModelStubWithElderly(Elderly elderly) {
@@ -91,7 +91,7 @@ public class AddElderlyCommandTest {
     /**
      * A Model stub that always accept the elderly being added.
      */
-    private class ModelStubAcceptingElderlyAdded extends ModelStub {
+    private static class ModelStubAcceptingElderlyAdded extends ModelStub {
         final ArrayList<Elderly> elderlyAdded = new ArrayList<>();
 
         @Override

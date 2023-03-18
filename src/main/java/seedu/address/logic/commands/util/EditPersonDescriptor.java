@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -27,6 +28,7 @@ public class EditPersonDescriptor {
     private Age age;
     private Region region;
     private Set<Tag> tags;
+    private Set<AvailableDate> availableDates;
 
     public EditPersonDescriptor() {}
 
@@ -43,6 +45,7 @@ public class EditPersonDescriptor {
         setAge(toCopy.age);
         setRegion(toCopy.region);
         setTags(toCopy.tags);
+        setAvailableDates(toCopy.availableDates);
     }
 
     /**
@@ -50,7 +53,7 @@ public class EditPersonDescriptor {
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(name, phone,
-                email, address, nric, age, region, tags);
+                email, address, nric, age, region, tags, availableDates);
     }
 
     public void setName(Name name) {
@@ -126,6 +129,25 @@ public class EditPersonDescriptor {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
+    /**
+     * Sets {@code tags} to this object's {@code tags}.
+     * A defensive copy of {@code tags} is used internally.
+     */
+    public void setAvailableDates(Set<AvailableDate> availableDates) {
+        this.availableDates = (availableDates != null) ? new HashSet<>(availableDates) : null;
+    }
+
+    /**
+     * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code tags} is null.
+     */
+    public Optional<Set<AvailableDate>> getAvailableDates() {
+        return (availableDates != null)
+                ? Optional.of(Collections.unmodifiableSet(availableDates))
+                : Optional.empty();
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -148,6 +170,7 @@ public class EditPersonDescriptor {
                 && getNric().equals(e.getNric())
                 && getAge().equals(e.getAge())
                 && getRegion().equals(e.getRegion())
-                && getTags().equals(e.getTags());
+                && getTags().equals(e.getTags())
+                && getAvailableDates().equals(e.getAvailableDates());
     }
 }
