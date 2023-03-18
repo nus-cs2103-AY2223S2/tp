@@ -45,7 +45,9 @@ public class DeleteCommand extends Command {
         model.deleteEmployee(employeeToDelete);
 
         // cascade delete to department
-        departmentList.stream().forEach(d -> d.removeEmployee(employeeToDelete));
+        departmentList.stream()
+                .filter(d -> d.hasEmployee(employeeToDelete))
+                .forEach(d -> d.removeEmployee(employeeToDelete));
 
 
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete));
