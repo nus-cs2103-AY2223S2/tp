@@ -13,7 +13,7 @@ public class Messages {
 
     //---
     public static final String MESSAGE_VEHICLE_VIEW_OVERVIEW = "Vehicle found! \n Vehicle Info - \n %1$s \n Owner Info - %2$s";
-    public static final String MESSAGE_CUSTOMER_VIEW_OVERVIEW = "Customer listed.";
+    public static final String MESSAGE_CUSTOMER_VIEW_OVERVIEW = "Customer found! \n Customer Info - \n %1$s";
     public static final String MESSAGE_PART_VIEW_OVERVIEW = "Part listed.";
     public static final String MESSAGE_APPOINTMENT_VIEW_OVERVIEW = "Customer listed.";
     public static final String MESSAGE_INVAID_PART_REQUESTED = "Part does not exist.";

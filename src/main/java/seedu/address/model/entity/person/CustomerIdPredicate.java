@@ -10,8 +10,8 @@ import seedu.address.commons.core.index.Index;
 public class CustomerIdPredicate implements Predicate<Customer> {
     private final int id;
 
-    public CustomerIdPredicate(Index id) {
-        this.id = id.getZeroBased();
+    public CustomerIdPredicate(int id) {
+        this.id = id;
     }
 
     @Override
