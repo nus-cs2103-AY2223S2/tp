@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.edit;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
@@ -9,6 +9,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -110,6 +112,15 @@ public class EditVideoCommand extends EditCommand {
          */
         public EditVideoDescriptor(EditVideoDescriptor toCopy) {
             setName(toCopy.name);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         *
+         * @return True if at least one field is edited. Otherwise, false.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(name);
         }
 
         public Optional<VideoName> getName() {
