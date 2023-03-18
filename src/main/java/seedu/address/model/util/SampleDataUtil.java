@@ -114,16 +114,16 @@ public class SampleDataUtil {
         samplePartsA.addPart("Suspension", 4);
 
         PartMap samplePartsB = new PartMap();
-        samplePartsA.addPart("Gearbox", 1);
+        samplePartsB.addPart("Gearbox", 1);
 
         PartMap samplePartsC = new PartMap();
-        samplePartsA.addPart("Engine", 1);
+        samplePartsC.addPart("Engine", 1);
 
         PartMap samplePartsD = new PartMap();
-        samplePartsA.addPart("Car Battery", 1);
+        samplePartsD.addPart("Car Battery", 1);
 
         PartMap samplePartsE = new PartMap();
-        samplePartsA.addPart("Brake Pads", 1);
+        samplePartsE.addPart("Brake Pads", 1);
 
         return new Service[]{
             new Service(IdGenerator.generateServiceId(), 1, LocalDate.parse("02/03/2022", dtf),

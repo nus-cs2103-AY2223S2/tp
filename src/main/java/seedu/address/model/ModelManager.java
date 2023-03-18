@@ -16,6 +16,7 @@ import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -43,6 +44,7 @@ public class ModelManager implements Model {
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
     private final VehicleDataMap vehicleDataMap;
+    private final ServiceDataMap serviceDataMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -69,6 +71,8 @@ public class ModelManager implements Model {
         customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
         vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
                 this.shop.getServiceList());
+        serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
+                this.shop.getVehicleList());
     }
 
     public ModelManager() {
@@ -223,7 +227,12 @@ public class ModelManager implements Model {
     }
 
 
-    // -------------
+    // ==== For Services ==
+
+    @Override
+    public ObservableList<Service> getFilteredServiceList() {
+        return filteredServices;
+    }
 
     /**
      * Adds service
@@ -304,6 +313,11 @@ public class ModelManager implements Model {
     @Override
     public VehicleDataMap getVehicleDataMap() {
         return this.vehicleDataMap;
+    }
+
+    @Override
+    public ServiceDataMap getServiceDataMap() {
+        return this.serviceDataMap;
     }
 
     //=========== Filtered Person List Accessors =============================================================

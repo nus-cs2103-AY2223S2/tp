@@ -11,7 +11,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
+import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 
 /**
@@ -61,9 +63,15 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of vehicles */
     ObservableList<Vehicle> getFilteredVehicleList();
 
+    /** Returns an unmodifiable view of the filtered list of services */
+    ObservableList<Service> getFilteredServiceList();
+
     /** Returns a map of customers and their respective vehicle(s) */
     CustomerVehicleMap getCustomerVehicleMap();
 
     /** Returns maps of vehicles and their respective owner or services */
     VehicleDataMap getVehicleDataMap();
+
+    /** Returns maps of services and their respective vehicle or technicians */
+    ServiceDataMap getServiceDataMap();
 }
