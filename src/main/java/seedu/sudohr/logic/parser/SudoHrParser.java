@@ -65,10 +65,8 @@ public class SudoHrParser {
 
         case DeleteDepartmentCommand.COMMAND_WORD:
             return new DeleteDepartmentCommandParser().parse(arguments);
-            
         case AddEmployeeToDepartmentCommand.COMMAND_WORD:
             return new AddEmployeeToDepartmentCommandParser().parse(arguments);
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
