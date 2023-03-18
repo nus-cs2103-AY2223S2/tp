@@ -7,15 +7,19 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -91,6 +95,22 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredPersonListByName_modifyAddressbook_success() {
+        modelManager.addPerson(CARL);
+        modelManager.addPerson(ALICE);
+        modelManager.addPerson(BENSON);
+        modelManager.updateFilteredPersonListByName(PREDICATE_SHOW_ALL_PERSONS);
+        ReadOnlyAddressBook sortedAddressBook = modelManager.getAddressBook();
+        AddressBook expectedAddressBook = new AddressBook();
+        ArrayList<Person> tmp = new ArrayList<>();
+        tmp.add(ALICE);
+        tmp.add(BENSON);
+        tmp.add(CARL);
+        expectedAddressBook.setPersons(tmp);
+        assertEquals(expectedAddressBook, sortedAddressBook);
     }
 
     @Test
