@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.calidr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,13 +13,7 @@ import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.model.person.Person;
-import seedu.calidr.model.task.Event;
 import seedu.calidr.model.task.Task;
-import seedu.calidr.model.task.ToDo;
-import seedu.calidr.model.task.params.EventDateTimes;
-import seedu.calidr.model.task.params.Priority;
-import seedu.calidr.model.task.params.Title;
-import seedu.calidr.model.task.params.TodoDateTime;
 import seedu.calidr.model.tasklist.TaskList;
 
 /**
