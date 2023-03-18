@@ -5,12 +5,15 @@ import static seedu.socket.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Project's Repository Host in SOCket.
- * Guarantees: immutable; s valid as declared n {@link #isValidProjectRepoHost(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidProjectRepoHost(String)}
  */
 public class ProjectRepoHost {
-    /** As specified in form validation on <a href="https://github.com/join">Join GitHub</a> */
+    /**
+     * As specified in form validation on
+     * <a href="https://github.com/account/organizations/new?plan=free">Set up your organization</a>
+     * */
     public static final String MESSAGE_CONSTRAINTS =
-        "Username may only contain alphanumeric characters or single hyphens, cannot begin or end with a "
+        "Repository name may only contain alphanumeric characters or single hyphens, cannot begin or end with a "
             + "hyphen, and may not exceed 39 characters.";
     /**
      * May only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen. Maximum 39

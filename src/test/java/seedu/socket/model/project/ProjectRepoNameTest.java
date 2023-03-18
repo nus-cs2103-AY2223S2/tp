@@ -25,28 +25,48 @@ public class ProjectRepoNameTest {
 
     @Test
     public void testIsValidRepoName() {
-        // null profile
+        // null repo
         assertThrows(NullPointerException.class, () -> ProjectRepoName.isValidProjectRepoName(null));
 
-        // invalid profile
-        assertFalse(ProjectRepoName.isValidProjectRepoName(" ")); // spaces only
-        assertFalse(ProjectRepoName.isValidProjectRepoName("^")); // only non-alphanumeric characters
-        assertFalse(ProjectRepoName.isValidProjectRepoName("-chiayh")); // starts with hyphen
-        assertFalse(ProjectRepoName.isValidProjectRepoName("chiayh-")); // ends with hyphen
-        assertFalse(ProjectRepoName.isValidProjectRepoName("chiayh*")); // contains non-alphanumeric characters
-        assertFalse(ProjectRepoName.isValidProjectRepoName("chia yh")); // contains spaces
-        assertFalse(ProjectRepoName.isValidProjectRepoName("chia--yh")); // contains two consecutive hyphens
-        assertFalse(ProjectRepoName.isValidProjectRepoName("0123456789012345678901234567890123456789")); // 40 chars
+        // reserved repo names
+        assertFalse(ProjectRepoName.isValidProjectRepoName(".")); // .
+        assertFalse(ProjectRepoName.isValidProjectRepoName("..")); // ..
 
-        // valid profile
+        // invalid repo
+        assertFalse(ProjectRepoName.isValidProjectRepoName(" ")); // spaces only
+        assertFalse(ProjectRepoName.isValidProjectRepoName("^")); // only invalid non-alphanumeric characters
+        assertFalse(ProjectRepoName.isValidProjectRepoName("chiayh*")); // contains invalid non-alphanumeric characters
+        assertFalse(ProjectRepoName.isValidProjectRepoName("chia yh")); // contains spaces
+        assertFalse(ProjectRepoName.isValidProjectRepoName("01234567890123456789012345678901234567890123456789"
+                + "012345678901234567890123456789012345678901234567890")); // 101 chars
+
+        // valid repo
+        assertTrue(ProjectRepoName.isValidProjectRepoName("-")); // hyphen only
+        assertTrue(ProjectRepoName.isValidProjectRepoName("_")); // underscore only
         assertTrue(ProjectRepoName.isValidProjectRepoName("chiayh")); // alphabets only
         assertTrue(ProjectRepoName.isValidProjectRepoName("123456")); // numbers only
+        assertTrue(ProjectRepoName.isValidProjectRepoName("...")); // periods only
+        assertTrue(ProjectRepoName.isValidProjectRepoName("---")); // hyphens only
+        assertTrue(ProjectRepoName.isValidProjectRepoName("___")); // underscores only
         assertTrue(ProjectRepoName.isValidProjectRepoName("chiayh2")); // alphanumeric characters
         assertTrue(ProjectRepoName.isValidProjectRepoName("chia-yh")); // alphabets and hyphen
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia_yh")); // alphabets and underscore
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia.yh")); // alphabets and period
         assertTrue(ProjectRepoName.isValidProjectRepoName("123-456")); // numbers and hyphen
+        assertTrue(ProjectRepoName.isValidProjectRepoName("123_456")); // numbers and underscore
+        assertTrue(ProjectRepoName.isValidProjectRepoName("123.456")); // numbers and period
+        assertTrue(ProjectRepoName.isValidProjectRepoName("..--")); // periods and hyphens
+        assertTrue(ProjectRepoName.isValidProjectRepoName("..__")); // periods and underscores
+        assertTrue(ProjectRepoName.isValidProjectRepoName("__--")); // underscores and hyphens
         assertTrue(ProjectRepoName.isValidProjectRepoName("chia-yh2")); // alphanumeric characters and hyphen
         assertTrue(ProjectRepoName.isValidProjectRepoName("chia-yh-2")); // alphanumeric characters and hyphens
-        assertTrue(ProjectRepoName.isValidProjectRepoName("012345678901234567890123456789012345678")); // 39 chars
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia.yh2")); // alphanumeric characters and period
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia.yh.2")); // alphanumeric characters and periods
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia_yh2")); // alphanumeric characters and underscore
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia_yh_2")); // alphanumeric characters and underscores
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia.yh_2-4")); // every valid character
+        assertTrue(ProjectRepoName.isValidProjectRepoName("01234567890123456789012345678901234567890123456789"
+                + "01234567890123456789012345678901234567890123456789")); // 100 chars
     }
 
     @Test
