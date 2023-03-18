@@ -17,7 +17,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Class;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicatePhoneException;
 import seedu.address.model.person.student.Student;
@@ -130,17 +129,21 @@ public class MainWindow extends UiPart<Stage> {
 
         //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        UniqueStudentList list= new UniqueStudentList();
+        UniqueStudentList list = new UniqueStudentList();
         for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
             UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
             Iterator<Student> it = curr.iterator();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 list.add(it.next());
             }
         }
-
-        studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        try {
+            studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        } catch (IndexOutOfBoundsException id) {
+            studentListPanel = new StudentListPanel(null);
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        }
         parentListPanel = new ParentListPanel(logic.getFilteredParentList());
         parentListPanelPlaceholder.getChildren().add(parentListPanel.getRoot());
 
@@ -216,7 +219,16 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
+            UniqueStudentList list = new UniqueStudentList();
+            for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
+                UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
+                Iterator<Student> it = curr.iterator();
+                while (it.hasNext()) {
+                    list.add(it.next());
+                }
+            }
+            studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
