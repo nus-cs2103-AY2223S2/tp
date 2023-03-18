@@ -59,11 +59,8 @@ public class AddCommand extends Command {
         if (model.hasPerson(this.candidatePerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        // No duplicate person inside EduMate, then qualifies for a contact index
-        // the only place in the entire code that can set Contact Index.
-        IndexHandler indexHandler = new IndexHandler(model);
-        this.candidatePerson.setContactIndex(indexHandler.assignIndex());
-        model.addPerson(this.candidatePerson);
+
+        model.addPerson(candidatePerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.candidatePerson));
     }
 

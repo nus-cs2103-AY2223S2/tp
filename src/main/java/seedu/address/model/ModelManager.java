@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final EduMate eduMate;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final IndexHandler indexHandler;
 
     /**
      * Initializes a ModelManager with the given eduMate and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
 
         this.eduMate = new EduMate(eduMate);
         this.userPrefs = new UserPrefs(userPrefs);
+        indexHandler = new IndexHandler(this);
         filteredPersons = new FilteredList<>(this.eduMate.getPersonList());
     }
 
@@ -101,8 +104,9 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
-
-        eduMate.addPerson(person);
+        // The only place in the entire code that can set Contact Index.
+        Person indexedPerson = person.setContactIndex(indexHandler.assignIndex());
+        eduMate.addPerson(indexedPerson);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 

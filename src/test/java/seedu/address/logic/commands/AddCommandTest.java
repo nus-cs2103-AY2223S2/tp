@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALEX;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.nio.file.Path;
@@ -18,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.EduMate;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -93,22 +95,27 @@ public class AddCommandTest {
     @Test
     public void checkAssignedIndex_gapsInContactIndexSequence_assignLowestAvailableIndex() throws CommandException {
         Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        IndexHandler indexHandler = new IndexHandler(model);
         int[] indicesToDelete = new int[] {3, 6, 10};
         for (int idx : indicesToDelete) {
             new DeleteCommand(new ContactIndex(idx)).execute(model);
         }
+
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
-        assertEquals(new ContactIndex(3), validPerson.getContactIndex());
+        assertEquals(validPerson,
+                indexHandler.getPersonByIndex(new ContactIndex(3)).orElse(ALEX));
     }
 
     @Test
     public void checkAssignedIndex_consecutiveIndexPresent_assignLastIndex() throws CommandException {
         Model model = new ModelManager(getTypicalEduMate(), new UserPrefs());
+        IndexHandler indexHandler = new IndexHandler(model);
         int size = model.getFilteredPersonList().size();
         Person validPerson = new PersonBuilder().build();
         new AddCommand(validPerson).execute(model);
-        assertEquals(new ContactIndex(size + 1), validPerson.getContactIndex());
+        assertEquals(validPerson,
+                indexHandler.getPersonByIndex(new ContactIndex(size + 1)).orElse(ALEX));
     }
 
     /**
