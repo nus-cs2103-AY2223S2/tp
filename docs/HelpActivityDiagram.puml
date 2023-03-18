@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Executes command;
+:Display help categories;
+if () then ([event])
+    else if () then ([tutorial])
+    :Display tutorial CRUD syntaxes;
+    else if () then ([lab])
+    :Display lab CRUD syntaxes;
+    else
+    :Display consultation CRUD syntaxes;
+
+endif
+stop
+
+@enduml
