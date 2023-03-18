@@ -66,7 +66,7 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         leaveToDelete = model.getInternalLeaveIfExist(leaveToDelete);
         model.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
 
-        Set<Employee> employeesToList = leaveToDelete.getAttendees();
+        Set<Employee> employeesToList = leaveToDelete.getEmployees();
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);

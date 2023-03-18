@@ -44,7 +44,7 @@ public class ListEmployeeInLeaveCommand extends Command {
         requireNonNull(model);
 
         Leave targetLeave = model.getInternalLeaveIfExist(new Leave(this.targetDate));
-        Set<Employee> employeesToList = targetLeave.getAttendees();
+        Set<Employee> employeesToList = targetLeave.getEmployees();
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);

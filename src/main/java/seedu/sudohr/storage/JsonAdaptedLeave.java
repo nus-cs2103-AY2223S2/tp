@@ -43,7 +43,7 @@ public class JsonAdaptedLeave {
      */
     public JsonAdaptedLeave(Leave source) {
         date = source.getDate().value.toString();
-        this.employees.addAll(source.getAttendees().stream()
+        this.employees.addAll(source.getEmployees().stream()
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
     }

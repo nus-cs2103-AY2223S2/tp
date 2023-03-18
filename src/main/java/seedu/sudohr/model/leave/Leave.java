@@ -38,7 +38,7 @@ public class Leave {
         return date;
     }
 
-    public Set<Employee> getAttendees() {
+    public Set<Employee> getEmployees() {
         return employees;
     }
 

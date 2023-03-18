@@ -14,8 +14,8 @@ import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.sudohr.model.leave.Leave;
+import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 
 /**
  * An Immutable SudoHr that is serializable to JSON format.
@@ -102,6 +102,13 @@ class JsonSerializableSudoHr {
             if (sudoHr.hasLeave(leave)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LEAVES);
             }
+            Set<Employee> employees = leave.getEmployees();
+            for (Employee employee: employees) {
+                if (!sudoHr.hasEmployee(employee)) {
+                    throw new EmployeeNotFoundException();
+                }
+            }
+
             sudoHr.addLeave(leave);
         }
 
