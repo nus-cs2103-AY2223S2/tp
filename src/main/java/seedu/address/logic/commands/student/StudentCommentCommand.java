@@ -58,7 +58,14 @@ public class StudentCommentCommand extends StudentCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList =
+                model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
+        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
+            if (model.getPcClass().getClassList().get(i).getClassName().equals(studentClass.getClassName())) {
+                lastShownList = model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
+                break;
+            }
+        }
         Student studentToEdit = null;
 
         for (int i = 0; i < lastShownList.size(); i++) {

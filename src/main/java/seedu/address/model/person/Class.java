@@ -37,7 +37,7 @@ public class Class {
      * @param students A list of students in the class.
      * @param parents A list of parents in the class.
      */
-    private Class(String className,
+    public Class(String className,
                   UniqueStudentList students,
                   UniqueParentList parents) throws DuplicateClassException {
         requireNonNull(className);
@@ -58,7 +58,7 @@ public class Class {
      *
      * @param className A valid class name.
      */
-    private Class(String className) throws DuplicateClassException {
+    public Class(String className) throws DuplicateClassException {
         requireNonNull(className);
         checkArgument(isValidClass(className), MESSAGE_CONSTRAINTS);
         this.className = className;
