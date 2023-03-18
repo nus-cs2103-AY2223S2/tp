@@ -66,8 +66,9 @@ public class TagName {
      * Returns formatted tag name with the first character of each word in tag name capitalized."
      */
     public static String formatName(String tagName) {
-        return StringUtil.capitalizeString(tagName);
+        return StringUtil.capitalizeString(tagName.toLowerCase());
     }
+
     @Override
     public String toString() {
         return this.tagName;

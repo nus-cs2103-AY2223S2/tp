@@ -15,7 +15,7 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.tag.Tag;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the wife data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Tag> filteredTags;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given wife and userPrefs.
      */
     public ModelManager(ReadOnlyWife wife, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(wife, userPrefs);
@@ -37,7 +37,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFoods = new FilteredList<>(this.wife.getFoodList());
         filteredTags = new FilteredList<>(this.wife.getTagList());
-
     }
 
     public ModelManager() {
