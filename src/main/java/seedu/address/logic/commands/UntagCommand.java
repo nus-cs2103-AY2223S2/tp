@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -31,14 +32,7 @@ public class UntagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Untag a specified video, module, or lecture ";
     //TODO: MODIFY THIS
     public static final String MESSAGE_SUCCESS = "Item untagged";
-    public static final String MESSAGE_TAG_NOT_FOUND = "Tag doesn't exist";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "Module doesn't exist in Le Tracker";
-    public static final String MESSAGE_LECTURE_NOT_FOUND = "Lecture doesn't exist in this module";
-    public static final String MESSAGE_VIDEO_NOT_FOUND = "Video doesn't exist in this lecture";
-
-
     private final Tag tag;
-
     private final VideoName videoName;
     private final LectureName lectureName;
     private final ModuleCode moduleCode;
@@ -110,7 +104,7 @@ public class UntagCommand extends Command {
 
     private void untagModule(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         ReadOnlyModule untaggingModule = model.getModule(this.moduleCode);
@@ -118,7 +112,7 @@ public class UntagCommand extends Command {
         Set<Tag> currentTags = untaggingModule.getTags();
 
         if (!currentTags.contains(this.tag)) {
-            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_TAG_DOES_NOT_EXIST, this.tag, moduleCode));
         }
 
         Set<Tag> newTags = new HashSet<>();
@@ -136,11 +130,12 @@ public class UntagCommand extends Command {
 
     private void untagLecture(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         if (!model.hasLecture(this.moduleCode, this.lectureName)) {
-            throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST, this.lectureName,
+                    moduleCode));
         }
 
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
@@ -149,7 +144,8 @@ public class UntagCommand extends Command {
         Set<Tag> currentTags = untaggingLecture.getTags();
 
         if (!currentTags.contains(this.tag)) {
-            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_TAG_DOES_NOT_EXIST, this.tag,
+                    this.lectureName, this.moduleCode));
         }
 
         Set<Tag> newTags = new HashSet<>();
@@ -163,25 +159,29 @@ public class UntagCommand extends Command {
 
     private void untagVideo(Model model) throws CommandException {
         if (!model.hasModule(moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         if (!model.hasLecture(this.moduleCode, this.lectureName)) {
-            throw new CommandException(MESSAGE_LECTURE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_DOES_NOT_EXIST, this.lectureName,
+                    this.moduleCode));
         }
 
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
 
         if (!model.hasVideo(targetLecture, this.videoName)) {
-            throw new CommandException(MESSAGE_VIDEO_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST, this.videoName,
+                    this.lectureName,
+                    this.moduleCode));
         }
 
         Video untaggingVideo = targetLecture.getVideo(this.videoName);
 
         Set<Tag> currentTags = untaggingVideo.getTags();
         if (!currentTags.contains(this.tag)) {
-            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_TAG_DOES_NOT_EXIST, this.tag,
+                    this.videoName, this.lectureName, this.moduleCode));
         }
 
         Set<Tag> newTags = new HashSet<>();
