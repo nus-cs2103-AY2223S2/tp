@@ -3,7 +3,7 @@ package seedu.address.model.entity.person;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Customer}'s id matches given id..
  */
 public class CustomerIdPredicate implements Predicate<Customer> {
     private final int id;

@@ -197,6 +197,8 @@ public interface Model {
 
     void deleteAppointment(Appointment target);
 
+    void deleteService(Service service);
+
     /**
      * Adds appointment
      *
@@ -219,6 +221,8 @@ public interface Model {
      */
     boolean hasPart(String partName);
 
+    ObservableList<Technician> getFilteredTechnicianList();
+
     /**
      * Adds Technician
      *
@@ -235,11 +239,13 @@ public interface Model {
 
     void updateFilteredTechnicianList(Predicate<Technician> predicate);
 
-    void updateFilteredServiceList(Predicate<Service> predicate);
-
     void updateFilteredVehicleList(Predicate<Vehicle> predicate);
 
+    void updateFilteredServiceList(Predicate<Service> predicate);
+
     void updatePartsMap();
+
+    void deleteTechnician(Technician target);
 
     CustomerVehicleMap getCustomerVehicleMap();
 

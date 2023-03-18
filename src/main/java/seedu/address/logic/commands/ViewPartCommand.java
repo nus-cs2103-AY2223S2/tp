@@ -30,7 +30,7 @@ public class ViewPartCommand extends RedoableCommand {
     @Override
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
-        PartMap pm = model.getPartMap();
+        PartMap pm = model.getPartMap(); // TODO: the function here should return something to GUI.
 
         if (pm.contains(userString) == false) {
             throw new CommandException(String.format(MESSAGE_INVAID_PART_REQUESTED, ViewPartCommand.MESSAGE_USAGE));

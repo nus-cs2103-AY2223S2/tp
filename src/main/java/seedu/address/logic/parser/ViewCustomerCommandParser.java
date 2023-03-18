@@ -19,8 +19,9 @@ public class ViewCustomerCommandParser implements Parser<ViewCustomerCommand> {
     public ViewCustomerCommand parse(String args) throws ParseException {
 
         try {
-            return new ViewCustomerCommand(new CustomerIdPredicate(Integer.parseInt(args.trim())));
-        } catch (NumberFormatException pe) {
+            int index = ParserUtil.parseInt(args);
+            return new ViewCustomerCommand(new CustomerIdPredicate(index));
+        } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCustomerCommand.MESSAGE_USAGE), pe);
         }
