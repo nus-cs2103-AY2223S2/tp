@@ -17,7 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_STARTDATETIME = new Prefix("f/");
     public static final Prefix PREFIX_ENDDATETIME = new Prefix("t/");
     public static final Prefix PREFIX_GROUP = new Prefix("g/");
-    public static final Prefix PREFIX_OVERWRITE = new Prefix("o/");
+    public static final Prefix PREFIX_MERGE = new Prefix("m/");
 
 
 }
