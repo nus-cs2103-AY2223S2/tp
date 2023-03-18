@@ -7,6 +7,7 @@ import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;

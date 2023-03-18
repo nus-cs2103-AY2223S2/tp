@@ -43,6 +43,9 @@ public class Department {
         return employees.contains(e);
     }
 
+    /**
+     * Returns whether employee exists in the department.
+     */
     public boolean hasEmployee(Id id) {
         for (Employee employee: employees) {
             if (employee.getId().equals(id)) {

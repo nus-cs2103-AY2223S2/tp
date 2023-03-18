@@ -2,21 +2,19 @@ package seedu.sudohr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 
-import seedu.sudohr.logic.commands.AddEmployeeToDepartmentCommand;
+import java.util.stream.Stream;
+
 import seedu.sudohr.logic.commands.ListEmployeeDepartmentCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.DepartmentContainsEmployeePredicate;
 import seedu.sudohr.model.employee.Id;
 
-import java.util.stream.Stream;
-
 /**
  * Parses input arguments and creates a new ListEmployeeDepartmentCommand object
  */
-public class ListEmployeeDepartmentCommandParser implements Parser<ListEmployeeDepartmentCommand>{
+public class ListEmployeeDepartmentCommandParser implements Parser<ListEmployeeDepartmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListEmployeeDepartmentCommand

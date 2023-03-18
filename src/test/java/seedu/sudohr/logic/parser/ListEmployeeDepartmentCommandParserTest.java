@@ -29,7 +29,7 @@ public class ListEmployeeDepartmentCommandParserTest {
         assertParseSuccess(parser, ID_DESC_AMY, expectedListEmployeeDepartmentCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n " +  ID_DESC_AMY + "\n", expectedListEmployeeDepartmentCommand);
+        assertParseSuccess(parser, " \n " + ID_DESC_AMY + "\n", expectedListEmployeeDepartmentCommand);
     }
 
 }

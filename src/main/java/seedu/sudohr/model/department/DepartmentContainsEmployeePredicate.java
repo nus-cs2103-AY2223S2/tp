@@ -4,6 +4,9 @@ import java.util.function.Predicate;
 
 import seedu.sudohr.model.employee.Id;
 
+/**
+ * Tests that a {@code Department}'s {@code employees} contains the employee given.
+ */
 public class DepartmentContainsEmployeePredicate implements Predicate<Department> {
     private final Id id;
 
