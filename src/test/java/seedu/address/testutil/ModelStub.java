@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Level;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyNavigation;
@@ -204,6 +205,11 @@ public class ModelStub implements Model {
 
     @Override
     public void updateAllFilteredListAsHidden() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Level getLastListLevel() {
         throw new AssertionError("This method should not be called.");
     }
 
