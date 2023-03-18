@@ -115,7 +115,10 @@ public class EditCommand extends Command {
         }
 
         if (personToEdit.isDoctor()) {
-            return new Doctor(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags);
+            Doctor doctorToEdit = (Doctor) personToEdit;
+            ArrayList<Appointment> patientAppointments = doctorToEdit.getPatientAppointments();
+            return new Doctor(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags,
+                    patientAppointments);
         }
 
         return null; // should not return

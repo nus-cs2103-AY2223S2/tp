@@ -45,7 +45,7 @@ public class SampleDataUtil {
                 getTagSet("colleagues"), new ArrayList<>()),
             new Doctor(new Name("Jane Chew"), new Phone("93424232"), new Email("janec@example.com"),
                     new Nric("S3523567R"), new Address("Blk 11 Eunos Street 1, #14-09"),
-                    getTagSet("colleagues"))
+                    getTagSet("colleagues"), new ArrayList<>())
         };
     }
 

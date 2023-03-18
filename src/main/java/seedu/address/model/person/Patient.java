@@ -20,7 +20,7 @@ public class Patient extends Person {
      */
     public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
                    ArrayList<Appointment> patientAppointments) {
-        super(name, phone, email, nric, address, tags);
+        super(name, phone, email, nric, address, tags, patientAppointments);
         requireAllNonNull(name, phone, email, address, tags, patientAppointments);
         this.patientAppointments = patientAppointments;
     }

@@ -2,18 +2,20 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public abstract class Person {
+public class Person {
 
     // Identity fields
     private final Name name;
@@ -26,17 +28,21 @@ public abstract class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final ArrayList<Appointment> patientAppointments = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, nric, address, tags);
+    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
+                  ArrayList<Appointment> patientAppointments) {
+        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.nric = nric;
         this.address = address;
         this.tags.addAll(tags);
+        this.patientAppointments.addAll(patientAppointments);
     }
 
     public Name getName() {
@@ -65,6 +71,13 @@ public abstract class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns a list of Appointments.
+     */
+    public ArrayList<Appointment> getPatientAppointments() {
+        return patientAppointments;
     }
 
     /**
@@ -112,7 +125,9 @@ public abstract class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getNric().equals(getNric())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getPatientAppointments().equals(getPatientAppointments());
+
     }
 
     @Override
@@ -139,6 +154,13 @@ public abstract class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        ArrayList<Appointment> appointments = getPatientAppointments();
+        if (!appointments.isEmpty()) {
+            builder.append("; Appointments: ");
+            appointments.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
@@ -148,5 +170,13 @@ public abstract class Person {
 
     public boolean isPatient() {
         return false;
+    }
+
+    /**
+     * Adds an appointment for the Patient.
+     * @param appointment
+     */
+    public void addPatientAppointment(Appointment appointment) {
+        patientAppointments.add(appointment);
     }
 }

@@ -102,6 +102,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Appointment} of the {@code Person} that we are building.
+     */
     public PersonBuilder withAppointment(String ... appointment) {
         this.appointments.add(SampleDataUtil.getAppointment(appointment));
         return this;
@@ -120,11 +123,11 @@ public class PersonBuilder {
     }
 
     public Patient buildPatient() {
-        return new Patient(name, phone, email, nric, address, tags);
+        return new Patient(name, phone, email, nric, address, tags, appointments);
     }
 
     public Doctor buildDoctor() {
-        return new Doctor(name, phone, email, nric, address, tags);
+        return new Doctor(name, phone, email, nric, address, tags, appointments);
     }
 
 }
