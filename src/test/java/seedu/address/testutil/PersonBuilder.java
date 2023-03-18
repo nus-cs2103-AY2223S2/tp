@@ -1,13 +1,10 @@
 package seedu.address.testutil;
 
-import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -107,6 +104,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building
+     * using String inputs
+     */
     public PersonBuilder withMeetings(String dateTime) {
         if (dateTime.isEmpty()) {
             this.meetings.add(new Meeting());
