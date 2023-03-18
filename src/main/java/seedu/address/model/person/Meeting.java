@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Person's meetings in the address book.
  */
-public class Meeting implements Comparable<Meeting>{
+public class Meeting implements Comparable<Meeting> {
     protected LocalDateTime start;
     protected LocalDateTime end;
 
@@ -91,7 +91,7 @@ public class Meeting implements Comparable<Meeting>{
     @Override
     public int compareTo(Meeting otherMeeting) {
         if (this.start.isBefore(otherMeeting.start)) {
-            return  -1;
+            return -1;
         } else if (this.start.equals(otherMeeting.start)) {
             return 0;
         } else {
