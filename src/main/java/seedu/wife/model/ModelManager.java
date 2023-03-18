@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.wife.commons.core.GuiSettings;
 import seedu.wife.commons.core.LogsCenter;
 import seedu.wife.model.food.Food;
+import seedu.wife.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final Wife wife;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
+    private final FilteredList<Tag> filteredTags;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,8 @@ public class ModelManager implements Model {
         this.wife = new Wife(wife);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFoods = new FilteredList<>(this.wife.getFoodList());
+        filteredTags = new FilteredList<>(this.wife.getTagList());
+
     }
 
     public ModelManager() {
@@ -75,8 +79,6 @@ public class ModelManager implements Model {
         userPrefs.setWifeFilePath(wifeFilePath);
     }
 
-    //=========== Wife ================================================================================
-
     @Override
     public void setWife(ReadOnlyWife wife) {
         this.wife.resetData(wife);
@@ -86,6 +88,8 @@ public class ModelManager implements Model {
     public ReadOnlyWife getWife() {
         return wife;
     }
+
+    //=========== Food ================================================================================
 
     @Override
     public boolean hasFood(Food food) {
@@ -111,8 +115,6 @@ public class ModelManager implements Model {
         wife.setFood(target, editedFood);
     }
 
-    //=========== Filtered Food List Accessors =============================================================
-
     /**
      * Returns an unmodifiable view of the list of {@code Food} backed by the internal list of
      * {@code versionedWife}
@@ -126,6 +128,47 @@ public class ModelManager implements Model {
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         filteredFoods.setPredicate(predicate);
+    }
+
+    //=========== Tags =============================================================
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return wife.hasTag(tag);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        wife.removeTag(target);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        wife.addTag(tag);
+        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        wife.setTag(target, editedTag);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
+     * {@code versionedWife}
+     */
+    @Override
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
+    }
+
+    @Override
+    public void updateFilteredTagList(Predicate<Tag> predicate) {
+        requireNonNull(predicate);
+        filteredTags.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +187,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return wife.equals(other.wife)
                 && userPrefs.equals(other.userPrefs)
-                && filteredFoods.equals(other.filteredFoods);
+                && filteredFoods.equals(other.filteredFoods)
+                && filteredTags.equals(other.filteredTags);
     }
 
 }

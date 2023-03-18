@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.ListByTagCommand;
-import seedu.wife.logic.commands.deletecommands.DeleteByTagCommand;
+import seedu.wife.logic.commands.tagcommands.DeleteByTagCommand;
 import seedu.wife.logic.commands.foodcommands.AddCommand;
 import seedu.wife.logic.commands.foodcommands.DeleteCommand;
 import seedu.wife.logic.commands.foodcommands.EditCommand;
@@ -17,11 +17,16 @@ import seedu.wife.logic.commands.foodcommands.ListCommand;
 import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
 import seedu.wife.logic.commands.generalcommands.HelpCommand;
+import seedu.wife.logic.commands.tagcommands.AddTagCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.logic.parser.foodcommandparser.AddCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.DeleteCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.EditCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.FindCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.AddTagCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.DeleteByTagCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.ListByTagCommandParser;
+
 /**
  * Parses user input.
  */
@@ -53,6 +58,8 @@ public class WifeParser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommandParser().parse(arguments);
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         case DeleteByTagCommand.COMMAND_WORD:

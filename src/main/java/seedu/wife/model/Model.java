@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.wife.commons.core.GuiSettings;
 import seedu.wife.model.food.Food;
+import seedu.wife.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -53,7 +54,40 @@ public interface Model {
     ReadOnlyWife getWife();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a tag with the same identity as {@code tag} exists in the WIFE.
+     */
+    boolean hasTag(Tag tag);
+
+    /**
+     * Deletes the given tag.
+     * The tag must exist in WIFE.
+     */
+    void deleteTag(Tag target);
+
+    /**
+     * Adds the given tag.
+     * {@code tag} must not already exist in WIFE.
+     */
+    void addTag(Tag tag);
+
+    /**
+     * Replaces the given tag {@code target} with {@code editedTag}.
+     * {@code target} must exist in WIFE.
+     * The tag of {@code editedTag} must not be the same as another existing tag in WIFE.
+     */
+    void setTag(Tag target, Tag editedTag);
+
+    /** Returns an unmodifiable view of the filtered tag list */
+    ObservableList<Tag> getFilteredTagList();
+
+    /**
+     * Updates the filter of the filtered food list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTagList(Predicate<Tag> predicate);
+
+    /**
+     * Returns true if a tag with the same identity as {@code tag} exists in the Wife.
      */
     boolean hasFood(Food food);
 

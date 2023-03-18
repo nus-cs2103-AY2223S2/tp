@@ -1,8 +1,10 @@
-package seedu.wife.logic.parser;
+package seedu.wife.logic.parser.tagcommandparser;
 
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.wife.logic.commands.ListByTagCommand;
+import seedu.wife.logic.parser.Parser;
+import seedu.wife.logic.parser.ParserUtil;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.model.tag.Tag;
 
@@ -21,8 +23,8 @@ public class ListByTagCommandParser implements Parser<ListByTagCommand> {
             Tag tag = ParserUtil.parseTag(args);
             return new ListByTagCommand(tag);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListByTagCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ListByTagCommand.MESSAGE_USAGE), pe);
         }
     }
 
