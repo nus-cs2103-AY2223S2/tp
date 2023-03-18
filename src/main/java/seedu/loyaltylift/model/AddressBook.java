@@ -2,6 +2,7 @@ package seedu.loyaltylift.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -114,6 +115,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeCustomer(Customer key) {
         customers.remove(key);
+
+        // remove orders associated to the customer
+        ArrayList<Order> ordersToRemove = new ArrayList<>();
+        orders.forEach(o -> {
+            if (o.getCustomer().equals(key)) {
+                ordersToRemove.add(o);
+            }
+        });
+        ordersToRemove.forEach(orders::remove);
     }
 
     //// order-level operations
