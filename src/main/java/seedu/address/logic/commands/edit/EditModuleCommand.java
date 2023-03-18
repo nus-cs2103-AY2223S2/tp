@@ -63,6 +63,22 @@ public class EditModuleCommand extends EditCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedModule));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditModuleCommand)) {
+            return false;
+        }
+
+        EditModuleCommand otherCommand = (EditModuleCommand) other;
+
+        return moduleCode.equals(otherCommand.moduleCode)
+                && editModuleDescriptor.equals(otherCommand.editModuleDescriptor);
+    }
+
     private Module createEditedModule(ReadOnlyModule moduleToEdit) {
         requireNonNull(moduleToEdit);
 

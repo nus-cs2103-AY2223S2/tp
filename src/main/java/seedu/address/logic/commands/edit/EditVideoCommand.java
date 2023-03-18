@@ -96,6 +96,24 @@ public class EditVideoCommand extends EditCommand {
         return new Video(updatedName, hasWatched, tags);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditVideoCommand)) {
+            return false;
+        }
+
+        EditVideoCommand otherCommand = (EditVideoCommand) other;
+
+        return moduleCode.equals(otherCommand.moduleCode)
+                && lectureName.equals(otherCommand.lectureName)
+                && videoName.equals(otherCommand.videoName)
+                && editVideoDescriptor.equals(otherCommand.editVideoDescriptor);
+    }
+
     /**
      * Stores the details to edit the video with.<p>
      * Each non-empty field value will replace the corresponding field value of the video.

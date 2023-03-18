@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V2;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2040S;
 
@@ -27,6 +30,13 @@ import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.add.AddModuleCommand;
 import seedu.address.logic.commands.add.AddVideoCommand;
+import seedu.address.logic.commands.edit.EditCommand;
+import seedu.address.logic.commands.edit.EditLectureCommand;
+import seedu.address.logic.commands.edit.EditModuleCommand;
+import seedu.address.logic.commands.edit.EditVideoCommand;
+import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
+import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
@@ -34,6 +44,10 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
+import seedu.address.testutil.EditLectureDescriptorBuilder;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
+import seedu.address.testutil.EditVideoDescriptorBuilder;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.LectureUtil;
 import seedu.address.testutil.ModuleBuilder;
@@ -87,15 +101,43 @@ public class AddressBookParserTest {
         assertEquals(new DeleteModuleCommand(CS2040S.getCode()), command);
     }
 
-    // TODO: Test this
-    // @Test
-    // public void parseCommand_edit() throws Exception {
-    //     Person person = new PersonBuilder().build();
-    //     EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-    //     EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-    //             + INDEX_FIRST_MODULE.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-    //     assertEquals(new EditCommand(INDEX_FIRST_MODULE, descriptor), command);
-    // }
+    @Test
+    public void parseCommand_editModule() throws Exception {
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        Module module = new ModuleBuilder().withCode(VALID_MODULE_CODE_2040)
+                .withName(VALID_MODULE_NAME_2040).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(module).build();
+
+        EditCommand command = (EditCommand) parser.parseCommand(ModuleUtil.getEditCommand(moduleCode, descriptor));
+        assertEquals(new EditModuleCommand(moduleCode, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editLecture() throws Exception {
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
+
+        Lecture lecture = new LectureBuilder().withName(VALID_LECTURE_NAME_L2).build();
+        EditLectureDescriptor descriptor = new EditLectureDescriptorBuilder(lecture).build();
+
+        EditCommand command = (EditCommand) parser.parseCommand(
+                LectureUtil.getEditCommand(moduleCode, lectureName, descriptor));
+        assertEquals(new EditLectureCommand(moduleCode, lectureName, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editVideo() throws Exception {
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
+        LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
+        VideoName videoName = new VideoName(VALID_VIDEO_NAME_V1);
+
+        Video video = new VideoBuilder().withName(VALID_VIDEO_NAME_V2).build();
+        EditVideoDescriptor descriptor = new EditVideoDescriptorBuilder(video).build();
+
+        EditCommand command = (EditCommand) parser.parseCommand(
+                VideoUtil.getEditCommand(moduleCode, lectureName, videoName, descriptor));
+        assertEquals(new EditVideoCommand(moduleCode, lectureName, videoName, descriptor), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {

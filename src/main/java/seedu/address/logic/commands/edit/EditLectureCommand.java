@@ -76,6 +76,23 @@ public class EditLectureCommand extends EditCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, editedLecture));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditLectureCommand)) {
+            return false;
+        }
+
+        EditLectureCommand otherCommand = (EditLectureCommand) other;
+
+        return moduleCode.equals(otherCommand.moduleCode)
+                && lectureName.equals(otherCommand.lectureName)
+                && editLectureDescriptor.equals(otherCommand.editLectureDescriptor);
+    }
+
     private Lecture createEditedLecture(ReadOnlyLecture lectureToEdit) {
         requireNonNull(lectureToEdit);
 
