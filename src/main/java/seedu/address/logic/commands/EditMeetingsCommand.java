@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 import java.util.HashSet;
@@ -37,7 +37,7 @@ public class EditMeetingsCommand extends Command {
             + "by the index number used in the displayed meetings list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + "TITLE] "
+            + "[" + PREFIX_MEETING_TITLE + "TITLE] "
             + "[" + PREFIX_DATETIME + "TIMEDATE] "
             + "[" + PREFIX_PERSON + "ATTENDEES] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
