@@ -47,8 +47,32 @@ public class TransactionBuilder {
     /**
      * Sets the {@code Description} of the {@code Transaction} that we are building.
      */
-    public TransactionBuilder withName(String description) {
+    public TransactionBuilder withDesc(String description) {
         this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Owner} of the {@code Transaction} that we are building.
+     */
+    public TransactionBuilder withOwner(String owner) {
+        this.owner = new Owner(owner);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Status} of the {@code Transaction} that we are building.
+     */
+    public TransactionBuilder withStatus(String status) {
+        this.status = new TxnStatus(status);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Value} of the {@code Transaction} that we are building.
+     */
+    public TransactionBuilder withValue(String value) {
+        this.value = new Value(value);
         return this;
     }
 
