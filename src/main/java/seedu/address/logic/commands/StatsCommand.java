@@ -2,7 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Summary;
+import seedu.address.logic.aggregatefunction.Count;
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
  * Summarises the information of all elderly, volunteers and pairs in FriendlyLink.
@@ -11,27 +16,30 @@ public class StatsCommand extends Command {
 
     public static final String COMMAND_WORD = "stats";
 
-    public static final String MESSAGE_SUCCESS = "Statistics:\n%1$s\n%2$s\n%3$s";
-    public static final String ELDERLY_STATISTICS = "Total elderly: %1$d\n";
-    public static final String VOLUNTEER_STATISTICS = "Total volunteers: %1$d\n";
-    public static final String PAIR_STATISTICS = "Total pairs: %1$d\n";
+    private final Summary summary = new Summary();
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, getElderlyStatistics(model),
-                getVolunteerStatistics(model), getPairStatistics(model)));
+        summariseElderlyStatistics(model);
+        summariseVolunteerStatistics(model);
+        summarisePairStatistics(model);
+
+        /*model.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        model.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        model.updateFilteredPairList((Predicate<Pair>) PREDICATE_SHOW_ALL);*/
+        return new CommandResult(summary.toString());
     }
 
-    private String getElderlyStatistics(Model model) {
-        return String.format(ELDERLY_STATISTICS, model.getFilteredElderlyList().size());
+    private void summariseElderlyStatistics(Model model) {
+        summary.describe(new Count<>(model.getFilteredElderlyList(), Elderly.class));
     }
 
-    private String getVolunteerStatistics(Model model) {
-        return String.format(VOLUNTEER_STATISTICS, model.getFilteredVolunteerList().size());
+    private void summariseVolunteerStatistics(Model model) {
+        summary.describe(new Count<>(model.getFilteredVolunteerList(), Volunteer.class));
     }
 
-    private String getPairStatistics(Model model) {
-        return String.format(PAIR_STATISTICS, model.getFilteredPairList().size());
+    private void summarisePairStatistics(Model model) {
+        summary.describe(new Count<>(model.getFilteredPairList(), Pair.class));
     }
 }

@@ -3,12 +3,19 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Summary;
+import seedu.address.logic.aggregatefunction.Count;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.pair.Pair;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -21,24 +28,29 @@ public class StatsCommandTest {
     @Test
     public void execute_emptyModel() {
         model = new ModelManager(new FriendlyLink(), new UserPrefs());
+
         expectedModel = new ModelManager(new FriendlyLink(), new UserPrefs());
-        String expectedMessage = String.format(StatsCommand.MESSAGE_SUCCESS,
-                String.format(StatsCommand.ELDERLY_STATISTICS, 0),
-                String.format(StatsCommand.VOLUNTEER_STATISTICS, 0),
-                String.format(StatsCommand.PAIR_STATISTICS, 0)
-                );
+        Summary summary = new Summary();
+        summary.describe(new Count<>(new ArrayList<>(), Elderly.class));
+        summary.describe(new Count<>(new ArrayList<>(), Volunteer.class));
+        summary.describe(new Count<>(new ArrayList<>(), Pair.class));
+        String expectedMessage = summary.toString();
+
         assertCommandSuccess(new StatsCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_typicalModel() {
         model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
-        String expectedMessage = String.format(StatsCommand.MESSAGE_SUCCESS,
-                String.format(StatsCommand.ELDERLY_STATISTICS, 7),
-                String.format(StatsCommand.VOLUNTEER_STATISTICS, 7),
-                String.format(StatsCommand.PAIR_STATISTICS, 3)
-        );
+
+        FriendlyLink friendlyLink = getTypicalFriendlyLink();
+        expectedModel = new ModelManager(friendlyLink, new UserPrefs());
+        Summary summary = new Summary();
+        summary.describe(new Count<>(friendlyLink.getElderlyList(), Elderly.class));
+        summary.describe(new Count<>(friendlyLink.getVolunteerList(), Volunteer.class));
+        summary.describe(new Count<>(friendlyLink.getPairList(), Pair.class));
+        String expectedMessage = summary.toString();
+
         assertCommandSuccess(new StatsCommand(), model, expectedMessage, expectedModel);
 
     }
