@@ -26,12 +26,10 @@ public class SudoHr implements ReadOnlySudoHr {
     private final UniqueLeaveList leaves;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block,
-     * sometimes used to avoid duplication
-     * between constructors. See
-     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     * Note that non-static init blocks are not recommended to use. There are other
-     * ways to avoid duplication
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      * among constructors.
      */
     {
@@ -169,7 +167,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
 
-        employees.setEmployee(target, editedEmployee); 
+        employees.setEmployee(target, editedEmployee);
     }
 
     /**
@@ -298,15 +296,15 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in
+     * Returns true if a employee with the same identity as {@code employee} exists in
      * the specified leave
      * {@code date}
      * the sudohr book.
      */
-    public boolean hasEmployeeOnLeave(Date date, Employee person) {
+    public boolean hasEmployeeOnLeave(Date date, Employee employee) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
-            if (leave.getTitle().equals(date) & leave.hasPerson(person)) {
+            if (leave.getTitle().equals(date) & leave.hasEmployee(employee)) {
                 return true;
             }
         }
@@ -315,46 +313,46 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Adds a person {@code person} to a specified leave{@code leave}
+     * Adds a employee {@code employee} to a specified leave{@code leave}
      * in the sudohr book.
      */
-    public void addEmployeeToLeave(Leave leave, Employee person) {
-        requireAllNonNull(leave, person);
-        leave.addPerson(person);
+    public void addEmployeeToLeave(Leave leave, Employee employee) {
+        requireAllNonNull(leave, employee);
+        leave.addEmployee(employee);
     }
 
     /**
-     * Deletes a person {@code person} from a specified leaeve{@code leave}
+     * Deletes a employee {@code employee} from a specified leaeve{@code leave}
      * in the sudohr book.
      */
-    public void deleteEmployeeFromLeave(Leave leave, Employee person) {
-        requireAllNonNull(leave, person);
-        leave.deletePerson(person);
+    public void deleteEmployeeFromLeave(Leave leave, Employee employee) {
+        requireAllNonNull(leave, employee);
+        leave.deleteEmployee(employee);
     }
 
     /**
-     * Update a person {@code person} with editedPerson {@code person} in all leaves
+     * Update a employee {@code employee} with editedEmployee {@code employee} in all leaves
      * in the sudohr book.
      */
-    public void cascadeUpdateUserInLeaves(Employee personToEdit, Employee editedPerson) {
+    public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
-            if (leave.hasPerson(personToEdit)) {
-                leave.deletePerson(personToEdit);
-                leave.addPerson(editedPerson);
+            if (leave.hasEmployee(employeeToEdit)) {
+                leave.deleteEmployee(employeeToEdit);
+                leave.addEmployee(editedEmployee);
             }
         }
     }
 
     /**
-     * Deletes a person {@code person} from all leaves
+     * Deletes a employee {@code employee} from all leaves
      * in the sudohr book.
      */
-    public void cascadeDeleteUserInLeaves(Employee personToDelete) {
+    public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
-            if (leave.hasPerson(personToDelete)) {
-                leave.deletePerson(personToDelete);
+            if (leave.hasEmployee(employeeToDelete)) {
+                leave.deleteEmployee(employeeToDelete);
             }
         }
     }

@@ -23,17 +23,17 @@ public class JsonAdaptedLeave {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "the %s field is missing!";
 
     private final String date;
-    private final List<JsonAdaptedEmployee> persons = new ArrayList<>();
+    private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedLeave} with the given leave details.
      */
     @JsonCreator
     public JsonAdaptedLeave(@JsonProperty("date") String date,
-            @JsonProperty("persons") List<JsonAdaptedEmployee> persons) {
+            @JsonProperty("employees") List<JsonAdaptedEmployee> employees) {
         this.date = date;
-        if (persons != null) {
-            this.persons.addAll(persons);
+        if (employees != null) {
+            this.employees.addAll(employees);
         }
     }
 
@@ -42,7 +42,7 @@ public class JsonAdaptedLeave {
      */
     public JsonAdaptedLeave(Leave source) {
         date = source.getTitle().value.toString();
-        this.persons.addAll(source.getAttendees().stream()
+        this.employees.addAll(source.getAttendees().stream()
                 .map(JsonAdaptedEmployee::new)
                 .collect(Collectors.toList()));
     }
@@ -56,8 +56,8 @@ public class JsonAdaptedLeave {
      */
     public Leave toModelType() throws IllegalValueException {
         final List<Employee> leaveEmployees = new ArrayList<>();
-        for (JsonAdaptedEmployee person : persons) {
-            leaveEmployees.add(person.toModelType());
+        for (JsonAdaptedEmployee employee : employees) {
+            leaveEmployees.add(employee.toModelType());
         }
 
         if (date == null) {

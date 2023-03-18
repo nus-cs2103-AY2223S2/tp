@@ -1,7 +1,7 @@
 package seedu.sudohr.model.leave.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Persons (Persons are
+ * Signals that the operation will result in duplicate Employees (Employees are
  * considered duplicates if they have the same
  * identity).
  */

@@ -43,27 +43,27 @@ public class Leave {
     }
 
     /**
-     * Returns true if leave has a specific person {@code person} as an attendee.
+     * Returns true if leave has a specific employee {@code employee} as an attendee.
      */
-    public boolean hasPerson(Employee person) {
-        requireNonNull(person);
-        return attendees.contains(person);
+    public boolean hasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return attendees.contains(employee);
     }
 
     /**
-     * Adds a specific person {@code person} to the leave.
+     * Adds a specific employee {@code employee} to the leave.
      */
-    public void addPerson(Employee person) {
-        requireNonNull(person);
-        this.attendees.add(person);
+    public void addEmployee(Employee employee) {
+        requireNonNull(employee);
+        this.attendees.add(employee);
     }
 
     /**
-     * Deletes a specific person {@code person} from the leave.
+     * Deletes a specific employee {@code employee} from the leave.
      */
-    public void deletePerson(Employee person) {
-        requireNonNull(person);
-        this.attendees.remove(person);
+    public void deleteEmployee(Employee employee) {
+        requireNonNull(employee);
+        this.attendees.remove(employee);
     }
 
     /**

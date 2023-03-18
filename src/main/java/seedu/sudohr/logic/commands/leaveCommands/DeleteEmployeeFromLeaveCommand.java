@@ -25,7 +25,7 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "employee %1$s is deleted from %2$s";
 
-    public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The person index is invalid";
+    public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index is invalid";
 
     public static final String MESSAGE_INVALID_DATE = "The employee has not taken a leave";
 
@@ -35,14 +35,14 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
     private final Index employeeToDeleteIndex;
 
     /**
-     * Creates an DeleteEmployeeFromLeaveCommand to delete the person at specified
-     * {@code personIndex} from the leave at the specified {@code Index}
+     * Creates an DeleteEmployeeFromLeaveCommand to delete the employee at specified
+     * {@code employeeIndex} from the leave at the specified {@code Index}
      */
-    public DeleteEmployeeFromLeaveCommand(Index personIndex, Date dateToDelete) {
-        requireNonNull(personIndex);
+    public DeleteEmployeeFromLeaveCommand(Index employeeIndex, Date dateToDelete) {
+        requireNonNull(employeeIndex);
         requireNonNull(dateToDelete);
         this.dateToDelete = dateToDelete;
-        employeeToDeleteIndex = personIndex;
+        employeeToDeleteIndex = employeeIndex;
     }
 
     @Override

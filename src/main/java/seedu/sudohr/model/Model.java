@@ -201,13 +201,13 @@ public interface Model {
      * Returns true if a given date{@code date} has the employee {@code employee} in
      * the sudohr book.
      */
-    boolean hasEmployeeOnLeave(Date date, Employee person);
+    boolean hasEmployeeOnLeave(Date date, Employee employee);
 
     /**
      * Adds a employee's {@code employee} on a given day{@code leaveToAdd} in
      * the sudohr book.
      */
-    void addEmployeeToLeave(Leave leaveToAdd, Employee personToAdd);
+    void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd);
 
     /** Returns an unmodifiable view of the filtered leave list */
     ObservableList<Leave> getFilteredLeaveList();
@@ -219,7 +219,7 @@ public interface Model {
      * Deletes a employee {@code employee} from a given leave{@code leave} in
      * the sudohr book.
      */
-    void deleteEmployeeFromLeave(Leave leaveToDelete, Employee personToDelete);
+    void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete);
 
     /**
      * Updates the filter of the filtered leave list to filter by the given {@code predicate}.
@@ -229,15 +229,15 @@ public interface Model {
     void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave);
 
     /**
-     * Update a person {@code person} with editedPerson {@code person} in all leave
+     * Update a employee {@code employee} with editedEmployee {@code employee} in all leave
      * in the sudohr book.
      */
-    void cascadeUpdateUserInLeaves(Employee personToEdit, Employee editedPerson);
+    void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee);
 
     /**
-     * Deletes a person {@code person} from all leaves
+     * Deletes a employee {@code employee} from all leaves
      * in the sudohr book.
      */
-    void cascadeDeleteUserInLeaves(Employee personToDelete);
+    void cascadeDeleteUserInLeaves(Employee employeeToDelete);
 
 }

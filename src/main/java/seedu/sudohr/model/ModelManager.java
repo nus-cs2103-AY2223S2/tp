@@ -191,35 +191,35 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasEmployeeOnLeave(Date date, Employee person) {
-        requireAllNonNull(date, person);
-        return sudoHr.hasEmployeeOnLeave(date, person);
+    public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+        requireAllNonNull(date, employee);
+        return sudoHr.hasEmployeeOnLeave(date, employee);
     }
 
     @Override
-    public void addEmployeeToLeave(Leave leaveToAdd, Employee personToAdd) {
-        requireAllNonNull(leaveToAdd, personToAdd);
+    public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
+        requireAllNonNull(leaveToAdd, employeeToAdd);
 
-        sudoHr.addEmployeeToLeave(leaveToAdd, personToAdd);
+        sudoHr.addEmployeeToLeave(leaveToAdd, employeeToAdd);
     }
 
     @Override
-    public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee personToDelete) {
-        requireAllNonNull(leaveToDelete, personToDelete);
+    public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
+        requireAllNonNull(leaveToDelete, employeeToDelete);
 
-        sudoHr.deleteEmployeeFromLeave(leaveToDelete, personToDelete);
+        sudoHr.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
     }
 
     @Override
-    public void cascadeUpdateUserInLeaves(Employee personToEdit, Employee editedPerson) {
-        requireAllNonNull(personToEdit, editedPerson);
-        sudoHr.cascadeUpdateUserInLeaves(personToEdit, editedPerson);
+    public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
+        requireAllNonNull(employeeToEdit, editedEmployee);
+        sudoHr.cascadeUpdateUserInLeaves(employeeToEdit, editedEmployee);
     }
 
     @Override
-    public void cascadeDeleteUserInLeaves(Employee personToDelete) {
-        requireAllNonNull(personToDelete);
-        sudoHr.cascadeDeleteUserInLeaves(personToDelete);
+    public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
+        requireAllNonNull(employeeToDelete);
+        sudoHr.cascadeDeleteUserInLeaves(employeeToDelete);
     }
 
     // =========== Filtered Leave List Accessors
@@ -236,7 +236,7 @@ public class ModelManager implements Model {
         filteredLeaves.setPredicate(predicate);
     }
 
-    // =========== Filtered Person List Accessors
+    // =========== Filtered Employee List Accessors
     // =============================================================
 
     /**
@@ -327,4 +327,5 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredEmployees.equals(other.filteredEmployees);
     }
+    
 }

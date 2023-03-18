@@ -6,25 +6,25 @@ import java.util.function.Predicate;
 import seedu.sudohr.model.employee.Employee;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Employee}'s exists in a set of {@code employeesOnLeave}.
  */
 public class LeaveContainsEmployeePredicate implements Predicate<Employee> {
-    private final Set<Employee> personsInEvent;
+    private final Set<Employee> employeesOnLeave;
 
-    public LeaveContainsEmployeePredicate(Set<Employee> personsInEvent) {
-        this.personsInEvent = personsInEvent;
+    public LeaveContainsEmployeePredicate(Set<Employee> employeesOnLeave) {
+        this.employeesOnLeave = employeesOnLeave;
     }
 
     @Override
-    public boolean test(Employee person) {
-        return personsInEvent.stream()
-                .anyMatch(personInList -> personInList.equals(person));
+    public boolean test(Employee employee) {
+        return employeesOnLeave.stream()
+                .anyMatch(employeeInList -> employeeInList.equals(employee));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof LeaveContainsEmployeePredicate // instanceof handles nulls
-                        && personsInEvent.equals(((LeaveContainsEmployeePredicate) other).personsInEvent));
+                        && employeesOnLeave.equals(((LeaveContainsEmployeePredicate) other).employeesOnLeave));
     }
 }

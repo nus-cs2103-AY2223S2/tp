@@ -24,10 +24,10 @@ import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
  * unique in terms of identity in the UniqueLeaveList. However, the removal of a
  * leave uses
  * Leaves#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * as to ensure that the employee with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
- * @see Person#isSamePerson(Person)
+ * @see Employee#isSameEmployee(Employee)
  */
 public class UniqueLeaveList implements Iterable<Leave> {
     private final ObservableList<Leave> internalList = FXCollections.observableArrayList();
@@ -57,8 +57,8 @@ public class UniqueLeaveList implements Iterable<Leave> {
     /**
      * Replaces the leave {@code target} in the list with {@code editedLeave}.
      * {@code target} must exist in the list.
-     * The leave identity of {@code editedPerson} must not be the same as another
-     * existing person in the list.
+     * The leave identity of {@code editedEmployee} must not be the same as another
+     * existing employee in the list.
      */
     public void setLeave(Leave target, Leave editedLeave) {
         requireAllNonNull(target, editedLeave);
@@ -92,8 +92,8 @@ public class UniqueLeaveList implements Iterable<Leave> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code employees}.
+     * {@code employees} must not contain duplicate employees.
      */
     public void setLeaves(List<Leave> leaves) {
         requireAllNonNull(leaves);
@@ -129,7 +129,7 @@ public class UniqueLeaveList implements Iterable<Leave> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code employees} contains only unique employees.
      */
     private boolean leavesAreUnique(List<Leave> leaves) {
         for (int i = 0; i < leaves.size() - 1; i++) {
