@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -48,8 +49,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Patient patient = new Patient(name, phone, email, nric, address, tagList);
-
+        Patient patient = new Patient(name, phone, email, nric, address, tagList, new ArrayList<>());
         return new AddPatientCommand(patient);
     }
 

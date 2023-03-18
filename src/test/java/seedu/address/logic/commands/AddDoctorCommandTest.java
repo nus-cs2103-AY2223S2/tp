@@ -20,7 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -168,6 +170,20 @@ public class AddDoctorCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void bookAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPatientByNric(Nric nric) {
             throw new AssertionError("This method should not be called.");
         }
     }

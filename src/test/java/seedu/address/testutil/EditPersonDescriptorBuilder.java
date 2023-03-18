@@ -39,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setNric(person.getNric());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setAppointments(person.getPatientAppointments());
     }
 
     /**

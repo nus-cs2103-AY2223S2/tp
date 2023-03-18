@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
@@ -32,6 +34,8 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
 
+    private ArrayList<Appointment> appointments;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -42,6 +46,7 @@ public class PersonBuilder {
         nric = new Nric(DEFAULT_NRIC);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        appointments = new ArrayList<>();
     }
 
     /**
@@ -54,6 +59,7 @@ public class PersonBuilder {
         nric = personToCopy.getNric();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        appointments = new ArrayList<>(personToCopy.getPatientAppointments());
     }
 
     /**
@@ -97,6 +103,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Appointment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointment(String ... appointment) {
+        this.appointments.add(SampleDataUtil.getAppointment(appointment));
+        return this;
+    }
+
+    /**
      * Sets the {@code Nric} of the {@code Person} that we are building.
      */
     public PersonBuilder withNric(String nric) {
@@ -105,15 +119,15 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, nric, address, tags);
+        return new Person(name, phone, email, nric, address, tags, appointments);
     }
 
     public Patient buildPatient() {
-        return new Patient(name, phone, email, nric, address, tags);
+        return new Patient(name, phone, email, nric, address, tags, appointments);
     }
 
     public Doctor buildDoctor() {
-        return new Doctor(name, phone, email, nric, address, tags);
+        return new Doctor(name, phone, email, nric, address, tags, appointments);
     }
 
 }

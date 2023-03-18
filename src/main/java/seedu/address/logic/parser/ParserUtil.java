@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Booking;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -136,5 +137,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String booking} into a {@code Booking}.
+     */
+    public static Booking parseBooking(String booking) throws ParseException {
+        requireNonNull(booking);
+        String trimmedBooking = booking.trim();
+        if (!Booking.isValidBookingFormat(trimmedBooking)) {
+            throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Booking(trimmedBooking);
     }
 }
