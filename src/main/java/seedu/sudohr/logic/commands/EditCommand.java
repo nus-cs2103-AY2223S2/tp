@@ -11,12 +11,10 @@ import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_EMPLOYEES;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.sudohr.commons.core.Messages;
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.commons.util.CollectionUtil;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
@@ -38,14 +36,14 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the employee identified "
             + "by the index number used in the displayed employee list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: eid/EMPLOYEE_ID "
             + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " eid/1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -56,31 +54,30 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_EMAIL = "There already exists someone with this email!";
     public static final String MESSAGE_DUPLICATE_PHONE = "There already exists someone with this phone number!";
 
-    private final Index index;
+    private final Id targetId;
     private final EditEmployeeDescriptor editEmployeeDescriptor;
 
     /**
-     * @param index of the employee in the filtered employee list to edit
+     * @param targetId id of the employee in SudoHR list to edit
      * @param editEmployeeDescriptor details to edit the employee with
      */
-    public EditCommand(Index index, EditEmployeeDescriptor editEmployeeDescriptor) {
-        requireNonNull(index);
+    public EditCommand(Id targetId, EditEmployeeDescriptor editEmployeeDescriptor) {
+        requireNonNull(targetId);
         requireNonNull(editEmployeeDescriptor);
 
-        this.index = index;
+        this.targetId = targetId;
         this.editEmployeeDescriptor = new EditEmployeeDescriptor(editEmployeeDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Employee> lastShownList = model.getFilteredEmployeeList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        if (!model.checkEmployeeExists(targetId)) {
+            throw new CommandException(Messages.MESSAGE_EMPLOYEE_TO_EDIT_NOT_FOUND);
         }
 
-        Employee employeeToEdit = lastShownList.get(index.getZeroBased());
+        Employee employeeToEdit = model.getEmployee(targetId);
         Employee editedEmployee = createEditedEmployee(employeeToEdit, editEmployeeDescriptor);
 
         if (model.hasEmployee(editedEmployee, employeeToEdit)) {
@@ -98,7 +95,6 @@ public class EditCommand extends Command {
         model.setEmployee(employeeToEdit, editedEmployee);
         model.updateFilteredEmployeeList(PREDICATE_SHOW_ALL_EMPLOYEES);
         return new CommandResult(String.format(MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee));
-
     }
 
     /**
@@ -133,7 +129,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return targetId.equals(e.targetId)
                 && editEmployeeDescriptor.equals(e.editEmployeeDescriptor);
     }
 

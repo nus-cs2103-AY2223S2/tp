@@ -3,7 +3,6 @@ package seedu.sudohr.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 
 import seedu.sudohr.logic.commands.DeleteCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
