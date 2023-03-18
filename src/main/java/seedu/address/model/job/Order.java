@@ -12,7 +12,7 @@ public class Order {
     public static final String MESSAGE_CONSTRAINTS =
             "Order should only be asc or desc in lower caps";
 
-    public String order;
+    private String order;
 
     /**
      * Constructs a {@code Order}.

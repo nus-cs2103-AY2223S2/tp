@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.job.Order;
-import static java.util.Objects.requireNonNull;
+
 
 /**
  * Sort a role based on the salary in asc/desc order.
@@ -17,9 +18,8 @@ public class SalaryCommand extends Command {
             + ": Sorts the salary in asc/desc order.\n"
             + "Parameters: ORDER (must be either asc OR desc)\n"
             + "Example: " + COMMAND_WORD + " desc";
-    private Order order;
-
     public static final String MESSAGE_SUCCESS = "Salaries sorted in %1$s";
+    private Order order;
 
     public SalaryCommand(Order order) {
         this.order = order;
