@@ -1,30 +1,27 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
+import seedu.address.testutil.ModelManagerBuilder;
 
 public class ClearCommandTest {
 
     @Test
     public void execute_emptyFriendlyLink_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+        Model model = new ModelManagerBuilder().build();
+        Model expectedModel = new ModelManagerBuilder().build();
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_nonEmptyFriendlyLink_success() {
-        Model model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
-        expectedModel.setFriendlyLink(new FriendlyLink());
+        Model model = getTypicalModelManager();
+        Model expectedModel = new ModelManagerBuilder().build();
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

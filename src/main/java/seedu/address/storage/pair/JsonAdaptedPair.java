@@ -66,6 +66,7 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
 
         Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
         Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
+
         if (elderly == null) {
             throw new IllegalValueException(String.format(MESSAGE_ELDERLY_NOT_FOUND, modelElderlyNric));
         }

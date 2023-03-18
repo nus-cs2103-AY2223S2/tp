@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -12,17 +13,18 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
+import seedu.address.storage.Storage;
 
 /**
  * Represents the in-memory model of the FriendlyLink data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final FriendlyLink friendlyLink;
     private final UserPrefs userPrefs;
     private final FilteredList<Elderly> filteredElderly;
@@ -30,20 +32,28 @@ public class ModelManager implements Model {
     private final FilteredList<Pair> filteredPairs;
 
     /**
-     * Initializes a ModelManager with the given friendlyLink and userPrefs.
+     * Constructs a {@code ModelManager} with the data from {@code Storage} and {@code userPrefs}. <br>
+     * An empty application will be used instead if errors occur when reading {@code storage}.
+     *
+     * @param storage Storage to retrieve data from.
+     * @param userPrefs User preferences.
      */
-    public ModelManager(ReadOnlyFriendlyLink friendlyLink, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(friendlyLink, userPrefs);
+    public ModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(storage, userPrefs);
+        FriendlyLink temporaryFriendlyLink = new FriendlyLink();
+        try {
+            temporaryFriendlyLink = storage.read();
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty FriendlyLink");
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty FriendlyLink");
+        }
+        friendlyLink = temporaryFriendlyLink;
         logger.fine("Initializing with FriendlyLink: " + friendlyLink + " and user prefs " + userPrefs);
-        this.friendlyLink = new FriendlyLink(friendlyLink);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredElderly = new FilteredList<>(this.friendlyLink.getElderlyList());
-        filteredVolunteers = new FilteredList<>(this.friendlyLink.getVolunteerList());
-        filteredPairs = new FilteredList<>(this.friendlyLink.getPairList());
-    }
-
-    public ModelManager() {
-        this(new FriendlyLink(), new UserPrefs());
+        filteredElderly = new FilteredList<>(friendlyLink.getElderlyList());
+        filteredVolunteers = new FilteredList<>(friendlyLink.getVolunteerList());
+        filteredPairs = new FilteredList<>(friendlyLink.getPairList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -70,17 +80,6 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public Path getFriendlyLinkFilePath() {
-        return userPrefs.getFriendlyLinkFilePath();
-    }
-
-    @Override
-    public void setFriendlyLinkFilePath(Path friendlyLinkFilePath) {
-        requireNonNull(friendlyLinkFilePath);
-        userPrefs.setFriendlyLinkFilePath(friendlyLinkFilePath);
-    }
-
     //=========== FriendlyLink ================================================================================
 
     @Override
@@ -94,6 +93,17 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Elderly  ======================================================================
+
+    @Override
+    public Path getElderlyFilePath() {
+        return userPrefs.getElderlyFilePath();
+    }
+
+    @Override
+    public void setElderlyFilePath(Path elderlyFilePath) {
+        requireNonNull(elderlyFilePath);
+        userPrefs.setElderlyFilePath(elderlyFilePath);
+    }
 
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
@@ -112,10 +122,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void addElderly(Elderly elderly) {
         friendlyLink.addElderly(elderly);
-        updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
+        @SuppressWarnings("unchecked")
+        Predicate<Elderly> predicate = (Predicate<Elderly>) PREDICATE_SHOW_ALL;
+        updateFilteredElderlyList(predicate);
     }
 
     @Override
@@ -125,6 +136,18 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Volunteers ======================================================================
+
+    @Override
+    public Path getVolunteerFilePath() {
+        return userPrefs.getVolunteerFilePath();
+    }
+
+    @Override
+    public void setVolunteerFilePath(Path volunteerFilePath) {
+        requireNonNull(volunteerFilePath);
+        userPrefs.setVolunteerFilePath(volunteerFilePath);
+    }
+
 
     @Override
     public Volunteer getVolunteer(Nric nric) {
@@ -144,10 +167,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public void addVolunteer(Volunteer volunteer) {
         friendlyLink.addVolunteer(volunteer);
-        updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        @SuppressWarnings("unchecked")
+        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
+        updateFilteredVolunteerList(predicate);
     }
 
     @Override
@@ -157,6 +181,18 @@ public class ModelManager implements Model {
     }
 
     //=========== FriendlyLink Pairs ======================================================================
+
+    @Override
+    public Path getPairFilePath() {
+        return userPrefs.getPairFilePath();
+    }
+
+    @Override
+    public void setPairFilePath(Path friendlyLinkFilePath) {
+        requireNonNull(friendlyLinkFilePath);
+        userPrefs.setPairFilePath(friendlyLinkFilePath);
+    }
+
     @Override
     public boolean hasPair(Pair pair) {
         requireNonNull(pair);
@@ -166,13 +202,17 @@ public class ModelManager implements Model {
     @Override
     public void addPair(Nric elderlyNric, Nric volunteerNric) {
         friendlyLink.addPair(elderlyNric, volunteerNric);
-        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
+        @SuppressWarnings("unchecked")
+        Predicate<Pair> predicate = (Predicate<Pair>) PREDICATE_SHOW_ALL;
+        updateFilteredPairList(predicate);
     }
 
     @Override
     public void addPair(Pair pair) {
         friendlyLink.addPair(pair);
-        // TODO: implement updateFilteredPersonList(PREDICATE_SHOW_ALL_PAIRS);
+        @SuppressWarnings("unchecked")
+        Predicate<Pair> predicate = (Predicate<Pair>) PREDICATE_SHOW_ALL;
+        updateFilteredPairList(predicate);
     }
 
     @Override
@@ -239,7 +279,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPairList(Predicate<Pair> predicate) {
         requireNonNull(predicate);
-        // TODO: implement filteredPairs.setPredicate(predicate);
+        filteredPairs.setPredicate(predicate);
     }
 
     @Override

@@ -20,6 +20,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -162,6 +163,15 @@ public class TestUtil {
         return new FriendlyLinkBuilder()
                 .withElderly(TypicalElderly.getTypicalElderly())
                 .withVolunteers(TypicalVolunteers.getTypicalVolunteers())
+                .build();
+    }
+
+    /**
+     * Returns a {@code ModelManager} with the typical FriendlyLink.
+     */
+    public static ModelManager getTypicalModelManager() {
+        return new ModelManagerBuilder()
+                .withFriendlyLink(getTypicalFriendlyLink())
                 .build();
     }
 

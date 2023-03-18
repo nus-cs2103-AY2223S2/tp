@@ -2,7 +2,7 @@ package seedu.address.model.person.information;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashSet;
+import java.util.Arrays;
 
 /**
  * Represents a Person's region in the database.
@@ -32,18 +32,17 @@ public class Region {
      */
     public Region(String region) {
         requireNonNull(region);
-        this.region = Place.valueOf(region);
+        this.region = Place.valueOf(region.toUpperCase());
     }
 
     /**
      * Returns true if a given string is a valid region.
      */
     public static boolean isValidRegion(String region) {
-        HashSet<String> set = new HashSet<>();
-        for (Place regionSet: Place.values()) {
-            set.add(regionSet.name());
+        if (region != null) {
+            return Arrays.stream(Place.values()).anyMatch(r -> r.toString().equals(region.toUpperCase()));
         }
-        return set.contains(region.toUpperCase());
+        return false;
     }
 
     @Override

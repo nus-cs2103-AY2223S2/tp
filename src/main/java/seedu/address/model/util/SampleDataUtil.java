@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,7 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -61,12 +63,18 @@ public class SampleDataUtil {
      * @return Sample elderly list.
      */
     public static Elderly[] getSampleElderly() {
+        HashSet<AvailableDate> dates = new HashSet<>();
+        dates.add(getAvailableDate("2023-03-10", "2023-03-11"));
+        dates.add(getAvailableDate("2023-03-11", "2023-03-12"));
+        dates.add(getAvailableDate("2023-03-12", "2023-03-13"));
+        dates.add(getAvailableDate("2023-03-13", "2023-03-14"));
+
         return new Elderly[] {
             new Elderly(new Name("Alex Yeoh"), new Phone("87438807"),
                     new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
                     new Nric("S4392759D"), new Age("29"), new Region("CENTRAL"), new RiskLevel("LOW"),
-                    getTagSet("energetic")),
+                    getTagSet("energetic"), dates),
             new Elderly(new Name("Bernice Yu"), new Phone("99272758"),
                     new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -119,6 +127,10 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    public static AvailableDate getAvailableDate(String startDate, String endDate) {
+        return new AvailableDate(startDate, endDate);
     }
 
 }

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddPairCommand;
 
 public class AddPairCommandParserTest {
-    private AddPairCommandParser parser = new AddPairCommandParser();
+    private final AddPairCommandParser parser = new AddPairCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

@@ -17,7 +17,7 @@ class RegionTest {
     @Test
     public void isValidRegion() {
         // null address
-        assertThrows(NullPointerException.class, () -> Region.isValidRegion(null));
+        assertFalse(Region.isValidRegion(null));
 
         // invalid region
         assertFalse(Region.isValidRegion("")); // empty string

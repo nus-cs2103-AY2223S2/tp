@@ -32,8 +32,8 @@ public class PairTest {
         assertFalse(PAIR1.isSamePair(null));
 
         // same nric, all other attributes different -> returns true
-        Elderly editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).build();
+        Elderly editedAlice = new ElderlyBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_SINGLE).build();
         Pair editedPair1 = new PairBuilder(PAIR1).withElderly(editedAlice).build();
         assertTrue(PAIR1.isSamePair(editedPair1));
         // TODO: check that a different name returns true if nric is the same.

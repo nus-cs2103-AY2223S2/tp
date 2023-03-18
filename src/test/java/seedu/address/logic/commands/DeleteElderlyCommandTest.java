@@ -5,23 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Nric;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.TypicalElderly;
 
 class DeleteElderlyCommandTest {
 
-    private final Model model = new ModelManager(
-            getTypicalFriendlyLink(), new UserPrefs()
-    );
+    private final Model model = getTypicalModelManager();
 
     @Test
     public void execute_validNric_success() {
@@ -32,7 +29,9 @@ class DeleteElderlyCommandTest {
         String expectedMessage = String.format(
                 DeleteElderlyCommand.MESSAGE_DELETE_ELDERLY_SUCCESS, elderlyToDelete
         );
-        ModelManager expectedModel = new ModelManager(model.getFriendlyLink(), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         expectedModel.deleteElderly(elderlyToDelete);
         assertCommandSuccess(deleteElderlyCommand, model, expectedMessage, expectedModel);
     }

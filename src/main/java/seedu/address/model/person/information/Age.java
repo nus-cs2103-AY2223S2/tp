@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Elderly's age in the database.
+ * Represents a Person's age in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
  */
 public class Age {

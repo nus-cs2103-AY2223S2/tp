@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -27,12 +28,13 @@ public class ElderlyListPanel extends UiPart<Region> {
         super(FXML);
         elderlyListView.setItems(elderlyList);
         elderlyListView.setCellFactory(listView -> new ElderlyListViewCell());
+        ObservableList<Node> children = elderlyListView.getChildrenUnmodifiable();
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Elderly} using a {@code ElderlyCard}.
      */
-    class ElderlyListViewCell extends ListCell<Elderly> {
+    static class ElderlyListViewCell extends ListCell<Elderly> {
         @Override
         protected void updateItem(Elderly elderly, boolean empty) {
             super.updateItem(elderly, empty);
