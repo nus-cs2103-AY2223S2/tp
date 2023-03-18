@@ -18,6 +18,7 @@ import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.FindCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.ListCommand;
+import seedu.sudohr.logic.commands.ListEmployeeDepartmentCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**
@@ -73,6 +74,9 @@ public class SudoHrParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListEmployeeDepartmentCommand.COMMAND_WORD:
+            return new ListEmployeeDepartmentCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

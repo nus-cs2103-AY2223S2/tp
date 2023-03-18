@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
@@ -40,6 +41,15 @@ public class Department {
      */
     public boolean hasEmployee(Employee e) {
         return employees.contains(e);
+    }
+
+    public boolean hasEmployee(Id id) {
+        for (Employee employee: employees) {
+            if (employee.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
