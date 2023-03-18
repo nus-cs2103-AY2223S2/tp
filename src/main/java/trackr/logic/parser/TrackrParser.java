@@ -21,6 +21,7 @@ import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.commands.FindTaskCommand;
 import trackr.logic.commands.HelpCommand;
+import trackr.logic.commands.ListOrderCommand;
 import trackr.logic.commands.ListSupplierCommand;
 import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
@@ -103,6 +104,10 @@ public class TrackrParser {
         case ListSupplierCommand.COMMAND_WORD:
         case ListSupplierCommand.COMMAND_WORD_SHORTCUT:
             return new ListSupplierCommand();
+
+        case ListOrderCommand.COMMAND_WORD:
+        case ListOrderCommand.COMMAND_WORD_SHORTCUT:
+            return new ListOrderCommand();
 
         case ListTaskCommand.COMMAND_WORD:
         case ListTaskCommand.COMMAND_WORD_SHORTCUT:
