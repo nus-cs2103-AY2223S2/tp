@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -16,13 +17,13 @@ public class NavigationTest {
     private Navigation navigation = new Navigation();
 
     @Test
-    public void constructor() {
+    public void constructor_startAtRoot() {
         assertEquals(new NavigationContext(), navigation.getCurrentContext());
         assertTrue(navigation.isAtLayer(Navigation.ROOT_LAYER));
     }
 
     @Test
-    void navigate1() {
+    void navigate1_contextChangeToModule() {
         Module mod = TypicalModules.CS2040S;
         NavigationContext expectedContext = new NavigationContext().addModule(mod.getCode());
 
@@ -34,7 +35,7 @@ public class NavigationTest {
     }
 
     @Test
-    void navigate2() {
+    void navigate2_contextChangeToLecture() {
         Module mod = TypicalModules.CS2040S;
         Lecture lec = TypicalLectures.CS2040S_WEEK_1;
 
@@ -50,7 +51,7 @@ public class NavigationTest {
 
 
     @Test
-    void testNavigateToModFromRoot() {
+    void navigateToModFromRoot_contextChangeToMod() {
         Module mod = TypicalModules.CS2040S;
 
         NavigationContext expectedContext = new NavigationContext().addModule(mod.getCode());
@@ -63,7 +64,7 @@ public class NavigationTest {
     }
 
     @Test
-    void testNavigateToLecFromMod() {
+    void navigateToLecFromMod_contextChangeToLec() {
         Module mod = TypicalModules.CS2040S;
         Lecture lec = TypicalLectures.CS2040S_WEEK_1;
 
@@ -76,5 +77,35 @@ public class NavigationTest {
 
         navigation.goToRoot();
         assertEquals(new NavigationContext(), navigation.getCurrentContext());
+    }
+
+    @Test
+    void back_fromRoot_contextNoChange() {
+        navigation.goToRoot();
+        assertEquals(new NavigationContext(), navigation.getCurrentContext());
+        navigation.back();
+        assertEquals(new NavigationContext(), navigation.getCurrentContext());
+    }
+
+    @Test
+    void isAtLayer_fromRootToLecture_wrongLayer() {
+        assertTrue(navigation.isAtLayer(Navigation.ROOT_LAYER));
+
+        Module mod = TypicalModules.CS2040S;
+        Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+
+        navigation.navigateToModFromRoot(mod.getCode());
+        assertTrue(navigation.isAtLayer(Navigation.MODULE_LAYER));
+        assertFalse(navigation.isAtLayer(Navigation.ROOT_LAYER));
+        assertFalse(navigation.isAtLayer(Navigation.LECTURE_LAYER));
+
+        navigation.navigateToLecFromMod(lec.getName());
+        assertTrue(navigation.isAtLayer(Navigation.LECTURE_LAYER));
+        assertFalse(navigation.isAtLayer(Navigation.ROOT_LAYER));
+        assertFalse(navigation.isAtLayer(Navigation.MODULE_LAYER));
+
+
+        navigation.goToRoot();
+        assertTrue(navigation.isAtLayer(Navigation.ROOT_LAYER));
     }
 }
