@@ -21,7 +21,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SummariseCommand;
+import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -84,8 +84,8 @@ public class FriendlyLinkParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case SummariseCommand.COMMAND_WORD:
-            return new SummariseCommand();
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

@@ -21,7 +21,7 @@ import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SummariseCommand;
+import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
@@ -130,8 +130,8 @@ public class FriendlyLinkParserTest {
 
     @Test
     public void parseCommand_summarise() throws Exception {
-        assertTrue(parser.parseCommand(SummariseCommand.COMMAND_WORD) instanceof SummariseCommand);
-        assertTrue(parser.parseCommand(SummariseCommand.COMMAND_WORD + " 3") instanceof SummariseCommand);
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD) instanceof StatsCommand);
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD + " 3") instanceof StatsCommand);
     }
 
     @Test
