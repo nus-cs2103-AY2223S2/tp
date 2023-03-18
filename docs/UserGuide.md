@@ -320,7 +320,7 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
 * <code><var>MIN_AGE</var></code> : `<Age>`
 * <code><var>MAX_AGE</var></code> : `<Age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
-* <code><var>HISTORY_REQ</var></code> : `<Req>`
+* <code><var>HISTORY_REQ</var></code> : `<req>`
 
 ##### Example
 
@@ -358,7 +358,7 @@ vaccination add <var>VAX_NAME</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP
 * <code><var>MIN_AGE</var></code> : `<Age>`
 * <code><var>MAX_AGE</var></code> : `<Age>`
 * <code><var>INGREDIENT</var></code> : `<group-name>`
-* <code><var>HISTORY_REQ</var></code> : `<Req>`
+* <code><var>HISTORY_REQ</var></code> : `<req>`
 
 ##### Example
 
