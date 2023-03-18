@@ -21,7 +21,8 @@ public class DeleteDepartmentCommandParser implements Parser<DeleteDepartmentCom
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEPARTMENT_NAME);
 
-        if (argMultimap.getValue(PREFIX_DEPARTMENT_NAME).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_DEPARTMENT_NAME).isEmpty()
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteDepartmentCommand.MESSAGE_USAGE));
         }
@@ -32,13 +33,7 @@ public class DeleteDepartmentCommandParser implements Parser<DeleteDepartmentCom
 
         DepartmentName departmentName;
 
-        try {
-            departmentName = ParserUtil.parseDepartmentName(departmentNameInput);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteDepartmentCommand.MESSAGE_USAGE), pe);
-        }
-
+        departmentName = ParserUtil.parseDepartmentName(departmentNameInput);
 
         return new DeleteDepartmentCommand(departmentName);
 
