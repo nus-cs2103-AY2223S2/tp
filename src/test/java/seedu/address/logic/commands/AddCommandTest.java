@@ -18,11 +18,13 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -297,6 +299,16 @@ public class AddCommandTest {
 
         @Override
         public VehicleDataMap getVehicleDataMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ServiceDataMap getServiceDataMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyShop getShop() {
             throw new AssertionError("This method should not be called.");
         }
     }

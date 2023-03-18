@@ -235,8 +235,8 @@ public class Vehicle {
                 .append(String.format("%nPlate: %s", this.getPlateNumber()))
                 .append(String.format("%nColor: %s", this.getColor()))
                 .append(String.format("%nBrand: %s", this.getBrand()))
-                .append(String.format("%nType: %s", this.getType()))
-                .append(String.format("%nServices Required: %n%s",
+                .append(String.format("%nType: %s", this.getType().getValue()))
+                .append(String.format("%nServices: %n%s",
                         StringUtil.indent(this.getServiceIds().toString(), 2)))
                 .toString();
     }

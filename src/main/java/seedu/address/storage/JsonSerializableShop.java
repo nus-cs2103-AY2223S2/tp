@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.shop.Shop;
@@ -71,6 +72,7 @@ class JsonSerializableShop {
             if (shop.hasCustomer(customer)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
+            IdGenerator.setCustomerIdUsed(customer.getId());
             shop.addCustomer(customer);
         }
 
@@ -79,6 +81,7 @@ class JsonSerializableShop {
             if (shop.hasVehicle(vehicle)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_VEHICLE);
             }
+            IdGenerator.setVehicleIdUsed(vehicle.getId());
             shop.addVehicle(vehicle);
         }
 
@@ -87,6 +90,7 @@ class JsonSerializableShop {
             if (shop.hasService(service)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SERVICE);
             }
+            IdGenerator.setServiceIdUsed(service.getId());
             shop.addService(service);
         }
 

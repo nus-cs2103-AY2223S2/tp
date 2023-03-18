@@ -18,7 +18,9 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
+import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.storage.Storage;
 
@@ -54,7 +56,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveShop(model.getShop());
             undoRedoStack.push(command);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -99,6 +101,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Service> getFilteredServiceList() {
+        return model.getFilteredServiceList();
+    }
+
+    @Override
     public CustomerVehicleMap getCustomerVehicleMap() {
         return model.getCustomerVehicleMap();
     }
@@ -108,4 +115,8 @@ public class LogicManager implements Logic {
         return model.getVehicleDataMap();
     }
 
+    @Override
+    public ServiceDataMap getServiceDataMap() {
+        return model.getServiceDataMap();
+    }
 }

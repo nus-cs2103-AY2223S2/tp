@@ -16,6 +16,7 @@ import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
 import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
 import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
@@ -43,6 +44,7 @@ public class ModelManager implements Model {
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
     private final VehicleDataMap vehicleDataMap;
+    private final ServiceDataMap serviceDataMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -69,10 +71,20 @@ public class ModelManager implements Model {
         customerVehicleMap = new CustomerVehicleMap(this.shop.getCustomerList(), this.shop.getVehicleList());
         vehicleDataMap = new VehicleDataMap(this.shop.getVehicleList(), this.shop.getCustomerList(),
                 this.shop.getServiceList());
+        serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
+                this.shop.getVehicleList());
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new Shop());
+    }
+
+    private void resetMaps() {
+        this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList());
+        this.vehicleDataMap.reset(this.shop.getVehicleList(), this.shop.getCustomerList(),
+                this.shop.getServiceList());
+        this.serviceDataMap.reset(this.shop.getServiceList(), this.shop.getTechnicianList(),
+                this.shop.getVehicleList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -122,6 +134,12 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //=========== AddressBook ================================================================================
+    @Override
+    public ReadOnlyShop getShop() {
+        return shop;
+    }
+
     // ==== For persons ===
     @Override
     public boolean hasPerson(Person person) {
@@ -155,8 +173,9 @@ public class ModelManager implements Model {
     @Override
     public void addCustomer(Customer customer) {
         this.shop.addCustomer(customer);
-        // addressBook.addCustomer(person);
-        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS); //#todo fix 44 allow shops
+        resetMaps();
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        //#todo fix 44 allow shops
     }
 
     /**
@@ -206,6 +225,8 @@ public class ModelManager implements Model {
     @Override
     public void addVehicle(int customerId, Vehicle vehicle) {
         this.shop.addVehicle(customerId, vehicle);
+        resetMaps();
+        updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
     }
 
     /**
@@ -223,8 +244,12 @@ public class ModelManager implements Model {
         this.shop.removeVehicle(target);
     }
 
+    // ==== For Services ==
 
-    // ==== For Service ==
+    @Override
+    public ObservableList<Service> getFilteredServiceList() {
+        return filteredServices;
+    }
 
     /**
      * Adds service
@@ -234,6 +259,8 @@ public class ModelManager implements Model {
     @Override
     public void addService(int vehicleId, Service service) {
         this.shop.addService(vehicleId, service);
+        resetMaps();
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
     }
 
     /**
@@ -248,11 +275,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteService(Service service) {
         this.shop.removeService(service);
-    }
-
-    @Override
-    public ObservableList<Service> getFilteredServiceList() {
-        return filteredServices;
     }
 
     // ==== For Appointment ==
@@ -330,6 +352,11 @@ public class ModelManager implements Model {
     @Override
     public VehicleDataMap getVehicleDataMap() {
         return this.vehicleDataMap;
+    }
+
+    @Override
+    public ServiceDataMap getServiceDataMap() {
+        return this.serviceDataMap;
     }
 
     //=========== Filtered Person List Accessors =============================================================

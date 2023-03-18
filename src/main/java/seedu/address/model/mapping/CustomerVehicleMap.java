@@ -22,7 +22,16 @@ public class CustomerVehicleMap {
      * @param vehicles  The list of vehicles.
      */
     public CustomerVehicleMap(List<Customer> customers, List<Vehicle> vehicles) {
+        reset(customers, vehicles);
+    }
 
+    /**
+     * Resets the mapping of customers to their associated vehicles based on the given customer and vehicle lists.
+     *
+     * @param customers The list of customers.
+     * @param vehicles  The list of vehicles.
+     */
+    public void reset(List<Customer> customers, List<Vehicle> vehicles) {
         Map<Integer, Vehicle> idToVehicleMap = new HashMap<>();
         for (Vehicle vehicle : vehicles) {
             idToVehicleMap.put(vehicle.getId(), vehicle);
