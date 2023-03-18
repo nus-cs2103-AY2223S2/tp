@@ -151,7 +151,7 @@ Examples:
 
 Adds a new event with the given event name, start date time, and end date time.
 
-Format: `addevent ev/EVENT from/DATETIME to/DATETIME`
+Format: `addevent ev/EVENT_NAME from/DATETIME to/DATETIME`
 
 * Event name can be a combination of alphanumeric and punctuations with spaces.
 * Event name must begin with alphanumeric.
@@ -175,16 +175,31 @@ Examples:
 
 ### Deleting an event : `delevent`
 
-Deletes the specified event from the event list and deletes all occurences of the event tied to persons in the address book, if any.
+Deletes the specified event from the event list and deletes all occurrences of the event tied to persons in the address book, if any.
 
-Format: `delevent EVENTINDEX`
+Format: `delevent EVENT_INDEX`
 
-* Deletes the event at the specified `EVENTINDEX` and all occurences of the event tied to persons in the address book, if any.
+* Deletes the event at the specified `EVENT_INDEX` and all occurrences of the event tied to persons in the address book, if any.
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listevent` followed by `delevent 2` deletes the 2nd event in the event list and all occurences of the 2nd event tied to persons in the address book, if any.
+* `listevent` followed by `delevent 2` deletes the 2nd event in the event list and all occurrences of the 2nd event tied to persons in the address book, if any.
+
+### Editing an event : `editevent`
+
+Edits an existing event in the address book.
+
+Format: `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`
+
+* Edits the event at the specified `EVENT_INDEX` and edits the relevant event tag tied to all persons in the address book.
+* The event index refers to the index number shown in the displayed event list. The event index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Edits will not allow start date time to be after the end date time.
+
+Examples:
+*  `editevent 1 ev/Birthday Party from/17-07-2023 12:00` Edits the event name and start datetime of the 1st event to be `Birthday Party` and `17-07-2023 12:00` respectively.
 
 ### Clearing all entries : `clear`
 
@@ -227,12 +242,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [ev/EVENTINDEX] …​` <br> e.g., `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 ev/1`
-**Add Event** | `addevent ev/EVENT from/DATETIME to/DATETIME` <br> e.g., `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [ev/EVENT_INDEX] …​` <br> e.g., `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 ev/1`
+**Add Event** | `addevent ev/EVENT_NAME from/DATETIME to/DATETIME` <br> e.g., `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
-**Delete Event** | `delevent EVENTINDEX` <br> e.g., `delevent 2`
+**Delete Event** | `delevent EVENT_INDEX` <br> e.g., `delevent 2`
 **Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g.,`editevent 1 ev/Birthday Party from/17-07-2023 12:00`
 **List Contact** | `list`
 **List Event** | `listevent`
 **Help** | `help`
