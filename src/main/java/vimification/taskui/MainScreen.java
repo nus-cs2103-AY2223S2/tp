@@ -8,7 +8,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import vimification.logic.Logic;
-// import vimification.ui.PersonListPanel;
 
 /**
  * The Main Scene. Provides the basic application layout containing a menu bar and space where other
@@ -40,7 +39,7 @@ public class MainScreen extends UiPart<VBox> {
     public MainScreen(Logic logic) {
         super(FXML);
         this.logic = logic;
-        init();
+        setup();
     }
 
     /**
@@ -64,21 +63,6 @@ public class MainScreen extends UiPart<VBox> {
             System.out.println("You've created a task!");
             handleTaskCreation();
             break;
-        // case "d":
-        // System.out.println("You've deleted a task!");
-        // break;
-        // case "h":
-        // System.out.println("You've moved to the left");
-        // break;
-        // case "l":
-        // System.out.println("You've moved to the right");
-        // break;
-        // case "j":
-        // System.out.println("You've moved up");
-        // break;
-        // case "k":
-        // System.out.println("You've moved down");
-        // break;
         }
     }
 
@@ -94,9 +78,12 @@ public class MainScreen extends UiPart<VBox> {
         commandInput.requestFocus();
     }
 
-    private void init() {
+    @FXML
+    private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
+    }
 
+    private void setup() {
         intializeCommandInput();
         initializeTaskListPanel();
     }
