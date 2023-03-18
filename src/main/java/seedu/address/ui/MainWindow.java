@@ -21,6 +21,7 @@ import seedu.address.model.person.exceptions.DuplicatePhoneException;
 import seedu.address.ui.parent.ParentListPanel;
 import seedu.address.ui.student.StudentListPanel;
 
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -125,17 +126,22 @@ public class MainWindow extends UiPart<Stage> {
 
         //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-
+        if (logic.getPcClass().getClassList().size() > 0) {
+            studentListPanel = new StudentListPanel(
+                    logic.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        } else {
+            studentListPanel = new StudentListPanel(
+                    logic.getFilteredStudentList());
+            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        }
         parentListPanel = new ParentListPanel(logic.getFilteredParentList());
         parentListPanelPlaceholder.getChildren().add(parentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPcClassFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

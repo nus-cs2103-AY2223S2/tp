@@ -204,6 +204,10 @@ public class Student extends Person {
         return comment;
     }
 
+    public Class getSc() {
+        return sc;
+    }
+
     /**
      * A method that returns a boolean value to indicate if other is equal to this Student.
      * Note that this method only checks for attributes that are unique and unchanging to Student.

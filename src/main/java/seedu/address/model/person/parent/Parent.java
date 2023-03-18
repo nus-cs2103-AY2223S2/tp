@@ -18,6 +18,8 @@ import seedu.address.model.tag.Tag;
  * A Parent Class that creates a Parent / Next-of-kin who is also a Person
  */
 public class Parent extends Person {
+    public static final String MESSAGE_NUMBER_CONSTRAINTS = "Parent's phone should be a numeric value";
+    public static final String VALIDATION_NUMBER_REGEX = "\\d+";
     private final Age age;
     private final Image image;
     private final List<Student> children = new ArrayList<>();
@@ -38,6 +40,15 @@ public class Parent extends Person {
         super(name, phone, email, address, tags);
         this.age = age;
         this.image = image;
+    }
+
+    /**
+     * Method to check if the Parent's phone number is valid.
+     * @param test Phone number of Parent / NOK.
+     * @return Returns true if the phone number is valid.
+     */
+    public static boolean isValidParentNumber(String test) {
+        return test.matches(VALIDATION_NUMBER_REGEX);
     }
 
     /**
@@ -74,6 +85,14 @@ public class Parent extends Person {
      */
     public void addStudent(Student student) {
         children.add(student);
+    }
+
+    /**
+     * A method that adds a list of Students to the Parent / NOK.
+     * @param students List of Students who are related to this Parent object.
+     */
+    public void addStudents(List<Student> students) {
+        children.addAll(students);
     }
 
     /**
