@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCards.FRACTION;
+import static seedu.address.testutil.TypicalCards.GRAVITY;
 import static seedu.address.testutil.TypicalCards.LOOP;
 import static seedu.address.testutil.TypicalCards.SMOG;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
@@ -80,7 +80,7 @@ public class JsonMasterDeckStorageTest {
         assertEquals(original, new MasterDeck(readBack));
 
         // Save and read without specifying file path
-        original.addCard(FRACTION);
+        original.addCard(GRAVITY);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new MasterDeck(readBack));

@@ -35,5 +35,14 @@
     "answer": "An earthquake is a sudden and rapid shaking of the earth caused by the shifting of tectonic plates",
     "tagged" : [ ],
     "deck" : "Geography"
+  } ],
+  "decks" : [ {
+    "deckName" : "Programming Concepts"
+  }, {
+    "deckName" : "Science"
+  }, {
+    "deckName" : "History"
+  }, {
+    "deckName" : "Geography"
   } ]
 }
