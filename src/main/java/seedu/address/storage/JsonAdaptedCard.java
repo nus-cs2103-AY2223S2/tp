@@ -85,7 +85,6 @@ class JsonAdaptedCard {
 
         final Set<Tag> modelTags = new HashSet<>(cardTags);
         final Deck modelDeck = new Deck(deck); // todo: any constraints on deck name?
-
         return new Card(modelQuestion, modelAnswer, modelTags, modelDeck);
     }
 
