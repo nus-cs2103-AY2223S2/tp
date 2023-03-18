@@ -2,10 +2,10 @@ package expresslibrary.logic.commands;
 
 import static expresslibrary.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
 import static expresslibrary.testutil.TypicalPersons.CARL;
 import static expresslibrary.testutil.TypicalPersons.ELLE;
 import static expresslibrary.testutil.TypicalPersons.FIONA;
-import static expresslibrary.testutil.TypicalPersons.getTypicalExpressLibrary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

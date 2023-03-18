@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import expresslibrary.commons.exceptions.IllegalValueException;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.ReadOnlyExpressLibrary;
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 
 /**
@@ -20,15 +21,19 @@ import expresslibrary.model.person.Person;
 class JsonSerializableExpressLibrary {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_BOOK = "Books list contains duplicate book(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedBook> books = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableExpressLibrary} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableExpressLibrary(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableExpressLibrary(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+        @JsonProperty("books") List<JsonAdaptedBook> books) {
         this.persons.addAll(persons);
+        this.books.addAll(books);
     }
 
     /**
@@ -39,6 +44,7 @@ class JsonSerializableExpressLibrary {
      */
     public JsonSerializableExpressLibrary(ReadOnlyExpressLibrary source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        books.addAll(source.getBookList().stream().map(JsonAdaptedBook::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +60,13 @@ class JsonSerializableExpressLibrary {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             expressLibrary.addPerson(person);
+        }
+        for (JsonAdaptedBook jsonAdaptedBook : books) {
+            Book book = jsonAdaptedBook.toModelType();
+            if (expressLibrary.hasBook(book)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
+            }
+            expressLibrary.addBook(book);
         }
         return expressLibrary;
     }

@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import expresslibrary.commons.exceptions.IllegalValueException;
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Address;
-import expresslibrary.model.person.Book;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Person;
@@ -29,7 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final String book;
+    private final List<JsonAdaptedBook> books = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -38,12 +38,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("book") String book, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("books") List<JsonAdaptedBook> books, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.book = book;
+        if (books != null) {
+            this.books.addAll(books);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -57,21 +59,31 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        book = source.getBook().title;
+        books.addAll(source.getBooks().stream()
+                .map(JsonAdaptedBook::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Book> personBooks = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedBook book : books) {
+            personBooks.add(book.toModelType());
         }
 
         if (name == null) {
@@ -90,14 +102,6 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (book == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Book.class.getSimpleName()));
-        }
-        if (!Book.isValidTitle(book)) {
-            throw new IllegalValueException(Book.MESSAGE_CONSTRAINTS);
-        }
-        final Book modelBook = new Book(book);
-
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
@@ -114,8 +118,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final Set<Book> modelBooks = new HashSet<>(personBooks);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBook, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBooks, modelTags);
     }
 
 }

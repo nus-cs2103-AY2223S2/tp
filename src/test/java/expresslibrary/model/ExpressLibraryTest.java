@@ -1,10 +1,13 @@
 package expresslibrary.model;
 
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_AUTHOR_ROWLING;
 import static expresslibrary.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static expresslibrary.logic.commands.CommandTestUtil.VALID_TITLE_HARRY;
 import static expresslibrary.testutil.Assert.assertThrows;
+import static expresslibrary.testutil.TypicalBooks.BELOVED;
+import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
 import static expresslibrary.testutil.TypicalPersons.ALICE;
-import static expresslibrary.testutil.TypicalPersons.getTypicalExpressLibrary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,8 +19,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 import expresslibrary.model.person.exceptions.DuplicatePersonException;
+import expresslibrary.testutil.BookBuilder;
 import expresslibrary.testutil.PersonBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +42,7 @@ public class ExpressLibraryTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyExpressLibrary_replacesData() {
         ExpressLibrary newData = getTypicalExpressLibrary();
         expressLibrary.resetData(newData);
         assertEquals(newData, expressLibrary);
@@ -49,7 +54,8 @@ public class ExpressLibraryTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<Book> newBooks = Arrays.asList(BELOVED, BELOVED);
+        ExpressLibraryStub newData = new ExpressLibraryStub(newPersons, newBooks);
 
         assertThrows(DuplicatePersonException.class, () -> expressLibrary.resetData(newData));
     }
@@ -60,18 +66,18 @@ public class ExpressLibraryTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInExpressLibrary_returnsFalse() {
         assertFalse(expressLibrary.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInExpressLibrary_returnsTrue() {
         expressLibrary.addPerson(ALICE);
         assertTrue(expressLibrary.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInExpressLibrary_returnsTrue() {
         expressLibrary.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -83,20 +89,39 @@ public class ExpressLibraryTest {
         assertThrows(UnsupportedOperationException.class, () -> expressLibrary.getPersonList().remove(0));
     }
 
+    @Test
+    public void resetData_withDuplicateBooks_throwsDuplicateBookException() {
+        // Two books with the same identity fields
+        Book editedBeloved = new BookBuilder(BELOVED).withAuthor(VALID_AUTHOR_ROWLING).withTitle(VALID_TITLE_HARRY)
+            .build();
+        List<Book> newBooks = Arrays.asList(BELOVED, editedBeloved);
+        List<Person> newPersons = Arrays.asList(ALICE, ALICE);
+        ExpressLibraryStub newData = new ExpressLibraryStub(newPersons, newBooks);
+
+        assertThrows(DuplicatePersonException.class, () -> expressLibrary.resetData(newData));
+    }
+
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface
+     * A stub ReadOnlyExpressLibrary whose persons list or books list can violate interface
      * constraints.
      */
-    private static class AddressBookStub implements ReadOnlyExpressLibrary {
+    private static class ExpressLibraryStub implements ReadOnlyExpressLibrary {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Book> books = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        ExpressLibraryStub(Collection<Person> persons, Collection<Book> books) {
             this.persons.setAll(persons);
+            this.books.setAll(books);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Book> getBookList() {
+            return books;
         }
     }
 

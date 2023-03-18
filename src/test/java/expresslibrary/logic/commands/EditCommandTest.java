@@ -8,9 +8,9 @@ import static expresslibrary.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandFailure;
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static expresslibrary.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
 import static expresslibrary.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static expresslibrary.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static expresslibrary.testutil.TypicalPersons.getTypicalExpressLibrary;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

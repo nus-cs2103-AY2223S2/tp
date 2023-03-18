@@ -7,36 +7,39 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import expresslibrary.model.book.Book;
 import expresslibrary.model.tag.Tag;
 
 /**
  * Represents a Person in the express library.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
     // Identity fields
+    private final Address address;
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final Book book;
-    // Data fields
-    private final Address address;
-
-
+    private final Set<Book> books = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Book book, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Book> books, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
+        this.address = address;
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.books.addAll(books);
         this.tags.addAll(tags);
-        this.book = book;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 
     public Name getName() {
@@ -51,14 +54,29 @@ public class Person {
         return email;
     }
 
-    public Book getBook() {
-        return book;
+    public Set<Book> getBooks() {
+        return books;
     }
-    public Address getAddress() {
-        return address;
+
+    public boolean hasNotBorrowedBook() {
+        return books.isEmpty();
     }
+
+    public void borrowBook(Book book) {
+        books.add(book);
+    }
+
+    public void returnBook(Book book) {
+        books.remove(book);
+    }
+
+    public boolean hasBorrowedBook(Book book) {
+        return books.contains(book);
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -97,14 +115,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getBook().equals(getBook())
+                && otherPerson.getBooks().equals(getBooks())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, book, tags);
+        return Objects.hash(name, phone, email, address, books, tags);
     }
 
     @Override
@@ -116,10 +134,13 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress())
-                .append("; Book: ")
-                .append(getBook());
+                .append(getAddress());
 
+        Set<Book> books = getBooks();
+        if (!books.isEmpty()) {
+            builder.append("; Books: ");
+            books.forEach(builder::append);
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

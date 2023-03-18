@@ -3,8 +3,8 @@ package expresslibrary.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Address;
-import expresslibrary.model.person.Book;
 import expresslibrary.model.person.Email;
 import expresslibrary.model.person.Name;
 import expresslibrary.model.person.Person;
@@ -21,13 +21,12 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_BOOK = "Default book";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Book book;
+    private Set<Book> books;
     private Set<Tag> tags;
 
     /**
@@ -38,7 +37,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        book = new Book(DEFAULT_BOOK);
+        books = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -50,6 +49,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        books = new HashSet<>(personToCopy.getBooks());
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -62,9 +62,19 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code books} into a {@code Set<Book>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withBooks(Book... books) {
+        this.books = SampleDataUtil.getBooksSet(books);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -93,16 +103,8 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets book
-     * @return
-     */
-    public PersonBuilder withBook(String title) {
-        this.book = new Book(title);
-        return this;
-    }
     public Person build() {
-        return new Person(name, phone, email, address, book, tags);
+        return new Person(name, phone, email, address, books, tags);
     }
 
 }

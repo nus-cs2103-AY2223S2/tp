@@ -11,7 +11,8 @@ import expresslibrary.model.Model;
 import expresslibrary.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the express library.
+ * Deletes a person identified using it's displayed index from the express
+ * library.
  */
 public class DeleteCommand extends Command {
 
@@ -48,6 +49,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                        && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
 }

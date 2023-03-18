@@ -1,7 +1,9 @@
 package expresslibrary.ui;
 
 import java.util.Comparator;
+import java.util.logging.Logger;
 
+import expresslibrary.commons.core.LogsCenter;
 import expresslibrary.model.person.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,6 +17,7 @@ import javafx.scene.layout.Region;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final Logger logger = LogsCenter.getLogger(PersonCard.class);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,7 +42,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label book;
+    private FlowPane books;
     @FXML
     private FlowPane tags;
 
@@ -54,7 +57,9 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        book.setText(person.getBook().title);
+        logger.info(displayedIndex + ". " + person.getBooks());
+        person.getBooks().stream()
+                .forEach(book -> books.getChildren().add(new Label(book.toString())));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
