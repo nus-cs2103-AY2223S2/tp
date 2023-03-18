@@ -2,6 +2,7 @@ package seedu.sudohr.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 
 import seedu.sudohr.logic.commands.DeleteCommand;
@@ -22,14 +23,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     public DeleteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ID);
+                ArgumentTokenizer.tokenize(args, PREFIX_EMPLOYEE);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_ID)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_EMPLOYEE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_EMPLOYEE).get());
         return new DeleteCommand(id);
     }
 }

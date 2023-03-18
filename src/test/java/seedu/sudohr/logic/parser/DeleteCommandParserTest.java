@@ -23,7 +23,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " id/1", new DeleteCommand(ID_FIRST_PERSON));
+        assertParseSuccess(parser, " eid/1", new DeleteCommand(ID_FIRST_PERSON));
     }
 
     @Test
@@ -37,12 +37,11 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_additionalFieldsProvided_failure() {
-        assertParseFailure(parser, "id/1 n/bobby a/nus", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " eid/1 n/bobby a/nus", Id.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_invalidValue_throwsParseException() {
-        assertParseFailure(parser, " id/a ", Id.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " eid/a ", Id.MESSAGE_CONSTRAINTS);
     }
 }

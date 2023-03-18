@@ -17,8 +17,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the employee identified by their id, if it exists in SudoHR.\n"
-            + "Parameters: id/EMPLOYEE_ID\n"
-            + "Example: " + COMMAND_WORD + " id/1";
+            + "Parameters: eid/EMPLOYEE_ID\n"
+            + "Example: " + COMMAND_WORD + " eid/1";
 
     public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
 

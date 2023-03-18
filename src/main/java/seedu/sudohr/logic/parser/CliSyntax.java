@@ -8,6 +8,7 @@ public class CliSyntax {
     /* Prefix definitions */
 
     // Employee level definitions
+    public static final Prefix PREFIX_EMPLOYEE = new Prefix("eid/");
     public static final Prefix PREFIX_ID = new Prefix("id/");
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
