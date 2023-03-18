@@ -16,29 +16,29 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code Deck} with sample data.
  */
 public class SampleDataUtil {
-    private static final Deck defaultDeck = new Deck("Default Deck");
+    private static final Deck DEFAULT_DECK = new Deck("DEFAULT DECK");
 
     public static Card[] getSampleCards() { // Todo: initilize new cards?
         return new Card[]{
             new Card(new Question("What is a loop"),
                     new Answer("A construct that repeats instructions until a condition is met"),
-                    getTagSet("easy"), defaultDeck),
+                    getTagSet("easy"), DEFAULT_DECK),
             new Card(new Question("What is a variable"),
                     new Answer("A named memory location that stores a value"),
-                    getTagSet("easy"), defaultDeck),
+                    getTagSet("easy"), DEFAULT_DECK),
             new Card(new Question("What is the structure of an atom"),
                     new Answer("Atoms consist of a nucleus containing protons and neutrons, "
                             + "surrounded by electrons in shells or energy levels"),
-                    getTagSet("medium"), defaultDeck),
+                    getTagSet("medium"), DEFAULT_DECK),
             new Card(new Question("What is the basic unit of life"),
                     new Answer("The cell is the basic unit of life"),
-                    getTagSet("easy"), defaultDeck),
+                    getTagSet("easy"), DEFAULT_DECK),
             new Card(new Question("Who was the first president of the United States"),
                     new Answer("George Washington"),
-                    getTagSet("medium"), defaultDeck),
+                    getTagSet("medium"), DEFAULT_DECK),
             new Card(new Question("When did Singapore gain independence"),
                     new Answer("9 August 1965"),
-                    getTagSet("hard"), defaultDeck)
+                    getTagSet("hard"), DEFAULT_DECK)
         };
     }
 
