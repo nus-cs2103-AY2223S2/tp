@@ -156,7 +156,7 @@ public class ModelManager implements Model {
     public void addCustomer(Customer customer) {
         this.shop.addCustomer(customer);
         // addressBook.addCustomer(person);
-        // updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS); #todo fix 44 allow shops
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS); //#todo fix 44 allow shops
     }
 
     /**
@@ -300,6 +300,11 @@ public class ModelManager implements Model {
         return this.shop.hasPart(partName);
     }
 
+    @Override
+    public ObservableList<Technician> getFilteredTechnicianList() {
+        return filteredTechnicians;
+    }
+
     // ==== For Technician ==
     @Override
     public void addTechnician(Technician technician) {
@@ -309,6 +314,11 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTechnician(int technicianId) {
         return this.shop.hasTechnician(technicianId);
+    }
+
+    @Override
+    public void deleteTechnician(Technician target) {
+        this.shop.removeTechnician(target);
     }
 
     // ==== Mapped ==
@@ -343,8 +353,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
-
-
 
     @Override
     public void updateFilteredTechnicianList(Predicate<Technician> predicate) {

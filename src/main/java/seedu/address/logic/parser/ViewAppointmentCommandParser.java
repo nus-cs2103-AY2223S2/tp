@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.service.appointment.AppointmentIdPredicate;
@@ -20,7 +19,7 @@ public class ViewAppointmentCommandParser implements Parser<ViewAppointmentComma
     public ViewAppointmentCommand parse(String args) throws ParseException {
 
         try {
-            Index index = ParserUtil.parseIndex(args);
+            int index = ParserUtil.parseInt(args);
             return new ViewAppointmentCommand(new AppointmentIdPredicate(index));
         } catch (ParseException pe) {
             throw new ParseException(
