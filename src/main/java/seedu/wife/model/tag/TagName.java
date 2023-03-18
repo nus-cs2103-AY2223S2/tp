@@ -1,5 +1,7 @@
 package seedu.wife.model.tag;
 
+import seedu.wife.commons.util.StringUtil;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.AppUtil.checkArgument;
 
@@ -29,7 +31,7 @@ public class TagName {
         checkArgument(isNamePresent(tagName), TAG_NAME_NOT_PRESENT);
         checkArgument(isNameNotLengthy(tagName), TAG_NAME_LENGTHY);
         checkArgument(isValidString(tagName), INVALID_TAG_NAME);
-        this.tagName = tagName;
+        this.tagName = formatName(tagName);
     }
 
     /**
@@ -60,6 +62,12 @@ public class TagName {
         return isNameNotLengthy(tagName) && isNamePresent(tagName) && isValidString(tagName);
     }
 
+    /**
+     * Returns formatted tag name with the first character of each word in tag name capitalized.
+     */
+    public static String formatName(String tagName) {
+        return StringUtil.capitalizeString(tagName);
+    }
     @Override
     public String toString() {
         return this.tagName;
