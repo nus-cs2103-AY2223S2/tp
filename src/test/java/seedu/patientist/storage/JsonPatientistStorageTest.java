@@ -73,7 +73,7 @@ public class JsonPatientistStorageTest {
         assertEquals(original, p);
 
         // Modify data, overwrite exiting file, and read back
-        //original.addPerson(CHARLIE);
+        //original.addPerson(BOB);
         original.removePerson(ADAM);
         jsonAddressBookStorage.savePatientist(original, filePath);
         readBack = jsonAddressBookStorage.readPatientist(filePath).get();

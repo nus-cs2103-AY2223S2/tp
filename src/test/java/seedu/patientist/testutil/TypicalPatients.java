@@ -53,6 +53,6 @@ public class TypicalPatients {
     }
 
     public static List<Patient> getTypicalPatients() {
-        return new ArrayList<>(Arrays.asList(ADAM, BOB));
+        return new ArrayList<>(Arrays.asList(ADAM, CHARLIE));
     }
 }
