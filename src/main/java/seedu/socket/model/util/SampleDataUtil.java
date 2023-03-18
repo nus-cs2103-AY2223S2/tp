@@ -68,4 +68,8 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Set<Person> getMemberSet(Person ... members) {
+        return Arrays.stream(members)
+            .collect(Collectors.toSet());
+    }
 }

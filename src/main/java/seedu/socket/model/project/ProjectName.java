@@ -2,8 +2,11 @@ package seedu.socket.model.project;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.socket.commons.util.AppUtil.checkArgument;
-import seedu.socket.model.person.Name;
 
+/**
+ * Represents a Project's name in SOCket.
+ * Guarantees: immutable; is valid as declared in {@link #isValidProjectName(String)}
+ */
 public class ProjectName {
     public static final String MESSAGE_CONSTRAINTS =
         "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -40,7 +43,7 @@ public class ProjectName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Name // instanceof handles nulls
+            || (other instanceof ProjectName // instanceof handles nulls
             && projectName.equals(((ProjectName) other).projectName)); // state check
     }
 

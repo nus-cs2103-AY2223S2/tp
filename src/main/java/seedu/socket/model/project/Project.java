@@ -1,15 +1,15 @@
 package seedu.socket.model.project;
 
 import static seedu.socket.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
 import seedu.socket.model.person.Person;
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.Tag;
 
 /**
  * Represents a {@code Project} in SOCket.
@@ -40,8 +40,6 @@ public class Project {
     private final Set<Person> members = new HashSet<>();
 
     /** {@code ProjectName} associated with the {@code Person} instance. */
-    
-    
     public Project(ProjectName name, ProjectRepoHost repoHost, ProjectRepoName repoName,
                    ProjectDeadline deadline, Set<Person> members) {
         requireAllNonNull(name, repoHost, repoName, deadline, members);
@@ -137,7 +135,7 @@ public class Project {
 
         Set<Person> members = getMembers();
         if (!members.isEmpty()) {
-            builder.append("; Members: ");
+            builder.append("; Members: \n");
             for (Person member : members) {
                 builder.append(member.getName());
                 builder.append("\n");
