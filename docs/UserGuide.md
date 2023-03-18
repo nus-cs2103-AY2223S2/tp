@@ -18,7 +18,7 @@ record-keeping and hello to a more efficient and organised way of managing the v
 
 1. Download the latest `friendlyLink.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FriendlyLink.
+1. Copy the file to an empty folder you want to use as the _home folder_ for your FriendlyLink.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar friendlylink.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -91,7 +91,8 @@ Format: `help`
 
 Adds an elderly to FriendlyLink.
 
-Format: `add_elderly n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS enr/NRIC ag/AGE r/RISK [t/TAG]…​ [dr/START_DATE,END_DATE]…​`
+
+Format: `add_elderly n/NAME enr/NRIC [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ag/AGE] [r/RISK] [t/TAG]… [dr/START_DATE,END_DATE]…`
 * Every elderly must have a unique `NRIC`.
 * Alphabets in `NRIC` are case-insensitive.
 * The `RISK` can only takes 3 values: `LOW`, `MEDIUM` or `HIGH`.
@@ -104,14 +105,16 @@ An elderly can have any number of tags
 
 Examples:
 * `add_elderly n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 enr/S1234567C ag/68 r/HIGH`
-* `add_elderly n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 enr/T1234567D ag/75 r/LOW t/lonely`
+* `add_elderly n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 enr/T1234567D ag/75 r/LOW t/lonely`
 * `add_elderly n/John Wick e/johnwick@example.com a/New yourk p/1234561 enr/T1254567D ag/10 dr/2023-04-01,2023-04-15`
+* `add_elderly n/Sally Tan`
 
 ### Adding a volunteer: `add_volunteer`
 
 Adds a volunteer to FriendlyLink.
 
-Format: `add_volunteer n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS ag/AGE vnr/NRIC [t/TAG]…​ [dr/AVAILABLE_DATES]…​`
+
+Format: `add_volunteer vnr/NRIC n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [ag/AGE] [t/TAG]…​ [dr/AVAILABLE_DATES]…​`
 * Every volunteer must have a unique `NRIC`.
 * Alphabets in `NRIC` are case-insensitive.
 * Dates specified should follow the format `YYYY-MM-DD`. The start date should be before the end date.
@@ -125,6 +128,36 @@ Examples:
 * `add_volunteer n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 ag/23 vnr/S8457677H`
 * `add_volunteer n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/27 vnr/S8959886I t/experienced`
 * `add_volunteer n/John Wick e/johnwick@example.com a/New yourk p/1234561 vnr/T1254567D ag/28 dr/2023-04-01,2023-04-15`
+* `add_volunteer n/Sally Tan`
+
+[//]: # (### Editing a person : `edit`)
+
+[//]: # ()
+[//]: # (Edits an existing person in the address book.)
+
+[//]: # ()
+[//]: # (Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`)
+
+[//]: # ()
+[//]: # (* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​)
+
+[//]: # (* At least one of the optional fields must be provided.)
+
+[//]: # (* Existing values will be updated to the input values.)
+
+[//]: # (* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.)
+
+[//]: # (* You can remove all the person’s tags by typing `t/` without)
+
+[//]: # (    specifying any tags after it.)
+
+[//]: # ()
+[//]: # (Examples:)
+
+[//]: # (*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.)
+
+[//]: # (*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.)
+
 
 ### Locating persons by NRIC: `find_nric`
 
@@ -169,6 +202,8 @@ Format: `add_pair enr/ELDERLY_NRIC vnr/VOLUNTEER_NRIC`
 
 * After pairing, the newly added pairs appear in the pair list in the window.
 * Only elderly members and volunteers existing in FriendlyLink's data can be paired.
+* Only elderly members and volunteers with intersecting available dates can be paired.
+* Elderly member and volunteers in different regions can be paired but a warning message is issued.
 * Duplicate pairs will fail to be added to FriendlyLink.
 * Alphabets in NRIC are case-insensitive.
 
@@ -219,6 +254,36 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Advanced Details
+
+### Prefixes
+* Prefixes should be entered in all lower case (e.g. n/Abdul instead of N/Abdul)
+* Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/  Mary` is truncated to `n/Mary`)
+
+### NRIC
+* NRIC is case-insensitive
+* There is no cross validation of age against NRIC (i.e. There are no checks for the birth year in first 2 digits of NRIC)
+
+### Phone number
+* Phone number must be strictly numeric (i.e digits from 0 to 9) and have more than 3 digits
+
+### Email
+* Email must be in the `local-part@domain.com` format, containing the `@`
+
+### Date
+* Date must be in the format `YYYY-MM-DD`
+* Entering of dates before the current date is allowed
+* Past dates will not be removed
+* Where relevant, start date must occur before end date
+
+### Duplicate Entries
+* Person (Elderly and Volunteers)
+  * Persons with identical NRIC are considered the same person.
+  * A person cannot be both an elderly and a volunteer.
+* Pair
+  * Pairs with the same elderly and same volunteer are the same pair.
+
+--------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
