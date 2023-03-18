@@ -14,6 +14,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all recipes";
 
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
