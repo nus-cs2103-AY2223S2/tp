@@ -23,6 +23,7 @@ import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.testutil.DepartmentBuilder;
