@@ -113,6 +113,11 @@ public class Shop implements ReadOnlyShop {
         this.services.setServices(services);
     }
 
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in AutoM8.
+     */
     public void removeService(Service key) {
         services.remove(key);
     }
@@ -396,11 +401,12 @@ public class Shop implements ReadOnlyShop {
         vehicles.remove(key);
     }
 
-
     @Override
     public ObservableList<Vehicle> getVehicleList() {
         return this.vehicles.asUnmodifiableObservableList();
     }
+
+
 
     // --------------------------------------------------
 

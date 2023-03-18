@@ -8,7 +8,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
+import seedu.address.model.mapping.CustomerVehicleMap;
+import seedu.address.model.mapping.VehicleDataMap;
+import seedu.address.model.service.Vehicle;
 
 /**
  * API of the Logic component
@@ -47,4 +51,19 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+
+    //// AutoM8
+
+    /** Returns an unmodifiable view of the filtered list of customers */
+    ObservableList<Customer> getFilteredCustomerList();
+
+    /** Returns an unmodifiable view of the filtered list of vehicles */
+    ObservableList<Vehicle> getFilteredVehicleList();
+
+    /** Returns a map of customers and their respective vehicle(s) */
+    CustomerVehicleMap getCustomerVehicleMap();
+
+    /** Returns maps of vehicles and their respective owner or services */
+    VehicleDataMap getVehicleDataMap();
 }
