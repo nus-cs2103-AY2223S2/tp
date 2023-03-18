@@ -22,6 +22,10 @@ public class Remark {
         this.remark = remark;
     }
 
+    public static boolean isValidRemark(String remark) {
+        return true;
+    }
+
     @Override
     public String toString() {
         return remark;
