@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Name;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,9 +19,9 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[]{
-            new Event(new Name("Alex Yeoh"), "2024-02-01", "2024-02-02"),
-            new Event(new Name("Bernice Yu"), "2024-02-01", "2024-02-02"),
-            new Event(new Name("Charlotte Oliveiro"), "2024-02-01", "2024-02-02")
+            new Event(new Name("Alex Yeoh"), new Date("01-02-2024"), new Time("18:00"), new Time("20:00")),
+            new Event(new Name("Bernice Yu"), new Date("01-02-2024"), new Time("18:00"), new Time("20:00")),
+            new Event(new Name("Charlotte Olivero"), new Date("01-02-2024"), new Time("18:00"), new Time("20:00"))
         };
     }
 
