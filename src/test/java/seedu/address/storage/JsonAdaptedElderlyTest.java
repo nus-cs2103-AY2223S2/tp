@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.storage.elderly.JsonAdaptedElderly.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalElderly.BENSON;
@@ -21,6 +22,7 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.storage.elderly.JsonAdaptedElderly;
+import seedu.address.storage.volunteer.JsonAdaptedVolunteer;
 
 
 public class JsonAdaptedElderlyTest {
@@ -33,6 +35,7 @@ public class JsonAdaptedElderlyTest {
     private static final String INVALID_REGION = "south";
     private static final String INVALID_RISK = "hello";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATE = "#friend to dwadawd";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -45,6 +48,8 @@ public class JsonAdaptedElderlyTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final List<JsonAdaptedAvailableDate> VALID_DATES = BENSON.getAvailableDates()
+            .stream().map(JsonAdaptedAvailableDate::new).collect(Collectors.toList());
 
     private static final FriendlyLink appTestCache = new FriendlyLink();
 
@@ -59,7 +64,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -68,7 +73,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -77,7 +82,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -86,7 +91,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -95,7 +100,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, INVALID_EMAIL,
-                VALID_ADDRESS, VALID_NRIC, VALID_RISK, VALID_AGE, VALID_REGION, VALID_TAGS);
+                VALID_ADDRESS, VALID_NRIC, VALID_RISK, VALID_AGE, VALID_REGION, VALID_TAGS, VALID_DATES);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -104,7 +109,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -114,7 +119,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -123,7 +128,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -133,7 +138,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                        INVALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Nric.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -142,7 +147,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullNric_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                null, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                null, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -152,7 +157,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, INVALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS);
+                        VALID_NRIC, INVALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Age.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -161,7 +166,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullAge_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, null, VALID_REGION, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, null, VALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -171,7 +176,7 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, INVALID_REGION, VALID_RISK, VALID_TAGS);
+                        VALID_NRIC, VALID_AGE, INVALID_REGION, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = Region.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -180,7 +185,7 @@ public class JsonAdaptedElderlyTest {
     public void toModelType_nullRegion_throwsIllegalValueException() {
         JsonAdaptedElderly elderly = new JsonAdaptedElderly(
                 VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_NRIC, VALID_AGE, null, VALID_RISK, VALID_TAGS);
+                VALID_NRIC, VALID_AGE, null, VALID_RISK, VALID_TAGS, VALID_DATES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Region.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> elderly.toModelType(appTestCache));
     }
@@ -193,8 +198,23 @@ public class JsonAdaptedElderlyTest {
         JsonAdaptedElderly elderly =
                 new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, invalidTags);
+                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, invalidTags, VALID_DATES);
         assertThrows(IllegalValueException.class, () -> elderly.toModelType(appTestCache));
+    }
+
+    @Test
+    public void toModelType_invalidDate_throwsIllegalValueException() {
+        List<JsonAdaptedAvailableDate> invalidDates = new ArrayList<>(VALID_DATES);
+        try {
+            invalidDates.add(new JsonAdaptedAvailableDate(INVALID_DATE));
+        } catch (IllegalValueException e) {
+            fail();
+        }
+        JsonAdaptedVolunteer volunteer =
+                new JsonAdaptedVolunteer(
+                        VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_TAGS, invalidDates);
+        assertThrows(IllegalValueException.class, () -> volunteer.toModelType(appTestCache));
     }
 
 }

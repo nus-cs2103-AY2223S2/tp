@@ -19,7 +19,8 @@
     "age" : "23",
     "region": "NORTHEAST",
     "riskLevel" : "MEDIUM",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "availableDates": ["2023-05-01 to 2023-05-12"]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -49,7 +50,8 @@
     "age" : "28",
     "region": "EAST",
     "riskLevel" : "HIGH",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "availableDates": ["2023-04-01 to 2023-04-12"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -69,6 +71,7 @@
     "age" : "24",
     "region": "NORTH",
     "riskLevel" : "LOW",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "availableDates": ["2023-05-01 to 2023-05-12"]
   } ]
 }

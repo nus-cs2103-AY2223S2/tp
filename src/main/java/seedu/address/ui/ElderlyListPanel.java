@@ -32,7 +32,7 @@ public class ElderlyListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Elderly} using a {@code ElderlyCard}.
      */
-    class ElderlyListViewCell extends ListCell<Elderly> {
+    static class ElderlyListViewCell extends ListCell<Elderly> {
         @Override
         protected void updateItem(Elderly elderly, boolean empty) {
             super.updateItem(elderly, empty);
