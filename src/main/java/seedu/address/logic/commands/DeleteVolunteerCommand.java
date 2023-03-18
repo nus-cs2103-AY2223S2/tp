@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -46,5 +48,10 @@ public class DeleteVolunteerCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteVolunteerCommand // instanceof handles nulls
                 && targetNric.equals(((DeleteVolunteerCommand) other).targetNric)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetNric);
     }
 }

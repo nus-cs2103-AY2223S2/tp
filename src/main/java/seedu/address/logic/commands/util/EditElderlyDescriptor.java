@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.util;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -99,5 +100,12 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
                 && getRegion().equals(e.getRegion())
                 && getRiskLevel().equals(e.getRiskLevel())
                 && getTags().equals(e.getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPhone(), getEmail(),
+                getAddress(), getNric(), getAge(), getRegion(),
+                getTags(), riskLevel);
     }
 }

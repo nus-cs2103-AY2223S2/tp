@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.util;
 
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Volunteer;
@@ -71,5 +72,12 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
                 && getAge().equals(e.getAge())
                 && getRegion().equals(e.getRegion())
                 && getTags().equals(e.getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPhone(), getEmail(),
+                getAddress(), getNric(), getAge(), getRegion(),
+                getTags());
     }
 }

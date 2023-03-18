@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -105,5 +106,10 @@ public class EditVolunteerCommand extends Command {
         EditVolunteerCommand e = (EditVolunteerCommand) other;
         return index.equals(e.index)
                 && editVolunteerDescriptor.equals(e.editVolunteerDescriptor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, editVolunteerDescriptor);
     }
 }

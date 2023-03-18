@@ -91,6 +91,4 @@ public class LogicManager implements Logic {
     public ObservableList<Pair> getFilteredPairList() {
         return model.getFilteredPairList();
     }
-
-
 }

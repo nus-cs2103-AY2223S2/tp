@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Objects;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -71,5 +73,10 @@ public class AddVolunteerCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddVolunteerCommand // instanceof handles nulls
                 && toAdd.equals(((AddVolunteerCommand) other).toAdd));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

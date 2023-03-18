@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -107,5 +108,10 @@ public class EditElderlyCommand extends Command {
         EditElderlyCommand e = (EditElderlyCommand) other;
         return index.equals(e.index)
                 && editElderlyDescriptor.equals(e.editElderlyDescriptor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, editElderlyDescriptor);
     }
 }
