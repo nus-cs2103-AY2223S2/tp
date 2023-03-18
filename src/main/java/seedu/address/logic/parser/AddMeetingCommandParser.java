@@ -24,7 +24,7 @@ import seedu.address.model.person.Name;
  */
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public static final Prefix[] PREFIXES = {PREFIX_MEETING_TITLE, PREFIX_DATETIME, PREFIX_PERSON,
-            PREFIX_LOCATION, PREFIX_DESCRIPTION};
+        PREFIX_LOCATION, PREFIX_DESCRIPTION};
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

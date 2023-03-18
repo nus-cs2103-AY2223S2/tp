@@ -155,7 +155,7 @@ public class CommandBox extends UiPart<Region> {
 
                     // Replaces current prefix
                     String[] currInputSplit = currInput.split(" ");
-                    if (currInputSplit[currInputSplit.length - 1].endsWith("/") ) {
+                    if (currInputSplit[currInputSplit.length - 1].endsWith("/")) {
                         currInputSplit[currInputSplit.length - 1] = prefix;
                         commandTextField.setText(String.join(" ", currInputSplit));
                     } else {
@@ -165,6 +165,8 @@ public class CommandBox extends UiPart<Region> {
                     event.consume();
                     commandTextField.end();
                 }
+                break;
+            default:
                 break;
             }
         }

@@ -19,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class EditMeetingParser implements Parser<EditMeetingsCommand> {
     public static final Prefix[] PREFIXES = {PREFIX_MEETING_TITLE, PREFIX_DATETIME, PREFIX_PERSON,
-            PREFIX_LOCATION, PREFIX_DESCRIPTION};
+        PREFIX_LOCATION, PREFIX_DESCRIPTION};
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditMeetingsCommand
