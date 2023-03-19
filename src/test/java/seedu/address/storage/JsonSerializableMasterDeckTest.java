@@ -32,7 +32,7 @@ public class JsonSerializableMasterDeckTest {
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidCardFile_throwsIllegalValueException() throws Exception {
         JsonSerializableMasterDeck dataFromFile = JsonUtil.readJsonFile(INVALID_CARD_FILE,
                 JsonSerializableMasterDeck.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
@@ -42,7 +42,7 @@ public class JsonSerializableMasterDeckTest {
     public void toModelType_duplicateCards_throwsIllegalValueException() throws Exception {
         JsonSerializableMasterDeck dataFromFile = JsonUtil.readJsonFile(DUPLICATE_CARD_FILE,
                 JsonSerializableMasterDeck.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableMasterDeck.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableMasterDeck.MESSAGE_DUPLICATE_CARD,
                 dataFromFile::toModelType);
     }
 

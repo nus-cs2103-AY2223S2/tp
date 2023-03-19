@@ -63,7 +63,7 @@ public class JsonMasterDeckStorageTest {
 
     @Test
     public void readAndSaveMasterDeck_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempMasterDeck.json");
         MasterDeck original = getTypicalMasterDeck();
         JsonMasterDeckStorage jsonMasterDeckStorage = new JsonMasterDeckStorage(filePath);
 
@@ -88,24 +88,24 @@ public class JsonMasterDeckStorageTest {
     }
 
     @Test
-    public void saveMasterDeck_nullAddressBook_throwsNullPointerException() {
+    public void saveMasterDeck_nullMasterDeck_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveMasterDeck(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code masterDeck} at the specified {@code filePath}.
      */
-    private void saveMasterDeck(ReadOnlyMasterDeck addressBook, String filePath) {
+    private void saveMasterDeck(ReadOnlyMasterDeck masterDeck, String filePath) {
         try {
             new JsonMasterDeckStorage(Paths.get(filePath))
-                    .saveMasterDeck(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveMasterDeck(masterDeck, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveMasterDeck_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveMasterDeck(new MasterDeck(), null));
     }
 }

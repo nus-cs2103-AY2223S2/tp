@@ -20,7 +20,7 @@ import seedu.address.model.deck.Deck;
 @JsonRootName(value = "masterdeck")
 class JsonSerializableMasterDeck {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Card list contains duplicate card(s).";
+    public static final String MESSAGE_DUPLICATE_CARD = "Card list contains duplicate card(s).";
     public static final String MESSAGE_DUPLICATE_DECK = "Deck list contains duplicate deck(s).";
     public static final String MESSAGE_MISSING_DECK = "Some cards exist without an existing deck.";
 
@@ -66,7 +66,7 @@ class JsonSerializableMasterDeck {
         for (JsonAdaptedCard jsonAdaptedCard : cards) {
             Card card = jsonAdaptedCard.toModelType();
             if (masterDeck.hasCard(card)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CARD);
             }
 
             Deck currDeck = card.getDeck().get();
