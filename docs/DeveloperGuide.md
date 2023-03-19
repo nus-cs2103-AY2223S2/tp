@@ -388,7 +388,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 </div>
 
-**Assigning a Contact Index** - After the inputs have been parsed and extracted, EduMate will look to fill the *first* gap in contact index. Refer to the example given below:
+**Assigning a Contact Index** - After the inputs have been parsed and extracted, EduMate will look to fill the *first* gap in contact index. i.e. it will find the **lowest positive integer** that isn't already the contact index of a person. Refer to the example given below:
 
 | Current state of EduMate           | New Contact Index | Explanation                                                 |
 |:-----------------------------------|:-----------------:|-------------------------------------------------------------|
