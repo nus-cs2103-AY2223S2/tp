@@ -103,8 +103,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]�
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* To add on to existing groups/tags without overrwriting it, include the prefix m/ (merge).
+* When editing tags/groups, the existing tags/groups of the person will be removed i.e adding of tags/groups is not cumulative.
+* To add on to existing groups/tags without overrwriting it, include the prefix `m/` (merge).
 * When using prefix m/, groups/tags added cannot be empty.
 * Groups can only be added if it has been created.
 * You can remove all the person’s tags/groups by typing `t/` and `g/` respectively without
