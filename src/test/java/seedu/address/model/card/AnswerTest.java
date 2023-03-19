@@ -15,8 +15,8 @@ public class AnswerTest {
 
     @Test
     public void constructor_invalidAnswer_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Answer(invalidAddress));
+        String invalidAnswer = "";
+        assertThrows(IllegalArgumentException.class, () -> new Answer(invalidAnswer));
     }
 
     @Test

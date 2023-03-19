@@ -62,17 +62,17 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Card questionA = new CardBuilder().withQuestion("What is A?").build();
-        Card questionB = new CardBuilder().withQuestion("What is B?").build();
-        AddCommand addACommand = new AddCommand(questionA);
-        AddCommand addBCommand = new AddCommand(questionB);
+        Card questionGravity = new CardBuilder().withQuestion("What is gravity").build();
+        Card questionPhoto = new CardBuilder().withQuestion("What is photosynthesis").build();
+        AddCommand addACommand = new AddCommand(questionGravity);
+        AddCommand addBCommand = new AddCommand(questionPhoto);
 
         // same object -> returns true
         assertTrue(addACommand.equals(addACommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(questionA);
-        assertTrue(addACommand.equals(addAliceCommandCopy));
+        AddCommand addGravityCommandCopy = new AddCommand(questionGravity);
+        assertTrue(addACommand.equals(addGravityCommandCopy));
 
         // different types -> returns false
         assertFalse(addACommand.equals(1));
