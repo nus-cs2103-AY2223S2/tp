@@ -19,9 +19,10 @@ public class Card {
 
     // Identity fields
     private final Question question;
+    private final Answer answer;
+
 
     // Data fields
-    private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
     private Deck deck;
     private boolean isFlipped = true;
