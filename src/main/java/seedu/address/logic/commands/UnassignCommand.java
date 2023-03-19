@@ -45,11 +45,11 @@ public class UnassignCommand extends Command {
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireAllNonNull(model, officeConnectModel);
 
-        if (model.isValidFilterPersonListIndexRange(personIndex.getZeroBased())) {
+        if (!model.isValidFilterPersonListIndexRange(personIndex.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (officeConnectModel.isValidFilterTaskListIndexRange(taskIndex.getZeroBased())) {
+        if (!officeConnectModel.isValidFilterTaskListIndexRange(taskIndex.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 

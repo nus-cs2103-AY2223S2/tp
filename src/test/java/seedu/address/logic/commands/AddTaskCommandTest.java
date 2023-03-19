@@ -143,6 +143,11 @@ class AddTaskCommandTest {
         }
 
         @Override
+        public boolean isValidFilterPersonListIndexRange(int index) {
+            return false;
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -155,6 +160,11 @@ class AddTaskCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getFilterPerson(int index) {
+            return null;
         }
 
         @Override
