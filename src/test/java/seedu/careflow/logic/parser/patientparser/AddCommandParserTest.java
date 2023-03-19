@@ -1,13 +1,14 @@
 package seedu.careflow.logic.parser.patientparser;
 
+import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.logic.commands.patientcommands.AddCommand;
 import seedu.careflow.model.person.Patient;
 import seedu.careflow.testutil.PatientBuilder;
 
-import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 class AddCommandParserTest {
     private final AddCommandParser addCommandParser = new AddCommandParser();
@@ -83,7 +84,7 @@ class AddCommandParserTest {
                         + "Example: add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
                         + "-ad 969 Lock Street #04-32 -dob 2001-05-28 -g MALE -ic T0278234M "
                         + "-da Aspirin -ec 93746552"
-                );
+        );
     }
 
     @Test
@@ -100,7 +101,7 @@ class AddCommandParserTest {
                         + "Example: add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
                         + "-ad 969 Lock Street #04-32 -dob 2001-05-28 -g MALE -ic T0278234M "
                         + "-da Aspirin -ec 93746552"
-                );
+        );
     }
 
     @Test
@@ -117,6 +118,6 @@ class AddCommandParserTest {
                         + "Example: add -n Tom Smith -ph 84356788 -em tsmith@gmail.com "
                         + "-ad 969 Lock Street #04-32 -dob 2001-05-28 -g MALE -ic T0278234M "
                         + "-da Aspirin -ec 93746552"
-                );
+        );
     }
 }
