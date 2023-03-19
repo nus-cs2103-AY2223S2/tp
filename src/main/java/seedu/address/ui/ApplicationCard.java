@@ -1,13 +1,16 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.application.Application;
 
 /**
- * An UI component that displays information of a {@code Application}.
+ * A UI component that displays information of a {@code Application}.
  */
 public class ApplicationCard extends UiPart<Region> {
 
@@ -35,6 +38,8 @@ public class ApplicationCard extends UiPart<Region> {
     private Label role;
     @FXML
     private Label companyEmail;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -47,6 +52,9 @@ public class ApplicationCard extends UiPart<Region> {
         status.setText(application.getStatus().value.toString());
         role.setText(application.getRole().roleApplied);
         companyEmail.setText(application.getCompanyEmail().value);
+        application.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
