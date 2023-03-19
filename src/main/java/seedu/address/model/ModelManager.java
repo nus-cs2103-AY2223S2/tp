@@ -32,7 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Card> filteredCards;
     private Deck selectedDeck;
     private Review currReview;
-    private int reviewLimit = -1;
+    private int numCardsPerReview = -1;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -244,8 +244,8 @@ public class ModelManager implements Model {
         List<Card> cardList = new FilteredList<>(
                 masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
         );
-        if (reviewLimit > 0) {
-            currReview = new Review(deckToReview, cardList, reviewLimit);
+        if (numCardsPerReview > 0) {
+            currReview = new Review(deckToReview, cardList, numCardsPerReview);
         } else {
             currReview = new Review(deckToReview, cardList);
         }
@@ -253,8 +253,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setReviewLimit(int limit) {
-        reviewLimit = limit;
+    public void setNumCardsPerReview(int n) {
+        numCardsPerReview = n;
     }
 
     @Override

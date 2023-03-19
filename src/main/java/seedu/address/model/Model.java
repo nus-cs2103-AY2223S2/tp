@@ -142,5 +142,5 @@ public interface Model {
 
     boolean goToNextCard();
 
-    void setReviewLimit(int i);
+    void setNumCardsPerReview(int i);
 }

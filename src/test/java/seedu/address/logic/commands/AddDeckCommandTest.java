@@ -218,7 +218,7 @@ public class AddDeckCommandTest {
         }
 
         @Override
-        public void setReviewLimit(int reviewLimit) {
+        public void setNumCardsPerReview(int reviewLimit) {
             throw new AssertionError("This method should not be called.");
         }
 

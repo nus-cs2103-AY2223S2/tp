@@ -26,7 +26,7 @@ import seedu.address.logic.commands.NextCardCommand;
 import seedu.address.logic.commands.PreviousCardCommand;
 import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.commands.SelectDeckCommand;
-import seedu.address.logic.commands.SetLimitCommand;
+import seedu.address.logic.commands.SetNumCardsPerReviewCommand;
 import seedu.address.logic.commands.UnselectDeckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -87,8 +87,8 @@ public class MasterDeckParser {
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
-        case SetLimitCommand.COMMAND_WORD:
-            return new SetLimitCommandParser().parse(arguments);
+        case SetNumCardsPerReviewCommand.COMMAND_WORD:
+            return new SetNumCardsPerReviewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -133,8 +133,8 @@ public class MasterDeckParser {
         case SelectDeckCommand.COMMAND_WORD:
             return new SelectDeckCommandParser().parse(arguments);
 
-        case SetLimitCommand.COMMAND_WORD:
-            return new SetLimitCommandParser().parse(arguments);
+        case SetNumCardsPerReviewCommand.COMMAND_WORD:
+            return new SetNumCardsPerReviewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

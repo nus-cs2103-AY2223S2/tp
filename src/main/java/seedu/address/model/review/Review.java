@@ -53,29 +53,29 @@ public class Review {
      * Every field must be present and not null.
      * Overloaded constructor of Review object used if user has set a card limit for each Review session.
      */
-    public Review(Deck deck, List<Card> cardList, int userSetLimit) {
+    public Review(Deck deck, List<Card> cardList, int userSetNum) {
         requireNonNull(deck);
         requireNonNull(cardList);
 
         this.deck = deck;
         this.cardList = cardList;
-        totalNumCards = userSetLimit;
+        totalNumCards = userSetNum;
         unflipAllCards();
 
         // initialise order of card
-        if (userSetLimit >= cardList.size()) {
+        if (userSetNum >= cardList.size()) {
             orderOfCards = new Random().ints(0, cardList.size())
                     .distinct().limit(cardList.size()).boxed().collect(Collectors.toList());
             // ensures user sees all cards once, then appends remaining cards at random
             orderOfCards.addAll(new Random().ints(
-                            userSetLimit - cardList.size(),
+                            userSetNum - cardList.size(),
                             0,
                             cardList.size() - 1)
                     .boxed().collect(Collectors.toList()));
-        } else if (userSetLimit < cardList.size()) {
-            // all cards seen will be unique when user set limit is less than card list size
+        } else if (userSetNum < cardList.size()) {
+            // all cards seen will be unique when user set number is less than card list size
             orderOfCards = new Random().ints(0, cardList.size())
-                    .distinct().limit(userSetLimit).boxed().collect(Collectors.toList());
+                    .distinct().limit(userSetNum).boxed().collect(Collectors.toList());
         }
 
         // initialise first card

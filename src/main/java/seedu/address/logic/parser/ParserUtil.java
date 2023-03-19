@@ -20,10 +20,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_LIMIT_INPUT = "Input must be an integer between 1 and 2147483647"
+    public static final String MESSAGE_INVALID_N_INPUT = "Input must be an integer between 1 and 2147483647"
             + " inclusive or the String 'none'";
-    public static final String MESSAGE_INVALID_INTEGER = "Input %1$s is not an integer between 1 and 2147483647"
-            + "inclusive";
+    public static final String MESSAGE_INVALID_INTEGER = "Input must be an integer between 1 and 2147483647 inclusive";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -113,7 +112,7 @@ public class ParserUtil {
      * @throws ParseException if the specified String is invalid (not non-zero unsigned integer or
      *      not the String "none").
      */
-    public static int parseLimit(String userInput) throws ParseException {
+    public static int parseNumCardsPerReview(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
         if (trimmedUserInput.equalsIgnoreCase("none")) {
             return -1;
@@ -123,7 +122,7 @@ public class ParserUtil {
             }
             return Integer.parseInt(trimmedUserInput);
         } else {
-            throw new ParseException(MESSAGE_INVALID_LIMIT_INPUT);
+            throw new ParseException(MESSAGE_INVALID_N_INPUT);
         }
     }
 
