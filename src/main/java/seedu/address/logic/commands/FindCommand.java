@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-
 import seedu.address.model.event.EventContainsKeywordsPredicate;
 
 /**
@@ -14,12 +13,12 @@ import seedu.address.model.event.EventContainsKeywordsPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds events that contain keyword provided"
-            + "and displays them as a list with index number \n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS] ... \n"
-            + "Example: " + COMMAND_WORD + " booking basketball court";
-            
+        + "and displays them as a list with index number \n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS] ... \n"
+        + "Example: " + COMMAND_WORD + " booking basketball court";
+
     private final EventContainsKeywordsPredicate predicate;
 
     public FindCommand(EventContainsKeywordsPredicate predicate) {

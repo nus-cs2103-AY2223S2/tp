@@ -9,7 +9,7 @@ public class Event {
     private final Date date;
     private final Time startTime;
     private final Time endTime;
-    
+
     /**
      * Every field must be present and not null.
      */
@@ -54,11 +54,11 @@ public class Event {
         if (other == this) {
             return true;
         }
-    
+
         if (!(other instanceof Event)) {
             return false;
         }
-    
+
         Event otherEvent = (Event) other;
         return otherEvent.getName().equals(getName())
             && otherEvent.getDate().equals(getDate())
