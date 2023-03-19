@@ -106,7 +106,8 @@ public class ParentCommandParser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParentDeleteCommand.MESSAGE_USAGE));
         }
         Phone phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
-        return new ParentDeleteCommand(phoneNumber);
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        return new ParentDeleteCommand(name, phoneNumber);
     }
 
     /**

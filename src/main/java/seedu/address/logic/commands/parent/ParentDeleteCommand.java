@@ -13,6 +13,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 
@@ -44,12 +45,14 @@ public class ParentDeleteCommand extends ParentCommand {
     public static final String MESSAGE_DELETE_PARENT_SUCCESS = "Deleted Parent: %1$s";
 
     private final Phone phoneNumber;
+    private final Name parentName;
 
     /**
      * Creates a ParentDeleteCommand to delete the specified {@code Parent}
      */
-    public ParentDeleteCommand(Phone phoneNumber) {
+    public ParentDeleteCommand(Name parentName, Phone phoneNumber) {
         this.phoneNumber = phoneNumber;
+        this.parentName = parentName;
     }
 
     @Override
@@ -58,6 +61,12 @@ public class ParentDeleteCommand extends ParentCommand {
         ObservableList<Parent> parents = model.getFilteredParentList();
         for (Parent parent : parents) {
             if (parent.getPhone().equals(phoneNumber)) {
+                if (parent.hasStudents()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PARENT_DELETE);
+                }
+                if (!parent.getName().equals(parentName)) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PARENT_NAME);
+                }
                 model.deleteParent(parent);
                 return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, parent));
             }

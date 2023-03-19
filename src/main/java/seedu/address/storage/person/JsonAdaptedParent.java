@@ -52,7 +52,7 @@ public class JsonAdaptedParent extends JsonAdaptedPerson {
         super(parent);
         this.age = parent.getAge().value;
         this.image = parent.getImage().value;
-        for (Student student : parent.getChildren()) {
+        for (Student student : parent.getStudents()) {
             children.add(new JsonAdaptedStudent(student));
         }
     }
