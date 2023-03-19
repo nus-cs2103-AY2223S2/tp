@@ -368,4 +368,9 @@
     -fx-text-fill: white;
 }
 
+.tipsTitle {
+    -fx-text-fill: black;
+    -fx-font-size: 16;
+}
+
 
