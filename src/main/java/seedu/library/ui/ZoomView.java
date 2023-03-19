@@ -28,8 +28,11 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label zoomTag;
 
-
-
+    /**
+     * Constructs a ZoomView that displays the details of the provided bookmark.
+     *
+     * @param bookmark a single Bookmark object
+     */
     public ZoomView(Bookmark bookmark) {
         super(FXML);
         this.bookmark = bookmark;
@@ -42,7 +45,9 @@ public class ZoomView extends UiPart<Region> {
 
     }
 
-
+    /** method to hide the contents on zoomvie
+     *
+     */
     public void hideFields() {
         view_Title.setVisible(false);
         authorView.setVisible(false);
