@@ -1,20 +1,19 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.model.util.TypicalPersons.ALICE;
+import static seedu.address.model.util.TypicalPersons.BENSON;
+import static seedu.address.model.util.TypicalPersons.CARL;
+import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.util.TypicalTasks.COMPLETE_SLIDES;
+import static seedu.address.model.util.TypicalTasks.SEND_EMAIL_TO_CLIENT;
+import static seedu.address.model.util.TypicalTasks.STOCK_PANTRY;
+import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.COMPLETE_SLIDES;
-import static seedu.address.testutil.TypicalTasks.SEND_EMAIL_TO_CLIENT;
-import static seedu.address.testutil.TypicalTasks.STOCK_PANTRY;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskRepository;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,8 +35,8 @@ import seedu.address.model.task.Task;
  */
 public class AssignCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private OfficeConnectModel officeConnectModel = new OfficeConnectModel(
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
             new RepositoryModelManager<>(getPersonTaskRepository()));
 
@@ -91,8 +90,7 @@ public class AssignCommandTest {
     @Test
     public void execute_invalidPersonIndex_throwsCommandException() {
         Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        Index correct = INDEX_FIRST;
-        AssignCommand command = new AssignCommand(outOfBounds, correct);
+        AssignCommand command = new AssignCommand(outOfBounds, INDEX_FIRST);
 
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () ->
                 command.execute(model, officeConnectModel));
@@ -106,10 +104,9 @@ public class AssignCommandTest {
      */
     @Test
     public void execute_invalidTaskIndex_throwsCommandException() {
-        Index correct = INDEX_FIRST;
         Index outOfBounds = Index.fromOneBased(officeConnectModel.getTaskModelManager()
                 .getFilteredItemList().size() + 1);
-        AssignCommand command = new AssignCommand(correct, outOfBounds);
+        AssignCommand command = new AssignCommand(INDEX_FIRST, outOfBounds);
 
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX, () ->
                 command.execute(model, officeConnectModel));
@@ -123,26 +120,22 @@ public class AssignCommandTest {
         AssignCommand assignSecondCommand = new AssignCommand(INDEX_SECOND, INDEX_SECOND);
 
         // same object -> returns true
-        assertTrue(assignFirstCommand.equals(assignFirstCommand));
+        assertEquals(assignFirstCommand, assignFirstCommand);
 
         // same values -> returns true
         AssignCommand assignFirstCommandCopy = new AssignCommand(INDEX_FIRST, INDEX_FIRST);
-        assertTrue(assignFirstCommand.equals(assignFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(assignFirstCommand.equals(1));
+        assertEquals(assignFirstCommand, assignFirstCommandCopy);
 
         // null -> returns false
-        assertFalse(assignFirstCommand.equals(null));
+        assertNotEquals(null, assignFirstCommand);
 
         // different personTask -> returns false
-        assertFalse(assignFirstCommand.equals(assignSecondCommand));
+        assertNotEquals(assignFirstCommand, assignSecondCommand);
     }
 
     /**
      * IMPLEMENTED THIS FOR TESTING FOR NOW
      * TO DO: WRAP MODEL, OFFICECONNECTMODEL IN ANOTHER CLASS NEXT
-     *
      * Returns a {@code Repository} with a few AssignTask mappings for the TypicalTaskRepository and
      * TypicalAddressBook used in this class.
      */

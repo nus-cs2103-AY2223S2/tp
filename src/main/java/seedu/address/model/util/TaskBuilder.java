@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.util;
 
 import seedu.address.model.Repository;
 import seedu.address.model.task.Content;

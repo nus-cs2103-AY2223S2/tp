@@ -1,5 +1,8 @@
 package seedu.address.model;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 
 
@@ -12,4 +15,5 @@ public interface ReadOnlyRepository<T> {
      */
     ObservableList<T> getData();
 
+    List<T> getFilterData(Predicate<T> predicate);
 }

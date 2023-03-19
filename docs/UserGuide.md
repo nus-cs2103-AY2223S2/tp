@@ -229,6 +229,19 @@ Format: `assign ti/INDEX pi/INDEX`
 Examples:
 - `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
 
+## Remove a Task assignment from a Person: `unassign`
+
+Remove assignment of an existing task from an existing person in OfficeConnect.
+
+Format: `unassign ti/INDEX pi/INDEX`
+
+* Remove assignment of the task at specified index from the person at specified index.
+* The index refers to the index number shown in the displayed person/task list.
+* The index must be a positive integer 1, 2, 3...
+
+Examples:
+- `unassign ti/ 2 pi/ 3` assigns task 2 to person 3.
+
 ## Marking a Task as completed: `mark`
 
 Marks an existing task in OfficeConnect.

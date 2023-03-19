@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -51,6 +52,9 @@ public class RepositoryModelManager<T extends Relationship<T>> {
     public ReadOnlyRepository<T> getReadOnlyRepository() {
         return repo;
     }
+    public List<T> filter(Predicate<T> predicate) {
+        return repo.getFilterData(predicate);
+    }
 
 
     /**
@@ -96,9 +100,13 @@ public class RepositoryModelManager<T extends Relationship<T>> {
         return itemFilteredList;
     }
 
+
     public FilteredList<T> getFilteredItemList(Predicate<T> predicate) {
         updateFilteredItemList(predicate);
         return itemFilteredList;
+    }
+    public T getFilterItem(int index) {
+        return itemFilteredList.get(index);
     }
 
     /**

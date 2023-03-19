@@ -98,20 +98,18 @@ public class MainApp extends Application {
         try {
             taskReadOnlyRepository = storage.readTaskBook();
             personTaskReadOnlyRepository = storage.readPersonTaskBook();
-            if (taskReadOnlyRepository.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample "
-                    + "task.json and person_task_mapping.json");
+            if (taskReadOnlyRepository.isEmpty() || personTaskReadOnlyRepository.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample.");
             }
-            initialTaskData = taskReadOnlyRepository.orElseGet(SampleDataUtil::getSampleTasksRepo);
-            initialPersonTaskData = personTaskReadOnlyRepository.orElseGet(SampleDataUtil::getSampleAssignTaskRepo);
+            SampleDataUtil sampleDataUtil = new SampleDataUtil();
+            initialTaskData = taskReadOnlyRepository.orElseGet(sampleDataUtil::getSampleTasksRepo);
+            initialPersonTaskData = personTaskReadOnlyRepository.orElseGet(sampleDataUtil::getSampleAssignTaskRepo);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty "
-                + "task.json and person_task_mapping.json");
+            logger.warning("Data file not in the correct format. Will be starting with an empty.");
             initialTaskData = new Repository<>();
             initialPersonTaskData = new Repository<>();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with "
-                + "an empty task.json and person_task_mapping.json");
+            logger.warning("Problem while reading from the file. Will be starting with.");
             initialTaskData = new Repository<>();
             initialPersonTaskData = new Repository<>();
 

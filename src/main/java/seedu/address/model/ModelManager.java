@@ -76,6 +76,10 @@ public class ModelManager implements Model {
     }
 
     //=========== AddressBook ================================================================================
+    @Override
+    public boolean isValidFilterPersonListIndexRange(int index) {
+        return index >= 0 && index < filteredPersons.size();
+    }
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -85,6 +89,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
+    }
+
+    @Override
+    public Person getFilterPerson(int index) {
+        return filteredPersons.get(index);
     }
 
     @Override
