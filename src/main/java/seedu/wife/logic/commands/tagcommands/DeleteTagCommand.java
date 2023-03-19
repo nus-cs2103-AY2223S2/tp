@@ -37,9 +37,9 @@ public class DeleteTagCommand extends Command {
         String deletedTagSuccessMessage = TAG_DELETE_SUCCESS_MESSAGE;
 
         for (Tag tag : lastShownList) {
-            if (model.hasTag(tag)) {
-                model.deleteTag(tag);
-                deletedTagSuccessMessage += "\n" + tag;
+            if (model.hasTag(this.toDelete)) {
+                model.deleteTag(this.toDelete);
+                deletedTagSuccessMessage += "\n" + this.toDelete;
             }
         }
 
