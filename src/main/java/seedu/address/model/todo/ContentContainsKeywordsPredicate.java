@@ -1,10 +1,9 @@
 package seedu.address.model.todo;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.InternshipApplication;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that an {@code InternshipApplication}'s {@code CompanyName}

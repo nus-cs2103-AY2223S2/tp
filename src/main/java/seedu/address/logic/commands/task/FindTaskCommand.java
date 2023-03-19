@@ -1,13 +1,13 @@
 package seedu.address.logic.commands.task;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.todo.ContentContainsKeywordsPredicate;
 import seedu.address.model.todo.TitleContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all todos and notes in record whose name contains any of the argument keywords.
@@ -26,6 +26,10 @@ public class FindTaskCommand extends Command {
     private final TitleContainsKeywordsPredicate titlePredicate;
     private final ContentContainsKeywordsPredicate contentPredicate;
 
+    /**
+     * Find task or notes matches with keyword predicate {@code titlePredicate} and {@code contentPredicate}
+     * respectively.
+     */
     public FindTaskCommand(TitleContainsKeywordsPredicate titlePredicate,
                            ContentContainsKeywordsPredicate contentPredicate) {
         this.titlePredicate = titlePredicate;

@@ -1,15 +1,14 @@
 package seedu.address.model.todo;
 
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.tag.TodoType;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.JobTitle;
+import seedu.address.model.tag.TodoType;
 
 /**
  * Represents an Interested Internship Programme in the planner.
@@ -43,6 +42,9 @@ public class InternshipTodo {
         this.type = TodoType.TODO;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
     public InternshipTodo(CompanyName title, JobTitle jobTitle, ApplicationDeadline deadline, NoteContent note) {
         requireAllNonNull(title, jobTitle, deadline);
         this.title = title;

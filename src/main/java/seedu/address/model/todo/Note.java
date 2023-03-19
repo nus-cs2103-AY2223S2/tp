@@ -1,12 +1,15 @@
 package seedu.address.model.todo;
 
-import seedu.address.model.tag.TodoType;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.tag.TodoType;
 
+/**
+ * Provides a note object for planner.
+ */
 public class Note {
 
     // Identity fields

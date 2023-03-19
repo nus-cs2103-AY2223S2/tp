@@ -76,11 +76,33 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the tracker.
+     * The identity of {@code editedTodo} must not be the same as another existing todo in the tracker.
+     */
+    public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
+        requireNonNull(editedTodo);
+
+        todos.setTodo(target, editedTodo);
+    }
+
+    /**
      * Replaces the contents of the note list with {@code notes}.
      * {@code persons} must not contain duplicate notes.
      */
     public void setNote(List<Note> notes) {
         this.notes.setNotes(notes);
+    }
+
+    /**
+     * Replaces the given note {@code target} with {@code editedNote}.
+     * {@code target} must exist in the tracker.
+     * The identity of {@code editedNote} must not be the same as another existing note in the tracker.
+     */
+    public void setNote(Note target, Note editedNote) {
+        requireNonNull(editedNote);
+
+        notes.setNotes(target, editedNote);
     }
 
     /**
@@ -182,28 +204,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Replaces the given todo {@code target} with {@code editedTodo}.
-     * {@code target} must exist in the tracker.
-     * The identity of {@code editedTodo} must not be the same as another existing todo in the tracker.
-     */
-    public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
-        requireNonNull(editedTodo);
-
-        todos.setTodo(target, editedTodo);
-    }
-
-    /**
-     * Replaces the given note {@code target} with {@code editedNote}.
-     * {@code target} must exist in the tracker.
-     * The identity of {@code editedNote} must not be the same as another existing note in the tracker.
-     */
-    public void setNote(Note target, Note editedNote) {
-        requireNonNull(editedNote);
-
-        notes.setNotes(target, editedNote);
     }
 
     /**

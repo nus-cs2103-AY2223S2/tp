@@ -1,5 +1,11 @@
 package seedu.address.logic.commands.task.todo;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TODO;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -11,12 +17,6 @@ import seedu.address.model.person.JobTitle;
 import seedu.address.model.todo.ApplicationDeadline;
 import seedu.address.model.todo.InternshipTodo;
 import seedu.address.model.todo.NoteContent;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.*;
 
 /**
  * Edits the deadline of a todo identified using it's displayed index from the list of todos.

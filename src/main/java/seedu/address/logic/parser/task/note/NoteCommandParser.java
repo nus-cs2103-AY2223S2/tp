@@ -1,20 +1,19 @@
 package seedu.address.logic.parser.task.note;
 
-import seedu.address.logic.commands.task.note.NoteCommand;
-import seedu.address.logic.commands.task.todo.TodoCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.todo.ApplicationDeadline;
-import seedu.address.model.todo.InternshipTodo;
-import seedu.address.model.todo.Note;
-import seedu.address.model.todo.NoteContent;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.task.note.NoteCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.todo.Note;
+import seedu.address.model.todo.NoteContent;
 
 /**
  * Parses input arguments and creates a new NoteCommand object

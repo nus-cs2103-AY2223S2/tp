@@ -1,14 +1,14 @@
 package seedu.address.logic.commands.task.todo;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.todo.InternshipTodo;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Clears the address book.

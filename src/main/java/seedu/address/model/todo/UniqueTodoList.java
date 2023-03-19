@@ -1,18 +1,17 @@
 package seedu.address.model.todo;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.DuplicateTodoException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicateTodoException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
@@ -74,17 +73,6 @@ public class UniqueTodoList implements Iterable<InternshipTodo> {
         internalTodoList.set(index, editedTodo);
     }
 
-    /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
-     */
-    public void remove(InternshipTodo toRemove) {
-        requireNonNull(toRemove);
-        if (!internalTodoList.remove(toRemove)) {
-            throw new PersonNotFoundException();
-        }
-    }
-
     public void setTodo(UniqueTodoList replacement) {
         requireNonNull(replacement);
         internalTodoList.setAll(replacement.internalTodoList);
@@ -102,6 +90,17 @@ public class UniqueTodoList implements Iterable<InternshipTodo> {
         }
 
         internalTodoList.setAll(todo);
+    }
+
+    /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public void remove(InternshipTodo toRemove) {
+        requireNonNull(toRemove);
+        if (!internalTodoList.remove(toRemove)) {
+            throw new PersonNotFoundException();
+        }
     }
 
     /**

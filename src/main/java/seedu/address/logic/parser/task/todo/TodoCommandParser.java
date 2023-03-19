@@ -1,19 +1,23 @@
 package seedu.address.logic.parser.task.todo;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.task.todo.TodoCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.todo.ApplicationDeadline;
-import seedu.address.model.todo.InternshipTodo;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.task.todo.TodoCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.JobTitle;
+import seedu.address.model.todo.ApplicationDeadline;
+import seedu.address.model.todo.InternshipTodo;
 
 /**
  * Parses input arguments and creates a new TodoCommand object
