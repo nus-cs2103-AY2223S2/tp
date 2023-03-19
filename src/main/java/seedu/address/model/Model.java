@@ -97,4 +97,5 @@ public interface Model {
      * @throws NullPointerException if {@code list} is null.
      */
     void displaySortedDeadlineList(Order order);
+
 }
