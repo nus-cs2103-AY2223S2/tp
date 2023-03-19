@@ -14,9 +14,9 @@ import seedu.address.model.Scheduler;
 import seedu.address.model.event.Event;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Scheduler that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "scheduler")
 class JsonSerializableScheduler {
 
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
@@ -24,7 +24,7 @@ class JsonSerializableScheduler {
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableScheduler} with the given persons.
      */
     @JsonCreator
     public JsonSerializableScheduler(@JsonProperty("events") List<JsonAdaptedEvent> events) {
@@ -32,28 +32,28 @@ class JsonSerializableScheduler {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyScheduler} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableScheduler}.
      */
     public JsonSerializableScheduler(ReadOnlyScheduler source) {
         events.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this scheduler into the model's {@code Scheduler} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Scheduler toModelType() throws IllegalValueException {
-        Scheduler addressBook = new Scheduler();
+        Scheduler scheduler = new Scheduler();
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
-            if (addressBook.hasEvent(event)) {
+            if (scheduler.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            addressBook.addEvent(event);
+            scheduler.addEvent(event);
         }
-        return addressBook;
+        return scheduler;
     }
 }
