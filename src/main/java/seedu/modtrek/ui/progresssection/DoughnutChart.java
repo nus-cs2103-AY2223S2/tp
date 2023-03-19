@@ -43,7 +43,7 @@ public class DoughnutChart extends PieChart {
 
         createCenterLabel();
         createDataLabels();
-
+        addLabels();
     }
 
     /**
@@ -59,7 +59,6 @@ public class DoughnutChart extends PieChart {
     protected void layoutChartChildren(double top, double left, double contentWidth, double contentHeight) {
         super.layoutChartChildren(top, left, contentWidth, contentHeight);
 
-        addLabels();
         updateCenterLabelLayout();
         updateDataLabelsLayout();
     }
