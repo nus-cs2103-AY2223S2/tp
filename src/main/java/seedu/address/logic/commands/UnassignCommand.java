@@ -4,17 +4,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.RepositoryModelManager;
-import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
-import seedu.address.model.shared.Id;
 import seedu.address.model.task.Task;
 
 
@@ -50,36 +45,19 @@ public class UnassignCommand extends Command {
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireAllNonNull(model, officeConnectModel);
 
-        List<Person> personList = model.getFilteredPersonList();
-        if (personIndex.getZeroBased() >= personList.size()) {
+        if (model.isValidFilterPersonListIndexRange(personIndex.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        List<Task> taskList = officeConnectModel.getTaskModelManager().getFilteredItemList();
-        if (taskIndex.getZeroBased() >= taskList.size()) {
+        if (officeConnectModel.isValidFilterTaskListIndexRange(taskIndex.getZeroBased())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Person person = personList.get(personIndex.getZeroBased());
-        Task task = taskList.get(taskIndex.getZeroBased());
-        Id pId = person.getId();
-        Id tId = task.getId();
-        AssignTask toDelete = new AssignTask(pId, tId);
-
-        RepositoryModelManager<AssignTask> personTaskModelManager = officeConnectModel.getAssignTaskModelManager();
-        if (!personTaskModelManager.hasItem(toDelete)) {
-            throw new CommandException(MESSAGE_NON_EXIST_ASSIGNMENT);
-        }
-
-        personTaskModelManager.deleteItem(toDelete);
-
-        model.updateFilteredPersonList(p -> p.getId().equals(pId));
-        List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository().getData()
-            .filtered(a -> a.getPersonId().equals(pId));
-
-        officeConnectModel.getTaskModelManager().updateFilteredItemList(t -> assignTasks.stream()
-            .anyMatch(a -> a.getTaskId().equals(t.getId())));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName(), task.getTitle()));
+        Person person = model.getFilterPerson(personIndex.getZeroBased());
+        Task task = officeConnectModel.deleteAssignment(person, taskIndex.getZeroBased());
+        model.updateFilteredPersonList(p -> p.getId().equals(person.getId()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+            person.getName(), task.getTitle()));
     }
 
     @Override

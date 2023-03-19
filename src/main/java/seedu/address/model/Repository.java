@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 
@@ -106,6 +107,11 @@ public class Repository<T extends Relationship<T>> implements ReadOnlyRepository
     @Override
     public ObservableList<T> getData() {
         return items.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public List<T> getFilterData(Predicate<T> predicate) {
+        return items.asUnmodifiableObservableList().filtered(predicate);
     }
 
     @Override
