@@ -107,6 +107,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedCustomer);
 
         customers.setCustomer(target, editedCustomer);
+
+        // update orders associated to the customer
+        ArrayList<Order> ordersToUpdate = new ArrayList<>();
+        orders.forEach(o -> {
+            if (o.getCustomer().equals(target)) {
+                ordersToUpdate.add(o);
+            }
+        });
+        ordersToUpdate.forEach(o -> orders.setOrder(o, o.newOrderWithCustomer(editedCustomer)));
     }
 
     /**

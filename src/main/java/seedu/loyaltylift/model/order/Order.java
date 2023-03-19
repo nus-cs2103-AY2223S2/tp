@@ -68,6 +68,15 @@ public class Order {
     }
 
     /**
+     * Returns a new {@code Order} with its customer association to the specified customer.
+     * @param customer The new customer associated to.
+     * @return A new Order instance.
+     */
+    public Order newOrderWithCustomer(Customer customer) {
+        return new Order(customer, getName(), getQuantity(), getStatus(), getAddress(), getCreatedDate());
+    }
+
+    /**
      * Returns true if both orders have the same name.
      * This defines a weaker notion of equality between two orders.
      */
