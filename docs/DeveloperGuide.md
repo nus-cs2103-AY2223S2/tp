@@ -20,13 +20,14 @@ This section describes how certain components and features are implemented.
 
 ### Calendar Panel
 
-The `CalendarPanel` is the component that displays the calendar graphically, featuring several calendar formats. It
+The `CalendarPanel` is the component that displays the calendar graphically, featuring several calendar formats. It is
+read-only,
 extends AB3's `UIPart`, replaces `PersonListPanel` and is implemented using the
 open-source [CalendarFX](https://github.com/dlsc-software-consulting-gmbh/CalendarFX) framework.
 
-The `CalendarPanel` is instantiated in `MainWindow` with a `CalendarView` object. The `TaskEntry` class encapsulates all
+The `CalendarPanel` is instantiated in `MainWindow` with a `DateControl` object. The `TaskEntry` class encapsulates all
 the information of a task, including its description, date, time and tags; by extending the `Entry` class of CalendarFX,
-it is able to be displayed on the `CalendarView` object.
+it is able to be displayed on the `DateControl` object.
 
 `CalendarPanel` implements the following operations:
 
@@ -34,8 +35,23 @@ it is able to be displayed on the `CalendarView` object.
 - `showInformationDialog(entry)`— Spawns a dialog box with additional information of a `TaskEntry`.
 - `setDate(date)`, `goToToday()`, `goToNext()`, `goToPrevious()`— Operations which change the date (or month) shown by
   the `CalendaraPanel`. The default date on startup is the current date.
-- `setView(view)`, `nextView()`, — Changes the view (layout) of the `CalendarPanel` to a `DAY_VIEW`, `WEEK_VIEW`
+- `setPage(view)`, `nextPage()`, — Changes the page (layout) of the `CalendarPanel` to a `DAY_VIEW`, `WEEK_VIEW`
   or `MONTH_VIEW`. The default view on startup is `MONTH_VIEW`.
+
+<img src="./images/CalendarPanelClassDiagram.png" width="100%"/>
+
+The `CalendarPanel` holds three `DateControl` objects, each representing a different view of the calendar. Only one is
+visible and managed by the `CalendarPanel` at any given time, and it is possible to switch between the three views.
+
+`Event` and `ToDo`-derived `TaskEntry`s are each held in two different `Calendar` objects, so that they can be styled
+differently.
+
+The `CalendarPanel` is updated by calling `updateCalendar(taskList)` with a `ReadOnlyTaskList` object. This method is
+invoked by `MainWindow` after a command is executed.
+
+Below is a sequence diagram of the `updateCalendar(taskList)` operation:
+
+<img src="./images/CalendarViewSequenceDiagram.png" width="100%"/>
 
 ## Appendix
 

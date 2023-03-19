@@ -3,16 +3,20 @@ package seedu.calidr.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.calidr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.commons.util.StringUtil;
 import seedu.calidr.logic.parser.exceptions.ParseException;
+import seedu.calidr.model.PageType;
 import seedu.calidr.model.person.Address;
 import seedu.calidr.model.person.Email;
 import seedu.calidr.model.person.Name;
@@ -30,9 +34,19 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    private static final Map<String, LocalDateTime> KEY_DATE_MAP = Map.of(
+            "today", LocalDateTime.now(),
+            "tomorrow", LocalDateTime.now().plusDays(1),
+            "next week", LocalDateTime.now().plusWeeks(1),
+            "next month", LocalDateTime.now().plusMonths(1),
+            "next year", LocalDateTime.now().plusYears(1),
+            "heat death of universe", LocalDateTime.MAX
+    );
+
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -142,6 +156,7 @@ public class ParserUtil {
     }
 
     //===============================For Calidr====================================================
+
     /**
      * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
@@ -158,6 +173,28 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String dateText} into a {@code LocalDate} object.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param dateText The string containing the date.
+     * @return A {@code LocalDate} object representing the given date .
+     * @throws ParseException if the given {@code dateText} is invalid.
+     */
+    public static LocalDate parseDate(String dateText) throws ParseException {
+        dateText = dateText.trim();
+        Optional<LocalDateTime> keyDateTime = parseDateKeyword(dateText);
+        if (keyDateTime.isPresent()) {
+            return keyDateTime.get().toLocalDate();
+        }
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        try {
+            return LocalDate.parse(dateText, dateTimeFormatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Date-times should be of the format DD-MM-YYYY");
+        }
+    }
+
+    /**
      * Parses a {@code String dateTimeText} into a {@code LocalDateTime} object.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -166,11 +203,14 @@ public class ParserUtil {
      * @throws ParseException if the given {@code dateTimeText} is invalid.
      */
     public static LocalDateTime parseDateTime(String dateTimeText) throws ParseException {
+        dateTimeText = dateTimeText.trim();
+        Optional<LocalDateTime> keyDateTime = parseDateKeyword(dateTimeText);
+        if (keyDateTime.isPresent()) {
+            return keyDateTime.get();
+        }
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(dateTimeText, dateTimeFormatter);
-            return dateTime;
+            return LocalDateTime.parse(dateTimeText, dateTimeFormatter);
 
         } catch (DateTimeParseException e) {
             throw new ParseException("Date-times should be of the format DD-MM-YYYY hhmm");
@@ -185,9 +225,8 @@ public class ParserUtil {
      */
     public static TodoDateTime parseTodoDateTime(String todoDateTime) throws ParseException {
         requireNonNull(todoDateTime);
-        String trimmedTodoDateTime = todoDateTime.trim();
 
-        LocalDateTime byDateTime = parseDateTime(trimmedTodoDateTime);
+        LocalDateTime byDateTime = parseDateTime(todoDateTime);
 
         return new TodoDateTime(byDateTime);
     }
@@ -198,19 +237,50 @@ public class ParserUtil {
      * be trimmed.
      *
      * @throws ParseException if the given {@code String fromDateTime} and
-     *     {@code String toDateTime} are invalid.
+     *                        {@code String toDateTime} are invalid.
      */
     public static EventDateTimes parseEventDateTimes(String fromDateTime, String toDateTime)
             throws ParseException {
 
         requireAllNonNull(fromDateTime, toDateTime);
 
-        String trimmedFromDateTime = fromDateTime.trim();
-        String trimmedToDateTime = toDateTime.trim();
-
-        LocalDateTime from = parseDateTime(trimmedFromDateTime);
-        LocalDateTime to = parseDateTime(trimmedToDateTime);
+        LocalDateTime from = parseDateTime(fromDateTime);
+        LocalDateTime to = parseDateTime(toDateTime);
 
         return new EventDateTimes(from, to);
+    }
+
+    /**
+     * Parses a shorthand into a {@code LocalDateTime} object.
+     * {@code dateTimeText} can be one of the following:
+     * - "today"
+     * - "tomorrow"
+     * - "next week"
+     * - "next month"
+     * - "next year"
+     *
+     * @param dateTimeText The shorthand.
+     * @return A {@code LocalDateTime} object representing the given date and time.
+     */
+    public static Optional<LocalDateTime> parseDateKeyword(String dateTimeText) {
+        return Optional.of(dateTimeText).map(KEY_DATE_MAP::get);
+    }
+
+    /**
+     * Parses a {@code String pageType} into a {@code PageType}.
+     *
+     * @param args The string containing the page type.
+     * @return A {@code PageType} object representing the given page type.
+     * @throws ParseException if the given {@code pageType} is invalid.
+     */
+    public static PageType parsePageType(String args) throws ParseException {
+        requireNonNull(args);
+        PageType pageType;
+        try {
+            pageType = PageType.valueOf(args.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException("Invalid page type.");
+        }
+        return pageType;
     }
 }

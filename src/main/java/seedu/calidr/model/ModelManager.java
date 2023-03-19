@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.calidr.commons.core.GuiSettings;
 import seedu.calidr.commons.core.LogsCenter;
-import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.tasklist.TaskList;
@@ -50,14 +49,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -85,13 +84,13 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        this.addressBook.resetData(addressBook);
     }
 
     @Override
@@ -157,13 +156,13 @@ public class ModelManager implements Model {
     //=========== TaskList ================================================================================
 
     @Override
-    public void setTaskList(ReadOnlyTaskList taskList) {
-        this.taskList.resetData(taskList);
+    public ReadOnlyTaskList getTaskList() {
+        return taskList;
     }
 
     @Override
-    public ReadOnlyTaskList getTaskList() {
-        return taskList;
+    public void setTaskList(ReadOnlyTaskList taskList) {
+        this.taskList.resetData(taskList);
     }
 
     @Override

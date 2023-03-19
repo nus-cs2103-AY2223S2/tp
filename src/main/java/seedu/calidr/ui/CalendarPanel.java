@@ -5,15 +5,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.DateControl;
-import com.calendarfx.view.DayView;
 import com.calendarfx.view.EntryViewBase;
-import com.calendarfx.view.MonthView;
-import com.calendarfx.view.WeekView;
+import com.calendarfx.view.page.DayPage;
+import com.calendarfx.view.page.MonthPage;
+import com.calendarfx.view.page.PageBase;
+import com.calendarfx.view.page.WeekPage;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -21,7 +23,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -32,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.util.TaskEntryUtil;
+import seedu.calidr.model.PageType;
 import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.TaskEntry;
 import seedu.calidr.model.task.Event;
@@ -55,21 +59,24 @@ public class CalendarPanel extends UiPart<Region> {
     private final Map<Class<? extends Task>, Calendar<TaskEntry>> taskEntryCalendarMap = new HashMap<>();
 
     @FXML
-    private MonthView monthView;
+    private VBox calendarPanel;
 
     @FXML
-    private WeekView weekView;
+    private MonthPage monthPage;
 
     @FXML
-    private DayView dayView;
+    private WeekPage weekPage;
 
-    private final Map<ViewType, DateControl> calendarViews = Map.of(
-            ViewType.MONTH, monthView,
-            ViewType.WEEK, weekView,
-            ViewType.DAY, dayView
+    @FXML
+    private DayPage dayPage;
+
+    private final Map<PageType, PageBase> calendarViews = Map.of(
+        PageType.DAY, dayPage,
+        PageType.WEEK, weekPage,
+        PageType.MONTH, monthPage
     );
 
-    private ViewType currentView = ViewType.DAY;
+    private PageType currentPage = PageType.MONTH;
 
     private Thread updateTimeThread;
 
@@ -78,7 +85,11 @@ public class CalendarPanel extends UiPart<Region> {
      */
     public CalendarPanel() {
         super(FXML);
-
+        calendarPanel.addEventFilter(InputEvent.ANY, event -> {
+            if (!(event instanceof ScrollEvent)) {
+                event.consume();
+            }
+        });
 
         calendarTodos.setReadOnly(true);
         calendarEvents.setReadOnly(true);
@@ -93,13 +104,13 @@ public class CalendarPanel extends UiPart<Region> {
         calendarViews.forEach((key, view) -> {
             view.setEntryContextMenuCallback(this::entryContextMenuCallback);
             view.setContextMenuCallback(param -> null);
+            view.setShowNavigation(false);
             view.getCalendarSources().add(calendarSource);
             view.setBackground(Background.fill(Paint.valueOf("#ffffff")));
             view.setRequestedTime(LocalTime.now());
             view.managedProperty().bind(view.visibleProperty());
         });
-        this.getRoot().addEventFilter(MouseEvent.ANY, javafx.event.Event::consume);
-        setView(currentView);
+        setPage(currentPage);
         goToToday();
     }
 
@@ -111,19 +122,23 @@ public class CalendarPanel extends UiPart<Region> {
 
         MenuItem informationItem = new MenuItem("Information");
         informationItem.setOnAction(evt ->
-                showInformationDialog(entry)
+            showInformationDialog(entry)
         );
         contextMenu.getItems().add(informationItem);
 
         return contextMenu;
     }
 
-    public DateControl getActiveView() {
-        return calendarViews.get(currentView);
+    public PageBase getActivePage() {
+        return calendarViews.get(currentPage);
     }
 
-    public void showInformationDialog(TaskEntry entry) {
-        Window window = getActiveView().getScene().getWindow();
+    public void setAllPages(Consumer<PageBase> consumer) {
+        calendarViews.forEach((key, view) -> consumer.accept(view));
+    }
+
+    private void showInformationDialog(TaskEntry entry) {
+        Window window = this.getRoot().getScene().getWindow();
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(window);
@@ -147,36 +162,36 @@ public class CalendarPanel extends UiPart<Region> {
     }
 
     public void setDate(LocalDate date) {
-        getActiveView().setDate(date);
+        setAllPages(view -> view.setDate(date));
     }
 
     public void goToToday() {
-        getActiveView().goToday();
+        setAllPages(PageBase::goToday);
     }
 
     public void goToNext() {
-        getActiveView().goForward();
+        setAllPages(PageBase::goForward);
     }
 
     public void goToPrevious() {
-        getActiveView().goBack();
+        setAllPages(PageBase::goBack);
     }
 
-    public void nextView() {
-        setView(currentView.getNext());
+    public void nextPage() {
+        setPage(currentPage.next(currentPage));
     }
 
-    public void setView(ViewType viewType) {
-        currentView = viewType;
-        calendarViews.forEach((key, view) -> view.setVisible(key == viewType));
+    public void setPage(PageType pageType) {
+        currentPage = pageType;
+        calendarViews.forEach((key, view) -> view.setVisible(key == pageType));
     }
 
     private void spawnUpdateThread() {
         updateTimeThread = new Thread(() -> {
             while (true) {
                 Platform.runLater(() -> {
-                    getActiveView().setToday(LocalDate.now());
-                    getActiveView().setTime(LocalTime.now());
+                    getActivePage().setToday(LocalDate.now());
+                    getActivePage().setTime(LocalTime.now());
                 });
 
                 try {
@@ -207,13 +222,5 @@ public class CalendarPanel extends UiPart<Region> {
                 calendar.addEntry(TaskEntryUtil.convert(task));
             }
         });
-    }
-
-    public enum ViewType {
-        MONTH, WEEK, DAY;
-
-        public ViewType getNext() {
-            return values()[(ordinal() + 1) % values().length];
-        }
     }
 }

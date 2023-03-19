@@ -17,8 +17,12 @@ import seedu.calidr.model.task.params.Priority;
 public class TaskList implements ReadOnlyTaskList {
     private final UniqueTaskList tasks = new UniqueTaskList();
 
-    public TaskList() {}
+    public TaskList() {
+    }
 
+    /**
+     * Creates a TaskList using the Tasks in the {@code toBeCopied}
+     */
     public TaskList(ReadOnlyTaskList toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -30,6 +34,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     /**
      * Resets the existing data of this {@code TaskList} with {@code newData}.
+     *
      * @param newData The new data to update the task list.
      */
     public void resetData(ReadOnlyTaskList newData) {
@@ -40,6 +45,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the task list.
+     *
      * @param task The task to check.
      * @return true if task already exists in the task list and false otherwise.
      */

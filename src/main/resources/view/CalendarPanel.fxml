@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.calendarfx.view.DayView?>
-<?import com.calendarfx.view.MonthView?>
-<?import com.calendarfx.view.WeekView?>
-<?import javafx.scene.control.ScrollPane?>
+<?import com.calendarfx.view.page.DayPage?>
+<?import com.calendarfx.view.page.MonthPage?>
+<?import com.calendarfx.view.page.WeekPage?>
 <?import javafx.scene.layout.VBox?>
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" fitToHeight="true" fitToWidth="true"
-            xmlns="http://javafx.com/javafx/19">
-    <VBox>
-        <MonthView fx:id="monthView" VBox.vgrow="ALWAYS"/>
-        <WeekView fx:id="weekView" visibleHours="5" VBox.vgrow="ALWAYS"/>
-        <DayView fx:id="dayView" VBox.vgrow="ALWAYS"/>
-    </VBox>
-</ScrollPane>
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="calendarPanel"
+      xmlns="http://javafx.com/javafx/19">
+    <MonthPage fx:id="monthPage" VBox.vgrow="ALWAYS"/>
+    <WeekPage fx:id="weekPage" VBox.vgrow="ALWAYS"/>
+    <DayPage fx:id="dayPage" VBox.vgrow="ALWAYS"/>
+</VBox>
