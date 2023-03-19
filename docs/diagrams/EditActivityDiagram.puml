@@ -2,20 +2,18 @@
 start
 :User enters edit command;
 if () then ([Invalid arguments])
-  :Error: Invalid command format;
-  stop
-() elseif () then ([Duplicate name])
-  :Error: Duplicated person;
-  stop
-() elseif () then ([No fields are edited])
-  :Error: Not edited;
-  stop
+    :Error: Message usage;
+    stop
+elseif () then ([Invalid index])
+    :Error: Invalid person index;
+    stop
+elseif () then ([Name exists])
+    :Error: Duplicate person;
+    stop
 else ()
 endif
-  :Person descriptor is created;
-  :Common modules are computed;
-  :Details are changed;
-  :EduMate is sorted by index;
+:Common modules and contact index are computed;
+:Edited person is added to EduMate;
+:Success message is returned;
 stop
-
 @enduml
