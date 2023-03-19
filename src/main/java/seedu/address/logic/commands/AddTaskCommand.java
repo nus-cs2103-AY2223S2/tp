@@ -42,12 +42,11 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireNonNull(model);
 
-        RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
-        if (taskModelManager.hasItem(toAdd)) {
+        if (officeConnectModel.hasItem(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        taskModelManager.addItem(toAdd);
+        officeConnectModel.addItem(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -31,17 +31,17 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Task taskToDelete = model.getTaskModelManager().getFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        Task taskToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
-        expectedModel.getTaskModelManager().deleteItem(taskToDelete);
+        expectedModel.deleteItem(taskToDelete);
         assertTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(
-                model.getTaskModelManager().getFilteredItemList().size() + 1);
+                model.getFilteredItemList().size() + 1);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
         assertTaskCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
@@ -50,12 +50,12 @@ public class DeleteTaskCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST);
 
-        Task taskToDelete = model.getTaskModelManager().getFilteredItemList().get(INDEX_FIRST.getZeroBased());
+        Task taskToDelete = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        expectedModel.getTaskModelManager().deleteItem(taskToDelete);
+        expectedModel.deleteItem(taskToDelete);
         showNoTask(expectedModel);
 
         assertTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
@@ -69,7 +69,7 @@ public class DeleteTaskCommandTest {
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased()
-                < model.getTaskModelManager().getReadOnlyRepository().getData().size());
+                < model.getReadOnlyRepository().getData().size());
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
 
@@ -103,8 +103,8 @@ public class DeleteTaskCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoTask(OfficeConnectModel officeConnectModel) {
-        officeConnectModel.getTaskModelManager().updateFilteredItemList(x -> false);
+        officeConnectModel.updateFilteredItemList(x -> false);
 
-        assertTrue(officeConnectModel.getTaskModelManager().getFilteredItemList().isEmpty());
+        assertTrue(officeConnectModel.getFilteredItemList().isEmpty());
     }
 }
