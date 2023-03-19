@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 /**
  * Represents an Event's phone number in the Calendar.
@@ -18,8 +19,16 @@ public class DateTime {
 
     private final LocalDateTime dateTime;
 
+    /**
+     * Creates a {@code DateTime} with the given {@code LocalDateTime}.
+     */
+    public DateTime(LocalDateTime dateTime) {
+        Objects.requireNonNull(dateTime);
+        this.dateTime = dateTime;
+    }
+
     public DateTime(String dateTime) {
-        this.dateTime = LocalDateTime.parse(dateTime, dateTimeFormatter);
+        this(LocalDateTime.parse(dateTime, dateTimeFormatter));
     }
 
     public LocalDateTime getDateTime() {
@@ -42,8 +51,12 @@ public class DateTime {
         return startDateTime.getDateTime().isBefore(endDateTime.getDateTime());
     }
 
-    public static long getIntervalMinutes(DateTime startDateTime, DateTime endDateTime, ChronoUnit unit) {
+    public static long getIntervalDuration(DateTime startDateTime, DateTime endDateTime, ChronoUnit unit) {
         return startDateTime.getDateTime().until(endDateTime.getDateTime(), unit);
+    }
+
+    public String toString(DateTimeFormatter formatter) {
+        return dateTime.format(formatter);
     }
 
     @Override
