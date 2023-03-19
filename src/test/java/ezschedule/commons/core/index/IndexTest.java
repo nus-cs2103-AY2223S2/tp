@@ -3,16 +3,18 @@ package ezschedule.commons.core.index;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static ezschedule.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import ezschedule.testutil.Assert;
 
 public class IndexTest {
 
     @Test
     public void createOneBasedIndex() {
         // invalid index
-        assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(0));
+        Assert.assertThrows(IndexOutOfBoundsException.class, () -> Index.fromOneBased(0));
 
         // check equality using the same base
         assertEquals(1, Index.fromOneBased(1).getOneBased());
@@ -26,7 +28,7 @@ public class IndexTest {
     @Test
     public void createZeroBasedIndex() {
         // invalid index
-        assertThrows(IndexOutOfBoundsException.class, () -> Index.fromZeroBased(-1));
+        Assert.assertThrows(IndexOutOfBoundsException.class, () -> Index.fromZeroBased(-1));
 
         // check equality using the same base
         assertEquals(0, Index.fromZeroBased(0).getZeroBased());

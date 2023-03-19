@@ -1,8 +1,8 @@
 package ezschedule.commons.util;
 
-import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static ezschedule.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import ezschedule.commons.core.Config;
 import ezschedule.commons.exceptions.DataConversionException;
+import ezschedule.testutil.Assert;
 
 public class ConfigUtilTest {
 
@@ -25,7 +26,7 @@ public class ConfigUtilTest {
 
     @Test
     public void read_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> read(null));
+        Assert.assertThrows(NullPointerException.class, () -> read(null));
     }
 
     @Test
@@ -35,7 +36,7 @@ public class ConfigUtilTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> read("NotJsonFormatConfig.json"));
+        Assert.assertThrows(DataConversionException.class, () -> read("NotJsonFormatConfig.json"));
     }
 
     @Test
@@ -75,12 +76,12 @@ public class ConfigUtilTest {
 
     @Test
     public void save_nullConfig_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> save(null, "SomeFile.json"));
+        Assert.assertThrows(NullPointerException.class, () -> save(null, "SomeFile.json"));
     }
 
     @Test
     public void save_nullFile_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> save(new Config(), null));
+        Assert.assertThrows(NullPointerException.class, () -> save(new Config(), null));
     }
 
     @Test
@@ -108,8 +109,8 @@ public class ConfigUtilTest {
 
     private Path addToTestDataPathIfNotNull(String configFileInTestDataFolder) {
         return configFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER.resolve(configFileInTestDataFolder)
-                : null;
+                                  ? TEST_DATA_FOLDER.resolve(configFileInTestDataFolder)
+                                  : null;
     }
 
 

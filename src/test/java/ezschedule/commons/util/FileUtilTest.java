@@ -1,10 +1,12 @@
 package ezschedule.commons.util;
 
-import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static ezschedule.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import ezschedule.testutil.Assert;
 
 public class FileUtilTest {
 
@@ -17,7 +19,7 @@ public class FileUtilTest {
         assertFalse(FileUtil.isValidPath("a\0"));
 
         // null path -> throws NullPointerException
-        assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
+        Assert.assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
     }
 
 }

@@ -2,9 +2,11 @@ package ezschedule.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static ezschedule.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import ezschedule.testutil.Assert;
 
 public class VersionTest {
 
@@ -17,7 +19,7 @@ public class VersionTest {
 
     @Test
     public void versionParsing_wrongVersionString_throwIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> Version.fromString("This is not a version string"));
+        Assert.assertThrows(IllegalArgumentException.class, () -> Version.fromString("This is not a version string"));
     }
 
     @Test
@@ -129,7 +131,7 @@ public class VersionTest {
     }
 
     private void verifyVersionParsedCorrectly(String versionString,
-                                              int major, int minor, int patch, boolean isEarlyAccess) {
+            int major, int minor, int patch, boolean isEarlyAccess) {
         assertEquals(new Version(major, minor, patch, isEarlyAccess), Version.fromString(versionString));
     }
 }
