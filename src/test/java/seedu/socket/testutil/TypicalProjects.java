@@ -6,6 +6,7 @@ import static seedu.socket.testutil.TypicalPersons.CARL;
 import static seedu.socket.testutil.TypicalPersons.DANIEL;
 import static seedu.socket.testutil.TypicalPersons.ELLE;
 import static seedu.socket.testutil.TypicalPersons.FIONA;
+import static seedu.socket.testutil.TypicalPersons.getTypicalPersons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +57,9 @@ public class TypicalProjects {
      */
     public static Socket getTypicalSocket() {
         Socket s = new Socket();
+        for (Person person : getTypicalPersons()) {
+            s.addPerson(person);
+        }
         for (Project project : getTypicalProjects()) {
             s.addProject(project);
         }

@@ -23,6 +23,9 @@ public class JsonSerializableSocketTest {
     private static final Path TYPICAL_PROJECTS_FILE = TEST_DATA_FOLDER.resolve("typicalProjectsSocket.json");
     private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectSocket.json");
     private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectSocket.json");
+    private static final Path MISSING_PROJECT_MEMBER_IN_PERSONS_FILE =
+            TEST_DATA_FOLDER.resolve("missingProjectMemberInPersonsSocket.json");
+
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableSocket dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
@@ -68,6 +71,14 @@ public class JsonSerializableSocketTest {
         JsonSerializableSocket dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PROJECT_FILE,
                 JsonSerializableSocket.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableSocket.MESSAGE_DUPLICATE_PROJECT,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_missingProjectMemberInPersons_throwsIllegalValueException() throws Exception {
+        JsonSerializableSocket dataFromFile = JsonUtil.readJsonFile(MISSING_PROJECT_MEMBER_IN_PERSONS_FILE,
+                JsonSerializableSocket.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableSocket.MESSAGE_MISSING_PERSON,
                 dataFromFile::toModelType);
     }
 

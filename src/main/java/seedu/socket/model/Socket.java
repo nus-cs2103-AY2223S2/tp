@@ -80,6 +80,14 @@ public class Socket implements ReadOnlySocket {
     }
 
     /**
+     * Returns person reference with the same identity as {@code person} in {@code persons} in (@code Socket}.
+     */
+    public Person getPerson(Person person) {
+        requireNonNull(person);
+        return persons.getPerson(person);
+    }
+
+    /**
      * Adds a person to {@code Socket}.
      * The person must not already exist in {@code Socket}.
      */

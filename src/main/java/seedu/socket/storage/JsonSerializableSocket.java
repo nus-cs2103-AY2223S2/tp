@@ -1,7 +1,9 @@
 package seedu.socket.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,7 +23,8 @@ import seedu.socket.model.project.Project;
 class JsonSerializableSocket {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
+    public static final String MESSAGE_MISSING_PERSON = "Persons list does not contain project member(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
@@ -65,9 +68,19 @@ class JsonSerializableSocket {
             if (socket.hasProject(project)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
             }
-            socket.addProject(project);
+            // sync Person references in Project
+            Set<Person> memberReferences = new HashSet<>();
+            for (Person member : project.getMembers()) {
+                if (socket.hasPerson(member)) {
+                    memberReferences.add(socket.getPerson(member));
+                } else {
+                    throw new IllegalValueException(MESSAGE_MISSING_PERSON);
+                }
+            }
+            Project projectWithReferences = new Project(project.getName(), project.getRepoHost(),
+                    project.getRepoName(), project.getDeadline(), memberReferences);
+            socket.addProject(projectWithReferences);
         }
-        // TODO sync references in projects with persons list
         return socket;
     }
 
