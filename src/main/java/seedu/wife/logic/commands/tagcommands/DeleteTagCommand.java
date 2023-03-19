@@ -2,6 +2,8 @@ package seedu.wife.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.logic.commands.exceptions.CommandException;
@@ -33,20 +35,17 @@ public class DeleteTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Tag> lastShownList = List.copyOf(model.getTagList());
+        String deletedTagSuccessMessage = TAG_DELETE_SUCCESS_MESSAGE;
 
-        if (model.hasTag(toDelete)) {
-            throw new CommandException(TAG_DELETE_UNSUCCESS_MESSAGE);
+        for (Tag tag : lastShownList) {
+            if (model.hasTag(tag)) {
+                model.deleteTag(tag);
+                deletedTagSuccessMessage += "\n" + tag;
+            }
         }
 
-        try {
-            model.deleteTag(toDelete);
-        } catch (TagNotFoundException e) {
-            throw new CommandException(e.getMessage());
-        } catch (TagStorageEmptyException e) {
-            throw new CommandException(e.getMessage());
-        }
-
-        return new CommandResult(String.format(TAG_DELETE_SUCCESS_MESSAGE, toDelete.getTagName()));
+        return new CommandResult(deletedTagSuccessMessage);
     }
 
     @Override
