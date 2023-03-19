@@ -34,8 +34,8 @@ import trackr.logic.commands.ListSupplierCommand;
 import trackr.logic.commands.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.order.Order;
-import trackr.model.supplier.NameContainsKeywordsPredicate;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.PersonNameContainsKeywordsPredicate;
+import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
@@ -207,7 +207,7 @@ public class TrackrParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindSupplierCommand command = (FindSupplierCommand) parser.parseCommand(
                 FindSupplierCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindSupplierCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindSupplierCommand(new PersonNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

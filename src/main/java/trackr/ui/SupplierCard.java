@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 
 /**
  * An UI component that displays information of a {@code Supplier}.
@@ -48,11 +48,11 @@ public class SupplierCard extends UiPart<Region> {
         super(FXML);
         this.supplier = supplier;
         id.setText(displayedIndex + ". ");
-        name.setText(supplier.getName().fullName);
-        phone.setText(supplier.getPhone().value);
-        address.setText(supplier.getAddress().value);
-        email.setText(supplier.getEmail().value);
-        supplier.getTags().stream()
+        name.setText(supplier.getPersonName().getName());
+        phone.setText(supplier.getPersonPhone().personPhone);
+        address.setText(supplier.getPersonAddress().personAddress);
+        email.setText(supplier.getPersonEmail().personEmail);
+        supplier.getPersonTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

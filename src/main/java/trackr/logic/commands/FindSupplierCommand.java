@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import trackr.commons.core.Messages;
 import trackr.model.Model;
-import trackr.model.supplier.NameContainsKeywordsPredicate;
+import trackr.model.person.PersonNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all suppliers in address book whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindSupplierCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PersonNameContainsKeywordsPredicate predicate;
 
-    public FindSupplierCommand(NameContainsKeywordsPredicate predicate) {
+    public FindSupplierCommand(PersonNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

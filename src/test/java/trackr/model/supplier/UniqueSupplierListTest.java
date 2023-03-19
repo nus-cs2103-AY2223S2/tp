@@ -15,8 +15,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.supplier.exceptions.DuplicateSupplierException;
-import trackr.model.supplier.exceptions.SupplierNotFoundException;
+import trackr.model.item.exceptions.DuplicateItemException;
+import trackr.model.item.exceptions.ItemNotFoundException;
+import trackr.model.person.Supplier;
+import trackr.model.person.UniqueSupplierList;
 import trackr.testutil.SupplierBuilder;
 
 public class UniqueSupplierListTest {
@@ -53,30 +55,30 @@ public class UniqueSupplierListTest {
     }
 
     @Test
-    public void add_duplicateSupplier_throwsDuplicateSupplierException() {
+    public void add_duplicateSupplier_throwsDuplicateItemException() {
         uniqueSupplierList.add(ALICE);
-        assertThrows(DuplicateSupplierException.class, () -> uniqueSupplierList.add(ALICE));
+        assertThrows(DuplicateItemException.class, () -> uniqueSupplierList.add(ALICE));
     }
 
     @Test
     public void setSupplier_nullTargetSupplier_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setSupplier(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setItem(null, ALICE));
     }
 
     @Test
     public void setSupplier_nullEditedSupplier_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setSupplier(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setItem(ALICE, null));
     }
 
     @Test
-    public void setSupplier_targetSupplierNotInList_throwsSupplierNotFoundException() {
-        assertThrows(SupplierNotFoundException.class, () -> uniqueSupplierList.setSupplier(ALICE, ALICE));
+    public void setSupplier_targetSupplierNotInList_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> uniqueSupplierList.setItem(ALICE, ALICE));
     }
 
     @Test
     public void setSupplier_editedSupplierIsSamesupplier_success() {
         uniqueSupplierList.add(ALICE);
-        uniqueSupplierList.setSupplier(ALICE, ALICE);
+        uniqueSupplierList.setItem(ALICE, ALICE);
         UniqueSupplierList expectedUniqueSupplierList = new UniqueSupplierList();
         expectedUniqueSupplierList.add(ALICE);
         assertEquals(expectedUniqueSupplierList, uniqueSupplierList);
@@ -87,7 +89,7 @@ public class UniqueSupplierListTest {
         uniqueSupplierList.add(ALICE);
         Supplier editedAlice = new SupplierBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueSupplierList.setSupplier(ALICE, editedAlice);
+        uniqueSupplierList.setItem(ALICE, editedAlice);
         UniqueSupplierList expectedUniqueSupplierList = new UniqueSupplierList();
         expectedUniqueSupplierList.add(editedAlice);
         assertEquals(expectedUniqueSupplierList, uniqueSupplierList);
@@ -96,7 +98,7 @@ public class UniqueSupplierListTest {
     @Test
     public void setSupplier_editedSupplierHasDifferentIdentity_success() {
         uniqueSupplierList.add(ALICE);
-        uniqueSupplierList.setSupplier(ALICE, BOB);
+        uniqueSupplierList.setItem(ALICE, BOB);
         UniqueSupplierList expectedUniqueSupplierList = new UniqueSupplierList();
         expectedUniqueSupplierList.add(BOB);
         assertEquals(expectedUniqueSupplierList, uniqueSupplierList);
@@ -106,7 +108,7 @@ public class UniqueSupplierListTest {
     public void setSupplier_editedSupplierHasNonUniqueIdentity_throwsDuplicatesupplierException() {
         uniqueSupplierList.add(ALICE);
         uniqueSupplierList.add(BOB);
-        assertThrows(DuplicateSupplierException.class, () -> uniqueSupplierList.setSupplier(ALICE, BOB));
+        assertThrows(DuplicateItemException.class, () -> uniqueSupplierList.setItem(ALICE, BOB));
     }
 
     @Test
@@ -115,8 +117,8 @@ public class UniqueSupplierListTest {
     }
 
     @Test
-    public void remove_supplierDoesNotExist_throwsSupplierNotFoundException() {
-        assertThrows(SupplierNotFoundException.class, () -> uniqueSupplierList.remove(ALICE));
+    public void remove_supplierDoesNotExist_throwsItemNotFoundException() {
+        assertThrows(ItemNotFoundException.class, () -> uniqueSupplierList.remove(ALICE));
     }
 
     @Test
@@ -129,7 +131,7 @@ public class UniqueSupplierListTest {
 
     @Test
     public void setSuppliers_nullUniqueSupplierList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setSuppliers((UniqueSupplierList) null));
+        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setItems((UniqueSupplierList) null));
     }
 
     @Test
@@ -137,20 +139,20 @@ public class UniqueSupplierListTest {
         uniqueSupplierList.add(ALICE);
         UniqueSupplierList expectedUniqueSupplierList = new UniqueSupplierList();
         expectedUniqueSupplierList.add(BOB);
-        uniqueSupplierList.setSuppliers(expectedUniqueSupplierList);
+        uniqueSupplierList.setItems(expectedUniqueSupplierList);
         assertEquals(expectedUniqueSupplierList, uniqueSupplierList);
     }
 
     @Test
     public void setSuppliers_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setSuppliers((List<Supplier>) null));
+        assertThrows(NullPointerException.class, () -> uniqueSupplierList.setItems((List<Supplier>) null));
     }
 
     @Test
     public void setSuppliers_list_replacesOwnListWithProvidedList() {
         uniqueSupplierList.add(ALICE);
         List<Supplier> supplierList = Collections.singletonList(BOB);
-        uniqueSupplierList.setSuppliers(supplierList);
+        uniqueSupplierList.setItems(supplierList);
         UniqueSupplierList expectedUniqueSupplierList = new UniqueSupplierList();
         expectedUniqueSupplierList.add(BOB);
         assertEquals(expectedUniqueSupplierList, uniqueSupplierList);
@@ -159,8 +161,7 @@ public class UniqueSupplierListTest {
     @Test
     public void setSuppliers_listWithDuplicatesuppliers_throwsDuplicatesupplierException() {
         List<Supplier> listWithDuplicatesuppliers = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateSupplierException.class, () -> uniqueSupplierList
-                                                                    .setSuppliers(listWithDuplicatesuppliers));
+        assertThrows(DuplicateItemException.class, () -> uniqueSupplierList.setItems(listWithDuplicatesuppliers));
     }
 
     @Test

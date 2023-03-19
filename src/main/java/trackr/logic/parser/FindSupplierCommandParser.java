@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import trackr.logic.commands.FindSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.supplier.NameContainsKeywordsPredicate;
+import trackr.model.person.PersonNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindSupplierCommand object
@@ -27,7 +27,7 @@ public class FindSupplierCommandParser implements Parser<FindSupplierCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindSupplierCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindSupplierCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

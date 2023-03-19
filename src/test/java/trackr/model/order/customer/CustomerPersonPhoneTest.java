@@ -6,7 +6,7 @@ import static trackr.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class CustomerPhoneTest {
+public class CustomerPersonPhoneTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {

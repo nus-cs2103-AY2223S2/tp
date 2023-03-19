@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import trackr.model.commons.Tag;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.PersonName;
-import trackr.model.supplier.Phone;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
+import trackr.model.person.Supplier;
 import trackr.model.util.SampleDataUtil;
 
 /**
@@ -21,20 +21,20 @@ public class SupplierBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private PersonName name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private PersonName personName;
+    private PersonPhone personPhone;
+    private PersonEmail personEmail;
+    private PersonAddress personAddress;
     private Set<Tag> tags;
 
     /**
      * Creates a {@code SupplierBuilder} with the default details.
      */
     public SupplierBuilder() {
-        name = new PersonName(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        personName = new PersonName(DEFAULT_NAME);
+        personPhone = new PersonPhone(DEFAULT_PHONE);
+        personEmail = new PersonEmail(DEFAULT_EMAIL);
+        personAddress = new PersonAddress(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -42,18 +42,18 @@ public class SupplierBuilder {
      * Initializes the SupplierBuilder with the data of {@code supplierToCopy}.
      */
     public SupplierBuilder(Supplier supplierToCopy) {
-        name = supplierToCopy.getName();
-        phone = supplierToCopy.getPhone();
-        email = supplierToCopy.getEmail();
-        address = supplierToCopy.getAddress();
-        tags = new HashSet<>(supplierToCopy.getTags());
+        personName = supplierToCopy.getPersonName();
+        personPhone = supplierToCopy.getPersonPhone();
+        personEmail = supplierToCopy.getPersonEmail();
+        personAddress = supplierToCopy.getPersonAddress();
+        tags = new HashSet<>(supplierToCopy.getPersonTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code supplier} that we are building.
+     * Sets the {@code PersonName} of the {@code supplier} that we are building.
      */
-    public SupplierBuilder withName(String name) {
-        this.name = new PersonName(name);
+    public SupplierBuilder withName(String personName) {
+        this.personName = new PersonName(personName);
         return this;
     }
 
@@ -69,7 +69,7 @@ public class SupplierBuilder {
      * Sets the {@code Address} of the {@code supplier} that we are building.
      */
     public SupplierBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.personAddress = new PersonAddress(address);
         return this;
     }
 
@@ -77,7 +77,7 @@ public class SupplierBuilder {
      * Sets the {@code Phone} of the {@code supplier} that we are building.
      */
     public SupplierBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.personPhone = new PersonPhone(phone);
         return this;
     }
 
@@ -85,12 +85,12 @@ public class SupplierBuilder {
      * Sets the {@code Email} of the {@code supplier} that we are building.
      */
     public SupplierBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.personEmail = new PersonEmail(email);
         return this;
     }
 
     public Supplier build() {
-        return new Supplier(name, phone, email, address, tags);
+        return new Supplier(personName, personPhone, personEmail, personAddress, tags);
     }
 
 }

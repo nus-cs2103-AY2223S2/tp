@@ -20,7 +20,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.GuiSettings;
-import trackr.model.supplier.NameContainsKeywordsPredicate;
+import trackr.model.person.PersonNameContainsKeywordsPredicate;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.testutil.OrderListBuilder;
 import trackr.testutil.SupplierListBuilder;
@@ -177,8 +177,8 @@ public class ModelManagerTest {
                 differentOrderList, userPrefs)));
 
         // different filteredPersonList -> returns false
-        String[] personKeywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredSupplierList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
+        String[] personKeywords = ALICE.getPersonName().getName().split("\\s+");
+        modelManager.updateFilteredSupplierList(new PersonNameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -199,8 +199,8 @@ public class ModelManagerTest {
                 differentOrderList, userPrefs)));
 
         // different filteredPersonList and different filteredTaskList -> returns false
-        personKeywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredSupplierList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
+        personKeywords = ALICE.getPersonName().getName().split("\\s+");
+        modelManager.updateFilteredSupplierList(new PersonNameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
         taskKeywords = BUY_FLOUR_N.getTaskName().getName().split("\\s+");
         TaskContainsKeywordsPredicate buyPredicate = new TaskContainsKeywordsPredicate();
         buyPredicate.setTaskNameKeywords(Arrays.asList(taskKeywords));

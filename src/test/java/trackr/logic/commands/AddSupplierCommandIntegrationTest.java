@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 
 /**
@@ -42,7 +42,7 @@ public class AddSupplierCommandIntegrationTest {
 
     @Test
     public void execute_duplicateSupplier_throwsCommandException() {
-        Supplier supplierInList = model.getSupplierList().getSupplierList().get(0);
+        Supplier supplierInList = model.getSupplierList().getItemList().get(0);
         assertCommandFailure(new AddSupplierCommand(supplierInList),
                 model, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER);
     }

@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.model.order.Order;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 
 /**

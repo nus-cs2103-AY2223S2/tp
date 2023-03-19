@@ -33,11 +33,11 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.model.commons.Tag;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.PersonName;
-import trackr.model.supplier.Phone;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
+import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 
 public class AddCommandParserTest {
@@ -115,15 +115,15 @@ public class AddCommandParserTest {
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, PersonPhone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, PersonEmail.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, PersonAddress.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

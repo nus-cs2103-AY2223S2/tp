@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import trackr.commons.core.LogsCenter;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 
 /**
  * Panel containing the list of suppliers.

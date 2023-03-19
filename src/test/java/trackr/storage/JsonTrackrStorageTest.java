@@ -122,8 +122,8 @@ public class JsonTrackrStorageTest {
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
 
         // Modify data, overwrite exiting file, and read back
-        originalAddressBook.addSupplier(HOON);
-        originalAddressBook.removeSupplier(ALICE);
+        originalAddressBook.addItem(HOON);
+        originalAddressBook.removeItem(ALICE);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList, filePath);
         readBackAddressBook = jsonTrackrStorage.readSupplierList(filePath).get();
         assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));
@@ -142,7 +142,7 @@ public class JsonTrackrStorageTest {
         assertEquals(originalOrderList, new OrderList(readBackOrderList));
 
         // Save and read without specifying file path
-        originalAddressBook.addSupplier(IDA);
+        originalAddressBook.addItem(IDA);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList);
         readBackAddressBook = jsonTrackrStorage.readSupplierList().get(); // file path not specified
         assertEquals(originalAddressBook, new SupplierList(readBackAddressBook));

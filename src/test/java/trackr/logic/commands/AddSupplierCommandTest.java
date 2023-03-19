@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.SupplierList;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 import trackr.testutil.TestUtil.ModelStub;
 
@@ -85,7 +85,7 @@ public class AddSupplierCommandTest {
         @Override
         public boolean hasSupplier(Supplier supplier) {
             requireNonNull(supplier);
-            return this.supplier.isSameSupplier(supplier);
+            return this.supplier.isSameItem(supplier);
         }
     }
 
@@ -98,7 +98,7 @@ public class AddSupplierCommandTest {
         @Override
         public boolean hasSupplier(Supplier supplier) {
             requireNonNull(supplier);
-            return suppliersAdded.stream().anyMatch(supplier::isSameSupplier);
+            return suppliersAdded.stream().anyMatch(supplier::isSameItem);
         }
 
         @Override

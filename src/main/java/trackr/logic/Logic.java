@@ -11,7 +11,7 @@ import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.order.Order;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 
 /**

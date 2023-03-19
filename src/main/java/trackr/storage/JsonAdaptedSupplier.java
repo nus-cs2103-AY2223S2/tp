@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.model.commons.Tag;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.PersonName;
-import trackr.model.supplier.Phone;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
+import trackr.model.person.Supplier;
 
 /**
  * Jackson-friendly version of {@link Supplier}.
@@ -50,11 +50,11 @@ class JsonAdaptedSupplier {
      * Converts a given {@code Supplier} into this class for Jackson use.
      */
     public JsonAdaptedSupplier(Supplier source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
+        name = source.getPersonName().getName();
+        phone = source.getPersonPhone().personPhone;
+        email = source.getPersonEmail().personEmail;
+        address = source.getPersonAddress().personAddress;
+        tagged.addAll(source.getPersonTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -80,31 +80,34 @@ class JsonAdaptedSupplier {
         final PersonName modelName = new PersonName(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonPhone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(phone)) {
+            throw new IllegalValueException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final PersonPhone modelPersonPhone = new PersonPhone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonEmail.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        if (!PersonEmail.isValidPersonEmail(email)) {
+            throw new IllegalValueException(PersonEmail.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final PersonEmail modelPersonEmail = new PersonEmail(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonAddress.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(address)) {
+            throw new IllegalValueException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final PersonAddress modelPersonAddress = new PersonAddress(address);
 
         final Set<Tag> modelTags = new HashSet<>(supplierTags);
-        return new Supplier(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Supplier(modelName, modelPersonPhone, modelPersonEmail, modelPersonAddress, modelTags);
     }
 
 }

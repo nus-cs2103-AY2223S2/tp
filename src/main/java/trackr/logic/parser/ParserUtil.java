@@ -20,10 +20,10 @@ import trackr.model.order.OrderStatus;
 import trackr.model.order.customer.CustomerAddress;
 import trackr.model.order.customer.CustomerName;
 import trackr.model.order.customer.CustomerPhone;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.PersonName;
-import trackr.model.supplier.Phone;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
@@ -70,13 +70,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static PersonPhone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(trimmedPhone)) {
+            throw new ParseException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new PersonPhone(trimmedPhone);
     }
 
     /**
@@ -85,13 +85,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static PersonAddress parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(trimmedAddress)) {
+            throw new ParseException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new PersonAddress(trimmedAddress);
     }
 
     /**
@@ -100,13 +100,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static PersonEmail parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        if (!PersonEmail.isValidPersonEmail(trimmedEmail)) {
+            throw new ParseException(PersonEmail.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new PersonEmail(trimmedEmail);
     }
 
     /**

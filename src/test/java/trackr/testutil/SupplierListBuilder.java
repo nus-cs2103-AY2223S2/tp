@@ -1,7 +1,7 @@
 package trackr.testutil;
 
 import trackr.model.SupplierList;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 
 /**
  * A utility class to help with building SupplierList objects.
@@ -24,7 +24,7 @@ public class SupplierListBuilder {
      * Adds a new {@code Supplier} to the {@code SupplierList} that we are building.
      */
     public SupplierListBuilder withSupplier(Supplier person) {
-        supplierList.addSupplier(person);
+        supplierList.addItem(person);
         return this;
     }
 

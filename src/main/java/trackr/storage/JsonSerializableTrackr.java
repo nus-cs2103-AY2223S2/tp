@@ -16,7 +16,7 @@ import trackr.model.ReadOnlyTaskList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.order.Order;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -55,7 +55,7 @@ class JsonSerializableTrackr {
     public JsonSerializableTrackr(ReadOnlySupplierList sourceSupplier, ReadOnlyTaskList sourceTask,
             ReadOnlyOrderList sourceOrder) {
         suppliers.addAll(sourceSupplier
-            .getSupplierList()
+            .getItemList()
             .stream()
             .map(JsonAdaptedSupplier::new)
             .collect(Collectors.toList()));
@@ -72,10 +72,10 @@ class JsonSerializableTrackr {
         SupplierList supplierList = new SupplierList();
         for (JsonAdaptedSupplier jsonAdaptedPerson : suppliers) {
             Supplier person = jsonAdaptedPerson.toModelType();
-            if (supplierList.hasSupplier(person)) {
+            if (supplierList.hasItem(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            supplierList.addSupplier(person);
+            supplierList.addItem(person);
         }
         return supplierList;
     }
