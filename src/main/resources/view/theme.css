@@ -1,7 +1,22 @@
 /* =============================================================================================== */
 /* FONT */
 /* =============================================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&family=Lexend+Deca:wght@400;500;600&display=swap');
+@font-face {
+    font-family: 'Lexend Deca';
+    src: url("../fonts/LexendDeca-Regular.ttf");
+}
+@font-face {
+    font-family: 'Lexend Deca Medium';
+    src: url("../fonts/LexendDeca-Medium.ttf");
+}
+@font-face {
+    font-family: 'Lexend Deca SemiBold';
+    src: url("../fonts/LexendDeca-SemiBold.ttf");
+}
+@font-face {
+    font-family: 'Courier Prime Bold';
+    src: url("../fonts/CourierPrime-Bold.ttf");
+}
 
 .h1 {
     -fx-font-size: 24;
@@ -59,7 +74,7 @@
 
 .dialog-pane > *.label.content {
     -fx-font-size: 14px;
-    -fx-font-family: 'Lexend Deca Bold';
+    -fx-font-family: 'Lexend Deca Bold', sans-serif;
     -fx-text-fill: -white;
 }
 
