@@ -1,5 +1,6 @@
 # Gradle build files
 /.gradle/
+bin/
 /build/
 src/main/resources/docs/
 
