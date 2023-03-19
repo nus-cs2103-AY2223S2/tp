@@ -15,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Homework;
 import seedu.address.model.student.HomeworkIsCompletePredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
@@ -59,20 +60,18 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             }
 
             namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
-            defaultPredicateFlag = false;
         } else {
             namePredicate = PREDICATE_SHOW_ALL_STUDENTS;
-            defaultPredicateFlag = true;
         }
 
         // If status is present, create a predicate to filter by status
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             String status = argMultimap.getValue(PREFIX_STATUS).get();
             boolean isCompleted = ParserUtil.parseStatus(status);
-            HomeworkIsCompletePredicate statusPredicate = new HomeworkIsCompletePredicate(isCompleted);
-            return new ViewHomeworkCommand(namePredicate, statusPredicate, defaultPredicateFlag);
+            Predicate<Homework> isCompletedPredicate = new HomeworkIsCompletePredicate(isCompleted);
+            return new ViewHomeworkCommand(namePredicate, isCompletedPredicate);
         } else {
-            return new ViewHomeworkCommand(namePredicate, defaultPredicateFlag);
+            return new ViewHomeworkCommand(namePredicate);
         }
     }
 }
