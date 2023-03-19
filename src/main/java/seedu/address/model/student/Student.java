@@ -155,16 +155,6 @@ public class Student {
     }
 
     /**
-     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     *
-     * @return list of filtered homework
-     */
-    public ObservableList<Homework> getFilteredHomeworkList(Predicate<Homework> predicate) {
-        return homeworkList.asUnmodifiableObservableList().filtered(predicate);
-    }
-
-    /**
      * Adds a homework to the homework list.
      *
      * @param homework homework to be added
@@ -211,7 +201,6 @@ public class Student {
         homeworkList.setHomework(target, editedHomework);
     }
 
-
     /**
      * Marks a homework as done from the homework list.
      *
@@ -230,6 +219,16 @@ public class Student {
     public void markHomeworkAsUndone(Index index) {
         Homework homeworkToMarkAsUndone = this.homeworkList.getHomework(index.getZeroBased());
         homeworkToMarkAsUndone.markAsUndone();
+    }
+
+    /**
+     * Returns an immutable assignment list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     *
+     * @return list of filtered homework
+     */
+    public ObservableList<Homework> getFilteredHomeworkList(Predicate<Homework> predicate) {
+        return homeworkList.getFilteredHomeworkList(predicate);
     }
 
     /**

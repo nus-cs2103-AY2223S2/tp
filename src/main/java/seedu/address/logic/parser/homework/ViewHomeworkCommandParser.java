@@ -15,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Homework;
 import seedu.address.model.student.HomeworkIsCompletePredicate;
 import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
@@ -64,7 +65,6 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             defaultPredicateFlag = false;
         } else {
             namePredicate = PREDICATE_SHOW_ALL_STUDENTS;
-            defaultPredicateFlag = true;
         }
 
         // If status is present, create a predicate to filter by status

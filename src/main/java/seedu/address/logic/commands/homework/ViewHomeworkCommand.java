@@ -46,7 +46,6 @@ public class ViewHomeworkCommand extends Command {
      * Overloaded constructor for ViewHomeworkCommand.
      *
      * @param namePredicate Predicate to filter students by name.
-     * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
     public ViewHomeworkCommand(List<String> names, Predicate<Student> namePredicate, boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
@@ -60,7 +59,6 @@ public class ViewHomeworkCommand extends Command {
      *
      * @param namePredicate Predicate to filter students by name.
      * @param homeworkStatusPredicate Predicate to filter homework by status.
-     * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
     public ViewHomeworkCommand(List<String> names, Predicate<Student> namePredicate,
                                Predicate<Homework> homeworkStatusPredicate, boolean defaultPredicateFlag) {
@@ -94,10 +92,20 @@ public class ViewHomeworkCommand extends Command {
 
         List<Student> studentList = model.getFilteredStudentList();
 
-        int numberOfStudents = studentList.size();
-        int numberOfHomework = getNumberOfHomework(studentList);
-        String message = formatAllHomework(studentList);
+        int numberOfStudents = 0;
+        int numberOfHomework = 0;
+        StringBuilder sb = new StringBuilder();
 
+        for (Student student : studentList) {
+            List<Homework> homeworkList = student.getFilteredHomeworkList(homeworkStatusPredicate);
+            if (!homeworkList.isEmpty()) {
+                numberOfStudents++;
+                sb.append(SEPERATOR);
+                sb.append(String.format(NAME_LABEL, student.getName()));
+                numberOfHomework += homeworkList.size();
+                formatHomeworkList(homeworkList, sb);
+            }
+        }
 
         // If no homework is found, throw an exception
         if (numberOfHomework == 0) {
@@ -107,57 +115,27 @@ public class ViewHomeworkCommand extends Command {
         // If the default predicate is used, display a different message
         if (defaultPredicateFlag) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_ALL_HOMEWORK_LISTED_OVERVIEW, numberOfHomework, message));
+                    String.format(Messages.MESSAGE_ALL_HOMEWORK_LISTED_OVERVIEW, numberOfHomework, sb.toString()));
         } else {
             return new CommandResult(
                     String.format(Messages.MESSAGE_HOMEWORK_LISTED_OVERVIEW,
-                            numberOfHomework, numberOfStudents, message));
+                            numberOfHomework, numberOfStudents, sb.toString()));
         }
     }
 
     /**
-     * Formats all homework in the student list into a string.
+     * Formats the homework list into a string.
      *
-     * @param studentList List of students.
-     * @return String containing all homework in the student list.
+     * @param homeworkList List of homework to be formatted.
+     * @param sb StringBuilder to append the formatted homework list to.
      */
-    public String formatAllHomework(List<Student> studentList) {
-        int numberOfHomework = 0;
-        StringBuilder sb = new StringBuilder();
-        sb.append(SEPERATOR);
-
-        // Loop through each student and add their homework to the string builder
-        for (Student student : studentList) {
-            List<Homework> homeworkList = student.getHomeworkList();
-            if (!homeworkList.isEmpty()) {
-                sb.append(String.format(NAME_LABEL, student.getName().fullName));
-                numberOfHomework += homeworkList.size();
-
-                for (int i = 0; i < homeworkList.size(); i++) {
-                    sb.append(i + 1).append(DOT).append(homeworkList.get(i)).append(LINE_BREAK);
-                }
-
-                sb.append(SEPERATOR);
-            }
+    public void formatHomeworkList(List<Homework> homeworkList, StringBuilder sb) {
+        for (int i = 0; i < homeworkList.size(); i++) {
+            sb.append(i + 1);
+            sb.append(DOT);
+            sb.append(homeworkList.get(i).toString());
+            sb.append(LINE_BREAK);
         }
-        return sb.toString();
-    }
-
-    /**
-     * Returns the number of homework in the student list.
-     *
-     * @param studentList List of students.
-     * @return Number of homework in the student list.
-     */
-    public int getNumberOfHomework(List<Student> studentList) {
-        int numberOfHomework = 0;
-        for (Student student : studentList) {
-            List<Homework> homeworkList = student.getHomeworkList();
-            if (!homeworkList.isEmpty()) {
-                numberOfHomework += homeworkList.size();
-            }
-        }
-        return numberOfHomework;
     }
 
     @Override
