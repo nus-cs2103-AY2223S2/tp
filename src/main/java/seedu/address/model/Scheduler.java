@@ -9,7 +9,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the scheduler level
  * Duplicates are not allowed (by .isSameEvent comparison)
  */
 public class Scheduler implements ReadOnlyScheduler {
@@ -22,12 +22,12 @@ public class Scheduler implements ReadOnlyScheduler {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         events = new UniqueEventList();
     }
 
-    public Scheduler() {
-    }
+    public Scheduler() {}
 
     /**
      * Creates a Scheduler using the Events in the {@code toBeCopied}
@@ -48,7 +48,7 @@ public class Scheduler implements ReadOnlyScheduler {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Scheduler} with {@code newData}.
      */
     public void resetData(ReadOnlyScheduler newData) {
         requireNonNull(newData);
@@ -67,7 +67,7 @@ public class Scheduler implements ReadOnlyScheduler {
     }
 
     /**
-     * Adds an event to the address scheduler.
+     * Adds an event to the scheduler.
      * The event must not already exist in the scheduler.
      */
     public void addEvent(Event e) {
@@ -108,8 +108,8 @@ public class Scheduler implements ReadOnlyScheduler {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Scheduler // instanceof handles nulls
-            && events.equals(((Scheduler) other).events));
+                || (other instanceof Scheduler // instanceof handles nulls
+                && events.equals(((Scheduler) other).events));
     }
 
     @Override

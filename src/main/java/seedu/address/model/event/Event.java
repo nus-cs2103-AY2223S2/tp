@@ -5,7 +5,6 @@ package seedu.address.model.event;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Event {
-
     private final Name name;
     private final Date date;
     private final Time startTime;
