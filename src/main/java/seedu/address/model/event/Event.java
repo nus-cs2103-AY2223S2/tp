@@ -3,6 +3,7 @@ package seedu.address.model.event;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.person.Person;
@@ -91,6 +92,8 @@ public abstract class Event {
         this.name = name;
         this.eventDate = eventDate;
         this.students = students;
+        //Ensures the list of attachments is kept at zero instead of null
+        this.attachments = Arrays.asList(new File[0]);;
         this.notes = notes;
     }
 
