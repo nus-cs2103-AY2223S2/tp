@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
-import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Parses input arguments and creates a new AddEmployeeToLeaveCommandParser
@@ -35,7 +35,7 @@ public class AddEmployeeToLeaveCommandParser implements Parser<AddEmployeeToLeav
                     AddEmployeeToLeaveCommand.MESSAGE_USAGE));
         }
 
-        Date leaveDate = ParserUtil.parseLeaveDate(argMultimap.getValue(PREFIX_DATE).get());
+        LeaveDate leaveDate = ParserUtil.parseLeaveDate(argMultimap.getValue(PREFIX_DATE).get());
         Index employeeIndex = ParserUtil.parseEmployeeIndex(argMultimap.getValue(PREFIX_EMPLOYEE_INDEX).get());
 
         return new AddEmployeeToLeaveCommand(employeeIndex, leaveDate);

@@ -10,9 +10,9 @@ import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Adds a employee using it's displayed index to a specific leave using it's
@@ -26,7 +26,7 @@ public class AddEmployeeToLeaveCommand extends Command {
     public static final String MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX = "The employee index is invalid";
     public static final String MESSAGE_SUCCESS = "New employee %1$s is added on %2$s";
 
-    private final Date leaveDate;
+    private final LeaveDate leaveDate;
     private final Index employeeToAddIndex;
 
     /**
@@ -34,7 +34,7 @@ public class AddEmployeeToLeaveCommand extends Command {
      * specified
      * {@code employeeIndex} on the specified {@code date}
      */
-    public AddEmployeeToLeaveCommand(Index employeeIndex, Date leaveDate) {
+    public AddEmployeeToLeaveCommand(Index employeeIndex, LeaveDate leaveDate) {
         requireNonNull(employeeIndex);
         requireNonNull(leaveDate);
         this.leaveDate = leaveDate;

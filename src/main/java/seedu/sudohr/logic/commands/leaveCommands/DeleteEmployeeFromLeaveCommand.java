@@ -10,9 +10,9 @@ import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
-import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
+import seedu.sudohr.model.leave.LeaveDate;
 
 /**
  * Deletes a employee from a specific leave in sudohr book.
@@ -31,14 +31,14 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in the sudohr book. ";
 
-    private final Date dateToDelete;
+    private final LeaveDate dateToDelete;
     private final Index employeeToDeleteIndex;
 
     /**
      * Creates an DeleteEmployeeFromLeaveCommand to delete the employee at specified
      * {@code employeeIndex} from the leave at the specified {@code Index}
      */
-    public DeleteEmployeeFromLeaveCommand(Index employeeIndex, Date dateToDelete) {
+    public DeleteEmployeeFromLeaveCommand(Index employeeIndex, LeaveDate dateToDelete) {
         requireNonNull(employeeIndex);
         requireNonNull(dateToDelete);
         this.dateToDelete = dateToDelete;
