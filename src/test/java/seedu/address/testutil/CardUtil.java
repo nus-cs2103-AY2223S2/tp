@@ -41,7 +41,8 @@ public class CardUtil {
      */
     public static String getEditCardDescriptorDetails(EditCardDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getQuestion().ifPresent(question -> sb.append(PREFIX_QUESTION).append(question.question).append(" "));
+        descriptor.getQuestion().ifPresent(question -> sb.append(PREFIX_QUESTION)
+                .append(question.question).append(" "));
         descriptor.getAnswer().ifPresent(answer -> sb.append(PREFIX_ANSWER).append(answer.answer).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

@@ -31,8 +31,8 @@ public class AnswerTest {
         // valid addresses
         assertTrue(Answer.isValidAnswer("A force of attraction between objects due to their mass"));
         assertTrue(Answer.isValidAnswer("-")); // one character
-        assertTrue(Answer.isValidAnswer("The process by which plants convert sunlight into energy. " +
-                "It generally involves the green pigment chlorophyll "
+        assertTrue(Answer.isValidAnswer("The process by which plants convert sunlight into energy. "
+                + "It generally involves the green pigment chlorophyll "
                 + "and generates oxygen as a by-product.")); // long address
     }
 }

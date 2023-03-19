@@ -3,7 +3,10 @@ package seedu.address.model.card;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_GRAVITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DECK_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEDIUM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCards.LOOP;
 import static seedu.address.testutil.TypicalCards.PHOTOSYNTHESIS;
@@ -14,8 +17,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.card.exceptions.DuplicateCardException;
 import seedu.address.model.card.exceptions.CardNotFoundException;
+import seedu.address.model.card.exceptions.DuplicateCardException;
 import seedu.address.testutil.CardBuilder;
 
 public class UniqueDeckListTest {

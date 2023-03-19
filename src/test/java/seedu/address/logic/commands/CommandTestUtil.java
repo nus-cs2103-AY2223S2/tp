@@ -49,7 +49,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditCardDescriptor DESC_PHOTOSYNTHESIS;
 
     static {
-        DESC_GRAVITY = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_GRAVITY).withAnswer(VALID_ANSWER_GRAVITY)
+        DESC_GRAVITY = new EditCardDescriptorBuilder()
+                .withQuestion(VALID_QUESTION_GRAVITY)
+                .withAnswer(VALID_ANSWER_GRAVITY)
                 .withTags(VALID_TAG_MEDIUM).build();
         DESC_PHOTOSYNTHESIS = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
