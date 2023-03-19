@@ -19,17 +19,17 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the patientist book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the patientist book. "
                                                + "Parameters: "
                                                + PREFIX_NAME + "NAME "
-                                               + PREFIX_ID + "PID "
+                                               + PREFIX_ID + "ID "
                                                + PREFIX_PHONE + "PHONE "
                                                + PREFIX_EMAIL + "EMAIL "
                                                + PREFIX_ADDRESS + "ADDRESS "
                                                + "[" + PREFIX_TAG + "TAG]...\n"
                                                + "Example: " + COMMAND_WORD + " "
                                                + PREFIX_NAME + "John Doe "
-                                               + PREFIX_ID + "A12345B"
+                                               + PREFIX_ID + "A12345B "
                                                + PREFIX_PHONE + "98765432 "
                                                + PREFIX_EMAIL + "johnd@example.com "
                                                + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
