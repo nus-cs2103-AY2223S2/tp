@@ -1,6 +1,7 @@
 package seedu.address.commons.core;
 
 import static seedu.address.ui.theme.Theme.DEFAULT_THEME;
+
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,13 +12,13 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
+    public final String theme;
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
 
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
-    public final String theme;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
