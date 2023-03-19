@@ -64,7 +64,7 @@
             </VBox>
          </children>
       </GridPane>
-      <VBox prefHeight="64.0" style="-fx-background-color: B7B7B7; -fx-border-radius: 50;">
+      <VBox fx:id="tipBox" prefHeight="64.0" style="-fx-background-color: B7B7B7; -fx-border-radius: 50;">
          <children>
             <Label styleClass="tipsTitle" text="Tips:">
                <VBox.margin>

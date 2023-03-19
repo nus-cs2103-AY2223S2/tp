@@ -23,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.Scene;
 import seedu.address.MainApp;
 import seedu.address.model.internship.Internship;
 
@@ -58,6 +59,8 @@ public class InternshipDetailsCard extends UiPart<Region> {
     @FXML
     private Label statusLabel;
     @FXML
+    private VBox tipBox;
+    @FXML
     private Text tips;
 //    @FXML
 //    private ImageView tipsImage;
@@ -67,7 +70,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public InternshipDetailsCard(Internship internship) {
+    public InternshipDetailsCard(Internship internship, Scene scene) {
         super(FXML);
         this.internship = internship;
 
@@ -97,6 +100,10 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
         //Set up tips
         tips.setText(getTips());
+
+        //@@author eugentangkj-reused
+        //Reused with modifications from https://stackoverflow.com/questions/29315469/javafx-resize-text-with-window
+        tips.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.3));
 
         //Set up image
 //        tipsImage.setImage(new Image(MainApp.class.getResourceAsStream(getTipsImage())));

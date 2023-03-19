@@ -227,7 +227,7 @@ public class MainWindow extends UiPart<Stage> {
     private void updateRightPanel() {
         Internship selectedInternship = logic.getSelectedInternship();
         if (selectedInternship != null) {
-            internshipDetailsCard = new InternshipDetailsCard(selectedInternship);
+            internshipDetailsCard = new InternshipDetailsCard(selectedInternship, primaryStage.getScene());
             internshipDetailsPanelPlaceholder.getChildren().clear();
             internshipDetailsPanelPlaceholder.getChildren().add(internshipDetailsCard.getRoot());
 //            rightPanel.setAlignment(Pos.TOP_CENTER);
