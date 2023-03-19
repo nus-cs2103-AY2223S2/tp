@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,6 +33,11 @@ public class DeleteApplicantCommand extends Command {
     private final Index targetIndex;
     private final String targetApplicantName;
 
+    /**
+     * Creates a DeleteApplicantCommand to remove a applicant from a listing.
+     * @param targetIndex index of the listing to delete the applicant from
+     * @param targetApplicantName name of the applicant to be deleted
+     */
     public DeleteApplicantCommand(Index targetIndex, String targetApplicantName) {
         this.targetIndex = targetIndex;
         this.targetApplicantName = targetApplicantName;
@@ -54,8 +60,8 @@ public class DeleteApplicantCommand extends Command {
         if (targetApplicantName.substring(-5).matches("#\\d{4}")) {
             String targetName = targetApplicantName.substring(0, -5);
             int targetHashCode = parseInt(targetApplicantName.substring(-4));
-            applicantToDelete = applicants.stream().filter(applicant -> applicant.getName().fullName == targetName &&
-                    applicant.hashCode() == targetHashCode).findFirst();
+            applicantToDelete = applicants.stream().filter(applicant -> applicant.getName().fullName == targetName
+                    && applicant.hashCode() == targetHashCode).findFirst();
         } else {
             Stream<Applicant> applicantsWithSameName = applicants.stream().filter(
                     applicant -> applicant.getName().fullName == targetApplicantName);
