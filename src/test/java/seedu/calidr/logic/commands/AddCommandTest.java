@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.calidr.commons.core.GuiSettings;
-import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.model.AddressBook;
 import seedu.calidr.model.Model;
@@ -77,7 +76,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private static class ModelStub implements Model {
         @Override
@@ -151,12 +150,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTaskList(ReadOnlyTaskList taskList) {
+        public ReadOnlyTaskList getTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyTaskList getTaskList() {
+        public void setTaskList(ReadOnlyTaskList taskList) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -166,7 +165,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteTask(Index taskIndex) {
+        public void deleteTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -176,7 +175,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTask(Index targetIndex, Task editedTask) {
+        public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
