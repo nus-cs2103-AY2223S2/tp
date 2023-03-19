@@ -1,23 +1,24 @@
 package seedu.address.logic.commands.task.todo;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.todo.InternshipTodo;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.InternshipTodo;
 
 /**
  * Deletes a todo identified using it's displayed index from the todo list.
  */
 public class DeleteTodoCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete todo";
+    public static final String COMMAND_WORD = "delete_todo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the specified todo from the list of todo.\n"
@@ -27,6 +28,8 @@ public class DeleteTodoCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted todo: %1$s";
+
+    private static final TodoType type = TodoType.TODO;
 
     private final Index targetIndex;
 
@@ -50,7 +53,7 @@ public class DeleteTodoCommand extends Command {
 
         model.deleteTodo(todoToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TODO_SUCCESS, todoToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TODO_SUCCESS, todoToDelete), type);
     }
 
     @Override

@@ -1,4 +1,10 @@
-package seedu.address.model.todo;
+package seedu.address.model.task;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,12 +12,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicateNoteException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
@@ -74,17 +74,6 @@ public class UniqueNoteList implements Iterable<Note> {
         internalNoteList.set(index, editedNote);
     }
 
-    /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
-     */
-    public void remove(Note toRemove) {
-        requireNonNull(toRemove);
-        if (!internalNoteList.remove(toRemove)) {
-            throw new PersonNotFoundException();
-        }
-    }
-
     public void setNotes(UniqueNoteList replacement) {
         requireNonNull(replacement);
         internalNoteList.setAll(replacement.internalNoteList);
@@ -102,6 +91,17 @@ public class UniqueNoteList implements Iterable<Note> {
         }
 
         internalNoteList.setAll(notes);
+    }
+
+    /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public void remove(Note toRemove) {
+        requireNonNull(toRemove);
+        if (!internalNoteList.remove(toRemove)) {
+            throw new PersonNotFoundException();
+        }
     }
 
     /**

@@ -1,18 +1,16 @@
-package seedu.address.model.todo;
+package seedu.address.model.task;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.DuplicateTodoException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicateTodoException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
@@ -28,7 +26,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * @see Person#isSamePerson(Person)
  */
 public class UniqueTodoList implements Iterable<InternshipTodo> {
-    private final ObservableList<InternshipTodo> internalTodoList = FXCollections.observableArrayList();
+    private final ObservableList<InternshipTodo> internalTodoList =
+            FXCollections.observableArrayList();
     private final ObservableList<InternshipTodo> internalUnmodifiableTodoList =
             FXCollections.unmodifiableObservableList(internalTodoList);
     /**
@@ -59,7 +58,8 @@ public class UniqueTodoList implements Iterable<InternshipTodo> {
      * @param target
      * @param editedTodo
      */
-    public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
+    public void setTodo(InternshipTodo target,
+                        InternshipTodo editedTodo) {
         requireAllNonNull(target, editedTodo);
 
         int index = internalTodoList.indexOf(target);
@@ -68,21 +68,10 @@ public class UniqueTodoList implements Iterable<InternshipTodo> {
         }
 
         if (!target.isSameTodo(editedTodo) && containsTodo(editedTodo)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTodoException();
         }
 
         internalTodoList.set(index, editedTodo);
-    }
-
-    /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
-     */
-    public void remove(InternshipTodo toRemove) {
-        requireNonNull(toRemove);
-        if (!internalTodoList.remove(toRemove)) {
-            throw new PersonNotFoundException();
-        }
     }
 
     public void setTodo(UniqueTodoList replacement) {
@@ -102,6 +91,17 @@ public class UniqueTodoList implements Iterable<InternshipTodo> {
         }
 
         internalTodoList.setAll(todo);
+    }
+
+    /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public void remove(InternshipTodo toRemove) {
+        requireNonNull(toRemove);
+        if (!internalTodoList.remove(toRemove)) {
+            throw new PersonNotFoundException();
+        }
     }
 
     /**

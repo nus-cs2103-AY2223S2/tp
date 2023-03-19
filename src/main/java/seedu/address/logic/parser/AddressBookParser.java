@@ -19,11 +19,17 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
+import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.note.ClearNoteCommand;
 import seedu.address.logic.commands.task.note.DeleteNoteCommand;
 import seedu.address.logic.commands.task.note.ListNoteCommand;
 import seedu.address.logic.commands.task.note.NoteCommand;
-import seedu.address.logic.commands.task.todo.*;
+import seedu.address.logic.commands.task.todo.ClearTodoCommand;
+import seedu.address.logic.commands.task.todo.DeleteTodoCommand;
+import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
+import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
+import seedu.address.logic.commands.task.todo.ListTodoCommand;
+import seedu.address.logic.commands.task.todo.TodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.FindTaskCommandParser;
 import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
@@ -92,6 +98,9 @@ public class AddressBookParser {
 
         case ClearByCommand.COMMAND_WORD:
             return new ClearByCommandParser().parse(arguments);
+
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
 
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);

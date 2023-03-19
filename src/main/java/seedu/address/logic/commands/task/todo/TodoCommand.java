@@ -1,13 +1,16 @@
 package seedu.address.logic.commands.task.todo;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.todo.InternshipTodo;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.InternshipTodo;
 
 /**
  * Adds an application to the internship tracker.
@@ -24,10 +27,12 @@ public class TodoCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY_NAME + "LinkedIn "
             + PREFIX_JOB_TITLE + "Software Engineer "
-            + PREFIX_DEADLINE + "01-10-2023";
+            + PREFIX_DEADLINE + "2023-10-01";
 
     public static final String MESSAGE_SUCCESS = "New TODO added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This TODO already exists in the todo list";
+
+    private static final TodoType type = TodoType.TODO;
 
     private final InternshipTodo todo;
 
@@ -48,7 +53,7 @@ public class TodoCommand extends Command {
         }
 
         model.addTodo(todo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, todo));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, todo), type);
     }
 
     @Override

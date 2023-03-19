@@ -1,10 +1,10 @@
-package seedu.address.model.todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an ApplicationDeadline in the planner.
@@ -12,7 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ApplicationDeadline {
 
-    public final static String MESSAGE_CONSTRAINTS = "Input date is invalid, it should be today(%s) onwards";
+    public static final String MESSAGE_CONSTRAINTS = "Input date is invalid, it should be today(%s) onwards";
 
     public final LocalDate applicationDeadline;
     public final String fullName;
@@ -36,6 +36,10 @@ public class ApplicationDeadline {
         return !test.isBefore(LocalDate.now());
     }
 
+    public LocalDate getDeadline() {
+        return applicationDeadline;
+    }
+
     @Override
     public String toString() {
         return fullName;
@@ -44,9 +48,9 @@ public class ApplicationDeadline {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof seedu.address.model.todo.ApplicationDeadline
+                || (other instanceof seedu.address.model.task.ApplicationDeadline
                 && applicationDeadline.equals(((
-                        seedu.address.model.todo.ApplicationDeadline) other).applicationDeadline));
+                        seedu.address.model.task.ApplicationDeadline) other).applicationDeadline));
     }
 
     @Override

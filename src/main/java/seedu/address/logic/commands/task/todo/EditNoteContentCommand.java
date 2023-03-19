@@ -1,5 +1,11 @@
 package seedu.address.logic.commands.task.todo;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CONTENT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TODO;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -8,15 +14,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.todo.ApplicationDeadline;
-import seedu.address.model.todo.InternshipTodo;
-import seedu.address.model.todo.NoteContent;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TODO;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.ApplicationDeadline;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.NoteContent;
 
 /**
  * Edits the note content of a todo identified using it's displayed index from the list of todos.
@@ -32,7 +33,9 @@ public class EditNoteContentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE_CONTENT + "Change venue\n";
 
-    public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Note Content updated: %1$s";
+    public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "NoteList Content updated: %1$s";
+
+    private static final TodoType type = TodoType.TODO;
 
     private final Index targetIndex;
 
@@ -59,18 +62,21 @@ public class EditNoteContentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
-        InternshipTodo todoToUpdateDeadline = lastShownList.get(targetIndex.getZeroBased());
-        InternshipTodo updatedTodo = createdUpdatedTodo(todoToUpdateDeadline, toUpdate);
+        InternshipTodo todoToUpdateDeadline = lastShownList.get(
+                targetIndex.getZeroBased());
+        InternshipTodo updatedTodo = createdUpdatedTodo(
+                todoToUpdateDeadline, toUpdate);
 
         model.setTodo(todoToUpdateDeadline, updatedTodo);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
-        return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedTodo));
+        return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedTodo), type);
     }
 
     /**
      * Creates and returns a {@code InternshipApplication} with the content of {@code content}
      */
-    private static InternshipTodo createdUpdatedTodo(InternshipTodo todo, NoteContent content) {
+    private static InternshipTodo createdUpdatedTodo(
+            InternshipTodo todo, NoteContent content) {
         assert todo != null;
 
         CompanyName companyName = todo.getInternshipTitle();

@@ -18,8 +18,8 @@ import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.todo.ApplicationDeadline;
-import seedu.address.model.todo.NoteContent;
+import seedu.address.model.task.ApplicationDeadline;
+import seedu.address.model.task.NoteContent;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

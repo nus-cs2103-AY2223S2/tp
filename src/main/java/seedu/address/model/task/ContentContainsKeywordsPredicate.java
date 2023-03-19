@@ -1,10 +1,9 @@
-package seedu.address.model.todo;
-
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.InternshipApplication;
+package seedu.address.model.task;
 
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that an {@code InternshipApplication}'s {@code CompanyName}
@@ -29,5 +28,4 @@ public class ContentContainsKeywordsPredicate implements Predicate<Note> {
                 || (other instanceof ContentContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((ContentContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

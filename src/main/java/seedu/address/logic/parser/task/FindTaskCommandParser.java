@@ -1,16 +1,14 @@
 package seedu.address.logic.parser.task;
 
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.task.FindTaskCommand;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.todo.ContentContainsKeywordsPredicate;
-import seedu.address.model.todo.TitleContainsKeywordsPredicate;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.task.FindTaskCommand;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.ContentContainsKeywordsPredicate;
+import seedu.address.model.task.TitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindTaskCommand object
