@@ -3,7 +3,7 @@ package seedu.sudohr.logic.parser;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 
-import seedu.sudohr.logic.commands.DeleteDepartmentCommand;
+import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.department.DepartmentName;
 

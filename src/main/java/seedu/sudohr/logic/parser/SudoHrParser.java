@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.sudohr.logic.commands.ClearCommand;
 import seedu.sudohr.logic.commands.Command;
-import seedu.sudohr.logic.commands.DeleteDepartmentCommand;
 import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
+import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
 import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
 import seedu.sudohr.logic.commands.department.ListDepartmentCommand;
 import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentCommand;

@@ -1,8 +1,10 @@
-package seedu.sudohr.logic.commands;
+package seedu.sudohr.logic.commands.department;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 
+import seedu.sudohr.logic.commands.Command;
+import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
