@@ -9,6 +9,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
+import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.Leave;
 
 /**
  * The API of the Model component.
@@ -16,6 +18,13 @@ import seedu.sudohr.model.employee.Id;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Employee> PREDICATE_SHOW_ALL_EMPLOYEES = unused -> true;
+
+
+    /** {@code Predicate} that always evaluate to true for leave */
+    Predicate<Leave> PREDICATE_SHOW_ALL_LEAVE = unused -> true;
+
+    Predicate<Department> PREDICATE_SHOW_ALL_DEPARTMENTS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -180,4 +189,70 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDepartmentList(Predicate<Department> predicate);
+
+    //=========== Leave-Level Operations ==========================================================================
+
+    /**
+     * Adds the given leave.
+     * {@code leave} must not already exist in the sudohr book.
+     */
+    void addLeave(Leave leave);
+
+    /**
+     * Returns true if a leave with the same identity as {@code leave} exists in
+     * the sudohr book.
+     */
+    boolean hasLeave(Leave leave);
+
+
+    /**
+     * Adds the leave it does not exist and returns or else return the existing
+     * leave
+     * {@code leaveToAdd} must not already exist in the sudohr book.
+     */
+    Leave getInternalLeaveIfExist(Leave leaveToAdd);
+
+    /**
+     * Returns true if a given date{@code date} has the employee {@code employee} in
+     * the sudohr book.
+     */
+    boolean hasEmployeeOnLeave(Date date, Employee employee);
+
+    /**
+     * Adds a employee's {@code employee} on a given day{@code leaveToAdd} in
+     * the sudohr book.
+     */
+    void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd);
+
+    /** Returns an unmodifiable view of the filtered leave list */
+    ObservableList<Leave> getFilteredLeaveList();
+
+    /** Returns an unmodifiable view of the full leave list */
+    ObservableList<Leave> getLeavesList();
+
+    /**
+     * Deletes a employee {@code employee} from a given leave{@code leave} in
+     * the sudohr book.
+     */
+    void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete);
+
+    /**
+     * Updates the filter of the filtered leave list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave);
+
+    /**
+     * Update a employee {@code employee} with editedEmployee {@code employee} in all leave
+     * in the sudohr book.
+     */
+    void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee);
+
+    /**
+     * Deletes a employee {@code employee} from all leaves
+     * in the sudohr book.
+     */
+    void cascadeDeleteUserInLeaves(Employee employeeToDelete);
+
 }

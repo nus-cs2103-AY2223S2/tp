@@ -24,6 +24,10 @@ public class DeleteCommand extends Command {
 
     private final Id targetId;
 
+    /**
+     * Creates an DeleteCommand to delete employee with the specified id
+     * {@code targetId}
+     */
     public DeleteCommand(Id targetId) {
         this.targetId = targetId;
     }
@@ -38,9 +42,10 @@ public class DeleteCommand extends Command {
 
         Employee employeeToDelete = model.getEmployee(targetId);
         model.deleteEmployee(employeeToDelete);
-        /*
-        Need to remove employees from any departments it belongs to + any leave tracked for this person
-         */
+
+        // delete user from leaves
+        model.cascadeDeleteUserInLeaves(employeeToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete));
     }
 

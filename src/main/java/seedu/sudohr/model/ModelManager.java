@@ -15,6 +15,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
+import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.Leave;
 
 /**
  * Represents the in-memory model of the SudoHR data.
@@ -26,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Department> filteredDepartments;
+    private final FilteredList<Leave> filteredLeaves;
 
     /**
      * Initializes a ModelManager with the given sudoHr and userPrefs.
@@ -38,15 +41,18 @@ public class ModelManager implements Model {
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
 
+
         filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
         filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
+        filteredLeaves = new FilteredList<>(this.sudoHr.getLeavesList());
     }
 
     public ModelManager() {
         this(new SudoHr(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -81,7 +87,8 @@ public class ModelManager implements Model {
         userPrefs.setSudoHrFilePath(sudoHrFilePath);
     }
 
-    //=========== SudoHr ================================================================================
+    // =========== SudoHr
+    // ================================================================================
 
     @Override
     public void setSudoHr(ReadOnlySudoHr sudoHr) {
@@ -164,7 +171,85 @@ public class ModelManager implements Model {
         sudoHr.setEmployee(target, editedEmployee);
     }
 
-    //=========== Filtered Employee List Accessors =============================================================
+    // =========== Leave Commands
+    // =============================================================
+
+    @Override
+    public void addLeave(Leave leave) {
+        requireNonNull(leave);
+        sudoHr.addLeave(leave);
+
+    }
+
+    @Override
+    public boolean hasLeave(Leave leave) {
+        requireNonNull(leave);
+        return sudoHr.hasLeave(leave);
+    }
+
+    @Override
+    public ObservableList<Leave> getLeavesList() {
+        return this.sudoHr.getLeavesList();
+    }
+
+    @Override
+    public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
+        if (sudoHr.hasLeave(leaveToAdd)) {
+            return sudoHr.getLeave(leaveToAdd);
+        } else {
+            sudoHr.addLeave(leaveToAdd);
+            return leaveToAdd;
+        }
+    }
+
+    @Override
+    public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+        requireAllNonNull(date, employee);
+        return sudoHr.hasEmployeeOnLeave(date, employee);
+    }
+
+    @Override
+    public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
+        requireAllNonNull(leaveToAdd, employeeToAdd);
+
+        sudoHr.addEmployeeToLeave(leaveToAdd, employeeToAdd);
+    }
+
+    @Override
+    public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
+        requireAllNonNull(leaveToDelete, employeeToDelete);
+
+        sudoHr.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
+    }
+
+    @Override
+    public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
+        requireAllNonNull(employeeToEdit, editedEmployee);
+        sudoHr.cascadeUpdateUserInLeaves(employeeToEdit, editedEmployee);
+    }
+
+    @Override
+    public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
+        requireAllNonNull(employeeToDelete);
+        sudoHr.cascadeDeleteUserInLeaves(employeeToDelete);
+    }
+
+    // =========== Filtered Leave List Accessors
+    // =============================================================
+
+    @Override
+    public ObservableList<Leave> getFilteredLeaveList() {
+        return filteredLeaves;
+    }
+
+    @Override
+    public void updateFilteredLeaveList(Predicate<Leave> predicate) {
+        requireNonNull(predicate);
+        filteredLeaves.setPredicate(predicate);
+    }
+
+    // =========== Filtered Employee List Accessors
+    // =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Employee} backed by the internal list of

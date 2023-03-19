@@ -32,7 +32,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles the Enter button pressed event.
+     * Handles the Enter button pressed leave.
      */
     @FXML
     private void handleCommandEntered() {
