@@ -13,9 +13,20 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void setFriendlyLinkFilePath_nullPath_throwsNullPointerException() {
+    public void setElderlyFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPrefs.setFriendlyLinkFilePath(null));
+        assertThrows(NullPointerException.class, () -> userPrefs.setElderlyFilePath(null));
     }
 
+    @Test
+    public void setVolunteerFilePath_nullPath_throwsNullPointerException() {
+        UserPrefs userPrefs = new UserPrefs();
+        assertThrows(NullPointerException.class, () -> userPrefs.setVolunteerFilePath(null));
+    }
+
+    @Test
+    public void setPairFilePath_nullPath_throwsNullPointerException() {
+        UserPrefs userPrefs = new UserPrefs();
+        assertThrows(NullPointerException.class, () -> userPrefs.setPairFilePath(null));
+    }
 }

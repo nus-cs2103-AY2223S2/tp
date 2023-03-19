@@ -70,7 +70,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -128,7 +127,10 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFriendlyLinkFilePath());
+        String footerMessage = "Elderly: " + logic.getElderlyFilePath()
+                + " Volunteer: " + logic.getVolunteerFilePath()
+                + " Pair: " + logic.getPairFilePath();
+        StatusBarFooter statusBarFooter = new StatusBarFooter(footerMessage);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

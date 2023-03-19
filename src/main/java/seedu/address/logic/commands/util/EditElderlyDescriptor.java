@@ -7,6 +7,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -48,6 +49,8 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
         Age updatedAge = editPersonDescriptor.getAge().orElse(elderlyToEdit.getAge());
         Region updateRegion = editPersonDescriptor.getRegion().orElse(elderlyToEdit.getRegion());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(elderlyToEdit.getTags());
+        Set<AvailableDate> updatedDates = editPersonDescriptor.getAvailableDates()
+                .orElse(elderlyToEdit.getAvailableDates());
         // Setting elderly-specific attributes
         RiskLevel updatedRiskLevel = elderlyToEdit.getRiskLevel();
         if (editPersonDescriptor instanceof EditElderlyDescriptor) {
@@ -56,7 +59,7 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
                     .orElse(elderlyToEdit.getRiskLevel());
         }
         return new Elderly(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updateRegion, updatedRiskLevel, updatedTags);
+                updatedNric, updatedAge, updateRegion, updatedRiskLevel, updatedTags, updatedDates);
     }
 
 

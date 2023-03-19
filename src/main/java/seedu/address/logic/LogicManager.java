@@ -12,8 +12,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.FriendlyLinkParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyPair;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -25,7 +25,6 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
-
     private final Model model;
     private final Storage storage;
     private final FriendlyLinkParser friendLinkParser;
@@ -59,13 +58,23 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPair getFriendlyLink() {
+    public FriendlyLink getFriendlyLink() {
         return model.getFriendlyLink();
     }
 
     @Override
-    public Path getFriendlyLinkFilePath() {
-        return model.getFriendlyLinkFilePath();
+    public Path getElderlyFilePath() {
+        return model.getElderlyFilePath();
+    }
+
+    @Override
+    public Path getVolunteerFilePath() {
+        return model.getVolunteerFilePath();
+    }
+
+    @Override
+    public Path getPairFilePath() {
+        return model.getPairFilePath();
     }
 
     @Override
@@ -83,14 +92,15 @@ public class LogicManager implements Logic {
     public ObservableList<Elderly> getFilteredElderlyList() {
         return model.getFilteredElderlyList();
     }
+
     @Override
     public ObservableList<Volunteer> getFilteredVolunteerList() {
         return model.getFilteredVolunteerList();
     }
+
     @Override
     public ObservableList<Pair> getFilteredPairList() {
         return model.getFilteredPairList();
     }
-
 
 }

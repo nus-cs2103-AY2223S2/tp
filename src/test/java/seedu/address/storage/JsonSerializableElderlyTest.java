@@ -30,7 +30,7 @@ public class JsonSerializableElderlyTest {
                 JsonSerializableElderly.class).get();
         FriendlyLink friendlyLinkFromFile = dataFromFile.toModelType(appTestCache);
         List<Elderly> typicalElderly = getTypicalElderly();
-        assertEquals(friendlyLinkFromFile.getElderlyList(), typicalElderly);
+        assertEquals(typicalElderly, friendlyLinkFromFile.getElderlyList());
     }
 
     @Test

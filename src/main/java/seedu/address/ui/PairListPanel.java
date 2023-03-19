@@ -32,7 +32,7 @@ public class PairListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Pair} using a {@code PairCard}.
      */
-    class PairListViewCell extends ListCell<Pair> {
+    static class PairListViewCell extends ListCell<Pair> {
         @Override
         protected void updateItem(Pair pair, boolean empty) {
             super.updateItem(pair, empty);

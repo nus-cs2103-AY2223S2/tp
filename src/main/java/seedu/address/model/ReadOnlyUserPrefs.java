@@ -10,7 +10,8 @@ import seedu.address.commons.core.GuiSettings;
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
-
-    Path getFriendlyLinkFilePath();
+    Path getElderlyFilePath();
+    Path getVolunteerFilePath();
+    Path getPairFilePath();
 
 }

@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,21 +17,19 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
-import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.ElderlyBuilder;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.TypicalElderly;
 import seedu.address.testutil.TypicalVolunteers;
 import seedu.address.testutil.VolunteerBuilder;
 
 public class EditCommandTest {
-    private final Model model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
+    private final Model model = getTypicalModelManager();
 
     @Test
     public void execute_validElderlyNric_success() {
@@ -46,7 +44,9 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
                 resultantElderly);
 
-        Model expectedModel = new ModelManager(new FriendlyLink(model.getFriendlyLink()), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         expectedModel.setElderly(model.getElderly(selectedNric), resultantElderly);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -65,7 +65,10 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS,
                 resultantVolunteer);
 
-        Model expectedModel = new ModelManager(new FriendlyLink(model.getFriendlyLink()), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
+
         expectedModel.setVolunteer(model.getVolunteer(selectedNric), resultantVolunteer);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
