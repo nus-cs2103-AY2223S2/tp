@@ -2,13 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.model.util.TaskBuilder;
 
 class AddTaskCommandTest {
 
@@ -38,13 +37,13 @@ class AddTaskCommandTest {
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         RepositoryModelManagerStub repoModelManagerStub = new RepositoryModelManagerStub();
         OfficeConnectModel testModel = new OfficeConnectModel(repoModelManagerStub,
-                new RepositoryModelManager<AssignTask>(new Repository<AssignTask>()));
+                new RepositoryModelManager<AssignTask>(new Repository<>()));
         Task validTask = new TaskBuilder().build();
 
         CommandResult commandResult = new AddTaskCommand(validTask).execute(new ModelStub(), testModel);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), repoModelManagerStub.tasksAdded);
+        assertEquals(Collections.singletonList(validTask), repoModelManagerStub.tasksAdded);
     }
 
     @Test
@@ -52,9 +51,9 @@ class AddTaskCommandTest {
         Task validTask = new TaskBuilder().build();
         AddTaskCommand addTaskCommand = new AddTaskCommand(validTask);
         RepositoryModelManagerStubWithTask repositoryModelManagerStubWithTask =
-                new RepositoryModelManagerStubWithTask(validTask);
+            new RepositoryModelManagerStubWithTask(validTask);
         OfficeConnectModel testModel = new OfficeConnectModel(repositoryModelManagerStubWithTask,
-                new RepositoryModelManager<AssignTask>(new Repository<AssignTask>()));
+                new RepositoryModelManager<AssignTask>(new Repository<>()));
 
         assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK, () ->
                 addTaskCommand.execute(new ModelStub(), testModel));
@@ -67,26 +66,23 @@ class AddTaskCommandTest {
         AddTaskCommand addTaskDrinkCommand = new AddTaskCommand(taskDrink);
 
         // same object -> returns true
-        assertTrue(addTaskEatCommand.equals(addTaskEatCommand));
+        assertEquals(addTaskEatCommand, addTaskEatCommand);
 
         // same values -> returns true
         AddTaskCommand addTaskEatCommandCopy = new AddTaskCommand(taskEat);
-        assertTrue(addTaskEatCommand.equals(addTaskEatCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addTaskEatCommand.equals(1));
+        assertEquals(addTaskEatCommand, addTaskEatCommandCopy);
 
         // null -> returns false
-        assertFalse(addTaskEatCommand.equals(null));
+        assertNotEquals(null, addTaskEatCommand);
 
         // different person -> returns false
-        assertFalse(addTaskEatCommand.equals(addTaskDrinkCommand));
+        assertNotEquals(addTaskEatCommand, addTaskDrinkCommand);
     }
 
-    private class RepositoryModelManagerStub extends RepositoryModelManager<Task> {
+    private static class RepositoryModelManagerStub extends RepositoryModelManager<Task> {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
         RepositoryModelManagerStub() {
-            super(new Repository<Task>());
+            super(new Repository<>());
         }
         @Override
         public boolean hasItem(Task task) {
@@ -101,10 +97,10 @@ class AddTaskCommandTest {
         }
     }
 
-    private class RepositoryModelManagerStubWithTask extends RepositoryModelManager<Task> {
+    private static class RepositoryModelManagerStubWithTask extends RepositoryModelManager<Task> {
         private final Task task;
         RepositoryModelManagerStubWithTask(Task task) {
-            super(new Repository<Task>());
+            super(new Repository<>());
             requireNonNull(task);
             this.task = task;
         }
@@ -115,7 +111,7 @@ class AddTaskCommandTest {
         }
     }
 
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");

@@ -24,7 +24,7 @@ import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.util.PersonBuilder;
 
 public class AddCommandTest {
 
@@ -153,7 +153,7 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private static class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
         ModelStubWithPerson(Person person) {
@@ -171,7 +171,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private static class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
 
         @Override
@@ -191,7 +191,7 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-    private class OfficeConnectModelStub extends OfficeConnectModel {
+    private static class OfficeConnectModelStub extends OfficeConnectModel {
         public RepositoryModelManager<Task> getTaskModelManager() {
             throw new AssertionError("This method should not be called.");
         }

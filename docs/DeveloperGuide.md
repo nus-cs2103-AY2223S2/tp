@@ -297,6 +297,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | manager                                    | find tasks assigned to specific subordinate | better manage my subordinates workload                                 |
 | `* * *`  | manager                                    | check all ongoing tasks available           | better delegate my tasks                                               |
 | `* * *`  | manager                                    | assign tasks to a subordinate               | keep track of which subordinate is in charge of which task             |
+| `* * *`  | manager                                    | unassign tasks from a subordinate           | assign this task to other subordinate                                  |
 | `* * *`  | manager                                    | add a subordinate                           |                                                                        |
 | `* * *`  | manager                                    | delete a subordinate                        | remove subordinates that I no longer need                              |
 | `* * *`  | manager                                    | find a subordinate by name                  | locate details of persons without having to go through the entire list |
@@ -450,7 +451,43 @@ In the example above, the user story is clearly defined at the top, followed by 
       Use case resumes at step 2.
 
 ---
-**Use case 5: Consulting Help Window**
+**Use case 5: Remove assignment of task from a person**
+
+**Main Success Scenario (MSS):**
+
+1. User requests to list persons.
+
+2. OfficeConnect shows a list of persons.
+
+3. User requests to list tasks.
+
+4. OfficeConnect shows a list of tasks.
+
+5. User requests to unassign a specific task from a specific person.
+
+6. OfficeConnect unassign the task from the person.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 4a. The list is empty.
+
+  Use case ends.
+
+* 5a. The given index is invalid.
+
+    * 5a1. OfficeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+---
+
+**Use case 6: Consulting Help Window**
 
 **Main Success Scenario (MSS):**
 
@@ -476,7 +513,7 @@ In the example above, the user story is clearly defined at the top, followed by 
   
       Use case resumes at step 5.
 ---
-**Use case 6: Add a task**
+**Use case 7: Add a task**
 
 **Main Success Scenario (MSS):**
 
@@ -496,7 +533,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
       Use case ends.
 ---
-**Use case 7: List all tasks**
+**Use case 8: List all tasks**
 
 **Main Success Scenario (MSS):**
 
@@ -506,7 +543,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
    Use case ends.
 ---
-**Use case 8: Mark a tasks**
+**Use case 9: Mark a tasks**
 
 **Main Success Scenario (MSS):**
 
@@ -538,7 +575,7 @@ In the example above, the user story is clearly defined at the top, followed by 
         
       Use case ends.
 ---
-**Use case 9: Unmark a tasks**
+**Use case 10: Unmark a tasks**
 
 **Main Success Scenario (MSS):**
 
@@ -570,7 +607,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
       Use case ends.
 ---
-**Use case 10: Review task assigned to an individual**
+**Use case 11: Review task assigned to an individual**
 
 **Main Success Scenario (MSS):**
 
@@ -587,7 +624,7 @@ In the example above, the user story is clearly defined at the top, followed by 
   Use case ends.
 
 ---
-**Use case 11: Review the group of individuals assigned to a task**
+**Use case 12: Review the group of individuals assigned to a task**
 
 **Main Success Scenario (MSS):**
 
@@ -612,6 +649,7 @@ In the example above, the user story is clearly defined at the top, followed by 
 
 
 ### Glossary
+1. Unassign: remove assignment of task from the person.
 
 #### *M*
 * **Mainstream OS**: Windows, Linux, Unix, OS-X

@@ -1,13 +1,12 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskRepository;
+import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,13 +28,13 @@ import seedu.address.model.task.TitleContainsExactKeywordsPredicate;
 
 
 public class ReviewTaskCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    private OfficeConnectModel officeConnectModel = new OfficeConnectModel(
+    private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
             new RepositoryModelManager<>(new Repository<AssignTask>()));
-    private OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
+    private final OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
             RepositoryModelManager<>(officeConnectModel.getTaskModelManager().getReadOnlyRepository()),
             new RepositoryModelManager<>(new Repository<AssignTask>()));
 
@@ -49,20 +48,20 @@ public class ReviewTaskCommandTest {
         ReviewTaskCommand reviewSecondCommand = new ReviewTaskCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(reviewFirstCommand.equals(reviewFirstCommand));
+        assertEquals(reviewFirstCommand, reviewFirstCommand);
 
         // same values -> returns true
         ReviewTaskCommand reviewFirstCommandCopy = new ReviewTaskCommand(firstPredicate);
-        assertTrue(reviewFirstCommand.equals(reviewFirstCommandCopy));
+        assertEquals(reviewFirstCommand, reviewFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(reviewFirstCommand.equals(1));
+        assertNotEquals(1, reviewFirstCommand);
 
         // null -> returns false
-        assertFalse(reviewFirstCommand.equals(null));
+        assertNotEquals(null, reviewFirstCommand);
 
         // different predicate -> returns false
-        assertFalse(reviewFirstCommand.equals(reviewSecondCommand));
+        assertNotEquals(reviewFirstCommand, reviewSecondCommand);
     }
 
     @Test
@@ -104,15 +103,13 @@ public class ReviewTaskCommandTest {
                 .getTaskModelManager()
                 .getReadOnlyRepository().getData()
                 .filtered(predicate);
-        Id tId = taskList.get(0).getId();
-        return tId;
+        return taskList.get(0).getId();
     }
 
     private ObservableList<AssignTask> getAssignedPersonList(Id tId) {
-        ObservableList<AssignTask> assignedPersonList = officeConnectModel.getAssignTaskModelManager()
+        return officeConnectModel.getAssignTaskModelManager()
                 .getFilteredItemList()
                 .filtered(persontask -> persontask.getTaskId().equals(tId));
-        return assignedPersonList;
     }
 
     /**

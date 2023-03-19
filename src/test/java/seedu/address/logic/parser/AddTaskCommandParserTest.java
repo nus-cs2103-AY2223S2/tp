@@ -1,20 +1,20 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.CONTENT_DESC_SPORTS;
-import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_SPORTS;
-import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_SPORTS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_SPORTS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_SPORTS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_SPORTS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.model.util.TypicalPersons.CONTENT_DESC_SPORTS;
+import static seedu.address.model.util.TypicalPersons.STATUS_DESC_SPORTS;
+import static seedu.address.model.util.TypicalPersons.SUBJECT_DESC_SPORTS;
+import static seedu.address.model.util.TypicalPersons.VALID_CONTENT_SPORTS;
+import static seedu.address.model.util.TypicalPersons.VALID_STATUS_SPORTS;
+import static seedu.address.model.util.TypicalPersons.VALID_TITLE_SPORTS;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddTaskCommand;
 
 public class AddTaskCommandParserTest {
-    private AddTaskCommandParser parser = new AddTaskCommandParser();
+    private final AddTaskCommandParser parser = new AddTaskCommandParser();
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
