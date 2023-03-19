@@ -19,7 +19,51 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Architecture**
 
+The General Architecture of FriendlyLink follows that of [AddressBook3](https://se-education.org/addressbook-level3/DeveloperGuide.html).
+
+### Logic
+
+#### Add and Delete Elderly 
+
+#### Edit by index & NRIC
+
+#### Find by keyword
+
+#### Pairing and unpairing of elderly and volunteers
+
+Pairs are implemented as a class with 2 referenced attributes, elderly and volunteer.
+* This allows the NRIC of a person in the pair to be automatically updated when the person is updated.
+
+The pairs are stored in a list similar to persons.
+* Allows for filtering to display a subset of pairs in the UI.
+* Allows for identifying a pair by index.
+
+<img src="images/developerGuide/Pair.png" width="350" />
+
+Two pairs are identical if they have the same elderly and Volunteer NRIC.
+* Just like persons, we do not allow duplicate pairs (due to add or edit pair)
+* Elderly and volunteer NRIC is used to identify a pair for deletion.
+
+### Storage
+
+#### Save Elderly and Volunteer
+
+#### Save Pairs
+
+Pairs are saved in Json Format containing only the NRIC of the elderly and volunteer in the pair.
+
+Reasons
+* Reduce space needed to store pairs
+* Reduce chance of inconsistent data between a person and the corresponding pair,
+* Reduce number of files to amend manually when updating person information.
+
+Implications
+* A pair is reconstructed on startup by searching the model for the corresponding person.
+* Elderly and volunteer files need to be read into the model before pair files. 
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
