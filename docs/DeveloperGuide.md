@@ -117,8 +117,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `VmsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `VmsParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+1. When called upon to parse a user command, `VmsParser` a `FeatureParser` or more specifically, one of its subclasses (eg `BasicParser`, `PatientParser`, etc) depending on the user command. Used input from the user command are removed.
+2. The `FeatureParser` in 1 then parses the remaining user command to create a `CommandParser`. Similar to 1, the created `CommandParser` is more specifically one of its subclasses (eg. `AddCommandParser`) and used inputs from the user command are removed.
+3. The resultant `CommandParser` parses the remaining user input to create a `Command` object, such as `AddCommand`, and optionally a `CommandMessage`. Both of which are encapsulated into a `ParseResult` and returned.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/Model.java)
