@@ -41,6 +41,7 @@ import seedu.sudohr.model.employee.exceptions.DuplicateEmailException;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.employee.exceptions.DuplicatePhoneNumberException;
 import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
+import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.testutil.DepartmentBuilder;
 import seedu.sudohr.testutil.EmployeeBuilder;
 
@@ -276,7 +277,6 @@ public class SudoHrTest {
                 .build();
         assertThrows(DuplicatePhoneNumberException.class, () -> sudoHr.addEmployee(editedAlice));
     }
-
 
     /** Tests editing of a employee **/
     @Test
@@ -612,6 +612,7 @@ public class SudoHrTest {
     private static class SudoHrStub implements ReadOnlySudoHr {
         private final ObservableList<Employee> employees = FXCollections.observableArrayList();
         private final ObservableList<Department> departments = FXCollections.observableArrayList();
+        private final ObservableList<Leave> leaves = FXCollections.observableArrayList();
 
         SudoHrStub(Collection<Employee> employees, Collection<Department> departments) {
             this.employees.setAll(employees);
@@ -626,6 +627,11 @@ public class SudoHrTest {
         @Override
         public ObservableList<Department> getDepartmentList() {
             return departments;
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            return leaves;
         }
     }
 

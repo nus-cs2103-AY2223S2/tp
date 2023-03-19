@@ -15,6 +15,7 @@ import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
+import seedu.sudohr.model.leave.Leave;
 
 /**
  * An Immutable SudoHr that is serializable to JSON format.
@@ -26,18 +27,22 @@ class JsonSerializableSudoHr {
     public static final String MESSAGE_DUPLICATE_PHONE = "There are duplicate phone numbers in the employee list.";
     public static final String MESSAGE_DUPLICATE_EMAIL = "There are duplicate email addresses in the employee list";
     public static final String MESSAGE_DUPLICATE_DEPARTMENTS = "Departments list contains duplicate department(s).";
+    public static final String MESSAGE_DUPLICATE_LEAVES = "Leave list contains duplicate events(s).";
 
     private final List<JsonAdaptedEmployee> employees = new ArrayList<>();
     private final List<JsonAdaptedDepartment> departments = new ArrayList<>();
+    private final List<JsonAdaptedLeave> leaves = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableSudoHr} with the given employees.
      */
     @JsonCreator
     public JsonSerializableSudoHr(@JsonProperty("employees") List<JsonAdaptedEmployee> employees,
-                                  @JsonProperty("departments") List<JsonAdaptedDepartment> departments) {
+                                  @JsonProperty("departments") List<JsonAdaptedDepartment> departments,
+                                  @JsonProperty("leaves") List<JsonAdaptedLeave> leaves) {
         this.employees.addAll(employees);
         this.departments.addAll(departments);
+        this.leaves.addAll(leaves);
     }
 
     /**
@@ -48,6 +53,8 @@ class JsonSerializableSudoHr {
     public JsonSerializableSudoHr(ReadOnlySudoHr source) {
         employees.addAll(source.getEmployeeList().stream().map(JsonAdaptedEmployee::new).collect(Collectors.toList()));
         departments.addAll(source.getDepartmentList().stream().map(JsonAdaptedDepartment::new)
+                .collect(Collectors.toList()));
+        leaves.addAll(source.getLeavesList().stream().map(JsonAdaptedLeave::new)
                 .collect(Collectors.toList()));
     }
 
@@ -87,6 +94,23 @@ class JsonSerializableSudoHr {
             }
 
             sudoHr.addDepartment(department);
+        }
+
+
+        for (JsonAdaptedLeave jsonAdaptedLeave : leaves) {
+            Leave leave = jsonAdaptedLeave.toModelType();
+            if (sudoHr.hasLeave(leave)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_LEAVES);
+            }
+
+            List<Employee> employees = leave.getEmployees();
+            for (Employee employee: employees) {
+                if (!sudoHr.strictlyHasEmployee(employee)) {
+                    throw new EmployeeNotFoundException();
+                }
+            }
+
+            sudoHr.addLeave(leave);
         }
 
         return sudoHr;
