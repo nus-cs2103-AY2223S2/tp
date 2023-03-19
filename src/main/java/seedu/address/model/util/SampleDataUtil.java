@@ -54,7 +54,11 @@ public class SampleDataUtil {
                     new DateTime("11-03-2023 19:00")),
             new Event(new EventName("Louis Tomlinson: Faith In The Future World Tour"),
                     new DateTime("27-04-2023 19:30"),
-                    new DateTime("27-04-2023 21:30"))
+                    new DateTime("27-04-2023 21:30")),
+            new Event(new EventName("Concert A"), new DateTime("01-05-2023 17:00"),
+                new DateTime("01-05-2023 18:00")),
+            new Event(new EventName("Concert B"), new DateTime("02-05-2023 17:00"),
+                 new DateTime("02-05-2023 18:00"))
         };
     }
 
