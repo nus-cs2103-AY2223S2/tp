@@ -53,6 +53,10 @@ public class MainScreen extends UiPart<VBox> {
         setup();
     }
 
+    public TaskListPanel getTaskListPanel() {
+        return this.taskListPanel;
+    }
+
     @FXML
     private void initialize() {
         this.getRoot().setFocusTraversable(true); // Important
@@ -74,7 +78,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     private void intializeCommandInput() {
-        commandInput = new CommandInput(this.getRoot());
+        commandInput = new CommandInput(this);
         commandInput.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.1));
 
         commandInputComponent.getChildren().add(commandInput.getRoot());
