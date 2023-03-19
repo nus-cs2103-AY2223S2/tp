@@ -61,13 +61,13 @@ class JsonSerializableWife {
             wife.addFood(food);
         }
 
-        // Add Tags to WIFE
+        // Creates Tags to WIFE
         for (JsonAdaptedTag jsonAdaptedTag : tags) {
             Tag tag = jsonAdaptedTag.toModelType();
             if (wife.hasTag(tag)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TAGS);
             }
-            wife.addTag(tag);
+            wife.createTag(tag);
         }
 
         return wife;

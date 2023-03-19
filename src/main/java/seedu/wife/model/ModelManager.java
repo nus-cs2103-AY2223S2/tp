@@ -143,8 +143,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTag(Tag tag) {
-        wife.addTag(tag);
+    public void createTag(Tag tag) {
+        wife.createTag(tag);
         updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
 
