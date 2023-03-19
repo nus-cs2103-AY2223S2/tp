@@ -288,6 +288,7 @@
 
 #cardPane {
     -fx-background-color: #007aff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 #cardPane .label{
@@ -297,6 +298,7 @@
 
 #deckPane {
     -fx-background-color: #ededed;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 
 
 }
@@ -343,10 +345,11 @@
 }
 
 #tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-text-fill: black;
+    -fx-background-color: #90ee90;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 15;
+
 }
