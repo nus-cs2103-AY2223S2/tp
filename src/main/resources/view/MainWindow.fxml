@@ -6,8 +6,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -66,34 +68,42 @@
               </VBox>
                   <VBox fx:id="rightPanel" alignment="CENTER" style="-fx-background-color: #383838;" styleClass="pane-with-border" GridPane.columnIndex="1">
                      <children>
-                        <StackPane fx:id="internshipDetailsPanelPlaceholder">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to InternBuddy" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="Segoe UI Light" size="20.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets bottom="300.0" />
-                                 </StackPane.margin>
-                              </Text>
-                              <Text fill="WHITE" lineSpacing="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feeling worried about managing your internships?&#10;InternBuddy is here to save the day!&#10;Whether it is tracking internships or providing reminders&#10;of upcoming deadlines, InternBuddy can do it all." textAlignment="CENTER">
-                                 <font>
-                                    <Font name="Segoe UI Light" size="16.0" />
-                                 </font>
-                                 <StackPane.margin>
-                                    <Insets bottom="100.0" />
-                                 </StackPane.margin>
-                              </Text>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../docs/images/internbuddy-hero.png" />
-                                 </image>
-                                 <StackPane.margin>
-                                    <Insets top="200.0" />
-                                 </StackPane.margin>
-                              </ImageView>
-                           </children>
-                        </StackPane>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="503.0" prefWidth="531.0" style="-fx-background-color: #383838;">
+                          <content>
+                            <AnchorPane style="-fx-background-color: #383838; -fx-width: 100%;">
+                                 <children>
+                                    <StackPane fx:id="internshipDetailsPanelPlaceholder" layoutX="11.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to InternBuddy" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Segoe UI Light" size="20.0" />
+                                             </font>
+                                             <StackPane.margin>
+                                                <Insets bottom="300.0" />
+                                             </StackPane.margin>
+                                          </Text>
+                                          <Text fill="WHITE" lineSpacing="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feeling worried about managing your internships?&#10;InternBuddy is here to save the day!&#10;Whether it is tracking internships or providing reminders&#10;of upcoming deadlines, InternBuddy can do it all." textAlignment="CENTER">
+                                             <font>
+                                                <Font name="Segoe UI Light" size="16.0" />
+                                             </font>
+                                             <StackPane.margin>
+                                                <Insets bottom="100.0" />
+                                             </StackPane.margin>
+                                          </Text>
+                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../docs/images/internbuddy-hero.png" />
+                                             </image>
+                                             <StackPane.margin>
+                                                <Insets top="200.0" />
+                                             </StackPane.margin>
+                                          </ImageView>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
                </children>
