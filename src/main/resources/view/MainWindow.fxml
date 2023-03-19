@@ -42,8 +42,7 @@
                 </padding>
                 <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-      
-                          <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+              <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
