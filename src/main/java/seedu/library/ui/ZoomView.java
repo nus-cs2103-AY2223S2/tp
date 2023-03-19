@@ -14,42 +14,46 @@ import seedu.library.model.bookmark.Bookmark;
  */
 public class ZoomView extends UiPart<Region> {
 
-    private static final String FXML = "ZoomView.fxml";
-    private Bookmark bookmark;
 
-    @FXML
-    private Label viewTitle;
-    @FXML
-    private Label authorView;
-    @FXML
-    private Label genreView;
-    @FXML
-    private FlowPane tagsView;
-    @FXML
-    private Label progressView;
+        private static final String FXML = "ZoomView.fxml";
+        private Bookmark bookmark;
 
-
-    /**
-     * Constructs a ZoomView that displays the details of the provided bookmark.
-     *
-     * @param bookmark a single Bookmark object
-     */
-    public ZoomView(Bookmark bookmark) {
-        super(FXML);
-        this.bookmark = bookmark;
-        viewTitle.setText(bookmark.getTitle().value);
-        authorView.setText(bookmark.getAuthor().value);
-        genreView.setText(bookmark.getGenre().value);
-        progressView.setText(bookmark.getProgress().value);
-        bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
-
-    }
+        @FXML
+        private Label view_Title;
+        @FXML
+        private Label authorView;
+        @FXML
+        private Label GenreView;
+        @FXML
+        private FlowPane tagsView;
+        @FXML
+        private Label progressView;
+        @FXML
+        private Label zoomTag;
 
 
-//        public void setFeedbackToUser(String feedbackToUser) {
-//            requireNonNull(feedbackToUser);
-//            resultDisplay.setText(feedbackToUser);
-//        }
+
+        public ZoomView(Bookmark bookmark) {
+            super(FXML);
+            this.bookmark = bookmark;
+            view_Title.setText("Title: " + bookmark.getTitle().value);
+            authorView.setText("Author: " + bookmark.getAuthor().value);
+            GenreView.setText("Genre: " + bookmark.getGenre().value);
+            progressView.setText("Progress: " + bookmark.getProgress().value);
+            bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
+
+        }
+
+
+        public void hideFields() {
+            view_Title.setVisible(false);
+            authorView.setVisible(false);
+            GenreView.setVisible(false);
+            progressView.setVisible(false);
+            tagsView.setVisible(false);
+            zoomTag.setVisible(false);
+
+        }
 
 }

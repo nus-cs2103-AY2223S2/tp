@@ -60,31 +60,20 @@ public class BookmarkCard extends UiPart<Region> {
         progress.setText(bookmark.getProgress().value);
         b1.setText(bookmark.getProgress().toString());
 
-        if (bookmark.getProgress().toString().equals("Finished")) {
-            b1.setStyle("-fx-background-color: #50f60a");
-        } else if (bookmark.getProgress().toString().equals("In progress")) {
-            b1.setStyle("-fx-background-color: #eaf553");
-        } else if (bookmark.getProgress().toString().equals("Not started")) {
-            b1.setStyle("-fx-background-color: #d83434");
+
+        if (bookmark.getProgress().toString().toUpperCase().equals("FINISHED")) {
+            b1.setStyle("-fx-background-color: #55b92a");
+        } else if (bookmark.getProgress().toString().toUpperCase().equals("READING")) {
+             b1.setStyle("-fx-background-color: #d9e16c");
+        } else if (bookmark.getProgress().toString().toUpperCase().equals("NOT STARTED")) {
+            b1.setStyle("-fx-background-color: #cd4545");
+
         } else {
-            b1.setDisable(true);
+
             b1.setVisible(false);
         }
-        /*
-         * what its supposed to be:
-         * if (bookmark.getProgress().toString().equals("Done")) {
-         *     b1.setStyle("-fx-background-color: #50f60a");
-         * } else if (bookmark.getProgress().toString().equals("In Progress")) {
-         *     b1.setStyle("-fx-background-color: #eaf553");
-         * } else if (bookmark.getProgress().toString().equals("Not Started")) {
-         *     b1.setStyle("-fx-background-color: #d83434");
-         * } else {
-         *     b1.setDisable(true);
-         *     b1.setVisible(false);
-         *         }
-         *
-         *
-         */
+
+        b1.setDisable(true);
 
         author.setText(bookmark.getAuthor().value);
         genre.setText(bookmark.getGenre().value);

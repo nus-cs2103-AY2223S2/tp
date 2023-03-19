@@ -111,7 +111,7 @@
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #b1dde8;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -234,9 +234,9 @@
 }
 
 .button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
+    -fx-opacity: 1;
     -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .button:default {
