@@ -1,10 +1,10 @@
 package seedu.sudohr.model.department;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.UniqueEmployeeList;
 
 /**
  * Represents a Department in SudoHR.
@@ -12,7 +12,7 @@ import seedu.sudohr.model.employee.Employee;
  */
 public class Department {
     private final DepartmentName name;
-    private final Set<Employee> employees = new HashSet<>(); // To convert to UniqueList
+    private final UniqueEmployeeList employees = new UniqueEmployeeList();
 
     public Department(DepartmentName name) {
         this.name = name;
@@ -28,12 +28,25 @@ public class Department {
         this.employees.addAll(employees);
     }
 
+    /**
+     * Returns the name of the department
+     */
     public DepartmentName getName() {
         return name;
     }
 
+    /**
+     * Returns whether employee exists in the department.
+     */
+    public boolean hasEmployee(Employee e) {
+        return employees.contains(e);
+    }
+
+    /**
+     * Returns unmodifiable set of employees.
+     */
     public Set<Employee> getEmployees() {
-        return Collections.unmodifiableSet(employees);
+        return Collections.unmodifiableSet(employees.asSet());
     }
 
     /**
