@@ -19,20 +19,20 @@ public class AddStaffCommand extends Command {
     public static final String COMMAND_WORD = "addstf";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff member to patientist. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_ID + "ID "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Mary Jane "
-            + PREFIX_ID + "A17625H "
-            + PREFIX_PHONE + "96421234 "
-            + PREFIX_EMAIL + "mj@example.com "
-            + PREFIX_ADDRESS + "789 Hospice St, #06-16 "
-            + PREFIX_TAG + "12B";
+                                                            + "Parameters: "
+                                                            + PREFIX_NAME + "NAME "
+                                                            + PREFIX_ID + "ID "
+                                                            + PREFIX_PHONE + "PHONE "
+                                                            + PREFIX_EMAIL + "EMAIL "
+                                                            + PREFIX_ADDRESS + "ADDRESS "
+                                                            + "[" + PREFIX_TAG + "TAG]...\n"
+                                                            + "Example: " + COMMAND_WORD + " "
+                                                            + PREFIX_NAME + "Mary Jane "
+                                                            + PREFIX_ID + "A17625H "
+                                                            + PREFIX_PHONE + "96421234 "
+                                                            + PREFIX_EMAIL + "mj@example.com "
+                                                            + PREFIX_ADDRESS + "789 Hospice St, #06-16 "
+                                                            + PREFIX_TAG + "12B";
 
     public static final String MESSAGE_SUCCESS = "New staff member added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This staff member already exists in the patientist book";
