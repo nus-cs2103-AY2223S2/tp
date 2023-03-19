@@ -1,25 +1,18 @@
 package vimification.model.task;
 
-import vimification.model.task.components.Description;
-
 public class Todo extends Task {
-    private static int numOfComponents = 1;
-
-    public Todo(Description description, Status status) {
-        super(description, status, TaskType.str2type("Todo"));
+    public Todo(String description, boolean isDone) {
+        super(description, isDone, TaskType.TODO);
     }
 
-    public static Todo createTask(Description description) {
-        return new Todo(description, new Status(false));
+    public Todo(String description) {
+        this(description, false);
     }
 
-    public static Todo createTask(String... taskComponents) {
-        if (taskComponents.length != numOfComponents) {
-            throw new IllegalArgumentException("Invalid number of task components");
-        }
-        return createTask(new Description(taskComponents[0]));
+    @Override
+    public Todo clone() {
+        return new Todo(getDescription(), isDone());
     }
-
 
     public String toString() {
         final StringBuilder builder = new StringBuilder();
