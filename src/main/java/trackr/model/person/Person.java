@@ -80,7 +80,7 @@ public abstract class Person extends Item {
         Person otherPerson = (Person) otherItem;
 
         return otherPerson != null
-                && otherPerson.getPersonName().equals(getPersonName());
+                && otherPerson.getPersonPhone().equals(getPersonPhone());
     }
 
     /**
