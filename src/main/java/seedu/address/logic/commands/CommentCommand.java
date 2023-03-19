@@ -28,7 +28,7 @@ public class CommentCommand extends Command {
             + PREFIX_TASK_INDEX + "1"
             + PREFIX_COMMENT + "Joe has accomplished this task exceptionally well";
 
-    public static final String MESSAGE_SUCCESS = "New comment added: %1$s to Task: %2$s \n ";
+    public static final String MESSAGE_COMMENT_SUCCESS = "New comment added: %1$s to Task: %2$s \n ";
 
     private final Comment toAddComment;
     private final Index toReceiveComment;
@@ -56,7 +56,7 @@ public class CommentCommand extends Command {
         String taskString = taskToComment.toString();
 
         model.commentOnTask(toAddComment, taskToComment);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAddComment, taskString));
+        return new CommandResult(String.format(MESSAGE_COMMENT_SUCCESS, toAddComment, taskString));
     }
 
     @Override
