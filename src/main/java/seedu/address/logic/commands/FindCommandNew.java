@@ -28,7 +28,7 @@ public class FindCommandNew extends CommandNew {
     @Override
     public CommandResultNew execute(ModelNew model) {
         requireNonNull(model);
-        // model.updateFilteredOpeningList(predicate);
+        model.updateFilteredOpeningList(predicate);
         return new CommandResultNew(
                 String.format(Messages.MESSAGE_OPENING_LISTED_OVERVIEW, model.getFilteredOpeningList().size()));
     }
