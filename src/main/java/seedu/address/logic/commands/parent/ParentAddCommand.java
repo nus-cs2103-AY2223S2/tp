@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicateParentException;
 import seedu.address.model.person.parent.Parent;
 
 /**
@@ -56,7 +56,7 @@ public class ParentAddCommand extends ParentCommand {
         requireNonNull(model);
 
         if (model.hasParent(parent)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateParentException();
         }
 
         model.addParent(parent);

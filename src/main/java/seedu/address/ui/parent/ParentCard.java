@@ -61,7 +61,7 @@ public class ParentCard extends UiPart<Region> {
         parent.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        parent.getChildren().stream()
+        parent.getStudents().stream()
                 .sorted(Comparator.comparing(Student -> Student.getName().fullName))
                 .forEach(Student -> {
                     students.getChildren().add(new Label(" Student Name: "));
