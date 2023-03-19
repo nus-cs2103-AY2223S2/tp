@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.event.exceptions.DuplicateConsultationException;
 import seedu.address.model.event.exceptions.ConsultationNotFoundException;
+import seedu.address.model.event.exceptions.DuplicateConsultationException;
 import seedu.address.model.person.Person;
 
 /**
@@ -61,7 +61,8 @@ public class UniqueConsultationList implements Iterable<Consultation> {
     /**
      * Replaces the consultation {@code target} in the list with {@code editedConsultation}.
      * {@code target} must exist in the list.
-     * The consultation identity of {@code editedConsultation} must not be the same as another existing consultation in the list.
+     * The consultation identity of {@code editedConsultation} must not be the same
+     * as another existing consultation in the list.
      */
     public void setConsultation(Consultation target, Consultation editedConsultation) {
         requireAllNonNull(target, editedConsultation);
