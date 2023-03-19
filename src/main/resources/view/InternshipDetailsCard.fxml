@@ -62,7 +62,7 @@
       </VBox>
       <HBox alignment="CENTER">
          <children>
-            <ImageView fx:id="tipsImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="tipsImage" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />
