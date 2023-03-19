@@ -406,6 +406,8 @@ The `edit` command allows the user to edit an existing contact in EduMate.
 
 </div>
 
+**Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
+
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
