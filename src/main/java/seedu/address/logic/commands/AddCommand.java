@@ -38,10 +38,10 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_SUBJECT + "Math"
-            + PREFIX_SCHEDULE + "monday"
-            + PREFIX_STARTTIME + "08:30"
-            + PREFIX_ENDTIME + "10:30"
+            + PREFIX_SUBJECT + "Math "
+            + PREFIX_SCHEDULE + "monday "
+            + PREFIX_STARTTIME + "08:30 "
+            + PREFIX_ENDTIME + "10:30 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

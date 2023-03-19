@@ -115,8 +115,6 @@ public class Tutee {
                 && otherTutee.getEmail().equals(getEmail())
                 && otherTutee.getAddress().equals(getAddress())
                 && otherTutee.getSubject().equals(getSubject())
-                && otherTutee.getStartTime().equals(getStartTime())
-                && otherTutee.getEndTime().equals(getEndTime())
                 && otherTutee.getTags().equals(getTags())
                 ;
     }
@@ -141,6 +139,10 @@ public class Tutee {
                 .append(getSubject())
                 .append("; Schedule: ")
                 .append(getSchedule())
+                .append("; StartTime: ")
+                .append(getStartTime())
+                .append("; EndTime: ")
+                .append(getEndTime())
                 .append(" Remark: ")
                 .append(getRemark());
 
