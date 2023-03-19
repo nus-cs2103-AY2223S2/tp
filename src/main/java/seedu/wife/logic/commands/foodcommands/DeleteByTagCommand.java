@@ -39,7 +39,7 @@ public class DeleteByTagCommand extends Command {
         this.targetTags = new HashSet<Tag>();
         this.targetTags.add(targetTag);
     }
-    
+
 
     /**
      * Constructor to create a new DeleteByTag object.
@@ -47,7 +47,7 @@ public class DeleteByTagCommand extends Command {
     public DeleteByTagCommand(Set<Tag> targetTag) {
         this.targetTags = targetTag;
     }
-    
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

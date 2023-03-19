@@ -9,8 +9,6 @@ import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.Model;
 import seedu.wife.model.tag.Tag;
-import seedu.wife.model.tag.exceptions.TagNotFoundException;
-import seedu.wife.model.tag.exceptions.TagStorageEmptyException;
 
 /**
  * Delete a pre-defined tag.
