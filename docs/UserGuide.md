@@ -79,9 +79,9 @@ Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Dead
 For `Deadline` and `Event` date(s) are required. Dates should be in the format `YYYY-MM-DD HHmm`.
 By default, effort level is 24.
 
-Format: 
+Format:
 
-- SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` 
+- SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]`
 
 - Deadline: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT] D/DEADLINE`
 
@@ -90,7 +90,7 @@ Format:
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add multiple Events and Deadlines as well! However, they have to share the same timings. 
+You can add multiple Events and Deadlines as well! However, they have to share the same timings.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -203,7 +203,7 @@ Examples:
 
 Automatically plans your month depending on your ideal `EFFORT` level per day. The planner will make an effort to
 keep as close to your effort level as possible, however, if it has to overload to complete tasks on time it will.
-Overloading will also be spread out as evenly as possible. 
+Overloading will also be spread out as evenly as possible.
 
 In order of priority, the planner will prioritise `Events`, then `Deadlines`, then `SimpleTasks`
 
