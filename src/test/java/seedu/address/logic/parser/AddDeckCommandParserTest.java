@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.CommandTestUtil.DECK_DESC_SOCIOLOGY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DECK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -27,6 +28,6 @@ public class AddDeckCommandParserTest {
         String expectedMessage = String.format(Deck.MESSAGE_CONSTRAINTS, AddDeckCommand.MESSAGE_USAGE);
 
         // missing argument for deck name
-        assertParseFailure(parser, "", expectedMessage);
+        assertParseFailure(parser, INVALID_DECK_DESC, expectedMessage);
     }
 }
