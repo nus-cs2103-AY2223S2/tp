@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeadlineCommand;
-import seedu.address.logic.commands.SalaryCommand;
 
 public class DeadlineCommandParserTest {
 
@@ -15,11 +14,13 @@ public class DeadlineCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "    ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "    ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeadlineCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_wrongArg_throwsParseException() {
-        assertParseFailure(parser, "assec", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "assec", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeadlineCommand.MESSAGE_USAGE));
     }
 }
