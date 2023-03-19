@@ -31,12 +31,12 @@ public class CommandTestUtil {
     public static final String VALID_TAG_MEDIUM = "Medium";
     public static final String VALID_DECK_SCIENCE = "Science";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_QUESTION + VALID_QUESTION_GRAVITY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_QUESTION + VALID_QUESTION_PHOTOSYNTHESIS;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ANSWER + VALID_ANSWER_GRAVITY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ANSWER + VALID_ANSWER_PHOTOSYNTHESIS;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HARD;
+    public static final String QUESTION_DESC_GRAVITY = " " + PREFIX_QUESTION + VALID_QUESTION_GRAVITY;
+    public static final String QUESTION_DESC_PHOTOSYNTHESIS = " " + PREFIX_QUESTION + VALID_QUESTION_PHOTOSYNTHESIS;
+    public static final String ANSWER_DESC_GRAVITY = " " + PREFIX_ANSWER + VALID_ANSWER_GRAVITY;
+    public static final String ANSWER_DESC_PHOTOSYNTHESIS = " " + PREFIX_ANSWER + VALID_ANSWER_PHOTOSYNTHESIS;
+    public static final String TAG_DESC_MEDIUM = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
+    public static final String TAG_DESC_HARD = " " + PREFIX_TAG + VALID_TAG_HARD;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_QUESTION; // empty string not allowed for question
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
