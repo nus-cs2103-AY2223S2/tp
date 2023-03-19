@@ -64,7 +64,7 @@
                 </padding>
                 <StackPane fx:id="internshipListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #383838;" styleClass="pane-with-border" GridPane.columnIndex="1">
+                  <VBox fx:id="rightPanel" alignment="CENTER" style="-fx-background-color: #383838;" styleClass="pane-with-border" GridPane.columnIndex="1">
                      <children>
                         <StackPane fx:id="internshipDetailsPanelPlaceholder">
                            <children>
