@@ -155,7 +155,7 @@ public class Socket implements ReadOnlySocket {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons |"
+        return persons.asUnmodifiableObservableList().size() + " persons | "
                 + projects.asUnmodifiableObservableList().size() + " projects";
         // TODO: refine later
     }

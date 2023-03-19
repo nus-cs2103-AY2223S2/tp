@@ -72,7 +72,8 @@ class JsonSerializableSocket {
             Set<Person> memberReferences = new HashSet<>();
             for (Person member : project.getMembers()) {
                 if (socket.hasPerson(member)) {
-                    memberReferences.add(socket.getPerson(member));
+                    Person personReference = socket.getPerson(member);
+                    memberReferences.add(personReference);
                 } else {
                     throw new IllegalValueException(MESSAGE_MISSING_PERSON);
                 }

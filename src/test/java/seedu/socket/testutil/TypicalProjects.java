@@ -10,11 +10,15 @@ import static seedu.socket.testutil.TypicalPersons.getTypicalPersons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import seedu.socket.commons.exceptions.IllegalValueException;
 import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
+import seedu.socket.storage.JsonAdaptedProject;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
@@ -53,17 +57,17 @@ public class TypicalProjects {
     private TypicalProjects() {} // prevents instantiation
 
     /**
-     * Returns an {@code Socket} with all the typical persons.
+     * Returns an {@code Socket} with all the typical persons and projects, with references synced
      */
     public static Socket getTypicalSocket() {
-        Socket s = new Socket();
+        Socket socket = new Socket();
         for (Person person : getTypicalPersons()) {
-            s.addPerson(person);
+            socket.addPerson(person);
         }
         for (Project project : getTypicalProjects()) {
-            s.addProject(project);
+            socket.addProject(project);
         }
-        return s;
+        return socket;
     }
 
     public static List<Project> getTypicalProjects() {

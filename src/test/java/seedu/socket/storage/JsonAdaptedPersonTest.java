@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.socket.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.socket.testutil.Assert.assertThrows;
 import static seedu.socket.testutil.TypicalPersons.BENSON;
+import static seedu.socket.testutil.TypicalProjects.getTypicalProjects;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,9 @@ public class JsonAdaptedPersonTest {
             .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList());
+    private static final List<JsonAdaptedProject> VALID_PROJECTS = getTypicalProjects().stream()
+            .map(JsonAdaptedProject::new)
             .collect(Collectors.toList());
 
     @Test

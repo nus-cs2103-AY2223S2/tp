@@ -7,10 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.socket.commons.exceptions.IllegalValueException;
 import seedu.socket.model.person.Address;
@@ -21,6 +18,7 @@ import seedu.socket.model.person.Person;
 import seedu.socket.model.person.Phone;
 import seedu.socket.model.person.tag.Language;
 import seedu.socket.model.person.tag.Tag;
+import seedu.socket.model.project.Project;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -36,7 +34,6 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedLanguage> languages = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -133,9 +130,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Language> modelLangages = new HashSet<>(personLanguages);
+        final Set<Language> modelLanguages = new HashSet<>(personLanguages);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelProfile, modelPhone, modelEmail, modelAddress, modelLangages, modelTags);
+        return new Person(modelName, modelProfile, modelPhone, modelEmail, modelAddress, modelLanguages, modelTags);
     }
 
 }
