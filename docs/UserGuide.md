@@ -240,7 +240,7 @@ Format: `unassign ti/INDEX pi/INDEX`
 * The index must be a positive integer 1, 2, 3...
 
 Examples:
-- `assign ti/ 2 pi/ 3` assigns task 2 to person 3.
+- `unassign ti/ 2 pi/ 3` assigns task 2 to person 3.
 
 ## Marking a Task as completed: `mark`
 
