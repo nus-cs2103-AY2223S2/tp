@@ -47,6 +47,8 @@ In a conventional application cycle, the large influx of applicants makes it cha
 // Additional features: can list out the tag(skillset) of the applicants.
 ### **Command**
 
+Note: Fields in `[square brackets]` are optional!
+
 ### 1. Viewing help: `help`
 
 - Format: `help`
@@ -104,6 +106,17 @@ Find applicants using keywords (name OR phone number OR both)
   - Example 2: `find n/Jack Dill p/91234567`
 
 ---
+
+### 8. Edit an applicant: `edit`
+
+Edits an applicants details.
+
+- Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [note/NOTE]`
+    * Fields provided are the details you make changes to the Applicant.
+
+- Examples:
+    - edit 1 n/Jack Dill e/jackdill@abc.com
+    - edit 2 n/John Doe a/SoC COM 2
 
 ## Command Summary
 
