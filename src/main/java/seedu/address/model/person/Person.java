@@ -104,7 +104,6 @@ public class Person {
     }
 
     /**
-
      * Returns a String to be displayed in the UI
      * @return desired String to be displayed for InterviewDateTime
      */
@@ -117,15 +116,6 @@ public class Person {
     }
 
     /**
-     * Sets Status for applicants.
-     * @param status new Status for the applicant.
-     */
-    private void setStatus(Status status) {
-        this.status = status;
-    }
-
-    /**
-
      * Advances status of applicants, according to application cycle
      */
     public Person advancePerson(Optional<InterviewDateTime> interviewDateTime) {
