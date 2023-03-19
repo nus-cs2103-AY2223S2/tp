@@ -3,7 +3,7 @@ package seedu.address.commons.fp;
 import java.util.function.Function;
 
 /**
- * Represents an instance that can be either left or right.
+ * Represents an instance that can be either of 2 instances, i.e. the left or right instance.
  *
  * @param <L> the type of the left instance.
  * @param <R> the type of the right instance.

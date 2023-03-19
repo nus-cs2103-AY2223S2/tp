@@ -276,7 +276,7 @@ public class Link<K, T extends Item,
     }
 
     /**
-     * Puts the id related to the key into the link, in a revolving manner if
+     * Puts the id related to the item into the link, in a revolving manner if
      * the key's contents is already full. For example, if the key can
      * contain 3 items, and if currently the id is ["a", "b", "c"], and if we
      * put "d" into this, then we would have ["b", "c", "d"]. If, however,
