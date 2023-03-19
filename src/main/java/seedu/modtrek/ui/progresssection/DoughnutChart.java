@@ -1,5 +1,8 @@
 package seedu.modtrek.ui.progresssection;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -11,14 +14,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * @author jewelsea from stackoverflow.com, modified from
- * https://stackoverflow.com/questions/24121580/can-piechart-from-javafx-be-displayed-as-a-doughnut
- *
  * A doughnut chart that displays summary statistics of the degree progress.
+ * @author jewelsea from stackoverflow.com, modified from
+ *     https://stackoverflow.com/questions/24121580/can-piechart-from-javafx-be-displayed-as-a-doughnut
  */
 public class DoughnutChart extends PieChart {
     /**
@@ -103,7 +102,7 @@ public class DoughnutChart extends PieChart {
      * Creates the data labels of the doughnut chart.
      */
     private void createDataLabels() {
-        final int NUM_TAGS = 6;
+        final int numTags = 6;
 
         // TODO: call from Tags enum
         Map<String, String> tagColors = new HashMap<>();
@@ -114,12 +113,12 @@ public class DoughnutChart extends PieChart {
         tagColors.put("UE", "orange");
         tagColors.put("MS", "purple");
 
-        dataLabels = new VBox[NUM_TAGS];
+        dataLabels = new VBox[numTags];
 
         Map<String, String> labelTexts = getDataLabelTexts();
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
 
@@ -149,8 +148,8 @@ public class DoughnutChart extends PieChart {
         doughnutCenterLabel.setLayoutX(centerX);
         doughnutCenterLabel.setLayoutY(centerY);
 
-        final double SCALE = 1.3;
-        innerCircle.setRadius(radius / SCALE);
+        final double scale = 1.3;
+        innerCircle.setRadius(radius / scale);
     }
 
     /**
@@ -160,11 +159,11 @@ public class DoughnutChart extends PieChart {
     private void updateDataLabelsLayout() {
         Map<String, Double> angles = getDataLabelAngles();
 
-        final double OFFSET_SCALE = 1.4;
+        final double offsetScale = 1.4;
         Map<String, Double> chartProperties = getChartProperties();
         double centerX = chartProperties.get("centerX");
         double centerY = chartProperties.get("centerY");
-        double radius = chartProperties.get("radius") * OFFSET_SCALE;
+        double radius = chartProperties.get("radius") * offsetScale;
 
         int i = 0;
         ObservableList<Data> doughnutData = getData();
@@ -190,8 +189,7 @@ public class DoughnutChart extends PieChart {
         super.setLabelsVisible(false);
 
         /* Change colors of doughnut chart */
-
-        final int NUM_TAGS = 6;
+        final int numTags = 6;
 
         // TODO: call from Tags enum
         Map<String, String> tagColors = new HashMap<>();
@@ -203,7 +201,7 @@ public class DoughnutChart extends PieChart {
         tagColors.put("MS", "purple");
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
             Data incompleteData = doughnutData.get(i + 1);
@@ -242,15 +240,16 @@ public class DoughnutChart extends PieChart {
     }
 
     /**
-     * @author jewelsea from stackoverflow.com
-     *
      * Calculates and obtains some of the doughnut chart's geometric properties.
+     * @author jewelsea from stackoverflow.com
      * @return The x and y coordinates of the center, and radius of the doughnut chart, in the
-     * form of a hashmap.
+     *     form of a hashmap.
      */
     private Map<String, Double> getChartProperties() {
-        double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE;
-        double maxX = Double.MIN_VALUE, maxY = Double.MIN_VALUE;
+        double minX = Double.MAX_VALUE;
+        double minY = Double.MAX_VALUE;
+        double maxX = Double.MIN_VALUE;
+        double maxY = Double.MIN_VALUE;
 
         for (Data data : getData()) {
             Node node = data.getNode();
@@ -288,8 +287,8 @@ public class DoughnutChart extends PieChart {
      * @return The positional angles for each data label.
      */
     private Map<String, Double> getDataLabelAngles() {
-        final int NUM_TAGS = 6;
-        final int TOTAL_CURRICULUM_CREDITS = 160;
+        final int numTags = 6;
+        final int totalCurriculumCredits = 160;
 
         Map<String, Double> angles = new HashMap<>();
 
@@ -298,7 +297,7 @@ public class DoughnutChart extends PieChart {
         double fullAngle = 2 * Math.PI;
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
             Data incompleteData = doughnutData.get(i + 1);
@@ -314,7 +313,7 @@ public class DoughnutChart extends PieChart {
             double offset = totalCredits / 2;
             offset += accCredits;
 
-            double angle = (offset / TOTAL_CURRICULUM_CREDITS) * fullAngle;
+            double angle = (offset / totalCurriculumCredits) * fullAngle;
             angles.put(tag, angle);
 
             accCredits += totalCredits;
@@ -325,7 +324,7 @@ public class DoughnutChart extends PieChart {
 
 
     private Map<String, String> getDataLabelTexts() {
-        final int NUM_TAGS = 6;
+        final int numTags = 6;
 
         Map<String, String> tagLongForm = new HashMap<>();
         tagLongForm.put("ULR", "University Level\nRequirements");
@@ -338,7 +337,7 @@ public class DoughnutChart extends PieChart {
         Map<String, String> texts = new HashMap<>();
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
             Data incompleteData = doughnutData.get(i + 1);

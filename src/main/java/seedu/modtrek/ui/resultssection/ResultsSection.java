@@ -41,8 +41,9 @@ public class ResultsSection extends UiPart<Region> {
     public ResultsSection(ObservableList<Module> modules) {
         super(FXML);
 
-        displayFooter("Degree Progress", "Module List",
-                () -> displayProgress(), () -> displayAllModules(modules));
+        displayFooter("Degree Progress", "Module List", () ->
+                displayProgress(), () ->
+                displayAllModules(modules));
 
         displayProgress();
     }
@@ -65,7 +66,9 @@ public class ResultsSection extends UiPart<Region> {
         resultsSection.getChildren().add(footerButtonGroup.getRoot());
     }
 
-    // TODO: next iteration
+    /**
+     * Displays the current degree progress.
+     */
     public void displayProgress() {
         footerButtonGroup.selectProgressButton();
 
