@@ -90,6 +90,6 @@ public class Food {
 
     @Override
     public String toString() {
-        return String.format("%s (expires on: %s", foodName, expiryDate);
+        return String.format("%s (expires on: %s)", foodName, expiryDate);
     }
 }

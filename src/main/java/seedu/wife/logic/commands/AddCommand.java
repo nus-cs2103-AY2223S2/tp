@@ -12,7 +12,7 @@ import seedu.wife.model.Model;
 import seedu.wife.model.food.Food;
 
 /**
- * Adds a person to the address book.
+ * Adds a food item to WIFE.
  */
 public class AddCommand extends Command {
 

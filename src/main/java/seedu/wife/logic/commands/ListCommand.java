@@ -6,7 +6,7 @@ import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
 import seedu.wife.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all food items in WIFE to the user.
  */
 public class ListCommand extends Command {
 
