@@ -8,11 +8,12 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
     1. [Student Features](#student)
         1. [Add student: `add`](#addstudent)
         2. [Add students' grade: `grade`](#gradestudent)
-        3. [Add comments to students: `comment`](#commentstudent)
-        4. [Listing all students in a particular class: `list`](#liststudent)
-        5. [Editing a student's particulars: `edit`](#editstudent)
-        6. [Searching students: `find`](#findstudent)
-        7. [Deleting a student: `delete`](#deletestudent)
+        3. [Deletes students' grade: `gradedelete`](#gradedelete)
+        4. [Add comments to students: `comment`](#commentstudent)
+        5. [Listing all students in a particular class: `list`](#liststudent)
+        6. [Editing a student's particulars: `edit`](#editstudent)
+        7. [Searching students: `find`](#findstudent)
+        8. [Deleting a student: `delete`](#deletestudent)
     2. [Parent Features](#parent)
         1. [Add parent/guardian: `add`](#addparent)
         2. [Listing all parents: `list`](#listparent)
@@ -62,19 +63,17 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 **:information_source: Notes about the command format:**<br>
 
-* Command lines supplied by the user are not case sensitive as the application will auto translate it into `UPPER_CASE`. <br>
+* Command lines supplied by the user are case sensitive and should be supplied in lower case. <br>
 
   E.g. in the list feature, user can call it via either methods:
      1. student 5A list
-     2. STUDENT 5A LIST
-     3. Student 5A LiSt
 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
   e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
 
 
-* Items in `<>` brackets are the values that the user should field
+* Items in `<>` brackets are the values that the user should fill in.
   e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`.
 
 
@@ -149,10 +148,10 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 Adds a student to the database
 
-Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<RELATIONSHIP> [ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> p/<PHONE_NUMBER> cca/<CCA>]`
+Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person with the same name and same class but different index number can exist.
 </div>
 
 Examples:
@@ -162,24 +161,46 @@ Examples:
 * `student 1B add n/Mary Goh in/23 s/F pn/Goh Siew Mai pnP/91234567 rls/Mother a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/15 imgS/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg eS/marygoh@gmail.com pnS/65656565 cca/Chess Club`
 
 Note: <br>
-User is able to leave the following categories unfilled by simply leaving a space
-1. Age
-2. Absolute path to image
-3. Email Address
-4. Phone Number
-5. CCA <br><br>
+User is able to leave the following categories unfilled by simply not putting their respective "/"
+1. Address
+2. Age
+3. Absolute path to image
+4. Email Address
+5. Phone Number
+6. CCA <br><br>
 
 
 <a name="gradestudent"/>
 
 ### Adding a grade for student : `grade`
 
-Adds a test grade for the student corresponding to the INDEX_NUMBER in the CLASS
+Adds a test/homework assignment for the student corresponding to the INDEX_NUMBER in the CLASS
 
-Format: `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`
+Format: `grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
 
 Examples:
-* `student 3A grade 25 test/Mid-Terms gde/A` <br><br>
+* `student 3A grade 25 test/Mid-Terms`
+* `student 1A grade in/13 test/CA1 score/75 weightage/10`
+* `student 1A grade in/13 hww/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+1. Test or Homework name is compulsory for the command to work.
+2. hwdone is compulsory for homework.
+3. Score is out of 100
+4. Weightage is out of 100%
+</div>
+
+<a name = "gradedelete">
+
+### Deleting a grade for student : `gradedelete`
+
+Deletes a test/homework assignment for the student corresponding to the INDEX_NUMBER in the CLASS
+
+Format: `gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
+
+Examples:
+* `student 3A gradedelete 25 test/Mid-Terms`
+* `student 1A gradedelete in/13 test/CA1`
 
 <a name = 'commentstudent'/>
 
@@ -187,11 +208,11 @@ Examples:
 
 Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
 
-Format: `comment <INDEX_NUMBER> note/<COMMENT>`
+Format: `comment in/<INDEX_NUMBER> com/<COMMENT>`
 
 Examples:
 
-* `student 3A comment 25 note/Quiet person, needs to interact more with classmates`
+* `student 3A comment in/25 com/Quiet person, needs to interact more with classmates`
 
 Note: <br>
 If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment! Hence, users should check on existing comments before adding a new comment!
@@ -249,20 +270,12 @@ Examples:
 
 Deleting student/ student information from the database
 
-Format: `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`
+Format: `delete in/<INDEX_NUMBER>`
 
 Examples:
-* `student 1A delete TanAhCow 03 M a/14 p/ c/ nok/TanAhNiu`
-  *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
-* `student 1B delete Mary Goh 23 F a/15 p/ c/Chess Club nok/Goh Siew Mai`
+* `student 1A delete in/2`
 
-Throws:
-* WrongParticularException
-  - The description field does not exist
-  - Description is invalid (eg. age is not a number..)
-
-User should follow the same format<br>
-If no descriptions are given, the whole student will be removed from the database
+The whole student will be removed from the database
 
 <a name = "parent" />
 
