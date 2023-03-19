@@ -1,5 +1,5 @@
 #!/bin/sh
-# Checks for trailing whitespace
+# Checks for trailing whitespace.
 
 git grep --cached -I -n --no-color -P '[ \t]+$' -- ':/' |
 awk '
