@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Person;
+import seedu.address.model.module.Deadline;
+import seedu.address.model.module.Module;
 
 
 /**
- * Changes the deadline of an existing person in the address book.
+ * Changes the deadline of an existing module in the address book.
  */
 public class DeadlineCommand extends Command {
 
@@ -39,8 +39,8 @@ public class DeadlineCommand extends Command {
 
 
     /**
-     * @param index of the person in the filtered person list to edit the deadline
-     * @param deadline of the person to be updated to
+     * @param index of the module in the filtered module list to edit the deadline
+     * @param deadline of the module to be updated to
      */
     public DeadlineCommand(Index index, Deadline deadline) {
         requireAllNonNull(index, deadline);
@@ -49,32 +49,32 @@ public class DeadlineCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Module> lastShownList = model.getFilteredModuleList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getType(), personToEdit.getTimeSlot(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(), deadline,
-                personToEdit.getTeacher());
+        Module moduleToEdit = lastShownList.get(index.getZeroBased());
+        Module editedModule = new Module(
+                moduleToEdit.getName(), moduleToEdit.getType(), moduleToEdit.getTimeSlot(),
+                moduleToEdit.getAddress(), moduleToEdit.getTags(), moduleToEdit.getRemark(), deadline,
+                moduleToEdit.getTeacher());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setModule(moduleToEdit, editedModule);
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedModule));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the deadline is added to or removed from
-     * {@code personToEdit}.
+     * {@code moduleToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Module moduleToEdit) {
         String message = !deadline.value.isEmpty() ? MESSAGE_ADD_DEADLINE_SUCCESS : MESSAGE_DELETE_DEADLINE_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, moduleToEdit);
     }
 
     @Override

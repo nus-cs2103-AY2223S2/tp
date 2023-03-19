@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.Teacher;
 
 
 /**
@@ -38,7 +38,7 @@ public class TeacherCommand extends Command {
 
     /**
      * Constructor for the teacher command.
-     * @param index The index of the person to edit the teacher.
+     * @param index The index of the module to edit the teacher.
      * @param teacher The name of the teacher to be added.
      */
     public TeacherCommand(Index index, Teacher teacher) {
@@ -49,32 +49,32 @@ public class TeacherCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Module> lastShownList = model.getFilteredModuleList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getType(), personToEdit.getTimeSlot(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(),
-                personToEdit.getDeadline(), teacher);
+        Module moduleToEdit = lastShownList.get(index.getZeroBased());
+        Module editedModule = new Module(
+                moduleToEdit.getName(), moduleToEdit.getType(), moduleToEdit.getTimeSlot(),
+                moduleToEdit.getAddress(), moduleToEdit.getTags(), moduleToEdit.getRemark(),
+                moduleToEdit.getDeadline(), teacher);
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setModule(moduleToEdit, editedModule);
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedModule));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the teacher is added to or removed from
-     * {@code personToEdit}.
+     * {@code moduleToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Module moduleToEdit) {
         String message = !teacher.value.isEmpty() ? MESSAGE_ADD_TEACHER_SUCCESS : MESSAGE_DELETE_TEACHER_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, moduleToEdit);
     }
 
     @Override

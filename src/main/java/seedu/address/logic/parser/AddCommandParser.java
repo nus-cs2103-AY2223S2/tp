@@ -15,14 +15,14 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Deadline;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Teacher;
-import seedu.address.model.person.TimeSlot;
-import seedu.address.model.person.Type;
+import seedu.address.model.module.Address;
+import seedu.address.model.module.Deadline;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.Name;
+import seedu.address.model.module.Remark;
+import seedu.address.model.module.Teacher;
+import seedu.address.model.module.TimeSlot;
+import seedu.address.model.module.Type;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,9 +55,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse("None."));
         Type type = ParserUtil.parseType(argMultimap.getValue(PREFIX_TYPE).orElse("None."));
 
-        Person person = new Person(name, type, timeSlot, address, tagList, remark, deadline, teacher);
+        Module module = new Module(name, type, timeSlot, address, tagList, remark, deadline, teacher);
 
-        return new AddCommand(person);
+        return new AddCommand(module);
     }
 
     /**
