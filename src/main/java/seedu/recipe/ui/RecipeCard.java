@@ -105,15 +105,25 @@ public class RecipeCard extends UiPart<Region> {
             popup.display();
         });
 
-        
         cardPane.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.DELETE || event.getCode() == KeyCode.D) {
-                // Fire the custom delete event
+            cardPane.requestFocus();
+            KeyCode input = event.getCode();
+            if (input == KeyCode.DELETE ||
+             input == KeyCode.D || 
+             input == KeyCode.BACK_SPACE) 
+            {
                 DeleteRecipeEvent deleteEvent = new DeleteRecipeEvent(displayedIndex);
                 cardPane.fireEvent(deleteEvent);
             }
         });
-        
+
+        cardPane.setOnKeyPressed(event -> {
+            cardPane.requestFocus();
+            if (event.getCode() == KeyCode.P) {
+                RecipePopup popup = new RecipePopup(recipe, displayedIndex);
+                popup.display();
+            }
+        });  
     }
 
     @Override
