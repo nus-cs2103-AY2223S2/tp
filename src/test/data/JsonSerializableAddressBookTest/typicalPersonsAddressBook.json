@@ -61,7 +61,19 @@
   } ],
   "events" : [ {
     "eventName" : "Wedding Dinner",
-    "startDateTime" : "01-05-2023 17:00",
-    "endDateTime" : "01-05-2023 21:00"
-  } ]
+    "startDateTime" : "01-01-2024 19:00",
+    "endDateTime" : "01-01-2024 22:00"
+  }, {
+    "eventName" : "Carnival",
+    "startDateTime" : "17-07-2023 12:00",
+    "endDateTime" : "21-07-2023 22:00"
+  }, {
+    "eventName" : "Company ABC Sports Day",
+    "startDateTime" : "03-03-2024 09:00",
+    "endDateTime" : "03-03-2024 18:00"
+  }, {
+    "eventName" : "CEO's 50th birthday party",
+    "startDateTime" : "03-08-2023 15:00",
+    "endDateTime" : "03-08-2023 21:00"
+  }]
 }
