@@ -3,7 +3,6 @@ package vimification.taskui;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -60,19 +59,18 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     private void setup() {
-        intializeCommandInput();
-        initializeTaskListPanel();
-
         leftComponent.prefHeightProperty().bind(topComponentHeight);
         rightComponent.prefHeightProperty().bind(topComponentHeight);
         commandInputComponent.prefHeightProperty().bind(commandInputComponentHeight);
+
+        intializeCommandInput();
+        initializeTaskListPanel();
     }
 
     private void initializeTaskListPanel() {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanel.setMainScreen(this);
         loadLeftComponent(taskListPanel);
-        taskListPanel.setFocusOnFirstTask();
     }
 
     private void intializeCommandInput() {
@@ -101,6 +99,10 @@ public class MainScreen extends UiPart<VBox> {
         switch (event.getText()) {
         case "i":
             loadTaskCreationPanelComponent();
+            break;
+        case "j":
+        case "k":
+            taskListPanel.requestFocus();
             break;
         }
     }

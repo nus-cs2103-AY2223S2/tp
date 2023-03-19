@@ -1,10 +1,10 @@
 package vimification.taskui;
 
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import vimification.model.task.Task;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
@@ -32,29 +32,23 @@ public class TaskListPanel extends UiPart<VBox> {
         this.mainScreen = parent;
     }
 
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Task} using a
-     * {@code TaskCard}.
-     */
-    class TaskListViewCell extends ListCell<Task> {
-        @Override
-        protected void updateItem(Task task, boolean empty) {
-            super.updateItem(task, empty);
-
-            if (empty || task == null) {
-                setGraphic(null);
-                setText(null);
-                return;
-            }
-
-            setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
-        }
+    public void requestFocus() {
+        this.taskListView.requestFocus();
     }
 
     @FXML
     private void initialize() {
         // TODO: Implement Visual Mode
         // taskListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        this.getRoot().setFocusTraversable(true);
+        taskListView.setFocusTraversable(true);
+        Platform.runLater(() -> {
+            // Hackish way of requesting focus
+            // after every listItem has been
+            // loaded
+            taskListView.requestFocus();
+            taskListView.getSelectionModel().selectFirst();
+        });
     }
 
     @FXML
@@ -79,10 +73,6 @@ public class TaskListPanel extends UiPart<VBox> {
         }
     }
 
-    public void setFocusOnFirstTask() {
-        taskListView.getFocusModel().focus(0);
-        taskListView.getSelectionModel().select(0);
-    }
 
     private void navigateToNextCell() {
         int currIndex = taskListView.getFocusModel().getFocusedIndex();
