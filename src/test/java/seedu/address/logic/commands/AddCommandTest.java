@@ -150,7 +150,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void displaySortedRoleList(Order order) {
+        public void displaySortedSalaryList(Order order) {
             throw new AssertionError("This method should not be called.");
         }
     }

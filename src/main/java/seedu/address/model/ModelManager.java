@@ -131,7 +131,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void displaySortedRoleList(Order order) {
+    public void displaySortedSalaryList(Order order) {
         List<Role> roles = filteredRoles.sorted((r1, r2) -> {
             int s1 = Integer.parseInt(r1.getSalary().toString());
             int s2 = Integer.parseInt(r2.getSalary().toString());
