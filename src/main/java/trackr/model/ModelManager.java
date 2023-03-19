@@ -46,7 +46,7 @@ public class ModelManager implements Model {
         this.orderList = new OrderList(orderList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredSuppliers = new FilteredList<>(this.supplierList.getSupplierList());
-        filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        filteredTasks = new FilteredList<>(this.taskList.getItemList());
         filteredOrders = new FilteredList<>(this.orderList.getOrderList());
     }
 
@@ -157,17 +157,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return taskList.hasTask(task);
+        return taskList.hasItem(task);
     }
 
     @Override
     public void deleteTask(Task target) {
-        taskList.removeTask(target);
+        taskList.removeItem(target);
     }
 
     @Override
     public void addTask(Task task) {
-        taskList.addTask(task);
+        taskList.addItem(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -175,7 +175,7 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        taskList.setTask(target, editedTask);
+        taskList.setItem(target, editedTask);
     }
 
     //=========== Filtered Task List Accessors ===============================================================

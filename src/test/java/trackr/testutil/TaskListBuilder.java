@@ -24,7 +24,7 @@ public class TaskListBuilder {
      * Adds a new {@code Task} to the {@code TaskList} that we are building.
      */
     public TaskListBuilder withTask(Task task) {
-        taskList.addTask(task);
+        taskList.addItem(task);
         return this;
     }
 

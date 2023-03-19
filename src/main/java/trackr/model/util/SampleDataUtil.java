@@ -85,7 +85,7 @@ public class SampleDataUtil {
     public static ReadOnlyTaskList getSampleTaskList() {
         TaskList sampleTl = new TaskList();
         for (Task sampleTask : getSampleTasks()) {
-            sampleTl.addTask(sampleTask);
+            sampleTl.addItem(sampleTask);
         }
         return sampleTl;
     }

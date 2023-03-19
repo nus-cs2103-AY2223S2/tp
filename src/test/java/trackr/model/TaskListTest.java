@@ -28,7 +28,7 @@ public class TaskListTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), taskList.getTaskList());
+        assertEquals(Collections.emptyList(), taskList.getItemList());
     }
 
     @Test
@@ -56,71 +56,71 @@ public class TaskListTest {
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> taskList.hasTask(null));
+        assertThrows(NullPointerException.class, () -> taskList.hasItem(null));
     }
 
     @Test
     public void hasTask_taskNotInTaskList_returnsFalse() {
-        assertFalse(taskList.hasTask(SORT_INVENTORY_N));
+        assertFalse(taskList.hasItem(SORT_INVENTORY_N));
     }
 
     @Test
     public void hasTask_taskInTaskList_returnsTrue() {
-        taskList.addTask(SORT_INVENTORY_N);
-        assertTrue(taskList.hasTask(SORT_INVENTORY_N));
+        taskList.addItem(SORT_INVENTORY_N);
+        assertTrue(taskList.hasItem(SORT_INVENTORY_N));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInTaskList_returnsTrue() {
-        taskList.addTask(SORT_INVENTORY_N);
+        taskList.addItem(SORT_INVENTORY_N);
         Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
-        assertTrue(taskList.hasTask(editedTask)); //different status
+        assertTrue(taskList.hasItem(editedTask)); //different status
     }
 
     @Test
     public void setTaskList_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> taskList.setTask(null, SORT_INVENTORY_N));
+        assertThrows(NullPointerException.class, () -> taskList.setItem(null, SORT_INVENTORY_N));
     }
 
     @Test
     public void setTaskList_nullEditedTask_throwsNullPointerException() {
-        taskList.addTask(SORT_INVENTORY_N);
-        assertThrows(NullPointerException.class, () -> taskList.setTask(SORT_INVENTORY_N, null));
+        taskList.addItem(SORT_INVENTORY_N);
+        assertThrows(NullPointerException.class, () -> taskList.setItem(SORT_INVENTORY_N, null));
     }
 
     @Test
     public void setTaskList_withDuplicateTasks_throwsDuplicateTaskException() {
-        taskList.addTask(SORT_INVENTORY_N);
-        taskList.addTask(BUY_FLOUR_N);
-        assertThrows(DuplicateItemException.class, () -> taskList.setTask(BUY_FLOUR_N, SORT_INVENTORY_N));
+        taskList.addItem(SORT_INVENTORY_N);
+        taskList.addItem(BUY_FLOUR_N);
+        assertThrows(DuplicateItemException.class, () -> taskList.setItem(BUY_FLOUR_N, SORT_INVENTORY_N));
     }
 
     @Test
     public void setTaskList_withDifferentTask_success() {
         TaskList expectedTaskList = new TaskList();
-        expectedTaskList.addTask(BUY_FLOUR_N);
+        expectedTaskList.addItem(BUY_FLOUR_N);
 
-        taskList.addTask(SORT_INVENTORY_N);
-        taskList.setTask(SORT_INVENTORY_N, BUY_FLOUR_N);
+        taskList.addItem(SORT_INVENTORY_N);
+        taskList.setItem(SORT_INVENTORY_N, BUY_FLOUR_N);
 
         assertEquals(expectedTaskList, taskList);
     }
 
     @Test
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> taskList.getTaskList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> taskList.getItemList().remove(0));
     }
 
     @Test
     public void equals() {
-        taskList.addTask(SORT_INVENTORY_N);
+        taskList.addItem(SORT_INVENTORY_N);
 
         TaskList differentTaskList = new TaskList();
-        differentTaskList.addTask(BUY_FLOUR_N);
+        differentTaskList.addItem(BUY_FLOUR_N);
 
         TaskList sameTaskList = new TaskList();
-        sameTaskList.addTask(SORT_INVENTORY_N);
+        sameTaskList.addItem(SORT_INVENTORY_N);
 
         assertTrue(taskList.equals(taskList)); //same object
         assertTrue(taskList.equals(sameTaskList)); //contains the same tasks
@@ -141,7 +141,7 @@ public class TaskListTest {
         }
 
         @Override
-        public ObservableList<Task> getTaskList() {
+        public ObservableList<Task> getItemList() {
             return tasks;
         }
     }

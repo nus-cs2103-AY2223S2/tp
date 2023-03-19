@@ -59,7 +59,7 @@ class JsonSerializableTrackr {
             .stream()
             .map(JsonAdaptedSupplier::new)
             .collect(Collectors.toList()));
-        tasks.addAll(sourceTask.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(sourceTask.getItemList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
         orders.addAll(sourceOrder.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
@@ -89,10 +89,10 @@ class JsonSerializableTrackr {
         TaskList taskList = new TaskList();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
-            if (taskList.hasTask(task)) {
+            if (taskList.hasItem(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            taskList.addTask(task);
+            taskList.addItem(task);
         }
         return taskList;
     }
