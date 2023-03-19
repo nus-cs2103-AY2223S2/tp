@@ -1,13 +1,26 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_HANDLE_ALEX;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_HANDLE_BEN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_2;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.EduMate;
 import seedu.address.model.person.Person;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

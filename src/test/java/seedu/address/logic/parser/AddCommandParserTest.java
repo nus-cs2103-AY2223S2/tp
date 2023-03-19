@@ -25,7 +25,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BEN).withGroupTags(CommandTestUtil.VALID_GROUP_2).build();
+        Person expectedPerson = new PersonBuilder(BEN)
+                .withGroupTags(CommandTestUtil.VALID_GROUP_2).withModuleTags().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, CommandTestUtil.PREAMBLE_WHITESPACE + CommandTestUtil.NAME_DESC_BEN
