@@ -1,6 +1,7 @@
 package seedu.address.model.crew;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.model.item.Item;
@@ -9,6 +10,16 @@ import seedu.address.model.item.Item;
  * Represents a Crew in the Wingman app.
  */
 public class Crew implements Item {
+
+    /**
+     * The shape of the link between a flight and its crew
+     */
+    public static final Map<FlightCrewType, Integer> SHAPE =
+            Map.of(FlightCrewType.CABIN_SERVICE_DIRECTOR, 1,
+                    FlightCrewType.SENIOR_FLIGHT_ATTENDANT, 1,
+                    FlightCrewType.FLIGHT_ATTENDANT, 12,
+                    FlightCrewType.TRAINEE, 4
+            );
     private static final String ID_STRING = "ID";
     private static final String NAME_STRING = "Name";
     private static final String RANK_STRING = "Rank";
@@ -73,5 +84,10 @@ public class Crew implements Item {
                 String.format("%s: %s", ID_STRING, id),
                 String.format("%s: %s", NAME_STRING, name),
                 String.format("%s: %s", RANK_STRING, rank));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s", rank, name);
     }
 }

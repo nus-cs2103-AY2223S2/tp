@@ -10,6 +10,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.GetUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.crew.Crew;
+import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.Link;
 import seedu.address.model.link.exceptions.LinkException;
@@ -50,6 +52,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
     private String arrivalLocationName;
 
     private Map<FlightPilotType, Deque<String>> pilotLink;
+    private Map<FlightCrewType, Deque<String>> crewLink;
 
     /**
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
@@ -73,7 +76,8 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
             @JsonProperty("departureLocationName") String departureLocationName,
             @JsonProperty("arrivalLocationId") String arrivalLocationId,
             @JsonProperty("arrivalLocationName") String arrivalLocationName,
-            @JsonProperty("pilotLink") Map<FlightPilotType, Deque<String>> pilotLink
+            @JsonProperty("pilotLink") Map<FlightPilotType, Deque<String>> pilotLink,
+            @JsonProperty("crewLink") Map<FlightCrewType, Deque<String>> crewLink
     ) {
         this.id = id;
         this.code = code;
@@ -84,6 +88,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         this.arrivalLocationId = arrivalLocationId;
         this.arrivalLocationName = arrivalLocationName;
         this.pilotLink = pilotLink;
+        this.crewLink = crewLink;
     }
 
     /**
@@ -95,6 +100,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         this.id = flight.getId();
         this.code = flight.getCode();
         this.pilotLink = flight.pilotLink.getCopiedContents();
+        this.crewLink = flight.crewLink.getCopiedContents();
 
         if (flight.hasLinkedPlane()) {
             this.plane = flight.getLinkedPlane().getId();
@@ -128,13 +134,19 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
 
         Flight flight;
         try {
-            Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> link =
+            Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> linkPilot =
                     new Link<>(Pilot.SHAPE, pilotLink,
                             GetUtil
                                     .getLazy(Model.class)
                                     .map(Model::getPilotManager)
                     );
-            flight = new Flight(id, code, link);
+            Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> linkCrew =
+                    new Link<>(Crew.SHAPE, crewLink,
+                            GetUtil
+                                    .getLazy(Model.class)
+                                    .map(Model::getCrewManager)
+                    );
+            flight = new Flight(id, code, linkPilot, linkCrew);
         } catch (LinkException e) {
             throw new IllegalValueException(e.getMessage());
         }
