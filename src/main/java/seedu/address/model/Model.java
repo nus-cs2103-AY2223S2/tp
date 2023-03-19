@@ -86,6 +86,13 @@ public interface Model {
      */
     void deleteEventFromPersonList(Event eventToDelete);
 
+    /**
+     * Replaces the given event {@code target} with {@code editedEvent} for all persons in the list.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     */
+    void setEventFromPersonList(Event target, Event editedEvent);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -111,6 +118,13 @@ public interface Model {
      * The event must exist in the address book.
      */
     void deleteEvent(Event event);
+
+    /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the address book.
+     */
+    void setEvent(Event target, Event editedEvent);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
