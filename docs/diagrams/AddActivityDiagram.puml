@@ -1,19 +1,19 @@
 @startuml
-!pragma useVerticalIf on
 start
 :User enters add command;
-if () then ([else])
+if () then ([Person arguments are invalid])
   :Error: Invalid command format;
   stop
-([Person arguments are valid]) elseif () then ([else])
+() elseif () then ([Person name is a duplicate])
   :Error: Duplicated person;
   stop
-else ([Person name is unique])
+else ()
 endif
-  :Person is created.;
-  :Common modules and contact index are computed.;
-  :Person is assigned a contact index.;
-  :Person is added to EduMate.;
+  :Person is created;
+  :Common modules and contact index are computed;
+  :Person is assigned a contact index;
+  :Person is added to EduMate;
+  :EduMate is sorted by index;
 stop
 
 @enduml
