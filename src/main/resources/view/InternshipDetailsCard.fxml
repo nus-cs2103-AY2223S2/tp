@@ -31,21 +31,25 @@
                         <Label fx:id="companyName" styleClass="whiteCompanyNameLabel" text="\$first">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" top="30.0" />
-                           </HBox.margin></Label>
+                           </HBox.margin>
+                        </Label>
                      </children>
                   </HBox>
                   <FlowPane fx:id="tags">
                      <VBox.margin>
                         <Insets left="10.0" />
-                     </VBox.margin></FlowPane>
+                     </VBox.margin>
+                  </FlowPane>
                   <Label fx:id="role" styleClass="whiteLabel" text="\$role">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
-                     </VBox.margin></Label>
+                     </VBox.margin>
+                  </Label>
                   <Label fx:id="date" styleClass="whiteLabel" text="\$date">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
-                     </VBox.margin></Label>
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="102.0" prefWidth="130.0" GridPane.columnIndex="1">
@@ -68,7 +72,7 @@
                </VBox.margin></Label>
             <Text fx:id="tips" strokeType="OUTSIDE" strokeWidth="0.0" text="\$tips" wrappingWidth="267.13671875">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Text>
          </children>
@@ -76,7 +80,7 @@
             <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
          </padding>
          <VBox.margin>
-            <Insets left="20.0" right="10.0" top="30.0" />
+            <Insets left="20.0" right="30.0" top="30.0" />
          </VBox.margin>
          <opaqueInsets>
             <Insets />
