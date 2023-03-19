@@ -45,7 +45,8 @@ public class DeckListPanel extends UiPart<Region> {
                 setStyle("-fx-background: #FFFFFF");
             } else {
                 setGraphic(new DeckCard(deck, getIndex() + 1).getRoot());
-                setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 20 10 20; -fx-background-color:#FFFFFF");
+                setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 20 10 20; "
+                        + "-fx-background-color:#FFFFFF");
             }
         }
     }

@@ -25,6 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static Text title = new Text("PowerCard");
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -59,8 +60,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TextFlow titlePanel;
-
-    Text title = new Text("PowerCard");
 
 
     /**
