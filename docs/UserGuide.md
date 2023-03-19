@@ -48,13 +48,13 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 * Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
 * Items in square brackets are optional.<br>
-  e.g `t/TASK [tag/{TAG}]` can be used as `t/Read Book tag/relax` or as `t/Read Book`.
+  e.g `t/TASK [tag/TAG]` can be used as `t/Read Book tag/relax` or as `t/Read Book`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/TASK d/{DESCRIPTION}`, `d/{DESCRIPTION} t/{TASK}` is also acceptable.
+  e.g. if the command specifies `t/TASK d/DESCRIPTION`, `d/DESCRIPTION t/TASK` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/do it fast d/do it slow`, only `d/do it slow` will be taken.
@@ -77,16 +77,17 @@ Format: `help`
 
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
 For `Deadline` and `Event` date(s) are required. Dates should be in the format `YYYY-MM-DD HHmm`.
+By default, effort level is 24.
 
 Format: 
 
-- SimpleTask: `add n/TASKNAME d/DESCRIPTION t/TAGS…​` 
+- SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` 
 
-- Deadline: `add n/TASKNAME d/DESCRIPTION t/TAGS D/DEADLINE…​`
+- Deadline: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT] D/DEADLINE`
 
-- Event: `add n/TASKNAME d/DESCRIPTION t/TAGS F/FROMDATE T/TODATE…​`
+- Event: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT] F/FROMDATE T/TODATE`
 
-You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION t/TAGS…​`
+You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can add multiple Events and Deadlines as well! However, they have to share the same timings. 
@@ -110,7 +111,7 @@ Format: `list`
 
 Edits an existing task in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -127,7 +128,7 @@ Examples:
 
 Find tasks whose attribute best match the user input string.
 
-Format: `find n/{NAME}` OR `find d/{DESCRIPTION}` OR `find t/{TAG}...`
+Format: `find n/NAME` OR `find d/DESCRIPTION` OR `find t/TAG...`
 
 * The search is case-insensitive. e.g `book` will match `Book`
 * Use only 1 attribute at a time.
@@ -198,6 +199,17 @@ Examples:
 - `alert` followed by `48` will show the alert window with all tasks which end within 48 hours.
 - `alert` alone will show the alert window with all tasks which end within 24 hours.
 
+### Plan your month : `plan EFFORT`
+
+Automatically plans your month depending on your ideal `EFFORT` level per day. The planner will make an effort to
+keep as close to your effort level as possible, however, if it has to overload to complete tasks on time it will.
+Overloading will also be spread out as evenly as possible. 
+
+In order of priority, the planner will prioritise `Events`, then `Deadlines`, then `SimpleTasks`
+
+Examples:
+- `plan 5` will plan your month according to an ideal effort level of 5 per day.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -237,15 +249,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
-| **Stats**  | `stats`                                                                                                                                                               |
-| **sort**   | `sort`                                                                                                                                                                |
-| **alert**  | `alert {ALERT_WINDOW}`                                                                                                                                                |
+| Action     | Format, Examples                                                                                                    |
+|------------|---------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
+| **Clear**  | `clear`                                                                                                             |
+| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                              |
+| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                  |
+| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                  |
+| **List**   | `list`                                                                                                              |
+| **Help**   | `help`                                                                                                              |
+| **Stats**  | `stats`                                                                                                             |
+| **sort**   | `sort`                                                                                                              |
+| **alert**  | `alert ALERT_WINDOW`                                                                                                |
+| **plan**   | `plan EFFORT`                                                                                                       |
