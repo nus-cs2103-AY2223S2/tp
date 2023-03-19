@@ -5,7 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.Relationship;
+import seedu.address.model.person.Person;
 import seedu.address.model.shared.Id;
+import seedu.address.model.task.Task;
 
 /**
  * A many-to-many relationship mapping for task and person
@@ -26,6 +28,15 @@ public class AssignTask implements Relationship<AssignTask> {
         this.taskId = taskId;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public AssignTask(Person person, Task task) {
+        requireAllNonNull(person, person);
+        this.personId = person.getId();
+        this.taskId = task.getId();
+    }
+
     public Id getPersonId() {
         return personId;
     }
@@ -33,6 +44,7 @@ public class AssignTask implements Relationship<AssignTask> {
     public Id getTaskId() {
         return taskId;
     }
+
     public boolean hasSameId(AssignTask obj) {
         return equals(obj);
     }

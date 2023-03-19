@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PERSON_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_INDEX;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.util.TypicalPersons.INVALID_PERSON_INDEX;
+import static seedu.address.model.util.TypicalPersons.INVALID_TASK_INDEX;
+import static seedu.address.model.util.TypicalPersons.VALID_PERSON_INDEX;
+import static seedu.address.model.util.TypicalPersons.VALID_TASK_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AssignCommand;
 
 public class AssignCommandParserTest {
-    private AssignCommandParser parser = new AssignCommandParser();
+    private final AssignCommandParser parser = new AssignCommandParser();
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {

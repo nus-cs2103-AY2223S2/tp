@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
     public static final Task SEND_EMAIL_TO_CLIENT = new TaskBuilder().withTitle("Send email to client")
             .withContent("Email Mr. Chan about the recent updates on Project X.").build();
-    public static final Task COMPLETE_SLIDES = new TaskBuilder().withTitle("Complete slides")
+    public static final Task COMPLETE_SLIDES = new TaskBuilder().withTitle("Complete slides").withStatus(true)
             .withContent("Finish up slides for meeting on 1st March.").build();
     public static final Task STOCK_PANTRY = new TaskBuilder().withTitle("Stock pantry")
             .withContent("Purchase food for the pantry on level 6.").build();
@@ -34,6 +34,14 @@ public class TypicalTasks {
     public static Repository<Task> getTypicalTaskRepository() {
         Repository<Task> tl = new Repository<>();
         for (Task task : getTypicalTasks()) {
+            tl.addItem(task);
+        }
+        return tl;
+    }
+
+    public static Repository<Task> getTypicalTaskRepository(List<Task> typicalTasks) {
+        Repository<Task> tl = new Repository<>();
+        for (Task task : typicalTasks) {
             tl.addItem(task);
         }
         return tl;

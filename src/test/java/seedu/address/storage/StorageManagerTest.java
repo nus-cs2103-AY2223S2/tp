@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 
@@ -19,8 +19,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.model.util.PersonBuilder;
+import seedu.address.model.util.TaskBuilder;
 
 public class StorageManagerTest {
 

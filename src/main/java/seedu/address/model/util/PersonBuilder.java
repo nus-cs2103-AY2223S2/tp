@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.util;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.shared.Id;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.

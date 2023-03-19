@@ -1,14 +1,15 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertTaskCommandSuccess;
+import static seedu.address.model.util.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.model.util.TypicalTasks.getTypicalTaskRepository;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskRepository;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,14 +24,14 @@ import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.model.util.TaskBuilder;
 
 public class MarkCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private OfficeConnectModel officeConnectModel = new OfficeConnectModel(
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
             new RepositoryModelManager<>(new Repository<AssignTask>()));
-    private OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
+    private final OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
             RepositoryModelManager<>(officeConnectModel.getTaskModelManager().getReadOnlyRepository()),
             new RepositoryModelManager<>(new Repository<AssignTask>()));
 
@@ -73,19 +74,16 @@ public class MarkCommandTest {
         MarkCommand markSecondCommand = new MarkCommand(INDEX_SECOND);
 
         // same object -> returns true
-        assertTrue(markFirstCommand.equals(markFirstCommand));
+        assertEquals(markFirstCommand, markFirstCommand);
 
         // same values -> returns true
         MarkCommand markFirstCommandCopy = new MarkCommand(INDEX_FIRST);
-        assertTrue(markFirstCommand.equals(markFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(markFirstCommand.equals(1));
+        assertEquals(markFirstCommand, markFirstCommandCopy);
 
         // null -> returns false
-        assertFalse(markFirstCommand.equals(null));
+        assertNotNull(markFirstCommand);
 
         // different task -> returns false
-        assertFalse(markFirstCommand.equals(markSecondCommand));
+        assertNotEquals(markFirstCommand, markSecondCommand);
     }
 }

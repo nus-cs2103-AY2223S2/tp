@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.model.util.PersonBuilder;
+import seedu.address.model.util.TaskBuilder;
 
 class OfficeConnectModelTest {
     private OfficeConnectModel officeModel;

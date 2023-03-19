@@ -33,13 +33,13 @@ public class DeleteTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireAllNonNull(model, officeConnectModel);
-        List<Task> lastShownList = officeConnectModel.getFilteredItemList();
+        List<Task> lastShownList = officeConnectModel.getTaskModelManagerFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        officeConnectModel.deleteItem(taskToDelete);
+        officeConnectModel.deleteTaskModelManagerItem(taskToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 
