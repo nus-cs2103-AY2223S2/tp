@@ -9,6 +9,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 
+/**
+ * Reindexes the contact list to remove gaps in indices.
+ */
 public class ReindexCommand extends Command {
 
     public static final String COMMAND_WORD = "reindex";

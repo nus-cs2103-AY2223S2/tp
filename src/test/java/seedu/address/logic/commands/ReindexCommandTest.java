@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.CLARK;
 import static seedu.address.testutil.TypicalPersons.DAKOTA;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.ContactIndex;
