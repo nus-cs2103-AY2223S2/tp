@@ -95,6 +95,11 @@ public interface Model {
     Volunteer getVolunteer(Nric nric);
 
     /**
+     * Returns true if an elderly with the same {@code nric} exists in the friendly link database.
+     */
+    boolean hasElderly(Nric nric);
+
+    /**
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
      */
     boolean hasElderly(Elderly elderly);
@@ -118,6 +123,11 @@ public interface Model {
      * friendly link database.
      */
     void setElderly(Elderly target, Elderly editedElderly);
+
+    /**
+     * Returns true if an volunteer with the same {@code nric} exists in the friendly link database.
+     */
+    boolean hasVolunteer(Nric nric);
 
     /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.

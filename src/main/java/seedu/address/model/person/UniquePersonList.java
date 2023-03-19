@@ -31,6 +31,14 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns true if the list contains a person with the given nric.
+     */
+    public boolean contains(Nric nric) {
+        requireNonNull(nric);
+        return internalList.stream().anyMatch(person -> person.getNric().equals(nric));
+    }
+
+    /**
      * Returns true if the list contains an equivalent person as the given argument.
      */
     public boolean contains(T toCheck) {
@@ -91,7 +99,11 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
     public T get(Nric nric) {
         requireNonNull(nric);
         FilteredList<T> filteredList = internalList.filtered((T person) -> person.getNric().equals(nric));
-        return filteredList.size() == 0 ? null : filteredList.get(0);
+        T result = filteredList.size() == 0 ? null : filteredList.get(0);
+        if (result == null) {
+            throw new PersonNotFoundException();
+        }
+        return result;
     }
 
     public void setPersons(UniquePersonList<T> replacement) {
