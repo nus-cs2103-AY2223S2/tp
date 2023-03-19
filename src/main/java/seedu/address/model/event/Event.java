@@ -18,20 +18,11 @@ public class Event {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.date = "To be confirmed";
-    }
-    
-    public Event(Name name, String date, String startTime, String endTime) {
-        this.name = name;
-        this.date = date;
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     public Name getName() {
         return name;
     }
-    public String getDate() {return date;}
 
     public Date getDate() {
         return date;
