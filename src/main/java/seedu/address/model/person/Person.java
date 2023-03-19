@@ -2,11 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +21,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+
     private final Nric nric;
     private final Role role;
 
@@ -26,18 +29,24 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final ArrayList<Appointment> patientAppointments = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags, Role role) {
-        requireAllNonNull(name, phone, email, nric, address, tags, role);
+    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
+                  ArrayList<Appointment> patientAppointments, Role role) {
+        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.nric = nric;
         this.address = address;
         this.tags.addAll(tags);
+        this.patientAppointments.addAll(patientAppointments);
         this.role = role;
+
     }
 
     public Name getName() {
@@ -73,7 +82,18 @@ public class Person {
     }
 
     /**
+<<<<<<< HEAD
      * Returns true if both persons have the same NRIC.
+=======
+     * Returns a list of Appointments.
+     */
+    public ArrayList<Appointment> getPatientAppointments() {
+        return patientAppointments;
+    }
+
+    /**
+     * Returns true if both persons have the same name.
+>>>>>>> master
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -85,6 +105,18 @@ public class Person {
                 && otherPerson.getNric().equals(getNric());
     }
 
+    /**
+     * Returns true if both persons have the same NRIC.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSamePersonByNric(Nric otherNric) {
+        if (otherNric == this.getNric()) {
+            return true;
+        }
+
+        return otherNric != null
+                && otherNric.equals(this.getNric());
+    }
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -105,7 +137,8 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getNric().equals(getNric())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getPatientAppointments().equals(getPatientAppointments());
     }
 
     @Override
@@ -132,10 +165,29 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        ArrayList<Appointment> appointments = getPatientAppointments();
+        if (!appointments.isEmpty()) {
+            builder.append("; Appointments: ");
+            appointments.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
     public boolean isDoctor() {
         return false;
+    }
+
+    public boolean isPatient() {
+        return false;
+    }
+
+    /**
+     * Adds an appointment for the Patient.
+     * @param appointment
+     */
+    public void addPatientAppointment(Appointment appointment) {
+        patientAppointments.add(appointment);
     }
 }

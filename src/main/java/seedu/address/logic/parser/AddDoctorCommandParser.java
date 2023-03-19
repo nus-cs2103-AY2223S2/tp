@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -49,7 +50,8 @@ public class AddDoctorCommandParser implements Parser<AddDoctorCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Role role = new Role("Doctor");
 
-        Doctor doctor = new Doctor(name, phone, email, nric, address, tagList, role);
+        Doctor doctor = new Doctor(name, phone, email, nric, address, tagList, new ArrayList<>(), role);
+
 
         return new AddDoctorCommand(doctor);
     }
