@@ -152,9 +152,9 @@ public class MainWindow extends UiPart<Stage> {
 
     List<ObservableList<? extends Event>> combineEvents() {
         List<ObservableList<? extends Event>> events = new ArrayList<>();
-        events.add(logic.getFilteredConsultationList());
         events.add(logic.getFilteredTutorialList());
         events.add(logic.getFilteredLabList());
+        events.add(logic.getFilteredConsultationList());
         return events;
     }
 
