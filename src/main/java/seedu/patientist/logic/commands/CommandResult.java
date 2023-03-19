@@ -11,6 +11,9 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
+    private final int showDetails;
+
+
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
@@ -20,8 +23,9 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, int showDetails, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showDetails = showDetails;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -31,7 +35,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, -1, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +48,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowDetails() {
+        return showDetails >= 0;
+    }
+
+    public int getShowDetailsIndex() {
+        return showDetails;
     }
 
     @Override
@@ -59,13 +71,14 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && showDetails == otherCommandResult.showDetails
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showDetails, showHelp, exit);
     }
 
 }
