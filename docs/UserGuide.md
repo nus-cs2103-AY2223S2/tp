@@ -455,7 +455,7 @@ Examples:
 
 Adds module tag(s) to an existing contact.
 
-Formats: 
+Formats:
 * `tag CONTACT_INDEX m/MODULE_TAG`
 * `tag m/MODULE_TAG`
 
@@ -472,7 +472,7 @@ Name: John Smith
 Modules: [CS2100, CS2101, CS2102, CS2103T]
 Module(s) in common: [CS2101, CS2103T]
 ```
-Description of outcome: 
+Description of outcome:
 
 CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
 
@@ -496,7 +496,7 @@ CS2103T is added to John Doe's, the user, list of modules.
 
 Removes a module tag from an existing contact.
 
-Formats: 
+Formats:
 * `untag CONTACT_INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
 
@@ -513,7 +513,7 @@ Name: John Smith
 Modules: [CS2100, CS2101, CS2102]
 Module(s) in common: [CS2101]
 ```
-Description of outcome: 
+Description of outcome:
 
 CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
 

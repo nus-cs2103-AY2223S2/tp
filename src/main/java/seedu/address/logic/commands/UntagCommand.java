@@ -101,5 +101,25 @@ public class UntagCommand extends Command {
                 + "Modules: " + editedUser.getImmutableModuleTags().toString()));
     }
 
+    public ContactIndex getIndex() {
+        return this.index;
+    }
 
+    public Set<ModuleTag> getModules() {
+        return this.moduleTags;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (other instanceof UntagCommand) {
+            UntagCommand otherCommand = (UntagCommand) other;
+            return otherCommand.getIndex().equals(getIndex())
+                    && otherCommand.getModules().equals(getModules());
+        }
+        return false;
+
+    }
 }

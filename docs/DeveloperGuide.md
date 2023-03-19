@@ -23,9 +23,6 @@ title: Developer Guide
      * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
    * [UI Component](#ui-component)
    * [Model Component](#model-component)
-   * [Tag](#tag)
-       * [Group Tag](#group-tag)
-       * [Module Tag](#module-tag)
    * [Person](#person)
        * [Name](#name)
        * [Address](#address)
@@ -34,6 +31,9 @@ title: Developer Guide
        * [Telegram Handle](#telegram-handle)
        * [Group Tag Set](#group-tag-set)
        * [Module Tag Set](#module-tag-set)
+   * [Tag](#tag)
+       * [Group Tag](#group-tag)
+       * [Module Tag](#module-tag)
    * [Utils](#utils)
        * [Sample Data Util](#sample-data-util)
    * [Logic Component](#logic-component)
@@ -50,11 +50,6 @@ title: Developer Guide
    * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
-       * [Add Command Parser](#add-command-parser)
-       * [Edit Command Parser](#edit-command-parser)
-       * [Find Command Parser](#find-command-parser)
-       * [Tag Command Parser](#tag-command-parser)
-       * [Sort Command Parser](#sort-command-parser)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
 5. [Testing](#5-testing)
@@ -255,9 +250,11 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 
 ## **Architecture**
 
-|    <img src="images/ArchitectureDiagram.png" style="width:40%; margin:0 25%">     |
-|:---------------------------------------------------------------------------------:|
-| _Figure 4.1.1_ *Architecture Diagram* explaining the high-level design of the App |
+<img src="images/ArchitectureDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.1.1</b> Architecture Diagram for the high-level design of the App
+</div>
+<br>
 
 Given below is a quick overview of main components and how they interact with each other.
 
@@ -281,10 +278,11 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-
-| <img src="images/ArchitectureSequenceDiagram.png" style="width:90vw"> |
-|:---------------------------------------------------------------------:|
-|     _Figure 4.1.2_ *Sequence Diagram* for the command `delete 1`      |
+<img src="images/ArchitectureSequenceDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.1.2</b> Sequence Diagram for the command <code>delete 1</code>
+</div>
+<br>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -293,9 +291,11 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-| <img src="images/ComponentManagers.png" style="width:40%; margin: 0 25%"> |
-|:-------------------------------------------------------------------------:|
-|           _Figure 4.1.3_ *Class Diagram* for Component Managers           |
+<img src="images/ComponentManagers.png" style="width:70%;margin:0 15%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.1.3</b> Class Diagram for Component Managers
+</div>
+<br>
 
 The sections below give more details of each component.
 
@@ -305,9 +305,11 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-| <img src="images/UiClassDiagram.png" style="width:90vw">  |
-|:---------------------------------------------------------:|
-|     _Figure 4.2.1_ *Class Diagram* for UI Components      |
+<img src="images/UiClassDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.2.1</b> Class Diagram for UI Components
+</div>
+<br>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -328,9 +330,10 @@ The `UI` component,
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-| <img src="images/ModelClassDiagram.png" style="width:90vw"> |
-|:-----------------------------------------------------------:|
-|     _Figure 4.3.1_ *Class Diagram* for Model Components     |
+<img src="images/ModelClassDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.3.1</b> Class Diagram for Model Components
+</div>
 
 The `Model` component,
 
@@ -339,10 +342,15 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### **Tag**
-#### **Group Tag**
-#### **Module Tag**
 ### **Person**
+
+**API** : [`Person.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
+
+<img src="images/PersonClassDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.3.2</b> Class Diagram for Person Components
+</div>
+
 #### **Name**
 #### **Address**
 #### **Phone**
@@ -350,6 +358,11 @@ The `Model` component,
 #### **Telegram Handle**
 #### **Group Tag Set**
 #### **Module Tag Set**
+
+### **Tag**
+#### **Group Tag**
+#### **Module Tag**
+
 ### **Utils**
 #### **Sample Data Util**
 
@@ -361,9 +374,11 @@ The `Model` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-| <img src="images/LogicClassDiagram.png" style="width:90vw"> |
-|:-----------------------------------------------------------:|
-|     _Figure 4.4.1_ *Class Diagram* for Logic Components     |
+<img src="images/LogicClassDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.1</b> Class Diagram for Logic Components
+</div>
+<br>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
@@ -376,13 +391,11 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add n/Bart...")` API call.
 
-| <img src="images/AddSequenceDiagram.png" style="width:90vw">  |
-|:-------------------------------------------------------------:|
-| _Figure 4.4.2_ *Sequence Diagram* for a typical `add` command |
-
-|  <img src="images/AddParserSequenceDiagram.png" style="width:90vw">   |
-|:---------------------------------------------------------------------:|
-| _Figure 4.4.2a_ *Sequence Diagram* for parsing `AddCommand` arguments |
+<img src="images/AddSequenceDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.2</b> Sequence Diagram for a typical <code>add</code> command
+</div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -394,13 +407,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("edit 1...")` API call.
 
-| <img src="images/EditSequenceDiagram.png" style="width:90vw">  |
-|:--------------------------------------------------------------:|
-| _Figure 4.4.3_ *Sequence Diagram* for a typical `edit` command |
-
-|  <img src="images/EditParserSequenceDiagram.png" style="width:90vw">   |
-|:----------------------------------------------------------------------:|
-| _Figure 4.4.3a_ *Sequence Diagram* for parsing `EditCommand` arguments |
+<img src="images/EditSequenceDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.3</b> Sequence Diagram for a typical <code>edit</code> command
+</div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -412,9 +423,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-|  <img src="images/DeleteSequenceDiagram.png" style="width:90vw">  |
-|:-----------------------------------------------------------------:|
-| _Figure 4.4.4a_ *Sequence Diagram* for a typical `delete` command |
+<img src="images/DeleteSequenceDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.4</b> Sequence Diagram for a typical <code>delete</code> command
+</div>
+<br>
 
 <div markdown="span" class="alert alert-info">
 
@@ -450,9 +463,11 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-| <img src="images/ParserClasses.png" style="width:90vw"> |
-|:-------------------------------------------------------:|
-|  _Figure 4.4.x_ *Class Diagram* for Parser Components   |
+<img src="images/ParserClasses.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.x</b> Class Diagram for Parser Components
+</div>
+<br>
 
 How the parsing works:
 * When called upon to parse a user command, the `EduMateParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `EduMateParser` returns back as a `Command` object.
@@ -472,9 +487,11 @@ How the parsing works:
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-| <img src="images/StorageClassDiagram.png" style="width:90vw"> |
-|:-------------------------------------------------------------:|
-|     _Figure 4.5.1_ *Class Diagram* for Storage Components     |
+<img src="images/StorageClassDiagram.png" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.5.1</b> Class Diagram for Storage Components
+</div>
+<br>
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
