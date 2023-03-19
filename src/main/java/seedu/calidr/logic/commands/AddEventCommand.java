@@ -18,14 +18,14 @@ public class AddEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a to-do to the task list. "
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE "
-            + PREFIX_FROM + "START DATE-TIME "
+            + PREFIX_TITLE + " TITLE "
+            + PREFIX_FROM + " START DATE-TIME "
             + PREFIX_TO + " END DATE-TIME"
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Lecture "
-            + PREFIX_FROM + "05-04-2023 1400 "
-            + PREFIX_TO + "05-04-2023 1600";
+            + PREFIX_TITLE + " Lecture "
+            + PREFIX_FROM + " 05-04-2023 1400 "
+            + PREFIX_TO + " 05-04-2023 1600";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the task list.";

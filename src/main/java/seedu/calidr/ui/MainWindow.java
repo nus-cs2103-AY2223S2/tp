@@ -195,6 +195,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             } else if (commandResult.isExit()) {
                 handleExit();
+            } else if (commandResult.getDate().isPresent()) {
+                calendarPanel.setDate(commandResult.getDate().get());
+            } else if (commandResult.getPageType().isPresent()) {
+                calendarPanel.setPage(commandResult.getPageType().get());
             } else {
                 calendarPanel.updateCalendar(logic.getTaskList()); // Entry point for calendar update
             }

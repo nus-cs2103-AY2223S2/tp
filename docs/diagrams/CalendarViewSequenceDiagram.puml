@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":CalendarPanel" as CalendarPanel UI_COLOR
+end box
+
+box CalendarFX MODEL_COLOR_T1
+participant ":Calendar" as Calendar MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand()
+
+activate MainWindow
+MainWindow -> LogicManager : getTaskList()
+activate LogicManager
+LogicManager --> MainWindow : taskList
+deactivate LogicManager
+
+MainWindow -> CalendarPanel : updateCalendar(taskList)
+activate CalendarPanel
+loop for each Calendar
+    CalendarPanel -> Calendar : clear()
+    activate Calendar
+    Calendar --> CalendarPanel
+    deactivate Calendar
+end
+loop for each task in taskList
+    CalendarPanel -> Calendar : addEntry(taskEntry)
+    activate Calendar
+    Calendar --> CalendarPanel
+    deactivate Calendar
+end
+CalendarPanel --> MainWindow
+deactivate CalendarPanel
+MainWindow -->[
+deactivate MainWindow
+
+@enduml

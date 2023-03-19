@@ -5,12 +5,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
+import com.calendarfx.view.DateControl;
 import com.calendarfx.view.EntryViewBase;
-import com.calendarfx.view.MonthView;
+import com.calendarfx.view.page.DayPage;
+import com.calendarfx.view.page.MonthPage;
+import com.calendarfx.view.page.PageBase;
+import com.calendarfx.view.page.WeekPage;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -18,7 +23,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -29,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import seedu.calidr.commons.core.LogsCenter;
 import seedu.calidr.commons.util.TaskEntryUtil;
+import seedu.calidr.model.PageType;
 import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.TaskEntry;
 import seedu.calidr.model.task.Event;
@@ -52,7 +59,24 @@ public class CalendarPanel extends UiPart<Region> {
     private final Map<Class<? extends Task>, Calendar<TaskEntry>> taskEntryCalendarMap = new HashMap<>();
 
     @FXML
-    private MonthView calendarView; // TODO: Command to navigate different months
+    private VBox calendarPanel;
+
+    @FXML
+    private MonthPage monthPage;
+
+    @FXML
+    private WeekPage weekPage;
+
+    @FXML
+    private DayPage dayPage;
+
+    private final Map<PageType, PageBase> calendarViews = Map.of(
+        PageType.DAY, dayPage,
+        PageType.WEEK, weekPage,
+        PageType.MONTH, monthPage
+    );
+
+    private PageType currentPage = PageType.MONTH;
 
     private Thread updateTimeThread;
 
@@ -61,6 +85,11 @@ public class CalendarPanel extends UiPart<Region> {
      */
     public CalendarPanel() {
         super(FXML);
+        calendarPanel.addEventFilter(InputEvent.ANY, event -> {
+            if (!(event instanceof ScrollEvent)) {
+                event.consume();
+            }
+        });
 
         calendarTodos.setReadOnly(true);
         calendarEvents.setReadOnly(true);
@@ -72,36 +101,44 @@ public class CalendarPanel extends UiPart<Region> {
 
         calendarSource.getCalendars().addAll(calendarTodos, calendarEvents);
 
-        calendarView.setEntryContextMenuCallback(param -> {
-            EntryViewBase<?> entryView = param.getEntryView();
-            TaskEntry entry = (TaskEntry) entryView.getEntry();
-
-            ContextMenu contextMenu = new ContextMenu();
-
-            MenuItem informationItem = new MenuItem("Information");
-            informationItem.setOnAction(evt ->
-                    showInformationDialog(entry,
-                            this.getRoot()
-                                    .getScene()
-                                    .getWindow()
-                    )
-            );
-            contextMenu.getItems().add(informationItem);
-
-            return contextMenu;
+        calendarViews.forEach((key, view) -> {
+            view.setEntryContextMenuCallback(this::entryContextMenuCallback);
+            view.setContextMenuCallback(param -> null);
+            view.setShowNavigation(false);
+            view.getCalendarSources().add(calendarSource);
+            view.setBackground(Background.fill(Paint.valueOf("#ffffff")));
+            view.setRequestedTime(LocalTime.now());
+            view.managedProperty().bind(view.visibleProperty());
         });
-
-        //calendarView.setEntryDetailsPopOverContentCallback(new TaskEntryPopOverContentProvider());
-
-        calendarView.addEventFilter(MouseEvent.MOUSE_CLICKED, javafx.event.Event::consume);
-        calendarView.getCalendarSources().add(calendarSource);
-        calendarView.setBackground(Background.fill(Paint.valueOf("#ffffff")));
-        calendarView.setRequestedTime(LocalTime.now());
-
-        spawnUpdateThread(); // update the calendar's "current time" every 10 seconds
+        setPage(currentPage);
+        goToToday();
     }
 
-    private void showInformationDialog(TaskEntry entry, Window window) {
+    private ContextMenu entryContextMenuCallback(DateControl.EntryContextMenuParameter param) {
+        EntryViewBase<?> entryView = param.getEntryView();
+        TaskEntry entry = (TaskEntry) entryView.getEntry();
+
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem informationItem = new MenuItem("Information");
+        informationItem.setOnAction(evt ->
+            showInformationDialog(entry)
+        );
+        contextMenu.getItems().add(informationItem);
+
+        return contextMenu;
+    }
+
+    public PageBase getActivePage() {
+        return calendarViews.get(currentPage);
+    }
+
+    public void setAllPages(Consumer<PageBase> consumer) {
+        calendarViews.forEach((key, view) -> consumer.accept(view));
+    }
+
+    private void showInformationDialog(TaskEntry entry) {
+        Window window = this.getRoot().getScene().getWindow();
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(window);
@@ -124,12 +161,37 @@ public class CalendarPanel extends UiPart<Region> {
         dialog.show();
     }
 
+    public void setDate(LocalDate date) {
+        setAllPages(view -> view.setDate(date));
+    }
+
+    public void goToToday() {
+        setAllPages(PageBase::goToday);
+    }
+
+    public void goToNext() {
+        setAllPages(PageBase::goForward);
+    }
+
+    public void goToPrevious() {
+        setAllPages(PageBase::goBack);
+    }
+
+    public void nextPage() {
+        setPage(currentPage.next(currentPage));
+    }
+
+    public void setPage(PageType pageType) {
+        currentPage = pageType;
+        calendarViews.forEach((key, view) -> view.setVisible(key == pageType));
+    }
+
     private void spawnUpdateThread() {
         updateTimeThread = new Thread(() -> {
             while (true) {
                 Platform.runLater(() -> {
-                    calendarView.setToday(LocalDate.now());
-                    calendarView.setTime(LocalTime.now());
+                    getActivePage().setToday(LocalDate.now());
+                    getActivePage().setTime(LocalTime.now());
                 });
 
                 try {
@@ -152,7 +214,6 @@ public class CalendarPanel extends UiPart<Region> {
      * @param taskList the task list
      */
     public void updateCalendar(ReadOnlyTaskList taskList) {
-        // TODO: Asynchronous / lazy loading
         taskEntryCalendarMap.values().forEach(Calendar::clear);
         taskList.getTaskList().forEach(task -> {
             Class<? extends Task> taskClass = task.getClass();

@@ -17,12 +17,12 @@ public class AddTodoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a to-do to the task list. "
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE "
-            + PREFIX_BY + "BY DATE-TIME "
+            + PREFIX_TITLE + " TITLE "
+            + PREFIX_BY + " BY DATE-TIME "
             + "\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Assignment "
-            + PREFIX_BY + "05-04-2023 2359";
+            + PREFIX_TITLE + " Assignment "
+            + PREFIX_BY + " 05-04-2023 2359";
 
     public static final String MESSAGE_SUCCESS = "New to-do added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This to-do already exists in the task list.";
