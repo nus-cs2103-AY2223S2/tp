@@ -58,7 +58,7 @@ public class EditDeckCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DECK);
         }
 
-        Deck deckToEdit = lastShownList.get(index.getZeroBased()); //target
+        Deck deckToEdit = lastShownList.get(index.getZeroBased());
         model.setDeck(deckToEdit, editedDeck);
         model.updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
 
