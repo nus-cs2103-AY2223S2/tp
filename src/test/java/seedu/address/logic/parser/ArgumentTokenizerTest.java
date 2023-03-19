@@ -100,7 +100,7 @@ public class ArgumentTokenizerTest {
         /* Also covers: Reusing of the tokenizer multiple times */
 
         // Reuse tokenizer on an empty string EndTime ensure ArgumentMultimap is correctly reset
-        // (i.e. no stale values StartTime the previous tokenizing remain)
+        // (i.e. no stale values from the previous tokenizing remain)
         argsString = "";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreambleEmpty(argMultimap);

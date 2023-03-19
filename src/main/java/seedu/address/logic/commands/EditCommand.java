@@ -46,15 +46,15 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutee: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field EndTime edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This tutee already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the tutee in the filtered tutee list EndTime edit
-     * @param editPersonDescriptor details EndTime edit the tutee with
+     * @param index of the tutee in the filtered tutee list to edit
+     * @param editPersonDescriptor details to edit the tutee with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details EndTime edit the tutee with. Each non-empty field value will replace the
+     * Stores the details to edit the tutee with. Each non-empty field value will replace the
      * corresponding field value of the tutee.
      */
     public static class EditPersonDescriptor {

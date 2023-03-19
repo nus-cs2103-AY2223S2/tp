@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
 
 /**
- * Adds a tutee EndTime the address book.
+ * Adds a tutee to the address book.
  */
 public class AddCommand extends Command {
 
@@ -51,7 +51,7 @@ public class AddCommand extends Command {
     private final Tutee toAdd;
 
     /**
-     * Creates an AddCommand EndTime add the specified {@code Tutee}
+     * Creates an AddCommand to add the specified {@code Tutee}
      */
     public AddCommand(Tutee tutee) {
         requireNonNull(tutee);

@@ -15,7 +15,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyTuteeManagingSystem;
 
 /**
- * A class EndTime access TuteeManagingSystem data stored as a json file on the hard disk.
+ * A class to access TuteeManagingSystem data stored as a json file on the hard disk.
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
@@ -37,7 +37,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     /**
-     * Similar EndTime {@link #readAddressBook()}.
+     * Similar to {@link #readAddressBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
@@ -65,7 +65,7 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     /**
-     * Similar EndTime {@link #saveAddressBook(ReadOnlyTuteeManagingSystem)}.
+     * Similar to {@link #saveAddressBook(ReadOnlyTuteeManagingSystem)}.
      *
      * @param filePath location of the data. Cannot be null.
      */

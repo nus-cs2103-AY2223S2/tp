@@ -18,7 +18,7 @@ public class IndexTest {
         assertEquals(1, Index.fromOneBased(1).getOneBased());
         assertEquals(5, Index.fromOneBased(5).getOneBased());
 
-        // convert StartTime one-based index EndTime zero-based index
+        // convert from one-based index to zero-based index
         assertEquals(0, Index.fromOneBased(1).getZeroBased());
         assertEquals(4, Index.fromOneBased(5).getZeroBased());
     }
@@ -32,7 +32,7 @@ public class IndexTest {
         assertEquals(0, Index.fromZeroBased(0).getZeroBased());
         assertEquals(5, Index.fromZeroBased(5).getZeroBased());
 
-        // convert StartTime zero-based index EndTime one-based index
+        // convert from zero-based index EndTime one-based index
         assertEquals(1, Index.fromZeroBased(0).getOneBased());
         assertEquals(6, Index.fromZeroBased(5).getOneBased());
     }

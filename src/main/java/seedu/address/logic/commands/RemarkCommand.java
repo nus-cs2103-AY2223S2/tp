@@ -68,7 +68,7 @@ public class RemarkCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added EndTime or removed StartTime
+     * the remark is added to or removed from
      * {@code tuteeToEdit}.
      */
     private String generateSuccessMessage(Tutee tuteeToEdit) {
