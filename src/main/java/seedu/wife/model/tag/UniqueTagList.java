@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.wife.model.tag.exceptions.DuplicateTagException;
 import seedu.wife.model.tag.exceptions.TagNotFoundException;
+import seedu.wife.model.tag.exceptions.TagStorageEmptyException;
 import seedu.wife.model.tag.exceptions.TagStorageFullException;
 
 /**
@@ -87,9 +88,15 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
+
+        if (internalList.size() == 0) {
+            throw new TagStorageEmptyException();
+        }
+
         if (!internalList.remove(toRemove)) {
             throw new TagNotFoundException();
         }
+
     }
 
     /**
