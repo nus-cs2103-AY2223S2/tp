@@ -31,7 +31,11 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         String[] nameKeywords = trimmedArgs.split(" ");
         Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
-        Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
+        String tagName = "";
+        for (int i = TAG_INDEX; i < nameKeywords.length; i++) {
+            tagName += nameKeywords[i];
+        }
+        Tag tag = ParserUtil.parseTag(tagName);
 
         return new TagCommand(index, tag);
     }

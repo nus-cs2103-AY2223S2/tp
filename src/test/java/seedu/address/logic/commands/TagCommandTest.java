@@ -16,35 +16,23 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tag.Tag;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteTagCommand}.
+ * {@code TagCommand}.
  */
 
-public class DeleteTagCommandTest {
+public class TagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Tag tagToDelete = new Tag("friends");
-
-    /*@Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personToDeleteFrom = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_PERSON, tagToDelete);
-
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, personToDeleteFrom);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTag(personToDeleteFrom, tagToDelete);
-
-        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
-    }*/
+    private Tag tagToAdd = new Tag("NotGay");
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
 
-        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, tagToDelete);
+        TagCommand tagCommand = new TagCommand(outOfBoundIndex, tagToAdd);
 
-        assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -55,31 +43,31 @@ public class DeleteTagCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(outOfBoundIndex, tagToDelete);
+        TagCommand tagCommand = new TagCommand(outOfBoundIndex, tagToAdd);
 
-        assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteTagCommand deleteTagFirstCommand = new DeleteTagCommand(INDEX_FIRST_PERSON, tagToDelete);
-        DeleteTagCommand deleteTagSecondCommand = new DeleteTagCommand(INDEX_SECOND_PERSON, tagToDelete);
+        TagCommand tagFirstCommand = new TagCommand(INDEX_FIRST_PERSON, tagToAdd);
+        TagCommand tagSecondCommand = new TagCommand(INDEX_SECOND_PERSON, tagToAdd);
 
         // same object -> returns true
-        assertTrue(deleteTagFirstCommand.equals(deleteTagFirstCommand));
+        assertTrue(tagFirstCommand.equals(tagFirstCommand));
 
         // same values -> returns true
-        DeleteTagCommand deleteTagFirstCommandCopy = new DeleteTagCommand(INDEX_FIRST_PERSON, tagToDelete);
-        assertTrue(deleteTagFirstCommand.equals(deleteTagFirstCommandCopy));
+        TagCommand tagFirstCommandCopy = new TagCommand(INDEX_FIRST_PERSON, tagToAdd);
+        assertTrue(tagFirstCommand.equals(tagFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteTagFirstCommand.equals(1));
+        assertFalse(tagFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteTagFirstCommand.equals(null));
+        assertFalse(tagFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(deleteTagFirstCommand.equals(deleteTagSecondCommand));
+        assertFalse(tagFirstCommand.equals(tagSecondCommand));
     }
 
     /**
