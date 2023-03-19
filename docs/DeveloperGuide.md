@@ -89,7 +89,7 @@ Precondition: User is logged in and has access to the add doctor feature.
 
 **MSS**
 
-1. User requests to add a doctor by specifying their contact information, including name, department, and specialty.
+1. User requests to add a doctor by specifying their contact information, including name, department, specialty, years of experience, and any non-whitespace separated tags.
 2. Docedex confirms the addition of the doctor contact.<br>
 
    Use case ends.
