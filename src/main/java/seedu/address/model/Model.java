@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.task.Comment;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
@@ -101,9 +101,9 @@ public interface Model {
     /**
      * Adds the given task.
      * {@code task} must not already exist in the address book.
-     * @param person
+     * @param target
      */
-    void addTask(DeadlineTask person);
+    void addTask(Task target);
 
     /**
      * Marks the given task {@code task} as done.
@@ -116,6 +116,12 @@ public interface Model {
      * {@code task} must exist in the address book.
      */
     void unmarkTask(Task task);
+
+    /**
+     * Adds the given comment to the specified task.
+     *  @param comment Comment by user
+     * @param task specified task to receive comment*/
+    void commentOnTask(Comment comment, Task task);
 
     // /**
     //  * Assign a task to a person.

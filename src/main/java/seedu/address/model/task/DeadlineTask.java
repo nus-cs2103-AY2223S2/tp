@@ -8,11 +8,10 @@ public class DeadlineTask extends Task {
     private final Date deadlineDate;
 
     /**
-     * Constructor for a DeadlineTask that takes in a String description as well as String date
-     * and String time.
+     * Constructor for a DeadlineTask that takes in a String description as well as String date.
      *
-     * @param description The description of the EventTask.
-     * @param date The date of the event.
+     * @param description The description of the DeadlineTask.
+     * @param date The date of the deadline.
      */
     public DeadlineTask(TaskDescription description, Date date) {
         super(description);

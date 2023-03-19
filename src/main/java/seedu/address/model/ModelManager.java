@@ -13,7 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.DeadlineTask;
+import seedu.address.model.task.Comment;
 import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
@@ -135,8 +135,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTask(DeadlineTask task) {
+    public void addTask(Task task) {
         addressBook.addTask(task);
+    }
+
+    @Override
+    public void commentOnTask(Comment comment, Task task) {
+        addressBook.commentOnTask(comment, task);
     }
 
     @Override
@@ -151,10 +156,7 @@ public class ModelManager implements Model {
         addressBook.unmarkTask(task);
     }
 
-    // public void assignTask(Index taskIndex, Index personIndex) {
-    //     addressBook.assignTask(taskIndex, personIndex);
-    // }
-
+    @Override
     public void assignTask(Task taskToAssign, Task assignedTask, Index taskIndex) {
         addressBook.assignTask(taskToAssign, assignedTask, taskIndex);
     }
