@@ -6,7 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.files.FileStorage;
+import seedu.address.files.FilesManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -41,8 +41,9 @@ public class UploadFileCommand extends Command {
         }
 
         Person personToUpload = lastShownList.get(targetIndex.getZeroBased());
-        FileStorage fileStorage = new FileStorage(personToUpload.getName().fullName);
-        fileStorage.uploadFile();
+        FilesManager filesManager = new FilesManager(personToUpload);
+        filesManager.addFile();
+
         return new CommandResult(String.format(MESSAGE_UPLOAD_SUCCESS, personToUpload));
     }
 }

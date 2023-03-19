@@ -48,7 +48,7 @@ class FileStorageTest {
         assertTrue(directory.isDirectory(), "Path is not a directory");
 
         //assert that the directory and file does not exist after deleting
-        FileStorage.deleteDrc("testuser");
+        FileStorage.deleteDrc(path);
         assertFalse(directory.exists(), "Directory still exists");
         assertFalse(testFile.exists(), "File still exists");
     }

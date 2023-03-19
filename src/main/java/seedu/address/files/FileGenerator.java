@@ -20,6 +20,7 @@ import seedu.address.model.person.Person;
  * The type File generator.
  */
 public class FileGenerator {
+
     //store this field at Json
     private static int formId = 0;
     private Person person;
@@ -35,16 +36,22 @@ public class FileGenerator {
      * @param description the description
      * @param days        the days
      */
-    public FileGenerator(Person person, String doctorName, String description, int days) throws IOException {
+    public FileGenerator(Person person, String doctorName, String description, int days) {
         this.person = person;
         this.doctorName = doctorName;
         this.description = description;
         this.days = days;
         formId++;
-        createForm();
     }
 
-    private void createForm() {
+    public static int getFormId() {
+        return formId;
+    }
+
+    /**
+     * Create Mc form.
+     */
+    public void createMcForm() {
         try {
             // Load the original PDF form
             PDDocument pdfDocument = PDDocument.load(new File("lib/MC.pdf"));
@@ -60,25 +67,34 @@ public class FileGenerator {
             for (PDField field: fieldList) {
                 if (field instanceof PDTextField) {
                     String fileName = field.getFullyQualifiedName();
-                    if (fileName.equals("name")) {
+                    switch (fileName) {
+                    case "name":
                         field.setValue(person.getName().fullName);
-                    } else if (fileName.equals("DOB")) {
+                        break;
+                    case "DOB":
                         field.setValue("222-2222");
-                    } else if (fileName.equals("days")) {
+                        break;
+                    case "days":
                         field.setValue(Integer.toString(days));
-                    } else if (fileName.equals("today")) {
+                        break;
+                    case "today":
                         // Fill in the date fields
                         LocalDate now = LocalDate.now();
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
                         field.setValue(now.format(formatter));
-                    } else if (fileName.equals("startDate")) {
+                        break;
+                    case "startDate":
                         field.setValue("2019-11-11");
-                    } else if (fileName.equals("endDate")) {
+                        break;
+                    case "endDate":
                         field.setValue("2019-11-12");
-                    } else if (fileName.equals("DoctorName")) {
+                        break;
+                    case "DoctorName":
                         field.setValue(doctorName);
-                    } else {
+                        break;
+                    default:
                         field.setValue(Integer.toString(formId));
+                        break;
                     }
                 }
             }
@@ -90,5 +106,4 @@ public class FileGenerator {
         }
 
     }
-
 }

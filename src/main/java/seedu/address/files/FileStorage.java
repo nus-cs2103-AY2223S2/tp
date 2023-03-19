@@ -19,14 +19,12 @@ public class FileStorage {
 
     private String username;
     /**
-     * Instantiates a new Image storage.
+     * Instantiates a new File storage.
      *
      * @param username the username
      */
     public FileStorage(String username) {
         this.username = username;
-        String path = "reports/" + username;
-        createDrc(path);
     }
 
     /**
@@ -45,8 +43,7 @@ public class FileStorage {
      * @param path the path
      */
     public static void deleteDrc(String path) {
-        String path1 = "reports/" + path;
-        File directory = new File(path1);
+        File directory = new File(path);
         if (directory.exists()) {
             for (File file: directory.listFiles()) {
                 file.delete();
@@ -136,7 +133,6 @@ public class FileStorage {
         }
     }
     */
-
 
     /**
      * Check dir.
