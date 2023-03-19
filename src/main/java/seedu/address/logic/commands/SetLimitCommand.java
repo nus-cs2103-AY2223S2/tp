@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Sets the limit for the number of cards per review session.
@@ -18,9 +18,6 @@ public class SetLimitCommand extends Command {
     public static final String MESSAGE_SUCCESS_SET_LIMIT = "You have set the review limit to %1$s cards!";
     public static final String MESSAGE_SUCCESS_NO_LIMIT = "You have set the review limit to none - each review will "
             + "go through all cards once!";
-    public static final String MESSAGE_INVALID_INPUT = "Input must be an integer between 1 and 2147483647 inclusive"
-            + "or the String 'none'";
-    public static final String MESSAGE_INVALID_INTEGER = "Input %1$s is not an integer between 1 and 2147483647 inclusive";
     private final int reviewLimit;
 
     /**

@@ -1,6 +1,5 @@
 package seedu.address.model.review;
 
-import static java.util.Collections.shuffle;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
@@ -33,6 +31,8 @@ public class Review {
      */
     public Review(Deck deck, List<Card> cardList) {
         requireNonNull(deck);
+        requireNonNull(cardList);
+
         this.deck = deck;
         this.cardList = cardList;
         totalNumCards = cardList.size();
@@ -49,8 +49,14 @@ public class Review {
         scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
     }
 
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor of Review object used if user has set a card limit for each Review session.
+     */
     public Review(Deck deck, List<Card> cardList, int userSetLimit) {
         requireNonNull(deck);
+        requireNonNull(cardList);
+
         this.deck = deck;
         this.cardList = cardList;
         totalNumCards = userSetLimit;
@@ -66,7 +72,7 @@ public class Review {
                             0,
                             cardList.size() - 1)
                     .boxed().collect(Collectors.toList()));
-        } else if (userSetLimit < cardList.size()){
+        } else if (userSetLimit < cardList.size()) {
             // all cards seen will be unique when user set limit is less than card list size
             orderOfCards = new Random().ints(0, cardList.size())
                     .distinct().limit(userSetLimit).boxed().collect(Collectors.toList());

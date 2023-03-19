@@ -4,13 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
@@ -25,7 +22,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_LIMIT_INPUT = "Input must be an integer between 1 and 2147483647"
             + " inclusive or the String 'none'";
-    public static final String MESSAGE_INVALID_INTEGER = "Input %1$s is not an integer between 1 and 2147483647 inclusive";
+    public static final String MESSAGE_INVALID_INTEGER = "Input %1$s is not an integer between 1 and 2147483647"
+            + "inclusive";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -113,7 +111,7 @@ public class ParserUtil {
      * Parses a String {@code userInput} into an {@code Integer} and returns it. Leading and trailing whitespaces
      * will be trimmed.
      * @throws ParseException if the specified String is invalid (not non-zero unsigned integer or
-     * not the String "none").
+     *      not the String "none").
      */
     public static int parseLimit(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
@@ -125,7 +123,7 @@ public class ParserUtil {
             }
             return Integer.parseInt(trimmedUserInput);
         } else {
-            throw new ParseException(MESSAGE_INVALID_INTEGER);
+            throw new ParseException(MESSAGE_INVALID_LIMIT_INPUT);
         }
     }
 
