@@ -27,7 +27,7 @@ public class Role {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid role.
      */
     public static boolean isValidRole(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -42,7 +42,7 @@ public class Role {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
+                || (other instanceof Role // instanceof handles nulls
                 && role.equals(((Role) other).role)); // state check
     }
 

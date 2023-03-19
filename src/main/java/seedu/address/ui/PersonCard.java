@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -51,7 +52,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
 
-        if (person.isDoctor()) {
+        if (person.getRole().equals("Doctor")) {
             name.setText("[Dr] " + person.getName().fullName);
         } else {
             name.setText(person.getName().fullName);

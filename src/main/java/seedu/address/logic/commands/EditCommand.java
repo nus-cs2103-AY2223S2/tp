@@ -21,9 +21,11 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Role;
@@ -84,6 +86,14 @@ public class EditCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
+        /*if (personToEdit.getRole().role == "Doctor") {
+            model.setDoctor((Doctor) personToEdit, (Doctor) editedPerson);
+        } else if (personToEdit.getRole().role == "Patient") {
+            model.setPatient((Patient) personToEdit, (Patient) editedPerson);
+        } else {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }*/
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
