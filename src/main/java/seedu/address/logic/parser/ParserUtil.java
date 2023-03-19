@@ -92,13 +92,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> decks} into a {@code Set<Deck>}
+     * Parses {@code String deckName} into a {@code Deck}
      */
     public static Deck parseDeck(String deckName) throws ParseException {
         requireNonNull(deckName);
         String trimmedDeckName = deckName.trim();
-        if (!Answer.isValidAnswer(trimmedDeckName)) {
-            throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
+        if (!Deck.isValidDeckName(trimmedDeckName)) {
+            throw new ParseException(Deck.MESSAGE_CONSTRAINTS);
         }
         return new Deck(trimmedDeckName);
     }

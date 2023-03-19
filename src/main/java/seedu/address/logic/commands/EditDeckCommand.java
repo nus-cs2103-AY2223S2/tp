@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DECK_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DECKS;
 
 import java.util.List;
@@ -21,11 +22,8 @@ public class EditDeckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the name of the deck "
             + "by the index number used in the displayed deck list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[DECK NAME]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "LAC1201";
+            + "Parameters: INDEX (must be a positive integer) " + PREFIX_DECK_NAME + "DECK NAME\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DECK_NAME + "LAC1201";
 
     public static final String MESSAGE_EDIT_DECK_SUCCESS = "Successfully renamed deck to %1$s";
     public static final String MESSAGE_DUPLICATE_DECK = "This deck name already exists.";
