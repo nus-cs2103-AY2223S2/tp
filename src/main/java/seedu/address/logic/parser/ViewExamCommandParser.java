@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -18,7 +19,7 @@ import seedu.address.model.student.Exam;
 import seedu.address.model.student.ExamDatePredicate;
 import seedu.address.model.student.ExamDonePredicate;
 import seedu.address.model.student.ExamPredicate;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
@@ -46,22 +47,24 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
         Predicate<Exam> examPredicate = exam -> true;
         Predicate<Exam> donePredicate = exam -> true;
         boolean defaultPredicateFlag;
+        List<String> nameList = new ArrayList<>();
 
         // If name is present, create a predicate to filter by name
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+
             List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
             // for all the names, trim the name and only take the first word
             for (int i = 0; i < nameKeywords.size(); i++) {
                 String name = nameKeywords.get(i);
                 name = name.trim();
                 int spaceIndex = name.indexOf(" ");
-                if (spaceIndex != -1) {
-                    name = name.substring(0, spaceIndex);
-                }
+                //                if (spaceIndex != -1) {
+                //                    name = name.substring(0, spaceIndex);
+                //                }
                 nameKeywords.set(i, name);
             }
-
-            namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
+            nameList = nameKeywords;
+            namePredicate = new NamePredicate(nameKeywords);
             defaultPredicateFlag = false;
         } else {
             namePredicate = PREDICATE_SHOW_ALL_STUDENTS;
@@ -83,10 +86,10 @@ public class ViewExamCommandParser implements Parser<ViewExamCommand> {
             String date = argMultimap.getValue(PREFIX_DATE).get();
             LocalDate targetDate = ParserUtil.parseDate(date);
             ExamDatePredicate datePredicate = new ExamDatePredicate(targetDate);
-            return new ViewExamCommand(namePredicate, datePredicate, examPredicate, donePredicate,
+            return new ViewExamCommand(nameList, namePredicate, datePredicate, examPredicate, donePredicate,
                 defaultPredicateFlag);
         } else {
-            return new ViewExamCommand(namePredicate, examPredicate, donePredicate, defaultPredicateFlag);
+            return new ViewExamCommand(nameList, namePredicate, examPredicate, donePredicate, defaultPredicateFlag);
         }
     }
 }

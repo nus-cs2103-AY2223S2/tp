@@ -26,6 +26,7 @@ import seedu.address.model.student.NameContainsKeywordsPredicate;
  * An UpdateHomeworkCommandParser that parses input arguments and creates a new UpdateHomeworkCommand object
  */
 public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand> {
+    private List<String> names;
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateHomeworkCommand
      * and returns an UpdateHomeworkCommand object for execution.
@@ -51,12 +52,13 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
-            int spaceIndex = name.indexOf(" ");
-            if (spaceIndex != -1) {
-                name = name.substring(0, spaceIndex);
-            }
+            //            int spaceIndex = name.indexOf(" ");
+            //            if (spaceIndex != -1) {
+            //                name = name.substring(0, spaceIndex);
+            //            }
             nameKeywords.set(i, name);
         }
+        names = nameKeywords;
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -75,7 +77,7 @@ public class UpdateHomeworkCommandParser implements Parser<UpdateHomeworkCommand
             deadline = Optional.of(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
 
-        return new UpdateHomeworkCommand(index, new NameContainsKeywordsPredicate(nameKeywords),
+        return new UpdateHomeworkCommand(names, index, new NameContainsKeywordsPredicate(nameKeywords),
                 homeworkName, deadline);
     }
 

@@ -16,13 +16,14 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.HomeworkIsCompletePredicate;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
  * Parses input arguments and creates a new ViewHomeworkCommand object
  */
 public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
+    private List<String> names;
     /**
      * Parses the given {@code String} of arguments in the context of the ViewHomeworkCommand
      * and returns a ViewHomeworkCommand object for execution.
@@ -51,14 +52,15 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             for (int i = 0; i < nameKeywords.size(); i++) {
                 String name = nameKeywords.get(i);
                 name = name.trim();
-                int spaceIndex = name.indexOf(" ");
-                if (spaceIndex != -1) {
-                    name = name.substring(0, spaceIndex);
-                }
+                //                int spaceIndex = name.indexOf(" ");
+                //                if (spaceIndex != -1) {
+                //                    name = name.substring(0, spaceIndex);
+                //                }
                 nameKeywords.set(i, name);
             }
+            names = nameKeywords;
 
-            namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
+            namePredicate = new NamePredicate(nameKeywords);
             defaultPredicateFlag = false;
         } else {
             namePredicate = PREDICATE_SHOW_ALL_STUDENTS;
@@ -70,9 +72,9 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             String status = argMultimap.getValue(PREFIX_STATUS).get();
             boolean isCompleted = ParserUtil.parseStatus(status);
             HomeworkIsCompletePredicate statusPredicate = new HomeworkIsCompletePredicate(isCompleted);
-            return new ViewHomeworkCommand(namePredicate, statusPredicate, defaultPredicateFlag);
+            return new ViewHomeworkCommand(names, namePredicate, statusPredicate, defaultPredicateFlag);
         } else {
-            return new ViewHomeworkCommand(namePredicate, defaultPredicateFlag);
+            return new ViewHomeworkCommand(names, namePredicate, defaultPredicateFlag);
         }
     }
 }

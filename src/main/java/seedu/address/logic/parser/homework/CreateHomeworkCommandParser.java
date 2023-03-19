@@ -17,12 +17,13 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 
 /**
  * Parses input arguments and creates a new CreateHomeworkCommand object
  */
 public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand> {
+    private List<String> names;
     /**
      * Parses the given {@code String} of arguments in the context of the CreateHomeworkCommand
      * and returns a CreateHomeworkCommand object for execution.
@@ -51,14 +52,15 @@ public class CreateHomeworkCommandParser implements Parser<CreateHomeworkCommand
         for (int i = 0; i < nameKeywords.size(); i++) {
             String name = nameKeywords.get(i);
             name = name.trim();
-            int spaceIndex = name.indexOf(" ");
-            if (spaceIndex != -1) {
-                name = name.substring(0, spaceIndex);
-            }
+            //            int spaceIndex = name.indexOf(" ");
+            //            if (spaceIndex != -1) {
+            //                name = name.substring(0, spaceIndex);
+            //            }
             nameKeywords.set(i, name);
         }
+        names = nameKeywords;
 
-        return new CreateHomeworkCommand(new NameContainsKeywordsPredicate(nameKeywords),
+        return new CreateHomeworkCommand(names, new NamePredicate(nameKeywords),
                 homeworkName, deadline);
     }
 

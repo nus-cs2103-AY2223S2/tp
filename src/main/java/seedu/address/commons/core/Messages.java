@@ -43,4 +43,6 @@ public class Messages {
     public static final String MESSAGE_HOMEWORK_UPDATED_SUCCESS = "Homework %s of student %s is updated to:\n"
             + "Homework name: %s\n"
             + "Deadline: %s\n";
+    public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s** "
+            + "please enter full name(s)";
 }

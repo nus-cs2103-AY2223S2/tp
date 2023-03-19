@@ -42,6 +42,7 @@ public class UpdateHomeworkCommand extends Command {
     private final Optional<String> homeworkName;
     private final Optional<LocalDateTime> deadline;
     private final NameContainsKeywordsPredicate predicate;
+    private final List<String> names;
 
     /**
      * Creates an UpdateHomeworkCommand to update the information of an existing homework.
@@ -51,8 +52,8 @@ public class UpdateHomeworkCommand extends Command {
      * @param homeworkName of the homework to be updated to
      * @param deadline of the homework to be updated to
      */
-    public UpdateHomeworkCommand(Index index, NameContainsKeywordsPredicate predicate, Optional<String> homeworkName,
-                                 Optional<LocalDateTime> deadline) {
+    public UpdateHomeworkCommand(List<String> names, Index index, NameContainsKeywordsPredicate predicate,
+                                 Optional<String> homeworkName, Optional<LocalDateTime> deadline) {
         requireNonNull(predicate);
         requireNonNull(index);
 
@@ -60,11 +61,22 @@ public class UpdateHomeworkCommand extends Command {
         this.predicate = predicate;
         this.homeworkName = homeworkName;
         this.deadline = deadline;
+        this.names = names;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder dupNames = new StringBuilder();
+        for (String name : names) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
+            }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(predicate);
         List<Student> studentList = model.getFilteredStudentList();
 
