@@ -72,7 +72,14 @@ public class UnassignCommand extends Command {
         }
 
         personTaskModelManager.deleteItem(toDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, person, task));
+
+        model.updateFilteredPersonList(p -> p.getId().equals(pId));
+        List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager().getReadOnlyRepository().getData()
+            .filtered(a -> a.getPersonId().equals(pId));
+
+        officeConnectModel.getTaskModelManager().updateFilteredItemList(t -> assignTasks.stream()
+            .anyMatch(a -> a.getTaskId().equals(t.getId())));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName(), task.getTitle()));
     }
 
     @Override
