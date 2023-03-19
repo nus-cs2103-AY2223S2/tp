@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.HashSet;
 
 /**
- * Represents an Elderly's risk level in the database.
+ * Represents an Elderly's risk level in FriendlyLink.
  * Guarantees: immutable; is valid as declared in {@link #isValidRisk(String)}
  */
 public class RiskLevel {
@@ -36,6 +36,9 @@ public class RiskLevel {
 
     /**
      * Returns true if a given string is a valid risk level.
+     *
+     * @param risk Risk level to be tested.
+     * @return True if {@code test} is a valid risk level and false otherwise.
      */
     public static boolean isValidRisk(String risk) {
         HashSet<String> set = new HashSet<>();

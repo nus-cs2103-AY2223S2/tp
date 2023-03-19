@@ -32,6 +32,9 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
+     *
+     * @param toCheck Person to check against.
+     * @return True if the person is in the list and false otherwise.
      */
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
@@ -41,6 +44,8 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
     /**
      * Adds a person to the list.
      * The person must not already exist in the list.
+     *
+     * @param toAdd Person to be added.
      */
     public void add(T toAdd) {
         requireNonNull(toAdd);
@@ -54,6 +59,9 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     *
+     * @param target Person to edit.
+     * @param editedPerson Replacement person.
      */
     public void setPerson(T target, T editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -73,6 +81,8 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
+     *
+     * @param toRemove Person to remove.
      */
     public void remove(T toRemove) {
         requireNonNull(toRemove);
@@ -86,7 +96,7 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
      * The person with such a nric must exist in the list.
      *
      * @param nric Nric of the person.
-     * @return Person with that name.
+     * @return Person with the nric.
      */
     public T get(Nric nric) {
         requireNonNull(nric);
@@ -94,6 +104,12 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
         return filteredList.size() == 0 ? null : filteredList.get(0);
     }
 
+    /**
+     * Replaces the contents of this list with the list in {@code replacement}.
+     * The internal list of {@code replacement} must not contain duplicate persons.
+     *
+     * @param replacement Replacement containing a list of persons.
+     */
     public void setPersons(UniquePersonList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -102,6 +118,8 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
     /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
+     *
+     * @param persons Replacement list of persons.
      */
     public void setPersons(List<T> persons) {
         requireAllNonNull(persons);
@@ -114,6 +132,8 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return Unmodifiable list of persons.
      */
     public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;

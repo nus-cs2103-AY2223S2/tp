@@ -16,7 +16,7 @@ import seedu.address.model.person.information.RiskLevel;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents an Elderly in the database.
+ * Represents an Elderly in FriendlyLink.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Elderly extends Person {
