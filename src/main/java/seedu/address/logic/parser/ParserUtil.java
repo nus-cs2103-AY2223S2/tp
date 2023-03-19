@@ -21,7 +21,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_N_INPUT = "Input must be an integer between 1 and 2147483647"
-            + " inclusive or the String 'none'";
+            + " inclusive or the String 'all'";
     public static final String MESSAGE_INVALID_INTEGER = "Input must be an integer between 1 and 2147483647 inclusive";
 
     /**
@@ -110,7 +110,7 @@ public class ParserUtil {
      * Parses a String {@code userInput} into an {@code Integer} and returns it. Leading and trailing whitespaces
      * will be trimmed.
      * @throws ParseException if the specified String is invalid (not non-zero unsigned integer or
-     *      not the String "none").
+     *      not the String "all").
      */
     public static int parseNumCardsPerReview(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
