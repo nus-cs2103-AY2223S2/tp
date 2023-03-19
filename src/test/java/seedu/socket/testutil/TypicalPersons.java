@@ -115,11 +115,11 @@ public class TypicalPersons {
      * Returns an {@code Socket} with all the typical persons.
      */
     public static Socket getTypicalSocket() {
-        Socket s = new Socket();
+        Socket socket = new Socket();
         for (Person person : getTypicalPersons()) {
-            s.addPerson(person);
+            socket.addPerson(person);
         }
-        return s;
+        return socket;
     }
 
     public static List<Person> getTypicalPersons() {
