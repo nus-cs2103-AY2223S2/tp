@@ -30,6 +30,10 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `add-module /code {module_code} [/name {module_name}]`: Adds a module to Le Tracker
   - `add-lecture /module {module_code}`: Adds a lecture to a module
   - `add-video /module {module_name} /lecture {lecture_index} /video {video_name}`: Adds a video to the module code
+- Edit
+  - `edit {module_code} [/code {updated_code}] [/name {updated_name}]`: Edits the details of a module in Le Tracker
+  - `edit {lecture_name} [/mod {module_code}] [/name {updated_name}]`: Edits the details of a lecture
+  - `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}]`: Edits the details of a video
 - Mark/Unmark
   - `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
   - `unmark /module {module_code} /lecture {lecture_index} /video {video_name}`: Unmarks a video as unwatched
@@ -122,6 +126,46 @@ Format: `add-video /module {module_name} /lecture {lecture_index} /video {video_
 
 Examples:
 - `add-video /module CS2040 /lecture 1 /video lecture-01-part-1`
+
+### Edit a Module
+Edits the details of a module in Le Tracker.
+
+Format: `edit {module_code} [/code {updated_code}] [/name {updated_name}]`
+- `module_code` must belong to an existing module
+- `updated_code` must be a valid module code
+- `updated_code` must be unique among the module codes of the modules in Le Tracker
+- `updated_name` must be a valid module name
+
+Examples:
+- `edit CS2040 /code CS2040S /name Data Structures and Algorithms`
+
+### Edit a Lecture
+Edits the details of a lecture.
+
+Format: `edit {lecture_name} [/mod {module_code}] [/name {updated_name}]`
+- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `updated_name` must be a valid lecture name
+- `updated_name` must be unique among the names of the lectures belonging to the module specified in `module_code`
+
+Examples:
+- `edit Lecture 01 /mod CS2040S /name Lecture 01 Introduction`
+
+### Edit a Video
+Edits the details of a video
+
+Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}]`
+- `video_name` must belong to a video that exist within the lecture specified in `lecture_name`
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
+- `updated_name` must be a valid video name
+- `updated_name` must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
+
+Examples:
+- `edit Video 01 /mod CS2040S /lec Lecture 03 Sorting /name Video 01 Analysis`
 
 ### Mark/Unmark a Video
 Marks/Unmarks a video as watched/unwatched in a lecture of its specified module
