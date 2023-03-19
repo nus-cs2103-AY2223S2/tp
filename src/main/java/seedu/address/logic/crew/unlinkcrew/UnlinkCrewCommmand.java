@@ -1,7 +1,4 @@
-package seedu.address.logic.crew.linkcrew;
-
-import java.util.Map;
-import java.util.stream.Collectors;
+package seedu.address.logic.crew.unlinkcrew;
 
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
@@ -12,13 +9,16 @@ import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
 
-public class LinkCrewCommand implements Command {
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class UnlinkCrewCommmand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
     private static final String CREW_NOT_FOUND_EXCEPTION =
             "Crew with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
+            "Unlinked %s from flight %s.";
 
     /**
      * The id of the crews
@@ -31,12 +31,12 @@ public class LinkCrewCommand implements Command {
     private final Flight flight;
 
     /**
-     * Creates a new link command.
+     * Creates a new unlink command.
      *
      * @param crews the id of the crews.
      * @param flight the id of the flight.
      */
-    public LinkCrewCommand(Map<FlightCrewType, Crew> crews, Flight flight) {
+    public UnlinkCrewCommmand(Map<FlightCrewType, Crew> crews, Flight flight) {
         this.crews = crews;
         this.flight = flight;
     }
@@ -57,12 +57,11 @@ public class LinkCrewCommand implements Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             for (Map.Entry<FlightCrewType, Crew> entry : crews.entrySet()) {
-                flight.crewLink.putRevolve(entry.getKey(), entry.getValue());
+                flight.crewLink.delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());
         }
         return new CommandResult(this.toString());
     }
-
 }
