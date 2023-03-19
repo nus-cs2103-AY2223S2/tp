@@ -104,7 +104,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]â€
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags/groups, the existing tags/groups of the person will be removed i.e adding of tags/groups is not cumulative.
-* To add on to existing groups/tags without overrwriting it, include the prefix `m/` (merge).
+* To add on to existing groups/tags without overwriting it, include the prefix `m/` (merge).
 * When using prefix m/, groups/tags added cannot be empty.
 * Groups can only be added if it has been created.
 * You can remove all the personâ€™s tags/groups by typing `t/` and `g/` respectively without
