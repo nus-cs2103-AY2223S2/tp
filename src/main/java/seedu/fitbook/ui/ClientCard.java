@@ -47,6 +47,8 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label goal;
+    @FXML
     private Label calorie;
 
     /**
@@ -61,7 +63,8 @@ public class ClientCard extends UiPart<Region> {
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         weight.setText(client.getWeight().value + " Kg");
-        gender.setText(client.getGender().value);
+        gender.setText("Gender: " + client.getGender().value);
+        goal.setText("Goal: " + client.getGoal().value);
         setCalorieCondition(client, calorie);
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))

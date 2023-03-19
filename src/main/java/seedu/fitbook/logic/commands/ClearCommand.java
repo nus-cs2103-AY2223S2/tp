@@ -6,7 +6,7 @@ import seedu.fitbook.model.FitBook;
 import seedu.fitbook.model.FitBookModel;
 
 /**
- * Clears the address book.
+ * Clears Client list in FitBook.
  */
 public class ClearCommand extends Command {
 

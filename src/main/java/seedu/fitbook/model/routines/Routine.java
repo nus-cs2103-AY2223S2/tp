@@ -94,4 +94,16 @@ public class Routine {
         builder.append(getRoutineName());
         return builder.toString();
     }
+
+    /**
+     * Format exercise as text for viewing.
+     * @return textString
+     */
+    public StringBuilder exerciseListToString() {
+        StringBuilder textString = new StringBuilder();
+        for (int i = 1; i <= exercises.size(); i++) {
+            textString.append("    " + i + ". " + exercises.get(i - 1) + "\n");
+        }
+        return textString;
+    }
 }

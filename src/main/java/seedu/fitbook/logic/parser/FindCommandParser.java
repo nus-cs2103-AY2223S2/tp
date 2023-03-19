@@ -9,6 +9,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -29,6 +30,7 @@ import seedu.fitbook.model.client.predicate.AppointmentContainsKeywordsPredicate
 import seedu.fitbook.model.client.predicate.CalorieContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.EmailContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.GenderContainsKeywordsPredicate;
+import seedu.fitbook.model.client.predicate.GoalContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.NameContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.PhoneContainsKeywordsPredicate;
 import seedu.fitbook.model.client.predicate.TagContainsKeywordsPredicate;
@@ -48,7 +50,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG);
+                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG,
+                        PREFIX_GOAL);
 
         checkParseStringFormat(args);
 
@@ -60,6 +63,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> weightKeywords = argMultimap.getAllValues(PREFIX_WEIGHT);
         List<String> genderKeywords = argMultimap.getAllValues(PREFIX_GENDER);
         List<String> calorieKeywords = argMultimap.getAllValues(PREFIX_CALORIE);
+        List<String> goalKeywords = argMultimap.getAllValues(PREFIX_GOAL);
         List<String> appointmentKeywords = argMultimap.getAllValues(PREFIX_APPOINTMENT);
 
         List<Predicate<Client>> predicates = new ArrayList<>();
@@ -86,6 +90,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         if (!calorieKeywords.isEmpty()) {
             predicates.add(new CalorieContainsKeywordsPredicate(calorieKeywords));
+        }
+        if (!goalKeywords.isEmpty()) {
+            predicates.add(new GoalContainsKeywordsPredicate(goalKeywords));
         }
         if (!appointmentKeywords.isEmpty()) {
             predicates.add(new AppointmentContainsKeywordsPredicate(appointmentKeywords));

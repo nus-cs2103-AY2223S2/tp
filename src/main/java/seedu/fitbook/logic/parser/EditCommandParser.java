@@ -7,6 +7,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -38,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG);
+                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_GOAL, PREFIX_CALORIE, PREFIX_TAG);
         Index index;
 
         try {
@@ -68,6 +69,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
             editClientDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GOAL).isPresent()) {
+            editClientDescriptor.setGoal(ParserUtil.parseGoal(argMultimap.getValue(PREFIX_GOAL).get()));
         }
         parseAppointmentsForEdit(argMultimap.getAllValues(PREFIX_APPOINTMENT))
                 .ifPresent(editClientDescriptor::setAppointments);

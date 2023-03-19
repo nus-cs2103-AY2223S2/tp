@@ -25,6 +25,7 @@ import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.fitbook.logic.commands.EditRoutineCommand;
 import seedu.fitbook.logic.commands.EditRoutineCommand.EditRoutineDescriptor;
 import seedu.fitbook.logic.commands.ExitCommand;
+import seedu.fitbook.logic.commands.ExportCommand;
 import seedu.fitbook.logic.commands.FindCommand;
 import seedu.fitbook.logic.commands.HelpCommand;
 import seedu.fitbook.logic.commands.ListClientsCommand;
@@ -55,6 +56,12 @@ public class FitBookParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_export() throws Exception {
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD) instanceof ExportCommand);
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD + " 3") instanceof ExportCommand);
     }
 
     @Test

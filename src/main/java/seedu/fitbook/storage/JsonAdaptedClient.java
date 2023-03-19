@@ -16,6 +16,7 @@ import seedu.fitbook.model.client.Calorie;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
@@ -35,6 +36,7 @@ class JsonAdaptedClient {
     private final String calorie;
     private final String weight;
     private final String gender;
+    private final String goal;
 
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -47,7 +49,8 @@ class JsonAdaptedClient {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
             @JsonProperty("weight") String weight, @JsonProperty("gender") String gender,
-            @JsonProperty("calorie") String calorie, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("goal") String goal, @JsonProperty("calorie") String calorie,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,6 +58,7 @@ class JsonAdaptedClient {
         this.calorie = calorie;
         this.weight = weight;
         this.gender = gender;
+        this.goal = goal;
         if (appointments != null) {
             this.appointments.addAll(appointments);
         }
@@ -74,6 +78,7 @@ class JsonAdaptedClient {
         calorie = source.getCalorie().value;
         weight = source.getWeight().value;
         gender = source.getGender().value;
+        goal = source.getGoal().value;
         appointments.addAll(source.getAppointments().stream()
                 .map(JsonAdaptedAppointment::new)
                 .collect(Collectors.toList()));
@@ -150,11 +155,18 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
-
+        if (goal == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
+        }
+        if (!Goal.isValidGoal(goal)) {
+            throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
+        }
+        final Goal modelGoal = new Goal(goal);
         final Set<Appointment> modelAppointment = new HashSet<>(clientAppointments);
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelAppointment,
-                modelWeight, modelGender, modelCalorie, modelTags);
+                modelWeight, modelGender, modelCalorie, modelGoal, modelTags);
+
     }
 
 }

@@ -11,6 +11,7 @@ import seedu.fitbook.model.tag.Tag;
  * Tests that a {@code Client}'s {@code Tag} matches any of the keywords given.
  */
 public class TagContainsKeywordsPredicate implements Predicate<Client> {
+
     private final List<String> keywords;
 
     public TagContainsKeywordsPredicate(List<String> keywords) {

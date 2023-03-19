@@ -16,12 +16,14 @@ import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Calorie;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
 import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -131,6 +133,7 @@ public class ParserUtil {
         }
         return new Weight(trimmedWeight);
     }
+
     /**
      * Parses a {@code String Gender} into an {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
@@ -144,6 +147,21 @@ public class ParserUtil {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String Goal} into an {@code Goal}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code goal} is invalid.
+     */
+    public static Goal parseGoal(String goal) throws ParseException {
+        requireNonNull(goal);
+        String trimmedGoal = goal.trim();
+        if (!Goal.isValidGoal(trimmedGoal)) {
+            throw new ParseException(Goal.MESSAGE_CONSTRAINTS);
+        }
+        return new Goal(trimmedGoal);
     }
 
     /**

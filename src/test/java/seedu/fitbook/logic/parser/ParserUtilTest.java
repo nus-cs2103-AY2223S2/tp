@@ -21,6 +21,7 @@ import seedu.fitbook.model.client.Appointment;
 import seedu.fitbook.model.client.Calorie;
 import seedu.fitbook.model.client.Email;
 import seedu.fitbook.model.client.Gender;
+import seedu.fitbook.model.client.Goal;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
@@ -39,7 +40,7 @@ public class ParserUtilTest {
 
     private static final String INVALID_WEIGHT = "-23";
     private static final String INVALID_GENDER = "H";
-
+    private static final String INVALID_GOAL = " ";
     private static final String INVALID_APPOINTMENT = "235236";
 
 
@@ -52,9 +53,10 @@ public class ParserUtilTest {
     private static final String VALID_CALORIE = "2000";
     private static final String VALID_WEIGHT = "23";
     private static final String VALID_GENDER = "m";
+    private static final String VALID_GOAL = "lose weight";
+    private static final String VALID_APPOINTMENT_1 = "10-10-2023 18:00";
+    private static final String VALID_APPOINTMENT_2 = "11-12-2020 18:00";
 
-    private static final String VALID_APPOINTMENT_1 = "10-10-2023 18:30";
-    private static final String VALID_APPOINTMENT_2 = "11-12-2020 18:30";
 
     //Routine
     private static final String INVALID_ROUTINE = "@$!%%@";
@@ -248,6 +250,21 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseGoal_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGoal((String) null));
+    }
+
+    @Test
+    public void parseGoal_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGoal(INVALID_GOAL));
+    }
+
+    @Test
+    public void parseGoal_validValueWithoutWhitespace_returnsGoal() throws Exception {
+        Goal expectedGoal = new Goal(VALID_GOAL);
+        assertEquals(expectedGoal, ParserUtil.parseGoal(VALID_GOAL));
+    }
+    @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
     }
@@ -339,7 +356,6 @@ public class ParserUtilTest {
         Set<Appointment> expectedAppointmentSet =
                 new HashSet<Appointment>(Arrays.asList(new Appointment(VALID_APPOINTMENT_1),
                         new Appointment(VALID_APPOINTMENT_2)));
-
         assertEquals(actualAppointmentSet, expectedAppointmentSet);
     }
 
