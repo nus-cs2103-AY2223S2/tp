@@ -1,17 +1,16 @@
 package seedu.sudohr.logic.parser;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_AMY;
+import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_BOB;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EID_DESC;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_EID_DESC_ZERO;
-import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,7 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         Id expectedId = new Id(VALID_ID_BOB);
-        assertParseSuccess(parser,  EID_DESC_BOB, new DeleteCommand(expectedId));
+        assertParseSuccess(parser, EID_DESC_BOB, new DeleteCommand(expectedId));
     }
 
     @Test
@@ -46,7 +45,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_additionalFieldsProvided_failure() {
-        assertParseFailure(parser,  EID_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY, Id.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, EID_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY, Id.MESSAGE_CONSTRAINTS);
     }
 
     @Test

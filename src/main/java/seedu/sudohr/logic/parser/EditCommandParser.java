@@ -15,8 +15,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-
-import seedu.sudohr.logic.commands.DeleteCommand;
 import seedu.sudohr.logic.commands.EditCommand;
 import seedu.sudohr.logic.commands.EditCommand.EditEmployeeDescriptor;
 import seedu.sudohr.logic.parser.exceptions.ParseException;

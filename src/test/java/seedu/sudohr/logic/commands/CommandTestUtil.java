@@ -2,7 +2,14 @@ package seedu.sudohr.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sudohr.logic.parser.CliSyntax.*;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
