@@ -101,6 +101,14 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
+     * Returns true if an employee with the exact same fields as {@code employee} exists in SudoHR.
+     */
+    public boolean strictlyHasEmployee(Employee employee) {
+        requireNonNull(employee);
+        return employees.strictlyContains(employee);
+    }
+
+    /**
      * Returns true if an employee shares the same email with a different {@code employee} (different id).
      */
     public boolean hasClashingEmail(Employee employee) {

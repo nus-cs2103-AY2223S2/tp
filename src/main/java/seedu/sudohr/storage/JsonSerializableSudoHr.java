@@ -81,7 +81,7 @@ class JsonSerializableSudoHr {
 
             Set<Employee> employees = department.getEmployees();
             for (Employee employee: employees) {
-                if (!sudoHr.hasEmployee(employee)) {
+                if (!sudoHr.strictlyHasEmployee(employee)) {
                     throw new EmployeeNotFoundException();
                 }
             }
