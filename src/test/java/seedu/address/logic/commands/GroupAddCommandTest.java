@@ -116,7 +116,7 @@ public class GroupAddCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Person expectedPerson = new PersonBuilder().withName("Alice Pauline")
                 .withAddress("123, Jurong West Ave 6, #08-111").withPayRate("10")
-                .withPhone("94351253")
+                .withPhone("94351253").withSession("01-01-2022 12:00", "01-01-2022 13:00")
                 .withTags("private", "friends")
                 .build();
         expectedModel.setAddressBook(new AddressBookBuilder().withPerson(expectedPerson)
