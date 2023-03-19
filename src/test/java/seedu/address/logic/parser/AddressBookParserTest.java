@@ -98,8 +98,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_deadline() throws Exception {
-        assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " asc") instanceof DeadlineCommand);
-        assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " desc") instanceof DeadlineCommand);
+        assertTrue(parser.parseCommand(DeadlineCommand.COMMAND_WORD + " asc") instanceof DeadlineCommand);
+        assertTrue(parser.parseCommand(DeadlineCommand.COMMAND_WORD + " desc") instanceof DeadlineCommand);
     }
 
 
