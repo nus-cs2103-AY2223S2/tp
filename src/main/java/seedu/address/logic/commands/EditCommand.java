@@ -57,13 +57,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_WEBSITE + "www.google.com"
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_WEBSITE + "www.google.com "
             + PREFIX_CONTACT + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_JOBDESCRIPTION + "Software Engineer @ Jane Street"
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_JOBDESCRIPTION + "Software Engineer @ Jane Street "
             + PREFIX_SALARY + "4000 "
-            + PREFIX_DEADLINE + "2023-10-20"
+            + PREFIX_DEADLINE + "2023-10-20 "
             + PREFIX_EXPERIENCE + "Javascript - 1 Year";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Role: %1$s";
