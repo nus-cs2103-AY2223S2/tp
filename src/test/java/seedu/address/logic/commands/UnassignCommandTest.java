@@ -55,7 +55,7 @@ public class UnassignCommandTest {
         Index taskIndex = Index.fromZeroBased(0); // TASK_A
         UnassignCommand unassignCommand = new UnassignCommand(personIndex, taskIndex);
 
-        String expectedMessage = String.format(MESSAGE_SUCCESS, ALICE, taskA);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, ALICE.getName(), taskA.getTitle());
 
         CommandResult commandResult = unassignCommand.execute(model, officeConnectModel);
         assertEquals(expectedMessage, commandResult.getFeedbackToUser());
