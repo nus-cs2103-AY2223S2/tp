@@ -201,6 +201,18 @@ public class Student {
     }
 
     /**
+     * Updates a homework from the homework list.
+     *
+     * @param target homework to be updated
+     * @param editedHomework homework to be updated to
+     */
+    public void setHomework(Homework target, Homework editedHomework) {
+        requireAllNonNull(target, editedHomework);
+        homeworkList.setHomework(target, editedHomework);
+    }
+
+
+    /**
      * Marks a homework as done from the homework list.
      *
      * @param index index of homework to be marked as done
@@ -493,5 +505,4 @@ public class Student {
     public ObservableList<Exam> getUpcomingExamsList() {
         return examList.getUpcomingExams();
     }
-
 }
