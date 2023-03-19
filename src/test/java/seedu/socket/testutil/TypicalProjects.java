@@ -7,6 +7,12 @@ import static seedu.socket.testutil.TypicalPersons.DANIEL;
 import static seedu.socket.testutil.TypicalPersons.ELLE;
 import static seedu.socket.testutil.TypicalPersons.FIONA;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.socket.model.Socket;
+import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
 
 /**
@@ -42,4 +48,21 @@ public class TypicalProjects {
         .withRepoName("")
         .withProjectDeadline("")
         .withMembers().build();
+
+    private TypicalProjects() {} // prevents instantiation
+
+    /**
+     * Returns an {@code Socket} with all the typical persons.
+     */
+    public static Socket getTypicalSocket() {
+        Socket s = new Socket();
+        for (Project project : getTypicalProjects()) {
+            s.addProject(project);
+        }
+        return s;
+    }
+
+    public static List<Project> getTypicalProjects() {
+        return new ArrayList<>(Arrays.asList(ALPHA, BRAVO, CHARLIE));
+    }
 }

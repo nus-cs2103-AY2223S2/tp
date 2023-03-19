@@ -12,6 +12,7 @@ import seedu.socket.commons.exceptions.IllegalValueException;
 import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
+import seedu.socket.model.project.Project;
 
 /**
  * An Immutable SOCket that is serializable to JSON format.
@@ -20,15 +21,19 @@ import seedu.socket.model.person.Person;
 class JsonSerializableSocket {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedProject> projects = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableSocket} with the given persons.
+     * Constructs a {@code JsonSerializableSocket} with the given persons and projects.
      */
     @JsonCreator
-    public JsonSerializableSocket(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableSocket(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("projects") List<JsonAdaptedProject> projects) {
         this.persons.addAll(persons);
+        this.projects.addAll(projects);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableSocket {
      */
     public JsonSerializableSocket(ReadOnlySocket source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +60,14 @@ class JsonSerializableSocket {
             }
             socket.addPerson(person);
         }
+        for (JsonAdaptedProject jsonAdaptedProject : projects) {
+            Project project = jsonAdaptedProject.toModelType();
+            if (socket.hasProject(project)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PROJECT);
+            }
+            socket.addProject(project);
+        }
+        // TODO sync references in projects with persons list
         return socket;
     }
 

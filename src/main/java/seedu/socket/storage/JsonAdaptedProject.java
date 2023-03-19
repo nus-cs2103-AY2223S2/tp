@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.socket.commons.exceptions.IllegalValueException;
-import seedu.socket.model.person.GitHubProfile;
-import seedu.socket.model.person.Name;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
 import seedu.socket.model.project.ProjectDeadline;
@@ -38,10 +36,10 @@ public class JsonAdaptedProject {
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("projectName") String projectName,
-                             @JsonProperty("projectRepoHost") String projectRepoHost,
-                             @JsonProperty("projectRepoName") String projectRepoName,
-                             @JsonProperty("projectDeadline") String projectDeadline,
-                             @JsonProperty("members") List<JsonAdaptedPerson> members) {
+            @JsonProperty("projectRepoHost") String projectRepoHost,
+            @JsonProperty("projectRepoName") String projectRepoName,
+            @JsonProperty("projectDeadline") String projectDeadline,
+            @JsonProperty("members") List<JsonAdaptedPerson> members) {
         this.projectName = projectName;
         this.projectRepoHost = projectRepoHost;
         this.projectRepoName = projectRepoName;
