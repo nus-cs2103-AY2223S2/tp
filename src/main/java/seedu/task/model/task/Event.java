@@ -36,6 +36,21 @@ public class Event extends Task {
         return this.to;
     }
 
+    @Override
+    public boolean isSimpleTask() {
+        return false;
+    }
+
+    @Override
+    public boolean isDeadline() {
+        return false;
+    }
+
+    @Override
+    public boolean isEvent() {
+        return true;
+    }
+
     /**
      * Returns true if both events have the same identity and data fields.
      * This defines a stronger notion of equality between two events.

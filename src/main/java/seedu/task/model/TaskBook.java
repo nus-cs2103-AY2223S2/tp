@@ -2,9 +2,14 @@ package seedu.task.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.task.model.calendar.MonthlyPlan;
+import seedu.task.model.task.DeadlineList;
+import seedu.task.model.task.EventList;
+import seedu.task.model.task.SimpleTaskList;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
 
@@ -96,6 +101,22 @@ public class TaskBook implements ReadOnlyTaskBook {
 
     public void sortTask() {
         tasks.sort();
+    }
+
+    /**
+     * Main algorithm that supports the planning function
+     * @param workload amount of effort user wants to put in per day in the workplan.
+     */
+    public void plan(int workload) {
+        LocalDate currentDate = java.time.LocalDate.now();
+        SimpleTaskList simpleTasks = tasks.filterSimpleTasks(currentDate);
+        EventList events = tasks.filterEvents(currentDate);
+        DeadlineList deadlines = tasks.filterDeadlines(currentDate);
+
+        MonthlyPlan plan = new MonthlyPlan(workload, currentDate);
+        plan.allocateEvents(events);
+        plan.allocateDeadlines(deadlines);
+        plan.allocateSimpleTasks(simpleTasks);
     }
 
     //// util methods

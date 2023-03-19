@@ -95,7 +95,6 @@ public class ModelManager implements Model {
         return taskBook.hasTask(task);
     }
 
-
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
@@ -117,6 +116,11 @@ public class ModelManager implements Model {
     @Override
     public void sortTask() {
         taskBook.sortTask();
+    }
+
+    @Override
+    public void plan(int workload) {
+        taskBook.plan(workload);
     }
 
     //=========== Filtered Task List Accessors =============================================================
