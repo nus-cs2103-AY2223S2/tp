@@ -230,6 +230,27 @@ public class ModelManager implements Model {
         //CHECKSTYLE.ON: SeparatorWrap
     }
 
+    //=========== Filtered List Accessors =============================================================
+
+    @Override
+    public void updateAllFilteredListAsHidden() {
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    @Override
+    public Level getLastListLevel() {
+        return lastListLevel;
+    };
+
+    private Level setLastListLevel(Level listLevel) {
+        return lastListLevel = listLevel;
+    };
 
     //=========== Filtered Module List Accessors =============================================================
 
@@ -275,7 +296,18 @@ public class ModelManager implements Model {
         }
     }
 
+    @Override
+    public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate) {
+        requireNonNull(predicate);
+        try {
+            filteredLectures.setPredicate(predicate);
+        } catch (NullPointerException ex) {
+            logger.warning("Lecture list has no module reference");
+        }
+    }
+
     //=========== Filtered Video List Accessors =============================================================
+
     @Override
     public ObservableList<? extends Video> getFilteredVideoList() {
         return filteredVideos;
@@ -296,24 +328,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateAllFilteredListAsHidden() {
-        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
-        if (filteredLectures != null) {
-            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
-        }
-        if (filteredVideos != null) {
-            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+    public void updateFilteredVideoList(Predicate<? super Video> predicate) {
+        requireNonNull(predicate);
+        try {
+            filteredVideos.setPredicate(predicate);
+        } catch (NullPointerException ex) {
+            logger.warning("Video list has no module and lecture reference");
         }
     }
-
-    @Override
-    public Level getLastListLevel() {
-        return lastListLevel;
-    };
-
-    private Level setLastListLevel(Level listLevel) {
-        return lastListLevel = listLevel;
-    };
 
     //=========== Navigation =================================================================================
 
