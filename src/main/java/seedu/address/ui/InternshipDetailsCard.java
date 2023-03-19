@@ -47,12 +47,15 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
     @FXML
     private Label role;
-    @FXML
+    @FXMLview 
     private Label date;
     @FXML
     private FlowPane tags;
     @FXML
     private Label statusLabel;
+    @FXML
+    private Label tips;
+
 
 
     /**
@@ -85,6 +88,9 @@ public class InternshipDetailsCard extends UiPart<Region> {
         statusLabel.setText(statusString.toUpperCase());
         statusLabel.setBackground(new Background(new BackgroundFill(
                 statusColor, new CornerRadii(10), new Insets(-5))));
+
+        //Set up tips
+        tips.setText(getTips());
     }
 
     @Override
@@ -153,5 +159,27 @@ public class InternshipDetailsCard extends UiPart<Region> {
             dateLabel = "Date Added: ";
         }
         return dateLabel;
+    }
+
+    /**
+     * Gets the corresponding tips according to the status
+     *
+     * @return the tips for a specific status
+     */
+    public String getTips() {
+        switch (this.internship.getStatus().toString()) {
+        case APPLIED:
+            return "Applied tips";
+        case ASSESSMENT:
+            return "Assessment tips";
+        case INTERVIEW:
+            return "Interview tips";
+        case OFFERED:
+            return "Offered tips";
+        case REJECTED:
+            return "Rejected tips";
+        default:
+            return "New tips";
+        }
     }
 }

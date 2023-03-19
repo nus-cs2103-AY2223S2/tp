@@ -37,7 +37,7 @@
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="102.0" prefWidth="130.0" GridPane.columnIndex="1">
                <children>
-                  <Label fx:id="statusLabel" styleClass="whiteText" alignment="TOP_RIGHT" text="\$status">
+                  <Label fx:id="statusLabel" alignment="TOP_RIGHT" styleClass="whiteText" text="\$status">
                      <VBox.margin>
                         <Insets right="20.0" top="20.0" />
                      </VBox.margin>
@@ -46,5 +46,18 @@
             </VBox>
          </children>
       </GridPane>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label styleClass="whiteCompanyNameLabel" text="Tips:" />
+            <Label fx:id="tips" styleClass="whiteLabel" text="\$tips">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
    </children>
 </VBox>
