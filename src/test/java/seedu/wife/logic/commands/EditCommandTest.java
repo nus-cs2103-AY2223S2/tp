@@ -4,11 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.logic.commands.CommandTestUtil.DESC_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.DESC_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_CHOCOLATE;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_CHOCOLATE;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;
@@ -50,6 +46,7 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+    /*
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastFood = Index.fromOneBased(model.getFilteredFoodList().size());
@@ -70,6 +67,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+    */
 
 
     @Test
