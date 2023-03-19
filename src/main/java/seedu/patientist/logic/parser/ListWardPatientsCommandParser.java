@@ -7,6 +7,7 @@ import java.util.Arrays;
 import seedu.patientist.logic.commands.ListWardPatientsCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 import seedu.patientist.model.person.patient.PatientInWardPredicate;
+import seedu.patientist.model.tag.Tag;
 
 /**
  * Finds and lists all patients in patientist book whose ward contains any of the argument keywords.
@@ -26,6 +27,12 @@ public class ListWardPatientsCommandParser implements Parser<ListWardPatientsCom
         }
 
         String[] wardKeywords = trimmedArgs.split("\\s+");
+        for (String keyword : wardKeywords) {
+            if (!keyword.matches(Tag.VALIDATION_REGEX)) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListWardPatientsCommand.MESSAGE_USAGE));
+            }
+        }
 
         return new ListWardPatientsCommand(new PatientInWardPredicate(Arrays.asList(wardKeywords)));
     }
