@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,19 +22,19 @@ import seedu.address.model.student.exceptions.DuplicateEntryException;
  */
 public class CreateExamCommand extends Command {
 
-    public static final String COMMAND_WORD = "add-exam";
+    public static final String COMMAND_WORD = "new-exam";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to a student.\n"
-            + "Parameters: "
-            + "n/STUDENT_NAME "
-            + "e/EXAM_DESCRIPTION "
-            + "start/START_TIME "
-            + "end/END_TIME\n"
-            + "Example: " + COMMAND_WORD + " "
-            + "n/John Doe "
-            + "e/Math MYE Paper 1 "
-            + "start/2023-03-21 12:00"
-            + " end/2023-03-21 13:00";
+        + "Parameters: "
+        + PREFIX_NAME + "STUDENT_NAME "
+        + PREFIX_EXAM + "EXAM_NAME "
+        + PREFIX_STARTTIME + "Start time "
+        + PREFIX_ENDTIME + "End time\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_EXAM + "Math MYE "
+        + PREFIX_STARTTIME + "2023-05-21 12:00 "
+        + PREFIX_ENDTIME + "2023-05-21 14:00";
 
 
     private final String examDescription;
