@@ -17,7 +17,7 @@ import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
 import seedu.wife.logic.commands.generalcommands.HelpCommand;
 import seedu.wife.logic.commands.tagcommands.CreateTagCommand;
-import seedu.wife.logic.commands.tagcommands.DeleteByTagCommand;
+import seedu.wife.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.wife.logic.commands.tagcommands.ListByTagCommand;
 import seedu.wife.logic.commands.tagcommands.ListTagCommand;
 import seedu.wife.logic.commands.tagcommands.TagFoodCommand;
@@ -28,7 +28,7 @@ import seedu.wife.logic.parser.foodcommandparser.DeleteCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.EditCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.FindCommandParser;
 import seedu.wife.logic.parser.tagcommandparser.CreateTagCommandParser;
-import seedu.wife.logic.parser.tagcommandparser.DeleteByTagCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.DeleteTagCommandParser;
 import seedu.wife.logic.parser.tagcommandparser.ListByTagCommandParser;
 import seedu.wife.logic.parser.tagcommandparser.TagFoodCommandParser;
 

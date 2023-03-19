@@ -7,12 +7,9 @@ import static seedu.wife.logic.commands.foodcommands.AddCommandTest.ModelStub;
 import static seedu.wife.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.CommandResult;
-import seedu.wife.logic.commands.exceptions.CommandException;
 import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.Wife;
 import seedu.wife.model.tag.Tag;
