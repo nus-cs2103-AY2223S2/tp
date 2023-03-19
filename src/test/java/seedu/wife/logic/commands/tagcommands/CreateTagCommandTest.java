@@ -21,13 +21,13 @@ import seedu.wife.testutil.TagBuilder;
 /**
  * A class to test the NewTagCommand.
  */
-public class AddTagCommandTest {
+public class CreateTagCommandTest {
     private static final String EXPECTED_ERROR_DUPLICATE = "The tag you try to add is already in the tag list.";
     private static final String EXPECTED_SUCCESS_MESSAGE = "Tag successfully added: %s";
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTagCommand(null));
+        assertThrows(NullPointerException.class, () -> new CreateTagCommand(null));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AddTagCommandTest {
         ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
         Tag validTag = new TagBuilder().build();
 
-        CommandResult commandResult = new AddTagCommand(validTag).execute(modelStub);
+        CommandResult commandResult = new CreateTagCommand(validTag).execute(modelStub);
         String expectedOutput = String.format(EXPECTED_SUCCESS_MESSAGE, validTag.getTagName());
         assertEquals(expectedOutput, commandResult.getFeedbackToUser());
         assertEquals(List.of(validTag), modelStub.tagsAdded);
@@ -44,7 +44,7 @@ public class AddTagCommandTest {
     @Test
     public void execute_duplicateItem_throwsCommandException() {
         Tag validTag = new TagBuilder().build();
-        AddTagCommand newTagCommand = new AddTagCommand(validTag);
+        CreateTagCommand newTagCommand = new CreateTagCommand(validTag);
         ModelStub modelStub = new ModelStubWithTag(validTag);
 
         assertThrows(CommandException.class,
@@ -57,16 +57,16 @@ public class AddTagCommandTest {
         Tag dairyTagDifferentCase = new TagBuilder().withTagName("daIRy").build();
         Tag vegetableTag = new TagBuilder().withTagName("vegetable").build();
 
-        AddTagCommand addFruitsTag = new AddTagCommand(dairyTag);
-        AddTagCommand addFruitsTagDifferentCase = new AddTagCommand(dairyTagDifferentCase);
-        AddTagCommand addVegetableTag = new AddTagCommand(vegetableTag);
+        CreateTagCommand addFruitsTag = new CreateTagCommand(dairyTag);
+        CreateTagCommand addFruitsTagDifferentCase = new CreateTagCommand(dairyTagDifferentCase);
+        CreateTagCommand addVegetableTag = new CreateTagCommand(vegetableTag);
 
         // same object -> returns true
         assertEquals(addFruitsTag, addFruitsTag);
         assertEquals(addFruitsTag, addFruitsTagDifferentCase);
 
         // same values -> returns true
-        AddTagCommand addFruitsTagCopy = new AddTagCommand(dairyTag);
+        CreateTagCommand addFruitsTagCopy = new CreateTagCommand(dairyTag);
         assertEquals(addFruitsTag, addFruitsTagCopy);
 
         // different types -> returns false
@@ -110,7 +110,7 @@ public class AddTagCommandTest {
         }
 
         @Override
-        public void addTag(Tag tag) {
+        public void createTag(Tag tag) {
             requireNonNull(tag);
             tagsAdded.add(tag);
         }

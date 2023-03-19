@@ -116,7 +116,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addTag(Tag tag) {
+        public void createTag(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -2,7 +2,7 @@ package seedu.wife.testutil;
 
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.wife.logic.commands.tagcommands.AddTagCommand;
+import seedu.wife.logic.commands.tagcommands.CreateTagCommand;
 import seedu.wife.model.tag.Tag;
 
 /**
@@ -12,8 +12,8 @@ public class TagUtil {
     /**
      * Returns an add command string for adding the {@code tag}.
      */
-    public static String getAddTagCommand(Tag tag) {
-        return AddTagCommand.COMMAND_WORD + " " + getTagDetails(tag);
+    public static String getCreateTagCommand(Tag tag) {
+        return CreateTagCommand.COMMAND_WORD + " " + getTagDetails(tag);
     }
 
     /**
