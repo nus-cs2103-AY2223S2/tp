@@ -54,6 +54,7 @@ public class ModelManager implements Model {
 
     // general utilities
     private final ObservableList<Item> itemsList;
+    private final ObservableList<Flight> flightList;
     private Optional<ObservableList<? extends Item>> lastBoundList = Optional.empty();
 
     /**
@@ -88,6 +89,7 @@ public class ModelManager implements Model {
         filteredFlights = new FilteredList<>(this.flightManager.getItemList());
 
         itemsList = FXCollections.observableArrayList();
+        flightList = new FilteredList<>(filteredFlights);
         setOperationMode(userPrefs.getOperationMode());
     }
 
@@ -161,6 +163,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Item> getItemsList() {
         return itemsList;
+    }
+
+    @Override
+    public ObservableList<Flight> getFlightList() {
+        return flightList;
     }
 
     @Override

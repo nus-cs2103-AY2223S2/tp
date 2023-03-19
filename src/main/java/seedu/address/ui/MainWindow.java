@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
+    private FlightListPanel flightListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -58,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane flightListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -135,6 +139,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        flightListPanel = new FlightListPanel(logic.getFilteredFlightList());
+        Region flight = flightListPanel.getRoot();
+        flightListPanelPlaceholder.getChildren().add(flight);
     }
 
     /**
@@ -191,6 +199,10 @@ public class MainWindow extends UiPart<Stage> {
             StatusBarFooter statusBarFooter =
                     new StatusBarFooter(logic.getOperationMode());
             statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+            flightListPanel = new FlightListPanel(logic.getFilteredFlightList());
+            Region flight = flightListPanel.getRoot();
+            flightListPanelPlaceholder.getChildren().add(flight);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
