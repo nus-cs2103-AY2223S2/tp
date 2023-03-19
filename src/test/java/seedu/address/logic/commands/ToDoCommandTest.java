@@ -24,51 +24,50 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Comment;
-import seedu.address.model.task.DeadlineTask;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.DeadlineTaskBuilder;
+import seedu.address.testutil.TaskBuilder;
 
-public class DeadlineCommandTest {
+public class ToDoCommandTest {
 
     @Test
     public void constructor_nullDeadlineTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeadlineCommand(null));
+        assertThrows(NullPointerException.class, () -> new EventCommand(null));
     }
 
     @Test
     public void execute_deadlineTaskAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingDeadlineTaskAdded modelStub = new ModelStubAcceptingDeadlineTaskAdded();
-        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+        Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new DeadlineCommand(validDeadlineTask).execute(modelStub);
+        CommandResult commandResult = new ToDoCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(DeadlineCommand.MESSAGE_SUCCESS, validDeadlineTask),
+        assertEquals(String.format(EventCommand.MESSAGE_SUCCESS, validTask),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validDeadlineTask), modelStub.tasksAdded);
+        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
     @Test
     public void execute_duplicateDeadlineTask_throwsCommandException() {
-        DeadlineTask validDeadlineTask = new DeadlineTaskBuilder().build();
-        DeadlineCommand deadlineCommand = new DeadlineCommand(validDeadlineTask);
-        ModelStub modelStub = new ModelStubWithDeadlineTask(validDeadlineTask);
+        Task validTask = new TaskBuilder().build();
+        ToDoCommand toDoCommand = new ToDoCommand(validTask);
+        ModelStub modelStub = new ModelStubWithTask(validTask);
 
         assertThrows(CommandException.class,
-                DeadlineCommand.MESSAGE_DUPLICATE_TASK, () -> deadlineCommand.execute(modelStub));
+                DeadlineCommand.MESSAGE_DUPLICATE_TASK, () -> toDoCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        DeadlineTask firstTask = new DeadlineTaskBuilder().withTaskDescription("obtain team approval").build();
-        DeadlineTask secondTask = new DeadlineTaskBuilder().withTaskDescription("proofread documents").build();
-        DeadlineCommand addFirstTaskCommand = new DeadlineCommand(firstTask);
-        DeadlineCommand addSecondTaskCommand = new DeadlineCommand(secondTask);
+        Task firstTask = new TaskBuilder().withTaskDescription("obtain team approval").build();
+        Task secondTask = new TaskBuilder().withTaskDescription("proofread documents").build();
+        ToDoCommand addFirstTaskCommand = new ToDoCommand(firstTask);
+        ToDoCommand addSecondTaskCommand = new ToDoCommand(secondTask);
 
         // same object -> returns true
         assertTrue(addFirstTaskCommand.equals(addFirstTaskCommand));
 
         // same values -> returns true
-        DeadlineCommand addFirstTaskCommandCopy = new DeadlineCommand(firstTask);
+        ToDoCommand addFirstTaskCommandCopy = new ToDoCommand(firstTask);
         assertTrue(addFirstTaskCommand.equals(addFirstTaskCommandCopy));
 
         // different types -> returns false
@@ -211,12 +210,12 @@ public class DeadlineCommandTest {
     }
 
     /**
-     * A Model stub that contains a single task.
+     * A Model stub that contains a single person.
      */
-    private class ModelStubWithDeadlineTask extends ModelStub {
-        private final DeadlineTask task;
+    private class ModelStubWithTask extends ModelStub {
+        private final Task task;
 
-        ModelStubWithDeadlineTask(DeadlineTask task) {
+        ModelStubWithTask(Task task) {
             requireNonNull(task);
             this.task = task;
         }
@@ -231,7 +230,7 @@ public class DeadlineCommandTest {
     /**
      * A Model stub that always accept the task being added.
      */
-    private class ModelStubAcceptingDeadlineTaskAdded extends ModelStub {
+    private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
@@ -253,4 +252,5 @@ public class DeadlineCommandTest {
     }
 
 }
+
 
