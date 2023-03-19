@@ -22,8 +22,7 @@ public class DeleteByTagCommand extends Command {
     public static final String COMMAND_WORD = "delbytag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the food identified by the index number used in the displayed food list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes food that has specified tags.\n"
             + "Example: "
             + COMMAND_WORD + " n/vegetable\n"
             + COMMAND_WORD + " n/vegetable n/dairy n/grains";
