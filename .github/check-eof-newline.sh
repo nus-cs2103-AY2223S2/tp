@@ -1,5 +1,5 @@
 #!/bin/sh
-# Checks that all text files end with a newline.
+# Checks that all text files end with a newline
 
 ret=0
 
