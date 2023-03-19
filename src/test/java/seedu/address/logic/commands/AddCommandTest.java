@@ -197,7 +197,7 @@ public class AddCommandTest {
          */
 
         @Override
-        public void removeDeck(Deck key) {
+        public void deleteDeck(Deck key) {
             throw new AssertionError("This method should not be called.");
         }
 

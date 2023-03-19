@@ -114,7 +114,7 @@ public interface Model {
      */
     void setDeck(Deck target, Deck editedDeck);
 
-    void removeDeck(Deck key);
+    void deleteDeck(Deck key);
 
     void selectDeck(Index idx);
 

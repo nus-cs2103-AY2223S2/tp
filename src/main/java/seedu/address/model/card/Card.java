@@ -76,6 +76,18 @@ public class Card {
     }
 
     /**
+     * Checks if the card belongs to a given deck.
+     *
+     * @param deck The deck to check if card belongs to.
+     * @return true if card belongs to the deck.
+     */
+    public boolean isInDeck(Deck deck) {
+        return this.deck.equals(deck);
+    }
+
+    /* ============================== FOR REVIEW FUNCTIONS ============================== */
+
+    /**
      * Returns true if the card is flipped.
      */
     public boolean isFlipped() {
