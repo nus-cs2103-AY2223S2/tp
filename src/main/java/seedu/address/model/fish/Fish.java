@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
 
 /**
  * Represents a Fish in the address book.
@@ -20,19 +21,23 @@ public class Fish {
     private final Species species;
 
     // Data fields
-    private final Address address;
     private final LastFedDate lastFedDate;
+    private final FeedingInterval feedingInterval;
     private final Set<Tag> tags = new HashSet<>();
+
+    private Tank tank;
 
     /**
      * Every field must be present and not null.
      */
-    public Fish(Name name, LastFedDate lastFedDate, Species species, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, lastFedDate, species, address, tags);
+    public Fish(Name name, LastFedDate lastFedDate, Species species, FeedingInterval feedingInterval, Tank tank,
+                Set<Tag> tags) {
+        requireAllNonNull(name, lastFedDate, species, feedingInterval, tags);
         this.name = name;
         this.lastFedDate = lastFedDate;
         this.species = species;
-        this.address = address;
+        this.feedingInterval = feedingInterval;
+        this.tank = tank;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +53,16 @@ public class Fish {
         return species;
     }
 
-    public Address getAddress() {
-        return address;
+    public FeedingInterval getFeedingInterval() {
+        return feedingInterval;
+    }
+
+    public Tank getTank() {
+        return tank;
+    }
+
+    public void setTank(Tank t) {
+        tank = t;
     }
 
     /**
@@ -91,14 +104,14 @@ public class Fish {
         return otherFish.getName().equals(getName())
                 && otherFish.getLastFedDate().equals(getLastFedDate())
                 && otherFish.getSpecies().equals(getSpecies())
-                && otherFish.getAddress().equals(getAddress())
+                && otherFish.getFeedingInterval().equals(getFeedingInterval())
                 && otherFish.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, lastFedDate, species, address, tags);
+        return Objects.hash(name, lastFedDate, species, feedingInterval, tags);
     }
 
     @Override
@@ -109,8 +122,10 @@ public class Fish {
                 .append(getLastFedDate())
                 .append("; Species: ")
                 .append(getSpecies())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; FeedingInterval: ")
+                .append(getFeedingInterval())
+                .append("; Tank: ")
+                .append(getTank());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

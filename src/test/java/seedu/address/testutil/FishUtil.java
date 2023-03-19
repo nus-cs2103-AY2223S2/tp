@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TANK_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
@@ -36,7 +36,8 @@ public class FishUtil {
         sb.append(PREFIX_NAME + fish.getName().fullName + " ");
         sb.append(PREFIX_LAST_FED_DATE + fish.getLastFedDate().value + " ");
         sb.append(PREFIX_SPECIES + fish.getSpecies().species + " ");
-        sb.append(PREFIX_ADDRESS + fish.getAddress().value + " ");
+        sb.append(PREFIX_FEEDING_INTERVAL + fish.getFeedingInterval().value + " ");
+        sb.append(PREFIX_TANK + "1" + " "); // As of implementing this, Tank does not know its index so need hard code
         fish.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -52,7 +53,10 @@ public class FishUtil {
         descriptor.getLastFedDate().ifPresent(lastFedDate -> sb.append(PREFIX_LAST_FED_DATE).append(lastFedDate.value)
                 .append(" "));
         descriptor.getSpecies().ifPresent(species -> sb.append(PREFIX_SPECIES).append(species.species).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getFeedingInterval().ifPresent(feedingInterval -> sb.append(PREFIX_FEEDING_INTERVAL)
+                .append(feedingInterval.value).append(" "));
+        descriptor.getTank().ifPresent(tank -> sb.append(PREFIX_TANK).append(tank.getTankName().fullTankName)
+                .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

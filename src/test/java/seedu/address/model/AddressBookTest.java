@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FEEDING_INTERVAL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFishes.ALICE;
@@ -46,7 +46,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateFishes_throwsDuplicateFishException() {
         // Two fish with the same identity fields
-        Fish editedAlice = new FishBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Fish> newFish = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newFish);
@@ -73,7 +74,8 @@ public class AddressBookTest {
     @Test
     public void hasFish_fishWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addFish(ALICE);
-        Fish editedAlice = new FishBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Fish editedAlice = new FishBuilder(ALICE).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasFish(editedAlice));
     }

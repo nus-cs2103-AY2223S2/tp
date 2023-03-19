@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.tank;
+package seedu.address.logic.commands.fish;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -6,13 +6,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds Tank to Fish Ahoy!
+ * Adds Fish to Fish Ahoy!
  */
-public abstract class TankCommand extends Command {
-    public static final String COMMAND_WORD = "tank";
+public abstract class FishCommand extends Command {
+    public static final String COMMAND_WORD = "fish";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "<tank command word>\n"
-            + "Tank commands: add, "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "<fish command word>\n"
+            + "Fish commands: add, "
             + "delete, "
             + "view";
 

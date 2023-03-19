@@ -10,12 +10,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.fish.Address;
+import seedu.address.model.AddressBook;
+import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDate;
 import seedu.address.model.fish.Name;
 import seedu.address.model.fish.Species;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.TankName;
+
 
 /**
  * Jackson-friendly version of {@link Fish}.
@@ -27,7 +31,8 @@ class JsonAdaptedFish {
     private final String name;
     private final String lastFedDate;
     private final String species;
-    private final String address;
+    private final String feedingInterval;
+    private final String tank;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +40,14 @@ class JsonAdaptedFish {
      */
     @JsonCreator
     public JsonAdaptedFish(@JsonProperty("name") String name, @JsonProperty("lastFedDate") String lastFedDate,
-            @JsonProperty("species") String species, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                           @JsonProperty("species") String species,
+                           @JsonProperty("feedingInterval") String feedingInterval,
+                           @JsonProperty("tank")String tank, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.lastFedDate = lastFedDate;
         this.species = species;
-        this.address = address;
+        this.feedingInterval = feedingInterval;
+        this.tank = tank;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -53,7 +60,8 @@ class JsonAdaptedFish {
         name = source.getName().fullName;
         lastFedDate = source.getLastFedDate().value;
         species = source.getSpecies().species;
-        address = source.getAddress().value;
+        feedingInterval = source.getFeedingInterval().value;
+        tank = source.getTank().getTankName().fullTankName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -95,16 +103,28 @@ class JsonAdaptedFish {
         }
         final Species modelSpecies = new Species(species);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (feedingInterval == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, FeedingInterval.class
+                    .getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!FeedingInterval.isValidFeedingInterval(feedingInterval)) {
+            throw new IllegalValueException(FeedingInterval.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final FeedingInterval modelFeedingInterval = new FeedingInterval(feedingInterval);
+
+        if (tank == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tank.class.getSimpleName()));
+        }
+        if (!TankName.isValidTankName(tank)) {
+            throw new IllegalValueException(TankName.MESSAGE_CONSTRAINTS);
+        }
+        //TODO: explore if it is possible to use the real Tank object instead of making new ones with same name
+        //final Tank modelTankUnassigned = new UnassignedTank(null, null);
+        final Tank modelTankUnassigned = new Tank(new TankName(tank), new AddressBook());
 
         final Set<Tag> modelTags = new HashSet<>(fishTags);
-        return new Fish(modelName, modelLastFedDate, modelSpecies, modelAddress, modelTags);
+        return new Fish(modelName, modelLastFedDate, modelSpecies, modelFeedingInterval, modelTankUnassigned,
+                modelTags);
     }
 
 }

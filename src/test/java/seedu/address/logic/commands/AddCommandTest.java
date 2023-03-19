@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -233,7 +234,8 @@ public class AddCommandTest {
         public void setTank(Tank target, Tank editedTank) {}
 
         public ObservableList<Tank> getFilteredTankList() {
-            return null;
+            FilteredList<Tank> ret = new FilteredList<>(tankList.getTankList());
+            return ret;
         }
 
         public void updateFilteredTankList(Predicate<Tank> predicate) {}

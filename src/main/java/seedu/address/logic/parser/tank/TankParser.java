@@ -12,12 +12,12 @@ import seedu.address.logic.commands.tank.TankViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses user input for {@code Task} commands.
+ * Parses user input for {@code Tank} commands.
  */
 public class TankParser {
 
     /**
-     * Used for separation of task command word and args.
+     * Used for separation of fish command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<tankCommandWord>\\S+)(?<arguments>.*)");
 

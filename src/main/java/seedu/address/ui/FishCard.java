@@ -18,7 +18,8 @@ public class FishCard extends UiPart<Region> {
     private static final String NAME_HEADER = "Name: ";
     private static final String LAST_FED_DATE_HEADER = "Last fed on: ";
     private static final String SPECIES_HEADER = "Species: ";
-
+    private static final String FEEDING_INTERVAL_HEADER = "Feeding interval: ";
+    private static final String TANK_HEADER = "Tank: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,9 +40,11 @@ public class FishCard extends UiPart<Region> {
     @FXML
     private Label lastFedDate;
     @FXML
-    private Label address;
-    @FXML
     private Label species;
+    @FXML
+    private Label feedingInterval;
+    @FXML
+    private Label tank;
     @FXML
     private FlowPane tags;
 
@@ -56,9 +59,12 @@ public class FishCard extends UiPart<Region> {
         name.setText(nameLabelToBeSet);
         String lastFedDateLabelToBeSet = LAST_FED_DATE_HEADER + fish.getLastFedDate().value;
         lastFedDate.setText(lastFedDateLabelToBeSet);
-        address.setText(fish.getAddress().value);
         String speciesLabelToBeSet = SPECIES_HEADER + fish.getSpecies().species;
         species.setText(speciesLabelToBeSet);
+        String feedingIntervalLabelToBeSet = FEEDING_INTERVAL_HEADER + fish.getFeedingInterval().toString();
+        feedingInterval.setText(feedingIntervalLabelToBeSet);
+        String tankLabelToBeSet = TANK_HEADER + fish.getTank().getTankName().fullTankName;
+        tank.setText(tankLabelToBeSet);
         fish.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

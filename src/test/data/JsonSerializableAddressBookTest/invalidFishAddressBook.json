@@ -2,7 +2,8 @@
   "fishes": [ {
     "name": "Hans Muster",
     "lastFedDate": "in/valid/date",
-    "species": "invalid314species",
-    "address": "4th street"
+    "species": "invalid@species",
+    "feedingInterval": "1d1h",
+    "tank": "tank 1"
   } ]
 }

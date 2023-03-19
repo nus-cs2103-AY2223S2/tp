@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.fish;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
@@ -8,19 +8,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 
 /**
- * Adds a fish to the address book.
+ * Parses input arguments and creates a new FishAddCommand object
  */
-public class AddCommand extends Command {
-
-    public static final String COMMAND_WORD = "add";
+public class FishAddCommand extends FishCommand {
+    public static final String FISH_COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a fish to the address book. "
             + "Parameters: "
@@ -48,7 +47,7 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Fish}
      */
-    public AddCommand(Fish fish, Index tankIndex) {
+    public FishAddCommand(Fish fish, Index tankIndex) {
         requireNonNull(fish);
         toAdd = fish;
         this.tankIndex = tankIndex;
@@ -64,7 +63,6 @@ public class AddCommand extends Command {
 
         Tank tank;
         try {
-            ObservableList<Tank> list = model.getFilteredTankList();
             tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_MISSING_TANK);
@@ -81,7 +79,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof FishAddCommand // instanceof handles nulls
+                && toAdd.equals(((FishAddCommand) other).toAdd));
     }
 }
