@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane internshipListPanelPlaceholder;
+
+    @FXML
+    private StackPane internshipDetailPanel;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -112,6 +116,12 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
+
+//        Label tryLabel = new Label();
+//        tryLabel.setText("hello");
+//
+//        internshipDetailPanel.getChildren().add(tryLabel);
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
