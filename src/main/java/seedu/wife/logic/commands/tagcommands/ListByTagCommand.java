@@ -17,7 +17,7 @@ public class ListByTagCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all food with %1$s tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all food with the specific tag.\n"
-        + "Example: " + COMMAND_WORD + "dairy";
+        + "Example: " + COMMAND_WORD + " dairy";
 
     private final Tag targetTag;
 

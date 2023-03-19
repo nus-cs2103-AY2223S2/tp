@@ -60,11 +60,18 @@ public class Food {
     }
 
     /**
+     * Returns an new tag set for edit, which throws {@code UnsupportedOperationException}
+     */
+    public Set<Tag> getCurrentTags() {
+        return new HashSet<Tag>(this.tags);
+    }
+
+    /**
      * Creates a new food item with an updated tag list.
      */
-    public Food createNewFoodWithNewTags(Set<Tag> tags) {
+    public Food createNewFoodWithNewTags(Food food, Set<Tag> tags) {
         requireNonNull(tags);
-        return new Food(this.foodName, this.unit, this.quantity, this.expiryDate, tags);
+        return new Food(food.getName(), food.getUnit(), food.getQuantity(), food.getExpiryDate(), tags);
     }
 
     /**

@@ -1,6 +1,6 @@
 package seedu.wife.logic.parser.tagcommandparser;
 
-
+import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,6 +22,7 @@ import seedu.wife.model.tag.TagName;
 public class AddTagCommandParser implements Parser<AddTagCommand> {
     @Override
     public AddTagCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 

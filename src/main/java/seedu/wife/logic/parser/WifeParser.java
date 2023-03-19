@@ -19,6 +19,7 @@ import seedu.wife.logic.commands.tagcommands.AddTagCommand;
 import seedu.wife.logic.commands.tagcommands.DeleteByTagCommand;
 import seedu.wife.logic.commands.tagcommands.ListByTagCommand;
 import seedu.wife.logic.commands.tagcommands.ListTagCommand;
+import seedu.wife.logic.commands.tagcommands.TagFoodCommand;
 import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.logic.parser.foodcommandparser.AddCommandParser;
 import seedu.wife.logic.parser.foodcommandparser.DeleteCommandParser;
@@ -27,6 +28,7 @@ import seedu.wife.logic.parser.foodcommandparser.FindCommandParser;
 import seedu.wife.logic.parser.tagcommandparser.AddTagCommandParser;
 import seedu.wife.logic.parser.tagcommandparser.DeleteByTagCommandParser;
 import seedu.wife.logic.parser.tagcommandparser.ListByTagCommandParser;
+import seedu.wife.logic.parser.tagcommandparser.TagFoodCommandParser;
 
 /**
  * Parses user input.
@@ -79,6 +81,8 @@ public class WifeParser {
             return new ListByTagCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+        case TagFoodCommand.COMMAND_WORD:
+            return new TagFoodCommandParser().parse(arguments);
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         default:

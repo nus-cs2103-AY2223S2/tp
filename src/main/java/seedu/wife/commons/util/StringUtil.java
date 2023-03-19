@@ -7,6 +7,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 
+import seedu.wife.commons.core.Messages;
+import seedu.wife.commons.core.index.Index;
+import seedu.wife.logic.parser.ParserUtil;
+import seedu.wife.logic.parser.exceptions.ParseException;
+
 /**
  * Helper functions for handling strings.
  */
@@ -67,6 +72,22 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if {@code s} represents an integer
+     * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
+     * Will return false for any other non-null string input
+     * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * @throws NumberFormatException if {@code s} is not an integer.
+     */
+    public static boolean isInteger(String s) {
+        requireNonNull(s);
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException ne) {
+            return false;
+        }
+        return true;
+    }
+    /**
      * Returns string with first letter of each word capitalized
      * e.g. capitalized name -> Capitalized Name
      */
@@ -81,5 +102,37 @@ public class StringUtil {
 
         capitalizedString = String.join(" ", words);
         return capitalizedString;
+    }
+
+    /**
+     * Returns index obtained from command keyed in by users.
+     */
+    public static Index getIndexFromCommand(String args, String commandHelpMessage) throws ParseException {
+        requireNonNull(args);
+        requireNonNull(commandHelpMessage);
+
+        String trimmedArgs = args.trim();
+
+        if (trimmedArgs.isBlank()) {
+            throw new ParseException(String.format(Messages.MESSAGE_EMPTY_ARGUMENT,
+                    commandHelpMessage));
+        }
+
+        if (!StringUtil.isInteger(trimmedArgs)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_INVALID_INDEX));
+        }
+
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedArgs)) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    Messages.MESSAGE_INVALID_INDEX));
+        }
+
+        try {
+            return ParserUtil.parseIndex(trimmedArgs);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, commandHelpMessage));
+        }
+
     }
 }

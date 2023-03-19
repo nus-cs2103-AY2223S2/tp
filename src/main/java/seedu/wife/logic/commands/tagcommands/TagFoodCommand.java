@@ -19,6 +19,10 @@ import seedu.wife.model.tag.Tag;
  */
 public class TagFoodCommand extends Command {
     public static final String COMMAND_WORD = "tag";
+    public static final String MESSAGE_USAGE = "Tag a food with any of your tags in the list.\n"
+            + "Format:\n"
+            + "tag <index> n/<tag name>\n"
+            + "example: tag 1 n/Vege";
     private Tag tag;
     private Index index;
 
@@ -34,16 +38,16 @@ public class TagFoodCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Food foodToTag = TagFoodCommand.getFoodToTag(model, this.tag, this.index);
-        Set<Tag> foodTags = foodToTag.getTags();
+        Food foodToTag = TagFoodCommand.getFoodToTag(model, tag, index);
+        Set<Tag> foodTags = foodToTag.getCurrentTags();
 
-        if (foodTags.contains(this.tag)) {
+        if (foodTags.contains(tag)) {
             throw new CommandException(String.format(Messages.MESSAGE_DOUBLE_TAG,
                     foodToTag.toString(), tag.getTagName()));
         }
 
         foodTags.add(tag);
-        Food editedFood = foodToTag.createNewFoodWithNewTags(foodTags);
+        Food editedFood = foodToTag.createNewFoodWithNewTags(foodToTag, foodTags);
         model.setFood(foodToTag, editedFood);
 
         return new CommandResult(String.format(Messages.MESSAGE_SUCCESSFUL_FOOD_TAG,
