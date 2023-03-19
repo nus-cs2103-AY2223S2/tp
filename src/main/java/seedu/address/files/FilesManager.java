@@ -54,7 +54,7 @@ public class FilesManager {
 
 
 
-    public List<Path> getAllDirectories() {
+    private List<Path> getAllDirectories() {
         List<Path> directories = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(reportsDir)) {
             stream.filter(Files::isDirectory)
@@ -65,7 +65,7 @@ public class FilesManager {
         return directories;
     }
 
-    public List<Path> getAllFiles(Path directory) {
+    private List<Path> getAllFiles(Path directory) {
         List<Path> files = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(directory)) {
             stream.filter(Files::isRegularFile)
@@ -74,6 +74,23 @@ public class FilesManager {
             e.printStackTrace();
         }
         return files;
+    }
+
+    /**
+     * @param fileName
+     * @return
+     */
+    public boolean fileExists(String fileName) {
+        List<Path> directories = getAllDirectories();
+        for (Path directory : directories) {
+            List<Path> files = getAllFiles(directory);
+            for (Path file : files) {
+                if (file.getFileName().toString().equals(fileName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
