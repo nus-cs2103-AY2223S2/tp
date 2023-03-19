@@ -27,8 +27,8 @@ public class PersonListPanel extends UiPart<Region> {
         super(FXML);
         personListView.setItems(cardList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
-        personListView.setStyle("-fx-background-color: #ededed; " +
-                "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 5;");
+        personListView.setStyle("-fx-background-color: #ededed; "
+                + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 5;");
     }
 
     /**

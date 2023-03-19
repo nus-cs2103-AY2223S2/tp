@@ -27,8 +27,8 @@ public class DeckListPanel extends UiPart<Region> {
         super(FXML);
         deckListView.setItems(deckList);
         deckListView.setCellFactory(listView -> new DeckListViewCell());
-        deckListView.setStyle("-fx-background-color: #FFFFFF;" +
-                "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width:5;");
+        deckListView.setStyle("-fx-background-color: #FFFFFF;"
+                + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width:5;");
     }
 
     /**
