@@ -58,9 +58,9 @@ public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[] {
             new Project(new ProjectName("Project 1"), new ProjectRepoHost(""),
-                new ProjectRepoName("project-1"), new ProjectDeadline("01/01/2023-2359"), getMemberSet()),
+                new ProjectRepoName("project-1"), new ProjectDeadline("01/01/23-2359"), getMemberSet()),
             new Project(new ProjectName("Project 2"), new ProjectRepoHost(""),
-                new ProjectRepoName("project-2"), new ProjectDeadline("02/01/2023-2359"), getMemberSet())
+                new ProjectRepoName("project-2"), new ProjectDeadline("02/01/23-2359"), getMemberSet())
         };
     }
 
