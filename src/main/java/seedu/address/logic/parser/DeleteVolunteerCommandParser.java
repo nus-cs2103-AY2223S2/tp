@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.model.person.information.Nric.VALIDATION_REGEX;
 
@@ -18,6 +19,7 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteVolunteerCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty() || (!trimmedArgs.matches(VALIDATION_REGEX))) {
             throw new ParseException(

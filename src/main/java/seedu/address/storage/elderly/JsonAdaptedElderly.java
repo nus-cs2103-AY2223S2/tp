@@ -39,7 +39,7 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
           @JsonProperty("email") String email, @JsonProperty("address") String address,
           @JsonProperty("nric") String nric, @JsonProperty("age") String age,
           @JsonProperty("region") String region,
-            @JsonProperty("riskLevel") String riskLevel,
+          @JsonProperty("riskLevel") String riskLevel,
           @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
           @JsonProperty("availableDates") List<JsonAdaptedAvailableDate> dates) {
 

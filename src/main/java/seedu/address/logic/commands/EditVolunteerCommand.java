@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -57,9 +58,7 @@ public class EditVolunteerCommand extends Command {
      * @param editVolunteerDescriptor details to edit the volunteer with
      */
     public EditVolunteerCommand(Index index, EditVolunteerDescriptor editVolunteerDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editVolunteerDescriptor);
-
+        requireAllNonNull(index, editVolunteerDescriptor);
         this.index = index;
         this.editVolunteerDescriptor = new EditVolunteerDescriptor(editVolunteerDescriptor);
     }
@@ -77,6 +76,7 @@ public class EditVolunteerCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
         }
+        assert index.getZeroBased() >= 0 : "index should not be negative";
 
         Volunteer volunteerToEdit = lastShownList.get(index.getZeroBased());
         Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(

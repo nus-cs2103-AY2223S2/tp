@@ -43,6 +43,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public FriendlyLink(ReadOnlyFriendlyLink toBeCopied) {
         this();
+        requireNonNull(toBeCopied);
         resetFriendlyLinkData(toBeCopied);
     }
 

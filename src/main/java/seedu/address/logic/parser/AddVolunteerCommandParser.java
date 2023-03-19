@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
@@ -39,6 +40,7 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddVolunteerCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC_VOLUNTEER,
             PREFIX_AGE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_TAG};
         Prefix[] compulsoryPrefixes = Arrays.copyOfRange(availablePrefixes, 0, 7);

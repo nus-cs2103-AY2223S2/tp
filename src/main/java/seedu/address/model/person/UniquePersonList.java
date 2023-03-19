@@ -62,6 +62,7 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
         if (index == -1) {
             throw new PersonNotFoundException();
         }
+        assert index < internalList.size() : "Index should be in range";
 
         if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
             throw new DuplicatePersonException();

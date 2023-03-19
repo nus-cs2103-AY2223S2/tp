@@ -58,6 +58,9 @@ public class FindCommand extends Command {
      */
     public FindCommand(List<Predicate<Person>> sharedFilterList,
             List<Predicate<Elderly>> elderlyOnlyFilterList, List<Predicate<Volunteer>> volunteerOnlyFilterList) {
+        requireNonNull(sharedFilterList);
+        requireNonNull(elderlyOnlyFilterList);
+        requireNonNull(volunteerOnlyFilterList);
         this.sharedFilterList = sharedFilterList;
         this.elderlyOnlyFilterList = elderlyOnlyFilterList;
         this.volunteerOnlyFilterList = volunteerOnlyFilterList;
@@ -93,6 +96,7 @@ public class FindCommand extends Command {
      * @param model FriendlyLink model.
      */
     private Predicate<Pair> getPairPredicate(Model model) {
+        requireNonNull(model);
         List<Elderly> listOfFilteredElderly = model.getFilteredElderlyList();
         List<Volunteer> listOfFilteredVolunteers = model.getFilteredVolunteerList();
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -57,9 +58,7 @@ public class EditElderlyCommand extends Command {
      * @param editElderlyDescriptor details to edit the elderly with
      */
     public EditElderlyCommand(Index index, EditElderlyDescriptor editElderlyDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editElderlyDescriptor);
-
+        requireAllNonNull(index, editElderlyDescriptor);
         this.index = index;
         this.editElderlyDescriptor = new EditElderlyDescriptor(editElderlyDescriptor);
     }
@@ -77,6 +76,7 @@ public class EditElderlyCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX);
         }
+        assert index.getZeroBased() >= 0 : "index should not be negative";
 
         Elderly elderlyToEdit = lastShownList.get(index.getZeroBased());
         Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(elderlyToEdit, editElderlyDescriptor);
