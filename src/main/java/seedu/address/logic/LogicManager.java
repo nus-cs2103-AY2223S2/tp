@@ -13,8 +13,8 @@ import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.OperationMode;
-import seedu.address.model.item.Item;
 import seedu.address.model.flight.Flight;
+import seedu.address.model.item.Item;
 import seedu.address.storage.Storage;
 
 /**
