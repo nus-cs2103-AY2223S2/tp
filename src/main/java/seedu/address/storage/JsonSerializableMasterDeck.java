@@ -17,7 +17,7 @@ import seedu.address.model.deck.Deck;
 /**
  * An Immutable Deck that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "masterdeck")
 class JsonSerializableMasterDeck {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Card list contains duplicate card(s).";

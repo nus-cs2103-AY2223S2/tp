@@ -28,7 +28,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newCard_success() {
         Card validCard = new CardBuilder().build();
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateCard_throwsCommandException() {
         Card cardInList = model.getMasterDeck().getCardList().get(0);
         assertCommandFailure(new AddCommand(cardInList), model, AddCommand.MESSAGE_DUPLICATE_CARD);
     }

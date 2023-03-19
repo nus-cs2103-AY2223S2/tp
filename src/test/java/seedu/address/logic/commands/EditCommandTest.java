@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_GRAVITY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showCardAtIndex;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -49,16 +49,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredCardList().size());
-        Card lastCard = model.getFilteredCardList().get(indexLastPerson.getZeroBased());
+        Index indexLastCard = Index.fromOneBased(model.getFilteredCardList().size());
+        Card lastCard = model.getFilteredCardList().get(indexLastCard.getZeroBased());
 
-        CardBuilder personInList = new CardBuilder(lastCard);
-        Card editedCard = personInList.withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
+        CardBuilder cardInList = new CardBuilder(lastCard);
+        Card editedCard = cardInList.withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
                 .withTags(VALID_TAG_HARD).build();
 
         EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withTags(VALID_TAG_HARD).build();
-        EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastCard, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
 
@@ -82,7 +82,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST);
+        showCardAtIndex(model, INDEX_FIRST);
 
         Card cardInFilteredList = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
         Card editedCard = new CardBuilder(cardInFilteredList).withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
@@ -98,7 +98,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateCardUnfilteredList_failure() {
         Card firstCard = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder(firstCard).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND, descriptor);
@@ -107,8 +107,8 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST);
+    public void execute_duplicateCardFilteredList_failure() {
+        showCardAtIndex(model, INDEX_FIRST);
 
         // edit card in filtered list into a duplicate in address book
         Card cardInList = model.getMasterDeck().getCardList().get(INDEX_SECOND.getZeroBased());
@@ -119,7 +119,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidCardIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCardList().size() + 1);
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
@@ -130,11 +130,11 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of master deck
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST);
+    public void execute_invalidCardIndexFilteredList_failure() {
+        showCardAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMasterDeck().getCardList().size());
@@ -147,10 +147,10 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST, DESC_GRAVITY);
 
         // same values -> returns true
-        EditCardDescriptor copyDescriptor = new EditCardDescriptor(DESC_AMY);
+        EditCardDescriptor copyDescriptor = new EditCardDescriptor(DESC_GRAVITY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -164,10 +164,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND, DESC_GRAVITY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST, DESC_PHOTOSYNTHESIS)));
     }
 
 }

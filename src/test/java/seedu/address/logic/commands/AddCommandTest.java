@@ -30,25 +30,25 @@ import seedu.address.testutil.CardBuilder;
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullCard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+    public void execute_cardAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingCardAdded modelStub = new ModelStubAcceptingCardAdded();
         Card validCard = new CardBuilder().build();
         CommandResult commandResult = new AddCommand(validCard).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCard), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validCard), modelStub.cardsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateCard_throwsCommandException() {
         Card validCard = new CardBuilder().build();
         AddCommand addCommand = new AddCommand(validCard);
-        ModelStub modelStub = new ModelStubWithPerson(validCard);
+        ModelStub modelStub = new ModelStubWithCard(validCard);
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
     }
 
@@ -62,26 +62,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Card alice = new CardBuilder().withQuestion("Alice").build();
-        Card bob = new CardBuilder().withQuestion("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Card questionA = new CardBuilder().withQuestion("What is A?").build();
+        Card questionB = new CardBuilder().withQuestion("What is B?").build();
+        AddCommand addACommand = new AddCommand(questionA);
+        AddCommand addBCommand = new AddCommand(questionB);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addACommand.equals(addACommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addAliceCommandCopy = new AddCommand(questionA);
+        assertTrue(addACommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addACommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addACommand.equals(null));
 
         // different card -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addACommand.equals(addBCommand));
     }
 
     /**
@@ -263,10 +263,10 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single card.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithCard extends ModelStub {
         private final Card card;
 
-        ModelStubWithPerson(Card card) {
+        ModelStubWithCard(Card card) {
             requireNonNull(card);
             this.card = card;
         }
@@ -281,18 +281,18 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the card being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Card> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingCardAdded extends ModelStub {
+        final ArrayList<Card> cardsAdded = new ArrayList<>();
         @Override
         public boolean hasCard(Card card) {
             requireNonNull(card);
-            return personsAdded.stream().anyMatch(card::isSameCard);
+            return cardsAdded.stream().anyMatch(card::isSameCard);
         }
 
         @Override
         public void addCard(Card card) {
             requireNonNull(card);
-            personsAdded.add(card);
+            cardsAdded.add(card);
         }
 
         @Override
