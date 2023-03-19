@@ -65,8 +65,8 @@ public class ElderlyCard extends UiPart<Region> {
         region.getChildren().add(
                 new Label(elderly.getRegion().region.name())
         );
-//        riskLevel.getChildren().add(
-//                new Label(elderly.getRiskLevel().riskStatus.name()));
+        //        riskLevel.getChildren().add(
+        //                new Label(elderly.getRiskLevel().riskStatus.name()));
         Label riskLabel = new Label(elderly.getRiskLevel().riskStatus.name());
         riskLabel.getStyleClass().add("risk-" + elderly.getRiskLevel().riskStatus.name());
 

@@ -5,8 +5,6 @@ import java.util.Objects;
 
 /**
  * Represents medical qualifications that a volunteer might have.
- *
- * @author wz2k
  */
 public class MedicalQualificationTag extends Tag {
     public static final String MESSAGE_CONSTRAINTS =
@@ -42,11 +40,11 @@ public class MedicalQualificationTag extends Tag {
                 .valueOf(qualificationLevel.toUpperCase());
     }
 
-//    public MedicalQualificationTag(String tagName, SkillLevel qualificationLevel, LocalDate expiryDate) {
-//        super(tagName);
-//        this.qualificationLevel = qualificationLevel;
-//        this.expiryDate = expiryDate;
-//    }
+    //    public MedicalQualificationTag(String tagName, SkillLevel qualificationLevel, LocalDate expiryDate) {
+    //        super(tagName);
+    //        this.qualificationLevel = qualificationLevel;
+    //        this.expiryDate = expiryDate;
+    //    }
 
     /**
      * Returns the level of training attained.
@@ -66,6 +64,9 @@ public class MedicalQualificationTag extends Tag {
         this.qualificationLevel = SkillLevel.valueOf(qualificationLevel);
     }
 
+    /**
+     * Returns if a given string is a valid qualification level.
+     */
     public static boolean isValidQualification(String qualification) {
         if (qualification != null) {
             return Arrays.stream(SkillLevel.values())
@@ -79,8 +80,7 @@ public class MedicalQualificationTag extends Tag {
         return other == this
                 || (other instanceof MedicalQualificationTag
                 && tagName.equals(((MedicalQualificationTag) other).tagName)
-                && qualificationLevel.equals(((MedicalQualificationTag) other).qualificationLevel)
-        );
+                && qualificationLevel.equals(((MedicalQualificationTag) other).qualificationLevel));
     }
 
     @Override

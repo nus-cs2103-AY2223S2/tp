@@ -13,8 +13,8 @@ import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.MedicalQualificationTag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Stores the details to edit the volunteer with. Each non-empty field value will replace the

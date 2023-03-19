@@ -45,6 +45,8 @@ public class VolunteerCard extends UiPart<Region> {
     @FXML
     private FlowPane region;
     @FXML
+    private FlowPane medicalTags;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -63,6 +65,9 @@ public class VolunteerCard extends UiPart<Region> {
         region.getChildren().add(
                 new Label(volunteer.getRegion().region.name())
         );
+        volunteer.getMedicalTags().stream()
+                 .sorted(Comparator.comparing(tag -> tag.tagName))
+                 .forEach(tag -> medicalTags.getChildren().add(new Label(tag.toFullString())));
         volunteer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

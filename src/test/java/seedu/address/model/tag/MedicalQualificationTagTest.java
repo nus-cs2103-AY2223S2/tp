@@ -1,6 +1,8 @@
 package seedu.address.model.tag;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -15,8 +17,10 @@ public class MedicalQualificationTagTest {
     public void constructor_invalidQualification_throwsIllegalArgumentException() {
         String invalidMedicalQualification1 = "";
         String invalidMedicalQualification2 = "random";
-        assertThrows(IllegalArgumentException.class, () -> new MedicalQualificationTag("CPR", invalidMedicalQualification1));
-        assertThrows(IllegalArgumentException.class, () -> new MedicalQualificationTag("AED", invalidMedicalQualification2));
+        assertThrows(IllegalArgumentException.class, () ->
+                new MedicalQualificationTag("CPR", invalidMedicalQualification1));
+        assertThrows(IllegalArgumentException.class, () ->
+                new MedicalQualificationTag("AED", invalidMedicalQualification2));
     }
 
     @Test
@@ -45,7 +49,7 @@ public class MedicalQualificationTagTest {
     public void testFullStringConversion() {
         MedicalQualificationTag medicalQualificationTag = new MedicalQualificationTag("AED", "ADVANCED");
 
-        String fullString = "AED ADVANCED";
+        String fullString = "[AED] ADVANCED";
         assertEquals(fullString, medicalQualificationTag.toFullString());
     }
 }

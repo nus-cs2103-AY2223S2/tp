@@ -8,7 +8,11 @@
     "nric" : "S9673908G",
     "age" : "20",
     "region": "CENTRAL",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "medicalTags" : [ {
+      "skill" : "CPR",
+      "level" : "BASIC"
+    } ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -17,7 +21,8 @@
     "nric" : "S6878241D",
     "age" : "23",
     "region": "WEST",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "medicalTags" : [ ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -26,7 +31,14 @@
     "nric" : "S3634466J",
     "age" : "31",
     "region": "EAST",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "medicalTags" : [ {
+      "skill" : "BLS",
+      "level" : "INTERMEDIATE"
+    }, {
+      "skill" : "AED",
+      "level" : "BASIC"
+    } ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -35,7 +47,8 @@
     "nric" : "S0203151E",
     "age" : "25",
     "region": "NORTH",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "medicalTags" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -44,7 +57,8 @@
     "nric" : "S7238791J",
     "age" : "28",
     "region": "NORTHEAST",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "medicalTags" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -53,7 +67,11 @@
     "nric" : "S3576311B",
     "age" : "26",
     "region": "EAST",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "medicalTags" : [ {
+      "skill" : "AED",
+      "level" : "ADVANCED"
+    } ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -62,6 +80,7 @@
     "nric" : "S1262951F",
     "age" : "24",
     "region": "CENTRAL",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "medicalTags" : [ ]
   } ]
 }

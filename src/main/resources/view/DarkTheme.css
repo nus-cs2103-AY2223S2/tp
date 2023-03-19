@@ -394,3 +394,19 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#medicalTags {
+    -fx-hgap: 17;
+    -fx-vgap: 31;
+}
+
+#medicalTags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #8D70BD;
+    -fx-padding: 1 3;
+    -fx-border-radius: 2;
+    -fx-border-insets: 0 0 2 0;
+    -fx-background-insets: 0 0 2 0;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}

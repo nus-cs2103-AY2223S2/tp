@@ -212,6 +212,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code Collection<String> medicalTags} into a {@code Set<MedicalQualificationTag>}.
+     */
     public static Set<MedicalQualificationTag> parseMedicalTags(Collection<String> medicalTags) throws ParseException {
         requireNonNull(medicalTags);
         final Set<MedicalQualificationTag> tagSet = new HashSet<>();

@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVolunteers.BENSON;
 import static seedu.address.testutil.TypicalVolunteers.IDA;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.FriendlyLink;
+import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
@@ -23,7 +23,7 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.storage.volunteer.JsonAdaptedVolunteer;
-import seedu.address.testutil.TypicalElderly;
+import seedu.address.testutil.TypicalVolunteers;
 
 
 public class JsonAdaptedVolunteerTest {
@@ -43,7 +43,7 @@ public class JsonAdaptedVolunteerTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_NRIC = BENSON.getNric().toString();
     private static final String VALID_AGE = BENSON.getAge().toString();
-    private static final String VALID_REGION = TypicalElderly.BENSON.getRegion().toString();
+    private static final String VALID_REGION = TypicalVolunteers.BENSON.getRegion().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -202,6 +202,13 @@ public class JsonAdaptedVolunteerTest {
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_NRIC, VALID_AGE, VALID_REGION, invalidTags, VALID_MEDICAL_TAGS);
         assertThrows(IllegalValueException.class, () -> volunteer.toModelType(appTestCache));
+    }
+
+    @Test
+    public void jsonAdaptedVolunteer_constructor() {
+        Volunteer target = TypicalVolunteers.CARL;
+        JsonAdaptedVolunteer convert = new JsonAdaptedVolunteer(target);
+        String output = convert.toString();
     }
 
 }

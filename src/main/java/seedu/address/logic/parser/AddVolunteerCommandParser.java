@@ -24,8 +24,8 @@ import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.MedicalQualificationTag;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddElderlyCommand object
@@ -59,7 +59,8 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
         Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<MedicalQualificationTag> medicalTagList = ParserUtil.parseMedicalTags(argMultimap.getAllValues(PREFIX_MEDICAL_TAG));
+        Set<MedicalQualificationTag> medicalTagList =
+                ParserUtil.parseMedicalTags(argMultimap.getAllValues(PREFIX_MEDICAL_TAG));
 
         Volunteer volunteer = new Volunteer(name, phone, email, address, nric, age, region, tagList, medicalTagList);
 

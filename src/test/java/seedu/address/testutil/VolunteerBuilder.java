@@ -30,11 +30,17 @@ public class VolunteerBuilder extends PersonBuilderScaffold<VolunteerBuilder> {
         medicalTags = new HashSet<>(volunteerToCopy.getMedicalTags());
     }
 
+    /**
+     * Sets the {@code medicalTags} of the {@code Volunteer} that we are building.
+     */
     public VolunteerBuilder withMedicalTags(String ... medicalTags) {
         this.medicalTags = SampleDataUtil.getMedicalTagSet(medicalTags);
         return this;
     }
 
+    /**
+     * Build a volunteer object
+     */
     public Volunteer build() {
         return new Volunteer(name, phone, email, address, nric,
                 age, region, tags, medicalTags);
