@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -26,8 +30,16 @@ public class ViewExamCommand extends Command {
         + "* exam name and/or\n"
         + "* whether it is done\n"
         + "and displays them as a list with index numbers.\n"
-        + "Parameters: [n/STUDENT_NAME] [date/Date] [e/EXAM_NAME] [done/COMPLETED_KEYWORD]\n"
-        + "Example: " + COMMAND_WORD + " n/John date/2023-03-29 e/Math done/done";
+        + "Parameters: "
+        + PREFIX_NAME + "STUDENT_NAME "
+        + PREFIX_DATE + "DATE "
+        + PREFIX_EXAM + "EXAM NAME "
+        + PREFIX_DONE + "COMPLETED KEYWORD\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_DATE + "2023-05-21 "
+        + PREFIX_EXAM + "Math MYE "
+        + PREFIX_DONE + "done";
     private static final Predicate<Exam> SHOW_ALL_EXAMS = exam -> true;
     private final Predicate<Student> namePredicate;
     private final Predicate<Exam> examDatePredicate;
