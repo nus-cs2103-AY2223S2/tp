@@ -1,0 +1,21 @@
+@startuml
+start
+:User enters edit command;
+if () then ([Invalid arguments])
+  :Error: Invalid command format;
+  stop
+() elseif () then ([Duplicate name])
+  :Error: Duplicated person;
+  stop
+() elseif () then ([No fields are edited])
+  :Error: Not edited;
+  stop
+else ()
+endif
+  :Person descriptor is created;
+  :Common modules are computed;
+  :Details are changed;
+  :EduMate is sorted by index;
+stop
+
+@enduml

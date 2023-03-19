@@ -47,15 +47,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     @Override
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        if (args.trim().equals("index")) {
-            Comparator<Person> indexComparator = new Comparator<Person>() {
-                @Override
-                public int compare(Person o1, Person o2) {
-                    return o1.getContactIndex().compareTo(o2.getContactIndex());
-                }
-            };
-            return new SortCommand(indexComparator, "Reverting to original index!");
-        }
+
         // the prefix positions are ordered from first to last
         // the argument multimap gives an unordered list so we cannot use it here
         List<PrefixPosition> prefixPositions = ArgumentTokenizer
@@ -77,9 +69,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         // processes comparators from first to last (first goes first)
         // creates one chained comparator
+        // Default comparator is contact index
         Comparator<Person> comparator = CollectionUtil
                 .zip(comparatorStream, isAscendingStream, this::reverseComparatorIfDescending)
-                .reduce(Comparator.comparing(Person::getName), this::combineComparators);
+                .reduce(Comparator.comparing(Person::getContactIndex), this::combineComparators);
 
         // converts the prefixes into their name descriptors
         // n/ -> Name for example

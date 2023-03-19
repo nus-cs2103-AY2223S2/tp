@@ -428,18 +428,56 @@ In summary, the activity diagram is as such:
 
 #### **Edit Command**
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("edit 1...")` API call.
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java)
 
-<img src="images/EditSequenceDiagram.png" style="width:80%;margin:0 10%">
-<div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.3</b> Sequence Diagram for a typical <code>edit</code> command
-</div>
-<br>
+The `edit` command allows the user to edit an existing contact in EduMate.
+
+**Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and [check whether they are valid](#model-component).
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Command Formats:**
+* `edit z/FIELD`: Edits the user details.
+* `edit INDEX z/FIELD`: Edits the details of the contact at the specified `INDEX`.
 
+</div>
+
+**Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Similar to [`AddCommand`](#add-command), the arguments for `EditCommand` are unordered.
+
+</div>
+
+**Computing the common modules** - One of our sort keys is to use the *number of common modules* that the person has with the user. As such, we cache these modules to optimise performance.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Info**: When editing a contact, we only need to update the common modules for **that person**. However, when editing the user, we need to update common modules for **every person** in EduMate.
+
+</div>
+
+**Creating a person descriptor** - When we are editing a person, we need two things:
+
+* The edited details: These are specified by the user as arguments in the `edit` command.
+* The person's original details: If the user does not specify to edit a particular field, we take the *current* data stored in the field.
+
+From these two sources of information, we can create a `descriptor` that keeps track of what the new person *should* be, which gives us lines such as:
+
+* `editPersonDescriptor.getName().orElse(userToEdit.getName())`.
+
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Warning**: If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
+
+</div>
+
+In summary, the activity diagram is as such:
+
+<img src="images/EditActivityDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.3a</b> Activity Diagram for a typical <code>edit</code> command
 </div>
 
 #### **Delete Command**

@@ -93,7 +93,7 @@ public class SortCommandParserTest {
         List<ContactIndex> sortedIndexSorted = personList.stream()
                 .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
         assertNotEquals(contactIndexSortedByName.toArray(), sortedIndexSorted.toArray());
-        parser.parse(" index").execute(model);
+        parser.parse("").execute(model);
         List<ContactIndex> indexStream = personList.stream()
                 .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
         assertArrayEquals(sortedIndexSorted.toArray(), indexStream.toArray());
