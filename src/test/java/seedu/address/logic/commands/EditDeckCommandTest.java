@@ -23,7 +23,7 @@ import seedu.address.model.deck.Deck;
  */
 public class EditDeckCommandTest {
 
-    private Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
 
     @Test
     public void execute_editDeck_editSuccessful() {
@@ -31,10 +31,13 @@ public class EditDeckCommandTest {
 
         EditDeckCommand editDeckCommand = new EditDeckCommand(INDEX_FIRST, editedDeck);
 
-        String expectedMessage = String.format(EditDeckCommand.MESSAGE_EDIT_DECK_SUCCESS, editedDeck);
+        String expectedMessage = String.format(EditDeckCommand.MESSAGE_EDIT_DECK_SUCCESS,
+                INDEX_FIRST.getOneBased(), editedDeck);
 
-        Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
         expectedModel.setDeck(model.getFilteredDeckList().get(0), editedDeck);
+        expectedModel.moveCards(model.getFilteredDeckList().get(0), editedDeck);
+
         assertCommandSuccess(editDeckCommand, model, expectedMessage, expectedModel);
     }
 

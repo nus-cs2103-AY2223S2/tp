@@ -8,12 +8,9 @@ import java.util.Objects;
  * A group of cards
  */
 public class Deck {
-
-    public final String deckName;
-
     public static final String MESSAGE_CONSTRAINTS = "Deck name can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
-
+    public final String deckName;
 
     /**
      * Constructing a deck.

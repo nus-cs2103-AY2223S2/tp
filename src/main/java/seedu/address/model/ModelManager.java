@@ -186,6 +186,11 @@ public class ModelManager implements Model {
         masterDeck.setDeck(target, editedDeck);
     }
 
+    @Override
+    public void moveCards(Deck oldDeck, Deck newDeck) {
+        masterDeck.moveCards(oldDeck, newDeck);
+    }
+
     /**
      * Deletes the given deck and the associated cards in that deck.
      *

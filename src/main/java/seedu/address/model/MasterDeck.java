@@ -146,6 +146,21 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     }
 
     /**
+     * Changes the association of all the cards from the old deck to the new deck.
+     *
+     * @param oldDeck The deck which cards are currently associated with.
+     * @param newDeck The deck which cards are to be associated with.
+     */
+    public void moveCards(Deck oldDeck, Deck newDeck) {
+        for (Card c : cards) {
+            if (c.isInDeck(oldDeck)) {
+                Card editedCard = new Card(c.getQuestion(), c.getAnswer(), c.getTags(), newDeck);
+                setCard(c, editedCard);
+            }
+        }
+    }
+
+    /**
      * Removes {@code key} from this {@code MasterDeck} and its corresponding cards.
      * {@code key} must exist.
      */
