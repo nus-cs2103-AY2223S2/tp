@@ -15,7 +15,6 @@ public class Task {
     private String personAssignedName;
     private String personAssignedRole;
     private Score score;
-    
 
     /**
      * The constructor of the Task that takes in description of the task.
@@ -67,8 +66,6 @@ public class Task {
 
     /**
      * Gets the score of the current task.
-     *
-     * @param score Score to be assigned to the current task
      */
     public Score getScore() {
         return this.score;

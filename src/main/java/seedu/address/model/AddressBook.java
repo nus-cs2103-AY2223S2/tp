@@ -126,10 +126,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Marks the given task {@code task} as done.
+     * @param task
+     * @param score
      */
     public void markTask(Task task, Score score) {
-        task.mark(score);           
-    }   
+        task.mark(score);
+    }
 
     /**
      * Unmarks the given task {@code task} as not done.

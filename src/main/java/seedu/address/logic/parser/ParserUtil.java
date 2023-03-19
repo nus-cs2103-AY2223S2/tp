@@ -189,7 +189,7 @@ public class ParserUtil {
     /**
      * Parses {@code String score} into a {@code Score}.
      * @param score
-     * @return
+     * @return score of person
      * @throws ParseException
      */
     public static Score parseScoreValue(String score) throws ParseException {

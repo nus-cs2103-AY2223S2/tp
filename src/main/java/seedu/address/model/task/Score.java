@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Task's score in the address book.
+ */
 public class Score {
     public static final String MESSAGE_CONSTRAINTS =
             "Scores should only contain numeric characters and be in the range 0-5, and it should not be blank";
