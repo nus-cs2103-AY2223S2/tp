@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -75,8 +74,8 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         Image customCursorImage = new Image("/images/cursor.png");
-        Cursor customCursor = new ImageCursor(customCursorImage);
-        mainVbox.setCursor(customCursor);
+        ImageCursor cursor = new ImageCursor(customCursorImage);
+        mainVbox.setCursor(cursor);
     }
 
     public Stage getPrimaryStage() {
