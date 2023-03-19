@@ -13,6 +13,8 @@ import java.util.HashMap;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -20,6 +22,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import seedu.address.MainApp;
 import seedu.address.model.internship.Internship;
 
 
@@ -47,7 +50,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
     @FXML
     private Label role;
-    @FXMLview 
+    @FXML
     private Label date;
     @FXML
     private FlowPane tags;
@@ -55,6 +58,8 @@ public class InternshipDetailsCard extends UiPart<Region> {
     private Label statusLabel;
     @FXML
     private Label tips;
+    @FXML
+    private ImageView tipsImage;
 
 
 
@@ -91,6 +96,9 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
         //Set up tips
         tips.setText(getTips());
+
+        //Set up image
+        tipsImage.setImage(new Image(MainApp.class.getResourceAsStream(getTipsImage())));
     }
 
     @Override
@@ -180,6 +188,28 @@ public class InternshipDetailsCard extends UiPart<Region> {
             return "Rejected tips";
         default:
             return "New tips";
+        }
+    }
+
+    /**
+     * Gets the corresponding image url according to the status
+     *
+     * @return the tips for a specific status
+     */
+    public String getTipsImage() {
+        switch (this.internship.getStatus().toString()) {
+        case APPLIED:
+            return "/tips/applied.png";
+        case ASSESSMENT:
+            return "/tips/assessment.png";
+        case INTERVIEW:
+            return "/tips/interview.png";
+        case OFFERED:
+            return "/tips/offered.png";
+        case REJECTED:
+            return "/tips/rejected.png";
+        default:
+            return "/tips/new.png";
         }
     }
 }
