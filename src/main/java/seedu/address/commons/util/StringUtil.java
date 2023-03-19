@@ -3,8 +3,10 @@ package seedu.address.commons.util;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.file.Path;
 import java.util.Arrays;
 
 /**
@@ -64,5 +66,12 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    public static void saveStringFile(String input, Path filePath) throws IOException {
+        requireNonNull(input);
+        requireNonNull(filePath);
+        
+        FileUtil.writeToFile(filePath, input, true);
     }
 }

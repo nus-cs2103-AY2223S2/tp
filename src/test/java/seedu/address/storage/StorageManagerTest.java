@@ -22,6 +22,8 @@ public class StorageManagerTest {
     private static final String STORAGE_FILE_PATH = "ab";
     private static final String USER_PREFS_FILE_PATH = "prefs";
 
+    private static final String HISTORY_FILE_PATH = "cd";
+
     @TempDir
     public Path testFolder;
 
@@ -29,8 +31,8 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonEduMateStorage eduMateStorage = new JsonEduMateStorage(getTempFilePath(
-                STORAGE_FILE_PATH));
+        EduMateStorageManager eduMateStorage = new EduMateStorageManager(getTempFilePath(
+                STORAGE_FILE_PATH), getTempFilePath(HISTORY_FILE_PATH));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath(
                 USER_PREFS_FILE_PATH));
         storageManager = new StorageManager(eduMateStorage, userPrefsStorage);
@@ -58,8 +60,8 @@ public class StorageManagerTest {
     public void eduMateReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonEduMateStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonEduMateStorageTest} class.
+         * {@link EduMateStorageManager} class.
+         * More extensive testing of UserPref saving/reading is done in {@link EduMateStorageManagerTest} class.
          */
         EduMate original = getTypicalEduMate();
         storageManager.saveEduMate(original);

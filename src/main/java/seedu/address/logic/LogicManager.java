@@ -48,6 +48,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveEduMate(model.getEduMate());
+            storage.saveEduMateHistory(commandText);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

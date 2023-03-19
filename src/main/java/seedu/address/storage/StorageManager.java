@@ -75,4 +75,14 @@ public class StorageManager implements Storage {
         eduMateStorage.saveEduMate(eduMate, filePath);
     }
 
+    @Override
+    public Path getEduMateHistoryFilePath() {
+        return eduMateStorage.getEduMateHistoryFilePath();
+    }
+
+    @Override
+    public void saveEduMateHistory(String input) throws IOException {
+        eduMateStorage.saveEduMateHistory(input);
+    }
+
 }

@@ -30,7 +30,7 @@ import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
-import seedu.address.storage.JsonEduMateStorage;
+import seedu.address.storage.EduMateStorageManager;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -46,8 +46,9 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonEduMateStorage eduMateStorage =
-                new JsonEduMateStorage(temporaryFolder.resolve("eduMate.json"));
+        EduMateStorageManager eduMateStorage =
+                new EduMateStorageManager(temporaryFolder.resolve("eduMate.json"),
+                        temporaryFolder.resolve(".edumate_history"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(eduMateStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -73,9 +74,11 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonEduMateIoExceptionThrowingStub
-        JsonEduMateStorage eduMateStorage =
-                new JsonEduMateIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionEduMate.json"));
+        // Setup LogicManager with EduMateIoExceptionThrowingStubManager
+        EduMateStorageManager eduMateStorage =
+                new EduMateIoExceptionThrowingStubManager(
+                        temporaryFolder.resolve("ioExceptionEduMate.json"),
+                        temporaryFolder.resolve(".ioexception_edumate_history"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(eduMateStorage, userPrefsStorage);
@@ -181,9 +184,9 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonEduMateIoExceptionThrowingStub extends JsonEduMateStorage {
-        private JsonEduMateIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
+    private static class EduMateIoExceptionThrowingStubManager extends EduMateStorageManager {
+        private EduMateIoExceptionThrowingStubManager(Path storageFilePath, Path historyFilePath) {
+            super(storageFilePath, historyFilePath);
         }
 
         @Override

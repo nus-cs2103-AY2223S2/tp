@@ -17,6 +17,9 @@ public interface EduMateStorage {
      */
     Path getEduMateFilePath();
 
+    Path getEduMateHistoryFilePath();
+
+
     /**
      * Returns EduMate data as a {@link ReadOnlyEduMate}.
      *   Returns {@code Optional.empty()} if storage file is not found.
@@ -41,5 +44,7 @@ public interface EduMateStorage {
      * @see #saveEduMate(ReadOnlyEduMate)
      */
     void saveEduMate(ReadOnlyEduMate eduMate, Path filePath) throws IOException;
+
+    void saveEduMateHistory(String input) throws IOException;
 
 }

@@ -18,8 +18,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
 
-public class JsonEduMateStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonEduMateStorageTest");
+public class EduMateStorageManagerTest {
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "EduMateStorageManagerTest");
 
     @TempDir
     public Path testFolder;
@@ -30,7 +30,7 @@ public class JsonEduMateStorageTest {
     }
 
     private java.util.Optional<ReadOnlyEduMate> readEduMate(String filePath) throws Exception {
-        return new JsonEduMateStorage(Paths.get(filePath)).readEduMate(addToTestDataPathIfNotNull(filePath));
+        return new EduMateStorageManager(Paths.get(filePath), null).readEduMate(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -95,42 +95,47 @@ public class JsonEduMateStorageTest {
 
     @Test
     public void readAndSaveEduMate_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempEduMate.json");
+        Path storageFilePath = testFolder.resolve("TempEduMate.json");
+        Path historyFilePath = testFolder.resolve(".temp_edumate_history");
         EduMate original = getTypicalEduMate();
-        JsonEduMateStorage jsonEduMateStorage = new JsonEduMateStorage(filePath);
+        EduMateStorageManager eduMateStorageManager = new EduMateStorageManager(storageFilePath, historyFilePath);
 
         // Save in new file and read back
-        jsonEduMateStorage.saveEduMate(original, filePath);
-        ReadOnlyEduMate readBack = jsonEduMateStorage.readEduMate(filePath).get();
+        eduMateStorageManager.saveEduMate(original, storageFilePath);
+        ReadOnlyEduMate readBack = eduMateStorageManager.readEduMate(storageFilePath).get();
         assertEquals(original.getPersonList(), new EduMate(readBack).getPersonList());
 
         // Modify data, overwrite exiting file, and read back
         original.removePerson(ALBERT);
         original.removePerson(CLARK);
-        jsonEduMateStorage.saveEduMate(original, filePath);
-        readBack = jsonEduMateStorage.readEduMate(filePath).get();
+        eduMateStorageManager.saveEduMate(original, storageFilePath);
+        readBack = eduMateStorageManager.readEduMate(storageFilePath).get();
         assertEquals(original.getPersonList(), new EduMate(readBack).getPersonList());
 
         // Save and read without specifying file path
         original.addPerson(CLARK);
-        jsonEduMateStorage.saveEduMate(original); // file path not specified
-        readBack = jsonEduMateStorage.readEduMate().get(); // file path not specified
+        eduMateStorageManager.saveEduMate(original); // file path not specified
+        readBack = eduMateStorageManager.readEduMate().get(); // file path not specified
         assertEquals(original.getPersonList(), new EduMate(readBack).getPersonList());
 
     }
 
     @Test
     public void saveEduMate_nullEduMate_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveEduMate(null, "SomeFile.json"));
+        assertThrows(
+                NullPointerException.class, () -> saveEduMate(
+                        null,
+                        "SomeFile.json",
+                        "some_file"));
     }
 
     /**
      * Saves {@code eduMate} at the specified {@code filePath}.
      */
-    private void saveEduMate(ReadOnlyEduMate eduMate, String filePath) {
+    private void saveEduMate(ReadOnlyEduMate eduMate, String storageFilePath, String historyFilePath) {
         try {
-            new JsonEduMateStorage(Paths.get(filePath))
-                    .saveEduMate(eduMate, addToTestDataPathIfNotNull(filePath));
+            new EduMateStorageManager(Paths.get(storageFilePath), Paths.get(historyFilePath))
+                    .saveEduMate(eduMate, addToTestDataPathIfNotNull(storageFilePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -138,6 +143,6 @@ public class JsonEduMateStorageTest {
 
     @Test
     public void saveEduMate_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveEduMate(new EduMate(), null));
+        assertThrows(NullPointerException.class, () -> saveEduMate(new EduMate(), null, null));
     }
 }

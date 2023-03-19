@@ -1,10 +1,18 @@
 package seedu.address.commons.util;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Writes and reads files
@@ -35,16 +43,16 @@ public class FileUtil {
      * Creates a file if it does not exist along with its missing parent directories.
      * @throws IOException if the file or directory cannot be created.
      */
-    public static void createIfMissing(Path file) throws IOException {
+    public static void createIfMissing(Path file, boolean isHidden) throws IOException {
         if (!isFileExists(file)) {
-            createFile(file);
+            createFile(file, isHidden);
         }
     }
 
     /**
      * Creates a file if it does not exist along with its missing parent directories.
      */
-    public static void createFile(Path file) throws IOException {
+    public static void createFile(Path file, boolean isHidden) throws IOException {
         if (Files.exists(file)) {
             return;
         }
@@ -52,6 +60,12 @@ public class FileUtil {
         createParentDirsOfFile(file);
 
         Files.createFile(file);
+        File fileCreated = file.toFile();
+
+        if (isHidden && fileCreated.getName().startsWith(".")) {
+            Files.setAttribute(file, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
+            assert fileCreated.isHidden();
+        }
     }
 
     /**
@@ -76,8 +90,22 @@ public class FileUtil {
      * Writes given string to a file.
      * Will create the file if it does not exist yet.
      */
-    public static void writeToFile(Path file, String content) throws IOException {
-        Files.write(file, content.getBytes(CHARSET));
+    public static void writeToFile(Path file, String content, boolean isReverseOrder) throws IOException {
+        if (isReverseOrder) {
+            List<String> lines = Files.readAllLines(file, Charset.forName(CHARSET));
+            if (lines.size() >= 100) {
+                lines.remove(lines.size() - 1);
+            }
+            lines.add(0, content);
+            Set<PosixFilePermission> permissions =
+                    PosixFilePermissions.fromString("rw-------");
+            Files.createFile(file, PosixFilePermissions.asFileAttribute(permissions));
+            Files.write(file, lines, Charset.forName(CHARSET),
+                    StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE,
+                    StandardOpenOption.CREATE);
+        } else {
+            Files.write(file, content.getBytes(CHARSET));
+        }
     }
 
 }
