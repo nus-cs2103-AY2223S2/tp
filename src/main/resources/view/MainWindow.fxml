@@ -30,6 +30,10 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Theme">
+            <MenuItem mnemonicParsing="false" onAction="#applyLightTheme" text="Light" />
+            <MenuItem mnemonicParsing="false" onAction="#applyDarkTheme" text="Dark" />
+          </Menu>
         </MenuBar>
 
         <VBox fx:id="personList" minWidth="334.0" prefHeight="250.0" prefWidth="580.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">

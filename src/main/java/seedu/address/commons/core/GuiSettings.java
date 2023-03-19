@@ -1,5 +1,6 @@
 package seedu.address.commons.core;
 
+import static seedu.address.ui.theme.Theme.DEFAULT_THEME;
 import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class GuiSettings implements Serializable {
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
+    public final String theme;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -24,15 +26,17 @@ public class GuiSettings implements Serializable {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
         windowCoordinates = null; // null represent no coordinates
+        theme = DEFAULT_THEME.toString();
     }
 
     /**
      * Constructs a {@code GuiSettings} with the specified height, width and position.
      */
-    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, String theme) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
+        this.theme = theme;
     }
 
     public double getWindowWidth() {
@@ -45,6 +49,10 @@ public class GuiSettings implements Serializable {
 
     public Point getWindowCoordinates() {
         return windowCoordinates != null ? new Point(windowCoordinates) : null;
+    }
+
+    public String getTheme() {
+        return theme;
     }
 
     @Override
