@@ -63,16 +63,7 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        IndexHandler indexHandler = new IndexHandler(model);
-
-        List<Location> locationsOfPersons = new ArrayList<>();
-        locationsOfPersons.add(model.getUser().getAddress().getValue());
-
-        for (ContactIndex contactIndex : indices) {
-            locationsOfPersons
-                    .add(getPersonFromContactIndex(contactIndex, indexHandler).getAddress().getValue());
-        }
-
+        List<Location> locationsOfPersons = getAllAddresses(model);
         List<? extends Location> recommendations = giveRecommendations(locationsOfPersons);
 
         // This section deals with porting the information over to the front end.
@@ -86,20 +77,37 @@ public class MeetCommand extends Command {
     }
 
     /**
-     * Retrieves the person from the list of persons.
-     * @param contactIndex The zero-based index of the wanted person.
-     * @param indexHandler The person-getter.
-     * @return The {@code Person} at the specified index.
-     * @throws CommandException If an error occurs during command execution.
+     * Returns a list of all contacts and user's own addresses.
      */
-    private Person getPersonFromContactIndex(
-            ContactIndex contactIndex, IndexHandler indexHandler) throws CommandException {
-        Optional<Person> targetPerson = indexHandler.getPersonByIndex(contactIndex);
-
-        return targetPerson.orElseThrow(() ->
-                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+    private List<Location> getAllAddresses(Model model) throws CommandException {
+        List<Location> locationsOfPersons = new ArrayList<>();
+        locationsOfPersons.add(getUserAddress(model));
+        locationsOfPersons.addAll(getContactsLocation(model));
+        return locationsOfPersons;
     }
 
+    /**
+     * Retrieves a list of all contacts' addresses.
+     */
+    private List<Location> getContactsLocation(Model model) throws CommandException {
+        IndexHandler indexHandler = new IndexHandler(model);
+        List<Location> contactAddresses = new ArrayList<>();
+        for (ContactIndex contactIndex : indices) {
+            contactAddresses
+                .add(indexHandler.getPersonByIndex(contactIndex)
+                    .orElseThrow(() ->
+                        new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX))
+                    .getAddress().getValue());
+        }
+        return contactAddresses;
+    }
+
+    /**
+     * Returns user's own address.
+     */
+    private Location getUserAddress(Model model) {
+        return model.getUser().getAddress().getValue();
+    }
     /**
      * Finds the midpoint of the person locations
      * and returns the closest destinations to that midpoint.
