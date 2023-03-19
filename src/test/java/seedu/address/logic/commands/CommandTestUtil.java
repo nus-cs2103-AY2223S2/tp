@@ -30,6 +30,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HARD = "Hard";
     public static final String VALID_TAG_MEDIUM = "Medium";
     public static final String VALID_DECK_SCIENCE = "Science";
+    public static final String VALID_DECK_SOCIOLOGY = "Sociology";
 
     public static final String QUESTION_DESC_GRAVITY = " " + PREFIX_QUESTION + VALID_QUESTION_GRAVITY;
     public static final String QUESTION_DESC_PHOTOSYNTHESIS = " " + PREFIX_QUESTION + VALID_QUESTION_PHOTOSYNTHESIS;
@@ -37,7 +38,8 @@ public class CommandTestUtil {
     public static final String ANSWER_DESC_PHOTOSYNTHESIS = " " + PREFIX_ANSWER + VALID_ANSWER_PHOTOSYNTHESIS;
     public static final String TAG_DESC_MEDIUM = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
     public static final String TAG_DESC_HARD = " " + PREFIX_TAG + VALID_TAG_HARD;
-
+    public static final String DECK_DESC_SOCIOLOGY = " " + VALID_DECK_SOCIOLOGY;
+    public static final String DECK_DESC_SCIENCE = " " + VALID_DECK_SCIENCE;
     public static final String INVALID_NAME_DESC = " " + PREFIX_QUESTION; // empty string not allowed for question
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags

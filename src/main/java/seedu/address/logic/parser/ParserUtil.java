@@ -98,7 +98,7 @@ public class ParserUtil {
         requireNonNull(deckName);
         String trimmedDeckName = deckName.trim();
         if (!Answer.isValidAnswer(trimmedDeckName)) {
-            throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Deck.MESSAGE_CONSTRAINTS);
         }
         return new Deck(trimmedDeckName);
     }
