@@ -19,9 +19,9 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[]{
-            new Event(new Name("Tennis"), new Date("01-01-2024"), new Time("18:00"), new Time("20:00")),
-            new Event(new Name("Basketball"), new Date("02-02-2024"), new Time("18:00"), new Time("20:00")),
-            new Event(new Name("Bowling"), new Date("03-03-2024"), new Time("18:00"), new Time("20:00"))
+            new Event(new Name("Tennis"), new Date("2024-01-01"), new Time("18:00"), new Time("20:00")),
+            new Event(new Name("Basketball"), new Date("2024-02-02"), new Time("18:00"), new Time("20:00")),
+            new Event(new Name("Bowling"), new Date("2024-03-03"), new Time("18:00"), new Time("20:00"))
         };
     }
 
