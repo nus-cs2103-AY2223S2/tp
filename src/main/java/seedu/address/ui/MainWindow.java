@@ -60,6 +60,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private TextFlow titlePanel;
 
+    Text title = new Text("PowerCard");
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,8 +123,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        Text text = new Text("PowerCard");
-        titlePanel.getChildren().add(text);
+        titlePanel.getChildren().add(title);
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
