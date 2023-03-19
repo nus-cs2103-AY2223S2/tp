@@ -30,7 +30,7 @@ public class MarkCommandTest {
         Score score = new Score(4);
         CommandResult commandResult = new MarkCommand(INDEX_FIRST_PERSON, score).execute(model);
 
-        assertEquals(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark),
+        assertEquals(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark, score.toString()),
                 commandResult.getFeedbackToUser());
         assertTrue(taskToMark.isDone());
     }
@@ -42,6 +42,13 @@ public class MarkCommandTest {
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex, score);
 
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidScore_throwsCommandException() {
+        Score score = new Score(6);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, score);
+        assertCommandFailure(markCommand, model, Score.MESSAGE_CONSTRAINTS);
     }
 
 }

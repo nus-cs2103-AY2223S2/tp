@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's score in the address book.
@@ -19,7 +18,7 @@ public class Score {
      */
     public Score(int score) {
         requireNonNull(score);
-        checkArgument(isValidScore(score), MESSAGE_CONSTRAINTS);
+        //checkArgument(isValidScore(score), MESSAGE_CONSTRAINTS);
         this.score = score;
     }
 

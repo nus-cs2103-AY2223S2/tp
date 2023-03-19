@@ -51,7 +51,7 @@ public class MarkCommand extends Command {
         }
 
         if (score.getValue() < 0 || score.getValue() > 5) {
-            throw new CommandException(Messages.MESSAGE_INVALID_SCORE);
+            throw new CommandException(Score.MESSAGE_CONSTRAINTS);
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
