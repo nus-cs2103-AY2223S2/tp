@@ -93,11 +93,17 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `VmsParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a patient).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+How the `Logic` component execution queue works:
+
+1. When `Logic` is called upon to queue a user command, it queues that user command into an internal queue in `LogicManager`.
+2. `LogicManager` continues to parse and execute any previously queued command inputs until the queued command input in step 1 is next.
+3. The next user command is polled from the queue and parsed using `VmsParser` to produce a `ParseResult`.
+4. The `Command` object (more precisely, an object of one of its subclasses eg. `AddCommand`), within the resultant `ParseResult`, is executed.
+5. During execution, the `Command` object communicates with `Model` to perform its task. When it is done, it produces a `CommandMessage`.
+6. `LogicManager` combines the `CommandMessage` within `ParseResult` in 3 and the resultant `CommandMessage` in 5 into a list and passes it to its set `Consumer` to handle these `CommandMessages`. See [IU component](#ui-component) on this is handled.
+7. If the command executed has follow up commands, a new `ParseResult` is created that encapsulates the follow up command and an empty `CommandMessage`. This `ParseResult` is sent to be executed and the process starts from 4.
+8. Else, the execution for this user command ends and `LogicManager` executes the next user command in its internal queue if present, continuing from 3.
+9. If there are no user commands waiting to be executed, `Logic` waits for a user command to be queued and the cycle repeats from 1.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
