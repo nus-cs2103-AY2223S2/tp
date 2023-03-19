@@ -40,5 +40,7 @@ public class Messages {
     public static final String MESSAGE_EXAMS_LISTED_OVERVIEW = "%d exams from %d students listed: \n%s";
     public static final String MESSAGE_ALL_EXAMS_LISTED_OVERVIEW = "%d lessons from all students listed:\n%s";
     public static final String MESSAGE_NO_EXAM_FOUND = "No exam is found!";
-
+    public static final String MESSAGE_HOMEWORK_UPDATED_SUCCESS = "Homework %s of student %s is updated to:\n"
+            + "Homework name: %s\n"
+            + "Deadline: %s\n";
 }

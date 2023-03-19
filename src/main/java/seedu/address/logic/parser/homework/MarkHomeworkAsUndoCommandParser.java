@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.homework;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -9,8 +9,12 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.MarkHomeworkAsDoneCommand;
-import seedu.address.logic.commands.MarkHomeworkAsUndoCommand;
+import seedu.address.logic.commands.homework.MarkHomeworkAsUndoCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
@@ -41,10 +45,20 @@ public class MarkHomeworkAsUndoCommandParser implements Parser<MarkHomeworkAsUnd
 
         // there can only be one name keyword, if there are more than one then throw an exception
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+        // for all the names, trim the name and only take the first word
+        for (int i = 0; i < nameKeywords.size(); i++) {
+            String name = nameKeywords.get(i);
+            name = name.trim();
+            int spaceIndex = name.indexOf(" ");
+            if (spaceIndex != -1) {
+                name = name.substring(0, spaceIndex);
+            }
+            nameKeywords.set(i, name);
+        }
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MarkHomeworkAsDoneCommand.MESSAGE_USAGE));
+                    "Only one name is allowed for mark homework as Undone command."));
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
