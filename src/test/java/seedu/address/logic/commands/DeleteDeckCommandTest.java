@@ -37,7 +37,7 @@ public class DeleteDeckCommandTest {
         String expectedMessage = String.format(DeleteDeckCommand.MESSAGE_SUCCESS, deckToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
-        expectedModel.removeDeck(deckToDelete);
+        expectedModel.deleteDeck(deckToDelete);
 
         assertCommandSuccess(deleteDeckCommand, model, expectedMessage, expectedModel);
     }
@@ -60,7 +60,7 @@ public class DeleteDeckCommandTest {
         String expectedMessage = String.format(DeleteDeckCommand.MESSAGE_SUCCESS, deckToDelete);
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
-        expectedModel.removeDeck(deckToDelete);
+        expectedModel.deleteDeck(deckToDelete);
         showNoDeck(expectedModel);
         assertCommandSuccess(deleteDeckCommand, model, expectedMessage, expectedModel);
     }
@@ -82,7 +82,7 @@ public class DeleteDeckCommandTest {
     public void execute_deletingDeck_deletesCards() {
         Deck deckToDelete = model.getFilteredDeckList().get(INDEX_FIRST.getZeroBased()); // contains 2 cards
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
-        expectedModel.removeDeck(deckToDelete);
+        expectedModel.deleteDeck(deckToDelete);
         assertEquals(model.getMasterDeck().getCardList().size() - 2,
                 expectedModel.getMasterDeck().getCardList().size());
     }
@@ -112,6 +112,7 @@ public class DeleteDeckCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no deck.
      */
+    @Test
     private void showNoDeck(Model model) {
         model.updateFilteredDeckList(p -> false);
 

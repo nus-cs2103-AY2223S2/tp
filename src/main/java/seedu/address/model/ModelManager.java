@@ -185,9 +185,15 @@ public class ModelManager implements Model {
     public void setDeck(Deck target, Deck editedDeck) {
         masterDeck.setDeck(target, editedDeck);
     }
+
+    /**
+     * Deletes the given deck and the associated cards in that deck.
+     *
+     * @param deckToDelete Deck to be deleted.
+     */
     @Override
-    public void removeDeck(Deck key) { //TODO should remove all cards associated with deck
-        masterDeck.removeDeck(key);
+    public void deleteDeck(Deck deckToDelete) {
+        masterDeck.removeDeck(deckToDelete);
     }
 
     @Override

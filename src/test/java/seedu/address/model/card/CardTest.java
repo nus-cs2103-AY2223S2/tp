@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalCards.PHOTOSYNTHESIS;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.deck.Deck;
 import seedu.address.testutil.CardBuilder;
 
 public class CardTest {
@@ -84,5 +85,15 @@ public class CardTest {
         // different tags -> returns false
         editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).build();
         assertFalse(LOOP.equals(editedLoop));
+    }
+
+    @Test
+    public void isInDeck() {
+        Deck defaultDeck = new Deck(CardBuilder.DEFAULT_DECK);
+        Deck otherDeck = new Deck("Other");
+        Card defaultCard = new CardBuilder().build();
+
+        assertTrue(defaultCard.isInDeck(defaultDeck));
+        assertFalse(defaultCard.isInDeck(otherDeck));
     }
 }

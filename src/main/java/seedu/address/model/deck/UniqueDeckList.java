@@ -70,8 +70,8 @@ public class UniqueDeckList implements Iterable<Deck> {
     }
 
     /**
-     * Removes the equivalent card from the list.
-     * The card must exist in the list.
+     * Removes the equivalent deck from the list.
+     * The deck must exist in the list.
      */
     public void remove(Deck toRemove) {
         requireNonNull(toRemove);

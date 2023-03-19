@@ -19,9 +19,10 @@ public class Card {
 
     // Identity fields
     private final Question question;
+    private final Answer answer;
+
 
     // Data fields
-    private final Answer answer;
     private final Set<Tag> tags = new HashSet<>();
     private Deck deck;
     private boolean isFlipped = true;
@@ -74,6 +75,18 @@ public class Card {
                 && otherCard.getQuestion().equals(getQuestion())
                 && otherCard.getAnswer().equals(getAnswer());
     }
+
+    /**
+     * Checks if the card belongs to a given deck.
+     *
+     * @param deck The deck to check if card belongs to.
+     * @return true if card belongs to the deck.
+     */
+    public boolean isInDeck(Deck deck) {
+        return this.deck.equals(deck);
+    }
+
+    /* ============================== FOR REVIEW FUNCTIONS ============================== */
 
     /**
      * Returns true if the card is flipped.

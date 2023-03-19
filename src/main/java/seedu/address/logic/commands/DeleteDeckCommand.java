@@ -42,7 +42,7 @@ public class DeleteDeckCommand extends Command {
         }
 
         Deck targetDeck = deckList.get(deckIndex.getZeroBased());
-        model.removeDeck(targetDeck);
+        model.deleteDeck(targetDeck);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetDeck.getDeckName()));
     }

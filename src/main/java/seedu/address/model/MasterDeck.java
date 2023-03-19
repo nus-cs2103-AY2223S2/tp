@@ -2,8 +2,8 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
@@ -146,20 +146,15 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     }
 
     /**
-     * Removes {@code key} from this {@code MasterDeck}.
+     * Removes {@code key} from this {@code MasterDeck} and its corresponding cards.
      * {@code key} must exist.
      */
     public void removeDeck(Deck key) {
-        ArrayList<Card> remCards = new ArrayList<>();
-        for (Card c : cards) {
-            Deck targetDeck = c.getDeck().orElse(new Deck(""));
-            if (targetDeck.equals(key)) {
-                remCards.add(c);
-            }
-        }
-        for (Card r : remCards) {
-            removeCard(r);
-        }
+        List<Card> cardsToRemove = cards.asUnmodifiableObservableList().parallelStream()
+                .filter(card -> card.isInDeck(key))
+                .collect(Collectors.toList());
+        cardsToRemove.forEach(this::removeCard);
+
         decks.remove(key);
     }
 
