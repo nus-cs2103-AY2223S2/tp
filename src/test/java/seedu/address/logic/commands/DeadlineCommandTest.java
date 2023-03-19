@@ -42,7 +42,7 @@ public class DeadlineCommandTest {
     public void execute_asecOrder() {
         String expectedMessage = String.format(MESSAGE_DEADLINE_COMMAND_FORMAT, "asc");
         DeadlineCommand command = new DeadlineCommand(new Order("asc"));
-        expectedModel.displaySortedDeadlineList(new Order(""));
+        expectedModel.displaySortedDeadlineList(new Order("asc"));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }
