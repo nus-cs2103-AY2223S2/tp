@@ -13,7 +13,7 @@ import vimification.model.task.Task;
 /**
  * Deletes a task identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends LogicCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -23,24 +23,44 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String UNDO_MESSAGE =
+            "The command has been undoed. The deleted task has been added back.";
 
     private final Index targetIndex;
+    private Task taskToDelete;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.taskToDelete = null;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        checkBeforeExecuting();
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+        taskToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTask(taskToDelete);
+        setUndoable(true);
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+    }
+
+    @Override
+    public CommandResult undo(Model model) throws CommandException {
+        requireNonNull(model);
+        checkBeforeUndoing();
+
+        if (taskToDelete == null) { // This guard clause might be useless
+            throw new CommandException(NOT_UNDOABLE_MESSAGE);
+        }
+
+        model.addTask(taskToDelete);
+        setUndoable(true);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
     }
 

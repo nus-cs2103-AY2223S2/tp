@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import vimification.commons.core.GuiSettings;
 import vimification.commons.core.LogsCenter;
-import vimification.logic.commands.AddCommand;
+import vimification.logic.commands.CreateCommand;
 import vimification.logic.commands.Command;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.commands.exceptions.CommandException;
@@ -48,7 +48,7 @@ public class LogicManager implements Logic {
 
         // TODO : FIX THIS
         // Command command = addressBookParser.parseCommand(commandText);
-        Command command = new AddCommand(null);
+        Command command = new CreateCommand(null);
         commandResult = command.execute(model);
 
         try {
