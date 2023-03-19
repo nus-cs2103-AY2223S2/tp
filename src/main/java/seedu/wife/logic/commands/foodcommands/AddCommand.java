@@ -14,7 +14,7 @@ import seedu.wife.model.Model;
 import seedu.wife.model.food.Food;
 
 /**
- * Adds a food item to WIFE.
+ * Adds a food to the Wife.
  */
 public class AddCommand extends Command {
 
