@@ -42,7 +42,7 @@ public class SalaryCommandTest {
     public void execute_asecOrder() {
         String expectedMessage = String.format(MESSAGE_SALARY_COMMAND_FORMAT, "asc");
         SalaryCommand command = new SalaryCommand(new Order("asc"));
-        expectedModel.displaySortedRoleList(new Order("asc"));
+        expectedModel.displaySortedSalaryList(new Order("asc"));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }
