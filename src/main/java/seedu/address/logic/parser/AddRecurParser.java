@@ -39,11 +39,13 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
                 PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_RECUR)
-                || !argMultimap.getPreamble().isEmpty())) {
+                || argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecurCommand.MESSAGE_USAGE));
         }
         String name = " " + ParserUtil.parseRecurName(argMultimap.getValue(PREFIX_RECUR).get());
+        System.out.println("name: " + name);
         if (isLab(name)) {
+            System.out.println("lab");
             return parseEvent(name, PREFIX_LAB);
         } else {
             return parseEvent(name, PREFIX_TUTORIAL);
