@@ -80,10 +80,10 @@ public class Wife implements ReadOnlyWife {
     }
 
     /**
-     * Adds tag to WIFE.
+     * Creates tag to WIFE.
      * The tag must not already exist in WIFE.
      */
-    public void addTag(Tag t) {
+    public void createTag(Tag t) {
         tags.add(t);
     }
 

@@ -68,10 +68,10 @@ public interface Model {
     void deleteTag(Tag target);
 
     /**
-     * Adds the given tag.
+     * Creates the given tag.
      * {@code tag} must not already exist in WIFE.
      */
-    void addTag(Tag tag);
+    void createTag(Tag tag);
 
     /**
      * Replaces the given tag {@code target} with {@code editedTag}.
