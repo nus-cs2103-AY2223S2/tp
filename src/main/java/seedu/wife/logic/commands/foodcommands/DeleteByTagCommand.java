@@ -1,7 +1,8 @@
-package seedu.wife.logic.commands.tagcommands;
+package seedu.wife.logic.commands.foodcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,35 +24,53 @@ public class DeleteByTagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the food identified by the index number used in the displayed food list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " vegetable";
+            + "Example: "
+            + COMMAND_WORD + " n/vegetable\n"
+            + COMMAND_WORD + " n/vegetable n/dairy n/grains";
 
     public static final String DELETE_FOOD_SUCCESS_MESSAGE = "Deleted Food:";
 
-    private final Tag targetTag;
+    private final Set<Tag> targetTags;
 
+    /**
+     * Constructor to create a new DeleteByTag object.
+     */
     public DeleteByTagCommand(Tag targetTag) {
-        this.targetTag = targetTag;
+        this.targetTags = new HashSet<Tag>();
+        this.targetTags.add(targetTag);
     }
+    
+
+    /**
+     * Constructor to create a new DeleteByTag object.
+     */
+    public DeleteByTagCommand(Set<Tag> targetTag) {
+        this.targetTags = targetTag;
+    }
+    
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Food> lastShownList = List.copyOf(model.getFilteredFoodList());
+        List<Food> foodList = List.copyOf(model.getFoodList());
         String deletedFoodSuccessMessage = DELETE_FOOD_SUCCESS_MESSAGE;
         boolean throwError = true;
 
-        for (Food foodToDelete : lastShownList) {
-            Set<Tag> foodTags = foodToDelete.getTags();
 
-            if (foodTags.contains(targetTag)) {
-                throwError = false;
-                deletedFoodSuccessMessage = deletedFoodSuccessMessage + "\n" + foodToDelete;
-                model.deleteFood(foodToDelete);
+        for (Tag tag : this.targetTags) {
+            for (Food food : foodList) {
+                Set<Tag> foodTags = food.getTags();
+
+                if (foodTags.contains(tag)) {
+                    throwError = false;
+                    deletedFoodSuccessMessage = deletedFoodSuccessMessage + "\n" + food;
+                    model.deleteFood(food);
+                }
             }
         }
 
         if (throwError) {
-            throw new CommandException(String.format(Messages.MESSAGE_TAG_NOT_FOUND, this.targetTag.tagName));
+            throw new CommandException(String.format(Messages.MESSAGE_TAG_NOT_FOUND, this.targetTags));
         }
 
         return new CommandResult(deletedFoodSuccessMessage);
@@ -61,6 +80,6 @@ public class DeleteByTagCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteByTagCommand // instanceof handles nulls
-                && targetTag.equals(((DeleteByTagCommand) other).targetTag)); // state check
+                && targetTags.equals(((DeleteByTagCommand) other).targetTags)); // state check
     }
 }
