@@ -1,12 +1,18 @@
 package seedu.address.ui;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.Listing;
 
 /**
@@ -46,9 +52,11 @@ public class ListingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(listing.getTitle().fullTitle);
         description.setText(listing.getDescription().fullDescription);
-        listing.getApplicants().stream()
-                .sorted(Comparator.comparing(applicant -> applicant.getName().fullName))
-                .forEach(applicant -> applicants.getChildren().add(new Label(applicant.getName().fullName)));
+
+        Set<String> repeatedNames = getRepeatedNames(listing.getApplicants());
+        Stream<String> displayedNames = getDisplayedNames(listing.getApplicants(), repeatedNames);
+
+        displayedNames.forEach(name -> applicants.getChildren().add(new Label(name)));
     }
 
     @Override
@@ -67,5 +75,32 @@ public class ListingCard extends UiPart<Region> {
         ListingCard card = (ListingCard) other;
         return id.getText().equals(card.id.getText())
                 && listing.equals(card.listing);
+    }
+
+    private static Set<String> getRepeatedNames(ArrayList<Applicant> applicants) {
+        HashSet<String> uniqueNames = new HashSet<>();
+        HashSet<String> repeatedNames = new HashSet<>();
+        for (Applicant applicant : applicants) {
+            String name = applicant.getName().fullName;
+            if (!uniqueNames.contains(name)) {
+                uniqueNames.add(name);
+            } else {
+                repeatedNames.add(name);
+            }
+        }
+        return repeatedNames;
+    }
+
+    private static Stream<String> getDisplayedNames(ArrayList<Applicant> applicants, Set<String> repeatedNames) {
+        ArrayList<String> displayedNameList = new ArrayList<>();
+        applicants.forEach(applicant -> {
+            if (repeatedNames.contains(applicant.getName().fullName)) {
+                displayedNameList.add(String.format("%s#%d", applicant.getName().fullName, applicant.hashCode()));
+            } else {
+                displayedNameList.add(applicant.getName().fullName);
+            }
+        });
+
+        return displayedNameList.stream().sorted();
     }
 }
