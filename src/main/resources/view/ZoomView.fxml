@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #FDF6E3; -fx-padding: 10,0,0,0; -fx-background-color: #FDF6E3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: #FDF6E3; -fx-padding: 10,0,0,0; -fx-background-color: #FDF6E3;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="340.0" prefWidth="570.0" style="-fx-background-color: #F4F6F8; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: black;">
          <children>

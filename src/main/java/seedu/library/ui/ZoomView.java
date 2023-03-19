@@ -1,24 +1,19 @@
 package seedu.library.ui;
 
-import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import seedu.library.model.bookmark.Bookmark;
-import javafx.scene.Node;
-import javafx.scene.control.Separator;
 import java.util.Comparator;
 
-import static java.util.Objects.requireNonNull;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Region;
 import seedu.library.model.bookmark.Bookmark;
 
 
+/**
+ * UI component that is responsible for displaying the details of a single bookmark.
+ */
 public class ZoomView extends UiPart<Region> {
+
 
         private static final String FXML = "ZoomView.fxml";
         private Bookmark bookmark;
@@ -50,6 +45,7 @@ public class ZoomView extends UiPart<Region> {
 
         }
 
+
         public void hideFields() {
             view_Title.setVisible(false);
             authorView.setVisible(false);
@@ -60,4 +56,4 @@ public class ZoomView extends UiPart<Region> {
 
         }
 
-    }
+}
