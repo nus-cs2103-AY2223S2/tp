@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeadlineCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
@@ -94,6 +95,13 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " asc") instanceof SalaryCommand);
         assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " desc") instanceof SalaryCommand);
     }
+
+    @Test
+    public void parseCommand_deadline() throws Exception {
+        assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " asc") instanceof DeadlineCommand);
+        assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " desc") instanceof DeadlineCommand);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

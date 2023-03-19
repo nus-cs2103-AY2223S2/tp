@@ -153,6 +153,11 @@ public class AddCommandTest {
         public void displaySortedRoleList(Order order) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void displaySortedDeadlineList(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

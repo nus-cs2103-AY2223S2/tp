@@ -91,4 +91,10 @@ public interface Model {
      * @throws NullPointerException if {@code list} is null.
      */
     void displaySortedRoleList(Order order);
+
+    /**
+     * Display the DeadlineList.
+     * @throws NullPointerException if {@code list} is null.
+     */
+    void displaySortedDeadlineList(Order order);
 }
