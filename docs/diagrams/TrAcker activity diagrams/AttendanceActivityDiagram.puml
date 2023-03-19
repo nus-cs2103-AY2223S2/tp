@@ -1,0 +1,19 @@
+@startuml
+|User|
+start
+:Execute add attendance command;
+if () is ([event exists]) then
+else ([else])
+|TrAcker system|
+:Throws EventNotFoundException;
+stop
+endif
+|User|
+if () is ([student exists]) then
+    :Mark student as present;
+else ([else])
+|TrAcker system|
+:Throws StudentNotFoundException;
+stop
+endif
+@enduml
