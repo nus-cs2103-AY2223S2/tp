@@ -72,22 +72,6 @@ public class BookmarkCard extends UiPart<Region> {
             b1.setVisible(false);
         }
         b1.setDisable(true);
-        /**
-         * what its supposed to be:
-         * if (bookmark.getProgress().toString().equals("Done")) {
-         *     b1.setStyle("-fx-background-color: #50f60a");
-         * } else if (bookmark.getProgress().toString().equals("In Progress")) {
-         *     b1.setStyle("-fx-background-color: #eaf553");
-         * } else if (bookmark.getProgress().toString().equals("Not Started")) {
-         *     b1.setStyle("-fx-background-color: #d83434");
-         * } else {
-         *     b1.setDisable(true);
-         *     b1.setVisible(false);
-         *         }
-         *
-         *
-         */
-
         author.setText(bookmark.getAuthor().value);
         genre.setText(bookmark.getGenre().value);
         bookmark.getTags().stream()

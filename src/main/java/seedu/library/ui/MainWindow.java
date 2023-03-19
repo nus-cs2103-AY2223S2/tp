@@ -16,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
-import javafx.scene.paint.Color;
+
 import javafx.stage.Stage;
 import seedu.library.commons.core.GuiSettings;
 import seedu.library.commons.core.LogsCenter;
@@ -130,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         LocalDate today = LocalDate.now();
         DayOfWeek day = today.getDayOfWeek();
         date.setText(day.name());
-        date.setTextFill(Color.BLACK);
+
 
     }
     /**
