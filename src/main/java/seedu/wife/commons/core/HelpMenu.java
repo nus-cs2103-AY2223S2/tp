@@ -4,28 +4,59 @@ package seedu.wife.commons.core;
  * Menu of commands to be displayed in Help Window.
  */
 public enum HelpMenu {
-    ADD("Add food item - ", "add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]"),
-    UPDATE("Update food item - ", "update <Old Item> /to <New Item>"),
-    DELETE("Delete food item - ", "delete <Index>"),
-    TAG("Tag food item - ", "tag <Index> /with <Tag Name>"),
-    LIST("List food items - ", "list"),
-    EXIT("Exit WIFE - ", "exit");
+    ADD("add") {
+        @Override
+        public String getCommandExample() {
+            return "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
+        }
+    },
+    UPDATE("update") {
+        @Override
+        public String getCommandExample() {
+            return "Update food item - update OLD ITEM to/NEW ITEM";
+        }
+    },
+    DELETE("delete") {
+        @Override
+        public String getCommandExample() {
+            return "Delete food item - delete INDEX";
+        }
+    },
+    TAG("tag") {
+        @Override
+        public String getCommandExample() {
+            return "Tag food item - tag INDEX with/TAG NAME";
+        }
+    },
+    LIST("list") {
+        @Override
+        public String getCommandExample() {
+            return "List food items - list";
+        }
+    },
+    EXIT("exit") {
+        @Override
+        public String getCommandExample() {
+            return "Exit WIFE - exit";
+        }
+    };
 
     private static final String HEADER = "Command Examples: ";
+
+    private final String command;
     private String description;
     private String format;
 
     /**
      * Creates a new HelpMenu.
      *
-     * @param description of the command
-     * @param format of how to execute the command
+     * @param command type of the command
      */
-    HelpMenu(String description, String format) {
-        this.description = description;
-        this.format = format;
+    HelpMenu(String command) {
+        this.command = command;
     }
 
+    public abstract String getCommandExample();
     public String getDescription() {
         return description;
     }
