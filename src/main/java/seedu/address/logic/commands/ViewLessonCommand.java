@@ -51,6 +51,7 @@ public class ViewLessonCommand extends Command {
     private final Predicate<Lesson> subjectPredicate;
     private final Predicate<Lesson> donePredicate;
     private final boolean defaultPredicateFlag;
+    private final List<String> names;
 
 
     /**
@@ -59,8 +60,9 @@ public class ViewLessonCommand extends Command {
      * @param namePredicate Predicate to filter students by name.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
-    public ViewLessonCommand(Predicate<Student> namePredicate, Predicate<Lesson> subjectPredicate,
+    public ViewLessonCommand(List<String> names, Predicate<Student> namePredicate, Predicate<Lesson> subjectPredicate,
                              Predicate<Lesson> donePredicate, boolean defaultPredicateFlag) {
+        this.names = names;
         this.namePredicate = namePredicate;
         this.lessonDatePredicate = SHOW_ALL_LESSONS;
         this.defaultPredicateFlag = defaultPredicateFlag;
@@ -75,9 +77,11 @@ public class ViewLessonCommand extends Command {
      * @param lessonDatePredicate Predicate to filter lessons by date.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
-    public ViewLessonCommand(Predicate<Student> namePredicate, Predicate<Lesson> lessonDatePredicate,
-                               Predicate<Lesson> subjectPredicate, Predicate<Lesson> donePredicate,
+    public ViewLessonCommand(List<String> names, Predicate<Student> namePredicate,
+                             Predicate<Lesson> lessonDatePredicate, Predicate<Lesson> subjectPredicate,
+                             Predicate<Lesson> donePredicate,
                              boolean defaultPredicateFlag) {
+        this.names = names;
         this.namePredicate = namePredicate;
         this.lessonDatePredicate = lessonDatePredicate;
         this.defaultPredicateFlag = defaultPredicateFlag;
@@ -95,6 +99,16 @@ public class ViewLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder dupNames = new StringBuilder();
+        for (String name : names) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
+            }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(namePredicate);
 
         List<Student> studentList = model.getFilteredStudentList();

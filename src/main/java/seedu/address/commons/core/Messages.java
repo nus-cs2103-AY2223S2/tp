@@ -14,7 +14,7 @@ public class Messages {
             + "To the following students:\n%s";
 
     public static final String MESSAGE_HOMEWORK_LISTED_OVERVIEW = "%d homework from %d student listed:\n%s";
-    public static final String MESSAGE_ALL_HOMEWORK_LISTED_OVERVIEW = "%d homework from all student listed:\n%s";
+    public static final String MESSAGE_ALL_HOMEWORK_LISTED_OVERVIEW = "%d homework listed:\n%s";
     public static final String MESSAGE_NO_HOMEWORK_FOUND = "No homework found";
     public static final String MESSAGE_INVALID_HOMEWORK_DISPLAYED_INDEX = "The homework index provided is invalid";
     public static final String MESSAGE_HOMEWORK_DELETED_SUCCESS = "Homework : %s. %s\n"
@@ -43,4 +43,6 @@ public class Messages {
     public static final String MESSAGE_HOMEWORK_UPDATED_SUCCESS = "Homework %s of student %s is updated to:\n"
             + "Homework name: %s\n"
             + "Deadline: %s\n";
+    public static final String MESSAGE_HAS_DUPLICATE_NAMES = "Duplicate names detected for **%s** "
+            + "please enter full name(s)";
 }

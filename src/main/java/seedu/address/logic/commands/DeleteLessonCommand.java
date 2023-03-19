@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
@@ -18,26 +20,30 @@ public class DeleteLessonCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-lesson";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a lesson from a student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to a student.\n"
         + "Parameters: "
-        + "n/STUDENT_NAME "
-        + "i/INDEX\n"
+        + PREFIX_NAME + "STUDENT_NAME "
+        + PREFIX_INDEX + "INDEX\n"
         + "Example: " + COMMAND_WORD + " "
-        + "n/John Doe "
-        + "i/1";
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_INDEX + "1";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NamePredicate predicate;
     private final Index targetIndex;
+    private final List<String> inputNames;
+
 
     /**
      * Creates a DeleteLessonCommand to delete the specified lesson from the specified student.
      */
-    public DeleteLessonCommand(NameContainsKeywordsPredicate predicate, Index targetIndex) {
+    public DeleteLessonCommand(List<String> inputNames, NamePredicate predicate, Index targetIndex) {
         requireNonNull(predicate);
         requireNonNull(targetIndex);
 
+        this.inputNames = inputNames;
         this.predicate = predicate;
         this.targetIndex = targetIndex;
+
     }
 
     /**
@@ -50,6 +56,16 @@ public class DeleteLessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder dupNames = new StringBuilder("");
+        for (String name : inputNames) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
+            }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();

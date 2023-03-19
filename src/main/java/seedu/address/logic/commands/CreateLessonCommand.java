@@ -13,7 +13,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Lesson;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.exceptions.ConflictingLessonsException;
 
@@ -41,12 +41,13 @@ public class CreateLessonCommand extends Command {
     private final String lessonName;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
-    private final NameContainsKeywordsPredicate predicate;
+    private final NamePredicate predicate;
+    private final List<String> names;
 
     /**
      * Creates a CreateHomeworkCommand to add the specified assignment to the specified student.
      */
-    public CreateLessonCommand(NameContainsKeywordsPredicate predicate, String lessonName, LocalDateTime startTime,
+    public CreateLessonCommand(List<String> names, NamePredicate predicate, String lessonName, LocalDateTime startTime,
                                LocalDateTime endTime) {
         requireNonNull(lessonName);
         requireNonNull(startTime);
@@ -57,11 +58,22 @@ public class CreateLessonCommand extends Command {
         this.startTime = startTime;
         this.endTime = endTime;
         this.predicate = predicate;
+        this.names = names;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder dupNames = new StringBuilder();
+        for (String name : names) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
+            }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();

@@ -159,13 +159,20 @@ public class UniqueHomeworkList implements Iterable<Homework> {
     }
 
     /**
-     * Updates the list of homeworks to only contain homeworks that are not completed.
+     * Gets the filtered homework list.
      *
      * @param homeworkStatusPredicate the predicate to filter the homework list
+     * @return the filtered homework list
      */
-    public void updateFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
+    public ObservableList<Homework> getFilteredHomeworkList(Predicate<Homework> homeworkStatusPredicate) {
         requireNonNull(homeworkStatusPredicate);
-        internalList.removeIf(homeworkStatusPredicate.negate());
+        ObservableList<Homework> filteredHomeworkList = FXCollections.observableArrayList();
+        for (Homework homework : internalList) {
+            if (homeworkStatusPredicate.test(homework)) {
+                filteredHomeworkList.add(homework);
+            }
+        }
+        return filteredHomeworkList;
     }
 
     /**
