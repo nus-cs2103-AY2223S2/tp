@@ -62,6 +62,7 @@ public class AddEmployeeToDepartmentCommand extends Command {
         }
 
         department.addEmployee(employee);
+        model.updateFilteredDepartmentList(Model.PREDICATE_SHOW_ALL_DEPARTMENTS);
         return new CommandResult(String.format(MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS, employee, department));
     }
 
