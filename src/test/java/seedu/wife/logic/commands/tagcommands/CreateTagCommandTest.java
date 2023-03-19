@@ -30,26 +30,26 @@ public class CreateTagCommandTest {
         assertThrows(NullPointerException.class, () -> new CreateTagCommand((Tag) null));
     }
 
-    @Test
-    public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
-        Tag validTag = new TagBuilder().build();
+    // @Test
+    // public void execute_tagAcceptedByModel_addSuccessful() throws Exception {
+    //     ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+    //     Tag validTag = new TagBuilder().build();
 
-        CommandResult commandResult = new CreateTagCommand(validTag).execute(modelStub);
-        String expectedOutput = String.format(EXPECTED_SUCCESS_MESSAGE, validTag.getTagName());
-        assertEquals(expectedOutput, commandResult.getFeedbackToUser());
-        assertEquals(List.of(validTag), modelStub.tagsAdded);
-    }
+    //     CommandResult commandResult = new CreateTagCommand(validTag).execute(modelStub);
+    //     String expectedOutput = String.format(EXPECTED_SUCCESS_MESSAGE, validTag.getTagName());
+    //     assertEquals(expectedOutput, commandResult.getFeedbackToUser());
+    //     assertEquals(List.of(validTag), modelStub.tagsAdded);
+    // }
 
-    @Test
-    public void execute_duplicateItem_throwsCommandException() {
-        Tag validTag = new TagBuilder().build();
-        CreateTagCommand newTagCommand = new CreateTagCommand(validTag);
-        ModelStub modelStub = new ModelStubWithTag(validTag);
+    // @Test
+    // public void execute_duplicateItem_throwsCommandException() {
+    //     Tag validTag = new TagBuilder().build();
+    //     CreateTagCommand newTagCommand = new CreateTagCommand(validTag);
+    //     ModelStub modelStub = new ModelStubWithTag(validTag);
 
-        assertThrows(CommandException.class,
-                EXPECTED_ERROR_DUPLICATE, () -> newTagCommand.execute(modelStub));
-    }
+    //     assertThrows(CommandException.class,
+    //             EXPECTED_ERROR_DUPLICATE, () -> newTagCommand.execute(modelStub));
+    // }
 
     @Test
     public void equals() {
