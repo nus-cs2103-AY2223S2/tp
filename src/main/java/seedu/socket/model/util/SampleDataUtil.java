@@ -14,12 +14,21 @@ import seedu.socket.model.person.Person;
 import seedu.socket.model.person.Phone;
 import seedu.socket.model.person.tag.Language;
 import seedu.socket.model.person.tag.Tag;
+import seedu.socket.model.project.Project;
+import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectName;
+import seedu.socket.model.project.ProjectRepoHost;
+import seedu.socket.model.project.ProjectRepoName;
 
 /**
  * Contains utility methods for populating {@code Socket} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
+    /**
+     * Returns sample {@code Person} instances without project references.
+     * @return {@code Person} instances without project references.
+     */
+    private static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new GitHubProfile("alex-yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -42,10 +51,26 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Returns sample {@code Project} instances without member references.
+     * @return {@code Project} instances without member references.
+     */
+    public static Project[] getSampleProjects() {
+        return new Project[] {
+            new Project(new ProjectName("Project 1"), new ProjectRepoHost(""),
+                new ProjectRepoName("project-1"), new ProjectDeadline("01/01/23-2359"), getMemberSet()),
+            new Project(new ProjectName("Project 2"), new ProjectRepoHost(""),
+                new ProjectRepoName("project-2"), new ProjectDeadline("02/01/23-2359"), getMemberSet())
+        };
+    }
+
     public static ReadOnlySocket getSampleSocket() {
         Socket sampleSocket = new Socket();
         for (Person samplePerson : getSamplePersons()) {
             sampleSocket.addPerson(samplePerson);
+        }
+        for (Project sampleProject : getSampleProjects()) {
+            sampleSocket.addProject(sampleProject);
         }
         return sampleSocket;
     }
@@ -68,6 +93,17 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a project set containing the list of projects given.
+     */
+    public static Set<Project> getProjectSet(Project... projects) {
+        return Arrays.stream(projects)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a member set containing the list of members given.
+     */
     public static Set<Person> getMemberSet(Person ... members) {
         return Arrays.stream(members)
             .collect(Collectors.toSet());

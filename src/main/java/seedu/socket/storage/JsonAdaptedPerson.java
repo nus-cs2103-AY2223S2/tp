@@ -34,7 +34,6 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedLanguage> languages = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -130,9 +129,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Language> modelLangages = new HashSet<>(personLanguages);
+        final Set<Language> modelLanguages = new HashSet<>(personLanguages);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelProfile, modelPhone, modelEmail, modelAddress, modelLangages, modelTags);
+        return new Person(modelName, modelProfile, modelPhone, modelEmail, modelAddress, modelLanguages, modelTags);
     }
 
 }

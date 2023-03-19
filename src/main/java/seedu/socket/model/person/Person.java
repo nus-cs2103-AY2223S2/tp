@@ -179,6 +179,7 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 }
