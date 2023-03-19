@@ -279,13 +279,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Priorities**: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​ | I want to …​                  | So that I can…​                                                     |
-| -------- | ---- |-------------------------------|---------------------------------------------------------------------|
-| `* * *`  | user | create tasks                  | keep track of the tasks I need to accomplish                        |
-| `* * *`  | user | delete tasks                  | remove tasks that are outdated or specified incorrectly             |
-| `* * *`  | user | view each team member's tasks | have a clear and easily understandable list of what they have to do |
-| `* * *`  | user | assign tasks                  | keep track of who is responsible for which task                     |
-| `* * *`  | user | assign roles                  | remember the responsibilities of each member                        |
+| Priority | As a …​ | I want to …​                          | So that I can…​                                                     |
+| -------- | ---- |---------------------------------------|---------------------------------------------------------------------|
+| `* * *`  | user | create tasks                          | keep track of the tasks I need to accomplish                        |
+| `* * *`  | user | delete tasks                          | remove tasks that are outdated or specified incorrectly             |
+| `* * *`  | user | view each team member's tasks         | have a clear and easily understandable list of what they have to do |
+| `* * *`  | user | assign tasks                          | keep track of who is responsible for which task                     |
+| `* * *`  | user | assign roles                          | remember the responsibilities of each member                        |
+| `* * *`  | user | create tasks with a deadline          | see the due date of the task easily                                 |
+| `* * *`  | user | create tasks that are events          | keep track of events we conduct as a group                          |
+| `* * *`  | user | comment on tasks                      | record my feedback for each accomplished task                       |
+| `* * *`  | user | mark a task as completed              | have a clear view of what tasks are accomplished                    |
+| `* * *`  | user | unmark a task as uncompleted          | undo any possible false marking of tasks                            |
+| `* * *`  | user | assign scores for each completed task | better evaluate overall performance of teammates                    |
 
 ### Use cases
 
