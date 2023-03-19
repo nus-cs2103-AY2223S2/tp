@@ -75,6 +75,24 @@ public class Book {
     }
 
     /**
+     * Loans out the book to a person with the borrowed date and due date.
+     */
+    public void loanBookTo(Person borrower, LocalDate borrowDate, LocalDate dueDate) {
+        this.borrower = borrower;
+        this.borrowDate = borrowDate;
+        this.dueDate = dueDate;
+    }
+
+    /**
+     * Mark the book as returned when the book is returned to the library
+     */
+    public void returnBook() {
+        this.borrower = null;
+        this.borrowDate = null;
+        this.dueDate = null;
+    }
+
+    /**
      * Returns true if book is borrowed.
      */
     public Boolean getIsBorrowed() {
@@ -82,8 +100,8 @@ public class Book {
     }
 
     /**
-     * Returns true if both Books have the same name.
-     * This defines a weaker notion of equality between two Books.
+     * Returns true if both books have the same name.
+     * This defines a weaker notion of equality between two books.
      */
     public boolean isSameBook(Book otherBook) {
         if (otherBook == this) {
@@ -116,7 +134,7 @@ public class Book {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, author, isbn, borrower, borrowDate, dueDate);
+        return Objects.hash(title, author, isbn);
     }
 
     @Override

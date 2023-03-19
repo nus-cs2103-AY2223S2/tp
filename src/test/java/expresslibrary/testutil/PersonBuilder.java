@@ -62,15 +62,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code books} into a {@code Set<Book>} and set it to the
-     * {@code Person} that we are building.
-     */
-    public PersonBuilder withBooks(Book... books) {
-        this.books = SampleDataUtil.getBooksSet(books);
-        return this;
-    }
-
-    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
      * {@code Person} that we are building.
      */

@@ -32,12 +32,12 @@ class JsonAdaptedBook {
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
-    public JsonAdaptedBook(@JsonProperty("author") String author, @JsonProperty("isbn") String isbn,
-            @JsonProperty("title") String title, @JsonProperty("borrowDate") String borrowDate,
+    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author,
+            @JsonProperty("isbn") String isbn, @JsonProperty("borrowDate") String borrowDate,
             @JsonProperty("dueDate") String dueDate, @JsonProperty("isBorrowed") Boolean isBorrowed) {
+        this.title = title;
         this.author = author;
         this.isbn = isbn;
-        this.title = title;
         this.borrowDate = borrowDate;
         this.dueDate = dueDate;
         this.isBorrowed = isBorrowed;

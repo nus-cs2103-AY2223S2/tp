@@ -3,7 +3,7 @@ package expresslibrary.storage;
 import static expresslibrary.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static expresslibrary.testutil.Assert.assertThrows;
 import static expresslibrary.testutil.TypicalPersons.BENSON;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +27,21 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().value;
     private static final String VALID_EMAIL = BENSON.getEmail().value;
     private static final String VALID_ADDRESS = BENSON.getAddress().value;
-    private static final List<JsonAdaptedBook> VALID_BOOKS = BENSON.getBooks().stream()
-            .map(JsonAdaptedBook::new)
-            .collect(Collectors.toList());
+    private static final JsonAdaptedBook VALID_BOOK =
+        new JsonAdaptedBook("A Game of Thrones", "George RR Martin", "9780553103540",
+            "01/04/2023", "15/04/2023", true);
+    private static final JsonAdaptedBook INVALID_BOOK =
+        new JsonAdaptedBook("A Game of Thrones", "George RR Martin", "9780553103540",
+            "01/04/2023", "15/04/2023", false);
+    private static final List<JsonAdaptedBook> VALID_BOOKS = List.of(VALID_BOOK);
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        //JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
-        //assertEquals(BENSON, person.toModelType());
+        JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
+        assertEquals(BENSON, person.toModelType());
     }
 
     @Test
@@ -100,6 +104,25 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_BOOKS,
+                VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidBooks_throwsIllegalValueException() {
+        List<JsonAdaptedBook> invalidBooks = new ArrayList<>(VALID_BOOKS);
+        invalidBooks.add(INVALID_BOOK);
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, invalidBooks,
+                        VALID_TAGS);
+        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullBooks_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_BOOKS,
                 VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());

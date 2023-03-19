@@ -1,9 +1,12 @@
 package expresslibrary.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import expresslibrary.commons.util.DateUtil;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.ReadOnlyExpressLibrary;
 import expresslibrary.model.book.Author;
@@ -22,7 +25,7 @@ import expresslibrary.model.tag.Tag;
  * data.
  */
 public class SampleDataUtil {
-    private static final Book[] BOOKS = {
+    private static final Book[] sampleBooks = {
         new Book(new Title("To Kill a Mockingbird"), new Author("Harper Lee"), new Isbn("9780446310789")),
         new Book(new Title("1984"), new Author("George Orwell"), new Isbn("9780451524935")),
         new Book(new Title("The Great Gatsby"), new Author("F Scott Fitzgerald"), new Isbn("9780743273565")),
@@ -37,40 +40,37 @@ public class SampleDataUtil {
                 new Isbn("9780747532743"))
     };
 
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getBooksSet(BOOKS[0], BOOKS[1]), getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getBooksSet(BOOKS[3], BOOKS[2], BOOKS[4]),
-                    getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getBooksSet(BOOKS[7], BOOKS[6], BOOKS[5]),
-                    getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getBooksSet(BOOKS[9], BOOKS[4], BOOKS[5]),
-                    getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getBooksSet(BOOKS[8]),
-                    getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getBooksSet(),
-                    getTagSet("colleagues"))
-        };
-    }
+    private static final Person[] samplePersons = {
+        new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
+                new HashSet<>(), getTagSet("friends")),
+        new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                new HashSet<>(), getTagSet("colleagues", "friends")),
+        new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                new HashSet<>(), getTagSet("neighbours")),
+        new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new HashSet<>(), getTagSet("family")),
+        new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                new Address("Blk 47 Tampines Street 20, #17-35"),
+                new HashSet<>(), getTagSet("classmates")),
+        new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                new HashSet<>(), getTagSet("colleagues"))
+    };
 
     public static ReadOnlyExpressLibrary getSampleExpressLibrary() {
-        ExpressLibrary sampleAb = new ExpressLibrary();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+        ExpressLibrary sampleEl = new ExpressLibrary();
+        randomSampleBorrow();
+        for (Person samplePerson : samplePersons) {
+            sampleEl.addPerson(samplePerson);
         }
-        return sampleAb;
+        for (Book sampleBook : sampleBooks) {
+            sampleEl.addBook(sampleBook);
+        }
+        return sampleEl;
     }
 
     /**
@@ -83,10 +83,25 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a books set containing the list of books given.
+     * Randomly borrows books for each person for sample purposes.
      */
-    public static Set<Book> getBooksSet(Book... books) {
-        return Arrays.stream(books)
-                .collect(Collectors.toSet());
+    public static void randomSampleBorrow() {
+        borrowBooks(0, 0, 1);
+        borrowBooks(1, 2, 3, 4);
+        borrowBooks(2, 6, 7);
+        borrowBooks(3, 5);
+        borrowBooks(4, 8);
+    }
+
+    /**
+     * Helper method to borrow books for sample purposes.
+     */
+    public static void borrowBooks(Integer personIndex, Integer... bookIndexes) {
+        LocalDate sampleBorrowDate = DateUtil.parseDate("01/04/2023");
+        LocalDate sampleReturnDate = DateUtil.parseDate("15/04/2023");
+        for (Integer bookIndex : bookIndexes) {
+            sampleBooks[bookIndex].loanBookTo(samplePersons[personIndex], sampleBorrowDate, sampleReturnDate);
+            samplePersons[personIndex].borrowBook(sampleBooks[bookIndex]);
+        }
     }
 }

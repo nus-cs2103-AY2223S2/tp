@@ -1,8 +1,5 @@
 package expresslibrary.ui;
 
-import java.util.logging.Logger;
-
-import expresslibrary.commons.core.LogsCenter;
 import expresslibrary.model.book.Book;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,7 +12,6 @@ import javafx.scene.layout.Region;
  */
 public class BookListPanel extends UiPart<Region> {
     private static final String FXML = "BookListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(BookListPanel.class);
 
     @FXML
     private ListView<Book> bookListView;

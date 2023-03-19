@@ -55,7 +55,17 @@ public class BookCard extends UiPart<Region> {
             borrowerName.setText(String.format("Borrowed by: %s", book.getBorrower().getName().fullName));
             borrowDate.setText(String.format("Borrowed date: %s", DateUtil.formatDate(book.getBorrowDate())));
             dueDate.setText(String.format("Due date: %s", DateUtil.formatDate(book.getDueDate())));
+            borrowerName.setVisible(true);
+            borrowDate.setVisible(true);
+            dueDate.setVisible(true);
+        } else {
+            borrowerName.setVisible(false);
+            borrowDate.setVisible(false);
+            dueDate.setVisible(false);
         }
+        borrowerName.managedProperty().bind(borrowerName.visibleProperty());
+        borrowDate.managedProperty().bind(borrowDate.visibleProperty());
+        dueDate.managedProperty().bind(dueDate.visibleProperty());
     }
 
     @Override
