@@ -13,7 +13,7 @@ import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 
 /**
- * The command that links departure and arrival locations to a flight.
+ * The command that links locations to a flight.
  */
 public class LinkLocationCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =

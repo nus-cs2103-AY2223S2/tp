@@ -12,10 +12,13 @@ import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.crew.Crew;
-import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.ReadOnlyItemManager;
+import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 
+/**
+ * The factory that creates {@code LinkCrewCommand}.
+ */
 public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
     private static final String COMMAND_WORD = "link";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";

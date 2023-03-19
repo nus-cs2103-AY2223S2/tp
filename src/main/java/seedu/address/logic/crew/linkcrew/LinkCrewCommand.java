@@ -12,6 +12,9 @@ import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
 
+/**
+ * The command that links a crew to a flight
+ */
 public class LinkCrewCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";

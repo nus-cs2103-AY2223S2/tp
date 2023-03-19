@@ -1,5 +1,8 @@
 package seedu.address.model.crew;
 
+/**
+ * The types of crew for a flight.
+ */
 public enum FlightCrewType {
     /**
      * The cabin service director

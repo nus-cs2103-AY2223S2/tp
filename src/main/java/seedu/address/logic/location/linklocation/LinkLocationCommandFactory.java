@@ -17,7 +17,7 @@ import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 
 /**
- * The factory that creates {@code AddLocationCommand}.
+ * The factory that creates {@code LinkLocationCommand}.
  */
 public class LinkLocationCommandFactory implements CommandFactory<LinkLocationCommand> {
     public static final String COMMAND_WORD = "link";

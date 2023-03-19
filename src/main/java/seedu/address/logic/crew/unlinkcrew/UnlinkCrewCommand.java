@@ -1,5 +1,8 @@
 package seedu.address.logic.crew.unlinkcrew;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
@@ -9,10 +12,11 @@ import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
 
-import java.util.Map;
-import java.util.stream.Collectors;
 
-public class UnlinkCrewCommmand implements Command {
+/**
+ * The command that unlinks a crew from a flight
+ */
+public class UnlinkCrewCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
     private static final String CREW_NOT_FOUND_EXCEPTION =
@@ -36,7 +40,7 @@ public class UnlinkCrewCommmand implements Command {
      * @param crews the id of the crews.
      * @param flight the id of the flight.
      */
-    public UnlinkCrewCommmand(Map<FlightCrewType, Crew> crews, Flight flight) {
+    public UnlinkCrewCommand(Map<FlightCrewType, Crew> crews, Flight flight) {
         this.crews = crews;
         this.flight = flight;
     }

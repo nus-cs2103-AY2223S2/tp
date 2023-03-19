@@ -1,22 +1,26 @@
 package seedu.address.logic.plane.unlinkplane;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.logic.plane.linkplane.LinkPlaneCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 
+
+/**
+ * The factory that creates {@code UnlinkPlaneCommand}.
+ */
 public class UnlinkPlaneCommandFactory implements CommandFactory<UnlinkPlaneCommand> {
     private static final String COMMAND_WORD = "unlink";
     private static final String PLANE_USING_PREFIX = "/pu";

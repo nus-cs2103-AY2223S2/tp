@@ -12,6 +12,9 @@ import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.pilot.FlightPilotType;
 import seedu.address.model.pilot.Pilot;
 
+/**
+ * The command that unlinks a pilot from a flight
+ */
 public class UnlinkPilotCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";

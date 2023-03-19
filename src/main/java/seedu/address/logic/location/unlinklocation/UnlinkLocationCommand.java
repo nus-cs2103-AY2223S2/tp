@@ -1,5 +1,8 @@
 package seedu.address.logic.location.unlinklocation;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
@@ -9,11 +12,10 @@ import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 /**
- * The command that unlinks flights to departure and arrival locations.
+ * The command that unlinks locations from flights.
  */
 public class UnlinkLocationCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =

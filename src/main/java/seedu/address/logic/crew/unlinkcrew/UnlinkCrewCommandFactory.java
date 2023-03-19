@@ -1,5 +1,10 @@
 package seedu.address.logic.crew.unlinkcrew;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.fp.Lazy;
 import seedu.address.commons.util.GetUtil;
 import seedu.address.logic.core.CommandFactory;
@@ -11,12 +16,12 @@ import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 
-public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewCommmand> {
+
+/**
+ * The factory that creates {@code UnlinkCrewCommand}.
+ */
+public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewCommand> {
     private static final String COMMAND_WORD = "unlink";
     private static final String CABIN_SERVICE_DIRECTOR_PREFIX = "/csd";
     private static final String SENIOR_FLIGHT_ATTENDANT_PREFIX = "/sfa";
@@ -132,7 +137,7 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewCommma
 
 
     @Override
-    public UnlinkCrewCommmand createCommand(CommandParam param) throws ParseException {
+    public UnlinkCrewCommand createCommand(CommandParam param) throws ParseException {
         Optional<String> cabinServiceDirectorIdOptional =
                 param.getNamedValues(CABIN_SERVICE_DIRECTOR_PREFIX);
         Optional<String> seniorFlightAttendantIdOptional =
@@ -166,6 +171,6 @@ public class UnlinkCrewCommandFactory implements CommandFactory<UnlinkCrewCommma
         }
 
         Flight flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
-        return new UnlinkCrewCommmand(crews, flight);
+        return new UnlinkCrewCommand(crews, flight);
     }
 }

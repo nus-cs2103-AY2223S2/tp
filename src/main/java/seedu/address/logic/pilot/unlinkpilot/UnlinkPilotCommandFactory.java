@@ -17,7 +17,9 @@ import seedu.address.model.pilot.FlightPilotType;
 import seedu.address.model.pilot.Pilot;
 
 
-
+/**
+ * The factory that creates {@code UnlinkPilotCommand}.
+ */
 public class UnlinkPilotCommandFactory implements CommandFactory<UnlinkPilotCommand> {
     private static final String COMMAND_WORD = "unlink";
     private static final String PILOT_FLYING_PREFIX = "/pf";

@@ -16,6 +16,9 @@ import seedu.address.model.flight.Flight;
 import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
+/**
+ * The factory that creates {@code LinkPlaneCommand}.
+ */
 public class LinkPlaneCommandFactory implements CommandFactory<LinkPlaneCommand> {
     private static final String COMMAND_WORD = "link";
     private static final String PLANE_USING_PREFIX = "/pu";

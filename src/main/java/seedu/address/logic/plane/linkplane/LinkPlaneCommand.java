@@ -1,5 +1,8 @@
 package seedu.address.logic.plane.linkplane;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
@@ -9,9 +12,10 @@ import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
-import java.util.Map;
-import java.util.stream.Collectors;
 
+/**
+ * The command that links a plane to a flight
+ */
 public class LinkPlaneCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";

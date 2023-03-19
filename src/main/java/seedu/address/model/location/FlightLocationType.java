@@ -1,5 +1,8 @@
 package seedu.address.model.location;
 
+/**
+ * The types of locations linked to a flight
+ */
 public enum FlightLocationType {
     /**
      * The departure location.
