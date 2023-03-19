@@ -80,15 +80,15 @@ public class DoughnutChart extends PieChart {
         innerCircle = new Circle();
         innerCircle.setStyle("-fx-fill: -black");
 
-        Text percent = new Text("65% completed");
+        Text percent = new Text("0% completed");
         percent.setStyle("-fx-fill: -teal;");
         percent.getStyleClass().add("h2");
 
-        Text totalMc = new Text("105/160 MCs");
+        Text totalMc = new Text("0/160 MCs");
         totalMc.setStyle("-fx-fill: -white;");
         totalMc.getStyleClass().add("h3");
 
-        Text cap = new Text("CAP: 4.62");
+        Text cap = new Text("CAP: 5.00");
         cap.setStyle("-fx-fill: -white;");
         cap.getStyleClass().add("h3");
 
@@ -107,11 +107,11 @@ public class DoughnutChart extends PieChart {
         // TODO: call from Tags enum
         Map<String, String> tagColors = new HashMap<>();
         tagColors.put("ULR", "red");
+        tagColors.put("ITP", "orange");
+        tagColors.put("UE", "yellow");
+        tagColors.put("MS", "green");
         tagColors.put("CSF", "blue");
-        tagColors.put("CSBD", "green");
-        tagColors.put("ITP", "yellow");
-        tagColors.put("UE", "orange");
-        tagColors.put("MS", "purple");
+        tagColors.put("CSBD", "purple");
 
         dataLabels = new VBox[numTags];
 
@@ -194,11 +194,11 @@ public class DoughnutChart extends PieChart {
         // TODO: call from Tags enum
         Map<String, String> tagColors = new HashMap<>();
         tagColors.put("ULR", "red");
+        tagColors.put("ITP", "orange");
+        tagColors.put("UE", "yellow");
+        tagColors.put("MS", "green");
         tagColors.put("CSF", "blue");
-        tagColors.put("CSBD", "green");
-        tagColors.put("ITP", "yellow");
-        tagColors.put("UE", "orange");
-        tagColors.put("MS", "purple");
+        tagColors.put("CSBD", "purple");
 
         ObservableList<Data> doughnutData = getData();
         assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
@@ -210,12 +210,19 @@ public class DoughnutChart extends PieChart {
             String tag = completeData.getName().split("_")[0];
             completeDataNode.setStyle(
                     "-fx-background-color: -tag-" + tagColors.get(tag) + "; "
-                            + "-fx-border-color: -tag-" + tagColors.get(tag) + "; "
                             + "-fx-border-width: 0;"
             );
 
             Node incompleteDataNode = incompleteData.getNode();
-            incompleteDataNode.setStyle("-fx-background-color: -black; -fx-border-width: 0;");
+            if (isNoneComplete()) {
+                incompleteDataNode.setStyle(
+                        "-fx-background-color: -tag-" + tagColors.get(tag) + "; "
+                                + "; -fx-opacity: 0.25;" + "-fx-border-width: 0;"
+                );
+            } else {
+                incompleteDataNode.setStyle("-fx-background-color: -black; -fx-border-width: 0;");
+            }
+
         }
     }
 
@@ -357,5 +364,21 @@ public class DoughnutChart extends PieChart {
         }
 
         return texts;
+    }
+
+    // TODO: call from logic/storage/model
+    private boolean isNoneComplete() {
+        final int numTags = 6;
+
+        ObservableList<Data> doughnutData = getData();
+        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
+        for (int i = 0; i < doughnutData.size(); i += 2) {
+            Data completeData = doughnutData.get(i);
+            if (completeData.getPieValue() > 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

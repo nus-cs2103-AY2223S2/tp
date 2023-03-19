@@ -28,22 +28,22 @@ public class ProgressSection extends UiPart<Region> {
 
     private ObservableList<PieChart.Data> createDoughnutData() {
         return FXCollections.observableArrayList(
-                new PieChart.Data("CSF_complete", 24),
-                new PieChart.Data("CSF_incomplete", 12),
+                new PieChart.Data("CSF_complete", 36),
+                new PieChart.Data("CSF_incomplete", 0),
 
                 new PieChart.Data("MS_complete", 8),
                 new PieChart.Data("MS_incomplete", 8),
 
-                new PieChart.Data("UE_complete", 28),
-                new PieChart.Data("UE_incomplete", 12),
+                new PieChart.Data("UE_complete", 0),
+                new PieChart.Data("UE_incomplete", 40),
 
-                new PieChart.Data("ITP_complete", 1),
+                new PieChart.Data("ITP_complete", 0),
                 new PieChart.Data("ITP_incomplete", 12),
 
-                new PieChart.Data("ULR_complete", 16),
-                new PieChart.Data("ULR_incomplete", 0),
+                new PieChart.Data("ULR_complete", 0),
+                new PieChart.Data("ULR_incomplete", 16),
 
-                new PieChart.Data("CSBD_complete", 1),
+                new PieChart.Data("CSBD_complete", 0),
                 new PieChart.Data("CSBD_incomplete", 40));
     }
 }
