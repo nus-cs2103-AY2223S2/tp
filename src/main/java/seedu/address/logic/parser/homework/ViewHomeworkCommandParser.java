@@ -65,6 +65,7 @@ public class ViewHomeworkCommandParser implements Parser<ViewHomeworkCommand> {
             defaultPredicateFlag = false;
         } else {
             namePredicate = PREDICATE_SHOW_ALL_STUDENTS;
+            defaultPredicateFlag = true;
         }
 
         // If status is present, create a predicate to filter by status
