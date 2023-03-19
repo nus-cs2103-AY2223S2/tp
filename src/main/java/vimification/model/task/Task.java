@@ -1,22 +1,39 @@
 package vimification.model.task;
 
+import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
+import vimification.model.task.components.Description;
 
 public abstract class Task {
 
     private final Description description;
     private final Status status;
-    private final Type type;
+    private final TaskType type;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Description description, Status status, Type type) {
+    public Task(Description description, Status status, TaskType type) {
         requireAllNonNull(description, status);
         this.description = description;
         this.status = status;
         this.type = type;
+    }
+
+    public static Task createTask(TaskType type, String... taskComponents) {
+        requireNonNull(type);
+        requireNonNull(taskComponents);
+        switch (type) {
+        case TODO:
+            return Todo.createTask(taskComponents);
+        case DEADLINE:
+            return Deadline.createTask(taskComponents);
+        case EVENT:
+            return Event.createTask(taskComponents);
+        default:
+            throw new IllegalArgumentException("Invalid task type");
+        }
     }
 
     public Description getDescription() {
@@ -27,7 +44,7 @@ public abstract class Task {
         return status;
     }
 
-    public Type getType() {
+    public TaskType getType() {
         return type;
     }
 
@@ -50,8 +67,8 @@ public abstract class Task {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both persons have the same identity and data fields. This defines a stronger
+     * notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {

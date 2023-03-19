@@ -1,18 +1,34 @@
 package vimification.model.task;
 
-public class Event extends Task {
+import vimification.model.task.components.DateTime;
+import vimification.model.task.components.Description;
 
+public class Event extends Task {
+    private static int numOfComponents = 3;
     private final DateTime startDate;
     private final DateTime endDate;
 
-
     public Event(Description description, Status status, DateTime startDate, DateTime endDate) {
-        super(description, status, new Type("Event"));
+        super(description, status, TaskType.str2type("Event"));
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public DateTime getStartDate() { return startDate; }
+    public static Event createTask(Description description, DateTime startDate, DateTime endDate) {
+        return new Event(description, new Status(false), startDate, endDate);
+    }
+
+    public static Event createTask(String... taskComponents) {
+        if (taskComponents.length != numOfComponents) {
+            throw new IllegalArgumentException("Invalid number of task components");
+        }
+        return createTask(new Description(taskComponents[0]), new DateTime(taskComponents[1]),
+                new DateTime(taskComponents[2]));
+    }
+
+    public DateTime getStartDate() {
+        return startDate;
+    }
 
     public DateTime getEndDate() {
         return endDate;
