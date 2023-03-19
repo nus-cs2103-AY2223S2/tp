@@ -89,7 +89,7 @@ class SchedulerTest {
     }
 
     @Test
-    public void testRecommendations_threeTimetablesABC_success() {
+    public void testRecommendations_threeTimetablesVariant1_success() {
         Scheduler scheduler = new Scheduler(model);
         scheduler.addTimetable(TIMETABLE_A);
         scheduler.addTimetable(TIMETABLE_B);
@@ -104,7 +104,7 @@ class SchedulerTest {
     }
 
     @Test
-    public void testRecommendations_threeTimetablesCDE_success() {
+    public void testRecommendations_threeTimetablesVariant2_success() {
         Scheduler scheduler = new Scheduler(model);
         scheduler.addTimetable(TIMETABLE_C);
         scheduler.addTimetable(TIMETABLE_D);
@@ -119,7 +119,7 @@ class SchedulerTest {
     }
 
     @Test
-    public void testRecommendations_threeTimetablesADE_success() {
+    public void testRecommendations_threeTimetablesVariant4_success() {
         Scheduler scheduler = new Scheduler(model);
         scheduler.addTimetable(TIMETABLE_A);
         scheduler.addTimetable(TIMETABLE_D);
@@ -162,6 +162,13 @@ class SchedulerTest {
         assertEquals(TEN_PM, longestInterval.get().getEndTime());
         assertEquals(SchoolDay.WEDNESDAY, longestInterval.get().getSchoolDay());
 
+    }
+
+    @Test
+    public void testRecommendations_emptyTimetable_emptyArrayList() {
+        Scheduler scheduler = new Scheduler(model);
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        assertTrue(longestInterval.isEmpty());
     }
 
     @Test

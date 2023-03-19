@@ -1,9 +1,11 @@
 package seedu.address.model.scheduler;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
@@ -37,18 +39,19 @@ public class Scheduler {
      * Initialises the scheduler with all the participants.
      * @param participantIndices
      */
-    public void initialise(List<ContactIndex> participantIndices) {
+    public Scheduler initialise(Collection<ContactIndex> participantIndices) {
         // for each contact person, query person from model.
         // Each person's schedule would be constructed
         // and appended to the schedules
         addParticipants(participantIndices);
+        return this;
     }
 
     /**
      * Adds participants from the model by their ContactIndex.
      * @param participantIndices
      */
-    private void addParticipants(List<ContactIndex> participantIndices) {
+    private void addParticipants(Collection<ContactIndex> participantIndices) {
         IndexHandler indexHandler = new IndexHandler(model);
         // Fill participants into participants
         participantIndices.stream().map(indexHandler::getPersonByIndex)
@@ -57,6 +60,9 @@ public class Scheduler {
                 .forEach(this.participants::add);
         // Append timetables for each participant
         // Wait for @kennycjy to handle his Module Tag + Lesson integration
+        // planned implementation:
+        // for each participant : (1) build (2) add their timetable
+        // to be handled in a separate method.
     }
 
     /**
@@ -70,19 +76,42 @@ public class Scheduler {
      * Recommends the longest common timing that is available.
      */
     public Optional<TimePeriod> giveLongestTimingRecommendations() {
+        List<TimePeriod> periods = getAllTimings();
+        return periods.stream()
+                .max(Comparator.comparing(TimePeriod::getHoursBetween));
+    }
+
+    /**
+     * Recommends a specified limit number of common available timings.
+     * @param limit number of recommendations.
+     */
+    public List<TimePeriod> giveLongestTimingRecommendations(int limit) {
+        List<TimePeriod> periods = getAllTimings();
+        return periods.stream()
+            .sorted(Comparator.comparing(TimePeriod::getHoursBetween).reversed())
+            .limit(limit)
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * Get all Time Periods that everyone is free.
+     */
+    public List<TimePeriod> getAllTimings() {
         List<TimePeriod> periods = new ArrayList<>();
         for (SchoolDay day : SchoolDay.values()) {
             List<TimeSlot> availableTimeSlots = TimeUtils.getFreeCommonIntervals(day, schedules);
             periods.addAll(TimeUtils.mergeTimeSlots(availableTimeSlots));
         }
-        System.out.println(periods);
-        System.out.println(periods.stream()
-                .max(Comparator.comparing(TimePeriod::getHoursBetween)));
-        return periods.stream()
-                .max(Comparator.comparing(TimePeriod::getHoursBetween));
+        return periods;
     }
 
-
+    /**
+     * Get all Time Periods that everyone is free on that school day.
+     */
+    public List<TimePeriod> getAllTimings(SchoolDay schoolDay) {
+        List<TimeSlot> availableTimeSlots = TimeUtils.getFreeCommonIntervals(schoolDay, schedules);
+        return new ArrayList<>(TimeUtils.mergeTimeSlots(availableTimeSlots));
+    }
 
     public List<Timetable> getSchedules() {
         return schedules;

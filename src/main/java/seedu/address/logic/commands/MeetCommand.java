@@ -15,7 +15,8 @@ import seedu.address.model.Model;
 import seedu.address.model.location.DistanceUtil;
 import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
-import seedu.address.model.person.Person;
+import seedu.address.model.scheduler.Scheduler;
+import seedu.address.model.timetable.time.TimePeriod;
 
 /**
  * Based on a list of people, recommends a list of places to eat and/or study.
@@ -65,7 +66,8 @@ public class MeetCommand extends Command {
 
         List<Location> locationsOfPersons = getAllAddresses(model);
         List<? extends Location> recommendations = giveRecommendations(locationsOfPersons);
-
+        Scheduler scheduler = new Scheduler(model).initialise(indices);
+        Optional<TimePeriod> recommendedTimings = scheduler.giveLongestTimingRecommendations();
         // This section deals with porting the information over to the front end.
         // @zichen This is the entry point.
         StringBuilder sb = new StringBuilder();

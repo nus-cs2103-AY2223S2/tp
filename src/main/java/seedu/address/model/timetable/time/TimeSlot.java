@@ -8,6 +8,7 @@ import org.joda.time.LocalTime;
 import seedu.address.model.timetable.Lesson;
 import seedu.address.model.timetable.exceptions.LessonClashException;
 import seedu.address.model.timetable.exceptions.WrongTimeException;
+import seedu.address.model.timetable.time.util.TimeUtils;
 
 
 /**
@@ -103,8 +104,9 @@ public class TimeSlot extends TimePeriod {
     @Override
     public String toString() {
         return String.format("[%s, %s]\nClass: %s",
-                getStartTime(), getEndTime(),
-                lesson);
+            TimeUtils.formatLocalTime(getStartTime()),
+            TimeUtils.formatLocalTime(getEndTime()),
+            lesson.isPresent() ? lesson.get() : "NO LESSON!");
     }
 
     @Override

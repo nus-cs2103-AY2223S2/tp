@@ -4,6 +4,7 @@ import org.joda.time.Hours;
 import org.joda.time.LocalTime;
 
 import seedu.address.model.timetable.exceptions.WrongTimeException;
+import seedu.address.model.timetable.time.util.TimeUtils;
 
 /**
  * Represents a time period of a variable amount.
@@ -49,6 +50,7 @@ public class TimeBlock extends TimePeriod {
     @Override
     public String toString() {
         return String.format("[%s, %s]",
-                getStartTime(), getEndTime());
+            TimeUtils.formatLocalTime(getStartTime()),
+            TimeUtils.formatLocalTime(getEndTime()));
     }
 }

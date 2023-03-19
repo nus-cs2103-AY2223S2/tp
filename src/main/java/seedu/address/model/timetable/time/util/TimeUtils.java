@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.joda.time.LocalTime;
+
 import seedu.address.model.timetable.Timetable;
 import seedu.address.model.timetable.time.SchoolDay;
 import seedu.address.model.timetable.time.TimeBlock;
@@ -71,5 +73,21 @@ public class TimeUtils {
             timePeriods.add(new TimeBlock(block));
         }
         return timePeriods;
+    }
+
+    /**
+     * Formats the LocalTime to a more reader-friendly format.
+     * @param time LocalTime
+     * @return Reader-friendly string format.
+     */
+    public static String formatLocalTime(LocalTime time) {
+        int hourOfDay = time.getHourOfDay();
+        if (hourOfDay < 12) {
+            return String.format("%d AM", hourOfDay);
+        } else if (hourOfDay == 12) {
+            return "12 PM";
+        } else {
+            return String.format("%d PM", hourOfDay % 12);
+        }
     }
 }
