@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DeadlineTask;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.DeadlineTaskBuilder;
 
@@ -194,7 +195,7 @@ public class DeadlineCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        public void markTask(Task task) {
+        public void markTask(Task task, Score score) {
             throw new AssertionError("This method should not be called.");
         }
 

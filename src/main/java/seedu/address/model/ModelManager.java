@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.DeadlineTask;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
 /**
@@ -139,9 +140,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markTask(Task task) {
+    public void markTask(Task task, Score score) {
         requireNonNull(task);
-        addressBook.markTask(task);
+        addressBook.markTask(task, score);
     }
 
     @Override

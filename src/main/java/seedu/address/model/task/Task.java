@@ -14,6 +14,8 @@ public class Task {
     private Index personAssignedIndex;
     private String personAssignedName;
     private String personAssignedRole;
+    private Score score;
+    
 
     /**
      * The constructor of the Task that takes in description of the task.
@@ -24,6 +26,7 @@ public class Task {
         this.personAssignedIndex = null;
         this.personAssignedName = null;
         this.personAssignedRole = null;
+        this.score = null;
     }
 
     /**
@@ -51,6 +54,24 @@ public class Task {
      */
     public boolean isDone() {
         return isDone;
+    }
+
+    /**
+     * Sets the score of the current task.
+     *
+     * @param score Score to be assigned to the current task
+     */
+    public void setScore(Score score) {
+        this.score = score;
+    }
+
+    /**
+     * Gets the score of the current task.
+     *
+     * @param score Score to be assigned to the current task
+     */
+    public Score getScore() {
+        return this.score;
     }
 
     /**
@@ -93,8 +114,9 @@ public class Task {
     /**
      * Changes status of current task as done by assigning isDone as true.
      */
-    public String mark() {
+    public String mark(Score score) {
         this.isDone = true;
+        this.setScore(score);
         return "This task has been marked as completed:\n" + this + "\n";
     }
 

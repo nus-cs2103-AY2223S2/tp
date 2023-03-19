@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -126,9 +127,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Marks the given task {@code task} as done.
      */
-    public void markTask(Task task) {
-        task.mark();
-    }
+    public void markTask(Task task, Score score) {
+        task.mark(score);           
+    }   
 
     /**
      * Unmarks the given task {@code task} as not done.

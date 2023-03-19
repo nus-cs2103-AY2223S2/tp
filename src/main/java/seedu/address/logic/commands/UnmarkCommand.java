@@ -10,6 +10,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+
 /**
  * Unmarks a task as not done using its displayed index from the address book.
  */
@@ -20,7 +22,7 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unmarks the task identified by the index number in the displayed task list as not done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + PREFIX_TASK_INDEX + " 1";
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Unmarked Task: %1$s";
 

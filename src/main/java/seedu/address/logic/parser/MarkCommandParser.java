@@ -2,9 +2,15 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
+
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Score;
 
 /**
  * Parses input arguments and creates a new MarkCommand object.
@@ -18,12 +24,24 @@ public class MarkCommandParser implements Parser<MarkCommand> {
      */
     @Override
     public MarkCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new MarkCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_TASK_INDEX, PREFIX_SCORE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_TASK_INDEX, PREFIX_SCORE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
+
+        Index taskIndex = ParserUtil.parseTaskIndex(argMultimap.getValue(PREFIX_TASK_INDEX).get());
+        Score score = ParserUtil.parseScoreValue(argMultimap.getValue(PREFIX_SCORE).get());
+        return new MarkCommand(taskIndex, score);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
