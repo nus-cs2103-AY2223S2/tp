@@ -42,6 +42,12 @@ public class RecipeCard extends UiPart<Region> {
     private Label portion;
 
     @FXML
+    private Label ingredientsTitle;
+
+    @FXML
+    private Label stepsTitle;
+
+    @FXML
     private FlowPane tags;
 
     @FXML
@@ -60,31 +66,33 @@ public class RecipeCard extends UiPart<Region> {
         name.setText(recipe.getName().recipeName);
 
         //Duration
-        duration.setText(
+        duration.setText("Duration: " +
                 Optional.ofNullable(recipe.getDurationNullable())
                         .map(Object::toString)
                         .orElse("Duration was not added.")
         );
 
         //Portion
-        portion.setText(
+        portion.setText("Portion: " +
                 Optional.ofNullable(recipe.getPortionNullable())
                         .map(Object::toString)
                         .orElse("Portion was not added.")
         );
 
-        //Tags
-        recipe.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
         //Ingredients
+        ingredientsTitle.setText("Ingredients:");
         recipe.getIngredients()
                 .forEach(ingredient -> ingredients.getChildren().add(new Label(ingredient.toString())));
-
+        
         //Steps
+        stepsTitle.setText("Steps:");
         recipe.getSteps()
                 .forEach(step -> steps.getChildren().add(new Label(step.toString())));
+
+        //Tags
+        recipe.getTags().stream()
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));        
 
         // Add a click listener to the cardPane node
         cardPane.setOnMouseClicked(event -> {
