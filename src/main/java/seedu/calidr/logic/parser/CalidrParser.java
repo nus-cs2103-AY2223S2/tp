@@ -10,6 +10,7 @@ import seedu.calidr.logic.commands.AddEventCommand;
 import seedu.calidr.logic.commands.AddTodoCommand;
 import seedu.calidr.logic.commands.Command;
 import seedu.calidr.logic.commands.DeleteTaskCommand;
+import seedu.calidr.logic.commands.EditTaskCommand;
 import seedu.calidr.logic.commands.ExitCommand;
 import seedu.calidr.logic.commands.HelpCommand;
 import seedu.calidr.logic.parser.exceptions.ParseException;
@@ -46,6 +47,9 @@ public class CalidrParser {
 
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
+
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
 
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);

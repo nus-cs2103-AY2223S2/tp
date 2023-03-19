@@ -112,7 +112,7 @@ public interface Model {
      * Deletes the given task.
      * The task must exist in the task list.
      */
-    void deleteTask(Index targetIndex);
+    void deleteTask(Task task);
 
     /**
      * Adds the given task.
@@ -125,7 +125,7 @@ public interface Model {
      * {@code target} must exist in the task list.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
      */
-    void setTask(Index targetIndex, Task editedTask);
+    void setTask(Task target, Task editedTask);
 
     /**
      * Returns an unmodifiable view of the filtered task list

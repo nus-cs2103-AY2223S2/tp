@@ -69,6 +69,17 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Returns true if both Tasks have the same details.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return equals(otherTask);
+    }
+
     @Override
     public String toString() {
         String mark = this.isDone ? "X" : " ";

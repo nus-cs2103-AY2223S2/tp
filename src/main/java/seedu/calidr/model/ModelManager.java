@@ -173,8 +173,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(Index targetIndex) {
-        taskList.deleteTask(targetIndex);
+    public void deleteTask(Task task) {
+        taskList.deleteTask(task);
     }
 
     @Override
@@ -184,9 +184,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTask(Index targetIndex, Task editedTask) {
-        requireAllNonNull(targetIndex, editedTask);
-        taskList.setTask(targetIndex, editedTask);
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        taskList.setTask(target, editedTask);
     }
 
     //=========== Filtered Task List Accessors =============================================================

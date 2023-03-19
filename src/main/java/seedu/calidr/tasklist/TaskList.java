@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Task;
+import seedu.calidr.model.task.UniqueTaskList;
 import seedu.calidr.model.task.params.Priority;
 
 /**
@@ -17,35 +18,37 @@ import seedu.calidr.model.task.params.Priority;
  * list of Tasks.
  */
 public class TaskList implements ReadOnlyTaskList {
+    private final UniqueTaskList tasks = new UniqueTaskList();
 
-    private List<Task> tasks = new ArrayList<>();
+    public TaskList() {}
 
-    private void markUnmark(Index taskNumber, boolean isMarkCommand) {
+    public TaskList(ReadOnlyTaskList toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
 
-        if (isMarkCommand) {
-            this.tasks.get(taskNumber.getZeroBased()).mark();
-        } else {
-            this.tasks.get(taskNumber.getZeroBased()).unmark();
-        }
-
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
     }
 
     /**
-     * Marks a particular Task in the list of Tasks, as done.
-     *
-     * @param taskNumber The number to indicate which Task is to be marked as done.
+     * Resets the existing data of this {@code TaskList} with {@code newData}.
+     * @param newData The new data to update the task list.
      */
-    public void markTask(Index taskNumber) {
-        this.markUnmark(taskNumber, true);
+    public void resetData(ReadOnlyTaskList newData) {
+        requireNonNull(newData);
+
+        setTasks(newData.getTaskList());
     }
 
     /**
-     * Marks a particular Task in the list of Tasks, as undone.
-     *
-     * @param taskNumber The number to indicate which Task is to be marked as undone.
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
+     * @param task The task to check.
+     * @return true if task already exists in the task list and false otherwise.
      */
-    public void unmarkTask(Index taskNumber) {
-        this.markUnmark(taskNumber, false);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
     }
 
     /**
@@ -57,44 +60,57 @@ public class TaskList implements ReadOnlyTaskList {
         tasks.add(task);
     }
 
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+        tasks.setTask(target, editedTask);
+    }
+
     /**
      * Deletes a Task from the list of Tasks.
      *
      * @param taskNumber The number to indicate which Task is to be deleted.
      */
-    public void deleteTask(Index taskNumber) {
-        this.tasks.remove(taskNumber.getZeroBased());
+    public void deleteTask(Task key) {
+        tasks.remove(key);
     }
 
-    public void setTaskPriority(Index taskNumber, Priority priority) {
-        this.tasks.get(taskNumber.getZeroBased()).setPriority(priority);
+    public void setTaskPriority(Task target, Priority priority) {
+        tasks.setTaskPriority(target, priority);
+    }
+
+    /**
+     * Marks a particular Task in the list of Tasks, as done.
+     *
+     * @param taskNumber The number to indicate which Task is to be marked as done.
+     */
+    public void markTask(Task task) {
+        tasks.mark(task);
+    }
+
+    /**
+     * Marks a particular Task in the list of Tasks, as undone.
+     *
+     * @param taskNumber The number to indicate which Task is to be marked as undone.
+     */
+    public void unmarkTask(Task task) {
+        tasks.unmark(task);
     }
 
     @Override
     public ObservableList<Task> getTaskList() {
-        return observableList(tasks);
+        return tasks.asUnmodifiableObservableList();
     }
 
-    /**
-     * Resets the existing data of this {@code TaskList} with {@code newData}.
-     * @param newData The new data to update the task list.
-     */
-    public void resetData(ReadOnlyTaskList newData) {
-        requireNonNull(newData);
-
-        tasks = newData.getTaskList();
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof TaskList
+                && tasks.equals(((TaskList) other).tasks));
     }
 
-    /**
-     * Returns true if a task with the same identity as {@code task} exists in the task list.
-     * @param task The task to check.
-     * @return true if task already exists in the task list and false otherwise.
-     */
-    public boolean hasTask(Task task) {
-        return tasks.contains(task);
+    @Override
+    public int hashCode() {
+        return tasks.hashCode();
     }
 
-    public void setTask(Index targetIndex, Task editedTask) {
-        tasks.add(targetIndex.getZeroBased(), editedTask);
-    }
 }
