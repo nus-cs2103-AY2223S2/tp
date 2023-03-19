@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.customer.Points;
 
 /**
  * Parses input arguments and creates a new AddPointsCommand object
@@ -30,7 +29,7 @@ public class AddPointsCommandParser implements Parser<AddPointsCommand> {
                     AddPointsCommand.MESSAGE_USAGE));
         }
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Points.AddPoints addPoints = ParserUtil.parseAddPoints((argMultimap.getValue(PREFIX_POINTS).get()));
+        Integer addPoints = ParserUtil.parseAddPoints((argMultimap.getValue(PREFIX_POINTS).get()));
 
         return new AddPointsCommand(index, addPoints);
     }

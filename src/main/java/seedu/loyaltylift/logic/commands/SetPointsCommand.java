@@ -34,7 +34,8 @@ public class SetPointsCommand extends Command {
             + PREFIX_POINTS + "[POINTS]\n"
             + "Example: " + COMMAND_WORD
             + " 1 "
-            + "pt/100";
+            + PREFIX_POINTS
+            + "100";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, Points: %2$s";
 

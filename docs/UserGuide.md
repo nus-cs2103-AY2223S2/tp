@@ -147,7 +147,7 @@ Format: `addpoints INDEX pt/[+/-]POINTS`
 
 Examples:
 * `listc` followed by `addpoints 2 pt/100` adds 100 reward points to the 2nd customer.
-* `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from 
+* `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from
 the 1st customer in the results of the `findc` command.
 
 ### Setting tiers for your reward system : `settier`

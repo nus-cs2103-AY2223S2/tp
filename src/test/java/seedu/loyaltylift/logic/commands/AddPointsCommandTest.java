@@ -3,6 +3,7 @@ package seedu.loyaltylift.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_ADD;
+import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_POINTS_SUBTRACT;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
@@ -14,7 +15,6 @@ import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
-import seedu.loyaltylift.model.customer.Points;
 
 public class AddPointsCommandTest {
 
@@ -22,8 +22,7 @@ public class AddPointsCommandTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPointsCommand(null,
-                new Points.AddPoints(VALID_POINTS_ADD, Points.AddPoints.Modifier.PLUS)));
+        assertThrows(NullPointerException.class, () -> new AddPointsCommand(null, VALID_POINTS_ADD));
     }
 
     @Test
@@ -34,12 +33,10 @@ public class AddPointsCommandTest {
 
     @Test
     public void equals() {
-        final AddPointsCommand standardCommand = new AddPointsCommand(INDEX_FIRST_CUSTOMER,
-                new Points.AddPoints(VALID_POINTS_ADD, Points.AddPoints.Modifier.PLUS));
+        final AddPointsCommand standardCommand = new AddPointsCommand(INDEX_FIRST_CUSTOMER, VALID_POINTS_ADD);
 
         // same values -> returns true
-        AddPointsCommand commandWithSameValues = new AddPointsCommand(INDEX_FIRST_CUSTOMER,
-                new Points.AddPoints(VALID_POINTS_ADD, Points.AddPoints.Modifier.PLUS));
+        AddPointsCommand commandWithSameValues = new AddPointsCommand(INDEX_FIRST_CUSTOMER, VALID_POINTS_ADD);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -52,11 +49,9 @@ public class AddPointsCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_SECOND_CUSTOMER,
-                new Points.AddPoints(VALID_POINTS_ADD, Points.AddPoints.Modifier.PLUS))));
+        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_SECOND_CUSTOMER, VALID_POINTS_ADD)));
 
         // different AddPoints -> returns false
-        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_FIRST_CUSTOMER,
-                new Points.AddPoints(VALID_POINTS_ADD, Points.AddPoints.Modifier.MINUS))));
+        assertFalse(standardCommand.equals(new AddPointsCommand(INDEX_FIRST_CUSTOMER, VALID_POINTS_SUBTRACT)));
     }
 }

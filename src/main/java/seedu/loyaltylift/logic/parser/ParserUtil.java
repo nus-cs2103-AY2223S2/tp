@@ -161,32 +161,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String points} into a {@code AddPoints}.
+     * Parses a {@code String points} into a {@code Integer}.
      *
      * @throws ParseException if the given {@code points} is invalid.
      */
-    public static Points.AddPoints parseAddPoints(String points) throws ParseException {
+    public static Integer parseAddPoints(String points) throws ParseException {
         requireNonNull(points);
         String trimmedPoints = points.trim();
         Integer integerTrimmedPoints;
-        Points.AddPoints.Modifier modifier;
         try {
             integerTrimmedPoints = Integer.valueOf(trimmedPoints);
         } catch (NumberFormatException e) {
             // integerTrimmedPoints is a string that cannot be parsed
-            throw new ParseException(Points.AddPoints.MESSAGE_CONSTRAINTS);
-        }
-        if (integerTrimmedPoints < 0) {
-            integerTrimmedPoints = Math.abs(integerTrimmedPoints);
-            modifier = Points.AddPoints.Modifier.MINUS;
-        } else {
-            modifier = Points.AddPoints.Modifier.PLUS;
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS);
         }
 
-        if (!Points.isValidPoints(integerTrimmedPoints)) {
+        if (!Points.isValidAddition(integerTrimmedPoints)) {
             // integerTrimmedPoints is an integer that is not within the range of 0 to 999999
-            throw new ParseException(Points.AddPoints.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Points.MESSAGE_CONSTRAINTS_ADDITION);
         }
-        return new Points.AddPoints(integerTrimmedPoints, modifier);
+        return integerTrimmedPoints;
     }
 }

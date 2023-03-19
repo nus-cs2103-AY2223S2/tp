@@ -113,9 +113,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addpoints() throws Exception {
-        final Points.AddPoints addPoints = new Points.AddPoints(100, Points.AddPoints.Modifier.PLUS);
+        final Integer addPoints = 100;
         AddPointsCommand command = (AddPointsCommand) parser.parseCommand(AddPointsCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + addPoints.modifier + addPoints.value);
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + addPoints);
         assertEquals(new AddPointsCommand(INDEX_FIRST_CUSTOMER, addPoints), command);
     }
 

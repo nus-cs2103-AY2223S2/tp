@@ -9,12 +9,23 @@ import seedu.loyaltylift.commons.exceptions.IllegalValueException;
  * The minimum points a customer can have is 0.
  */
 public class Points {
-
-    public static final String MESSAGE_CONSTRAINTS = "Points must be a positive integer "
-            + "and can only range from 0 to 999 999";
-
     public static final Integer MAXIMUM_POINTS = 999999;
     public static final Integer MINIMUM_POINTS = 0;
+
+    public static final Integer MAXIMUM_POINTS_ADD = 999999;
+    public static final Integer MAXIMUM_POINTS_SUBTRACT = -999999;
+
+    public static final String MESSAGE_CONSTRAINTS = "Points must be a positive integer "
+            + "and can only range from "
+            + MINIMUM_POINTS
+            + " to "
+            + MAXIMUM_POINTS;
+
+    public static final String MESSAGE_CONSTRAINTS_ADDITION = "Points added must be an integer "
+            + "and can only range from "
+            + MAXIMUM_POINTS_SUBTRACT
+            + " to "
+            + MAXIMUM_POINTS_ADD;
 
     public final Integer value;
     public final Integer cumulative;
@@ -33,20 +44,20 @@ public class Points {
     /**
      * For adding or subtracting points.
      *
-     * @param p the object with points to be added or subtracted from
-     * @return a new Points object, value depends on whether it is an addition or subtraction.
+     * @param p Integer points
+     * @return a new Points object, value and cumulative depends on whether it is an addition or subtraction.
      * @throws IllegalValueException when points are not valid
      */
-    public Points editPoints(Points.AddPoints p) throws IllegalValueException {
-        Points newPoints = p.modifier.isPositive()
+    public Points editPoints(Integer p) throws IllegalValueException {
+        Points newPoints = p > 0
                 ? addPoints(p)
                 : subtractPoints(p);
         return newPoints;
     }
 
-    private Points addPoints(Points.AddPoints p) throws IllegalValueException {
-        Integer newPoints = this.value + p.value;
-        Integer newCumulativePoints = this.cumulative + p.value;
+    private Points addPoints(Integer p) throws IllegalValueException {
+        Integer newPoints = this.value + p;
+        Integer newCumulativePoints = this.cumulative + p;
         if (isValidPoints(newPoints) && isValidPoints(newCumulativePoints)) {
             return new Points(newPoints, newCumulativePoints);
         } else {
@@ -54,8 +65,8 @@ public class Points {
         }
     }
 
-    private Points subtractPoints(Points.AddPoints p) throws IllegalValueException {
-        Integer newPoints = this.value - p.value;
+    private Points subtractPoints(Integer p) throws IllegalValueException {
+        Integer newPoints = this.value + p;
         if (isValidPoints(newPoints)) {
             return new Points(newPoints, this.cumulative);
         } else {
@@ -68,6 +79,13 @@ public class Points {
      */
     public static boolean isValidPoints(Integer test) {
         return (test >= MINIMUM_POINTS && test <= MAXIMUM_POINTS);
+    }
+
+    /**
+     * Returns true if points to be added or subtracted is within a valid range.
+     */
+    public static boolean isValidAddition(Integer test) {
+        return (test >= MAXIMUM_POINTS_SUBTRACT && test <= MAXIMUM_POINTS_ADD);
     }
 
     @Override
@@ -89,71 +107,5 @@ public class Points {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    /**
-     * Represents a temporary Points object, to be used for addition or subtraction.
-     */
-    public static class AddPoints {
-        /**
-         * Represents a Point's modifier.
-         * Currently, it is either a PLUS or MINUS to represent addition and subtraction respectively.
-         */
-        public enum Modifier {
-            PLUS("+"),
-            MINUS("-");
-
-            public static final String MESSAGE_CONSTRAINTS = "Modifier must '+' or '-'";
-
-            private String value;
-            private Modifier(String value) {
-                this.value = value;
-            }
-
-            public boolean isPositive() {
-                return (this.toString().compareTo("+") == 0);
-            }
-
-            public String toString() {
-                return this.value;
-            }
-        }
-
-        public static final String MESSAGE_CONSTRAINTS = "In the addpoints command, points must be an integer.\n"
-                + "Points can only range from 0 to 999 999.\n"
-                + "A modifier, '+' or '-' can be added in front of points to add or subtract points respectively.\n"
-                + "If no such modifier exists, addpoints command will default to an addition.";
-
-        public final Integer value;
-        public final Modifier modifier;
-
-        /**
-         * Constructs an {@code Points.AddPoints}.
-         *
-         * @param value A valid amount of points.
-         * @param modifier A valid modifier.
-         */
-        public AddPoints(Integer value, Modifier modifier) {
-            this.value = value;
-            this.modifier = modifier;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof Points.AddPoints)) {
-                return false;
-            }
-
-            // state check
-            Points.AddPoints e = (Points.AddPoints) other;
-            return value.equals(e.value)
-                    && modifier.equals(e.modifier);
-        }
     }
 }

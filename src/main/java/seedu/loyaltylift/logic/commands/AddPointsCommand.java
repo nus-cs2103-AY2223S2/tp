@@ -36,7 +36,8 @@ public class AddPointsCommand extends Command {
             + PREFIX_POINTS + "[POINTS]\n"
             + "Example: " + COMMAND_WORD
             + " 1 "
-            + "pt/-100";
+            + PREFIX_POINTS
+            + "-100";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, Points: %2$s";
 
@@ -44,13 +45,13 @@ public class AddPointsCommand extends Command {
     public static final String MESSAGE_INVALID_POINTS = "This customer will have invalid points";
 
     private final Index index;
-    private final Points.AddPoints addPoints;
+    private final Integer addPoints;
 
     /**
      * @param index of the customer in the filtered person list to set points
-     * @param addPoints of the customer to be set
+     * @param addPoints points to be added or subtracted
      */
-    public AddPointsCommand(Index index, Points.AddPoints addPoints) {
+    public AddPointsCommand(Index index, Integer addPoints) {
         requireAllNonNull(index, addPoints);
 
         this.index = index;

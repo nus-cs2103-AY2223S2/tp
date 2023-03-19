@@ -11,20 +11,17 @@ import org.junit.jupiter.api.Test;
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.AddPointsCommand;
-import seedu.loyaltylift.model.customer.Points;
 
 public class AddPointsCommandParserTest {
     private AddPointsCommandParser parser = new AddPointsCommandParser();
-    private final Integer nonEmptyPoints = 100;
-    private final Points.AddPoints.Modifier modifier = Points.AddPoints.Modifier.MINUS;
+    private final Integer nonEmptyPoints = -100;
 
     @Test
     public void parse_indexSpecified_success() {
         // must have points, /pt with no integer afterwards will not be parsed successfully
         Index targetIndex = INDEX_FIRST_CUSTOMER;
-        String userInput = targetIndex.getOneBased() + " " + PREFIX_POINTS + modifier + nonEmptyPoints;
-        AddPointsCommand expectedCommand = new AddPointsCommand(INDEX_FIRST_CUSTOMER,
-                new Points.AddPoints(nonEmptyPoints, modifier));
+        String userInput = targetIndex.getOneBased() + " " + PREFIX_POINTS + nonEmptyPoints;
+        AddPointsCommand expectedCommand = new AddPointsCommand(INDEX_FIRST_CUSTOMER, nonEmptyPoints);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
