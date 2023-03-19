@@ -1,19 +1,7 @@
 package seedu.address.files;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDField;
-import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,6 +9,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 class FileGeneratorTest {
 
@@ -33,7 +36,8 @@ class FileGeneratorTest {
     public void setUp() {
         Set<Tag> tags = new HashSet<>();
         // Create a sample person object
-        person = new Person(new Name("John"), new Phone("12345678"), new Email("john@example.com"), new Address("123, Main Street"), tags);
+        person = new Person(new Name("John"), new Phone("12345678"),
+                new Email("john@example.com"), new Address("123, Main Street"), tags);
         // Set other fields
         doctorName = "Dr. Smith";
         description = "Medical certificate";
@@ -100,7 +104,7 @@ class FileGeneratorTest {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(pdfDocument != null) {
+            if (pdfDocument != null) {
                 try {
                     pdfDocument.close();
                     filesManager.deleteAll();
