@@ -14,19 +14,19 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Food.
  */
 public class FoodUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code food}.
      */
     public static String getAddCommand(Food food) {
         return AddCommand.COMMAND_WORD + " " + getFoodDetails(food);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code food}'s details.
      */
     public static String getFoodDetails(Food food) {
         StringBuilder sb = new StringBuilder();

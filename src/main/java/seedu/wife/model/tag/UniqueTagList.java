@@ -3,6 +3,7 @@ package seedu.wife.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.wife.model.tag.exceptions.DuplicateTagException;
 import seedu.wife.model.tag.exceptions.TagNotFoundException;
+import seedu.wife.model.tag.exceptions.TagStorageFullException;
 
 /**
  * A list of tags that enforces uniqueness between its elements and does not allow nulls.
@@ -34,7 +36,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTag);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -46,7 +48,17 @@ public class UniqueTagList implements Iterable<Tag> {
         if (contains(toAdd)) {
             throw new DuplicateTagException();
         }
+        if (isStorageFull()) {
+            throw new TagStorageFullException();
+        }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Returns true if the storage is full, else false.
+     */
+    public boolean isStorageFull() {
+        return internalList.size() == TAG_LIST_MAX_SIZE;
     }
 
     /**
@@ -62,7 +74,7 @@ public class UniqueTagList implements Iterable<Tag> {
             throw new TagNotFoundException();
         }
 
-        if (!target.isSameTag(editedTag) && contains(editedTag)) {
+        if (!target.equals(editedTag) && contains(editedTag)) {
             throw new DuplicateTagException();
         }
 
@@ -80,6 +92,9 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
+    /**
+     * Replace the content of this list with new {@code UniqueTagList}
+     */
     public void setTags(UniqueTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -126,12 +141,13 @@ public class UniqueTagList implements Iterable<Tag> {
      * Returns true if {@code tags} contains only unique tags.
      */
     private boolean tagsAreUnique(List<Tag> tags) {
-        for (int i = 0; i < tags.size() - 1; i++) {
-            for (int j = i + 1; j < tags.size(); j++) {
-                if (tags.get(i).isSameTag(tags.get(j))) {
-                    return false;
-                }
+        HashSet<Tag> set = new HashSet<>();
+
+        for (Tag tag : tags) {
+            if (set.contains(tag)) {
+                return false;
             }
+            set.add(tag);
         }
         return true;
     }

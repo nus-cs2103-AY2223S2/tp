@@ -1,4 +1,4 @@
-package seedu.wife.logic.commands.deletecommands;
+package seedu.wife.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -25,7 +25,7 @@ public class DeleteByTagCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " vegetable";
 
-    public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Deleted Food:";
+    public static final String DELETE_FOOD_SUCCESS_MESSAGE = "Deleted Food:";
 
     private final Tag targetTag;
 
@@ -37,7 +37,7 @@ public class DeleteByTagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Food> lastShownList = List.copyOf(model.getFilteredFoodList());
-        String deletedFoodSuccessMessage = MESSAGE_DELETE_FOOD_SUCCESS;
+        String deletedFoodSuccessMessage = DELETE_FOOD_SUCCESS_MESSAGE;
         boolean throwError = true;
 
         for (Food foodToDelete : lastShownList) {

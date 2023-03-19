@@ -1,7 +1,9 @@
-package seedu.wife.logic.commands;
+package seedu.wife.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.wife.logic.commands.Command;
+import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.model.Model;
 import seedu.wife.model.tag.Tag;
 
@@ -15,7 +17,7 @@ public class ListByTagCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all food with %1$s tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all food with the specific tag.\n"
-        + "Example: " + COMMAND_WORD + "dairy";
+        + "Example: " + COMMAND_WORD + " dairy";
 
     private final Tag targetTag;
 
