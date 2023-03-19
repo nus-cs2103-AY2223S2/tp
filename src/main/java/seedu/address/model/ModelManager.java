@@ -146,4 +146,15 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
+
+    @Override
+    public boolean hasDuplicateName(String name) {
+        int count = 0;
+        for (Student s : filteredPersons) {
+            if (s.getName().toString().contains(name)) {
+                count++;
+            }
+        }
+        return count >= 2;
+    }
 }

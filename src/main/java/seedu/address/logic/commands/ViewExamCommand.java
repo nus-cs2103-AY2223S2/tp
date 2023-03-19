@@ -46,6 +46,7 @@ public class ViewExamCommand extends Command {
     private final Predicate<Exam> examNamePredicate;
     private final Predicate<Exam> donePredicate;
     private final boolean defaultPredicateFlag;
+    private final List<String> names;
 
 
     /**
@@ -54,13 +55,14 @@ public class ViewExamCommand extends Command {
      * @param namePredicate Predicate to filter students by name.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
-    public ViewExamCommand(Predicate<Student> namePredicate, Predicate<Exam> examNamePredicate,
+    public ViewExamCommand(List<String> names, Predicate<Student> namePredicate, Predicate<Exam> examNamePredicate,
                              Predicate<Exam> donePredicate, boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
         this.examDatePredicate = SHOW_ALL_EXAMS;
         this.defaultPredicateFlag = defaultPredicateFlag;
         this.examNamePredicate = examNamePredicate;
         this.donePredicate = donePredicate;
+        this.names = names;
     }
 
     /**
@@ -70,7 +72,7 @@ public class ViewExamCommand extends Command {
      * @param examDatePredicate Predicate to filter lessons by date.
      * @param defaultPredicateFlag Flag to indicate if the default predicate is used.
      */
-    public ViewExamCommand(Predicate<Student> namePredicate, Predicate<Exam> examDatePredicate,
+    public ViewExamCommand(List<String> names, Predicate<Student> namePredicate, Predicate<Exam> examDatePredicate,
                              Predicate<Exam> examNamePredicate, Predicate<Exam> donePredicate,
                              boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
@@ -78,6 +80,7 @@ public class ViewExamCommand extends Command {
         this.defaultPredicateFlag = defaultPredicateFlag;
         this.examNamePredicate = examNamePredicate;
         this.donePredicate = donePredicate;
+        this.names = names;
     }
 
     /**
@@ -90,6 +93,16 @@ public class ViewExamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder dupNames = new StringBuilder();
+        for (String name : names) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
+            }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(namePredicate);
 
         List<Student> studentList = model.getFilteredStudentList();

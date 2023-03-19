@@ -13,7 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Homework;
-import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NamePredicate;
 import seedu.address.model.student.Student;
 
 /**
@@ -31,18 +31,20 @@ public class MarkHomeworkAsDoneCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_INDEX + "1";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NamePredicate predicate;
     private final Index targetIndex;
+    private final List<String> names;
 
     /**
      * Creates a MarkHomeworkAsDoneCommand to mark the specified assignment as done for the specified student.
      */
-    public MarkHomeworkAsDoneCommand(NameContainsKeywordsPredicate predicate, Index targetIndex) {
+    public MarkHomeworkAsDoneCommand(List<String> names, NamePredicate predicate, Index targetIndex) {
         requireNonNull(predicate);
         requireNonNull(targetIndex);
 
         this.predicate = predicate;
         this.targetIndex = targetIndex;
+        this.names = names;
     }
 
     /**
@@ -55,6 +57,16 @@ public class MarkHomeworkAsDoneCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder dupNames = new StringBuilder();
+        for (String name : names) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
+            }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();

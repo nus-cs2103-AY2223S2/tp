@@ -39,6 +39,7 @@ public class ViewHomeworkCommand extends Command {
     private final Predicate<Student> namePredicate;
     private final Predicate<Homework> homeworkStatusPredicate;
     private final boolean defaultPredicateFlag;
+    private final List<String> names;
 
 
     /**
@@ -46,10 +47,11 @@ public class ViewHomeworkCommand extends Command {
      *
      * @param namePredicate Predicate to filter students by name.
      */
-    public ViewHomeworkCommand(Predicate<Student> namePredicate) {
+    public ViewHomeworkCommand(List<String> names, Predicate<Student> namePredicate, boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
         this.homeworkStatusPredicate = SHOW_ALL_HOMEWORK;
-        this.defaultPredicateFlag = true;
+        this.defaultPredicateFlag = defaultPredicateFlag;
+        this.names = names;
     }
 
     /**
@@ -58,10 +60,12 @@ public class ViewHomeworkCommand extends Command {
      * @param namePredicate Predicate to filter students by name.
      * @param homeworkStatusPredicate Predicate to filter homework by status.
      */
-    public ViewHomeworkCommand(Predicate<Student> namePredicate, Predicate<Homework> homeworkStatusPredicate) {
+    public ViewHomeworkCommand(List<String> names, Predicate<Student> namePredicate,
+                               Predicate<Homework> homeworkStatusPredicate, boolean defaultPredicateFlag) {
         this.namePredicate = namePredicate;
         this.homeworkStatusPredicate = homeworkStatusPredicate;
-        this.defaultPredicateFlag = false;
+        this.defaultPredicateFlag = defaultPredicateFlag;
+        this.names = names;
     }
 
     /**
@@ -74,6 +78,16 @@ public class ViewHomeworkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        StringBuilder dupNames = new StringBuilder();
+        for (String name : names) {
+            if (model.hasDuplicateName(name)) {
+                dupNames.append(name).append(", ");
+            }
+            if (dupNames.length() != 0) {
+                dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
+                throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
+            }
+        }
         model.updateFilteredStudentList(namePredicate);
 
         List<Student> studentList = model.getFilteredStudentList();
