@@ -41,7 +41,7 @@ public class SampleDataUtil {
         for (Tag sampleTag : getSampleTags()) {
             sampleWife.createTag(sampleTag);
         }
-        
+
         return sampleWife;
     }
 
