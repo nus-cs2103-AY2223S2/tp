@@ -75,7 +75,7 @@ public class Scheduler {
     /**
      * Recommends the longest common timing that is available.
      */
-    public Optional<TimePeriod> giveLongestTimingRecommendations() {
+    public Optional<TimePeriod> giveLongestTimingRecommendation() {
         List<TimePeriod> periods = getAllTimings();
         return periods.stream()
                 .max(Comparator.comparing(TimePeriod::getHoursBetween));

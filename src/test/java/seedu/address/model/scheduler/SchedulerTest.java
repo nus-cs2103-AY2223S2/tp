@@ -80,7 +80,7 @@ class SchedulerTest {
         scheduler.addTimetable(TIMETABLE_A);
         scheduler.addTimetable(TIMETABLE_B);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -95,7 +95,7 @@ class SchedulerTest {
         scheduler.addTimetable(TIMETABLE_B);
         scheduler.addTimetable(TIMETABLE_C);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -110,7 +110,7 @@ class SchedulerTest {
         scheduler.addTimetable(TIMETABLE_D);
         scheduler.addTimetable(TIMETABLE_E);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -125,7 +125,7 @@ class SchedulerTest {
         scheduler.addTimetable(TIMETABLE_D);
         scheduler.addTimetable(TIMETABLE_E);
         // expected longest interval is 12noon - 10pm on Monday
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(10), longestInterval.get().getHoursBetween());
         assertEquals(TWELVE_PM, longestInterval.get().getStartTime());
@@ -139,7 +139,7 @@ class SchedulerTest {
         scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_A);
         scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_B);
         // expected longest interval 8am - 10pm
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
@@ -155,7 +155,7 @@ class SchedulerTest {
         scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_A);
         scheduler.addTimetable(FULL_CONFLICT_TIMETABLE_B);
         // expected longest interval 8am - 10pm
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isPresent());
         assertEquals(Hours.hours(14), longestInterval.get().getHoursBetween());
         assertEquals(EIGHT_AM, longestInterval.get().getStartTime());
@@ -167,7 +167,7 @@ class SchedulerTest {
     @Test
     public void testRecommendations_emptyTimetable_emptyArrayList() {
         Scheduler scheduler = new Scheduler(model);
-        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendations();
+        Optional<TimePeriod> longestInterval = scheduler.giveLongestTimingRecommendation();
         assertTrue(longestInterval.isEmpty());
     }
 
