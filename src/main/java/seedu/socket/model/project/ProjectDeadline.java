@@ -46,13 +46,12 @@ public class ProjectDeadline {
     }
 
     /**
-     * Returns a LocalDateTime object if deadline is not empty.
-     * @return LocalDateTime
+     * Returns a {@code LocalDateTime} object if {@code deadline} is not empty.
+     *
+     * @return {@code LocalDateTime} object parsed from the stored {@code String deadline}.
+     * @throws DateTimeParseException if {@code deadline} is empty.
      */
-    public LocalDateTime toLocalDateTime() {
-        if (deadline == "") {
-            return null; // this is dangerous TODO consider rethinking implementation
-        }
+    public LocalDateTime toLocalDateTime() throws DateTimeParseException {
         return LocalDateTime.parse(deadline, FORMAT);
     }
 
