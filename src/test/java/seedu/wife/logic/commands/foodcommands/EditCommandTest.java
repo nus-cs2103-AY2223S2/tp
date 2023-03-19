@@ -70,6 +70,7 @@ public class EditCommandTest {
     }
     */
 
+
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FOOD, new EditFoodDescriptor());
@@ -131,7 +132,7 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of food list.
      */
     @Test
     public void execute_invalidFoodIndexFilteredList_failure() {
