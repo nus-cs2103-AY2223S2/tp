@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -46,15 +47,28 @@ public class CommandTestUtil {
     public static final String INVALID_LECTURE_NAME = "l337ure!";
     public static final String INVALID_VIDEO_NAME = "v*deo";
 
-    public static final String MODULE_CODE_DESC_2103 = " " + PREFIX_MODULE + VALID_MODULE_CODE_2103;
-    public static final String MODULE_CODE_DESC_2040 = " " + PREFIX_MODULE + VALID_MODULE_CODE_2040;
-    public static final String MODULE_NAME_DESC_2103 = " " + PREFIX_NAME + VALID_MODULE_NAME_2103;
-    public static final String MODULE_NAME_DESC_2040 = " " + PREFIX_NAME + VALID_MODULE_NAME_2040;
-    public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + VALID_LECTURE_NAME_L1;
-    public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + VALID_LECTURE_NAME_L2;
+    public static final String MODULE_CODE_DESC_2103 = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE_2103;
+    public static final String MODULE_CODE_DESC_2040 = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE_2040;
+    public static final String MODULE_NAME_DESC_2103 = " " + PREFIX_NAME + " " + VALID_MODULE_NAME_2103;
+    public static final String MODULE_NAME_DESC_2040 = " " + PREFIX_NAME + " " + VALID_MODULE_NAME_2040;
+    public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L1;
+    public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L2;
 
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + INVALID_MODULE_CODE;
     public static final String INVALID_LECTURE_NAME_DESC = " " + PREFIX_LECTURE + INVALID_LECTURE_NAME;
+
+    public static final String EDIT_MODULE_CODE_DESC_2103 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2103;
+    public static final String EDIT_MODULE_CODE_DESC_2040 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2040;
+    public static final String EDIT_MODULE_NAME_DESC_2103 = MODULE_NAME_DESC_2103;
+    public static final String EDIT_MODULE_NAME_DESC_2040 = MODULE_NAME_DESC_2040;
+    public static final String EDIT_LECTURE_NAME_DESC_L1 = " " + PREFIX_NAME + " " + VALID_LECTURE_NAME_L1;
+    public static final String EDIT_LECTURE_NAME_DESC_L2 = " " + PREFIX_NAME + " " + VALID_LECTURE_NAME_L2;
+    public static final String EDIT_VIDEO_NAME_DESC_V1 = " " + PREFIX_NAME + " " + VALID_VIDEO_NAME_V1;
+    public static final String EDIT_VIDEO_NAME_DESC_V2 = " " + PREFIX_NAME + " " + VALID_VIDEO_NAME_V2;
+
+    public static final String INVALID_EDIT_MODULE_CODE_DESC = " " + PREFIX_CODE + " " + INVALID_MODULE_CODE;
+    public static final String INVALID_EDIT_LECTURE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_LECTURE_NAME;
+    public static final String INVALID_EDIT_VIDEO_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_VIDEO_NAME;
 
     // TODO: Remove this
     public static final String VALID_NAME_AMY = "Amy Bee";

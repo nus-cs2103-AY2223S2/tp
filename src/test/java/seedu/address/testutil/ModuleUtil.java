@@ -45,7 +45,7 @@ public class ModuleUtil {
      * @param moduleCode The code of the module to be edited.
      * @param descriptor The details on how to edit the module.
      * @return An edit command string for editing the module with code {@code moduleCode} using details in
-     * {@code descriptor}.
+     *         {@code descriptor}.
      */
     public static String getEditCommand(ModuleCode moduleCode, EditModuleDescriptor descriptor) {
         return EditModuleCommand.COMMAND_WORD + " " + moduleCode.toString() + " "

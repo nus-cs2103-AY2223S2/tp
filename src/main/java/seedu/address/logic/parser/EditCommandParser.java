@@ -9,10 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.edit.EditCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand;
-import seedu.address.logic.commands.edit.EditModuleCommand;
-import seedu.address.logic.commands.edit.EditVideoCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
+import seedu.address.logic.commands.edit.EditModuleCommand;
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.commands.edit.EditVideoCommand;
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;

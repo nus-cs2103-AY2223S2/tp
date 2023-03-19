@@ -49,7 +49,7 @@ public class LectureUtil {
      * @param lectureName The name of the lecture to be edited.
      * @param descriptor The details on how to edit the lecture.
      * @return An edit command string for editing the lecture with name {@code lectureName} which belong to the module
-     * with code {@code moduleCode} using details in {@code descriptor}.
+     *         with code {@code moduleCode} using details in {@code descriptor}.
      */
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName,
             EditLectureDescriptor descriptor) {

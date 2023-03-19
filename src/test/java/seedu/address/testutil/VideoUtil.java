@@ -58,8 +58,8 @@ public class VideoUtil {
      * @param videoName The name of  the video to be edited.
      * @param descriptor The details on how to edit the video.
      * @return An edit command string for editing the video with name {@code videoName} which belongs to the lecture
-     * with name {@code lectureName} contained in the moduel with code {@code moduleCode} using details in
-     * {@code descriptor}.
+     *         with name {@code lectureName} contained in the moduel with code {@code moduleCode} using details in
+     *         {@code descriptor}.
      */
     public static String getEditCommand(ModuleCode moduleCode, LectureName lectureName, VideoName videoName,
             EditVideoDescriptor descriptor) {
