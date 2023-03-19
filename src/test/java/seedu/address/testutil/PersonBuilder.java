@@ -15,7 +15,7 @@ import seedu.address.model.tutee.Tutee;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Tutee objects.
+ * A utility class EndTime help with building Tutee objects.
  */
 public class PersonBuilder {
 
@@ -73,7 +73,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Tutee} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it EndTime the {@code Tutee} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);

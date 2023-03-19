@@ -95,7 +95,7 @@ public class JsonUserPrefsStorageTest {
             new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
                     .saveUserPrefs(userPrefs);
         } catch (IOException ioe) {
-            throw new AssertionError("There should not be an error writing to the file", ioe);
+            throw new AssertionError("There should not be an error writing EndTime the file", ioe);
         }
     }
 

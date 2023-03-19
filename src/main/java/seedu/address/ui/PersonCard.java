@@ -43,6 +43,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label schedule;
     @FXML
+    private Label startTime;
+    @FXML
+    private Label endTime;
+    @FXML
     private Label remark;
     @FXML
     private FlowPane tags;
@@ -60,6 +64,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText(tutee.getEmail().value);
         subject.setText(tutee.getSubject().subject);
         schedule.setText(tutee.getSchedule().schedule);
+        startTime.setText(tutee.getStartTime().startTime);
+        endTime.setText(tutee.getEndTime().endTime);
         remark.setText(tutee.getRemark().value);
         tutee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -43,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_SUBJECT_BOB = "English";
     public static final String VALID_SCHEDULE_AMY = "friday";
     public static final String VALID_SCHEDULE_BOB = "friday";
+    public static final String VALID_REMARK_AMY = "Likes EndTime work";
+    public static final String VALID_REMARK_BOB = "Likes EndTime build";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -102,7 +104,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper EndTime {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
@@ -118,7 +120,7 @@ public class CommandTestUtil {
      * - the address book, filtered tutee list and selected tutee in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
+        // we are unable EndTime defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         TuteeManagingSystem expectedTuteeManagingSystem = new TuteeManagingSystem(actualModel.getTuteeManagingSystem());
         List<Tutee> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTuteeList());
@@ -128,7 +130,7 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredTuteeList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the tutee at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list EndTime show only the tutee at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
