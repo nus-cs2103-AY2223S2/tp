@@ -25,6 +25,7 @@ public class Timeslot {
 
     public final LocalDateTime startingDateTime;
     public final LocalDateTime endingDateTime;
+    public final String timeslotString;
 
     /**
      * Constructs a {@code Timeslot}.
@@ -35,6 +36,7 @@ public class Timeslot {
         requireNonNull(timeslot);
         checkArgument(isValidTimeslot(timeslot), MESSAGE_CONSTRAINTS);
         String[] dateTimes = splitIntoStartAndEnd(timeslot);
+        this.timeslotString = timeslot;
         this.startingDateTime = LocalDateTime.parse(dateTimes[0], dateTimeFormatter);
         this.endingDateTime = LocalDateTime.parse(dateTimes[1], dateTimeFormatter);
         checkArgument(startingDateTime.isBefore(endingDateTime), MESSAGE_CONSTRAINTS);

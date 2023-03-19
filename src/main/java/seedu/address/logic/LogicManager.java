@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAppointmentList;
 import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.patient.Patient;
 import seedu.address.storage.Storage;
@@ -42,6 +43,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
+        // TODO: change parseCommand to not use model
         Command command = addressBookParser.parseCommand(commandText, model);
         commandResult = command.execute(model);
 
@@ -57,6 +59,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyPatientList getAddressBook() {
         return model.getAddressBook();
+    }
+
+    @Override
+    public ReadOnlyAppointmentList getAppointmentList() {
+        return model.getAppointmentList();
     }
 
     @Override

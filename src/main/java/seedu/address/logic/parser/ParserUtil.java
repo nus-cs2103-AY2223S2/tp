@@ -11,11 +11,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.id.AppointmentId;
 import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
 import seedu.address.model.patient.Name;
-import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
@@ -173,11 +173,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String id} into a {@code PatientId}.
+     * Parses {@code String id} into an {@code PatientId}.
      */
-    public static PatientId parseId(String id) {
+    public static PatientId parsePatientId(String id) throws ParseException {
         requireNonNull(id);
         String trimmedId = id.trim();
-        return new PatientId(id);
+        if (!PatientId.isValidPatientId(trimmedId)) {
+            throw new ParseException(PatientId.MESSAGE_CONSTRAINTS);
+        }
+        return new PatientId(trimmedId);
+    }
+
+    /**
+     * Parses {@code String id} into an {@code AppointmentId}.
+     */
+    public static AppointmentId parseAppointmentId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!AppointmentId.isValidAppointmentId(trimmedId)) {
+            throw new ParseException(AppointmentId.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentId(trimmedId);
     }
 }

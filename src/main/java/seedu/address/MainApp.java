@@ -16,14 +16,18 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAppointmentList;
 import seedu.address.model.ReadOnlyPatientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.AppointmentListStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonAppointmentListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -57,7 +61,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        AppointmentListStorage appointmentListStorage =
+            new JsonAppointmentListStorage(userPrefs.getAppointmentListFilePath());
+        storage = new StorageManager(addressBookStorage, appointmentListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,22 +81,33 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPatientList> addressBookOptional;
-        ReadOnlyPatientList initialData;
+        Optional<ReadOnlyAppointmentList> appointmentListOptional;
+        ReadOnlyPatientList initialPatientData;
+        ReadOnlyAppointmentList initialAppointmentData;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            if (addressBookOptional.isEmpty()) {
+                logger.info("Data file for patients not found. Will be starting with a sample patient list");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialPatientData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
+            appointmentListOptional = storage.readAppointmentList();
+            if (appointmentListOptional.isEmpty()) {
+                logger.info(
+                    "Data file for appointment lists not found. Will be starting with a sample appointment list");
+            }
+            initialAppointmentData = appointmentListOptional.orElseGet(SampleDataUtil::getSampleAppointmentList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialPatientData = new AddressBook();
+            initialAppointmentData = new AppointmentList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialPatientData = new AddressBook();
+            initialAppointmentData = new AppointmentList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialPatientData, initialAppointmentData, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -120,7 +137,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,7 +165,7 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");

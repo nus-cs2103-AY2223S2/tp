@@ -9,17 +9,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.patient.Patient;
+import seedu.address.model.id.AppointmentId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,10 +41,10 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_PATIENT_ID, PREFIX_TAG);
 
-        Index index;
+        AppointmentId appointmentId;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            appointmentId = ParserUtil.parseAppointmentId(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);
@@ -63,16 +60,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                 ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_PATIENT_ID).isPresent()) {
-            Index targetIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT_ID).get());
-            List<Patient> lastShownList = model.getFilteredPatientList();
-
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new ParseException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
-            }
-
-            Patient patient = lastShownList.get(targetIndex.getZeroBased());
-            System.out.println("Got patient: " + patient);
-            editAppointmentDescriptor.setPatient(patient);
+            editAppointmentDescriptor.setPatientId(
+                ParserUtil.parsePatientId(argMultimap.getValue(PREFIX_PATIENT_ID).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
@@ -80,7 +69,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditAppointmentCommand(index, editAppointmentDescriptor);
+        return new EditAppointmentCommand(appointmentId, editAppointmentDescriptor);
     }
 
     /**

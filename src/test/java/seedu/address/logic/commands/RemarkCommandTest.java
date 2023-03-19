@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -30,7 +32,7 @@ public class RemarkCommandTest {
 
     private static final String REMARK_STUB = "Some remark";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalAppointmentList(), new UserPrefs());
 
     @Test
     public void execute_addRemarkUnfilteredList_success() {
@@ -38,11 +40,13 @@ public class RemarkCommandTest {
         Patient editedPatient = new PatientBuilder(firstPatient).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PATIENT,
-                new Remark(editedPatient.getRemark().value));
+            new Remark(editedPatient.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel =
+            new ModelManager(new AddressBook(model.getAddressBook()), new AppointmentList(model.getAppointmentList()),
+                new UserPrefs());
         expectedModel.setPatient(firstPatient, editedPatient);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -54,11 +58,13 @@ public class RemarkCommandTest {
         Patient editedPatient = new PatientBuilder(firstPatient).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PATIENT,
-                new Remark(editedPatient.getRemark().toString()));
+            new Remark(editedPatient.getRemark().toString()));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel =
+            new ModelManager(new AddressBook(model.getAddressBook()), new AppointmentList(model.getAppointmentList()),
+                new UserPrefs());
         expectedModel.setPatient(firstPatient, editedPatient);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -70,14 +76,16 @@ public class RemarkCommandTest {
 
         Patient firstPatient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Patient editedPatient = new PatientBuilder(model.getFilteredPatientList().get(
-                INDEX_FIRST_PATIENT.getZeroBased())).withRemark(REMARK_STUB).build();
+            INDEX_FIRST_PATIENT.getZeroBased())).withRemark(REMARK_STUB).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PATIENT,
-                new Remark(editedPatient.getRemark().value));
+            new Remark(editedPatient.getRemark().value));
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel =
+            new ModelManager(new AddressBook(model.getAddressBook()), new AppointmentList(model.getAppointmentList()),
+                new UserPrefs());
         expectedModel.setPatient(firstPatient, editedPatient);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -110,11 +118,11 @@ public class RemarkCommandTest {
     @Test
     public void equals() {
         final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_PATIENT,
-                new Remark(VALID_REMARK_AMY));
+            new Remark(VALID_REMARK_AMY));
 
         // same values -> returns true
         RemarkCommand commandWithSameValues = new RemarkCommand(INDEX_FIRST_PATIENT,
-                new Remark(VALID_REMARK_AMY));
+            new Remark(VALID_REMARK_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -128,10 +136,10 @@ public class RemarkCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_PATIENT,
-                new Remark(VALID_REMARK_AMY))));
+            new Remark(VALID_REMARK_AMY))));
 
         // different remark -> returns false
         assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_PATIENT,
-                new Remark(VALID_REMARK_BOB))));
+            new Remark(VALID_REMARK_BOB))));
     }
 }
