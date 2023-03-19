@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import ezschedule.model.AddressBook;
-import ezschedule.model.ReadOnlyAddressBook;
+import ezschedule.model.ReadOnlyScheduler;
+import ezschedule.model.Scheduler;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.Name;
@@ -13,24 +13,24 @@ import ezschedule.model.event.Time;
 import ezschedule.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Scheduler} with sample data.
  */
 public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[]{
-            new Event(new Name("Alex Yeoh"), new Date("01-02-2024"), new Time("18:00"), new Time("20:00")),
-            new Event(new Name("Bernice Yu"), new Date("01-02-2024"), new Time("18:00"), new Time("20:00")),
-            new Event(new Name("Charlotte Olivero"), new Date("01-02-2024"), new Time("18:00"), new Time("20:00"))
+            new Event(new Name("Tennis"), new Date("2024-01-01"), new Time("18:00"), new Time("20:00")),
+            new Event(new Name("Basketball"), new Date("2024-02-02"), new Time("18:00"), new Time("20:00")),
+            new Event(new Name("Bowling"), new Date("2024-03-03"), new Time("18:00"), new Time("20:00"))
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyScheduler getSampleScheduler() {
+        Scheduler sampleSc = new Scheduler();
         for (Event sampleEvent : getSampleEvents()) {
-            sampleAb.addEvent(sampleEvent);
+            sampleSc.addEvent(sampleEvent);
         }
-        return sampleAb;
+        return sampleSc;
     }
 
     /**
@@ -41,5 +41,4 @@ public class SampleDataUtil {
             .map(Tag::new)
             .collect(Collectors.toSet());
     }
-
 }

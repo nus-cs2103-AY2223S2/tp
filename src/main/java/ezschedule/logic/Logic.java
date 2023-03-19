@@ -7,7 +7,7 @@ import ezschedule.logic.commands.CommandResult;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.Model;
-import ezschedule.model.ReadOnlyAddressBook;
+import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.event.Event;
 import javafx.collections.ObservableList;
 
@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Scheduler.
      *
-     * @see Model#getAddressBook()
+     * @see Model#getScheduler()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyScheduler getScheduler();
 
     /**
      * Returns an unmodifiable view of the filtered list of events
@@ -40,9 +40,9 @@ public interface Logic {
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' scheduler file path.
      */
-    Path getAddressBookFilePath();
+    Path getSchedulerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

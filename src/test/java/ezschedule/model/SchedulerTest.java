@@ -13,33 +13,33 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ezschedule.logic.commands.CommandTestUtil;
-import ezschedule.model.person.Person;
-import ezschedule.model.person.exceptions.DuplicatePersonException;
+import ezschedule.model.event.Event;
+import ezschedule.model.event.exceptions.DuplicateEventException;
 import ezschedule.testutil.Assert;
 import ezschedule.testutil.PersonBuilder;
 import ezschedule.testutil.TypicalPersons;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class AddressBookTest {
+public class SchedulerTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Scheduler scheduler = new Scheduler();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), scheduler.getEventList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        Assert.assertThrows(NullPointerException.class, () -> scheduler.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = TypicalPersons.getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        Scheduler newData = TypicalPersons.getTypicalAddressBook();
+        scheduler.resetData(newData);
+        assertEquals(newData, scheduler);
     }
 
     @Test
@@ -48,52 +48,52 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        SchedulerStub newData = new SchedulerStub(newPersons);
 
-        Assert.assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        Assert.assertThrows(DuplicateEventException.class, () -> scheduler.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        Assert.assertThrows(NullPointerException.class, () -> scheduler.hasEvent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(TypicalPersons.ALICE));
+        assertFalse(scheduler.hasEvent(TypicalPersons.ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalPersons.ALICE);
-        assertTrue(addressBook.hasPerson(TypicalPersons.ALICE));
+        scheduler.addEvent(TypicalPersons.ALICE);
+        assertTrue(scheduler.hasEvent(TypicalPersons.ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalPersons.ALICE);
+        scheduler.addEvent(TypicalPersons.ALICE);
         Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(scheduler.hasEvent(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        Assert.assertThrows(UnsupportedOperationException.class, () -> scheduler.getEventList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+    private static class SchedulerStub implements ReadOnlyScheduler {
+        private final ObservableList<Event> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        SchedulerStub(Collection<Event> persons) {
             this.persons.setAll(persons);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
+        public ObservableList<Event> getEventList() {
             return persons;
         }
     }

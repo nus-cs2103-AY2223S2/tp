@@ -2,11 +2,8 @@ package ezschedule.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ezschedule.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static ezschedule.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
-import static ezschedule.logic.parser.CliSyntax.PREFIX_PHONE;
-import static ezschedule.logic.parser.CliSyntax.PREFIX_TAG;
+
 import static ezschedule.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,11 +12,12 @@ import java.util.List;
 
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.exceptions.CommandException;
-import ezschedule.model.AddressBook;
+import ezschedule.model.Scheduler;
 import ezschedule.model.Model;
-import ezschedule.model.person.NameContainsKeywordsPredicate;
-import ezschedule.model.person.Person;
+import ezschedule.model.event.EventContainsKeywordsPredicate;
+import ezschedule.model.event.Event;
 import ezschedule.testutil.EditPersonDescriptorBuilder;
+
 
 /**
  * Contains helper methods for testing commands.
@@ -106,25 +104,25 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        Scheduler expectedAddressBook = new Scheduler(actualModel.getScheduler());
+        List<Event> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEventList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedAddressBook, actualModel.getScheduler());
+        assertEquals(expectedFilteredList, actualModel.getFilteredEventList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Event person = model.getFilteredEventList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredEventList(new EventContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }

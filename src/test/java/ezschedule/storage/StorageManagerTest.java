@@ -10,10 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import ezschedule.commons.core.GuiSettings;
-import ezschedule.model.AddressBook;
-import ezschedule.model.ReadOnlyAddressBook;
+import ezschedule.model.Scheduler;
+import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.UserPrefs;
-import ezschedule.testutil.TypicalPersons;
 
 public class StorageManagerTest {
 
@@ -24,7 +23,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonSchedulerStorage addressBookStorage = new JsonSchedulerStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -54,15 +53,16 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = TypicalPersons.getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+
+        Scheduler original = getTypicalAddressBook();
+        storageManager.saveScheduler(original);
+        ReadOnlyScheduler retrieved = storageManager.readScheduler().get();
+        assertEquals(original, new Scheduler(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getSchedulerFilePath() {
+        assertNotNull(storageManager.getSchedulerFilePath());
     }
 
 }

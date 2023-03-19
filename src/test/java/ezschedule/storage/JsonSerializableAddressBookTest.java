@@ -10,9 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import ezschedule.commons.exceptions.IllegalValueException;
 import ezschedule.commons.util.JsonUtil;
-import ezschedule.model.AddressBook;
+import ezschedule.model.Scheduler;
 import ezschedule.testutil.Assert;
 import ezschedule.testutil.TypicalPersons;
+
 
 public class JsonSerializableAddressBookTest {
 
@@ -25,8 +26,8 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableScheduler dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableScheduler.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
+        Scheduler addressBookFromFile = dataFromFile.toModelType();
+        Scheduler typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

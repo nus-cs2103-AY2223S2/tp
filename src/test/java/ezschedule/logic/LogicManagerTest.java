@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import ezschedule.commons.core.Messages;
+import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.CommandTestUtil;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.exceptions.ParseException;
@@ -22,9 +23,9 @@ import ezschedule.logic.commands.CommandResult;
 import ezschedule.logic.commands.ListCommand;
 import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
-import ezschedule.model.ReadOnlyAddressBook;
+import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.UserPrefs;
-import ezschedule.storage.JsonAddressBookStorage;
+import ezschedule.storage.JsonSchedulerStorage;
 import ezschedule.storage.JsonUserPrefsStorage;
 import ezschedule.storage.StorageManager;
 
@@ -39,10 +40,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonSchedulerStorage schedulerStorage =
+                new JsonSchedulerStorage(temporaryFolder.resolve("schedule.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(schedulerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -67,11 +68,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonSchedulerStorage schedulerStorage =
+                new JsonSchedulerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionSchedule.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(schedulerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -145,13 +146,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonSchedulerIoExceptionThrowingStub extends JsonSchedulerStorage {
+        private JsonSchedulerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveScheduler(ReadOnlyScheduler scheduler, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

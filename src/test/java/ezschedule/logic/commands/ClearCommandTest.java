@@ -5,7 +5,7 @@ import static ezschedule.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import ezschedule.model.AddressBook;
+import ezschedule.model.Scheduler;
 import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
 import ezschedule.model.UserPrefs;
@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        expectedModel.setScheduler(new Scheduler());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

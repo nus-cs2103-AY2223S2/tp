@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import ezschedule.commons.exceptions.DataConversionException;
-import ezschedule.model.ReadOnlyAddressBook;
+import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.ReadOnlyUserPrefs;
 import ezschedule.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends SchedulerStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getSchedulerFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyScheduler> readScheduler() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveScheduler(ReadOnlyScheduler scheduler) throws IOException;
 
 }

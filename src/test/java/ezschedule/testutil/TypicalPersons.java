@@ -6,7 +6,7 @@ import java.util.List;
 
 import ezschedule.logic.commands.CommandTestUtil;
 import ezschedule.model.person.Person;
-import ezschedule.model.AddressBook;
+import ezschedule.model.Scheduler;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -52,8 +52,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Scheduler getTypicalAddressBook() {
+        Scheduler ab = new Scheduler();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

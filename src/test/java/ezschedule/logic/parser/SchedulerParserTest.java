@@ -2,7 +2,10 @@ package ezschedule.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ezschedule.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static ezschedule.testutil.Assert.assertThrows;
+import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,26 +13,24 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import ezschedule.commons.core.Messages;
-import ezschedule.logic.parser.exceptions.ParseException;
-import ezschedule.model.person.NameContainsKeywordsPredicate;
-import ezschedule.model.person.Person;
-import ezschedule.testutil.Assert;
-import ezschedule.testutil.EditPersonDescriptorBuilder;
-import ezschedule.testutil.PersonBuilder;
-import ezschedule.testutil.PersonUtil;
-import ezschedule.testutil.TypicalIndexes;
 import ezschedule.logic.commands.ClearCommand;
 import ezschedule.logic.commands.DeleteCommand;
 import ezschedule.logic.commands.EditCommand;
 import ezschedule.logic.commands.EditCommand.EditPersonDescriptor;
 import ezschedule.logic.commands.ExitCommand;
+import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.HelpCommand;
 import ezschedule.logic.commands.ListCommand;
+import ezschedule.logic.parser.exceptions.ParseException;
+import ezschedule.model.person.NameContainsKeywordsPredicate;
+import ezschedule.model.person.Person;
+import ezschedule.testutil.EditPersonDescriptorBuilder;
+import ezschedule.testutil.PersonBuilder;
+import ezschedule.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class SchedulerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SchedulerParser parser = new SchedulerParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -47,8 +48,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(TypicalIndexes.INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -56,8 +57,8 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + TypicalIndexes.INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -88,12 +89,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        Assert.assertThrows(ParseException.class, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
                 -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        Assert.assertThrows(ParseException.class, Messages.MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

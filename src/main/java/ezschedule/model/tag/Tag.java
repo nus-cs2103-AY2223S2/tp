@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import ezschedule.commons.util.AppUtil;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in the scheduler.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
