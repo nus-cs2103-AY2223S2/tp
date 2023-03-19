@@ -31,7 +31,7 @@
       </HBox>
       <FlowPane fx:id="tags">
             <padding>
-               <Insets bottom="2.0" top="2.0" />
+               <Insets bottom="2.0" top="5.0" />
             </padding></FlowPane>
       <Label fx:id="phone" prefHeight="17.0" prefWidth="329.0" styleClass="cell_small_label" text="\$phone">
             <padding>

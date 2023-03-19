@@ -151,7 +151,7 @@
     -fx-background-color: #DDF0DA;
     -fx-font-family: "System";
     -fx-font-size: 11.5pt;
-    -fx-text-fill: #a12c23;
+    -fx-text-fill: #820000;
 }
 
 .result-display .label {
@@ -335,8 +335,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #EDDBFF;
-    -fx-background-radius: 0;
+    -fx-background-color: #EEEEEE;
+    -fx-background-radius: 1;
 }
 
 #tags {
