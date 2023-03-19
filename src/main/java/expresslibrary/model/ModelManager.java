@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import expresslibrary.commons.core.GuiSettings;
 import expresslibrary.commons.core.LogsCenter;
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final ExpressLibrary expressLibrary;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Book> filteredBooks;
 
     /**
      * Initializes a ModelManager with the given expressLibrary and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.expressLibrary = new ExpressLibrary(expressLibrary);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.expressLibrary.getPersonList());
+        filteredBooks = new FilteredList<>(this.expressLibrary.getBookList());
     }
 
     public ModelManager() {
@@ -96,11 +99,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-        expressLibrary.removePerson(target);
-    }
-
-    @Override
     public void addPerson(Person person) {
         expressLibrary.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -111,6 +109,35 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         expressLibrary.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void deletePerson(Person target) {
+        expressLibrary.deletePerson(target);
+    }
+
+    @Override
+    public boolean hasBook(Book book) {
+        requireNonNull(book);
+        return expressLibrary.hasBook(book);
+    }
+
+    @Override
+    public void addBook(Book book) {
+        expressLibrary.addBook(book);
+        updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+    }
+
+    @Override
+    public void setBook(Book target, Book editedBook) {
+        requireNonNull(editedBook);
+
+        expressLibrary.setBook(target, editedBook);
+    }
+
+    @Override
+    public void deleteBook(Book key) {
+        expressLibrary.deleteBook(key);
     }
 
     // =========== Filtered Person List Accessors
@@ -132,6 +159,23 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    // =========== Filtered Book List Accessors
+    // =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Book} backed by the
+     * internal list of {@code versionedExpressLibrary}
+     */
+    @Override
+    public ObservableList<Book> getFilteredBookList() {
+        return filteredBooks;
+    }
+
+    @Override
+    public void updateFilteredBookList(Predicate<Book> predicate) {
+        requireNonNull(predicate);
+        filteredBooks.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -148,7 +192,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return expressLibrary.equals(other.expressLibrary)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredBooks.equals(other.filteredBooks);
     }
-
 }

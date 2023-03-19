@@ -7,6 +7,7 @@ import expresslibrary.logic.commands.CommandResult;
 import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.ReadOnlyExpressLibrary;
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -33,6 +34,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of books */
+    ObservableList<Book> getFilteredBookList();
 
     /**
      * Returns the user prefs' ExpressLibrary file path.

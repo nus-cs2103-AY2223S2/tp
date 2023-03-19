@@ -19,6 +19,7 @@ import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.Model;
 import expresslibrary.model.ReadOnlyExpressLibrary;
 import expresslibrary.model.ReadOnlyUserPrefs;
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 import expresslibrary.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
@@ -145,6 +146,36 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasBook(Book book) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBook(Book book) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBook(Book target, Book editedBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBook(Book target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Book> getFilteredBookList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBookList(Predicate<Book> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

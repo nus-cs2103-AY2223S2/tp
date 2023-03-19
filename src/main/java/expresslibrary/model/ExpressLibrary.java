@@ -20,21 +20,26 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
     private final UniqueBookList books;
 
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     * The 'unusual' code block below is a non-static initialization block,
+     * sometimes used to avoid duplication
+     * between constructors. See
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
+     * Note that non-static init blocks are not recommended to use. There are other
+     * ways to avoid duplication
+     * among constructors.
      */
     {
         persons = new UniquePersonList();
         books = new UniqueBookList();
     }
 
-    public ExpressLibrary() {}
+    public ExpressLibrary() {
+    }
 
     /**
-     * Creates an ExpressLibrary using the Persons and Books in the {@code toBeCopied}
+     * Creates an ExpressLibrary using the Persons and Books in the
+     * {@code toBeCopied}
      */
     public ExpressLibrary(ReadOnlyExpressLibrary toBeCopied) {
         this();
@@ -71,7 +76,8 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the express library.
+     * Returns true if a person with the same identity as {@code person} exists in
+     * the express library.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -87,9 +93,11 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with
+     * {@code editedPerson}.
      * {@code target} must exist in the express library.
-     * The person identity of {@code editedPerson} must not be the same as another existing person
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person
      * in the express library.
      */
     public void setPerson(Person target, Person editedPerson) {
@@ -102,14 +110,15 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
      * Removes {@code key} from this {@code ExpressLibrary}.
      * {@code key} must exist in the express library.
      */
-    public void removePerson(Person key) {
+    public void deletePerson(Person key) {
         persons.remove(key);
     }
 
     //// book-level operations
 
     /**
-     * Returns true if a book with the same identity as {@code book} exists in the express library.
+     * Returns true if a book with the same identity as {@code book} exists in the
+     * express library.
      */
     public boolean hasBook(Book book) {
         requireNonNull(book);
@@ -120,14 +129,15 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
      * Adds a book to the express library.
      * The book must not already exist in the express library.
      */
-    public void addBook(Book b) {
-        books.add(b);
+    public void addBook(Book book) {
+        books.add(book);
     }
 
     /**
      * Replaces the given book {@code target} in the list with {@code editedBook}.
      * {@code target} must exist in the express library.
-     * The book identity of {@code editedBook} must not be the same as another existing book in the express library.
+     * The book identity of {@code editedBook} must not be the same as another
+     * existing book in the express library.
      */
     public void setBook(Book target, Book editedBook) {
         requireNonNull(editedBook);
@@ -139,7 +149,7 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
      * Removes {@code key} from this {@code ExpressLibrary}.
      * {@code key} must exist in the express library.
      */
-    public void removeBook(Book key) {
+    public void deleteBook(Book key) {
         books.remove(key);
     }
     //// util methods
@@ -147,7 +157,7 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons | "
-            + books.asUnmodifiableObservableList().size() + " books";
+                + books.asUnmodifiableObservableList().size() + " books";
         // TODO: refine later
     }
 
@@ -155,6 +165,7 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+
     @Override
     public ObservableList<Book> getBookList() {
         return books.asUnmodifiableObservableList();
@@ -164,7 +175,7 @@ public class ExpressLibrary implements ReadOnlyExpressLibrary {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExpressLibrary // instanceof handles nulls
-                && persons.equals(((ExpressLibrary) other).persons));
+                        && persons.equals(((ExpressLibrary) other).persons));
     }
 
     @Override
