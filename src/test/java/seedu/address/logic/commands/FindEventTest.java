@@ -51,7 +51,7 @@ public class FindEventTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different event -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
