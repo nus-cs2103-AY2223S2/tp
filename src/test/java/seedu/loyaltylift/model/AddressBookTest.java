@@ -96,7 +96,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void setCustomer_ordersAssociationUpdated_Success() {
+    public void setCustomer_ordersAssociationUpdated_success() {
         addressBook.addCustomer(ALICE);
         addressBook.addOrder(ORDER_A); // belongs to ALICE
         addressBook.addOrder(ORDER_B); // belongs to ALICE
@@ -107,7 +107,7 @@ public class AddressBookTest {
     }
 
     @Test
-    public void deleteCustomer_ordersRemoved_Success() {
+    public void deleteCustomer_ordersRemoved_success() {
         addressBook.addCustomer(ALICE);
         addressBook.addOrder(ORDER_A); // belongs to ALICE
         addressBook.addOrder(ORDER_B); // belongs to ALICE
