@@ -193,9 +193,6 @@ public interface Model {
 
     void updateFilteredLocationList(Predicate<Location> predicate);
 
-    void linkFlightToLocations(Flight flight, Location departureLocation, Location arrivalLocation);
-
-    void unlinkFlightToLocations(Flight flight);
 
     // ================ Crew methods ==============================
 

@@ -1,80 +1,70 @@
 package seedu.address.logic.location.linklocation;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.flight.Flight;
-import seedu.address.model.flight.exceptions.FlightNotFoundException;
+import seedu.address.model.link.exceptions.LinkException;
+import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
-import seedu.address.model.location.exceptions.LocationNotFoundException;
-
 
 /**
  * The command that links departure and arrival locations to a flight.
  */
 public class LinkLocationCommand implements Command {
-    /**
-     * The flight which the location is to be linked to.
-     */
-    private final String flightId;
+    private static final String FLIGHT_NOT_FOUND_EXCEPTION =
+            "Flight with id %s is not found.";
+    private static final String LOCATION_NOT_FOUND_EXCEPTION =
+            "Location with id %s is not found.";
+    private static final String DISPLAY_MESSAGE =
+            "Linked %s to flight %s.";
 
     /**
-     * The arrival location to link flight with.
+     * The id of the location
      */
-    private final String arrivalLocationId;
+    private final Map<FlightLocationType, Location> locations;
 
     /**
-     * The departure location to link flight with.
+     * The id of the flight
      */
-    private final String departureLocationId;
-
+    private final Flight flight;
 
     /**
-     * Creates a command to link location to a flight.
-     * @param flightId the id of the flight
-     * @param arrivalLocationId the id of the arrival location
-     * @param departureLocationId the id of the departure location
+     * Creates a new link command.
+     *
+     * @param locations the id of the locations.
+     * @param flight the id of the flight.
      */
-    public LinkLocationCommand(String flightId, String departureLocationId, String arrivalLocationId) {
-        this.flightId = flightId;
-        this.departureLocationId = departureLocationId;
-        this.arrivalLocationId = arrivalLocationId;
+    public LinkLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
+        this.locations = locations;
+        this.flight = flight;
+    }
+
+    @Override
+    public String toString() {
+        String result = locations.entrySet()
+                .stream()
+                .map((entry) -> String.format(
+                        "%s: %s",
+                        entry.getKey(),
+                        entry.getValue().getName()))
+                .collect(Collectors.joining(","));
+        return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Flight flightToLink;
         try {
-            flightToLink = model.getFlightById(flightId);
-        } catch (FlightNotFoundException e) {
-            return new CommandResult(String.format("Flight id %s not found.", flightId));
+            for (Map.Entry<FlightLocationType, Location> entry : locations.entrySet()) {
+                flight.locationLink.putRevolve(entry.getKey(), entry.getValue());
+            }
+        } catch (LinkException e) {
+            throw new CommandException(e.getMessage());
         }
-
-        Location departureLocationToLink;
-        try {
-            departureLocationToLink = model.getLocationById(departureLocationId);
-        } catch (LocationNotFoundException e) {
-            return new CommandResult(String.format("Departure location id %s not found.", departureLocationId));
-        }
-
-        Location arrivalLocationToLink;
-        try {
-            arrivalLocationToLink = model.getLocationById(arrivalLocationId);
-        } catch (LocationNotFoundException e) {
-            return new CommandResult(String.format("Arrival location id %s not found.", arrivalLocationId));
-        }
-
-        if (departureLocationToLink.equals(arrivalLocationToLink)) {
-            return new CommandResult("Departure and arrival locations cannot be the same.");
-        }
-
-        model.linkFlightToLocations(flightToLink, departureLocationToLink, arrivalLocationToLink);
-        return new CommandResult(
-                String.format("Linked departure location %s and arrival location %s to flight %s.",
-                        departureLocationId,
-                        arrivalLocationId,
-                        flightId)
-        );
+        return new CommandResult(this.toString());
     }
 }

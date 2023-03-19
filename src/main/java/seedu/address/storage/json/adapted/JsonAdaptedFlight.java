@@ -15,6 +15,7 @@ import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.Link;
 import seedu.address.model.link.exceptions.LinkException;
+import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
 import seedu.address.model.pilot.Pilot;
@@ -39,18 +40,10 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
      */
     private final String code;
 
-    /**
-     * Location related attributes.
-     */
-    private boolean hasLinkedLocations;
-    private String departureLocationId;
-    private String departureLocationName;
-    private String arrivalLocationId;
-    private String arrivalLocationName;
-
     private Map<FlightPilotType, Deque<String>> pilotLink;
     private Map<FlightCrewType, Deque<String>> crewLink;
     private Map<FlightPlaneType, Deque<String>> planeLink;
+    private Map<FlightLocationType, Deque<String>> locationLink;
 
     /**
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
@@ -58,38 +51,26 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
      *
      * @param id                    The id of the flight.
      * @param code                  The name of the flight.
-     * @param hasLinkedLocations    Whether the flight is linked to locations.
-     * @param departureLocationId   The id of the departure location.
-     * @param departureLocationName The name of the departure location.
-     * @param arrivalLocationId     The id of the arrival location.
-     * @param arrivalLocationName   The name of the arrival location.
      * @param pilotLink             The link between pilot(s) and the flight
      * @param crewLink              The link between crew(s) and the flight
      * @param planeLink             The link between plane and the flight
+     * @param locationLink          The link between location(s) and the flight
      */
     @JsonCreator
     public JsonAdaptedFlight(
             @JsonProperty("id") String id,
             @JsonProperty("code") String code,
-            @JsonProperty("hasLinkedLocations") boolean hasLinkedLocations,
-            @JsonProperty("departureLocationId") String departureLocationId,
-            @JsonProperty("departureLocationName") String departureLocationName,
-            @JsonProperty("arrivalLocationId") String arrivalLocationId,
-            @JsonProperty("arrivalLocationName") String arrivalLocationName,
             @JsonProperty("pilotLink") Map<FlightPilotType, Deque<String>> pilotLink,
             @JsonProperty("crewLink") Map<FlightCrewType, Deque<String>> crewLink,
-            @JsonProperty("planeLink") Map<FlightPlaneType, Deque<String>> planeLink
+            @JsonProperty("planeLink") Map<FlightPlaneType, Deque<String>> planeLink,
+            @JsonProperty("locationLink") Map<FlightLocationType, Deque<String>> locationLink
     ) {
         this.id = id;
         this.code = code;
-        this.hasLinkedLocations = hasLinkedLocations;
-        this.departureLocationId = departureLocationId;
-        this.departureLocationName = departureLocationName;
-        this.arrivalLocationId = arrivalLocationId;
-        this.arrivalLocationName = arrivalLocationName;
         this.pilotLink = pilotLink;
         this.crewLink = crewLink;
         this.planeLink = planeLink;
+        this.locationLink = locationLink;
     }
 
     /**
@@ -103,16 +84,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         this.pilotLink = flight.pilotLink.getCopiedContents();
         this.crewLink = flight.crewLink.getCopiedContents();
         this.planeLink = flight.planeLink.getCopiedContents();
-
-        if (flight.hasLinkedLocations()) {
-            this.hasLinkedLocations = true;
-            this.departureLocationName = flight.getDepartureLocationName();
-            this.departureLocationId = flight.getDepartureLocationId();
-            this.arrivalLocationName = flight.getDepartureLocationName();
-            this.arrivalLocationId = flight.getArrivalLocationId();
-        } else {
-            this.hasLinkedLocations = false;
-        }
+        this.locationLink = flight.locationLink.getCopiedContents();
     }
 
     @Override
@@ -148,27 +120,15 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
                                     .getLazy(Model.class)
                                     .map(Model::getPlaneManager)
                     );
-            flight = new Flight(id, code, linkPilot, linkCrew, linkPlane);
+            Link<FlightLocationType, Location, ReadOnlyItemManager<Location>> linkLocation =
+                    new Link<>(Location.SHAPE, locationLink,
+                            GetUtil
+                                    .getLazy(Model.class)
+                                    .map(Model::getLocationManager)
+                    );
+            flight = new Flight(id, code, linkPilot, linkCrew, linkPlane, linkLocation);
         } catch (LinkException e) {
             throw new IllegalValueException(e.getMessage());
-        }
-        if (hasLinkedLocations) {
-            if (departureLocationId == null || departureLocationName == null
-                        || arrivalLocationId == null || arrivalLocationName == null) {
-                throw new IllegalValueException(
-                        String.format(MISSING_FIELD_MESSAGE_FORMAT, "locations")
-                );
-            }
-            Location departureLocation = new Location(
-                    departureLocationId,
-                    departureLocationName
-            );
-            Location arrivalLocation = new Location(
-                    arrivalLocationId,
-                    arrivalLocationName
-            );
-            flight.linkDepartureLocation(departureLocation);
-            flight.linkArrivalLocation(arrivalLocation);
         }
 
         return flight;

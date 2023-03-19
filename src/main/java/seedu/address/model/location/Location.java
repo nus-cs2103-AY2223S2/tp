@@ -1,6 +1,7 @@
 package seedu.address.model.location;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.model.item.Item;
@@ -10,6 +11,14 @@ import seedu.address.model.item.Item;
  *  arrive at.
  */
 public class Location implements Item {
+
+    /**
+     * The shape of the link between location and flight
+     */
+    public static final Map<FlightLocationType, Integer> SHAPE =
+            Map.of(FlightLocationType.LOCATION_DEPARTURE, 1,
+                    FlightLocationType.LOCATION_ARRIVAL, 1
+            );
     private static final String NAME_STRING = "Name";
     private static final String ID_STRING = "ID";
     private final String name;
