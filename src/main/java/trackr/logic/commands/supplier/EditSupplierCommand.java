@@ -6,7 +6,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -85,7 +85,7 @@ public class EditSupplierCommand extends Command {
         }
 
         model.setSupplier(supplierToEdit, editedSupplier);
-        model.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_SUPPLIER_SUCCESS, editedSupplier));
     }
 

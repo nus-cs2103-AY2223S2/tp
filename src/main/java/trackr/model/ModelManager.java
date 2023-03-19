@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
+import trackr.model.item.Item;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -89,6 +90,78 @@ public class ModelManager implements Model {
         userPrefs.setTrackrFilePath(trackrFilePath);
     }
 
+    // =================================================== Item =======================================================
+
+    @Override
+    public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
+        switch (modelEnum) {
+        case SUPPLIER:
+            return hasSupplier((Supplier) item);
+        case TASK:
+            return hasTask((Task) item);
+        case ORDER:
+            return hasOrder((Order) item);
+        case CUSTOMER:
+        default:
+            return false;
+        }
+    }
+
+    @Override
+    public <T extends Item> void deleteItem(T item, ModelEnum modelEnum) {
+        switch (modelEnum) {
+        case SUPPLIER:
+            deleteSupplier((Supplier) item);
+            break;
+        case TASK:
+            deleteTask((Task) item);
+            break;
+        case ORDER:
+            deleteOrder((Order) item);
+            break;
+        case CUSTOMER:
+        default:
+            break;
+        }
+    }
+
+    @Override
+    public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
+        switch (modelEnum) {
+        case SUPPLIER:
+            addSupplier((Supplier) item);
+            break;
+        case TASK:
+            addTask((Task) item);
+            break;
+        case ORDER:
+            addOrder((Order) item);
+            break;
+        case CUSTOMER:
+        default:
+            break;
+        }
+    }
+
+    @Override
+    public <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum) {
+        switch (modelEnum) {
+        case SUPPLIER:
+            setSupplier((Supplier) item, (Supplier) itemEdited);
+            break;
+        case TASK:
+            setTask((Task) item, (Task) itemEdited);
+            break;
+        case ORDER:
+            setOrder((Order) item, (Order) itemEdited);
+            break;
+        case CUSTOMER:
+        default:
+            break;
+        }
+    }
+
+
     //=========== AddressBook - Supplier ==============================================================================
 
     @Override
@@ -115,7 +188,7 @@ public class ModelManager implements Model {
     @Override
     public void addSupplier(Supplier supplier) {
         supplierList.addItem(supplier);
-        updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
@@ -168,7 +241,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         taskList.addItem(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
@@ -221,7 +294,7 @@ public class ModelManager implements Model {
     @Override
     public void addOrder(Order order) {
         orderList.addOrder(order);
-        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override

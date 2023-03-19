@@ -1,7 +1,7 @@
 package trackr.logic.commands.supplier;
 
 import static java.util.Objects.requireNonNull;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import trackr.logic.commands.Command;
 import trackr.logic.commands.CommandResult;
@@ -20,7 +20,7 @@ public class ListSupplierCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

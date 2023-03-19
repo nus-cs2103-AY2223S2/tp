@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
+import trackr.model.item.Item;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -13,20 +14,11 @@ import trackr.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Supplier> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
-
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<Order> PREDICATE_SHOW_ALL_ORDERS = unused -> true;
+    Predicate PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
     // ================================================= User Prefs =================================================
 
@@ -59,6 +51,16 @@ public interface Model {
      * Sets the user prefs' trackr file path.
      */
     void setTrackrFilePath(Path trackrFilePath);
+
+    // =================================================== Item =======================================================
+
+    <T extends Item> boolean hasItem(T item, ModelEnum modelEnum);
+
+    <T extends Item> void deleteItem(T item, ModelEnum modelEnum);
+
+    <T extends Item> void addItem(T item, ModelEnum modelEnum);
+
+    <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum);
 
     // =================================================== Supplier ===================================================
 

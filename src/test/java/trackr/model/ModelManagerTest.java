@@ -3,8 +3,7 @@ package trackr.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalOrders.CHEESE_CAKES;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
@@ -182,7 +181,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
 
         // different filteredTaskList -> returns false
         String[] taskKeywords = SORT_INVENTORY_N.getTaskName().getName().split("\\s+");
@@ -192,7 +191,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
 
         // different addressBook and different taskList -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTaskList,
@@ -208,8 +207,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

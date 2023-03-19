@@ -1,7 +1,7 @@
 package trackr.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_ORDERS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import trackr.logic.commands.Command;
 import trackr.logic.commands.CommandResult;
@@ -20,7 +20,7 @@ public class ListOrderCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

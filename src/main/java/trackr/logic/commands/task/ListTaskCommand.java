@@ -1,7 +1,7 @@
 package trackr.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import trackr.logic.commands.Command;
 import trackr.logic.commands.CommandResult;
@@ -22,7 +22,7 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

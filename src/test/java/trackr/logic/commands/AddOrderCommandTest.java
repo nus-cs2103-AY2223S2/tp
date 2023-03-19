@@ -86,7 +86,7 @@ public class AddOrderCommandTest {
         @Override
         public boolean hasOrder(Order order) {
             requireNonNull(order);
-            return this.order.isSameOrder(order);
+            return this.order.isSameItem(order);
         }
     }
 
@@ -99,7 +99,7 @@ public class AddOrderCommandTest {
         @Override
         public boolean hasOrder(Order order) {
             requireNonNull(order);
-            return ordersAdded.stream().anyMatch(order::isSameOrder);
+            return ordersAdded.stream().anyMatch(order::isSameItem);
         }
 
         @Override

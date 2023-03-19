@@ -5,7 +5,7 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 
@@ -75,7 +75,7 @@ public class EditTaskCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

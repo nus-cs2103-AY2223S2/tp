@@ -8,7 +8,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_ORDERS;
+import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 
@@ -83,12 +83,12 @@ public class EditOrderCommand extends Command {
         Order orderToEdit = lastShownOrderList.get(index.getZeroBased());
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor);
 
-        if (!orderToEdit.isSameOrder(editedOrder) && model.hasOrder(editedOrder)) {
+        if (!orderToEdit.isSameItem(editedOrder) && model.hasOrder(editedOrder)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
         model.setOrder(orderToEdit, editedOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
     }
 

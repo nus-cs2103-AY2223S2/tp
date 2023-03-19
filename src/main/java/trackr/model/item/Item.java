@@ -1,14 +1,20 @@
 package trackr.model.item;
 
+import trackr.model.ModelEnum;
+
 /**
  * Generic class that all items extend from.
  */
 public abstract class Item {
-    protected String itemType;
+    protected ModelEnum modelEnum;
 
-    public Item(String itemType) {
-        this.itemType = itemType;
+    public Item(ModelEnum modelEnum) {
+        this.modelEnum = modelEnum;
     }
 
     public abstract boolean isSameItem(Item otherItem);
+
+    public ModelEnum getModelEnum() {
+        return modelEnum;
+    }
 }
