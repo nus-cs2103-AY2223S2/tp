@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -19,33 +21,47 @@ public class Customer {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final CustomerType customerType;
 
     // Data fields
     private final Address address;
     private final Marked marked;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final Points points;
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(customerType, name, phone, email, address, tags);
+        this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.points = new Points(0, 0);
         this.marked = new Marked(false);
     }
 
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags, boolean marked) {
-        requireAllNonNull(name, phone, email, address, tags, marked);
+    /**
+     * Every field must be present and not null.
+     */
+    public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                    Points points, Marked marked) {
+        requireAllNonNull(name, phone, email, address, tags, points);
+        this.customerType = customerType;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.marked = new Marked(marked);
+        this.points = points;
+        this.marked = marked;
+    }
+
+    public CustomerType getCustomerType() {
+        return customerType;
     }
 
     public Name getName() {
@@ -64,7 +80,9 @@ public class Customer {
         return address;
     }
 
-    public Marked getMarked() { return marked;}
+    public Marked getMarked() {
+        return marked;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -72,6 +90,10 @@ public class Customer {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Points getPoints() {
+        return points;
     }
 
     /**
@@ -106,25 +128,31 @@ public class Customer {
                 && otherCustomer.getPhone().equals(getPhone())
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getAddress().equals(getAddress())
-                && otherCustomer.getTags().equals(getTags());
+                && otherCustomer.getTags().equals(getTags())
+                && otherCustomer.getCustomerType().equals(getCustomerType())
+                && otherCustomer.getPoints().equals(getPoints());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(customerType, name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getCustomerType())
+                .append(": ")
+                .append(getName())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Points: ")
+                .append(getPoints())
                 .append("; Bookmarked: ")
                 .append(getMarked());
 

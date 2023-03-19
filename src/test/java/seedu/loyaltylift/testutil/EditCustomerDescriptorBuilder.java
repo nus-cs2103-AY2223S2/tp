@@ -6,10 +6,11 @@ import java.util.stream.Stream;
 
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand.EditCustomerDescriptor;
-import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.customer.Name;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.tag.Tag;
 
@@ -38,6 +39,15 @@ public class EditCustomerDescriptorBuilder {
         descriptor.setEmail(customer.getEmail());
         descriptor.setAddress(customer.getAddress());
         descriptor.setTags(customer.getTags());
+        descriptor.setCustomerType(customer.getCustomerType());
+    }
+
+    /**
+     * Sets the {@code CustomerType} of the {@code EditCustomerDescriptor} that we are building.
+     */
+    public EditCustomerDescriptorBuilder withCustomerType(CustomerType customerType) {
+        descriptor.setCustomerType(customerType);
+        return this;
     }
 
     /**

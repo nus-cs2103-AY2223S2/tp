@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.ui.Badge;
 import seedu.loyaltylift.ui.UiPart;
@@ -34,10 +33,9 @@ public class OrderInfo extends UiPart<ScrollPane> {
     public OrderInfo(Order order) {
         super(FXML);
 
-        orderName.setText(order.getName().name.toUpperCase());
+        orderName.setText(order.getName().fullName.toUpperCase());
 
-        String status = order.getStatus().toString();
-        Badge orderStatusBadge = new Badge(Color.valueOf("#4F46E5"), Color.WHITE, status);
+        Badge orderStatusBadge = Badge.createOrderStatusBadge(order.getStatus());
         orderStatusPlaceholder.getChildren().add(orderStatusBadge.getRoot());
 
         // General Info

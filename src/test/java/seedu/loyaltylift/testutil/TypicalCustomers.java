@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 
 /**
  * A utility class containing a list of {@code Customer} objects to be used in tests.
@@ -30,7 +30,7 @@ public class TypicalCustomers {
     public static final Customer BENSON = new CustomerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withPoints(0, 0).withMarked(true).build();
     public static final Customer CARL = new CustomerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -55,22 +55,19 @@ public class TypicalCustomers {
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    // Manually added - Enterprises
+    public static final Customer CHOCOLATE_FACTORY = new CustomerBuilder().withName("The Chocolate Factory")
+            .withPhone("69920123").withEmail("chocofactory@enterprise.com").withAddress("30 Chocolate Street, #01-02")
+            .withCustomerType(CustomerType.ENTERPRISE).build();
+
+    public static final Customer SLY_FOX = new CustomerBuilder().withName("The Sly Fox")
+            .withPhone("60012421").withEmail("slyfox@enterprise.com").withAddress("30 Wolf Street, #01-33")
+            .withCustomerType(CustomerType.ENTERPRISE).build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalCustomers() {} // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical customers.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Customer customer : getTypicalCustomers()) {
-            ab.addCustomer(customer);
-        }
-        return ab;
-    }
-
     public static List<Customer> getTypicalCustomers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(
+                Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, CHOCOLATE_FACTORY, SLY_FOX));
     }
 }

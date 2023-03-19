@@ -4,7 +4,7 @@ package seedu.loyaltylift.model.customer;
  * Represents a Customer's bookmarked status in the address book.
  */
 public class Marked {
-    private final boolean marked;
+    public final boolean value;
 
     /**
      * Constructs a {@code Marked}.
@@ -12,18 +12,18 @@ public class Marked {
      * @param marked A boolean indicating whether the customer is bookmarked or not.
      */
     public Marked(boolean marked) {
-        this.marked = marked;
+        this.value = marked;
     }
 
     @Override
     public String toString() {
-        return marked ? "Yes" : "No";
+        return value ? "Yes" : "No";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Marked // instanceof handles nulls
-                && marked == ((Marked) other).marked); // state check
+                && value == ((Marked) other).value); // state check
     }
 }

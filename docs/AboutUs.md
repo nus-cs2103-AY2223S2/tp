@@ -19,16 +19,16 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 
 ### Ryo Hilmawan
 
-<img src="images/CloudHill.png" width="200px">
+<img src="images/cloudhill.png" width="200px">
 
 [[github](http://github.com/CloudHill)]
 [[portfolio](team/CloudHill.md)]
 
 * Role: Developer
 
-### Dawson Lui
+### Dawson Nui
 
-<img src="images/Infrix.png" width="200px">
+<img src="images/infrix.png" width="200px">
 
 [[github](http://github.com/Infrix)]
 [[portfolio](team/Infrix.md)]
@@ -37,7 +37,7 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 
 ### Javon Teo
 
-<img src="images/JavonTeo.png" width="200px">
+<img src="images/javonteo.png" width="200px">
 
 [[github](http://github.com/JavonTeo)]
 [[portfolio](team/JavonTeo.md)]
@@ -46,7 +46,7 @@ as a graded component in our module, [CS2103T](https://nusmods.com/modules/CS210
 
 ### Goh Jun Yi
 
-<img src="images/Junyi00.png" width="200px">
+<img src="images/junyi00.png" width="200px">
 
 [[github](http://github.com/Junyi00)]
 [[portfolio](team/Junyi00.md)]

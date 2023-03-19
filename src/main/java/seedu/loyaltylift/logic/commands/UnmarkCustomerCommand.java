@@ -10,11 +10,14 @@ import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
-import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
@@ -62,13 +65,16 @@ public class UnmarkCustomerCommand extends Command {
     private static Customer createUnmarkedCustomer(Customer customerToUnmark) {
         assert customerToUnmark != null;
 
+        CustomerType customerType = customerToUnmark.getCustomerType();
         Name name = customerToUnmark.getName();
         Phone phone = customerToUnmark.getPhone();
         Email email = customerToUnmark.getEmail();
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
+        Points points = customerToUnmark.getPoints();
+        Marked marked = new Marked(false);
 
-        return new Customer(name, phone, email, address, tags, false);
+        return new Customer(customerType, name, phone, email, address, tags, points, marked);
     }
 
     @Override

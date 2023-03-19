@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.showCustomerAtIndex;
-import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +18,15 @@ import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
-import seedu.loyaltylift.model.customer.Address;
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
-import seedu.loyaltylift.model.customer.Name;
+import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
-
-import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -35,12 +38,15 @@ public class UnmarkCustomerCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        CustomerType customerType = customerToUnmark.getCustomerType();
         Name name = customerToUnmark.getName();
         Phone phone = customerToUnmark.getPhone();
         Email email = customerToUnmark.getEmail();
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
-        Customer unmarkedCustomer = new Customer(name, phone, email, address, tags, false);
+        Points points = customerToUnmark.getPoints();
+        Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
+                new Marked(false));
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
 
         String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);
@@ -64,12 +70,15 @@ public class UnmarkCustomerCommandTest {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
 
         Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST_CUSTOMER.getZeroBased());
+        CustomerType customerType = customerToUnmark.getCustomerType();
         Name name = customerToUnmark.getName();
         Phone phone = customerToUnmark.getPhone();
         Email email = customerToUnmark.getEmail();
         Address address = customerToUnmark.getAddress();
         Set<Tag> tags = customerToUnmark.getTags();
-        Customer unmarkedCustomer = new Customer(name, phone, email, address, tags, false);
+        Points points = customerToUnmark.getPoints();
+        Customer unmarkedCustomer = new Customer(customerType, name, phone, email, address, tags, points,
+                new Marked(false));
         UnmarkCustomerCommand unmarkCustomerCommand = new UnmarkCustomerCommand(INDEX_FIRST_CUSTOMER);
 
         String expectedMessage = String.format(UnmarkCustomerCommand.MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer);

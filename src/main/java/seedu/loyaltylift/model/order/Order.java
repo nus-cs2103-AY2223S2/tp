@@ -2,8 +2,11 @@ package seedu.loyaltylift.model.order;
 
 import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
+
+import seedu.loyaltylift.model.attribute.Address;
+import seedu.loyaltylift.model.attribute.Name;
 
 /**
  * Represents an Order in the address book.
@@ -21,7 +24,7 @@ public class Order {
      * Order constructor with created date set to today.
      */
     public Order(Name name, Quantity quantity, Status status, Address address) {
-        this(name, quantity, status, address, new CreatedDate(new Date()));
+        this(name, quantity, status, address, new CreatedDate(LocalDate.now()));
     }
 
     /**
@@ -55,7 +58,6 @@ public class Order {
     public CreatedDate getCreatedDate() {
         return createdDate;
     }
-
 
     /**
      * Returns true if both orders have the same name.

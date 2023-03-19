@@ -7,6 +7,7 @@ import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
 import static seedu.loyaltylift.testutil.TypicalCustomers.BENSON;
+import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_A;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -83,7 +84,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasCustomern_customerInAddressBook_returnsTrue() {
+    public void hasCustomer_customerInAddressBook_returnsTrue() {
         modelManager.addCustomer(ALICE);
         assertTrue(modelManager.hasCustomer(ALICE));
     }
@@ -91,6 +92,27 @@ public class ModelManagerTest {
     @Test
     public void getFilteredCustomerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCustomerList().remove(0));
+    }
+
+    @Test
+    public void hasOrder_nullOrder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasOrder(null));
+    }
+
+    @Test
+    public void hasOrder_orderNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasOrder(ORDER_A));
+    }
+
+    @Test
+    public void hasOrder_orderInAddressBook_returnsTrue() {
+        modelManager.addOrder(ORDER_A);
+        assertTrue(modelManager.hasOrder(ORDER_A));
+    }
+
+    @Test
+    public void getFilteredOrderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOrderList().remove(0));
     }
 
     @Test
