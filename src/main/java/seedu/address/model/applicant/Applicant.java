@@ -7,6 +7,9 @@ import java.util.Objects;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Applicant {
+    public static final String MESSAGE_CONSTRAINTS = "Applicants names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+
     private final Name name;
 
     /**
