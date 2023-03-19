@@ -82,7 +82,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + REMARK_DESC_AMY + SUBJECT_DESC_AMY + SCHEDULE_DESC_AMY;
+                + ADDRESS_DESC_AMY + SUBJECT_DESC_AMY + SCHEDULE_DESC_AMY;
         Tutee expectedTutee = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTutee(expectedTutee);
