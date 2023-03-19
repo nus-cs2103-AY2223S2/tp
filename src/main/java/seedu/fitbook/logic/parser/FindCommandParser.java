@@ -137,7 +137,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             ArgumentMultimap newArgMultimap =
                     ArgumentTokenizer.tokenize(matchedPrefixes.get(k), PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                             PREFIX_ADDRESS, PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE,
-                            PREFIX_TAG);
+                            PREFIX_TAG, PREFIX_GOAL);
             String testCommand = matchedPrefixes.get(k);
 
             if (testCommand.substring(testCommand.indexOf('/') + 1).isEmpty()) {
@@ -149,7 +149,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                         String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
             }
             if (!areAvailablePrefixes(newArgMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_WEIGHT,
-                    PREFIX_GENDER, PREFIX_EMAIL, PREFIX_TAG, PREFIX_APPOINTMENT, PREFIX_CALORIE)) {
+                    PREFIX_GENDER, PREFIX_EMAIL, PREFIX_TAG, PREFIX_APPOINTMENT, PREFIX_CALORIE, PREFIX_GOAL)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, FindCommand.PREFIX_USAGE));
             }
         }
