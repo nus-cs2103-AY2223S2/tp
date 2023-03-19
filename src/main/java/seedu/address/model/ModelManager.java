@@ -320,19 +320,6 @@ public class ModelManager implements Model {
         filteredLocations.setPredicate(predicate);
     }
 
-    @Override
-    public void linkFlightToLocations(Flight flight, Location departureLocation, Location arrivalLocation) {
-        requireAllNonNull(flight, departureLocation, arrivalLocation);
-        flight.linkDepartureLocation(departureLocation);
-        flight.linkArrivalLocation(arrivalLocation);
-    }
-
-    @Override
-    public void unlinkFlightToLocations(Flight flight) {
-        requireNonNull(flight);
-        flight.unLinkArrivalLocation();
-        flight.unLinkDepartureLocation();
-    }
 
     //=========== Crew ========================================================
 
@@ -517,16 +504,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedFlight);
         flightManager.setItem(target, editedFlight);
     };
-
-    @Override
-    public void linkPlane(Flight flight, Plane plane) {
-        flight.linkPlane(plane);
-    }
-
-    @Override
-    public void unlinkPlane(Flight flight) {
-        flight.unlinkPlane();
-    }
 
     @Override
     public ObservableList<Flight> getFilteredFlightList() {

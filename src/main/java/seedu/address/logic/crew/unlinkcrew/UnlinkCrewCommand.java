@@ -1,4 +1,4 @@
-package seedu.address.logic.location.linklocation;
+package seedu.address.logic.crew.unlinkcrew;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -7,26 +7,27 @@ import seedu.address.logic.core.Command;
 import seedu.address.logic.core.CommandResult;
 import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.crew.Crew;
+import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
-import seedu.address.model.location.FlightLocationType;
-import seedu.address.model.location.Location;
+
 
 /**
- * The command that links locations to a flight.
+ * The command that unlinks a crew from a flight
  */
-public class LinkLocationCommand implements Command {
+public class UnlinkCrewCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
-    private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with id %s is not found.";
+    private static final String CREW_NOT_FOUND_EXCEPTION =
+            "Crew with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
-            "Linked %s to flight %s.";
+            "Unlinked %s from flight %s.";
 
     /**
-     * The id of the location
+     * The id of the crews
      */
-    private final Map<FlightLocationType, Location> locations;
+    private final Map<FlightCrewType, Crew> crews;
 
     /**
      * The id of the flight
@@ -34,19 +35,19 @@ public class LinkLocationCommand implements Command {
     private final Flight flight;
 
     /**
-     * Creates a new link command.
+     * Creates a new unlink command.
      *
-     * @param locations the id of the locations.
+     * @param crews the id of the crews.
      * @param flight the id of the flight.
      */
-    public LinkLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
-        this.locations = locations;
+    public UnlinkCrewCommand(Map<FlightCrewType, Crew> crews, Flight flight) {
+        this.crews = crews;
         this.flight = flight;
     }
 
     @Override
     public String toString() {
-        String result = locations.entrySet()
+        String result = crews.entrySet()
                 .stream()
                 .map((entry) -> String.format(
                         "%s: %s",
@@ -59,8 +60,8 @@ public class LinkLocationCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
-            for (Map.Entry<FlightLocationType, Location> entry : locations.entrySet()) {
-                flight.locationLink.putRevolve(entry.getKey(), entry.getValue());
+            for (Map.Entry<FlightCrewType, Crew> entry : crews.entrySet()) {
+                flight.crewLink.delete(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

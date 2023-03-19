@@ -1,4 +1,4 @@
-package seedu.address.logic.location.linklocation;
+package seedu.address.logic.plane.linkplane;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,24 +9,25 @@ import seedu.address.logic.core.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
-import seedu.address.model.location.FlightLocationType;
-import seedu.address.model.location.Location;
+import seedu.address.model.plane.FlightPlaneType;
+import seedu.address.model.plane.Plane;
+
 
 /**
- * The command that links locations to a flight.
+ * The command that links a plane to a flight
  */
-public class LinkLocationCommand implements Command {
+public class LinkPlaneCommand implements Command {
     private static final String FLIGHT_NOT_FOUND_EXCEPTION =
             "Flight with id %s is not found.";
-    private static final String LOCATION_NOT_FOUND_EXCEPTION =
-            "Location with id %s is not found.";
+    private static final String PLANE_NOT_FOUND_EXCEPTION =
+            "Plane with id %s is not found.";
     private static final String DISPLAY_MESSAGE =
             "Linked %s to flight %s.";
 
     /**
-     * The id of the location
+     * The id of the plane
      */
-    private final Map<FlightLocationType, Location> locations;
+    private final Map<FlightPlaneType, Plane> planes;
 
     /**
      * The id of the flight
@@ -36,22 +37,22 @@ public class LinkLocationCommand implements Command {
     /**
      * Creates a new link command.
      *
-     * @param locations the id of the locations.
+     * @param planes the id of the planes.
      * @param flight the id of the flight.
      */
-    public LinkLocationCommand(Map<FlightLocationType, Location> locations, Flight flight) {
-        this.locations = locations;
+    public LinkPlaneCommand(Map<FlightPlaneType, Plane> planes, Flight flight) {
+        this.planes = planes;
         this.flight = flight;
     }
 
     @Override
     public String toString() {
-        String result = locations.entrySet()
+        String result = planes.entrySet()
                 .stream()
                 .map((entry) -> String.format(
                         "%s: %s",
                         entry.getKey(),
-                        entry.getValue().getName()))
+                        entry.getValue().getModel()))
                 .collect(Collectors.joining(","));
         return String.format(DISPLAY_MESSAGE, result, flight.getCode());
     }
@@ -59,8 +60,8 @@ public class LinkLocationCommand implements Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
-            for (Map.Entry<FlightLocationType, Location> entry : locations.entrySet()) {
-                flight.locationLink.putRevolve(entry.getKey(), entry.getValue());
+            for (Map.Entry<FlightPlaneType, Plane> entry : planes.entrySet()) {
+                flight.planeLink.putRevolve(entry.getKey(), entry.getValue());
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

@@ -10,6 +10,10 @@ import seedu.address.model.item.Item;
  * Represents a Pilot in the Wingman app.
  */
 public class Pilot implements Item {
+
+    /**
+     * The shape of the link between pilot and flight
+     */
     public static final Map<FlightPilotType, Integer> SHAPE =
             Map.of(FlightPilotType.PILOT_FLYING, 1,
                     FlightPilotType.PILOT_MONITORING, 1
@@ -25,9 +29,7 @@ public class Pilot implements Item {
     private static final String RANK_STRING = "Rank";
 
     private static final String FLIGHT_HR_STRING = "Flight Hour";
-    /**
-     * The shape of the link to the pilot.
-     */
+
     private final String name;
 
     private final int age;

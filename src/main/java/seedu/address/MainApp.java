@@ -63,6 +63,9 @@ public class MainApp extends Application {
         configureServiceLocator();
     }
 
+    /**
+     * Initialises respective fields from storage
+     */
     private void initFields() {
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
@@ -75,6 +78,11 @@ public class MainApp extends Application {
         ui = new UiManager(logic);
     }
 
+    /**
+     * To allow for convenient access to the services in the specified packages,
+     * without disrupting effective isolation between classes
+     *
+     */
     private void configureServiceLocator() {
         GetUtil.put(Config.class, config);
         GetUtil.put(Storage.class, storage);
@@ -82,6 +90,13 @@ public class MainApp extends Application {
         GetUtil.put(Logic.class, logic);
     }
 
+    /**
+     * Read a specified manager from data
+     * @param managerSupplier the data from which the manager is read
+     * @param managerName name of the manager
+     * @param <T> the type of object that the manager manages
+     * @return a read only version of the item manager
+     */
     private <T extends Item> ReadOnlyItemManager<T> readManager(
         Callable<Optional<? extends ReadOnlyItemManager<T>>> managerSupplier,
         String managerName
@@ -131,6 +146,12 @@ public class MainApp extends Application {
             crewManager, planeManager, flightManager);
     }
 
+    /**
+     * Initialises storages for specified object types and user preferences
+     * @param userPrefs user preferences
+     * @param userPrefsStorage storage destination for user preferences
+     * @return StorageManager object that manages the storages for specified object types and user preferences
+     */
     private Storage initStorage(UserPrefs userPrefs,
         UserPrefsStorage userPrefsStorage) {
         ItemStorage<Pilot> pilotStorage =
