@@ -22,6 +22,8 @@ public class VolunteerListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code VolunteerListPanel} with the given {@code ObservableList}.
+     *
+     * @param volunteerList Volunteer list to be displayed.
      */
     public VolunteerListPanel(ObservableList<Volunteer> volunteerList) {
         super(FXML);

@@ -22,6 +22,8 @@ public class PairListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code PairListPanel} with the given {@code ObservableList}.
+     *
+     * @param pairList Pair list to be displayed.
      */
     public PairListPanel(ObservableList<Pair> pairList) {
         super(FXML);
