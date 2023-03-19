@@ -1,17 +1,16 @@
 package seedu.recipe.logic.parser;
 
+import org.junit.jupiter.api.Test;
+import seedu.recipe.commons.core.index.Index;
+import seedu.recipe.logic.commands.EditCommand;
+import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
+
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -73,17 +72,17 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         // assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY +
         // VALID_PHONE_AMY,
-            //      Name.MESSAGE_CONSTRAINTS);
+        //      Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         // Index targetIndex = INDEX_SECOND_PERSON;
         // String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-            //      + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        //      + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
         // EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
-            //      .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            //      .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        //      .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        //      .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         // EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -162,7 +161,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withTags().build();
+        EditCommand.RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -1,12 +1,7 @@
 package seedu.recipe.testutil;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
+import seedu.recipe.logic.commands.EditCommand.RecipeDescriptor;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
@@ -15,26 +10,31 @@ import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * A utility class to help with building EditRecipeDescriptor objects.
  */
 public class EditRecipeDescriptorBuilder {
 
-    private EditCommand.EditRecipeDescriptor descriptor;
+    private RecipeDescriptor descriptor;
 
     public EditRecipeDescriptorBuilder() {
-        descriptor = new EditCommand.EditRecipeDescriptor();
+        descriptor = new EditCommand.RecipeDescriptor();
     }
 
-    public EditRecipeDescriptorBuilder(EditCommand.EditRecipeDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditRecipeDescriptor(descriptor);
+    public EditRecipeDescriptorBuilder(RecipeDescriptor descriptor) {
+        this.descriptor = new RecipeDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditRecipeDescriptor} with fields containing {@code recipe}'s details
      */
     public EditRecipeDescriptorBuilder(Recipe recipe) {
-        descriptor = new EditRecipeDescriptor();
+        descriptor = new RecipeDescriptor();
         descriptor.setName(recipe.getName());
         descriptor.setPortion(recipe.getPortion());
         descriptor.setDuration(recipe.getDuration());
@@ -96,7 +96,7 @@ public class EditRecipeDescriptorBuilder {
     }
 
 
-    public EditCommand.EditRecipeDescriptor build() {
+    public RecipeDescriptor build() {
         return descriptor;
     }
 }

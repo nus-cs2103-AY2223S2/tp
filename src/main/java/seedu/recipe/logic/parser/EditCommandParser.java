@@ -1,5 +1,20 @@
 package seedu.recipe.logic.parser;
 
+import seedu.recipe.commons.core.index.Index;
+import seedu.recipe.logic.commands.EditCommand;
+import seedu.recipe.logic.commands.EditCommand.RecipeDescriptor;
+import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.logic.parser.functional.TryUtil;
+import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.tag.Tag;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DURATION;
@@ -8,21 +23,6 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
-import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.logic.parser.functional.TryUtil;
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Step;
-import seedu.recipe.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -39,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DURATION, PREFIX_PORTION,
-                        PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
+                                           PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
         Index index;
 
         try {
@@ -48,34 +48,34 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditRecipeDescriptor editRecipeDescriptor = new EditRecipeDescriptor();
+        EditCommand.RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
 
         argMultimap.getValue(PREFIX_NAME)
                 .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseName, s))
-                .ifPresent(editRecipeDescriptor::setName);
+                .ifPresent(recipeDescriptor::setName);
 
         argMultimap.getValue(PREFIX_DURATION)
                 .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseDuration, s))
-                .ifPresent(editRecipeDescriptor::setDuration);
+                .ifPresent(recipeDescriptor::setDuration);
 
         argMultimap.getValue(PREFIX_PORTION)
                 .flatMap(s -> TryUtil.safeCompute(ParserUtil::parsePortion, s))
-                .ifPresent(editRecipeDescriptor::setPortion);
+                .ifPresent(recipeDescriptor::setPortion);
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
-                .ifPresent(editRecipeDescriptor::setTags);
+                .ifPresent(recipeDescriptor::setTags);
 
         parseIngredientsForEdit(argMultimap.getAllValues(PREFIX_INGREDIENT))
-                .ifPresent(editRecipeDescriptor::setIngredients);
+                .ifPresent(recipeDescriptor::setIngredients);
 
         parseStepsForEdit(argMultimap.getAllValues(PREFIX_STEP))
-                .ifPresent(editRecipeDescriptor::setSteps);
+                .ifPresent(recipeDescriptor::setSteps);
 
-        if (!editRecipeDescriptor.isAnyFieldEdited()) {
+        if (!recipeDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editRecipeDescriptor);
+        return new EditCommand(index, recipeDescriptor);
     }
 
     /**
@@ -101,8 +101,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> ingredientList =
                 ingredients.size() == 1 && ingredients.contains("")
-                    ? Collections.emptyList()
-                    : ingredients;
+                        ? Collections.emptyList()
+                        : ingredients;
         return Optional.of(ParserUtil.parseIngredients(ingredientList));
     }
 

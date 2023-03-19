@@ -1,18 +1,6 @@
 package seedu.recipe.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.commands.ClearCommand;
 import seedu.recipe.logic.commands.DeleteCommand;
@@ -29,6 +17,17 @@ import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 import seedu.recipe.testutil.RecipeUtil;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.recipe.testutil.Assert.assertThrows;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 public class RecipeBookParserTest {
 
@@ -59,9 +58,9 @@ public class RecipeBookParserTest {
         Recipe recipe = new Recipe(new Name("Lasagna"));
         recipe.setPortion(RecipePortion.of("1-2 servings"));
         recipe.setDuration(RecipeDuration.of("15 min"));
-        EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
+        EditCommand.RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(
+                                                                        + INDEX_FIRST_PERSON.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(
                 descriptor));
         // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor).toString(), command.toString());
     }
@@ -95,7 +94,7 @@ public class RecipeBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

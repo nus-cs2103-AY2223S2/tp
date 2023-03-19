@@ -1,20 +1,19 @@
 package seedu.recipe.logic.commands;
 
-import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.recipe.logic.commands.CommandTestUtil.showRecipeAtIndex;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.recipe.model.Model;
 import seedu.recipe.model.ModelManager;
 import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.UserPrefs;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
+
+import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.recipe.logic.commands.CommandTestUtil.showRecipeAtIndex;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -53,7 +52,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.EditRecipeDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.RecipeDescriptor());
         Recipe editedRecipe = model.getFilteredRecipeList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
@@ -79,7 +78,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateRecipeUnfilteredList_failure() {
         Recipe firstRecipe = model.getFilteredRecipeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(firstRecipe).build();
+        EditCommand.RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(firstRecipe).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RECIPE);
@@ -92,7 +91,7 @@ public class EditCommandTest {
         // edit recipe in filtered list into a duplicate in address book
         Recipe recipeInList = model.getRecipeBook().getRecipeList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditRecipeDescriptorBuilder(recipeInList).build());
+                                                  new EditRecipeDescriptorBuilder(recipeInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RECIPE);
     }
