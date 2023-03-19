@@ -33,9 +33,9 @@ public class FindCommandParserTest {
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "alex yeoh",
+        assertParseFailure(parser, " alex yeoh",
                 String.format(MESSAGE_NO_PREFIX, FindCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "b/911",
+        assertParseFailure(parser, " b/911",
                 String.format(MESSAGE_INVALID_PREFIX, FindCommand.PREFIX_USAGE));
     }
 
