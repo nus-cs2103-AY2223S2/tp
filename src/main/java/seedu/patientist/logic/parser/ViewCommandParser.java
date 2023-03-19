@@ -3,7 +3,6 @@ package seedu.patientist.logic.parser;
 import static seedu.patientist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.patientist.commons.core.index.Index;
-import seedu.patientist.logic.commands.DeleteCommand;
 import seedu.patientist.logic.commands.ViewCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
 
@@ -23,7 +22,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             return new ViewCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
     }
 
