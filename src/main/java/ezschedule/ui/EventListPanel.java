@@ -3,12 +3,12 @@ package ezschedule.ui;
 import java.util.logging.Logger;
 
 import ezschedule.commons.core.LogsCenter;
+import ezschedule.model.event.Event;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import ezschedule.model.event.Event;
 
 /**
  * Panel containing the list of events.

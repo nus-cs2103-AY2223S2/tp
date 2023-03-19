@@ -1,7 +1,6 @@
 package ezschedule.model.event;
 
 import static java.util.Objects.requireNonNull;
-import static ezschedule.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

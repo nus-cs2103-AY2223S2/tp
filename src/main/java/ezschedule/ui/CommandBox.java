@@ -1,13 +1,13 @@
 package ezschedule.ui;
 
 import ezschedule.logic.Logic;
+import ezschedule.logic.commands.CommandResult;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.exceptions.ParseException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import ezschedule.logic.commands.CommandResult;
 
 /**
  * The UI component that is responsible for receiving user command inputs.

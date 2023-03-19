@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
-import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.logic.commands.EditCommand;
 import ezschedule.logic.commands.EditCommand.EditEventDescriptor;
+import ezschedule.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditCommand object.
@@ -22,15 +22,17 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_START,
-                    CliSyntax.PREFIX_END);
+            ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE,
+                    CliSyntax.PREFIX_START, CliSyntax.PREFIX_END);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptor();

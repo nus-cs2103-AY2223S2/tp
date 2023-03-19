@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import ezschedule.model.AddressBook;
 import ezschedule.model.ReadOnlyAddressBook;
+import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.Name;
-import ezschedule.model.event.Date;
 import ezschedule.model.event.Time;
 import ezschedule.model.tag.Tag;
 

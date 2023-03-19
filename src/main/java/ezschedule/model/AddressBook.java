@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.UniqueEventList;
+import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the address-book level

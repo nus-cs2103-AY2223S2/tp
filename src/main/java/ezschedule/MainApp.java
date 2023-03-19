@@ -11,8 +11,6 @@ import ezschedule.commons.core.Version;
 import ezschedule.commons.exceptions.DataConversionException;
 import ezschedule.commons.util.ConfigUtil;
 import ezschedule.commons.util.StringUtil;
-import javafx.application.Application;
-import javafx.stage.Stage;
 import ezschedule.logic.Logic;
 import ezschedule.logic.LogicManager;
 import ezschedule.model.AddressBook;
@@ -30,6 +28,8 @@ import ezschedule.storage.StorageManager;
 import ezschedule.storage.UserPrefsStorage;
 import ezschedule.ui.Ui;
 import ezschedule.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 /**
  * Runs the application.

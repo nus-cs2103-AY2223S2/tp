@@ -1,7 +1,6 @@
 package ezschedule.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static ezschedule.commons.util.AppUtil.checkArgument;
 
 import ezschedule.commons.util.AppUtil;
 

@@ -3,13 +3,13 @@ package ezschedule.logic;
 import java.nio.file.Path;
 
 import ezschedule.commons.core.GuiSettings;
+import ezschedule.logic.commands.CommandResult;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.Model;
-import javafx.collections.ObservableList;
-import ezschedule.logic.commands.CommandResult;
 import ezschedule.model.ReadOnlyAddressBook;
 import ezschedule.model.event.Event;
+import javafx.collections.ObservableList;
 
 /**
  * API of the Logic component

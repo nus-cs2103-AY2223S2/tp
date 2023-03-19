@@ -4,8 +4,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import ezschedule.commons.core.GuiSettings;
-import javafx.collections.ObservableList;
 import ezschedule.model.event.Event;
+import javafx.collections.ObservableList;
 
 /**
  * The API of the Model component.

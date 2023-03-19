@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ezschedule.commons.exceptions.IllegalValueException;
+import ezschedule.model.person.Address;
 import ezschedule.model.person.Email;
 import ezschedule.model.person.Name;
 import ezschedule.model.person.Person;
 import ezschedule.model.person.Phone;
 import ezschedule.model.person.Remark;
-import ezschedule.model.person.Address;
 import ezschedule.model.tag.Tag;
 
 /**

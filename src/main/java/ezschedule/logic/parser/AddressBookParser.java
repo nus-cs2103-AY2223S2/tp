@@ -4,7 +4,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ezschedule.commons.core.Messages;
-import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.ClearCommand;
 import ezschedule.logic.commands.Command;
@@ -14,6 +13,7 @@ import ezschedule.logic.commands.ExitCommand;
 import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.HelpCommand;
 import ezschedule.logic.commands.ListCommand;
+import ezschedule.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.

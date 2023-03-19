@@ -3,8 +3,8 @@ package ezschedule.logic.parser;
 import java.util.stream.Stream;
 
 import ezschedule.commons.core.Messages;
-import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.logic.commands.AddCommand;
+import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.Name;
@@ -34,7 +34,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_START,
                     CliSyntax.PREFIX_END);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_START, CliSyntax.PREFIX_END)
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_DATE,
+                CliSyntax.PREFIX_START, CliSyntax.PREFIX_END)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

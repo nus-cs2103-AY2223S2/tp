@@ -6,16 +6,16 @@ import java.util.logging.Logger;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
-import ezschedule.logic.commands.exceptions.CommandException;
-import ezschedule.logic.parser.exceptions.ParseException;
-import ezschedule.model.Model;
-import javafx.collections.ObservableList;
 import ezschedule.logic.commands.Command;
 import ezschedule.logic.commands.CommandResult;
+import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.AddressBookParser;
+import ezschedule.logic.parser.exceptions.ParseException;
+import ezschedule.model.Model;
 import ezschedule.model.ReadOnlyAddressBook;
 import ezschedule.model.event.Event;
 import ezschedule.storage.Storage;
+import javafx.collections.ObservableList;
 
 /**
  * The main LogicManager of the app.

@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
+import ezschedule.logic.Logic;
+import ezschedule.logic.commands.CommandResult;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
@@ -14,8 +16,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import ezschedule.logic.Logic;
-import ezschedule.logic.commands.CommandResult;
 
 /**
  * The Main Window. Provides the basic application layout containing

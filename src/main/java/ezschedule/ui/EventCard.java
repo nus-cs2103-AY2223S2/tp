@@ -1,10 +1,10 @@
 package ezschedule.ui;
 
+import ezschedule.model.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import ezschedule.model.event.Event;
 
 /**
  * A UI component that displays information of a {@code Event}.

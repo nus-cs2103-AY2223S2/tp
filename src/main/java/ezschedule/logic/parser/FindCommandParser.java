@@ -3,8 +3,8 @@ package ezschedule.logic.parser;
 import java.util.Arrays;
 
 import ezschedule.commons.core.Messages;
-import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.logic.commands.FindCommand;
+import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
 
 /**

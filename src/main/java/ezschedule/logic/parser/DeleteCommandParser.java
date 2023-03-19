@@ -2,8 +2,8 @@ package ezschedule.logic.parser;
 
 import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
-import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.logic.commands.DeleteCommand;
+import ezschedule.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

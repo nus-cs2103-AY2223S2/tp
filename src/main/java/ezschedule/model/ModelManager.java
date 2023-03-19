@@ -1,7 +1,6 @@
 package ezschedule.model;
 
 import static java.util.Objects.requireNonNull;
-import static ezschedule.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -10,9 +9,9 @@ import java.util.logging.Logger;
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.commons.core.LogsCenter;
 import ezschedule.commons.util.CollectionUtil;
+import ezschedule.model.event.Event;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import ezschedule.model.event.Event;
 
 /**
  * Represents the in-memory model of the address book data.

@@ -1,7 +1,7 @@
 package ezschedule.model;
 
-import javafx.collections.ObservableList;
 import ezschedule.model.event.Event;
+import javafx.collections.ObservableList;
 
 /**
  * Unmodifiable view of an address book
