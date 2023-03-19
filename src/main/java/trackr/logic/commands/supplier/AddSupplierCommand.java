@@ -1,22 +1,18 @@
 package trackr.logic.commands.supplier;
 
-import static java.util.Objects.requireNonNull;
 import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 
-import trackr.logic.commands.Command;
-import trackr.logic.commands.CommandResult;
-import trackr.logic.commands.exceptions.CommandException;
-import trackr.model.Model;
+import trackr.logic.commands.AddItemCommand;
 import trackr.model.person.Supplier;
 
 /**
  * Adds a supplier to Trackr.
  */
-public class AddSupplierCommand extends Command {
+public class AddSupplierCommand extends AddItemCommand<Supplier> {
 
     public static final String COMMAND_WORD = "add_supplier";
     public static final String COMMAND_WORD_SHORTCUT = "add_s";
@@ -36,35 +32,10 @@ public class AddSupplierCommand extends Command {
             + PREFIX_TAG + "wheat "
             + PREFIX_TAG + "eggs";
 
-    public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
-    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book";
-
-    private final Supplier toAdd;
-
     /**
      * Creates an AddSupplierCommand to add the specified {@code supplier}
      */
     public AddSupplierCommand(Supplier supplier) {
-        requireNonNull(supplier);
-        toAdd = supplier;
-    }
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (model.hasSupplier(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
-        }
-
-        model.addSupplier(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddSupplierCommand // instanceof handles nulls
-                && toAdd.equals(((AddSupplierCommand) other).toAdd));
+        super(supplier, COMMAND_WORD, COMMAND_WORD_SHORTCUT, MESSAGE_USAGE);
     }
 }

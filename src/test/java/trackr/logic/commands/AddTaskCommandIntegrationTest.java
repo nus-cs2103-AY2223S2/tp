@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.task.AddTaskCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.task.Task;
@@ -38,14 +39,15 @@ public class AddTaskCommandIntegrationTest {
         expectedModel.addTask(validTask);
 
         assertCommandSuccess(new AddTaskCommand(validTask), model,
-                String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), expectedModel);
+                String.format(AddTaskCommand.MESSAGE_SUCCESS, ModelEnum.TASK, validTask),
+                expectedModel);
     }
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
         Task taskInList = model.getTaskList().getItemList().get(0);
         assertCommandFailure(new AddTaskCommand(taskInList), model,
-                AddTaskCommand.MESSAGE_DUPLICATE_TASK);
+                String.format(AddTaskCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.TASK, ModelEnum.TASK));
     }
 
 }

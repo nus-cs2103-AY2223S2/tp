@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.UserPrefs;
@@ -38,8 +39,10 @@ public class AddCommandIntegrationTest {
                 model.getOrderList(), new UserPrefs());
         expectedModel.addSupplier(validPerson);
 
-        assertCommandSuccess(new AddSupplierCommand(validPerson), model,
-                String.format(AddSupplierCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddSupplierCommand(validPerson),
+                model,
+                String.format(AddSupplierCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER, validPerson),
+                expectedModel);
     }
 
     @Test

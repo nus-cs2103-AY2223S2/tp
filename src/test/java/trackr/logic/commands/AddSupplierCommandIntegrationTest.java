@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.person.Supplier;
@@ -38,14 +39,17 @@ public class AddSupplierCommandIntegrationTest {
         expectedModel.addSupplier(validSupplier);
 
         assertCommandSuccess(new AddSupplierCommand(validSupplier), model,
-                String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier), expectedModel);
+                String.format(AddSupplierCommand.MESSAGE_SUCCESS,
+                        ModelEnum.SUPPLIER, validSupplier),
+                expectedModel);
     }
 
     @Test
     public void execute_duplicateSupplier_throwsCommandException() {
         Supplier supplierInList = model.getSupplierList().getItemList().get(0);
-        assertCommandFailure(new AddSupplierCommand(supplierInList),
-                model, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER);
+        assertCommandFailure(new AddSupplierCommand(supplierInList), model,
+                String.format(AddSupplierCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.SUPPLIER,
+                        ModelEnum.SUPPLIER));
     }
 
 }
