@@ -16,7 +16,7 @@ import seedu.address.testutil.TypicalCards;
 public class JsonSerializableMasterDeckTest {
 
     private static final Path TEST_DATA_FOLDER = Paths
-            .get("src", "test", "data", "JsonSerializableAddressBookTest");
+            .get("src", "test", "data", "JsonSerializableMasterDeckTest");
     private static final Path TYPICAL_CARDS_FILE = TEST_DATA_FOLDER.resolve("typicalCardsMasterDeck.json");
     private static final Path INVALID_CARD_FILE = TEST_DATA_FOLDER.resolve("invalidCardMasterDeck.json");
     private static final Path DUPLICATE_CARD_FILE = TEST_DATA_FOLDER.resolve("duplicateCardMasterDeck.json");
@@ -26,9 +26,9 @@ public class JsonSerializableMasterDeckTest {
     public void toModelType_typicalCardsFile_success() throws Exception {
         JsonSerializableMasterDeck dataFromFile = JsonUtil.readJsonFile(TYPICAL_CARDS_FILE,
                 JsonSerializableMasterDeck.class).get();
-        MasterDeck addressBookFromFile = dataFromFile.toModelType();
+        MasterDeck masterDeckFromFile = dataFromFile.toModelType();
         MasterDeck typicalCardMasterDeck = TypicalCards.getTypicalMasterDeck();
-        assertEquals(addressBookFromFile, typicalCardMasterDeck);
+        assertEquals(masterDeckFromFile, typicalCardMasterDeck);
     }
 
     @Test
