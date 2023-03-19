@@ -12,7 +12,7 @@ import seedu.address.model.item.Item;
 public class Pilot implements Item {
 
     /**
-     * The shape of the link to the pilot.
+     * The shape of the link between pilot and flight
      */
     public static final Map<FlightPilotType, Integer> SHAPE =
             Map.of(FlightPilotType.PILOT_FLYING, 1,

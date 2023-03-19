@@ -1,6 +1,7 @@
 package seedu.address.model.plane;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import seedu.address.model.item.Item;
@@ -9,6 +10,13 @@ import seedu.address.model.item.Item;
  * Represents a plane in the Wingman app.
  */
 public class Plane implements Item {
+
+    /**
+     * The shape of the link between plane and flight
+     */
+    public static final Map<FlightPlaneType, Integer> SHAPE =
+            Map.of(FlightPlaneType.PLANE_USING, 1
+            );
     private static final String UUID_STRING = "UUID";
     private static final String MODEL_STRING = "Model";
     private static final String AGE_STRING = "Age";

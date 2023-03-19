@@ -512,16 +512,6 @@ public class ModelManager implements Model {
     };
 
     @Override
-    public void linkPlane(Flight flight, Plane plane) {
-        flight.linkPlane(plane);
-    }
-
-    @Override
-    public void unlinkPlane(Flight flight) {
-        flight.unlinkPlane();
-    }
-
-    @Override
     public ObservableList<Flight> getFilteredFlightList() {
         return filteredFlights;
     };

@@ -18,6 +18,8 @@ import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.FlightPlaneType;
+import seedu.address.model.plane.Plane;
 import seedu.address.storage.json.JsonAdaptedModel;
 
 /**
@@ -38,11 +40,6 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
     private final String code;
 
     /**
-     * The plane linked to the flight.
-     */
-    private String plane;
-
-    /**
      * Location related attributes.
      */
     private boolean hasLinkedLocations;
@@ -53,6 +50,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
 
     private Map<FlightPilotType, Deque<String>> pilotLink;
     private Map<FlightCrewType, Deque<String>> crewLink;
+    private Map<FlightPlaneType, Deque<String>> planeLink;
 
     /**
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
@@ -65,23 +63,25 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
      * @param departureLocationName The name of the departure location.
      * @param arrivalLocationId     The id of the arrival location.
      * @param arrivalLocationName   The name of the arrival location.
+     * @param pilotLink             The link between pilot(s) and the flight
+     * @param crewLink              The link between crew(s) and the flight
+     * @param planeLink             The link between plane and the flight
      */
     @JsonCreator
     public JsonAdaptedFlight(
             @JsonProperty("id") String id,
             @JsonProperty("code") String code,
-            @JsonProperty("plane") String plane,
             @JsonProperty("hasLinkedLocations") boolean hasLinkedLocations,
             @JsonProperty("departureLocationId") String departureLocationId,
             @JsonProperty("departureLocationName") String departureLocationName,
             @JsonProperty("arrivalLocationId") String arrivalLocationId,
             @JsonProperty("arrivalLocationName") String arrivalLocationName,
             @JsonProperty("pilotLink") Map<FlightPilotType, Deque<String>> pilotLink,
-            @JsonProperty("crewLink") Map<FlightCrewType, Deque<String>> crewLink
+            @JsonProperty("crewLink") Map<FlightCrewType, Deque<String>> crewLink,
+            @JsonProperty("planeLink") Map<FlightPlaneType, Deque<String>> planeLink
     ) {
         this.id = id;
         this.code = code;
-        this.plane = plane;
         this.hasLinkedLocations = hasLinkedLocations;
         this.departureLocationId = departureLocationId;
         this.departureLocationName = departureLocationName;
@@ -89,6 +89,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         this.arrivalLocationName = arrivalLocationName;
         this.pilotLink = pilotLink;
         this.crewLink = crewLink;
+        this.planeLink = planeLink;
     }
 
     /**
@@ -101,12 +102,7 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         this.code = flight.getCode();
         this.pilotLink = flight.pilotLink.getCopiedContents();
         this.crewLink = flight.crewLink.getCopiedContents();
-
-        if (flight.hasLinkedPlane()) {
-            this.plane = flight.getLinkedPlane().getId();
-        } else {
-            this.plane = "";
-        }
+        this.planeLink = flight.planeLink.getCopiedContents();
 
         if (flight.hasLinkedLocations()) {
             this.hasLinkedLocations = true;
@@ -146,7 +142,13 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
                                     .getLazy(Model.class)
                                     .map(Model::getCrewManager)
                     );
-            flight = new Flight(id, code, linkPilot, linkCrew);
+            Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> linkPlane =
+                    new Link<>(Plane.SHAPE, planeLink,
+                            GetUtil
+                                    .getLazy(Model.class)
+                                    .map(Model::getPlaneManager)
+                    );
+            flight = new Flight(id, code, linkPilot, linkCrew, linkPlane);
         } catch (LinkException e) {
             throw new IllegalValueException(e.getMessage());
         }

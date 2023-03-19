@@ -8,13 +8,13 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
-import seedu.address.model.flight.exceptions.LinkedPlaneNotFoundException;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.Link;
 import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
 /**
@@ -28,9 +28,9 @@ public class Flight implements Item {
     private static final String NOT_SPECIFIED_STRING = "Not Specified";
     public final Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink;
     public final Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> crewLink;
+    public final Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> planeLink;
     private final String code;
     private final String id;
-    private Plane plane;
 
     //TODO: Add departure and arrival locations
     private Location departureLocation;
@@ -44,51 +44,55 @@ public class Flight implements Item {
      *
      * @param id                the id of the  flight
      * @param code              the code
-     * @param plane             the plane
      * @param departureLocation the departure location
      * @param arrivalLocation   the arrival location
      * @param pilotLink         the link to the pilot
      * @param crewLink          the link to the crew
+     * @param planeLink          the link to the plane
      * @throws LinkException if the link cannot be created
      */
     public Flight(
             String id,
             String code,
-            Plane plane,
             Location departureLocation,
             Location arrivalLocation,
             Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink,
-            Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> crewLink
+            Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> crewLink,
+            Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> planeLink
     ) {
         this.id = id;
         this.code = code;
-        this.plane = plane;
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
         this.pilotLink = pilotLink;
         this.crewLink = crewLink;
+        this.planeLink = planeLink;
     }
 
     /**
      * Creates a flight with a random UUID as its id
      *
-     * @param id   the id for the flight
-     * @param code the code of the flight
+     * @param id        the id for the flight
+     * @param code      the code of the flight
+     * @param pilotLink the link to the pilot
+     * @param crewLink  the link to the crew
+     * @param planeLink the link to the plane
      */
     public Flight(
             String id,
             String code,
             Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> pilotLink,
-            Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> crewLink
+            Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> crewLink,
+            Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> planeLink
     ) throws LinkException {
         this(
                 id,
                 code,
                 null,
                 null,
-                null,
                 pilotLink,
-                crewLink
+                crewLink,
+                planeLink
         );
     }
 
@@ -98,12 +102,16 @@ public class Flight implements Item {
      * @param code the code of the flight
      */
     public Flight(String code) throws LinkException {
-        this(UUID.randomUUID().toString(), code, new Link<>(
+        this(UUID.randomUUID().toString(), code,
+                new Link<>(
                 Pilot.SHAPE,
                 GetUtil.getLazy(Model.class).map(Model::getPilotManager)
-        ),new Link<>(
+                ), new Link<>(
                 Crew.SHAPE,
                 GetUtil.getLazy(Model.class).map(Model::getCrewManager)
+                ), new Link<>(
+                Plane.SHAPE,
+                GetUtil.getLazy(Model.class).map(Model::getPlaneManager)
         ));
     }
 
@@ -127,48 +135,14 @@ public class Flight implements Item {
                         getArrivalLocationName()
                 ),
                 String.format("%s: %s", "Pilots", pilotLink.toString()),
-                String.format("%s: %s", "Crew", crewLink.toString())
+                String.format("%s: %s", "Crews", crewLink.toString()),
+                String.format("%s: %s", "Plane", planeLink.toString())
         );
     }
 
     @Override
     public String getId() {
         return this.id;
-    }
-
-    /**
-     * Links a plane to this flight.
-     *
-     * @param plane The plane to be linked.
-     */
-    public void linkPlane(Plane plane) {
-        this.plane = plane;
-    }
-
-    /**
-     * Unlinks any plane from this flight.
-     */
-    public void unlinkPlane() {
-        this.plane = null;
-    }
-
-    public boolean hasLinkedPlane() {
-        return this.plane != null;
-    }
-
-    /**
-     * If there's a linked plane, it returns it.
-     *
-     * @return The linked plane.
-     * @throws LinkedPlaneNotFoundException If this flight doesn't have a
-     *                                      linked plane.
-     */
-    public Plane getLinkedPlane() throws LinkedPlaneNotFoundException {
-        if (this.hasLinkedPlane()) {
-            return this.plane;
-        } else {
-            throw new LinkedPlaneNotFoundException();
-        }
     }
 
     /**
