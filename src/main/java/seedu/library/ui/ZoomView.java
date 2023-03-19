@@ -45,7 +45,8 @@ public class ZoomView extends UiPart<Region> {
 
     }
 
-    /** method to hide the contents on zoomvie
+    /**
+     * method to hide the contents on zoomvie
      *
      */
     public void hideFields() {

@@ -215,6 +215,9 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * updates view on right panel
+     */
     private void handleUpdate() {
         Bookmark currentSelect = bookmarkListPanel.getSelectedItem();
         if (currentSelect == null) {
