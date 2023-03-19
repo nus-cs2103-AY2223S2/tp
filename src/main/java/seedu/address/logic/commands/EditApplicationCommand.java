@@ -5,10 +5,14 @@ import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_EMA
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ApplicationCliSyntax.PREFIX_TAG;
 import static seedu.address.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -20,6 +24,7 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing application in the internship book.
@@ -35,7 +40,8 @@ public class EditApplicationCommand extends ApplicationCommand {
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_COMPANY_NAME + "COMPANY NAME] "
             + "[" + PREFIX_COMPANY_EMAIL + "COMPANY EMAIL] "
-            + "[" + PREFIX_STATUS + "STATUS]\n "
+            + "[" + PREFIX_STATUS + "STATUS] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY_EMAIL + "gogglerecruiter@goggletalents.com "
             + PREFIX_STATUS + "ACCEPTED";
@@ -95,8 +101,9 @@ public class EditApplicationCommand extends ApplicationCommand {
         CompanyEmail updatedCompanyEmail = editApplicationDescriptor.getCompanyEmail()
                 .orElse(appToEdit.getCompanyEmail());
         Status updatedStatus = editApplicationDescriptor.getStatus().orElse(appToEdit.getStatus());
+        Set<Tag> updatedTags = editApplicationDescriptor.getTags().orElse(appToEdit.getTags());
 
-        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail, updatedStatus);
+        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail, updatedStatus, updatedTags);
     }
 
     @Override
@@ -126,24 +133,27 @@ public class EditApplicationCommand extends ApplicationCommand {
         private CompanyName companyName;
         private CompanyEmail companyEmail;
         private Status status;
+        private Set<Tag> tags;
 
         public EditApplicationDescriptor() {}
 
         /**
          * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
          */
         public EditApplicationDescriptor(EditApplicationDescriptor toCopy) {
             setRole(toCopy.role);
             setCompanyName(toCopy.companyName);
             setCompanyEmail(toCopy.companyEmail);
             setStatus(toCopy.status);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status);
+            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status, tags);
         }
 
         public void setRole(Role role) {
@@ -176,6 +186,23 @@ public class EditApplicationCommand extends ApplicationCommand {
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
