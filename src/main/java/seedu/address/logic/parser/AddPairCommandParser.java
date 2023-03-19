@@ -10,14 +10,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Parses input arguments and creates a new AddPairCommand object
+ * Parses input arguments and creates a new AddPairCommand object.
  */
 public class AddPairCommandParser implements Parser<AddPairCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddPairCommand
      * and returns an AddPairCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments.
+     * @return {@code AddPairCommand} for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public AddPairCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

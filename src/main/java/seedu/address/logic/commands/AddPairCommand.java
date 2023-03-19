@@ -16,7 +16,7 @@ import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Adds a person to FriendlyLink.
+ * Adds a pair to FriendlyLink.
  */
 public class AddPairCommand extends Command {
 
@@ -38,6 +38,9 @@ public class AddPairCommand extends Command {
 
     /**
      * Creates an AddPairCommand to add the specified {@code Pair}
+     *
+     * @param elderlyNric Nric of the to be paired elderly.
+     * @param volunteerNric Nric of the to be paired volunteer.
      */
     public AddPairCommand(Nric elderlyNric, Nric volunteerNric) {
         requireAllNonNull(elderlyNric, volunteerNric);

@@ -51,6 +51,8 @@ public class AddVolunteerCommand extends Command {
 
     /**
      * Creates an AddVolunteerCommand to add to the specified {@code volunteer}
+     *
+     * @param volunteer Volunteer to add.
      */
     public AddVolunteerCommand(Volunteer volunteer) {
         requireNonNull(volunteer);

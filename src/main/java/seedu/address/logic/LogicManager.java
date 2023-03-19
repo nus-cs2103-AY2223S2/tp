@@ -31,6 +31,9 @@ public class LogicManager implements Logic {
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     *
+     * @param model FriendlyLink model.
+     * @param storage FriendlyLink storage.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;

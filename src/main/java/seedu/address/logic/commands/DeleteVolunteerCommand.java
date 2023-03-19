@@ -9,7 +9,7 @@ import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a volunteer identified using their NRIC, from the FriendlyLink database.
  */
 public class DeleteVolunteerCommand extends Command {
 
@@ -26,6 +26,11 @@ public class DeleteVolunteerCommand extends Command {
 
     private final Nric targetNric;
 
+    /**
+     * Constructs a DeleteElderlyCommand to delete an elderly.
+     *
+     * @param targetNric Nric of the elderly.
+     */
     public DeleteVolunteerCommand(Nric targetNric) {
         this.targetNric = targetNric;
     }

@@ -91,6 +91,7 @@ public class FindCommand extends Command {
      * Returns the pair predicate based on the filtered volunteers and elderly.
      *
      * @param model FriendlyLink model.
+     * @return pair predicate.
      */
     private Predicate<Pair> getPairPredicate(Model model) {
         List<Elderly> listOfFilteredElderly = model.getFilteredElderlyList();
