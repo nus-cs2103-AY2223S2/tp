@@ -27,7 +27,7 @@ public class CreateTagCommandTest {
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateTagCommand(null));
+        assertThrows(NullPointerException.class, () -> new CreateTagCommand((Tag) null));
     }
 
     @Test
