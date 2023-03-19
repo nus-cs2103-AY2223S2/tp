@@ -45,7 +45,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NricContainsKeywordsPredicate(Arrays.asList(nrics)));
 
         } else if (isPrefixesPresent(argMultimap, PREFIX_NAME)
-                && argMultimap.getPreamble().isEmpty())  {
+                && argMultimap.getPreamble().isEmpty()) {
             names = getKeywords(argMultimap.getValue(PREFIX_NAME).get());
 
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(names)));
@@ -74,7 +74,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      *  {@code Optional} values in the given {@code ArgumentMultimap}.
      */
     private static boolean allPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        Stream<Prefix> prefixStream = Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        Stream<Prefix> prefixStream = Stream.of(prefixes).filter(
+                                        prefix -> argumentMultimap.getValue(prefix).isPresent());
         int value = (int) prefixStream.count();
         if (value > 1) {
             return true;
