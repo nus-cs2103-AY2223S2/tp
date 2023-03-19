@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_GRAVITY;
 import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_PHOTOSYNTHESIS;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_GRAVITY;
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_PHOTOSYNTHESIS;
@@ -18,7 +20,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
+import seedu.address.model.card.Question;
 import seedu.address.testutil.CardBuilder;
 
 public class AddCommandParserTest {
@@ -72,5 +76,16 @@ public class AddCommandParserTest {
         // all prefixes missing
         assertParseFailure(parser, VALID_QUESTION_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidValue_failure() {
+        // invalid question
+        assertParseFailure(parser, INVALID_QUESTION_DESC + ANSWER_DESC_GRAVITY
+                + TAG_DESC_HARD, Question.MESSAGE_CONSTRAINTS);
+
+        // invalid answer
+        assertParseFailure(parser, QUESTION_DESC_PHOTOSYNTHESIS + INVALID_ANSWER_DESC
+                + TAG_DESC_HARD, Answer.MESSAGE_CONSTRAINTS);
     }
 }
