@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.socket.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.socket.testutil.Assert.assertThrows;
 import static seedu.socket.testutil.TypicalPersons.BENSON;
-import static seedu.socket.testutil.TypicalProjects.getTypicalProjects;
 
 import java.util.ArrayList;
 import java.util.List;
