@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT_WITH_ID;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -14,8 +15,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.Listing;
-import seedu.address.model.listing.exceptions.AmbiguousApplicantException;
-import seedu.address.model.listing.exceptions.ApplicantNotFoundException;
 
 /**
  * Deletes an applicant from a listing identified using it's displayed index from the listing book.
@@ -26,10 +25,18 @@ public class DeleteApplicantCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes an applicant from a listing identified by "
             + "the index number used in the displayed listing book.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_APPLICANT_WITH_ID + "APPLICANT\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_APPLICANT_WITH_ID + "John Doe\n"
+            + "*If there are duplicated names, specify the id by adding the 4-digit unique identifier after the name.\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_APPLICANT_WITH_ID + "John Doe#2103\n";
 
     public static final String MESSAGE_SUCCESS = "Applicant: %1$s has been from %2$s!";
+    public static final String MESSAGE_APPLICANT_NOT_FOUND = "Applicant %1$s cannot be found in %2$s.";
+    public static final String MESSAGE_AMBIGUOUS_APPLICANT = "There are multiple applicants with the name %1s in %2$s, "
+            + "specify the 4-digit "
+            + "unique identifier after the name.\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_APPLICANT_WITH_ID + "John Doe#2103\n";
 
     private final Index targetIndex;
     private final String targetApplicantName;
@@ -57,28 +64,33 @@ public class DeleteApplicantCommand extends Command {
         Listing listingToDeleteApplicantFrom = lastShownList.get(targetIndex.getZeroBased());
         ArrayList<Applicant> applicants = listingToDeleteApplicantFrom.getApplicants();
 
-        Optional<Applicant> applicantToDelete = null;
-        if (targetApplicantName.substring(-5).matches("#\\d{4}")) {
-            String targetName = targetApplicantName.substring(0, -5);
-            int targetHashCode = parseInt(targetApplicantName.substring(-4));
-            applicantToDelete = applicants.stream().filter(applicant -> applicant.getName().fullName == targetName
+        Optional<Applicant> applicantToDelete;
+        if (targetApplicantName.length() > 5
+                && targetApplicantName.charAt(targetApplicantName.length() - 5) == '#') {
+            String targetName = targetApplicantName.substring(0, targetApplicantName.length() - 5);
+            int targetHashCode = parseInt(targetApplicantName.substring(targetApplicantName.length() - 4));
+            applicantToDelete = applicants.stream().filter(applicant -> applicant.getName().fullName.equals(targetName)
                     && applicant.hashCode() == targetHashCode).findFirst();
         } else {
-            Stream<Applicant> applicantsWithSameName = applicants.stream().filter(
-                    applicant -> applicant.getName().fullName == targetApplicantName);
-            if (applicantsWithSameName.count() > 1) {
-                throw new AmbiguousApplicantException();
+            List<Applicant> applicantsWithSameName = applicants.stream().filter(
+                    applicant -> applicant.getName().fullName.equals(targetApplicantName)).collect(Collectors.toList());
+            if (applicantsWithSameName.size() > 1) {
+                throw new CommandException(String.format(MESSAGE_AMBIGUOUS_APPLICANT, targetApplicantName,
+                        listingToDeleteApplicantFrom.getTitle()));
             }
-            applicantToDelete = applicantsWithSameName.findFirst();
+
+            applicantToDelete = applicantsWithSameName.stream().findFirst();
         }
 
         if (applicantToDelete.isEmpty()) {
-            throw new ApplicantNotFoundException();
+            throw new CommandException(String.format(MESSAGE_APPLICANT_NOT_FOUND, targetApplicantName,
+                    listingToDeleteApplicantFrom.getTitle()));
         }
 
         listingToDeleteApplicantFrom.deleteApplicant(applicantToDelete.get());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToDelete.get(), listingToDeleteApplicantFrom));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToDelete.get(),
+                listingToDeleteApplicantFrom.getTitle()));
 
     }
 
