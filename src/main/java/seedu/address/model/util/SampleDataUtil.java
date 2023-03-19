@@ -5,7 +5,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.AppointmentList;
+import seedu.address.model.ReadOnlyAppointmentList;
+import seedu.address.model.ReadOnlyPatientList;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Description;
+import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.id.AppointmentId;
 import seedu.address.model.id.PatientId;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.Email;
@@ -49,12 +55,31 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
+    public static ReadOnlyPatientList getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Patient samplePatient : getSamplePatients()) {
             sampleAb.addPatient(samplePatient);
         }
         return sampleAb;
+    }
+
+    public static Appointment[] getSampleAppointments() {
+        return new Appointment[] {
+            new Appointment(new AppointmentId("001"), new Timeslot("19032023 08:00,19032023 09:00"),
+                new Description("First appointment"), new PatientId("001"),
+                getTagSet("first")),
+            new Appointment(new AppointmentId("002"), new Timeslot("26032023 11:00,26032023 13:00"),
+                new Description("Important"), new PatientId("002"),
+                getTagSet("important")),
+        };
+    }
+
+    public static ReadOnlyAppointmentList getSampleAppointmentList() {
+        AppointmentList sampleAl = new AppointmentList();
+        for (Appointment sampleAppointment : getSampleAppointments()) {
+            sampleAl.addAppointment(sampleAppointment);
+        }
+        return sampleAl;
     }
 
     /**

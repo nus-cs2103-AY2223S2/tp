@@ -25,28 +25,30 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Appointment> filteredAppointments;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     // keeping for backward compatibility temporarily, because storage has not been updated
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPatientList addressBook, ReadOnlyAppointmentList appointmentList,
+                        ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
         logger.fine("Initializing with address book: " + addressBook + userPrefs);
         this.addressBook = new AddressBook(addressBook);
+        this.appointmentList = new AppointmentList(appointmentList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
-        filteredAppointments = null; // stopgap measure
-        appointmentList = new AppointmentList(); // stopgap measure
+        filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
     }
 
     /**
      * Initializes a ModelManager with the given addressBook, appointmentList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, AppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPatientList addressBook, AppointmentList appointmentList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, appointmentList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook
-                + ", appointmentList: " + appointmentList + userPrefs);
+            + ", appointmentList: " + appointmentList + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentList = new AppointmentList(appointmentList);
@@ -108,12 +110,12 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setAddressBook(ReadOnlyPatientList addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyPatientList getAddressBook() {
         return addressBook;
     }
 
@@ -173,8 +175,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPatients.equals(other.filteredPatients);
         //      && filteredAppointments.equals(other.filteredAppointments);
         // not added to keep backward compatibility with tests until storage is fixed
     }

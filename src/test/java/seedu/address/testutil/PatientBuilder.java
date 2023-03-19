@@ -102,7 +102,7 @@ public class PatientBuilder {
     /**
      * Sets the {@code PatientId} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withId(String id) {
+    public PatientBuilder withPatientId(String id) {
         this.id = new PatientId(id);
         return this;
     }
