@@ -98,18 +98,23 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* To add on to existing groups/tags without overrwriting it, include the prefix m/ (merge).
+* When using prefix m/, groups/tags added cannot be empty.
+* Groups can only be added if it has been created.
+* You can remove all the person’s tags/groups by typing `t/` and `g/` respectively without
+    specifying any tags/groups after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/ g/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags and groups.
+*  `edit 3 m/ t/Borrowed $10` Edit the tags of the 2nd person to be `Borrowed $10` plus the existing tag.
+*  `edit 3 m/ t/CS2103T` Edit the groups of the 2nd person to be `CS2103T` plus the existing groups.
 
 ### Locating persons by name: `find`
 
@@ -143,79 +148,56 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Creating a group : `group create`
+### Creating a group : `group_create`
 
 Create a group in the address book.
 
-Format: `group create g/GROUP_NAME`
+Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
 * The group name cannot be empty
 
 Examples:
-* `group create g/CS2103T`
-* `group create g/CS2101`
+* `group_create g/CS2103T`
+* `group_create g/CS2101`
 
-### Deleting a group : `group delete`
+### Deleting a group : `group_delete`
 
 Deletes an existing group from the address book.
 
-Format: `group delete g/GROUP_NAME`
+Format: `group_delete GROUP_INDEX`
 
-* Deletes a group with the specified group name `GROUP_NAME`.
-* The group name cannot be empty and must be an existing group
-
-Examples:
-* `group delete g/CS2103T`
-* `group delete g/CS2101`
-
-
-### Adding a person to a group : `group add`
-
-Adds a person to an existing group from the address book.
-
-Format: `group add n/NAME g/GROUP_NAME`
-
-* Adds a person with given name `NAME` into a group with the specified group name `GROUP_NAME`.
-* The group name cannot be empty and must be an existing group
-* The person name cannot be empty and must be an existing contact
+* Deletes a group with the specified `GROUP_INDEX`
+* The group index cannot be empty and must be an existing group
+* Deleting a group will remove all persons in that group
 
 Examples:
-* `group add n/Lyndon Lim g/CS2103T`
-* `group add n/Lyndon Lim g/CS2101`
+* `group_delete 1`
+* `group_delete 2`
 
-### Removing a person from a group : `group remove`
-
-Removes a person from an existing group from the address book.
-
-Format: `group remove n/NAME g/GROUP_NAME`
-
-* Removes a person with given name `NAME` from a group with the specified group name `GROUP_PNAME`.
-* The group name cannot be empty and must be an existing group
-* The person name cannot be empty and must be an existing contact
-
-Examples:
-* `group remove n/Lyndon Lim g/CS2103T`
-* `group remove n/Lyndon Lim g/CS2101`
-
-
-### List all groups: `group list`
+### List all groups: `group_list`
 
 Shows a list of all existing groups' name in the address book.
 
-Format: `group list`
+Format: `group_list`
 
-### Find a group: `group find`
+### Find a group: `group_find`
 
-Finds group by name and list everyone in that group
+Finds persons in groups whose group names contain any of the given keywords.
 
-Format: `group find g/GROUP_NAME`
+Format: `group_find KEYWORD [MORE_KEYWORDS]`
 
-* The group name cannot be empty and must be an existing group
+* The search is case-insensitive. e.g `CS2103` will match `cs2103`
+* The order of the keywords does not matter. e.g. `CS2103 CS2101` will match `CS2101 CS2103`
+* Only the group name is searched.
+* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
+* Persons with groups matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `CS2103 CS2101` will return persons in `CS2101`, `CS2103`
+* The group name cannot be empty
 
 Examples:
-* `group find g/CS2103T`
-* `group find g/CS2101`
+* `group_find CS2103` returns persons in the group `CS2103`
+* `group_find CS2103 CS2101` returns persons in the group `CS2103` and `CS2101`
 
 ### Creating an event: `event_create`
 Creates a weekly recurring event or a non-recurring event
