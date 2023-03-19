@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
+import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.Command;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
@@ -75,6 +76,9 @@ public class AddressBookParser {
 
         case SetPointsCommand.COMMAND_WORD:
             return new SetPointsCommandParser().parse(arguments);
+
+        case AddPointsCommand.COMMAND_WORD:
+            return new AddPointsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

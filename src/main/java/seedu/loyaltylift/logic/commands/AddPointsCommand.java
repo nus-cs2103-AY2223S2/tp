@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
+import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.logic.commands.exceptions.CommandException;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
@@ -21,40 +22,41 @@ import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
 
 /**
- * Sets the reward points of a customer
+ * Adds the reward points of a customer
+ * Points added could be negative
  */
-public class SetPointsCommand extends Command {
+public class AddPointsCommand extends Command {
 
-    public static final String COMMAND_WORD = "setpoints";
+    public static final String COMMAND_WORD = "addpoints";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets points of the customer identified by the index number used in the displayed customer list. \n"
+            + ": edits points of the customer identified by the index number used in the displayed customer list. \n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_POINTS + "[POINTS]\n"
             + "Example: " + COMMAND_WORD
             + " 1 "
             + PREFIX_POINTS
-            + "100";
+            + "-100";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, Points: %2$s";
 
-    public static final String MESSAGE_SET_POINTS_SUCCESS = "Set points for Customer: %1$s";
+    public static final String MESSAGE_SET_POINTS_SUCCESS = "Current points for Customer: %1$s";
+    public static final String MESSAGE_INVALID_POINTS = "This customer will have invalid points";
 
     private final Index index;
-    private final Points points;
+    private final Integer addPoints;
 
     /**
      * @param index of the customer in the filtered person list to set points
-     * @param points of the customer to be set
+     * @param addPoints points to be added or subtracted
      */
-    public SetPointsCommand(Index index, Points points) {
-        requireAllNonNull(index, points);
+    public AddPointsCommand(Index index, Integer addPoints) {
+        requireAllNonNull(index, addPoints);
 
         this.index = index;
-        this.points = points;
+        this.addPoints = addPoints;
     }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Customer> lastShownList = model.getFilteredCustomerList();
@@ -75,7 +77,7 @@ public class SetPointsCommand extends Command {
     /**
      * Creates and returns a {@code Customer} with the details of {@code customerToEdit}
      */
-    private Customer createEditedCustomer(Customer customerToEdit) {
+    private Customer createEditedCustomer(Customer customerToEdit) throws CommandException {
         assert customerToEdit != null;
         CustomerType customerType = customerToEdit.getCustomerType();
         Name name = customerToEdit.getName();
@@ -83,13 +85,23 @@ public class SetPointsCommand extends Command {
         Email email = customerToEdit.getEmail();
         Address address = customerToEdit.getAddress();
         Set<Tag> tags = customerToEdit.getTags();
+        Points points = customerToEdit.getPoints();
 
-        return new Customer(customerType, name, phone, email, address, tags, this.points);
+        Points newPoints;
+        try {
+            newPoints = points.editPoints(this.addPoints);
+        } catch (IllegalValueException e) {
+            throw new CommandException(MESSAGE_INVALID_POINTS);
+        }
+
+        return new Customer(customerType, name, phone, email, address, tags, newPoints);
     }
+
+
 
     /**
      * Generates a command execution success message based on whether
-     * the points are set
+     * the points are added
      */
     private String generateSuccessMessage(Customer editedCustomer) {
         String message = MESSAGE_SET_POINTS_SUCCESS;
@@ -104,13 +116,14 @@ public class SetPointsCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SetPointsCommand)) {
+        if (!(other instanceof AddPointsCommand)) {
             return false;
         }
 
         // state check
-        SetPointsCommand e = (SetPointsCommand) other;
+        AddPointsCommand e = (AddPointsCommand) other;
         return index.equals(e.index)
-                && points.equals(e.points);
+                && addPoints.equals(e.addPoints);
     }
 }
+

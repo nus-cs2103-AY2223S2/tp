@@ -6,7 +6,8 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   }, {
     "customerType": "INDIVIDUAL",
     "name": "Alice Pauline",
@@ -14,7 +15,8 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "tagged": [ "friends" ],
-    "points": 0
+    "points": 0,
+    "cumulativePoints": 0
   } ],
   "orders": [ ]
 }
