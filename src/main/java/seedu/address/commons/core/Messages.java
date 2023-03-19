@@ -14,8 +14,8 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_TEST = "This test already exists in the address book";
     public static final String MESSAGE_INVALID_PARENT_DISPLAYED_NUMBER =
             "The parent number provided is invalid/ not found";
-    public static final String MESSAGE_INVALID_PARENT_DELETE = "The parent you are trying to delete has a" +
-            "student attached! You can't delete the parent!";
-    public static final String MESSAGE_INVALID_PARENT_NAME = "The parent name provided does not match the " +
-            "parent name attached to given phone number.";
+    public static final String MESSAGE_INVALID_PARENT_DELETE = "The parent you are trying to delete has a"
+            + "student attached! You can't delete the parent!";
+    public static final String MESSAGE_INVALID_PARENT_NAME = "The parent name provided does not match the "
+            + "parent name attached to given phone number.";
 }
