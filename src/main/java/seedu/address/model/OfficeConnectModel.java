@@ -1,10 +1,8 @@
 package seedu.address.model;
 
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.task.Task;
 
