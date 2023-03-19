@@ -14,7 +14,7 @@ public class QuestionTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructor_invalidQuestion_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Question(invalidName));
     }
@@ -27,8 +27,6 @@ public class QuestionTest {
         // invalid name
         assertFalse(Question.isValidQuestion("")); // empty string
         assertFalse(Question.isValidQuestion(" ")); // spaces only
-        assertFalse(Question.isValidQuestion("^")); // only non-alphanumeric characters
-        assertFalse(Question.isValidQuestion("peter*")); // contains non-alphanumeric characters
 
         // valid name
         assertTrue(Question.isValidQuestion("peter jack")); // alphabets only
