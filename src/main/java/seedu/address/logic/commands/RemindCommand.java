@@ -20,7 +20,7 @@ public class RemindCommand extends Command {
             + "interview within three days!";
     public static final Predicate<Person> INTERVIEW_IN_THREE_DAYS_PREDICATE =
             person -> (person.getStatus() == Status.SHORTLISTED
-                    && person.getInterviewDateTime().get().isWithinThreeDays() == true);
+                    && person.getInterviewDateTime().get().isWithinThreeDays());
 
     /**
      * Return a filtered list of applicants that are going to have interview within three days.
