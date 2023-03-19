@@ -9,7 +9,7 @@ import seedu.calidr.model.task.params.Title;
  */
 public abstract class Task {
 
-    private Title title;
+    private final Title title;
     private boolean isDone;
     private Priority priority;
 

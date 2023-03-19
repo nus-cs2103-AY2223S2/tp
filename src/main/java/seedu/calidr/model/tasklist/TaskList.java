@@ -1,13 +1,10 @@
 package seedu.calidr.model.tasklist;
 
 import static java.util.Objects.requireNonNull;
-import static javafx.collections.FXCollections.observableList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.calidr.commons.core.index.Index;
 import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.model.task.UniqueTaskList;
@@ -68,7 +65,7 @@ public class TaskList implements ReadOnlyTaskList {
     /**
      * Deletes a Task from the list of Tasks.
      *
-     * @param taskNumber The number to indicate which Task is to be deleted.
+     * @param key The number to indicate which Task is to be deleted.
      */
     public void deleteTask(Task key) {
         tasks.remove(key);
@@ -81,7 +78,7 @@ public class TaskList implements ReadOnlyTaskList {
     /**
      * Marks a particular Task in the list of Tasks, as done.
      *
-     * @param taskNumber The number to indicate which Task is to be marked as done.
+     * @param task The number to indicate which Task is to be marked as done.
      */
     public void markTask(Task task) {
         tasks.mark(task);
@@ -90,7 +87,7 @@ public class TaskList implements ReadOnlyTaskList {
     /**
      * Marks a particular Task in the list of Tasks, as undone.
      *
-     * @param taskNumber The number to indicate which Task is to be marked as undone.
+     * @param task The number to indicate which Task is to be marked as undone.
      */
     public void unmarkTask(Task task) {
         tasks.unmark(task);
