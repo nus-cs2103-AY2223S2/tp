@@ -14,9 +14,9 @@ public enum FlightLocationType {
     public String toString() {
         switch (this) {
         case LOCATION_DEPARTURE:
-            return "Location Departure";
+            return "Departing from";
         case LOCATION_ARRIVAL:
-            return "Location Arrival";
+            return "Arriving at";
         default:
             return "Unknown";
         }

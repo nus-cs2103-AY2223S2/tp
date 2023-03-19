@@ -82,7 +82,7 @@ public class Plane implements Item {
 
     @Override
     public String toString() {
-        return String.format("%s: %s %s: %s %s: %s",
-                UUID_STRING, id, MODEL_STRING, model, AGE_STRING, age);
+        return String.format("%s: %s %s: %s",
+                MODEL_STRING, model, AGE_STRING, age);
     }
 }
