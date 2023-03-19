@@ -3,7 +3,6 @@ package vimification.taskui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -14,9 +13,9 @@ import javafx.scene.input.KeyEvent;
 public class CommandInput extends UiPart<TextField> {
 
     private static final String FXML = "CommandInput.fxml";
-    private Node parent;
+    private MainScreen parent;
 
-    public CommandInput(Node parent) {
+    public CommandInput(MainScreen parent) {
         super(FXML);
         this.parent = parent;
     }
@@ -46,12 +45,29 @@ public class CommandInput extends UiPart<TextField> {
 
     }
 
+    // TODO: REMOVE THIS AFTER TESTING
+    private static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private void executeCommand(String commandString) {
         System.out.println("Your command is " + commandString);
+
+        // TODO: Remove dummy parser after Viet Anh pushes new parser
+        String index = (commandString.split(":"))[1];
+
+        if (isNumeric(index)) {
+            parent.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(index));
+        }
     }
 
     private void returnFocusToParent() {
-        parent.requestFocus();
+        parent.getRoot().requestFocus();
         this.getRoot().setVisible(false);
     }
 
