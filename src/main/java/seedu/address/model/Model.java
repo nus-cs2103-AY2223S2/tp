@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.ui.MainWindow;
 
 /**
  * The API of the Model component.
@@ -76,6 +77,12 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Finds or lists the given contents.
+     * {@code predicate} must already exist in the address book.
+     */
+    void findOrListContents(Predicate<Person> predicate, String command);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -94,5 +101,7 @@ public interface Model {
     void setPersonId(int index);
 
     int getPersonId();
+
+    void setMainWindow(MainWindow mainWindow);
 }
 

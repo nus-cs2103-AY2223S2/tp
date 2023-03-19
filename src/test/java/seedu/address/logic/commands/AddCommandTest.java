@@ -22,6 +22,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.ui.MainWindow;
 
 public class AddCommandTest {
 
@@ -160,8 +161,18 @@ public class AddCommandTest {
 
         @Override
         public void setPersonId(int index) {
-            System.out.println("Hello world");
+            System.out.println("still working");
         }
+
+        @Override
+        public void findOrListContents(Predicate<Person> predicate, String command) {
+            System.out.println("still working");
+        };
+
+        @Override
+        public void setMainWindow(MainWindow mainWindow) {
+            System.out.println("still working");
+        };
     }
 
     /**
