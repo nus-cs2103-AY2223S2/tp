@@ -80,6 +80,21 @@ public abstract class Event {
     }
 
     /**
+     * If file attachments are not needed. Different parameter order
+     * to avoid duplicate constructor due to type erasure error
+     * @param name
+     * @param students
+     * @param notes
+     * @param eventDate
+     */
+    public Event(String name, List<Person> students, List<Note> notes, LocalDate eventDate) {
+        this.name = name;
+        this.eventDate = eventDate;
+        this.students = students;
+        this.notes = notes;
+    }
+
+    /**
      * Sets all the variables
      * @param name
      * @param eventDate

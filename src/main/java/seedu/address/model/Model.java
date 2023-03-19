@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
@@ -171,4 +172,46 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredLabList(Predicate<Lab> predicate);
+
+    /**
+     * Returns true if a lab with the same identity as {@code lab} exists in the address book.
+     */
+    boolean hasConsultation(Consultation consultation);
+
+    /**
+     * Deletes the given consultation.
+     * The consultation must exist in the address book.
+     */
+    void deleteConsultation(Consultation target);
+
+    /**
+     * Adds the given consultation.
+     * {@code consultation} must not already exist in the address book.
+     */
+    void addConsultation(Consultation consultation);
+
+    /**
+     * Replaces the given consultation {@code target} with {@code editedConsultation}.
+     * {@code target} must exist in the address book.
+     * The consultation identity of {@code editedConsultation} must not be the same as another
+     * existing consultation in the address book.
+     */
+    void setConsultation(Consultation target, Consultation editedConsultation);
+
+    /**
+     * Adds a student to a consultation session.
+     *
+     * @param toAdd The index of the student within the AddressBook's internal UniquePersonList to be added.
+     * @param consultationName The name of the consultation session that the student will be added into.
+     */
+    void addStudentToConsultation(Index toAdd, String consultationName);
+
+    /** Returns an unmodifiable view of the filtered lab list */
+    ObservableList<Consultation> getFilteredConsultationList();
+
+    /**
+     * Updates the filter of the filtered consultation list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredConsultationList(Predicate<Consultation> predicate);
 }
