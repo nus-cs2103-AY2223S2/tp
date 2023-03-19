@@ -1,12 +1,12 @@
 package vimification.storage;
 
 import vimification.commons.exceptions.IllegalValueException;
-import vimification.model.task.DateTime;
-import vimification.model.task.Description;
 import vimification.model.task.Event;
 import vimification.model.task.Status;
 import vimification.model.task.Task;
 import vimification.model.task.Type;
+import vimification.model.task.components.DateTime;
+import vimification.model.task.components.Description;
 
 public class JsonAdaptedEvent extends JsonAdaptedTask {
 

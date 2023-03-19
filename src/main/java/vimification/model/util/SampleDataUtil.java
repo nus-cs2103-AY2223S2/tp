@@ -11,12 +11,11 @@ import java.util.stream.Collectors;
 
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
+import vimification.model.task.components.DateTime;
+import vimification.model.task.components.Description;
 import vimification.model.task.Deadline;
 import vimification.model.task.Event;
 import vimification.model.task.Status;
-import vimification.model.task.DateTime;
-import vimification.model.task.Description;
-
 import vimification.model.TaskPlanner;
 import vimification.model.ReadOnlyTaskPlanner;
 

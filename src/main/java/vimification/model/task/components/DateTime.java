@@ -1,4 +1,4 @@
-package vimification.model.task;
+package vimification.model.task.components;
 
 import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.AppUtil.checkArgument;
