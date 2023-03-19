@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
@@ -20,9 +20,6 @@ public class DeleteElderlyCommand extends Command {
             + "Parameters: NRIC \n"
             + "Example: " + COMMAND_WORD + " S1234567C";
 
-    public static final String MESSAGE_INVALID_NRIC_ELDERLY =
-            String.format(Messages.MESSAGE_INVALID_NRIC, "elderly");
-
     public static final String MESSAGE_DELETE_ELDERLY_SUCCESS = "Deleted Elderly: %1$s";
 
     private final Nric targetNric;
@@ -36,7 +33,7 @@ public class DeleteElderlyCommand extends Command {
         requireNonNull(model);
         Elderly elderlyToDelete = model.getElderly(targetNric);
         if (elderlyToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
+            throw new CommandException(MESSAGE_NRIC_NOT_EXIST);
         }
         model.deleteElderly(elderlyToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ELDERLY_SUCCESS, elderlyToDelete));

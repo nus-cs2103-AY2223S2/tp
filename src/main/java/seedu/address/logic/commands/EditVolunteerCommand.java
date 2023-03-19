@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -15,7 +18,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
@@ -68,14 +70,14 @@ public class EditVolunteerCommand extends Command {
     @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
         if (!editVolunteerDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(Messages.MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
         requireNonNull(model);
         List<Volunteer> lastShownList = model.getFilteredVolunteerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_VOLUNTEER_DISPLAYED_INDEX);
         }
 
         Volunteer volunteerToEdit = lastShownList.get(index.getZeroBased());
@@ -83,7 +85,7 @@ public class EditVolunteerCommand extends Command {
                 volunteerToEdit, editVolunteerDescriptor);
 
         if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_VOLUNTEER);
+            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);

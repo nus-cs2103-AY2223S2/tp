@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_PERSON_AMY;
@@ -13,7 +17,6 @@ import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
@@ -81,7 +84,7 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(selectedElderly).build();
         EditCommand editCommand = new EditCommand(selectedNric, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_DUPLICATE_ELDERLY);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_ELDERLY);
     }
 
     @Test
@@ -91,7 +94,7 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(selectedVolunteer).build();
         EditCommand editCommand = new EditCommand(selectedNric, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_DUPLICATE_VOLUNTEER);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_VOLUNTEER);
     }
 
     @Test
@@ -99,7 +102,7 @@ public class EditCommandTest {
         Nric validNric = TypicalVolunteers.getTypicalVolunteers().get(0).getNric();
         EditCommand editCommand = new EditCommand(validNric, new EditPersonDescriptor());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_NOT_EDITED);
+        assertCommandFailure(editCommand, model, MESSAGE_NOT_EDITED);
     }
     @Test
     public void execute_invalidNric_throwsCommandException() {
@@ -109,7 +112,7 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder(new VolunteerBuilder().build()).build()
         );
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_NRIC_NOT_EXIST);
+        assertCommandFailure(editCommand, model, MESSAGE_NRIC_NOT_EXIST);
     }
     @Test
     public void equals() {

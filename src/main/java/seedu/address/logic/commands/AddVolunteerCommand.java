@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -11,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
@@ -42,8 +42,8 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_AGE + "20 "
             + PREFIX_REGION + "NORTH "
             + PREFIX_TAG + "new "
-            + PREFIX_TAG + "undergradStudent"
-            + PREFIX_AVAILABILITY + "2023-05-11 to 2023-05-12";
+            + PREFIX_TAG + "undergradStudent "
+            + PREFIX_AVAILABILITY + "2023-05-11,2023-05-12";
 
     public static final String MESSAGE_SUCCESS = "New volunteer added: %1$s";
 
@@ -62,7 +62,7 @@ public class AddVolunteerCommand extends Command {
         requireNonNull(model);
 
         if (model.hasVolunteer(toAdd)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_VOLUNTEER);
+            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
 
         model.addVolunteer(toAdd);

@@ -1,8 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_BOTH_INVALID_NRIC;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
+import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddPairCommand;
@@ -28,10 +31,20 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE));
         }
 
-        Nric elderlyNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).orElse(""));
-        Nric volunteerNric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).orElse(""));
+        String elderlyNric = argMultimap.getValue(PREFIX_NRIC_ELDERLY).orElse("");
+        String volunteerNric = argMultimap.getValue(PREFIX_NRIC_VOLUNTEER).orElse("");
+        if (!Nric.isValidNric(elderlyNric) && !Nric.isValidNric(volunteerNric)) {
+            throw new ParseException(
+                    String.format(MESSAGE_BOTH_INVALID_NRIC, MESSAGE_CONSTRAINTS));
+        } else if (!Nric.isValidNric(elderlyNric)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_PERSON_NRIC, "elderly", MESSAGE_CONSTRAINTS));
+        } else if (!Nric.isValidNric(volunteerNric)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_PERSON_NRIC, "volunteer", MESSAGE_CONSTRAINTS));
+        }
 
-        return new AddPairCommand(elderlyNric, volunteerNric);
+        return new AddPairCommand(new Nric(elderlyNric), new Nric(volunteerNric));
     }
 
 }

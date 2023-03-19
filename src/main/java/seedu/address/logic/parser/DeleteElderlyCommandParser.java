@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.model.person.information.Nric.VALIDATION_REGEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
+import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
 import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,11 +20,15 @@ public class DeleteElderlyCommandParser implements Parser<DeleteElderlyCommand> 
      */
     public DeleteElderlyCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty() || (!trimmedArgs.matches(VALIDATION_REGEX))) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteElderlyCommand.MESSAGE_USAGE));
         }
-        Nric nric = new Nric(trimmedArgs);
-        return new DeleteElderlyCommand(nric);
+        if (!Nric.isValidNric(trimmedArgs)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_PERSON_NRIC, "elderly", MESSAGE_CONSTRAINTS));
+        }
+
+        return new DeleteElderlyCommand(new Nric(trimmedArgs));
     }
 }
