@@ -1,10 +1,14 @@
 package seedu.address.model.review;
 
+import static java.util.Collections.shuffle;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
@@ -21,6 +25,9 @@ public class Review {
     private int currCardNum = 1; // 1-Indexed
     private Card currCard;
 
+    private int totalNumCards;
+    private List<Integer> orderOfCards;
+
     /**
      * Every field must be present and not null.
      */
@@ -28,14 +35,48 @@ public class Review {
         requireNonNull(deck);
         this.deck = deck;
         this.cardList = cardList;
+        totalNumCards = cardList.size();
         unflipAllCards();
-        //TODO write a shuffle based on user statistics
+
+        // initialise order of card
+        orderOfCards = new Random().ints(0, cardList.size())
+                .distinct().limit(totalNumCards).boxed().collect(Collectors.toList());
 
         // initialise first card
-        currCard = this.cardList.get(currCardNum - 1);
+        currCard = this.cardList.get(orderOfCards.get(currCardNum - 1));
 
         // initialise scoreList
-        scoreList = new ArrayList<>(Arrays.asList(new Boolean[this.cardList.size()]));
+        scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
+    }
+
+    public Review(Deck deck, List<Card> cardList, int userSetLimit) {
+        requireNonNull(deck);
+        this.deck = deck;
+        this.cardList = cardList;
+        totalNumCards = userSetLimit;
+        unflipAllCards();
+
+        // initialise order of card
+        if (userSetLimit >= cardList.size()) {
+            orderOfCards = new Random().ints(0, cardList.size())
+                    .distinct().limit(cardList.size()).boxed().collect(Collectors.toList());
+            // ensures user sees all cards once, then appends remaining cards at random
+            orderOfCards.addAll(new Random().ints(
+                            userSetLimit - cardList.size(),
+                            0,
+                            cardList.size() - 1)
+                    .boxed().collect(Collectors.toList()));
+        } else if (userSetLimit < cardList.size()){
+            // all cards seen will be unique when user set limit is less than card list size
+            orderOfCards = new Random().ints(0, cardList.size())
+                    .distinct().limit(userSetLimit).boxed().collect(Collectors.toList());
+        }
+
+        // initialise first card
+        currCard = this.cardList.get(orderOfCards.get(currCardNum - 1));
+
+        // initialise scoreList
+        scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
     }
 
     public Card getCurrCard() {
@@ -78,14 +119,14 @@ public class Review {
         boolean priorStateIsFlipped = currCard.isFlipped();
         currCard.setAsUnflipped(); // always unflip current card before moving to next
         currCardNum++;
-        if (currCardNum > cardList.size()) {
+        if (currCardNum > totalNumCards) {
             currCardNum--;
             if (priorStateIsFlipped) {
                 currCard.setAsFlipped();
             }
             return false;
         } else {
-            currCard = cardList.get(currCardNum - 1);
+            currCard = cardList.get(orderOfCards.get(currCardNum - 1));
             currCard.setAsUnflipped();
             return true;
         }
@@ -99,10 +140,10 @@ public class Review {
         currCard.setAsUnflipped(); // always unflip current card before moving to prev
         currCardNum--;
         if (currCardNum <= 0) {
-            currCardNum++; //TODO throw exception
+            currCardNum++;
             return false;
         } else {
-            currCard = cardList.get(currCardNum - 1);
+            currCard = cardList.get(orderOfCards.get(currCardNum - 1));
             currCard.setAsUnflipped();
             return true;
         }

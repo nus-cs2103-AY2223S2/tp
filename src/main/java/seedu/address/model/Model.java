@@ -141,4 +141,6 @@ public interface Model {
     boolean goToPrevCard();
 
     boolean goToNextCard();
+
+    void setReviewLimit(int i);
 }
