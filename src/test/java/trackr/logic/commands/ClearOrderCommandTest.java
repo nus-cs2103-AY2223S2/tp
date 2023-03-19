@@ -7,6 +7,7 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.OrderList;

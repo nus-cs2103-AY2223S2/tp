@@ -34,8 +34,9 @@ import static trackr.testutil.TypicalIndexes.INDEX_THIRD_OBJECT;
 import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.EditSupplierCommand;
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.commands.supplier.EditSupplierCommand;
+import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.parser.supplier.EditSupplierCommandParser;
 import trackr.model.commons.Tag;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;

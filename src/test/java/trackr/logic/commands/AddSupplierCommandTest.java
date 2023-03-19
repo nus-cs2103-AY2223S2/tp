@@ -12,6 +12,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.exceptions.CommandException;
+import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.SupplierList;
 import trackr.model.person.Supplier;

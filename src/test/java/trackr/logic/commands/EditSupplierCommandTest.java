@@ -20,7 +20,9 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.commands.supplier.ClearSupplierCommand;
+import trackr.logic.commands.supplier.EditSupplierCommand;
+import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.OrderList;

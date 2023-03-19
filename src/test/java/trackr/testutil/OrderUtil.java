@@ -8,7 +8,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
-import trackr.logic.commands.AddOrderCommand;
+import trackr.logic.commands.order.AddOrderCommand;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;

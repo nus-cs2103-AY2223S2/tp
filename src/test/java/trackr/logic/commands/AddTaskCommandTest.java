@@ -12,6 +12,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.exceptions.CommandException;
+import trackr.logic.commands.task.AddTaskCommand;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.TaskList;
 import trackr.model.task.Task;

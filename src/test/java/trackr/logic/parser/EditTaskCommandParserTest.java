@@ -26,7 +26,8 @@ import static trackr.testutil.TypicalIndexes.INDEX_THIRD_OBJECT;
 import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.EditTaskCommand;
+import trackr.logic.commands.task.EditTaskCommand;
+import trackr.logic.parser.task.EditTaskCommandParser;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskDescriptor;
 import trackr.model.task.TaskName;

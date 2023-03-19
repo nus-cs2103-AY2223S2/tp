@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.model.commons.Tag;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;

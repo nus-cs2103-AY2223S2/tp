@@ -8,8 +8,8 @@ import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import trackr.logic.commands.AddSupplierCommand;
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.commands.supplier.AddSupplierCommand;
+import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.model.commons.Tag;
 import trackr.model.person.Supplier;
 

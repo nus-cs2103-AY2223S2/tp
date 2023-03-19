@@ -17,6 +17,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.task.FindTaskCommand;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;

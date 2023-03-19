@@ -12,7 +12,7 @@ import static trackr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.testutil.EditSupplierDescriptorBuilder;
 
 public class EditSupplierDescriptorTest {

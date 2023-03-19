@@ -4,7 +4,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
-import trackr.logic.commands.AddTaskCommand;
+import trackr.logic.commands.task.AddTaskCommand;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
