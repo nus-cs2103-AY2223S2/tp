@@ -3,6 +3,7 @@ package seedu.address.model.event.fields;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents an Event's phone number in the Calendar.
@@ -35,6 +36,14 @@ public class DateTime {
         } catch (DateTimeParseException | NullPointerException e) {
             return false;
         }
+    }
+
+    public static boolean isValidInterval(DateTime startDateTime, DateTime endDateTime) {
+        return startDateTime.getDateTime().isBefore(endDateTime.getDateTime());
+    }
+
+    public static long getIntervalMinutes(DateTime startDateTime, DateTime endDateTime, ChronoUnit unit) {
+        return startDateTime.getDateTime().until(endDateTime.getDateTime(), unit);
     }
 
     @Override

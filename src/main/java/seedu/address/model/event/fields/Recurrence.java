@@ -1,5 +1,6 @@
 package seedu.address.model.event.fields;
 
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,6 +48,22 @@ public class Recurrence {
             break;
         default:
             throw new IllegalArgumentException(Recurrence.MESSAGE_CONSTRAINTS + " " + interval);
+        }
+    }
+
+    public ChronoUnit getIncrementUnit() {
+        switch (interval) {
+        case DAILY:
+            return ChronoUnit.DAYS;
+        case WEEKLY:
+            return ChronoUnit.WEEKS;
+        case MONTHLY:
+            return ChronoUnit.MONTHS;
+        case YEARLY:
+            return ChronoUnit.YEARS;
+        case NONE:
+        default:
+            return ChronoUnit.MINUTES;
         }
     }
 
