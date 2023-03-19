@@ -382,25 +382,48 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `EduMateParser` class to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. If needed, a command-specific parser (like `AddCommandParser`) will be called to parse the arguments of the user input.
+3. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+4. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+5. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 ### **Commands**
+
 #### **Add Command**
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("add n/Bart...")` API call.
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/AddCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/AddCommandParser.java)
 
-<img src="images/AddSequenceDiagram.png" style="width:80%;margin:0 10%">
-<div style="width:80%;margin:0 10%;text-align:center">
-    <b>Figure 4.4.2</b> Sequence Diagram for a typical <code>add</code> command
-</div>
-<br>
+The `add` command allows users to create a new person and insert them into the application.
+
+**Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and [check whether they are valid](#model-component).
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+:information_source: **Command Formats:**
+* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
+
+</div>
+
+**Computing the common modules** - One of our sort keys is to use the *number of common modules* that the person has with the user. As such, we cache these modules to optimise performance.
+
+**Assigning a Contact Index** - After the inputs have been parsed and extracted, EduMate will look to fill the *first* gap in contact index. i.e. it will find the **lowest positive integer** that isn't already the contact index of a person. Refer to the example given below:
+
+| Current state of EduMate           | New Contact Index | Explanation                                                 |
+|:-----------------------------------|:-----------------:|-------------------------------------------------------------|
+| 1. Gwon Se Rang<br/>2. Lao Ming Da |         3         | 3 is the next number in the sequence.                       |
+| 1. Gwon Se Rang<br/>3. Lao Ming Da |         2         | 2 is the lowest number that is not already a contact index. |
+
+In summary, the activity diagram is as such:
+
+<img src="images/AddActivityDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.2a</b> Activity Diagram for a typical <code>add</code> command
 </div>
 
 #### **Edit Command**

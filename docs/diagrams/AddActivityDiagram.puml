@@ -1,0 +1,19 @@
+@startuml
+start
+:User enters add command;
+if () then ([Person arguments are invalid])
+  :Error: Invalid command format;
+  stop
+() elseif () then ([Person name is a duplicate])
+  :Error: Duplicated person;
+  stop
+else ()
+endif
+  :Person is created;
+  :Common modules and contact index are computed;
+  :Person is assigned a contact index;
+  :Person is added to EduMate;
+  :EduMate is sorted by index;
+stop
+
+@enduml
