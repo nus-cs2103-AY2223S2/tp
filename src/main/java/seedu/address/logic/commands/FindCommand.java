@@ -8,27 +8,30 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.lecture.LectureName;
-import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
 import seedu.address.model.module.CodeContainsKeywordsPredicate;
 import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
 import seedu.address.model.navigation.NavigationContext;
 
 /**
- * Finds and lists all modules/lectures/videos in Le Tracker current context whose moduleCode/lectureName/videoName contains any of the argument keywords.
+ * Finds and lists all modules/lectures/videos in Le Tracker current context
+ * whose moduleCode/lectureName/videoName contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules/lectures/videos whose moduleCode/lectureName/videoName contain any of "
-            + "the specified keywords (case-insensitive) separated with a space and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: \n"
-            + "1." + COMMAND_WORD + " CS2040S\n"
-            + "2." + COMMAND_WORD + " Week1 Week2\n"
-            + "3." + COMMAND_WORD + " Video1 Video2 Video3\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Finds all modules/lectures/videos whose moduleCode/lectureName/videoName contain any of "
+        + "the specified keywords (case-insensitive) separated with a space "
+        + "and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: \n"
+        + "1." + COMMAND_WORD + " CS2040S\n"
+        + "2." + COMMAND_WORD + " Week1 Week2\n"
+        + "3." + COMMAND_WORD + " Video1 Video2 Video3\n";
 
     private List<String> keywords;
 
