@@ -88,11 +88,22 @@ public class InternBuddy implements ReadOnlyInternBuddy {
 
     /**
      * Removes {@code key} from this {@code InternBuddy}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in InternBuddy.
      */
     public void removeInternship(Internship key) {
         internships.remove(key);
     }
+
+    /**
+     * Gets {@code key} from this {@code InternBuddy}.
+     * {@code key} must exist in InternBuddy.
+     *
+     */
+    public void viewInternship(Internship key) {
+        internships.view(key);
+    }
+
+
 
     //// util methods
 

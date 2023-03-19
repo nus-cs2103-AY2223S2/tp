@@ -81,6 +81,21 @@ public class UniqueInternshipList implements Iterable<Internship> {
         }
     }
 
+    /**
+     * Views the equivalent internship from the list.
+     * The internship must exist in the list.
+     *
+     * @param toView The internship to be viewed
+     */
+    public void view(Internship toView) {
+        requireNonNull(toView);
+        if (! contains(toView)) {
+            //Desired internship cannot be found
+            throw new InternshipNotFoundException();
+        }
+
+    }
+
     public void setInternships(UniqueInternshipList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
