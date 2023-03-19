@@ -1,32 +1,59 @@
 package vimification.model.task;
 
-import vimification.model.task.components.DateTime;
-import vimification.model.task.components.Description;
+import java.time.LocalDateTime;
+import static java.util.Objects.requireNonNull;
 
 public class Deadline extends Task {
-    private static int numOfComponents = 2;
-    private final DateTime deadline;
+    private LocalDateTime deadline;
 
-    public Deadline(Description description, Status status, DateTime deadline) {
-        super(description, status, TaskType.str2type("Deadline"));
+    public Deadline(String description, boolean isDone, LocalDateTime deadline) {
+        super(description, isDone, TaskType.DEADLINE);
+        requireNonNull(deadline);
         this.deadline = deadline;
     }
 
-    public static Deadline createTask(Description description, DateTime deadline) {
-        return new Deadline(description, new Status(false), deadline);
+    public Deadline(String description, LocalDateTime deadline) {
+        this(description, false, deadline);
     }
 
-    public static Deadline createTask(String... taskComponents) {
-        if (taskComponents.length != numOfComponents) {
-            throw new IllegalArgumentException("Invalid number of task components");
-        }
-        return createTask(new Description(taskComponents[0]), new DateTime(taskComponents[1]));
-    }
-
-    public DateTime getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
 
+    @Override
+    public Deadline clone() {
+        return new Deadline(getDescription(), isDone(), deadline);
+    }
+
+    @Override
+    public boolean isSameTask(Task task) {
+        if (task == this) {
+            return true;
+        }
+
+        if (!(task instanceof Deadline)) {
+            return false;
+        }
+
+        Deadline otherDeadline = (Deadline) task;
+        return isSameTask(otherDeadline)
+                && otherDeadline.getDeadline().equals(deadline);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Deadline)) {
+            return false;
+        }
+
+        Deadline otherDeadline = (Deadline) other;
+        return super.equals(otherDeadline)
+                && otherDeadline.getDeadline().equals(deadline);
+    }
 
     public String toString() {
         final StringBuilder builder = new StringBuilder();

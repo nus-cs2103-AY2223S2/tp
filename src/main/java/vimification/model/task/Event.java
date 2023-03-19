@@ -1,37 +1,66 @@
 package vimification.model.task;
 
-import vimification.model.task.components.DateTime;
-import vimification.model.task.components.Description;
+import java.time.LocalDateTime;
+import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Event extends Task {
-    private static int numOfComponents = 3;
-    private final DateTime startDate;
-    private final DateTime endDate;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
 
-    public Event(Description description, Status status, DateTime startDate, DateTime endDate) {
-        super(description, status, TaskType.str2type("Event"));
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public Event(String description, boolean isDone, LocalDateTime start, LocalDateTime end) {
+        super(description, isDone, TaskType.EVENT);
+        requireAllNonNull(start, end);
+        this.startDateTime = start;
+        this.endDateTime = end;
     }
 
-    public static Event createTask(Description description, DateTime startDate, DateTime endDate) {
-        return new Event(description, new Status(false), startDate, endDate);
+    public Event(String description, LocalDateTime start, LocalDateTime end) {
+        this(description, false, start, end);
     }
 
-    public static Event createTask(String... taskComponents) {
-        if (taskComponents.length != numOfComponents) {
-            throw new IllegalArgumentException("Invalid number of task components");
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
+    @Override
+    public Event clone() {
+        return new Event(getDescription(), isDone(), startDateTime, endDateTime);
+    }
+
+    @Override
+    public boolean isSameTask(Task task) {
+        if (task == this) {
+            return true;
         }
-        return createTask(new Description(taskComponents[0]), new DateTime(taskComponents[1]),
-                new DateTime(taskComponents[2]));
+
+        if (!(task instanceof Event)) {
+            return false;
+        }
+
+        Event otherEvent = (Event) task;
+        return isSameTask(otherEvent)
+                && otherEvent.getStartDateTime().equals(startDateTime)
+                && otherEvent.getEndDateTime().equals(endDateTime);
     }
 
-    public DateTime getStartDate() {
-        return startDate;
-    }
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
 
-    public DateTime getEndDate() {
-        return endDate;
+        if (!(other instanceof Event)) {
+            return false;
+        }
+
+        Event otherEvent = (Event) other;
+        return super.equals(otherEvent)
+                && otherEvent.getStartDateTime().equals(startDateTime)
+                && otherEvent.getEndDateTime().equals(endDateTime);
     }
 
     public String toString() {
@@ -40,9 +69,9 @@ public class Event extends Task {
                 .append(" ")
                 .append(super.toString())
                 .append("; from: ")
-                .append(getStartDate())
+                .append(getStartDateTime())
                 .append(" to: ")
-                .append(getEndDate());
+                .append(getEndDateTime());
         return builder.toString();
     }
 }
