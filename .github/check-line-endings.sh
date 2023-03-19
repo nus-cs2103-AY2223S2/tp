@@ -1,5 +1,5 @@
 #!/bin/sh
-# Checks for prohibited line endings
+# Checks for prohibited line endings.
 # Prohibited line endings: \r\n
 
 git grep --cached -I -n --no-color -P '\r$' -- ':/' |
