@@ -11,6 +11,7 @@ if () then ([else])
 else ([Person name is unique])
 endif
   :Person is created.;
+  :Person is assigned a contact index.;
   :Person is added to EduMate.;
 stop
 
