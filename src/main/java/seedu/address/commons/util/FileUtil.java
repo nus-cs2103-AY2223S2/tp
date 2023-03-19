@@ -1,11 +1,9 @@
 package seedu.address.commons.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
-import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -59,12 +57,14 @@ public class FileUtil {
 
         createParentDirsOfFile(file);
 
-        Files.createFile(file);
-        File fileCreated = file.toFile();
 
-        if (isHidden && fileCreated.getName().startsWith(".")) {
-            Files.setAttribute(file, "dos:hidden", true, LinkOption.NOFOLLOW_LINKS);
-            assert fileCreated.isHidden();
+        if (isHidden) {
+            Set<PosixFilePermission> permissions =
+                    PosixFilePermissions.fromString("rw-------");
+            Files.createFile(file, PosixFilePermissions.asFileAttribute(permissions));
+        } else {
+            Files.createFile(file);
+
         }
     }
 
@@ -97,9 +97,6 @@ public class FileUtil {
                 lines.remove(lines.size() - 1);
             }
             lines.add(0, content);
-            Set<PosixFilePermission> permissions =
-                    PosixFilePermissions.fromString("rw-------");
-            Files.createFile(file, PosixFilePermissions.asFileAttribute(permissions));
             Files.write(file, lines, Charset.forName(CHARSET),
                     StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE,
                     StandardOpenOption.CREATE);

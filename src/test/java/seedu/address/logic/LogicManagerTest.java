@@ -12,7 +12,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALEX;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,7 +49,9 @@ public class LogicManagerTest {
     private Logic logic;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException {
+        Set<PosixFilePermission> perms = PosixFilePermissions.fromString("rwx------");
+        Files.setPosixFilePermissions(temporaryFolder, perms);
         EduMateStorageManager eduMateStorage =
                 new EduMateStorageManager(temporaryFolder.resolve("eduMate.json"),
                         temporaryFolder.resolve(".edumate_history"));

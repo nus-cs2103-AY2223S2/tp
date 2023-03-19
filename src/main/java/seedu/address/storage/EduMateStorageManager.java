@@ -26,6 +26,11 @@ public class EduMateStorageManager implements EduMateStorage {
 
     private Path eduMateHistoryFilePath;
 
+    /**
+     * Constructor for the EduMateStorageManager.
+     * @param eduMateFilePath location of data.
+     * @param eduMateHistoryFilePath location of command history data.
+     */
     public EduMateStorageManager(Path eduMateFilePath, Path eduMateHistoryFilePath) {
         this.eduMateFilePath = eduMateFilePath;
         this.eduMateHistoryFilePath = eduMateHistoryFilePath;

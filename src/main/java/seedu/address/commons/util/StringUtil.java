@@ -68,10 +68,16 @@ public class StringUtil {
         }
     }
 
+    /**
+     * Saves the String input to the specified file.
+     * Adds the String to the top of the file.
+     * @param input cannot be null
+     * @param filePath cannot be null
+     * @throws IOException if there was an error during writing to the file
+     */
     public static void saveStringFile(String input, Path filePath) throws IOException {
         requireNonNull(input);
         requireNonNull(filePath);
-        
         FileUtil.writeToFile(filePath, input, true);
     }
 }
