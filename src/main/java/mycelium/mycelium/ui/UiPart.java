@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.common;
+package mycelium.mycelium.ui;
 
 import static java.util.Objects.requireNonNull;
 

@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.common.project;
+package mycelium.mycelium.ui.resultoutput;
 
 
 import static mycelium.mycelium.ui.testutil.GuiTestAssert.assertCardDisplaysProject;

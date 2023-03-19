@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.common;
+package mycelium.mycelium.ui.resultoutput;
 
 import static java.util.Objects.requireNonNull;
 
@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import mycelium.mycelium.ui.UiPart;
 
 /**
  * Panel containing the list of {@code T}.
@@ -30,7 +31,7 @@ public class ListPanel<T> extends UiPart<Region> {
     }
 
     /**
-     * Creates a {@code ListPanel} with the given {@cpde list} after transforming with {@code biMap}
+     * Creates a {@code ListPanel} with the given {@code list} after transforming with {@code biMap}
      *
      * @param list  ObservableList of items
      * @param biMap BiFunction that transform the list to the approproate {@code UiPart}

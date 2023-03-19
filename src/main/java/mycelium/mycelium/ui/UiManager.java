@@ -11,7 +11,6 @@ import mycelium.mycelium.MainApp;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.commons.util.StringUtil;
 import mycelium.mycelium.logic.Logic;
-import mycelium.mycelium.ui.common.Ui;
 
 /**
  * The manager of the UI component.
@@ -62,9 +61,7 @@ public class UiManager implements Ui {
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.fillInnerParts();
-
+            mainWindow.show();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

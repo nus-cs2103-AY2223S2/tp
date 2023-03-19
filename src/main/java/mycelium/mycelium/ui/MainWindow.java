@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -19,11 +18,15 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.project.Project;
-import mycelium.mycelium.ui.common.ListPanel;
-import mycelium.mycelium.ui.common.TabPage;
-import mycelium.mycelium.ui.common.UiPart;
-import mycelium.mycelium.ui.common.client.ClientListCard;
-import mycelium.mycelium.ui.common.project.ProjectListCard;
+import mycelium.mycelium.ui.commandbox.CommandBox;
+import mycelium.mycelium.ui.commandlog.CommandLog;
+import mycelium.mycelium.ui.helpwindow.HelpWindow;
+import mycelium.mycelium.ui.resultoutput.ClientListCard;
+import mycelium.mycelium.ui.resultoutput.ListPanel;
+import mycelium.mycelium.ui.resultoutput.ProjectListCard;
+import mycelium.mycelium.ui.resultoutput.TabPage;
+import mycelium.mycelium.ui.resultoutput.TabsHolder;
+import mycelium.mycelium.ui.statusbarfooter.StatusBarFooter;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,13 +42,15 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private HelpWindow helpWindow;
+    private CommandBox commandBox;
+    private CommandLog commandLog;
     private ListPanel<Client> clientListPanel;
     private ListPanel<Project> projectListPanel;
-    private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
-
     private TabPage projectTab;
     private TabPage clientTab;
+    private TabsHolder tabsHolder;
+    private StatusBarFooter statusBarFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,10 +59,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane commandLogPlaceholder;
 
     @FXML
-    private TabPane tabPane;
+    private StackPane resultOutputPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -76,8 +81,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -122,23 +125,24 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+    private void fillInnerParts() {
+        helpWindow = new HelpWindow();
+
+        commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        commandLog = new CommandLog();
+        commandLogPlaceholder.getChildren().add(commandLog.getRoot());
+
         projectListPanel = new ListPanel<Project>(logic.getFilteredProjectList(), ProjectListCard::new);
         clientListPanel = new ListPanel<Client>(logic.getFilteredClientList(), ClientListCard::new);
         projectTab = new TabPage("Projects", projectListPanel);
         clientTab = new TabPage("Client", clientListPanel);
-        projectTab.fillInnerContent();
-        clientTab.fillInnerContent();
-        tabPane.getTabs().addAll(projectTab.getRoot(), clientTab.getRoot());
+        tabsHolder = new TabsHolder(projectTab, clientTab);
+        resultOutputPlaceholder.getChildren().add(tabsHolder.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -167,6 +171,7 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+        fillInnerParts(); //This should be called before creating other UI parts
     }
 
     /**
@@ -198,7 +203,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandLog.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -211,7 +216,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            commandLog.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }
