@@ -24,7 +24,7 @@ public class CardTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameCard() {
         // same object -> returns true
         assertTrue(LOOP.isSameCard(LOOP));
 

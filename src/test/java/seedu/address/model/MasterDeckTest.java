@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
-import seedu.address.model.card.exceptions.DuplicatePersonException;
+import seedu.address.model.card.exceptions.DuplicateCardException;
 import seedu.address.model.deck.Deck;
 import seedu.address.testutil.CardBuilder;
 
@@ -45,14 +45,14 @@ public class MasterDeckTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateCards_throwsDuplicateCardException() {
         // Two cards with the same identity fields
         Card editedLoop = new CardBuilder(LOOP).withTags(VALID_TAG_MEDIUM).withDeck(VALID_DECK_SCIENCE)
                 .build();
         List<Card> newCards = Arrays.asList(LOOP, editedLoop);
         MasterDeckStub newData = new MasterDeckStub(newCards);
 
-        assertThrows(DuplicatePersonException.class, () -> masterDeck.resetData(newData));
+        assertThrows(DuplicateCardException.class, () -> masterDeck.resetData(newData));
     }
 
     @Test

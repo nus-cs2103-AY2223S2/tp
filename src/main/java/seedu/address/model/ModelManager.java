@@ -83,7 +83,7 @@ public class ModelManager implements Model {
     @Override
     public void setMasterDeckFilePath(Path masterDeckFilePath) {
         requireNonNull(masterDeckFilePath);
-        userPrefs.setAddressBookFilePath(masterDeckFilePath);
+        userPrefs.setMasterDeckFilePath(masterDeckFilePath);
     }
 
     /* MasterDeck Operations */

@@ -51,7 +51,7 @@ public class JsonMasterDeckStorageTest {
     }
 
     @Test
-    public void readMasterDeck_invalidPersonAddressBook_throwDataConversionException() {
+    public void readMasterDeck_invalidCardMasterDeck_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readMasterDeck("invalidPersonAddressBook.json"));
     }
 

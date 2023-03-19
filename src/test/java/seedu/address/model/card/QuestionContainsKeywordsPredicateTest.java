@@ -42,37 +42,38 @@ public class QuestionContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
+    public void test_questionContainsKeywords_returnsTrue() {
         // One keyword
         QuestionContainsKeywordsPredicate predicate =
-                new QuestionContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new CardBuilder().withQuestion("Alice Bob").build()));
+                new QuestionContainsKeywordsPredicate(Collections.singletonList("gravity"));
+        assertTrue(predicate.test(new CardBuilder().withQuestion("What is gravity").build()));
 
         // Multiple keywords
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new CardBuilder().withQuestion("Alice Bob").build()));
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("What", "gravity"));
+        assertTrue(predicate.test(new CardBuilder().withQuestion("What is gravity").build()));
 
         // Only one matching keyword
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new CardBuilder().withQuestion("Alice Carol").build()));
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("gravity", "photosynthesis"));
+        assertTrue(predicate.test(new CardBuilder().withQuestion("What is photosynthesis").build()));
 
         // Mixed-case keywords
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new CardBuilder().withQuestion("Alice Bob").build()));
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("wHaT", "gRaVIty"));
+        assertTrue(predicate.test(new CardBuilder().withQuestion("What is gravity").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_questionDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         QuestionContainsKeywordsPredicate predicate = new QuestionContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new CardBuilder().withQuestion("Alice").build()));
+        assertFalse(predicate.test(new CardBuilder().withQuestion("What is gravity").build()));
 
         // Non-matching keyword
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new CardBuilder().withQuestion("Alice Bob").build()));
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("photosynthesis"));
+        assertFalse(predicate.test(new CardBuilder().withQuestion("What is gravity").build()));
 
-        // Keywords match address, but does not match name
-        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Main", "Street"));
-        assertFalse(predicate.test(new CardBuilder().withQuestion("Alice").withAnswer("Main Street").build()));
+        // Keywords match answer, but does not match question
+        predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("sunlight", "energy"));
+        assertFalse(predicate.test(new CardBuilder().withQuestion("What is gravity")
+                .withAnswer("The process by which plants convert sunlight into energy").build()));
     }
 }

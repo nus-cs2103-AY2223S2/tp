@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setMasterDeckFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setMasterDeckFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,47 +61,47 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setMasterDeckFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setMasterDeckFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setMasterDeckFilePath_validPath_setsMasterDeckFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setMasterDeckFilePath(path);
         assertEquals(path, modelManager.getMasterDeckFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasCard_nullCard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasCard(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasCard_cardNotInMasterDeck_returnsFalse() {
         assertFalse(modelManager.hasCard(LOOP));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasCard_cardInMasterDeck_returnsTrue() {
         modelManager.addCard(LOOP);
         assertTrue(modelManager.hasCard(LOOP));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredCardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCardList().remove(0));
     }
 
     @Test
     public void equals() {
-        MasterDeck addressBook = new MasterDeckBuilder().withCard(LOOP).withCard(VARIABLE).build();
-        MasterDeck differentAddressBook = new MasterDeck();
+        MasterDeck masterDeck = new MasterDeckBuilder().withCard(LOOP).withCard(VARIABLE).build();
+        MasterDeck differentMasterDeck = new MasterDeck();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(masterDeck, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(masterDeck, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +113,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different masterDeck -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentMasterDeck, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = LOOP.getQuestion().question.split("\\s+");
         modelManager.updateFilteredCardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
-        //assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        //assertFalse(modelManager.equals(new ModelManager(masterDeck, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setMasterDeckFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(masterDeck, differentUserPrefs)));
     }
 }

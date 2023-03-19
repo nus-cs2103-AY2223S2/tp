@@ -15,8 +15,8 @@ public class QuestionTest {
 
     @Test
     public void constructor_invalidQuestion_throwsIllegalArgumentException() {
-        String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Question(invalidName));
+        String invalidQuestion = "";
+        assertThrows(IllegalArgumentException.class, () -> new Question(invalidQuestion));
     }
 
     @Test
@@ -29,10 +29,11 @@ public class QuestionTest {
         assertFalse(Question.isValidQuestion(" ")); // spaces only
 
         // valid name
-        assertTrue(Question.isValidQuestion("peter jack")); // alphabets only
-        assertTrue(Question.isValidQuestion("12345")); // numbers only
-        assertTrue(Question.isValidQuestion("peter the 2nd")); // alphanumeric characters
-        assertTrue(Question.isValidQuestion("Capital Tan")); // with capital letters
-        assertTrue(Question.isValidQuestion("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Question.isValidQuestion("what is gravity")); // alphabets only
+        assertTrue(Question.isValidQuestion("98")); // numbers only
+        assertTrue(Question.isValidQuestion("What is 1 plus 1")); // alphanumeric characters
+        assertTrue(Question.isValidQuestion("Who is Isaac Newton")); // with capital letters
+        assertTrue(Question.isValidQuestion("Why does the moon's gravity cause tides on earth but"
+                + "the Sun's gravity does not?")); // long question
     }
 }
