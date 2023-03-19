@@ -27,7 +27,7 @@ public class UniqueItemList<T extends Item> implements Iterable<T> {
     private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private String itemType = "item";
+    private String itemType = "Item";
 
     protected UniqueItemList() {
     }
