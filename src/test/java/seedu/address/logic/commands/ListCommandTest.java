@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.getTypicalTracker;
+import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -66,6 +68,35 @@ public class ListCommandTest {
             assertNull(e);
         }
         String expectedString = String.format(ListCommand.MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName);
+        assertCommandSuccess(listCommand, model, expectedString, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_moduleNotFound() {
+        ModuleCode moduleCode = new ModuleCode("CS1231S");
+        String input = String.format("list /mod %s", moduleCode);
+        try {
+            listCommand = new ListCommandParser().parse(input);
+            listCommand.execute(expectedModel);
+        } catch (ParseException e) {
+            assertNull(e);
+        }
+        String expectedString = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode);
+        assertCommandSuccess(listCommand, model, expectedString, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFiltered_lectureNotFound() {
+        ModuleCode moduleCode = module.getCode();
+        LectureName lectureName = new LectureName("Unknown lecture");
+        String input = String.format("list /mod %s /lec %s", moduleCode, lectureName);
+        try {
+            listCommand = new ListCommandParser().parse(input);
+            listCommand.execute(expectedModel);
+        } catch (ParseException e) {
+            assertNull(e);
+        }
+        String expectedString = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode);
         assertCommandSuccess(listCommand, model, expectedString, expectedModel);
     }
 }
