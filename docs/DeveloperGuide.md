@@ -436,7 +436,35 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 #### **Sort Command**
 
-{to be filled by Hafeez}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SortCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SortCommandParser.java)
+
+The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
+
+**Parsing the inputs** - When the user types an input, the parser will *scan* through the arguments. Then, it checks whether the field needs to be sorted in **ascending** or **descending** order. Finally, it combines all the comparators together so that we get a single comparator.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:**
+* `sort`: Sorts the contacts by their index.
+* `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.
+* `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.
+* `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Unlike the other commands, the ordering of the arguments **does matter**. For example, `sort g/d n/a` is different from `sort n/a g/d`.
+
+</div>
+
+**Describing the sort** - The `Comparator` class in Java does not have a `toString()` method. As such, we have to pass a descriptor when we are creating our `SortCommand`. Additionally, we needed a mapping from the prefixes (`n/`) to their descriptors (`Name`). As such, we transformed the `Prefix` class to an `Enum` to easily get the descriptors.
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Tips**: JavaFX works with `ObservableList` to populate the UI components. However, we can wrap this `ObservableList` inside a `SortedList` which accepts a `Comparator` as an argument. In this way, we only need to set this argument if we want to sort something in the UI.
+
+</div>
 
 #### **List Command**
 
