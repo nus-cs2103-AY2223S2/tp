@@ -34,11 +34,11 @@ class JsonAdaptedAppointment {
      * Constructs a {@code JsonAdaptedAppointment} with the given patient details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("appointmentId") String appointmentId,
+    public JsonAdaptedAppointment(@JsonProperty("id") String appointmentId,
                                   @JsonProperty("timeslot") String timeslot,
                                   @JsonProperty("description") String description,
                                   @JsonProperty("patientId") String patientId,
-                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                                  @JsonProperty("tags") List<JsonAdaptedTag> tagged) {
         this.appointmentId = appointmentId;
         this.timeslot = timeslot;
         this.description = description;

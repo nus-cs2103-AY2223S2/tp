@@ -15,7 +15,6 @@ import java.util.Set;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.id.AppointmentId;
 import seedu.address.model.tag.Tag;
 
@@ -23,11 +22,6 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new EditAppointmentCommand object
  */
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
-    private Model model;
-
-    public EditAppointmentCommandParser(Model model) {
-        this.model = model;
-    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditAppointmentCommand
@@ -37,7 +31,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
      */
     public EditAppointmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        requireNonNull(this.model);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_PATIENT_ID, PREFIX_TAG);
 

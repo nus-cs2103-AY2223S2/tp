@@ -38,7 +38,7 @@ public class ModelManager implements Model {
         this.appointmentList = new AppointmentList(appointmentList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
-        filteredAppointments = null; // stopgap measure
+        filteredAppointments = new FilteredList<>(this.appointmentList.getAppointmentList());
     }
 
     /**
