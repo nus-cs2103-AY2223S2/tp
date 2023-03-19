@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Personal information**: Student particulars including `name`, `student id`, `email`, `class`, and can include additional notes.
+* **Personal information**: Student particulars including `name`, `phone number`, `student id`, `email`, `address`, and can include additional notes.
 
 --------------------------------------------------------------------------------------------------------------------
 
