@@ -5,7 +5,7 @@ import java.util.Set;
 import trackr.model.commons.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Supplier in the supplier list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Supplier extends Person {
