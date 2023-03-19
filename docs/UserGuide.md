@@ -77,7 +77,7 @@ Format: `help`
 
 Adds a person to the ConnectUS app.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tele/TELEGRAM] [bd/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of modules and CCAs. (including 0)
@@ -86,8 +86,8 @@ A person can have any number of modules and CCAs. (including 0)
 Examples:
 * `add n/James` would create a contact named James without any other contact information.
 * `add n/James p/12345678` would create a contact named James with a phone number 12345678.
-* `add n/James e/james@example.com tele/@itsjameshere` would create a contact named James with an email james@example.com and Telegram `@itsjameshere`.
-* `add n/James tele/@itsjameshere mod/CS2103T mod/CS2101 CCA/NUS Hackers` would create a contact named James with Telegram `@itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
+* `add n/James e/james@example.com tg/@itsjameshere` would create a contact named James with an email james@example.com and Telegram `@itsjameshere`.
+* `add n/James tg/@itsjameshere mod/CS2103T mod/CS2101 CCA/NUS Hackers` would create a contact named James with Telegram `@itsjameshere`, the module tags of CS2103T and CS2101, and the CCA of NUS Hackers.
 
 ### Listing all persons : `list`
 
@@ -99,7 +99,7 @@ Format: `list`
 
 Edits an existing person in the ConnectUS app.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tele/TELEGRAM] [bd/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
@@ -146,7 +146,7 @@ ConnectUS data is saved in the hard disk automatically after any command that ch
 ConnectUS data is saved as a JSON file `[JAR file location]/data/ConnectUS.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -160,12 +160,12 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Command summary
 
-| Action     | Format                                                                                                                                             | Examples                                                                      |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tele/TELEGRAM] [bd/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`             | `add n/James p/12345678 e/james@example.com tele/@itsjameshere bd/14/02/2000` |
-| **Clear**  | `clear`                                                                                                                                            |                                                                               |
-| **Delete** | `delete INDEX`                                                                                                                                     | `delete 3`                                                                    |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tele/TELEGRAM] [bd/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tele/@itsjameshere`                    |
-| **List**   | `list`                                                                                                                                             |                                                                               |
-| **Help**   | `help`                                                                                                                                             |                                                                               |
-| **Exit**   | `exit`                                                                                                                                             |                                                                               |
+| Action     | Format                                                                                                                                             | Examples                                                                   |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`                | `add n/James p/12345678 e/james@example.com tg/@itsjameshere b/14/02/2000` |
+| **Clear**  | `clear`                                                                                                                                            |                                                                            |
+| **Delete** | `delete INDEX`                                                                                                                                     | `delete 3`                                                                 |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tele/TELEGRAM] [bd/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/@itsjameshere`                   |
+| **List**   | `list`                                                                                                                                             |                                                                            |
+| **Help**   | `help`                                                                                                                                             |                                                                            |
+| **Exit**   | `exit`                                                                                                                                             |                                                                            |
