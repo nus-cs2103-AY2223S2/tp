@@ -21,8 +21,8 @@ public abstract class Status {
     /**
      * Constructs a {@code Status}.
      */
-    public Status(String status, String type, String validationRegex, HashMap<String, String> statuses) {
-        requireAllNonNull(status, type, validationRegex, statuses);
+    public Status(String status, String type, HashMap<String, String> statuses) {
+        requireAllNonNull(status, type, statuses);
 
         for (Entry<String, String> entry : statuses.entrySet()) {
             this.statuses.put(entry.getKey().toUpperCase(), entry.getValue());
