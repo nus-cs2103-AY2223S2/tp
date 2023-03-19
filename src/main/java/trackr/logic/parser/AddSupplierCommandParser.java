@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.commons.Tag;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddSupplierCommand object

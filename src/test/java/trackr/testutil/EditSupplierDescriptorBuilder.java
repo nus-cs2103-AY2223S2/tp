@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.model.commons.Tag;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
 
 /**
  * A utility class to help with building EditSupplierDescriptor objects.

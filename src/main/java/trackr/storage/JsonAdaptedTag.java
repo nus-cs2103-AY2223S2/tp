@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import trackr.commons.exceptions.IllegalValueException;
-import trackr.model.tag.Tag;
+import trackr.model.commons.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.

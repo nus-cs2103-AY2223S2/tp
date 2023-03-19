@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import trackr.model.tag.Tag;
+import trackr.model.commons.Tag;
 
 /**
  * Represents a Person in the address book.

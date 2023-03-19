@@ -10,8 +10,8 @@ import java.util.Set;
 
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.model.commons.Tag;
 import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
 
 /**
  * A utility class for Supplier.
@@ -35,7 +35,7 @@ public class SupplierUtil {
         sb.append(PREFIX_EMAIL + supplier.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + supplier.getAddress().value + " ");
         supplier.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }

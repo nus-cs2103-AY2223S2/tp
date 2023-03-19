@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
+import trackr.model.commons.Tag;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Supplier}.
@@ -35,8 +35,8 @@ class JsonAdaptedSupplier {
      */
     @JsonCreator
     public JsonAdaptedSupplier(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;

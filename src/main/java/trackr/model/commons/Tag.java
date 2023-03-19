@@ -1,4 +1,4 @@
-package trackr.model.tag;
+package trackr.model.commons;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;

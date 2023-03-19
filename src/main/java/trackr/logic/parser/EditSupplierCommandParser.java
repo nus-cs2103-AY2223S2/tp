@@ -17,7 +17,7 @@ import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditSupplierCommand;
 import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.tag.Tag;
+import trackr.model.commons.Tag;
 
 /**
  * Parses input arguments and creates a new EditSupplierCommand object

@@ -15,6 +15,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.commons.Tag;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
@@ -26,7 +27,6 @@ import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
-import trackr.model.tag.Tag;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
@@ -73,7 +73,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -348,7 +348,7 @@ public class ParserUtilTest {
     @Test
     public void parseOrderStatus_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil
-            .parseOrderStatus(Optional.ofNullable(INVALID_ORDER_STATUS)));
+                .parseOrderStatus(Optional.ofNullable(INVALID_ORDER_STATUS)));
     }
 
     @Test

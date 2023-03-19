@@ -3,12 +3,12 @@ package trackr.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import trackr.model.commons.Tag;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
 import trackr.model.util.SampleDataUtil;
 
 /**
@@ -60,7 +60,7 @@ public class SupplierBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code supplier} that we are building.
      */
-    public SupplierBuilder withTags(String ... tags) {
+    public SupplierBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

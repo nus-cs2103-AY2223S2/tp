@@ -19,12 +19,12 @@ import trackr.commons.core.index.Index;
 import trackr.commons.util.CollectionUtil;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
+import trackr.model.commons.Tag;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
 
 /**
  * Edits the details of an existing supplier in the supplier list.
@@ -55,7 +55,7 @@ public class EditSupplierCommand extends Command {
     private final EditSupplierDescriptor editSupplierDescriptor;
 
     /**
-     * @param index of the supplier in the filtered supplier list to edit
+     * @param index                  of the supplier in the filtered supplier list to edit
      * @param editSupplierDescriptor details to edit the supplier with
      */
     public EditSupplierCommand(Index index, EditSupplierDescriptor editSupplierDescriptor) {
@@ -92,7 +92,7 @@ public class EditSupplierCommand extends Command {
      * edited with {@code editSupplierDescriptor}.
      */
     private static Supplier createEditedSupplier(Supplier supplierToEdit,
-            EditSupplierDescriptor editSupplierDescriptor) {
+                                                 EditSupplierDescriptor editSupplierDescriptor) {
         assert supplierToEdit != null;
 
         PersonName updatedName = editSupplierDescriptor.getName().orElse(supplierToEdit.getName());
@@ -133,7 +133,8 @@ public class EditSupplierCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditSupplierDescriptor() {}
+        public EditSupplierDescriptor() {
+        }
 
         /**
          * Copy constructor.

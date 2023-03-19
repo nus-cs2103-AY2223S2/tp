@@ -36,11 +36,11 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.EditSupplierCommand;
 import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.model.commons.Tag;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
 import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
-import trackr.model.tag.Tag;
 import trackr.testutil.EditSupplierDescriptorBuilder;
 
 public class EditSupplierCommandParserTest {
