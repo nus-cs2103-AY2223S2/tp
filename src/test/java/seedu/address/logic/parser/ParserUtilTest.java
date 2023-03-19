@@ -29,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_AGE = "invalid age";
+    private static final String INVALID_TIME = "invalid time";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
@@ -36,6 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_AGE = "15";
+    private static final String VALID_TIME = "2021-05-15 1530";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -169,6 +171,16 @@ public class ParserUtilTest {
     public void parseAge_validValueWithoutWhitespace_returnsAge() throws Exception {
         Age expectedAge = new Age(VALID_AGE);
         assertEquals(expectedAge, ParserUtil.parseAge(VALID_AGE));
+    }
+
+    @Test
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
+    }
+
+    @Test
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
     }
 
     @Test
