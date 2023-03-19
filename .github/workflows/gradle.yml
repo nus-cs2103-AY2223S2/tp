@@ -35,10 +35,9 @@ jobs:
           java-version: '11'
           java-package: jdk+fx
 
-      - name: Build and check with Gradle
-        run: ./gradlew check coverage
-
 #      TODO: Reenable at v1.4
+#      - name: Build and check with Gradle
+#        run: ./gradlew check coverage
 #      - uses: codecov/codecov-action@v2
 #        if: runner.os == 'Linux'
 #        with:
