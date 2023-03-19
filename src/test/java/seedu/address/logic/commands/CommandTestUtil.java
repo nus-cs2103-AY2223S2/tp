@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -43,8 +45,10 @@ public class CommandTestUtil {
     public static final String VALID_SUBJECT_BOB = "English";
     public static final String VALID_SCHEDULE_AMY = "friday";
     public static final String VALID_SCHEDULE_BOB = "friday";
-    public static final String VALID_REMARK_AMY = "Likes EndTime work";
-    public static final String VALID_REMARK_BOB = "Likes EndTime build";
+    public static final String VALID_STARTTIME_AMY = "10:30";
+    public static final String VALID_STARTTIME_BOB = "14:00";
+    public static final String VALID_ENDTIME_AMY = "12:30";
+    public static final String VALID_ENDTIME_BOB = "16:00";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -62,6 +66,10 @@ public class CommandTestUtil {
     public static final String SUBJECT_DESC_BOB = " " + PREFIX_SUBJECT + VALID_SUBJECT_BOB;
     public static final String SCHEDULE_DESC_AMY = " " + PREFIX_SCHEDULE + VALID_SCHEDULE_AMY;
     public static final String SCHEDULE_DESC_BOB = " " + PREFIX_SCHEDULE + VALID_SCHEDULE_BOB;
+    public static final String STARTTIME_DESC_AMY = " " + PREFIX_STARTTIME + VALID_STARTTIME_AMY;
+    public static final String STARTTIME_DESC_BOB = " " + PREFIX_STARTTIME + VALID_STARTTIME_BOB;
+    public static final String ENDTIME_DESC_AMY = " " + PREFIX_ENDTIME + VALID_ENDTIME_AMY;
+    public static final String ENDTIME_DESC_BOB = " " + PREFIX_ENDTIME + VALID_ENDTIME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -70,6 +78,9 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT; // empty subject not allowed for students
+    public static final String INVALID_SCHEDULE_DESC = " " + PREFIX_SUBJECT + "mon"; // short form for the day not allowed
+    public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "two"; // must be in HH:MM format
+    public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME; // empty end time not allowed for students
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

@@ -7,6 +7,8 @@
     "remark" : "",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "08:30",
+    "endTime" : "10:30",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -15,6 +17,8 @@
     "address": "4th street",
     "subject" : "Math",
     "schedule" : "friday",
+    "startTime" : "08:30",
+    "endTime" : "10:30",
     "remark" : ""
   } ]
 }

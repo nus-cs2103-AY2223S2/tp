@@ -4,14 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutee.Address;
-import seedu.address.model.tutee.Email;
-import seedu.address.model.tutee.Name;
-import seedu.address.model.tutee.Phone;
-import seedu.address.model.tutee.Remark;
-import seedu.address.model.tutee.Schedule;
-import seedu.address.model.tutee.Subject;
-import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.*;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -26,6 +19,8 @@ public class PersonBuilder {
     public static final String DEFAULT_REMARK = "";
     public static final String DEFAULT_SUBJECT = "Math";
     public static final String DEFAULT_SCHEDULE = "friday";
+    public static final String DEFAULT_STARTTIME = "10:30";
+    public static final String DEFAULT_ENDTIME = "12:30";
 
     private Name name;
     private Phone phone;
@@ -34,6 +29,8 @@ public class PersonBuilder {
     private Remark remark;
     private Subject subject;
     private Schedule schedule;
+    private StartTime startTime;
+    private EndTime endTime;
     private Set<Tag> tags;
 
     /**
@@ -47,6 +44,8 @@ public class PersonBuilder {
         remark = new Remark(DEFAULT_REMARK);
         subject = new Subject(DEFAULT_SUBJECT);
         schedule = new Schedule(DEFAULT_SCHEDULE);
+        startTime = new StartTime(DEFAULT_STARTTIME);
+        endTime = new EndTime(DEFAULT_ENDTIME);
         tags = new HashSet<>();
     }
 
@@ -61,6 +60,8 @@ public class PersonBuilder {
         remark = tuteeToCopy.getRemark();
         subject = tuteeToCopy.getSubject();
         schedule = tuteeToCopy.getSchedule();
+        startTime = tuteeToCopy.getStartTime();
+        endTime = tuteeToCopy.getEndTime();
         tags = new HashSet<>(tuteeToCopy.getTags());
     }
 
@@ -128,9 +129,25 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code startTime} of the {@code Tutee} that we are building.
+     */
+    public PersonBuilder withStartTime(String startTime) {
+        this.startTime = new StartTime(startTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code endTime} of the {@code Tutee} that we are building.
+     */
+    public PersonBuilder withEndTime(String endTime) {
+        this.endTime = new EndTime(endTime);
+        return this;
+    }
+
 
     public Tutee build() {
-        return new Tutee(name, phone, email, address, remark, subject, schedule, tags);
+        return new Tutee(name, phone, email, address, remark, subject, schedule, startTime, endTime, tags);
     }
 
 }
