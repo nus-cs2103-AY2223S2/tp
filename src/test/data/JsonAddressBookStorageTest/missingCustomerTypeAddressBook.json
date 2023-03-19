@@ -7,7 +7,9 @@
       "address": "123, Jurong West Ave 6, #08-111",
       "tagged": [
         "friends"
-      ]
+      ],
+      "points": 0,
+      "cumulativePoints": 0
     },
     {
       "name": "Benson Meier",
@@ -17,7 +19,9 @@
       "tagged": [
         "owesMoney",
         "friends"
-      ]
+      ],
+      "points": 0,
+      "cumulativePoints": 0
     }
   ]
 }
