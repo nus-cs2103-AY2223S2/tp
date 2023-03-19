@@ -14,12 +14,17 @@ import seedu.address.model.ReadOnlyVolunteer;
 public interface VolunteerStorage {
     /**
      * Returns the file path of the volunteers data file.
+     *
+     * @return Volunteer data file path.
      */
     Path getVolunteerFilePath();
 
     /**
      * Returns FriendlyLink data as a {@link ReadOnlyVolunteer}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @param friendlyLink FriendlyLink cache.
+     * @return {@code Optional} of FriendlyLink cache.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,8 +38,8 @@ public interface VolunteerStorage {
 
     /**
      * Saves the given {@link ReadOnlyVolunteer} to the storage.
-     * @param volunteer cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     * @param volunteer Cannot be null.
+     * @throws IOException If there was any problem writing to the file.
      */
     void saveVolunteer(ReadOnlyVolunteer volunteer) throws IOException;
 

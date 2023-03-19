@@ -23,6 +23,11 @@ public class JsonPairStorage extends JsonAppStorage<ReadOnlyPair, FriendlyLink,
 
     private static final Logger logger = LogsCenter.getLogger(JsonPairStorage.class);
 
+    /**
+     * Creates a {@code JsonPairStorage} to access pair file data.
+     *
+     * @param filePath Pair data file path.
+     */
     public JsonPairStorage(Path filePath) {
         super(filePath);
     }
@@ -37,13 +42,7 @@ public class JsonPairStorage extends JsonAppStorage<ReadOnlyPair, FriendlyLink,
         return super.read(JsonSerializablePair.class, logger, friendlyLink);
     }
 
-    /**
-     * Similar to {@link PairStorage#readPair(FriendlyLink)}.
-     *
-     * @param filePath     location of the data. Cannot be null.
-     * @param friendlyLink the cache the pair list will be read to.
-     * @throws DataConversionException if the file is not in the correct format.
-     */
+    @Override
     public Optional<ReadOnlyPair> readPair(Path filePath, FriendlyLink friendlyLink)
             throws DataConversionException {
         return super.read(filePath, JsonSerializablePair.class, logger, friendlyLink);
@@ -54,11 +53,7 @@ public class JsonPairStorage extends JsonAppStorage<ReadOnlyPair, FriendlyLink,
         savePair(entity, super.getFilePath());
     }
 
-    /**
-     * Similar to {@link #savePair(ReadOnlyPair)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
+    @Override
     public void savePair(ReadOnlyPair entity, Path filePath) throws IOException {
         requireNonNull(entity);
         requireNonNull(filePath);

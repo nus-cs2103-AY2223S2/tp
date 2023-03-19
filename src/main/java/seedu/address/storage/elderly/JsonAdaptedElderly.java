@@ -49,6 +49,8 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
 
     /**
      * Converts a given {@code Elderly} into this class for Jackson use.
+     *
+     * @param source Elderly for Jackson use.
      */
     public JsonAdaptedElderly(Elderly source) {
         super(source);
@@ -68,7 +70,9 @@ public class JsonAdaptedElderly extends JsonAdaptedPerson implements JsonSeriali
     /**
      * Converts this Jackson-friendly adapted elderly object into the model's {@code Elderly} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted elderly.
+     * @param friendlyLink FriendlyLink cache.
+     * @return Model's {@code Elderly} object.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted elderly.
      */
     public Elderly toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
         Name modelName = super.getModelName(MISSING_FIELD_MESSAGE_FORMAT);
