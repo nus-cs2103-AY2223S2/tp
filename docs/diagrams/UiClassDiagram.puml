@@ -11,8 +11,17 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
+Class TabPanel
+Class HomeView
+Class FinanceCard
+Class OrdersListView
+Class OrderCard
+Class TaskListView
+Class TaskCard
+Class ContactListView
 Class PersonCard
+Class MenuListView
+Class MenuCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -32,26 +41,50 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" TabPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+TabPanel -down-> "1" HomeView
+TabPanel -down-> "1" OrdersListView
+TabPanel -down-> "1" TaskListView
+TabPanel -down-> "1" ContactListView
+TabPanel -down-> "1" MenuListView
 
-MainWindow -left-|> UiPart
+OrdersListView -down-> "*" OrderCard
+ContactListView -down-> "*" PersonCard
+TaskListView -down-> "*" TaskCard
+MenuListView -down-> "*" MenuCard
+
+HomeView -down-> "*" TaskCard
+HomeView -down-> "*" OrderCard
+HomeView -down-> "1" FinanceCard
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+OrderCard --|> UiPart
+PersonCard --|>UiPart
+TaskCard --|> UiPart
+MenuCard --|> UiPart
+FinanceCard --|> UiPart
+MainWindow -left-|> UiPart
 
 PersonCard ..> Model
+OrderCard ..> Model
+MenuCard ..> Model
+TaskCard ..> Model
+
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+MenuListView -[hidden]left- ContactListView
+ContactListView -[hidden]left- TaskListView
+TaskListView -[hidden]left- OrdersListView
+OrdersListView -[hidden]left- HomeView
+
+TabPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
