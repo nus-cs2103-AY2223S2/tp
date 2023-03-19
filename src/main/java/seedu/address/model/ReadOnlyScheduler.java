@@ -6,11 +6,11 @@ import seedu.address.model.event.Event;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyScheduler {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the events list.
+     * This list will not contain any duplicate events.
      */
     ObservableList<Event> getEventList();
 }
