@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
         Text text = new Text("PowerCard");
         titlePanel.getChildren().add(text);
 
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredCardList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         deckListPanel = new DeckListPanel(logic.getFilteredDeckList());
@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMasterDeckFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

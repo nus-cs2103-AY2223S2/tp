@@ -65,7 +65,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multipleCardsFound() {
         String expectedMessage = String.format(MESSAGE_CARDS_LISTED_OVERVIEW, 3);
         QuestionContainsKeywordsPredicate predicate = preparePredicate("atom president independence");
         FindCommand command = new FindCommand(predicate);

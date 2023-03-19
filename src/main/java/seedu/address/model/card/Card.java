@@ -12,7 +12,7 @@ import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Card in the address book.
+ * Represents a Card in the master deck.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Card {
@@ -63,8 +63,8 @@ public class Card {
     }
 
     /**
-     * Returns true if both persons have the same question.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both cards have the same question.
+     * This defines a weaker notion of equality between two cards.
      */
     public boolean isSameCard(Card otherCard) {
         if (otherCard == this) {
@@ -110,8 +110,8 @@ public class Card {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both cards have the same identity and data fields.
+     * This defines a stronger notion of equality between two cards.
      */
     @Override
     public boolean equals(Object other) {

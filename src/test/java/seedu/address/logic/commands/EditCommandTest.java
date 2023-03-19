@@ -110,7 +110,7 @@ public class EditCommandTest {
     public void execute_duplicateCardFilteredList_failure() {
         showCardAtIndex(model, INDEX_FIRST);
 
-        // edit card in filtered list into a duplicate in address book
+        // edit card in filtered list into a duplicate in master deck
         Card cardInList = model.getMasterDeck().getCardList().get(INDEX_SECOND.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST,
                 new EditCardDescriptorBuilder(cardInList).build());

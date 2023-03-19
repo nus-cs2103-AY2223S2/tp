@@ -13,7 +13,7 @@ import seedu.address.model.deck.UniqueDeckList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameCard comparison)
  */
 public class MasterDeck implements ReadOnlyMasterDeck {
 
@@ -36,7 +36,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     public MasterDeck() {}
 
     /**
-     * Creates an Deck using the Persons in the {@code toBeCopied}
+     * Creates an Deck using the Cards in the {@code toBeCopied}
      */
     public MasterDeck(ReadOnlyMasterDeck toBeCopied) {
         this();
@@ -70,7 +70,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     //// card-level operations
 
     /**
-     * Returns true if a card with the same identity as {@code card} exists in the address book.
+     * Returns true if a card with the same identity as {@code card} exists in the master deck.
      */
     public boolean hasCard(Card card) {
         requireNonNull(card);
@@ -78,8 +78,8 @@ public class MasterDeck implements ReadOnlyMasterDeck {
     }
 
     /**
-     * Adds a card to the address book.
-     * The card must not already exist in the address book.
+     * Adds a card to the master deck.
+     * The card must not already exist in the master deck.
      */
     public void addCard(Card p) {
         cards.add(p);
@@ -87,8 +87,8 @@ public class MasterDeck implements ReadOnlyMasterDeck {
 
     /**
      * Replaces the given card {@code target} in the list with {@code editedCard}.
-     * {@code target} must exist in the address book.
-     * The card identity of {@code editedCard} must not be the same as another existing card in the address book.
+     * {@code target} must exist in the master deck.
+     * The card identity of {@code editedCard} must not be the same as another existing card in the master deck.
      */
     public void setCard(Card target, Card editedCard) {
         requireNonNull(editedCard);
@@ -160,7 +160,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
 
     @Override
     public String toString() {
-        return cards.asUnmodifiableObservableList().size() + " persons";
+        return cards.asUnmodifiableObservableList().size() + " cards";
         // TODO: refine later
     }
 

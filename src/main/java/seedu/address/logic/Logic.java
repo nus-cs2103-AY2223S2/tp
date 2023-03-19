@@ -29,18 +29,18 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getMasterDeck()
      */
-    ReadOnlyMasterDeck getAddressBook();
+    ReadOnlyMasterDeck getMasterDeck();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Card> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of cards */
+    ObservableList<Card> getFilteredCardList();
 
     /** Returns an unmodifiable view of the filtered list of decks */
     ObservableList<Deck> getFilteredDeckList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' master deck file path.
      */
-    Path getAddressBookFilePath();
+    Path getMasterDeckFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

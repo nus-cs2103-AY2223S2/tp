@@ -27,8 +27,8 @@ public class JsonSerializableMasterDeckTest {
         JsonSerializableMasterDeck dataFromFile = JsonUtil.readJsonFile(TYPICAL_CARDS_FILE,
                 JsonSerializableMasterDeck.class).get();
         MasterDeck addressBookFromFile = dataFromFile.toModelType();
-        MasterDeck typicalPersonsAddressBook = TypicalCards.getTypicalMasterDeck();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        MasterDeck typicalCardMasterDeck = TypicalCards.getTypicalMasterDeck();
+        assertEquals(addressBookFromFile, typicalCardMasterDeck);
     }
 
     @Test

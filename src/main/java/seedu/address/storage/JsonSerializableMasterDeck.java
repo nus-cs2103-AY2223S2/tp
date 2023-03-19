@@ -28,7 +28,7 @@ class JsonSerializableMasterDeck {
     private final List<JsonAdaptedDeck> decks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMasterDeck} with the given persons.
+     * Constructs a {@code JsonSerializableMasterDeck} with the given cards.
      */
     @JsonCreator
     public JsonSerializableMasterDeck(@JsonProperty("cards") List<JsonAdaptedCard> cards,

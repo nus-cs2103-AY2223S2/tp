@@ -59,26 +59,26 @@ public interface Model {
     ReadOnlyMasterDeck getMasterDeck();
 
     /**
-     * Returns true if a card with the same identity as {@code card} exists in the address book.
+     * Returns true if a card with the same identity as {@code card} exists in the master deck.
      */
     boolean hasCard(Card card);
 
     /**
      * Deletes the given card.
-     * The card must exist in the address book.
+     * The card must exist in the master deck.
      */
     void deleteCard(Card target);
 
     /**
      * Adds the given card.
-     * {@code card} must not already exist in the address book.
+     * {@code card} must not already exist in the master deck.
      */
     void addCard(Card card);
 
     /**
      * Replaces the given card {@code target} with {@code editedCard}.
-     * {@code target} must exist in the address book.
-     * The card identity of {@code editedCard} must not be the same as another existing card in the address book.
+     * {@code target} must exist in the master deck.
+     * The card identity of {@code editedCard} must not be the same as another existing card in the master deck.
      */
     void setCard(Card target, Card editedCard);
 
