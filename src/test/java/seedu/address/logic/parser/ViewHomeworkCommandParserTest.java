@@ -21,7 +21,7 @@ class ViewHomeworkCommandParserTest {
     public void parse_validArgsWithMultipleKeywords_returnsViewHomeworkCommand() throws ParseException {
         String args = " name/alice name/bob name/charlie " + PREFIX_STATUS + " completed";
         ViewHomeworkCommand expectedCommand = new ViewHomeworkCommand(new NameContainsKeywordsPredicate(
-                List.of("alice", "bob", "charlie")), new HomeworkIsCompletePredicate(true), false);
+                List.of("alice", "bob", "charlie")), new HomeworkIsCompletePredicate(true));
         assertEquals(expectedCommand, new ViewHomeworkCommandParser().parse(args));
     }
 
@@ -29,7 +29,7 @@ class ViewHomeworkCommandParserTest {
     public void parse_validArgsWithCompletedStatus_returnsViewHomeworkCommand() throws ParseException {
         String args = " " + PREFIX_STATUS + " completed";
         ViewHomeworkCommand expectedCommand = new ViewHomeworkCommand(PREDICATE_SHOW_ALL_STUDENTS,
-                new HomeworkIsCompletePredicate(true), true);
+                new HomeworkIsCompletePredicate(true));
         assertEquals(expectedCommand, new ViewHomeworkCommandParser().parse(args));
     }
 
@@ -37,7 +37,7 @@ class ViewHomeworkCommandParserTest {
     public void parse_validArgsWithIncompleteStatus_returnsViewHomeworkCommand() throws ParseException {
         String args = " " + PREFIX_STATUS + " pending";
         ViewHomeworkCommand expectedCommand = new ViewHomeworkCommand(PREDICATE_SHOW_ALL_STUDENTS,
-                new HomeworkIsCompletePredicate(false), true);
+                new HomeworkIsCompletePredicate(false));
         assertEquals(expectedCommand, new ViewHomeworkCommandParser().parse(args));
     }
 }
