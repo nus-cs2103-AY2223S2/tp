@@ -8,7 +8,7 @@ import seedu.wife.model.Model;
 import seedu.wife.model.tag.Tag;
 
 /**
- * List all pre=defined tags.
+ * List all pre-defined tags.
  */
 public class ListTagCommand extends Command {
     public static final String COMMAND_WORD = "listtag";

@@ -12,5 +12,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_TAG_NOT_FOUND = "There is no %1$s Tag!";
     public static final String MESSAGE_SUCCESSFUL_FOOD_TAG = "%s successfully tagged with %s";
+    public static final String MESSAGE_DOUBLE_TAG = "You have already tagged %s with %s.";
 
 }
