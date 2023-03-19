@@ -87,6 +87,11 @@
 .list-cell .label {
     -fx-text-fill: white;
 }
+.list-cell{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
+}
 
 
 .cell_big_label {
@@ -157,10 +162,16 @@
     -fx-background-color: derive(#1d1d1d, 30%);
     -fx-border-color: derive(#f9f9f9, 30%);
     -fx-border-width: 1px;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 .grid-pane .stack-pane {
     -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 .context-menu {
@@ -299,8 +310,6 @@
 #deckPane {
     -fx-background-color: #ededed;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-
-
 }
 
 #deckPane .label{
@@ -311,6 +320,12 @@
 
 #titlePanel{
     -fx-font-size: 30px;
+}
+
+#panel{
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-width:5;
 }
 
 
