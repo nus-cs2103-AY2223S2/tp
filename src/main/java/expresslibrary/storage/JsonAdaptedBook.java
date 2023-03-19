@@ -20,6 +20,7 @@ import expresslibrary.model.person.Person;
 class JsonAdaptedBook {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Book's %s field is missing!";
+    public static final String INVALID_FORMAT_MESSAGE_FORMAT = "Invalid format of book detected!";
 
     private final String author;
     private final String isbn;

@@ -58,8 +58,8 @@ public class Person {
         return books;
     }
 
-    public boolean hasNotBorrowedBook() {
-        return books.isEmpty();
+    public boolean borrowedAtLeastOneBook() {
+        return !books.isEmpty();
     }
 
     public void borrowBook(Book book) {

@@ -1,7 +1,9 @@
 package expresslibrary.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -31,20 +33,22 @@ class JsonSerializableExpressLibrary {
      */
     @JsonCreator
     public JsonSerializableExpressLibrary(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-        @JsonProperty("books") List<JsonAdaptedBook> books) {
+            @JsonProperty("books") List<JsonAdaptedBook> books) {
         this.persons.addAll(persons);
         this.books.addAll(books);
     }
 
     /**
-     * Converts a given {@code ReadOnlyExpressLibrary} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyExpressLibrary} into this class for Jackson
+     * use.
      *
      * @param source future changes to this will not affect the created
      *               {@code JsonSerializableExpressLibrary}.
      */
     public JsonSerializableExpressLibrary(ReadOnlyExpressLibrary source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        books.addAll(source.getBookList().stream().map(JsonAdaptedBook::new).collect(Collectors.toList()));
+        books.addAll(source.getBookList().stream().filter(book -> !book.getIsBorrowed())
+                .map(JsonAdaptedBook::new).collect(Collectors.toList()));
     }
 
     /**
@@ -60,6 +64,24 @@ class JsonSerializableExpressLibrary {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             expressLibrary.addPerson(person);
+            if (person.borrowedAtLeastOneBook()) {
+                Set<Book> books = person.getBooks();
+                for (Book book : books) {
+                    if (book == null) {
+                        throw new IllegalValueException(JsonAdaptedBook.INVALID_FORMAT_MESSAGE_FORMAT);
+                    }
+                    LocalDate borrowDate = book.getBorrowDate();
+                    LocalDate dueDate = book.getDueDate();
+                    if (borrowDate == null || dueDate == null) {
+                        throw new IllegalValueException(JsonAdaptedBook.INVALID_FORMAT_MESSAGE_FORMAT);
+                    }
+                    if (expressLibrary.hasBook(book)) {
+                        throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
+                    }
+                    book.loanBookTo(person, borrowDate, dueDate);
+                    expressLibrary.addBook(book);
+                }
+            }
         }
         for (JsonAdaptedBook jsonAdaptedBook : books) {
             Book book = jsonAdaptedBook.toModelType();
