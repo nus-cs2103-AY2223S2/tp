@@ -18,8 +18,8 @@ import seedu.recipe.model.recipe.Recipe;
  * Represents the UI component that pops up and displays the detailed view of a Recipe.
  */
 public class RecipePopup extends UiPart<Region> {
-    private static final String FXML = "RecipeListCard.fxml";
-
+    private static final String FXML = "RecipePopup.fxml";
+    
     public final Recipe recipe;
 
     @FXML
