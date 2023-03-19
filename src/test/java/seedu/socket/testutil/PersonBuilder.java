@@ -11,7 +11,6 @@ import seedu.socket.model.person.Person;
 import seedu.socket.model.person.Phone;
 import seedu.socket.model.person.tag.Language;
 import seedu.socket.model.person.tag.Tag;
-import seedu.socket.model.project.Project;
 import seedu.socket.model.util.SampleDataUtil;
 
 /**
@@ -32,7 +31,6 @@ public class PersonBuilder {
     private Address address;
     private Set<Language> languages;
     private Set<Tag> tags;
-    private Set<Project> projects;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,7 +43,6 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         languages = new HashSet<>();
         tags = new HashSet<>();
-        projects = new HashSet<>();
     }
 
     /**
