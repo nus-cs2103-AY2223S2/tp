@@ -114,7 +114,7 @@ public class ParserUtil {
      */
     public static int parseNumCardsPerReview(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
-        if (trimmedUserInput.equalsIgnoreCase("none")) {
+        if (trimmedUserInput.equalsIgnoreCase("all")) {
             return -1;
         } else if (trimmedUserInput.matches("\\d+")) {
             if (!StringUtil.isNonZeroUnsignedInteger(trimmedUserInput)) {
