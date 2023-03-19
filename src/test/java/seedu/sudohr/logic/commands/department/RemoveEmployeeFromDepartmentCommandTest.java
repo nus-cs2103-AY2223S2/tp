@@ -22,6 +22,8 @@ import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.department.DepartmentName;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
+import seedu.sudohr.model.leave.Date;
+import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.testutil.TypicalDepartmentNames;
 import seedu.sudohr.testutil.TypicalEmployees;
 
@@ -246,6 +248,61 @@ public class RemoveEmployeeFromDepartmentCommandTest {
 
         @Override
         public void updateFilteredDepartmentList(Predicate<Department> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLeave(Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLeave(Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEmployeeOnLeave(Date date, Employee employee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Leave> getFilteredLeaveList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
             throw new AssertionError("This method should not be called.");
         }
     }

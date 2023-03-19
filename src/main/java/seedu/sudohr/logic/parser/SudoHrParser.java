@@ -13,6 +13,7 @@ import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
+import seedu.sudohr.logic.commands.department.ListDepartmentCommand;
 import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentCommand;
 import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.employee.DeleteCommand;
@@ -27,6 +28,9 @@ import seedu.sudohr.logic.parser.employee.AddCommandParser;
 import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
 import seedu.sudohr.logic.parser.employee.EditCommandParser;
 import seedu.sudohr.logic.parser.employee.FindCommandParser;
+import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leavecommands.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leavecommands.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 
 /**
@@ -71,6 +75,10 @@ public class SudoHrParser {
         case EditDepartmentCommand.COMMAND_WORD:
             return new EditDepartmentCommandParser().parse(arguments);
 
+
+        case ListDepartmentCommand.COMMAND_WORD:
+            return new ListDepartmentCommand();
+
         case AddEmployeeToDepartmentCommand.COMMAND_WORD:
             return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
@@ -91,6 +99,15 @@ public class SudoHrParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddEmployeeToLeaveCommand.COMMAND_WORD:
+            return new AddEmployeeToLeaveCommandParser().parse(arguments);
+
+        case DeleteEmployeeFromLeaveCommand.COMMAND_WORD:
+            return new DeleteEmployeeFromLeaveCommandParser().parse(arguments);
+
+        case ListEmployeeInLeaveCommand.COMMAND_WORD:
+            return new ListEmployeeInLeaveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -17,4 +17,8 @@ public class CliSyntax {
 
     // Department level definitions
     public static final Prefix PREFIX_DEPARTMENT_NAME = new Prefix("n/");
+
+    /* Prefix definitions for leave*/
+    public static final Prefix PREFIX_DATE = new Prefix("g/");
+    public static final Prefix PREFIX_EMPLOYEE_INDEX = new Prefix("p/");
 }

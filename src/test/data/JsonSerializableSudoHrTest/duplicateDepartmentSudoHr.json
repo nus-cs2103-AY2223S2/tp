@@ -6,5 +6,6 @@
   }, {
     "name": "Engineering",
     "employees" : [ ]
-  } ]
+  } ],
+  "leaves":[]
 }
