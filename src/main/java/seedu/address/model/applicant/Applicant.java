@@ -36,6 +36,13 @@ public class Applicant {
                 && otherApplicant.getName().equals(this.getName());
     }
 
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        // To consistently output a 4 digit hash code
+        return Math.abs(hash % 9000) + 1000;
+    }
+
     /**
      * Returns true if both applicants have the same identity and data fields.
      * This defines a stronger notion of equality between two applicants.
