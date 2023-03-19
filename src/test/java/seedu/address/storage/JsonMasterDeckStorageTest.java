@@ -47,18 +47,18 @@ public class JsonMasterDeckStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readMasterDeck("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMasterDeck("notJsonFormatMasterDeck.json"));
     }
 
     @Test
     public void readMasterDeck_invalidCardMasterDeck_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMasterDeck("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readMasterDeck("invalidCardMasterDeck.json"));
     }
 
     //    @Test
     //    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
     //        assertThrows(DataConversionException.class, ()
-    //        -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    //        -> readAddressBook("invalidAndValidCardMasterDeck.json"));
     //    }
 
     @Test
