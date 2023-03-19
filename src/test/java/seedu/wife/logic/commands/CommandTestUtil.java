@@ -15,6 +15,7 @@ import java.util.List;
 
 import seedu.wife.commons.core.index.Index;
 import seedu.wife.logic.commands.exceptions.CommandException;
+import seedu.wife.logic.commands.foodcommands.EditCommand;
 import seedu.wife.model.Model;
 import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
