@@ -9,8 +9,11 @@ import java.util.logging.Logger;
 
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
+import com.calendarfx.view.DateControl;
+import com.calendarfx.view.DayView;
 import com.calendarfx.view.EntryViewBase;
 import com.calendarfx.view.MonthView;
+import com.calendarfx.view.WeekView;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -52,7 +55,21 @@ public class CalendarPanel extends UiPart<Region> {
     private final Map<Class<? extends Task>, Calendar<TaskEntry>> taskEntryCalendarMap = new HashMap<>();
 
     @FXML
-    private MonthView calendarView; // TODO: Command to navigate different months
+    private MonthView monthView;
+
+    @FXML
+    private WeekView weekView;
+
+    @FXML
+    private DayView dayView;
+
+    private final Map<ViewType, DateControl> calendarViews = Map.of(
+            ViewType.MONTH, monthView,
+            ViewType.WEEK, weekView,
+            ViewType.DAY, dayView
+    );
+
+    private ViewType currentView = ViewType.DAY;
 
     private Thread updateTimeThread;
 
@@ -61,6 +78,7 @@ public class CalendarPanel extends UiPart<Region> {
      */
     public CalendarPanel() {
         super(FXML);
+
 
         calendarTodos.setReadOnly(true);
         calendarEvents.setReadOnly(true);
@@ -72,36 +90,40 @@ public class CalendarPanel extends UiPart<Region> {
 
         calendarSource.getCalendars().addAll(calendarTodos, calendarEvents);
 
-        calendarView.setEntryContextMenuCallback(param -> {
-            EntryViewBase<?> entryView = param.getEntryView();
-            TaskEntry entry = (TaskEntry) entryView.getEntry();
-
-            ContextMenu contextMenu = new ContextMenu();
-
-            MenuItem informationItem = new MenuItem("Information");
-            informationItem.setOnAction(evt ->
-                    showInformationDialog(entry,
-                            this.getRoot()
-                                    .getScene()
-                                    .getWindow()
-                    )
-            );
-            contextMenu.getItems().add(informationItem);
-
-            return contextMenu;
+        calendarViews.forEach((key, view) -> {
+            view.setEntryContextMenuCallback(this::entryContextMenuCallback);
+            view.setContextMenuCallback(param -> null);
+            view.getCalendarSources().add(calendarSource);
+            view.setBackground(Background.fill(Paint.valueOf("#ffffff")));
+            view.setRequestedTime(LocalTime.now());
+            view.managedProperty().bind(view.visibleProperty());
         });
-
-        //calendarView.setEntryDetailsPopOverContentCallback(new TaskEntryPopOverContentProvider());
-
-        calendarView.addEventFilter(MouseEvent.MOUSE_CLICKED, javafx.event.Event::consume);
-        calendarView.getCalendarSources().add(calendarSource);
-        calendarView.setBackground(Background.fill(Paint.valueOf("#ffffff")));
-        calendarView.setRequestedTime(LocalTime.now());
-
-        spawnUpdateThread(); // update the calendar's "current time" every 10 seconds
+        this.getRoot().addEventFilter(MouseEvent.ANY, javafx.event.Event::consume);
+        setView(currentView);
+        goToToday();
     }
 
-    private void showInformationDialog(TaskEntry entry, Window window) {
+    private ContextMenu entryContextMenuCallback(DateControl.EntryContextMenuParameter param) {
+        EntryViewBase<?> entryView = param.getEntryView();
+        TaskEntry entry = (TaskEntry) entryView.getEntry();
+
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem informationItem = new MenuItem("Information");
+        informationItem.setOnAction(evt ->
+                showInformationDialog(entry)
+        );
+        contextMenu.getItems().add(informationItem);
+
+        return contextMenu;
+    }
+
+    public DateControl getActiveView() {
+        return calendarViews.get(currentView);
+    }
+
+    public void showInformationDialog(TaskEntry entry) {
+        Window window = getActiveView().getScene().getWindow();
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(window);
@@ -124,12 +146,37 @@ public class CalendarPanel extends UiPart<Region> {
         dialog.show();
     }
 
+    public void setDate(LocalDate date) {
+        getActiveView().setDate(date);
+    }
+
+    public void goToToday() {
+        getActiveView().goToday();
+    }
+
+    public void goToNext() {
+        getActiveView().goForward();
+    }
+
+    public void goToPrevious() {
+        getActiveView().goBack();
+    }
+
+    public void nextView() {
+        setView(currentView.getNext());
+    }
+
+    public void setView(ViewType viewType) {
+        currentView = viewType;
+        calendarViews.forEach((key, view) -> view.setVisible(key == viewType));
+    }
+
     private void spawnUpdateThread() {
         updateTimeThread = new Thread(() -> {
             while (true) {
                 Platform.runLater(() -> {
-                    calendarView.setToday(LocalDate.now());
-                    calendarView.setTime(LocalTime.now());
+                    getActiveView().setToday(LocalDate.now());
+                    getActiveView().setTime(LocalTime.now());
                 });
 
                 try {
@@ -152,7 +199,6 @@ public class CalendarPanel extends UiPart<Region> {
      * @param taskList the task list
      */
     public void updateCalendar(ReadOnlyTaskList taskList) {
-        // TODO: Asynchronous / lazy loading
         taskEntryCalendarMap.values().forEach(Calendar::clear);
         taskList.getTaskList().forEach(task -> {
             Class<? extends Task> taskClass = task.getClass();
@@ -161,5 +207,13 @@ public class CalendarPanel extends UiPart<Region> {
                 calendar.addEntry(TaskEntryUtil.convert(task));
             }
         });
+    }
+
+    public enum ViewType {
+        MONTH, WEEK, DAY;
+
+        public ViewType getNext() {
+            return values()[(ordinal() + 1) % values().length];
+        }
     }
 }
