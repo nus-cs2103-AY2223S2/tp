@@ -5,14 +5,12 @@ import static seedu.socket.storage.JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORM
 import static seedu.socket.testutil.Assert.assertThrows;
 import static seedu.socket.testutil.TypicalProjects.ALPHA;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.commons.exceptions.IllegalValueException;
-import seedu.socket.model.person.Person;
 import seedu.socket.model.project.ProjectDeadline;
 import seedu.socket.model.project.ProjectName;
 import seedu.socket.model.project.ProjectRepoHost;

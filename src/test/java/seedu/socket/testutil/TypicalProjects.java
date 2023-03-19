@@ -10,15 +10,11 @@ import static seedu.socket.testutil.TypicalPersons.getTypicalPersons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import seedu.socket.commons.exceptions.IllegalValueException;
 import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
-import seedu.socket.storage.JsonAdaptedProject;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.

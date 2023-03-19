@@ -29,7 +29,6 @@ import seedu.socket.model.person.Person;
 import seedu.socket.model.person.Phone;
 import seedu.socket.model.person.tag.Language;
 import seedu.socket.model.person.tag.Tag;
-import seedu.socket.model.project.Project;
 
 /**
  * Edits the details of an existing person in SOCket.
