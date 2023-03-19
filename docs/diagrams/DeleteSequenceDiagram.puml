@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":RecipeBookParser" as RecipeBookParser LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> RecipeBookParser : parseCommand("delete 1")
-activate RecipeBookParser
+LogicManager -> AddressBookParser : parseCommand("delete 1")
+activate AddressBookParser
 
 create DeleteCommandParser
-RecipeBookParser -> DeleteCommandParser
+AddressBookParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> RecipeBookParser
+DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-RecipeBookParser -> DeleteCommandParser : parse("1")
+AddressBookParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,19 +36,19 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> RecipeBookParser : d
+DeleteCommandParser --> AddressBookParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> RecipeBookParser
+DeleteCommandParser -[hidden]-> AddressBookParser
 destroy DeleteCommandParser
 
-RecipeBookParser --> LogicManager : d
-deactivate RecipeBookParser
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteRecipe(1)
+DeleteCommand -> Model : deletePerson(1)
 activate Model
 
 Model --> DeleteCommand
