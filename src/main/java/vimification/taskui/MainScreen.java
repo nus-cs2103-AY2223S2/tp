@@ -1,14 +1,17 @@
 package vimification.taskui;
 
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+import javafx.stage.Stage;
 import vimification.logic.Logic;
-// import vimification.ui.PersonListPanel;
+import vimification.model.task.Task;
 
 /**
  * The Main Scene. Provides the basic application layout containing a menu bar and space where other
@@ -17,6 +20,10 @@ import vimification.logic.Logic;
 public class MainScreen extends UiPart<VBox> {
 
     private static final String FXML = "MainScreen.fxml";
+
+    private ReadOnlyDoubleProperty stageHeight;
+    private DoubleBinding topComponentHeight; // Height of left and right component
+    private DoubleBinding commandInputComponentHeight;
 
     private Logic logic;
 
@@ -37,10 +44,40 @@ public class MainScreen extends UiPart<VBox> {
     /**
      * Creates a {@code MainWindow} with {@code Logic}.
      */
-    public MainScreen(Logic logic) {
+    public MainScreen(Logic logic, Stage stage) {
         super(FXML);
         this.logic = logic;
-        init();
+        stageHeight = stage.heightProperty();
+        topComponentHeight = stageHeight.multiply(0.9);
+        commandInputComponentHeight = stageHeight.multiply(0.1);
+        setup();
+    }
+
+    @FXML
+    private void initialize() {
+        this.getRoot().setFocusTraversable(true); // Important
+    }
+
+    private void setup() {
+        leftComponent.prefHeightProperty().bind(topComponentHeight);
+        rightComponent.prefHeightProperty().bind(topComponentHeight);
+        commandInputComponent.prefHeightProperty().bind(commandInputComponentHeight);
+
+        intializeCommandInput();
+        initializeTaskListPanel();
+    }
+
+    private void initializeTaskListPanel() {
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel.setMainScreen(this);
+        loadLeftComponent(taskListPanel);
+    }
+
+    private void intializeCommandInput() {
+        commandInput = new CommandInput(this.getRoot());
+        commandInput.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.1));
+
+        commandInputComponent.getChildren().add(commandInput.getRoot());
     }
 
     /**
@@ -55,59 +92,46 @@ public class MainScreen extends UiPart<VBox> {
         boolean isKeyPressedColon = colonKey.match(event);
 
         if (isKeyPressedColon) {
-            handleCommand();
+            loadCommandInputComponent();
             return;
         }
 
         switch (event.getText()) {
         case "i":
-            System.out.println("You've created a task!");
-            handleTaskCreation();
-            break;
-        case "d":
-            System.out.println("You've deleted a task!");
-            break;
-        case "h":
-            System.out.println("You've moved to the left");
-            break;
-        case "l":
-            System.out.println("You've moved to the right");
+            loadTaskCreationPanelComponent();
             break;
         case "j":
-            System.out.println("You've moved up");
-            break;
         case "k":
-            System.out.println("You've moved down");
+            taskListPanel.requestFocus();
             break;
         }
     }
 
-    private void handleTaskCreation() {
+    private void loadTaskCreationPanelComponent() {
         taskCreationPanel = new TaskCreationPanel(this.getRoot());
-        rightComponent.getChildren().clear();
-        rightComponent.getChildren().add(taskCreationPanel.getRoot());
+        loadRightComponent(taskCreationPanel);
         taskCreationPanel.requestFocus();
     }
 
-    private void handleCommand() {
+    private void loadCommandInputComponent() {
         commandInput.setVisible(true);
         commandInput.requestFocus();
     }
 
-    private void init() {
-        this.getRoot().setFocusTraversable(true); // Important
-
-        intializeCommandInput();
-        initializeTaskListPanel();
+    public void loadDetailedTaskComponent(Task task) {
+        TaskDetailPanel detailTask = new TaskDetailPanel(task);
+        loadRightComponent(detailTask);
     }
 
-    private void initializeTaskListPanel() {
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        leftComponent.getChildren().add(taskListPanel.getRoot());
+    private <T extends Pane> void loadLeftComponent(UiPart<T> component) {
+        leftComponent.getChildren().clear();
+        leftComponent.getChildren().add(component.getRoot());
+        component.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.9));
     }
 
-    private void intializeCommandInput() {
-        commandInput = new CommandInput(this.getRoot());
-        commandInputComponent.getChildren().add(commandInput.getRoot());
+    private <T extends Pane> void loadRightComponent(UiPart<T> component) {
+        rightComponent.getChildren().clear();
+        rightComponent.getChildren().add(component.getRoot());
+        component.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.9));
     }
 }

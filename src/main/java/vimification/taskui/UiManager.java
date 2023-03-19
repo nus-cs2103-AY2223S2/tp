@@ -37,10 +37,13 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            MainScreen mainScreen = new MainScreen(logic);
+            primaryStage.setTitle("Vimification");
+            primaryStage.setHeight(500);
+            primaryStage.setWidth(1000);
+
+            MainScreen mainScreen = new MainScreen(logic, primaryStage);
             Scene scene = new Scene(mainScreen.getRoot());
             scene.getRoot().requestFocus();
-            primaryStage.setTitle("Vimification");
             primaryStage.setScene(scene); // Setting the stage to show our screen
             primaryStage.show();
 
