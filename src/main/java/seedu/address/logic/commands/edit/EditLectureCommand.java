@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.edit;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.Lecture;
@@ -74,6 +76,23 @@ public class EditLectureCommand extends EditCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, editedLecture));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditLectureCommand)) {
+            return false;
+        }
+
+        EditLectureCommand otherCommand = (EditLectureCommand) other;
+
+        return moduleCode.equals(otherCommand.moduleCode)
+                && lectureName.equals(otherCommand.lectureName)
+                && editLectureDescriptor.equals(otherCommand.editLectureDescriptor);
+    }
+
     private Lecture createEditedLecture(ReadOnlyLecture lectureToEdit) {
         requireNonNull(lectureToEdit);
 
@@ -101,6 +120,15 @@ public class EditLectureCommand extends EditCommand {
          */
         public EditLectureDescriptor(EditLectureDescriptor toCopy) {
             setName(toCopy.name);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         *
+         * @return True if at least one field is edited. Otherwise, false.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(name);
         }
 
         public Optional<LectureName> getName() {

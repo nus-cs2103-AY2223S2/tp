@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.edit;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -60,6 +61,22 @@ public class EditModuleCommand extends EditCommand {
 
         model.setModule(moduleToEdit, editedModule);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedModule));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditModuleCommand)) {
+            return false;
+        }
+
+        EditModuleCommand otherCommand = (EditModuleCommand) other;
+
+        return moduleCode.equals(otherCommand.moduleCode)
+                && editModuleDescriptor.equals(otherCommand.editModuleDescriptor);
     }
 
     private Module createEditedModule(ReadOnlyModule moduleToEdit) {

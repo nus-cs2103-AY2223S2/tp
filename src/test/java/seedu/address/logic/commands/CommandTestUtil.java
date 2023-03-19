@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -16,11 +17,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;
+import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditLectureDescriptorBuilder;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
+import seedu.address.testutil.EditVideoDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -40,15 +47,28 @@ public class CommandTestUtil {
     public static final String INVALID_LECTURE_NAME = "l337ure!";
     public static final String INVALID_VIDEO_NAME = "v*deo";
 
-    public static final String MODULE_CODE_DESC_2103 = " " + PREFIX_MODULE + VALID_MODULE_CODE_2103;
-    public static final String MODULE_CODE_DESC_2040 = " " + PREFIX_MODULE + VALID_MODULE_CODE_2040;
-    public static final String MODULE_NAME_DESC_2103 = " " + PREFIX_NAME + VALID_MODULE_NAME_2103;
-    public static final String MODULE_NAME_DESC_2040 = " " + PREFIX_NAME + VALID_MODULE_NAME_2040;
-    public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + VALID_LECTURE_NAME_L1;
-    public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + VALID_LECTURE_NAME_L2;
+    public static final String MODULE_CODE_DESC_2103 = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE_2103;
+    public static final String MODULE_CODE_DESC_2040 = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE_2040;
+    public static final String MODULE_NAME_DESC_2103 = " " + PREFIX_NAME + " " + VALID_MODULE_NAME_2103;
+    public static final String MODULE_NAME_DESC_2040 = " " + PREFIX_NAME + " " + VALID_MODULE_NAME_2040;
+    public static final String LECTURE_NAME_DESC_L1 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L1;
+    public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L2;
 
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + INVALID_MODULE_CODE;
     public static final String INVALID_LECTURE_NAME_DESC = " " + PREFIX_LECTURE + INVALID_LECTURE_NAME;
+
+    public static final String EDIT_MODULE_CODE_DESC_2103 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2103;
+    public static final String EDIT_MODULE_CODE_DESC_2040 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2040;
+    public static final String EDIT_MODULE_NAME_DESC_2103 = MODULE_NAME_DESC_2103;
+    public static final String EDIT_MODULE_NAME_DESC_2040 = MODULE_NAME_DESC_2040;
+    public static final String EDIT_LECTURE_NAME_DESC_L1 = " " + PREFIX_NAME + " " + VALID_LECTURE_NAME_L1;
+    public static final String EDIT_LECTURE_NAME_DESC_L2 = " " + PREFIX_NAME + " " + VALID_LECTURE_NAME_L2;
+    public static final String EDIT_VIDEO_NAME_DESC_V1 = " " + PREFIX_NAME + " " + VALID_VIDEO_NAME_V1;
+    public static final String EDIT_VIDEO_NAME_DESC_V2 = " " + PREFIX_NAME + " " + VALID_VIDEO_NAME_V2;
+
+    public static final String INVALID_EDIT_MODULE_CODE_DESC = " " + PREFIX_CODE + " " + INVALID_MODULE_CODE;
+    public static final String INVALID_EDIT_LECTURE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_LECTURE_NAME;
+    public static final String INVALID_EDIT_VIDEO_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_VIDEO_NAME;
 
     // TODO: Remove this
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -86,17 +106,20 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    // public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    // public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2103 = new EditModuleDescriptorBuilder()
+            .withCode(VALID_MODULE_CODE_2103).withName(VALID_MODULE_NAME_2103).build();
+    public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2040S = new EditModuleDescriptorBuilder()
+            .withCode(VALID_MODULE_CODE_2040).withName(VALID_MODULE_NAME_2040).build();
 
-    // static {
-    //     DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-    //             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-    //             .withTags(VALID_TAG_FRIEND).build();
-    //     DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-    //             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-    //             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    // }
+    public static final EditLectureDescriptor EDIT_LECTURE_DESC_L1 = new EditLectureDescriptorBuilder()
+            .withName(VALID_LECTURE_NAME_L1).build();
+    public static final EditLectureDescriptor EDIT_LECTURE_DESC_L2 = new EditLectureDescriptorBuilder()
+            .withName(VALID_LECTURE_NAME_L2).build();
+
+    public static final EditVideoDescriptor EDIT_VIDEO_DESC_V1 = new EditVideoDescriptorBuilder()
+            .withName(VALID_VIDEO_NAME_V1).build();
+    public static final EditVideoDescriptor EDIT_VIDEO_DESC_V2 = new EditVideoDescriptorBuilder()
+            .withName(VALID_VIDEO_NAME_V2).build();
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -154,6 +177,5 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
-
 
 }
