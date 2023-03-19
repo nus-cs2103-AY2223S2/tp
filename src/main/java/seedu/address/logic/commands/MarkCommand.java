@@ -55,9 +55,9 @@ public class MarkCommand extends Command {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        if (taskToMark.isDone()) {
-            throw new CommandException(Messages.MESSAGE_TASK_ALREADY_DONE);
-        }
+        // if (taskToMark.isDone()) {
+        //     throw new CommandException(Messages.MESSAGE_TASK_ALREADY_DONE);
+        // }
 
         model.markTask(taskToMark, score);
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, taskToMark, score.toString()));

@@ -142,6 +142,7 @@ public class Task {
      */
     public String unmark() {
         this.isDone = false;
+        this.score = null;
         return "This task has been marked as uncompleted:\n" + this + "\n";
     }
 
