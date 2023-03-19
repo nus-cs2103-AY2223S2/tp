@@ -23,12 +23,12 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules/lectures/videos whose moduleCode/lectureName/videoName contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "the specified keywords (case-insensitive) separated with a space and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: \n"
             + "1." + COMMAND_WORD + " CS2040S\n"
-            + "2." + COMMAND_WORD + " Week 1\n"
-            + "3." + COMMAND_WORD + " Video 1\n";
+            + "2." + COMMAND_WORD + " Week1 Week2\n"
+            + "3." + COMMAND_WORD + " Video1 Video2 Video3\n";
 
     private List<String> keywords;
 
