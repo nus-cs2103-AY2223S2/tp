@@ -34,7 +34,7 @@ public class ModelManager implements Model {
     private Review currReview;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given masterDeck and userPrefs.
      */
     public ModelManager(ReadOnlyMasterDeck masterDeck, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(masterDeck, userPrefs);
@@ -77,7 +77,7 @@ public class ModelManager implements Model {
 
     @Override
     public Path getMasterDeckFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getMasterDeckFilePath();
     }
 
     @Override
@@ -126,7 +126,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedMasterDeck}
      */
     @Override
     public ObservableList<Card> getFilteredCardList() {

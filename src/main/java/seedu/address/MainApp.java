@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        MasterDeckStorage masterDeckStorage = new JsonMasterDeckStorage(userPrefs.getAddressBookFilePath());
+        MasterDeckStorage masterDeckStorage = new JsonMasterDeckStorage(userPrefs.getMasterDeckFilePath());
         storage = new StorageManager(masterDeckStorage, userPrefsStorage);
 
         initLogging(config);
@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty master deck will be used instead if errors occur when reading {@code storage}'s master deck.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyMasterDeck> addressBookOptional;
+        Optional<ReadOnlyMasterDeck> masterDeckOptional;
         ReadOnlyMasterDeck initialData;
         try {
-            addressBookOptional = storage.readMasterDeck();
-            if (addressBookOptional.isEmpty()) {
+            masterDeckOptional = storage.readMasterDeck();
+            if (masterDeckOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample Deck");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleMasterDeck);
+            initialData = masterDeckOptional.orElseGet(SampleDataUtil::getSampleMasterDeck);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Deck");
             initialData = new MasterDeck();

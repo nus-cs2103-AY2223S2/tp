@@ -1,11 +1,11 @@
 {
   "cards": [ {
-    "question": "Valid Person",
-    "answer": "4th street",
+    "question": "Valid Card",
+    "answer": "The process by which plants convert sunlight into energy",
     "deck" : "Default"
   }, {
-    "question": "Person With Invalid Phone Field",
-    "answer": "4th street",
+    "question": "Card With Invalid Answer Field",
+    "answer": " ",
     "deck" : "Default"
   } ]
 }

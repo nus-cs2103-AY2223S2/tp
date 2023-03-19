@@ -51,7 +51,7 @@ public interface Model {
     void setMasterDeckFilePath(Path deckFilePath);
 
     /**
-     * Replaces deck data with the data in {@code addressBook}.
+     * Replaces deck data with the data in {@code deck}.
      */
     void setMasterDeck(ReadOnlyMasterDeck deck);
 
