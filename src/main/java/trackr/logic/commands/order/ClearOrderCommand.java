@@ -1,27 +1,18 @@
 package trackr.logic.commands.order;
 
-import static java.util.Objects.requireNonNull;
-
-import trackr.logic.commands.Command;
-import trackr.logic.commands.CommandResult;
-import trackr.model.Model;
-import trackr.model.OrderList;
+import trackr.logic.commands.ClearItemCommand;
+import trackr.model.ModelEnum;
+import trackr.model.order.Order;
 
 /**
  * Clears the order list.
  */
-public class ClearOrderCommand extends Command {
+public class ClearOrderCommand extends ClearItemCommand<Order> {
 
     public static final String COMMAND_WORD = "clear_order";
-    public static final String COMMAND_WORD_SHORTCUT = "clear_0";
+    public static final String COMMAND_WORD_SHORTCUT = "clear_o";
 
-    public static final String MESSAGE_SUCCESS = "Order has been cleared!";
-
-
-    @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.setOrderList(new OrderList());
-        return new CommandResult(MESSAGE_SUCCESS);
+    public ClearOrderCommand() {
+        super(COMMAND_WORD, COMMAND_WORD_SHORTCUT, ModelEnum.ORDER);
     }
 }

@@ -54,6 +54,8 @@ public interface Model {
 
     // =================================================== Item =======================================================
 
+    <T extends Item> void setItemList(ModelEnum modelEnum);
+
     <T extends Item> boolean hasItem(T item, ModelEnum modelEnum);
 
     <T extends Item> void deleteItem(T item, ModelEnum modelEnum);

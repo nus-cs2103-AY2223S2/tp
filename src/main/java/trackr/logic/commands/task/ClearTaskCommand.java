@@ -1,27 +1,18 @@
 package trackr.logic.commands.task;
 
-import static java.util.Objects.requireNonNull;
-
-import trackr.logic.commands.Command;
-import trackr.logic.commands.CommandResult;
-import trackr.model.Model;
-import trackr.model.TaskList;
+import trackr.logic.commands.ClearItemCommand;
+import trackr.model.ModelEnum;
+import trackr.model.task.Task;
 
 /**
  * Clears the task list.
  */
-public class ClearTaskCommand extends Command {
+public class ClearTaskCommand extends ClearItemCommand<Task> {
 
     public static final String COMMAND_WORD = "clear_task";
     public static final String COMMAND_WORD_SHORTCUT = "clear_t";
 
-    public static final String MESSAGE_SUCCESS = "Task list has been cleared!";
-
-
-    @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.setTaskList(new TaskList());
-        return new CommandResult(MESSAGE_SUCCESS);
+    public ClearTaskCommand() {
+        super(COMMAND_WORD, COMMAND_WORD_SHORTCUT, ModelEnum.TASK);
     }
 }

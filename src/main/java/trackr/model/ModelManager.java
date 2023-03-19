@@ -93,6 +93,24 @@ public class ModelManager implements Model {
     // =================================================== Item =======================================================
 
     @Override
+    public <T extends Item> void setItemList(ModelEnum modelEnum) {
+        switch (modelEnum) {
+        case SUPPLIER:
+            setSupplierList(new SupplierList());
+            break;
+        case TASK:
+            setTaskList(new TaskList());
+            break;
+        case ORDER:
+            setOrderList(new OrderList());
+            break;
+        case CUSTOMER:
+        default:
+            break;
+        }
+    }
+
+    @Override
     public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
         switch (modelEnum) {
         case SUPPLIER:

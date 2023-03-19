@@ -100,6 +100,11 @@ public class TestUtil {
         }
 
         @Override
+        public <T extends Item> void setItemList(ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
             throw new AssertionError("This method should not be called.");
         }

@@ -1,26 +1,18 @@
 package trackr.logic.commands.supplier;
 
-import static java.util.Objects.requireNonNull;
-
-import trackr.logic.commands.Command;
-import trackr.logic.commands.CommandResult;
-import trackr.model.Model;
-import trackr.model.SupplierList;
+import trackr.logic.commands.ClearItemCommand;
+import trackr.model.ModelEnum;
+import trackr.model.person.Supplier;
 
 /**
  * Clears the supplier list.
  */
-public class ClearSupplierCommand extends Command {
+public class ClearSupplierCommand extends ClearItemCommand<Supplier> {
 
     public static final String COMMAND_WORD = "clear_supplier";
     public static final String COMMAND_WORD_SHORTCUT = "clear_s";
-    public static final String MESSAGE_SUCCESS = "Supplier list has been cleared!";
 
-
-    @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.setSupplierList(new SupplierList());
-        return new CommandResult(MESSAGE_SUCCESS);
+    public ClearSupplierCommand() {
+        super(COMMAND_WORD, COMMAND_WORD_SHORTCUT, ModelEnum.SUPPLIER);
     }
 }
