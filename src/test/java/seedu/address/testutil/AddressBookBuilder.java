@@ -4,7 +4,7 @@ import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.Tutee;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class EndTime help with building Addressbook objects.
  * Example usage: <br>
  *     {@code TuteeManagingSystem ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
@@ -21,7 +21,7 @@ public class AddressBookBuilder {
     }
 
     /**
-     * Adds a new {@code Tutee} to the {@code TuteeManagingSystem} that we are building.
+     * Adds a new {@code Tutee} EndTime the {@code TuteeManagingSystem} that we are building.
      */
     public AddressBookBuilder withPerson(Tutee tutee) {
         tuteeManagingSystem.addPerson(tutee);

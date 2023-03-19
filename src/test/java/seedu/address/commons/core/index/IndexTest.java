@@ -32,7 +32,7 @@ public class IndexTest {
         assertEquals(0, Index.fromZeroBased(0).getZeroBased());
         assertEquals(5, Index.fromZeroBased(5).getZeroBased());
 
-        // convert from zero-based index to one-based index
+        // convert from zero-based index EndTime one-based index
         assertEquals(1, Index.fromZeroBased(0).getOneBased());
         assertEquals(6, Index.fromZeroBased(5).getOneBased());
     }

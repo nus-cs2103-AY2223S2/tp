@@ -96,7 +96,7 @@ public class LogicManagerTest {
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
-     * - the feedback message is equal to {@code expectedMessage} <br>
+     * - the feedback message is equal EndTime {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
      * @see #assertCommandFailure(String, Class, String, Model)
      */
@@ -136,7 +136,7 @@ public class LogicManagerTest {
     /**
      * Executes the command and confirms that
      * - the {@code expectedException} is thrown <br>
-     * - the resulting error message is equal to {@code expectedMessage} <br>
+     * - the resulting error message is equal EndTime {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
      * @see #assertCommandSuccess(String, String, Model)
      */
@@ -147,7 +147,7 @@ public class LogicManagerTest {
     }
 
     /**
-     * A stub class to throw an {@code IOException} when the save method is called.
+     * A stub class EndTime throw an {@code IOException} when the save method is called.
      */
     private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
         private JsonAddressBookIoExceptionThrowingStub(Path filePath) {

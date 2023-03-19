@@ -99,7 +99,7 @@ public class JsonTuteeManagingSystemStorageTest {
             new JsonAddressBookStorage(Paths.get(filePath))
                     .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
-            throw new AssertionError("There should not be an error writing to the file.", ioe);
+            throw new AssertionError("There should not be an error writing EndTime the file.", ioe);
         }
     }
 

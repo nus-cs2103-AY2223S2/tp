@@ -27,6 +27,8 @@ class JsonAdaptedPerson {
     private final String remark;
     private final String subject;
     private final String schedule;
+    private final String startTime;
+    private final String endTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,8 +38,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark, @JsonProperty("subject") String subject,
-                             @JsonProperty("schedule") String schedule,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("schedule") String schedule, @JsonProperty("startTime") String startTime,
+                             @JsonProperty("endTime") String endTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,6 +47,8 @@ class JsonAdaptedPerson {
         this.remark = remark;
         this.subject = subject;
         this.schedule = schedule;
+        this.startTime = startTime;
+        this.endTime = endTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -61,6 +65,8 @@ class JsonAdaptedPerson {
         remark = source.getRemark().value;
         subject = source.getSubject().subject;
         schedule = source.getSchedule().schedule;
+        startTime = source.getStartTime().startTime;
+        endTime = source.getEndTime().endTime;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -118,7 +124,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subject.class.getSimpleName()));
         }
         if (!Subject.isValidSubject(subject)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
         }
         final Subject modelSubject = new Subject(subject);
 
@@ -126,12 +132,29 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Schedule.class.getSimpleName()));
         }
         if (!Schedule.isValidSchedule(schedule)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
         }
         final Schedule modelSchedule = new Schedule(schedule);
 
+        if (startTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StartTime.class.getSimpleName()));
+        }
+        if (!StartTime.isValidStartTime(startTime)) {
+            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        final StartTime modelStartTime = new StartTime(startTime);
+
+        if (endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName()));
+        }
+        if (!EndTime.isValidEndTime(endTime)) {
+            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        final EndTime modelEndTime = new EndTime(endTime);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Tutee(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelSubject, modelSchedule, modelTags);
+        return new Tutee(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelSubject, modelSchedule,
+                modelStartTime, modelEndTime, modelTags);
     }
 
 }
