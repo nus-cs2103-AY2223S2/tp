@@ -34,6 +34,8 @@ eduMate is a **desktop app designed for NUS students to manage their academic an
    * `find` : Find contacts by keywords.
 
    * `sort` : Sorts contact.
+   
+   * `view` : View contacts profile on profile window.
 
    <br>
 6. Refer to the [Features](#features) below for details of each command.
@@ -153,38 +155,85 @@ This command removes the module stated in the command (“CS2103T”) from the l
 
 ### Tagging a module to contact : `tag`
 
-Adds a module tag to an existing contact.
-Format: `tag n/NAME m/MODULE_TAG`
-Example of usage: `tag n/John Doe m/CS2103T`
+Adds module tag(s) to an existing contact.
+
+Formats: 
+* `tag CONTACT_INDEX m/MODULE_TAG`
+* `tag m/MODULE_TAG`
+
+Example of usage: `tag 3 m/CS2103T`
 ```
 Name: John Doe (User)
-Modules reading: CS2101 | MA2104 | MA3252 | CFG1002
+Modules: [CS2101 , MA2104 , MA3252 , CFG1002]
 ```
 
 Expected outcome for CLI:
 ```
-Name: John Doe
-Modules: CS2100 | CS2101 | CS2102 | CS2103T
-1 Common Module: CS2101 | CS2103T
+Module(s) tagged to Person!
+Name: John Smith
+Modules: [CS2100, CS2101, CS2102, CS2103T]
+Module(s) in common: [CS2101, CS2103T]
 ```
-Description of outcome: CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
+Description of outcome: 
+
+CS2103T is added to John Doe's list of modules. Assuming the user also takes CS2101 and CS2103T, which are represented as the modules in common.
+
+Example of usage: tag m/CS2103T
+```
+Name: John Doe (user)
+Modules: [CS2101, MA2104, MA3252, CFG1002]
+```
+
+Expected outcome for CLI:
+```
+Module(s) tagged to Person!
+Name: John Doe
+Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
+```
+Description of outcome:
+
+CS2103T is added to John Doe's, the user, list of modules.
 
 ### Untagging a module from an existing contact : `untag`
 
 Removes a module tag from an existing contact.
-Format: `untag n/NAME m/MODULE_TAG`
 
-Example of usage: `untag n/John Doe m/CS2103T`
-Context:
+Formats: 
+* `untag CONTACT_INDEX m/MODULE_TAG`
+* `untag m/MODULE_TAG`
+
+Example of usage: `untag 3 m/CS2103T`
+```
+Name: John Doe (User)
+Modules: [CS2101, MA2104, MA3252, CFG1002]
+```
 
 Expected outcome for CLI:
 ```
-Name: John Doe
-Modules: CS2100 | CS2101 | CS2102
-1 Common Module: CS2101
+"Module(s) untagged to Person!
+Name: John Smith
+Modules: [CS2100, CS2101, CS2102]
+Module(s) in common: [CS2101]
 ```
-Description of outcome: CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
+Description of outcome: 
 
+CS2103T is removed from John Doe's list of modules. Assuming the user also takes CS2101, which is represented as the modules in common.
+
+Example of usage: untag m/CS2103T
+```
+Name: John Doe (user)
+Modules: [CS2101, CS2103T, MA2104, MA3252, CFG1002]
+```
+
+Expected outcome for CLI:
+```
+"Module(s) untagged to Person!
+Name: John Doe
+Modules: [CS2101, MA2104, MA3252, CFG1002]
+```
+Description of outcome:
+
+CS2103T is added to John Doe's, the user, list of modules.
 
 ### Locating persons by keyowrds : `find`
 
@@ -197,9 +246,9 @@ Format: `find PREFIX/KEYWORD [MORE_KEYWORDS]`
 * Words matching the first part of the string will be matched e.g. Han will match Hans
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
-Example of usage: 
+Example of usage:
 * `find m/CS2103T CS2109S` returns all persons with modules CS2103T or CS2109S
-* `find n/John Doe` returns all persons with names John or Doe 
+* `find n/John Doe` returns all persons with names John or Doe
 * `find p/9093` returns all persons with phone numbers starting with 9093
 Expected outcome:
 ```
@@ -214,8 +263,8 @@ Description of outcome: Assuming that John Doe, Jane Lane, John Street has CS210
 ### Sorting Contacts : `sort`
 
 Sorts all contacts by number of common modules, with contacts with most common modules at the top.
-Format: `sort`
-Example of usage: `sort`
+Format: `sort` <br>
+Example of usage: `sort` <br>
 Context:
 There are 4 friends with the following information:
 ```
@@ -243,6 +292,22 @@ Name: John Street
 Description of outcome: Assuming you have 4 friends, then there are 3 of them who are doing common modules as you, they will be sorted by decreasing number of similarity in the modules.
 Hence, Ben Tan will be the first name on top as he has the most number of modules in common with the user, followed by Jane Lane and John Street with 2 and 1 common modules respectively. The 4th friend, Penny Lane, does not have any common modules with the user (John Doe) and hence is omitted.
 
+### View Contacts : `view`
+
+Users can use the view command to look up their current information, or their contact's information on the Panel to the right.
+There are 3 types of usage for this command.
+<br><br>
+Example of usage: `view` <br>
+Expected outcome: User's own profile displayed on the panel. <br>
+![result for 'user profile' GUI](images/userprofile.png)
+<br><br>
+Example of usage: `view 5` <br>
+Expected outcome: The profile of the 5th person indexed by EduMate will be displayed on the panel.
+![result for '5th person profile' GUI](images/fifthPersonProfile.png)
+<br><br>
+Example of usage: `view n/Charles Windsor` <br>
+Expected outcome: The profile of Charles Windsor will be displayed on the panel.
+![result for 'Charles Windsor profile' GUI](images/charlesWindsor.png)
 ## FAQ
 
 **Q**: Can I add multiple module groupTags to a user
@@ -254,12 +319,14 @@ Hence, Ben Tan will be the first name on top as he has the most number of module
 
 ## Command summary
 
-| Action            | Format, Examples                                                   |
-|-------------------|--------------------------------------------------------------------|
-| **User**          | `user`                                                             |
-| **Add Person**    | `add n/NAME` <br> e.g., `add n/John Doe`                           |
-| **Delete Person** | `delete n/NAME`<br> e.g., `delete n/John Doe`                      |
-| **Tag Module**    | `tag n/NAME m/MODULE_TAG`<br> e.g.,`tag n/John Doe m/CS2103T`      |
-| **Untag Module**  | `untag n/NAME m/MODULE_TAG`<br> e.g., `untag n/John Doe m/CS2103T` |
-| **Filter By Mod** | `filter m/MODULE_TAG` <br> e.g., `filter m/CS2103T`                |
-| **Sort**          | `sort`                                                             |
+| Action            | Format, Examples                                                                     |
+|-------------------|--------------------------------------------------------------------------------------|
+| **User**          | `user`                                                                               |
+| **Add Person**    | `add n/NAME` <br> e.g., `add n/John Doe`                                             |
+| **Delete Person** | `delete n/NAME`<br> e.g., `delete n/John Doe`                                        |
+| **Tag Module**    | `tag n/NAME m/MODULE_TAG`<br> e.g.,`tag n/John Doe m/CS2103T`                        |
+| **Untag Module**  | `untag n/NAME m/MODULE_TAG`<br> e.g., `untag n/John Doe m/CS2103T`                   |
+| **Filter By Mod** | `filter m/MODULE_TAG` <br> e.g., `filter m/CS2103T`                                  |
+| **Sort**          | `sort`                                                                               |
+| **View**          | `view`<br/> `view <index>`<br/>`view n/NAME`<br/>e.g., `view 5` or `view n/Komyo San` |
+

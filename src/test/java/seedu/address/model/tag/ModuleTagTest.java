@@ -40,7 +40,7 @@ public class ModuleTagTest {
     public void isValidTagName_invalidTagName_false() {
         assertFalse(ModuleTag.isValidTagName("CS50")); // short module number
         assertFalse(ModuleTag.isValidTagName("C2100")); // short module prefix
-        assertFalse(ModuleTag.isValidTagName("DSAI2100")); // long module prefix
+        assertFalse(ModuleTag.isValidTagName("DSAIS2100")); // long module prefix
         assertFalse(ModuleTag.isValidTagName("DSA2100GTFO")); // long module suffix
         assertFalse(ModuleTag.isValidTagName("CS 2100")); // space in between
         assertFalse(ModuleTag.isValidTagName("CS2103/T")); // non-alphanumeric character

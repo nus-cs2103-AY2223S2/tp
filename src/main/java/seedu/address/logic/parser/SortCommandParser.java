@@ -42,7 +42,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns an SortCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     @Override
     public SortCommand parse(String args) throws ParseException {
@@ -69,9 +69,10 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         // processes comparators from first to last (first goes first)
         // creates one chained comparator
+        // Default comparator is contact index
         Comparator<Person> comparator = CollectionUtil
                 .zip(comparatorStream, isAscendingStream, this::reverseComparatorIfDescending)
-                .reduce(Comparator.comparing(Person::getName), this::combineComparators);
+                .reduce(Comparator.comparing(Person::getContactIndex), this::combineComparators);
 
         // converts the prefixes into their name descriptors
         // n/ -> Name for example

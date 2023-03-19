@@ -63,6 +63,14 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
     }
 
     /**
+     * Removes all module tags from the set of modules.
+     * Gives access from outside classes to this set.
+     */
+    public void removeAll(Collection<? extends ModuleTag> moduleTag) {
+        modules.removeAll(moduleTag);
+    }
+
+    /**
      * Returns the number of modules.
      */
     public int size() {

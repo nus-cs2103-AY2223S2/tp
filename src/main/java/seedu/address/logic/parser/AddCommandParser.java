@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -53,9 +54,11 @@ public class AddCommandParser implements Parser<AddCommand> {
                 .getValue(Prefix.ADDRESS).orElse(DEFAULT_ADDRESS));
         TelegramHandle telegramHandle = ParserUtil.parseTelegramHandle(argMultimap
                 .getValue(Prefix.TELEGRAM_HANDLE).orElse(DEFAULT_TELEGRAM_HANDLE_MAPPER.apply(name)));
+        ContactIndex placeholderContactIndex = new ContactIndex(Integer.MAX_VALUE);
         Set<GroupTag> groupTagSet = ParserUtil.parseGroupTags(argMultimap.getAllValues(Prefix.GROUP_TAG));
         Set<ModuleTag> moduleTagSet = ParserUtil.parseModuleTags(argMultimap.getAllValues(Prefix.MODULE_TAG));
-        Person person = new Person(name, phone, email, address, telegramHandle, groupTagSet, moduleTagSet);
+        Person person = new Person(name, phone, email, address, telegramHandle,
+                placeholderContactIndex, groupTagSet, moduleTagSet);
 
         return new AddCommand(person);
     }

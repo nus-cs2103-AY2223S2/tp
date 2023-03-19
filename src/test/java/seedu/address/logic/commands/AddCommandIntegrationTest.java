@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,6 +29,8 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
+        IndexHandler indexHandler = new IndexHandler(model);
+        validPerson.setContactIndex(indexHandler.assignIndex());
 
         Model expectedModel = new ModelManager(model.getEduMate(), new UserPrefs());
         expectedModel.addPerson(validPerson);

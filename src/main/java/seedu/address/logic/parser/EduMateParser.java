@@ -15,8 +15,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MeetCommand;
+import seedu.address.logic.commands.SampleCommand;
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.UserCommand;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UntagCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -34,7 +38,7 @@ public class EduMateParser {
      *
      * @param userInput full user input string
      * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -70,11 +74,29 @@ public class EduMateParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case UserCommand.COMMAND_WORD:
-            return new UserCommand();
+        case SampleCommand.COMMAND_WORD:
+            return new SampleCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case MeetCommand.EAT_COMMAND_WORD:
+            return new MeetCommandParser(MeetType.EAT).parse(arguments);
+
+        case MeetCommand.STUDY_COMMAND_WORD:
+            return new MeetCommandParser(MeetType.STUDY).parse(arguments);
+
+        case MeetCommand.MEET_COMMAND_WORD:
+            return new MeetCommandParser(MeetType.MEET).parse(arguments);
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
+
+        case UntagCommand.COMMAND_WORD:
+            return new UntagCommandParser().parse(arguments);
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

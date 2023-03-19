@@ -49,13 +49,13 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        id.setText(person.getContactIndex() + ". ");
         name.setText(person.getName().getValue());
         phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue());
+        address.setText(person.getAddress().getValue().getName());
         email.setText(person.getEmail().getValue());
         person.getImmutableGroupTags().stream()
                 .sorted(GroupTag::compareTo)

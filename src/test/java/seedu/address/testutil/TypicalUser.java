@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -18,8 +19,9 @@ public class TypicalUser {
     public static final User LINUS = new User(new Name("Linus Richards"),
             new Phone("90102030"),
             new Email("linusrichards@gmail.com"),
-            new Address("National University of Singapore"),
+            new Address("NUS"),
             new TelegramHandle("@linusrichards"),
+            new ContactIndex(0),
             new HashSet<>() {{
                 add(new GroupTag("User"));
             }},
@@ -30,6 +32,7 @@ public class TypicalUser {
                 add(new ModuleTag("CS2103"));
                 add(new ModuleTag("CS2104"));
                 add(new ModuleTag("CS2105"));
+                add(new ModuleTag("CS2106"));
             }});
 
     /**

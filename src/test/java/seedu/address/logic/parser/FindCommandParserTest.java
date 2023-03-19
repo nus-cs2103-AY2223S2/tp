@@ -82,5 +82,4 @@ public class FindCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, wUserInput, expectedFindPersonCommand);
     }
-
 }
