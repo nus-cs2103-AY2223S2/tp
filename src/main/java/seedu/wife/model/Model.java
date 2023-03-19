@@ -83,6 +83,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered tag list */
     ObservableList<Tag> getFilteredTagList();
 
+    /** Returns an unmodifiable view of the tag list */
+    ObservableList<Tag> getTagList();
+
     /**
      * Updates the filter of the filtered food list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -115,6 +118,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered food list */
     ObservableList<Food> getFilteredFoodList();
+
+    /** Returns an unmodifiable view of the food list */
+    ObservableList<Food> getFoodList();
 
     /**
      * Updates the filter of the filtered food list to filter by the given {@code predicate}.

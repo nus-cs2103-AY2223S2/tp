@@ -123,6 +123,14 @@ public class ModelManager implements Model {
         return filteredFoods;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Food} backed by {@code versionedWife}
+     */
+    @Override
+    public ObservableList<Food> getFoodList() {
+        return this.wife.getFoodList();
+    }
+
     @Override
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
@@ -162,6 +170,14 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Tag> getFilteredTagList() {
         return filteredTags;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by {@code versionedWife}
+     */
+    @Override
+    public ObservableList<Tag> getTagList() {
+        return this.wife.getTagList();
     }
 
     @Override
