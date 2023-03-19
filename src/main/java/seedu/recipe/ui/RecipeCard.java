@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.ui.events.DeleteRecipeEvent;
+import seedu.recipe.model.Model;
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -30,6 +32,7 @@ public class RecipeCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
     @FXML
     private Label name;
     @FXML
@@ -62,6 +65,7 @@ public class RecipeCard extends UiPart<Region> {
     public RecipeCard(Recipe recipe, int displayedIndex) {
         super(FXML);
         this.recipe = recipe;
+        cardPane.setFocusTraversable(true);
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().recipeName);
 
@@ -96,20 +100,20 @@ public class RecipeCard extends UiPart<Region> {
 
         // Add a click listener to the cardPane node
         cardPane.setOnMouseClicked(event -> {
+            cardPane.requestFocus();
             RecipePopup popup = new RecipePopup(recipe, displayedIndex);
             popup.display();
         });
 
-        /* 
+        
         cardPane.setOnKeyPressed(event -> {
-            System.out.println(event);
-            if (event.getCode() == KeyCode.DELETE) {
-                // Perform delete operation here
-                RecipePopup popup = new RecipePopup(recipe, displayedIndex);
-                popup.display();            
+            if (event.getCode() == KeyCode.DELETE || event.getCode() == KeyCode.D) {
+                // Fire the custom delete event
+                DeleteRecipeEvent deleteEvent = new DeleteRecipeEvent(displayedIndex);
+                cardPane.fireEvent(deleteEvent);
             }
         });
-        */
+        
     }
 
     @Override

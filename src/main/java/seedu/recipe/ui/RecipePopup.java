@@ -18,8 +18,8 @@ import seedu.recipe.model.recipe.Recipe;
  * Represents the UI component that pops up and displays the detailed view of a Recipe.
  */
 public class RecipePopup extends UiPart<Region> {
-    private static final String FXML = "RecipePopup.fxml";
-    
+    private static final String FXML = "RecipeListCard.fxml";
+
     public final Recipe recipe;
 
     @FXML
@@ -68,7 +68,6 @@ public class RecipePopup extends UiPart<Region> {
                         .map(Object::toString)
                         .orElse("Portion was not added.")
         );
-
 
         //Tags
         recipe.getTags().stream()

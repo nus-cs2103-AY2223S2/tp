@@ -16,6 +16,7 @@ import seedu.recipe.logic.Logic;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.ui.events.DeleteRecipeEvent;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -65,6 +66,8 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
+
         helpWindow = new HelpWindow();
     }
 
@@ -104,6 +107,16 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+    }
+
+    private void handleDeleteRecipeEvent(DeleteRecipeEvent event) {
+        int recipeIndex = event.getRecipeIndex();
+        try {
+            String commandText = "delete " + (recipeIndex); // 1-indexed
+            executeCommand(commandText);
+        } catch (CommandException | ParseException e) {
+            logger.info("Failed to delete recipe: " + recipeIndex);
+        }
     }
 
     /**
