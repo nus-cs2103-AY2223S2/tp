@@ -18,7 +18,7 @@ public class DeleteTagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a pre-defined tag\n"
             + "Example: " + COMMAND_WORD + " n/vegetable";
-    public static final String TAG_DELETE_SUCCESS_MESSAGE = "Tag successfully deleted: %s";
+    public static final String TAG_DELETE_SUCCESS_MESSAGE = "Tag successfully deleted:";
     public static final String TAG_DELETE_UNSUCCESS_MESSAGE = "The tag you are trying to delete does not exist.";
     private Tag toDelete;
 
