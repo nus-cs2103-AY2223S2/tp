@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,15 +26,15 @@ public class CreateLessonCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a lesson to a student.\n"
         + "Parameters: "
-        + "n/STUDENT_NAME "
-        + "l/LESSON_NAME "
-        + "start/STARTTIME\n"
-        + "end/ENDTIME\n"
+        + PREFIX_NAME + "STUDENT_NAME "
+        + PREFIX_LESSON + "EXAM_NAME "
+        + PREFIX_STARTTIME + "Start time "
+        + PREFIX_ENDTIME + "End time\n"
         + "Example: " + COMMAND_WORD + " "
-        + "n/John Doe "
-        + "l/H2 Math Lesson "
-        + "start/2023-03-01 12:00 "
-        + "end/2023-03-01 14:00";
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_LESSON + "Math Lesson "
+        + PREFIX_STARTTIME + "2023-05-21 12:00 "
+        + PREFIX_ENDTIME + "2023-05-21 14:00";
 
     public static final String MESSAGE_DATE = "endTime must be after startTime, both in the format YYYY-MM-DD HH:mm";
 
