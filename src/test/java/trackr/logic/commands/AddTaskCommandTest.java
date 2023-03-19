@@ -85,7 +85,7 @@ public class AddTaskCommandTest {
         @Override
         public boolean hasTask(Task task) {
             requireNonNull(task);
-            return this.task.isSameTask(task);
+            return this.task.isSameItem(task);
         }
     }
 
@@ -98,7 +98,7 @@ public class AddTaskCommandTest {
         @Override
         public boolean hasTask(Task task) {
             requireNonNull(task);
-            return tasksAdded.stream().anyMatch(task::isSameTask);
+            return tasksAdded.stream().anyMatch(task::isSameItem);
         }
 
         @Override

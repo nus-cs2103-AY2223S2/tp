@@ -21,7 +21,7 @@ import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
+import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
@@ -95,7 +95,7 @@ public class EditSupplierCommand extends Command {
             EditSupplierDescriptor editSupplierDescriptor) {
         assert supplierToEdit != null;
 
-        Name updatedName = editSupplierDescriptor.getName().orElse(supplierToEdit.getName());
+        PersonName updatedName = editSupplierDescriptor.getName().orElse(supplierToEdit.getName());
         Phone updatedPhone = editSupplierDescriptor.getPhone().orElse(supplierToEdit.getPhone());
         Email updatedEmail = editSupplierDescriptor.getEmail().orElse(supplierToEdit.getEmail());
         Address updatedAddress = editSupplierDescriptor.getAddress().orElse(supplierToEdit.getAddress());
@@ -127,7 +127,7 @@ public class EditSupplierCommand extends Command {
      * corresponding field value of the supplier.
      */
     public static class EditSupplierDescriptor {
-        private Name name;
+        private PersonName name;
         private Phone phone;
         private Email email;
         private Address address;
@@ -154,11 +154,11 @@ public class EditSupplierCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public void setName(Name name) {
+        public void setName(PersonName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<PersonName> getName() {
             return Optional.ofNullable(name);
         }
 

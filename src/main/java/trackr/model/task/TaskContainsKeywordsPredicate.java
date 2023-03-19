@@ -45,7 +45,7 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
 
         if (taskNameKeywords != null) {
             isTaskNameMatch = taskNameKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getTaskName().fullTaskName, keyword));
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getTaskName().getName(), keyword));
         } else {
             // Default value since no name keyword is set
             isTaskNameMatch = true;

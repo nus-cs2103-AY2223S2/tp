@@ -185,7 +185,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different filteredTaskList -> returns false
-        String[] taskKeywords = SORT_INVENTORY_N.getTaskName().fullTaskName.split("\\s+");
+        String[] taskKeywords = SORT_INVENTORY_N.getTaskName().getName().split("\\s+");
         TaskContainsKeywordsPredicate sortPredicate = new TaskContainsKeywordsPredicate();
         sortPredicate.setTaskNameKeywords(Arrays.asList(taskKeywords));
         modelManager.updateFilteredTaskList(sortPredicate);
@@ -201,7 +201,7 @@ public class ModelManagerTest {
         // different filteredPersonList and different filteredTaskList -> returns false
         personKeywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredSupplierList(new NameContainsKeywordsPredicate(Arrays.asList(personKeywords)));
-        taskKeywords = BUY_FLOUR_N.getTaskName().fullTaskName.split("\\s+");
+        taskKeywords = BUY_FLOUR_N.getTaskName().getName().split("\\s+");
         TaskContainsKeywordsPredicate buyPredicate = new TaskContainsKeywordsPredicate();
         buyPredicate.setTaskNameKeywords(Arrays.asList(taskKeywords));
         modelManager.updateFilteredTaskList(buyPredicate);

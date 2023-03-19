@@ -4,11 +4,13 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import trackr.model.item.Item;
+
 /**
  * Represents a Task in the task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public class Task extends Item {
 
     // Data fields
     private final TaskName taskName;
@@ -19,6 +21,7 @@ public class Task {
      * Every field must be present and not null.
      */
     public Task(TaskName taskName, TaskDeadline taskDeadline, TaskStatus taskStatus) {
+        super("Task");
         requireAllNonNull(taskName, taskDeadline, taskStatus);
         this.taskName = taskName;
         this.taskDeadline = taskDeadline;
@@ -38,13 +41,20 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name and deadline
+     * Returns true if both tasks have the same name and deadline.
      * This defines a weaker notion of equality between two tasks.
      */
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
+    @Override
+    public boolean isSameItem(Item otherItem) {
+        if (otherItem == this) {
             return true;
         }
+
+        if (!(otherItem instanceof Task)) {
+            return false;
+        }
+
+        Task otherTask = (Task) otherItem;
 
         return otherTask != null
                 && otherTask.getTaskName().equals(getTaskName())
@@ -87,6 +97,5 @@ public class Task {
                 .append(getTaskStatus());
         return builder.toString();
     }
-
 }
 

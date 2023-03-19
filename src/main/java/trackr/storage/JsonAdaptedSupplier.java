@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
+import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
@@ -71,12 +71,13 @@ class JsonAdaptedSupplier {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PersonName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(name)) {
+            throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final PersonName modelName = new PersonName(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));

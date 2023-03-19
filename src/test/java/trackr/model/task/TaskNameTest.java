@@ -23,20 +23,20 @@ public class TaskNameTest {
     @Test
     public void isValidTaskName() {
         // null task name
-        assertThrows(NullPointerException.class, () -> TaskName.isValidTaskName(null));
+        assertThrows(NullPointerException.class, () -> TaskName.isValidName(null));
 
         // invalid task name
-        assertFalse(TaskName.isValidTaskName("")); // empty string
-        assertFalse(TaskName.isValidTaskName(" ")); // spaces only
-        assertFalse(TaskName.isValidTaskName("^")); // only non-alphanumeric characters
-        assertFalse(TaskName.isValidTaskName("bake*")); // contains non-alphanumeric characters
+        assertFalse(TaskName.isValidName("")); // empty string
+        assertFalse(TaskName.isValidName(" ")); // spaces only
+        assertFalse(TaskName.isValidName("^")); // only non-alphanumeric characters
+        assertFalse(TaskName.isValidName("bake*")); // contains non-alphanumeric characters
 
         // valid task name
-        assertTrue(TaskName.isValidTaskName("sort inventory")); // alphabets only
-        assertTrue(TaskName.isValidTaskName("12345")); // numbers only
-        assertTrue(TaskName.isValidTaskName("buy 100kg of flour")); // alphanumeric characters
-        assertTrue(TaskName.isValidTaskName("Buy Eggs")); // with capital letters
-        assertTrue(TaskName.isValidTaskName("Buy 10kg of Flour and 5kg of Eggs and 2kg of sugar")); // long names
+        assertTrue(TaskName.isValidName("sort inventory")); // alphabets only
+        assertTrue(TaskName.isValidName("12345")); // numbers only
+        assertTrue(TaskName.isValidName("buy 100kg of flour")); // alphanumeric characters
+        assertTrue(TaskName.isValidName("Buy Eggs")); // with capital letters
+        assertTrue(TaskName.isValidName("Buy 10kg of Flour and 5kg of Eggs and 2kg of sugar")); // long names
     }
 
     @Test

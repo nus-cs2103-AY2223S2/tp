@@ -16,7 +16,7 @@ import trackr.model.tag.Tag;
 public class Supplier {
 
     // Identity fields
-    private final Name name;
+    private final PersonName name;
     private final Phone phone;
     private final Email email;
 
@@ -27,7 +27,7 @@ public class Supplier {
     /**
      * Every field must be present and not null.
      */
-    public Supplier(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Supplier(PersonName name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -36,7 +36,7 @@ public class Supplier {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public PersonName getName() {
         return name;
     }
 

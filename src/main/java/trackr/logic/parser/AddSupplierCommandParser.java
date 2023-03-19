@@ -14,7 +14,7 @@ import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
+import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
@@ -39,7 +39,7 @@ public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        PersonName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());

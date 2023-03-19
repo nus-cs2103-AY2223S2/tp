@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
+import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -42,14 +42,14 @@ public class JsonAdaptedPersonTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedSupplier person =
                 new JsonAdaptedSupplier(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PersonName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedSupplier person = new JsonAdaptedSupplier(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

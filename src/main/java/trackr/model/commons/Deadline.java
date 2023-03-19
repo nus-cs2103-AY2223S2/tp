@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
  */
 public abstract class Deadline {
 
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "%s deadline should only contain numeric values in the format \"DD/MM/YYYY\" and it should not be blank.";
 
     private static final String VALIDATION_REGEX = "^[0-9]{2}/[0-9]{2}/[0-9]{4}$";

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.testutil.SupplierBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class PersonNameContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {

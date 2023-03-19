@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import trackr.model.item.exceptions.DuplicateItemException;
 import trackr.model.task.Task;
-import trackr.model.task.exceptions.DuplicateTaskException;
 import trackr.testutil.TaskBuilder;
 
 public class TaskListTest {
@@ -51,7 +51,7 @@ public class TaskListTest {
         List<Task> newTasks = Arrays.asList(SORT_INVENTORY_N, editedTask);
         TaskListStub newData = new TaskListStub(newTasks);
 
-        assertThrows(DuplicateTaskException.class, () -> taskList.resetData(newData));
+        assertThrows(DuplicateItemException.class, () -> taskList.resetData(newData));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class TaskListTest {
     public void setTaskList_withDuplicateTasks_throwsDuplicateTaskException() {
         taskList.addTask(SORT_INVENTORY_N);
         taskList.addTask(BUY_FLOUR_N);
-        assertThrows(DuplicateTaskException.class, () -> taskList.setTask(BUY_FLOUR_N, SORT_INVENTORY_N));
+        assertThrows(DuplicateItemException.class, () -> taskList.setTask(BUY_FLOUR_N, SORT_INVENTORY_N));
     }
 
     @Test

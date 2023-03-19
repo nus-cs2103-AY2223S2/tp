@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.model.supplier.Address;
 import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
+import trackr.model.supplier.PersonName;
 import trackr.model.supplier.Phone;
 import trackr.model.supplier.Supplier;
 import trackr.model.tag.Tag;
@@ -43,7 +43,7 @@ public class EditSupplierDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditSupplierDescriptor} that we are building.
      */
     public EditSupplierDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new PersonName(name));
         return this;
     }
 

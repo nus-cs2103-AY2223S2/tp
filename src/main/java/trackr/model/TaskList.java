@@ -43,7 +43,7 @@ public class TaskList implements ReadOnlyTaskList {
      * {@code tasks} must not contain duplicate tasks.
      */
     public void setTasks(List<Task> tasks) {
-        this.tasks.setTasks(tasks);
+        this.tasks.setItems(tasks);
     }
 
     /**
@@ -81,7 +81,7 @@ public class TaskList implements ReadOnlyTaskList {
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
 
-        tasks.setTask(target, editedTask);
+        tasks.setItem(target, editedTask);
     }
 
     /**

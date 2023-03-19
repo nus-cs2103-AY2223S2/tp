@@ -33,7 +33,7 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + task.getTaskName().fullTaskName + " ");
+        sb.append(PREFIX_NAME + task.getTaskName().getName() + " ");
         sb.append(PREFIX_DEADLINE + task.getTaskDeadline().toJsonString() + " ");
         sb.append(PREFIX_STATUS + task.getTaskStatus().toJsonString() + " ");
         return sb.toString();
@@ -43,7 +43,7 @@ public class TaskUtil {
     public static String getTaskDescriptorDetails(TaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTaskName()
-                .ifPresent(taskName -> sb.append(PREFIX_NAME).append(taskName.fullTaskName).append(" "));
+                .ifPresent(taskName -> sb.append(PREFIX_NAME).append(taskName.getName()).append(" "));
         descriptor.getTaskDeadline()
                 .ifPresent(taskDeadline -> sb.append(PREFIX_DEADLINE).append(taskDeadline.toJsonString()).append(" "));
         descriptor.getTaskStatus()

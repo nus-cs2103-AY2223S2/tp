@@ -9,7 +9,7 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
  */
 public abstract class Name {
 
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "%s names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*

@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 
 /**
  * Represents a status in the list.
- * Guaruntees: immutable; is valid as declared in {@link #isValidStatus(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStatus(String, HashMap)}
  */
 public abstract class Status {
 
@@ -38,14 +38,16 @@ public abstract class Status {
 
         this.validationRegex = String.format("^[%s]$",
                 this.statuses.keySet().stream().reduce("", (t, e) -> t + e + e.toLowerCase()));
-        checkArgument(isValidStatus(status), String.format(MESSAGE_CONSTRAINTS, type, statusMessage));
+        checkArgument(isValidStatus(status, statuses), String.format(MESSAGE_CONSTRAINTS, type, statusMessage));
         this.status = status.toUpperCase();
     }
 
     /**
      * Returns true if a given string is a valid status.
      */
-    public boolean isValidStatus(String test) {
+    public static boolean isValidStatus(String test, HashMap<String, String> statuses) {
+        String validationRegex = String.format("^[%s]$",
+                statuses.keySet().stream().reduce("", (t, e) -> t + e + e.toLowerCase()));
         return test.matches(validationRegex);
     }
 
