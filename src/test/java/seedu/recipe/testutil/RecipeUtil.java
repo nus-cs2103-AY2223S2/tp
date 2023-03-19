@@ -1,7 +1,7 @@
 package seedu.recipe.testutil;
 
 import seedu.recipe.logic.commands.AddCommand;
-import seedu.recipe.logic.commands.EditCommand;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.tag.Tag;
 
@@ -40,7 +40,7 @@ public class RecipeUtil {
     /**
      * Returns the part of command string for the given {@code EditRecipeDescriptor}'s details.
      */
-    public static String getEditRecipeDescriptorDetails(EditCommand.RecipeDescriptor descriptor) {
+    public static String getEditRecipeDescriptorDetails(RecipeDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.recipeName).append(" "));
         // descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

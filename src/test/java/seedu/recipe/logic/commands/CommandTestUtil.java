@@ -2,6 +2,7 @@ package seedu.recipe.logic.commands;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.recipe.NameContainsKeywordsPredicate;
@@ -65,8 +66,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.RecipeDescriptor DESC_CHICKEN;
-    public static final EditCommand.RecipeDescriptor DESC_FISH;
+    public static final RecipeDescriptor DESC_CHICKEN;
+    public static final RecipeDescriptor DESC_FISH;
 
     static {
         DESC_CHICKEN = new EditRecipeDescriptorBuilder().withName(VALID_NAME_CHICKEN)

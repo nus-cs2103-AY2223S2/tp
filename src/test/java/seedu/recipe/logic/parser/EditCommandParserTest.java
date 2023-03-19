@@ -3,6 +3,7 @@ package seedu.recipe.logic.parser;
 import org.junit.jupiter.api.Test;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -161,7 +162,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCommand.RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withTags().build();
+        RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -10,6 +10,7 @@ import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.logic.commands.HelpCommand;
 import seedu.recipe.logic.commands.ListCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.NameContainsKeywordsPredicate;
 import seedu.recipe.model.recipe.Recipe;
@@ -58,7 +59,7 @@ public class RecipeBookParserTest {
         Recipe recipe = new Recipe(new Name("Lasagna"));
         recipe.setPortion(RecipePortion.of("1-2 servings"));
         recipe.setDuration(RecipeDuration.of("15 min"));
-        EditCommand.RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
+        RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                                                                         + INDEX_FIRST_PERSON.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(
                 descriptor));

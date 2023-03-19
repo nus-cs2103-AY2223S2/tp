@@ -1,7 +1,6 @@
 package seedu.recipe.testutil;
 
-import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.commands.EditCommand.RecipeDescriptor;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
@@ -23,7 +22,7 @@ public class EditRecipeDescriptorBuilder {
     private RecipeDescriptor descriptor;
 
     public EditRecipeDescriptorBuilder() {
-        descriptor = new EditCommand.RecipeDescriptor();
+        descriptor = new RecipeDescriptor();
     }
 
     public EditRecipeDescriptorBuilder(RecipeDescriptor descriptor) {

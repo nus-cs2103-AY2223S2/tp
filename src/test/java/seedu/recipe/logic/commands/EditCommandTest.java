@@ -1,6 +1,7 @@
 package seedu.recipe.logic.commands;
 
 import org.junit.jupiter.api.Test;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.ModelManager;
 import seedu.recipe.model.RecipeBook;
@@ -52,7 +53,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditCommand.RecipeDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new RecipeDescriptor());
         Recipe editedRecipe = model.getFilteredRecipeList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
@@ -78,7 +79,7 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateRecipeUnfilteredList_failure() {
         Recipe firstRecipe = model.getFilteredRecipeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditCommand.RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(firstRecipe).build();
+        RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(firstRecipe).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_RECIPE);

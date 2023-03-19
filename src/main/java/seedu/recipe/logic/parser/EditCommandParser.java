@@ -2,9 +2,9 @@ package seedu.recipe.logic.parser;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.commands.EditCommand.RecipeDescriptor;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.parser.functional.TryUtil;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -48,7 +48,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditCommand.RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
+        RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
 
         argMultimap.getValue(PREFIX_NAME)
                 .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseName, s))
