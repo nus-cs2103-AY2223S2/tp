@@ -67,13 +67,13 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         if (person.hasTime()) {
-            time.setText(person.getTime().toString());
+//            time.setText(person.getTime().toString());
             if (person.getMedicalCondition() != null) {
                 String s = person.getMedicalCondition().getValue();
                 medicalCondition.setText(s);
             }
         } else {
-            time.setText("");
+//            time.setText("");
             if (person.getMedicalCondition() == null) {
                 medicalCondition.setText("");
             } else {
