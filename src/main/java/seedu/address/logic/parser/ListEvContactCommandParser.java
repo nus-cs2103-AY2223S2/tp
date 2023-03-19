@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class ListEvContactCommandParser implements Parser<ListEvContactCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ListEvContactCommand
-     * and returns a ListEvContact object for execution.
+     * and returns a ListEvContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListEvContactCommand parse(String args) throws ParseException {
