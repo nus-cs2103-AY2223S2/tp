@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.card.Card;
+import seedu.address.model.deck.Deck;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 
 /**
@@ -37,7 +38,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HARD;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_QUESTION + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_QUESTION; // empty string not allowed for question
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -99,7 +100,7 @@ public class CommandTestUtil {
     }
     /**
      * Updates {@code model}'s filtered list to show only the card at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s master deck.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCardList().size());
@@ -107,6 +108,17 @@ public class CommandTestUtil {
         final String otherQuestion = card.getQuestion().question;
         model.updateFilteredCardList(c -> c.getQuestion().question.equals(otherQuestion));
         assertEquals(1, model.getFilteredCardList().size());
+    }
+    /**
+     * Updates {@code model}'s filtered list to show only the deck at the given {@code targetIndex} in the
+     * {@code model}'s master deck.
+     */
+    public static void showDeckAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredDeckList().size());
+        Deck deck = model.getFilteredDeckList().get(targetIndex.getZeroBased());
+        final String otherDeckName = deck.getDeckName();
+        model.updateFilteredDeckList(d -> d.getDeckName().equals(otherDeckName));
+        assertEquals(1, model.getFilteredDeckList().size());
     }
 
 }

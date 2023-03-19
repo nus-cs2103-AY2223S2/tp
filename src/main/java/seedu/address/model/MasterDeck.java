@@ -153,7 +153,7 @@ public class MasterDeck implements ReadOnlyMasterDeck {
         List<Card> cardsToRemove = cards.asUnmodifiableObservableList().parallelStream()
                 .filter(card -> card.isInDeck(key))
                 .collect(Collectors.toList());
-        cardsToRemove.parallelStream().forEach(this::removeCard);
+        cardsToRemove.forEach(this::removeCard);
 
         decks.remove(key);
     }

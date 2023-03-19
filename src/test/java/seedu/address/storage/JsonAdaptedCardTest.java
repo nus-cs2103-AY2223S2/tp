@@ -16,7 +16,7 @@ import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
 
 public class JsonAdaptedCardTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = " ";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
 
