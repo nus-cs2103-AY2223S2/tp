@@ -91,23 +91,21 @@ Examples: `delete i/T0012345A` to delete patient with NRIC T0012345A from patien
 
 ### Find persons by name or address: `find`
 
-Find persons according to a particular attribute. Eg. name(/n), address(/a), nric(/nric)
-Returns unfiltered person list if `/all` is passed as an attribute
-Format: `find /ATTRIBUTE [KEYWORD] [MORE_KEYWORDS]`
+Find persons according to a particular attribute stated followed by the change. Eg. name(n/), address(a/), nric(i/)
+Format: `find attribute/keyword [MORE_KEYWORDS]`
 
-
+* Only the provided attribute will be search
+* Only attribute can be searched at one time
 * The search is case-insensitive. e.g panadol will match pANAdol
 * The order of the keywords does matters. e.g. "panadol" will match "medicine panadol"
-* Only the provided attribute will be search (a or n)
 * Can input multiple keywords for a given attribute and all matching persons will be returned
 
 
 Examples:
-* `find /all` returns the original list of people
-* `find /n john` returns `John Lim` and `John Doe` who both contain the name `John` in their names
-* `find /a serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`
-* `find /nric S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`
-* `find /a ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
+* `find n/john` returns `John Lim` and `John Doe` who both contain the name `John` in their names
+* `find a/serangoon` returns `Alice Tan` and `John Doe` who have an address located in `Serangoon`
+* `find i/S0078957G` returns `Alice Tan` who has an NRIC of `S0078957G`
+* `find a/ang mo kio serangoon` returns 'Alice Tan', 'John Doe', 'John Lim' who all stay either in `ang mo kio` or  `serangoon`
   
 
 ### Clearing all data: `clear`
