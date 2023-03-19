@@ -6,7 +6,7 @@ package trackr.model.item;
 public abstract class Item {
     protected String itemType;
 
-    Item(String itemType) {
+    public Item(String itemType) {
         this.itemType = itemType;
     }
 
