@@ -94,8 +94,8 @@ public class MainApp extends Application {
      * Read a specified manager from data
      * @param managerSupplier the data from which the manager is read
      * @param managerName name of the manager
-     * @return a read only version of the item manager
      * @param <T> the type of object that the manager manages
+     * @return a read only version of the item manager
      */
     private <T extends Item> ReadOnlyItemManager<T> readManager(
         Callable<Optional<? extends ReadOnlyItemManager<T>>> managerSupplier,
