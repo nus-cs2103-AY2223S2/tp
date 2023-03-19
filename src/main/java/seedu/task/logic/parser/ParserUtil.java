@@ -26,6 +26,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TIME = "Timeframe is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_WORKLOAD = "Workload has to be a non-zero unsigned integer";
 
     /**
      * Parses {@code oneBasedIndexList} into an {@code IndexList} and returns it. Leading and trailing whitespaces
@@ -187,6 +188,20 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code String Workload} into a {@code Workload}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Workload} is invalid.
+     */
+    public static int parseWorkload(String work) throws ParseException {
+        String trimmedWork = work.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWork)) {
+            throw new ParseException(MESSAGE_INVALID_WORKLOAD);
+        }
+        return Integer.parseInt(trimmedWork);
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -227,6 +242,5 @@ public class ParserUtil {
         System.out.println(tagList);
         return tagList;
     }
-
 
 }
