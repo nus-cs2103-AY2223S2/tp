@@ -107,8 +107,17 @@ public class DoctorBuilder {
         return this;
     }
 
+    /**
+     * Adds the list of {@code Patient} to the patient list
+     * of the {@code Doctor} that we are building.
+     */
+    public DoctorBuilder withPatients(Patient ... patient) {
+        this.patients = SampleDataUtil.getPatientSet(patient);
+        return this;
+    }
+
     public Doctor build() {
-        return new Doctor(name, phone, email, specialty, yoe, tags);
+        return new Doctor(name, phone, email, specialty, yoe, tags, patients);
     }
 
 }

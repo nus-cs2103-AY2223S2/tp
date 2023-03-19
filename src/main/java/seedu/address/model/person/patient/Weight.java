@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Weight {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Weight should be in kilograms (kg), rounded to the nearest whole number.";
+            "Weight should be in kilograms (kg), rounded  up to 2 decimal places.";
 
     public static final String VALIDATION_REGEX = "^\\s*[0-9]+(.[0-9]{1,2})?\\s*$";
 
