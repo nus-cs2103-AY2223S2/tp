@@ -15,6 +15,7 @@
     <Scene>
       <stylesheets>
         <URL value="@main-window.css" />
+        <URL value="@theme.css" />
       </stylesheets>
 
       <VBox id="main-window">
