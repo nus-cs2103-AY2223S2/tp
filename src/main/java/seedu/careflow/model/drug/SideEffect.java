@@ -8,14 +8,13 @@ import static seedu.careflow.commons.util.AppUtil.checkArgument;
  */
 public class SideEffect {
     public static final String MESSAGE_CONSTRAINTS = "Side effects should be in sentence form "
-            + "and only contain alphabets, whitespace, commas and full stops"
-            + "it cannot be blank but less than 500 characters long";
+            + "it cannot be blank and should be less than 1500 characters long";
 
     /*
      * The first 3 consecutive characters are upper or lowercase alphabetical characters,
      * followed by 0 or more alphabetical, whitespace characters or commas.
      */
-    public static final String VALIDATION_REGEX = "[A-Za-z][A-Za-z\\s,./]{0,499}";
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9][\\p{Graph}\\p{Space}]{0,1499}";
 
     public final String sideEffect;
 
