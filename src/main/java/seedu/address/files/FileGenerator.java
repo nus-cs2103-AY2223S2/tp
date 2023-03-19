@@ -2,12 +2,15 @@ package seedu.address.files;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType0Font;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 
 import seedu.address.model.person.Person;
 
@@ -17,7 +20,8 @@ import seedu.address.model.person.Person;
  * The type File generator.
  */
 public class FileGenerator {
-    private static int form_Id;
+    //store this field at Json
+    private static int formId = 0;
     private Person person;
     private String doctorName;
     private String description;
@@ -36,89 +40,50 @@ public class FileGenerator {
         this.doctorName = doctorName;
         this.description = description;
         this.days = days;
+        formId++;
         createForm();
     }
 
     private void createForm() {
         try {
-            // Create a new PDF document
-            PDDocument document = new PDDocument();
+            // Load the original PDF form
+            PDDocument pdfDocument = PDDocument.load(new File("lib/MC.pdf"));
 
-            // Create a new page in the document
-            PDPage page = new PDPage();
-            document.addPage(page);
+            // Get the PDF form fields
+            PDDocumentCatalog docCatalog = pdfDocument.getDocumentCatalog();
+            PDAcroForm acroForm = docCatalog.getAcroForm();
 
-            // Get the content stream of the page
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            //Get all fields
 
-            //Set the font to Roboto Bold with size 28
-            File myfont1 = new File("lib/Roboto/Roboto-Bold.ttf");
-            PDFont font1 = PDType0Font.load(document, myfont1);
-            contentStream.setFont(font1, 12);
+            List<PDField> fieldList = acroForm.getFields();
 
-            // Draw the certificate title
-            String title = "Medical Certificate";
-            float titleWidth = font1.getStringWidth(title) / 1000 * 12;
-            float titleHeight = font1.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * 12;
-            float titleX = (page.getMediaBox().getWidth() - titleWidth) / 2;
-            float titleY = page.getMediaBox().getHeight() - 50;
-            contentStream.beginText();
-            contentStream.newLineAtOffset(titleX, titleY);
-            contentStream.showText(title);
-            contentStream.endText();
-
-            // Draw the patient name label
-            String nameLabel = "Patient Name:";
-            float nameLabelWidth = font1.getStringWidth(nameLabel) / 1000 * 12;
-            float nameLabelHeight = font1.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * 12;
-            float nameLabelX = page.getMediaBox().getWidth() / 2;
-            float nameLabelY = titleY - 20;
-            contentStream.beginText();
-            contentStream.newLineAtOffset(nameLabelX, nameLabelY);
-            contentStream.showText(nameLabel);
-            contentStream.endText();
-
-            // Draw the patient name
-            String patientName = "John Doe";
-            float patientNameWidth = font1.getStringWidth(patientName) / 1000 * 12;
-            float patientNameHeight = font1.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * 12;
-            float patientNameX = page.getMediaBox().getWidth() / 2 + 80;
-            float patientNameY = nameLabelY;
-            contentStream.beginText();
-            contentStream.newLineAtOffset(patientNameX, patientNameY);
-            contentStream.showText(patientName);
-            contentStream.endText();
-
-            // Draw the patient date of birth label
-            String dobLabel = "Date of Birth:";
-            float dobLabelWidth = font1.getStringWidth(dobLabel) / 1000 * 12;
-            float dobLabelHeight = font1.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * 12;
-            float dobLabelX = page.getMediaBox().getWidth() / 2;
-            float dobLabelY = nameLabelY - 20;
-            contentStream.beginText();
-            contentStream.newLineAtOffset(dobLabelX, dobLabelY);
-            contentStream.showText(dobLabel);
-            contentStream.endText();
-
-            // Draw the patient date of birth
-            String dob = "01/01/2000";
-            float dobWidth = font1.getStringWidth(dob) / 1000 * 12;
-            float dobHeight = font1.getFontDescriptor().getFontBoundingBox().getHeight() / 1000 * 12;
-            float dobX = page.getMediaBox().getWidth() / 2 + 80;
-            float dobY = dobLabelY;
-            contentStream.beginText();
-            contentStream.newLineAtOffset(dobX, dobY);
-            contentStream.showText(dob);
-            contentStream.endText();
-
-            // close the content stream
-            contentStream.close();
-
-            //Save the document to the specified file path
-            document.save("reports/" + person.getName().fullName + "/medical_certificate.pdf");
-
-            //Close the document
-            document.close();
+            for (PDField field: fieldList) {
+                if (field instanceof PDTextField) {
+                    String fileName = field.getFullyQualifiedName();
+                    if (fileName.equals("name")) {
+                        field.setValue(person.getName().fullName);
+                    } else if (fileName.equals("DOB")) {
+                        field.setValue("222-2222");
+                    } else if (fileName.equals("days")) {
+                        field.setValue(Integer.toString(days));
+                    } else if (fileName.equals("today")) {
+                        // Fill in the date fields
+                        LocalDate now = LocalDate.now();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                        field.setValue(now.format(formatter));
+                    } else if (fileName.equals("startDate")) {
+                        field.setValue("2019-11-11");
+                    } else if (fileName.equals("endDate")) {
+                        field.setValue("2019-11-12");
+                    } else if (fileName.equals("DoctorName")) {
+                        field.setValue(doctorName);
+                    } else {
+                        field.setValue(Integer.toString(formId));
+                    }
+                }
+            }
+            pdfDocument.save(new File("reports/" + person.getName().fullName + "/mc.pdf"));
+            pdfDocument.close();
 
         } catch (IOException e) {
             e.printStackTrace();
