@@ -38,12 +38,32 @@ class ModelStub implements Model {
     }
 
     @Override
-    public Path getFriendlyLinkFilePath() {
+    public Path getElderlyFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setFriendlyLinkFilePath(Path addressBookFilePath) {
+    public void setElderlyFilePath(Path elderlyFilePath) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Path getVolunteerFilePath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setVolunteerFilePath(Path volunteerFilePath) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Path getPairFilePath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setPairFilePath(Path pairFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -40,6 +40,15 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
+    @Override
+    public FriendlyLink read() throws DataConversionException, IOException {
+        FriendlyLink friendlyLink = new FriendlyLink();
+        readElderly(friendlyLink);
+        readVolunteer(friendlyLink);
+        readPair(friendlyLink);
+        return friendlyLink;
+    }
+
     // ================ UserPrefs methods ==============================
 
     @Override

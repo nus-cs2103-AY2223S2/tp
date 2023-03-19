@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
@@ -10,6 +11,7 @@ import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Region;
 
@@ -216,7 +218,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param pair Pair to add into FriendlyLink.
      */
     public void addPair(Pair pair) {
-        pairs.add(pair);
+        this.addPair(pair.getElderly().getNric(), pair.getVolunteer().getNric());
     }
 
     /**
@@ -227,13 +229,16 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param elderlyNric Nric of elderly.
      * @param volunteerNric Nric of volunteer.
      */
+
     public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
-        // pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
         Elderly elderly = getElderly(elderlyNric);
         Volunteer volunteer = getVolunteer(volunteerNric);
 
         Region elderlyRegion = elderly.getRegion();
         Region volunteerRegion = volunteer.getRegion();
+
+        Set<AvailableDate> elderlyAvailableDates = elderly.getAvailableDates();
+        Set<AvailableDate> volunteerAvailableDates = volunteer.getAvailableDates();
 
         // check if region match. If does not match, issue a warning in feedback
         boolean issueWarning;
@@ -242,8 +247,25 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
         } else {
             issueWarning = false;
         }
-        pairs.add(new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric)));
-        return issueWarning;
+
+        // no restrictions
+        if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
+            pairs.add(new Pair(elderly, volunteer));
+            return issueWarning;
+        }
+
+        // find first matching dates
+        for (AvailableDate date : elderlyAvailableDates) {
+            for (AvailableDate availableDate : volunteerAvailableDates) {
+                if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
+                    pairs.add(new Pair(elderly, volunteer));
+                    return issueWarning;
+                }
+            }
+        }
+
+        throw new IllegalArgumentException("The elderly cannot be paired with the volunteer "
+                + "due to a clash in availability");
     }
 
     /**

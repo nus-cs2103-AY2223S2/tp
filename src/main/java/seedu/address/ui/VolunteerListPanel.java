@@ -32,7 +32,7 @@ public class VolunteerListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Volunteer} using a {@code VolunteerCard}.
      */
-    class VolunteerListViewCell extends ListCell<Volunteer> {
+    static class VolunteerListViewCell extends ListCell<Volunteer> {
         @Override
         protected void updateItem(Volunteer volunteer, boolean empty) {
             super.updateItem(volunteer, empty);

@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.FriendlyLink;
@@ -34,7 +35,7 @@ public class JsonSerializablePairTest {
                 JsonSerializablePair.class).get();
         FriendlyLink friendlyLinkFromFile = dataFromFile.toModelType(appTestCache);
         List<Pair> typicalPairs = getTypicalPairs();
-        assertEquals(friendlyLinkFromFile.getPairList(), typicalPairs);
+        assertEquals(typicalPairs, friendlyLinkFromFile.getPairList());
     }
 
     @Test
@@ -46,12 +47,14 @@ public class JsonSerializablePairTest {
     }
 
     @Test
-    public void toModelType_duplicatePair_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicatePair_throwsIllegalValueException() throws DataConversionException {
         FriendlyLink appTestCache = getNoPairsTypicalFriendlyLink();
         JsonSerializablePair dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PAIRS_FILE,
                 JsonSerializablePair.class).get();
+
         String expectedMessage = String.format(
                 MESSAGE_DUPLICATE_PAIR, PAIR1.getElderly().getNric(), PAIR1.getVolunteer().getNric());
+
         assertThrows(IllegalValueException.class,
                 expectedMessage, () -> dataFromFile.toModelType(appTestCache));
     }

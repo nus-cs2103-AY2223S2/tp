@@ -5,20 +5,19 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
+import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
+import seedu.address.testutil.ModelManagerBuilder;
 import seedu.address.testutil.TypicalVolunteers;
 
 public class DeleteVolunteerCommandTest {
-    private final Model model = new ModelManager(getTypicalFriendlyLink(), new UserPrefs());
+    private final Model model = getTypicalModelManager();
 
     @Test
     public void execute_validNric_success() {
@@ -29,7 +28,9 @@ public class DeleteVolunteerCommandTest {
                 DeleteVolunteerCommand.MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete
         );
 
-        ModelManager expectedModel = new ModelManager(model.getFriendlyLink(), new UserPrefs());
+        Model expectedModel = new ModelManagerBuilder()
+                .withFriendlyLink(model.getFriendlyLink())
+                .build();
         expectedModel.deleteVolunteer(volunteerToDelete);
 
         assertCommandSuccess(deleteVolunteerCommand, model, expectedMessage, expectedModel);

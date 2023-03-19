@@ -8,6 +8,7 @@ import java.util.Set;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
+import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
@@ -51,6 +52,8 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
         Age updatedAge = editPersonDescriptor.getAge().orElse(volunteerToEdit.getAge());
         Region updateRegion = editPersonDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(volunteerToEdit.getTags());
+        Set<AvailableDate> updatedDates = editPersonDescriptor.getAvailableDates()
+                .orElse(volunteerToEdit.getAvailableDates());
 
         Set<MedicalQualificationTag> updatedMedicalTags = volunteerToEdit.getMedicalTags();
         if (editPersonDescriptor instanceof EditVolunteerDescriptor) {
@@ -60,7 +63,7 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
         }
 
         return new Volunteer(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedNric, updatedAge, updateRegion, updatedTags, updatedMedicalTags);
+                updatedNric, updatedAge, updateRegion, updatedTags, updatedMedicalTags, updatedDates);
     }
 
     public void setMedicalTags(Set<MedicalQualificationTag> tags) {

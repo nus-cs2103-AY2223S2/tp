@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
@@ -33,7 +34,8 @@ public class AddElderlyCommand extends Command {
             + PREFIX_AGE + "AGE "
             + PREFIX_REGION + "REGION "
             + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -44,7 +46,8 @@ public class AddElderlyCommand extends Command {
             + PREFIX_REGION + "WEST "
             + PREFIX_RISK + "LOW "
             + PREFIX_TAG + "diabetes "
-            + PREFIX_TAG + "lonely";
+            + PREFIX_TAG + "lonely"
+            + PREFIX_AVAILABILITY + "2023-05-11 to 2023-05-12";
 
     public static final String MESSAGE_SUCCESS = "New elderly added: %1$s";
 

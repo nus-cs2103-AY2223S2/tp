@@ -10,8 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 import static seedu.address.testutil.TypicalElderly.ALICE;
+import static seedu.address.testutil.TypicalElderly.GEORGE;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalVolunteers.BOB;
+import static seedu.address.testutil.TypicalVolunteers.ELLE;
+import static seedu.address.testutil.TypicalVolunteers.FIONA;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -150,12 +153,16 @@ public class FriendlyLinkTest {
 
     @Test
     public void hasPair_pairInFriendlyLink_returnsTrue() {
+        friendlyLink.addElderly(ALICE);
+        friendlyLink.addVolunteer(ELLE);
         friendlyLink.addPair(PAIR1);
         assertTrue(friendlyLink.hasPair(PAIR1));
     }
 
     @Test
     public void hasPair_pairWithSameElderlyAndVolunteer_returnsTrue() {
+        friendlyLink.addElderly(ALICE);
+        friendlyLink.addVolunteer(ELLE);
         friendlyLink.addPair(PAIR1);
         Pair editedPair = new PairBuilder(PAIR1).build();
         assertTrue(friendlyLink.hasPair(editedPair));
@@ -170,9 +177,16 @@ public class FriendlyLinkTest {
 
     @Test
     public void getPairList_modifyList_throwsUnsupportedOperationException() {
-        // TODO: assertThrows(UnsupportedOperationException.class, () -> addressBook.getPairList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> friendlyLink.getPairList().remove(0));
     }
 
+    @Test
+    public void addPair_noOverlappingDates_throwsIllegalValueException() {
+        friendlyLink.addElderly(GEORGE);
+        friendlyLink.addVolunteer(FIONA);
+        assertThrows(IllegalArgumentException.class, () ->
+                friendlyLink.addPair(GEORGE.getNric(), FIONA.getNric()));
+    }
 
     /**
      * A stub ReadOnlyFriendlyLink whose persons list can violate interface constraints.
