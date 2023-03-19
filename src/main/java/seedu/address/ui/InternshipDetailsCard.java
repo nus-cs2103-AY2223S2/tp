@@ -22,6 +22,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import seedu.address.MainApp;
 import seedu.address.model.internship.Internship;
 
@@ -57,9 +58,9 @@ public class InternshipDetailsCard extends UiPart<Region> {
     @FXML
     private Label statusLabel;
     @FXML
-    private Label tips;
-    @FXML
-    private ImageView tipsImage;
+    private Text tips;
+//    @FXML
+//    private ImageView tipsImage;
 
 
 
@@ -98,7 +99,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
         tips.setText(getTips());
 
         //Set up image
-        tipsImage.setImage(new Image(MainApp.class.getResourceAsStream(getTipsImage())));
+//        tipsImage.setImage(new Image(MainApp.class.getResourceAsStream(getTipsImage())));
     }
 
     @Override
@@ -177,7 +178,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
     public String getTips() {
         switch (this.internship.getStatus().toString()) {
         case APPLIED:
-            return "Applied tips";
+            return "longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooohiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooohiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
         case ASSESSMENT:
             return "Assessment tips";
         case INTERVIEW:
