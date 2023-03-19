@@ -5,11 +5,8 @@ import static seedu.address.logic.commands.UnassignCommand.MESSAGE_NON_EXIST_ASS
 import java.util.List;
 import java.util.function.Predicate;
 
-<<<<<<< HEAD
 import javafx.collections.ObservableList;
-=======
 import seedu.address.logic.commands.exceptions.CommandException;
->>>>>>> upstream/master
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -47,14 +44,27 @@ public class OfficeConnectModel {
         return assignTaskModelManager;
     }
 
+    /**
+     * Checks if task model manager contains task
+     * @param task task to be checked
+     * @return true if task model manager contains the item
+     */
     public boolean hasTaskModelManagerItem(Task task) {
         return taskModelManager.hasItem(task);
     }
 
+    /**
+     * Adds task to task model manager
+     * @param task task to be added
+     */
     public void addTaskModelManagerItem(Task task) {
         taskModelManager.addItem(task);
     }
 
+    /**
+     * Updates filtered item list in task model manager
+     * @param predicate predicate that determines if item should stay in the filtered item list
+     */
     public void updateTaskModelManagerFilteredItemList(Predicate<Task> predicate) {
         taskModelManager.updateFilteredItemList(predicate);
     }
@@ -63,6 +73,10 @@ public class OfficeConnectModel {
         return taskModelManager.getFilteredItemList();
     }
 
+    /**
+     * Deletes task from task model manager
+     * @param task task to be deleted
+     */
     public void deleteTaskModelManagerItem(Task task) {
         taskModelManager.deleteItem(task);
     }
