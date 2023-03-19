@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
 import static seedu.address.ui.theme.Theme.constructTheme;
+
 import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

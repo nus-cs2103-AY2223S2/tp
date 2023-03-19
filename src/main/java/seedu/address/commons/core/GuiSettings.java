@@ -12,10 +12,10 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
-    public final String theme;
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
 
+    public final String theme;
     private final double windowWidth;
     private final double windowHeight;
     private final Point windowCoordinates;
