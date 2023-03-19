@@ -1,5 +1,4 @@
 package seedu.address.logic.commands;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -13,12 +12,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.Remark;
+import seedu.address.model.tutee.Tutee;
 import seedu.address.testutil.PersonBuilder;
 class RemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";
@@ -35,7 +34,8 @@ class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS, editedTutee);
 
-        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()),
+                new UserPrefs());
         expectedModel.setTutee(firstTutee, editedTutee);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
@@ -53,7 +53,8 @@ class RemarkCommandTest {
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedTutee);
 
-        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()),
+                new UserPrefs());
         expectedModel.setTutee(firstTutee, editedTutee);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);

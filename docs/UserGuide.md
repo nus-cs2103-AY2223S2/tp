@@ -1,4 +1,7 @@
-# USER GUIDE
+---
+layout: page
+title: User Guide
+---
 
 ## INTRODUCTION
 
