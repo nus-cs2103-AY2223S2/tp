@@ -12,4 +12,5 @@ public interface ReadOnlyPlanner {
      * Returns an unmodifiable view of Planner
      */
     List<DailyPlan> getDailyPlanList();
+
 }

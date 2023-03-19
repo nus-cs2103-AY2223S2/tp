@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.task.commons.core.GuiSettings;
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.model.calendar.DailyPlan;
+import seedu.task.model.task.Date;
+import seedu.task.model.task.IsSameTaskPredicate;
 import seedu.task.model.task.Task;
 
 /**
@@ -133,6 +137,16 @@ public class ModelManager implements Model {
     @Override
     public void plan(int workload) {
         taskBook.plan(workload, planner);
+    }
+
+    @Override
+    public void schedule(Date date) {
+        DailyPlan plans = planner.getDailyPlanOn(date);
+        if (plans == null) {
+            return;
+        }
+        List<Task> tasksToBeDisplayed = plans.getTasks();
+        updateFilteredTaskList(new IsSameTaskPredicate(tasksToBeDisplayed));
     }
 
     //=========== Filtered Task List Accessors =============================================================
