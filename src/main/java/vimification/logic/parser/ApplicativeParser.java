@@ -1,6 +1,8 @@
 package vimification.logic.parser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -119,8 +121,8 @@ public final class ApplicativeParser<T> {
      */
     public static <T, U, V> ApplicativeParser<V> lift(
             BiFunction<? super T, ? super U, ? extends V> combiner,
-            ApplicativeParser<T> left,
-            ApplicativeParser<U> right) {
+            ApplicativeParser<? extends T> left,
+            ApplicativeParser<? extends U> right) {
         return left.flatMap(leftValue -> right
                 .flatMap(rightValue -> ApplicativeParser
                         .of(combiner.apply(leftValue, rightValue))));
@@ -205,9 +207,9 @@ public final class ApplicativeParser<T> {
     @SafeVarargs
     public static <T> ApplicativeParser<T> choice(ApplicativeParser<? extends T>... parsers) {
         return Arrays.stream(parsers)
+                .map(ApplicativeParser::<T>cast)
                 .reduce(ApplicativeParser::or)
-                .orElseGet(ApplicativeParser::fail)
-                .cast();
+                .orElseGet(ApplicativeParser::fail);
     }
 
     //////////////////////
@@ -222,9 +224,10 @@ public final class ApplicativeParser<T> {
         return result;
     }
 
-    @SuppressWarnings("unchecked")
     private <U> ApplicativeParser<U> cast() {
-        return (ApplicativeParser<U>) this;
+        @SuppressWarnings("unchecked")
+        ApplicativeParser<U> parser = (ApplicativeParser<U>) this;
+        return parser;
     }
 
     /**
@@ -264,9 +267,9 @@ public final class ApplicativeParser<T> {
      */
     public <U> ApplicativeParser<U> map(Function<? super T, ? extends U> mapper) {
         return fromRunner(runner.andThen(opt -> opt.map(pair -> {
-            StringView input = pair.getFirst();
-            T oldValue = pair.getSecond();
-            return Pair.of(input, mapper.apply(oldValue));
+            StringView nextInput = pair.getFirst();
+            T value = pair.getSecond();
+            return Pair.of(nextInput, mapper.apply(value));
         })));
     }
 
@@ -286,10 +289,10 @@ public final class ApplicativeParser<T> {
     public <U> ApplicativeParser<U> flatMap(
             Function<? super T, ? extends ApplicativeParser<? extends U>> flatMapper) {
         return fromRunner(input -> run(input).flatMap(pair -> {
-            StringView oldInput = pair.getFirst();
-            T oldValue = pair.getSecond();
-            ApplicativeParser<? extends U> that = flatMapper.apply(oldValue);
-            return that.<U>cast().run(oldInput);
+            StringView nextInput = pair.getFirst();
+            T value = pair.getSecond();
+            ApplicativeParser<? extends U> that = flatMapper.apply(value);
+            return that.<U>cast().run(nextInput);
         }));
     }
 
@@ -305,7 +308,7 @@ public final class ApplicativeParser<T> {
             Function<? super T, ? extends Optional<? extends U>> optionalMapper) {
         return flatMap(optionalMapper.andThen(opt -> opt
                 .map(ApplicativeParser::of)
-                .orElseGet(ApplicativeParser::fail))).cast();
+                .orElseGet(ApplicativeParser::fail)));
     }
 
     /**
@@ -325,8 +328,8 @@ public final class ApplicativeParser<T> {
      * @param that the other parser
      * @return a parser that chooses the result of the first succeeds parser
      */
-    public ApplicativeParser<T> or(ApplicativeParser<T> that) {
-        return fromRunner(input -> run(input).or(() -> that.run(input)));
+    public ApplicativeParser<T> or(ApplicativeParser<? extends T> that) {
+        return fromRunner(input -> run(input).or(() -> that.<T>cast().run(input)));
     }
 
     /**
@@ -349,6 +352,41 @@ public final class ApplicativeParser<T> {
         return fromRunner(runner);
     }
 
+    public ApplicativeParser<List<T>> zeroOrMore() {
+        return fromRunner(input -> {
+            List<T> result = new ArrayList<>();
+            StringView currInput = input;
+            while (true) {
+                Optional<Pair<StringView, T>> opt = run(currInput);
+                if (opt.isEmpty()) {
+                    break;
+                }
+                Pair<StringView, T> pair = opt.get();
+                currInput = pair.getFirst();
+                result.add(pair.getSecond());
+            }
+            return Optional.of(Pair.of(input, result));
+        });
+    }
+
+    public ApplicativeParser<List<T>> oneOrMore() {
+        return fromRunner(input -> run(input).map(pair -> {
+            List<T> result = new ArrayList<>();
+            StringView nextInput = pair.getFirst();
+            result.add(pair.getSecond());
+            while (true) {
+                Optional<Pair<StringView, T>> opt = run(nextInput);
+                if (opt.isEmpty()) {
+                    break;
+                }
+                Pair<StringView, T> nextPair = opt.get();
+                nextInput = nextPair.getFirst();
+                result.add(nextPair.getSecond());
+            }
+            return Pair.of(nextInput, result);
+        }));
+    }
+
     /**
      * Runs this parser on the given input.
      *
@@ -356,9 +394,9 @@ public final class ApplicativeParser<T> {
      * @return a pair consists of the remaining input, and the parser result
      * @throws ParserException if this parser fails
      */
-    public Pair<String, T> parse(String input) {
-        return run(StringView.of(input, 0))
-                .map(pair -> Pair.of(pair.getFirst().toString(), pair.getSecond()))
+    public T parse(String input) {
+        return run(StringView.of(input))
+                .map(Pair::getSecond)
                 .orElseThrow(() -> new ParserException("Unable to parse input: " + input));
     }
 }
@@ -391,6 +429,10 @@ class StringView {
      */
     static StringView of(String value, int index) {
         return new StringView(value, index);
+    }
+
+    static StringView of(String value) {
+        return of(value, 0);
     }
 
     /**

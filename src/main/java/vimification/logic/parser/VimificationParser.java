@@ -14,6 +14,6 @@ public class VimificationParser {
     }
 
     public LogicCommand parse(String userInput) {
-        return LOGIC_COMMAND_PARSER.parse(userInput).getSecond();
+        return LOGIC_COMMAND_PARSER.parse(userInput);
     }
 }
