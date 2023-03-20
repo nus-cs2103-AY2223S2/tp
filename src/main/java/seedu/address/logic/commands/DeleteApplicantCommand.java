@@ -14,6 +14,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.listing.JobDescription;
+import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
 
 /**
@@ -87,11 +89,34 @@ public class DeleteApplicantCommand extends Command {
                     listingToDeleteApplicantFrom.getTitle()));
         }
 
-        listingToDeleteApplicantFrom.deleteApplicant(applicantToDelete.get());
+        Listing editedListing = createEditedListingWithoutApplicant(listingToDeleteApplicantFrom,
+                applicantToDelete.get());
+
+        model.setListing(listingToDeleteApplicantFrom, editedListing);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToDelete.get(),
                 listingToDeleteApplicantFrom.getTitle()));
 
+    }
+
+    /**
+     * Create a identical listing with applicant removed.
+     * @param listing previous listing for reference
+     * @param applicantToDelete applicant to delete
+     * @return
+     */
+    private Listing createEditedListingWithoutApplicant(Listing listing, Applicant applicantToDelete) {
+        ArrayList<Applicant> finalApplicants = new ArrayList<>();
+        listing.getApplicants().forEach(applicant -> {
+            if (applicant != applicantToDelete) {
+                finalApplicants.add(applicant);
+            }
+        });
+
+        Listing editedListing = new Listing(listing.getTitle(),
+                listing.getDescription(), finalApplicants);
+
+        return editedListing;
     }
 
     @Override

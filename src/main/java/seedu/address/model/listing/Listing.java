@@ -42,10 +42,6 @@ public class Listing {
         return applicants;
     }
 
-    public void deleteApplicant(Applicant applicant) {
-        applicants.remove(applicant);
-    }
-
     public String getUniqueID() {
         return uniqueID;
     }
