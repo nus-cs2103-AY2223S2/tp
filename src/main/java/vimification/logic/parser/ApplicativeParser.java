@@ -16,7 +16,7 @@ import java.util.function.Predicate;
  *
  * @param <T> the type of the parser result
  */
-public final class ApplicativeParser<T> {
+public class ApplicativeParser<T> {
 
     ///////////////////////////////////
     // PREDEFINED PARSER COMBINATORS //
@@ -59,13 +59,10 @@ public final class ApplicativeParser<T> {
     /////////////////////////////////////
 
     private final Function<StringView, Optional<Pair<StringView, T>>> runner;
-    private final String errorMessage;
 
     private ApplicativeParser(
-            Function<StringView, Optional<Pair<StringView, T>>> runner,
-            String errorMessage) {
+            Function<StringView, Optional<Pair<StringView, T>>> runner) {
         this.runner = runner;
-        this.errorMessage = errorMessage;
     }
 
     //////////////////////
@@ -74,7 +71,7 @@ public final class ApplicativeParser<T> {
 
     private static <T> ApplicativeParser<T> fromRunner(
             Function<StringView, Optional<Pair<StringView, T>>> runner) {
-        return new ApplicativeParser<>(runner, null);
+        return new ApplicativeParser<>(runner);
     }
 
     /**
@@ -189,11 +186,12 @@ public final class ApplicativeParser<T> {
     public static ApplicativeParser<String> parseUntil(String end) {
         return fromRunner(input -> {
             int offset = input.indexOf(end);
-            return offset < 0
-                    ? Optional.empty()
-                    : Optional.of(Pair.of(
-                            input.subview(offset + end.length()),
-                            input.substringTo(offset)));
+            if (offset < 0) {
+                return Optional.empty();
+            }
+            StringView nextInput = input.subview(offset + end.length());
+            String value = input.substringTo(offset);
+            return Optional.of(Pair.of(nextInput, value));
         });
     }
 
@@ -216,18 +214,14 @@ public final class ApplicativeParser<T> {
     // INSTANCE METHODS //
     //////////////////////
 
-    private Optional<Pair<StringView, T>> run(StringView input) {
-        Optional<Pair<StringView, T>> result = runner.apply(input);
-        if (errorMessage != null && result.isEmpty()) {
-            throw new ParserException(errorMessage);
-        }
-        return result;
+    Optional<Pair<StringView, T>> run(StringView input) {
+        return runner.apply(input);
     }
 
-    private <U> ApplicativeParser<U> cast() {
+    <U> ApplicativeParser<U> cast() {
         @SuppressWarnings("unchecked")
-        ApplicativeParser<U> parser = (ApplicativeParser<U>) this;
-        return parser;
+        ApplicativeParser<U> castedThis = (ApplicativeParser<U>) this;
+        return castedThis;
     }
 
     /**
@@ -266,11 +260,11 @@ public final class ApplicativeParser<T> {
      * @return a new parser that applies the mapper function, after running this parser
      */
     public <U> ApplicativeParser<U> map(Function<? super T, ? extends U> mapper) {
-        return fromRunner(runner.andThen(opt -> opt.map(pair -> {
+        return fromRunner(input -> run(input).map(pair -> {
             StringView nextInput = pair.getFirst();
             T value = pair.getSecond();
             return Pair.of(nextInput, mapper.apply(value));
-        })));
+        }));
     }
 
     /**
@@ -291,8 +285,7 @@ public final class ApplicativeParser<T> {
         return fromRunner(input -> run(input).flatMap(pair -> {
             StringView nextInput = pair.getFirst();
             T value = pair.getSecond();
-            ApplicativeParser<? extends U> that = flatMapper.apply(value);
-            return that.<U>cast().run(nextInput);
+            return flatMapper.apply(value).<U>cast().run(nextInput);
         }));
     }
 
@@ -340,7 +333,22 @@ public final class ApplicativeParser<T> {
      * @return a new parser that throws if this parser fails
      */
     public ApplicativeParser<T> throwIfFail(String errorMessage) {
-        return new ApplicativeParser<>(runner, errorMessage);
+        return new ApplicativeParser<>(runner) {
+
+            @Override
+            Optional<Pair<StringView, T>> run(StringView input) {
+                Optional<Pair<StringView, T>> opt = runner.apply(input);
+                if (opt.isEmpty()) {
+                    throw new ParserException(errorMessage);
+                }
+                return opt;
+            }
+
+            @Override
+            public ApplicativeParser<T> ignoreIfFail() {
+                return fromRunner(runner);
+            }
+        };
     }
 
     /**
@@ -349,7 +357,7 @@ public final class ApplicativeParser<T> {
      * @return a parser that does nothing when fails.
      */
     public ApplicativeParser<T> ignoreIfFail() {
-        return fromRunner(runner);
+        return this;
     }
 
     public ApplicativeParser<List<T>> zeroOrMore() {
@@ -357,7 +365,7 @@ public final class ApplicativeParser<T> {
             List<T> result = new ArrayList<>();
             StringView currInput = input;
             while (true) {
-                Optional<Pair<StringView, T>> opt = run(currInput);
+                Optional<Pair<StringView, T>> opt = runner.apply(currInput);
                 if (opt.isEmpty()) {
                     break;
                 }
@@ -375,7 +383,7 @@ public final class ApplicativeParser<T> {
             StringView nextInput = pair.getFirst();
             result.add(pair.getSecond());
             while (true) {
-                Optional<Pair<StringView, T>> opt = run(nextInput);
+                Optional<Pair<StringView, T>> opt = runner.apply(nextInput);
                 if (opt.isEmpty()) {
                     break;
                 }
