@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
