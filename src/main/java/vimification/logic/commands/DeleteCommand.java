@@ -2,6 +2,7 @@ package vimification.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import vimification.commons.core.Index;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
@@ -22,10 +23,10 @@ public class DeleteCommand extends UndoableLogicCommand {
             "The command has been undoed. The deleted task has been added back.";
 
     // targetIndex is ZERO-BASED
-    private final int targetIndex;
+    private final Index targetIndex;
     private Task deletedTask;
 
-    public DeleteCommand(int targetIndex) {
+    public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.deletedTask = null;
     }
@@ -34,14 +35,14 @@ public class DeleteCommand extends UndoableLogicCommand {
     public CommandResult execute(LogicTaskList taskList)
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
-        deletedTask = taskList.remove(targetIndex);
+        deletedTask = taskList.remove(targetIndex.getZeroBased());
         return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        taskList.add(targetIndex, deletedTask);
+        taskList.add(targetIndex.getZeroBased(), deletedTask);
         return new CommandResult(String.format(UNDO_MESSAGE, deletedTask));
     }
 

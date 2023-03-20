@@ -3,7 +3,7 @@ package vimification.logic;
 import javafx.collections.ObservableList;
 import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
-import vimification.logic.parser.ParseException;
+import vimification.logic.parser.ParserException;
 import vimification.model.task.Task;
 
 /**
@@ -18,7 +18,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException, ParserException;
 
     // /**
     // * Returns the AddressBook.

@@ -14,7 +14,7 @@ import vimification.logic.commands.LogicCommand;
 import vimification.logic.commands.Command;
 import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
-import vimification.logic.parser.ParseException;
+import vimification.logic.parser.ParserException;
 import vimification.model.LogicTaskList;
 import vimification.model.Model;
 import vimification.model.ReadOnlyTaskPlanner;
@@ -45,7 +45,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParserException {
         logger.info("[USER COMMAND] " + commandText);
 
         // TODO : FIX THIS

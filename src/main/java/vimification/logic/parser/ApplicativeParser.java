@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  *
  * @param <T> the type of the parser result
  */
-public class ApplicativeParser<T> {
+public final class ApplicativeParser<T> {
 
     ///////////////////////////////////
     // PREDEFINED PARSER COMBINATORS //
@@ -203,10 +203,11 @@ public class ApplicativeParser<T> {
      * @return a parser that tries the given parsers, until one succeeds
      */
     @SafeVarargs
-    public static <T> ApplicativeParser<T> choice(ApplicativeParser<T>... parsers) {
+    public static <T> ApplicativeParser<T> choice(ApplicativeParser<? extends T>... parsers) {
         return Arrays.stream(parsers)
                 .reduce(ApplicativeParser::or)
-                .orElseGet(ApplicativeParser::fail);
+                .orElseGet(ApplicativeParser::fail)
+                .cast();
     }
 
     //////////////////////
