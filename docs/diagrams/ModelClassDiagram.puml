@@ -18,7 +18,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Event
 
 }
 
@@ -40,7 +40,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "*" Event
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
