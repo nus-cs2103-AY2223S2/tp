@@ -11,7 +11,7 @@ import seedu.careflow.model.tag.Tag;
 public class DrugAllergy {
     public static final String MESSAGE_CONSTRAINTS = "Drug allergy should be alphanumeric "
             + "and less than 500 characters long";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}{1,499}+";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\p{Space}]{1,499}+";
     private final Tag drugAllergy;
 
     /**

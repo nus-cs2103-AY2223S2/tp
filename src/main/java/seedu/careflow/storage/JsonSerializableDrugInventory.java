@@ -23,7 +23,7 @@ public class JsonSerializableDrugInventory {
     private final List<JsonAdaptedDrug> drugs = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableDrugInventory} with the given drug.
      */
     @JsonCreator
     public JsonSerializableDrugInventory(@JsonProperty("drugs") List<JsonAdaptedDrug> drugs) {

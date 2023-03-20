@@ -1,0 +1,11 @@
+{
+  "drugs": [
+    {
+      "tradeName": "Alphagan",
+      "activeIngredient": "Brimonidine Tartrate",
+      "direction": "Instill 1 drop into the affected eye(s) 3 times daily, or as directed by a healthcare professional.",
+      "purposes": "Brimonidine Tartrate eye drops are used to treat high pressure inside the eye due to glaucoma or other eye conditions.",
+      "storageCount": "15"
+    }
+  ]
+}

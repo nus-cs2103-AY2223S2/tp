@@ -5,7 +5,9 @@
     "windowCoordinates" : {
       "x" : 300,
       "y" : 100
-    }
+    },
+    "theme": "DARK"
   },
-  "addressBookFilePath" : "addressbook.json"
+  "drugInventoryFilePath" : "drugInventory.json",
+  "patientRecordFilePath": "patientRecord.json"
 }

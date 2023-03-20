@@ -1,5 +1,6 @@
 package seedu.careflow.testutil;
 
+import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.person.Address;
 import seedu.careflow.model.person.DateOfBirth;
 import seedu.careflow.model.person.DrugAllergy;
@@ -15,16 +16,16 @@ import seedu.careflow.model.person.Phone;
  */
 public class PatientBuilder {
 
-    public static final String DEFAULT_NAME = "John Doe";
-    public static final String DEFAULT_PHONE = "98765432";
-    public static final String DEFAULT_EMAIL = "johnd@example.com";
-    public static final String DEFAULT_ADDRESS = "John Street, Block 123, #01-01";
-    public static final String DEFAULT_BIRTHDATE = "21-01-2000";
-    public static final String DEFAULT_GENDER = "male";
-    public static final String DEFAULT_IC = "T3871918C";
-    public static final String DEFAULT_DRUGALLERGY = "Aspirin";
-    public static final String DEFAULT_EMERGENCYCONTACT = "93746552";
-
+    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_BIRTHDATE = "01-01-1990";
+    public static final String DEFAULT_GENDER = "female";
+    public static final String DEFAULT_IC = "A7654321B";
+    public static final String DEFAULT_DRUG_ALLERGY = "penicillin";
+    public static final String DEFAULT_EMERGENCY_CONTACT = "88888888";
+    
     private Name name;
     private Phone phone;
     private Email email;
@@ -32,12 +33,12 @@ public class PatientBuilder {
     private DateOfBirth dateOfBirth;
     private Gender gender;
     private Ic ic;
-    // optional field
+    // optional fields
     private DrugAllergy drugAllergy;
     private Phone emergencyContact;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code PatientBuilder} with the default details.
      */
     public PatientBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -47,26 +48,27 @@ public class PatientBuilder {
         dateOfBirth = new DateOfBirth(DEFAULT_BIRTHDATE);
         gender = new Gender(DEFAULT_GENDER);
         ic = new Ic(DEFAULT_IC);
-        drugAllergy = new DrugAllergy(DEFAULT_DRUGALLERGY);
-        emergencyContact = new Phone(DEFAULT_EMERGENCYCONTACT);
+        drugAllergy = new DrugAllergy(DEFAULT_DRUG_ALLERGY);
+        emergencyContact = new Phone(DEFAULT_EMERGENCY_CONTACT);
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PatientBuilder with the data of {@code patientToCopy}.
      */
-    public PatientBuilder(Patient personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        dateOfBirth = personToCopy.getBirthDate();
-        gender = personToCopy.getGender();
-        drugAllergy = personToCopy.getDrugAllergy();
-        emergencyContact = personToCopy.getEmergencyContact();
+    public PatientBuilder(Patient patientToCopy) {
+        name = patientToCopy.getName();
+        phone = patientToCopy.getPhone();
+        email = patientToCopy.getEmail();
+        address = patientToCopy.getAddress();
+        dateOfBirth = patientToCopy.getBirthDate();
+        gender = patientToCopy.getGender();
+        ic = new Ic(DEFAULT_IC);
+        drugAllergy = patientToCopy.getDrugAllergy();
+        emergencyContact = patientToCopy.getEmergencyContact();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Patient} that we are building.
      */
     public PatientBuilder withName(String name) {
         this.name = new Name(name);
@@ -74,15 +76,7 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PatientBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Patient} that we are building.
      */
     public PatientBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -90,10 +84,66 @@ public class PatientBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Patient} that we are building.
      */
     public PatientBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withAddress(String address) {
+        this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code DateOfBirth} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withDOB(String dob) {
+        this.dateOfBirth = new DateOfBirth(dob);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Ic} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withIc(String ic) {
+        this.ic = new Ic(ic);
+        return this;
+    }
+
+    /**
+     * Sets the {@code DrugAllergy} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withDrugAllergy(String drugAllergy) {
+        if (drugAllergy == null) {
+            this.drugAllergy = null;
+        } else {
+            this.drugAllergy = new DrugAllergy(drugAllergy);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmergencyContact} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withEmergencyContact(String emergencyContact) {
+        if ( emergencyContact == null ) {
+            this.emergencyContact = null;
+        } else {
+            this.emergencyContact = new Phone(emergencyContact);
+        }
         return this;
     }
 
