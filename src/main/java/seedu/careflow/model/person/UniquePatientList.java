@@ -13,9 +13,10 @@ import seedu.careflow.model.person.exceptions.PatientNotFoundException;
 
 /**
  * A list of patients that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePatient()(Person)}. As such, adding and updating of
- * persons uses Person#isSamePatient()(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a patient uses Person#equals(Object) so
+ * A person is considered unique by comparing using {@code Person#isSamePatient()(Person)}. As such,
+ * adding and updating of persons uses Person#isSamePatient()(Person) for equality so as to ensure
+ * that the person being added or updated is unique in terms of identity in the UniquePersonList.
+ * However, the removal of a patient uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *

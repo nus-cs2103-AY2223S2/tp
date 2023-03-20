@@ -38,7 +38,8 @@ public class CareFlowModelManager implements CareFlowModel {
      * @param drugInventory drug inventory
      * @param userPrefs user preferences
      */
-    public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory, ReadOnlyUserPrefs userPrefs) {
+    public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory,
+                                ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(drugInventory, patientRecord, userPrefs);
         logger.fine(String.format(LOGGER_MESSAGE, patientRecord, drugInventory, userPrefs));
 
