@@ -26,8 +26,8 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `navb`: Navigates to the parent context of the current context
 - List
   - `list`: Lists the names of all the recorded modules
-  - `list /mod {module_code}`: Lists all the lectures in the specified module
-  - `list /mod {module_code} /lec {lecture_name}`: Lists all the videos in the specified module and lecture
+  - `list [/mod {module_code}]`: Lists all the lectures in the specified module
+  - `list [/mod {module_code} /lec {lecture_name}]`: Lists all the videos in the specified module and lecture
 - Add
   - `add {module_code} [/name {module_name}]`: Adds a module to Le Tracker
   - `add {lecture_name} [/mod {module_code}]`: Adds a lecture to a module
@@ -300,9 +300,10 @@ Format: `list`
 
 Lists all lectures belonging to a specified module code
 
-Format: `list /mod {module_code}`
+Format: `list [/mod {module_code}]`
 
-- Lists all lectures of a specified `module_code`
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 
 Examples: `list /mod CS2040S` lists lectures belonging to CS2040S
 
@@ -310,9 +311,14 @@ Examples: `list /mod CS2040S` lists lectures belonging to CS2040S
 
 Lists all videos belonging to a specified lecture code of a specified module code
 
-Format: `list /mod /{module_code} /lec {lecture_name}`
+Format: `list [/mod {module_code} /lec {lecture_name}]`
 
-Examples: `list /mod CS2040 /lect wk1` Lists videos belongs to lecture wk1 of module CS2040S
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
+
+Examples: `list /mod CS2040 /lect wk1` lists videos belongs to lecture wk1 of module CS2040S
 
 ### Saving the data
 
