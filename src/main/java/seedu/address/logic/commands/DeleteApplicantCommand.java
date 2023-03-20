@@ -20,7 +20,7 @@ import seedu.address.model.listing.Listing;
  * Deletes an applicant from a listing identified using it's displayed index from the listing book.
  */
 public class DeleteApplicantCommand extends Command {
-    public static final String COMMAND_WORD = "delete_applicant";
+    public static final String COMMAND_WORD = "del_app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes an applicant from a listing identified by "
