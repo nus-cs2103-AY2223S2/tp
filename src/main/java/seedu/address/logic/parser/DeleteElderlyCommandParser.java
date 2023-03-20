@@ -31,4 +31,8 @@ public class DeleteElderlyCommandParser implements Parser<DeleteElderlyCommand> 
         Nric nric = new Nric(trimmedArgs);
         return new DeleteElderlyCommand(nric);
     }
+
+    public static boolean validate(ArgumentMultimap map) {
+        return !(map.getPreamble().split(" ").length > 1);
+    }
 }

@@ -29,7 +29,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandSuggestionTextField;
 
-    private final CommandRecommendationEngine commandSuggestor;
+    private final CommandRecommendationEngine commandRecommendationEngine = new CommandRecommendationEngine();
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -47,9 +47,6 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
 
         commandSuggestionTextField.setEditable(false);
-        commandSuggestionTextField.setFocusTraversable(false);
-        commandSuggestionTextField.setMouseTransparent(true);
-        commandSuggestor = new CommandRecommendationEngine();
     }
 
     /**
@@ -110,8 +107,8 @@ public class CommandBox extends UiPart<Region> {
         try {
             String userInput = commandTextField.getText();
             if (e.getCode() == KeyCode.TAB) {
-                String commandSuggestion = commandSuggestor.recommendCommand(userInput);
-                String autocompletedCommand = commandSuggestor.autocompleteCommand(userInput, commandSuggestion);
+                String commandSuggestion = commandRecommendationEngine.recommendCommand(userInput);
+                String autocompletedCommand = commandRecommendationEngine.autocompleteCommand(userInput, commandSuggestion);
                 if (!autocompletedCommand.equals("")) {
                     commandTextField.setText(autocompletedCommand);
                     commandTextField.end();
@@ -134,7 +131,7 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
         try {
-            commandSuggestionTextField.setText(commandSuggestor.recommendCommand(commandText));
+            commandSuggestionTextField.setText(commandRecommendationEngine.recommendCommand(commandText));
             commandSuggestionTextField.positionCaret(commandTextField.getText().length());
         } catch (CommandException e) {
             commandSuggestionTextField.setText(commandText);
@@ -143,19 +140,14 @@ public class CommandBox extends UiPart<Region> {
     }
 
     private boolean isOverflow() {
-        String check = commandTextField.getText();
-        Text text = new Text(check);
+        Text text = new Text();
         text.setFont(commandTextField.getFont());
-        text.setText(commandTextField.getText());
-        double textWidth = text.getLayoutBounds().getWidth();
-
-        return commandTextField.getWidth() < textWidth;
+        text.setText(commandTextField.getText() + "     "); // add buffer for overflow detection
+        return commandTextField.getWidth() < text.getLayoutBounds().getWidth();
     }
 
-
     private boolean isEmpty() {
-        String check = commandTextField.getText();
-        return check.isEmpty();
+        return commandTextField.getText().isEmpty();
     }
 
 }

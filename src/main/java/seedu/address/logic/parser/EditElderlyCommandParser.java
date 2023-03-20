@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
@@ -87,6 +89,18 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
         }
 
         return new EditElderlyCommand(index, editElderlyDescriptor);
+    }
+
+    public static boolean validate(ArgumentMultimap map) {
+        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_PHONE).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_EMAIL).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_ADDRESS).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_AGE).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_REGION).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_TAG).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_RISK).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_NRIC_ELDERLY).orElse(List.of()).size() > 1);
     }
 
 }

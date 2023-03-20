@@ -5,6 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
+import java.util.List;
+
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.DeletePairCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -39,4 +41,8 @@ public class DeletePairCommandParser implements Parser<DeletePairCommand> {
         return new DeletePairCommand(elderlyNric, volunteerNric);
     }
 
+    public static boolean validate(ArgumentMultimap map) {
+        return !(map.getArrayValue(PREFIX_NRIC_ELDERLY).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_NRIC_VOLUNTEER).orElse(List.of()).size() > 1);
+    }
 }

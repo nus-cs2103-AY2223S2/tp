@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -107,4 +108,14 @@ public class EditCommandParser implements Parser <EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    public static boolean validate(ArgumentMultimap map) {
+        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_PHONE).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_EMAIL).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_ADDRESS).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_AGE).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_REGION).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_TAG).orElse(List.of()).size() > 1)
+                && !(map.getArrayValue(PREFIX_NRIC).orElse(List.of()).size() > 1);
+    }
 }

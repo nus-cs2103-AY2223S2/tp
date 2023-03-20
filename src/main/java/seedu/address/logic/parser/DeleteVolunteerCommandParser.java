@@ -32,4 +32,7 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
         return new DeleteVolunteerCommand(nric);
     }
 
+    public static boolean validate(ArgumentMultimap map) {
+        return !(map.getPreamble().split(" ").length > 1);
+    }
 }

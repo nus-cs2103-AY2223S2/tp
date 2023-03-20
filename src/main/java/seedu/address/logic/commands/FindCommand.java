@@ -122,10 +122,8 @@ public class FindCommand extends Command {
         List<Elderly> listOfFilteredElderly = model.getFilteredElderlyList();
         List<Volunteer> listOfFilteredVolunteers = model.getFilteredVolunteerList();
 
-        Predicate<Pair> predicate = pair -> (listOfFilteredElderly.contains(pair.getElderly())
+        return pair -> (listOfFilteredElderly.contains(pair.getElderly())
                 || listOfFilteredVolunteers.contains(pair.getVolunteer()));
-
-        return predicate;
     }
 
     @Override
