@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NewContactCommand;
 import seedu.address.logic.commands.RateCommand;
+import seedu.address.logic.commands.RevenueCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -83,6 +84,9 @@ public class EventBookParser {
         case RateCommand.COMMAND_WORD:
             return new RateCommandParser().parse(arguments);
 
+        case RevenueCommand.COMMAND_WORD:
+            return new RevenueCommand();
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -93,5 +97,4 @@ public class EventBookParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
