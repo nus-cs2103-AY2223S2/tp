@@ -6,7 +6,6 @@ import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
-import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
 
@@ -81,7 +80,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
         recipeDescriptor.setSteps(steps);
 
-        return new AddCommand(new Recipe(new Name("sample")));
+        return new AddCommand(recipeDescriptor);
     }
 
 }
