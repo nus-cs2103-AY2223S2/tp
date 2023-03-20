@@ -51,16 +51,18 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_COURSE + "COURSE] "
             + "[" + PREFIX_YEAR + "YEAR] "
-            + "[" + PREFIX_LINKEDIN + "LINKEDIN] "
+            + "[" + PREFIX_LINKEDIN + "LINKEDIN]\n"
             + "[" + PREFIX_SKILL_ADD + "SKILL] "
             + "[" + PREFIX_SKILL_DELETE + "SKILL] "
             + "[" + PREFIX_SKILL_OLD + "SKILL " + PREFIX_SKILL_NEW + "SKILL]...\n"
             + "[" + PREFIX_MOD_ADD + "MOD] "
             + "[" + PREFIX_MOD_DELETE + "MOD] "
             + "[" + PREFIX_MOD_OLD + "MOD " + PREFIX_MOD_NEW + "MOD]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_GITHUB + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_COURSE + "2 "
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_MOD_OLD + "AY2223S1 CS1101S "
+            + PREFIX_MOD_NEW + "AY2021S2 GEA1000";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
 

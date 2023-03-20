@@ -21,7 +21,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to CoDoc. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to CoDoc. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_EMAIL + "EMAIL "
@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_COURSE + "COMP SCI "
+            + PREFIX_COURSE + "1 "
             + PREFIX_GITHUB + "j0hn-Do3 "
             + PREFIX_LINKEDIN + "linkedin.com/in/j0hn-Do3 "
             + PREFIX_SKILL + "python "
