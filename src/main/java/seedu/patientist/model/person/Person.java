@@ -7,18 +7,20 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.model.tag.Tag;
 
 /**
  * Represents a Person in the patientist book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public abstract class Person {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final IdNumber id;
 
     // Data fields
     private final Address address;
@@ -27,11 +29,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, IdNumber id, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, id, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.id = id;
         this.address = address;
         this.tags.addAll(tags);
     }
@@ -51,6 +54,15 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
+    public IdNumber getIdNumber() {
+        return id;
+    }
+
+    /**
+     * Returns the tag of the person that identifies their role.
+     */
+    public abstract RoleTag getRoleTag();
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -92,19 +104,22 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getIdNumber().equals(getIdNumber())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, id, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; ID: ")
+                .append(getIdNumber())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
@@ -119,5 +134,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }

@@ -9,12 +9,12 @@
     "status" : "Doing fine",
     "id" : "G73829173B"
   }, {
-    "name" : "Bob Choo",
-    "phone" : "22222222",
-    "email" : "bob@example.com",
-    "address" : "Block 123, Bobby Street 3",
+    "name" : "Charlie Sandler",
+    "phone" : "2136784",
+    "email" : "charlie@example.com",
+    "address" : "123, abc, #08-111",
     "tagged" : [ "Block2WardA" ],
-    "status" : "Feeling dizzy",
-    "id" : "Y78932734N"
+    "status" : "Doing good",
+    "id" : "G487659645D"
   }]
 }

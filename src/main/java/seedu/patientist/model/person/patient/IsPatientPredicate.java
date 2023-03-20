@@ -1,8 +1,8 @@
-package seedu.patientist.model.person;
+package seedu.patientist.model.person.patient;
 
 import java.util.function.Predicate;
 
-import seedu.patientist.model.tag.Tag;
+import seedu.patientist.model.person.Person;
 
 /**
  * Test if Person object is a patients
@@ -10,7 +10,7 @@ import seedu.patientist.model.tag.Tag;
 public class IsPatientPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
-        return person.getTags().contains(new Tag("Patient"));
+        return person.getRoleTag().isPatientTag();
     }
 
     @Override

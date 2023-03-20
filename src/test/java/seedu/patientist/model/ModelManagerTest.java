@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.model.person.NameContainsKeywordsPredicate;
-import seedu.patientist.testutil.AddressBookBuilder;
+import seedu.patientist.testutil.PatientistBuilder;
 
 public class ModelManagerTest {
 
@@ -84,7 +84,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
+        //modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Patientist patientist = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Patientist patientist = new PatientistBuilder().withPerson(ALICE).withPerson(BENSON).build();
         Patientist differentPatientist = new Patientist();
         UserPrefs userPrefs = new UserPrefs();
 

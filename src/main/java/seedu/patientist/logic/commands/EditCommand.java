@@ -21,6 +21,7 @@ import seedu.patientist.logic.commands.exceptions.CommandException;
 import seedu.patientist.model.Model;
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
@@ -81,7 +82,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        //model.setPerson(personToEdit, editedPerson); TODO: either setpatient or setstaff. refer to API.
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
@@ -96,10 +97,12 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        IdNumber updatedIdNumber = editPersonDescriptor.getIdNumber().orElse(personToEdit.getIdNumber());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return null; //new Person(updatedName, updatedPhone, updatedEmail, updatedIdNumber, updatedAddress, updatedTags)
+        //TODO: instantiate patient or staff as appropriate, based on set staff or set patient
     }
 
     @Override
@@ -128,6 +131,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private IdNumber idNumber;
         private Address address;
         private Set<Tag> tags;
 
@@ -141,6 +145,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setIdNumber(toCopy.idNumber);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -174,6 +179,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setIdNumber(IdNumber idNumber) {
+            this.idNumber = idNumber;
+        }
+
+        public Optional<IdNumber> getIdNumber() {
+            return Optional.ofNullable(idNumber);
         }
 
         public void setAddress(Address address) {
@@ -219,6 +232,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getIdNumber().equals(e.getIdNumber())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

@@ -4,9 +4,11 @@ import java.util.Set;
 
 import seedu.patientist.model.person.Address;
 import seedu.patientist.model.person.Email;
+import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -15,48 +17,28 @@ import seedu.patientist.model.tag.Tag;
  * TODO: need to guarantee validity of patient id in the PatientIdNumber class
  */
 public class Patient extends Person {
+    public static final RoleTag PATIENT_TAG = new RoleTag("Patient");
     private PatientStatusDetails details;
-    private PatientIdNumber id;
 
     /**
      * Every field must be present and not null.
-     *
-     * @param id
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param tags
      */
-    public Patient(PatientIdNumber id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
-        //TODO: for now, let's set ward using tags. we can change this implementation once wards are implemented
+    public Patient(Email email, Name name, Phone phone, IdNumber id, Address address, Set<Tag> tags) {
+        super(name, phone, email, id, address, tags);
         this.details = new PatientStatusDetails();
-        this.id = id;
     }
 
     /**
      * Every field must be present and not null.
-     *
-     * @param id
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param details
-     * @param tags
      */
-    public Patient(PatientIdNumber id, Name name, Phone phone, Email email,
+    public Patient(IdNumber id, Name name, Phone phone, Email email,
                    Address address, PatientStatusDetails details, Set<Tag> tags) {
-        super(name, phone, email, address, tags);
-        //TODO: for now, let's set ward using tags. we can change this implementation once wards are implemented
+        super(name, phone, email, id, address, tags);
         this.details = details;
-        this.id = id;
     }
 
     /**
      * Updates the <code>details</code> field with the new <code>PatientStatusDetails</code>.
-     * @param details
      */
     public void setPatientStatusDetails(PatientStatusDetails details) {
         this.details = details;
@@ -70,14 +52,6 @@ public class Patient extends Person {
         return this.details;
     }
 
-    /**
-     * Returns the <code>PatientIdNumber</code> of this patient
-     * @return <code>id</code>, the object representing the unique identifier of this patient
-     */
-    public PatientIdNumber getPatientIdNumber() {
-        return this.id;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());
@@ -89,7 +63,7 @@ public class Patient extends Person {
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return getIdNumber().hashCode();
     }
 
     @Override
@@ -103,26 +77,30 @@ public class Patient extends Person {
         }
 
         Patient otherPat = (Patient) other;
-        return this.id.equals(otherPat.id) && this.getName().equals(otherPat.getName());
+        return getIdNumber().equals(otherPat.getIdNumber()) && this.getName().equals(otherPat.getName());
+    }
+
+    @Override
+    public RoleTag getRoleTag() {
+        return PATIENT_TAG;
     }
 
     /**
      * Compares 2 Person objects. The Patient class makes use of its <code>equals</code> method, which checks
      * equality between 2 <code>Patient</code>'s id numbers.
-     * @param otherPerson the other <code>Person</code> object to be compared to.
+     * @param otherPatient the other <code>Person</code> object to be compared to.
      */
     @Override
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Person otherPatient) {
+        if (otherPatient == this) {
             return true;
         }
 
-        if (!(otherPerson instanceof Patient)) {
+        if (!(otherPatient instanceof Patient)) {
             return false;
         }
 
-        Patient otherPat = (Patient) otherPerson;
-        return super.isSamePerson(otherPerson) && this.id.equals(otherPat.id);
+        return super.isSamePerson(otherPatient);
     }
 
 }

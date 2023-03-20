@@ -37,7 +37,7 @@ class PatientTest {
         // same id, different attributes -> returns true
         Patient other = new PatientBuilder()
                 .withName(ADAM.getName().toString())
-                .withId(ADAM.getPatientIdNumber().toString())
+                .withIdNumber(ADAM.getIdNumber().toString())
                 .build();
         assertTrue(other.isSamePerson(ADAM));
     }
@@ -45,8 +45,8 @@ class PatientTest {
     @Test
     public void isSamePatient_sameIdDifferentCase_true() {
         // same id but input in lowercase -> returns true
-        Patient first = new PatientBuilder().withId("a12345b").build();
-        Patient second = new PatientBuilder().withId("A12345B").build();
+        Patient first = new PatientBuilder().withIdNumber("a12345b").build();
+        Patient second = new PatientBuilder().withIdNumber("A12345B").build();
         assertTrue(first.isSamePerson(second));
     }
 }

@@ -3,9 +3,9 @@ package seedu.patientist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.patientist.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PID;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.patientist.logic.commands.exceptions.CommandException;
@@ -19,17 +19,17 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the patientist book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the patientist book. "
                                                + "Parameters: "
                                                + PREFIX_NAME + "NAME "
-                                               + PREFIX_PID + "PID "
+                                               + PREFIX_ID + "ID "
                                                + PREFIX_PHONE + "PHONE "
                                                + PREFIX_EMAIL + "EMAIL "
                                                + PREFIX_ADDRESS + "ADDRESS "
                                                + "[" + PREFIX_TAG + "TAG]...\n"
                                                + "Example: " + COMMAND_WORD + " "
                                                + PREFIX_NAME + "John Doe "
-                                               + PREFIX_PID + "A12345B"
+                                               + PREFIX_ID + "A12345B "
                                                + PREFIX_PHONE + "98765432 "
                                                + PREFIX_EMAIL + "johnd@example.com "
                                                + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
@@ -57,7 +57,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        //model.addPerson(toAdd); TODO: simply just adding person is not meaningful anymore.
+        //need to specify patient or staff, and which ward to add to
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

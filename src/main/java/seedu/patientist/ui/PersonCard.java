@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.patientist.model.person.Person;
-import seedu.patientist.model.person.patient.Patient;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -32,7 +31,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label pid;
+    private Label idNumber;
     @FXML
     private Label id;
     @FXML
@@ -55,14 +54,11 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        String s = person.getIdNumber().toString();
+        idNumber.setText(s);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        if (person instanceof Patient) {
-            Patient patient = (Patient) person;
-            pid.setText(patient.getPatientIdNumber().getIdNumber());
-        }
     }
 
     @Override
