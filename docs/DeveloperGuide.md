@@ -378,7 +378,7 @@ Each `Person` in CoDoc is implemented in the following way:
 
 All `Person` have a `Name`, `Email`, `Course` and `Year`.
 
-`Person`s can have a `Github` and `LinkedIn` URL added to their profile, and as many `Skills` and `Modules` as desired.
+`Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
 
 <div style="page-break-after: always;"></div>
 
@@ -411,13 +411,13 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the person.
 
-![Edit Command Sequence Diagram](images/ModuleCommandSequenceDiagram.png)
+![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
 Given below is an activity diagram to illustrate the behaviour of editing Person within `Logic`.
 
-![Edit Activity Diagram](images/ModuleActivityDiagram.png)
+![Edit Activity Diagram](images/EditActivityDiagram.png)
 
 #### Design Considerations
 

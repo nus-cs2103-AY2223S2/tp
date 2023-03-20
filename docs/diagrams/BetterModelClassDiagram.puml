@@ -5,16 +5,22 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Codoc *-right-> "1" UniquePersonList
-Codoc *-right-> "1" UniqueSkillList
-UniqueSkillList -[hidden]down- UniquePersonList
-UniqueSkillList -[hidden]down- UniquePersonList
+Codoc *-up-> "1" UniqueSkillList
+Codoc *-right-> "1" UniqueModuleList
 
+UniqueSkillList -[hidden]down- UniquePersonList
+UniqueModuleList -[hidden]down- UniquePersonList
+
+UniqueModuleList -right-> "*" Module
 UniqueSkillList -right-> "*" Skill
 UniquePersonList -right-> Person
 
 Person -up-> "*" Skill
+Person -up-> "*" Module
 
 Person *--> Name
+Person *--> Course
+Person *--> Year
 Person *--> Github
 Person *--> Email
 Person *--> Linkedin

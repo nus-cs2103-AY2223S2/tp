@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "Person   " <<Rectangle>>{
+Class Person
+Class Linkedin
+Class Email
+Class Name
+Class Github
+Class Skill
+Class Module
+Class Course
+Class Year
+}
+
+
+Person *--> "1" Name
+Person *--> "1" Course
+Person *--> "1" Year
+Person *--> "0...1" Github
+Person *--> "1" Email
+Person *--> "0...1" Linkedin
+Person *--> "*" Skill
+Person *--> "*" Module
+
+Name -[hidden]right-> Email
+Email -[hidden]right-> Course
+Course -[hidden]right-> Year
+Year -[hidden]right-> Github
+Github -[hidden]right-> Linkedin
+Linkedin -[hidden]right-> Skill
+Skill -[hidden]right-> Module
+
+@enduml
