@@ -55,25 +55,16 @@ public interface Model {
     ReadOnlyPatientist getPatientist();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the patientist book (all wards).
-     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson} overridden from Person
-     * Staff are uniquely identified by name, through {@code Person::isSamePerson} inherited from Person
+     * Returns true if a patient with the same identity as {@code patient} exists in the ward.
+     * Patients are uniquely identified by ID, through {@code Person::isSamePerson}.
      */
-    boolean hasPerson(Person person);
+    boolean hasPatient(Patient patient, Ward ward);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the given {@code ward}.
-     * {@code ward} must exist.
-     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson}
-     * Staff are uniquely identified by name, through {@code Staff::isSamePerson}
+     * Returns true if a staff with the same identity as {@code staff} exists in the ward.
+     * Staff are uniquely identified by ID, through {@code Person::isSamePerson}.
      */
-    boolean hasPerson(Person person, Ward ward);
-
-    /**
-     * Deletes the given staff. If person is a staff in multiple wards, all occurrences are deleted.
-     * The staff must exist in the patientist book.
-     */
-    void deleteStaff(Staff target);
+    boolean hasStaff(Staff staff, Ward ward);
 
     /**
      * Deletes the given staff from the given ward. Other instances of this staff in other wards are untouched.
@@ -81,33 +72,11 @@ public interface Model {
      */
     void deleteStaff(Staff target, Ward ward);
 
-    // not meaningful to have a deletePatient(Patient) method because that will
-    // serve same purpose as deletePatient(Patient, Ward) since patient can only
-    // exist in 1 ward
-
     /**
      * Deletes the given patient.
      * Ward must exist, and patient must be in the ward.
      */
     void deletePatient(Patient target, Ward ward);
-
-    /**
-     * Deletes the given person from the whole patientist.
-     * If the person is a staff in multiple wards, all occurrences are deleted.
-     * Since any given Patient can only exist in 1 ward, this method is functionally
-     * identical to {@code Model::deletePerson} and {@code Model::deletePatient} when
-     * deleting patients, except there is no need to specify which ward the patient is in
-     */
-    void deletePerson(Person target);
-
-    /**
-     * Deletes the given person from the ward specified. This method exists for convenience sake.
-     * The ward must exist in the patientist book.
-     * The person must exist in the patientist book.
-     * This is functionally identical to Model::deleteStaff(Staff, Ward) when target is a Staff
-     * This is functionally identical to Model::deletePatient(Patient, Ward) when target is a Patient
-     */
-    void deletePerson(Person target, Ward ward);
 
     /**
      * Adds the given patient to the ward.
@@ -136,13 +105,16 @@ public interface Model {
     void setStaff(Staff target, Staff edited);
 
     /**
-     * Replaces target Person with edited Person throughout Patientist.
-     * Target person must exist in Patientist, and edited person must not already exist.
-     * This is a method for convenience that works for both Staff and Patient,
-     * also for backward compatibility with old AB3 code. Try to avoid using this.
-     * This method should be deleted if possible as it may be bug-prone.
+     * Transfers patient from original ward to target ward.
+     * Patient must exist in original ward.
      */
-    void setPerson(Person target, Person edited);
+    void transferPatient(Patient patient, Ward original, Ward target);
+
+    /**
+     * Transfers staff from original ward to target ward.
+     * Staff must exist in original ward.
+     */
+    void transferStaff(Staff staff, Ward original, Ward target);
 
     /**
      * Returns true if a ward with the same name as {@code ward} exists in the patientist book

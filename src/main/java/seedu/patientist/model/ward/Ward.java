@@ -22,8 +22,8 @@ public class Ward {
      * Initialises an empty ward with wardName.
      */
     public Ward(String wardName) {
-        patients = new UniquePersonList();
-        staffs = new UniquePersonList();
+        patients = new UniquePersonList(wardName);
+        staffs = new UniquePersonList(wardName);
         this.wardName = wardName;
     }
 

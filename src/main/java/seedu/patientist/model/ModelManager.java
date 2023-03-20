@@ -91,20 +91,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return patientist.hasPerson(person);
+    public boolean hasPatient(Patient patient, Ward ward) {
+        return false;//todo
     }
 
     @Override
-    public boolean hasPerson(Person person, Ward ward) {
-        requireAllNonNull(person, ward);
-        return patientist.hasPerson(person, ward);
-    }
-
-    @Override
-    public void deleteStaff(Staff target) {
-        patientist.removeStaff(target);
+    public boolean hasStaff(Staff staff, Ward ward) {
+        return false;//todo
     }
 
     @Override
@@ -115,16 +108,6 @@ public class ModelManager implements Model {
     @Override
     public void deletePatient(Patient target, Ward ward) {
         patientist.removePatient(target, ward);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        patientist.removePerson(target);
-    }
-
-    @Override
-    public void deletePerson(Person target, Ward ward) {
-        patientist.removePerson(target, ward);
     }
 
     @Override
@@ -151,14 +134,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person edited) {
-        requireAllNonNull(target, edited);
-        if (target instanceof Staff) {
-            patientist.setStaff((Staff) target, (Staff) edited);
-        }
-        if (target instanceof Patient) {
-            patientist.setPatient((Patient) target, (Patient) edited);
-        }
+    public void transferPatient(Patient patient, Ward original, Ward target) {
+        //todo
+    }
+
+    @Override
+    public void transferStaff(Staff staff, Ward original, Ward target) {
+        //todo
     }
 
     @Override

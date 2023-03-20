@@ -13,7 +13,6 @@ import seedu.patientist.model.tag.Tag;
 /**
  * Represents a Staff object in Patientist
  * Guarantees: superclass guarantees
- * TODO: Implement this
  */
 public class Staff extends Person {
     /** Tag used to check if a person is a staff member. */
@@ -21,12 +20,6 @@ public class Staff extends Person {
 
     /**
      * Every field must be present and not null.
-     *
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param tags
      */
     public Staff(Name name, Phone phone, Email email, IdNumber id, Address address, Set<Tag> tags) {
         super(name, phone, email, id, address, tags); //TODO: wards in charge implemented as tags for now
