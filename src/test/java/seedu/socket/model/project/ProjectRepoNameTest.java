@@ -65,6 +65,9 @@ public class ProjectRepoNameTest {
         assertTrue(ProjectRepoName.isValidProjectRepoName("chia_yh2")); // alphanumeric characters and underscore
         assertTrue(ProjectRepoName.isValidProjectRepoName("chia_yh_2")); // alphanumeric characters and underscores
         assertTrue(ProjectRepoName.isValidProjectRepoName("chia.yh_2-4")); // every valid character
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia-yh-")); // ends with a hyphen
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia-yh_")); // ends with an underscore
+        assertTrue(ProjectRepoName.isValidProjectRepoName("chia-yh.")); // ends with a period
         assertTrue(ProjectRepoName.isValidProjectRepoName("01234567890123456789012345678901234567890123456789"
                 + "01234567890123456789012345678901234567890123456789")); // 100 chars
     }
