@@ -1,10 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * The TagCardDuringReviewCommand class is responsible for tagging the
+ * current card being reviewed with a specified tag.
+ */
 public class TagCardDuringReviewCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
@@ -14,11 +18,23 @@ public class TagCardDuringReviewCommand extends Command {
 
     private final String tagName;
 
+    /**
+     * Constructs a new TagCardDuringReviewCommand object with the specified tag name.
+     *
+     * @param tagName the name of the tag to assign to the current card being reviewed
+     */
     public TagCardDuringReviewCommand(String tagName) {
         requireNonNull(tagName);
         this.tagName = tagName;
     }
 
+    /**
+     * Executes the tagging operation by calling the tagCurrentCardInReview() method of the Model object.
+     *
+     * @param model the Model object containing the cards to be tagged
+     * @return a CommandResult object with a success message
+     * @throws CommandException if an error occurs during the execution of the command
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

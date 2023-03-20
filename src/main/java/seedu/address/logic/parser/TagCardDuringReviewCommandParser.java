@@ -1,37 +1,33 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.TagCardDuringReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * The TagCardDuringReviewCommandParser class is responsible for parsing user input and
+ * creating a new TagCardDuringReviewCommand object.
+ */
 public class TagCardDuringReviewCommandParser implements Parser<TagCardDuringReviewCommand> {
 
-    enum Difficulty {
+    /**
+     * The Difficulty enum represents the difficulty levels that can be assigned to a card during review.
+     */
+    public enum Difficulty {
         EASY, MEDIUM, HARD
     }
 
-    private static boolean isValidDifficulty(String input) {
-        try {
-            Difficulty.valueOf(input);
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-
+    /**
+     * Parses the user input and creates a new TagCardDuringReviewCommand object.
+     *
+     * @param args the user input as a string
+     * @return a new TagCardDuringReviewCommand object with the specified tag name
+     * @throws ParseException if the user input is invalid or the tag name is missing
+     */
     public TagCardDuringReviewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        String userInput = args.trim();
-        String tagName;
-        if (isValidDifficulty(userInput.toUpperCase())) {
-            tagName = userInput.toLowerCase();
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    TagCardDuringReviewCommand.MESSAGE_USAGE));
-        }
-
+        String tagName = ParserUtil.parseTagDuringReview(args);
         return new TagCardDuringReviewCommand(tagName);
     }
 }

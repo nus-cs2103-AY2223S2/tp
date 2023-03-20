@@ -23,11 +23,11 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCorrectCommand;
 import seedu.address.logic.commands.MarkWrongCommand;
 import seedu.address.logic.commands.NextCardCommand;
-import seedu.address.logic.commands.TagCardDuringReviewCommand;
 import seedu.address.logic.commands.PreviousCardCommand;
 import seedu.address.logic.commands.ReviewCommand;
 import seedu.address.logic.commands.SelectDeckCommand;
 import seedu.address.logic.commands.SetNumCardsPerReviewCommand;
+import seedu.address.logic.commands.TagCardDuringReviewCommand;
 import seedu.address.logic.commands.UnselectDeckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

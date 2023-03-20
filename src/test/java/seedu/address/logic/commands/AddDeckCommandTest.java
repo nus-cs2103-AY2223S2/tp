@@ -261,6 +261,10 @@ public class AddDeckCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void tagCurrentCardInReview(String tagName) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
