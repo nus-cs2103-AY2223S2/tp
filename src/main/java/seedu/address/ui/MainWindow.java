@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private EnlargedContactCard enlargedContactCard;
+    private EnlargedDoctorInfoCard enlargedDoctorInfoCard;
     private DoctorListPanel doctorListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -43,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane enlargedContactCardPlaceholder;
+    private StackPane enlargedDoctorInfoCardPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -114,10 +114,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        enlargedContactCard = new EnlargedContactCard();
-        enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
+        enlargedDoctorInfoCard = new EnlargedDoctorInfoCard();
+        enlargedDoctorInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
 
-        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(), enlargedContactCard);
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(), enlargedDoctorInfoCard);
         personListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -184,7 +184,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            enlargedContactCard.updateSelectedDoctorOptional(logic.getDoctorIfPresent());
+            enlargedDoctorInfoCard.updateSelectedDoctorOptional(logic.getDoctorIfPresent());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

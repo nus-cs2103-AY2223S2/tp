@@ -61,7 +61,7 @@
               </VBox>
               <VBox fx:id="enlargedContactPane" VBox.vgrow="ALWAYS"
                     GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1">
-                <StackPane fx:id="enlargedContactCardPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="enlargedDoctorInfoCardPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
             </GridPane>
           </VBox>

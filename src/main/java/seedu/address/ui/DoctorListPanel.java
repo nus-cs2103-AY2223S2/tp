@@ -27,12 +27,12 @@ public class DoctorListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DoctorListPanel} with the given {@code ObservableList}.
      */
-    public DoctorListPanel(ObservableList<Doctor> doctorList, EnlargedContactCard enlargedContactCard) {
+    public DoctorListPanel(ObservableList<Doctor> doctorList, EnlargedDoctorInfoCard enlargedDoctorInfoCard) {
         super(FXML);
         doctorListView.setItems(doctorList);
         doctorListView.setCellFactory(listView -> new DoctorListViewCell());
         setSelectedDoctor(doctorList);
-        showSelectedDoctorInfo(enlargedContactCard);
+        showSelectedDoctorInfo(enlargedDoctorInfoCard);
     }
 
     /**
@@ -57,15 +57,15 @@ public class DoctorListPanel extends UiPart<Region> {
     }
 
     /**
-     * Prompts {@code EnlargedContactCard} to display the information of the {@code Doctor} selected by the user.
+     * Prompts {@code EnlargedDoctorInfoCard} to display the information of the {@code Doctor} selected by the user.
      * This is done by configuring a {@code ChangeListener} to listen to user selection.
      *
-     * @param enlargedContactCard the UI part displaying the information of {@code Doctor} selected
+     * @param enlargedDoctorInfoCard the UI part displaying the information of {@code Doctor} selected
      */
-    private void showSelectedDoctorInfo(EnlargedContactCard enlargedContactCard) {
+    private void showSelectedDoctorInfo(EnlargedDoctorInfoCard enlargedDoctorInfoCard) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
-            enlargedContactCard.updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));
+            enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));
         };
         doctorListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
