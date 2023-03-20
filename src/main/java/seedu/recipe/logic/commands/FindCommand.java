@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.NameContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all recipes in recipe book whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n";
 
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TitleContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(TitleContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

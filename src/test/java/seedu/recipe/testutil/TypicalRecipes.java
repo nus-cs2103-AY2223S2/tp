@@ -14,10 +14,10 @@ public class TypicalRecipes {
 
     public static final Recipe CORNDOGS = new RecipeBuilder().withTitle("Corndogs")
             .withDesc("Awesome cheap corndogs").withIngredients("eggs", "flour")
-            .withSteps("Test1", "Test2").build();
+            .withSteps("CDTest1", "CDTest2").build();
     public static final Recipe SOUP = new RecipeBuilder().withTitle("Soup")
             .withDesc("Tasty delicious soupy goodness").withIngredients("water", "salt")
-            .withSteps("Test1", "Test2").build();
+            .withSteps("STest1", "STest2").build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
