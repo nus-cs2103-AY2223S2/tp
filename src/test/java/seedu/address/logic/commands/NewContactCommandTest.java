@@ -167,11 +167,6 @@ class NewContactCommandTest {
         }
 
         @Override
-        public void updateFilteredContactList(Predicate<Contact> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void linkContact(Event event, Event linkedEvent) {
             throw new AssertionError("This method should not be called.");
         }
@@ -188,6 +183,11 @@ class NewContactCommandTest {
 
         @Override
         public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Contact> getFilteredContactList() {
             throw new AssertionError("This method should not be called.");
         }
 

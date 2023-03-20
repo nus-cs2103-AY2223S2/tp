@@ -157,15 +157,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredEventList(Predicate<Event> predicate) {
-        requireNonNull(predicate);
-        filteredEvents.setPredicate(predicate);
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
     }
 
     @Override
-    public void updateFilteredContactList(Predicate<Contact> predicate) {
+    public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
-        filteredContacts.setPredicate(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override
