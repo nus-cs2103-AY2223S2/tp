@@ -12,7 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_GRAVITY
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HARD;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEDIUM;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HARD;
