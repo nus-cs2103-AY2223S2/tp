@@ -5,8 +5,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
@@ -28,7 +28,7 @@
           <Image url="/images/star.png"/>
         </ImageView>
       </VBox>
-      <VBox spacing="5" HBox.hgrow="ALWAYS">
+      <VBox fx:id="summaryContainer" spacing="5" HBox.hgrow="ALWAYS">
         <Label fx:id="name" text="\$first" styleClass="label-h6" />
         <Label fx:id="phone" styleClass="label-p" text="\$phone" />
         <FlowPane fx:id="tags" />

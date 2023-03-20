@@ -56,11 +56,19 @@ public class Favorite {
     /**
      * Returns a String Representation of Favorite.
      */
+    @Override
     public String toString() {
         if (isFavorite) {
             return "T";
         } else {
             return "F";
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Favorite // instanceof handles nulls
+                && this.isFavorite == (((Favorite) other).isFavorite)); // state check
     }
 }

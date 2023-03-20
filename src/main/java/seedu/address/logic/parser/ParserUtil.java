@@ -225,7 +225,7 @@ public class ParserUtil {
         }
         final Set<NusMod> modulesSet = new HashSet<>();
         for (String module : modules) {
-            modulesSet.add(parseModule(module));
+            modulesSet.add(parseModule(module.toUpperCase()));
         }
         return new Modules(modulesSet);
     }
@@ -306,7 +306,7 @@ public class ParserUtil {
     public static Recurrence parseRecurrence(String interval) throws ParseException {
         String trimmedInterval = interval.trim();
 
-        if (!Recurrence.isValidInterval(trimmedInterval)) {
+        if (!Recurrence.isValidRecurrence(trimmedInterval)) {
             throw new ParseException(Recurrence.MESSAGE_CONSTRAINTS);
         }
 

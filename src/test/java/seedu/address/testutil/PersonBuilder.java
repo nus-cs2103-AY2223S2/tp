@@ -149,7 +149,7 @@ public class PersonBuilder {
      * Builds the {@code person} object
      */
     public Person build() {
-        return new Person(name, phone, email, address, this.gender,
+        return new Person(this.name, this.phone, this.email, this.address, this.gender,
                 this.major, this.modules, this.race, this.tags, this.comms);
     }
 

@@ -16,7 +16,6 @@ public class Gender {
             + "Male, Female or DNS (i.e. Did not specify)";
     public final Genders gender;
 
-    public final String value;
 
     /**
      * Constructs a {@code Gender}.
@@ -28,16 +27,13 @@ public class Gender {
         switch (gender.toLowerCase(Locale.ROOT)) {
         case "male":
             this.gender = Genders.MALE;
-            this.value = "male";
             break;
         case "female":
             this.gender = Genders.FEMALE;
-            this.value = "female";
             break;
         case "dns":
         case "":
             this.gender = Genders.DNS;
-            this.value = "dns";
             break;
         default:
             throw new IllegalArgumentException(Gender.MESSAGE_CONSTRAINTS + " " + gender);

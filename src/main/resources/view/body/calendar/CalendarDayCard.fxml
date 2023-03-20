@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox spacing="10" minHeight="100"
+      styleClass="pane-with-rounded-corner-muted, pa"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <VBox spacing="5" minWidth="160">
+        <Label fx:id="dateNumber" text="10" styleClass="label-h4" />
+        <Label fx:id="dateMonthYear" text="April, 2023" styleClass="label-h5" />
+        <Label fx:id="day" text="Friday" styleClass="label-h6" />
+    </VBox>
+    <VBox fx:id="eventsContainer" spacing="10" HBox.hgrow="ALWAYS" />
+</HBox>

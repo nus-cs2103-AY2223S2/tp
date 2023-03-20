@@ -18,6 +18,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -85,6 +87,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyUserData getUserData() {
+        return model.getUserData();
+    }
+
+    @Override
     public List<TabInfo> getTabInfoList() {
         return model.getTabUtil().getTabInfoList();
     }
@@ -97,5 +104,10 @@ public class LogicManager implements Logic {
     @Override
     public void setSelectedTab(Index index) {
         model.setSelectedTab(index);
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return model.getEvents();
     }
 }

@@ -46,11 +46,11 @@ public class AddEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        //if (model.hasEvent(toDo)) {
-        //    throw new CommandException(MESSAGE_DUPLICATE_EVENT);
-        //}
+        if (model.hasEvent(toDo)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
 
-        //model.addEvent(toAdd);
+        model.addEvent(this.toDo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDo));
     }
 

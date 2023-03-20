@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="calendarPlaceholder" styleClass="pane-with-rounded-corner, pa-b"
-           xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml" />
+<ScrollPane fx:id="calendarPlaceholder" styleClass="pane-with-rounded-corner, p0"
+            fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml">
+    <VBox spacing="10" styleClass="pa">
+        <Label text="Events" styleClass="label-h1" />
+        <Label text="Note: events (including recurring ones) will only show up once on the next earliest date."
+               styleClass="label-p" />
+        <Separator />
+        <VBox fx:id="calendarContent" spacing="10">
+            <Label fx:id="calendarContentPlaceholder"
+                   text="No events" styleClass="label-p, tag-accented" />
+        </VBox>
+    </VBox>
+</ScrollPane>

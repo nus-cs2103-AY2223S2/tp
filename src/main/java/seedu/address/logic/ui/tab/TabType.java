@@ -5,7 +5,8 @@ package seedu.address.logic.ui.tab;
  */
 public enum TabType {
     ADDRESS_BOOK("Address Book"),
-    CALENDAR("Calendar");
+    CALENDAR("Calendar"),
+    USER("Me");
 
     private final String title;
 
@@ -18,6 +19,6 @@ public enum TabType {
     }
 
     public static TabType[] getAll() {
-        return new TabType[]{ADDRESS_BOOK, CALENDAR};
+        return new TabType[]{ADDRESS_BOOK, CALENDAR, USER};
     }
 }
