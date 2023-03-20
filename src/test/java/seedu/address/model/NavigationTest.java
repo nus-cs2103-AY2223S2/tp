@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import static seedu.address.model.Navigation.NavLayer;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.lecture.Lecture;
@@ -19,7 +21,7 @@ public class NavigationTest {
     @Test
     public void constructor_startAtRoot() {
         assertEquals(new NavigationContext(), navigation.getCurrentContext());
-        assertTrue(navigation.isAtLayer(Navigation.ROOT_LAYER));
+        assertTrue(navigation.isAtLayer(NavLayer.ROOT));
     }
 
     @Test
@@ -89,23 +91,23 @@ public class NavigationTest {
 
     @Test
     void isAtLayer_fromRootToLecture_wrongLayer() {
-        assertTrue(navigation.isAtLayer(Navigation.ROOT_LAYER));
+        assertTrue(navigation.isAtLayer(NavLayer.ROOT));
 
         Module mod = TypicalModules.CS2040S;
         Lecture lec = TypicalLectures.CS2040S_WEEK_1;
 
         navigation.navigateToModFromRoot(mod.getCode());
-        assertTrue(navigation.isAtLayer(Navigation.MODULE_LAYER));
-        assertFalse(navigation.isAtLayer(Navigation.ROOT_LAYER));
-        assertFalse(navigation.isAtLayer(Navigation.LECTURE_LAYER));
+        assertTrue(navigation.isAtLayer(NavLayer.MODULE));
+        assertFalse(navigation.isAtLayer(NavLayer.ROOT));
+        assertFalse(navigation.isAtLayer(NavLayer.LECTURE));
 
         navigation.navigateToLecFromMod(lec.getName());
-        assertTrue(navigation.isAtLayer(Navigation.LECTURE_LAYER));
-        assertFalse(navigation.isAtLayer(Navigation.ROOT_LAYER));
-        assertFalse(navigation.isAtLayer(Navigation.MODULE_LAYER));
+        assertTrue(navigation.isAtLayer(NavLayer.LECTURE));
+        assertFalse(navigation.isAtLayer(NavLayer.ROOT));
+        assertFalse(navigation.isAtLayer(NavLayer.MODULE));
 
 
         navigation.goToRoot();
-        assertTrue(navigation.isAtLayer(Navigation.ROOT_LAYER));
+        assertTrue(navigation.isAtLayer(NavLayer.ROOT));
     }
 }
