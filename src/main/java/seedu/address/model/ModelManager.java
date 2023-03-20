@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Card> filteredCards;
     private Deck selectedDeck;
     private Review currReview;
+    private int numCardsPerReview = -1;
 
     /**
      * Initializes a ModelManager with the given masterDeck and userPrefs.
@@ -248,8 +249,17 @@ public class ModelManager implements Model {
         List<Card> cardList = new FilteredList<>(
                 masterDeck.getCardList(), new CardInDeckPredicate(deckToReview)
         );
-        currReview = new Review(deckToReview, cardList);
+        if (numCardsPerReview > 0) {
+            currReview = new Review(deckToReview, cardList, numCardsPerReview);
+        } else {
+            currReview = new Review(deckToReview, cardList);
+        }
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public void setNumCardsPerReview(int n) {
+        numCardsPerReview = n;
     }
 
     @Override
@@ -306,4 +316,5 @@ public class ModelManager implements Model {
         Optional.ofNullable(currReview).ifPresent(Review::flipCard);
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
+
 }

@@ -151,4 +151,6 @@ public interface Model {
     boolean goToPrevCard();
 
     boolean goToNextCard();
+
+    void setNumCardsPerReview(int i);
 }
