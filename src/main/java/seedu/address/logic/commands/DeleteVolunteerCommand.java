@@ -8,10 +8,11 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a volunteer identified using their NRIC, from the FriendlyLink database.
  */
 public class DeleteVolunteerCommand extends Command {
 
@@ -28,6 +29,11 @@ public class DeleteVolunteerCommand extends Command {
 
     private final Nric targetNric;
 
+    /**
+     * Constructs a DeleteElderlyCommand to delete an elderly.
+     *
+     * @param targetNric Nric of the elderly.
+     */
     public DeleteVolunteerCommand(Nric targetNric) {
         this.targetNric = targetNric;
     }
@@ -35,12 +41,13 @@ public class DeleteVolunteerCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Volunteer volunteerToDelete = model.getVolunteer(targetNric);
-        if (volunteerToDelete == null) {
+        try {
+            Volunteer volunteerToDelete = model.getVolunteer(targetNric);
+            model.deleteVolunteer(volunteerToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete));
+        } catch (VolunteerNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
         }
-        model.deleteVolunteer(volunteerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete));
     }
 
     @Override

@@ -36,7 +36,10 @@ public class LogsCenter {
     }
 
     /**
-     * Creates a logger with the given name.
+     * Creates a {@code Logger} with the given name.
+     *
+     * @param name Logger name.
+     * @return {@code Logger} with the given name.
      */
     public static Logger getLogger(String name) {
         Logger logger = Logger.getLogger(name);
@@ -50,7 +53,10 @@ public class LogsCenter {
     }
 
     /**
-     * Creates a Logger for the given class name.
+     * Creates a {@code Logger} for the given class name.
+     *
+     * @param clazz Class name for logger.
+     * @return {@code Logger} with the given class name.
      */
     public static <T> Logger getLogger(Class<T> clazz) {
         if (clazz == null) {
@@ -62,6 +68,8 @@ public class LogsCenter {
     /**
      * Adds the {@code consoleHandler} to the {@code logger}. <br>
      * Creates the {@code consoleHandler} if it is null.
+     *
+     * @param logger {@code logger} to attach the {@code consoleHandler}.
      */
     private static void addConsoleHandler(Logger logger) {
         if (consoleHandler == null) {
@@ -72,6 +80,8 @@ public class LogsCenter {
 
     /**
      * Remove all the handlers from {@code logger}.
+     *
+     * @param logger {@code logger} to remove from.
      */
     private static void removeHandlers(Logger logger) {
         Arrays.stream(logger.getHandlers())
@@ -81,6 +91,8 @@ public class LogsCenter {
     /**
      * Adds the {@code fileHandler} to the {@code logger}. <br>
      * Creates {@code fileHandler} if it is null.
+     *
+     * @param logger {@code logger} to attach the file.
      */
     private static void addFileHandler(Logger logger) {
         try {
@@ -95,6 +107,8 @@ public class LogsCenter {
 
     /**
      * Creates a {@code FileHandler} for the log file.
+     *
+     * @return {@code FileHandler} of the log file.
      * @throws IOException if there are problems opening the file.
      */
     private static FileHandler createFileHandler() throws IOException {

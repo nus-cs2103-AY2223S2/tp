@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's age in the database.
+ * Represents a Person's age in FriendlyLink.
  * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
  */
 public class Age {
@@ -26,6 +26,9 @@ public class Age {
 
     /**
      * Returns true if a given string is a valid age.
+     *
+     * @param test Age to be tested.
+     * @return True if {@code test} is a valid age and false otherwise.
      */
     public static boolean isValidAge(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -47,6 +50,5 @@ public class Age {
     public int hashCode() {
         return value.hashCode();
     }
-
 
 }

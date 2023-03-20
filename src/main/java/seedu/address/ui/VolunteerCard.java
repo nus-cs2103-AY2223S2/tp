@@ -47,6 +47,9 @@ public class VolunteerCard extends UiPart<Region> {
 
     /**
      * Creates a {@code VolunteerCode} with the given {@code Volunteer} and index to display.
+     *
+     * @param volunteer Volunteer to be displayed.
+     * @param displayedIndex Index shown on screen.
      */
     public VolunteerCard(Volunteer volunteer, int displayedIndex) {
         super(FXML);

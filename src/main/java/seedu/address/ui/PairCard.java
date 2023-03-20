@@ -34,6 +34,9 @@ public class PairCard extends UiPart<Region> {
 
     /**
      * Creates a {@code PairCode} with the given {@code Pair} and index to display.
+     *
+     * @param pair Pair to be displayed.
+     * @param displayedIndex Index shown on screen.
      */
     public PairCard(Pair pair, int displayedIndex) {
         super(FXML);

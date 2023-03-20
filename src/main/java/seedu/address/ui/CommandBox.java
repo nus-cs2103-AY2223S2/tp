@@ -23,6 +23,8 @@ public class CommandBox extends UiPart<Region> {
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
+     *
+     * @param commandExecutor Function that can execute commands.
      */
     public CommandBox(CommandExecutor commandExecutor) {
         super(FXML);
