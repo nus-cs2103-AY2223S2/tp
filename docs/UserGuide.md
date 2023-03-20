@@ -256,15 +256,15 @@ Unable to exit/save HMHero to data file
 ## Acknowledgements
 
 
-HMHero is a brownfield software engineering project based off [AddressBook Level-3](), taken under the [CS2103T Software Engineering]() held by School of Computing at National University of Singapore.
+HMHero is a brownfield software engineering project based off [AddressBook Level-3](https://nus-cs2103-ay2223s2.github.io/tp/), taken under the [CS2103T Software Engineering](https://nus-cs2103-ay2223s2.github.io/website/admin/index.html) held by School of Computing at National University of Singapore.
 
 Java dependencies:
-* [JavaFX]() for Graphical User Interface
-* [JUnit5]() for testing
-* [Jackson]() for JSON-related operations
+* [JavaFX](https://openjfx.io/) for Graphical User Interface
+* [JUnit5](https://github.com/junit-team/junit5) for testing
+* [Jackson](https://github.com/FasterXML/jackson) for JSON-related operations
 
 Documentation dependencies:
-* [PlantUML]() for creating UML diagrams
+* [PlantUML](https://plantuml.com/) for creating UML diagrams
 
 ---
 
@@ -347,3 +347,4 @@ Documentation dependencies:
 ### U
 > #### URL
 > A hyperlink to a website.
+
