@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.List;
-
 import seedu.address.model.Model;
 
 /**
@@ -12,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ListCommand extends Command {
 
-    public static final List<String> COMMAND_WORD = List.of(new String[]{"list", "l"});
+    public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 

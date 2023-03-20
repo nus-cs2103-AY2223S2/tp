@@ -24,3 +24,6 @@ docs/_site/
 *.class
 *.vscode
 
+#bin file for compiled code
+/bin/
+

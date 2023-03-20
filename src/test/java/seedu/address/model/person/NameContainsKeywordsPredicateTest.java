@@ -55,22 +55,6 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Keyword matching part of name
-        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Ali"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Multiple keywords matching part of name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Ali", "ob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Only one matching keyword matching part of name (including non-ASCII characters)
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol完", "ob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Mixed-cased keywords matching part of name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("AlI", "oB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
     @Test
@@ -81,10 +65,6 @@ public class NameContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
-        // Keyword contains zero-width space
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice​Bob"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
