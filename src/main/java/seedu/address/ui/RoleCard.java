@@ -68,7 +68,7 @@ public class RoleCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         website.setText(role.getWebsite().value);
-        salary.setText(role.getSalary().salary);
+        salary.setText("$" + role.getSalary().salary);
         deadline.setText(role.getDeadline().deadline);
         jobDescription.setText(role.getJobDescription().value);
         experience.setText(role.getExperience().value);
