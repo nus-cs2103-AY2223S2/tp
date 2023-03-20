@@ -8,6 +8,7 @@ import static arb.model.Model.CLIENT_NO_COMPARATOR;
 import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -131,6 +132,10 @@ public class EditClientCommand extends Command {
 
     public static boolean isCommandWord(String commandWord) {
         return COMMAND_WORDS.contains(commandWord);
+    }
+
+    public static List<String> getCommandWords() {
+        return new ArrayList<>(COMMAND_WORDS);
     }
 
     /**

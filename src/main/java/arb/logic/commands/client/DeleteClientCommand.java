@@ -2,6 +2,7 @@ package arb.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -70,4 +71,9 @@ public class DeleteClientCommand extends Command {
     public static boolean isCommandWord(String commandWord) {
         return COMMAND_WORDS.contains(commandWord);
     }
+
+    public static List<String> getCommandWords() {
+        return new ArrayList<>(COMMAND_WORDS);
+    }
+
 }

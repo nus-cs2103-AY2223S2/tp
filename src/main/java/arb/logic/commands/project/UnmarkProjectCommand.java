@@ -4,6 +4,7 @@ import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -72,5 +73,9 @@ public class UnmarkProjectCommand extends Command {
 
     public static boolean isCommandWord(String commandWord) {
         return COMMAND_WORDS.contains(commandWord);
+    }
+
+    public static List<String> getCommandWords() {
+        return new ArrayList<>(COMMAND_WORDS);
     }
 }

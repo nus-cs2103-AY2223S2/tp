@@ -2,19 +2,27 @@ package arb.logic.parser.client;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_BOB;
 import static arb.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static arb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static arb.logic.commands.CommandTestUtil.NAME_DESC_ALIAS_AMY;
 import static arb.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static arb.logic.commands.CommandTestUtil.NAME_DESC_ALIAS_BOB;
 import static arb.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static arb.logic.commands.CommandTestUtil.PHONE_DESC_ALIAS_AMY;
 import static arb.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static arb.logic.commands.CommandTestUtil.PHONE_DESC_ALIAS_BOB;
 import static arb.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static arb.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static arb.logic.commands.CommandTestUtil.TAG_DESC_ALIAS_FRIEND;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static arb.logic.commands.CommandTestUtil.TAG_DESC_ALIAS_HUSBAND;
 import static arb.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -46,23 +54,58 @@ public class AddClientCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
 
-        // multiple names - last name accepted
+        // multiple names, main prefix only - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
 
-        // multiple phones - last phone accepted
+        // multiple names, alias prefix only - last name accepted
+        assertParseSuccess(parser, NAME_DESC_ALIAS_AMY + NAME_DESC_ALIAS_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
+
+        // multiple names, mix of main prefixes and alias prefixes - last name accepted
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_ALIAS_AMY + NAME_DESC_ALIAS_BOB
+                + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
+
+        // multiple phones, main prefixes only - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
 
-        // multiple emails - last email accepted
+        // multiple phones, alias prefix only - last phone accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_ALIAS_AMY + PHONE_DESC_ALIAS_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
+
+        // multiple phones, mix of main prefix and alias prefix - last name accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_ALIAS_AMY + PHONE_DESC_ALIAS_BOB
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
+
+        // multiple emails, main prefix only - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
 
-        // multiple tags - all accepted
+        // multiple emails, alias prefix only - last email accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_ALIAS_AMY + EMAIL_DESC_ALIAS_BOB
+                + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
+
+        // multiple emails, mix of main prefix and alias prefix - last name accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_ALIAS_AMY + EMAIL_DESC_AMY
+                + EMAIL_DESC_ALIAS_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_FRIEND, new AddClientCommand(expectedClient));
+
+        // multiple tags, main prefix only - all accepted
         Client expectedClientMultipleTags = new ClientBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddClientCommand(expectedClientMultipleTags));
+
+        // multiple tags, alias prefix only - all accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_ALIAS_HUSBAND + TAG_DESC_ALIAS_FRIEND, new AddClientCommand(expectedClientMultipleTags));
+
+        // multiple tags, mix of main prefix and alias prefix - all accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + TAG_DESC_ALIAS_HUSBAND + TAG_DESC_FRIEND, new AddClientCommand(expectedClientMultipleTags));
     }
 
     @Test

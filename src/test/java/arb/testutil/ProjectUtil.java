@@ -15,8 +15,9 @@ public class ProjectUtil {
     /**
      * Returns an add project command string for adding the {@code project}.
      */
-    public static String getAddProjectCommand(Project project) {
-        return AddProjectCommand.COMMAND_WORD + " " + getProjectDetails(project);
+    public static String getAddProjectCommand(Project project, String commandWord) {
+        assert AddProjectCommand.isCommandWord(commandWord);
+        return commandWord + " " + getProjectDetails(project);
     }
 
     /**

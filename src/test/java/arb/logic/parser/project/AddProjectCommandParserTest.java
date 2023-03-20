@@ -2,13 +2,17 @@ package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static arb.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static arb.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -34,14 +38,31 @@ public class AddProjectCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
                 new AddProjectCommand(expectedProject));
 
-        // multiple names - last name accepted
+        // multiple names, main prefix only - last name accepted
         assertParseSuccess(parser, TITLE_DESC_OIL_PAINTING + TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
                 new AddProjectCommand(expectedProject));
 
-        // multiple deadlines - last deadline accepted
+        // multiple names, alias prefix only - last name accepted
+        assertParseSuccess(parser, TITLE_DESC_ALIAS_OIL_PAINTING + TITLE_DESC_ALIAS_SKY_PAINTING
+                + DEADLINE_DESC_SKY_PAINTING, new AddProjectCommand(expectedProject));
+
+        // multiple names, mix of main and alias prefix - last name accepted
+        assertParseSuccess(parser, TITLE_DESC_OIL_PAINTING + TITLE_DESC_OIL_PAINTING + TITLE_DESC_SKY_PAINTING
+                + TITLE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
+                new AddProjectCommand(expectedProject));
+
+        // multiple deadlines, main prefix only - last deadline accepted
         assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_OIL_PAINTING + DEADLINE_DESC_SKY_PAINTING,
                 new AddProjectCommand(expectedProject));
 
+        // multiple deadlines, alias prefix only - last deadline accepted
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_ALIAS_OIL_PAINTING
+                + DEADLINE_DESC_ALIAS_SKY_PAINTING, new AddProjectCommand(expectedProject));
+
+        // multiple deadlines, mix of main and alias prefix - last deadline accepted
+        assertParseSuccess(parser, TITLE_DESC_SKY_PAINTING + DEADLINE_DESC_OIL_PAINTING
+                + DEADLINE_DESC_ALIAS_OIL_PAINTING + DEADLINE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_SKY_PAINTING,
+                new AddProjectCommand(expectedProject));
     }
 
     @Test
