@@ -17,6 +17,8 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.logic.CommandMessage;
+import seedu.vms.logic.parser.ParseResult;
+import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -198,6 +200,12 @@ public class AddCommandTest {
         public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
+        }
+
+        @Override
+        public ParseResult parseCommand(String userCommand) throws ParseException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
         }
     }
 
