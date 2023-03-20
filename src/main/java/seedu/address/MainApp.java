@@ -103,6 +103,7 @@ public class MainApp extends Application {
 
     private Cron initCron() {
         Cron cron = Cron.getInstance();
+        logger.info("Initialised CRON engine");
 
         return cron;
     }
@@ -187,6 +188,7 @@ public class MainApp extends Application {
         try {
             storage.saveUserPrefs(model.getUserPrefs());
             cron.stop();
+            logger.info("CRON engine stopped");
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
