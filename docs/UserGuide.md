@@ -44,16 +44,16 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `delete-lecture /module {module_code} /lecture {lecture_id}`: Deletes the specified lecture from the specified module
   - `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`: Deletes the specified video from the specified lecture from the specified module
 - Tag
-  - `tag {module_code} /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a module from Le Tracker
-  - `tag {lecture_name} [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a lecture from 
+  - `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a module from Le Tracker
+  - `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a lecture from 
     a module 
-  - `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: 
+  - `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: 
     Tags a video from a lecture
-  - `untag {module_code} /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes specified tags from a module 
+  - `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes specified tags from a module 
     from Le Tracker
-  - `untag {lecture_name} [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes the 
+  - `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes the 
     specified tags from a lecture 
-  - `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
+  - `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
        Removes the specified tags of a video
   
 Refer to the [Features](#features) below for details of each command.
