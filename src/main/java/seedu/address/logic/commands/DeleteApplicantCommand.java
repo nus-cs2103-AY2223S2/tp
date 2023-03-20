@@ -47,6 +47,9 @@ public class DeleteApplicantCommand extends Command {
      * @param targetApplicantId id of the applicant to be deleted
      */
     public DeleteApplicantCommand(Index targetIndex, String targetApplicantId) {
+        requireNonNull(targetIndex);
+        requireNonNull(targetApplicantId);
+
         this.targetIndex = targetIndex;
         this.targetApplicantId = targetApplicantId;
     }
