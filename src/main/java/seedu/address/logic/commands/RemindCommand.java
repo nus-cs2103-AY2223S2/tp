@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.event.NameContainsKeywordsPredicate;
+import seedu.address.model.event.StartTimeWithinDaysPredicate;
 
 /**
  * Finds and lists all events in event book whose start time is within the days specified in the argument.
@@ -17,9 +18,9 @@ public class RemindCommand extends Command {
             + "Parameters: DAYS (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final StartTimeWithinDaysPredicate predicate;
 
-    public RemindCommand(NameContainsKeywordsPredicate predicate) {
+    public RemindCommand(StartTimeWithinDaysPredicate predicate) {
         this.predicate = predicate;
     }
 

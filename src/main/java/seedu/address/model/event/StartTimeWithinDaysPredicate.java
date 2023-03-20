@@ -5,23 +5,29 @@ import java.time.temporal.ChronoUnit;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Event}'s starrt {@code Time} is within the given number of days.
+ * Tests that a {@code Event}'s start {@code Time} is within the given number of days.
  */
 public class StartTimeWithinDaysPredicate implements Predicate<Event> {
+    private final LocalDateTime timeNow;
     private final Integer days;
 
-    public StartTimeWithinDaysPredicate(Integer days) {
+    /**
+     * Creates a predicate to test if an event is within the given {@code days} from
+     * the given {@code timeNow}.
+     */
+    public StartTimeWithinDaysPredicate(LocalDateTime timeNow, Integer days) {
+        this.timeNow = timeNow;
         this.days = days;
     }
 
     @Override
     public boolean test(Event event) {
         LocalDateTime eventStartTime = event.getStartTime().time;
-        boolean isStartTimeBeforeNow = LocalDateTime.now().compareTo(eventStartTime) > 0;
+        boolean isStartTimeBeforeNow = timeNow.compareTo(eventStartTime) > 0;
         if (isStartTimeBeforeNow) {
             return false;
         }
-        long fullDaysBetween = LocalDateTime.now().until(eventStartTime, ChronoUnit.DAYS);
+        long fullDaysBetween = timeNow.until(eventStartTime, ChronoUnit.DAYS);
         return fullDaysBetween <= days;
     }
 
