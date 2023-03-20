@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
 import java.util.List;
@@ -27,10 +30,22 @@ import seedu.address.model.video.VideoName;
 
 public class UntagCommand extends Command {
     public static final String COMMAND_WORD = "untag";
-
-    //TODO: MODIFY THIS
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Untag a specified video, module, or lecture ";
-    //TODO: MODIFY THIS
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Untag a specified video, module, or lecture" + "\n"
+            + "\n"
+            + "*** Command Format *** " + "\n"
+            + "Untag Module: " + COMMAND_WORD + " {module_code} " + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
+            + "Untag Lecture: " + COMMAND_WORD + " {lecture_name} " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
+            + "Untag Video: " + COMMAND_WORD + " {video_name} " + PREFIX_LECTURE
+            + " {lecture_name} " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
+            + "\n"
+            + "*** Example *** " + "\n"
+            + "Untag Module: " + COMMAND_WORD + " EG2310 " + PREFIX_TAG + " fun, hard" + "\n"
+            + "Untag Lecture: " + COMMAND_WORD + " Lecture_1 " + PREFIX_MODULE + " EG2310 "
+            + PREFIX_TAG + " fun, hard" + "\n"
+            + "Untag Video: " + COMMAND_WORD + " Video_1 " + PREFIX_LECTURE + " Lecture_1 " + PREFIX_MODULE + " EG2310 "
+            + PREFIX_TAG + " fun, hard";
     public static final String MESSAGE_SUCCESS = "%1$s untagged";
     private final Set<Tag> deletingTags;
     private final VideoName videoName;
