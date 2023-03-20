@@ -2,17 +2,17 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-
-import java.util.List;
 
 /**
  * Clears the address book.
  */
 public class ClearCommand extends Command {
 
-    public static final List<String> COMMAND_WORD = List.of(new String[]{"clear", "c"});;
+    public static final List<String> COMMAND_WORD = List.of(new String[]{"clear", "c"});
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
 

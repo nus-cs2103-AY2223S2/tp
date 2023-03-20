@@ -44,9 +44,7 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        /**
-         * If the user's command fits a keyword for a command, create a parser
-         */
+        // if the user's command fits a keyword for a command, create a parser
         if (AddCommand.COMMAND_WORD.contains(commandWord)) {
             return new AddCommandParser().parse(arguments);
         } else if (EditCommand.COMMAND_WORD.contains(commandWord)) {

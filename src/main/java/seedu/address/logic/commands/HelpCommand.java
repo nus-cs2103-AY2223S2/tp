@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import java.util.List;
+
+import seedu.address.model.Model;
 
 /**
  * Format full help instructions for every command for display.

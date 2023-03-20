@@ -31,7 +31,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final List<String> COMMAND_WORD = List.of(new String[]{"edit", "ed"});;
+    public static final List<String> COMMAND_WORD = List.of(new String[]{"edit", "ed"});
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
