@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,14 +32,17 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<PersonListCellData> personListView;
-
     private int selectedIndex;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, PersonDetailPanel panel) {
+    public PersonListPanel(ObservableList<Person> personList, ReadOnlyObjectProperty<Person> observableSelectedPerson, PersonDetailPanel panel) {
         super(FXML);
+        panel.setPerson(observableSelectedPerson.getValue());
+        observableSelectedPerson.addListener((observable, oldValue, newValue) -> {
+            panel.setPerson(newValue);
+        });
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
         personListView.setOnMouseClicked(event -> {
