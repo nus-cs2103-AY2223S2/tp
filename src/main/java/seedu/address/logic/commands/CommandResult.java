@@ -30,8 +30,8 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.showDark = false;
-        this.showLight = false;
+        this.showDark = showDark;
+        this.showLight = showLight;
     }
 
     /**
