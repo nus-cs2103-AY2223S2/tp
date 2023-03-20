@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -12,21 +13,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditElderlyCommand;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditElderlyCommand object
+ * Parses input arguments and creates a new EditElderlyCommand object.
  */
 public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditElderlyCommand
      * and returns an EditElderlyCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments.
+     * @return {@code EditElderlyCommand} for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public EditElderlyCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -80,7 +83,7 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
                 .ifPresent(editElderlyDescriptor::setTags);
 
         if (!editElderlyDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(Messages.MESSAGE_NOT_EDITED);
+            throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
         return new EditElderlyCommand(index, editElderlyDescriptor);

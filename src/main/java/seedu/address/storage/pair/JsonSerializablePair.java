@@ -26,6 +26,8 @@ public class JsonSerializablePair implements JsonSerializable<FriendlyLink> {
 
     /**
      * Constructs a {@code JsonSerializablePair} with the given pairs.
+     *
+     * @param pairs List of Jackson-friendly pairs.
      */
     @JsonCreator
     public JsonSerializablePair(@JsonProperty("pairs") List<JsonAdaptedPair> pairs) {
@@ -35,7 +37,7 @@ public class JsonSerializablePair implements JsonSerializable<FriendlyLink> {
     /**
      * Converts a given {@code ReadOnlyPair} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializablePair}.
+     * @param source Future changes to this will not affect the created {@code JsonSerializablePair}.
      */
     public JsonSerializablePair(ReadOnlyPair source) {
         serializePairs(pairs,
@@ -49,6 +51,8 @@ public class JsonSerializablePair implements JsonSerializable<FriendlyLink> {
     /**
      * Converts this pair list into the model's {@code Pair} object and adds it to the application cache.
      *
+     * @param friendlyLink FriendlyLink cache.
+     * @return FriendlyLink cache updated with this pair list data.
      * @throws IllegalValueException if there were any data constraints violated.
      */
     @Override

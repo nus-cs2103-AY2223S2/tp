@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents a Person's address in FriendlyLink.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
@@ -32,6 +32,9 @@ public class Address {
 
     /**
      * Returns true if a given string is a valid address.
+     *
+     * @param test Address to be tested.
+     * @return True if {@code test} is a valid address and false otherwise.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);

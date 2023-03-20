@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -33,7 +35,7 @@ public class StorageManager implements Storage {
      */
     public StorageManager(PairStorage pairStorage, ElderlyStorage elderlyStorage,
                           VolunteerStorage volunteerStorage, UserPrefsStorage userPrefsStorage) {
-
+        requireAllNonNull(pairStorage, elderlyStorage, volunteerStorage, userPrefsStorage);
         this.pairStorage = pairStorage;
         this.elderlyStorage = elderlyStorage;
         this.volunteerStorage = volunteerStorage;
@@ -77,8 +79,8 @@ public class StorageManager implements Storage {
      * Returns FriendlyLink data as a {@link ReadOnlyElderly}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException             if there was any problem when reading from the storage.
+     * @throws DataConversionException If the data in storage is not in the expected format.
+     * @throws IOException If there was any problem when reading from the storage.
      */
     @Override
     public Optional<ReadOnlyElderly> readElderly(FriendlyLink friendlyLink)
@@ -121,8 +123,8 @@ public class StorageManager implements Storage {
      * Returns FriendlyLink data as a {@link ReadOnlyVolunteer}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException             if there was any problem when reading from the storage.
+     * @throws DataConversionException If the data in storage is not in the expected format.
+     * @throws IOException If there was any problem when reading from the storage.
      */
     @Override
     public Optional<ReadOnlyVolunteer> readVolunteer(FriendlyLink friendlyLink)

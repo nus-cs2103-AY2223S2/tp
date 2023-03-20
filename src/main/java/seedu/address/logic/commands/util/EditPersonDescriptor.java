@@ -2,6 +2,7 @@ package seedu.address.logic.commands.util;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,11 +31,15 @@ public class EditPersonDescriptor {
     private Set<Tag> tags;
     private Set<AvailableDate> availableDates;
 
+    /**
+     * Default empty constructor.
+     */
     public EditPersonDescriptor() {}
 
     /**
      * Copy constructor.
-     * A defensive copy of {@code tags} is used internally.
+     *
+     * @param toCopy {@code EditPersonDescriptor} for copying.
      */
     public EditPersonDescriptor(EditPersonDescriptor toCopy) {
         setName(toCopy.name);
@@ -50,6 +55,8 @@ public class EditPersonDescriptor {
 
     /**
      * Returns true if at least one field is edited.
+     *
+     * @return True if at least one field is edited and false otherwise.
      */
     public boolean isAnyFieldEdited() {
         return CollectionUtil.isAnyNonNull(name, phone,
@@ -114,7 +121,8 @@ public class EditPersonDescriptor {
 
     /**
      * Sets {@code tags} to this object's {@code tags}.
-     * A defensive copy of {@code tags} is used internally.
+     *
+     * @param tags Tags to set.
      */
     public void setTags(Set<Tag> tags) {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
@@ -124,23 +132,28 @@ public class EditPersonDescriptor {
      * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
+     *
+     * @return {@code Optional} of the set of tags.
      */
     public Optional<Set<Tag>> getTags() {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
     /**
-     * Sets {@code tags} to this object's {@code tags}.
-     * A defensive copy of {@code tags} is used internally.
+     * Sets {@code availableDates} to this object's {@code availableDates}.
+     *
+     * @param availableDates Dates to set.
      */
     public void setAvailableDates(Set<AvailableDate> availableDates) {
         this.availableDates = (availableDates != null) ? new HashSet<>(availableDates) : null;
     }
 
     /**
-     * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an unmodifiable date set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
-     * Returns {@code Optional#empty()} if {@code tags} is null.
+     * Returns {@code Optional#empty()} if {@code availableDates} is null.
+     *
+     * @return {@code Optional} of the set of dates.
      */
     public Optional<Set<AvailableDate>> getAvailableDates() {
         return (availableDates != null)
@@ -172,5 +185,11 @@ public class EditPersonDescriptor {
                 && getRegion().equals(e.getRegion())
                 && getTags().equals(e.getTags())
                 && getAvailableDates().equals(e.getAvailableDates());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, email, address, nric,
+                age, region, tags);
     }
 }

@@ -30,7 +30,10 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     *
+     * @param oneBasedIndex Index starting from 1 in string form.
+     * @return Index starting from 1
+     * @throws ParseException If the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -44,7 +47,9 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @param name Name of the person.
+     * @return {@code Name} object.
+     * @throws ParseException If the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
@@ -59,7 +64,9 @@ public class ParserUtil {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @param phone Phone number of the person.
+     * @return {@code Phone} object.
+     * @throws ParseException If the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
@@ -74,7 +81,9 @@ public class ParserUtil {
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @param address Address of the person.
+     * @return {@code Address} object.
+     * @throws ParseException If the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
@@ -89,7 +98,9 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @param email Email of the person.
+     * @return {@code Email} object.
+     * @throws ParseException If the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
@@ -101,10 +112,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nric} into an {@code NRIC}.
+     * Parses a {@code String nric} into an {@code Nric}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code nric} is invalid.
+     * @param nric Nric of the person.
+     * @return {@code Nric} object.
+     * @throws ParseException If the given {@code nric} is invalid.
      */
     public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
@@ -119,7 +132,9 @@ public class ParserUtil {
      * Parses a {@code String age} into an {@code Age}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code age} is invalid.
+     * @param age Age of the person.
+     * @return {@code Age} object.
+     * @throws ParseException If the given {@code age} is invalid.
      */
     public static Age parseAge(String age) throws ParseException {
         requireNonNull(age);
@@ -131,10 +146,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String age} into an {@code Region}.
+     * Parses a {@code String region} into an {@code Region}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code region} is invalid.
+     * @param region Region of the person.
+     * @return {@code Region} object.
+     * @throws ParseException If the given {@code region} is invalid.
      */
     public static Region parseRegion(String region) throws ParseException {
         requireNonNull(region);
@@ -150,7 +167,9 @@ public class ParserUtil {
      * Parses a {@code String risk} into an {@code Risk}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code risk} is invalid.
+     * @param riskLevel Risk level of the elderly.
+     * @return {@code RiskLevel} object.
+     * @throws ParseException If the given {@code riskLevel} is invalid.
      */
     public static RiskLevel parseRiskLevel(String riskLevel) throws ParseException {
         requireNonNull(riskLevel);
@@ -166,9 +185,9 @@ public class ParserUtil {
      * Parses a {@code String datePair} into a {@code AvailableDate}
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @param datePair The datePair to be parsed
-     * @return The AvailableDate Object
-     * @throws ParseException throws error if invalid datePair
+     * @param datePair Available date of the person.
+     * @return {@code AvailableDate} object.
+     * @throws ParseException If the given {@code datePair} is invalid.
      */
     public static AvailableDate parseDateRange(String datePair) throws ParseException {
         requireNonNull(datePair);
@@ -190,12 +209,16 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> datePairs} into a {@code Set<AvailableDate>}.
+     *
+     * @param datePairs Available dates of the person.
+     * @return A set of available dates.
+     * @throws ParseException If any of the date pairs are invalid.
      */
     public static Set<AvailableDate> parseDateRanges(Collection<String> datePairs) throws ParseException {
         requireNonNull(datePairs);
         final Set<AvailableDate> datesSet = new HashSet<>();
-        for (String tagName : datePairs) {
-            datesSet.add(parseDateRange(tagName));
+        for (String startEndDate : datePairs) {
+            datesSet.add(parseDateRange(startEndDate));
         }
         return datesSet;
     }
@@ -204,7 +227,9 @@ public class ParserUtil {
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @param tag Tag of the person.
+     * @return {@code Tag} object.
+     * @throws ParseException If the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
@@ -217,6 +242,10 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @param tags Tags of the person.
+     * @return A set of tags.
+     * @throws ParseException If any of the tags are invalid.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);

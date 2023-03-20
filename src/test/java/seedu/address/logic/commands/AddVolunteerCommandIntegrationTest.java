@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
@@ -7,7 +8,6 @@ import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.ModelManagerBuilder;
@@ -42,7 +42,7 @@ public class AddVolunteerCommandIntegrationTest {
     public void execute_duplicateVolunteer_throwsCommandException() {
         Volunteer volunteerInList = model.getFriendlyLink().getVolunteerList().get(0);
         assertCommandFailure(new AddVolunteerCommand(volunteerInList), model,
-                Messages.MESSAGE_DUPLICATE_VOLUNTEER);
+                MESSAGE_DUPLICATE_VOLUNTEER);
     }
 
 }

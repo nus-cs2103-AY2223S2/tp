@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 
-import seedu.address.commons.core.Messages;
+import java.util.Objects;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Deletes an elderly identified using its NRIC from the FriendlyLink database.
+ * Deletes an elderly identified using their NRIC, from the FriendlyLink database.
  */
 public class DeleteElderlyCommand extends Command {
 
@@ -20,13 +23,15 @@ public class DeleteElderlyCommand extends Command {
             + "Parameters: NRIC \n"
             + "Example: " + COMMAND_WORD + " S1234567C";
 
-    public static final String MESSAGE_INVALID_NRIC_ELDERLY =
-            String.format(Messages.MESSAGE_INVALID_NRIC, "elderly");
-
     public static final String MESSAGE_DELETE_ELDERLY_SUCCESS = "Deleted Elderly: %1$s";
 
     private final Nric targetNric;
 
+    /**
+     * Constructs a DeleteElderlyCommand to delete an elderly.
+     *
+     * @param targetNric Nric of the elderly.
+     */
     public DeleteElderlyCommand(Nric targetNric) {
         this.targetNric = targetNric;
     }
@@ -34,12 +39,13 @@ public class DeleteElderlyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Elderly elderlyToDelete = model.getElderly(targetNric);
-        if (elderlyToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
+        try {
+            Elderly elderlyToDelete = model.getElderly(targetNric);
+            model.deleteElderly(elderlyToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_ELDERLY_SUCCESS, elderlyToDelete));
+        } catch (ElderlyNotFoundException e) {
+            throw new CommandException(MESSAGE_NRIC_NOT_EXIST);
         }
-        model.deleteElderly(elderlyToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ELDERLY_SUCCESS, elderlyToDelete));
     }
 
     @Override
@@ -49,4 +55,8 @@ public class DeleteElderlyCommand extends Command {
                 && targetNric.equals(((DeleteElderlyCommand) other).targetNric));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetNric);
+    }
 }

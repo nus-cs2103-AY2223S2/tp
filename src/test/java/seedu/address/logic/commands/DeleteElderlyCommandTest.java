@@ -3,13 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.information.Nric;
@@ -41,7 +41,7 @@ class DeleteElderlyCommandTest {
         Nric invalidNric = new Nric("T9999999I");
         DeleteElderlyCommand deleteElderlyCommand = new DeleteElderlyCommand(invalidNric);
 
-        assertCommandFailure(deleteElderlyCommand, model, Messages.MESSAGE_NRIC_NOT_EXIST);
+        assertCommandFailure(deleteElderlyCommand, model, MESSAGE_NRIC_NOT_EXIST);
     }
 
     @Test

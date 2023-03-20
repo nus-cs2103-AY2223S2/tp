@@ -23,6 +23,8 @@ public class ElderlyListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code ElderlyListPanel} with the given {@code ObservableList}.
+     *
+     * @param elderlyList Elderly list to be displayed.
      */
     public ElderlyListPanel(ObservableList<Elderly> elderlyList) {
         super(FXML);

@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -13,9 +17,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
@@ -53,13 +57,13 @@ public class EditElderlyCommand extends Command {
     private final EditElderlyDescriptor editElderlyDescriptor;
 
     /**
-     * @param index of the elderly in the filtered elderly list to edit
-     * @param editElderlyDescriptor details to edit the elderly with
+     * Creates an {@code EditElderlyCommand} to edit an elderly.
+     *
+     * @param index Index of the elderly in the filtered elderly list to edit.
+     * @param editElderlyDescriptor Details to edit the elderly with.
      */
     public EditElderlyCommand(Index index, EditElderlyDescriptor editElderlyDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editElderlyDescriptor);
-
+        requireAllNonNull(index, editElderlyDescriptor);
         this.index = index;
         this.editElderlyDescriptor = new EditElderlyDescriptor(editElderlyDescriptor);
     }
@@ -68,21 +72,22 @@ public class EditElderlyCommand extends Command {
     @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
         if (!editElderlyDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(Messages.MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
         requireNonNull(model);
         List<Elderly> lastShownList = model.getFilteredElderlyList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_ELDERLY_DISPLAYED_INDEX);
         }
+        assert index.getZeroBased() >= 0 : "index should not be negative";
 
         Elderly elderlyToEdit = lastShownList.get(index.getZeroBased());
         Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(elderlyToEdit, editElderlyDescriptor);
 
         if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
+            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
         }
 
         model.setElderly(elderlyToEdit, editedElderly);
@@ -107,5 +112,10 @@ public class EditElderlyCommand extends Command {
         EditElderlyCommand e = (EditElderlyCommand) other;
         return index.equals(e.index)
                 && editElderlyDescriptor.equals(e.editElderlyDescriptor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, editElderlyDescriptor);
     }
 }

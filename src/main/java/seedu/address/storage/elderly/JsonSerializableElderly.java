@@ -25,6 +25,8 @@ public class JsonSerializableElderly implements JsonSerializable<FriendlyLink> {
 
     /**
      * Constructs a {@code JsonSerializableElderly} with the given elderly.
+     *
+     * @param elderly List of Jackson-friendly elderly.
      */
     @JsonCreator
     public JsonSerializableElderly(@JsonProperty("elderly") List<JsonAdaptedElderly> elderly) {
@@ -34,7 +36,7 @@ public class JsonSerializableElderly implements JsonSerializable<FriendlyLink> {
     /**
      * Converts a given {@code ReadOnlyElderly} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableElderly}.
+     * @param source Future changes to this will not affect the created {@code JsonSerializableElderly}.
      */
     public JsonSerializableElderly(ReadOnlyElderly source) {
         serializeEntities(elderly,
@@ -48,7 +50,9 @@ public class JsonSerializableElderly implements JsonSerializable<FriendlyLink> {
     /**
      * Converts this elderly list into the model's {@code Elderly} object and adds it to the application cache.
      *
-     * @throws IllegalValueException if there were any data constraints violated.
+     * @param friendlyLink FriendlyLink cache.
+     * @return FriendlyLink cache updated with this elderly list data.
+     * @throws IllegalValueException If there were any data constraints violated.
      */
     public FriendlyLink toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
         unserializeEntities(friendlyLink);

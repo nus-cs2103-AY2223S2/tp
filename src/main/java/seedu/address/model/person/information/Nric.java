@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Elderly's NRIC in the database.
+ * Represents a Person's NRIC in FriendlyLink.
  * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
 public class Nric {
@@ -17,7 +17,7 @@ public class Nric {
     public final String value;
 
     /**
-     * Constructs an {@code NRIC}.
+     * Constructs an {@code Nric}.
      *
      * @param nric A valid NRIC.
      */
@@ -29,6 +29,9 @@ public class Nric {
 
     /**
      * Returns true if a given string is a valid NRIC.
+     *
+     * @param test Nric to be tested.
+     * @return True if {@code test} is a valid NRIC and false otherwise.
      */
     public static boolean isValidNric(String test) {
         return test.matches(VALIDATION_REGEX);
