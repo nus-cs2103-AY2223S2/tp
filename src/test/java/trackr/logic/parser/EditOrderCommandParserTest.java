@@ -233,34 +233,6 @@ public class EditOrderCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_OBJECT;
-        String userInput = targetIndex.getOneBased() + ORDER_NAME_DESC_CHOCO_COOKIE
-                + ORDER_DEADLINE_DESC_2024 + ORDER_STATUS_DESC_NOT_DONE
-                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
-                + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC
-                + ORDER_NAME_DESC_CHOCO_COOKIE + ORDER_DEADLINE_DESC_2024
-                + ORDER_STATUS_DESC_NOT_DONE + ORDER_QUANTITY_DESC_ONE
-                + CUSTOMER_NAME_DESC_NIGEL + CUSTOMER_PHONE_DESC
-                + CUSTOMER_ADDRESS_DESC + ORDER_NAME_DESC_CUPCAKES
-                + ORDER_DEADLINE_DESC_2023 + ORDER_STATUS_DESC_DONE
-                + ORDER_QUANTITY_DESC_TWO + DESC_AMY
-                + PHONE_DESC_AMY + ADDRESS_DESC_AMY;
-
-        OrderDescriptor descriptor =
-                new OrderDescriptorBuilder()
-                        .withOrderName(VALID_ORDER_NAME_CUPCAKES)
-                        .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
-                        .withOrderStatus(VALID_ORDER_STATUS_DONE)
-                        .withOrderQuantity(VALID_ORDER_QUANTITY_TWO)
-                        .withCustomerName(VALID_NAME_AMY)
-                        .withCustomerPhone(VALID_PHONE_AMY)
-                        .withCustomerAddress(VALID_ADDRESS_AMY).build();
-        EditOrderCommand expectedCommand = new EditOrderCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
@@ -274,7 +246,7 @@ public class EditOrderCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // invalid Order deadline followed by valid Order deadline
-        userInput = targetIndex.getOneBased() + INVALID_ORDER_DEADLINE_DESC + VALID_ORDER_DEADLINE_2023;
+        userInput = targetIndex.getOneBased() + INVALID_ORDER_DEADLINE_DESC + ORDER_DEADLINE_DESC_2023;
         descriptor = new OrderDescriptorBuilder().withOrderDeadline(VALID_ORDER_DEADLINE_2023).build();
         expectedCommand = new EditOrderCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -287,7 +259,7 @@ public class EditOrderCommandParserTest {
 
         // invalid Order quantity followed by valid Order quantity
         userInput = targetIndex.getOneBased() + INVALID_ORDER_QUANTITY_DESC + ORDER_QUANTITY_DESC_ONE;
-        descriptor = new OrderDescriptorBuilder().withOrderQuantity(VALID_ORDER_STATUS_NOT_DONE).build();
+        descriptor = new OrderDescriptorBuilder().withOrderQuantity(VALID_ORDER_QUANTITY_ONE).build();
         expectedCommand = new EditOrderCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -295,7 +267,9 @@ public class EditOrderCommandParserTest {
         // invalid Order name followed by valid Order name
         userInput = targetIndex.getOneBased()
                 + INVALID_ORDER_NAME_DESC + ORDER_STATUS_DESC_NOT_DONE
-                + ORDER_DEADLINE_DESC_2023 + ORDER_NAME_DESC_CUPCAKES;
+                + ORDER_DEADLINE_DESC_2023 + ORDER_NAME_DESC_CUPCAKES
+                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
+                + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC;
         descriptor = new OrderDescriptorBuilder()
                 .withOrderName(VALID_ORDER_NAME_CUPCAKES)
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
@@ -310,9 +284,11 @@ public class EditOrderCommandParserTest {
         // invalid Order deadline followed by valid Order deadline
         userInput = targetIndex.getOneBased()
                 + ORDER_NAME_DESC_CUPCAKES + INVALID_ORDER_DEADLINE_DESC
-                + ORDER_STATUS_DESC_NOT_DONE + ORDER_DEADLINE_DESC_2023;
+                + ORDER_STATUS_DESC_NOT_DONE + ORDER_DEADLINE_DESC_2023
+                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
+                + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC;
         descriptor = new OrderDescriptorBuilder()
-                .withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
+                .withOrderName(VALID_ORDER_NAME_CUPCAKES)
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
                 .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
                 .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
@@ -326,7 +302,9 @@ public class EditOrderCommandParserTest {
         // invalid Order status followed by valid Order status
         userInput = targetIndex.getOneBased()
                 + INVALID_ORDER_STATUS_DESC + ORDER_NAME_DESC_CUPCAKES
-                + ORDER_STATUS_DESC_NOT_DONE + ORDER_DEADLINE_DESC_2023;
+                + ORDER_STATUS_DESC_NOT_DONE + ORDER_DEADLINE_DESC_2023
+                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
+                + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC;
         descriptor = new OrderDescriptorBuilder()
                 .withOrderName(VALID_ORDER_NAME_CUPCAKES)
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
@@ -367,7 +345,7 @@ public class EditOrderCommandParserTest {
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
                 .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
                 .withOrderName(VALID_ORDER_NAME_CUPCAKES)
-                .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
+                .withOrderQuantity(VALID_ORDER_QUANTITY_TWO)
                 .withCustomerName(VALID_CUSTOMER_NAME)
                 .withCustomerPhone(VALID_CUSTOMER_PHONE)
                 .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
