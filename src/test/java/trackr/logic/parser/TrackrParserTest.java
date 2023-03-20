@@ -23,7 +23,6 @@ import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.logic.commands.supplier.ClearSupplierCommand;
 import trackr.logic.commands.supplier.DeleteSupplierCommand;
 import trackr.logic.commands.supplier.EditSupplierCommand;
-import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.logic.commands.supplier.FindSupplierCommand;
 import trackr.logic.commands.supplier.ListSupplierCommand;
 import trackr.logic.commands.task.AddTaskCommand;
@@ -34,14 +33,15 @@ import trackr.logic.commands.task.FindTaskCommand;
 import trackr.logic.commands.task.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.order.Order;
+import trackr.model.person.PersonDescriptor;
 import trackr.model.person.PersonNameContainsKeywordsPredicate;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
-import trackr.testutil.EditSupplierDescriptorBuilder;
 import trackr.testutil.OrderBuilder;
 import trackr.testutil.OrderUtil;
+import trackr.testutil.PersonDescriptorBuilder;
 import trackr.testutil.SupplierBuilder;
 import trackr.testutil.SupplierUtil;
 import trackr.testutil.TaskBuilder;
@@ -167,7 +167,7 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_editSupplier() throws Exception {
         Supplier supplier = new SupplierBuilder().build();
-        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder(supplier).build();
+        PersonDescriptor descriptor = new PersonDescriptorBuilder(supplier).build();
         EditSupplierCommand command = (EditSupplierCommand) parser.parseCommand(EditSupplierCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_OBJECT.getOneBased() + " " + SupplierUtil.getEditSupplierDescriptorDetails(descriptor));
         assertEquals(new EditSupplierCommand(INDEX_FIRST_OBJECT, descriptor), command);

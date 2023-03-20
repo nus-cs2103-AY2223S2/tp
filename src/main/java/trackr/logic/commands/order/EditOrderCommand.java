@@ -1,6 +1,5 @@
 package trackr.logic.commands.order;
 
-import static java.util.Objects.requireNonNull;
 import static trackr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static trackr.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
@@ -8,16 +7,11 @@ import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_ORDERQUANTITY;
 import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
-import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
-import java.util.List;
-
-import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.Command;
-import trackr.logic.commands.CommandResult;
-import trackr.logic.commands.exceptions.CommandException;
-import trackr.model.Model;
+import trackr.logic.commands.EditItemCommand;
+import trackr.model.ModelEnum;
+import trackr.model.item.ItemDescriptor;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderDescriptor;
@@ -32,7 +26,7 @@ import trackr.model.order.customer.CustomerPhone;
 /**
  * Edits the details of an existing order in the order list.
  */
-public class EditOrderCommand extends Command {
+public class EditOrderCommand extends EditItemCommand<Order> {
     public static final String COMMAND_WORD = "edit_order";
     public static final String COMMAND_WORD_SHORTCUT = "edit_o";
 
@@ -51,82 +45,37 @@ public class EditOrderCommand extends Command {
             + PREFIX_NAME + "Birthday Cake"
             + PREFIX_STATUS + "D";
 
-    public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order list.";
-
-    private final Index index;
-    private final OrderDescriptor editOrderDescriptor;
-
     /**
-     * @param index of the order in the filtered order list to edit
+     * @param index               of the order in the filtered order list to edit
      * @param editOrderDescriptor details to edit the order with
      */
 
     public EditOrderCommand(Index index, OrderDescriptor editOrderDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editOrderDescriptor);
-
-        this.index = index;
-        this.editOrderDescriptor = new OrderDescriptor(editOrderDescriptor);
+        super(index, editOrderDescriptor, ModelEnum.ORDER);
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Order> lastShownOrderList = model.getFilteredOrderList();
+    protected Order createEditedItem(Order itemToEdit, ItemDescriptor<? super Order> itemDescriptor) {
+        assert itemToEdit != null;
 
-        if (index.getZeroBased() >= lastShownOrderList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-        }
-
-        Order orderToEdit = lastShownOrderList.get(index.getZeroBased());
-        Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor);
-
-        if (!orderToEdit.isSameItem(editedOrder) && model.hasOrder(editedOrder)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
-        }
-
-        model.setOrder(orderToEdit, editedOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
-    }
-
-
-    private static Order createEditedOrder(Order orderToEdit, OrderDescriptor editOrderDescriptor) {
-        assert orderToEdit != null;
+        OrderDescriptor orderDescriptor = (OrderDescriptor) itemDescriptor;
 
         OrderName updatedOrderName =
-                editOrderDescriptor.getOrderName().orElse(orderToEdit.getOrderName());
+                orderDescriptor.getOrderName().orElse(itemToEdit.getOrderName());
         OrderDeadline updatedOrderDeadline =
-                editOrderDescriptor.getOrderDeadline().orElse(orderToEdit.getOrderDeadline());
+                orderDescriptor.getOrderDeadline().orElse(itemToEdit.getOrderDeadline());
         OrderStatus updatedOrderStatus =
-                editOrderDescriptor.getOrderStatus().orElse(orderToEdit.getOrderStatus());
+                orderDescriptor.getOrderStatus().orElse(itemToEdit.getOrderStatus());
         OrderQuantity updatedOrderQuantity =
-                editOrderDescriptor.getOrderQuantity().orElse(orderToEdit.getOrderQuantity());
+                orderDescriptor.getOrderQuantity().orElse(itemToEdit.getOrderQuantity());
         CustomerName updatedCustomerName =
-                editOrderDescriptor.getCustomerName().orElse(orderToEdit.getCustomer().getCustomerName());
+                orderDescriptor.getCustomerName().orElse(itemToEdit.getCustomer().getCustomerName());
         CustomerPhone updatedCustomerPhone =
-                editOrderDescriptor.getCustomerPhone().orElse(orderToEdit.getCustomer().getCustomerPhone());
+                orderDescriptor.getCustomerPhone().orElse(itemToEdit.getCustomer().getCustomerPhone());
         CustomerAddress updatedCustomerAddress =
-                editOrderDescriptor.getCustomerAddress().orElse(orderToEdit.getCustomer().getCustomerAddress());
+                orderDescriptor.getCustomerAddress().orElse(itemToEdit.getCustomer().getCustomerAddress());
         Customer updatedCustomer = new Customer(updatedCustomerName, updatedCustomerPhone, updatedCustomerAddress);
 
         return new Order(updatedOrderName, updatedOrderDeadline, updatedOrderStatus,
                 updatedOrderQuantity, updatedCustomer);
-
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if (!(other instanceof EditOrderCommand)) {
-            return false;
-        }
-        EditOrderCommand e = (EditOrderCommand) other;
-        return index.equals(e.index)
-                && editOrderDescriptor.equals(e.editOrderDescriptor);
     }
 }

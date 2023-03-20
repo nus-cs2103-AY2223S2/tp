@@ -13,8 +13,7 @@ import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_DONE;
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showOrderAtIndex;
-import static trackr.logic.commands.order.EditOrderCommand.MESSAGE_DUPLICATE_ORDER;
-import static trackr.logic.commands.order.EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS;
+import static trackr.logic.commands.EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
@@ -27,7 +26,9 @@ import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.logic.commands.order.EditOrderCommand;
+import trackr.logic.commands.supplier.EditSupplierCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.OrderList;
 import trackr.model.SupplierList;
@@ -49,7 +50,9 @@ public class EditOrderCommandTest {
         OrderDescriptor descriptor = new OrderDescriptorBuilder(editedOrder).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.ORDER.toString().toLowerCase(),
+                editedOrder);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -84,7 +87,9 @@ public class EditOrderCommandTest {
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(indexLastOrder, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.ORDER.toString().toLowerCase(),
+                editedOrder);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -99,7 +104,9 @@ public class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT, new OrderDescriptor());
         Order editedOrder = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.ORDER.toString().toLowerCase(),
+                editedOrder);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -117,7 +124,9 @@ public class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT,
                 new OrderDescriptorBuilder().withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES).build());
 
-        String expectedMessage = String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.ORDER.toString().toLowerCase(),
+                editedOrder);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -133,7 +142,9 @@ public class EditOrderCommandTest {
         OrderDescriptor descriptor = new OrderDescriptorBuilder(firstOrder).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_SECOND_OBJECT, descriptor);
 
-        assertCommandFailure(editOrderCommand, model, MESSAGE_DUPLICATE_ORDER);
+        assertCommandFailure(editOrderCommand,
+                model,
+                String.format(EditSupplierCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.ORDER.toString().toLowerCase()));
     }
 
     @Test
@@ -145,7 +156,9 @@ public class EditOrderCommandTest {
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT,
                 new OrderDescriptorBuilder(orderInList).build());
 
-        assertCommandFailure(editOrderCommand, model, MESSAGE_DUPLICATE_ORDER);
+        assertCommandFailure(editOrderCommand,
+                model,
+                String.format(EditSupplierCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.ORDER.toString().toLowerCase()));
     }
 
     @Test

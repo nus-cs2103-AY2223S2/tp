@@ -4,9 +4,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.model.commons.Tag;
 import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonDescriptor;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
@@ -15,23 +15,23 @@ import trackr.model.person.Supplier;
 /**
  * A utility class to help with building EditSupplierDescriptor objects.
  */
-public class EditSupplierDescriptorBuilder {
+public class PersonDescriptorBuilder {
 
-    private EditSupplierDescriptor descriptor;
+    private PersonDescriptor descriptor;
 
-    public EditSupplierDescriptorBuilder() {
-        descriptor = new EditSupplierDescriptor();
+    public PersonDescriptorBuilder() {
+        descriptor = new PersonDescriptor();
     }
 
-    public EditSupplierDescriptorBuilder(EditSupplierDescriptor descriptor) {
-        this.descriptor = new EditSupplierDescriptor(descriptor);
+    public PersonDescriptorBuilder(PersonDescriptor descriptor) {
+        this.descriptor = new PersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditSupplierDescriptor} with fields containing {@code supplier}'s details
      */
-    public EditSupplierDescriptorBuilder(Supplier person) {
-        descriptor = new EditSupplierDescriptor();
+    public PersonDescriptorBuilder(Supplier person) {
+        descriptor = new PersonDescriptor();
         descriptor.setName(person.getPersonName());
         descriptor.setPhone(person.getPersonPhone());
         descriptor.setEmail(person.getPersonEmail());
@@ -42,7 +42,7 @@ public class EditSupplierDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditSupplierDescriptor} that we are building.
      */
-    public EditSupplierDescriptorBuilder withName(String name) {
+    public PersonDescriptorBuilder withName(String name) {
         descriptor.setName(new PersonName(name));
         return this;
     }
@@ -50,7 +50,7 @@ public class EditSupplierDescriptorBuilder {
     /**
      * Sets the {@code Phone} of the {@code EditSupplierDescriptor} that we are building.
      */
-    public EditSupplierDescriptorBuilder withPhone(String phone) {
+    public PersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new PersonPhone(phone));
         return this;
     }
@@ -58,7 +58,7 @@ public class EditSupplierDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditSupplierDescriptor} that we are building.
      */
-    public EditSupplierDescriptorBuilder withEmail(String email) {
+    public PersonDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new PersonEmail(email));
         return this;
     }
@@ -66,7 +66,7 @@ public class EditSupplierDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditSupplierDescriptor} that we are building.
      */
-    public EditSupplierDescriptorBuilder withAddress(String address) {
+    public PersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new PersonAddress(address));
         return this;
     }
@@ -75,13 +75,13 @@ public class EditSupplierDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditSupplierDescriptor}
      * that we are building.
      */
-    public EditSupplierDescriptorBuilder withTags(String... tags) {
+    public PersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }
 
-    public EditSupplierDescriptor build() {
+    public PersonDescriptor build() {
         return descriptor;
     }
 }

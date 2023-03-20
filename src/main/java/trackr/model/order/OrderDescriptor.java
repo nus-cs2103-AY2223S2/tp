@@ -3,6 +3,7 @@ package trackr.model.order;
 import java.util.Optional;
 
 import trackr.commons.util.CollectionUtil;
+import trackr.model.item.ItemDescriptor;
 import trackr.model.order.customer.CustomerAddress;
 import trackr.model.order.customer.CustomerName;
 import trackr.model.order.customer.CustomerPhone;
@@ -10,7 +11,7 @@ import trackr.model.order.customer.CustomerPhone;
 /**
  * Stores the details of an order. Each non-empty field value will replace the corresponding field value of the order.
  */
-public class OrderDescriptor {
+public class OrderDescriptor implements ItemDescriptor<Order> {
     private OrderName orderName;
     private OrderDeadline orderDeadline;
     private OrderQuantity orderQuantity;

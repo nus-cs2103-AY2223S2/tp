@@ -15,13 +15,13 @@ import java.util.Set;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.EditSupplierCommand;
-import trackr.logic.commands.supplier.EditSupplierCommand.EditSupplierDescriptor;
 import trackr.logic.parser.ArgumentMultimap;
 import trackr.logic.parser.ArgumentTokenizer;
 import trackr.logic.parser.Parser;
 import trackr.logic.parser.ParserUtil;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.commons.Tag;
+import trackr.model.person.PersonDescriptor;
 
 /**
  * Parses input arguments and creates a new EditSupplierCommand object
@@ -47,7 +47,7 @@ public class EditSupplierCommandParser implements Parser<EditSupplierCommand> {
                 EditSupplierCommand.MESSAGE_USAGE), pe);
         }
 
-        EditSupplierDescriptor editSupplierDescriptor = new EditSupplierDescriptor();
+        PersonDescriptor editSupplierDescriptor = new PersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editSupplierDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
