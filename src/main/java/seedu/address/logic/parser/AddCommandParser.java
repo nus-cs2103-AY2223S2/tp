@@ -8,10 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLectureCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.AddVideoCommand;
+import seedu.address.logic.commands.add.AddCommand;
+import seedu.address.logic.commands.add.AddLectureCommand;
+import seedu.address.logic.commands.add.AddModuleCommand;
+import seedu.address.logic.commands.add.AddVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
@@ -22,7 +22,7 @@ import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
 /**
- * Parses input arguments and creates a new {@code AddCommand} object
+ * Parses input arguments and creates a new {@code AddCommand} object.
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
@@ -52,22 +52,6 @@ public class AddCommandParser implements Parser<AddCommand> {
                 && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
     }
 
-    private boolean isAddLecture(ArgumentMultimap argMultimap) {
-        return !argMultimap.getPreamble().isEmpty()
-                && argMultimap.getValue(PREFIX_MODULE).isPresent()
-                && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
-    }
-
-    private boolean isAddVideo(ArgumentMultimap argMultimap) {
-        return !argMultimap.getPreamble().isEmpty()
-                && argMultimap.getValue(PREFIX_MODULE).isPresent()
-                && argMultimap.getValue(PREFIX_LECTURE).isPresent();
-    }
-
-    private ParseException createInvalidCommandFormatException() {
-        return new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-    }
-
     private AddCommand parseAddModuleCommand(ArgumentMultimap argMultimap) throws ParseException {
         String moduleCodeStr = argMultimap.getPreamble();
         String moduleNameStr = argMultimap.getValue(PREFIX_NAME).orElse("");
@@ -78,6 +62,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Module module = new Module(moduleCode, moduleName, new HashSet<>(), new ArrayList<>());
 
         return new AddModuleCommand(module);
+    }
+
+    private boolean isAddLecture(ArgumentMultimap argMultimap) {
+        return !argMultimap.getPreamble().isEmpty()
+                && argMultimap.getValue(PREFIX_MODULE).isPresent()
+                && argMultimap.getValue(PREFIX_LECTURE).isEmpty();
     }
 
     private AddCommand parseAddLectureCommand(ArgumentMultimap argMultimap) throws ParseException {
@@ -92,8 +82,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddLectureCommand(moduleCode, lecture);
     }
 
-    private AddCommand parseAddVideoCommand(ArgumentMultimap argMultimap) throws ParseException {
+    private boolean isAddVideo(ArgumentMultimap argMultimap) {
+        return !argMultimap.getPreamble().isEmpty()
+                && argMultimap.getValue(PREFIX_MODULE).isPresent()
+                && argMultimap.getValue(PREFIX_LECTURE).isPresent();
+    }
 
+    private AddCommand parseAddVideoCommand(ArgumentMultimap argMultimap) throws ParseException {
         String moduleCodeStr = argMultimap.getValue(PREFIX_MODULE).get();
         String lectureNameStr = argMultimap.getValue(PREFIX_LECTURE).get();
         String videoNameStr = argMultimap.getPreamble();
@@ -105,6 +100,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Video video = new Video(videoName, false, new HashSet<>());
 
         return new AddVideoCommand(moduleCode, lectureName, video);
+    }
+
+    private ParseException createInvalidCommandFormatException() {
+        return new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 
 }
