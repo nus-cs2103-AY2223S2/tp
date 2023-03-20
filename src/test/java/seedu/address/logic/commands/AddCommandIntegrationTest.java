@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutee.Tutee;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.tutee.TuteeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -27,7 +27,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Tutee validTutee = new PersonBuilder().build();
+        Tutee validTutee = new TuteeBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTuteeManagingSystem(), new UserPrefs());
         expectedModel.addTutee(validTutee);

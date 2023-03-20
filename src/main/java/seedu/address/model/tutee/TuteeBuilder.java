@@ -19,7 +19,7 @@ import seedu.address.model.tutee.fields.Subject;
  * Builder class for {@link Tutee}
  */
 public class TuteeBuilder {
-    // Identity fields
+  // Identity fields
   private Name name;
   private Phone phone;
   private Email email;
@@ -36,64 +36,69 @@ public class TuteeBuilder {
 
   public static TuteeBuilder fromExistingTutee(Tutee tutee) {
     return new TuteeBuilder()
-      .setName(tutee.getName())
-      .setPhone(tutee.getPhone())
-      .setEmail(tutee.getEmail())
-      .setAddress(tutee.getAddress())
-      .setAttendance(tutee.getAttendance())
-      .setRemark(tutee.getRemark())
-      .setSubject(tutee.getSubject())
-      .setSchedule(tutee.getSchedule())
-      .setStartTime(tutee.getStartTime())
-      .setEndTime(tutee.getEndTime())
+      .withName(tutee.getName())
+      .withPhone(tutee.getPhone())
+      .withEmail(tutee.getEmail())
+      .withAddress(tutee.getAddress())
+      .withAttendance(tutee.getAttendance())
+      .withRemark(tutee.getRemark())
+      .withSubject(tutee.getSubject())
+      .withSchedule(tutee.getSchedule())
+      .withStartTime(tutee.getStartTime())
+      .withEndTime(tutee.getEndTime())
       // Need to copy, otherwise modifications to 1 tutee's tags
       // could affect the another's
-      .setTags(Set.copyOf(tutee.getTags()));
+      .withTags(Set.copyOf(tutee.getTags()));
   }
 
-  public TuteeBuilder setEmail(Email email) {
+  public TuteeBuilder withEmail(Email email) {
     this.email = email;
     return this;
   }
-  public TuteeBuilder setPhone(Phone phone) {
+  public TuteeBuilder withPhone(Phone phone) {
     this.phone = phone;
     return this;
   }
-  public TuteeBuilder setName(Name name) {
+  public TuteeBuilder withName(Name name) {
     this.name = name;
     return this;
   }
-  public TuteeBuilder setAddress(Address address) {
+  public TuteeBuilder withAddress(Address address) {
     this.address = address;
     return this;
   }
-  public TuteeBuilder setRemark(Remark remark) {
+  public TuteeBuilder withRemark(Remark remark) {
     this.remark = remark;
     return this;
   }
-  public TuteeBuilder setSubject(Subject subject) {
+  public TuteeBuilder withSubject(Subject subject) {
     this.subject = subject;
     return this;
   }
-  public TuteeBuilder setSchedule(Schedule schedule) {
+  public TuteeBuilder withSchedule(Schedule schedule) {
     this.schedule = schedule;
     return this;
   }
-  public TuteeBuilder setStartTime(StartTime startTime) {
+  public TuteeBuilder withStartTime(StartTime startTime) {
     this.startTime = startTime;
     return this;
   }
-  public TuteeBuilder setEndTime(EndTime endTime) {
+  public TuteeBuilder withEndTime(EndTime endTime) {
     this.endTime = endTime;
     return this;
   }
 
-  public TuteeBuilder setTags(Set<Tag> tags) {
+  public TuteeBuilder withTags(Set<Tag> tags) {
     this.tags = tags;
     return this;
   }
 
-  public TuteeBuilder setAttendance(Attendance attendance) {
+  public TuteeBuilder withTags(Tag ...tags) {
+    this.tags = Set.of(tags);
+    return this;
+  }
+
+  public TuteeBuilder withAttendance(Attendance attendance) {
     this.attendance = attendance;
     return this;
   }

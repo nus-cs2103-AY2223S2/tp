@@ -16,14 +16,14 @@ import seedu.address.model.tutee.fields.Email;
 import seedu.address.model.tutee.fields.Name;
 import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TuteeTestBuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Tutee expectedTutee = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Tutee expectedTutee = new TuteeTestBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -51,7 +51,7 @@ public class AddCommandParserTest {
                 + STARTTIME_DESC_BOB + ENDTIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTutee));
 
         // multiple tags - all accepted
-        Tutee expectedTuteeMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Tutee expectedTuteeMultipleTags = new TuteeTestBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + SUBJECT_DESC_BOB + SCHEDULE_DESC_BOB + STARTTIME_DESC_BOB + ENDTIME_DESC_BOB
@@ -61,7 +61,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Tutee expectedTutee = new PersonBuilder(AMY).withTags().build();
+        Tutee expectedTutee = new TuteeTestBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + SUBJECT_DESC_AMY
                         + SCHEDULE_DESC_AMY + STARTTIME_DESC_AMY + ENDTIME_DESC_AMY,
                 new AddCommand(expectedTutee));

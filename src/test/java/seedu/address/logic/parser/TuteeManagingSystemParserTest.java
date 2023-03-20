@@ -26,7 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.fields.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TuteeTestBuilder;
 import seedu.address.testutil.PersonUtil;
 
 public class TuteeManagingSystemParserTest {
@@ -35,7 +35,7 @@ public class TuteeManagingSystemParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Tutee tutee = new PersonBuilder().build();
+        Tutee tutee = new TuteeTestBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(tutee));
         assertEquals(new AddCommand(tutee), command);
     }
@@ -55,7 +55,7 @@ public class TuteeManagingSystemParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Tutee tutee = new PersonBuilder().build();
+        Tutee tutee = new TuteeTestBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(tutee).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));

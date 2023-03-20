@@ -21,7 +21,7 @@ import seedu.address.model.ReadOnlyTuteeManagingSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.Tutee;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TuteeTestBuilder;
 
 public class AddCommandTest {
 
@@ -33,7 +33,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Tutee validTutee = new PersonBuilder().build();
+        Tutee validTutee = new TuteeTestBuilder().build();
 
         CommandResult commandResult = new AddCommand(validTutee).execute(modelStub);
 
@@ -43,7 +43,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Tutee validTutee = new PersonBuilder().build();
+        Tutee validTutee = new TuteeTestBuilder().build();
         AddCommand addCommand = new AddCommand(validTutee);
         ModelStub modelStub = new ModelStubWithPerson(validTutee);
 
@@ -52,8 +52,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Tutee alice = new PersonBuilder().withName("Alice").build();
-        Tutee bob = new PersonBuilder().withName("Bob").build();
+        Tutee alice = new TuteeTestBuilder().withName("Alice").build();
+        Tutee bob = new TuteeTestBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
