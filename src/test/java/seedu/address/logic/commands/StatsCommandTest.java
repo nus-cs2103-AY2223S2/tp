@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TestUtil.getElderly;
 import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
@@ -75,6 +74,5 @@ public class StatsCommandTest {
         String expectedMessage = summary.toString();
 
         assertCommandSuccess(new StatsCommand(), model, expectedMessage, expectedModel);
-
     }
 }

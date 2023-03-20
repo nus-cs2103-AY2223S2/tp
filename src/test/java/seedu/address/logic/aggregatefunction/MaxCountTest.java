@@ -3,7 +3,6 @@ package seedu.address.logic.aggregatefunction;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,7 @@ public class MaxCountTest {
     private static final String SAMPLE_DESCRIPTION = "sample description";
 
     @Test
-    public void getResult_emptyList_Returns0() {
+    public void getResult_emptyList_returns0() {
         MaxCount<Integer, Integer> maxCount = new MaxCount<>(
                 new ArrayList<>(), SAMPLE_DESCRIPTION, num -> num);
         assertEquals(maxCount.getResult(), "0");
