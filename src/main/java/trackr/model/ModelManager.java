@@ -248,11 +248,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteSupplier(Supplier target) {
-        supplierList.removeItem(target);
-    }
-
-    @Override
     public void setSupplier(Supplier target, Supplier editedSupplier) {
         requireAllNonNull(target, editedSupplier);
 
@@ -289,11 +284,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(Task target) {
-        taskList.removeItem(target);
-    }
-
-    @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
@@ -327,11 +317,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyOrderList getOrderList() {
         return orderList;
-    }
-
-    @Override
-    public void deleteOrder(Order target) {
-        orderList.removeItem(target);
     }
 
     @Override

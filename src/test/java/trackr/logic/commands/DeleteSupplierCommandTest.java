@@ -42,7 +42,7 @@ public class DeleteSupplierCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
-        expectedModel.deleteSupplier(supplierToDelete);
+        expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);
     }
@@ -68,7 +68,7 @@ public class DeleteSupplierCommandTest {
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
-        expectedModel.deleteSupplier(supplierToDelete);
+        expectedModel.deleteItem(supplierToDelete, ModelEnum.SUPPLIER);
         showNoSupplier(expectedModel);
 
         assertCommandSuccess(deleteSupplierCommand, model, expectedMessage, expectedModel);

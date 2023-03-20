@@ -119,8 +119,8 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, null, "D");
         FindOrderCommand command = new FindOrderCommand(predicate);
-        expectedModel.deleteOrder(VANILLA_CAKE);
-        model.deleteOrder(VANILLA_CAKE);
+        expectedModel.deleteItem(VANILLA_CAKE, ModelEnum.ORDER);
+        model.deleteItem(VANILLA_CAKE, ModelEnum.ORDER);
         expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredOrderList());

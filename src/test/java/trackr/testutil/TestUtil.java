@@ -151,11 +151,6 @@ public class TestUtil {
         }
 
         @Override
-        public void deleteSupplier(Supplier target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setSupplier(Supplier target, Supplier editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -181,11 +176,6 @@ public class TestUtil {
         }
 
         @Override
-        public void deleteTask(Task target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
@@ -207,11 +197,6 @@ public class TestUtil {
 
         @Override
         public ReadOnlyOrderList getOrderList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteOrder(Order target) {
             throw new AssertionError("This method should not be called.");
         }
 

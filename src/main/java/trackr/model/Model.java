@@ -84,12 +84,6 @@ public interface Model {
     ReadOnlySupplierList getSupplierList();
 
     /**
-     * Deletes the given supplier.
-     * The supplier must exist in the address book.
-     */
-    void deleteSupplier(Supplier target);
-
-    /**
      * Replaces the given supplier {@code target} with {@code editedSupplier}.
      * {@code target} must exist in the supplier list.
      * The person identity of {@code editedSupplier} must not be the same
@@ -122,12 +116,6 @@ public interface Model {
     ReadOnlyTaskList getTaskList();
 
     /**
-     * Deletes the given task.
-     * The task must exist in the task list.
-     */
-    void deleteTask(Task target);
-
-    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
@@ -157,12 +145,6 @@ public interface Model {
      * Returns the OrderList
      */
     ReadOnlyOrderList getOrderList();
-
-    /**
-     * Deletes the given order.
-     * The order must exist in the order list.
-     */
-    void deleteOrder(Order target);
 
     /**
      * Replaces the given order {@code target} with {@code editedOrder}.
