@@ -16,7 +16,7 @@ public class ProjectRepoHost {
      * */
     public static final String MESSAGE_CONSTRAINTS =
         "Repository name may only contain alphanumeric characters or single hyphens, cannot begin or end with a "
-            + "hyphen, and may not exceed 39 characters.";
+            + "hyphen, and may not exceed 39 characters";
     /**
      * May only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen. Maximum 39
      * characters. May be empty.

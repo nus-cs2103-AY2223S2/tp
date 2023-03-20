@@ -7,7 +7,6 @@ import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.socket.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.socket.testutil.TypicalPersons.getTypicalSocket;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +16,8 @@ import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.UserPrefs;
 import seedu.socket.model.person.Person;
+import seedu.socket.testutil.TypicalPersons;
+import seedu.socket.testutil.TypicalProjects;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,7 +25,8 @@ import seedu.socket.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
+    private Model model = new ModelManager(TypicalPersons.getTypicalSocket(), new UserPrefs());
+    private Model modelWithProjects = new ModelManager(TypicalProjects.getTypicalSocket(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,6 +39,19 @@ public class DeleteCommandTest {
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredListPersonInProject_success() {
+        Person personToDelete = modelWithProjects.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+
+        ModelManager expectedModel = new ModelManager(modelWithProjects.getSocket(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+
+        assertCommandSuccess(deleteCommand, modelWithProjects, expectedMessage, expectedModel);
     }
 
     @Test
