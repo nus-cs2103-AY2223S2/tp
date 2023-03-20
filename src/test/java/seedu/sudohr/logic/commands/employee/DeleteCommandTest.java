@@ -6,20 +6,19 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
 import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES;
-import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
+import static seedu.sudohr.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-
-import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.Messages;
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.testutil.TypicalEmployees;
 
 
 /**
@@ -31,9 +30,9 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalSudoHr(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIdUnfilteredList_success() {
         Employee employeeToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
@@ -44,19 +43,18 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEmployeeList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    public void execute_invalidIdUnfilteredList_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalEmployees.ID_NOT_EXIST);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIdFilteredList_success() {
         showEmployeeAtIndex(model, INDEX_FIRST_PERSON);
 
         Employee employeeToDelete = model.getFilteredEmployeeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
@@ -68,35 +66,18 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showEmployeeAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of sudohr book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSudoHr().getEmployeeList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexCascadeToDepartment_success() {
+    public void execute_validIdCascadeToDepartment_success() {
 
         Employee employeeToDelete = EMPLOYEE_IN_HUMAN_RESOURCES;
 
         assertTrue(employeeToDelete != null);
-        int indexOfEmployeeToDelete = IntStream.range(0, model.getFilteredEmployeeList().size())
-                .filter(i -> model.getFilteredEmployeeList().get(i).equals(employeeToDelete))
-                .findFirst()
-                .getAsInt();
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
         Model expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
         expectedModel.deleteEmployee(employeeToDelete);
 
-        DeleteCommand deleteCommand = new DeleteCommand(Index.fromZeroBased(indexOfEmployeeToDelete));
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
 
         // normal deletion success
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -114,20 +95,18 @@ public class DeleteCommandTest {
                 model.getFilteredDepartmentList().stream()
                         .anyMatch(d -> d.getEmployees().contains(employeeToDelete))
         );
-
-
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(ID_FIRST_PERSON);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(ID_SECOND_PERSON);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(ID_FIRST_PERSON);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

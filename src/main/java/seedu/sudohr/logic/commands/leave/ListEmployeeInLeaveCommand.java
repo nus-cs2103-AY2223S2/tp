@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands.leavecommands;
+package seedu.sudohr.logic.commands.leave;
 
 import static java.util.Objects.requireNonNull;
 
@@ -16,7 +16,7 @@ import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
 
 /**
  * Lists all employees attending a leave identified using it's displayed index
- * in sudohr book.
+ * in SudoHR.
  */
 
 public class ListEmployeeInLeaveCommand extends Command {

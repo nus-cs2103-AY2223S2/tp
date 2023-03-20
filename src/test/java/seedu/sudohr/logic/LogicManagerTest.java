@@ -1,7 +1,8 @@
 package seedu.sudohr.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND;
+import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.sudohr.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.sudohr.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.employee.AddCommand;
+import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
@@ -58,9 +60,23 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_invalidAddCommandFormat_throwsParseException() {
+        String invalidCommand = "add id/3 n/missing_fields p/2345";
+        assertParseException(invalidCommand,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void execute_invalidDeleteCommandFormat_throwsParseException() {
+        String invalidCommand = "delete 9";
+        assertParseException(invalidCommand,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        String deleteCommand = "delete eid/1";
+        assertCommandException(deleteCommand, MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND);
     }
 
     @Test
