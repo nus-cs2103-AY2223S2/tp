@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,7 +16,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -27,6 +30,20 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private static final Map<String, CommandSupplier> commandMap = Map.ofEntries(
+        Map.entry(AddCommand.COMMAND_WORD, new AddCommandParser()),
+        Map.entry(ClearCommand.COMMAND_WORD, args -> new ClearCommand()),
+        Map.entry(DeleteCommand.COMMAND_WORD, new DeleteCommandParser()),
+        Map.entry(EditCommand.COMMAND_WORD, new EditCommandParser()),
+        Map.entry(FindCommand.COMMAND_WORD, new FindCommandParser()),
+        Map.entry(ExitCommand.COMMAND_WORD, args -> new ExitCommand()),
+        Map.entry(HelpCommand.COMMAND_WORD, args -> new HelpCommand()),
+        Map.entry(ListCommand.COMMAND_WORD, args -> new ListCommand()),
+        Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
+        Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
+        Map.entry(UnmarkCommand.COMMAND_WORD, new MarkCommandParser())
+    );    
 
     /**
      * Parses user input into command for execution.
@@ -43,36 +60,10 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        default:
+        if (commandMap.containsKey(commandWord)) {
+            return commandMap.get(commandWord).parse(arguments);
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
