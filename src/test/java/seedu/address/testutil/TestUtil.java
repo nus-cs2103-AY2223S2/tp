@@ -35,21 +35,21 @@ public class TestUtil {
     /**
      * Returns the middle index of the expense in the {@code model}'s expense list.
      */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredExpenseList().size() / 2);
+    public static Index getMidIndex(Model dataModel) {
+        return Index.fromOneBased(dataModel.getFilteredExpenseList().size() / 2);
     }
 
     /**
      * Returns the last index of the expense in the {@code model}'s expense list.
      */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredExpenseList().size());
+    public static Index getLastIndex(Model dataModel) {
+        return Index.fromOneBased(dataModel.getFilteredExpenseList().size());
     }
 
     /**
      * Returns the expense in the {@code model}'s expense list at {@code index}.
      */
-    public static Expense getPerson(Model model, Index index) {
-        return model.getFilteredExpenseList().get(index.getZeroBased());
+    public static Expense getPerson(Model dataModel, Index index) {
+        return dataModel.getFilteredExpenseList().get(index.getZeroBased());
     }
 }

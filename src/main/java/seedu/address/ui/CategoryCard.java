@@ -28,13 +28,12 @@ public class CategoryCard extends UiPart<Region> {
     /**
      * Creates a {@code CategoryCard} with the given {@code Category} and index to display.
      */
-    public CategoryCard(Category category, int displayedIndex) {
+    public CategoryCard(Category category, int displayedIndex, int associatedExpenseCount) {
         super(FXML);
         this.category = category;
         id.setText(displayedIndex + ". ");
         categoryName.setText(category.getCategoryName());
-        //TODO add a function to count expenses under a specific category
-        expenseCount.setText("3");
+        expenseCount.setText(String.valueOf(associatedExpenseCount));
     }
 
     @Override

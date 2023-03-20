@@ -1,8 +1,15 @@
 package seedu.address.ui;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import seedu.address.model.category.Category;
+import seedu.address.model.expense.Expense;
 
 /**
  * A UI component that displays information of a {@code Expense} or {@code Category}
@@ -11,6 +18,9 @@ import javafx.scene.layout.Region;
 public class ResultsDetails extends UiPart<Region> {
 
     private static final String FXML = "ResultsDetails.fxml";
+    IntegerProperty count;
+    ObservableList<Expense> expenseList;
+    ObservableList<Category> categoryList;
 
     @FXML
     private Label resultsCount;
@@ -20,30 +30,38 @@ public class ResultsDetails extends UiPart<Region> {
     private Label dateLabel;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ResultDetails} with the given details of the data in the Expense or Category list
      */
-    public ResultsDetails(int numResults, String timeFilter, boolean isExpense) {
+    public ResultsDetails(ObservableList<Expense> expenseList, ObservableList<Category> categoryList) {
         super(FXML);
-        resultsCount.setText(Integer.toString(numResults));
+        this.count = new SimpleIntegerProperty();
+        this.expenseList = expenseList;
+        this.categoryList = categoryList;
+        bindResultsCount(true);
         dateLabel.setText("Date:");
-        if (isExpense) {
-            dateFilter.setText(timeFilter);
-        } else {
-            dateFilter.setText("");
-            dateLabel.setText("");
-        }
+        dateFilter.setText("All");
     }
 
-    public void setDetails(int numResults, String timeFilter, boolean isExpense) {
-        resultsCount.setText(Integer.toString(numResults));
-        dateFilter.setText(timeFilter);
-        if (isExpense) {
+    public void switchDetails(String timeFilter, boolean isExpenseDisplay) {
+        bindResultsCount(isExpenseDisplay);
+        if (isExpenseDisplay) {
             dateFilter.setText(timeFilter);
             dateLabel.setText("Date:");
         } else {
             dateFilter.setText("");
             dateLabel.setText("");
         }
+    }
+
+    private void bindResultsCount(boolean isExpenseDisplay) {
+        if (isExpenseDisplay) {
+            IntegerBinding expenseListSizeBinding = Bindings.size(expenseList);
+            count.bind(expenseListSizeBinding);
+        } else {
+            IntegerBinding categoryListSizeBinding = Bindings.size(categoryList);
+            count.bind(categoryListSizeBinding);
+        }
+        resultsCount.textProperty().bind(count.asString());
     }
 
     @Override

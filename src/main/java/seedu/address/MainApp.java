@@ -15,12 +15,8 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.ExpenseTracker;
+import seedu.address.model.*;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyExpenseTracker;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.storage.ExpenseTrackerStorage;
 import seedu.address.storage.JsonExpenseTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -42,7 +38,8 @@ public class MainApp extends Application {
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
-    protected Model model;
+    protected Model dataModel;
+    protected AnalyticModel analyticModel;
     protected Config config;
 
     @Override
@@ -61,20 +58,21 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        dataModel = initModelManager(storage, userPrefs);
+        analyticModel = initAnalyticModelManager(storage);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(dataModel, analyticModel, storage);
 
         ui = new UiManager(logic);
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address
-     * book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if
-     * {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading
-     * {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s expense
+     * tracker and {@code userPrefs}. <br>
+     * The data from the sample expense tracker will be used instead if
+     * {@code storage}'s expense tracker is not found,
+     * or an empty expense tracker will be used instead if errors occur when reading
+     * {@code storage}'s expense tracker.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyExpenseTracker> expenseTrackerOptional;
@@ -99,6 +97,38 @@ public class MainApp extends Application {
         }
 
         return new ModelManager(initialData, userPrefs);
+    }
+
+    /**
+     * Returns a {@code AnalyticModelManager} with the data from {@code storage}'s expense tracker
+     * The data from the sample expense tracker will be used instead if
+     * {@code storage}'s expense tracker is not found,
+     * or an empty expense tracker will be used instead if errors occur when reading
+     * {@code storage}'s expense tracker.
+     */
+    private AnalyticModel initAnalyticModelManager(Storage storage) {
+        Optional<ReadOnlyExpenseTracker> expenseTrackerOptional;
+        ReadOnlyExpenseTracker initialExpenseTrackerData;
+        try {
+            expenseTrackerOptional = storage.readExpenseTracker();
+            if (expenseTrackerOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample ExpenseTracker");
+            }
+            // TODO update sample data
+            initialExpenseTrackerData = expenseTrackerOptional.get();
+            // initialData =
+            // addressBookOptional.orElseGet(SampleDataUtil::getSampleCategoryData);
+            // initialData =
+            // addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ExpenseTracker");
+            initialExpenseTrackerData = new ExpenseTracker();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ExpenseTracker");
+            initialExpenseTrackerData = new ExpenseTracker();
+        }
+
+        return new AnalyticModelManager(initialExpenseTrackerData);
     }
 
     private void initLogging(Config config) {
@@ -186,7 +216,7 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Expense Tracker ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            storage.saveUserPrefs(dataModel.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

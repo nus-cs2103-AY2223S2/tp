@@ -1,70 +1,118 @@
 {
-  "categories": [
-    {
-      "categoryName": "a",
-      "summary": "ijifnbinbsg"
-    },
-    {
-      "categoryName": "b",
-      "summary": "sjibtsbgr"
-    },
-    {
-      "categoryName": "fbjsgbg",
-      "summary": ""
-    },
-    {
-      "categoryName": "sbfad",
-      "summary": ""
-    },
-    {
-      "categoryName": "agbrsbb",
-      "summary": ""
-    },
-    {
-      "categoryName": "argaebsb",
-      "summary": ""
-    },
-    {
-      "categoryName": "new cat",
-      "summary": "safag"
+  "categories" : [ {
+    "categoryName" : "b",
+    "summary" : "sjibtsbgr"
+  }, {
+    "categoryName" : "fbjsgbg",
+    "summary" : ""
+  }, {
+    "categoryName" : "sbfad",
+    "summary" : ""
+  }, {
+    "categoryName" : "agbrsbb",
+    "summary" : ""
+  }, {
+    "categoryName" : "argaebsb",
+    "summary" : ""
+  }, {
+    "categoryName" : "new cat",
+    "summary" : "safag"
+  }, {
+    "categoryName" : "wfvfde",
+    "summary" : ""
+  }, {
+    "categoryName" : "ev",
+    "summary" : ""
+  }, {
+    "categoryName" : "save",
+    "summary" : ""
+  }, {
+    "categoryName" : "ewffegegergreg",
+    "summary" : ""
+  }, {
+    "categoryName" : "ewfwf",
+    "summary" : ""
+  }, {
+    "categoryName" : "hello",
+    "summary" : "wfijeer"
+  }, {
+    "categoryName" : "wfgegojgeq",
+    "summary" : "fabebg"
+  }, {
+    "categoryName" : "sfwregeb",
+    "summary" : "fefbebeb"
+  } ],
+  "expenses" : [ {
+    "name" : "argaeb",
+    "amount" : "4.5",
+    "date" : "2023-03-15",
+    "category" : {
+      "categoryName" : "agbrsbb",
+      "summary" : ""
     }
-  ],
-  "expenses": [
-    {
-      "name": "fgsgbsgns",
-      "amount": "4.8",
-      "date": "2023-03-15",
-      "category": {
-        "categoryName": "fbjsgbg",
-        "summary": ""
-      }
-    },
-    {
-      "name": "adfbb",
-      "amount": "4.5",
-      "date": "2023-03-15",
-      "category": {
-        "categoryName": "sbfad",
-        "summary": ""
-      }
-    },
-    {
-      "name": "argaeb",
-      "amount": "4.5",
-      "date": "2023-03-15",
-      "category": {
-        "categoryName": "agbrsbb",
-        "summary": ""
-      }
-    },
-    {
-      "name": "sadfvbq",
-      "amount": "6.79",
-      "date": "2023-03-15",
-      "category": {
-        "categoryName": "argaebsb",
-        "summary": ""
-      }
+  }, {
+    "name" : "sadfvbq",
+    "amount" : "6.79",
+    "date" : "2023-03-15",
+    "category" : {
+      "categoryName" : "argaebsb",
+      "summary" : ""
     }
-  ]
+  }, {
+    "name" : "svv",
+    "amount" : "3.45",
+    "date" : "2023-03-20",
+    "category" : {
+      "categoryName" : "wfvfde",
+      "summary" : ""
+    }
+  }, {
+    "name" : "evev",
+    "amount" : "3945.0",
+    "date" : "2023-03-20",
+    "category" : {
+      "categoryName" : "ev",
+      "summary" : ""
+    }
+  }, {
+    "name" : "sffjbdbfjdbjodjbdjbjodbjo",
+    "amount" : "6.7",
+    "date" : "2023-03-20",
+    "category" : {
+      "categoryName" : "save",
+      "summary" : ""
+    }
+  }, {
+    "name" : "sdfe",
+    "amount" : "455.0",
+    "date" : "2023-03-20",
+    "category" : {
+      "categoryName" : "ewffegegergreg",
+      "summary" : ""
+    }
+  }, {
+    "name" : "dinner with jjames",
+    "amount" : "3.4",
+    "date" : "2023-03-20",
+    "category" : {
+      "categoryName" : "ewfwf",
+      "summary" : ""
+    }
+  }, {
+    "name" : "dvffvfv",
+    "amount" : "4.58",
+    "date" : "2023-03-20",
+    "category" : {
+      "categoryName" : "save",
+      "summary" : ""
+    }
+  }, {
+    "name" : "rebe",
+    "amount" : "345.0",
+    "date" : "2023-02-04",
+    "category" : {
+      "categoryName" : "hello",
+      "summary" : "wfijeer"
+    }
+  } ]
 }

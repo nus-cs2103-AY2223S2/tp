@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,7 +15,7 @@ import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the expense tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,9 +24,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
-
-    private final IntegerProperty expenseListCount = new SimpleIntegerProperty();
-    private final IntegerProperty categoryListCount = new SimpleIntegerProperty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,13 +41,6 @@ public class ModelManager implements Model {
         this(new ExpenseTracker(), new UserPrefs());
     }
 
-    public int getExpenseListCount() {
-        return expenseListCount.get();
-    }
-
-    public void updateExpenseListCount() {
-        expenseListCount.set(filteredExpenses.size());
-    }
 
     // =========== UserPrefs
     // ==================================================================================
@@ -212,21 +200,12 @@ public class ModelManager implements Model {
     public void addExpense(Expense expense) {
         expenseTracker.addExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-        updateExpenseListCount();
     }
 
     @Override
     public void deleteExpense(Expense expense) {
         expenseTracker.removeExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-    }
-
-    /**
-     * Gets a count of the number of expenses in the currently filtered expense list
-     */
-    @Override
-    public int getFilteredExpenseListCount() {
-        return 0;
     }
 
     /**

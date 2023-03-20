@@ -22,7 +22,7 @@
     </VBox>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS">
          <children>
-         <HBox alignment="CENTER_LEFT">
+         <HBox alignment="CENTER_LEFT" prefWidth="200.0">
            <Label fx:id="id" styleClass="cell_label">
              <minWidth>
                <!-- Ensures that the label text is never truncated -->
@@ -34,7 +34,7 @@
            </Label>
            <Label fx:id="categoryName" minWidth="-Infinity" styleClass="cell_label" text="\$categoryName" />
          </HBox>
-            <Region maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Region maxWidth="1.7976931348623157E308" minWidth="20.0" HBox.hgrow="SOMETIMES" />
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0">
                <children>
                <Label fx:id="expenseCount" alignment="CENTER_RIGHT" minWidth="-Infinity" text="\$expenseCount">

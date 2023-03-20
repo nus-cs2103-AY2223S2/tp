@@ -12,6 +12,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ExpenseTrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AnalyticModel;
+import seedu.address.model.AnalyticModelManager;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
@@ -25,7 +27,8 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final Model model;
+    private final Model dataModel;
+    private final AnalyticModel analyticModel;
     private final Storage storage;
     private final ExpenseTrackerParser addressBookParser;
 
@@ -33,8 +36,9 @@ public class LogicManager implements Logic {
      * Constructs a {@code LogicManager} with the given {@code Model} and
      * {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
-        this.model = model;
+    public LogicManager(Model dataModel, AnalyticModel analyticModel, Storage storage) {
+        this.dataModel = dataModel;
+        this.analyticModel = analyticModel;
         this.storage = storage;
         addressBookParser = new ExpenseTrackerParser();
     }
@@ -45,10 +49,10 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(dataModel);
 
         try {
-            storage.saveExpenseTracker(model.getExpenseTracker());
+            storage.saveExpenseTracker(dataModel.getExpenseTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -58,37 +62,37 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyExpenseTracker getAddressBook() {
-        return model.getExpenseTracker();
+        return dataModel.getExpenseTracker();
     }
 
     @Override
     public ObservableList<Category> getFilteredCategoryList() {
-        return model.getFilteredCategoryList();
+        return dataModel.getFilteredCategoryList();
     }
 
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
-        return model.getFilteredExpenseList();
-    }
-
-    @Override
-    public int getExpenseListCount() {
-        return model.getFilteredExpenseListCount();
+        return dataModel.getFilteredExpenseList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getExpenseTrackerFilePath();
+        return dataModel.getExpenseTrackerFilePath();
     }
 
 
     @Override
     public GuiSettings getGuiSettings() {
-        return model.getGuiSettings();
+        return dataModel.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        model.setGuiSettings(guiSettings);
+        dataModel.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public AnalyticModel getAnalyticModel() {
+        return analyticModel;
     }
 }
