@@ -49,6 +49,7 @@ CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 EventListPanel --|> UiPart
 PersonCard --|> UiPart
+EventCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
