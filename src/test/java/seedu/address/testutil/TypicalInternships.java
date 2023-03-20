@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_APPLE;
@@ -8,8 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_APPLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONT;
 
