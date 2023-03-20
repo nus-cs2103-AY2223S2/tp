@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
 
 public class CommandRecommendationEngineTest {
-    CommandRecommendationEngine commandRecommendationEngine = new CommandRecommendationEngine();
+    private final CommandRecommendationEngine commandRecommendationEngine = new CommandRecommendationEngine();
 
     @Test
     public void recommendCommand_null_failure() {
