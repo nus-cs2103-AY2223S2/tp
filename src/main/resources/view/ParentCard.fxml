@@ -52,7 +52,7 @@
             </HBox>
             <HBox>
                 <Text text="Parent/NOK of Students:    " />
-                <FlowPane fx:id="students" style="-fx-text-fill: black;" />
+                <GridPane fx:id="students" style="-fx-text-fill: black;" />
             </HBox>
         </VBox>
       <rowConstraints>
