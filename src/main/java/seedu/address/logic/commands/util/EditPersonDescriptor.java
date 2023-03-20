@@ -2,6 +2,7 @@ package seedu.address.logic.commands.util;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -184,5 +185,11 @@ public class EditPersonDescriptor {
                 && getRegion().equals(e.getRegion())
                 && getTags().equals(e.getTags())
                 && getAvailableDates().equals(e.getAvailableDates());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, email, address, nric,
+                age, region, tags);
     }
 }

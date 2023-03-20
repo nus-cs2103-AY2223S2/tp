@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Objects;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -81,5 +83,10 @@ public class AddElderlyCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddElderlyCommand // instanceof handles nulls
                 && toAdd.equals(((AddElderlyCommand) other).toAdd));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

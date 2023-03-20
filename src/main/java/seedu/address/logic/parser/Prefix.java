@@ -21,11 +21,6 @@ public class Prefix {
     }
 
     @Override
-    public int hashCode() {
-        return prefix == null ? 0 : prefix.hashCode();
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Prefix)) {
             return false;
@@ -36,5 +31,10 @@ public class Prefix {
 
         Prefix otherPrefix = (Prefix) obj;
         return otherPrefix.getPrefix().equals(getPrefix());
+    }
+
+    @Override
+    public int hashCode() {
+        return prefix == null ? 0 : prefix.hashCode();
     }
 }
