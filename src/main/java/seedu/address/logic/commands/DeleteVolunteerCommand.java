@@ -8,6 +8,7 @@ import java.util.Objects;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -38,12 +39,13 @@ public class DeleteVolunteerCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Volunteer volunteerToDelete = model.getVolunteer(targetNric);
-        if (volunteerToDelete == null) {
+        try {
+            Volunteer volunteerToDelete = model.getVolunteer(targetNric);
+            model.deleteVolunteer(volunteerToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete));
+        } catch (VolunteerNotFoundException e) {
             throw new CommandException(MESSAGE_NRIC_NOT_EXIST);
         }
-        model.deleteVolunteer(volunteerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete));
     }
 
     @Override

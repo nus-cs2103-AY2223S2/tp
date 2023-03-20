@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.ElderlyBuilder;
 
 public class UniquePersonListTest {
@@ -24,8 +25,24 @@ public class UniquePersonListTest {
     private final UniquePersonList<Person> uniquePersonList = new UniquePersonList<>();
 
     @Test
+    public void contains_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.contains((Nric) null));
+    }
+
+    @Test
+    public void contains_nricNotInList_returnsFalse() {
+        assertFalse(uniquePersonList.contains(ALICE.getNric()));
+    }
+
+    @Test
+    public void contains_nricInList_returnsTrue() {
+        uniquePersonList.add(ALICE);
+        assertTrue(uniquePersonList.contains(ALICE.getNric()));
+    }
+
+    @Test
     public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.contains((Person) null));
     }
 
     @Test
@@ -125,6 +142,22 @@ public class UniquePersonListTest {
         uniquePersonList.remove(ALICE);
         UniquePersonList<?> expectedUniquePersonList = new UniquePersonList<>();
         assertEquals(expectedUniquePersonList, uniquePersonList);
+    }
+
+    @Test
+    public void get_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.get(null));
+    }
+
+    @Test
+    public void get_personDoesNotExist_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.get(ALICE.getNric()));
+    }
+
+    @Test
+    public void get_existingPerson_retrievesPerson() {
+        uniquePersonList.add(ALICE);
+        assertEquals(ALICE, uniquePersonList.get(ALICE.getNric()));
     }
 
     @Test
