@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import java.util.concurrent.ThreadLocalRandom;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -69,18 +70,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String photo} into a {@code Photo}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code photo} is invalid.
+     * Simulates retriving student photo from NUS backend / database
+     * @return
+     * @throws ParseException
      */
-    public static Photo parsePhoto(String photo) throws ParseException {
-        requireNonNull(photo);
-        String trimmedPhoto = photo.trim();
-        if (!Photo.isValidPhoto(trimmedPhoto)) {
-            throw new ParseException(Photo.MESSAGE_CONSTRAINTS);
-        }
-        return new Photo(trimmedPhoto);
+    public static Photo parsePhoto() throws ParseException {
+        int randomStudentPhotoIndex = ThreadLocalRandom.current().nextInt(1, 15 + 1);
+        String path = "/images/studentProfiles/student_" + randomStudentPhotoIndex + ".png";
+        return new Photo(path);
     }
 
     /**

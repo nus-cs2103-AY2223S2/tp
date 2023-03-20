@@ -36,12 +36,14 @@ public class Photo {
         GuiSettings guiSettings = new GuiSettings();
 
         //If the url is not a valid image, set it to the default image found in GuiSettings
+        /*
         if (!isValidPhoto(photoFilePath)) {
             this.photoFilePath = guiSettings.getPhoto();
         } else {
             this.photoFilePath = photoFilePath;
         }
-
+        */
+        this.photoFilePath = photoFilePath;
         setDefaultDimensions(guiSettings);
     }
 

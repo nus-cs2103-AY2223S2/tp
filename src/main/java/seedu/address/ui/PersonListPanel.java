@@ -58,16 +58,11 @@ public class PersonListPanel extends UiPart<Region> {
                 new SimpleStringProperty(cellData.getValue().getPerformance().toString()));
         remark.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemark().toString()));
 
-        //photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
+        photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
 
         photo.setCellFactory(
                 p -> new PhotoCell()
         );
-
-
-        //to sort
-        //
-        //performance.setSortable(true);
 
         SortedList<Person> sorted = new SortedList<>(personList);
         table.setItems(sorted);
@@ -110,11 +105,15 @@ public class PersonListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(String url, boolean empty) {
             super.updateItem("", empty);
-            imageView.setImage(new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream("/images/studentProfiles/student_1.png"))));
-            imageView.setFitWidth(24);
-            imageView.setFitHeight(23);
-            setGraphic(imageView);
+            Image newImage;
+            if (url != null) {
+                newImage = new Image(Objects.requireNonNull(this.getClass()
+                        .getResourceAsStream(url)));
+                imageView.setImage(newImage);
+                imageView.setFitWidth(24);
+                imageView.setFitHeight(23);
+                setGraphic(imageView);
+            }
         }
     }
 }
