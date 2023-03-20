@@ -27,6 +27,7 @@ public class ClearCommand extends Command {
             return new CommandResult(MESSAGE_NULL);
         }
 
+        model.addAllInternshipToCache(lastShownList);
         model.setInternEase(new AddressBook());
 
         return new CommandResult(MESSAGE_SUCCESS);

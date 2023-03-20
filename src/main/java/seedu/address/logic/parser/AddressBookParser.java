@@ -18,6 +18,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RevertAllCommand;
+import seedu.address.logic.commands.RevertCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -79,6 +81,12 @@ public class AddressBookParser {
 
         case ClearByCommand.COMMAND_WORD:
             return new ClearByCommandParser().parse(arguments);
+
+        case RevertCommand.COMMAND_WORD:
+            return new RevertCommand();
+
+        case RevertAllCommand.COMMAND_WORD:
+            return new RevertAllCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

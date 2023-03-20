@@ -97,6 +97,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds internship applications to the tracker.
+     * The application must not already exist in the tracker.
+     */
+    public void addApplications(List<InternshipApplication> application) {
+        applications.add(application);
+    }
+
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */

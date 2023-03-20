@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<InternshipApplication> filteredInternships;
     private final FilteredList<Person> filteredPersons;
+    private List<InternshipApplication> cachedInternshipList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
+        cachedInternshipList = new ArrayList<>();
     }
 
     public ModelManager() {
@@ -44,7 +48,6 @@ public class ModelManager implements Model {
     }
 
     //=========== UserPrefs ==================================================================================
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
@@ -119,6 +122,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addApplications(List<InternshipApplication> applications) {
+        addressBook.addApplications(applications);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -163,6 +172,35 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public List<InternshipApplication> getCachedInternshipList() {
+        return cachedInternshipList;
+    }
+
+    @Override
+    public InternshipApplication getAndRemoveCachedApplication() {
+        InternshipApplication application = cachedInternshipList.get(cachedInternshipList.size() - 1);
+        cachedInternshipList.remove(application);
+        return application;
+    }
+
+    @Override
+    public void addInternshipToCache(InternshipApplication application) {
+        cachedInternshipList.remove(application);
+        cachedInternshipList.add(application);
+    }
+
+    @Override
+    public void addAllInternshipToCache(List<InternshipApplication> application) {
+        cachedInternshipList.removeAll(application);
+        cachedInternshipList.addAll(application);
+    }
+
+    @Override
+    public void setEmptyInternshipCacheList() {
+        cachedInternshipList = new ArrayList<>();
     }
 
     @Override
