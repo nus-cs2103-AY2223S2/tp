@@ -41,6 +41,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code number} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Integer parseDaysNumber(String number) throws ParseException {
+        requireNonNull(number);
+        String trimmedInteger = number.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedInteger)) {
+            throw new ParseException(MESSAGE_INVALID_DAYS_NUMBER);
+        }
+        return Integer.parseInt(trimmedInteger);
+
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -187,18 +202,4 @@ public class ParserUtil {
         return tagSet;
     }
 
-    /**
-     * Parses {@code number} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
-     */
-    public static Integer parseDaysNumber(String number) throws ParseException {
-        requireNonNull(number);
-        String trimmedInteger = number.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedInteger)) {
-            throw new ParseException(MESSAGE_INVALID_DAYS_NUMBER);
-        }
-        return Integer.parseInt(trimmedInteger);
-
-    }
 }
