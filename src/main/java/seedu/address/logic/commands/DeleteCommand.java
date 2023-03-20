@@ -47,6 +47,7 @@ public class DeleteCommand extends Command {
         InternshipApplication internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         model.deleteInternship(internshipToDelete);
+        model.addInternshipToCache(internshipToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, internshipToDelete));
     }

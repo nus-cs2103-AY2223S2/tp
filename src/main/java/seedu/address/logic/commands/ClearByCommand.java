@@ -99,6 +99,7 @@ public class ClearByCommand extends Command {
             }
 
             for (InternshipApplication application : filteredList) {
+                model.addInternshipToCache(application);
                 model.deleteInternship(application);
             }
 
