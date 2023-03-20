@@ -18,12 +18,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Rate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Rate;
 import seedu.address.testutil.ContactBuilder;
 
 
@@ -75,7 +75,7 @@ class NewContactCommandTest {
         // null -> returns false
         assertFalse(addMandyCommand.equals(null));
 
-        // different person -> false
+        // different event -> false
         assertFalse(addMandyCommand.equals(addDeborahCommand));
     }
 
@@ -105,7 +105,7 @@ class NewContactCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getEventBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,7 +115,7 @@ class NewContactCommandTest {
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setEventBookFilePath(Path eventBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -131,12 +131,12 @@ class NewContactCommandTest {
 
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setEventBook(ReadOnlyEventBook eventBook) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyEventBook getEventBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -147,7 +147,7 @@ class NewContactCommandTest {
 
 
         @Override
-        public boolean hasPerson(Event person) {
+        public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -157,12 +157,12 @@ class NewContactCommandTest {
         }
 
         @Override
-        public void addPerson(Event person) {
+        public void addEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Event target) {
+        public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -177,17 +177,17 @@ class NewContactCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Event> predicate) {
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Event target, Event editedPerson) {
+        public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Event> getFilteredPersonList() {
+        public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
 

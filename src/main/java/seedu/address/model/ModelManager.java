@@ -12,8 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Rate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Rate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,32 +21,32 @@ import seedu.address.model.person.Rate;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final EventBook eventBook;
     private final ContactList contactList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Event> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
     private final FilteredList<Contact> filteredContacts;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given eventBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, contactList, userPrefs);
+    public ModelManager(ReadOnlyEventBook eventBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(eventBook, contactList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook
+        logger.fine("Initializing with address book: " + eventBook
                 + " with contact list: " + contactList
                 + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.eventBook = new EventBook(eventBook);
         this.contactList = new ContactList(contactList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.eventBook.getEventList());
         filteredContacts = new FilteredList<>(this.contactList.getContactList());
 
     }
 
     public ModelManager() {
-        this(new AddressBook(), new ContactList(), new UserPrefs());
+        this(new EventBook(), new ContactList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,8 +74,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getEventBookFilePath() {
+        return userPrefs.getEventBookFilePath();
     }
 
     @Override
@@ -84,9 +84,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setEventBookFilePath(Path eventBookFilePath) {
+        requireNonNull(eventBookFilePath);
+        userPrefs.setEventBookFilePath(eventBookFilePath);
     }
 
     @Override
@@ -95,71 +95,71 @@ public class ModelManager implements Model {
         userPrefs.setContactListFilePath(contactListFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== EventBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setEventBook(ReadOnlyEventBook eventBook) {
+        this.eventBook.resetData(eventBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyEventBook getEventBook() {
+        return eventBook;
     }
 
     @Override
-    public boolean hasPerson(Event person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return eventBook.hasEvent(event);
     }
 
     @Override
-    public void deletePerson(Event target) {
-        addressBook.removePerson(target);
+    public void deleteEvent(Event target) {
+        eventBook.removeEvent(target);
     }
 
     @Override
     public void markEvent(Event target) {
         requireNonNull(target);
-        addressBook.markEvent(target);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        eventBook.markEvent(target);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public void unmarkEvent(Event target) {
         requireNonNull(target);
-        addressBook.unmarkEvent(target);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        eventBook.unmarkEvent(target);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
-    public void addPerson(Event person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addEvent(Event event) {
+        eventBook.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
-    public void setPerson(Event target, Event editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
 
-        addressBook.setPerson(target, editedPerson);
+        eventBook.setEvent(target, editedEvent);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Event List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
+     * {@code versionedEventBook}
      */
     @Override
-    public ObservableList<Event> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Event> predicate) {
+    public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override
@@ -186,8 +186,8 @@ public class ModelManager implements Model {
 
     @Override
     public void linkContact(Event event, Event linkedEvent) {
-        addressBook.linkContact(event, linkedEvent);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        eventBook.linkContact(event, linkedEvent);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
@@ -209,10 +209,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return eventBook.equals(other.eventBook)
                 && contactList.equals(other.contactList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredEvents.equals(other.filteredEvents);
     }
 
 }

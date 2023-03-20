@@ -4,22 +4,22 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.ContactList;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.EventBook;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventBook;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.ContactPhone;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Rate;
-import seedu.address.model.person.Time;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Rate;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code EventBook} with sample data.
  */
 public class SampleDataUtil {
 
@@ -29,7 +29,7 @@ public class SampleDataUtil {
             new Contact(new ContactName("Mandy"), new ContactPhone("98765432"))
         };
     }
-    public static Event[] getSamplePersons() {
+    public static Event[] getSampleEvents() {
         return new Event[] {
             new Event(new Name("Event 1"), new Rate("1"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -58,10 +58,10 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Event samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
+    public static ReadOnlyEventBook getSampleEventBook() {
+        EventBook sampleAb = new EventBook();
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleAb.addEvent(sampleEvent);
         }
         return sampleAb;
     }

@@ -14,11 +14,11 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Event;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Rate;
-import seedu.address.model.person.Time;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Rate;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,9 +49,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME_END).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Event person = new Event(name, rate, address, startTime, endTime, tagList);
+        Event event = new Event(name, rate, address, startTime, endTime, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(event);
     }
 
     /**
