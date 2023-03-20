@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "recipeBookFilePath" : "recipebook.json"
+  "addressBookFilePath" : "addressbook.json"
 }

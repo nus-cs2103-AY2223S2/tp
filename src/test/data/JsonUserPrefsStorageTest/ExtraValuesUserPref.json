@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "recipeBookFilePath" : "recipebook.json"
+  "addressBookFilePath" : "addressbook.json"
 }
