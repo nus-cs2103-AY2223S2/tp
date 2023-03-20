@@ -11,7 +11,7 @@ import seedu.patientist.model.tag.Tag;
 public class IsPatientPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
-        return person.getTags().contains(new Tag("Patient"));
+        return person.getRoleTag().isPatientTag();
     }
 
     @Override

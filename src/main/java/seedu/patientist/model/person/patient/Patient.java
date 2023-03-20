@@ -8,6 +8,7 @@ import seedu.patientist.model.person.IdNumber;
 import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
+import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -16,7 +17,7 @@ import seedu.patientist.model.tag.Tag;
  * TODO: need to guarantee validity of patient id in the PatientIdNumber class
  */
 public class Patient extends Person {
-    public static final Tag PATIENT_TAG = new Tag("Patient");
+    public static final RoleTag PATIENT_TAG = new RoleTag("Patient");
     private PatientStatusDetails details;
 
     /**
@@ -77,6 +78,11 @@ public class Patient extends Person {
 
         Patient otherPat = (Patient) other;
         return getIdNumber().equals(otherPat.getIdNumber()) && this.getName().equals(otherPat.getName());
+    }
+
+    @Override
+    public RoleTag getRoleTag() {
+        return PATIENT_TAG;
     }
 
     /**

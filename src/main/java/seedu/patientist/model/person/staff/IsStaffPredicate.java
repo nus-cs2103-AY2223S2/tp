@@ -12,7 +12,7 @@ import seedu.patientist.model.person.Person;
 public class IsStaffPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
-        return person.getTags().contains(STAFF_TAG);
+        return person.getRoleTag().isStaffTag();
     }
 
     @Override

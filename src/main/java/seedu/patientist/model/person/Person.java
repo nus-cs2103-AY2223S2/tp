@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.patientist.model.tag.RoleTag;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -57,6 +58,8 @@ public abstract class Person {
     public IdNumber getIdNumber() {
         return id;
     }
+
+    public abstract RoleTag getRoleTag();
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
