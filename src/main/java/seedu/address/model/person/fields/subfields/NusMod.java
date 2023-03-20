@@ -1,6 +1,9 @@
 package seedu.address.model.person.fields.subfields;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Represents a Person's singular mod taken in the address book.
