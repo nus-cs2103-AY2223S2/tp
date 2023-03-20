@@ -70,20 +70,20 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Order`, `Task` or `Menu` object residing in the `Model`.
 
 ### Logic component
 
@@ -258,15 +258,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Tech-savvy small home-based bakery business owners
-* < 40 years old — receptive to using digital platforms
-* Owns E-commerce businesses that:
-  * Use social media platforms / their own websites (that does not track supplier/customer information) to sell their products
-  * Lack manpower/time to track logistics
+* Tech-savvy small businesses owners who:
+  * lists their products online or on their own website
+  * perform transactions manually without a Point-of-Sale (POS) system
+  * Lack manpower/ time to track orders and contacts manually
   * Has < 5 employees
   * Has < 200 customers per month
-  * Restocks from suppliers seasonally
-* Has a need to manage a significant number of contacts
+  * Has a need to manage a significant number of contacts
 * Prefer desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
@@ -275,11 +273,9 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 Our application:
-* allows for consolidation of contacts & tasks information which makes it easier to manage them. (no real-time automation)
+* allows for consolidation of orders, contacts & tasks information which makes it easier to manage them. (no real-time automation)
 * serves as a user-friendly alternative to free applications such as Microsoft Excel which may not be catered to their needs and requires tedious formatting. (no support for custom format of interface)
 * enables faster contact management compared to a typical mouse/_GUI_ driven app
-
-
 
 ### User stories
 
@@ -289,11 +285,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
 | `* * *`  | new user                                                                | see instructions on how to use the app                                               | refer to the instructions when learning how to use the app   |
 | `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                           |
-| `* * *`  | home bakery owner                                                       | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
-| `* * *`  | home bakery owner who has lots of deadlines to meet                     | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
+| `* * *`  | small business owner                                                       | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
+| `* * *`  | small business owner who has lots of deadlines to meet                     | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
 | `* * *`  | familiar user                                                           | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct       |
 | `* * *`  | familiar user                                                           | delete existing orders from my order list                                            | clear my order list of orders that are not required anymore  |
-| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete               |
+| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete
+| `* * *` | small business owner | add an new Item to my menu | keep reference to items that I am selling.
+| `* * *` | small business owner | note selling price and cost price of my items | don't have to keep a mental note of profit per item. 
+| `* * *` | small business owner | have a catalog items that I am selling | quickly create orders.
+| `* *` | business with many orders |have an overview of my Profit-and-Loss.
 | `* *`    | expert user                                                             | edit existing supplier information                                                   | keep my records accurate and up-to-date                      |
 | `* *`    | expert user                                                             | edit existing information about orders                                               | keep my order details accurate and up-to-date                |
 | `* *`    | expert user                                                             | edit existing task information                                                       | easily correct any wrong information keyed in                |
@@ -306,22 +306,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Home bakery owner`)
+(For all use cases below, the **System** is the `Trackr` and the **Actor** is the `Small Business Owner`)
 
 
 **Use case: Add a new task**
 
 MSS
 
-1. Home bakery owner requests to add a new task.
-2. Home bakery owner enters an add task command with the required information.
+1. Actor requests to add a new task.
+2. Actor enters an add task command with the required information.
 3. Trackr saves the new task to the system.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The Home bakery owner does not enter all required information.
+* 2a. The Actor does not enter all required information.
   Trackr shows an error message.
 
   Use case ends without adding any task.
@@ -330,15 +330,15 @@ MSS
 
 MSS
 
-1. Home bakery owner requests to add a new supplier information.
-2. Home bakery owner enters an add supplier command with the required information.
+1. Actor requests to add a new supplier information.
+2. Actor enters an add supplier command with the required information.
 3. Trackr saves the new supplier to the system.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The Home bakery owner does not enter all required information.
+* 2a. The Actor does not enter all required information.
 Trackr shows an error message.
 
   Use case ends without adding any supplier.
@@ -347,27 +347,42 @@ Trackr shows an error message.
 
 MSS
 
-1. Home bakery owner requests to add a new order.
-2. Home bakery owner enters an add order command with the required information.
+1. Actor requests to add a new order.
+2. Actor enters an add order command with the required information.
 3. Trackr saves the new order to the system.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The Home bakery owner does not enter all required information.
+* 2a. The Actor does not enter all required information.
 Trackr shows an error message.
 
     Use case ends without adding any order.
 
+**Use case: Create a new menu item**
+
+MSS
+
+1. Actor requests to create a new menu item.
+2. Actor enters an add menu item command with the required information.
+3. Trackr saves the new meni item to the system.
+
+    Use case ends.
+
+**Extension**
+* 2a. The Actor does not enter all required information.
+Trackr shows an error message.
+
+    Use case ends without adding any new menu item.
 
 **Use case: Delete an order**
 
 **MSS**
 
-1.  Home bakery owner requests to list orders
+1.  Actor requests to list orders
 2.  Trackr shows a list of orders
-3.  Home bakery owner requests to delete a specific order in the list
+3.  Actor requests to delete a specific order in the list
 4.  Trackr deletes the order
 
     Use case ends.
@@ -388,9 +403,9 @@ Trackr shows an error message.
 
 **MSS**
 
-1.  Home bakery owner requests to list todos
+1.  Actor requests to list todos
 2.  Trackr shows a list of todos
-3.  Home bakery owner requests to delete a specific todo in the list
+3.  Actor requests to delete a specific todo in the list
 4.  Trackr deletes the order
 
     Use case ends.
@@ -411,9 +426,9 @@ Trackr shows an error message.
 
 **MSS**
 
-1.  Home bakery owner requests to list suppliers
+1.  Actor requests to list suppliers
 2.  Trackr shows a list of suppliers
-3.  Home bakery owner requests to delete a specific supplier in the list
+3.  Actor requests to delete a specific supplier in the list
 4.  Trackr deletes the person
 
     Use case ends.
@@ -434,9 +449,9 @@ Trackr shows an error message.
 
 MSS
 
-1. Home bakery owner requests to list orders
+1. Actor requests to list orders
 2. Trackr shows a list of orders
-3. Home bakery owner enters an edit order command with the index of the order and the updated information
+3. Actor enters an edit order command with the index of the order and the updated information
 4. Trackr updates the order details with the new information
 
     Use case ends.
@@ -445,20 +460,18 @@ MSS
 
 * 2a. The list is empty.
 Use case ends.
-* 3a. The Home bakery owner enters an invalid index.
+* 3a. The Actor enters an invalid index.
 Trackr displays an error message.
 
     Use case ends.
-
-
 
 **Use case: Edit a supplier information**
 
 MSS
 
-1. Home bakery owner requests to list suppliers.
+1. Actor requests to list suppliers.
 2. Trackr shows a list of suppliers.
-3. Home bakery owner enters an edit supplier command with the index of the supplier and the updated information.
+3. Actor enters an edit supplier command with the index of the supplier and the updated information.
 4. Trackr updates the supplier details with the new information.
 
    Use case ends.
@@ -468,7 +481,7 @@ MSS
 * 2a. The list is empty.
 
     Use case ends.
-* 3a. The Home bakery owner enters an invalid index.
+* 3a. The Actor enters an invalid index.
 Trackr displays an error message.
 
     Use case ends.
@@ -477,9 +490,9 @@ Trackr displays an error message.
 
 MSS
 
-1. Home bakery owner requests to list tasks.
+1. Actor requests to list tasks.
 2. Trackr shows a list of tasks.
-3. Home bakery owner enters an edit task command with the index of the task and the updated information.
+3. Actor enters an edit task command with the index of the task and the updated information.
 4. Trackr updates the task details with the new information.
 
    Use case ends.
@@ -490,18 +503,38 @@ MSS
 
   Use case ends.
 
-* 3a. The Home bakery owner enters an invalid index.
+* 3a. The Actor enters an invalid index.
   Trackr displays an error message.
 
   Use case ends.
 
+**Use case: Edit a menu item**
+
+MSS
+
+1. Actor requests to list menu items.
+2. Trackr shows a list of menu items.
+3. Actor enters an edit menu item command with the index of the task and the updated information.
+4. Trackr updates the menu details with the new information.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+  Use case ends.
+
+* 3a. The Actor enters an invalid index.
+  Trackr displays an error message.
+
+  Use case ends.
 
 **Use case: Finding a task**
 
 MSS
 
-1. Home bakery owner requests to find an order.
-2. Home bakery owner enters the find_order command with the desired search criteria.
+1. Actor requests to find an order.
+2. Actor enters the command with the desired search criteria.
 3. Trackr searches for orders that match the given criteria.
 4. Trackr displays a list of orders that match the criteria.
 
@@ -509,34 +542,35 @@ MSS
 
 **Extensions**
 
-* 2a. The Home bakery owner does not enter any search criteria.
+* 2a. The Actor does not enter any search criteria.
   Trackr displays an error message.
   Use case ends.
+
 * 4a. No order matches the given search criteria.
   Trackr displays a message indicating no matching order is found.
 
   Use case ends.
 
-
-**Use case: Finding a supplier**
+**Use case: Finding a contact**
 
 MSS
 
-1. Home bakery owner requests to find a supplier.
-2. Home bakery owner enters the find_supplier command with the desired search criteria.
-3. Trackr searches for suppliers that match the given criteria.
-4. Trackr displays a list of suppliers that match the criteria.
+1. Actor requests to find a contact.
+2. Home bakery owner enters the command with the desired search criteria.
+3. Trackr searches for contacts that match the given criteria.
+4. Trackr displays a list of contacts that match the criteria.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The Home bakery owner does not enter any search criteria.
+* 2a. The Actor does not enter any search criteria.
   Trackr displays an error message.
 
   Use case ends.
-* 4a. No supplier matches the given search criteria.
-  Trackr displays a message indicating no matching supplier is found.
+
+* 4a. No contacts matches the given search criteria.
+  Trackr displays a message indicating no matching contact is found.
 
   Use case ends.
 
@@ -544,8 +578,8 @@ MSS
 
 MSS
 
-1. Home bakery owner requests to find a task.
-2. Home bakery owner enters the find_task command with the desired search criteria.
+1. Actor requests to find a task.
+2. Actor enters the command with the desired search criteria.
 3. Trackr searches for tasks that match the given criteria.
 4. Trackr displays a list of tasks that match the criteria.
 
@@ -553,9 +587,10 @@ MSS
 
 **Extensions**
 
-* 2a. The Home bakery owner does not enter any search criteria.
+* 2a. The Actor does not enter any search criteria.
 Trackr displays an error message.
 Use case ends.
+
 * 4a. No task matches the given search criteria.
 Trackr displays a message indicating no matching task is found.
 
@@ -565,15 +600,15 @@ Trackr displays a message indicating no matching task is found.
 
 MSS
 
-1. Home bakery owner requests to switch to another tab.
-2. Home bakery owner enters the tab command with the target tab.
+1. Actor requests to switch to another tab.
+2. Actor enters the tab command with the target tab.
 3. Trackr switches to the target tab.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The Home bakery owner enters an invalid target tab.
+* 2a. The Actor enters an invalid target tab.
 Trackr displays an error message.
 
     Use case ends.
@@ -595,9 +630,10 @@ Trackr displays an error message.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: Command-Line Interface
 * **GUI**: Graphical User Interface
-* **Supplier**: Supplier refers to someone who the home bakery owner seasonally or frequently orders goods from
-* **Order**: Order refers to the customers' orders the home bakery owner accepts
+* **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
+* **Order**: Order refers to the customers' orders the user accepts
 * **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
+* **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
 * **Tag**: Tags are associated with suppliers, users can tag the supplier with any keyword they want, number of tags are not restricted
 * **Status**: Statuses are associated with tasks and orders, one entry of task/order can only have one status and the type of status that can be added is restricted
 

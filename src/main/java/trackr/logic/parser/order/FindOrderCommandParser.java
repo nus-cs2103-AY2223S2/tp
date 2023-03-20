@@ -33,8 +33,9 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
     public FindOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ORDERNAME,
-                        PREFIX_DEADLINE, PREFIX_STATUS, PREFIX_ORDERQUANTITY);
+                ArgumentTokenizer.tokenize(args, PREFIX_ORDERNAME, PREFIX_DEADLINE,
+                        PREFIX_STATUS, PREFIX_ORDERQUANTITY,
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS);
 
         OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate();
         if (argMultimap.getValue(PREFIX_ORDERNAME).isPresent()) {
