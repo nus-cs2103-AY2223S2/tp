@@ -9,6 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+* This project is based on the [AddressBook-Level3 project](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org/). 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-W16-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +70,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +87,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,7 +115,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +136,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W16-1/tp/blob/master/src/main/java/bookopedia/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -146,7 +147,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `bookopedia.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,7 +155,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/redo feature {TO BE DELETED BUT LEFT HERE AS REFERENCE}
 
 #### Proposed Implementation
 
@@ -234,10 +235,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Add Parcel to Delivery feature
+The following activity diagram summarizes what happens when a user tries to add a parcel to an existing delivery:
 
-_{Explain here how the data archiving feature will be implemented}_
+<img src="images/AddParcelActivityDiagram.png"/>
 
+#### Design considerations:
+
+**Aspect: Number of parcel(s) to be added in each command:**
+
+* **Alternative 1 (current choice):** 1 parcel at a time.
+    * Pros: Easy to implement, less prone to errors.
+    * Cons: A little more troublesome for users to repeatedly type `add_pc` each time.
+
+* **Alternative 2:** Allowing multiple parcels to be added at a time.
+    * Pros: Seems more convenient for user as command line `add_pc` will not need to be repeated.
+    * Cons: More prone to user errors and also harder to implement the type (fragile, bulky) of each of the parcel (future feature).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -271,29 +284,25 @@ providing a more efficient alternative to conventional mouse-driven GUI applicat
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                              | I want to …​                                                                | So that I can…​                                                   |
-|----------|--------------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `* * *`  | parcel delivery rider (basic)        | view all my deliveries                                                      | I can view my future deliveries as well                           |
-| `* * *`  | parcel delivery rider (basic)        | view a specific delivery                                                    | I can view the details of the delivery                            |
-| `* * *`  | parcel delivery rider (basic)        | delete a delivery                                                           | I can delete the delivery if I input it wrongly                   |
-| `* * *`  | parcel delivery rider (basic)        | add deliveries                                                              | I can add new delivery jobs                                       |
-| `* * *`  | parcel delivery rider (basic)        | mark a delivery in progess                                                  | I can keep track of which deliveries is in progress               |
-| `* * *`  | parcel delivery rider (basic)        | mark a delivery as done                                                     | I can keep track of which deliveries are done                     |
-| `* * *`  | parcel delivery rider (basic)        | mark a delivery as failed                                                   | I can keep track of which deliveries have failed to be delivered  |
-| `* * *`  | parcel delivery rider (basic)        | check what specific parcel I need to deliver to a specific address          | I will delivery the correct parcel to the correct customers       |
-| `* * `   | parcel delivery rider (basic)        | view the number of failed attempts                                          | I know which deliveries have multiple failed attempts             |
-| `* * `   | parcel delivery rider (intermediate) | see the weight of the parcels                                               | I can carry the appropriate amount of parcels                     |
-| `* * `   | parcel delivery rider (basic)        | see the phone number of the customer                                        | I can contact the customer if there is no response at the address |
-| `* * `   | parcel delivery rider (intermediate) | find the shortest path that goes through the scheduled delivery for the day | I can complete my job efficiently                                 |
-| `* * `   | customer (basic)                     | be notified when the delivery is in progress                                | I can be there to receive the delivery                            |
-| `* * `   | customer (basic)                     | leave feedback                                                              | get better services in the future                                 |
-| `* * `   | parcel delivery rider (expert)       | sort my deliveries by priority                                              | I know which deliveries I have to deliver first                   |
-| `* * `   | parcel delivery rider (expert)       | view all my deliveries in a map form                                        | I have an overall view of where my deliveries are                 |
-| `* * `   | parcel delivery rider (new riders)   | view the nearest carpark on the map                                         | I know where to park my vehicle                                   |
-| `* * `   | parcel delivery rider                | mark parcels as fragile                                                     | I can be more careful for fragile parcels                         |
-| `* * `   | parcel delivery rider                | get notified to take a break                                                | I know if I am exceeding or under utilizing my breaks             |
-
-*{More to be added}*
+| Priority | As a …​                              | I want to …​                                                       | So that I can…​                                                                    |
+|----------|--------------------------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| `* * *`  | parcel delivery rider (basic)        | view all my deliveries                                             | I can view my future deliveries as well                                            |
+| `* * *`  | parcel delivery rider (basic)        | view a specific delivery                                           | I can view the details of the delivery                                             |
+| `* * *`  | parcel delivery rider (basic)        | delete a delivery                                                  | I can delete the delivery if I input it wrongly                                    |
+| `* * *`  | parcel delivery rider (basic)        | add deliveries                                                     | I can add new delivery jobs                                                        |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery in progress                                        | I can keep track of which deliveries is in progress                                |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as done                                            | I can keep track of which deliveries are done                                      |
+| `* * *`  | parcel delivery rider (basic)        | mark a delivery as failed                                          | I can keep track of which deliveries have failed to be delivered                   |
+| `* * *`  | parcel delivery rider (basic)        | check what specific parcel I need to deliver to a specific address | I will delivery the correct parcel to the correct customers                        |
+| `* * `   | parcel delivery rider (basic)        | add parcels to existing deliveries                                 | I do not have to recreate a delivery                                               |
+| `* * `   | parcel delivery rider (basic)        | see the phone number of the customer                               | I can contact the customer if there is no response at the address                  |
+| `* * `   | parcel delivery rider (basic)        | view the number of failed attempts                                 | I know which deliveries have multiple failed attempts                              |
+| `* * `   | parcel delivery rider (intermediate) | see the weight of the parcels                                      | I can carry the appropriate amount of parcels                                      |
+| `* * `   | parcel delivery rider (intermediate) | mark parcels as fragile                                            | I can be more careful for fragile parcels                                          |
+| `* * `   | parcel delivery rider (intermediate) | mark parcels as bulky                                              | I can prepare trolleys to move parcels                                             |
+| `* * `   | parcel delivery rider (expert)       | sort my deliveries by priority                                     | I know which deliveries I have to deliver first                                    |
+| `* * `   | parcel delivery rider (expert)       | get and store customer's signature                                 | I can assure that the delivery has been successfully received by intended customer |
+| `* * `   | parcel delivery rider (expert)       | take a picture and upload it to each delivery                      | I can verify that the delivery is completed                                        |
 
 ### Use cases
 
@@ -301,6 +310,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Use case: UC1 - Add Delivery**
+
+**Guarantees:** New delivery is added
 
 **MSS:**
 1. User requests to add delivery along with the relevant details of delivery name and address
@@ -337,6 +348,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use Case: UC3 - Mark Delivery**
 
+**Guarantees:** Delivery is marked with the user given status
+
 **MSS:**
 1. User request to see all deliveries
 2. System shows all deliveries
@@ -359,6 +372,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case resumes at step 3.
 
 **Use Case: UC4 - Delete Delivery**
+
+**Preconditions:** At least one delivery is currently stored in Bookopedia
+
+**Guarantees:** Removal of a specified delivery
 
 **MSS:**
 1. User request to see all deliveries
@@ -390,6 +407,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
+**Use Case: UC6 - Add Parcel to Delivery**
+
+**Preconditions:** At least one delivery is currently stored in Bookopedia
+
+**Guarantees:** New parcel will be added to existing delivery
+
+**MSS:**
+1. User request to see all deliveries
+2. System shows all deliveries
+3. User choose a delivery to add parcel with parcel name
+4. System adds parcel to existing chosen delivery
+
+   Use case ends
+
+**Extensions:**
+* 2a. There is no delivery in the system.
+
+  Use case ends
+
+
 ### Non-Functional Requirements
 
 1. Bookopedia should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -404,8 +441,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. The data should be stored locally and should be in a human editable text file.
 11. Bookopedia should be for a single user i.e. (not a multi-user product).
 12. Bookopedia should respond to commands within 5s.
-
-*{More to be added}*
 
 ### Glossary
 

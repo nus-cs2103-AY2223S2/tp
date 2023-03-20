@@ -33,6 +33,17 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+
+        CommandResult commandResultShowHelpOnly = new CommandResult("feedback", true, false);
+        CommandResult commandResultExitOnly = new CommandResult("feedback", false, true);
+        // is show help
+        assertTrue(commandResultShowHelpOnly.isShowHelp());
+        assertFalse(commandResultExitOnly.isShowHelp());
+
+        // is exit
+        assertTrue(commandResultExitOnly.isExit());
+        assertFalse(commandResultShowHelpOnly.isExit());
     }
 
     @Test
