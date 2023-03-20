@@ -30,15 +30,15 @@ title: Developer Guide
 
 ## **CoDoc Developer Guide**
 
-ConnectNUS is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
-of their and their friends' modules and timetables. ConnectNUS is **optimised for use via a Command Line Interface** (CLI)
+CoDoc is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
+of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
 while still having the benefits of a **Graphical User Interface** (GUI).
 
-For Computer Science students who are generally fast typers, ConnectNUS is an excellent platform for you to get your CS
-related tasks management done quickly, so you can spend less time searching through chats, and spend more time making
+For students who are fast typers, CoDoc is an excellent platform for you to find and identify your friends with certain capabilities and experience, 
+so you can spend less time searching through chats, and spend more time making
 meaningful connections and engaging in productive work.
 
-The goal of this Developer Guide is to document and illustrate the underlying architecture of ConnectNUS, and provide
+The goal of this Developer Guide is to document and illustrate the underlying architecture of CoDoc, and provide
 insights on how our product is designed, implemented and tested as well as the design considerations that were involved
 in the deciding the implementation of various features offered by ConnectNUS.
 
