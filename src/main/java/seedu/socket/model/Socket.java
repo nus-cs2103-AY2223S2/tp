@@ -127,7 +127,8 @@ public class Socket implements ReadOnlySocket {
             Set<Person> updatedMembers = new HashSet<>(projectToUpdate.getMembers());
             updatedMembers.remove(key);
             Project updatedProject = new Project(projectToUpdate.getName(), projectToUpdate.getRepoHost(),
-                    projectToUpdate.getRepoName(), projectToUpdate.getDeadline(), updatedMembers);
+                    projectToUpdate.getRepoName(), projectToUpdate.getDeadline(),
+                    projectToUpdate.getMeeting(), updatedMembers);
             setProject(projectToUpdate, updatedProject);
         }
     }
