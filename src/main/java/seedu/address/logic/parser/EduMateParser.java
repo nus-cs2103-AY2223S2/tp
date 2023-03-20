@@ -16,7 +16,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MeetCommand;
-import seedu.address.logic.commands.ReindexCommand;
 import seedu.address.logic.commands.SampleCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.TagCommand;
@@ -98,9 +97,6 @@ public class EduMateParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
-
-        case ReindexCommand.COMMAND_WORD:
-            return new ReindexCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
