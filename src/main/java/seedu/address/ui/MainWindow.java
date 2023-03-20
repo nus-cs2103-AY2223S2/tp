@@ -222,15 +222,23 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             UniqueStudentList list = new UniqueStudentList();
-            for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
-                UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
-                Iterator<Student> it = curr.iterator();
-                while (it.hasNext()) {
-                    list.add(it.next());
+            if (commandResult.isFind()) {
+                System.out.println(logic.getFilteredStudentList());
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            } else {
+
+                for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
+                    UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
+                    Iterator<Student> it = curr.iterator();
+                    while (it.hasNext()) {
+                        list.add(it.next());
+                    }
                 }
+
+                studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
-            studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
-            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
