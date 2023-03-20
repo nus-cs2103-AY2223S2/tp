@@ -147,6 +147,7 @@ public class ModelManager implements Model {
             return false;
         }
 
+
         // state check
         ModelManager other = (ModelManager) obj;
         return internBuddy.equals(other.internBuddy)

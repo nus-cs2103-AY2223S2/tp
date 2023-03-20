@@ -35,11 +35,14 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
 
+        //Checks for a valid index
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
+        //Gets the internship to view
         Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
+
         //Functionality of the view internship command
         model.updateSelectedInternship(internshipToView);
         return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView));
