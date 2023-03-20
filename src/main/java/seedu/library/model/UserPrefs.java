@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path libraryFilePath = Paths.get("data" , "library.json");
+    private Path tagsFilePath = Paths.get("data", "tags.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setLibraryFilePath(newUserPrefs.getLibraryFilePath());
+        setTagsFilePath(newUserPrefs.getTagsFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -54,6 +56,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setLibraryFilePath(Path libraryFilePath) {
         requireNonNull(libraryFilePath);
         this.libraryFilePath = libraryFilePath;
+    }
+
+    public void setTagsFilePath(Path tagsFilePath) {
+        requireNonNull(libraryFilePath);
+        this.tagsFilePath = tagsFilePath;
+    }
+
+    public Path getTagsFilePath() {
+        return tagsFilePath;
     }
 
     @Override

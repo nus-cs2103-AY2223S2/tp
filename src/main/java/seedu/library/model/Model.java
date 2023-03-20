@@ -1,11 +1,13 @@
 package seedu.library.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.library.commons.core.GuiSettings;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -52,6 +54,9 @@ public interface Model {
     /** Returns the Library */
     ReadOnlyLibrary getLibrary();
 
+    /** Returns the tags */
+    ReadOnlyTags getTags();
+
     /**
      * Returns true if a bookmark with the same identity as {@code bookmark} exists in the library.
      */
@@ -84,4 +89,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookmarkList(Predicate<Bookmark> predicate);
+
+    /**
+     * Returns true if a tag with the same identity as {@code tag} exists in the tag list.
+     */
+    boolean hasTag(Set<Tag> tag);
+
+    /**
+     * Adds the given tags.
+     * {@code tag} must not already exist in the tag list.
+     */
+    void addTags(Set<Tag> tag);
 }

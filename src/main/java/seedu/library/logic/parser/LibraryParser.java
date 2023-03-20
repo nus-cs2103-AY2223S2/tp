@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.library.logic.commands.AddCommand;
+import seedu.library.logic.commands.AddTagCommand;
 import seedu.library.logic.commands.ClearCommand;
 import seedu.library.logic.commands.Command;
 import seedu.library.logic.commands.DeleteCommand;
@@ -46,6 +47,9 @@ public class LibraryParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
