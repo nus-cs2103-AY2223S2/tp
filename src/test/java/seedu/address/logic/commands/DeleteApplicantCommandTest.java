@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import static seedu.address.testutil.TypicalIndexes.getIndexLastListing;
@@ -14,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,22 +33,15 @@ public class DeleteApplicantCommandTest {
 
     private Model model = new ModelManager(getTypicalListingBook(), new UserPrefs());
     private final Applicant BENEDICT_1 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
+    private final String VALID_BENEDICT_1_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#" + BENEDICT_1.hashCode();
+    private final String INVALID_BENEDICT_1_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#"
+            + (BENEDICT_1.hashCode() - 1);
     private final Applicant BENEDICT_2 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
+    private final String VALID_BENEDICT_2_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#" + BENEDICT_2.hashCode();
     private final Applicant CHRIS = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_CHRIS).build();
-
-    /**
-     * 1. Test success when only one applicant
-     * 2. Test success when 2 applicant
-     * 3. Test wrong format
-     * 4. Test applicant not found (without id)
-     * 5. Test applicant not found (with id)
-     * 6. Test listing not found
-     * 7. Test ambiguous applicant
-     */
 
     @Test
     public void execute_deleteUniqueApplicantName_success() {
-        final Applicant CHRIS = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_CHRIS).build();
         Listing newListing = new ListingBuilder().withApplicants(new ArrayList<>(Arrays.asList(
                 new Applicant[] {BENEDICT_1, CHRIS}))).build();
         model.addListing(newListing);
@@ -75,31 +71,76 @@ public class DeleteApplicantCommandTest {
         model.addListing(newListing);
 
         DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
-                VALID_APPLICANT_NAME_BENEDICT + "#" + BENEDICT_1.hashCode());
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_BENEDICT_2_NAME_WITH_ID);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
 
         ObservableList<Listing> originalListingBook = model.getListingBook().getListingList();
         Listing originalListing = originalListingBook.get(originalListingBook.size() - 1);
         expectedModel.setListing(originalListing, new ListingBuilder(originalListing).withApplicants(
-                new ArrayList<>(Arrays.asList(new Applicant[] {BENEDICT_2, CHRIS}))
+                new ArrayList<>(Arrays.asList(new Applicant[] {BENEDICT_1, CHRIS}))
         ).build());
 
         String expectedMessage = String.format(DeleteApplicantCommand.MESSAGE_SUCCESS,
                 VALID_APPLICANT_NAME_BENEDICT,
                 originalListing.getTitle().fullTitle);
 
-//        Debugging tools
-//        try {
-//            CommandResult result = deleteApplicantCommand.execute(model);
-//            System.out.println(model.equals(expectedModel));
-//            System.out.println(result.equals(new CommandResult(expectedMessage)));
-//        } catch (Error | CommandException e) {
-//            System.out.println(e);
-//        }
-
         assertCommandSuccess(deleteApplicantCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_outOfBoundIndex_failure() {
+        DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
+                Index.fromOneBased(model.getListingBook().getListingList().size() + 1),VALID_APPLICANT_NAME_BENEDICT);
+
+        assertCommandFailure(deleteApplicantCommand, model, Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_missingApplicantWithoutId_failure() {
+        Listing newListing = new ListingBuilder().withApplicants(new ArrayList<>(Arrays.asList(
+                new Applicant[] {BENEDICT_1, CHRIS}))).build();
+        model.addListing(newListing);
+
+        DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), "Donkey");
+
+        String expectedErrorMessage = String.format(DeleteApplicantCommand.MESSAGE_APPLICANT_NOT_FOUND, "Donkey",
+                newListing.getTitle().fullTitle);
+
+        assertCommandFailure(deleteApplicantCommand, model, expectedErrorMessage);
+    }
+
+    @Test
+    public void execute_missingApplicantWithId_failure() {
+        Listing newListing = new ListingBuilder().withApplicants(new ArrayList<>(Arrays.asList(
+                new Applicant[] {BENEDICT_1, CHRIS}))).build();
+        model.addListing(newListing);
+
+        DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), INVALID_BENEDICT_1_NAME_WITH_ID);
+
+        String expectedErrorMessage = String.format(DeleteApplicantCommand.MESSAGE_APPLICANT_NOT_FOUND,
+                INVALID_BENEDICT_1_NAME_WITH_ID,
+                newListing.getTitle().fullTitle);
+
+        assertCommandFailure(deleteApplicantCommand, model, expectedErrorMessage);
+    }
+
+    @Test
+    public void execute_ambiguousDuplicatedApplicantName_failure() {
+        Listing newListing = new ListingBuilder().withApplicants(new ArrayList<>(Arrays.asList(
+                new Applicant[] {BENEDICT_1, BENEDICT_2, CHRIS}))).build();
+        model.addListing(newListing);
+
+        DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_APPLICANT_NAME_BENEDICT);
+
+        String expectedErrorMessage = String.format(DeleteApplicantCommand.MESSAGE_AMBIGUOUS_APPLICANT,
+                VALID_APPLICANT_NAME_BENEDICT,
+                newListing.getTitle().fullTitle);
+
+        assertCommandFailure(deleteApplicantCommand, model, expectedErrorMessage);
     }
 
 }

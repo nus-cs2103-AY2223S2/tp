@@ -123,9 +123,20 @@ public class DeleteApplicantCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteApplicantCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteApplicantCommand) other).targetIndex)); // state check
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DeleteApplicantCommand)) {
+            return false;
+        }
+
+        DeleteApplicantCommand that = (DeleteApplicantCommand) o;
+
+        if (!targetIndex.equals(that.targetIndex)) {
+            return false;
+        }
+        return targetApplicantId.equals(that.targetApplicantId);
     }
+
 }
