@@ -16,7 +16,6 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.logic.jobs.TestJob;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -47,6 +46,7 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
+    protected Cron cron;
 
     @Override
     public void init() throws Exception {
@@ -69,7 +69,7 @@ public class MainApp extends Application {
 
         ui = new UiManager(logic);
 
-        initCron();
+        cron = initCron();
     }
 
     /**
@@ -101,8 +101,10 @@ public class MainApp extends Application {
         LogsCenter.init(config);
     }
 
-    private void initCron() {
-        Cron.addTask(new TestJob(), TestJob.FREQUENCY);
+    private Cron initCron() {
+        Cron cron = Cron.getInstance();
+
+        return cron;
     }
 
     /**
@@ -184,7 +186,7 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
-            Cron.stop();
+            cron.stop();
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
