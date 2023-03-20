@@ -1,24 +1,19 @@
 package vimification.logic;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import vimification.commons.core.GuiSettings;
 import vimification.commons.core.LogsCenter;
 import vimification.logic.commands.CreateCommand;
 import vimification.logic.commands.LogicCommand;
-import vimification.logic.commands.Command;
 import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.parser.ParseException;
 import vimification.model.LogicTaskList;
-import vimification.model.Model;
-import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.task.Task;
+import vimification.model.task.Todo;
 import vimification.storage.Storage;
 
 /**
@@ -50,7 +45,8 @@ public class LogicManager implements Logic {
 
         // TODO : FIX THIS
         // Command command = addressBookParser.parseCommand(commandText);
-        LogicCommand command = new CreateCommand(null);
+        Task dummyTask = new Todo("Dummy Task");
+        LogicCommand command = new CreateCommand(dummyTask);
         CommandResult result = command.execute(taskList);
 
         // TODO: Fix this later
