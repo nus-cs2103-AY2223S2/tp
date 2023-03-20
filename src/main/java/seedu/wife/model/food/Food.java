@@ -1,5 +1,6 @@
 package seedu.wife.model.food;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
@@ -56,6 +57,21 @@ public class Food {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(this.tags);
+    }
+
+    /**
+     * Returns an new tag set for edit, which throws {@code UnsupportedOperationException}
+     */
+    public Set<Tag> getCurrentTags() {
+        return new HashSet<Tag>(this.tags);
+    }
+
+    /**
+     * Creates a new food item with an updated tag list.
+     */
+    public Food createNewFoodWithNewTags(Food food, Set<Tag> tags) {
+        requireNonNull(tags);
+        return new Food(food.getName(), food.getUnit(), food.getQuantity(), food.getExpiryDate(), tags);
     }
 
     /**

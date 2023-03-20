@@ -15,7 +15,7 @@ import seedu.wife.commons.util.JsonUtil;
 import seedu.wife.model.ReadOnlyWife;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access Wife data stored as a json file on the hard disk.
  */
 public class JsonWifeStorage implements WifeStorage {
 
