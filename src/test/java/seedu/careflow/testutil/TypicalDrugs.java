@@ -1,11 +1,11 @@
 package seedu.careflow.testutil;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.careflow.model.DrugInventory;
 import seedu.careflow.model.drug.Drug;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Class for typical drugs

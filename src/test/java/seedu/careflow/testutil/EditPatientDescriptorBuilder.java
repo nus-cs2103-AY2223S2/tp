@@ -1,7 +1,15 @@
 package seedu.careflow.testutil;
 
 import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDescriptor;
-import seedu.careflow.model.person.*;
+import seedu.careflow.model.person.Address;
+import seedu.careflow.model.person.DateOfBirth;
+import seedu.careflow.model.person.DrugAllergy;
+import seedu.careflow.model.person.Email;
+import seedu.careflow.model.person.Gender;
+import seedu.careflow.model.person.Ic;
+import seedu.careflow.model.person.Name;
+import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.person.Phone;
 
 /**
  * A utility class to help with building EditPatientDescriptor objects.

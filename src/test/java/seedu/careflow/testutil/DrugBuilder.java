@@ -8,6 +8,11 @@ import seedu.careflow.model.drug.SideEffect;
 import seedu.careflow.model.drug.StorageCount;
 import seedu.careflow.model.drug.TradeName;
 
+/**
+ * A utility class to help with building Drug objects.
+ * Example usage: <br>
+ *     {@code Drug ab = new DrugBuilder().withTradeName("Panadol").build();}
+ */
 public class DrugBuilder {
     public static final String DEFAULT_TRADE_NAME = "Tylenol";
     public static final String DEFAULT_ACTIVE_INGREDIENT = "Acetaminophen";

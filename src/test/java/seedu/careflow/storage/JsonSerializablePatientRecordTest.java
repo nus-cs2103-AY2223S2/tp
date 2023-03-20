@@ -1,16 +1,17 @@
 package seedu.careflow.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.careflow.commons.exceptions.IllegalValueException;
-import seedu.careflow.commons.util.JsonUtil;
-import seedu.careflow.model.PatientRecord;
-import seedu.careflow.testutil.TypicalPatients;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.careflow.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.careflow.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.careflow.commons.exceptions.IllegalValueException;
+import seedu.careflow.commons.util.JsonUtil;
+import seedu.careflow.model.PatientRecord;
+import seedu.careflow.testutil.TypicalPatients;
 
 class JsonSerializablePatientRecordTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializablePatientRecordTest");

@@ -2,7 +2,15 @@ package seedu.careflow.logic.commands.patientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.parser.CliSyntax.*;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_DOB;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT_NUMBER;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_IC;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.careflow.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -51,7 +59,7 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String BIRTHDATE_DESC_AMY = " " + PREFIX_DOB+ VALID_BIRTHDATE_AMY;
+    public static final String BIRTHDATE_DESC_AMY = " " + PREFIX_DOB + VALID_BIRTHDATE_AMY;
     public static final String BIRTHDATE_DESC_BOB = " " + PREFIX_DOB + VALID_BIRTHDATE_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
@@ -59,8 +67,10 @@ public class CommandTestUtil {
     public static final String IC_DESC_BOB = " " + PREFIX_IC + VALID_IC_BOB;
     public static final String DRUG_ALLERGY_DESC_AMY = " " + PREFIX_DRUG_ALLERGY + VALID_DRUG_ALLERGY_AMY;
     public static final String DRUG_ALLERGY_DESC_BOB = " " + PREFIX_DRUG_ALLERGY + VALID_DRUG_ALLERGY_BOB;
-    public static final String EMERGENCY_CONTACT_DESC_AMY = " " + PREFIX_EMERGENCY_CONTACT_NUMBER + VALID_EMERGENCY_CONTACT_AMY;
-    public static final String EMERGENCY_CONTACT_DESC_BOB = " " + PREFIX_EMERGENCY_CONTACT_NUMBER + VALID_EMERGENCY_CONTACT_BOB;
+    public static final String EMERGENCY_CONTACT_DESC_AMY = " " + PREFIX_EMERGENCY_CONTACT_NUMBER
+            + VALID_EMERGENCY_CONTACT_AMY;
+    public static final String EMERGENCY_CONTACT_DESC_BOB = " " + PREFIX_EMERGENCY_CONTACT_NUMBER
+            + VALID_EMERGENCY_CONTACT_BOB;
 
     // TODO ADD MORE CONSTRAINS HERE
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -92,8 +102,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualCareFlowModel} matches {@code expectedCareFlowModel}
      */
-    public static void assertCommandSuccess(Command command, CareFlowModel actualCareFlowModel, CommandResult expectedCommandResult,
-                                            CareFlowModel expectedCareFlowModel) {
+    public static void assertCommandSuccess(Command command, CareFlowModel actualCareFlowModel,
+                                            CommandResult expectedCommandResult, CareFlowModel expectedCareFlowModel) {
         try {
             CommandResult result = command.execute(actualCareFlowModel);
             assertEquals(expectedCommandResult, result);
@@ -120,7 +130,8 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the careflow book, filtered person list and selected person in {@code actualCareFlowModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, CareFlowModel actualCareFlowModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, CareFlowModel actualCareFlowModel,
+                                            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         CareFlow expectedCareFlow = new CareFlow(actualCareFlowModel.getPatientRecord(),
@@ -128,7 +139,7 @@ public class CommandTestUtil {
         List<Patient> expectedFilteredList = new ArrayList<>(actualCareFlowModel.getFilteredPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualCareFlowModel));
-       // made some amendment to comparing expectedCareflow and actualCareFlowModel
+        // made some amendment to comparing expectedCareflow and actualCareFlowModel
         assertEquals(expectedCareFlow.getPatientRecord(), actualCareFlowModel.getPatientRecord());
         assertEquals(expectedCareFlow.getDrugInventory(), actualCareFlowModel.getDrugInventory());
         assertEquals(expectedCareFlow.getHospitalRecords(), actualCareFlowModel.getHospitalRecords());

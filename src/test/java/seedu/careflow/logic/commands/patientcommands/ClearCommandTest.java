@@ -1,10 +1,8 @@
 package seedu.careflow.logic.commands.patientcommands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
-
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        CareFlowModel model = new CareFlowModelManager(getTypicalPatientRecord(), getTypicalDrugInventory(), new UserPrefs());
+        CareFlowModel model = new CareFlowModelManager(getTypicalPatientRecord(), getTypicalDrugInventory(),
+                new UserPrefs());
         CareFlowModel expectedCareFlowModel = new CareFlowModelManager(getTypicalPatientRecord(),
                 getTypicalDrugInventory(), new UserPrefs());
         expectedCareFlowModel.setPatientRecord(new PatientRecord());

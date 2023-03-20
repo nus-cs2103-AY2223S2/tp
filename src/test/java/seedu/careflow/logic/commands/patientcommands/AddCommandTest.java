@@ -38,7 +38,7 @@ class AddCommandTest {
     @Test
     public void execute_patientAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
-        Patient  validPatient  = new PatientBuilder().build();
+        Patient validPatient = new PatientBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
@@ -222,7 +222,7 @@ class AddCommandTest {
         }
 
         @Override
-        public boolean hasPatient (Patient patient) {
+        public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return this.patient.isSamePatient(patient);
         }
@@ -235,14 +235,15 @@ class AddCommandTest {
         final ArrayList<Patient> patientsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPatient (Patient patient) {
+        public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
-            return patientsAdded.stream().anyMatch(patient::isSamePatient );
+            return patientsAdded.stream().anyMatch(patient::isSamePatient);
         }
 
         @Override
-        public void addPatient (Patient patient) {
-            requireNonNull(patient);patientsAdded.add(patient);
+        public void addPatient(Patient patient) {
+            requireNonNull(patient);
+            patientsAdded.add(patient);
         }
 
         @Override

@@ -1,21 +1,25 @@
 package seedu.careflow.testutil;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.careflow.model.HospitalRecord;
 import seedu.careflow.model.hospital.Hospital;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A utility class containing a list of {@code Hospital} objects to be used in tests.
  */
 public class TypicalHospitals {
 
-    public static final Hospital KK_Women_and_Children_Hospital = new Hospital("KK Women's and Children's Hospital", "+65 62255554");
-    public static final Hospital Changi_General_Hospital = new Hospital("Changi General Hospital", "+65 67888833");
-    public static final Hospital Khoo_Teck_Puat_Hospital = new Hospital("Khoo Teck Puat Hospital", "+65 65558000");
-    public static final Hospital Tan_Tock_Seng_Hospital = new Hospital("Tan Tock Seng Hospital", "+65 62566011");
+    public static final Hospital KK_WOMEN_AND_CHILDREN = new Hospital("KK Women's and Children's Hospital",
+            "+65 62255554");
+    public static final Hospital CHANGI_GENERAL = new Hospital("Changi General Hospital",
+            "+65 67888833");
+    public static final Hospital KHOO_TECK_PHAT = new Hospital("Khoo Teck Puat Hospital",
+            "+65 65558000");
+    public static final Hospital TAN_TOCK_SENG = new Hospital("Tan Tock Seng Hospital",
+            "+65 62566011");
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -33,7 +37,7 @@ public class TypicalHospitals {
     }
 
     public static List<Hospital> getTypicalHospital() {
-        return new ArrayList<>(Arrays.asList(KK_Women_and_Children_Hospital, Changi_General_Hospital,
-                Khoo_Teck_Puat_Hospital, Tan_Tock_Seng_Hospital));
+        return new ArrayList<>(Arrays.asList(KK_WOMEN_AND_CHILDREN, CHANGI_GENERAL,
+                KHOO_TECK_PHAT, TAN_TOCK_SENG));
     }
 }

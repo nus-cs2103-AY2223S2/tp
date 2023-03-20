@@ -1,10 +1,18 @@
 package seedu.careflow.testutil;
 
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_DOB;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_DRUG_ALLERGY;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT_NUMBER;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_IC;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import seedu.careflow.logic.commands.patientcommands.AddCommand;
 import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDescriptor;
 import seedu.careflow.model.person.Patient;
-
-import static seedu.careflow.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Patient.
@@ -48,8 +56,10 @@ public class PatientUtil {
         descriptor.getDateOfBirth().ifPresent(address -> sb.append(PREFIX_DOB).append(address.value).append(" "));
         descriptor.getGender().ifPresent(address -> sb.append(PREFIX_GENDER).append(address.value).append(" "));
         descriptor.getIc().ifPresent(address -> sb.append(PREFIX_IC).append(address.value).append(" "));
-        descriptor.getDrugAllergy().ifPresent(address -> sb.append(PREFIX_DRUG_ALLERGY).append(address.toString()).append(" "));
-        descriptor.getEmergencyContact().ifPresent(address -> sb.append(PREFIX_EMERGENCY_CONTACT_NUMBER).append(address.value).append(" "));
+        descriptor.getDrugAllergy().ifPresent(address -> sb.append(PREFIX_DRUG_ALLERGY).append(address.toString())
+                .append(" "));
+        descriptor.getEmergencyContact().ifPresent(address -> sb.append(PREFIX_EMERGENCY_CONTACT_NUMBER)
+                .append(address.value).append(" "));
 
         return sb.toString();
     }
