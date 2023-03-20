@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
+import seedu.address.model.event.UniqueConsultationList;
 import seedu.address.model.event.UniqueLabList;
 import seedu.address.model.event.UniqueTutorialList;
 import seedu.address.model.person.Person;
@@ -22,6 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueTutorialList tutorials;
     private final UniqueLabList labs;
+    private final UniqueConsultationList consultations;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -34,6 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         tutorials = new UniqueTutorialList();
         labs = new UniqueLabList();
+        consultations = new UniqueConsultationList();
     }
 
     public AddressBook() {}
@@ -58,6 +62,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void setTutorials(List<Tutorial> tutorials) {
         this.tutorials.setTutorials(tutorials);
+    }
+
+    public void setLabs(List<Lab> labs) {
+        this.labs.setLabs(labs);
+    }
+
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations.setConsultations(consultations);
     }
 
     /**
@@ -96,8 +108,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         labs.setLab(original, added);
     }
 
-    public void setLabs(List<Lab> labs) {
-        this.labs.setLabs(labs);
+    /**
+     * Allows student to be assigned to a specific consultation
+     * @param toAdd
+     * @param name
+     */
+    public void addStudentToConsultation(Person toAdd, String name) {
+        Consultation original = consultations.get(0);
+        for (int i = 0; i < consultations.size(); i++) {
+            if (consultations.get(i).hasMatchByName(name)) {
+                original = consultations.get(i);
+                break;
+            }
+        }
+        Consultation added = original;
+        added.addStudent(toAdd);
+        consultations.setConsultation(original, added);
     }
 
     /**
@@ -108,6 +134,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setTutorials(newData.getTutorialList());
         setLabs(newData.getLabList());
+        setConsultations(newData.getConsultationList());
     }
 
     //// person-level operations
@@ -223,13 +250,52 @@ public class AddressBook implements ReadOnlyAddressBook {
         labs.remove(key);
     }
 
+    //// consultation-level operations
+
+    /**
+     * Returns true if a consultation with the same identity as {@code consultation} exists in the address book.
+     */
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return consultations.contains(consultation);
+    }
+
+    /**
+     * Adds a consultation to the address book.
+     * The consultation must not already exist in the address book.
+     */
+    public void addConsultation(Consultation p) {
+        consultations.add(p);
+    }
+
+    /**
+     * Replaces the given consultation {@code target} in the list with {@code editedConsultation}.
+     * {@code target} must exist in the address book.
+     * The consultation identity of {@code editedConsultation} must not be the same as another existing
+     * consultation in the address book.
+     */
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireNonNull(editedConsultation);
+
+        consultations.setConsultation(target, editedConsultation);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeConsultation(Consultation key) {
+        consultations.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons "
-                + tutorials.asUnmodifiableObservableList().size() + " tutorials"
-                + labs.asUnmodifiableObservableList().size() + " labs";
+                + tutorials.asUnmodifiableObservableList().size() + " tutorials "
+                + labs.asUnmodifiableObservableList().size() + " labs "
+                + consultations.asUnmodifiableObservableList().size() + " consultations ";
         // TODO: refine later
     }
 
@@ -249,18 +315,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Consultation> getConsultationList() {
+        return consultations.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
                 && tutorials.equals(((AddressBook) other).tutorials)
-                && labs.equals(((AddressBook) other).labs));
+                && labs.equals(((AddressBook) other).labs)
+                && consultations.equals(((AddressBook) other).consultations));
     }
 
     @Override
     public int hashCode() {
         return persons.hashCode()
                 + tutorials.hashCode()
-                + labs.hashCode();
+                + labs.hashCode()
+                + consultations.hashCode();
     }
 }

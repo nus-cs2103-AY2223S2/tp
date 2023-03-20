@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
@@ -21,11 +22,13 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PERSON = "You have already added the student into your list.";
+    public static final String MESSAGE_DUPLICATE_CONSULTATION = "Consultation list contains duplicate consultation(s).";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "Tutorial list contains duplicate tutorial(s).";
     public static final String MESSAGE_DUPLICATE_LAB = "Lab list contains duplicate lab(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedConsultation> consultations = new ArrayList<>();
     private final List<JsonAdaptedTutorial> tutorials = new ArrayList<>();
     private final List<JsonAdaptedLab> labs = new ArrayList<>();
 
@@ -35,8 +38,10 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials,
-                                       @JsonProperty("labs") List<JsonAdaptedLab> labs) {
+                                       @JsonProperty("labs") List<JsonAdaptedLab> labs,
+                                       @JsonProperty("consultations") List<JsonAdaptedConsultation> consultations) {
         this.persons.addAll(persons);
+        this.consultations.addAll(consultations);
         this.tutorials.addAll(tutorials);
         this.labs.addAll(labs);
     }
@@ -48,6 +53,10 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        consultations.addAll(source.getConsultationList()
+                .stream()
+                .map(JsonAdaptedConsultation::new)
+                .collect(Collectors.toList()));
         tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
         labs.addAll(source.getLabList().stream().map(JsonAdaptedLab::new).collect(Collectors.toList()));
     }
@@ -75,7 +84,17 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedLab jsonAdaptedLab : labs) {
             Lab lab = jsonAdaptedLab.toModelType();
+            if (addressBook.hasLab(lab)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_LAB);
+            }
             addressBook.addLab(lab);
+        }
+        for (JsonAdaptedConsultation jsonAdaptedConsultation : consultations) {
+            Consultation consultation = jsonAdaptedConsultation.toModelType();
+            if (addressBook.hasConsultation(consultation)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
+            }
+            addressBook.addConsultation(consultation);
         }
         return addressBook;
     }

@@ -9,6 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
@@ -25,7 +26,7 @@ public class EventListPanel extends UiPart<Region> {
     @FXML
     private ListView<Lab> eventListViewMidCol;
     @FXML
-    private ListView<Tutorial> eventListViewRightCol;
+    private ListView<Consultation> eventListViewRightCol;
 
     /**
      * Creates a {@code EventListPanel} with the given {@code ObservableList}.
@@ -38,6 +39,26 @@ public class EventListPanel extends UiPart<Region> {
 
         eventListViewMidCol.setItems((ObservableList<Lab>) eventList.get(1));
         eventListViewMidCol.setCellFactory(listView -> new LabListViewCell());
+
+        eventListViewRightCol.setItems((ObservableList<Consultation>) eventList.get(2));
+        eventListViewRightCol.setCellFactory(listView -> new ConsultationListViewCell());
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
+     */
+    class ConsultationListViewCell extends ListCell<Consultation> {
+        @Override
+        protected void updateItem(Consultation consultation, boolean empty) {
+            super.updateItem(consultation, empty);
+
+            if (empty || consultation == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new EventCard(consultation, getIndex() + 1).getRoot());
+            }
+        }
     }
 
     /**

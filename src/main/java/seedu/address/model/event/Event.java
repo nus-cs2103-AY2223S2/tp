@@ -3,6 +3,7 @@ package seedu.address.model.event;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.person.Person;
@@ -77,6 +78,23 @@ public abstract class Event {
         this.students = students;
         this.attachments = attachments;
         notes = new ArrayList<>();
+    }
+
+    /**
+     * If file attachments are not needed. Different parameter order
+     * to avoid duplicate constructor due to type erasure error
+     * @param name
+     * @param students
+     * @param notes
+     * @param eventDate
+     */
+    public Event(String name, List<Person> students, List<Note> notes, LocalDate eventDate) {
+        this.name = name;
+        this.eventDate = eventDate;
+        this.students = students;
+        //Ensures the list of attachments is kept at zero instead of null
+        this.attachments = Arrays.asList(new File[0]);;
+        this.notes = notes;
     }
 
     /**
