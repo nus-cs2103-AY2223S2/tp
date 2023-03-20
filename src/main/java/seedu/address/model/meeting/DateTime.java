@@ -280,6 +280,20 @@ public class DateTime {
         return template.replace(SEPARATOR_PLACEHOLDER, sep);
     }
 
+    /**
+     * Returns {@code LocalDateTime} representation of the DateTime stored.
+     * If time is not specified, it will default to 00:00 (12AM).
+     *
+     * @return {@code LocalDateTime} representation of the DateTime stored.
+     */
+    public LocalDateTime get() {
+        if (meetingTime == LocalTime.MAX) {
+            return LocalDateTime.of(meetingDate, LocalTime.of(0, 0));
+        }
+
+        return LocalDateTime.of(meetingDate, meetingTime);
+    }
+
     @Override
     public String toString() {
         String end = meetingDuration != null && !meetingDuration.isZero()

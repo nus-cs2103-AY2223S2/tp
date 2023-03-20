@@ -122,4 +122,14 @@ public class DateTimeTest {
         assertEquals(new DateTime("22022022 1:00AM").getDateTime(), "22/02/2022 01:00");
         assertEquals(new DateTime("22022022 1:00PM").getDateTime(), "22/02/2022 13:00");
     }
+
+    @Test
+    public void get() {
+        assertEquals(new DateTime("22022022 13:00").get(),
+                LocalDateTime.of(2022, 2, 22, 13, 0));
+        assertEquals(new DateTime("22022022").get(),
+                LocalDateTime.of(2022, 2, 22, 0, 0));
+        assertEquals(new DateTime("22022022 12:00AM").get(),
+                LocalDateTime.of(2022, 2, 22, 0, 0));
+    }
 }

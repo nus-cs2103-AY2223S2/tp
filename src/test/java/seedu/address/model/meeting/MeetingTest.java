@@ -13,6 +13,10 @@ import static seedu.address.testutil.TypicalMeetings.MEETING_A;
 import static seedu.address.testutil.TypicalMeetings.MEETING_B;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.MeetingBuilder;
@@ -88,5 +92,21 @@ public class MeetingTest {
         // different description -> returns false
         editedMeetingA = new MeetingBuilder(MEETING_A).withDescription(VALID_MEETING_DESCRIPTION).build();
         assertNotEquals(editedMeetingA, MEETING_A);
+    }
+
+    @Test
+    public void hasPassed() {
+        assertTrue(new MeetingBuilder(MEETING_A).withDateTime(
+                LocalDateTime.now().minus(1, ChronoUnit.HOURS)
+                        .format(DateTimeFormatter.ofPattern("ddMMyyyy HH:mm"))).build().hasPassed());
+        assertTrue(new MeetingBuilder(MEETING_A).withDateTime(
+                LocalDateTime.now().minus(1, ChronoUnit.MINUTES)
+                        .format(DateTimeFormatter.ofPattern("ddMMyyyy HH:mm"))).build().hasPassed());
+        assertFalse(new MeetingBuilder(MEETING_A).withDateTime(
+                LocalDateTime.now().plus(1, ChronoUnit.MINUTES)
+                        .format(DateTimeFormatter.ofPattern("ddMMyyyy HH:mm"))).build().hasPassed());
+        assertFalse(new MeetingBuilder(MEETING_A).withDateTime(
+                LocalDateTime.now().plus(1, ChronoUnit.HOURS)
+                        .format(DateTimeFormatter.ofPattern("ddMMyyyy HH:mm"))).build().hasPassed());
     }
 }
