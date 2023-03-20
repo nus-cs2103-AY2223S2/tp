@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a Person's singular mod taken in the address book.
@@ -12,7 +14,26 @@ public class NusMod {
 
     public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";
     public static final String MODULELIST_FILE_PATH = "data/moduleList.json";
+    private static final Map<String, Boolean> MODULE_MAP = new HashMap<>();
     public final String name;
+
+    static {
+        try {
+            FileInputStream inputStream = new FileInputStream(MODULELIST_FILE_PATH);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("\"moduleCode\":")) {
+                    String moduleCode = line.split(":")[1].trim().replace("\"", "");
+                    MODULE_MAP.put(moduleCode, true);
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public NusMod(String modsString) {
         this.name = modsString;
@@ -25,24 +46,6 @@ public class NusMod {
      * @return false if the module does not exist in NUSMods
      */
     public static boolean isValidModName(String trimmedTag) {
-        try {
-            FileInputStream inputStream = new FileInputStream(MODULELIST_FILE_PATH);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.contains("\"moduleCode\":")) {
-                    String moduleCode = line.split(":")[1].trim().replace("\"", "");
-                    if (moduleCode.equalsIgnoreCase(trimmedTag)) {
-                        reader.close();
-                        return true;
-                    }
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+        return MODULE_MAP.containsKey(trimmedTag);
     }
 }
