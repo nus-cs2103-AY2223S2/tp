@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_BOTH_INVALID_NRIC;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ELDERLY_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_VOLUNTEER_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_ELDERLY_DESC_AMY;
@@ -12,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,16 +62,21 @@ public class DeletePairCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
+    public void parse_invalidNrics_failure() {
+        // both invalid elderly nric and volunteer nric
+        assertParseFailure(parser,
+                PREAMBLE_WHITESPACE + INVALID_ELDERLY_NRIC_DESC + INVALID_VOLUNTEER_NRIC_DESC,
+                String.format(MESSAGE_BOTH_INVALID_NRIC, MESSAGE_CONSTRAINTS));
+
         // invalid elderly nric followed by valid volunteer nric
         assertParseFailure(parser,
                 PREAMBLE_WHITESPACE + INVALID_ELDERLY_NRIC_DESC + NRIC_VOLUNTEER_DESC_BOB,
-                Nric.MESSAGE_CONSTRAINTS);
+                String.format(MESSAGE_INVALID_PERSON_NRIC, "elderly", MESSAGE_CONSTRAINTS));
 
         // valid elderly nric followed by invalid volunteer nric
         assertParseFailure(parser,
                 PREAMBLE_WHITESPACE + NRIC_ELDERLY_DESC_AMY + INVALID_VOLUNTEER_NRIC_DESC,
-                Nric.MESSAGE_CONSTRAINTS);
+                String.format(MESSAGE_INVALID_PERSON_NRIC, "volunteer", MESSAGE_CONSTRAINTS));
     }
 
     @Test

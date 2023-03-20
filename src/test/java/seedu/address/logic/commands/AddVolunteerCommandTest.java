@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.person.Volunteer;
@@ -42,7 +42,7 @@ public class AddVolunteerCommandTest {
         ModelStub modelStub = new ModelStubWithVolunteer(validVolunteer);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_DUPLICATE_VOLUNTEER, () -> addVolunteerCommand.execute(modelStub));
+                MESSAGE_DUPLICATE_VOLUNTEER, () -> addVolunteerCommand.execute(modelStub));
     }
 
     @Test

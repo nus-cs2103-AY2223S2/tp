@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_LISTED_OVERVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -14,7 +15,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
@@ -58,6 +58,9 @@ public class FindCommand extends Command {
      */
     public FindCommand(List<Predicate<Person>> sharedFilterList,
             List<Predicate<Elderly>> elderlyOnlyFilterList, List<Predicate<Volunteer>> volunteerOnlyFilterList) {
+        requireNonNull(sharedFilterList);
+        requireNonNull(elderlyOnlyFilterList);
+        requireNonNull(volunteerOnlyFilterList);
         this.sharedFilterList = sharedFilterList;
         this.elderlyOnlyFilterList = elderlyOnlyFilterList;
         this.volunteerOnlyFilterList = volunteerOnlyFilterList;
@@ -83,7 +86,7 @@ public class FindCommand extends Command {
         model.updateFilteredPairList(getPairPredicate(model));
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_LISTED_OVERVIEW, model.getFilteredVolunteerList().size(),
+                String.format(MESSAGE_LISTED_OVERVIEW, model.getFilteredVolunteerList().size(),
                         model.getFilteredElderlyList().size(), model.getFilteredPairList().size()));
     }
 
@@ -91,8 +94,10 @@ public class FindCommand extends Command {
      * Returns the pair predicate based on the filtered volunteers and elderly.
      *
      * @param model FriendlyLink model.
+     * @return Pair predicate.
      */
     private Predicate<Pair> getPairPredicate(Model model) {
+        requireNonNull(model);
         List<Elderly> listOfFilteredElderly = model.getFilteredElderlyList();
         List<Volunteer> listOfFilteredVolunteers = model.getFilteredVolunteerList();
 

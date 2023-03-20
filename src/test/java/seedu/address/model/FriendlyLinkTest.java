@@ -26,9 +26,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.Pair;
+import seedu.address.model.pair.exceptions.DuplicatePairException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.PairBuilder;
 import seedu.address.testutil.VolunteerBuilder;
@@ -81,16 +83,57 @@ public class FriendlyLinkTest {
         assertThrows(DuplicatePersonException.class, () -> friendlyLink.resetFriendlyLinkData(newData));
     }
 
-    // TODO: check that duplicate pairs throws exceptions.
+    @Test
+    public void resetData_withDuplicatePairs_throwsDuplicatePersonException() {
+        // Two identical pairs
+        Pair pairCopy = new PairBuilder(PAIR1).build();
+        List<Pair> newPairs = Arrays.asList(PAIR1, pairCopy);
+        FriendlyLinkStub newData = new FriendlyLinkStub(Collections.emptyList(),
+                Collections.emptyList(), newPairs);
+
+        assertThrows(DuplicatePairException.class, () -> friendlyLink.resetFriendlyLinkData(newData));
+    }
+
+    @Test
+    public void hasElderly_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasElderly((Nric) null));
+    }
+
+    @Test
+    public void hasVolunteer_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasVolunteer((Nric) null));
+    }
+
+    @Test
+    public void hasElderly_nricNotInFriendlyLink_returnsFalse() {
+        assertFalse(friendlyLink.hasElderly(ALICE.getNric()));
+    }
+
+    @Test
+    public void hasVolunteer_nricNotInFriendlyLink_returnsFalse() {
+        assertFalse(friendlyLink.hasVolunteer(BOB.getNric()));
+    }
+
+    @Test
+    public void hasElderly_nricInFriendlyLink_returnsTrue() {
+        friendlyLink.addElderly(ALICE);
+        assertTrue(friendlyLink.hasElderly(ALICE.getNric()));
+    }
+
+    @Test
+    public void hasVolunteer_nricInFriendlyLink_returnsTrue() {
+        friendlyLink.addVolunteer(BOB);
+        assertTrue(friendlyLink.hasVolunteer(BOB.getNric()));
+    }
 
     @Test
     public void hasElderly_nullElderly_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> friendlyLink.hasElderly(null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasElderly((Elderly) null));
     }
 
     @Test
     public void hasVolunteer_nullVolunteer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> friendlyLink.hasVolunteer(null));
+        assertThrows(NullPointerException.class, () -> friendlyLink.hasVolunteer((Volunteer) null));
     }
 
     @Test

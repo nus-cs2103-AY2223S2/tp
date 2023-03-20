@@ -6,7 +6,7 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears FriendlyLink data.
  */
 public class ClearCommand extends Command {
 

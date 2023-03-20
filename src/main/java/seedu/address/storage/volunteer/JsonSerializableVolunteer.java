@@ -25,6 +25,8 @@ public class JsonSerializableVolunteer implements JsonSerializable<FriendlyLink>
 
     /**
      * Constructs a {@code JsonSerializableVolunteer} with the given volunteers.
+     *
+     * @param volunteer List of Jackson-friendly volunteer.
      */
     @JsonCreator
     public JsonSerializableVolunteer(@JsonProperty("volunteers") List<JsonAdaptedVolunteer> volunteer) {
@@ -34,7 +36,7 @@ public class JsonSerializableVolunteer implements JsonSerializable<FriendlyLink>
     /**
      * Converts a given {@code ReadOnlyVolunteer} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableVolunteer}.
+     * @param source Future changes to this will not affect the created {@code JsonSerializableVolunteer}.
      */
     public JsonSerializableVolunteer(ReadOnlyVolunteer source) {
         serializeEntities(volunteers,
@@ -48,7 +50,9 @@ public class JsonSerializableVolunteer implements JsonSerializable<FriendlyLink>
     /**
      * Converts this volunteer list into the model's {@code Volunteer} object and adds it to the application cache.
      *
-     * @throws IllegalValueException if there were any data constraints violated.
+     * @param friendlyLink FriendlyLink cache.
+     * @return FriendlyLink cache updated with this volunteer list data.
+     * @throws IllegalValueException If there were any data constraints violated.
      */
     public FriendlyLink toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
         unserializeEntities(friendlyLink);

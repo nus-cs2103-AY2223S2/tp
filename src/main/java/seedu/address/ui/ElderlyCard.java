@@ -50,7 +50,10 @@ public class ElderlyCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code ElderlyCode} with the given {@code Elderly} and index to display.
+     * Creates a {@code ElderlyCard} with the given {@code Elderly} and index to display.
+     *
+     * @param elderly Elderly to be displayed.
+     * @param displayedIndex Index shown on screen.
      */
     public ElderlyCard(Elderly elderly, int displayedIndex) {
         super(FXML);
@@ -65,8 +68,6 @@ public class ElderlyCard extends UiPart<Region> {
         region.getChildren().add(
                 new Label(elderly.getRegion().region.name())
         );
-        //        riskLevel.getChildren().add(
-        //                new Label(elderly.getRiskLevel().riskStatus.name()));
         Label riskLabel = new Label(elderly.getRiskLevel().riskStatus.name());
         riskLabel.getStyleClass().add("risk-" + elderly.getRiskLevel().riskStatus.name());
 

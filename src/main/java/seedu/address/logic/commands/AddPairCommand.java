@@ -8,6 +8,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
+import java.util.Objects;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.pair.exceptions.DuplicatePairException;
@@ -16,7 +18,7 @@ import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Adds a person to FriendlyLink.
+ * Adds a pair to FriendlyLink.
  */
 public class AddPairCommand extends Command {
 
@@ -39,6 +41,9 @@ public class AddPairCommand extends Command {
 
     /**
      * Creates an AddPairCommand to add the specified {@code Pair}
+     *
+     * @param elderlyNric Nric of the to be paired elderly.
+     * @param volunteerNric Nric of the to be paired volunteer.
      */
     public AddPairCommand(Nric elderlyNric, Nric volunteerNric) {
         requireAllNonNull(elderlyNric, volunteerNric);
@@ -74,5 +79,10 @@ public class AddPairCommand extends Command {
                 || (other instanceof AddPairCommand // instanceof handles nulls
                 && elderlyNric.equals(((AddPairCommand) other).elderlyNric)
                 && volunteerNric.equals(((AddPairCommand) other).volunteerNric));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(elderlyNric, volunteerNric);
     }
 }

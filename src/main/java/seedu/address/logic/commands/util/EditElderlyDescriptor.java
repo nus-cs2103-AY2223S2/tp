@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.util;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -23,11 +24,15 @@ import seedu.address.model.tag.Tag;
 public class EditElderlyDescriptor extends EditPersonDescriptor {
     private RiskLevel riskLevel;
 
+    /**
+     * Constructs a default empty descriptor.
+     */
     public EditElderlyDescriptor() {}
 
     /**
      * Copy constructor.
-     * A defensive copy of {@code tags} is used internally.
+     *
+     * @param toCopy {@code EditElderlyDescriptor} for copying.
      */
     public EditElderlyDescriptor(EditElderlyDescriptor toCopy) {
         super(toCopy);
@@ -37,6 +42,10 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
     /**
      * Creates and returns a {@code Elderly} with the details of {@code elderlyToEdit}
      * edited with {@code editElderlyDescriptor}.
+     *
+     * @param elderlyToEdit Elderly to edit.
+     * @param editPersonDescriptor Edit details.
+     * @return Edited elderly.
      */
     public static Elderly createEditedElderly(Elderly elderlyToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert elderlyToEdit != null;
@@ -65,6 +74,8 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
 
     /**
      * Returns true if at least one field is edited.
+     *
+     * @return True if at least one field is edited and false otherwise.
      */
     public boolean isAnyFieldEdited() {
         return super.isAnyFieldEdited() || CollectionUtil.isAnyNonNull(riskLevel);
@@ -102,5 +113,12 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
                 && getRegion().equals(e.getRegion())
                 && getRiskLevel().equals(e.getRiskLevel())
                 && getTags().equals(e.getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPhone(), getEmail(),
+                getAddress(), getNric(), getAge(), getRegion(),
+                getTags(), riskLevel);
     }
 }

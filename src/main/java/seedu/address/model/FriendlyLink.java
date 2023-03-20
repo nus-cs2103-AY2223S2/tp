@@ -11,6 +11,9 @@ import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Region;
@@ -42,9 +45,12 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Creates an FriendlyLink using the data in the {@code toBeCopied}
+     *
+     * @param toBeCopied FriendlyLink which data is to be copied.
      */
     public FriendlyLink(ReadOnlyFriendlyLink toBeCopied) {
         this();
+        requireNonNull(toBeCopied);
         resetFriendlyLinkData(toBeCopied);
     }
 
@@ -52,6 +58,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Resets the existing data of this {@code FriendlyLink} with {@code newData}.
+     *
+     * @param newData Replacement data.
      */
     public void resetFriendlyLinkData(ReadOnlyFriendlyLink newData) {
         requireNonNull(newData);
@@ -64,6 +72,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Replaces the contents of the pair list with {@code pairs}.
      * {@code pairs} must not contain duplicate pairs.
+     *
+     * @param pairs List of pairs.
      */
     public void setPairs(List<Pair> pairs) {
         this.pairs.setPairs((pairs));
@@ -72,6 +82,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Replaces the contents of the elderly list with {@code elderly}.
      * {@code elderly} must not contain duplicate elderly.
+     *
+     * @param elderly List of elderly.
      */
     public void setAllElderly(List<Elderly> elderly) {
         this.elderly.setPersons(elderly);
@@ -81,6 +93,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Replaces the contents of the volunteer list with {@code volunteers}.
      * {@code volunteers} must not contain duplicate volunteers.
+     *
+     * @param volunteers List of volunteers.
      */
     public void setVolunteers(List<Volunteer> volunteers) {
         this.volunteers.setPersons(volunteers);
@@ -88,6 +102,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Resets the existing elderly data of this {@code FriendlyLink} with {@code newData}.
+     *
+     * @param newData Replacement elderly data.
      */
     public void resetElderlyData(ReadOnlyElderly newData) {
         requireNonNull(newData);
@@ -96,6 +112,8 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Resets the existing volunteer data of this {@code FriendlyLink} with {@code newData}.
+     *
+     * @param newData Replacement volunteer data.
      */
     public void resetVolunteerData(ReadOnlyVolunteer newData) {
         requireNonNull(newData);
@@ -105,7 +123,18 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     //// person-level operations
 
     /**
+     * Returns true if an elderly with the same {@code nric} exists in the friendlyLink cache.
+     */
+    public boolean hasElderly(Nric nric) {
+        requireNonNull(nric);
+        return elderly.contains(nric);
+    }
+
+    /**
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendlyLink cache.
+     *
+     * @param e Elderly to be checked.
+     * @return True if {@code e} exists, false otherwise.
      */
     public boolean hasElderly(Elderly e) {
         requireNonNull(e);
@@ -113,7 +142,18 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
+     * Returns true if a volunteer with the same {@code nric} exists in the friendlyLink cache.
+     */
+    public boolean hasVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return volunteers.contains(nric);
+    }
+
+    /**
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendlyLink cache.
+     *
+     * @param volunteer Volunteer to be checked.
+     * @return True if {@code volunteer} exists, false otherwise.
      */
     public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);
@@ -123,17 +163,21 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     /**
      * Adds an elderly to the friendlyLink cache.
      * The elderly must not already exist in the friendlyLink cache.
+     *
+     * @param e Elderly to be added.
      */
-    public void addElderly(Elderly p) {
-        elderly.add(p);
+    public void addElderly(Elderly e) {
+        elderly.add(e);
     }
 
     /**
      * Adds a volunteer to the friendlyLink cache.
      * The volunteer must not already exist in the friendlyLink cache.
+     *
+     * @param volunteer Volunteer to be added.
      */
-    public void addVolunteer(Volunteer p) {
-        volunteers.add(p);
+    public void addVolunteer(Volunteer volunteer) {
+        volunteers.add(volunteer);
     }
 
     /**
@@ -145,7 +189,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
-        return elderly.get(nric);
+        try {
+            return elderly.get(nric);
+        } catch (PersonNotFoundException e) {
+            throw new ElderlyNotFoundException();
+        }
     }
 
     /**
@@ -157,14 +205,21 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
-        return volunteers.get(nric);
+        try {
+            return volunteers.get(nric);
+        } catch (PersonNotFoundException e) {
+            throw new VolunteerNotFoundException();
+        }
     }
 
     /**
-     * Replaces the given elderly {@code target} in the list with {@code editedPerson}.
+     * Replaces the given elderly {@code target} in the list with {@code editedElderly}.
      * {@code target} must exist in the friendlyLink cache.
      * The elderly identity of {@code editedElderly} must not be the same as
      * another existing elderly in the friendlyLink cache.
+     *
+     * @param target Elderly to edit.
+     * @param editedElderly Replacement elderly.
      */
     public void setElderly(Elderly target, Elderly editedElderly) {
         requireNonNull(editedElderly);
@@ -172,19 +227,24 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     }
 
     /**
-     * Replaces the given volunteer {@code target} in the list with {@code editedPerson}.
+     * Replaces the given volunteer {@code target} in the list with {@code editedVolunteer}.
      * {@code target} must exist in the friendlyLink cache.
-     * The volunteer identity of {@code editedPerson} must not be the same as
+     * The volunteer identity of {@code editedVolunteer} must not be the same as
      * another existing volunteer in the friendlyLink cache.
+     *
+     * @param target Volunteer to edit.
+     * @param editedVolunteer Replacement volunteer.
      */
-    public void setVolunteer(Volunteer target, Volunteer editedPerson) {
-        requireNonNull(editedPerson);
-        volunteers.setPerson(target, editedPerson);
+    public void setVolunteer(Volunteer target, Volunteer editedVolunteer) {
+        requireNonNull(editedVolunteer);
+        volunteers.setPerson(target, editedVolunteer);
     }
 
     /**
      * Removes {@code key} from {@code FriendlyLink}.
      * {@code key} must exist in the elderly list.
+     *
+     * @param key Elderly to remove.
      */
     public void removeElderly(Elderly key) {
         elderly.remove(key);
@@ -192,7 +252,9 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
 
     /**
      * Removes {@code key} from {@code FriendlyLink}.
-     * {@code key} must exist in the volunteer's list.
+     * {@code key} must exist in the volunteers list.
+     *
+     * @param key Volunteer to remove.
      */
     public void removeVolunteer(Volunteer key) {
         volunteers.remove(key);

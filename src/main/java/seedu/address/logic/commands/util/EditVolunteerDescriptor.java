@@ -3,6 +3,7 @@ package seedu.address.logic.commands.util;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Volunteer;
@@ -25,11 +26,15 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
 
     private Set<MedicalQualificationTag> medicalTags;
 
+    /**
+     * Constructs a default empty descriptor.
+     */
     public EditVolunteerDescriptor() {}
 
     /**
-     * Copy constructor.
-     * A defensive copy of {@code tags} is used internally.
+     * Constructs a descriptor using a copy.
+     *
+     * @param toCopy {@code EditPersonDescriptor} for copying.
      */
     public EditVolunteerDescriptor(EditVolunteerDescriptor toCopy) {
         super(toCopy);
@@ -38,10 +43,14 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
 
     /**
      * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editVolunteerDescriptor}.
+     *
+     * @param volunteerToEdit Volunteer to edit.
+     * @param editPersonDescriptor Edit details.
+     * @return Edited volunteer.
      */
     public static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-                                                   EditPersonDescriptor editPersonDescriptor) {
+            EditPersonDescriptor editPersonDescriptor) {
         assert volunteerToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(volunteerToEdit.getName());
@@ -100,5 +109,12 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
                 && getRegion().equals(e.getRegion())
                 && getTags().equals(e.getTags())
                 && getMedicalTags().equals(e.getMedicalTags());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getPhone(), getEmail(),
+                getAddress(), getNric(), getAge(), getRegion(),
+                getTags());
     }
 }

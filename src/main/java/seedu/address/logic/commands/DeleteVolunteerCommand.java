@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 
-import seedu.address.commons.core.Messages;
+import java.util.Objects;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a volunteer identified using their NRIC, from the FriendlyLink database.
  */
 public class DeleteVolunteerCommand extends Command {
 
@@ -20,12 +23,15 @@ public class DeleteVolunteerCommand extends Command {
             + "Parameters: NRIC \n"
             + "Example: " + COMMAND_WORD + " S1234567I";
 
-    public static final String MESSAGE_INVALID_NRIC_VOLUNTEER =
-            String.format(Messages.MESSAGE_INVALID_NRIC, "volunteer");
     public static final String MESSAGE_DELETE_VOLUNTEER_SUCCESS = "Deleted Volunteer: %1$s";
 
     private final Nric targetNric;
 
+    /**
+     * Constructs a DeleteElderlyCommand to delete an elderly.
+     *
+     * @param targetNric Nric of the elderly.
+     */
     public DeleteVolunteerCommand(Nric targetNric) {
         this.targetNric = targetNric;
     }
@@ -33,12 +39,13 @@ public class DeleteVolunteerCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Volunteer volunteerToDelete = model.getVolunteer(targetNric);
-        if (volunteerToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
+        try {
+            Volunteer volunteerToDelete = model.getVolunteer(targetNric);
+            model.deleteVolunteer(volunteerToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete));
+        } catch (VolunteerNotFoundException e) {
+            throw new CommandException(MESSAGE_NRIC_NOT_EXIST);
         }
-        model.deleteVolunteer(volunteerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete));
     }
 
     @Override
@@ -46,5 +53,10 @@ public class DeleteVolunteerCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteVolunteerCommand // instanceof handles nulls
                 && targetNric.equals(((DeleteVolunteerCommand) other).targetNric)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetNric);
     }
 }

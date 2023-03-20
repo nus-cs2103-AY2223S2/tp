@@ -17,7 +17,7 @@ import seedu.address.model.tag.MedicalQualificationTag;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents an Volunteer in the database.
+ * Represents an Volunteer in FriendlyLink.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Volunteer extends Person {

@@ -40,12 +40,6 @@ public class MedicalQualificationTag extends Tag {
                 .valueOf(qualificationLevel.toUpperCase());
     }
 
-    //    public MedicalQualificationTag(String tagName, SkillLevel qualificationLevel, LocalDate expiryDate) {
-    //        super(tagName);
-    //        this.qualificationLevel = qualificationLevel;
-    //        this.expiryDate = expiryDate;
-    //    }
-
     /**
      * Returns the level of training attained.
      *

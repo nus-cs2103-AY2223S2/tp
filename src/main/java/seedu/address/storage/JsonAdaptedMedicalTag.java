@@ -32,14 +32,6 @@ public class JsonAdaptedMedicalTag implements JsonSerializable<MedicalQualificat
         this.level = source.getQualificationLevel();
     }
 
-    //    public String getSkill() {
-    //        return skill;
-    //    }
-    //
-    //    public String getLevel() {
-    //        return level;
-    //    }
-
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code MedicalQualificationTag} object.
      *

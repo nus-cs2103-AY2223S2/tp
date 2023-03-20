@@ -11,6 +11,8 @@ import seedu.address.model.FriendlyLink;
 import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.Nric;
 import seedu.address.storage.JsonSerializable;
 
@@ -37,6 +39,8 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
 
     /**
      * Converts a given {@code Pair} into this class for Jackson use.
+     *
+     * @param source Pair for Jackson use.
      */
     public JsonAdaptedPair(Pair source) {
         elderlyNric = source.getElderly().getNric().value;
@@ -46,7 +50,9 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
     /**
      * Converts this Jackson-friendly adapted pair object into the model's {@code Pair} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted pair.
+     * @param friendlyLink FriendlyLink cache.
+     * @return Model's {@code Pair} object.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted pair.
      */
     public Pair toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
         if (elderlyNric == null) {
@@ -64,16 +70,14 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
         final Nric modelElderlyNric = new Nric(elderlyNric);
         final Nric modelVolunteerNric = new Nric(volunteerNric);
 
-        Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
-        Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
-
-        if (elderly == null) {
+        try {
+            Elderly elderly = friendlyLink.getElderly(modelElderlyNric);
+            Volunteer volunteer = friendlyLink.getVolunteer(modelVolunteerNric);
+            return new Pair(elderly, volunteer);
+        } catch (ElderlyNotFoundException e) {
             throw new IllegalValueException(String.format(MESSAGE_ELDERLY_NOT_FOUND, modelElderlyNric));
-        }
-        if (volunteer == null) {
+        } catch (VolunteerNotFoundException e) {
             throw new IllegalValueException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, modelVolunteerNric));
         }
-        return new Pair(elderly, volunteer);
-
     }
 }

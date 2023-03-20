@@ -40,12 +40,12 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
      */
     @JsonCreator
     public JsonAdaptedVolunteer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                                @JsonProperty("email") String email, @JsonProperty("address") String address,
-                                @JsonProperty("nric") String nric, @JsonProperty("age") String age,
-                                @JsonProperty("region") String region,
-                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                @JsonProperty("medicalTagged") List<JsonAdaptedMedicalTag> medicalTagged,
-                                @JsonProperty("availableDates") List<JsonAdaptedAvailableDate> dates) {
+              @JsonProperty("email") String email, @JsonProperty("address") String address,
+              @JsonProperty("nric") String nric, @JsonProperty("age") String age,
+              @JsonProperty("region") String region,
+              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+              @JsonProperty("medicalTagged") List<JsonAdaptedMedicalTag> medicalTagged,
+              @JsonProperty("availableDates") List<JsonAdaptedAvailableDate> dates) {
 
         super(name, phone, email, address, nric, age, region, tagged, dates);
         if (medicalTagged != null) {
@@ -55,6 +55,8 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
 
     /**
      * Converts a given {@code Volunteer} into this class for Jackson use.
+     *
+     * @param source Volunteer for Jackson use.
      */
     public JsonAdaptedVolunteer(Volunteer source) {
         super(source);
@@ -73,9 +75,11 @@ public class JsonAdaptedVolunteer extends JsonAdaptedPerson implements JsonSeria
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted volunteer object into the model's {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @param friendlyLink FriendlyLink cache.
+     * @return Model's {@code Volunteer} object.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted person.
      */
     public Volunteer toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
         Name modelName = super.getModelName(MISSING_FIELD_MESSAGE_FORMAT);
