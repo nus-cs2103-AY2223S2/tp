@@ -10,16 +10,13 @@ import seedu.address.model.category.Category;
 import seedu.address.model.category.UniqueCategoryList;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the expense tracker level
+ * Duplicate categories are not allowed (by .isSameCategory comparison)
  */
 public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
-    private final UniquePersonList persons;
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
 
@@ -34,7 +31,6 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
      * among constructors.
      */
     {
-        persons = new UniquePersonList();
         categories = new UniqueCategoryList();
         expenses = new ExpenseList();
     }
@@ -43,7 +39,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     /**
-     * Creates an ExpenseTracker using the Persons in the {@code toBeCopied}
+     * Creates an ExpenseTracker using the data in the {@code toBeCopied}
      */
     public ExpenseTracker(ReadOnlyExpenseTracker toBeCopied) {
         this();
@@ -53,17 +49,16 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the category list with {@code categories}.
+     * {@code categories} must not contain duplicate categories.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
-
     public void setCategories(List<Category> categories) {
         this.categories.setCategoryList(categories);
     }
 
+    /**
+     * Replaces the contents of the expense list with {@code expenses}.
+     */
     public void setExpenses(List<Expense> expenses) {
         this.expenses.setExpenseList(expenses);
     }
@@ -73,22 +68,11 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
      */
     public void resetData(ReadOnlyExpenseTracker newData) {
         requireNonNull(newData);
-        setPersons(newData.getPersonList());
         setExpenses(newData.getExpenseList());
         setCategories(newData.getCategoryList());
     }
 
-    //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in
-     * the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
-    }
-
+    //// category-level operations
     /**
      * Returns true if the given category exists in the list.
      * @param category The category to check for existence in the list.
@@ -106,7 +90,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
      * @return true if a category with the given name exists in the list and false
      *         otherwise.
      */
-    public boolean hasCategory(String categoryName) {
+    public boolean hasCategoryName(String categoryName) {
         for (Category c : categories.asUnmodifiableList()) {
             if (Objects.equals(c.getCategoryName(), categoryName)) {
                 return true;
@@ -116,78 +100,31 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a category to the expense tracker.
+     * The category must not already exist in the expense tracker.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
     public void addCategory(Category toAdd) {
         categories.add(toAdd);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with
-     * {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
      * Replaces the given category {@code target} in the list with
      * {@code editedCategory}.
-     * {@code target} must exist in the address book.
+     * {@code key} must exist in the expense tracker
      * The category identity of {@code editedCategory} must not be the same as
-     * another existing category in the address book.
+     * another existing category in the expense tracker.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void setCategory(Category key) {
+        categories.remove(key);
     }
 
     public void removeCategory(Category key) {
         categories.remove(key);
     }
 
-    //// util methods
-
-    @Override
-    public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Category> getCategoryList() {
-        return categories.asUnmodifiableList();
-    }
-
-    @Override
-    public ObservableList<Expense> getExpenseList() {
-        return expenses.asUnmodifiableList();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ExpenseTracker // instanceof handles nulls
-                        && persons.equals(((ExpenseTracker) other).persons));
-    }
-
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(categories, expenses);
     }
 
     public Category getCategoryInstance(String categoryName) {
@@ -199,11 +136,49 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         return null;
     }
 
+    //// util methods
+
+    @Override
+    public String toString() {
+        return expenses.asUnmodifiableList().size() + " expenses";
+    }
+
+    @Override
+    public ObservableList<Category> getCategoryList() {
+        return categories.asUnmodifiableList();
+    }
+
+    //// expense-level operations
+
+    @Override
+    public ObservableList<Expense> getExpenseList() {
+        return expenses.asUnmodifiableList();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ExpenseTracker // instanceof handles nulls
+                        && expenses.equals(((ExpenseTracker) other).expenses)
+                        && categories.equals(((ExpenseTracker) other).categories));
+    }
+
+
     public void addExpense(Expense expense) {
         expenses.add(expense);
     }
 
     public void removeExpense(Expense expense) {
         expenses.remove(expense);
+    }
+
+    /**
+     * Returns true if the given expense exists in the list.
+     * @param expense The expense to check for existence in the list.
+     * @return true if the expense exists in the list and false otherwise.
+     */
+    public boolean hasExpense(Expense expense) {
+        requireNonNull(expense);
+        return expenses.contains(expense);
     }
 }
