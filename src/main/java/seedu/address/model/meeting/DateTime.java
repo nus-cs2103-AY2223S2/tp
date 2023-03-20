@@ -56,7 +56,7 @@ public class DateTime {
 
     /**
      * If meetingTime is not specified in the input, {@code meetingTime} will
-     * be set to {@code LocalTime.MIN}.
+     * be set to {@code LocalTime.MAX}.
      */
     private final LocalTime meetingTime;
 
@@ -85,7 +85,7 @@ public class DateTime {
             String timePortion = dtSplit[1];
             meetingTime = stringToLocalTime(timePortion);
         } else {
-            meetingTime = LocalTime.MIN;
+            meetingTime = LocalTime.MAX;
         }
 
         meetingDuration = Duration.ZERO;
@@ -121,7 +121,7 @@ public class DateTime {
             checkArgument(isValidDuration(startDT, endDT));
             meetingDuration = Duration.between(startDT, endDT);
         } else {
-            meetingTime = LocalTime.MIN;
+            meetingTime = LocalTime.MAX;
             meetingDuration = Duration.between(meetingDate, stringToLocalDate(endDatePortion));
         }
     }
@@ -131,7 +131,7 @@ public class DateTime {
      * in this class.
      */
     public String getDateTime() {
-        if (!meetingTime.equals(LocalTime.MIN)) {
+        if (meetingTime != LocalTime.MAX) {
             return meetingDate.format(DateTimeFormatter.ofPattern(DATE_FORMAT))
                     + " "
                     + meetingTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
@@ -172,21 +172,21 @@ public class DateTime {
      * Returns true if a given string is a valid date.
      */
     private static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX) && !stringToLocalDate(test).equals(LocalDate.MIN);
+        return test.matches(VALIDATION_REGEX) && stringToLocalDate(test) != LocalDate.MAX;
     }
 
     /**
      * Returns true if a given string is a valid time.
      */
     private static boolean isValidTime(String test) {
-        return test.matches(VALIDATION_REGEX) && !stringToLocalTime(test).equals(LocalTime.MIN);
+        return test.matches(VALIDATION_REGEX) && stringToLocalTime(test) != LocalTime.MAX;
     }
 
     private static LocalDate stringToLocalDate(String date) {
         try {
             return parseDate(date, getDateFormat(date));
         } catch (InvalidDateTimeFormatException e) {
-            return LocalDate.MIN;
+            return LocalDate.MAX;
         }
     }
 
@@ -194,7 +194,7 @@ public class DateTime {
         try {
             return parseTime(time, getTimeFormat(time));
         } catch (InvalidDateTimeFormatException e) {
-            return LocalTime.MIN;
+            return LocalTime.MAX;
         }
     }
 
@@ -215,7 +215,7 @@ public class DateTime {
 
             return LocalDate.parse(newDate, DateTimeFormatter.ofPattern(getDateFormat(newDate), Locale.ENGLISH));
         } catch (DateTimeParseException | InvalidDateTimeFormatException e) {
-            return LocalDate.MIN;
+            return LocalDate.MAX;
         }
     }
 
@@ -223,7 +223,7 @@ public class DateTime {
         try {
             return LocalTime.parse(time, DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH));
         } catch (DateTimeParseException e) {
-            return LocalTime.MIN;
+            return LocalTime.MAX;
         }
     }
 
@@ -234,15 +234,15 @@ public class DateTime {
             String ddmmyyPattern = patternForSeparator(DDMMYY_TEMPLATE, separator);
             String ddmmPattern = patternForSeparator(DDMM_TEMPLATE, separator);
 
-            if (!parseDate(date, ddmmyyyyPattern).isEqual(LocalDate.MIN)) {
+            if (parseDate(date, ddmmyyyyPattern) != LocalDate.MAX) {
                 dateFormat = ddmmyyyyPattern;
             }
 
-            if (!parseDate(date, ddmmyyPattern).isEqual(LocalDate.MIN)) {
+            if (parseDate(date, ddmmyyPattern) != LocalDate.MAX) {
                 dateFormat = ddmmyyPattern;
             }
 
-            if (!parseDate(date, ddmmPattern).isEqual(LocalDate.MIN)) {
+            if (parseDate(date, ddmmPattern) != LocalDate.MAX) {
                 dateFormat = ddmmPattern;
             }
         }
@@ -260,11 +260,11 @@ public class DateTime {
             String hhmmPattern = patternForSeparator(HHMM_TEMPLATE, separator);
             String hhmmampmPattern = patternForSeparator(HHMM_AM_PM_TEMPLATE, separator);
 
-            if (!parseTime(time, hhmmPattern).equals(LocalTime.MIN)) {
+            if (parseTime(time, hhmmPattern) != LocalTime.MAX) {
                 timeFormat = hhmmPattern;
             }
 
-            if (!parseTime(time, hhmmampmPattern).equals(LocalTime.MIN)) {
+            if (parseTime(time, hhmmampmPattern) != LocalTime.MAX) {
                 timeFormat = hhmmampmPattern;
             }
         }
