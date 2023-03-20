@@ -80,10 +80,10 @@ public class AddressBookParser {
             return new LoadCommandParser().parse(arguments);
 
         case RedoCommand.COMMAND_WORD:
-                return new RedoCommand();
+            return new RedoCommand();
 
         case UndoCommand.COMMAND_WORD:
-                return new UndoCommand();
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
