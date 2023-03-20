@@ -48,6 +48,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -164,6 +165,30 @@
                       </Text>
                     </children>
                   </HBox>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #515658;" GridPane.rowIndex="5">
+                              <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Find Internship Entries">
+                                    <font>
+                                       <Font name="Segoe UI" size="14.0" />
+                                    </font>
+                                 </Text>
+                              </children>
+                              <GridPane.margin>
+                                 <Insets left="20.0" />
+                              </GridPane.margin>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #515658;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="find [n/COMPANY_NAME] [r/ROLE] [s/STATUS] [t/TAG]">
+                                    <font>
+                                       <Font name="Segoe UI" size="12.0" />
+                                    </font>
+                                 </Text>
+                              </children>
+                              <GridPane.margin>
+                                 <Insets right="20.0" />
+                              </GridPane.margin>
+                           </HBox>
                 </children>
                 <VBox.margin>
                   <Insets top="20.0" />
