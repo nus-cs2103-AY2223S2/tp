@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -352,7 +352,7 @@
                                  <Insets left="20.0" top="30.0" />
                               </HBox.margin>
                            </Label>
-                           <Hyperlink prefHeight="15.0" prefWidth="383.0" text="https://ay2223s2-cs2103t-t14-3.github.io/tp/UserGuide.html">
+                           <Hyperlink onAction="#goToUserGuide" prefHeight="15.0" prefWidth="383.0" text="https://ay2223s2-cs2103t-t14-3.github.io/tp/UserGuide.html" textFill="#008ebf">
                               <font>
                                  <Font name="Segoe UI" size="14.0" />
                               </font>
@@ -372,12 +372,12 @@
                       <Insets left="20.0" />
                     </HBox.margin>
                   </Button>
-                  <ImageView fitHeight="98.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="78.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                       <Image url="@../../../../docs/images/internbuddy-help.png" />
                     </image>
                     <HBox.margin>
-                      <Insets left="600.0" top="15.0" />
+                      <Insets bottom="10.0" left="600.0" />
                     </HBox.margin>
                   </ImageView>
                 </children>
