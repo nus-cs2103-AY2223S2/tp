@@ -1,5 +1,7 @@
 package seedu.address.model.application;
 
+import seedu.address.model.task.Task;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -7,13 +9,13 @@ import java.util.Objects;
 /**
  * Represents an Application in the internship book.
  * Guarantees: details are present and not null, field values are validated, immutable.
- * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class Application {
     private final Role role;
     private final CompanyName companyName;
     private final CompanyEmail companyEmail;
     private final Status status;
+    private final Task task;
 
     /**
      * Every field must be present and not null.
@@ -24,6 +26,7 @@ public class Application {
         this.companyName = companyName;
         this.companyEmail = companyEmail;
         this.status = status;
+        this.task = null;
     }
 
     public Role getRole() {
@@ -40,6 +43,10 @@ public class Application {
 
     public Status getStatus() {
         return this.status;
+    }
+
+    public Task getTask() {
+        return this.task;
     }
 
     /**
