@@ -53,6 +53,7 @@
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -298,6 +299,36 @@
                                     <font>
                                        <Font name="Segoe UI" size="12.0" />
                                     </font>
+                                 </Text>
+                              </children>
+                              <GridPane.margin>
+                                 <Insets right="20.0" />
+                              </GridPane.margin>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="10">
+                              <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" textAlignment="CENTER">
+                                    <font>
+                                       <Font name="Segoe UI" size="14.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets />
+                                    </HBox.margin>
+                                 </Text>
+                              </children>
+                              <GridPane.margin>
+                                 <Insets left="20.0" />
+                              </GridPane.margin>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                              <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="exit">
+                                    <font>
+                                       <Font name="Segoe UI" size="12.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets />
+                                    </HBox.margin>
                                  </Text>
                               </children>
                               <GridPane.margin>
