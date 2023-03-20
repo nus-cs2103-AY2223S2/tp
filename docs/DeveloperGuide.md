@@ -240,6 +240,46 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Edit feature
+
+#### Implementation
+
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+
+The following is a more detailed explanation on how `EditCommand` works.
+
+1. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be removed.
+2. If the name, role, status, tag or date fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the Internship will not be edited.
+3. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
+4. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
+
+#### Design considerations:
+
+**Aspect: How edit executes:**
+
+* **Alternative 1 (current choice):** Edit command will create a new `internship` to replace the existing `internship` object.
+    * Pros: 
+      * Maintains immutability of `Internship` class
+    * Cons: 
+      * May be less efficient than alternative 2
+
+* **Alternative 2:** Edit command will directly edit the `internship` by modifying its attributes
+    * Pros: 
+      * Will use less memory (no new `internship` object will be created). 
+      * Saves time since there is no need to create the new object.
+    * Cons: 
+      * Reduces the defensiveness of the code and class
+
+
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
