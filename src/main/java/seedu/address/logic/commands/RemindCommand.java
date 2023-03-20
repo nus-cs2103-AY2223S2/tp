@@ -32,7 +32,9 @@ public class RemindCommand extends Command {
     public String getSuccessMessage(Model model) {
         model.updateFilteredPersonList(INTERVIEW_IN_THREE_DAYS_PREDICATE);
         List<Person> personList = model.getFilteredPersonList();
-        if (personList.size() >= 1) {
+        int listSize = personList.size();
+        assert(listSize >= 0);
+        if (listSize >= 1) {
             model.sortFilteredPersonList(new SortByInterviewDate());
             return MESSAGE_SUCCESS_FORMAT_WITH_APPLICANTS;
         } else {
