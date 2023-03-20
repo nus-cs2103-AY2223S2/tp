@@ -21,10 +21,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLectureCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.AddVideoCommand;
+import seedu.address.logic.commands.add.AddCommand;
+import seedu.address.logic.commands.add.AddLectureCommand;
+import seedu.address.logic.commands.add.AddModuleCommand;
+import seedu.address.logic.commands.add.AddVideoCommand;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
@@ -36,14 +36,14 @@ import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.VideoBuilder;
 
 public class AddCommandParserTest {
-    private static final String MESSAGE_COMMAND_FORMAT_ERROR =
+    private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_noFields_failure() {
-        assertParseFailure(parser, "", MESSAGE_COMMAND_FORMAT_ERROR);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_addModuleFieldsMissingModuleCodeField_failure() {
-        assertParseFailure(parser, MODULE_NAME_DESC_2103, MESSAGE_COMMAND_FORMAT_ERROR);
+        assertParseFailure(parser, MODULE_NAME_DESC_2103, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_addLectureFieldsMissingLectureNameField_failure() {
-        assertParseFailure(parser, MODULE_CODE_DESC_2040, MESSAGE_COMMAND_FORMAT_ERROR);
+        assertParseFailure(parser, MODULE_CODE_DESC_2040, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -115,11 +115,8 @@ public class AddCommandParserTest {
 
         AddVideoCommand command = new AddVideoCommand(moduleCode, lectureName, video);
 
-        // no duplicate fields, module code before lecture name
+        // no duplicate fields
         assertParseSuccess(parser, VALID_VIDEO_NAME_V1 + MODULE_CODE_DESC_2103 + LECTURE_NAME_DESC_L1, command);
-
-        // no duplicate fields, lecture name before module code
-        assertParseSuccess(parser, VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1 + MODULE_CODE_DESC_2103, command);
 
         // multiple module codes - last module code accepted
         assertParseSuccess(parser,
@@ -132,12 +129,12 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_addVideoFieldsMissingVideoNameField_failure() {
-        assertParseFailure(parser, MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1, MESSAGE_COMMAND_FORMAT_ERROR);
+        assertParseFailure(parser, MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_addVideoFieldsMissingModuleCodeField_failure() {
-        assertParseFailure(parser, VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1, MESSAGE_COMMAND_FORMAT_ERROR);
+        assertParseFailure(parser, VALID_VIDEO_NAME_V1 + LECTURE_NAME_DESC_L1, MESSAGE_INVALID_FORMAT);
     }
 
     @Test

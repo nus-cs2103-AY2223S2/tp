@@ -230,6 +230,27 @@ public class ModelManager implements Model {
         //CHECKSTYLE.ON: SeparatorWrap
     }
 
+    //=========== Filtered List Accessors =============================================================
+
+    @Override
+    public void updateAllFilteredListAsHidden() {
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    @Override
+    public Level getLastListLevel() {
+        return lastListLevel;
+    };
+
+    private Level setLastListLevel(Level listLevel) {
+        return lastListLevel = listLevel;
+    };
 
     //=========== Filtered Module List Accessors =============================================================
 
@@ -276,6 +297,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Video List Accessors =============================================================
+
     @Override
     public ObservableList<? extends Video> getFilteredVideoList() {
         return filteredVideos;
@@ -294,26 +316,6 @@ public class ModelManager implements Model {
             filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
         }
     }
-
-    @Override
-    public void updateAllFilteredListAsHidden() {
-        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
-        if (filteredLectures != null) {
-            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
-        }
-        if (filteredVideos != null) {
-            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
-        }
-    }
-
-    @Override
-    public Level getLastListLevel() {
-        return lastListLevel;
-    };
-
-    private Level setLastListLevel(Level listLevel) {
-        return lastListLevel = listLevel;
-    };
 
     //=========== Navigation =================================================================================
 

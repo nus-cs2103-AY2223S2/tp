@@ -1,7 +1,8 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.add;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -12,7 +13,7 @@ import seedu.address.model.module.Module;
 public class AddModuleCommand extends AddCommand {
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the tracker";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the tracker.";
 
     private final Module toAdd;
 
