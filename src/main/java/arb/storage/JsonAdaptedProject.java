@@ -1,22 +1,25 @@
 package arb.storage;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import arb.commons.core.LogsCenter;
 import arb.commons.exceptions.IllegalValueException;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
-import arb.model.project.Status;
 import arb.model.project.Title;
 
 /**
  * Jackson-friendly version of {@link Project}.
  */
 public class JsonAdaptedProject {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
+
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedProject.class);
+
     private final String title;
 
     private final String deadline;
@@ -27,18 +30,20 @@ public class JsonAdaptedProject {
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
     @JsonCreator
-    public JsonAdaptedProject(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline) {
+    public JsonAdaptedProject(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
+                              @JsonProperty("status") String status) {
         this.title = title;
         this.deadline = Optional.ofNullable(deadline).orElse(null);
-        this.status = new Status().toString(); //not sure if this is correct?
+        this.status = status;
     }
 
     /**
      * Converts a given {@code Project} into this class for Jackson use.
      */
     public JsonAdaptedProject(Project source) {
+        logger.info("Logging project: " + source);
         this.title = source.getTitle().fullTitle;
-        this.deadline = Optional.ofNullable(source.getDeadline().toString()).map(p -> p.toString()).orElse(null); //????
+        this.deadline = Optional.ofNullable(source.getDeadline()).map(d -> d.dueDate.toString()).orElse(null);
         this.status = source.getStatus().toString();
     }
 
@@ -61,7 +66,13 @@ public class JsonAdaptedProject {
         }
         final Deadline modelDeadline = Optional.ofNullable(deadline).map(d -> new Deadline(d)).orElse(null);
 
-        return new Project(modelTitle, modelDeadline);
+        Project project = new Project(modelTitle, modelDeadline);
+
+        if (status.equals("DONE")) {
+            project.markAsDone();
+        }
+
+        return project;
     }
 
 }
