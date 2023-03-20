@@ -74,7 +74,7 @@ public class EditCommand extends Command {
         }
 
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
-        Recipe editedRecipe = RecipeDescriptor.createEditedRecipe(recipeToEdit, recipeDescriptor);
+        Recipe editedRecipe = recipeDescriptor.toRecipe(recipeToEdit);
 
         // TODO: ensure that these model methods work properly
         if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {

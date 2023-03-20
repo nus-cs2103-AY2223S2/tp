@@ -48,31 +48,36 @@ public class RecipeDescriptor {
      * Creates and returns a {@code Recipe} with the details of {@code recipeToEdit}
      * edited with {@code editRecipeDescriptor}.
      */
-    public static Recipe createEditedRecipe(Recipe recipeToEdit, RecipeDescriptor recipeDescriptor) {
+    public Recipe toRecipe(Recipe recipeToEdit) {
         assert recipeToEdit != null;
 
-        Name updatedName = recipeDescriptor.getName().orElse(recipeToEdit.getName());
+        Name updatedName = getName().orElse(recipeToEdit.getName());
         Recipe newRecipe = new Recipe(updatedName);
 
-        RecipeDuration updatedDuration = recipeDescriptor.getDuration().orElse(recipeToEdit.getDurationNullable());
+        RecipeDuration updatedDuration = getDuration().orElse(recipeToEdit.getDurationNullable());
         newRecipe.setDuration(updatedDuration);
 
-        RecipePortion updatedPortion = recipeDescriptor.getPortion().orElse(recipeToEdit.getPortionNullable());
+        RecipePortion updatedPortion = getPortion().orElse(recipeToEdit.getPortionNullable());
         newRecipe.setPortion(updatedPortion);
 
-        Tag[] updatedTags = recipeDescriptor.getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
+        Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
         newRecipe.setTags(updatedTags);
 
-        Ingredient[] updatedIngredients = recipeDescriptor
-                .getIngredients()
+        Ingredient[] updatedIngredients = getIngredients()
                 .orElse(recipeToEdit.getIngredients())
                 .toArray(Ingredient[]::new);
         newRecipe.setIngredients(updatedIngredients);
 
-        Step[] updatedSteps = recipeDescriptor.getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
+        Step[] updatedSteps = getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
         newRecipe.setSteps(updatedSteps);
 
         return newRecipe;
+    }
+
+    // converts this RecipeDescriptor into a Recipe
+    public Recipe toRecipe() {
+        Recipe blank = new Recipe(this.name);
+        return this.toRecipe(blank);
     }
 
     /**
