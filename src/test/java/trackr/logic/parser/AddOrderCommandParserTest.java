@@ -6,7 +6,7 @@ import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.AddOrderCommand;
+import trackr.logic.commands.order.AddOrderCommand;
 import trackr.model.order.Order;
 import trackr.testutil.OrderBuilder;
 

@@ -12,15 +12,15 @@ import static trackr.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
-import trackr.testutil.EditSupplierDescriptorBuilder;
+import trackr.model.person.PersonDescriptor;
+import trackr.testutil.PersonDescriptorBuilder;
 
 public class EditSupplierDescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditSupplierDescriptor descriptorWithSameValues = new EditSupplierDescriptor(DESC_AMY);
+        PersonDescriptor descriptorWithSameValues = new PersonDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,23 +36,23 @@ public class EditSupplierDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditSupplierDescriptor editedAmy = new EditSupplierDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
+        PersonDescriptor editedAmy = new PersonDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditSupplierDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new PersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditSupplierDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new PersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditSupplierDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        editedAmy = new PersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditSupplierDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new PersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

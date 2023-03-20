@@ -11,8 +11,8 @@ import static trackr.logic.commands.CommandTestUtil.VALID_TASK_STATUS_DONE;
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static trackr.logic.commands.EditTaskCommand.MESSAGE_DUPLICATE_TASK;
-import static trackr.logic.commands.EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS;
+import static trackr.logic.commands.EditItemCommand.MESSAGE_DUPLICATE_ITEM;
+import static trackr.logic.commands.EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
@@ -23,7 +23,10 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
+import trackr.logic.commands.supplier.ClearSupplierCommand;
+import trackr.logic.commands.task.EditTaskCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.OrderList;
 import trackr.model.SupplierList;
@@ -45,7 +48,9 @@ public class EditTaskCommandTest {
         TaskDescriptor descriptor = new TaskDescriptorBuilder(editedTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.TASK.toString().toLowerCase(),
+                editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -72,7 +77,9 @@ public class EditTaskCommandTest {
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.TASK.toString().toLowerCase(),
+                editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -87,7 +94,9 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT, new TaskDescriptor());
         Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.TASK.toString().toLowerCase(),
+                editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -104,7 +113,9 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT,
                 new TaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build());
 
-        String expectedMessage = String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format(MESSAGE_EDIT_ITEM_SUCCESS,
+                ModelEnum.TASK.toString().toLowerCase(),
+                editedTask);
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
@@ -120,7 +131,9 @@ public class EditTaskCommandTest {
         TaskDescriptor descriptor = new TaskDescriptorBuilder(firstTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_OBJECT, descriptor);
 
-        assertCommandFailure(editTaskCommand, model, MESSAGE_DUPLICATE_TASK);
+        assertCommandFailure(editTaskCommand,
+                model,
+                String.format(MESSAGE_DUPLICATE_ITEM, ModelEnum.TASK.toString().toLowerCase()));
     }
 
     @Test
@@ -132,7 +145,9 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT,
                 new TaskDescriptorBuilder(taskInList).build());
 
-        assertCommandFailure(editTaskCommand, model, MESSAGE_DUPLICATE_TASK);
+        assertCommandFailure(editTaskCommand,
+                model,
+                String.format(MESSAGE_DUPLICATE_ITEM, ModelEnum.TASK.toString().toLowerCase()));
     }
 
     @Test

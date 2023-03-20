@@ -7,7 +7,8 @@ import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.DeleteTaskCommand;
+import trackr.logic.commands.task.DeleteTaskCommand;
+import trackr.logic.parser.task.DeleteTaskCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

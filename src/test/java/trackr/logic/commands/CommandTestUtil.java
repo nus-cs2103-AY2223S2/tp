@@ -20,17 +20,19 @@ import java.util.List;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.SupplierList;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;
+import trackr.model.person.PersonDescriptor;
 import trackr.model.person.PersonNameContainsKeywordsPredicate;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
-import trackr.testutil.EditSupplierDescriptorBuilder;
 import trackr.testutil.OrderDescriptorBuilder;
+import trackr.testutil.PersonDescriptorBuilder;
 import trackr.testutil.TaskDescriptorBuilder;
 
 /**
@@ -69,14 +71,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditSupplierCommand.EditSupplierDescriptor DESC_AMY;
-    public static final EditSupplierCommand.EditSupplierDescriptor DESC_BOB;
+    public static final PersonDescriptor DESC_AMY;
+    public static final PersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditSupplierDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new PersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditSupplierDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new PersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
@@ -173,7 +175,6 @@ public class CommandTestUtil {
             " " + PREFIX_ADDRESS + VALID_CUSTOMER_ADDRESS;
 
 
-
     public static final String INVALID_ORDER_NAME_DESC =
             " " + PREFIX_ORDERNAME + INVALID_ORDER_NAME;
     public static final String INVALID_ORDER_DEADLINE_DESC =
@@ -211,13 +212,14 @@ public class CommandTestUtil {
                 .withCustomerPhone(VALID_CUSTOMER_PHONE)
                 .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
     }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -232,7 +234,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -263,7 +265,8 @@ public class CommandTestUtil {
 
         Supplier supplier = model.getFilteredSupplierList().get(targetIndex.getZeroBased());
         final String[] splitName = supplier.getPersonName().getName().split("\\s+");
-        model.updateFilteredSupplierList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredItemList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])),
+                ModelEnum.SUPPLIER);
 
         assertEquals(1, model.getFilteredSupplierList().size());
     }
@@ -279,7 +282,7 @@ public class CommandTestUtil {
         final String[] splitTaskName = task.getTaskName().getName().split("\\s+");
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setTaskNameKeywords(Arrays.asList(splitTaskName[0]));
-        model.updateFilteredTaskList(predicate);
+        model.updateFilteredItemList(predicate, ModelEnum.TASK);
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
@@ -295,7 +298,7 @@ public class CommandTestUtil {
         final String[] splitOrderName = task.getOrderName().value.split("\\s+");
         OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate();
         predicate.setOrderNameKeywords(Arrays.asList(splitOrderName[0]));
-        model.updateFilteredOrderList(predicate);
+        model.updateFilteredItemList(predicate, ModelEnum.ORDER);
 
         assertEquals(1, model.getFilteredOrderList().size());
     }

@@ -33,7 +33,8 @@ import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.FindOrderCommand;
+import trackr.logic.commands.order.FindOrderCommand;
+import trackr.logic.parser.order.FindOrderCommandParser;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderStatus;

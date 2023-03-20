@@ -4,13 +4,15 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import trackr.model.ModelEnum;
+import trackr.model.item.Item;
 import trackr.model.order.customer.Customer;
 
 /**
  * Represents an Order in the order list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Order {
+public class Order extends Item {
 
     //Data fields
     private final OrderName orderName;
@@ -25,7 +27,8 @@ public class Order {
      * Every field must be present and not null
      */
     public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
-            OrderQuantity orderQuantity, Customer customer) {
+                 OrderQuantity orderQuantity, Customer customer) {
+        super(ModelEnum.ORDER);
         requireAllNonNull(orderName, orderDeadline, orderStatus, customer);
         this.orderName = orderName;
         this.orderDeadline = orderDeadline;
@@ -53,14 +56,21 @@ public class Order {
     public Customer getCustomer() {
         return customer;
     }
+
     /**
      * Returns true if both orders have the same name, deadline, quantity and customer
      * This defines a weaker notion of equality between two orders.
      */
-    public boolean isSameOrder(Order otherOrder) {
-        if (otherOrder == this) {
+    public boolean isSameItem(Item otherItem) {
+        if (otherItem == this) {
             return true;
         }
+
+        if (!(otherItem instanceof Order)) {
+            return false;
+        }
+
+        Order otherOrder = (Order) otherItem;
 
         return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())

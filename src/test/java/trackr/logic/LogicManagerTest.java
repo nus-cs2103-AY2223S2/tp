@@ -19,12 +19,14 @@ import org.junit.jupiter.api.io.TempDir;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
-import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.commands.CommandResult;
-import trackr.logic.commands.ListSupplierCommand;
+import trackr.logic.commands.ListItemCommand;
 import trackr.logic.commands.exceptions.CommandException;
+import trackr.logic.commands.supplier.AddSupplierCommand;
+import trackr.logic.commands.supplier.ListSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
@@ -71,7 +73,9 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listSupplierCommand = ListSupplierCommand.COMMAND_WORD;
-        assertCommandSuccess(listSupplierCommand, ListSupplierCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listSupplierCommand,
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER.toString().toLowerCase()),
+                model);
     }
 
     @Test
@@ -170,10 +174,11 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+                                      Model expectedModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -181,6 +186,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -189,6 +195,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -197,10 +204,11 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
+                                      String expectedMessage) {
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
@@ -211,10 +219,11 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, Model expectedModel) {
+                                      String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
@@ -229,7 +238,7 @@ public class LogicManagerTest {
 
         @Override
         public void saveTrackr(ReadOnlySupplierList addressBook, ReadOnlyTaskList taskList,
-                ReadOnlyOrderList orderList, Path filePath)
+                               ReadOnlyOrderList orderList, Path filePath)
                 throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }

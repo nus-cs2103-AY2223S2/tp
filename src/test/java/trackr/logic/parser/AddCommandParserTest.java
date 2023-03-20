@@ -31,7 +31,8 @@ import static trackr.testutil.TypicalSuppliers.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.AddSupplierCommand;
+import trackr.logic.commands.supplier.AddSupplierCommand;
+import trackr.logic.parser.supplier.AddSupplierCommandParser;
 import trackr.model.commons.Tag;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;

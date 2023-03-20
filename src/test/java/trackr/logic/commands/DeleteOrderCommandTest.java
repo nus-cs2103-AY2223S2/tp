@@ -15,7 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
+import trackr.logic.commands.order.DeleteOrderCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.order.Order;
@@ -33,7 +35,9 @@ public class DeleteOrderCommandTest {
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.ORDER,
+                orderToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
@@ -58,7 +62,9 @@ public class DeleteOrderCommandTest {
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.ORDER,
+                orderToDelete);
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
@@ -74,7 +80,7 @@ public class DeleteOrderCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of task list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderList().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderList().getItemList().size());
 
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 

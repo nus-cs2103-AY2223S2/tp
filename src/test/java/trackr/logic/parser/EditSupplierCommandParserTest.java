@@ -34,14 +34,15 @@ import static trackr.testutil.TypicalIndexes.INDEX_THIRD_OBJECT;
 import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.EditSupplierCommand;
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.commands.supplier.EditSupplierCommand;
+import trackr.logic.parser.supplier.EditSupplierCommandParser;
 import trackr.model.commons.Tag;
 import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonDescriptor;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
-import trackr.testutil.EditSupplierDescriptorBuilder;
+import trackr.testutil.PersonDescriptorBuilder;
 
 public class EditSupplierCommandParserTest {
 
@@ -111,7 +112,7 @@ public class EditSupplierCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withName(VALID_NAME_AMY)
+        PersonDescriptor descriptor = new PersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
@@ -124,7 +125,7 @@ public class EditSupplierCommandParserTest {
         Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        PersonDescriptor descriptor = new PersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
 
@@ -136,31 +137,31 @@ public class EditSupplierCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_OBJECT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        PersonDescriptor descriptor = new PersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditSupplierDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new PersonDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditSupplierDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        descriptor = new PersonDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditSupplierDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        descriptor = new PersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditSupplierDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        descriptor = new PersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -172,7 +173,7 @@ public class EditSupplierCommandParserTest {
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        PersonDescriptor descriptor = new PersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
@@ -185,14 +186,14 @@ public class EditSupplierCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_OBJECT;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        PersonDescriptor descriptor = new PersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
                 + PHONE_DESC_BOB;
-        descriptor = new EditSupplierDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        descriptor = new PersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -203,7 +204,7 @@ public class EditSupplierCommandParserTest {
         Index targetIndex = INDEX_THIRD_OBJECT;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditSupplierDescriptor descriptor = new EditSupplierDescriptorBuilder().withTags().build();
+        PersonDescriptor descriptor = new PersonDescriptorBuilder().withTags().build();
         EditSupplierCommand expectedCommand = new EditSupplierCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

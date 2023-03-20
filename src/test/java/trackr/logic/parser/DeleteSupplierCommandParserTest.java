@@ -7,7 +7,8 @@ import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.DeleteSupplierCommand;
+import trackr.logic.commands.supplier.DeleteSupplierCommand;
+import trackr.logic.parser.supplier.DeleteSupplierCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

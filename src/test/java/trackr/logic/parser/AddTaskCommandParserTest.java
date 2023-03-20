@@ -21,7 +21,8 @@ import static trackr.testutil.TypicalTasks.SORT_INVENTORY_N;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.AddTaskCommand;
+import trackr.logic.commands.task.AddTaskCommand;
+import trackr.logic.parser.task.AddTaskCommandParser;
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;

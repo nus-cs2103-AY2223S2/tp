@@ -22,7 +22,8 @@ import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.FindTaskCommand;
+import trackr.logic.commands.task.FindTaskCommand;
+import trackr.logic.parser.task.FindTaskCommandParser;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskStatus;

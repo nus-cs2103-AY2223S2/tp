@@ -10,10 +10,13 @@ import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.index.Index;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
+import trackr.model.item.Item;
+import trackr.model.item.ReadOnlyItemList;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -94,6 +97,46 @@ public class TestUtil {
 
         @Override
         public void setTrackrFilePath(Path trackrFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public <T extends Item> void setItemList(ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyItemList<? extends Item> getItemList(ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public <T extends Item> void deleteItem(T item, ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<? extends Item> getFilteredItemList(ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum) {
             throw new AssertionError("This method should not be called.");
         }
 

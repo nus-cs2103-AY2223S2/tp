@@ -3,7 +3,7 @@ package trackr.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static trackr.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static trackr.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.CARL;
@@ -17,7 +17,9 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.supplier.FindSupplierCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.person.PersonNameContainsKeywordsPredicate;
@@ -60,20 +62,22 @@ public class FindSupplierCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0,
+                ModelEnum.SUPPLIER.toString().toLowerCase());
         PersonNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindSupplierCommand command = new FindSupplierCommand(predicate);
-        expectedModel.updateFilteredSupplierList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.SUPPLIER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredSupplierList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 3,
+                ModelEnum.SUPPLIER.toString().toLowerCase());
         PersonNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindSupplierCommand command = new FindSupplierCommand(predicate);
-        expectedModel.updateFilteredSupplierList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.SUPPLIER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredSupplierList());
     }

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import trackr.model.ModelEnum;
 import trackr.model.commons.Tag;
 import trackr.model.item.Item;
 
@@ -29,8 +30,8 @@ public abstract class Person extends Item {
      * Every field must be present and not null.
      */
     public Person(PersonName personName, PersonPhone personPhone, PersonEmail personEmail, PersonAddress personAddress,
-                  Set<Tag> personTags) {
-        super("Person");
+                  Set<Tag> personTags, ModelEnum modelEnum) {
+        super(modelEnum);
         requireAllNonNull(personName, personPhone, personEmail, personAddress, personTags);
         this.personName = personName;
         this.personPhone = personPhone;

@@ -2,6 +2,7 @@ package trackr.model.person;
 
 import java.util.Set;
 
+import trackr.model.ModelEnum;
 import trackr.model.commons.Tag;
 
 /**
@@ -15,7 +16,7 @@ public class Supplier extends Person {
      */
     public Supplier(PersonName personName, PersonPhone personPhone, PersonEmail personEmail,
                     PersonAddress personAddress, Set<Tag> tags) {
-        super(personName, personPhone, personEmail, personAddress, tags);
+        super(personName, personPhone, personEmail, personAddress, tags, ModelEnum.SUPPLIER);
     }
 
 }

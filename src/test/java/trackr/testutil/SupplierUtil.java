@@ -8,9 +8,9 @@ import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import trackr.logic.commands.AddSupplierCommand;
-import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
+import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.model.commons.Tag;
+import trackr.model.person.PersonDescriptor;
 import trackr.model.person.Supplier;
 
 /**
@@ -43,7 +43,7 @@ public class SupplierUtil {
     /**
      * Returns the part of command string for the given {@code EditSupplierDescriptor}'s details.
      */
-    public static String getEditSupplierDescriptorDetails(EditSupplierDescriptor descriptor) {
+    public static String getEditSupplierDescriptorDetails(PersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.getName()).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.personPhone).append(" "));

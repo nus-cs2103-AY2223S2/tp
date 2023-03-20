@@ -122,7 +122,7 @@ public class SampleDataUtil {
     public static ReadOnlyOrderList getSampleOrderList() {
         OrderList sampleOl = new OrderList();
         for (Order sampleOrder : getSampleOrders()) {
-            sampleOl.addOrder(sampleOrder);
+            sampleOl.addItem(sampleOrder);
         }
         return sampleOl;
     }

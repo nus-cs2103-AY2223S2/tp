@@ -22,7 +22,7 @@ public class OrderListBuilder {
      * Adds a new {@code Order} to the {@code OrderList} that we are building.
      */
     public OrderListBuilder withOrder(Order order) {
-        orderList.addOrder(order);
+        orderList.addItem(order);
         return this;
     }
 

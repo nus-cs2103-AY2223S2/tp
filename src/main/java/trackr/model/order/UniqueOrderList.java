@@ -8,19 +8,20 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import trackr.model.item.Item;
 import trackr.model.order.exceptions.DuplicateOrderException;
 import trackr.model.order.exceptions.OrderNotFoundException;
 
 /**
  * A list of orders that enforces uniqueness between its elements and does not allow nulls.
- * an order is considered unique by comparing using {@code Order#isSameOrder(Order)}. As such, adding and updating of
- * orders uses Order#isSameOrder(Order) for equality to ensure that the Order being added or updated is unique
- * in terms of identity in the UniqueOrderList. However, the removal of a Order uses Order#equals(Object) to
+ * an order is considered unique by comparing using {@code Order#isSameItem(Item)}. As such, adding and updating of
+ * orders uses Order#isSameItem(Item) for equality to ensure that the Order being added or updated is unique
+ * in terms of identity in the UniqueOrderList. However, the removal of an Order uses Order#equals(Object) to
  * ensure that the Order with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Order#isSameOrder(Order)
+ * @see Order#isSameItem(Item)
  */
 public class UniqueOrderList implements Iterable<Order> {
     private final ObservableList<Order> internalList = FXCollections.observableArrayList();
@@ -32,7 +33,7 @@ public class UniqueOrderList implements Iterable<Order> {
      */
     public boolean contains(Order toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameOrder);
+        return internalList.stream().anyMatch(toCheck::isSameItem);
     }
 
     /**
@@ -60,7 +61,7 @@ public class UniqueOrderList implements Iterable<Order> {
             throw new OrderNotFoundException();
         }
 
-        if (!target.isSameOrder(editedOrder) && contains(editedOrder)) {
+        if (!target.isSameItem(editedOrder) && contains(editedOrder)) {
             throw new DuplicateOrderException();
         }
 
@@ -126,7 +127,7 @@ public class UniqueOrderList implements Iterable<Order> {
     private boolean ordersAreUnique(List<Order> orders) {
         for (int i = 0; i < orders.size() - 1; i++) {
             for (int j = i + 1; j < orders.size(); j++) {
-                if (orders.get(i).isSameOrder(orders.get(j))) {
+                if (orders.get(i).isSameItem(orders.get(j))) {
                     return false;
                 }
             }

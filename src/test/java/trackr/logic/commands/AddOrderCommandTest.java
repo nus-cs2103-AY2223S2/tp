@@ -12,8 +12,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.exceptions.CommandException;
+import trackr.logic.commands.order.AddOrderCommand;
+import trackr.model.ModelEnum;
 import trackr.model.OrderList;
 import trackr.model.ReadOnlyOrderList;
+import trackr.model.item.Item;
 import trackr.model.order.Order;
 import trackr.testutil.OrderBuilder;
 import trackr.testutil.TestUtil.ModelStub;
@@ -32,7 +35,7 @@ public class AddOrderCommandTest {
 
         CommandResult commandResult = new AddOrderCommand(validTask).execute(modelStub);
 
-        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, validTask),
+        assertEquals(String.format(AddOrderCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, validTask),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.ordersAdded);
     }
@@ -44,7 +47,8 @@ public class AddOrderCommandTest {
         ModelStub modelStub = new AddOrderCommandTest.ModelStubWithOrder(validTask);
 
         assertThrows(CommandException.class,
-                AddOrderCommand.MESSAGE_DUPLICATE_ORDER, () -> addTaskCommand.execute(modelStub));
+                String.format(AddOrderCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.ORDER,
+                        ModelEnum.ORDER), () -> addTaskCommand.execute(modelStub));
     }
 
     @Test
@@ -83,9 +87,14 @@ public class AddOrderCommandTest {
         }
 
         @Override
+        public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
+            return hasOrder((Order) item);
+        }
+
+        @Override
         public boolean hasOrder(Order order) {
             requireNonNull(order);
-            return this.order.isSameOrder(order);
+            return this.order.isSameItem(order);
         }
     }
 
@@ -96,9 +105,19 @@ public class AddOrderCommandTest {
         final ArrayList<Order> ordersAdded = new ArrayList<>();
 
         @Override
+        public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
+            return hasOrder((Order) item);
+        }
+
+        @Override
+        public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
+            addOrder((Order) item);
+        }
+
+        @Override
         public boolean hasOrder(Order order) {
             requireNonNull(order);
-            return ordersAdded.stream().anyMatch(order::isSameOrder);
+            return ordersAdded.stream().anyMatch(order::isSameItem);
         }
 
         @Override

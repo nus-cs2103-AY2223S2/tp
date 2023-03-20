@@ -4,6 +4,7 @@ import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import trackr.model.ModelEnum;
 import trackr.model.item.Item;
 
 /**
@@ -21,7 +22,7 @@ public class Task extends Item {
      * Every field must be present and not null.
      */
     public Task(TaskName taskName, TaskDeadline taskDeadline, TaskStatus taskStatus) {
-        super("Task");
+        super(ModelEnum.TASK);
         requireAllNonNull(taskName, taskDeadline, taskStatus);
         this.taskName = taskName;
         this.taskDeadline = taskDeadline;

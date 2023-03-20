@@ -8,7 +8,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.logic.commands.FindSupplierCommand;
+import trackr.logic.commands.supplier.FindSupplierCommand;
+import trackr.logic.parser.supplier.FindSupplierCommandParser;
 import trackr.model.person.PersonNameContainsKeywordsPredicate;
 
 public class FindSupplierCommandParserTest {

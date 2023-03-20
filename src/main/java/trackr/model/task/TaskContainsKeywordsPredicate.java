@@ -5,11 +5,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import trackr.commons.util.StringUtil;
+import trackr.model.item.Item;
 
 /**
  * Tests that a {@code Task}'s {@code TaskName}, {@code TaskDeadline}, {@code TaskStatus} matches the keywords given.
  */
-public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Predicate<Task> {
+public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Predicate<Item> {
     private List<String> taskNameKeywords;
 
     public TaskContainsKeywordsPredicate() {
@@ -38,7 +39,13 @@ public class TaskContainsKeywordsPredicate extends TaskDescriptor implements Pre
     }
 
     @Override
-    public boolean test(Task task) {
+    public boolean test(Item item) {
+        if (!(item instanceof Task)) {
+            return false;
+        }
+
+        Task task = (Task) item;
+
         boolean isTaskNameMatch;
         boolean isTaskDeadlineMatch;
         boolean isTaskStatusMatch;

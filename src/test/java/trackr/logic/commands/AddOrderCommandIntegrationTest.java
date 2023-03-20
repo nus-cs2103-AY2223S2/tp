@@ -9,7 +9,9 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.order.AddOrderCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.order.Order;
@@ -34,14 +36,16 @@ public class AddOrderCommandIntegrationTest {
                 model.getTaskList(), getTypicalOrderList(), new UserPrefs());
         expectedModel.addOrder(validOrder);
 
-        assertCommandSuccess(new AddOrderCommand(validOrder), model,
-                String.format(AddOrderCommand.MESSAGE_SUCCESS, validOrder), expectedModel);
+        assertCommandSuccess(new AddOrderCommand(validOrder),
+                model,
+                String.format(AddOrderCommand.MESSAGE_SUCCESS, ModelEnum.ORDER, validOrder),
+                expectedModel);
     }
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-        Order orderInList = model.getOrderList().getOrderList().get(0);
+        Order orderInList = model.getOrderList().getItemList().get(0);
         assertCommandFailure(new AddOrderCommand(orderInList), model,
-                AddOrderCommand.MESSAGE_DUPLICATE_ORDER);
+                String.format(AddOrderCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.ORDER, ModelEnum.ORDER));
     }
 }

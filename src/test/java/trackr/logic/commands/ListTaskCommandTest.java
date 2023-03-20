@@ -10,7 +10,9 @@ import static trackr.testutil.TypicalTasks.getTypicalTaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.task.ListTaskCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 
@@ -32,12 +34,18 @@ public class ListTaskCommandTest {
 
     @Test
     public void execute_taskListIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListTaskCommand(), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListTaskCommand(),
+                model,
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.TASK.toString().toLowerCase()),
+                expectedModel);
     }
 
     @Test
     public void execute_taskListIsFiltered_showsEverything() {
         showTaskAtIndex(model, INDEX_FIRST_OBJECT);
-        assertCommandSuccess(new ListTaskCommand(), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListTaskCommand(),
+                model,
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.TASK.toString().toLowerCase()),
+                expectedModel);
     }
 }

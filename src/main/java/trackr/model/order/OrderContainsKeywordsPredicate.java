@@ -5,11 +5,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import trackr.commons.util.StringUtil;
+import trackr.model.item.Item;
 
 /**
  * Tests that a {@code Order}'s {@code OrderName} matches any of the keywords given.
  */
-public class OrderContainsKeywordsPredicate extends OrderDescriptor implements Predicate<Order> {
+public class OrderContainsKeywordsPredicate extends OrderDescriptor implements Predicate<Item> {
     private List<String> orderNameKeywords;
 
     public OrderContainsKeywordsPredicate() {
@@ -42,7 +43,13 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
     }
 
     @Override
-    public boolean test(Order order) {
+    public boolean test(Item item) {
+        if (!(item instanceof Order)) {
+            return false;
+        }
+
+        Order order = (Order) item;
+
         boolean isOrderNameMatch;
         boolean isOrderDeadlineMatch;
         boolean isOrderQuantityMatch;
@@ -53,7 +60,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
 
         if (orderNameKeywords != null) {
             return orderNameKeywords.stream()
-              .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getOrderName().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getOrderName().value, keyword));
         } else {
             isOrderNameMatch = true;
         }

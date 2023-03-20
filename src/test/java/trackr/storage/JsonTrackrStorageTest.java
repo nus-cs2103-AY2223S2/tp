@@ -134,9 +134,9 @@ public class JsonTrackrStorageTest {
         readBackTaskList = jsonTrackrStorage.readTaskList(filePath).get();
         assertEquals(originalTaskList, new TaskList(readBackTaskList));
 
-        originalOrderList.removeOrder(DONUTS);
-        originalOrderList.addOrder(DONUTS);
-        originalOrderList.removeOrder(CHOCOLATE_COOKIES);
+        originalOrderList.removeItem(DONUTS);
+        originalOrderList.addItem(DONUTS);
+        originalOrderList.removeItem(CHOCOLATE_COOKIES);
         jsonTrackrStorage.saveTrackr(originalAddressBook, originalTaskList, originalOrderList, filePath);
         readBackOrderList = jsonTrackrStorage.readOrderList(filePath).get();
         assertEquals(originalOrderList, new OrderList(readBackOrderList));

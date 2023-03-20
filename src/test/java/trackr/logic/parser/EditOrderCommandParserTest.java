@@ -1,6 +1,7 @@
 package trackr.logic.parser;
 
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static trackr.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.CUSTOMER_ADDRESS_DESC;
 import static trackr.logic.commands.CommandTestUtil.CUSTOMER_NAME_DESC_NIGEL;
 import static trackr.logic.commands.CommandTestUtil.CUSTOMER_PHONE_DESC;
@@ -11,6 +12,7 @@ import static trackr.logic.commands.CommandTestUtil.INVALID_ORDER_DEADLINE_DESC;
 import static trackr.logic.commands.CommandTestUtil.INVALID_ORDER_NAME_DESC;
 import static trackr.logic.commands.CommandTestUtil.INVALID_ORDER_QUANTITY_DESC;
 import static trackr.logic.commands.CommandTestUtil.INVALID_ORDER_STATUS_DESC;
+import static trackr.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static trackr.logic.commands.CommandTestUtil.ORDER_DEADLINE_DESC_2023;
 import static trackr.logic.commands.CommandTestUtil.ORDER_DEADLINE_DESC_2024;
 import static trackr.logic.commands.CommandTestUtil.ORDER_NAME_DESC_CHOCO_COOKIE;
@@ -19,9 +21,12 @@ import static trackr.logic.commands.CommandTestUtil.ORDER_QUANTITY_DESC_ONE;
 import static trackr.logic.commands.CommandTestUtil.ORDER_QUANTITY_DESC_TWO;
 import static trackr.logic.commands.CommandTestUtil.ORDER_STATUS_DESC_DONE;
 import static trackr.logic.commands.CommandTestUtil.ORDER_STATUS_DESC_NOT_DONE;
+import static trackr.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static trackr.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_ADDRESS;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_NAME;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_PHONE;
+import static trackr.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2023;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2024;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CHOCOLATE_COOKIES;
@@ -30,6 +35,7 @@ import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_ONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_TWO;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_DONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
+import static trackr.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -40,7 +46,8 @@ import static trackr.testutil.TypicalIndexes.INDEX_THIRD_OBJECT;
 import org.junit.jupiter.api.Test;
 
 import trackr.commons.core.index.Index;
-import trackr.logic.commands.EditOrderCommand;
+import trackr.logic.commands.order.EditOrderCommand;
+import trackr.logic.parser.order.EditOrderCommandParser;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderDescriptor;
 import trackr.model.order.OrderName;
@@ -227,6 +234,34 @@ public class EditOrderCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parse_multipleRepeatedFields_acceptsLast() {
+        Index targetIndex = INDEX_FIRST_OBJECT;
+        String userInput = targetIndex.getOneBased() + ORDER_NAME_DESC_CHOCO_COOKIE
+                + ORDER_DEADLINE_DESC_2024 + ORDER_STATUS_DESC_NOT_DONE
+                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
+                + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC
+                + ORDER_NAME_DESC_CHOCO_COOKIE + ORDER_DEADLINE_DESC_2024
+                + ORDER_STATUS_DESC_NOT_DONE + ORDER_QUANTITY_DESC_ONE
+                + CUSTOMER_NAME_DESC_NIGEL + CUSTOMER_PHONE_DESC
+                + CUSTOMER_ADDRESS_DESC + ORDER_NAME_DESC_CUPCAKES
+                + ORDER_DEADLINE_DESC_2023 + ORDER_STATUS_DESC_DONE
+                + ORDER_QUANTITY_DESC_ONE + NAME_DESC_AMY
+                + PHONE_DESC_AMY + ADDRESS_DESC_AMY;
+
+        OrderDescriptor descriptor =
+                new OrderDescriptorBuilder()
+                        .withOrderName(VALID_ORDER_NAME_CUPCAKES)
+                        .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
+                        .withOrderStatus(VALID_ORDER_STATUS_DONE)
+                        .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
+                        .withCustomerName(VALID_NAME_AMY)
+                        .withCustomerPhone(VALID_PHONE_AMY)
+                        .withCustomerAddress(VALID_ADDRESS_AMY).build();
+        EditOrderCommand expectedCommand = new EditOrderCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
@@ -260,9 +295,8 @@ public class EditOrderCommandParserTest {
         // other valid values specified
         // invalid Order name followed by valid Order name
         userInput = targetIndex.getOneBased()
-                + INVALID_ORDER_NAME_DESC + ORDER_STATUS_DESC_NOT_DONE
-                + ORDER_DEADLINE_DESC_2023 + ORDER_NAME_DESC_CUPCAKES
-                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
+                + INVALID_ORDER_NAME_DESC + ORDER_STATUS_DESC_NOT_DONE + ORDER_DEADLINE_DESC_2023
+                + ORDER_NAME_DESC_CUPCAKES + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
                 + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC;
         descriptor = new OrderDescriptorBuilder()
                 .withOrderName(VALID_ORDER_NAME_CUPCAKES)
@@ -277,12 +311,11 @@ public class EditOrderCommandParserTest {
 
         // invalid Order deadline followed by valid Order deadline
         userInput = targetIndex.getOneBased()
-                + ORDER_NAME_DESC_CUPCAKES + INVALID_ORDER_DEADLINE_DESC
-                + ORDER_STATUS_DESC_NOT_DONE + ORDER_DEADLINE_DESC_2023
-                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
+                + ORDER_NAME_DESC_CHOCO_COOKIE + INVALID_ORDER_DEADLINE_DESC + ORDER_STATUS_DESC_NOT_DONE
+                + ORDER_DEADLINE_DESC_2023 + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
                 + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC;
         descriptor = new OrderDescriptorBuilder()
-                .withOrderName(VALID_ORDER_NAME_CUPCAKES)
+                .withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2023)
                 .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
                 .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
@@ -295,9 +328,8 @@ public class EditOrderCommandParserTest {
 
         // invalid Order status followed by valid Order status
         userInput = targetIndex.getOneBased()
-                + INVALID_ORDER_STATUS_DESC + ORDER_NAME_DESC_CUPCAKES
-                + ORDER_STATUS_DESC_NOT_DONE + ORDER_DEADLINE_DESC_2023
-                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
+                + INVALID_ORDER_STATUS_DESC + ORDER_NAME_DESC_CUPCAKES + ORDER_STATUS_DESC_NOT_DONE
+                + ORDER_DEADLINE_DESC_2023 + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
                 + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC;
         descriptor = new OrderDescriptorBuilder()
                 .withOrderName(VALID_ORDER_NAME_CUPCAKES)
@@ -333,13 +365,13 @@ public class EditOrderCommandParserTest {
         //Order deadline, Order status, Order name
         userInput = targetIndex.getOneBased() + ORDER_DEADLINE_DESC_2024
                 + ORDER_STATUS_DESC_NOT_DONE + ORDER_NAME_DESC_CUPCAKES
-                + ORDER_QUANTITY_DESC_TWO + CUSTOMER_NAME_DESC_NIGEL
+                + ORDER_QUANTITY_DESC_ONE + CUSTOMER_NAME_DESC_NIGEL
                 + CUSTOMER_PHONE_DESC + CUSTOMER_ADDRESS_DESC;
         descriptor = new OrderDescriptorBuilder()
                 .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
                 .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
                 .withOrderName(VALID_ORDER_NAME_CUPCAKES)
-                .withOrderQuantity(VALID_ORDER_QUANTITY_TWO)
+                .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
                 .withCustomerName(VALID_CUSTOMER_NAME)
                 .withCustomerPhone(VALID_CUSTOMER_PHONE)
                 .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
