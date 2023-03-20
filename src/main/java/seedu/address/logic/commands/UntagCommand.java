@@ -73,7 +73,7 @@ public class UntagCommand extends Command {
 
         personToEdit.setCommonModules(userModuleTags);
 
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateObservablePersonList();
         return new CommandResult(String.format(MESSAGE_UNTAG_PERSON_SUCCESS
                 + "Name: " + personToEdit.getName().toString() + '\n'
                 + "Modules: " + personToEdit.getImmutableModuleTags().toString() + '\n'
@@ -93,7 +93,7 @@ public class UntagCommand extends Command {
 
         userModuleTags.removeAll(this.moduleTags);
 
-        model.getFilteredPersonList().forEach(person ->
+        model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(editedUser.getImmutableModuleTags()));
 
         return new CommandResult(String.format(MESSAGE_UNTAG_USER_SUCCESS
