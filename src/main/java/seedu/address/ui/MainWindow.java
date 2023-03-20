@@ -175,10 +175,10 @@ public class MainWindow extends UiPart<Stage> {
     private void handleGuiChange() {
         GuiSettings.GuiMode newMode = logic.getGuiSettings().getGuiMode();
         switch (newMode) {
-        case DISPLAY_ALL_TANKS:
+        case DISPLAY_TANKS_TASKS:
             mainContent.setPanels(tankListPanel, taskListPanel);
             break;
-        case DISPLAY_ALL_FISHES:
+        case DISPLAY_FISHES_TASKS:
             mainContent.setPanels(fishListPanel, taskListPanel);
             break;
         default:
