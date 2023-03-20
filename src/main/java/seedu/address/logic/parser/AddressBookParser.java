@@ -46,28 +46,47 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        switch (commandWord) {
 
-        // if the user's command fits a keyword for a command, create a parser
-        if (AddCommand.COMMAND_WORD.contains(commandWord)) {
+        case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
-        } else if (EditCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-        } else if (DeleteCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-        } else if (ClearCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-        } else if (FindCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-        } else if (ListCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        } else if (ExitCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-        } else if (HelpCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-        } else if (ExportCommand.COMMAND_WORD.contains(commandWord)) {
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
+
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
+
+        case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
-        } else {
-        throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
+
 }

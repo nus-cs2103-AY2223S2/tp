@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
@@ -13,17 +15,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
-    /**
-     * Returns true if the search query matches the contact's name partially.
-     */
     @Override
     public boolean test(Person person) {
-        for (String listItem : keywords) {
-            if (person.getName().fullName.toLowerCase().contains(listItem.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
     }
 
     @Override
