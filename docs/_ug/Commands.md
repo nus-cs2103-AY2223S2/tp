@@ -123,9 +123,9 @@ What you should expect to find:
 
 ### Applicant Commands
 
-#### Create a new item: `add`
+#### Create a new applicant: `add`
 
-**Format**: `add n/NAME p/PHONGE e/EMAIL a/ADDRESS [note/NOTE]`
+**Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
 
 > Creates a new applicant with the provided information
 
@@ -135,14 +135,16 @@ What you should expect to find:
 * THe value of `NOTE` will be `-` if it is not provided.
 
 
-```
+
 🚨Note
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-```
+
 
 **Example:**
 
 **Assumption:**
+ 
+HMHero does not already contain an applicant with the name "Thomas".
 
 **Command Input Box:**
 
@@ -150,41 +152,259 @@ What you should expect to find:
 
 **Command Output Box:**
 
-`New person added: Thomas; Phone: 91918153; Email: thomas@gmail.comm; Address: 6 Sims Drive (s)543230; Status: APPLIED`
+`New person added: Thomas; Phone: 91918153; Email: thomas@gmail.com; Address: 6 Sims Drive (s)543230; Status: APPLIED`
 
 ---
 
 
-#### Search for an item: `find`
+#### Search for an applicant: `find`
 
-**Format**: `find [KEY]...`
+**Format**: `find n/[KEY] p/[KEY] ...`
 
-> Finds all applicants in HMHero using name or phone or both
+> Finds all applicants in HMHero using name, phone or both
 
 **Info**
-* The notation `[KEY]...` means that we take in exact name/phone. 
+* The notation `[KEY]...` means that we take in name or phone or both. 
 In this case, at least one `KEY` is required.
 * The `KEY` are case-insensitive. (e.g. "apples" will match "Apples").
 * The result will be applicants where each of the `KEY` are present in the `NAME` or `PHONE`.
-(e.g. "Thomas" will match "Thomas Lee", "Thomas", "Thomas Tan" and "Thomas Lim")
+(e.g. "Thomas" will match "Thomas Lee", "Thomas", "Thomas Tan" and "Thomas Lim", 
+"91918153" will only match "91918153")
 
 
-```
+Tip
+* You can use the [List Command](#list-all-applicants--list) in the next section to display all applicants again!
+
+
 🚨Note
-* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-```
+* The `find` command only finds `Applicants` which has a name, phone or both that fully matches the specified search 
+of part of the name, phone or both!
+* This means that if the `NAME` `Thomas Lee` and `Thomas Tan` is in HMHero, 
+executing `Thomas` will find these two `Applicants`.
+* This also means that if the `PHONE` `91918153` and `9191` is in HMHero, executing `91918153` will only find
+  `PHONE` `91918153`.
+* If you try to find an `NAME` `Thomas` by executing the command `Thomas Lee`, it will still work!
+* However, if you try to find an `PHONE` `91918153` by executing the command `919181532`, it will not work!
+* If you try to find `Applicants` using both `NAME` and `PHONE`, it will work the same as finding individually!
 
 **Example:**
 
 **Assumption:**
 
+HMHero contains the following applicants:
+
+1. Thomas Tan, 91918153
+1. Thomas, 98765432
+1. Marry, 98765432
+1. Thoma, 98231234
+
 **Command Input Box:**
 
-`add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230`
+`find n/Thomas p/98765432`
 
 **Command Output Box:**
 
-`New person added: Thomas; Phone: 91918153; Email: thomas@gmail.comm; Address: 6 Sims Drive (s)543230; Status: APPLIED`
+`2 persons listed`
+
+1. `Thomas, REJECTED, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230`
+2. `Marry, APPLIED, 98765432, marry@gmail.com, 5 Sims Drive (s)542333`
+
+---
+
+
+#### List all applicants: `list`
+
+**Format**: `list`
+
+> List all applicants in HMHero
+
+**Info**
+* This command is useful to view all applicants again after using the [Find Command](#search-for-an-applicant--find).
+
+
+**Example:**
+
+**Assumption:**
+
+HMHero contains the following applicants, each with their own attributes:
+
+1. Thomas Tan, 91918153
+1. Thomas, 98765432
+1. Marry, 98765432
+1. Thoma, 98231234
+
+**Command Input Box:**
+
+`list`
+
+**Command Output Box:**
+
+- `Listed all applicants`
+- `Total Applicants: 4`
+- `Applied: 1`
+- `Shortlisted: 1`
+- `Accepted: 1`
+- `Rejected: 1`
+
+1. `Thomas, REJECTED, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230`
+2. `Marry, APPLIED, 98765432, marry@gmail.com, 5 Sims Drive (s)542333`
+3. `Thomas Tan, ACCEPTED, 91918153, thomastan@gmail.com, 4 Sims Drive (s)543231`
+4. `Thoma, SHORTLISTED, 98231234, thoma@gmail.com, 7 Sims Drive (s)543521`
+
+---
+
+
+#### Delete an applicant: `delete`
+
+**Format**: `delete n/NAME p/PHONE`
+
+> Deletes an applicant in HMHero using name and phone
+
+**Info**
+* All fields are compulsory.
+
+
+🚨Note
+* The `delete` command only deletes `Applicant` which has a name and phone that fully matches the specified search.
+
+
+**Example:**
+
+**Assumption:**
+
+HMHero contains the following applicants, each with their own attributes:
+
+1. Thomas Tan, 91918153
+1. Thomas, 91918153
+1. Marry, 98765432
+1. Thoma, 98231234
+
+**Command Input Box:**
+
+`delete n/Thomas p/91918153`
+
+**Command Output Box:**
+
+`Deleted Person: Thomas; Phone: 91918153; Email: thomas@gmail.com; Address: 6 Sims Drive (s)543230; Status: REJECTED`
+
+---
+
+
+#### Advance an applicant: `advance`
+
+**Format**: `advance n/NAME p/PHONE d/[INTERVIEW DATETIME]
+
+> Advances an applicant in HMHero using name, phone and interview datetime
+
+**Info**
+* All fields except [INTERVIEW DATETIME] are compulsory.
+* [INTERVIEW DATETIME] is compulsory when the initial `status` is `APPLIED`.
+
+
+🚨Note
+* The `advance` command only advances `Applicant` which has a name and phone that fully matches the specified search.
+* The `INTERVIEW DATETIME` is required to advance `Applicant` from `status` `APPLIED` to `status` `SHORTLISTED`.
+* However, `INTERVIEW DATETIME` is not required to advance `Applicant` from `status` `SHORTLISTED` 
+to `status` `ACCEPTED`.
+
+
+**Example:**
+
+**Assumption:**
+
+HMHero contains the following applicants, each with their own attributes:
+
+1. Thomas Tan, 91918153, SHORTLISTED
+1. Thomas, 91818153, APPLIED
+
+**Command Input Box:**
+
+1. `advance n/Thomas p/91918153 d/20-03-2023 12:12`
+
+1. `advance n/Thomas Tan p/91818153`
+
+**Command Output Box:**
+
+1. `Advanced Applicant: Thomas`
+
+`1. Thomas, SHORTLISTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230`
+
+2. `Advanced Applicant: Thomas Tan`
+
+`1. Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230`
+
+---
+
+
+#### Reject an applicant: `reject`
+
+**Format**: `reject n/NAME p/PHONE 
+
+> Rejects an applicant in HMHero using name and phone
+
+**Info**
+* All fields are compulsory.
+
+
+🚨Note
+* The `reject` command only rejects `Applicant` which has a name and phone that fully matches the specified search.
+* The `NAME` and `PHONE `is required to reject `Applicant` from `status` `APPLIED`, `SHORTLISTED` and `ACCEPTED`
+to `status` `REJECTED`.
+
+
+**Example:**
+
+**Assumption:**
+
+HMHero contains the following applicants, each with their own attributes:
+
+1. Thomas Tan, 91918153, SHORTLISTED
+1. Thomas, 91818153, APPLIED
+
+**Command Input Box:**
+
+`reject n/Thomas p/91918153 d/20-03-2023 12:12`
+
+**Command Output Box:**
+
+`Rejected Applicant: Thomas`
+
+`1. Thomas, REJECTED 20-03-2023 12:12, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230`
+
+---
+
+#### List all interview dates of applicants: `interview`
+
+**Format**: `interview`
+
+> List all interview dates of shortlisted applicants in HMHero in chronological order
+
+**Info**
+* This command is useful to view all the applicants' interview dates again after 
+using the [Advance Command](#advance-an-applicant--advance).
+
+
+**Example:**
+
+**Assumption:**
+
+HMHero contains the following applicants, each with their own attributes:
+
+1. Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153, 
+1. Thomas, SHORTLISTED 18-03-2023 12:12, 98765432
+1. Marry, SHORTLISTED 21-03-2023 12:12, 98765432
+
+**Command Input Box:**
+
+`interview`
+
+**Command Output Box:**
+
+- `Listed all shortlisted applicants`
+
+1. `Thomas, SHORTLISTED 18-03-2023 12:12, 98765432, thomas@gmail.com, 6 Sims Drive (s)543230`
+2. `Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153, thomastan@gmail.com, 4 Sims Drive (s)543231`
+3. `Marry, SHORTLISTED 21-03-2023 12:12, 98765432, marry@gmail.com, 5 Sims Drive (s)542333`
 
 ---
 
@@ -194,8 +414,7 @@ In this case, at least one `KEY` is required.
 
 
 
-
-
+edit
 ### Statistics Command
 
 {% include_relative _ug/commands/StatisticsCommands.md %}
