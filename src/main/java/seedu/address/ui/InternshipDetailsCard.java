@@ -13,8 +13,6 @@ import java.util.HashMap;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -24,7 +22,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.Scene;
-import seedu.address.MainApp;
 import seedu.address.model.internship.Internship;
 
 
@@ -62,13 +59,9 @@ public class InternshipDetailsCard extends UiPart<Region> {
     private VBox tipBox;
     @FXML
     private Text tips;
-//    @FXML
-//    private ImageView tipsImage;
-
-
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * A UI component that displays the detailed information and tips of a {@code Internship}.
      */
     public InternshipDetailsCard(Internship internship, Scene scene) {
         super(FXML);
@@ -81,7 +74,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
         role.setText(ROLE_LABEL + internship.getRole().fullRole);
 
         //Add Date
-        String dateLabel = getDateLabel();
+        String dateLabel = InternshipCard.getDateLabel(internship.getStatus().toString());
         date.setText(dateLabel + internship.getDate().fullDate);
 
         //Add Tags
@@ -92,7 +85,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
         //Set up status label
         String statusString = internship.getStatus().toString();
-        HashMap<String, Color> colorMap = setupColours();
+        HashMap<String, Color> colorMap = InternshipCard.setupColours();
         Color statusColor = colorMap.get(statusString);
         statusLabel.setText(statusString.toUpperCase());
         statusLabel.setBackground(new Background(new BackgroundFill(
@@ -101,12 +94,10 @@ public class InternshipDetailsCard extends UiPart<Region> {
         //Set up tips
         tips.setText(getTips());
 
-        //@@author eugentangkj-reused
+        //@@author eugenetangkj-reused
         //Reused with modifications from https://stackoverflow.com/questions/29315469/javafx-resize-text-with-window
         tips.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.4));
 
-        //Set up image
-//        tipsImage.setImage(new Image(MainApp.class.getResourceAsStream(getTipsImage())));
     }
 
     @Override
@@ -123,59 +114,9 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
         // state check with comparison of company name, role and date
         InternshipDetailsCard details = (InternshipDetailsCard) other;
-        return companyName.getText().equals(details.companyName.getText())
-                && role.getText().equals(details.role.getText())
-                && date.getText().equals(details.date.getText())
-                && internship.equals(details.internship);
+        return internship.equals(details.internship);
     }
 
-
-    /**
-     * Initialises the colours associated with the status label.
-     *
-     * @return a hashmap containing the colors associated with each status type
-     */
-    public HashMap<String, Color> setupColours() {
-        //Hashmap that stores the colours associated with each status
-        HashMap<String, Color> colorMap = new HashMap<String, Color>();
-        colorMap.put(NEW, Color.rgb(250, 155, 68, 1.0));
-        colorMap.put(APPLIED, Color.rgb(68, 170, 250, 1.0));
-        colorMap.put(ASSESSMENT, Color.rgb(250, 68, 155, 1.0));
-        colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
-        colorMap.put(OFFERED, Color.rgb(42, 174, 79, 1.0));
-        colorMap.put(REJECTED, Color.rgb(250, 68, 68, 1.0));
-        return colorMap;
-    }
-
-
-    /**
-     * Returns the label for the date field in Internship Details
-     *
-     * @return the corresponding String as a label for the date.
-     */
-    public String getDateLabel() {
-        String dateLabel;
-        switch (this.internship.getStatus().toString()) {
-        case APPLIED:
-            dateLabel = "Date Applied: ";
-            break;
-        case ASSESSMENT:
-            dateLabel = "Date of Assessment: ";
-            break;
-        case INTERVIEW:
-            dateLabel = "Date of Interview: ";
-            break;
-        case OFFERED:
-            dateLabel = "Date of Notice of Offer: ";
-            break;
-        case REJECTED:
-            dateLabel = "Date of Notice of Rejection: ";
-            break;
-        default:
-            dateLabel = "Date Added: ";
-        }
-        return dateLabel;
-    }
 
     /**
      * Gets the corresponding tips according to the status
@@ -206,28 +147,6 @@ public class InternshipDetailsCard extends UiPart<Region> {
             return "If possible, try to apply early because once companies receive applications, they would start" +
                     " screening for potential candidates. Also, remember to do a thorough check of your resume" +
                     " before sending out your application.";
-        }
-    }
-
-    /**
-     * Gets the corresponding image url according to the status
-     *
-     * @return the tips for a specific status
-     */
-    public String getTipsImage() {
-        switch (this.internship.getStatus().toString()) {
-        case APPLIED:
-            return "/tips/applied.png";
-        case ASSESSMENT:
-            return "/tips/assessment.png";
-        case INTERVIEW:
-            return "/tips/interview.png";
-        case OFFERED:
-            return "/tips/offered.png";
-        case REJECTED:
-            return "/tips/rejected.png";
-        default:
-            return "/tips/new.png";
         }
     }
 }

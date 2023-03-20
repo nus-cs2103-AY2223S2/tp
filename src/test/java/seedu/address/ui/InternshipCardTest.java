@@ -90,27 +90,29 @@ public class InternshipCardTest extends GuiUnitTest {
         // Test new
         Internship internship = new InternshipBuilder().withStatus(NEW).build();
         InternshipCard internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date Added: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date Added: ");
         // Test applied
         internship = new InternshipBuilder().withStatus(APPLIED).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date Applied: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date Applied: ");
         // Test Assessment
         internship = new InternshipBuilder().withStatus(ASSESSMENT).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Assessment: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date of Assessment: ");
         // Test Interview
         internship = new InternshipBuilder().withStatus(INTERVIEW).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Interview: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()), "Date of Interview: ");
         // Test Offered
         internship = new InternshipBuilder().withStatus(OFFERED).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Notice of Offer: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
+                "Date of Notice of Offer: ");
         // Test rejected
         internship = new InternshipBuilder().withStatus(REJECTED).build();
         internshipCard = new InternshipCard(internship, 1);
-        assertEquals(internshipCard.getDateLabel(), "Date of Notice of Rejection: ");
+        assertEquals(internshipCard.getDateLabel(internship.getStatus().toString()),
+                "Date of Notice of Rejection: ");
     }
 
 
@@ -123,7 +125,7 @@ public class InternshipCardTest extends GuiUnitTest {
         Label internshipRoleLabel = (Label) internshipRegion.lookup("#role");
         Label internshipDate = (Label) internshipRegion.lookup("#date");
         Label internshipStatus = (Label) internshipRegion.lookup("#statusLabel");
-        String expectedDateLabel = internshipCard.getDateLabel();
+        String expectedDateLabel = internshipCard.getDateLabel(internship.getStatus().toString());
         ObservableList<Node> internshipNodeTags = ((FlowPane) internshipRegion.lookup("#tags")).getChildren();
 
         assertEquals(companyName.getText(), internship.getCompanyName().toString());
@@ -132,7 +134,6 @@ public class InternshipCardTest extends GuiUnitTest {
         assertEquals(internshipStatus.getText(), internship.getStatus().toString().toUpperCase());
         assertIterableEquals(internshipNodeTags.stream().map(node -> ((Label) node).getText()).sorted()
                 .collect(Collectors.toList()), internship.getTags().stream().sorted().collect(Collectors.toList()));
-        //@@author
     }
 
 }

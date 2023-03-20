@@ -124,19 +124,6 @@ public class MainWindow extends UiPart<Stage> {
         internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList());
         internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
-//        Internship selectedInternship = logic.getSelectedInternship();
-//        if (selectedInternship == null) {
-//            System.out.println("reached");
-//        }
-//        if (selectedInternship != null) {
-//            internshipDetailsCard = new InternshipDetailsCard(selectedInternship);
-//            internshipDetailsPanelPlaceholder.getChildren().clear();
-//            internshipDetailsPanelPlaceholder.getChildren().add(internshipDetailsCard.getRoot());
-//        }
-
-
-
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -189,10 +176,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public InternshipListPanel getInternshipListPanel() {
-        return internshipListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -230,7 +213,6 @@ public class MainWindow extends UiPart<Stage> {
             internshipDetailsCard = new InternshipDetailsCard(selectedInternship, primaryStage.getScene());
             internshipDetailsPanelPlaceholder.getChildren().clear();
             internshipDetailsPanelPlaceholder.getChildren().add(internshipDetailsCard.getRoot());
-//            rightPanel.setAlignment(Pos.TOP_CENTER);
             internshipDetailsPanelPlaceholder.setAlignment(Pos.TOP_CENTER);
         }
     }
