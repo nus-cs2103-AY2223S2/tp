@@ -15,12 +15,12 @@ public class AnswerTest {
 
     @Test
     public void constructor_invalidAnswer_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Answer(invalidAddress));
+        String invalidAnswer = "";
+        assertThrows(IllegalArgumentException.class, () -> new Answer(invalidAnswer));
     }
 
     @Test
-    public void isValidAddress() {
+    public void isValidAnswer() {
         // null address
         assertThrows(NullPointerException.class, () -> Answer.isValidAnswer(null));
 
@@ -29,8 +29,10 @@ public class AnswerTest {
         assertFalse(Answer.isValidAnswer(" ")); // spaces only
 
         // valid addresses
-        assertTrue(Answer.isValidAnswer("Blk 456, Den Road, #01-355"));
+        assertTrue(Answer.isValidAnswer("A force of attraction between objects due to their mass"));
         assertTrue(Answer.isValidAnswer("-")); // one character
-        assertTrue(Answer.isValidAnswer("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        assertTrue(Answer.isValidAnswer("The process by which plants convert sunlight into energy. "
+                + "It generally involves the green pigment chlorophyll "
+                + "and generates oxygen as a by-product.")); // long address
     }
 }

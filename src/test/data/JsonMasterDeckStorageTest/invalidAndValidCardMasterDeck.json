@@ -1,0 +1,11 @@
+{
+  "cards": [ {
+    "question": "Valid Card",
+    "answer": "The process by which plants convert sunlight into energy",
+    "deck" : "Default"
+  }, {
+    "question": "Card With Invalid Answer Field",
+    "answer": " ",
+    "deck" : "Default"
+  } ]
+}

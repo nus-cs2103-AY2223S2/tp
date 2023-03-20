@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showCardAtIndex;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -49,7 +49,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST);
+        showCardAtIndex(model, INDEX_FIRST);
         Card cardToDelete = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
 
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
@@ -58,16 +58,16 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
         expectedModel.deleteCard(cardToDelete);
-        showNoPerson(expectedModel);
+        showNoCard(expectedModel);
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST);
+        showCardAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of master deck list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMasterDeck().getCardList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
@@ -98,9 +98,9 @@ public class DeleteCommandTest {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code model}'s filtered list to show nothing.
      */
-    private void showNoPerson(Model model) {
+    private void showNoCard(Model model) {
         model.updateFilteredCardList(p -> false);
 
         assertTrue(model.getFilteredCardList().isEmpty());

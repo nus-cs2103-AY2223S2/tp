@@ -21,7 +21,7 @@ import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the master deck data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -34,12 +34,12 @@ public class ModelManager implements Model {
     private Review currReview;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given masterDeck and userPrefs.
      */
     public ModelManager(ReadOnlyMasterDeck masterDeck, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(masterDeck, userPrefs);
 
-        logger.fine("Initializing with address book: " + masterDeck + " and user prefs " + userPrefs);
+        logger.fine("Initializing with PowerCard: " + masterDeck + " and user prefs " + userPrefs);
 
         this.masterDeck = new MasterDeck(masterDeck);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -77,13 +77,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getMasterDeckFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getMasterDeckFilePath();
     }
 
     @Override
     public void setMasterDeckFilePath(Path masterDeckFilePath) {
         requireNonNull(masterDeckFilePath);
-        userPrefs.setAddressBookFilePath(masterDeckFilePath);
+        userPrefs.setMasterDeckFilePath(masterDeckFilePath);
     }
 
     /* MasterDeck Operations */
@@ -126,7 +126,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Card} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedMasterDeck}
      */
     @Override
     public ObservableList<Card> getFilteredCardList() {

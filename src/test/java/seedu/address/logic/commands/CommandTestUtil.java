@@ -38,22 +38,28 @@ public class CommandTestUtil {
     public static final String ANSWER_DESC_PHOTOSYNTHESIS = " " + PREFIX_ANSWER + VALID_ANSWER_PHOTOSYNTHESIS;
     public static final String TAG_DESC_MEDIUM = " " + PREFIX_TAG + VALID_TAG_MEDIUM;
     public static final String TAG_DESC_HARD = " " + PREFIX_TAG + VALID_TAG_HARD;
+
+    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION; // empty string not allowed for question
+    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for answer
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hard*"; // '*' not allowed in tags
+
     public static final String DECK_DESC_SOCIOLOGY = " " + VALID_DECK_SOCIOLOGY;
     public static final String DECK_DESC_SCIENCE = " " + VALID_DECK_SCIENCE;
-    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION; // empty string not allowed for question
-    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Hard*"; // '*' not allowed in tags
+
     public static final String INVALID_DECK_DESC = "";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCardDescriptor DESC_AMY;
-    public static final EditCommand.EditCardDescriptor DESC_BOB;
+    public static final EditCommand.EditCardDescriptor DESC_GRAVITY;
+    public static final EditCommand.EditCardDescriptor DESC_PHOTOSYNTHESIS;
 
     static {
-        DESC_AMY = new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_GRAVITY).withAnswer(VALID_ANSWER_GRAVITY)
+        DESC_GRAVITY = new EditCardDescriptorBuilder()
+                .withQuestion(VALID_QUESTION_GRAVITY)
+                .withAnswer(VALID_ANSWER_GRAVITY)
                 .withTags(VALID_TAG_MEDIUM).build();
-        DESC_BOB = new EditCardDescriptorBuilder()
+        DESC_PHOTOSYNTHESIS = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withAnswer(VALID_ANSWER_PHOTOSYNTHESIS)
                 .withTags(VALID_TAG_HARD, VALID_TAG_MEDIUM).build();
     }
@@ -88,23 +94,23 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered card list and selected card in {@code actualModel} remain unchanged
+     * - the master deck, filtered card list and selected card in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        MasterDeck expectedAddressBook = new MasterDeck(actualModel.getMasterDeck());
+        MasterDeck expectedMasterDeck = new MasterDeck(actualModel.getMasterDeck());
         List<Card> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCardList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getMasterDeck());
+        assertEquals(expectedMasterDeck, actualModel.getMasterDeck());
         assertEquals(expectedFilteredList, actualModel.getFilteredCardList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the card at the given {@code targetIndex} in the
      * {@code model}'s master deck.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showCardAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCardList().size());
         Card card = model.getFilteredCardList().get(targetIndex.getZeroBased());
         final String otherQuestion = card.getQuestion().question;

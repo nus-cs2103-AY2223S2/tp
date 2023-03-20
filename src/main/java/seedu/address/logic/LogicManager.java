@@ -73,12 +73,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyMasterDeck getAddressBook() {
+    public ReadOnlyMasterDeck getMasterDeck() {
         return model.getMasterDeck();
     }
 
     @Override
-    public ObservableList<Card> getFilteredPersonList() {
+    public ObservableList<Card> getFilteredCardList() {
         return model.getFilteredCardList();
     }
 
@@ -88,7 +88,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getMasterDeckFilePath() {
         return model.getMasterDeckFilePath();
     }
 

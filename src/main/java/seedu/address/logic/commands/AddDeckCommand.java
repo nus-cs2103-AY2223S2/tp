@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.deck.Deck;
 
 /**
- * Adds a card to the address book.
+ * Adds a card to the master deck.
  */
 public class AddDeckCommand extends Command {
 

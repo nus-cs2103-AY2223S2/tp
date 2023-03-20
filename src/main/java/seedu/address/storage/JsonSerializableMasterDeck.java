@@ -17,10 +17,10 @@ import seedu.address.model.deck.Deck;
 /**
  * An Immutable Deck that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "masterdeck")
 class JsonSerializableMasterDeck {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Card list contains duplicate card(s).";
+    public static final String MESSAGE_DUPLICATE_CARD = "Card list contains duplicate card(s).";
     public static final String MESSAGE_DUPLICATE_DECK = "Deck list contains duplicate deck(s).";
     public static final String MESSAGE_MISSING_DECK = "Some cards exist without an existing deck.";
 
@@ -28,7 +28,7 @@ class JsonSerializableMasterDeck {
     private final List<JsonAdaptedDeck> decks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMasterDeck} with the given persons.
+     * Constructs a {@code JsonSerializableMasterDeck} with the given cards.
      */
     @JsonCreator
     public JsonSerializableMasterDeck(@JsonProperty("cards") List<JsonAdaptedCard> cards,
@@ -66,7 +66,7 @@ class JsonSerializableMasterDeck {
         for (JsonAdaptedCard jsonAdaptedCard : cards) {
             Card card = jsonAdaptedCard.toModelType();
             if (masterDeck.hasCard(card)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CARD);
             }
 
             Deck currDeck = card.getDeck().get();

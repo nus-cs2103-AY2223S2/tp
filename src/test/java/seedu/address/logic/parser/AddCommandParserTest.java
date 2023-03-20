@@ -28,6 +28,14 @@ import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CardBuilder;
 
+
+
+
+
+
+
+
+
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
@@ -55,6 +63,7 @@ public class AddCommandParserTest {
                 + TAG_DESC_MEDIUM + TAG_DESC_HARD, new AddCommand(expectedCardMultipleTags));
     }
 
+
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
@@ -63,6 +72,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, QUESTION_DESC_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS,
                 new AddCommand(expectedCard));
     }
+
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
@@ -73,8 +83,10 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing answer prefix
+
         assertParseFailure(parser, QUESTION_DESC_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,
                 expectedMessage);
+
 
         // all prefixes missing
         assertParseFailure(parser, VALID_QUESTION_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,
