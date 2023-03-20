@@ -48,12 +48,20 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof seedu.careflow.logic.commands.patientcommands.DeleteCommand
-                // instanceof handles nulls
-                && targetIndex.equals((
+        if (other instanceof seedu.careflow.logic.commands.patientcommands.DeleteCommand) {
+            if (targetIndex != null) {
+                return targetIndex.equals((
                         (seedu.careflow.logic.commands.patientcommands.DeleteCommand)
-                                other).targetIndex)); // state check
+                                other).targetIndex);
+            }
+
+            if (targetIc != null) {
+                return targetIc.equals((
+                        (seedu.careflow.logic.commands.patientcommands.DeleteCommand)
+                                other).targetIc);
+            }
+        }
+        return other == this;
     }
 
     /**

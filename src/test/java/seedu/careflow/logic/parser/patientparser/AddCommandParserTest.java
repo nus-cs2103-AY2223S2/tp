@@ -18,18 +18,18 @@ class AddCommandParserTest {
         Patient expectedPatient = new PatientBuilder().build();
         AddCommand addPatientCommand = new AddCommand(expectedPatient);
         assertParseSuccess(addCommandParser,
-                " -n John Doe -ph 98765432 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 -dob 21-01-2000 "
-                        + "-g male -ic T3871918C -da Aspirin -ec 93746552",
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + "-g female -ic A7654321B -da penicillin -ec 88888888",
                 addPatientCommand);
     }
 
     @Test
     void parse_invalidPhone_failure() {
         assertParseFailure(addCommandParser,
-                " -n John Doe -ph abc123 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 -dob 21-01-2000 "
-                        + "-g male -ic T3871918C -da Aspirin -ec 93746552",
+                " -n Amy Bee -ph abc123 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + "-g female -ic A7654321B -da penicillin -ec 88888888",
                 "Phone numbers should only contain numbers, "
                         + "and it should be at least 3 digits long.");
     }
@@ -37,9 +37,9 @@ class AddCommandParserTest {
     @Test
     void parse_invalidGender_failure() {
         assertParseFailure(addCommandParser,
-                " -n John Doe -ph 98765432 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 -dob 21-01-2000 "
-                        + "-g abc -ic T3871918C -da Aspirin -ec 93746552",
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + "-g abc -ic A7654321B -da penicillin -ec 88888888",
                 "Gender should only be either female or male, "
                         + "it should not be blank");
     }
@@ -47,9 +47,9 @@ class AddCommandParserTest {
     @Test
     void parse_invalidEmergencyContact_failure() {
         assertParseFailure(addCommandParser,
-                " -n John Doe -ph 98765432 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 -dob 21-01-2000 "
-                        + "-g male -ic T3871918C -da Aspirin -ec abc",
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + "-g female -ic A7654321B -da penicillin -ec abc",
                 "Phone numbers should only contain numbers, "
                         + "and it should be at least 3 digits long.");
     }
@@ -57,9 +57,9 @@ class AddCommandParserTest {
     @Test
     void parse_missingDobField_failure() {
         assertParseFailure(addCommandParser,
-                " -n John Doe -ph 98765432 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 "
-                        + "-g male -ic T3871918C -da Aspirin -ec 93746552",
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 "
+                        + "-g female -ic A7654321B -da penicillin -ec 88888888",
                 "Invalid command format! \n"
                         + "add: Adds a patient to patient records.\n"
                         + "Parameters: -n NAME -ph PHONE -em EMAIL "
@@ -73,9 +73,9 @@ class AddCommandParserTest {
     @Test
     void parse_missingGender_failure() {
         assertParseFailure(addCommandParser,
-                " -n John Doe -ph 98765432 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 -dob 21-01-2000 "
-                        + " -ic T3871918C -da Aspirin -ec 93746552",
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + " -ic A7654321B -da penicillin -ec 88888888",
                 "Invalid command format! \n"
                         + "add: Adds a patient to patient records.\n"
                         + "Parameters: -n NAME -ph PHONE -em EMAIL "
@@ -90,9 +90,9 @@ class AddCommandParserTest {
     @Test
     void parse_missingDrugAllergy_failure() {
         assertParseFailure(addCommandParser,
-                " -n John Doe -ph 98765432 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 -dob 21-01-2000 "
-                        + "-g male -ic T3871918C -ec 93746552",
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + "-g female -ic A7654321B -ec 88888888",
                 "Invalid command format! \n"
                         + "add: Adds a patient to patient records.\n"
                         + "Parameters: -n NAME -ph PHONE -em EMAIL "
@@ -107,9 +107,9 @@ class AddCommandParserTest {
     @Test
     void parse_missingEmergencyContact_failure() {
         assertParseFailure(addCommandParser,
-                " -n John Doe -ph 98765432 -em johnd@example.com "
-                        + "-ad John Street, Block 123, #01-01 -dob 21-01-2000 "
-                        + "-g male -ic T3871918C -da Aspirin",
+                " -n Amy Bee -ph 85355255 -em amy@gmail.com "
+                        + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
+                        + "-g female -ic A7654321B -da penicillin",
                 "Invalid command format! \n"
                         + "add: Adds a patient to patient records.\n"
                         + "Parameters: -n NAME -ph PHONE -em EMAIL "

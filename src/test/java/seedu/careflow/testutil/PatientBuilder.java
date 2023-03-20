@@ -1,6 +1,5 @@
 package seedu.careflow.testutil;
 
-import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.person.Address;
 import seedu.careflow.model.person.DateOfBirth;
 import seedu.careflow.model.person.DrugAllergy;
@@ -102,7 +101,7 @@ public class PatientBuilder {
     /**
      * Sets the {@code DateOfBirth} of the {@code Patient} that we are building.
      */
-    public PatientBuilder withDOB(String dob) {
+    public PatientBuilder withDob(String dob) {
         this.dateOfBirth = new DateOfBirth(dob);
         return this;
     }
@@ -139,7 +138,7 @@ public class PatientBuilder {
      * Sets the {@code EmergencyContact} of the {@code Patient} that we are building.
      */
     public PatientBuilder withEmergencyContact(String emergencyContact) {
-        if ( emergencyContact == null ) {
+        if (emergencyContact == null) {
             this.emergencyContact = null;
         } else {
             this.emergencyContact = new Phone(emergencyContact);

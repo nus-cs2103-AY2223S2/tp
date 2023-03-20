@@ -19,7 +19,8 @@ import static seedu.careflow.testutil.TypicalPatients.IDA;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
 
 class JsonPatientRecordStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPatientRecordStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonPatientRecordStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -45,15 +46,18 @@ class JsonPatientRecordStorageTest {
     }
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readPatientRecord("notJsonFormatPatientRecord.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readPatientRecord("notJsonFormatPatientRecord.json"));
     }
     @Test
     public void readPatientRecord_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPatientRecord("invalidPatientPatientRecord.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readPatientRecord("invalidPatientPatientRecord.json"));
     }
     @Test
     public void readPatientRecord_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPatientRecord("invalidAndValidPatientPatientRecord" +
+        assertThrows(DataConversionException.class, ()
+                -> readPatientRecord("invalidAndValidPatientPatientRecord" +
                 ".json"));
     }
 
@@ -81,7 +85,8 @@ class JsonPatientRecordStorageTest {
 
     @Test
     public void savePatientRecord_nullPatientRecord_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> savePatientRecord(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, ()
+                -> savePatientRecord(null, "SomeFile.json"));
     }
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
