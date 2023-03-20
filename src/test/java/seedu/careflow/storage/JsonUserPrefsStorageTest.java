@@ -11,13 +11,15 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.careflow.commons.core.GuiSettings;
 import seedu.careflow.commons.exceptions.DataConversionException;
 import seedu.careflow.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonUserPrefsStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -39,7 +41,8 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void readUserPrefs_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readUserPrefs("NotJsonFormatUserPrefs.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readUserPrefs("NotJsonFormatUserPrefs.json"));
     }
 
     private Path addToTestDataPathIfNotNull(String userPrefsFileInTestDataFolder) {
@@ -70,7 +73,8 @@ public class JsonUserPrefsStorageTest {
 
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "DARK"));
+        userPrefs.setGuiSettings(new GuiSettings(1000, 500,
+                300, 100, "DARK"));
         userPrefs.setPatientRecordFilePath(Paths.get("patientRecord.json"));
         userPrefs.setDrugInventoryFilePath(Paths.get("drugInventory.json"));
         return userPrefs;
@@ -78,7 +82,8 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void savePrefs_nullPrefs_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveUserPrefs(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveUserPrefs(null,
+                "SomeFile.json"));
     }
 
     @Test
@@ -102,7 +107,8 @@ public class JsonUserPrefsStorageTest {
     public void saveUserPrefs_allInOrder_success() throws DataConversionException, IOException {
 
         UserPrefs original = new UserPrefs();
-        original.setGuiSettings(new GuiSettings(1200, 200, 0, 2, "DARK"));
+        original.setGuiSettings(new GuiSettings(1200, 200, 0,
+                2, "DARK"));
 
         Path pefsFilePath = testFolder.resolve("TempPrefs.json");
         JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
@@ -113,7 +119,8 @@ public class JsonUserPrefsStorageTest {
         assertEquals(original, readBack);
 
         //Try saving when the file exists
-        original.setGuiSettings(new GuiSettings(5, 5, 5, 5, "DARK"));
+        original.setGuiSettings(new GuiSettings(5, 5, 5,
+                5, "DARK"));
         jsonUserPrefsStorage.saveUserPrefs(original);
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);

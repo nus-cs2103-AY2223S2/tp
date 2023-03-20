@@ -144,7 +144,7 @@ public class JsonAdaptedPatient {
         }
 
         DrugAllergy modelDrugAllergy = null;
-        if (drugAllergy != null ) {
+        if (drugAllergy != null) {
             modelDrugAllergy = new DrugAllergy(drugAllergy);
         }
 

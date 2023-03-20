@@ -78,7 +78,7 @@ public class JsonAdaptedDrug {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ActiveIngredient.class.getSimpleName()));
         }
-        if(!ActiveIngredient.isValidIngredient(activeIngredient)) {
+        if (!ActiveIngredient.isValidIngredient(activeIngredient)) {
             throw new IllegalValueException(ActiveIngredient.MESSAGE_CONSTRAINTS);
         }
 

@@ -10,18 +10,20 @@ import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import seedu.careflow.commons.exceptions.DataConversionException;
-import seedu.careflow.model.DrugInventory;
-import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
+import seedu.careflow.commons.exceptions.DataConversionException;
+import seedu.careflow.model.DrugInventory;
+import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
+
 class JsonDrugInventoryStorageTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDrugInventoryStorageTest");
+    private static final Path TEST_DATA_FOLDER =
+            Paths.get("src", "test", "data", "JsonDrugInventoryStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -32,7 +34,8 @@ class JsonDrugInventoryStorageTest {
     }
 
     private Optional<ReadOnlyDrugInventory> readDrugInventory(String filePath) throws Exception {
-        return new JsonDrugInventoryStorage(Paths.get(filePath)).readDrugInventory(addToTestDataPathIfNotNull(filePath));
+        return new JsonDrugInventoryStorage(
+                Paths.get(filePath)).readDrugInventory(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -48,17 +51,20 @@ class JsonDrugInventoryStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() throws Exception {
-        assertThrows(DataConversionException.class, () -> readDrugInventory("notJsonFormatDrugInventory.json"));
+        assertThrows(DataConversionException.class, () ->
+                readDrugInventory("notJsonFormatDrugInventory.json"));
     }
 
     @Test
     public void read_invalidDrugDrugInventory_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDrugInventory("invalidDrugDrugInventory.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readDrugInventory("invalidDrugDrugInventory.json"));
     }
 
     @Test
     public void read_invalidAndValidDrugDrugInventory_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readDrugInventory("invalidAndValidDrugDrugInventory.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readDrugInventory("invalidAndValidDrugDrugInventory.json"));
     }
 
     @Test
@@ -70,12 +76,14 @@ class JsonDrugInventoryStorageTest {
 
     @Test
     public void read_missingFieldDrugDrugInventory_throwDataConversionException() throws Exception {
-        assertThrows(DataConversionException.class, () -> readDrugInventory("missingFieldDrugDrugInventory.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readDrugInventory("missingFieldDrugDrugInventory.json"));
     }
 
     @Test
     public void read_nullFieldDrugDrugInventory_throwDataConversionException() throws Exception {
-        assertThrows(DataConversionException.class, () -> readDrugInventory("nullFieldDrugDrugInventory.json"));
+        assertThrows(DataConversionException.class, ()
+                -> readDrugInventory("nullFieldDrugDrugInventory.json"));
     }
 
     @Test
@@ -105,7 +113,8 @@ class JsonDrugInventoryStorageTest {
 
     @Test
     public void saveDrugInventory_nullDrugInventory_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveDrugInventory(null, "someFile.json"));
+        assertThrows(NullPointerException.class, ()
+                -> saveDrugInventory(null, "someFile.json"));
     }
 
     private void saveDrugInventory(ReadOnlyDrugInventory drugInventory, String filePath) throws Exception {
@@ -119,6 +128,7 @@ class JsonDrugInventoryStorageTest {
 
     @Test
     public void saveDrugInventory_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveDrugInventory(new DrugInventory(), null));
+        assertThrows(NullPointerException.class, ()
+                -> saveDrugInventory(new DrugInventory(), null));
     }
 }
