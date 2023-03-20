@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.socket.commons.util.StringUtil;
-import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
 
 /**

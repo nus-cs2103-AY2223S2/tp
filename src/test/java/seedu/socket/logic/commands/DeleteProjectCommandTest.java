@@ -4,11 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.socket.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.socket.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.socket.logic.commands.CommandTestUtil.showProjectAtIndex;
-import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static seedu.socket.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
 import static seedu.socket.testutil.TypicalProjects.getTypicalSocket;
 
@@ -19,7 +16,6 @@ import seedu.socket.commons.core.index.Index;
 import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.UserPrefs;
-import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
 
 /**
