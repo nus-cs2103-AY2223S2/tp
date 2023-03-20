@@ -20,8 +20,10 @@ public class StringUtil {
      *       containsWordIgnoreCase("ABc def", "DEF") == true
      *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
      *       </pre>
-     * @param sentence cannot be null
-     * @param word cannot be null, cannot be empty, must be a single word
+     *
+     * @param sentence Sentence to check against. Cannot be null.
+     * @param word Word to check for in sentence. Cannot be null, cannot be empty, must be a single word.
+     * @return True if contain word and false otherwise.
      */
     public static boolean containsWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
@@ -40,6 +42,9 @@ public class StringUtil {
 
     /**
      * Returns a detailed message of the t, including the stack trace.
+     *
+     * @param t {@code Throwable} to extract the message from.
+     * @return Message of {@code t}.
      */
     public static String getDetails(Throwable t) {
         requireNonNull(t);
@@ -53,6 +58,9 @@ public class StringUtil {
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     *
+     * @param s Integer in string format.
+     * @return True if {@code s} represents a non-zero unsigned integer and false otherwise.
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isNonZeroUnsignedInteger(String s) {

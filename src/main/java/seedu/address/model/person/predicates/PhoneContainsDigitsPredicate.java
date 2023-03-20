@@ -1,5 +1,7 @@
 package seedu.address.model.person.predicates;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -17,6 +19,7 @@ public class PhoneContainsDigitsPredicate<T extends Person> implements Predicate
      * @param digits The matching string.
      */
     public PhoneContainsDigitsPredicate(String digits) {
+        requireNonNull(digits);
         this.digits = digits;
     }
 

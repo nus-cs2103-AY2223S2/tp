@@ -14,12 +14,17 @@ import seedu.address.model.ReadOnlyElderly;
 public interface ElderlyStorage {
     /**
      * Returns the file path of the elderly data file.
+     *
+     * @return Elderly data file path.
      */
     Path getElderlyFilePath();
 
     /**
      * Returns FriendlyLink data as a {@link ReadOnlyElderly}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @param friendlyLink FriendlyLink cache.
+     * @return {@code Optional} of FriendlyLink cache.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -33,8 +38,9 @@ public interface ElderlyStorage {
 
     /**
      * Saves the given {@link ReadOnlyElderly} to the storage.
-     * @param elderly cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     *
+     * @param elderly {@code FriendlyLink} cache. Cannot be null.
+     * @throws IOException If there was any problem writing to the file.
      */
     void saveElderly(ReadOnlyElderly elderly) throws IOException;
 

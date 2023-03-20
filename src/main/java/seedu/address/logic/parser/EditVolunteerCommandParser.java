@@ -18,14 +18,17 @@ import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditVolunteerCommand object
+ * Parses input arguments and creates a new EditVolunteerCommand object.
  */
 public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditVolunteerCommand
      * and returns an EditVolunteerCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments.
+     * @return {@code EditVolunteerCommand} for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public EditVolunteerCommand parse(String args) throws ParseException {
         requireNonNull(args);

@@ -23,6 +23,11 @@ public class JsonElderlyStorage extends JsonAppStorage<ReadOnlyElderly, Friendly
 
     private static final Logger logger = LogsCenter.getLogger(JsonElderlyStorage.class);
 
+    /**
+     * Creates a {@code JsonElderlyStorage} to access elderly file data.
+     *
+     * @param filePath Elderly data file path.
+     */
     public JsonElderlyStorage(Path filePath) {
         super(filePath);
     }
@@ -32,17 +37,12 @@ public class JsonElderlyStorage extends JsonAppStorage<ReadOnlyElderly, Friendly
         return super.getFilePath();
     }
 
+    @Override
     public Optional<ReadOnlyElderly> readElderly(FriendlyLink friendlyLink) throws DataConversionException {
         return super.read(JsonSerializableElderly.class, logger, friendlyLink);
     }
 
-    /**
-     * Similar to {@link ElderlyStorage#readElderly(FriendlyLink)}.
-     *
-     * @param filePath     location of the data. Cannot be null.
-     * @param friendlyLink the cache to read the elderly data to.
-     * @throws DataConversionException if the file is not in the correct format.
-     */
+    @Override
     public Optional<ReadOnlyElderly> readElderly(Path filePath,
             FriendlyLink friendlyLink) throws DataConversionException {
         return super.read(filePath, JsonSerializableElderly.class, logger, friendlyLink);
@@ -53,11 +53,7 @@ public class JsonElderlyStorage extends JsonAppStorage<ReadOnlyElderly, Friendly
         saveElderly(entity, super.getFilePath());
     }
 
-    /**
-     * Similar to {@link #saveElderly(ReadOnlyElderly)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
+    @Override
     public void saveElderly(ReadOnlyElderly entity, Path filePath) throws IOException {
         requireNonNull(entity);
         requireNonNull(filePath);

@@ -24,6 +24,11 @@ public class Version implements Comparable<Version> {
 
     /**
      * Constructs a {@code Version} with the given version details.
+     *
+     * @param major Major number.
+     * @param minor Minor number.
+     * @param patch Patch number.
+     * @param isEarlyAccess Early access identifier.
      */
     public Version(int major, int minor, int patch, boolean isEarlyAccess) {
         this.major = major;
@@ -44,14 +49,20 @@ public class Version implements Comparable<Version> {
         return patch;
     }
 
+    /**
+     * Returns if the current version of FriendlyLink is in early access.
+     *
+     * @return True If FriendlyLink is in early access and false otherwise.
+     */
     public boolean isEarlyAccess() {
         return isEarlyAccess;
     }
 
     /**
      * Parses a version number string in the format V1.2.3.
-     * @param versionString version number string
-     * @return a Version object
+     *
+     * @param versionString Version number string
+     * @return {@code Version} object
      */
     @JsonCreator
     public static Version fromString(String versionString) throws IllegalArgumentException {

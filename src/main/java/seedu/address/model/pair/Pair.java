@@ -8,7 +8,7 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 
 /**
- * Represents a Pair of elderly and volunteer in the address book.
+ * Represents a Pair of elderly and volunteer in FriendlyLink.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Pair {

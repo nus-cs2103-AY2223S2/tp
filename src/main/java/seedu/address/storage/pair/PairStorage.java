@@ -14,12 +14,17 @@ import seedu.address.model.ReadOnlyPair;
 public interface PairStorage {
     /**
      * Returns the file path of the pairs data file.
+     *
+     * @return Pair data file path.
      */
     Path getPairFilePath();
 
     /**
      * Returns FriendlyLink data as a {@link ReadOnlyPair}.
-     *   Returns {@code Optional.empty()} if storage file is not found.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @param friendlyLink FriendlyLink cache.
+     * @return {@code Optional} of FriendlyLink cache.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
@@ -34,8 +39,8 @@ public interface PairStorage {
 
     /**
      * Saves the given {@link ReadOnlyPair} to the storage.
-     * @param pair cannot be null.
-     * @throws IOException if there was any problem writing to the file.
+     * @param pair Pair to save. Cannot be null.
+     * @throws IOException If there was any problem writing to the file.
      */
     void savePair(ReadOnlyPair pair) throws IOException;
 

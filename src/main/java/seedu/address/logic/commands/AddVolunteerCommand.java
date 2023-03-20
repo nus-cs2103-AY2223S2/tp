@@ -50,7 +50,9 @@ public class AddVolunteerCommand extends Command {
     private final Volunteer toAdd;
 
     /**
-     * Creates an AddVolunteerCommand to add to the specified {@code volunteer}
+     * Creates an AddVolunteerCommand to add the specified {@code volunteer}
+     *
+     * @param volunteer Volunteer to add.
      */
     public AddVolunteerCommand(Volunteer volunteer) {
         requireNonNull(volunteer);
@@ -74,5 +76,10 @@ public class AddVolunteerCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddVolunteerCommand // instanceof handles nulls
                 && toAdd.equals(((AddVolunteerCommand) other).toAdd));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

@@ -63,6 +63,8 @@ public abstract class JsonAdaptedPerson {
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
+     *
+     * @param source Person to convert.
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
@@ -166,6 +168,5 @@ public abstract class JsonAdaptedPerson {
         }
         return new HashSet<>(personAvailableDates);
     }
-
 
 }

@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,7 +26,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
-
 
 /**
  * Edits the details of an existing elderly or volunteer in FriendlyLink.
@@ -55,8 +55,10 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param nric of the person in volunteer or elderly list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * Creates an {@code EditCommand} to edit a person.
+     *
+     * @param nric Of the person in volunteer or elderly list to edit.
+     * @param editPersonDescriptor Details to edit the person with.
      */
     public EditCommand(Nric nric, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(nric);
@@ -124,5 +126,10 @@ public class EditCommand extends Command {
         EditCommand e = (EditCommand) other;
         return nric.equals(e.nric)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nric, editPersonDescriptor);
     }
 }

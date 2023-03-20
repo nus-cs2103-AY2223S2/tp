@@ -53,7 +53,9 @@ public class AddElderlyCommand extends Command {
     private final Elderly toAdd;
 
     /**
-     * Creates an AddElderlyCommand to add to the specified {@code Elderly}
+     * Creates an AddElderlyCommand to add the specified {@code Elderly}.
+     *
+     * @param elderly Elderly to add.
      */
     public AddElderlyCommand(Elderly elderly) {
         requireNonNull(elderly);
@@ -79,5 +81,10 @@ public class AddElderlyCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddElderlyCommand // instanceof handles nulls
                 && toAdd.equals(((AddElderlyCommand) other).toAdd));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

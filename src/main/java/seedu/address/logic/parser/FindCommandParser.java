@@ -31,7 +31,7 @@ import seedu.address.model.person.predicates.RiskLevelIsEqualPredicate;
 import seedu.address.model.person.predicates.TagIsEqualPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
@@ -39,7 +39,9 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args Arguments.
+     * @return {@code FindCommand} for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -60,10 +62,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and builds the list of person filters.
+     * Parses the given arguments into predicates shared among volunteers and elderly.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param argMultimap Mapping of prefix to arguments.
+     * @return List of shared predicates.
+     * @throws ParseException If there is an error parsing any of the arguments.
      */
     private List<Predicate<Person>> parseSharedPredicates(ArgumentMultimap argMultimap)
             throws ParseException {
@@ -101,10 +104,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and builds the list of elderly filters.
+     * Parses the given arguments into predicates solely for elderly.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param argMultimap Mapping of prefix to arguments.
+     * @return List of elderly only predicates.
+     * @throws ParseException If there is an error parsing any of the arguments.
      */
     private List<Predicate<Elderly>> parseElderlyOnlyPredicates(ArgumentMultimap argMultimap)
             throws ParseException {
@@ -121,10 +125,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and builds the list of volunteer filters.
+     * Parses the given arguments into predicates solely for volunteers.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param argMultimap Mapping of prefix to arguments.
+     * @return List of volunteer only predicates.
+     * @throws ParseException If there is an error parsing any of the arguments.
      */
     private List<Predicate<Volunteer>> parseVolunteerOnlyPredicates(ArgumentMultimap argMultimap)
             throws ParseException {
