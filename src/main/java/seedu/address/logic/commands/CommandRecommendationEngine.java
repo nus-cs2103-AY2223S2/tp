@@ -33,8 +33,8 @@ public class CommandRecommendationEngine {
     private static final String INVALID_PREFIX_MESSAGE = "Invalid prefix!"
             + " Please refer to our user guide for the list of valid arguments.";
 
-    private static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
-    private static final Map<String, Function<ArgumentMultimap, Boolean>> validator = new HashMap<>();
+    public static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
+    public static final Map<String, Function<ArgumentMultimap, Boolean>> validator = new HashMap<>();
 
     static {
         addCommandInfo(new CommandInfo(DeleteVolunteerCommand.COMMAND_WORD, DeleteVolunteerCommand.COMMAND_PROMPTS));
