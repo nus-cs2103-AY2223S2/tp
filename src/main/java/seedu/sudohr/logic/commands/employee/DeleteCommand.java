@@ -7,8 +7,11 @@ import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
+
+import java.util.List;
 
 /**
  * Deletes an employee identified using it's displayed index from SudoHR.
@@ -37,6 +40,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Department> departmentList = model.getFilteredDepartmentList();
 
         if (!model.checkEmployeeExists(targetId)) {
             throw new CommandException(Messages.MESSAGE_EMPLOYEE_TO_DELETE_NOT_FOUND);
@@ -44,6 +48,13 @@ public class DeleteCommand extends Command {
 
         Employee employeeToDelete = model.getEmployee(targetId);
         model.deleteEmployee(employeeToDelete);
+
+        // cascade delete to department
+        // this needs to be abstracted to ModelManager and to SudoHR...
+        // add test methods as well.
+        departmentList.stream()
+                .filter(d -> d.hasEmployee(employeeToDelete))
+                .forEach(d -> d.removeEmployee(employeeToDelete));
 
         // delete user from leaves
         model.cascadeDeleteUserInLeaves(employeeToDelete);
@@ -57,4 +68,7 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetId.equals(((DeleteCommand) other).targetId)); // state check
     }
+
+
+
 }
