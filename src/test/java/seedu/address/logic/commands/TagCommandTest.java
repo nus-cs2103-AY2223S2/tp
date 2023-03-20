@@ -111,6 +111,21 @@ public class TagCommandTest {
     }
 
     @Test
+    public void execute_emptyTags_throwCommandException() {
+        ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
+        Set<Tag> tagSet = new HashSet<>();
+        VideoName videoName = TypicalVideos.INTRO_VIDEO.getName();
+        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
+        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
+        TagCommand tagCommandModule = new TagCommand(tagSet, moduleCode);
+        TagCommand tagCommandLecture = new TagCommand(tagSet, moduleCode, lectureName);
+        TagCommand tagCommandVideo = new TagCommand(tagSet, moduleCode, lectureName, videoName);
+        assertThrows(CommandException.class, () -> tagCommandModule.execute(moduleStub));
+        assertThrows(CommandException.class, () -> tagCommandLecture.execute(moduleStub));
+        assertThrows(CommandException.class, () -> tagCommandVideo.execute(moduleStub));
+    }
+
+    @Test
     public void execute_tagModule_moduleNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1,TypicalTags.CS2040S_2,

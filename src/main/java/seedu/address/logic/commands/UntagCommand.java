@@ -92,6 +92,10 @@ public class UntagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (this.deletingTags.isEmpty()) {
+            throw new CommandException(Messages.EMPTY_TAGS);
+        }
+
         if (this.isUntaggingMod) {
             return untagModule(model);
         } else if (this.isUntaggingLec) {
@@ -150,8 +154,6 @@ public class UntagCommand extends Command {
 
         List<String> listOfUnfoundTags = deletingTags.stream()
                 .filter(tag -> !currentTags.contains(tag)).map(tag -> tag.getTagName()).collect(Collectors.toList());
-
-        System.out.println(listOfUnfoundTags);
 
         if (listOfUnfoundTags.size() > 0) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_TAG_DOES_NOT_EXIST,

@@ -33,7 +33,10 @@ public class TypicalTags {
     public static final Tag CS2107_LECTURE_3 = new Tag("EntityAuthentication");
     public static final Tag CS2107_LECTURE_4 = new Tag("Authenticity");
     public static final Tag CS2107_LECTURE_5 = new Tag("PublicKey");
+    public static final Tag INTRO_VIDEO = new Tag("Intro");
+    public static final Tag ANALYSIS_VIDEO_1 = new Tag("Analysis");
+    public static final Tag ANALYSIS_VIDEO_2 = new Tag("MathHeavy");
+    public static final Tag REVISION_VIDEO = new Tag("Revision");
     public static final Tag VIDEO_TAG_1 = new Tag("Cool");
     public static final Tag VIDEO_TAG_2 = new Tag("Hard");
-
 }

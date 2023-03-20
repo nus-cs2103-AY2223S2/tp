@@ -89,6 +89,10 @@ public class TagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (this.tags.isEmpty()) {
+            throw new CommandException(Messages.EMPTY_TAGS);
+        }
+
         if (this.isTaggingMod) {
             return tagModule(model);
         } else if (this.isTaggingLec) {
