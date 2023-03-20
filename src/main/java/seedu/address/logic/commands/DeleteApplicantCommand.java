@@ -4,6 +4,7 @@ import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT_WITH_ID;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -62,25 +63,8 @@ public class DeleteApplicantCommand extends Command {
         }
 
         Listing listingToDeleteApplicantFrom = lastShownList.get(targetIndex.getZeroBased());
-        ArrayList<Applicant> applicants = listingToDeleteApplicantFrom.getApplicants();
 
-        Optional<Applicant> applicantToDelete;
-        if (targetApplicantId.length() > 5
-                && targetApplicantId.charAt(targetApplicantId.length() - 5) == '#') {
-            String targetName = targetApplicantId.substring(0, targetApplicantId.length() - 5);
-            int targetHashCode = parseInt(targetApplicantId.substring(targetApplicantId.length() - 4));
-            applicantToDelete = applicants.stream().filter(applicant -> applicant.getName().fullName.equals(targetName)
-                    && applicant.hashCode() == targetHashCode).findFirst();
-        } else {
-            List<Applicant> applicantsWithSameName = applicants.stream().filter(
-                    applicant -> applicant.getName().fullName.equals(targetApplicantId)).collect(Collectors.toList());
-            if (applicantsWithSameName.size() > 1) {
-                throw new CommandException(String.format(MESSAGE_AMBIGUOUS_APPLICANT, targetApplicantId,
-                        listingToDeleteApplicantFrom.getTitle()));
-            }
-
-            applicantToDelete = applicantsWithSameName.stream().findFirst();
-        }
+        Optional<Applicant> applicantToDelete = getApplicantToDeleteObject(listingToDeleteApplicantFrom);
 
         if (applicantToDelete.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_APPLICANT_NOT_FOUND, targetApplicantId,
@@ -95,6 +79,28 @@ public class DeleteApplicantCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToDelete.get(),
                 listingToDeleteApplicantFrom.getTitle()));
 
+    }
+
+    private Optional<Applicant> getApplicantToDeleteObject(Listing listing) throws CommandException {
+        ArrayList<Applicant> applicants = listing.getApplicants();
+        Optional<Applicant> applicantToDelete;
+        if (targetApplicantId.length() > 5
+                && targetApplicantId.charAt(targetApplicantId.length() - 5) == '#') {
+            String targetName = targetApplicantId.substring(0, targetApplicantId.length() - 5);
+            int targetHashCode = parseInt(targetApplicantId.substring(targetApplicantId.length() - 4));
+            applicantToDelete = applicants.stream().filter(applicant -> applicant.getName().fullName.equals(targetName)
+                    && applicant.hashCode() == targetHashCode).findFirst();
+        } else {
+            List<Applicant> applicantsWithSameName = applicants.stream().filter(
+                    applicant -> applicant.getName().fullName.equals(targetApplicantId)).collect(Collectors.toList());
+            if (applicantsWithSameName.size() > 1) {
+                throw new CommandException(String.format(MESSAGE_AMBIGUOUS_APPLICANT, targetApplicantId,
+                        listing.getTitle()));
+            }
+
+            applicantToDelete = applicantsWithSameName.stream().findFirst();
+        }
+        return applicantToDelete;
     }
 
     /**
