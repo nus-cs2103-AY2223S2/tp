@@ -9,7 +9,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.model.module.ModulePredicate;
+import seedu.modtrek.model.module.ModuleCodePredicate;
 
 public class FindCommandParserTest {
 
@@ -24,7 +24,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new ModulePredicate("CS1101S", "", "", "", new HashSet<>()));
+                new FindCommand(new ModuleCodePredicate("CS1101S", "", "", "", new HashSet<>()));
         assertParseSuccess(parser, "CS1101S", expectedFindCommand);
     }
 

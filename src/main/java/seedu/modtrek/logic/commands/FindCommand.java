@@ -9,7 +9,7 @@ import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.modtrek.commons.core.Messages;
 import seedu.modtrek.model.Model;
-import seedu.modtrek.model.module.ModulePredicate;
+import seedu.modtrek.model.module.ModuleCodePredicate;
 
 /**
  * Finds and lists all modules in degree progression whose code contains any of the argument keywords.
@@ -30,9 +30,9 @@ public class FindCommand extends Command {
             + "Example 1: " + COMMAND_WORD + " CS1101S\n"
             + "Example 2: " + COMMAND_WORD + " /m CS /g A";
 
-    private final ModulePredicate predicate;
+    private final ModuleCodePredicate predicate;
 
-    public FindCommand(ModulePredicate predicate) {
+    public FindCommand(ModuleCodePredicate predicate) {
         this.predicate = predicate;
     }
 

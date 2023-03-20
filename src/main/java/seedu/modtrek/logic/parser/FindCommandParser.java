@@ -13,7 +13,7 @@ import java.util.Set;
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
-import seedu.modtrek.model.module.ModulePredicate;
+import seedu.modtrek.model.module.ModuleCodePredicate;
 import seedu.modtrek.model.tag.Tag;
 
 /**
@@ -74,10 +74,10 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (!argMultimap.getPreamble().isEmpty()) {
             Code code = ParserUtil.parseCode(argMultimap.getPreamble());
-            return new FindCommand(new ModulePredicate(code.toString(), "",
+            return new FindCommand(new ModuleCodePredicate(code.toString(), "",
                     "", "", new HashSet<>()));
         }
-        return new FindCommand(new ModulePredicate(codePrefixString, creditString,
+        return new FindCommand(new ModuleCodePredicate(codePrefixString, creditString,
                 semYearString, gradeString, (HashSet<Tag>) tagList));
     }
 

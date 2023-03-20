@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
-import seedu.modtrek.model.module.ModulePredicate;
+import seedu.modtrek.model.module.ModuleCodePredicate;
 
 class FindCommandTest {
     private Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
@@ -21,10 +21,10 @@ class FindCommandTest {
 
     @Test
     public void equals() {
-        ModulePredicate firstPredicate =
-                new ModulePredicate(CS2100.getCode().toString(), "", "", "", new HashSet<>());
-        ModulePredicate secondPredicate =
-                new ModulePredicate(ST2334.getCode().toString(), "", "", "", new HashSet<>());
+        ModuleCodePredicate firstPredicate =
+                new ModuleCodePredicate(CS2100.getCode().toString(), "", "", "", new HashSet<>());
+        ModuleCodePredicate secondPredicate =
+                new ModuleCodePredicate(ST2334.getCode().toString(), "", "", "", new HashSet<>());
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);

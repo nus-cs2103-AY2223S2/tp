@@ -11,20 +11,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.testutil.ModuleBuilder;
 
-class ModulePredicateTest {
+class ModuleCodePredicateTest {
 
     @Test
     public void equals() {
-        ModulePredicate firstPredicate = new ModulePredicate(CS1101S.getCode().toString(),
+        ModuleCodePredicate firstPredicate = new ModuleCodePredicate(CS1101S.getCode().toString(),
                 "", "", "", new HashSet<>());
-        ModulePredicate secondPredicate = new ModulePredicate(ST2334.getCode().toString(),
+        ModuleCodePredicate secondPredicate = new ModuleCodePredicate(ST2334.getCode().toString(),
                 "", "", "", new HashSet<>());
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ModulePredicate firstPredicateCopy = new ModulePredicate(CS1101S.getCode().toString(),
+        ModuleCodePredicate firstPredicateCopy = new ModuleCodePredicate(CS1101S.getCode().toString(),
                 "", "", "", new HashSet<>());
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -41,7 +41,7 @@ class ModulePredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        ModulePredicate predicate = new ModulePredicate(CS1101S.getCode().toString(), "", "", "", new HashSet<>());
+        ModuleCodePredicate predicate = new ModuleCodePredicate(CS1101S.getCode().toString(), "", "", "", new HashSet<>());
         assertFalse(predicate.test(new ModuleBuilder().withCode("ST2334").build()));
     }
 

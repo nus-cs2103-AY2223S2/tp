@@ -8,7 +8,7 @@ import seedu.modtrek.model.tag.Tag;
 /**
  * Tests that a {@code Module}'s {@code Name} matches module code.
  */
-public class ModulePredicate implements Predicate<Module> {
+public class ModuleCodePredicate implements Predicate<Module> {
     private final String moduleCode;
     private final String credit;
     private final String semYear;
@@ -23,7 +23,7 @@ public class ModulePredicate implements Predicate<Module> {
      * @param grade      the grade
      * @param tags       the tags
      */
-    public ModulePredicate(String moduleCode, String credit, String semYear, String grade, HashSet<Tag> tags) {
+    public ModuleCodePredicate(String moduleCode, String credit, String semYear, String grade, HashSet<Tag> tags) {
         this.moduleCode = moduleCode;
         this.credit = credit;
         this.semYear = semYear;
@@ -43,12 +43,12 @@ public class ModulePredicate implements Predicate<Module> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModulePredicate // instanceof handles nulls
-                && moduleCode.equals(((ModulePredicate) other).moduleCode) // state check
-                && credit.equals(((ModulePredicate) other).credit)
-                && semYear.equals(((ModulePredicate) other).semYear)
-                && grade.equals(((ModulePredicate) other).grade)
-                && tags.equals(((ModulePredicate) other).tags));
+                || (other instanceof ModuleCodePredicate // instanceof handles nulls
+                && moduleCode.equals(((ModuleCodePredicate) other).moduleCode) // state check
+                && credit.equals(((ModuleCodePredicate) other).credit)
+                && semYear.equals(((ModuleCodePredicate) other).semYear)
+                && grade.equals(((ModuleCodePredicate) other).grade)
+                && tags.equals(((ModuleCodePredicate) other).tags));
     }
 
 }
