@@ -248,12 +248,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasSupplier(Supplier supplier) {
-        requireNonNull(supplier);
-        return supplierList.hasItem(supplier);
-    }
-
-    @Override
     public void deleteSupplier(Supplier target) {
         supplierList.removeItem(target);
     }
@@ -295,12 +289,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return taskList.hasItem(task);
-    }
-
-    @Override
     public void deleteTask(Task target) {
         taskList.removeItem(target);
     }
@@ -339,12 +327,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyOrderList getOrderList() {
         return orderList;
-    }
-
-    @Override
-    public boolean hasOrder(Order order) {
-        requireNonNull(order);
-        return orderList.hasItem(order);
     }
 
     @Override

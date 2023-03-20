@@ -88,13 +88,8 @@ public class AddSupplierCommandTest {
 
         @Override
         public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
-            return hasSupplier((Supplier) item);
-        }
-
-        @Override
-        public boolean hasSupplier(Supplier supplier) {
-            requireNonNull(supplier);
-            return this.supplier.isSameItem(supplier);
+            requireNonNull(item);
+            return this.supplier.isSameItem((Supplier) item);
         }
     }
 
@@ -106,19 +101,14 @@ public class AddSupplierCommandTest {
 
         @Override
         public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
-            return hasSupplier((Supplier) item);
+            requireNonNull(item);
+            return suppliersAdded.stream().anyMatch(item::isSameItem);
         }
 
         @Override
         public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
             requireNonNull(item);
             suppliersAdded.add((Supplier) item);
-        }
-
-        @Override
-        public boolean hasSupplier(Supplier supplier) {
-            requireNonNull(supplier);
-            return suppliersAdded.stream().anyMatch(supplier::isSameItem);
         }
 
         @Override

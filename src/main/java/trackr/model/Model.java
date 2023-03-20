@@ -84,11 +84,6 @@ public interface Model {
     ReadOnlySupplierList getSupplierList();
 
     /**
-     * Returns true if a Supplier with the same identity as {@code supplier} exists in the address book.
-     */
-    boolean hasSupplier(Supplier supplier);
-
-    /**
      * Deletes the given supplier.
      * The supplier must exist in the address book.
      */
@@ -127,11 +122,6 @@ public interface Model {
     ReadOnlyTaskList getTaskList();
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the task list.
-     */
-    boolean hasTask(Task task);
-
-    /**
      * Deletes the given task.
      * The task must exist in the task list.
      */
@@ -167,11 +157,6 @@ public interface Model {
      * Returns the OrderList
      */
     ReadOnlyOrderList getOrderList();
-
-    /**
-     * Returns true if an order with the same identity as {@code order} exists in the order list.
-     */
-    boolean hasOrder(Order order);
 
     /**
      * Deletes the given order.

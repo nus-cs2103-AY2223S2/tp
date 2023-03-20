@@ -83,18 +83,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasSupplier(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.SUPPLIER));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasSupplier(ALICE));
+        assertFalse(modelManager.hasItem(ALICE, ModelEnum.SUPPLIER));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
         modelManager.addItem(ALICE, ModelEnum.SUPPLIER);
-        assertTrue(modelManager.hasSupplier(ALICE));
+        assertTrue(modelManager.hasItem(ALICE, ModelEnum.SUPPLIER));
     }
 
     @Test
@@ -104,18 +104,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.TASK));
     }
 
     @Test
     public void hasTask_taskNotInTaskList_returnsFalse() {
-        assertFalse(modelManager.hasTask(SORT_INVENTORY_N));
+        assertFalse(modelManager.hasItem(SORT_INVENTORY_N, ModelEnum.TASK));
     }
 
     @Test
     public void hasTask_taskInTaskList_returnsTrue() {
         modelManager.addItem(SORT_INVENTORY_N, ModelEnum.TASK);
-        assertTrue(modelManager.hasTask(SORT_INVENTORY_N));
+        assertTrue(modelManager.hasItem(SORT_INVENTORY_N, ModelEnum.TASK));
     }
 
     @Test
@@ -125,18 +125,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasOrder_nullOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasOrder(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.ORDER));
     }
 
     @Test
     public void hasOrder_orderNotInOrderList_returnsFalse() {
-        assertFalse(modelManager.hasOrder(CHOCOLATE_COOKIES));
+        assertFalse(modelManager.hasItem(CHOCOLATE_COOKIES, ModelEnum.ORDER));
     }
 
     @Test
     public void hasOrder_orderInOrderList_returnsTrue() {
         modelManager.addItem(CHOCOLATE_COOKIES, ModelEnum.ORDER);
-        assertTrue(modelManager.hasOrder(CHOCOLATE_COOKIES));
+        assertTrue(modelManager.hasItem(CHOCOLATE_COOKIES, ModelEnum.ORDER));
     }
 
     @Test
