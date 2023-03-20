@@ -72,7 +72,7 @@ public class PersonCard extends UiPart<Region> {
         List<Task> tasks = model.getTaskModelManager()
             .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId())));
         double doneTask = tasks.stream().filter(t -> t.getStatus().isValue()).count();
-        double taskCompleteness = doneTask / tasks.size();
+        double taskCompleteness = tasks.size() == 0 ? 1 : doneTask / tasks.size();
 
         progressIndicator.setProgress(taskCompleteness); // set progress value between 0.0 and 1.0
 
