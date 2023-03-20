@@ -1,14 +1,8 @@
-package seedu.recipe.storage;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+package seedu.recipe.storage.jsonAdapters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
@@ -18,10 +12,16 @@ import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * Jackson-friendly version of {@link Recipe}.
  */
-@JsonPropertyOrder({ "name", "portion", "duration", "tags", "ingredients", "steps"})
+@JsonPropertyOrder({"name", "portion", "duration", "tags", "ingredients", "steps"})
+public
 class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
@@ -83,17 +83,17 @@ class JsonAdaptedRecipe {
                 source.getTags().stream()
                         .map(JsonAdaptedTag::new)
                         .collect(Collectors.toList())
-        );
+                   );
         ingredients.addAll(
                 source.getIngredients().stream()
                         .map(JsonAdaptedIngredient::new)
                         .collect(Collectors.toList())
-        );
+                          );
         steps.addAll(
                 source.getSteps().stream()
                         .map(JsonAdaptedStep::new)
                         .collect(Collectors.toList())
-        );
+                    );
     }
 
     /**
@@ -134,7 +134,7 @@ class JsonAdaptedRecipe {
         res.setTags(tagList.toArray(Tag[]::new));
 
         List<Ingredient> ingredientsList = new ArrayList<>();
-        for (JsonAdaptedIngredient i: ingredients) {
+        for (JsonAdaptedIngredient i : ingredients) {
             ingredientsList.add(i.toModelType());
         }
         res.setIngredients(ingredientsList.toArray(Ingredient[]::new));

@@ -1,10 +1,9 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonAdapters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.unit.PortionUnit;
 
@@ -12,7 +11,7 @@ import seedu.recipe.model.recipe.unit.PortionUnit;
  * Jackson-friendly version of {@link PortionUnit}.
  */
 @JsonInclude(Include.NON_NULL)
-class JsonAdaptedPortionUnit {
+public class JsonAdaptedPortionUnit {
 
     private final String unit;
 

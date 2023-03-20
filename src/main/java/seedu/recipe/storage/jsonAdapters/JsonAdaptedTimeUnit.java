@@ -1,10 +1,9 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonAdapters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.unit.TimeUnit;
 
@@ -12,7 +11,7 @@ import seedu.recipe.model.recipe.unit.TimeUnit;
  * Jackson-friendly version of {@link TimeUnit}.
  */
 @JsonInclude(Include.NON_NULL)
-class JsonAdaptedTimeUnit {
+public class JsonAdaptedTimeUnit {
 
     private final String unit;
 

@@ -1,23 +1,6 @@
 package seedu.recipe.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.recipe.storage.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_DURATION;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_INGREDIENTS;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_NAME;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_PORTION;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_STEPS;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_TAGS;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
@@ -26,6 +9,31 @@ import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedIngredient;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedName;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedPortionUnit;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedRecipe;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedRecipeDuration;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedRecipePortion;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedStep;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedTag;
+import seedu.recipe.storage.jsonAdapters.JsonAdaptedTimeUnit;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.recipe.storage.jsonAdapters.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.recipe.testutil.Assert.assertThrows;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_DURATION;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_INGREDIENTS;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_NAME;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_PORTION;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_STEPS;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_TAGS;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_NAME = "7896";
