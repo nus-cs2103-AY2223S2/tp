@@ -3,14 +3,11 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's meetings in the address book.
  */
-public class Meeting {
-    public static final String MEETING_CONSTRAINTS = "Start time should be before end time!";
-
+public class Meeting implements Comparable<Meeting> {
     protected LocalDateTime start;
     protected LocalDateTime end;
 
@@ -18,12 +15,13 @@ public class Meeting {
      * Constructor for Meeting
      *
      * @param start start date and time of meeting
-     * @param end   end date and time of meeting. Must be after start
+     * @param end   end date and time of meeting
+     * @throws IllegalValueException if meeting ends before it starts
      */
-    public Meeting(LocalDateTime start, LocalDateTime end) throws ParseException {
-        if (end.isBefore(start)) {
-            throw new ParseException(MEETING_CONSTRAINTS);
-        }
+    public Meeting(LocalDateTime start, LocalDateTime end) {
+        // if (end.isBefore(start)) {
+        //     throw new IllegalValueException("End time is after start!");
+        // }
         this.start = start;
         this.end = end;
     }
@@ -32,8 +30,16 @@ public class Meeting {
      * Default Constructor that generates an empty meeting
      */
     public Meeting() {
-        this.start = LocalDateTime.MIN;
-        this.end = LocalDateTime.MIN;
+        this.start = LocalDateTime.MAX;
+        this.end = LocalDateTime.MAX;
+    }
+
+    public LocalDateTime getStart() {
+        return this.start;
+    }
+
+    public LocalDateTime getEnd() {
+        return this.end;
     }
 
     /**
@@ -68,6 +74,17 @@ public class Meeting {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Meeting otherMeeting) {
+        if (this.start.isBefore(otherMeeting.start)) {
+            return -1;
+        } else if (this.start.equals(otherMeeting.start)) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     @Override
