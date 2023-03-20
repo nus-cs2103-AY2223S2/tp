@@ -30,6 +30,12 @@ public class Unit {
     }
 
     @Override
+    public boolean equals(Object otherUnit) {
+        return otherUnit == this
+                || (otherUnit instanceof Unit
+                && unit.equals(((Unit) otherUnit).unit));
+    }
+    @Override
     public String toString() {
         return this.unit;
     }
