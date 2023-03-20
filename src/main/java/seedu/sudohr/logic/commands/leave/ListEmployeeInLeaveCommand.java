@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.commands.leaveCommands;
+package seedu.sudohr.logic.commands.leave;
 
 import static java.util.Objects.requireNonNull;
 

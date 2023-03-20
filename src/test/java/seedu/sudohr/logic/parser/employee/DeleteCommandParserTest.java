@@ -14,8 +14,8 @@ import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.logic.commands.employee.DeleteCommand;
+import seedu.sudohr.model.employee.Id;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

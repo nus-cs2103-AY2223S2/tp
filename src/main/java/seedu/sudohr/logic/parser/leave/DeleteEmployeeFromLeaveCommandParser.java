@@ -6,7 +6,7 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 
 import java.util.stream.Stream;
 
-import seedu.sudohr.logic.commands.leaveCommands.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
 import seedu.sudohr.logic.parser.ArgumentMultimap;
 import seedu.sudohr.logic.parser.ArgumentTokenizer;
 import seedu.sudohr.logic.parser.ParserUtil;
