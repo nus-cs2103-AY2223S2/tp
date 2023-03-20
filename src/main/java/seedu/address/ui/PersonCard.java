@@ -52,9 +52,21 @@ public class PersonCard extends UiPart<Region> {
         }
         card.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new cardTag(tag.tagName)));
     }
 
+    class cardTag extends Label {
+        public cardTag(String name) {
+            super(name);
+            if (name.equals("easy")) {
+                setStyle("-fx-background-color:#00FF00;");
+            } else if (name.equals("medium")) {
+                setStyle("-fx-background-color:#FFA500;");
+            } else if (name.equals("hard")) {
+                setStyle("-fx-background-color:#ff0000;");
+            }
+        }
+    }
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

@@ -27,7 +27,8 @@ public class DeckListPanel extends UiPart<Region> {
         super(FXML);
         deckListView.setItems(deckList);
         deckListView.setCellFactory(listView -> new DeckListViewCell());
-        deckListView.setStyle("-fx-background-color: #FFFFFF");
+        deckListView.setStyle("-fx-background-color: #FFFFFF;"
+                + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width:5;");
     }
 
     /**
@@ -41,10 +42,10 @@ public class DeckListPanel extends UiPart<Region> {
             if (empty || deck == null) {
                 setGraphic(null);
                 setText(null);
-                setStyle("-fx-background: #FFFFFF");
             } else {
                 setGraphic(new DeckCard(deck, getIndex() + 1).getRoot());
-                setStyle("-fx-padding: 10 20 10 20; -fx-background-color:#FFFFFF");
+                setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 20 10 20; "
+                        + "-fx-background-color:#FFFFFF");
             }
         }
     }
