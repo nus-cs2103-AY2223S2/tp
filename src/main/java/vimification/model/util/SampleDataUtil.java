@@ -16,7 +16,7 @@ import vimification.model.task.components.Description;
 import vimification.model.task.Deadline;
 import vimification.model.task.Event;
 import vimification.model.task.Status;
-import vimification.model.TaskPlanner;
+import vimification.model.LogicTaskList;
 import vimification.model.ReadOnlyTaskPlanner;
 
 /**
@@ -106,25 +106,25 @@ public class SampleDataUtil {
     static Supplier<Integer> randStatus = () -> new Random().nextInt(2);
     static Supplier<Integer> randType = () -> new Random().nextInt(3);
 
-    public static TaskPlanner getSampleTaskPlanner(int n) {
-        TaskPlanner taskList = new TaskPlanner();
-        for (int i = 0; i < n; i++) {
-            taskList.addTask(getTask(i));
-        }
-        return taskList;
-    }
+    // public static LogicTaskList getSampleTaskPlanner(int n) {
+    // LogicTaskList taskList = new LogicTaskList();
+    // for (int i = 0; i < n; i++) {
+    // taskList.add(getTask(i));
+    // }
+    // return taskList;
+    // }
 
-    public static TaskPlanner getSampleTaskPlanner() {
-        return getSampleTaskPlanner(randLength.get());
-    }
+    // public static LogicTaskList getSampleTaskPlanner() {
+    // return getSampleTaskPlanner(randLength.get());
+    // }
 
-    public static ReadOnlyTaskPlanner getSampleReadOnlyTaskPlanner(int n) {
-        return getSampleTaskPlanner(n);
-    }
+    // public static ReadOnlyTaskPlanner getSampleReadOnlyTaskPlanner(int n) {
+    // return getSampleTaskPlanner(n);
+    // }
 
-    public static ReadOnlyTaskPlanner getSampleReadOnlyTaskPlanner() {
-        return getSampleReadOnlyTaskPlanner(randLength.get());
-    }
+    // public static ReadOnlyTaskPlanner getSampleReadOnlyTaskPlanner() {
+    // return getSampleReadOnlyTaskPlanner(randLength.get());
+    // }
 
     private static LocalDateTime generateRandLocalDateTime() {
         // Set the range of future dates to generate
@@ -159,18 +159,19 @@ public class SampleDataUtil {
     }
 
     private static Task getTask(int idx) {
-        int taskType = randType.get();
-        Description description = new Description(samples[idx]);
-        Status status = new Status(randStatus.get() == 0);
-        switch (taskType) {
-        case 0:
-            return new Todo(description, status);
-        case 1:
-            return new Deadline(description, status, generateRandDateTime());
-        default:
-            DateTime[] dateTimes = generate2RandDataTimes();
-            return new Event(description, status, dateTimes[0], dateTimes[1]);
-        }
+        // int taskType = randType.get();
+        // Description description = new Description(samples[idx]);
+        // Status status = new Status(randStatus.get() == 0);
+        // switch (taskType) {
+        // case 0:
+        // return new Todo(description, status);
+        // case 1:
+        // return new Deadline(description, status, generateRandDateTime());
+        // default:
+        // DateTime[] dateTimes = generate2RandDataTimes();
+        // return new Event(description, status, dateTimes[0], dateTimes[1]);
+        // }
+        return null;
     }
 
     public static Task generateRandTask() {

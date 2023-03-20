@@ -1,13 +1,9 @@
 package vimification.logic;
 
-import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
-import vimification.commons.core.GuiSettings;
+import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
-import vimification.logic.commands.exceptions.CommandException;
 import vimification.logic.parser.ParseException;
-import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.task.Task;
 
 /**
@@ -24,28 +20,28 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /**
-     * Returns the AddressBook.
-     *
-     * @see vimification.model.Model#getTaskList()
-     */
-    ReadOnlyTaskPlanner getTaskList();
+    // /**
+    // * Returns the AddressBook.
+    // *
+    // * @see vimification.model.Model#getTaskList()
+    // */
+    // ReadOnlyTaskPlanner getTaskList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    // /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getTaskListFilePath();
+    // /**
+    // * Returns the user prefs' address book file path.
+    // */
+    // Path getTaskListFilePath();
 
-    /**
-     * Returns the user prefs' GUI settings.
-     */
-    GuiSettings getGuiSettings();
+    // /**
+    // * Returns the user prefs' GUI settings.
+    // */
+    // GuiSettings getGuiSettings();
 
-    /**
-     * Set the user prefs' GUI settings.
-     */
-    void setGuiSettings(GuiSettings guiSettings);
+    // /**
+    // * Set the user prefs' GUI settings.
+    // */
+    // void setGuiSettings(GuiSettings guiSettings);
 }

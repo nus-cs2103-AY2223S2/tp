@@ -1,48 +1,83 @@
 package vimification.model.task;
 
-import vimification.model.task.components.DateTime;
-import vimification.model.task.components.Description;
+import java.time.LocalDateTime;
+import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 public class Event extends Task {
-    private static int numOfComponents = 3;
-    private final DateTime startDate;
-    private final DateTime endDate;
 
-    public Event(Description description, Status status, DateTime startDate, DateTime endDate) {
-        super(description, status, TaskType.str2type("Event"));
-        this.startDate = startDate;
-        this.endDate = endDate;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+
+    public Event(String description, boolean isDone,
+            LocalDateTime startDateTime,
+            LocalDateTime endDateTime) {
+        super(description, isDone);
+        requireAllNonNull(startDateTime, endDateTime);
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
     }
 
-    public static Event createTask(Description description, DateTime startDate, DateTime endDate) {
-        return new Event(description, new Status(false), startDate, endDate);
+    public Event(String description, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        this(description, false, startDateTime, endDateTime);
     }
 
-    public static Event createTask(String... taskComponents) {
-        if (taskComponents.length != numOfComponents) {
-            throw new IllegalArgumentException("Invalid number of task components");
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
+    @Override
+    public Event clone() {
+        return new Event(getDescription(), isDone(), startDateTime, endDateTime);
+    }
+
+    @Override
+    public boolean isSameTask(Task task) {
+        if (task == this) {
+            return true;
         }
-        return createTask(new Description(taskComponents[0]), new DateTime(taskComponents[1]),
-                new DateTime(taskComponents[2]));
+        if (!(task instanceof Event)) {
+            return false;
+        }
+        Event otherEvent = (Event) task;
+        return super.isSameTask(otherEvent)
+                && otherEvent.startDateTime.equals(startDateTime)
+                && otherEvent.endDateTime.equals(endDateTime);
     }
 
-    public DateTime getStartDate() {
-        return startDate;
-    }
-
-    public DateTime getEndDate() {
-        return endDate;
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Event)) {
+            return false;
+        }
+        Event otherEvent = (Event) other;
+        return super.equals(otherEvent)
+                && otherEvent.startDateTime.equals(startDateTime)
+                && otherEvent.endDateTime.equals(endDateTime);
     }
 
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getType())
-                .append(" ")
+        builder.append("Event ")
                 .append(super.toString())
                 .append("; from: ")
-                .append(getStartDate())
+                .append(startDateTime)
                 .append(" to: ")
-                .append(getEndDate());
+                .append(endDateTime);
         return builder.toString();
     }
 }

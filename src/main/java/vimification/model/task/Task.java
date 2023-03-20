@@ -1,69 +1,49 @@
 package vimification.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static vimification.commons.util.CollectionUtil.requireAllNonNull;
-
-import vimification.model.task.components.Description;
 
 public abstract class Task {
 
-    private final Description description;
-    private final Status status;
-    private final TaskType type;
+    private String description;
+    private boolean isDone;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Description description, Status status, TaskType type) {
-        requireAllNonNull(description, status);
+    Task(String description, boolean isDone) {
+        requireNonNull(description);
         this.description = description;
-        this.status = status;
-        this.type = type;
+        this.isDone = isDone;
     }
 
-    public static Task createTask(TaskType type, String... taskComponents) {
-        requireNonNull(type);
-        requireNonNull(taskComponents);
-        switch (type) {
-        case TODO:
-            return Todo.createTask(taskComponents);
-        case DEADLINE:
-            return Deadline.createTask(taskComponents);
-        case EVENT:
-            return Event.createTask(taskComponents);
-        default:
-            throw new IllegalArgumentException("Invalid task type");
-        }
-    }
-
-    public Description getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public Status getStatus() {
-        return status;
+    public boolean isDone() {
+        return isDone;
     }
 
-    public TaskType getType() {
-        return type;
+    public void setDescription(String description) {
+        requireNonNull(description);
+        this.description = description;
     }
 
+    public void mark() {
+        isDone = true;
+    }
+
+    public void unmark() {
+        isDone = false;
+    }
+
+    public abstract Task clone();
 
     public boolean isSameTask(Task otherTask) {
         if (otherTask == this) {
             return true;
         }
-
-        return otherTask != null
-                && otherTask.getDescription().equals(getDescription());
-    }
-
-    public void setDone() {
-        status.setDone();
-    }
-
-    public void setNotDone() {
-        status.setNotDone();
+        return otherTask.description.equals(description);
     }
 
     /**
@@ -75,23 +55,20 @@ public abstract class Task {
         if (other == this) {
             return true;
         }
-
         if (!(other instanceof Task)) {
             return false;
         }
-
         Task otherTask = (Task) other;
-        return otherTask.getDescription().equals(getDescription())
-                && otherTask.getStatus().equals(getStatus());
+        return otherTask.description.equals(description) && otherTask.isDone == isDone;
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Description: ")
-                .append(getDescription())
-                .append("; Status: ")
-                .append(getStatus());
+        builder.append("description: ")
+                .append(description)
+                .append("; status: ")
+                .append(isDone ? "done" : "not done");
         return builder.toString();
     }
 }

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.DataConversionException;
-import vimification.model.ReadOnlyTaskPlanner;
+import vimification.model.LogicTaskList;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 
@@ -17,13 +17,16 @@ import vimification.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private TaskPlannerStorage taskPlannerStorage;
+
+    private LogicTaskListStorage taskPlannerStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and
+     * {@code UserPrefStorage}.
      */
-    public StorageManager(TaskPlannerStorage taskPlannerStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(LogicTaskListStorage taskPlannerStorage,
+            UserPrefsStorage userPrefsStorage) {
         this.taskPlannerStorage = taskPlannerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -49,31 +52,33 @@ public class StorageManager implements Storage {
     // ================ TaskPlanner methods ==============================
 
     @Override
-    public Path getTaskListFilePath() {
-        return taskPlannerStorage.getTaskListFilePath();
+    public Path getLogicTaskListFilePath() {
+        return taskPlannerStorage.getLogicTaskListFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyTaskPlanner> readTaskList() throws DataConversionException, IOException {
-        return readTaskList(taskPlannerStorage.getTaskListFilePath());
+    public Optional<LogicTaskList> readLogicTaskList()
+            throws DataConversionException, IOException {
+        return readLogicTaskList(taskPlannerStorage.getLogicTaskListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTaskPlanner> readTaskList(Path filePath) throws DataConversionException, IOException {
+    public Optional<LogicTaskList> readLogicTaskList(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return taskPlannerStorage.readTaskList(filePath);
+        return taskPlannerStorage.readLogicTaskList(filePath);
     }
 
     @Override
 
-    public void saveTaskList(ReadOnlyTaskPlanner taskPlanner) throws IOException {
-        saveTaskList(taskPlanner, taskPlannerStorage.getTaskListFilePath());
+    public void saveLogicTaskList(LogicTaskList taskPlanner) throws IOException {
+        saveLogicTaskList(taskPlanner, taskPlannerStorage.getLogicTaskListFilePath());
     }
 
     @Override
-    public void saveTaskList(ReadOnlyTaskPlanner taskPlanner, Path filePath) throws IOException {
+    public void saveLogicTaskList(LogicTaskList taskPlanner, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        taskPlannerStorage.saveTaskList(taskPlanner, filePath);
+        taskPlannerStorage.saveLogicTaskList(taskPlanner, filePath);
     }
 
 }
