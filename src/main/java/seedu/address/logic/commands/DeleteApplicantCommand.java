@@ -39,16 +39,16 @@ public class DeleteApplicantCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_APPLICANT_WITH_ID + "John Doe#2103\n";
 
     private final Index targetIndex;
-    private final String targetApplicantName;
+    private final String targetApplicantId;
 
     /**
      * Creates a DeleteApplicantCommand to remove a applicant from a listing.
      * @param targetIndex index of the listing to delete the applicant from
-     * @param targetApplicantName name of the applicant to be deleted
+     * @param targetApplicantId id of the applicant to be deleted
      */
-    public DeleteApplicantCommand(Index targetIndex, String targetApplicantName) {
+    public DeleteApplicantCommand(Index targetIndex, String targetApplicantId) {
         this.targetIndex = targetIndex;
-        this.targetApplicantName = targetApplicantName;
+        this.targetApplicantId = targetApplicantId;
     }
 
 
@@ -65,17 +65,17 @@ public class DeleteApplicantCommand extends Command {
         ArrayList<Applicant> applicants = listingToDeleteApplicantFrom.getApplicants();
 
         Optional<Applicant> applicantToDelete;
-        if (targetApplicantName.length() > 5
-                && targetApplicantName.charAt(targetApplicantName.length() - 5) == '#') {
-            String targetName = targetApplicantName.substring(0, targetApplicantName.length() - 5);
-            int targetHashCode = parseInt(targetApplicantName.substring(targetApplicantName.length() - 4));
+        if (targetApplicantId.length() > 5
+                && targetApplicantId.charAt(targetApplicantId.length() - 5) == '#') {
+            String targetName = targetApplicantId.substring(0, targetApplicantId.length() - 5);
+            int targetHashCode = parseInt(targetApplicantId.substring(targetApplicantId.length() - 4));
             applicantToDelete = applicants.stream().filter(applicant -> applicant.getName().fullName.equals(targetName)
                     && applicant.hashCode() == targetHashCode).findFirst();
         } else {
             List<Applicant> applicantsWithSameName = applicants.stream().filter(
-                    applicant -> applicant.getName().fullName.equals(targetApplicantName)).collect(Collectors.toList());
+                    applicant -> applicant.getName().fullName.equals(targetApplicantId)).collect(Collectors.toList());
             if (applicantsWithSameName.size() > 1) {
-                throw new CommandException(String.format(MESSAGE_AMBIGUOUS_APPLICANT, targetApplicantName,
+                throw new CommandException(String.format(MESSAGE_AMBIGUOUS_APPLICANT, targetApplicantId,
                         listingToDeleteApplicantFrom.getTitle()));
             }
 
@@ -83,7 +83,7 @@ public class DeleteApplicantCommand extends Command {
         }
 
         if (applicantToDelete.isEmpty()) {
-            throw new CommandException(String.format(MESSAGE_APPLICANT_NOT_FOUND, targetApplicantName,
+            throw new CommandException(String.format(MESSAGE_APPLICANT_NOT_FOUND, targetApplicantId,
                     listingToDeleteApplicantFrom.getTitle()));
         }
 
