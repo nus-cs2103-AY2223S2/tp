@@ -1,6 +1,8 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -9,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -25,6 +28,8 @@ public interface Logic {
      * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    CommandResult executeTimetableCommand(String commandText) throws CommandException, ParseException;
 
     /**
      * Returns the AddressBook.
@@ -49,6 +54,13 @@ public interface Logic {
     ObservableList<Reminder> getReminderList();
 
     /**
+     * Returns a map of delivery job list in the week
+     */
+    Map<LocalDate, DeliveryList> getWeekDeliveryJobList();
+
+    DeliveryList getDayofWeekJob(int dayOfWeek);
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
@@ -62,4 +74,12 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    void setWeekDeliveryJobList(LocalDate focusDate);
+
+    /**
+     * Get user input focus date
+     * @return focus date
+     */
+    LocalDate getFocusDate();
 }

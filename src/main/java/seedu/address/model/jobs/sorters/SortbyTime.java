@@ -17,6 +17,6 @@ public class SortbyTime implements Comparator<DeliveryJob> {
      * @return difference between jobs' timing
      */
     public int compare(DeliveryJob a, DeliveryJob b) {
-        return b.getDeliverSlot().compareTo(a.getDeliverSlot());
+        return b.getDeliverDate().compareTo(a.getDeliverDate());
     }
 }

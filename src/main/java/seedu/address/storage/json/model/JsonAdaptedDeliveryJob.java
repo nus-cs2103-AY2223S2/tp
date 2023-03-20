@@ -11,8 +11,8 @@ import seedu.address.model.jobs.DeliveryJob;
 public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
 
     private final String jobId;
-    private final JsonAdaptedPerson recepient;
-    private final JsonAdaptedPerson sender;
+    private final String recepient;
+    private final String sender;
     private final String slot;
     private final String earning;
     private final boolean isDelivered;
@@ -27,9 +27,9 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
      * @param earning
      */
     public JsonAdaptedDeliveryJob(
-        @JsonProperty("jobid") String jobId,
-        @JsonProperty("recepient") JsonAdaptedPerson recepient,
-        @JsonProperty("sender") JsonAdaptedPerson sender,
+        @JsonProperty("jobId") String jobId,
+        @JsonProperty("recepientId") String recepient,
+        @JsonProperty("senderId") String sender,
         @JsonProperty("slot") String deliverySlot,
         @JsonProperty("earning") String earning,
         @JsonProperty("isDelivered") boolean isDelivered
@@ -49,8 +49,8 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
      */
     public JsonAdaptedDeliveryJob(DeliveryJob source) {
         this.jobId = source.getJobId();
-        this.recepient = new JsonAdaptedPerson(source.getRecepient());
-        this.sender = new JsonAdaptedPerson(source.getSender());
+        this.recepient = source.getRecepientId();
+        this.sender = source.getSenderId();
         this.slot = source.getDeliverSlot();
         this.earning = source.getEarning().value;
         this.isDelivered = source.getDeliveredStatus();
@@ -58,8 +58,7 @@ public class JsonAdaptedDeliveryJob extends JsonAdapted<DeliveryJob> {
 
     @Override
     public DeliveryJob toModelType() throws IllegalValueException {
-        // TODO: refine later
-        return new DeliveryJob(jobId, recepient.toModelType(), sender.toModelType(), slot, earning, isDelivered);
+        return new DeliveryJob(jobId, recepient, sender, slot, earning, isDelivered);
     }
 
 }

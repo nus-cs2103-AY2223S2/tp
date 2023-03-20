@@ -1,4 +1,4 @@
-package seedu.address.ui.job;
+package seedu.address.ui.jobs;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,8 +12,6 @@ import seedu.address.ui.UiPart;
 public class DeliveryJobFullDetail extends UiPart<Region> {
 
     private static final String FXML = "FullDeliveryJobDetailPane.fxml";
-
-    private final DeliveryJob job;
 
     @FXML
     private Label label;
@@ -34,7 +32,6 @@ public class DeliveryJobFullDetail extends UiPart<Region> {
      */
     public DeliveryJobFullDetail(DeliveryJob job, int displayedIndex) {
         super(FXML);
-        this.job = job;
         id.setText(displayedIndex + ". ");
         label.setText(job.getJobId());
         deliveryTimeSlot.setText(job.getDeliverSlot());

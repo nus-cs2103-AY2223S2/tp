@@ -1,7 +1,7 @@
 package seedu.address.model.jobs;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+// import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Delivery's earning in the delivery jobs book.
@@ -22,7 +22,8 @@ public class Earning {
      */
     public Earning(String earning) {
         requireNonNull(earning);
-        checkArgument(isValidEarning(earning), MESSAGE_CONSTRAINTS);
+        // TODO: Refine later, need to accept 10, 10.1 10.11 and 10.111~
+        // checkArgument(isValidEarning(earning), MESSAGE_CONSTRAINTS);
         value = earning;
     }
 

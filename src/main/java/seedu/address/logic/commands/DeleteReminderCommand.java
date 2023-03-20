@@ -12,7 +12,7 @@ import seedu.address.model.reminder.Reminder;
 /**
  * Deletes a reminder using it's displayed index from notifications.
  */
-public class DeleteReminder extends Command {
+public class DeleteReminderCommand extends Command {
     public static final String COMMAND_WORD = "delete_reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -24,7 +24,7 @@ public class DeleteReminder extends Command {
 
     private final int targetIndex;
 
-    public DeleteReminder(int targetIndex) {
+    public DeleteReminderCommand(int targetIndex) {
         this.targetIndex = targetIndex - 1;
     }
 

@@ -15,7 +15,8 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
             * Get notified as soon as you open the app
          * Timetable:
             * Linked with list of jobs
-            * Display timetable of all scheduled/upcoming jobs
+            * Sort job list by date and slot
+            * Display timetable of all scheduled/upcoming jobs in the week
          * Stats dashboard:
             * List all jobs
             * Show total number of jobs
@@ -156,6 +157,56 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Listing all reminders : `list_reminder`
+
+Shows a list of all reminders in the address book.
+
+Format: `list_reminder`
+
+### Adding a reminder : `add_reminder`
+
+Adds a reminder into the address book.
+
+Format: `add_reminder d/DESCRIPTION time/YYYY-MM-DD HH:mm`
+
+* Adds a reminder with the specified `DESCRIPTION`.
+* The reminder will be reminded from the date time specified in `time/YYYY-MM-DD HH:mm`.
+* `DESCRIPTION` can be left empty.
+
+Examples:
+* `add_reminder` followed by `d/Submit homework time/2023-12-12 12:00` adds a reminder that will remind the user to submit their homework. The reminder will occur at 12pm, 12 December 2023.
+
+### Deleting a reminder : `delete_reminder`
+
+Deletes a reminder into the address book.
+
+Format: `delete_reminder INDEX`
+
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown beside the reminder.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list_reminder` followed by `delete_reminder 2` deletes the 2nd reminder in the address book.
+
+### Showing timetable : `timetable`
+
+Shows timetable of jobs, with the week shown being current week.
+
+Format: `timetable`
+
+### Showing timetable of specific date: `timetable_date`
+
+Shows timetable of specific week containing a specific date
+
+Format: `timetable_date date/YYYY-mm-DD`
+
+* Shows timetable of the week containing the given date
+
+Examples:
+* `timetable` followed by `2023-03-16` shows timetable of jobs in week from 13th - 19th March 2023.
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -203,4 +254,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**List reminder** | `list_reminder`
+**Add reminder** | `add_reminder d/DESCRIPTION time/YYY-MM-DD HH:mm` <br> e.g.,`add_reminder d/Submit homework time/2023-12-12 12:00`
+**Delete reminder** | `delete_reminder INDEX` <br> e.g., `delete_reminder 3`
 **Help** | `help`

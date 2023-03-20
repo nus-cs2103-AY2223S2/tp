@@ -7,9 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -17,12 +20,14 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.person.AddCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDeliveryJobSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.jobs.DeliveryJob;
+import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.PersonBuilder;
@@ -168,7 +173,42 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateSortedDeliveryJobListByDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateWeekDeliveryJobList(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFocusDate(LocalDate jobDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<DeliveryJob> getSortedDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Map<LocalDate, DeliveryList> getSortedDeliveryJobListByDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Map<LocalDate, DeliveryList> getWeekDeliveryJobList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DeliveryList getDayOfWeekJob(int dayOfWeek) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public LocalDate getFocusDate() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -221,6 +261,12 @@ public class AddCommandTest {
         @Override
         public ObservableList<Reminder> getReminderList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Person> getPersonById(String id) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getPersonById'");
         }
 
     }
