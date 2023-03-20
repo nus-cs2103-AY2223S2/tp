@@ -32,7 +32,6 @@ public class TagCommand extends Command {
     public static final String MESSAGE_SUCCESS = "%1$s tagged";
 
     private final Set<Tag> tags;
-
     private final VideoName videoName;
     private final LectureName lectureName;
     private final ModuleCode moduleCode;
@@ -100,6 +99,7 @@ public class TagCommand extends Command {
     }
 
     private CommandResult tagModule(Model model) throws CommandException {
+        requireNonNull(model);
         if (!model.hasModule(moduleCode)) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
@@ -121,6 +121,7 @@ public class TagCommand extends Command {
     }
 
     private CommandResult tagLecture(Model model) throws CommandException {
+        requireNonNull(model);
         if (!model.hasModule(moduleCode)) {
             throw new CommandException(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
@@ -172,5 +173,26 @@ public class TagCommand extends Command {
         Video taggedVideo = new Video(taggingVideo.getName(), taggingVideo.hasWatched(), newTags);
         model.setVideo(targetLecture, taggingVideo, taggedVideo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof TagCommand)) {
+            return false;
+        }
+
+        TagCommand otherCommand = (TagCommand) other;
+
+        return tags.equals(otherCommand.tags)
+                && videoName.equals(otherCommand.videoName)
+                && lectureName.equals(otherCommand.lectureName)
+                && moduleCode.equals(otherCommand.moduleCode)
+                && (isTaggingVid == otherCommand.isTaggingVid)
+                && (isTaggingLec == otherCommand.isTaggingLec)
+                && (isTaggingMod == otherCommand.isTaggingMod);
     }
 }

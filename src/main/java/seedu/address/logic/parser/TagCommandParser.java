@@ -36,7 +36,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         List<Prefix> presentPrefixes = streamOfPrefixesPresent(argMultimap,
                 PREFIX_TAG, PREFIX_MODULE, PREFIX_LECTURE);
 
-        if (!isValidTagCommand(presentPrefixes)) {
+        if (!isValidTagCommand(presentPrefixes) || presentPrefixes.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
         }
 
@@ -65,13 +65,14 @@ public class TagCommandParser implements Parser<TagCommand> {
 
     private boolean isValidTagCommand(List<Prefix> presentPrefixes) {
         return Stream.of(isTaggingMod(presentPrefixes), isTaggingLec(presentPrefixes),
-                isTaggingVideo(presentPrefixes)).anyMatch(isPresent -> true);
+                isTaggingVideo(presentPrefixes)).anyMatch(isPresent -> isPresent.equals(true));
     }
 
     private boolean isTaggingMod(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG)
                 && !presentPrefixes.contains(PREFIX_MODULE)
-                && !presentPrefixes.contains(PREFIX_LECTURE)) {
+                && !presentPrefixes.contains(PREFIX_LECTURE)
+                && presentPrefixes.size() <= 3) {
             return true;
         }
         return false;
@@ -80,7 +81,8 @@ public class TagCommandParser implements Parser<TagCommand> {
     private boolean isTaggingLec(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG)
                 && presentPrefixes.contains(PREFIX_MODULE)
-                && !presentPrefixes.contains(PREFIX_LECTURE)) {
+                && !presentPrefixes.contains(PREFIX_LECTURE)
+                && presentPrefixes.size() <= 3) {
             return true;
         }
         return false;
@@ -89,7 +91,8 @@ public class TagCommandParser implements Parser<TagCommand> {
     private boolean isTaggingVideo(List<Prefix> presentPrefixes) {
         if (presentPrefixes.contains(PREFIX_TAG)
                 && presentPrefixes.contains(PREFIX_MODULE)
-                && presentPrefixes.contains(PREFIX_LECTURE)) {
+                && presentPrefixes.contains(PREFIX_LECTURE)
+                && presentPrefixes.size() <= 3) {
             return true;
         }
         return false;
