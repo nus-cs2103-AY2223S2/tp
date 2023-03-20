@@ -182,10 +182,10 @@ public class Review {
 
     /**
      * Tags current card in review based on enum Hard, Medium, Easy
-     * @param tagName
+     * @param tag
      */
-    public void tagCurrentCard(String tagName) {
-        currCard.addTag(new Tag(tagName));
+    public void tagCurrentCard(Tag tag) {
+        currCard.addTag(tag);
     }
 
 }

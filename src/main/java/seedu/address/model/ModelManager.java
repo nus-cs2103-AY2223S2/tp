@@ -19,6 +19,7 @@ import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.card.IsSameCardPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the master deck data.
@@ -318,7 +319,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void tagCurrentCardInReview(String tagName) {
-        currReview.tagCurrentCard(tagName);
+    public void tagCurrentCardInReview(Tag tag) {
+        currReview.tagCurrentCard(tag);
     }
 }
