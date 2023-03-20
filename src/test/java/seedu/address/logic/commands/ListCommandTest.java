@@ -7,9 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_210
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.getTypicalTracker;
 
+import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -44,13 +45,13 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsFiltered_showsLectures() {
+    public void execute_listIsFiltered_moduleFound_showsLectures() {
         ModuleCode moduleCode = module.getCode();
         String input = String.format("list /mod %s", moduleCode);
         try {
             listCommand = new ListCommandParser().parse(input);
             listCommand.execute(expectedModel);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             assertNull(e);
         }
         String expectedString = String.format(ListCommand.MESSAGE_SUCCESS_LECTURES, moduleCode);
@@ -58,7 +59,7 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsFiltered_showsVideos() {
+    public void execute_listIsFiltered_moduleFound_lectureFound_showsVideos() {
         ModuleCode moduleCode = module.getCode();
         LectureName lectureName = module.getLectureList().get(0).getName();
         String input = String.format("list /mod %s /lec %s", moduleCode, lectureName);
@@ -67,37 +68,39 @@ public class ListCommandTest {
             listCommand.execute(expectedModel);
         } catch (ParseException e) {
             assertNull(e);
+        } catch (CommandException e) {
+            assertNull(e);
         }
         String expectedString = String.format(ListCommand.MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName);
         assertCommandSuccess(listCommand, model, expectedString, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_moduleNotFound() {
+    public void execute_listIsFiltered_moduleNotFound_throwsCommandException() {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         String input = String.format("list /mod %s", moduleCode);
+        String expectedString = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode);
         try {
             listCommand = new ListCommandParser().parse(input);
-            listCommand.execute(expectedModel);
+            assertThrows(CommandException.class, expectedString,
+                () -> listCommand.execute(expectedModel));
         } catch (ParseException e) {
             assertNull(e);
         }
-        String expectedString = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode);
-        assertCommandSuccess(listCommand, model, expectedString, expectedModel);
     }
 
     @Test
-    public void execute_listIsFiltered_lectureNotFound() {
+    public void execute_listIsFiltered_lectureNotFound_throwsCommandException() {
         ModuleCode moduleCode = module.getCode();
         LectureName lectureName = new LectureName("Unknown lecture");
         String input = String.format("list /mod %s /lec %s", moduleCode, lectureName);
+        String expectedString = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode);
         try {
             listCommand = new ListCommandParser().parse(input);
-            listCommand.execute(expectedModel);
+            assertThrows(CommandException.class, expectedString,
+                () -> listCommand.execute(expectedModel));
         } catch (ParseException e) {
             assertNull(e);
         }
-        String expectedString = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode);
-        assertCommandSuccess(listCommand, model, expectedString, expectedModel);
     }
 }
