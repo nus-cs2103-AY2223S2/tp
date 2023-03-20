@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,7 +34,8 @@ class JsonAdaptedPet {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    private final LocalDateTime timestamp = LocalDateTime.now();
+    private String amountDue;
+    private LocalDateTime timestamp;
 
     /**
      * Constructs a {@code JsonAdaptedPet} with the given pet details.
@@ -41,12 +43,15 @@ class JsonAdaptedPet {
     @JsonCreator
     public JsonAdaptedPet(@JsonProperty("ownerName") String ownerName, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("address") String address,
+            @JsonProperty("address") String address, @JsonProperty("amountDue") LocalDateTime timestamp,
                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        LocalDateTime arrival =  timestamp;
+        this.amountDue = String.valueOf(Duration.between(arrival, LocalDateTime.now()).getSeconds() * 100);
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -62,6 +67,9 @@ class JsonAdaptedPet {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+
+        LocalDateTime arrival =  source.getTimeStamp();
+        amountDue = String.valueOf(Duration.between(arrival, LocalDateTime.now()).getSeconds() * 1/100);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -117,8 +125,16 @@ class JsonAdaptedPet {
         }
         final Address modelAddress = new Address(address);
 
+
+        if (timestamp == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
+        }
+
+        final LocalDateTime modelTimeStamp = timestamp;
+
         final Set<Tag> modelTags = new HashSet<>(petTags);
-        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTimeStamp, modelTags);
     }
 
 }

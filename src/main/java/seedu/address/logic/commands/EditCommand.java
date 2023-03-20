@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PETS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -99,9 +100,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPetDescriptor.getPhone().orElse(petToEdit.getPhone());
         Email updatedEmail = editPetDescriptor.getEmail().orElse(petToEdit.getEmail());
         Address updatedAddress = editPetDescriptor.getAddress().orElse(petToEdit.getAddress());
+        LocalDateTime updatedTimestamp = editPetDescriptor.getTimeStamp().orElse(petToEdit.getTimeStamp());
         Set<Tag> updatedTags = editPetDescriptor.getTags().orElse(petToEdit.getTags());
 
-        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTimestamp, updatedTags);
     }
 
     @Override
@@ -127,6 +129,7 @@ public class EditCommand extends Command {
      * corresponding field value of the pet.
      */
     public static class EditPetDescriptor {
+        private LocalDateTime timestamp;
         private OwnerName ownerName;
         private Name name;
         private Phone phone;
@@ -146,6 +149,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setTimeStamp(toCopy.timestamp);
             setTags(toCopy.tags);
         }
 
@@ -212,6 +216,12 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+        public void setTimeStamp(LocalDateTime timestamp) {
+            this.timestamp = timestamp;
+        }
+        public Optional<LocalDateTime> getTimeStamp() {
+            return Optional.ofNullable(this.timestamp);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -234,5 +244,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
+
+
     }
 }
