@@ -15,13 +15,15 @@ import seedu.careflow.model.person.Phone;
  */
 public class PatientBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_BIRTHDATE = "01-01-1990";
-    public static final String DEFAULT_GENDER = "female";
-    public static final String DEFAULT_IC = "A7654321B";
+    public static final String DEFAULT_NAME = "John Doe";
+    public static final String DEFAULT_PHONE = "98765432";
+    public static final String DEFAULT_EMAIL = "johnd@example.com";
+    public static final String DEFAULT_ADDRESS = "John Street, Block 123, #01-01";
+    public static final String DEFAULT_BIRTHDATE = "21-01-2000";
+    public static final String DEFAULT_GENDER = "male";
+    public static final String DEFAULT_IC = "T3871918C";
+    public static final String DEFAULT_DRUGALLERGY = "Aspirin";
+    public static final String DEFAULT_EMERGENCYCONTACT = "93746552";
 
     private Name name;
     private Phone phone;
@@ -45,8 +47,8 @@ public class PatientBuilder {
         dateOfBirth = new DateOfBirth(DEFAULT_BIRTHDATE);
         gender = new Gender(DEFAULT_GENDER);
         ic = new Ic(DEFAULT_IC);
-        drugAllergy = null;
-        emergencyContact = null;
+        drugAllergy = new DrugAllergy(DEFAULT_DRUGALLERGY);
+        emergencyContact = new Phone(DEFAULT_EMERGENCYCONTACT);
     }
 
     /**
