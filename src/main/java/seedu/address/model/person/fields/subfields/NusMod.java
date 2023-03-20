@@ -45,4 +45,16 @@ public class NusMod {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return this == other
+                || (other instanceof NusMod
+                && this.name.equals(((NusMod) other).name));
+    }
+
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
 }

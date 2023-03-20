@@ -25,6 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 import seedu.address.testutil.PersonBuilder;
@@ -178,6 +179,22 @@ public class AddCommandTest {
         public void setUser(User user) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getEvents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
 
         @Override
         public boolean isValidTabIndex(Index index) {

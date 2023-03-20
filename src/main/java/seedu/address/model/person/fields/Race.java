@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Race {
 
     public static final String MESSAGE_CONSTRAINTS = "Race should only contain alphabets and spaces";
-    public static final String VALIDATION_REGEX = "^[A-Za-z\\s]+$$";
+    public static final String VALIDATION_REGEX = "^[A-Za-z\\s]+$";
     public final String race;
 
     /**
@@ -43,8 +43,8 @@ public class Race {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && this.race.equals(((Address) other).value)); // state check
+                || (other instanceof Race // instanceof handles nulls
+                && this.race.equals(((Race) other).race)); // state check
     }
 
     @Override

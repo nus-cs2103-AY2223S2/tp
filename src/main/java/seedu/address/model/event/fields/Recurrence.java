@@ -1,13 +1,13 @@
 package seedu.address.model.event.fields;
 
+import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import seedu.address.model.event.enums.Interval;
 
 /**
  * Represents an Events's Recurrence in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidInterval(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidRecurrence(String)}
  */
 public class Recurrence {
 
@@ -53,11 +53,10 @@ public class Recurrence {
     /**
      * Returns if a given string is a valid Recurrence.
      */
-    public static boolean isValidInterval(String trimmedInterval) {
+    public static boolean isValidRecurrence(String trimmedInterval) {
         String lowerCaseInterval = trimmedInterval.toLowerCase(Locale.ROOT);
-        return Objects.equals(lowerCaseInterval, DAILY_CASE)
-                || Objects.equals(lowerCaseInterval, WEEKLY_CASE)
-                || Objects.equals(lowerCaseInterval, MONTHLY_CASE) || Objects.equals(lowerCaseInterval, YEARLY_CASE);
+        return List.of(NONE_CASE, DAILY_CASE, WEEKLY_CASE, MONTHLY_CASE, YEARLY_CASE)
+                .contains(lowerCaseInterval);
     }
 
     public boolean isRecurring() {

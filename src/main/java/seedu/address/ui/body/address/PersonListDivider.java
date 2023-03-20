@@ -27,7 +27,18 @@ public class PersonListDivider extends UiPart<Region> {
     }
 
     public void setTitle(String title) {
-        Objects.requireNonNull(title);
         this.title.setText(title);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof PersonListDivider)) {
+            return false;
+        }
+        PersonListDivider that = (PersonListDivider) other;
+        return Objects.equals(title.getText(), that.title.getText());
     }
 }
