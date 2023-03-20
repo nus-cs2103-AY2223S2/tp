@@ -11,10 +11,11 @@ Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the per
 - [Quick start](#quick-start)
 - [Features](#features)
   - [Viewing help : `help`](#viewing-help--help)
-  - [Adding a person: `add`](#adding-a-person-add)
+  - [Adding a person: `add`](#adding-a-person--add)
   - [Listing all persons : `list`](#listing-all-persons--list)
   - [Editing a person : `edit`](#editing-a-person--edit)
-  - [Locating persons by name: `find`](#locating-persons-by-name-find)
+  - [Locating persons by name: `find`](#locating-persons-by-name--find)
+  - [Locating persons using filters on fields: `filter`](#locating-persons-using-filters--filter)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -184,6 +185,25 @@ Examples:
 - `find John` returns `john` and `John Doe`
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Locating persons using filters on fields: `filter`
+
+Filters all persons, only displaying persons whose respective fields contain all the given keywords.
+
+Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [p/PLATOON] [t/TAG]…​`
+
+- The search is case-insensitive. e.g `hanS` will match `Hans`
+- The order of the keywords does not matter. e.g. `n/Hans r/3sg` will match `r/3sg n/Hans`
+- Only persons matching all keywords will be returned (i.e. `AND` search).
+- If multiple keywords for the same field are provided, only the last keyword for that field will be used (i.e. `r/3sg r/cpl` has the same result as `r/cpl`)
+- Only part of a field is needed for a successful match e.g. `tanic g` will match `Botanic Gardens`
+- At least one of the optional fields must be provided.
+
+Examples:
+
+- `filter n/Jo` returns `john`, `John Doe` and `joseph`
+- `filter a/street r/sg ` returns `David Li`, `S Lee Chong Wei`<br>
+  ![result for 'find david lee'](images/filterDavidLeeResult.png)
 
 ### Deleting a person : `delete`
 
