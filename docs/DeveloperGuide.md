@@ -40,7 +40,7 @@ meaningful connections and engaging in productive work.
 
 The goal of this Developer Guide is to document and illustrate the underlying architecture of CoDoc, and provide
 insights on how our product is designed, implemented and tested as well as the design considerations that were involved
-in the deciding the implementation of various features offered by ConnectNUS.
+in the deciding the implementation of various features offered by CoDoc.
 
 You are recommended to read the [Navigating the Developer Guide](#navigating-the-developer-guide) and [Glossary](#glossary)
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
