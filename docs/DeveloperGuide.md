@@ -57,7 +57,7 @@ The Developer Guide is divided into the following sections :
 - [Appendix: Requirements](#appendix-requirements)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
-The [Design](#design) section gives an overview of the architecture of ConnectNUS.
+The [Design](#design) section gives an overview of the architecture of CoDoc.
 In this section, you will be provided with:
 
 1. The API (Application Programming Interface) of the major components of CoDoc.
