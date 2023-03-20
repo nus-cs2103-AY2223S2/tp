@@ -1,20 +1,21 @@
 package seedu.careflow.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
+import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
+
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.careflow.commons.core.GuiSettings;
 import seedu.careflow.model.DrugInventory;
 import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.UserPrefs;
 import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
-
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
-import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
 
 class CareFlowStorageManagerTest {
 

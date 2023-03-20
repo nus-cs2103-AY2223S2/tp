@@ -95,7 +95,7 @@ public class Patient {
      * Returns true if both patient have the same name.
      * This defines a weaker notion of equality between two patient.
      */
-    public boolean isSamePerson(Patient otherPatient) {
+    public boolean isSamePatient(Patient otherPatient) {
         if (otherPatient == this) {
             return true;
         }
@@ -118,14 +118,14 @@ public class Patient {
             return false;
         }
 
-        Patient otherPerson = (Patient) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getBirthDate().equals(getBirthDate())
-                && otherPerson.getGender().equals(getGender())
-                && otherPerson.getIc().equals(getIc());
+        Patient otherPatient = (Patient) other;
+        return otherPatient.getName().equals(getName())
+                && otherPatient.getPhone().equals(getPhone())
+                && otherPatient.getEmail().equals(getEmail())
+                && otherPatient.getAddress().equals(getAddress())
+                && otherPatient.getBirthDate().equals(getBirthDate())
+                && otherPatient.getGender().equals(getGender())
+                && otherPatient.getIc().equals(getIc());
     }
 
     @Override

@@ -120,7 +120,7 @@ public class MainApp extends Application {
         }
 
 
-        return new CareFlowModelManager(initialDataPatient, initialDataDrug, initialDataHospital, userPrefs);
+        return new CareFlowModelManager(initialDataPatient, initialDataDrug, userPrefs);
     }
 
     private void initLogging(Config config) {

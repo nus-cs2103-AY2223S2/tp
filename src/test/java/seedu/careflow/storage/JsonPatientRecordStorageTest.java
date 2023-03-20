@@ -1,15 +1,5 @@
 package seedu.careflow.storage;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.careflow.commons.exceptions.DataConversionException;
-import seedu.careflow.model.PatientRecord;
-import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.careflow.testutil.Assert.assertThrows;
@@ -17,6 +7,17 @@ import static seedu.careflow.testutil.TypicalPatients.ALICE;
 import static seedu.careflow.testutil.TypicalPatients.HOON;
 import static seedu.careflow.testutil.TypicalPatients.IDA;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.careflow.commons.exceptions.DataConversionException;
+import seedu.careflow.model.PatientRecord;
+import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
 
 class JsonPatientRecordStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
@@ -31,7 +32,8 @@ class JsonPatientRecordStorageTest {
     }
 
     private java.util.Optional<ReadOnlyPatientRecord> readPatientRecord(String filePath) throws Exception {
-        return new JsonPatientRecordStorage(Paths.get(filePath)).readPatientRecord(addToTestDataPathIfNotNull(filePath));
+        return new JsonPatientRecordStorage(Paths.get(filePath))
+                .readPatientRecord(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -57,8 +59,8 @@ class JsonPatientRecordStorageTest {
     @Test
     public void readPatientRecord_invalidAndValidPersonAddressBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, ()
-                -> readPatientRecord("invalidAndValidPatientPatientRecord" +
-                ".json"));
+                -> readPatientRecord("invalidAndValidPatientPatientRecord"
+                + ".json"));
     }
 
     @Test
@@ -103,5 +105,4 @@ class JsonPatientRecordStorageTest {
     public void savePatientRecord_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> savePatientRecord(new PatientRecord(), null));
     }
-
 }

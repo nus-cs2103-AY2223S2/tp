@@ -27,11 +27,11 @@ public class JsonAdaptedDrugTest {
 
     private static final Drug SAMPLE_DRUG = SampleDataUtil.getSampleDrugs()[0];
     private static final String VALID_TRADE_NAME = SAMPLE_DRUG.getTradeName().tradeName;
-    private static final String VALID_ACTIVE_INGREDIENT =  SAMPLE_DRUG.getActiveIngredient().value;
-    private static final String VALID_DIRECTION =  SAMPLE_DRUG.getDirection().value;
-    private static final String VALID_PURPOSE =  SAMPLE_DRUG.getPurposes().purpose;
-    private static final String VALID_SIDE_EFFECT =  SAMPLE_DRUG.getSideEffects().sideEffect;
-    private static final String VALID_STORAGE_COUNT =  SAMPLE_DRUG.getStorageCount().toString();
+    private static final String VALID_ACTIVE_INGREDIENT = SAMPLE_DRUG.getActiveIngredient().value;
+    private static final String VALID_DIRECTION = SAMPLE_DRUG.getDirection().value;
+    private static final String VALID_PURPOSE = SAMPLE_DRUG.getPurposes().purpose;
+    private static final String VALID_SIDE_EFFECT = SAMPLE_DRUG.getSideEffects().sideEffect;
+    private static final String VALID_STORAGE_COUNT = SAMPLE_DRUG.getStorageCount().toString();
 
     @Test
     public void toModelType_validDrugDetails_returnsDrug() throws Exception {

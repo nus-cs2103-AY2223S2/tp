@@ -24,7 +24,6 @@ public class PatientBuilder {
     public static final String DEFAULT_IC = "A7654321B";
     public static final String DEFAULT_DRUG_ALLERGY = "penicillin";
     public static final String DEFAULT_EMERGENCY_CONTACT = "88888888";
-    
     private Name name;
     private Phone phone;
     private Email email;
