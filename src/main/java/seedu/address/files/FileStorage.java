@@ -60,7 +60,7 @@ public class FileStorage {
         SwingUtilities.invokeLater(() -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileFilter(new FileNameExtensionFilter(
-                    "PDF and Image files", "pdf", "jpg", "jpeg", "png", "gif"));
+                    "PDF and Image files", "pdf", "jpg", "jpeg", "png"));
             fileChooser.setMultiSelectionEnabled(true);
             int result = fileChooser.showOpenDialog(null);
 
@@ -72,25 +72,20 @@ public class FileStorage {
                 checkDir(userDir);
                 for (File selectedFile : selectedFiles) { // loop through each selected file
                     String fileName = selectedFile.getName();
-                    Path srcPath = selectedFile.toPath();
-                    Path destPath = Paths.get(userDirPath + fileName);
-                    try {
-                        Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
-                    } catch (IOException e) {
-                        System.out.println("Error copying file");
+                    String extension = fileName.substring(fileName.lastIndexOf(".") + 1);
+                    if (extension.equalsIgnoreCase("pdf") || extension.equalsIgnoreCase("jpg")
+                            || extension.equalsIgnoreCase("jpeg") || extension.equalsIgnoreCase("png")) {
+                        Path srcPath = selectedFile.toPath();
+                        Path destPath = Paths.get(userDirPath + fileName);
+                        try {
+                            Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
+                        } catch (IOException e) {
+                            System.out.println("Error copying file");
+                        }
+                    } else {
+                        System.out.println("Wrong File type");
                     }
                 }
-                /*
-                FilesManager filesManager = new FilesManager();
-                List<Path> temp = filesManager.getAllDirectories();
-                for (int x = 0; x < temp.size(); x++) {
-                    System.out.println(temp.get(x).getFileName());
-                    List<Path> temp2 = filesManager.getAllFiles(temp.get(x));
-                    for (int y = 0; y < temp2.size(); y++) {
-                        System.out.println(temp2.get(y).getFileName());
-                    }
-                }
-                */
             }
         });
     }
