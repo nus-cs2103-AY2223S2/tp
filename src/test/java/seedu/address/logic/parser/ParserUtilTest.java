@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -159,6 +160,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTag_invalidValueWithWhitespace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSingleTag(WHITESPACE + INVALID_TAG + WHITESPACE));
+    }
+
+    @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
         Tag expectedTag = new Tag(VALID_TAG_1);
         assertEquals(expectedTag, ParserUtil.parseSingleTag(VALID_TAG_1));
@@ -178,20 +184,61 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
+    public void parseTagsCollection_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMultiTags((Collection<String>) null));
+    }
+
+    @Test
+    public void parseTags_stringWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(INVALID_TAG));
         assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(VALID_TAG_1 + ", " + INVALID_TAG));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
+    public void parseTags_listWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(List.of(INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(List.of(VALID_TAG_1, INVALID_TAG)));
+    }
+
+    @Test
+    public void parseTags_emptyString_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseMultiTags(" ").isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
+    public void parseTags_stringWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseMultiTags(VALID_TAG_1 + ", " + VALID_TAG_2);
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseTags_listWithValidTags_returnsTagSet() throws Exception {
+        Set<Tag> actualTagSet = ParserUtil.parseMultiTags(List.of(VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTags_stringWithValidTagsWithWhitespace_returnsTagSet() throws Exception {
+        String firstTagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
+        String secondTagWithWhitespace = WHITESPACE + VALID_TAG_2 + WHITESPACE;
+        Set<Tag> actualTagSet = ParserUtil.parseMultiTags(firstTagWithWhitespace + ", " + secondTagWithWhitespace);
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTags_listWithValidTagsWithWhitespace_returnsTagSet() throws Exception {
+        String firstTagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
+        String secondTagWithWhitespace = WHITESPACE + VALID_TAG_2 + WHITESPACE;
+        List<String> listOfTags = List.of(firstTagWithWhitespace, secondTagWithWhitespace);
+        Set<Tag> actualTagSet = ParserUtil.parseMultiTags(listOfTags);
+        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+
+        assertEquals(expectedTagSet, actualTagSet);
+    }
+
 }

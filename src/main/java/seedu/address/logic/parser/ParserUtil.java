@@ -162,16 +162,22 @@ public class ParserUtil {
 
     public static Set<Tag> parseMultiTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
+
+        List<String> listOfUnvalidTagName = tags.stream()
+                .map(tag -> tag.trim())
+                .filter(trimmedTag -> !Tag.isValidTagName(trimmedTag))
+                .collect(Collectors.toList());
+
+        if (listOfUnvalidTagName.size() > 0) {
+            throw new ParseException(String.format(Tag.MESSAGE_CONSTRAINTS,
+                    String.join(", ", listOfUnvalidTagName)));
+        }
+
         List<Tag> listOfTags = tags.stream()
                 .map(tag -> tag.trim())
                 .map(trimmedtag -> new Tag(trimmedtag))
                 .collect(Collectors.toList());
 
-        for (Tag tag : listOfTags) {
-            if (!Tag.isValidTagName(tag.tagName)) {
-                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-            }
-        }
         return new HashSet<>(listOfTags);
     }
 

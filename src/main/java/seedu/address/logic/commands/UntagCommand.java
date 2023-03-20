@@ -32,7 +32,7 @@ public class UntagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Untag a specified video, module, or lecture ";
     //TODO: MODIFY THIS
     public static final String MESSAGE_SUCCESS = "%1$s untagged";
-    private final Tag tag;
+    private final Set<Tag> deletingTags;
     private final VideoName videoName;
     private final LectureName lectureName;
     private final ModuleCode moduleCode;
@@ -45,10 +45,10 @@ public class UntagCommand extends Command {
      */
 
 
-    public UntagCommand(Tag tag, ModuleCode moduleCode) {
-        requireAllNonNull(tag, moduleCode);
+    public UntagCommand(Set<Tag> deletingTags, ModuleCode moduleCode) {
+        requireAllNonNull(deletingTags, moduleCode);
 
-        this.tag = tag;
+        this.deletingTags = deletingTags;
         this.videoName = new VideoName("dummy");
         this.lectureName = new LectureName("dummy");
         this.moduleCode = moduleCode;
@@ -61,10 +61,10 @@ public class UntagCommand extends Command {
      * Creates an UntagCommand to untag the specified {@code Lecture}
      */
 
-    public UntagCommand(Tag tag, ModuleCode moduleCode, LectureName lectureName) {
-        requireAllNonNull(tag, moduleCode, lectureName);
+    public UntagCommand(Set<Tag> deletingTags, ModuleCode moduleCode, LectureName lectureName) {
+        requireAllNonNull(deletingTags, moduleCode, lectureName);
 
-        this.tag = tag;
+        this.deletingTags = deletingTags;
         this.videoName = new VideoName("dummy");
         this.lectureName = lectureName;
         this.moduleCode = moduleCode;
@@ -76,10 +76,10 @@ public class UntagCommand extends Command {
     /**
      * Creates an UntagCommand to untag the specified {@code Video}
      */
-    public UntagCommand(Tag tag, ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
-        requireAllNonNull(tag, moduleCode, lectureName, videoName);
+    public UntagCommand(Set<Tag> deletingTags, ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+        requireAllNonNull(deletingTags, moduleCode, lectureName, videoName);
 
-        this.tag = tag;
+        this.deletingTags = deletingTags;
         this.videoName = videoName;
         this.lectureName = lectureName;
         this.moduleCode = moduleCode;
@@ -91,6 +91,10 @@ public class UntagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (this.deletingTags.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_TAGS);
+        }
 
         if (this.isUntaggingMod) {
             return untagModule(model);
@@ -110,15 +114,20 @@ public class UntagCommand extends Command {
 
         Set<Tag> currentTags = untaggingModule.getTags();
 
-        if (!currentTags.contains(this.tag)) {
-            throw new CommandException(String.format(Messages.MESSAGE_MODULE_TAG_DOES_NOT_EXIST, this.tag, moduleCode));
+        List<String> listOfUnfoundTags = deletingTags.stream()
+                .filter(tag -> !currentTags.contains(tag)).map(tag -> tag.getTagName()).collect(Collectors.toList());
+
+        if (listOfUnfoundTags.size() > 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_MODULE_TAG_DOES_NOT_EXIST,
+                    String.join(", ", listOfUnfoundTags),
+                    moduleCode));
         }
 
         Set<Tag> newTags = new HashSet<>();
         newTags.addAll(currentTags);
-        newTags = newTags.stream().filter(tag -> !tag.equals(this.tag))
-                .collect(Collectors.toSet());
 
+        newTags = newTags.stream().filter(tag -> !deletingTags.contains(tag))
+                .collect(Collectors.toSet());
 
         List<Lecture> currentLectureList = (List<Lecture>) untaggingModule.getLectureList();
 
@@ -143,14 +152,18 @@ public class UntagCommand extends Command {
 
         Set<Tag> currentTags = untaggingLecture.getTags();
 
-        if (!currentTags.contains(this.tag)) {
-            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_TAG_DOES_NOT_EXIST, this.tag,
-                    this.lectureName, this.moduleCode));
+        List<String> listOfUnfoundTags = deletingTags.stream()
+                .filter(tag -> !currentTags.contains(tag)).map(tag -> tag.getTagName()).collect(Collectors.toList());
+
+        if (listOfUnfoundTags.size() > 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_LECTURE_TAG_DOES_NOT_EXIST,
+                    String.join(", ", listOfUnfoundTags), lectureName,
+                    moduleCode));
         }
 
         Set<Tag> newTags = new HashSet<>();
         newTags.addAll(currentTags);
-        newTags = newTags.stream().filter(tag -> !tag.equals(this.tag))
+        newTags = newTags.stream().filter(tag -> !deletingTags.contains(tag))
                 .collect(Collectors.toSet());
 
         Lecture untaggedLecture = new Lecture(untaggingLecture.getName(), newTags, untaggingLecture.getVideoList());
@@ -180,18 +193,43 @@ public class UntagCommand extends Command {
         Video untaggingVideo = targetLecture.getVideo(this.videoName);
 
         Set<Tag> currentTags = untaggingVideo.getTags();
-        if (!currentTags.contains(this.tag)) {
-            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_TAG_DOES_NOT_EXIST, this.tag,
-                    this.videoName, this.lectureName, this.moduleCode));
+        List<String> listOfUnfoundTags = deletingTags.stream()
+                .filter(tag -> !currentTags.contains(tag)).map(tag -> tag.getTagName()).collect(Collectors.toList());
+
+        if (listOfUnfoundTags.size() > 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_TAG_DOES_NOT_EXIST,
+                    String.join(", ", listOfUnfoundTags), this.videoName, this.lectureName,
+                    moduleCode));
         }
 
         Set<Tag> newTags = new HashSet<>();
         newTags.addAll(currentTags);
-        newTags = newTags.stream().filter(tag -> !tag.equals(this.tag))
+        newTags = newTags.stream().filter(tag -> !deletingTags.contains(tag))
                 .collect(Collectors.toSet());
 
         Video taggedVideo = new Video(untaggingVideo.getName(), untaggingVideo.hasWatched(), newTags);
         model.setVideo(targetLecture, untaggingVideo, taggedVideo);
         return new CommandResult(String.format(MESSAGE_SUCCESS, videoName));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof UntagCommand)) {
+            return false;
+        }
+
+        UntagCommand otherCommand = (UntagCommand) other;
+
+        return deletingTags.equals(otherCommand.deletingTags)
+                && videoName.equals(otherCommand.videoName)
+                && lectureName.equals(otherCommand.lectureName)
+                && moduleCode.equals(otherCommand.moduleCode)
+                && (isUntaggingVid == otherCommand.isUntaggingVid)
+                && (isUntaggingLec == otherCommand.isUntaggingLec)
+                && (isUntaggingMod == otherCommand.isUntaggingMod);
     }
 }
