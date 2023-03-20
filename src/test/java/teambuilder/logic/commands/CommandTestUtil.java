@@ -2,7 +2,13 @@ package teambuilder.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static teambuilder.logic.parser.CliSyntax.*;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 import static teambuilder.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
