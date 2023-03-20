@@ -5,7 +5,11 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -50,6 +54,15 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab contactsTab;
+
+    @FXML
+    private Tab calendarTab;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -64,7 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
-
+        registerShortcutsForTabs();
         helpWindow = new HelpWindow();
     }
 
@@ -76,6 +89,29 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
+    private void registerShortcutsForTabs() {
+        registerShortcut(tabPane, contactsTab, new KeyCodeCombination(KeyCode.DIGIT1,
+                KeyCombination.CONTROL_DOWN));
+        registerShortcut(tabPane, calendarTab, new KeyCodeCombination(KeyCode.DIGIT2,
+                KeyCombination.CONTROL_DOWN));
+    }
+
+    private void registerCalendarNavigationForCalendarTab() {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+//            if (calendarTab.isSelected() && !commandTextField.isFocused() && !calendarDisplay.isJumpBoxFocused()) {
+//                calendarDisplay.handleKeyPressed(event);
+//            }
+        });
+    }
+
+    private void registerShortcut(TabPane tabPane, Tab tab, KeyCombination combination) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (combination.match(event)) {
+                tabPane.getSelectionModel().select(tab);
+                event.consume();
+            }
+        });
+    }
     /**
      * Sets the accelerator of a MenuItem.
      * @param keyCombination the KeyCombination value of the accelerator
@@ -115,6 +151,10 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+//        calendarDisplay = new CalendarDisplay(logic, primaryStage);
+//        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        registerCalendarNavigationForCalendarTab();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
