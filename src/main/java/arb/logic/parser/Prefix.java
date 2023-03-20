@@ -13,6 +13,9 @@ public class Prefix {
     private final String mainPrefix;
     private final Optional<String> aliasPrefix;
 
+    /**
+     * Main prefix must be present and not null.
+     */
     public Prefix(String mainPrefix, String aliasPrefix) {
         requireNonNull(mainPrefix);
         this.mainPrefix = mainPrefix;
@@ -23,6 +26,9 @@ public class Prefix {
         return this.mainPrefix;
     }
 
+    /**
+     * Returns true if this prefix has an alias.
+     */
     public boolean isAliasPresent() {
         return this.aliasPrefix.isPresent();
     }

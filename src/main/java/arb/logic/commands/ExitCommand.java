@@ -12,10 +12,10 @@ import arb.model.Model;
  */
 public class ExitCommand extends Command {
 
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+
     private static final String MAIN_COMMAND_WORD = "exit";
     private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD));
-
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {

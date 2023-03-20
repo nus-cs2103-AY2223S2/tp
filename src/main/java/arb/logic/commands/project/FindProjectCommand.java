@@ -21,7 +21,8 @@ public class FindProjectCommand extends Command {
 
     private static final String MAIN_COMMAND_WORD = "find-project";
     private static final String ALIAS_COMMAND_WORD = "fp";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all projects whose titles contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

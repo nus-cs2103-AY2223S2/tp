@@ -18,11 +18,12 @@ import arb.model.Model;
  */
 public class ClearClientCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "Client list has been cleared!";
+
     private static final String MAIN_COMMAND_WORD = "clear-client";
     private static final String ALIAS_COMMAND_WORD = "cc";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
-
-    public static final String MESSAGE_SUCCESS = "Client list has been cleared!";
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {

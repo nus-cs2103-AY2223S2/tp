@@ -17,11 +17,12 @@ import arb.model.Model;
  */
 public class ListProjectCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "Listed all projects";
+
     private static final String MAIN_COMMAND_WORD = "list-project";
     private static final String ALIAS_COMMAND_WORD = "lp";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
-    
-    public static final String MESSAGE_SUCCESS = "Listed all projects";
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {

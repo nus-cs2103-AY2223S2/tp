@@ -63,7 +63,7 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        
+
         if (AddClientCommand.isCommandWord(commandWord)) {
             return new AddClientCommandParser().parse(arguments);
         } else if (AddProjectCommand.isCommandWord(commandWord)) {

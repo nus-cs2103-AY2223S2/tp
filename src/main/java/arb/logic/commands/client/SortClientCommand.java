@@ -17,11 +17,12 @@ import arb.model.Model;
  */
 public class SortClientCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "Sorted all clients by name!";
+
     private static final String MAIN_COMMAND_WORD = "sort-client";
     private static final String ALIAS_COMMAND_WORD = "sc";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
-
-    public static final String MESSAGE_SUCCESS = "Sorted all clients by name!";
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {

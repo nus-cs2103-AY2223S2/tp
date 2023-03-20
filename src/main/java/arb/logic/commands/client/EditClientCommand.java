@@ -34,9 +34,14 @@ import arb.model.tag.Tag;
  */
 public class EditClientCommand extends Command {
 
+    public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
+
     private static final String MAIN_COMMAND_WORD = "edit-client";
     private static final String ALIAS_COMMAND_WORD = "ec";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
@@ -49,10 +54,6 @@ public class EditClientCommand extends Command {
             + "Example: " + MAIN_COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
-
-    public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;

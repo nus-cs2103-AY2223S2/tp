@@ -23,16 +23,17 @@ import arb.model.project.Project;
  */
 public class MarkProjectCommand extends Command {
 
+    public static final String MESSAGE_MARK_PROJECT_SUCCESS = "Marked Project: %1$s";
+
     private static final String MAIN_COMMAND_WORD = "mark";
     private static final String ALIAS_COMMAND_WORD = "mp";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD
             + ": Marks the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + MAIN_COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_MARK_PROJECT_SUCCESS = "Marked Project: %1$s";
 
     private final Index targetIndex;
 

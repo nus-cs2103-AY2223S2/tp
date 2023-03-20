@@ -21,21 +21,22 @@ public enum ProjectSortingOption {
             "Sorting options should be either \'deadline\' or \'name\'";
     private static final EnumSet<ProjectSortingOption> sortingOptions = EnumSet.allOf(ProjectSortingOption.class);
 
-    private final Set<String> OPTION_STRINGS;
+    private final Set<String> optionStrings;
     private final String successMessage;
     private final Comparator<Project> comparator;
 
     /**
      * ProjectSortingOption can only be created by calling {@link ProjectSortingOption#getSortingOption(String)}.
      */
-    private ProjectSortingOption(String optionString, String aliasOptionString, String successMessage, Comparator<Project> comparator) {
-        this.OPTION_STRINGS = new HashSet<>(Arrays.asList(optionString, aliasOptionString));
+    private ProjectSortingOption(String optionString, String aliasOptionString, String successMessage,
+            Comparator<Project> comparator) {
+        this.optionStrings = new HashSet<>(Arrays.asList(optionString, aliasOptionString));
         this.successMessage = successMessage;
         this.comparator = comparator;
     }
 
     private boolean isOptionString(String optionString) {
-        return this.OPTION_STRINGS.contains(optionString);
+        return this.optionStrings.contains(optionString);
     }
 
     /**

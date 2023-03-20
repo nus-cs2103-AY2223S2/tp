@@ -22,9 +22,13 @@ import arb.model.client.Client;
  */
 public class AddClientCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
+
     private static final String MAIN_COMMAND_WORD = "add-client";
     private static final String ALIAS_COMMAND_WORD = "ac";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "
@@ -38,9 +42,6 @@ public class AddClientCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
-
-    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
     private final Client toAdd;
 

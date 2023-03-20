@@ -21,16 +21,17 @@ import arb.model.project.Project;
  */
 public class DeleteProjectCommand extends Command {
 
+    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
+
     private static final String MAIN_COMMAND_WORD = "delete-project";
     private static final String ALIAS_COMMAND_WORD = "dp";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD
             + ": Deletes the project identified by the index number used in the displayed list.\n"
             + "Parameters: INDEX(must be a positive integer)\n"
             + "Example: " + MAIN_COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
     private final Index targetIndex;
 

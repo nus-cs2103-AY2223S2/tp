@@ -20,7 +20,8 @@ public class SortProjectCommand extends Command {
 
     private static final String MAIN_COMMAND_WORD = "sort-project";
     private static final String ALIAS_COMMAND_WORD = "sp";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Sorts the project list. "
             + "Parameters: "

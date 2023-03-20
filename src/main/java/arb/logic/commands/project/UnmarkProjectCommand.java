@@ -22,16 +22,18 @@ import arb.model.project.Project;
  * Unmarks a project identified using its displayed index from the address book.
  */
 public class UnmarkProjectCommand extends Command {
+
+    public static final String MESSAGE_UNMARK_PROJECT_SUCCESS = "Unmarked Project: %1$s";
+
     private static final String MAIN_COMMAND_WORD = "unmark";
     private static final String ALIAS_COMMAND_WORD = "up";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD
             + ": Unmarks the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + MAIN_COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_UNMARK_PROJECT_SUCCESS = "Unmarked Project: %1$s";
 
     private final Index targetIndex;
 

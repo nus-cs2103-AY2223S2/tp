@@ -20,9 +20,13 @@ import arb.model.project.Project;
  */
 public class AddProjectCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
+
     private static final String MAIN_COMMAND_WORD = "add-project";
     private static final String ALIAS_COMMAND_WORD = "ap";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Adds a project to the address book. "
             + "Parameters: "
@@ -31,9 +35,6 @@ public class AddProjectCommand extends Command {
             + "Example: " + MAIN_COMMAND_WORD + " "
             + PREFIX_NAME + "Oil Painting "
             + PREFIX_DEADLINE + "2023-04-05";
-
-    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
 
     private final Project toAdd;
 

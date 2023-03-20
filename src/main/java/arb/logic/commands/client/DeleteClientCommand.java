@@ -2,9 +2,9 @@ package arb.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import arb.commons.core.Messages;
@@ -21,16 +21,17 @@ import arb.model.client.Client;
  */
 public class DeleteClientCommand extends Command {
 
+    public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
+
     private static final String MAIN_COMMAND_WORD = "delete-client";
     private static final String ALIAS_COMMAND_WORD = "dc";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD
             + ": Deletes the client identified by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + MAIN_COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
 
     private final Index targetIndex;
 

@@ -18,11 +18,12 @@ import arb.model.Model;
  */
 public class ListClientCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "Listed all clients";
+
     private static final String MAIN_COMMAND_WORD = "list-client";
     private static final String ALIAS_COMMAND_WORD = "lc";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
-
-    public static final String MESSAGE_SUCCESS = "Listed all clients";
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {

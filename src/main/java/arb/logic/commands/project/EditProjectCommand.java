@@ -28,9 +28,15 @@ import arb.model.project.Title;
  * Edits the details of an existing project in the address book.
  */
 public class EditProjectCommand extends Command {
+
+    public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
+
     private static final String MAIN_COMMAND_WORD = "edit-project";
     private static final String ALIAS_COMMAND_WORD = "ep";
-    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Edits the details of the project identified "
             + "by the index number used in the displayed project list. "
@@ -41,10 +47,6 @@ public class EditProjectCommand extends Command {
             + "Example: " + MAIN_COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sunset painting "
             + PREFIX_DEADLINE + "2023-07-05";
-
-    public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
 
     private final Index index;
     private final EditProjectDescriptor editProjectDescriptor;
