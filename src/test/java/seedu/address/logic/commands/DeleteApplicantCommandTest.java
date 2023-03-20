@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-
 import static seedu.address.testutil.TypicalIndexes.getIndexLastListing;
 import static seedu.address.testutil.TypicalListings.getTypicalListingBook;
 
@@ -14,7 +13,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ListingBook;
@@ -32,13 +30,13 @@ import seedu.address.testutil.ListingBuilder;
 public class DeleteApplicantCommandTest {
 
     private Model model = new ModelManager(getTypicalListingBook(), new UserPrefs());
-    private final Applicant BENEDICT_1 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
-    private final String VALID_BENEDICT_1_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#" + BENEDICT_1.hashCode();
-    private final String INVALID_BENEDICT_1_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#"
+    private static final Applicant BENEDICT_1 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
+    private static final String VALID_BENEDICT_1_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#" + BENEDICT_1.hashCode();
+    private static final String INVALID_BENEDICT_1_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#"
             + (BENEDICT_1.hashCode() - 1);
-    private final Applicant BENEDICT_2 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
-    private final String VALID_BENEDICT_2_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#" + BENEDICT_2.hashCode();
-    private final Applicant CHRIS = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_CHRIS).build();
+    private static final Applicant BENEDICT_2 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
+    private static final String VALID_BENEDICT_2_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#" + BENEDICT_2.hashCode();
+    private static final Applicant CHRIS = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_CHRIS).build();
 
     @Test
     public void execute_deleteUniqueApplicantName_success() {
@@ -91,7 +89,7 @@ public class DeleteApplicantCommandTest {
     @Test
     public void execute_outOfBoundIndex_failure() {
         DeleteApplicantCommand deleteApplicantCommand = new DeleteApplicantCommand(
-                Index.fromOneBased(model.getListingBook().getListingList().size() + 1),VALID_APPLICANT_NAME_BENEDICT);
+                Index.fromOneBased(model.getListingBook().getListingList().size() + 1), VALID_APPLICANT_NAME_BENEDICT);
 
         assertCommandFailure(deleteApplicantCommand, model, Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);
     }
