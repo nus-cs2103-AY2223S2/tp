@@ -28,6 +28,7 @@ public class AddApplicantCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "Applicant %1$s added to listing %2$s";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "This listing already contains the provided applicant";
 
     private final Index targetIndex;
     private final Applicant applicantToAdd;
@@ -56,6 +57,10 @@ public class AddApplicantCommand extends Command {
         }
 
         Listing listingToAddApplicantTo = lastShownList.get(targetIndex.getZeroBased());
+
+        if (listingToAddApplicantTo.getApplicants().contains(applicantToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
+        }
 
         Listing editedListing = createListingWithApplicant(listingToAddApplicantTo, applicantToAdd);
 
