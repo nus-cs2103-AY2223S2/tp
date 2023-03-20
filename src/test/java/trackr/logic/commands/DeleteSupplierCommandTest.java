@@ -17,6 +17,7 @@ import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.DeleteSupplierCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.person.Supplier;
@@ -35,7 +36,9 @@ public class DeleteSupplierCommandTest {
         Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
+        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.SUPPLIER,
+                supplierToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
@@ -59,7 +62,9 @@ public class DeleteSupplierCommandTest {
         Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_SUPPLIER_SUCCESS, supplierToDelete);
+        String expectedMessage = String.format(DeleteSupplierCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.SUPPLIER,
+                supplierToDelete);
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());

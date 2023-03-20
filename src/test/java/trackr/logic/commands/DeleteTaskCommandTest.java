@@ -17,6 +17,7 @@ import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.task.DeleteTaskCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.task.Task;
@@ -35,7 +36,9 @@ public class DeleteTaskCommandTest {
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.TASK,
+                taskToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
@@ -60,7 +63,9 @@ public class DeleteTaskCommandTest {
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
 
-        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
+        String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_ITEM_SUCCESS,
+                ModelEnum.TASK,
+                taskToDelete);
 
         Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
                 model.getOrderList(), new UserPrefs());
