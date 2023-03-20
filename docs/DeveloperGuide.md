@@ -86,7 +86,7 @@ provides the links to the aforementioned documents. In this section, you will be
 5. DevOps guide.
 
 The [Appendix: Requirements](#appendix-requirements) section provides details on the motivation behind creating CoDoc
-and how we intend for users to use ConnectNUS.
+and how we intend for users to use CoDoc.
 In this section, you will be provided with
 1. Product Scope.
 2. User Stories.
