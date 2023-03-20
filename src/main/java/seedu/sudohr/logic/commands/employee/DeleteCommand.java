@@ -2,6 +2,8 @@ package seedu.sudohr.logic.commands.employee;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
@@ -10,8 +12,6 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
-
-import java.util.List;
 
 /**
  * Deletes an employee identified using it's displayed index from SudoHR.

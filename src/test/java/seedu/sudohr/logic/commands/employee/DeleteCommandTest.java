@@ -11,8 +11,6 @@ import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.Messages;
