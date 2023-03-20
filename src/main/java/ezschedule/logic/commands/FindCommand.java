@@ -7,7 +7,7 @@ import ezschedule.model.Model;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
 
 /**
- * Finds and lists all events in address book whose name contains any of the argument keywords.
+ * Finds and lists all events in scheduler whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

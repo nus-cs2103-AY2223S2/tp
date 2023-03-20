@@ -6,7 +6,7 @@ import ezschedule.model.event.Event;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code Scheduler ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
 public class SchedulerBuilder {
 
@@ -21,7 +21,7 @@ public class SchedulerBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Event} to the {@code Scheduler} that we are building.
      */
     public SchedulerBuilder withEvent(Event event) {
         scheduler.addEvent(event);

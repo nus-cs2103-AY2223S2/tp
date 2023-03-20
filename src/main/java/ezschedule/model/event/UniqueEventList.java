@@ -50,9 +50,9 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the event {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The event identity of {@code editedPerson} must not be the same as another existing event in the list.
      */
     public void setEvent(Event target, Event editedEvent) {
         CollectionUtil.requireAllNonNull(target, editedEvent);
@@ -70,8 +70,8 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent event from the list.
+     * The event must exist in the list.
      */
     public void remove(Event toRemove) {
         requireNonNull(toRemove);

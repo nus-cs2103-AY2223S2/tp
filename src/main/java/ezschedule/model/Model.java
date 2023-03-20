@@ -74,7 +74,7 @@ public interface Model {
     void addEvent(Event event);
 
     /**
-     * Replaces the given person {@code target} with {@code editedEvent}.
+     * Replaces the given event {@code target} with {@code editedEvent}.
      * {@code target} must exist in the scheduler.
      * The event identity of {@code editedEvent} must not be the same as another existing Event in the scheduler.
      */

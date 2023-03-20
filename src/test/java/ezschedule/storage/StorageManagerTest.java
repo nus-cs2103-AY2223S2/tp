@@ -1,5 +1,6 @@
 package ezschedule.storage;
 
+import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -10,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import ezschedule.commons.core.GuiSettings;
-import ezschedule.model.Scheduler;
 import ezschedule.model.ReadOnlyScheduler;
+import ezschedule.model.Scheduler;
 import ezschedule.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -23,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonSchedulerStorage addressBookStorage = new JsonSchedulerStorage(getTempFilePath("ab"));
+        JsonSchedulerStorage schedulerStorage = new JsonSchedulerStorage(getTempFilePath("sc"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(schedulerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -47,14 +48,14 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void schedulerBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonSchedulerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonSchedulerStorageTest} class.
          */
 
-        Scheduler original = getTypicalAddressBook();
+        Scheduler original = getTypicalScheduler();
         storageManager.saveScheduler(original);
         ReadOnlyScheduler retrieved = storageManager.readScheduler().get();
         assertEquals(original, new Scheduler(retrieved));
@@ -64,5 +65,4 @@ public class StorageManagerTest {
     public void getSchedulerFilePath() {
         assertNotNull(storageManager.getSchedulerFilePath());
     }
-
 }

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
 import ezschedule.model.UserPrefs;
+import ezschedule.testutil.TypicalEvents;
 import ezschedule.testutil.TypicalIndexes;
-import ezschedule.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -21,8 +21,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalEvents.getTypicalScheduler(), new UserPrefs());
+        expectedModel = new ModelManager(model.getScheduler(), new UserPrefs());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
+        CommandTestUtil.showEventAtIndex(model, TypicalIndexes.INDEX_FIRST_EVENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
