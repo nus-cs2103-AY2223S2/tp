@@ -18,7 +18,9 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import trackr.logic.commands.order.FindOrderCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 import trackr.model.order.OrderContainsKeywordsPredicate;
@@ -77,7 +79,7 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderContainsKeywordsPredicate predicate = preparePredicate(" ", null, null);
         FindOrderCommand command = new FindOrderCommand(predicate);
-        expectedModel.updateFilteredOrderList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredOrderList());
     }
@@ -87,7 +89,7 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
         OrderContainsKeywordsPredicate predicate = preparePredicate("Cheese Donuts", null, null);
         FindOrderCommand command = new FindOrderCommand(predicate);
-        expectedModel.updateFilteredOrderList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CHEESE_CAKES, DONUTS), model.getFilteredOrderList());
     }
@@ -97,7 +99,7 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, "12/12/2012", null);
         FindOrderCommand command = new FindOrderCommand(predicate);
-        expectedModel.updateFilteredOrderList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredOrderList());
     }
@@ -107,7 +109,7 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, "01/01/2024", null);
         FindOrderCommand command = new FindOrderCommand(predicate);
-        expectedModel.updateFilteredOrderList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CHEESE_CAKES, CHOCOLATE_COOKIES), model.getFilteredOrderList());
     }
@@ -119,7 +121,7 @@ public class FindOrderCommandTest {
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.deleteOrder(VANILLA_CAKE);
         model.deleteOrder(VANILLA_CAKE);
-        expectedModel.updateFilteredOrderList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredOrderList());
     }
@@ -129,7 +131,7 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 3);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, null, "N");
         FindOrderCommand command = new FindOrderCommand(predicate);
-        expectedModel.updateFilteredOrderList(predicate);
+        expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CHEESE_CAKES, DONUTS, CHOCOLATE_COOKIES), model.getFilteredOrderList());
     }
