@@ -26,7 +26,7 @@ public class TuteeTestBuilder {
   }
 
   public TuteeTestBuilder(Tutee tutee) {
-      builder = TuteeBuilder.fromExistingTutee(tutee);
+      builder = new TuteeBuilder(tutee);
   }
 
   public TuteeTestBuilder withEmail(String email) {
