@@ -37,11 +37,13 @@
         <Label fx:id="website" styleClass="cell_small_label" text="\$website" />
         <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
         <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
-        <!--      <Label fx:id="jobDescription" styleClass="cell_big_label" text="\$jobDescription" />-->
         <Label fx:id="experience" styleClass="cell_small_label" text="\$experience" />
       </VBox>
-      <VBox alignment="CENTER_RIGHT" minHeight="105" HBox.hgrow="SOMETIMES" GridPane.columnIndex="0">
-        <Label fx:id="jobDescription" wrapText="true" text="\$jobDescription"/>
+      <VBox alignment="TOP_RIGHT" minHeight="105" maxWidth="500" HBox.hgrow="SOMETIMES" GridPane.columnIndex="0">
+        <padding>
+          <Insets top="15" right="15" bottom="5" left="5" />
+        </padding>
+        <Label fx:id="jobDescription" wrapText="true" styleClass="label-bright" text="\$jobDescription"/>
       </VBox>
     </HBox>
 
