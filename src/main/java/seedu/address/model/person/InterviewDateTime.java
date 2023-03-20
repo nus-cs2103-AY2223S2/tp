@@ -62,7 +62,9 @@ public class InterviewDateTime {
         int yearsFromNow = interval.getYears();
         int monthsFromNow = interval.getMonths();
         int daysFromNow = interval.getDays();
-        return daysFromNow <= 3 && monthsFromNow == 0 && yearsFromNow == 0;
+        return (daysFromNow <= 3 && daysFromNow >= 0)
+                && monthsFromNow == 0
+                && yearsFromNow == 0;
     }
 
     @Override

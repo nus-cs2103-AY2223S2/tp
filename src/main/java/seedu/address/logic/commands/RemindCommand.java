@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
+import java.util.List;
 
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -16,8 +17,11 @@ import seedu.address.model.util.SortByInterviewDate;
  */
 public class RemindCommand extends Command {
     public static final String COMMAND_WORD = "remind";
-    public static final String MESSAGE_SUCCESS_FORMAT = "Listed all applicants that going to have "
+    public static final String MESSAGE_SUCCESS_FORMAT_WITH_APPLICANTS = "Listed all applicants that going to have "
             + "interview within three days!";
+
+    public static final String MESSAGE_SUCCESS_FORMAT_WITHOUT_APPLICANTS = "There is no applicant having interview "
+            + "within three days.";
     public static final Predicate<Person> INTERVIEW_IN_THREE_DAYS_PREDICATE =
             person -> (person.getStatus() == Status.SHORTLISTED
                     && person.getInterviewDateTime().get().isWithinThreeDays());
@@ -27,8 +31,14 @@ public class RemindCommand extends Command {
      */
     public String getSuccessMessage(Model model) {
         model.updateFilteredPersonList(INTERVIEW_IN_THREE_DAYS_PREDICATE);
-        model.sortFilteredPersonList(new SortByInterviewDate());
-        return MESSAGE_SUCCESS_FORMAT;
+        List<Person> personList = model.getFilteredPersonList();
+        if (personList.size() >= 1) {
+            model.sortFilteredPersonList(new SortByInterviewDate());
+            return MESSAGE_SUCCESS_FORMAT_WITH_APPLICANTS;
+        } else {
+            return MESSAGE_SUCCESS_FORMAT_WITHOUT_APPLICANTS;
+        }
+
     }
 
     @Override
@@ -36,5 +46,4 @@ public class RemindCommand extends Command {
         requireNonNull(model);
         return new CommandResult(getSuccessMessage(model));
     }
-
 }
