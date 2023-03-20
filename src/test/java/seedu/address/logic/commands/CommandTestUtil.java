@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -34,6 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_GOOGLE = "applied";
     public static final String VALID_DATE_APPLE = "2023-02-01";
     public static final String VALID_DATE_GOOGLE = "2023-02-03";
+    public static final String VALID_COMMENT_APPLE = "I love Apple!";
+    public static final String VALID_COMMENT_GOOGLE = "I love Google!";
     public static final String VALID_TAG_FRONT = "frontend";
     public static final String VALID_TAG_BACK = "backend";
 
@@ -45,6 +48,8 @@ public class CommandTestUtil {
     public static final String STATUS_DESC_GOOGLE = " " + PREFIX_STATUS + VALID_STATUS_GOOGLE;
     public static final String DATE_DESC_APPLE = " " + PREFIX_DATE + VALID_DATE_APPLE;
     public static final String DATE_DESC_GOOGLE = " " + PREFIX_DATE + VALID_DATE_GOOGLE;
+    public static final String COMMENT_DESC_APPLE = " " + PREFIX_COMMENT + VALID_COMMENT_APPLE;
+    public static final String COMMENT_DESC_GOOGLE = " " + PREFIX_COMMENT + VALID_COMMENT_GOOGLE;
     public static final String TAG_DESC_FRONT = " " + PREFIX_TAG + VALID_TAG_FRONT;
     public static final String TAG_DESC_BACK = " " + PREFIX_TAG + VALID_TAG_BACK;
 
@@ -56,6 +61,10 @@ public class CommandTestUtil {
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "pending";
     // invalid date format where dates have to be yyyy-MM-dd
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "23-02-02";
+
+    // Comment cannot be empty
+    public static final String INVALID_COMMENT_DESC = " " + "";
+
     // tag more than 30 characters
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

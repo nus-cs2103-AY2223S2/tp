@@ -5,6 +5,7 @@
       "role" : "Cloud Architect",
       "status" : "assessment",
       "date" : "2023-02-01",
+      "comment": "I love Amazon",
       "tagged" : [ "aws", "back" ]
   }, {
     "companyName" : "Food Panda",
@@ -26,6 +27,7 @@
     "role" : "Game Client Developer",
     "status" : "interview",
     "date" : "2023-02-05",
+    "comment": "I love Riot Games",
     "tagged" : [ "game", "developer" ]
   }, {
     "companyName" : "Samsung",
@@ -37,6 +39,7 @@
     "role" : "Game Designer",
     "status" : "new",
     "date" : "2023-02-07",
+    "comment": "I love Supercell Games",
     "tagged" : [ "design", "game" ]
   } ]
 }

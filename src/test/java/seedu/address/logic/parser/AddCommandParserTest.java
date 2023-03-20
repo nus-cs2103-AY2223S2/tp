@@ -67,6 +67,9 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
                 + DATE_DESC_APPLE + DATE_DESC_GOOGLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
 
+        // multiple comments - last comment accepted
+
+
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags = new InternshipBuilder(GOOGLE)
                 .withTags(VALID_TAG_FRONT, VALID_TAG_BACK).build();

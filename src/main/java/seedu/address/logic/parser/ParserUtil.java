@@ -118,7 +118,7 @@ public class ParserUtil {
         }
         String trimmedComment = commentContent.trim();
         if (!Comment.isValidComment(trimmedComment)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
         }
         return new Comment(trimmedComment);
     }
