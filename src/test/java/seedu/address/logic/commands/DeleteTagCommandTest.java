@@ -47,22 +47,6 @@ public class DeleteTagCommandTest {
         assertCommandFailure(deleteTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    /*@Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personToDeleteFrom = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_PERSON, tagToDelete);
-
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, personToDeleteFrom);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTag(personToDeleteFrom, tagToDelete);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
-    }*/
-
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
