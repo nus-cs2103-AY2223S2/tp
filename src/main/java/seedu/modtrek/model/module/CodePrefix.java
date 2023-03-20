@@ -3,6 +3,9 @@ package seedu.modtrek.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
+/**
+ * The type CodePrefix representing the prefix of a module code.
+ */
 public class CodePrefix {
 
     /**

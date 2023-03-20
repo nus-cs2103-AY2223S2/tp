@@ -7,13 +7,14 @@ import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.module.*;
-import seedu.modtrek.model.tag.Tag;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.modtrek.logic.commands.FindCommand;
+import seedu.modtrek.logic.parser.exceptions.ParseException;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.ModulePredicate;
+import seedu.modtrek.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindCommand object

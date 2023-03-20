@@ -6,14 +6,14 @@ import static seedu.modtrek.testutil.TypicalModules.CS2100;
 import static seedu.modtrek.testutil.TypicalModules.ST2334;
 import static seedu.modtrek.testutil.TypicalModules.getTypicalDegreeProgression;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.model.Model;
 import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
 import seedu.modtrek.model.module.ModulePredicate;
-
-import java.util.HashSet;
 
 class FindCommandTest {
     private Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());

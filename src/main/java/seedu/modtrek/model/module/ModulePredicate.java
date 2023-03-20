@@ -1,9 +1,9 @@
 package seedu.modtrek.model.module;
 
-import seedu.modtrek.model.tag.Tag;
-
 import java.util.HashSet;
 import java.util.function.Predicate;
+
+import seedu.modtrek.model.tag.Tag;
 
 /**
  * Tests that a {@code Module}'s {@code Name} matches module code.
@@ -15,6 +15,14 @@ public class ModulePredicate implements Predicate<Module> {
     private final String grade;
     private final HashSet<Tag> tags;
 
+    /**
+     * Instantiates a new ModulePredicate.
+     * @param moduleCode either the code prefix or the entire code
+     * @param credit     the credit
+     * @param semYear    the semester year
+     * @param grade      the grade
+     * @param tags       the tags
+     */
     public ModulePredicate(String moduleCode, String credit, String semYear, String grade, HashSet<Tag> tags) {
         this.moduleCode = moduleCode;
         this.credit = credit;

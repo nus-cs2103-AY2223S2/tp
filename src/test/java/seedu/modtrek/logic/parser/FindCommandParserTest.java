@@ -4,13 +4,12 @@ import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
-import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.ModulePredicate;
-
-import java.util.HashSet;
 
 public class FindCommandParserTest {
 

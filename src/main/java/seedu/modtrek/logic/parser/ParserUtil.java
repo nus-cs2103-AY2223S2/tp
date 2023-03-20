@@ -8,7 +8,11 @@ import java.util.Locale;
 import java.util.Set;
 
 import seedu.modtrek.logic.parser.exceptions.ParseException;
-import seedu.modtrek.model.module.*;
+import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.CodePrefix;
+import seedu.modtrek.model.module.Credit;
+import seedu.modtrek.model.module.Grade;
+import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 /**

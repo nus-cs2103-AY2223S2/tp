@@ -19,8 +19,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds module with the specified module code " +
-            "or by its prefix, credits, semyear, grade, tag(s).\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds module with the specified module code "
+            + "or by its prefix, credits, semyear, grade, tag(s).\n"
             + "Parameters: [MODULE CODE] or "
             + "[" + PREFIX_CODE + " MODULE PREFIX] "
             + "[" + PREFIX_CREDIT + " MODULE CREDITS] "
