@@ -97,11 +97,14 @@ public class Food {
         }
 
         Food otherFood = (Food) other;
-        return otherFood.getName().equals(getName())
-                && otherFood.getUnit().equals((getUnit()))
-                && otherFood.getQuantity().equals((getQuantity()))
-                && otherFood.getExpiryDate().equals(getExpiryDate())
-                && otherFood.getTags().equals(getTags());
+
+        boolean equalsName = otherFood.getName().equals(getName());
+        boolean equalsUnit = otherFood.getUnit().equals((getUnit()));
+        boolean equalsQuantity = otherFood.getQuantity().equals((getQuantity()));
+        boolean equalsExpiryDate = otherFood.getExpiryDate().equals(getExpiryDate());
+        boolean equalsTags = otherFood.getTags().equals(getTags());
+
+        return equalsName && equalsUnit && equalsQuantity && equalsExpiryDate && equalsTags;
     }
 
     @Override
