@@ -45,9 +45,7 @@ public class CommandTestUtil {
 
     public static final String DECK_DESC_SOCIOLOGY = " " + VALID_DECK_SOCIOLOGY;
     public static final String DECK_DESC_SCIENCE = " " + VALID_DECK_SCIENCE;
-    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION; // empty string not allowed for question
-    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Hard*"; // '*' not allowed in tags
+
     public static final String INVALID_DECK_DESC = "";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
