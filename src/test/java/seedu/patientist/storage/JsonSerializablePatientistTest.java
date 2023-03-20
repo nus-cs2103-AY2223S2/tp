@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.patientist.commons.exceptions.IllegalValueException;
 import seedu.patientist.commons.util.JsonUtil;
 import seedu.patientist.model.Patientist;
-import seedu.patientist.testutil.TypicalPatients;
+import seedu.patientist.testutil.TypicalWards;
 
 public class JsonSerializablePatientistTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializablePatientistTest {
         JsonSerializablePatientist dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializablePatientist.class).get();
         Patientist patientistFromFile = dataFromFile.toModelType();
-        Patientist typicalPersonsPatientist = TypicalPatients.getTypicalPatientist();
+        Patientist typicalPersonsPatientist = TypicalWards.getTypicalPatientist();
         assertEquals(patientistFromFile, typicalPersonsPatientist);
     }
 

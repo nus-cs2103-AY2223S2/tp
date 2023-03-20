@@ -29,6 +29,7 @@ public class StaffBuilder extends PersonBuilder {
         phone = staffToCopy.getPhone();
         email = staffToCopy.getEmail();
         address = staffToCopy.getAddress();
+        idNumber = staffToCopy.getIdNumber();
         tags = new HashSet<>(staffToCopy.getTags());
     }
     /**

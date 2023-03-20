@@ -7,7 +7,7 @@ import static seedu.patientist.commons.util.AppUtil.checkArgument;
  * API for an id number associated with a person.
  */
 public class IdNumber {
-    public static final String MESSAGE_CONSTRAINTS = "ID should be of the format: alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "ID should be of the format: alphanumeric without spaces";
 
     /** ID should be alphanumeric. */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}]*";

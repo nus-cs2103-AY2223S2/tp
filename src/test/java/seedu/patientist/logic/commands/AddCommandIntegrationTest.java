@@ -2,7 +2,7 @@ package seedu.patientist.logic.commands;
 
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -44,7 +44,6 @@ public class WardBuilder {
 
     /**
      * Sets {@code name} of the ward we are building.
-
      */
     public WardBuilder withName(String name) {
         this.wardName = name;

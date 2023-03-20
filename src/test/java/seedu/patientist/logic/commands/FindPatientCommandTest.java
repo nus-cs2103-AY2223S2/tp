@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.patientist.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.patientist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.patientist.testutil.TypicalPatients.ADAM;
-import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import java.util.Arrays;
 import java.util.Collections;

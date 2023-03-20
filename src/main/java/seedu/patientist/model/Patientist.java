@@ -22,7 +22,6 @@ import seedu.patientist.model.ward.WardList;
 public class Patientist implements ReadOnlyPatientist {
 
     private final WardList wards;
-    //TODO: this should eventually hold a list of wards, which in turn hold 2 UniquePersonList, for patients and staff
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication

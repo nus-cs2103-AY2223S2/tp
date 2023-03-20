@@ -15,8 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.patientist.model.Model;
-import seedu.patientist.model.ModelManager;
-import seedu.patientist.model.UserPrefs;
+//import seedu.patientist.model.ModelManager;
+//import seedu.patientist.model.UserPrefs;
 import seedu.patientist.model.person.staff.IsStaffPredicate;
 
 public class ListStaffCommandTest {
