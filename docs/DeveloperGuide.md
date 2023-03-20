@@ -154,6 +154,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Enhanced Find feature
+
+Before, the `find` feature on AB3 would find persons whose names contain any of the given keywords. This limited the search functionality to purely names. With our new enhancement, `find` can now search via any field. 
+The FindCommandParser does the heavy lifting where it will automatically create appropriate predicates based on user input.
+
+You can find the specific implementation in the `FindCommandParser` class and the `FindCommand` class.
+
+Given below is an example usage scenario and how the find mechanism behaves.
+
+Step 1. The user inputs a `find` command with parameter `n/read`. The parser recognises the command word and calls the FindCommandParser.
+
+Step 2. The `FindCommandParser` recognises that the parameter is being searched is the name field. 
+
+Step 3. `FindCommandParser` calls `FindCommand` with appropriate predicate (`NameContainsAllKeywordsPredicate`).
+
+Step 4. `FindCommand` is executed and model filters with the predicate passed.
+
+Step 5. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+<img src="images/FindSequenceDiagram.png" width="527" />
+
+The following activity diagram summarizes what happens when a user executes a new `find` command:
+
+<img src="images/FindActivityDiagram.png" width="250" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

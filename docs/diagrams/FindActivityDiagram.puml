@@ -1,0 +1,14 @@
+@startuml
+start
+:User uses find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Parser creates predicate])
+    :find command executed;
+    :model updates filtered list;
+else ([invalid command])
+endif
+stop
+@enduml

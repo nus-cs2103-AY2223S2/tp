@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+Participant ":UI" as ui UI_COLOR
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+
+user -[USER_COLOR]> ui : "find n/read"
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> logic : execute("find n/read")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : updateFilteredTaskList(predicate)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+logic --[LOGIC_COLOR]> ui
+deactivate logic
+
+ui--[UI_COLOR]> user
+deactivate ui
+@enduml
