@@ -35,6 +35,12 @@ public class EventBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    private final LocalDateTime timeNow;
+
+    public EventBookParser(LocalDateTime timeNow) {
+        this.timeNow = timeNow;
+    }
+
     /**
      * Parses user input into command for execution.
      *
@@ -87,7 +93,7 @@ public class EventBookParser {
             return new RateCommandParser().parse(arguments);
 
         case RemindCommand.COMMAND_WORD:
-            return new RemindCommandParser(LocalDateTime.now()).parse(arguments);
+            return new RemindCommandParser(timeNow).parse(arguments);
 
         case RevenueCommand.COMMAND_WORD:
             return new RevenueCommand();
