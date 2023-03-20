@@ -1,16 +1,32 @@
 package seedu.address.storage;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.management.RuntimeErrorException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tutee.*;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Remark;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,16 +46,25 @@ class JsonAdaptedPerson {
     private final String startTime;
     private final String endTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<LocalDate> attendanceDates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given tutee details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("remark") String remark, @JsonProperty("subject") String subject,
-                             @JsonProperty("schedule") String schedule, @JsonProperty("startTime") String startTime,
-                             @JsonProperty("endTime") String endTime, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedPerson(
+        @JsonProperty("name") String name, 
+        @JsonProperty("phone") String phone,
+        @JsonProperty("email") String email, 
+        @JsonProperty("address") String address,
+        @JsonProperty("remark") String remark, 
+        @JsonProperty("subject") String subject,
+        @JsonProperty("schedule") String schedule, 
+        @JsonProperty("startTime") String startTime,
+        @JsonProperty("endTime") String endTime,
+        @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+        @JsonProperty("attendances") List<LocalDate> attendances
+    ) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -51,6 +76,9 @@ class JsonAdaptedPerson {
         this.endTime = endTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (attendances != null) {
+            this.attendanceDates.addAll(attendances);
         }
     }
 
@@ -70,6 +98,39 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        attendanceDates.forEach(attendanceDates::add);
+    }
+
+    private static <T> T validateField(String value, Class<T> clazz) throws IllegalValueException {
+        String simpleName = clazz.getSimpleName();
+        try {
+            if (value == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, simpleName));
+            }
+
+            String constraintsMessage = (String) clazz.getDeclaredField("MESSAGE_CONSTRAINTS").get(null);
+            boolean isValid = (boolean) clazz.getDeclaredMethod("isValid" + simpleName).invoke(null, value);
+            if (!isValid) {
+                throw new IllegalValueException(constraintsMessage);
+            }
+
+            return clazz.getConstructor().newInstance(value);
+        } catch (final NoSuchFieldException e) {
+            throw new RuntimeException(String.format("Class %s does not contain a field called MESSAGE_CONSTRAINTS", simpleName));
+        } catch (final NoSuchMethodException e) {
+            throw new RuntimeException(String.format("Class %s does not contain a method called isValid%s", simpleName, simpleName));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(String.format("Could not access the field MESSAGE_CONSTRAINTS or the method isValid%s on class %s",
+                simpleName,
+                simpleName
+            ));
+        } catch (final InvocationTargetException e) {
+            throw new RuntimeException(String.format("MESSAGE_CONSTRAINTS and isValid%s must both be static", simpleName));
+        } catch (final InstantiationException e) {
+            throw new RuntimeException(String.format("Could not find a constructor of the signature %s(String value)"));
+        } catch (final ClassCastException e) {
+            throw new RuntimeException(String.format("MESSAGE_CONSTRAINTS must be of type String, and isValid%s must return a boolean"));
+        }
     }
 
     /**
@@ -82,78 +143,20 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
-
-        if (subject == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Subject.class.getSimpleName()));
-        }
-        if (!Subject.isValidSubject(subject)) {
-            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
-        }
-        final Subject modelSubject = new Subject(subject);
-
-        if (schedule == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Schedule.class.getSimpleName()));
-        }
-        if (!Schedule.isValidSchedule(schedule)) {
-            throw new IllegalValueException(Schedule.MESSAGE_CONSTRAINTS);
-        }
-        final Schedule modelSchedule = new Schedule(schedule);
-
-        if (startTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StartTime.class.getSimpleName()));
-        }
-        if (!StartTime.isValidStartTime(startTime)) {
-            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
-        }
-        final StartTime modelStartTime = new StartTime(startTime);
-
-        if (endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, EndTime.class.getSimpleName()));
-        }
-        if (!EndTime.isValidEndTime(endTime)) {
-            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
-        }
-        final EndTime modelEndTime = new EndTime(endTime);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Tutee(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelSubject, modelSchedule,
+        
+        final Name modelName = validateField(name, Name.class);
+        final Phone modelPhone = validateField(phone, Phone.class);
+        final Email modelEmail = validateField(email, Email.class);
+        final Address modelAddress = validateField(address, Address.class);
+        final Attendance modelAttendance = new Attendance(new HashSet<>(attendanceDates));
+        final Remark modelRemark = validateField(remark, Remark.class);
+        final Subject modelSubject = validateField(subject, Subject.class);
+        final Schedule modelSchedule = validateField(schedule, Schedule.class);
+        final StartTime modelStartTime = validateField(startTime, StartTime.class);
+        final EndTime modelEndTime = validateField(endTime, EndTime.class);
+
+        return new Tutee(modelName, modelPhone, modelEmail, modelAddress, modelAttendance, modelRemark, modelSubject, modelSchedule,
                 modelStartTime, modelEndTime, modelTags);
     }
 

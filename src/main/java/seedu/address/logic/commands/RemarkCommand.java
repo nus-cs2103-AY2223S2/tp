@@ -8,6 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.TuteeBuilder;
 import seedu.address.model.tutee.fields.Remark;
 
 import java.util.List;
@@ -55,10 +56,8 @@ public class RemarkCommand extends Command {
         }
 
         Tutee tuteeToEdit = lastShownList.get(index.getZeroBased());
-        Tutee editedTutee = new Tutee(
-                        tuteeToEdit.getName(), tuteeToEdit.getPhone(), tuteeToEdit.getEmail(),
-                        tuteeToEdit.getAddress(), remark, tuteeToEdit.getSubject(),
-                tuteeToEdit.getSchedule(), tuteeToEdit.getStartTime(), tuteeToEdit.getEndTime(), tuteeToEdit.getTags());
+        TuteeBuilder builder = TuteeBuilder.fromExistingTutee(tuteeToEdit);
+        Tutee editedTutee = builder.setRemark(remark).build();
 
         model.setTutee(tuteeToEdit, editedTutee);
         model.updateFilteredTuteeList(PREDICATE_SHOW_ALL_TUTEES);

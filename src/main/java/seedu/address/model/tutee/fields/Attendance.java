@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Immutable field representing the dates where the tutee was present
@@ -89,5 +90,9 @@ public class Attendance implements Iterable<LocalDate> {
   @Override
   public Iterator<LocalDate> iterator() {
     return attendances.iterator();
+  }
+
+  public Stream<LocalDate> stream() {
+    return attendances.stream();
   }
 }
