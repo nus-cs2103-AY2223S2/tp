@@ -15,7 +15,6 @@ import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.ParseResult;
-import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -34,7 +33,6 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final VmsParser vmsParser;
 
     private Consumer<List<CommandMessage>> onExecutionComplete = results -> {};
 
@@ -47,7 +45,6 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        vmsParser = new VmsParser();
     }
 
 
@@ -82,7 +79,7 @@ public class LogicManager implements Logic {
     private void parseCommand(String commandText) {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
-            execute(vmsParser.parseCommand(commandText));
+            execute(model.parseCommand(commandText));
         } catch (ParseException parseEx) {
             completeExecution(List.of(new CommandMessage(
                     parseEx.getMessage(),
