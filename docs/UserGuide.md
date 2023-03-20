@@ -105,7 +105,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]窶
 * Existing values will be updated to the input values.
 * When editing tags/groups, the existing tags/groups of the person will be removed i.e adding of tags/groups is not cumulative.
 * To add on to existing groups/tags without overwriting it, include the prefix `m/` (merge).
-* When using prefix m/, groups/tags added cannot be empty.
+* When using prefix `m/`, groups/tags added cannot be empty.
 * Groups can only be added if it has been created.
 * You can remove all the person窶冱 tags/groups by typing `t/` and `g/` respectively without
     specifying any tags/groups after it.
@@ -329,23 +329,23 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                     | Format, Examples                                                                                                                                                      |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]窶ｦ窶義 <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**                  | `clear`                                                                                                                                                               |
-| **Delete**                 | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**                   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]窶ｦ窶義<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com t/CS2103T g/`                           |
-| **Find**                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**                   | `list`                                                                                                                                                                |
-| **Help**                   | `help`                                                                                                                                                                |
-| **Group create**           | `group_create g/GROUP_NAME`                                                                                                                                           |
-| **Group delete**           | `group_delete GROUP_INDEX`                                                                                                                                            |
-| **Group list**             | `group_list`                                                                                                                                                          |
-| **Group find**             | `group_find KEYWORD [MORE_KEYWORDS]` <br> e.g., `group_find CS2103 CS2101`                                                                                            |
-| **Isolated Event create**  | `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`                                                                                                            |
-| **Isolated Event delete**  | `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                        |
-| **Isolated Event update**  | `ie_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] ie/NAME f/START_DATE t/END_DATE`                                                                                          |
-| **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                        |
-| **Recurring Event delete** | `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                        |
-| **Recurring Event update** | `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                            |
-| **Event list**             | [coming soon]                                                                                                                                                         |
+| Action                     | Format, Examples                                                                                                                                                            |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]窶ｦ窶義 <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`       |
+| **Clear**                  | `clear`                                                                                                                                                                     |
+| **Delete**                 | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                         |
+| **Edit**                   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]窶ｦ窶義<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com t/CS2103T g/`<br> e.g., `edit 3 m/ t/CS2103T` |
+| **Find**                   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                  |
+| **List**                   | `list`                                                                                                                                                                      |
+| **Help**                   | `help`                                                                                                                                                                      |
+| **Group create**           | `group_create g/GROUP_NAME`                                                                                                                                                 |
+| **Group delete**           | `group_delete GROUP_INDEX`                                                                                                                                                  |
+| **Group list**             | `group_list`                                                                                                                                                                |
+| **Group find**             | `group_find KEYWORD [MORE_KEYWORDS]` <br> e.g., `group_find CS2103 CS2101`                                                                                                  |
+| **Isolated Event create**  | `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`                                                                                                                  |
+| **Isolated Event delete**  | `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
+| **Isolated Event update**  | `ie_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] ie/NAME f/START_DATE t/END_DATE`                                                                                                |
+| **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                              |
+| **Recurring Event delete** | `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
+| **Recurring Event update** | `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                  |
+| **Event list**             | [coming soon]                                                                                                                                                               |
