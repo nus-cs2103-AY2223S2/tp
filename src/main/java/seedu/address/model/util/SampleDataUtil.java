@@ -13,7 +13,7 @@ import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
+import seedu.address.model.module.Resource;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,27 +22,27 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Module[] getSampleModules() {
         return new Module[] {
-            new Module(new Name("CS4243"), new Type("Lecture"), new TimeSlot("Tuesday 2-4 pm"),
+            new Module(new Name("CS4243"), new Resource("Lecture"), new TimeSlot("Tuesday 2-4 pm"),
                 new Address("LT19"),
                 getTagSet("Lecture"), new Remark("level-4000 module"),
                 new Deadline("Currently none."), new Teacher("Currently none.")),
-            new Module(new Name("CS4243"), new Type("Lab"), new TimeSlot("Tuesday 12-2 pm"),
+            new Module(new Name("CS4243"), new Resource("Lab"), new TimeSlot("Tuesday 12-2 pm"),
                 new Address("COM 1-B12"),
                 getTagSet("Lab"), new Remark("No need to attend"),
                 new Deadline("Currently none."), new Teacher("Currently none.")),
-            new Module(new Name("CS1231S"), new Type("Tutorial"), new TimeSlot("4pm - 6pm"),
+            new Module(new Name("CS1231S"), new Resource("Tutorial"), new TimeSlot("4pm - 6pm"),
                 new Address("COM1 B1"),
                 getTagSet("Tutorial"), new Remark("Currently none."),
                 new Deadline("Currently none."), new Teacher("Currently none.")),
-            new Module(new Name("ST2334"), new Type("Lecture"), new TimeSlot("8am-10am"),
+            new Module(new Name("ST2334"), new Resource("Lecture"), new TimeSlot("8am-10am"),
                 new Address("LT27"),
                 getTagSet("Lecture"), new Remark("Currently none."),
                 new Deadline("Currently none."), new Teacher("Currently none.")),
-            new Module(new Name("CS3230"), new Type("Tutorial"), new TimeSlot("4 - 5pm"),
+            new Module(new Name("CS3230"), new Resource("Tutorial"), new TimeSlot("4 - 5pm"),
                 new Address("COM3"),
                 getTagSet("Tutorial"), new Remark("Currently none."),
                 new Deadline("Currently none."), new Teacher("Currently none.")),
-            new Module(new Name("GEA1000"), new Type("Lecture"), new TimeSlot("None"),
+            new Module(new Name("GEA1000"), new Resource("Lecture"), new TimeSlot("None"),
                 new Address("Online Learning :)"),
                 getTagSet("Lecture"), new Remark("Currently none."),
                 new Deadline("Currently none."), new Teacher("Currently none."))

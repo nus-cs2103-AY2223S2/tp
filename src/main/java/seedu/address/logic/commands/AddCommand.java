@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module tracker. \n"
             + "Parameters: "
             + PREFIX_NAME + "MODULE_NAME "
-            + PREFIX_TAG + "TYPE (Lecture, Tutorial, Lab) "
+            + PREFIX_TAG + "TAG (Lecture, Tutorial, Lab) "
             + "[" + PREFIX_TIMESLOT + "TIMESLOT] "
             + "[" + PREFIX_ADDRESS + "VENUE] "
             + "[" + PREFIX_TEACHER + "TEACHER] "

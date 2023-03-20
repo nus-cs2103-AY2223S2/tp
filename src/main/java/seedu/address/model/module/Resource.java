@@ -5,13 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Module's type number in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidType(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidResource(String)}
  */
-public class Type {
+public class Resource {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module type can be Lecture/Tutorial/Lab/Assignment/Project/Exam/Quiz";
+            "Resource can be the module website";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String value;
 
@@ -20,16 +20,16 @@ public class Type {
      *
      * @param type A valid type number.
      */
-    public Type(String type) {
+    public Resource(String type) {
         requireNonNull(type);
-        checkArgument(isValidType(type), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidResource(type), MESSAGE_CONSTRAINTS);
         value = type;
     }
 
     /**
      * Returns true if a given string is a valid type number.
      */
-    public static boolean isValidType(String test) {
+    public static boolean isValidResource(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -41,8 +41,8 @@ public class Type {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Type // instanceof handles nulls
-                && value.equals(((Type) other).value)); // state check
+                || (other instanceof Resource // instanceof handles nulls
+                && value.equals(((Resource) other).value)); // state check
     }
 
     @Override

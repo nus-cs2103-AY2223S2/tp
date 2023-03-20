@@ -15,7 +15,7 @@ import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Type;
+import seedu.address.model.module.Resource;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -59,13 +59,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code type} is invalid.
      */
-    public static Type parseType(String type) throws ParseException {
-        requireNonNull(type);
-        String trimmedType = type.trim();
-        if (!Type.isValidType(trimmedType)) {
-            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+    public static Resource parseResource(String resource) throws ParseException {
+        requireNonNull(resource);
+        String trimmedResource = resource.trim();
+        if (!Resource.isValidResource(trimmedResource)) {
+            throw new ParseException(Resource.MESSAGE_CONSTRAINTS);
         }
-        return new Type(trimmedType);
+        return new Resource(trimmedResource);
     }
 
     /**

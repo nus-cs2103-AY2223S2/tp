@@ -57,7 +57,7 @@ public class TeacherCommand extends Command {
 
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
         Module editedModule = new Module(
-                moduleToEdit.getName(), moduleToEdit.getType(), moduleToEdit.getTimeSlot(),
+                moduleToEdit.getName(), moduleToEdit.getResource(), moduleToEdit.getTimeSlot(),
                 moduleToEdit.getAddress(), moduleToEdit.getTags(), moduleToEdit.getRemark(),
                 moduleToEdit.getDeadline(), teacher);
 
