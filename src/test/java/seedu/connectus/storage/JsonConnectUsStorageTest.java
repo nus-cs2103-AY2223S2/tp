@@ -47,17 +47,17 @@ public class JsonConnectUsStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readConnectUs("notJsonFormatConnectUS.json"));
+        assertThrows(DataConversionException.class, () -> readConnectUs("notJsonFormatConnectUs.json"));
     }
 
     @Test
     public void readConnectUs_invalidPersonConnectUs_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readConnectUs("invalidPersonConnectUS.json"));
+        assertThrows(DataConversionException.class, () -> readConnectUs("invalidPersonConnectUs.json"));
     }
 
     @Test
     public void readConnectUs_invalidAndValidPersonConnectUs_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readConnectUs("invalidAndValidPersonConnectUS.json"));
+        assertThrows(DataConversionException.class, () -> readConnectUs("invalidAndValidPersonConnectUs.json"));
     }
 
     @Test
