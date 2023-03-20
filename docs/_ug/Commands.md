@@ -68,6 +68,143 @@ However, note that the following executions are invalid:
 
   There is insufficient information provided; you must minimally provide a name.
 
+Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and [Commands](#commands).
+
+---
+
+Let's try out another command -- the `list` command! `list` lets you see the list of the applicants.
+
+```
+⚠️Warning
+The format for different commands are not always identical. For example, executing the `add` command and the `list` 
+command will have different formats!
+```
+
+For example, after adding an applicant, you decided to see the list of applicant.
+
+**Format:** `list`
+
+The command you would like to enter into the [Command Input Box](#layout) would be:
+
+`list`
+
+You should now have a better understanding of how commands are formatted and used. All commands are consolidated 
+in the [Command Summary](#command-summary).
+
+Here is a checklist you can use before running a [[ command ]]:
+
+* [ ] I know the restrictions of the command
+* [ ] I know what [[ parameter:parameters ]] are supplied to the command
+* [ ] I know the [[ flag:flags ]] for each parameter to be supplied
+* [ ] I know the restrictions of each parameter
+* [ ] I know the effects of not specifying each optional flag.
+
+## Commands
+
+This section shares with you on how to use each [[ command ]] in detail.
+
+Before continuing, ensure you have read the section on [Flags](#flags) and [Placeholders](#placeholders).
+
+What you should expect to find:
+
+* A description of the command
+* The format of the command
+* The expected behaviour of the command
+* A few valid and invalid examples of the command
+* Important points to note
+
+
+```
+🚨Note
+* For each command, "Format" indicates the syntax of the command.
+* Square brackets indicates an optional [[ parameter ]].
+* In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
+```
+
+### Applicant Commands
+
+#### Create a new item: `add`
+
+**Format**: `add n/NAME p/PHONGE e/EMAIL a/ADDRESS [note/NOTE]`
+
+> Creates a new applicant with the provided information
+
+**Info**
+* All fields apart from `NOTE` are compulsory.
+* `PHONE` does not require you to include the country code. Only include the numbers.
+* THe value of `NOTE` will be `-` if it is not provided.
+
+
+```
+🚨Note
+* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+```
+
+**Example:**
+
+**Assumption:**
+
+**Command Input Box:**
+
+`add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230`
+
+**Command Output Box:**
+
+`New person added: Thomas; Phone: 91918153; Email: thomas@gmail.comm; Address: 6 Sims Drive (s)543230; Status: APPLIED`
+
+---
+
+
+#### Search for an item: `find`
+
+**Format**: `find [KEY]...`
+
+> Finds all applicants in HMHero using name or phone or both
+
+**Info**
+* The notation `[KEY]...` means that we take in exact name/phone. 
+In this case, at least one `KEY` is required.
+* The `KEY` are case-insensitive. (e.g. "apples" will match "Apples").
+* The result will be applicants where each of the `KEY` are present in the `NAME` or `PHONE`.
+(e.g. "Thomas" will match "Thomas Lee", "Thomas", "Thomas Tan" and "Thomas Lim")
+
+
+```
+🚨Note
+* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+```
+
+**Example:**
+
+**Assumption:**
+
+**Command Input Box:**
+
+`add n/Thomas p/91918153 e/thomas@gmail.com a/6 Sims Drive (s)543230`
+
+**Command Output Box:**
+
+`New person added: Thomas; Phone: 91918153; Email: thomas@gmail.comm; Address: 6 Sims Drive (s)543230; Status: APPLIED`
+
+---
+
+
+
+
+
+
+
+
+
+### Statistics Command
+
+{% include_relative _ug/commands/StatisticsCommands.md %}
+
+### General Commands
+
+{% include_relative _ug/commands/GeneralCommands.md %}
+
+
 The first word of every command allows HMHero to distinguish different commands.
 ## Features
 
