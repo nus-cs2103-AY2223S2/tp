@@ -126,7 +126,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
         switch (this.internship.getStatus().toString()) {
         case APPLIED:
             return "While waiting for the company's response, you can try applying to other companies as well"
-                    + " to have a higher chance of landing an internship";
+                    + " to have a higher chance of landing an internship.";
         case ASSESSMENT:
             return "Practice makes perfect! Visit sites such as HackerRank and LeetCode to practice your algorithms"
                     + " and problem-solving skills. You could also attempt the practices under a time trial to give"

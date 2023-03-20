@@ -109,7 +109,7 @@ public class InternshipDetailsCardTest extends GuiUnitTest {
         internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
         assertEquals(internshipDetailsCard.getTips(),
                 "While waiting for the company's response, you can try applying to other companies as well"
-                        + " to have a higher chance of landing an internship");
+                        + " to have a higher chance of landing an internship.");
 
         // Test Assessment
         internship = new InternshipBuilder().withStatus(ASSESSMENT).build();
