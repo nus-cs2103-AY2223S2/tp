@@ -58,7 +58,9 @@ public class AddApplicantCommand extends Command {
 
         Listing listingToAddApplicantTo = lastShownList.get(targetIndex.getZeroBased());
 
-        if (listingToAddApplicantTo.getApplicants().contains(applicantToAdd)) {
+        if (listingToAddApplicantTo.getApplicants().stream().filter(
+                applicant -> applicant.equals(applicantToAdd) && applicant.hashCode() == applicantToAdd.hashCode())
+                .count() > 0) {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 
