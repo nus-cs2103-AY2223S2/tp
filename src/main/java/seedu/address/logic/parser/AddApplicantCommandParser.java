@@ -2,19 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import java.util.ArrayList;
+
 import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddApplicantCommand;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.model.listing.JobDescription;
-import seedu.address.model.listing.JobTitle;
-import seedu.address.model.listing.Listing;
 
 /**
  * Parses input arguments and creates a new AddApplicantCommand object
@@ -30,7 +24,7 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPLICANT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_APPLICANT)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddApplicantCommand.MESSAGE_USAGE));
         }

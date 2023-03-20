@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,8 +20,8 @@ public class AddApplicantCommand extends Command {
 
     public static final String COMMAND_WORD = "add_app";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to a listing in the listing book. "
-            + "Parameters: INDEX (must be a positive integer)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an applicant to a listing in the listing book.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_APPLICANT + "APPLICANT\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPLICANT + "John Doe";
