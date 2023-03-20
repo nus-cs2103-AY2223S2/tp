@@ -18,6 +18,7 @@ public class Prefix {
      */
     public Prefix(String mainPrefix, String aliasPrefix) {
         requireNonNull(mainPrefix);
+        assert !mainPrefix.equals(aliasPrefix);
         this.mainPrefix = mainPrefix;
         this.aliasPrefix = Optional.ofNullable(aliasPrefix);
     }

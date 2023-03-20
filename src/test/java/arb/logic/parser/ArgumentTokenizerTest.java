@@ -145,8 +145,8 @@ public class ArgumentTokenizerTest {
         assertEquals(aaa, new Prefix("aaa", null));
 
         assertNotEquals(aaa, "aaa");
-        assertNotEquals(aaa, new Prefix("aab", "aab"));
-        assertNotEquals(aaa, new Prefix("aaa", "aaa"));
+        assertNotEquals(aaa, new Prefix("aab", null));
+        assertNotEquals(aaa, new Prefix("aaa", "aab"));
     }
 
 }
