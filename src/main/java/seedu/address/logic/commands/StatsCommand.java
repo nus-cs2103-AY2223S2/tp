@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.logic.Summary;
 import seedu.address.logic.aggregatefunction.Count;
+import seedu.address.logic.aggregatefunction.MaxCount;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -22,6 +23,8 @@ public class StatsCommand extends Command {
     public static final String VOLUNTEER_COUNT = "Volunteer count";
     public static final String UNPAIRED_VOLUNTEER_COUNT = "Unpaired volunteer count";
     public static final String PAIR_COUNT = "Pair count";
+    public static final String MAX_ELDERLY_PER_VOLUNTEER = "Maximum number of elderly paired to a volunteer";
+    public static final String MAX_VOLUNTEER_PER_ELDERLY = "Maximum number of volunteers paired to an elderly";
 
     private final Summary summary = new Summary();
 
@@ -56,5 +59,9 @@ public class StatsCommand extends Command {
 
     private void summarisePairStatistics(Model model) {
         summary.describe(new Count<>(model.getFilteredPairList(), PAIR_COUNT));
+        summary.describe(new MaxCount<>(model.getFilteredPairList(),
+                MAX_VOLUNTEER_PER_ELDERLY, pair -> pair.getElderly()));
+        summary.describe(new MaxCount<>(model.getFilteredPairList(),
+                MAX_ELDERLY_PER_VOLUNTEER, pair -> pair.getVolunteer()));
     }
 }
