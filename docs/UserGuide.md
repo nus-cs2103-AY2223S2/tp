@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-HospiSearch is a **desktop app for managing contacts, optimized for use via a Command Line Interface** 
+HospiSearch is a **desktop app for managing hospital patients' particulars, optimized for use via a Command Line Interface** 
 (CLI) while still having the benefits of a **Graphical User Interface (GUI)**. If you can type fast, HospiSearch can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents: coming soon
@@ -30,11 +30,11 @@ HospiSearch is a **desktop app for managing contacts, optimized for use via a Co
 ## Features
 
 ### Notes:
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.
+- Words in `UPPER_CASE` are the parameters to be supplied by the user. 
 e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional.
-e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 - Items with `…` after them can be used multiple times including zero times.
 e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/friend, t/friend t/family etc.
@@ -49,7 +49,7 @@ e.g. [t/TAG]…​ can be used as   (i.e. 0 times), t/friend, t/friend t/family 
   
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -78,7 +78,8 @@ Format: `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/T
 
 * You can remove all the person’s tags by typing t/ without specifying any tags after it.
 
-Examples: `edit i/T0012345A p/91234567 e/johndoe@example.com`.Edits the phone number and email address of the patient with NRIC T0012345A to be 91234567 and johndoe@example.com respectively
+Examples:
+* `edit i/T0012345A p/91234567 e/johndoe@example.com` edit the phone number and email address of the patient with NRIC T0012345A to be 91234567 and johndoe@example.com respectively
 
 
 ### Deleting a person: `delete`
@@ -87,18 +88,19 @@ Deletes the specified person from the address book.
 
 Format: `delete i/NRIC`
 
-Examples: `delete i/T0012345A` to delete patient with NRIC T0012345A from patient records system
+Examples:
+* `delete i/T0012345A` delete the patient with NRIC T0012345A from patient records system
 
 ### Find persons by name or address: `find`
 
-Find persons according to a particular attribute. Eg. name(/n), address(/a), nric(/nric)
+Finds persons according to a particular attribute. E.g. name(/n), address(/a), nric(/nric)
 Returns unfiltered person list if `/all` is passed as an attribute
 Format: `find /ATTRIBUTE [KEYWORD] [MORE_KEYWORDS]`
 
 
 * The search is case-insensitive. e.g panadol will match pANAdol
-* The order of the keywords does matters. e.g. "panadol" will match "medicine panadol"
-* Only the provided attribute will be search (a or n)
+* The order of the keywords does matter. e.g. "panadol" will match "medicine panadol"
+* Only the provided attribute will be searched (a or n)
 * Can input multiple keywords for a given attribute and all matching persons will be returned
 
 
@@ -134,13 +136,13 @@ Example:
 * `load 3` loads the data from the 3rd slot
 
 ### Help menu: `help`
-Help function lists out all the commands available, along with a brief description
+Lists out all the commands available, along with a brief description
 
 Format: `help`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all people in the address book.
 
 Format: `list`
 
@@ -152,7 +154,7 @@ Format: `list`
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HospiSearch home folder.
+**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HospiSearch home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -160,13 +162,12 @@ Format: `list`
 
 | Action        | Format, Examples                                                                                                                                                                                |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br/> e.g. add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression |
-| **Get**       | `get i/NRIC` <br/> e.g. get i/T0012345A                                                                                                                                                         |
+| **Add**       | `add n/NAME i/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/diagnosis] [t/TAG]…​` <br/> e.g. add n/John Doe i/T0012345A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/depression |                                                                                                                                                      |
 | **Clear all** | `clear`                                                                                                                                                                                         |
 | **Delete**    | `delete i/NRIC` <br/> e.g. delete i/T0012345A                                                                                                                                                   |
-| **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                          |
-| **Find**      | `filter KEYWORD [MORE_KEYWORDS]` <br/> e.g. find panadol <br/> e.g. find diabetes                                                                                                               |
-| **Backup**    | `backup INDEX_NO` <br/> eg. backup 3                                                                                                                                                           |
-| **Save**      | `save INDEX_NO` <br/> eg. save 3                                                                                                                                                             |
-| **List**      | `list`                                                                                                                                                                                         |
-| **Help**      | `help`                                                                                                                                                                                         |
+| **Edit**      | `edit i/NRIC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DIAGNOSIS] [t/TAG]…​` <br/> e.g. edit i/T0012345A p/91234567 e/johndoe@example.com                                                     |
+| **Find**      | `find KEYWORD [MORE_KEYWORDS]` <br/> e.g. find panadol <br/> e.g. find diabetes                                                                                                                 |
+| **Backup**    | `backup INDEX_NO` <br/> e.g. backup 3                                                                                                                                                           |
+| **Save**      | `save INDEX_NO` <br/> e.g. save 3                                                                                                                                                               |
+| **List**      | `list`                                                                                                                                                                                          |
+| **Help**      | `help`                                                                                                                                                                                          |

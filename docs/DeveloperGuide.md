@@ -238,6 +238,35 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Light / Dark Theme
+
+#### Proposed Implementation
+The theme is facilitated by `Theme`. It contains two modes which are light mode and dark mode.
+The light mode is closely related to `LightModeCommand` and `LightTheme.css`.
+The dark mode is associated to `DarkModeCommand` and `DarkTheme.css`.
+Moreover, two attributes (`showLight` and `showDark`) of `CommandResult` indicate what the current theme is.
+
+Given below is an example usage scenario and how the light/dark mechanism behaves at each step.
+
+Step 1. The user launches the application and the current theme is Dark.
+
+Step 2. The user executes `light` command and the theme changed to light mode.
+
+Step 3. The user clicks the `Theme` button above and select the `Dark` choice. 
+The theme go back to the dark mode again.
+
+The following activity diagram summarizes 
+what happens when a user executes these commands or clicks the `Theme` button:
+
+#### Design considerations:
+**Aspect: How light & redo executes:**
+* **Alternative 1 (current choice):** CSS file for Dark and Light separately.
+    * Pros: Easy to implement.
+    * Cons: More resource space and necessity to switch between two file paths.
+
+* **Alternative 2:** One CSS file containing the information of two modes.
+    * Pros: Less resource space and no need to change the file path.
+    * Cons: Not easy to implement and require more FXML changes.
 
 --------------------------------------------------------------------------------------------------------------------
 
