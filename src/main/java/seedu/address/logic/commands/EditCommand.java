@@ -90,18 +90,6 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor, shouldMerge);
-        if (shouldMerge) {
-            // If merge and tag prefix is present but input is empty
-            if (!editPersonDescriptor.getTags().isEmpty() && editPersonDescriptor.getTags().get().isEmpty()) {
-                throw new CommandException(MESSAGE_NO_TAG_ADDED);
-            }
-
-            // If merge and group prefix is present but input is empty
-            if (!editPersonDescriptor.getGroups().isEmpty() && editPersonDescriptor.getGroups().get().isEmpty()) {
-                throw new CommandException(MESSAGE_NO_GROUP_ADDED);
-            }
-        }
-
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

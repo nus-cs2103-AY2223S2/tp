@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_OWE_MONEY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -61,10 +61,10 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_OWE_MONEY).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_OWE_MONEY).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor, false);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -157,24 +157,6 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withGroups("INVALID").build(), false);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_GROUP);
-    }
-
-    @Test
-    public void execute_mergeeNoTagInput_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withTags().build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor, true);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_TAG_ADDED);
-    }
-
-    @Test
-    public void execute_mergeNoGroupInput_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withGroups().build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor, true);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_GROUP_ADDED);
     }
 
     @Test
