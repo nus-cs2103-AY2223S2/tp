@@ -18,7 +18,6 @@ import vimification.logic.LogicManager;
 import vimification.model.LogicTaskList;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
-import vimification.model.util.SampleDataUtil;
 import vimification.storage.LogicTaskListStorage;
 import vimification.storage.JsonLogicTaskListStorage;
 import vimification.storage.JsonUserPrefsStorage;
@@ -50,11 +49,9 @@ public class Gui extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
-        // TODO: Temporary fix until Jiayue finishes implementation.
-        // TaskPlannerStorage addressBookStorage = null;
-        LogicTaskListStorage addressBookStorage =
+        LogicTaskListStorage vimificationStorage =
                 new JsonLogicTaskListStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        storage = new StorageManager(vimificationStorage, userPrefsStorage);
 
         initLogging(config);
 

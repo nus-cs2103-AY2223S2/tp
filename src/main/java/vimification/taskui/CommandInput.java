@@ -3,10 +3,12 @@ package vimification.taskui;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import vimification.logic.Logic;
+import vimification.logic.commands.CommandException;
+import vimification.logic.parser.ParserException;
 
 /**
  *
@@ -14,11 +16,13 @@ import javafx.scene.input.KeyEvent;
 public class CommandInput extends UiPart<TextField> {
 
     private static final String FXML = "CommandInput.fxml";
-    private Node parent;
+    private MainScreen parent;
+    private Logic logic;
 
-    public CommandInput(Node parent) {
+    public CommandInput(MainScreen parent, Logic logic) {
         super(FXML);
         this.parent = parent;
+        this.logic = logic;
     }
 
     /**
@@ -46,12 +50,37 @@ public class CommandInput extends UiPart<TextField> {
 
     }
 
+    // TODO: REMOVE THIS AFTER TESTING
+    private static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     private void executeCommand(String commandString) {
         System.out.println("Your command is " + commandString);
+
+        try {
+            logic.execute(commandString);
+        } catch (CommandException e) {
+            // TODO : Load Error message at the bottom components
+        } catch (ParserException e) {
+            // TODO : Load Error message at the bottom components
+        }
+
+        // TODO: Remove dummy parser after Viet Anh pushes new parser
+        String index = (commandString.split(":"))[1];
+
+        if (isNumeric(index)) {
+            parent.getTaskListPanel().scrollToTaskIndex(Integer.parseInt(index));
+        }
     }
 
     private void returnFocusToParent() {
-        parent.requestFocus();
+        parent.getRoot().requestFocus();
         this.getRoot().setVisible(false);
     }
 

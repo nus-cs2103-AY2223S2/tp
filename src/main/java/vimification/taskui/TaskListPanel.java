@@ -36,6 +36,12 @@ public class TaskListPanel extends UiPart<VBox> {
         this.taskListView.requestFocus();
     }
 
+    public void scrollToTaskIndex(int displayedIndex) {
+        taskListView.getFocusModel().focus(displayedIndex - 1);
+        taskListView.getSelectionModel().select(displayedIndex - 1);
+        taskListView.scrollTo(displayedIndex - 1);
+    }
+
     @FXML
     private void initialize() {
         // TODO: Implement Visual Mode
