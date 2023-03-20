@@ -33,13 +33,16 @@ public class CreateCommandParser implements LogicCommandParser<CreateCommand> {
             .takeNext(ApplicativeParser.choice(TODO_PARSER, DEADLINE_PARSER))
             .map(CreateCommand::new);
 
+    private static final CreateCommandParser INSTANCE = new CreateCommandParser();
+
+    private CreateCommandParser() {}
+
     public static CreateCommandParser getInstance() {
-        return new CreateCommandParser();
+        return INSTANCE;
     }
 
     @Override
-    public ApplicativeParser<CreateCommand> getParser() {
+    public ApplicativeParser<CreateCommand> getInternalParser() {
         return CREATE_COMMAND_PARSER;
     }
-
 }

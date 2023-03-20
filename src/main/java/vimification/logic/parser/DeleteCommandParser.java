@@ -5,13 +5,14 @@ import vimification.logic.commands.DeleteCommand;
 
 public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
 
-    private static final ApplicativeParser<Index> INDEX_PARSER =
-            ApplicativeParser.parseNonWhitespaces().flatMap(indexStr -> {
+    private static final ApplicativeParser<Index> INDEX_PARSER = ApplicativeParser
+            .parseNonWhitespaces()
+            .flatMap(indexStr -> {
                 try {
                     int indexInt = Integer.parseInt(indexStr);
                     Index index = Index.fromOneBased(indexInt);
                     return ApplicativeParser.of(index);
-                } catch (NumberFormatException ex) {
+                } catch (NumberFormatException | IndexOutOfBoundsException ex) {
                     return ApplicativeParser.fail();
                 }
             });
@@ -24,12 +25,16 @@ public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
             .dropNext(ApplicativeParser.eof())
             .map(DeleteCommand::new);
 
+    private static final DeleteCommandParser INSTANCE = new DeleteCommandParser();
+
+    private DeleteCommandParser() {}
+
     public static DeleteCommandParser getInstance() {
-        return new DeleteCommandParser();
+        return INSTANCE;
     }
 
     @Override
-    public ApplicativeParser<DeleteCommand> getParser() {
+    public ApplicativeParser<DeleteCommand> getInternalParser() {
         return DELETE_COMMAND_PARSER;
     }
 }
