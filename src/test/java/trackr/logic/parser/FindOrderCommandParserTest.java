@@ -28,7 +28,6 @@ import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_TWO;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_DONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_IN_PROGRESS;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
-import static trackr.logic.parser.CliSyntax.PREFIX_ORDERNAME;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
