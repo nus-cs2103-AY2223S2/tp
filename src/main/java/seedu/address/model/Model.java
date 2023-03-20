@@ -94,6 +94,11 @@ public interface Model {
     void setAppointmentList(ReadOnlyAppointmentList appointmentList);
     ReadOnlyAppointmentList getAppointmentList();
     boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * Appointment must exist in the addressbook.
+     */
     void deleteAppointment(Appointment appointment);
     void addAppointment(Appointment appointment);
     void setAppointment(Appointment target, Appointment editedAppointment);
