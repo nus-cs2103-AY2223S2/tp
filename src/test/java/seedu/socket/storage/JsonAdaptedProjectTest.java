@@ -11,7 +11,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.commons.exceptions.IllegalValueException;
-import seedu.socket.model.project.*;
+import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectMeeting;
+import seedu.socket.model.project.ProjectName;
+import seedu.socket.model.project.ProjectRepoHost;
+import seedu.socket.model.project.ProjectRepoName;
 
 class JsonAdaptedProjectTest {
     private static final String INVALID_PROJECT_NAME = "R@chel";

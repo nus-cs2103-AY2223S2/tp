@@ -4,7 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.socket.model.person.Person;
-import seedu.socket.model.project.*;
+import seedu.socket.model.project.Project;
+import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectMeeting;
+import seedu.socket.model.project.ProjectName;
+import seedu.socket.model.project.ProjectRepoHost;
+import seedu.socket.model.project.ProjectRepoName;
 import seedu.socket.model.util.SampleDataUtil;
 
 /**
