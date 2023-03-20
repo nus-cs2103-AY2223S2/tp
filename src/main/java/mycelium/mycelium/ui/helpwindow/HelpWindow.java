@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui;
+package mycelium.mycelium.ui.helpwindow;
 
 import java.util.logging.Logger;
 
@@ -9,7 +9,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import mycelium.mycelium.commons.core.LogsCenter;
-import mycelium.mycelium.ui.common.UiPart;
+import mycelium.mycelium.ui.UiPart;
 
 /**
  * Controller for a help page

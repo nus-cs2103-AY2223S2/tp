@@ -7,7 +7,7 @@ import org.testfx.api.FxToolkit;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import mycelium.mycelium.ui.common.UiPart;
+import mycelium.mycelium.ui.UiPart;
 
 
 /**

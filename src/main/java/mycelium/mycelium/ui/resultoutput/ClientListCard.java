@@ -1,17 +1,20 @@
-package mycelium.mycelium.ui.project;
+package mycelium.mycelium.ui.resultoutput;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import mycelium.mycelium.model.project.Project;
-import mycelium.mycelium.ui.common.UiPart;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.YearOfBirth;
+import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class ProjectListCard extends UiPart<Region> {
+public class ClientListCard extends UiPart<Region> {
 
-    private static final String FXML = "ProjectListCard.fxml";
+    private static final String FXML = "ClientListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -21,39 +24,35 @@ public class ProjectListCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Project project;
+    public final Client client;
 
+    @FXML
+    private HBox cardPane;
     @FXML
     private Label id;
     @FXML
     private Label name;
     @FXML
-    private Label status;
-    @FXML
     private Label email;
+    @FXML
+    private Label yearOfBirth;
     @FXML
     private Label source;
     @FXML
-    private Label description;
-    @FXML
-    private Label acceptedOn;
-    @FXML
-    private Label deadline;
+    private Label mobileNumber;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ProjectListCard(Project p, int displayedIndex) {
+    public ClientListCard(Client client, int displayedIndex) {
         super(FXML);
-        project = p;
+        this.client = client;
         id.setText(displayedIndex + ". ");
-        name.setText(p.getName());
-        status.setText(p.getStatus().toString());
-        email.setText(p.getClientEmail().toString());
-        source.setText(p.getSource().orElse("Unknown"));
-        description.setText(p.getDescription().orElse("No description given"));
-        acceptedOn.setText(p.getAcceptedOn().format(Project.DATE_FMT));
-        deadline.setText(p.getDeadline().map(d -> d.format(Project.DATE_FMT)).orElse("No Deadline"));
+        name.setText(client.getName().toString());
+        email.setText(client.getEmail().toString());
+        yearOfBirth.setText(client.getYearOfBirth().map(YearOfBirth::toString).orElse("No year of birth").toString());
+        source.setText(client.getSource().orElse("No source"));
+        mobileNumber.setText(client.getMobileNumber().map(Phone::toString).orElse("No mobile number").toString());
     }
 
     @Override
@@ -64,13 +63,13 @@ public class ProjectListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProjectListCard)) {
+        if (!(other instanceof ClientListCard)) {
             return false;
         }
 
         // state check
-        ProjectListCard card = (ProjectListCard) other;
+        ClientListCard card = (ClientListCard) other;
         return id.getText().equals(card.id.getText())
-            && project.equals(card.project);
+            && client.equals(card.client);
     }
 }

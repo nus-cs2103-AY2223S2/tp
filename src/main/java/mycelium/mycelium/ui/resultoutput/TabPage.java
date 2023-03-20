@@ -1,16 +1,16 @@
-package mycelium.mycelium.ui.common;
+package mycelium.mycelium.ui.resultoutput;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.StackPane;
+import mycelium.mycelium.ui.UiPart;
 
 /**
  * The ui for the page of a given tab.
  */
 public class TabPage extends UiPart<Tab> {
     private static final String FXML = "TabPage.fxml";
-    private UiPart<? extends Node> content;
 
     @FXML
     private StackPane contentPlaceholder;
@@ -24,13 +24,6 @@ public class TabPage extends UiPart<Tab> {
     public TabPage(String title, UiPart<? extends Node> content) {
         super(FXML);
         getRoot().setText(title);
-        this.content = content;
-    }
-
-    /**
-     * Populate the content of the Tab.
-     */
-    public void fillInnerContent() {
         contentPlaceholder.getChildren().add(content.getRoot());
     }
 }

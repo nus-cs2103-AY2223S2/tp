@@ -1,23 +1,23 @@
-package mycelium.mycelium.ui;
+package mycelium.mycelium.ui.commandlog;
 
 import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
-import mycelium.mycelium.ui.common.UiPart;
+import mycelium.mycelium.ui.UiPart;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
  */
-public class ResultDisplay extends UiPart<Region> {
+public class CommandLog extends UiPart<Region> {
 
-    private static final String FXML = "ResultDisplay.fxml";
+    private static final String FXML = "CommandLog.fxml";
 
     @FXML
     private TextArea resultDisplay;
 
-    public ResultDisplay() {
+    public CommandLog() {
         super(FXML);
     }
 

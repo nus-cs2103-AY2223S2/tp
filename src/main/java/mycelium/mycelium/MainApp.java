@@ -28,8 +28,8 @@ import mycelium.mycelium.storage.JsonUserPrefsStorage;
 import mycelium.mycelium.storage.Storage;
 import mycelium.mycelium.storage.StorageManager;
 import mycelium.mycelium.storage.UserPrefsStorage;
+import mycelium.mycelium.ui.Ui;
 import mycelium.mycelium.ui.UiManager;
-import mycelium.mycelium.ui.common.Ui;
 
 /**
  * Runs the application.

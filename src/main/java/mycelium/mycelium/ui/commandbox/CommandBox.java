@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui;
+package mycelium.mycelium.ui.commandbox;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +8,7 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.ui.common.UiPart;
+import mycelium.mycelium.ui.UiPart;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
