@@ -103,7 +103,7 @@ public class InternshipDetailsCard extends UiPart<Region> {
 
         //@@author eugentangkj-reused
         //Reused with modifications from https://stackoverflow.com/questions/29315469/javafx-resize-text-with-window
-        tips.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.3));
+        tips.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.4));
 
         //Set up image
 //        tipsImage.setImage(new Image(MainApp.class.getResourceAsStream(getTipsImage())));
