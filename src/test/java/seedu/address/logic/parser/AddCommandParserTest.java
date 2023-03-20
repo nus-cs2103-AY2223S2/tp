@@ -2,8 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+
+
 import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_PHOTOSYNTHESIS;
+
+
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
@@ -12,18 +16,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -74,6 +66,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
 
+
         // missing name prefix
         assertParseFailure(parser, VALID_QUESTION_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS,
                 expectedMessage);
@@ -81,12 +74,13 @@ public class AddCommandParserTest {
 
         // missing address prefix
 
+
+
+
+
+        
         assertParseFailure(parser, QUESTION_DESC_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,
                 expectedMessage);
-
-
-
-
 
 
         // all prefixes missing

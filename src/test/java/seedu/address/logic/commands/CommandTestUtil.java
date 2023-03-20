@@ -32,6 +32,10 @@ public class CommandTestUtil {
     public static final String VALID_DECK_SCIENCE = "Science";
 
 
+
+
+
+
     public static final String QUESTION_DESC_GRAVITY = " " + PREFIX_QUESTION + VALID_QUESTION_GRAVITY;
     public static final String QUESTION_DESC_PHOTOSYNTHESIS = " " + PREFIX_QUESTION + VALID_QUESTION_PHOTOSYNTHESIS;
     public static final String ANSWER_DESC_GRAVITY = " " + PREFIX_ANSWER + VALID_ANSWER_GRAVITY;
@@ -48,9 +52,18 @@ public class CommandTestUtil {
 
 
 
+
+
+
+
+
+
+
     public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION; // empty string not allowed for question
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for answer
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hard*"; // '*' not allowed in tags
+
+
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
