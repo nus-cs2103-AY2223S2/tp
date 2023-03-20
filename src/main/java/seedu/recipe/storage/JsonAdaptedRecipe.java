@@ -27,7 +27,7 @@ class JsonAdaptedRecipe {
     private final String desc;
 
     // Data fields
-    private final List<JsonAdaptedIngredient> ingredients = new ArrayList<>();
+    private final Set<JsonAdaptedIngredient> ingredients = new HashSet<>();
     private final List<JsonAdaptedStep> steps = new ArrayList<>();
 
     /**
@@ -36,7 +36,7 @@ class JsonAdaptedRecipe {
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("title") String title,
                              @JsonProperty("desc") String desc,
-                             @JsonProperty("ingredients") List<JsonAdaptedIngredient> ingredients,
+                             @JsonProperty("ingredients") Set<JsonAdaptedIngredient> ingredients,
                              @JsonProperty("steps") List<JsonAdaptedStep> steps) {
         this.title = title;
         this.desc = desc;
