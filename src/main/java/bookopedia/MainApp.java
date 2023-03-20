@@ -48,8 +48,8 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing Bookopedia ]===========================");
-        logger.info("Visit https://ay2223s2-cs2103-w16-1.github.io/tp/ for more info on Bookopedia");
+        logger.info("=============================[ Initializing Bookopedia ]===========================\n"
+                + "Visit https://ay2223s2-cs2103-w16-1.github.io/tp/ for more info on Bookopedia");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
