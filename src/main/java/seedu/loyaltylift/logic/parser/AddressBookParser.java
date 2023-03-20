@@ -16,7 +16,9 @@ import seedu.loyaltylift.logic.commands.ExitCommand;
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.MarkCustomerCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
+import seedu.loyaltylift.logic.commands.UnmarkCustomerCommand;
 import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 
@@ -64,6 +66,12 @@ public class AddressBookParser {
 
         case ListCustomerCommand.COMMAND_WORD:
             return new ListCustomerCommand();
+
+        case MarkCustomerCommand.COMMAND_WORD:
+            return new MarkCustomerCommandParser().parse(arguments);
+
+        case UnmarkCustomerCommand.COMMAND_WORD:
+            return new UnmarkCustomerCommandParser().parse(arguments);
 
         case ViewCustomerCommand.COMMAND_WORD:
             return new ViewCustomerCommandParser().parse(arguments);

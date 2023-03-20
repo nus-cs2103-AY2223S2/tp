@@ -8,7 +8,8 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Benson Meier",
@@ -17,7 +18,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": true
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Carl Kurz",
@@ -26,7 +28,8 @@
     "address" : "wall street",
     "tagged" : [ ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Daniel Meier",
@@ -35,7 +38,8 @@
     "address" : "10th street",
     "tagged" : [ "friends" ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Elle Meyer",
@@ -44,7 +48,8 @@
     "address" : "michegan ave",
     "tagged" : [ ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "Fiona Kunz",
@@ -53,7 +58,8 @@
     "address" : "little tokyo",
     "tagged" : [ ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   }, {
     "customerType": "INDIVIDUAL",
     "name" : "George Best",
@@ -62,7 +68,8 @@
     "address" : "4th street",
     "tagged" : [ ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   }, {
     "customerType": "ENTERPRISE",
     "name" : "The Chocolate Factory",
@@ -71,7 +78,8 @@
     "address" : "30 Chocolate Street, #01-02",
     "tagged" : [ ],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   },
   {
     "customerType": "ENTERPRISE",
@@ -81,7 +89,8 @@
     "address": "30 Wolf Street, #01-33",
     "tagged": [],
     "points": 0,
-    "cumulativePoints": 0
+    "cumulativePoints": 0,
+    "marked": false
   } ],
   "orders": [ {
     "customerId": "Alice Pauline",

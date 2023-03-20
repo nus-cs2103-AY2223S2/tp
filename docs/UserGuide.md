@@ -73,7 +73,6 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
 ### Adding a customer : `addc`
 
 Adds a customer to the current list.
@@ -108,6 +107,34 @@ Format: `deletec INDEX`
 Examples:
 * `listc` followed by `deletec 2` deletes the 2nd person in the address book.
 * `findc Betsy` followed by `delete 1` deletes the 1st person in the results of the `findc` command.
+
+### Marking a person: `markc`
+
+Bookmarks a customer from the list of customers.
+
+Format: `markc INDEX`
+
+* Bookmarks the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `markc 2` bookmarks the 2nd person in the address book.
+* `findc Betsy` followed by `markc 1` bookmarks the 1st person in the results of the `findc` command.
+
+### Unmarking a person: `unmarkc`
+
+Un-bookmarks a customer from the list of customers.
+
+Format: `unmarkc INDEX`
+
+* Un-bookmarks the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `unmarkc 2` un-bookmarks the 2nd person in the address book.
+* `findc Betsy` followed by `unmarkc 1` bookmarks the 1st person in the results of the `findc` command.
 
 ### Setting reward points for a customer : `setpoints`
 

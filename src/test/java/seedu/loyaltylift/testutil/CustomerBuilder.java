@@ -8,6 +8,7 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -25,6 +26,7 @@ public class CustomerBuilder {
     public static final Integer DEFAULT_POINTS = 0;
     public static final Integer DEFAULT_CUMULATIVE_POINTS = 0;
     public static final CustomerType DEFAULT_CUSTOMER_TYPE = CustomerType.INDIVIDUAL;
+    public static final Boolean DEFAULT_MARKED = false;
 
     private Name name;
     private Phone phone;
@@ -33,6 +35,7 @@ public class CustomerBuilder {
     private Set<Tag> tags;
     private Points points;
     private CustomerType customerType;
+    private Marked marked;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -45,6 +48,7 @@ public class CustomerBuilder {
         tags = new HashSet<>();
         points = new Points(DEFAULT_POINTS, DEFAULT_CUMULATIVE_POINTS);
         customerType = DEFAULT_CUSTOMER_TYPE;
+        marked = new Marked(DEFAULT_MARKED);
     }
 
     /**
@@ -58,6 +62,7 @@ public class CustomerBuilder {
         tags = new HashSet<>(customerToCopy.getTags());
         points = customerToCopy.getPoints();
         customerType = customerToCopy.getCustomerType();
+        marked = customerToCopy.getMarked();
     }
 
     /**
@@ -113,6 +118,14 @@ public class CustomerBuilder {
      */
     public CustomerBuilder withCustomerType(CustomerType customerType) {
         this.customerType = customerType;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Marked} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withMarked(Boolean marked) {
+        this.marked = new Marked(marked);
         return this;
     }
 
