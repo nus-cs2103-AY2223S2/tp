@@ -35,6 +35,7 @@ public class Unit {
                 || (otherUnit instanceof Unit
                 && unit.equals(((Unit) otherUnit).unit));
     }
+    
     @Override
     public String toString() {
         return this.unit;
