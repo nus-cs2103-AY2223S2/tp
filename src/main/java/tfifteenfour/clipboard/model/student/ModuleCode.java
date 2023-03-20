@@ -32,6 +32,14 @@ public class ModuleCode {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns module code
+     * @return String module code
+     */
+    public String getModule() {
+        return this.moduleCode;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
