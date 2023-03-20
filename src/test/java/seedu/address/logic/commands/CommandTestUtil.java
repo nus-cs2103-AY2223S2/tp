@@ -27,6 +27,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.person.status.LeadStatusName;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -178,4 +179,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    // requires implementation of TransactionDescContainsKeyword
+//    public static void showTransactionAtIndex(Model model, Index targetIndex) {
+//        assertTrue(targetIndex.getZeroBased() < model.getFilteredTransactionList().size());
+//
+//        Transaction txn = model.getFilteredTransactionList().get(targetIndex.getZeroBased());
+//        final String[] splitDesc = txn.getDescription().value.split("\\s");
+//        model.updateFilteredTransactionList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
+//    }
 }
