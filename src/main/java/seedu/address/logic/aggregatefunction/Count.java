@@ -1,6 +1,7 @@
 package seedu.address.logic.aggregatefunction;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * An {@code AggregateFunction} to count the number of items in a {@code list}.
@@ -9,28 +10,40 @@ import java.util.List;
  */
 public class Count<T> extends AggregateFunction {
 
-    public static final String DESCRIPTION = "%1$s count";
     private final List<T> list;
-    private final Class<T> itemClass;
+    private final String description;
+    private Predicate<T> predicate;
 
     /**
      * Constructs the Count {@code Aggregate function}.
      *
      * @param list List to operate on.
-     * @param itemClass Class of item in the list.
+     * @param description Description of the count.
      */
-    public Count(List<T> list, Class<T> itemClass) {
+    public Count(List<T> list, String description) {
         this.list = list;
-        this.itemClass = itemClass;
+        this.description = description;
+        this.predicate = (item -> true);
+    }
+
+    /**
+     * Specifies a predicate for which the items are included in the count.
+     *
+     * @param predicate Predicate to filter items.
+     * @return Updated count aggregate function.
+     */
+    public Count<T> with(Predicate<T> predicate) {
+        this.predicate = predicate;
+        return this;
     }
 
     @Override
     public String getDescription() {
-        return String.format(DESCRIPTION, itemClass.getSimpleName());
+        return description;
     }
 
     @Override
     public String getResult() {
-        return Integer.toString(list.size());
+        return Integer.toString(list.stream().filter(predicate).toArray().length);
     }
 }

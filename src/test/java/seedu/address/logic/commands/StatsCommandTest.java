@@ -5,6 +5,8 @@ import static seedu.address.testutil.TestUtil.getTypicalFriendlyLink;
 import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +14,12 @@ import seedu.address.logic.Summary;
 import seedu.address.logic.aggregatefunction.Count;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
-import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.ModelManagerBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for StatsCommand.
  */
 public class StatsCommandTest {
 
@@ -31,9 +32,11 @@ public class StatsCommandTest {
 
         expectedModel = new ModelManagerBuilder().build();
         Summary summary = new Summary();
-        summary.describe(new Count<>(new ArrayList<>(), Elderly.class));
-        summary.describe(new Count<>(new ArrayList<>(), Volunteer.class));
-        summary.describe(new Count<>(new ArrayList<>(), Pair.class));
+        summary.describe(new Count<>(new ArrayList<>(), StatsCommand.ELDERLY_COUNT));
+        summary.describe(new Count<>(new ArrayList<>(), StatsCommand.UNPAIRED_ELDERLY_COUNT));
+        summary.describe(new Count<>(new ArrayList<>(), StatsCommand.VOLUNTEER_COUNT));
+        summary.describe(new Count<>(new ArrayList<>(), StatsCommand.UNPAIRED_VOLUNTEER_COUNT));
+        summary.describe(new Count<>(new ArrayList<>(), StatsCommand.PAIR_COUNT));
         String expectedMessage = summary.toString();
 
         assertCommandSuccess(new StatsCommand(), model, expectedMessage, expectedModel);
@@ -45,10 +48,22 @@ public class StatsCommandTest {
 
         FriendlyLink friendlyLink = getTypicalFriendlyLink();
         expectedModel = getTypicalModelManager();
+
+        List<Elderly> pairedElderly = model.getFilteredPairList().stream()
+                .map(pair -> pair.getElderly()).collect(Collectors.toList());
+        List<Volunteer> pairedVolunteers = model.getFilteredPairList().stream()
+                .map(pair -> pair.getVolunteer()).collect(Collectors.toList());
+        List<Elderly> unpairedElderly = model.getFilteredElderlyList().stream()
+                .filter(elderly -> !pairedElderly.contains(elderly)).collect(Collectors.toList());
+        List<Volunteer> unpairedVolunteers = model.getFilteredVolunteerList().stream()
+                .filter(volunteer -> !pairedVolunteers.contains(volunteer)).collect(Collectors.toList());
+
         Summary summary = new Summary();
-        summary.describe(new Count<>(friendlyLink.getElderlyList(), Elderly.class));
-        summary.describe(new Count<>(friendlyLink.getVolunteerList(), Volunteer.class));
-        summary.describe(new Count<>(friendlyLink.getPairList(), Pair.class));
+        summary.describe(new Count<>(friendlyLink.getElderlyList(), StatsCommand.ELDERLY_COUNT));
+        summary.describe(new Count<>(unpairedElderly, StatsCommand.UNPAIRED_ELDERLY_COUNT));
+        summary.describe(new Count<>(friendlyLink.getVolunteerList(), StatsCommand.VOLUNTEER_COUNT));
+        summary.describe(new Count<>(unpairedVolunteers, StatsCommand.UNPAIRED_VOLUNTEER_COUNT));
+        summary.describe(new Count<>(friendlyLink.getPairList(), StatsCommand.PAIR_COUNT));
         String expectedMessage = summary.toString();
 
         assertCommandSuccess(new StatsCommand(), model, expectedMessage, expectedModel);
