@@ -57,8 +57,6 @@ public class ProjectTest {
         assertFalse(editedSkyWithDeadline.equals(editedSky));
         editedSkyWithDeadline.markAsUndone();
         assertTrue(editedSkyWithDeadline.equals(editedSky));
-
-        assertTrue(editedSkyWithDeadline.equals(editedSky));
         assertTrue(defaultProjectWithoutDeadline.equals(defaultCopyWithoutDeadline));
         assertTrue(defaultCopyWithoutDeadline.equals(defaultProjectWithoutDeadline));
     }
