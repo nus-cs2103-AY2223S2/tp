@@ -83,9 +83,6 @@ public class Person {
         return address;
     }
 
-    public ArrayList<Meeting> getMeetings() {
-        return meetings;
-    }
 
     /**
      * Gets the most recent meeting that the person has
