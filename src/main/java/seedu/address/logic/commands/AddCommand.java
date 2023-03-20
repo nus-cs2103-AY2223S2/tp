@@ -57,7 +57,11 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
+        //Add internship
         model.addInternship(toAdd);
+        //Update right panel
+        model.updateSelectedInternship(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

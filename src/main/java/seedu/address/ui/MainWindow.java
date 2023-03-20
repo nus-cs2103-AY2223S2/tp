@@ -212,6 +212,8 @@ public class MainWindow extends UiPart<Stage> {
             internshipDetailsPanelPlaceholder.getChildren().clear();
             internshipDetailsPanelPlaceholder.getChildren().add(internshipDetailsCard.getRoot());
             internshipDetailsPanelPlaceholder.setAlignment(Pos.TOP_CENTER);
+        } else {
+            System.out.println("reached");
         }
     }
 

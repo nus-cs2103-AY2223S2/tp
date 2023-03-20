@@ -84,8 +84,10 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
+        //Edit functionality
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.updateSelectedInternship(editedInternship);
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
