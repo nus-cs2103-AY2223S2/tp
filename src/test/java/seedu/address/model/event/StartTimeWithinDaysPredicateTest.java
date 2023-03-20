@@ -2,7 +2,7 @@ package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalLocalDateTimes.TIME_NOW;
+import static seedu.address.testutil.TypicalTimes.TIME_NOW;
 
 import org.junit.jupiter.api.Test;
 
