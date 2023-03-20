@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTEES;
 
@@ -21,8 +19,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tutee.*;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.TuteeBuilder;
 import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Email;
 import seedu.address.model.tutee.fields.EndTime;
@@ -31,7 +30,6 @@ import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tutee.fields.Schedule;
 import seedu.address.model.tutee.fields.StartTime;
 import seedu.address.model.tutee.fields.Subject;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing tutee in the address book.
@@ -204,21 +202,37 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSubject(Subject subject) { this.subject = subject; }
+        public void setSubject(Subject subject) {
+            this.subject = subject;
+        }
 
-        public Optional<Subject> getSubject() { return Optional.ofNullable(subject); }
+        public Optional<Subject> getSubject() { 
+            return Optional.ofNullable(subject);
+        }
 
-        public void setSchedule(Schedule schedule) { this.schedule = schedule; }
+        public void setSchedule(Schedule schedule) { 
+            this.schedule = schedule;
+        }
 
-        public Optional<Schedule> getSchedule() { return Optional.ofNullable(schedule); }
+        public Optional<Schedule> getSchedule() {
+            return Optional.ofNullable(schedule); 
+        }
 
-        public void setStartTime(StartTime startTime) { this.startTime = startTime; }
+        public void setStartTime(StartTime startTime) {
+            this.startTime = startTime; 
+        }
 
-        public Optional<StartTime> getStartTime() { return Optional.ofNullable(startTime); }
+        public Optional<StartTime> getStartTime() {
+            return Optional.ofNullable(startTime); 
+        }
 
-        public void setEndTime(EndTime endTime) { this.endTime = endTime; }
+        public void setEndTime(EndTime endTime) {
+            this.endTime = endTime; 
+        }
 
-        public Optional<EndTime> getEndTime() { return Optional.ofNullable(endTime); }
+        public Optional<EndTime> getEndTime() {
+            return Optional.ofNullable(endTime); 
+        }
 
         /**
          * Sets {@code tags} EndTime this object's {@code tags}.

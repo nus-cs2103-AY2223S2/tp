@@ -24,7 +24,10 @@ public class MarkCommandParser implements Parser<MarkCommand> {
             try {
                 date = LocalDate.parse(args[1], DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT));
             } catch (DateTimeParseException e) {
-                throw new ParseException(String.format("%s expects the date in the following format: %s", MarkCommand.COMMAND_WORD, MarkCommand.EXPECTED_DATE_FORMAT));
+                throw new ParseException(String.format("%s expects the date in the following format: %s",
+                    MarkCommand.COMMAND_WORD, 
+                    MarkCommand.EXPECTED_DATE_FORMAT
+                ));
             } 
         } else {
             throw new ParseException(String.format("%s needs an index!", MarkCommand.COMMAND_WORD));
@@ -39,4 +42,4 @@ public class MarkCommandParser implements Parser<MarkCommand> {
 
         return new MarkCommand(index, date);
     }
-  }
+}

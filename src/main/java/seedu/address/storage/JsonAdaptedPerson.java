@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tutee.*;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.TuteeBuilder;
 import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
 import seedu.address.model.tutee.fields.Email;
@@ -23,7 +25,6 @@ import seedu.address.model.tutee.fields.Remark;
 import seedu.address.model.tutee.fields.Schedule;
 import seedu.address.model.tutee.fields.StartTime;
 import seedu.address.model.tutee.fields.Subject;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Tutee}.
@@ -64,23 +65,44 @@ class JsonAdaptedPerson {
             try {
                 return clazz.getConstructor(String.class).newInstance(value);
             } catch (NoSuchMethodException e) {
-                throw new RuntimeException(String.format("Could not find a constructor of the signature %s(String value)", simpleName));
+                throw new RuntimeException(String.format(
+                    "Could not find a constructor of the signature %s(String value)", 
+                    simpleName
+                ));
             }
         } catch (final NoSuchFieldException e) {
-            throw new RuntimeException(String.format("Class %s does not contain a field called MESSAGE_CONSTRAINTS", simpleName));
+            throw new RuntimeException(String.format(
+                "Class %s does not contain a field called MESSAGE_CONSTRAINTS", 
+                simpleName
+            ));
         } catch (final NoSuchMethodException e) {
-            throw new RuntimeException(String.format("Class %s does not contain a method called isValid%s", simpleName, simpleName));
+            throw new RuntimeException(String.format(
+                "Class %s does not contain a method called isValid%s",
+                simpleName,
+                simpleName
+            ));
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(String.format("Could not access the field MESSAGE_CONSTRAINTS or the method isValid%s on class %s",
+            throw new RuntimeException(String.format(
+                "Could not access the field MESSAGE_CONSTRAINTS or "
+                    + " the method isValid%s on class %s",
                 simpleName,
                 simpleName
             ));
         } catch (final InvocationTargetException e) {
-            throw new RuntimeException(String.format("MESSAGE_CONSTRAINTS and isValid%s must both be static", simpleName));
-        } catch (final InstantiationException e) {
-            throw new RuntimeException(String.format("Could not find a constructor of the signature %s(String value)", simpleName));
+            throw new RuntimeException(String.format(
+                "MESSAGE_CONSTRAINTS and isValid%s must both be static",
+                simpleName
+            ));
+            } catch (final InstantiationException e) {
+            throw new RuntimeException(String.format(
+                "Could not find a constructor of the signature %s(String value)",
+                simpleName
+            ));
         } catch (final ClassCastException e) {
-            throw new RuntimeException(String.format("Class %s: MESSAGE_CONSTRAINTS must be of type String, and isValid%s must return a boolean", simpleName));
+            throw new RuntimeException(String.format(
+                "Class %s: MESSAGE_CONSTRAINTS must be of type String, and isValid%s must return a boolean",
+                simpleName
+            ));
         }
     }
 

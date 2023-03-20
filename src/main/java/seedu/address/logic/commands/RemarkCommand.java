@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTEES;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -10,9 +12,6 @@ import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.TuteeBuilder;
 import seedu.address.model.tutee.fields.Remark;
-
-import java.util.List;
-
 
 /**
  * Changes the remark of an existing tutee in the address book.

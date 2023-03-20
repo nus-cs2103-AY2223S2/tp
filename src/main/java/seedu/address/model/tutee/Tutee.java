@@ -80,15 +80,25 @@ public class Tutee {
         return attendance;
     }
 
-    public Remark getRemark() { return remark; }
+    public Remark getRemark() {
+        return remark; 
+	}
 
-    public Subject getSubject() { return subject; }
+    public Subject getSubject() {
+        return subject; 
+	}
 
-    public Schedule getSchedule() { return schedule; }
+    public Schedule getSchedule() {
+        return schedule; 
+	}
 
-    public StartTime getStartTime() { return startTime; }
+    public StartTime getStartTime() {
+        return startTime; 
+	}
 
-    public EndTime getEndTime() { return endTime; }
+    public EndTime getEndTime() {
+        return endTime; 
+	}
 
     /**
      * Returns an immutable tag set, which throws {@link UnsupportedOperationException}

@@ -43,7 +43,7 @@ public class AddressBookParser {
         Map.entry(MarkCommand.COMMAND_WORD, new MarkCommandParser()),
         Map.entry(RemarkCommand.COMMAND_WORD, new RemarkCommandParser()),
         Map.entry(UnmarkCommand.COMMAND_WORD, new MarkCommandParser())
-    );    
+    );
 
     /**
      * Parses user input into command for execution.

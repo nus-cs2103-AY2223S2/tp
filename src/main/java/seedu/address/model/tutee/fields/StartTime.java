@@ -1,11 +1,10 @@
 package seedu.address.model.tutee.fields;
 
-import java.time.Instant;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents the start time of a tuition session.
