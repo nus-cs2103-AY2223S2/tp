@@ -158,6 +158,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Find event feature
+
+#### Current Implementation
+
+Finding an event is a feature that uses the command `findevent [EVENT_NAME]`. The implementation of `findevent` is similar to the `find` implementation but specific to events.
+Below is the sequence diagram detailing how the `findevent` operation works.
+
+![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
+
+Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
+This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object. 
+The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
