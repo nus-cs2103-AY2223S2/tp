@@ -24,7 +24,7 @@ import seedu.modtrek.logic.commands.ListCommand;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
 import seedu.modtrek.model.module.Module;
-import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.model.module.ModulePredicate;
 import seedu.modtrek.testutil.EditModuleDescriptorBuilder;
 import seedu.modtrek.testutil.ModuleBuilder;
 import seedu.modtrek.testutil.ModuleUtil;
@@ -75,7 +75,7 @@ public class ModTrekParserTest {
         Code findCode = new Code("CS1101S");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + "CS1101S");
-        assertEquals(new FindCommand(new ModuleCodePredicate(findCode)), command);
+        assertEquals(new FindCommand(new ModulePredicate(findCode)), command);
     }
 
     @Test

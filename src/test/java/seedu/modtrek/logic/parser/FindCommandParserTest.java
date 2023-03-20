@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.commands.FindCommand;
 import seedu.modtrek.model.module.Code;
-import seedu.modtrek.model.module.ModuleCodePredicate;
+import seedu.modtrek.model.module.ModulePredicate;
 
 public class FindCommandParserTest {
 
@@ -23,7 +23,7 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new ModuleCodePredicate(new Code("CS1101S")));
+                new FindCommand(new ModulePredicate(new Code("CS1101S")));
         assertParseSuccess(parser, "CS1101S", expectedFindCommand);
     }
 

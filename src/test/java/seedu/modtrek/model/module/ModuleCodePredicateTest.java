@@ -13,14 +13,14 @@ class ModuleCodePredicateTest {
 
     @Test
     public void equals() {
-        ModuleCodePredicate firstPredicate = new ModuleCodePredicate(CS1101S.getCode());
-        ModuleCodePredicate secondPredicate = new ModuleCodePredicate(ST2334.getCode());
+        ModulePredicate firstPredicate = new ModulePredicate(CS1101S.getCode());
+        ModulePredicate secondPredicate = new ModulePredicate(ST2334.getCode());
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ModuleCodePredicate firstPredicateCopy = new ModuleCodePredicate(CS1101S.getCode());
+        ModulePredicate firstPredicateCopy = new ModulePredicate(CS1101S.getCode());
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -36,7 +36,7 @@ class ModuleCodePredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        ModuleCodePredicate predicate = new ModuleCodePredicate(CS1101S.getCode());
+        ModulePredicate predicate = new ModulePredicate(CS1101S.getCode());
         assertFalse(predicate.test(new ModuleBuilder().withCode("ST2334").build()));
     }
 
