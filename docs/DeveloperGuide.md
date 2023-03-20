@@ -122,7 +122,7 @@ Developer Guide.
   <tr>
     <td><strong>Command Line Interface (CLI)</strong></td>
     <td>
-      A text-based interface that is used to operate software (such as ConnectNUS) and operating systems. CLI
+      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
       allows a user to perform tasks by entering commands. <br>
       Users enter the specific command, press “Enter”, and then wait for a response.
       After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
@@ -139,7 +139,7 @@ Developer Guide.
   <tr>
     <td><strong>Application Programming Interface (API)</strong></td>
     <td>
-      A a set of definitions and protocols for building and integrating application software and simplifies how
+      A set of definitions and protocols for building and integrating application software and simplifies how
       developers integrate new application components into an existing architecture.
     </td>
   </tr>
@@ -147,12 +147,6 @@ Developer Guide.
     <td><strong>Mainstream OS</strong></td>
     <td>
       Windows, Linux, Unix, OS-X.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Private Contact Detail</strong></td>
-    <td>
-      A contact detail that is not meant to be shared with others.
     </td>
   </tr>
   <tr>
@@ -207,12 +201,6 @@ Developer Guide.
     <td><strong>Use Case</strong></td>
     <td>
       Describes an interaction between the user and the system for a specific functionality of the system.
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Teaching Assistant</strong></td>
-    <td>
-      Employed staff by NUS who teach tutorials for specific modules for undergraduates. They will be guided by the module coordinators or instructors.
     </td>
   </tr>
 </table>
