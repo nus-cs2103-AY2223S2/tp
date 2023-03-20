@@ -16,6 +16,7 @@ import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
 import arb.model.project.Project;
+import arb.model.tag.Tag;
 import arb.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -76,6 +77,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Project> getSortedProjectList() {
         return model.getSortedProjectList();
+    }
+
+    @Override
+    public ObservableList<Tag> getTagList() {
+        return model.getTagList();
     }
 
     @Override

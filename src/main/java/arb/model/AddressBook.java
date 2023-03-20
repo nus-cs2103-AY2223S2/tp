@@ -9,6 +9,8 @@ import arb.model.client.Client;
 import arb.model.client.UniqueClientList;
 import arb.model.project.Project;
 import arb.model.project.UniqueProjectList;
+import arb.model.tag.Tag;
+import arb.model.tag.UniqueTagList;
 import javafx.collections.ObservableList;
 
 /**
@@ -19,6 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueClientList clients;
     private final UniqueProjectList projects;
+    private final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         clients = new UniqueClientList();
         projects = new UniqueProjectList();
+        tags = new UniqueTagList();
     }
 
     public AddressBook() {}
@@ -148,7 +152,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return clients.asUnmodifiableObservableList().size() + " clients, "
-                + projects.asUnmodifiableObservableList().size() + " projects";
+                + projects.asUnmodifiableObservableList().size() + " projects, "
+                + tags.asUnmodifiableObservableList().size() + " tags";
         // TODO: refine later
     }
 
@@ -163,15 +168,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Tag> getTagList() {
+        return tags.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && clients.equals(((AddressBook) other).clients))
-                && projects.equals(((AddressBook) other).projects);
+                && projects.equals(((AddressBook) other).projects)
+                && tags.equals(((AddressBook) other).tags);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clients, projects);
+        return Objects.hash(clients, projects, tags);
     }
 }

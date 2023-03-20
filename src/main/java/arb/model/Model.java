@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import arb.commons.core.GuiSettings;
 import arb.model.client.Client;
 import arb.model.project.Project;
+import arb.model.tag.Tag;
 import javafx.collections.ObservableList;
 
 /**
@@ -173,5 +174,8 @@ public interface Model {
      * Updates the comparator of the sorted project list to filter by the given {@code comparator}.
      */
     void updateSortedProjectList(Comparator<Project> comparator);
+
+    /** Returns an unmodifiable view of the tag list */
+    ObservableList<Tag> getTagList();
 
 }

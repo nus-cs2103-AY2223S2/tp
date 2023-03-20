@@ -1,6 +1,7 @@
-package arb.ui;
+package arb.ui.tag;
 
-import arb.model.project.Project;
+import arb.model.tag.Tag;
+import arb.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -8,11 +9,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
- * An UI component that displays information of a {@code Project}.
+ * An UI component that displays information of a {@code Tag}.
  */
-public class ProjectCard extends UiPart<Region> {
+public class TagCard extends UiPart<Region> {
 
-    private static final String FXML = "ProjectListCard.fxml";
+    private static final String FXML = "tag/TagListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,37 +23,31 @@ public class ProjectCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Project project;
+    public final Tag tag;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private VBox contentsPane;
+    private VBox contentsPane;;
     @FXML
-    private Label title;
-    @FXML
-    private Label deadline;
-    @FXML
-    private Label status;
+    private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label numberOfClientsTagged;
+    @FXML
+    private Label numberOfProjectsTagged;
 
     /**
-     * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
+     * Creates a {@code TagCard} with the given {@code Tag} and index to display.
      */
-    public ProjectCard(Project project, int displayedIndex) {
+    public TagCard(Tag tag, int displayedIndex) {
         super(FXML);
-        this.project = project;
+        this.tag = tag;
         id.setText(displayedIndex + ". ");
-        title.setText(project.getTitle().fullTitle);
-
-        if (project.isDeadlinePresent()) {
-            deadline.setText(project.getDeadline().toString());
-        } else {
-            contentsPane.getChildren().remove(deadline);
-        }
-
-        status.setText("Status: " + project.getStatus());
+        name.setText(tag.tagName);
+        numberOfClientsTagged.setText("Number of clients tagged: " + tag.getNumberOfClientsTagged());
+        numberOfProjectsTagged.setText("Number of projects tagged: " + tag.getNumberOfProjectsTagged());
     }
 
     @Override
@@ -63,13 +58,13 @@ public class ProjectCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ProjectCard)) {
+        if (!(other instanceof TagCard)) {
             return false;
         }
 
         // state check
-        ProjectCard card = (ProjectCard) other;
+        TagCard card = (TagCard) other;
         return id.getText().equals(card.id.getText())
-                && project.equals(card.project);
+                && tag.equals(card.tag);
     }
 }

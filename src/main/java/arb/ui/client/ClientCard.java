@@ -1,8 +1,9 @@
-package arb.ui;
+package arb.ui.client;
 
 import java.util.Comparator;
 
 import arb.model.client.Client;
+import arb.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -15,7 +16,7 @@ import javafx.scene.layout.VBox;
  */
 public class ClientCard extends UiPart<Region> {
 
-    private static final String FXML = "ClientListCard.fxml";
+    private static final String FXML = "client/ClientListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

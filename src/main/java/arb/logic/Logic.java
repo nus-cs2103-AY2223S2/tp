@@ -10,6 +10,7 @@ import arb.model.ListType;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.client.Client;
 import arb.model.project.Project;
+import arb.model.tag.Tag;
 import javafx.collections.ObservableList;
 
 /**
@@ -44,6 +45,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the sorted list of projects */
     ObservableList<Project> getSortedProjectList();
+
+    /** Returns an unmodifiable view of the list of tags */
+    ObservableList<Tag> getTagList();
 
     /**
      * Returns the user prefs' address book file path.

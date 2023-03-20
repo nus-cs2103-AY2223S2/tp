@@ -13,6 +13,8 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
+    private int numberOfClientsTagged = 0;
+    private int numberOfProjectsTagged = 0;
 
     /**
      * Constructs a {@code Tag}.
@@ -30,6 +32,22 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public void tagProject() {
+        this.numberOfProjectsTagged += 1;
+    }
+
+    public void tagClient() {
+        this.numberOfClientsTagged += 1;
+    }
+
+    public int getNumberOfClientsTagged() {
+        return this.numberOfClientsTagged;
+    }
+
+    public int getNumberOfProjectsTagged() {
+        return this.numberOfProjectsTagged;
     }
 
     @Override
