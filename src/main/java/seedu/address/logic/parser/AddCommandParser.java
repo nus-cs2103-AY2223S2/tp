@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        Comment comment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
+        Comment comment = ParserUtil.parseComment(argMultimap.getOptionalValue(PREFIX_COMMENT).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Internship internship = new Internship(companyName, role, status, date, comment, tagList);

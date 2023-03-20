@@ -29,6 +29,7 @@ import seedu.address.model.internship.Internship;
  */
 public class InternshipDetailsCard extends UiPart<Region> {
     public static final String ROLE_LABEL = "Role: ";
+
     private static final String FXML = "InternshipDetailsCard.fxml";
 
     /**
@@ -50,6 +51,8 @@ public class InternshipDetailsCard extends UiPart<Region> {
     private Label role;
     @FXML
     private Label date;
+    @FXML
+    private Text comment;
     @FXML
     private FlowPane tags;
     @FXML
@@ -75,6 +78,12 @@ public class InternshipDetailsCard extends UiPart<Region> {
         //Add Date
         String dateLabel = InternshipCard.getDateLabel(internship.getStatus().toString());
         date.setText(dateLabel + internship.getDate().fullDate);
+
+        //Add Comment
+        comment.setText(internship.getComment().commentContent);
+        //@@author eugenetangkj-reused
+        //Reused with modifications from https://stackoverflow.com/questions/29315469/javafx-resize-text-with-window
+        comment.wrappingWidthProperty().bind(scene.widthProperty().multiply(0.4));
 
         //Add Tags
         internship.getTags().stream()
