@@ -23,7 +23,6 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-
       <VBox alignment="TOP_CENTER" minWidth="680.0" stylesheets="@DarkTheme.css">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
@@ -55,12 +54,9 @@
                     <Insets bottom="5" left="10" right="10" top="5" />
                   </padding>
                 </StackPane>
-
                 <Button fx:id="addFoodButton" alignment="TOP_RIGHT" mnemonicParsing="false" stylesheets="@DarkTheme.css" text="Enter" />
-
                </children>
             </HBox>
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             <VBox fx:id="foodList1" alignment="BOTTOM_CENTER" minWidth="340" prefHeight="0.0" prefWidth="682.0" styleClass="pane-with-border">
                <padding>

@@ -56,6 +56,6 @@ public class ExpiryDate {
 
     @Override
     public String toString() {
-        return this.expiryDate.toString();
+        return this.expiryDate.format(validFormat);
     }
 }
