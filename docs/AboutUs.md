@@ -34,8 +34,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/chen-jerry-junior)] [[portfolio](team/chen-jerry-junior.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Team Lead
+* Responsibilities: Data & UI
 
 ### William Chau Wei Xuan
 
