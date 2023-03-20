@@ -49,7 +49,7 @@ ConnectUS is a desktop app for **managing contacts, optimized for use via a Comm
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [bd/BIRTHDAY]` can be used as `n/John Doe bd/14/02/2000` or as `n/John Doe`.
+  e.g `n/NAME [b/BIRTHDAY]` can be used as `n/John Doe b/14/02/2000` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[mod/MODULE_CODE]…​` can be used as ` ` (i.e. 0 times), `mod/CS2103T`, `mod/CS2103T mod/CS2107` etc.
@@ -160,12 +160,12 @@ If your changes to the data file makes its format invalid, ConnectUS will discar
 
 ## Command summary
 
-| Action     | Format                                                                                                                                             | Examples                                                                   |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`                | `add n/James p/12345678 e/james@example.com tg/@itsjameshere b/14/02/2000` |
-| **Clear**  | `clear`                                                                                                                                            |                                                                            |
-| **Delete** | `delete INDEX`                                                                                                                                     | `delete 3`                                                                 |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tele/TELEGRAM] [bd/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/@itsjameshere`                   |
-| **List**   | `list`                                                                                                                                             |                                                                            |
-| **Help**   | `help`                                                                                                                                             |                                                                            |
-| **Exit**   | `exit`                                                                                                                                             |                                                                            |
+| Action     | Format                                                                                                                                                                                | Examples                                                                   |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| **Add**    | `add n/NAME [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [sm/ig/INSTAGRAM] [sm/wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​`                | `add n/James p/12345678 e/james@example.com tg/@itsjameshere b/14/02/2000` |
+| **Clear**  | `clear`                                                                                                                                                                               |                                                                            |
+| **Delete** | `delete INDEX`                                                                                                                                                                        | `delete 3`                                                                 |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [sm/tg/TELEGRAM] [sm/ig/INSTAGRAM] [sm/wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE_NUMBER]…​ [cca/CCA]…​ [ccap/CCA: POST]…​ -t` | `edit 1 p/12345678 e/james@example.com tg/@itsjameshere`                   |
+| **List**   | `list`                                                                                                                                                                                |                                                                            |
+| **Help**   | `help`                                                                                                                                                                                |                                                                            |
+| **Exit**   | `exit`                                                                                                                                                                                |                                                                            |
