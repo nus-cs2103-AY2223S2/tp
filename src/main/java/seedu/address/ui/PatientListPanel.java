@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.patient.Patient;
 
@@ -27,12 +29,20 @@ public class PatientListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PatientListPanel} with the given {@code ObservableList}.
      */
-    public PatientListPanel(ObservableList<Patient> patientList, EnlargedPatientInfoCard enlargedPatientInfoCard) {
+    public PatientListPanel(ObservableList<Patient> patientList,
+                            EnlargedPatientInfoCard enlargedPatientInfoCard,
+                            EnlargedInfoCardDisplayController infoCardDisplayController) {
         super(FXML);
         patientListView.setItems(patientList);
-        patientListView.setCellFactory(listView -> new PatientListViewCell());
+        patientListView.setCellFactory(listView -> {
+            PatientListViewCell generatedCell = new PatientListViewCell();
+            generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                infoCardDisplayController.displayPatient();
+            });
+            return generatedCell;
+        });
         setSelectedPatient(patientList);
-        showSelectedPatientInfo(enlargedPatientInfoCard);
+        showSelectedPatientInfo(enlargedPatientInfoCard, infoCardDisplayController);
     }
 
     /**
@@ -62,7 +72,9 @@ public class PatientListPanel extends UiPart<Region> {
      *
      * @param enlargedPatientInfoCard the UI part displaying the information of {@code Patient} selected
      */
-    private void showSelectedPatientInfo(EnlargedPatientInfoCard enlargedPatientInfoCard) {
+    private void showSelectedPatientInfo(
+            EnlargedPatientInfoCard enlargedPatientInfoCard,
+            EnlargedInfoCardDisplayController infoCardDisplayController) {
         ChangeListener<Patient> changeListener = (observable, oldValue, newValue) -> {
             selectedPatient = observable.getValue();
             enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(selectedPatient));

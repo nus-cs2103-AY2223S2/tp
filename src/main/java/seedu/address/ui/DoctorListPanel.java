@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.doctor.Doctor;
 
@@ -27,12 +29,20 @@ public class DoctorListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DoctorListPanel} with the given {@code ObservableList}.
      */
-    public DoctorListPanel(ObservableList<Doctor> doctorList, EnlargedDoctorInfoCard enlargedDoctorInfoCard) {
+    public DoctorListPanel(ObservableList<Doctor> doctorList,
+                           EnlargedDoctorInfoCard enlargedDoctorInfoCard,
+                           EnlargedInfoCardDisplayController infoCardDisplayController) {
         super(FXML);
         doctorListView.setItems(doctorList);
-        doctorListView.setCellFactory(listView -> new DoctorListViewCell());
+        doctorListView.setCellFactory(listView -> {
+            DoctorListViewCell generatedCell = new DoctorListViewCell();
+            generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                infoCardDisplayController.displayDoctor();
+            });
+            return generatedCell;
+        });
         setSelectedDoctor(doctorList);
-        showSelectedDoctorInfo(enlargedDoctorInfoCard);
+        showSelectedDoctorInfo(enlargedDoctorInfoCard, infoCardDisplayController);
     }
 
     /**
@@ -62,7 +72,9 @@ public class DoctorListPanel extends UiPart<Region> {
      *
      * @param enlargedDoctorInfoCard the UI part displaying the information of {@code Doctor} selected
      */
-    private void showSelectedDoctorInfo(EnlargedDoctorInfoCard enlargedDoctorInfoCard) {
+    private void showSelectedDoctorInfo(
+            EnlargedDoctorInfoCard enlargedDoctorInfoCard,
+            EnlargedInfoCardDisplayController infoCardDisplayController) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
             enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));

@@ -87,6 +87,15 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Optional<Patient> getPatientIfPresent() {
+        Optional<Patient> optionalPatient = Optional.empty();
+        if (!model.getFilteredPatientList().isEmpty()) {
+            optionalPatient = Optional.of(model.getFilteredPatientList().get(0));
+        }
+        return optionalPatient;
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
