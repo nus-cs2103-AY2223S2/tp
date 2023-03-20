@@ -40,6 +40,6 @@ public class TagCardDuringReviewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.tagCurrentCardInReview(this.tag);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.tag));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.tag.tagName));
     }
 }
