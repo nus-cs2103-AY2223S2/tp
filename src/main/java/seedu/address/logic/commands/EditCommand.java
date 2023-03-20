@@ -100,7 +100,7 @@ public class EditCommand extends Command {
     private static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert tuteeToEdit != null;
 
-        TuteeBuilder builder = TuteeBuilder.fromExistingTutee(tuteeToEdit);
+        TuteeBuilder builder = new TuteeBuilder(tuteeToEdit);
         editPersonDescriptor.getName().ifPresent(builder::withName);
         editPersonDescriptor.getPhone().ifPresent(builder::withPhone);
         editPersonDescriptor.getEmail().ifPresent(builder::withEmail);

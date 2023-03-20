@@ -30,7 +30,7 @@ public class UnmarkCommand extends Command {
   @Override
   public CommandResult execute(Model model) throws CommandException {
     requireNonNull(model);
-    TuteeBuilder modified = TuteeBuilder.fromExistingTutee(toMarkAttendance);
+    TuteeBuilder modified = new TuteeBuilder(toMarkAttendance);
     Attendance attendance = toMarkAttendance.getAttendance();
     try {
       modified.withAttendance(attendance.unmarkAttendance(date));

@@ -34,21 +34,22 @@ public class TuteeBuilder {
   private EndTime endTime;
   private Set<Tag> tags = new HashSet<>();
 
-  public static TuteeBuilder fromExistingTutee(Tutee tutee) {
-    return new TuteeBuilder()
-      .withName(tutee.getName())
-      .withPhone(tutee.getPhone())
-      .withEmail(tutee.getEmail())
-      .withAddress(tutee.getAddress())
-      .withAttendance(tutee.getAttendance())
-      .withRemark(tutee.getRemark())
-      .withSubject(tutee.getSubject())
-      .withSchedule(tutee.getSchedule())
-      .withStartTime(tutee.getStartTime())
-      .withEndTime(tutee.getEndTime())
+  public TuteeBuilder() {}
+
+  public TuteeBuilder(Tutee existing) {
+      this.name = existing.getName();
+      this.phone = existing.getPhone();
+      this.email = existing.getEmail();
+      this.address = existing.getAddress();
+      this.attendance = existing.getAttendance();
+      this.remark = existing.getRemark();
+      this.subject = existing.getSubject();
+      this.schedule = existing.getSchedule();
+      this.startTime = existing.getStartTime();
+      this.endTime = existing.getEndTime();
       // Need to copy, otherwise modifications to 1 tutee's tags
       // could affect the another's
-      .withTags(Set.copyOf(tutee.getTags()));
+      this.tags = Set.copyOf(existing.getTags());
   }
 
   public TuteeBuilder withEmail(Email email) {

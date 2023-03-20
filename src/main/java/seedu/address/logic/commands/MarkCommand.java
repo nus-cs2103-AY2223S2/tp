@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
   @Override
   public CommandResult execute(Model model) throws CommandException {
     requireNonNull(model);
-    TuteeBuilder modified = TuteeBuilder.fromExistingTutee(toMarkAttendance);
+    TuteeBuilder modified = new TuteeBuilder(toMarkAttendance);
     Attendance attendance = toMarkAttendance.getAttendance();
     modified.withAttendance(attendance.markAttendance(date));
     model.setTutee(toMarkAttendance, modified.build());
