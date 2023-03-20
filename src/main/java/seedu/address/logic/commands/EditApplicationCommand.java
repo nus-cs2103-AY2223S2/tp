@@ -20,6 +20,7 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.task.Task;
 
 /**
  * Edits the details of an existing application in the internship book.
@@ -86,7 +87,7 @@ public class EditApplicationCommand extends ApplicationCommand {
      * Creates and returns a {@code Application} with the details of {@code appToEdit}
      * edited with {@code editApplicationDescriptor}.
      */
-    private static Application createEditedApplication(Application appToEdit,
+    protected static Application createEditedApplication(Application appToEdit,
                                                        EditApplicationDescriptor editApplicationDescriptor) {
         assert appToEdit != null;
 
@@ -95,8 +96,9 @@ public class EditApplicationCommand extends ApplicationCommand {
         CompanyEmail updatedCompanyEmail = editApplicationDescriptor.getCompanyEmail()
                 .orElse(appToEdit.getCompanyEmail());
         Status updatedStatus = editApplicationDescriptor.getStatus().orElse(appToEdit.getStatus());
+        Task updatedTask = editApplicationDescriptor.getTask().orElse(appToEdit.getTask());
 
-        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail, updatedStatus);
+        return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail, updatedStatus, updatedTask);
     }
 
     @Override
@@ -127,6 +129,8 @@ public class EditApplicationCommand extends ApplicationCommand {
         private CompanyEmail companyEmail;
         private Status status;
 
+        private Task task;
+
         public EditApplicationDescriptor() {}
 
         /**
@@ -137,13 +141,14 @@ public class EditApplicationCommand extends ApplicationCommand {
             setCompanyName(toCopy.companyName);
             setCompanyEmail(toCopy.companyEmail);
             setStatus(toCopy.status);
+            setTask(toCopy.task);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status);
+            return CollectionUtil.isAnyNonNull(role, companyName, companyEmail, status, task);
         }
 
         public void setRole(Role role) {
@@ -178,6 +183,14 @@ public class EditApplicationCommand extends ApplicationCommand {
             return Optional.ofNullable(status);
         }
 
+        public void setTask(Task task) {
+            this.task = task;
+        }
+
+        public Optional<Task> getTask() {
+            return Optional.ofNullable(task);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -196,7 +209,8 @@ public class EditApplicationCommand extends ApplicationCommand {
             return getRole().equals(e.getRole())
                     && getCompanyName().equals(e.getCompanyName())
                     && getCompanyEmail().equals(e.getCompanyEmail())
-                    && getStatus().equals(e.getStatus());
+                    && getStatus().equals(e.getStatus())
+                    && getTask().equals(e.getTask());
         }
     }
 }

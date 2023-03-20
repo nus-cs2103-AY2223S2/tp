@@ -36,8 +36,9 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label companyEmail;
 
+
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ApplicationCard} with the given {@code Application} and index to display.
      */
     public ApplicationCard(Application application, int displayedIndex) {
         super(FXML);
@@ -47,6 +48,12 @@ public class ApplicationCard extends UiPart<Region> {
         status.setText(application.getStatus().value.toString());
         role.setText(application.getRole().roleApplied);
         companyEmail.setText(application.getCompanyEmail().value);
+        if (application.hasTask()) {
+            cardPane.getChildren().addAll(
+                    new Label(application.getTask().getDescription().value),
+                    new Label(application.getTask().getDeadline().toString())
+            );
+        }
     }
 
     @Override

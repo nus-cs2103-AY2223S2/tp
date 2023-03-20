@@ -3,6 +3,9 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a description for a task.
+ */
 public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Task descriptions should only contain alphanumeric characters and spaces, and it should not be blank";

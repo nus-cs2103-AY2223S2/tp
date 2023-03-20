@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddApplicationCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ApplicationCommand;
 import seedu.address.logic.commands.DeleteApplicationCommand;
 import seedu.address.logic.commands.EditApplicationCommand;
@@ -63,6 +64,9 @@ public class InternshipBookParser {
 
         case DeleteApplicationCommand.COMMAND_WORD:
             return new DeleteApplicationCommandParser().parse(arguments);
+
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -12,10 +12,10 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be a valid calendar date of the format DD/MM/YYYY.";
+            "Deadlines should be a valid calendar date of the format DD-MM-YYYY.";
     public static final String DEADLINE_HAS_PASSED =
             "Deadlines should not be earlier than today's date.";
-    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     public final LocalDate deadline;
@@ -37,7 +37,7 @@ public class Deadline {
      */
     public static boolean isValidDate(String test) {
         try {
-            LocalDate.parse(test, INPUT_FORMAT);
+            LocalDate testDate = LocalDate.parse(test, INPUT_FORMAT);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -49,8 +49,8 @@ public class Deadline {
      * A deadline is valid only if it is no earlier than today's date.
      */
     public static boolean isValidDeadline(String test) {
-        LocalDate deadline = LocalDate.parse(test, INPUT_FORMAT);
-        return deadline.compareTo(LocalDate.now()) >= 0;
+        LocalDate testDate = LocalDate.parse(test, INPUT_FORMAT);
+        return testDate.compareTo(LocalDate.now()) >= 0;
     }
 
     @Override

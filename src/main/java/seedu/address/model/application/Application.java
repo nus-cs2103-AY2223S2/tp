@@ -1,10 +1,11 @@
 package seedu.address.model.application;
 
-import seedu.address.model.task.Task;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.task.Task;
+
 
 /**
  * Represents an Application in the internship book.
@@ -20,13 +21,13 @@ public class Application {
     /**
      * Every field must be present and not null.
      */
-    public Application(Role role, CompanyName companyName, CompanyEmail companyEmail, Status status) {
+    public Application(Role role, CompanyName companyName, CompanyEmail companyEmail, Status status, Task task) {
         requireAllNonNull(role, companyName, companyEmail, status);
         this.role = role;
         this.companyName = companyName;
         this.companyEmail = companyEmail;
         this.status = status;
-        this.task = null;
+        this.task = task;
     }
 
     public Role getRole() {
@@ -47,6 +48,10 @@ public class Application {
 
     public Task getTask() {
         return this.task;
+    }
+
+    public boolean hasTask() {
+        return getTask() != null;
     }
 
     /**

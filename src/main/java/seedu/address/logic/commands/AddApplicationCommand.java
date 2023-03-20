@@ -15,7 +15,7 @@ import seedu.address.model.application.Application;
  */
 public class AddApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the internship book. "
             + "Parameters: "

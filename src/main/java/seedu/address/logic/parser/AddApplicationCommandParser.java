@@ -16,7 +16,6 @@ import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
 
-
 /**
  * Parses input arguments and creates a new AddApplicationCommand object
  */
@@ -44,7 +43,7 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
                 argMultimap.getValue(PREFIX_COMPANY_EMAIL).get());
         Status status = ApplicationParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
-        Application application = new Application(role, companyName, companyEmail, status);
+        Application application = new Application(role, companyName, companyEmail, status, null);
 
         return new AddApplicationCommand(application);
     }

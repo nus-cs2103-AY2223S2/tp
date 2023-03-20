@@ -113,6 +113,16 @@ public class ApplicationModelManager implements ApplicationModel {
         internshipBook.setApplication(target, editedApplication);
     }
 
+    @Override
+    public boolean applicationHasTask(Application application) {
+        return application.hasTask();
+    }
+
+    @Override
+    public void addTaskToApplication(Application target, Application editedApplication) {
+        internshipBook.setApplication(target, editedApplication);
+    }
+
     //=========== Filtered Application List Accessors =============================================================
 
     /**

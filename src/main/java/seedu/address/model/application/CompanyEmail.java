@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents the company's email for an Application in the internship book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
- * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class CompanyEmail {
     private static final String SPECIAL_CHARACTERS = "+_.-";
@@ -45,7 +44,7 @@ public class CompanyEmail {
     }
 
     /**
-     * Returns if a given string is a valid email.
+     * Returns true if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
