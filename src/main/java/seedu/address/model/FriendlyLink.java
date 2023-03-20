@@ -11,6 +11,9 @@ import seedu.address.model.pair.UniquePairList;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.exceptions.ElderlyNotFoundException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
 
@@ -118,6 +121,14 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     //// person-level operations
 
     /**
+     * Returns true if an elderly with the same {@code nric} exists in the friendlyLink cache.
+     */
+    public boolean hasElderly(Nric nric) {
+        requireNonNull(nric);
+        return elderly.contains(nric);
+    }
+
+    /**
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendlyLink cache.
      *
      * @param e Elderly to be checked.
@@ -126,6 +137,14 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
     public boolean hasElderly(Elderly e) {
         requireNonNull(e);
         return elderly.contains(e);
+    }
+
+    /**
+     * Returns true if a volunteer with the same {@code nric} exists in the friendlyLink cache.
+     */
+    public boolean hasVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return volunteers.contains(nric);
     }
 
     /**
@@ -168,7 +187,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Elderly getElderly(Nric nric) {
         requireNonNull(nric);
-        return elderly.get(nric);
+        try {
+            return elderly.get(nric);
+        } catch (PersonNotFoundException e) {
+            throw new ElderlyNotFoundException();
+        }
     }
 
     /**
@@ -180,7 +203,11 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      */
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
-        return volunteers.get(nric);
+        try {
+            return volunteers.get(nric);
+        } catch (PersonNotFoundException e) {
+            throw new VolunteerNotFoundException();
+        }
     }
 
     /**

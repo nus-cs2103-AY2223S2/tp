@@ -111,6 +111,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasElderly(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.hasElderly(nric);
+    }
+
+    @Override
     public boolean hasElderly(Elderly elderly) {
         requireNonNull(elderly);
         return friendlyLink.hasElderly(elderly);
@@ -153,6 +159,12 @@ public class ModelManager implements Model {
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
         return friendlyLink.getVolunteer(nric);
+    }
+
+    @Override
+    public boolean hasVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.hasVolunteer(nric);
     }
 
     @Override
