@@ -13,8 +13,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.files.FilesManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TimeComparator;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -103,12 +105,19 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        FilesManager filesManager = new FilesManager(target);
+        filesManager.deleteAll();
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        FilesManager filesManager = new FilesManager(person);
+        filesManager.initFile();
+        //Path path = Paths.get("reports/" + person.getName().fullName + "/mc.pdf");
+        //PdfReader reader = new PdfReader(path);
+        //reader.displayPdf();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
