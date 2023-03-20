@@ -168,12 +168,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredContactList(Predicate<Contact> predicate) {
-        requireNonNull(predicate);
-        filteredContacts.setPredicate(predicate);
-    }
-
-    @Override
     public ReadOnlyContactList getContactList() {
         return contactList;
     }
