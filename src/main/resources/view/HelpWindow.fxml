@@ -50,6 +50,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -217,6 +218,30 @@
                                     <HBox.margin>
                                        <Insets />
                                     </HBox.margin>
+                                 </Text>
+                              </children>
+                              <GridPane.margin>
+                                 <Insets right="20.0" />
+                              </GridPane.margin>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #515658;" GridPane.rowIndex="7">
+                              <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete An Internship Entry">
+                                    <font>
+                                       <Font name="Segoe UI" size="14.0" />
+                                    </font>
+                                 </Text>
+                              </children>
+                              <GridPane.margin>
+                                 <Insets left="20.0" />
+                              </GridPane.margin>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #515658;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="delete INDEX">
+                                    <font>
+                                       <Font name="Segoe UI" size="14.0" />
+                                    </font>
                                  </Text>
                               </children>
                               <GridPane.margin>
