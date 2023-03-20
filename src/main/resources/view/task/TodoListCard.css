@@ -31,4 +31,5 @@
 
 #cardPane : hover {
     -fx-background-color: #983138;
+    -fx-background-radius: 8;
 }

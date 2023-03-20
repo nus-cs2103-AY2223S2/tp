@@ -40,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private TodoListPanel todoListPanel;
     private NoteListPanel noteListPanel;
     private MixedPanel mixedPanel;
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -130,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -208,6 +209,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             changePanelPlaceholder(this, commandResult.getType());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            commandBox.clearCommandTextField();
             ResultDialog.displayResultDialog(commandResult.getFeedbackToUser(), primaryStage);
 
             if (commandResult.isShowHelp()) {
