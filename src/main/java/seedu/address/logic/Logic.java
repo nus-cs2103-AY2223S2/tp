@@ -10,7 +10,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
-import seedu.address.model.person.Person;
 
 /**
  * API of the Logic component
@@ -26,14 +25,12 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
-     * @see seedu.address.model.Model#getAddressBook()
+     * Returns the ExpenseTracker.
+     * @see seedu.address.model.Model#getExpenseTracker()
      */
     ReadOnlyExpenseTracker getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
+    /** Returns an unmodifiable view of the list of categories */
     ObservableList<Category> getFilteredCategoryList();
 
     /** Returns an unmodifiable view of the filtered list of expenses */

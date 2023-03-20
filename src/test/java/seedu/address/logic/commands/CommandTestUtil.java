@@ -10,15 +10,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExpenseTracker;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.expense.Expense;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -109,27 +107,28 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        ExpenseTracker expectedAddressBook = new ExpenseTracker(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        ExpenseTracker expectedExpenseTracker = new ExpenseTracker(actualModel.getExpenseTracker());
+        List<Expense> expectedFilteredList = new ArrayList<>(actualModel.getFilteredExpenseList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedExpenseTracker, actualModel.getExpenseTracker());
+        assertEquals(expectedFilteredList, actualModel.getFilteredExpenseList());
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given
+     * Updates {@code model}'s filtered list to show only the expense at the given
      * {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s ExpenseTracker.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showExpenseAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenseList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Expense expense = model.getFilteredExpenseList().get(targetIndex.getZeroBased());
+        final String name = expense.getName();
+        //TODO update predicates here when created
+        //model.updateFilteredExpensesList(new NameContainsKeywordsPredicate(Arrays.asList(name)));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredExpenseList().size());
     }
 
 }

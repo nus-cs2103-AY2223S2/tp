@@ -79,6 +79,14 @@ public class ExpenseList implements Iterable<Expense> {
         return this.internalListOfExpenses.equals(otherInUniqueList.internalListOfExpenses);
     }
 
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean contains(Expense toCheck) {
+        requireNonNull(toCheck);
+        return internalListOfExpenses.stream().anyMatch(toCheck::isSameExpense);
+    }
+
     @Override
     public int hashCode() {
         return internalListOfExpenses.hashCode();
