@@ -19,6 +19,7 @@ Class Email
 Class Name
 Class Github
 Class Skill
+Class Module
 
 }
 
@@ -41,6 +42,7 @@ Person *--> Github
 Person *--> Email
 Person *--> Linkedin
 Person *--> "*" Skill
+Person *--> "*" Module
 
 Name -[hidden]right-> Github
 Github -[hidden]right-> Linkedin
