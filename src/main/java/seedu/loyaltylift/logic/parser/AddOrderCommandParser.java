@@ -2,20 +2,18 @@ package seedu.loyaltylift.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.loyaltylift.logic.commands.AddOrderCommand.MESSAGE_USAGE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.loyaltylift.model.order.Status.PENDING;
 
 import java.util.stream.Stream;
 
 import seedu.loyaltylift.commons.core.index.Index;
 import seedu.loyaltylift.logic.commands.AddOrderCommand;
+import seedu.loyaltylift.logic.commands.AddOrderCommand.AddOrderDescriptor;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
-import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
-import seedu.loyaltylift.model.order.Order;
-import seedu.loyaltylift.model.order.Quantity;
 
 /**
  * Parses input arguments and creates a new AddOrderCommand object
@@ -31,32 +29,26 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
                 PREFIX_QUANTITY, PREFIX_ADDRESS);
-        Quantity quantity;
-        Address address;
         Index customerIndex;
+        Name orderName;
 
         try {
             customerIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            orderName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-
+        AddOrderDescriptor addOrderDescriptor = new AddOrderDescriptor();
+        addOrderDescriptor.setName(orderName);
         if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
-            quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
-        } else {
-            quantity = new Quantity(1);
+            addOrderDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        } else {
-            address = ParserUtil.parseAddress("NOT IMPLEMENTED");
-            //retrieve address from tagged customer
+            addOrderDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        Order order = new Order(name, quantity, PENDING, address);
-        return new AddOrderCommand(order);
+        return new AddOrderCommand(customerIndex, addOrderDescriptor);
     }
 
     /**
