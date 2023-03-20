@@ -8,6 +8,8 @@ import static seedu.socket.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.socket.model.person.tag.Language;
+
 class LanguageTest {
     private static final Language AMY_LANGUAGE = new Language(VALID_LANGUAGE_PYTHON);
     private static final Language BOB_LANGUAGE = new Language(VALID_LANGUAGE_CPLUSPLUS);

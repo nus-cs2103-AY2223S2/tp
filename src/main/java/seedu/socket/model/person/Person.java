@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.Tag;
+import seedu.socket.model.person.tag.Language;
+import seedu.socket.model.person.tag.Tag;
 
 /**
  * Represents a {@code Person} in SOCket.
@@ -179,6 +179,7 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         return builder.toString();
     }
 }

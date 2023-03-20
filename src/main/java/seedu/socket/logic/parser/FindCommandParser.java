@@ -14,7 +14,7 @@ import java.util.List;
 import seedu.socket.commons.util.StringUtil;
 import seedu.socket.logic.commands.FindCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
-import seedu.socket.model.person.predicate.PersonContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -51,8 +51,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> tagArguments = StringUtil.convertArgumentsIntoList(
                 argMultimap.getValue(PREFIX_TAG).orElse(""));
 
-        PersonContainsKeywordsPredicate personPredicate =
-                new PersonContainsKeywordsPredicate(nameArguments,
+        FindCommandPersonPredicate personPredicate =
+                new FindCommandPersonPredicate(nameArguments,
                 profileArguments,
                 phoneArguments,
                 emailArguments,

@@ -9,10 +9,10 @@ import seedu.socket.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Email} matches any of the keywords given.
  */
-public class EmailContainsKeywordsPredicate implements Predicate<Person> {
+public class FindCommandEmailPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public EmailContainsKeywordsPredicate(List<String> keywords) {
+    public FindCommandEmailPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -25,8 +25,8 @@ public class EmailContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EmailContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((EmailContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof FindCommandEmailPredicate // instanceof handles nulls
+                && keywords.equals(((FindCommandEmailPredicate) other).keywords)); // state check
     }
 
 }

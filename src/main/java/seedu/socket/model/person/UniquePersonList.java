@@ -55,6 +55,19 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Gets a person matching the given person from the list.
+     * The person must already exist in the list.
+     */
+    public Person getPerson(Person toMatch) {
+        requireNonNull(toMatch);
+        int index = internalList.indexOf(toMatch);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+        return internalList.get(index);
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.

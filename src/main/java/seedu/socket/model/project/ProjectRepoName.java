@@ -8,14 +8,15 @@ import static seedu.socket.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; s valid as declared n {@link #isValidProjectRepoName(String)}
  */
 public class ProjectRepoName {
-    /** As specified in form validation on <a href="https://github.com/join">Join GitHub</a> */
+    /** As tested in form validation on <a href="https://github.com/new">Create a New Repository</a> */
     public static final String MESSAGE_CONSTRAINTS =
-        "Repo name may only contain alphanumeric characters or single hyphens, cannot begin or end with a "
-            + "hyphen, and may not exceed 39 characters.";
+        "Repository name may only contain alphanumeric characters, periods, hyphens, or underscores, "
+            + "and may not exceed 100 characters.";
     /**
-     * May only contain alphanumeric characters or single hyphens. May be empty.
+     * May only contain alphanumeric characters, periods, hyphens, or underscores. Maximum 100 characters.
+     * May be empty.
      */
-    public static final String VALIDATION_REGEX = "^(?=.{1,39}$)(?!-)(?!.*--)[-a-zA-Z0-9]+(?<!-)$|^$";
+    public static final String VALIDATION_REGEX = "^(?=.{1,100}$)(?!^\\.$)(?!^\\.\\.$)[-_.a-zA-Z0-9]+$|^$";
 
     public final String value;
 

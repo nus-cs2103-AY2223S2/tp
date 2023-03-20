@@ -45,14 +45,14 @@ public class JsonSocketStorage implements SocketStorage {
     public Optional<ReadOnlySocket> readSocket(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableSocket> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableSocket> jsonSocket = JsonUtil.readJsonFile(
                 filePath, JsonSerializableSocket.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonSocket.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonSocket.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

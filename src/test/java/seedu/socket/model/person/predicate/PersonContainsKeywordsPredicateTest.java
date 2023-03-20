@@ -16,7 +16,7 @@ public class PersonContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PersonContainsKeywordsPredicate firstPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate firstPersonPredicate = new FindCommandPersonPredicate(
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
@@ -24,7 +24,7 @@ public class PersonContainsKeywordsPredicateTest {
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
                         firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondNamePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondNamePersonPredicate = new FindCommandPersonPredicate(
                 secondPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -32,7 +32,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondProfilePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondProfilePersonPredicate = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 secondPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -40,7 +40,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondPhonePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondPhonePersonPredicate = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList,
@@ -48,7 +48,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondEmailPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondEmailPersonPredicate = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -56,7 +56,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondAddressPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondAddressPersonPredicate = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -64,7 +64,7 @@ public class PersonContainsKeywordsPredicateTest {
                 secondPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondLanguagePersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondLanguagePersonPredicate = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -72,7 +72,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 secondPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondTagPersonPredicate = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondTagPersonPredicate = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -92,7 +92,7 @@ public class PersonContainsKeywordsPredicateTest {
         assertTrue(secondTagPersonPredicate.equals(secondTagPersonPredicate));
 
         // same values -> returns true
-        PersonContainsKeywordsPredicate firstPersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate firstPersonPredicateCopy = new FindCommandPersonPredicate(
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
@@ -100,7 +100,7 @@ public class PersonContainsKeywordsPredicateTest {
                         firstPredicateKeywordList,
                         firstPredicateKeywordList,
                         firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondNamePersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondNamePersonPredicateCopy = new FindCommandPersonPredicate(
                 secondPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -108,7 +108,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondProfilePersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondProfilePersonPredicateCopy = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 secondPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -116,7 +116,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondPhonePersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondPhonePersonPredicateCopy = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList,
@@ -124,7 +124,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondEmailPersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondEmailPersonPredicateCopy = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -132,7 +132,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondAddressPersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondAddressPersonPredicateCopy = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -140,7 +140,7 @@ public class PersonContainsKeywordsPredicateTest {
                 secondPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondLanguagePersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondLanguagePersonPredicateCopy = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
@@ -148,7 +148,7 @@ public class PersonContainsKeywordsPredicateTest {
                 firstPredicateKeywordList,
                 secondPredicateKeywordList,
                 firstPredicateKeywordList);
-        PersonContainsKeywordsPredicate secondTagPersonPredicateCopy = new PersonContainsKeywordsPredicate(
+        FindCommandPersonPredicate secondTagPersonPredicateCopy = new FindCommandPersonPredicate(
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,
                 firstPredicateKeywordList,

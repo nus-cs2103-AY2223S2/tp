@@ -14,8 +14,8 @@ import seedu.socket.logic.commands.AddCommand;
 import seedu.socket.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.socket.logic.commands.RemoveCommand.RemovePersonDescriptor;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.Tag;
+import seedu.socket.model.person.tag.Language;
+import seedu.socket.model.person.tag.Tag;
 
 /**
  * A utility class for Person.
