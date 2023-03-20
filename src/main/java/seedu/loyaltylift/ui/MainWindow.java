@@ -250,7 +250,8 @@ public class MainWindow extends UiPart<Stage> {
     private void showCustomerInfo(Customer customer) {
         infoPane.getChildren().clear();
 
-        CustomerInfo customerInfo = new CustomerInfo(customer);
+        logic.updateFilteredCustomerOrderList(customer);
+        CustomerInfo customerInfo = new CustomerInfo(customer, logic.getFilteredCustomerOrderList());
         infoPane.getChildren().add(customerInfo.getRoot());
     }
 

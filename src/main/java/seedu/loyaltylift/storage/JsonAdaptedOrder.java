@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
+import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
@@ -19,8 +21,10 @@ import seedu.loyaltylift.model.order.Status;
  */
 public class JsonAdaptedOrder {
 
+    public static final String CUSTOMER_ID_MESSAGE_FIELD = "Customer ID";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
 
+    private final String customerId;
     private final String name;
     private final Integer quantity;
     private final String status;
@@ -31,9 +35,11 @@ public class JsonAdaptedOrder {
      * Constructs a {@code JsonAdaptedOrder} with the given order details.
      */
     @JsonCreator
-    public JsonAdaptedOrder(@JsonProperty("name") String name, @JsonProperty("phone") Integer quantity,
+    public JsonAdaptedOrder(@JsonProperty("customerId") String customerId,
+                            @JsonProperty("name") String name, @JsonProperty("phone") Integer quantity,
                             @JsonProperty("email") String status, @JsonProperty("address") String address,
                             @JsonProperty("createdDate") String createdDate) {
+        this.customerId = customerId;
         this.name = name;
         this.quantity = quantity;
         this.status = status;
@@ -45,6 +51,7 @@ public class JsonAdaptedOrder {
      * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order source) {
+        customerId = source.getCustomer().getUid();
         name = source.getName().fullName;
         quantity = source.getQuantity().value;
         status = source.getStatus().toString().toUpperCase();
@@ -57,7 +64,12 @@ public class JsonAdaptedOrder {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
-    public Order toModelType() throws IllegalValueException {
+    public Order toModelType(AddressBook addressBook) throws IllegalValueException {
+        if (customerId == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD));
+        }
+        Customer customer = addressBook.getCustomer(customerId);
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -105,6 +117,6 @@ public class JsonAdaptedOrder {
         }
         final CreatedDate modelCreatedDate = new CreatedDate(dateObject);
 
-        return new Order(modelName, modelQuantity, modelStatus, modelAddress, modelCreatedDate);
+        return new Order(customer, modelName, modelQuantity, modelStatus, modelAddress, modelCreatedDate);
     }
 }

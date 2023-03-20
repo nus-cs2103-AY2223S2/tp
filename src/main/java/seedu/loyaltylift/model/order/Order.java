@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
+import seedu.loyaltylift.model.customer.Customer;
 
 /**
  * Represents an Order in the address book.
@@ -14,6 +15,7 @@ import seedu.loyaltylift.model.attribute.Name;
  */
 public class Order {
 
+    private final Customer customer;
     private final Name name;
     private final Quantity quantity;
     private final Status status;
@@ -23,20 +25,26 @@ public class Order {
     /**
      * Order constructor with created date set to today.
      */
-    public Order(Name name, Quantity quantity, Status status, Address address) {
-        this(name, quantity, status, address, new CreatedDate(LocalDate.now()));
+    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address) {
+        this(customer, name, quantity, status, address, new CreatedDate(LocalDate.now()));
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Quantity quantity, Status status, Address address, CreatedDate createdDate) {
-        requireAllNonNull(name, quantity, status, address, createdDate);
+    public Order(Customer customer, Name name, Quantity quantity, Status status, Address address,
+                 CreatedDate createdDate) {
+        requireAllNonNull(customer, name, quantity, status, address, createdDate);
+        this.customer = customer;
         this.name = name;
         this.quantity = quantity;
         this.status = status;
         this.address = address;
         this.createdDate = createdDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
     }
 
     public Name getName() {
@@ -57,6 +65,15 @@ public class Order {
 
     public CreatedDate getCreatedDate() {
         return createdDate;
+    }
+
+    /**
+     * Returns a new {@code Order} with its customer association to the specified customer.
+     * @param customer The new customer associated to.
+     * @return A new Order instance.
+     */
+    public Order newOrderWithCustomer(Customer customer) {
+        return new Order(customer, getName(), getQuantity(), getStatus(), getAddress(), getCreatedDate());
     }
 
     /**
@@ -81,23 +98,26 @@ public class Order {
             return false;
         }
 
-        Order otherPerson = (Order) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getQuantity().equals(getQuantity())
-                && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getCreatedDate().equals(getCreatedDate());
+        Order otherOrder = (Order) other;
+        return otherOrder.getCustomer().equals(getCustomer())
+                && otherOrder.getName().equals(getName())
+                && otherOrder.getQuantity().equals(getQuantity())
+                && otherOrder.getStatus().equals(getStatus())
+                && otherOrder.getAddress().equals(getAddress())
+                && otherOrder.getCreatedDate().equals(getCreatedDate())
+                && otherOrder.customer.equals(getCustomer());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, quantity, status, address, createdDate);
+        return Objects.hash(customer, name, quantity, status, address, createdDate);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(String.format("[%s]", customer.getName()))
+                .append(getName())
                 .append("; Quantity: ")
                 .append(getQuantity())
                 .append("; Status: ")

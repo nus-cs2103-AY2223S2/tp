@@ -2,6 +2,7 @@ package seedu.loyaltylift.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,6 +74,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// customer-level operations
 
     /**
+     * Returns {@code customer} if a customer exists in the address book with its uid.
+     */
+    public Customer getCustomer(String customerUid) {
+        requireNonNull(customerUid);
+        return customers.getCustomer(customerUid);
+    }
+
+    /**
      * Returns true if a customer with the same identity as {@code customer} exists in the address book.
      */
     public boolean hasCustomer(Customer customer) {
@@ -98,6 +107,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedCustomer);
 
         customers.setCustomer(target, editedCustomer);
+
+        // update orders associated to the customer
+        ArrayList<Order> ordersToUpdate = new ArrayList<>();
+        orders.forEach(o -> {
+            if (o.getCustomer().equals(target)) {
+                ordersToUpdate.add(o);
+            }
+        });
+        ordersToUpdate.forEach(o -> orders.setOrder(o, o.newOrderWithCustomer(editedCustomer)));
     }
 
     /**
@@ -106,6 +124,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeCustomer(Customer key) {
         customers.remove(key);
+
+        // remove orders associated to the customer
+        ArrayList<Order> ordersToRemove = new ArrayList<>();
+        orders.forEach(o -> {
+            if (o.getCustomer().equals(key)) {
+                ordersToRemove.add(o);
+            }
+        });
+        ordersToRemove.forEach(orders::remove);
     }
 
     //// order-level operations

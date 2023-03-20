@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.commons.util.JsonUtil;
 import seedu.loyaltylift.model.AddressBook;
+import seedu.loyaltylift.model.customer.exceptions.CustomerNotFoundException;
 import seedu.loyaltylift.testutil.TypicalAddressBook;
 
 public class JsonSerializableAddressBookTest {
@@ -19,6 +20,7 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_CUSTOMERS_FILE = TEST_DATA_FOLDER.resolve("typicalCustomersAddressBook.json");
     private static final Path INVALID_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("invalidCustomerAddressBook.json");
     private static final Path DUPLICATE_CUSTOMER_FILE = TEST_DATA_FOLDER.resolve("duplicateCustomerAddressBook.json");
+    private static final Path CUSTOMER_NOT_FOUND_FILE = TEST_DATA_FOLDER.resolve("customerNotFoundAddressBook.json");
 
     @Test
     public void toModelType_typicalCustomersFile_success() throws Exception {
@@ -42,6 +44,13 @@ public class JsonSerializableAddressBookTest {
                 JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_CUSTOMER,
                 dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_noSuchCustomer_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(CUSTOMER_NOT_FOUND_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(CustomerNotFoundException.class, dataFromFile::toModelType);
     }
 
 }

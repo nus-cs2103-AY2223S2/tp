@@ -9,6 +9,7 @@ import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
 import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_A;
+import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_B;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -92,6 +93,27 @@ public class AddressBookTest {
     @Test
     public void getCustomerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getCustomerList().remove(0));
+    }
+
+    @Test
+    public void setCustomer_ordersAssociationUpdated_success() {
+        addressBook.addCustomer(ALICE);
+        addressBook.addOrder(ORDER_A); // belongs to ALICE
+        addressBook.addOrder(ORDER_B); // belongs to ALICE
+
+        Customer newAlice = new CustomerBuilder(ALICE).withEmail("anotheralice@gmail.com").build();
+        addressBook.setCustomer(ALICE, newAlice);
+        assertTrue(addressBook.getOrderList().stream().allMatch(o -> o.getCustomer().equals(newAlice)));
+    }
+
+    @Test
+    public void deleteCustomer_ordersRemoved_success() {
+        addressBook.addCustomer(ALICE);
+        addressBook.addOrder(ORDER_A); // belongs to ALICE
+        addressBook.addOrder(ORDER_B); // belongs to ALICE
+
+        addressBook.removeCustomer(ALICE);
+        assertEquals(0, addressBook.getOrderList().size());
     }
 
     /**

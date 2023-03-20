@@ -5,6 +5,7 @@ import static seedu.loyaltylift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -78,6 +79,20 @@ public class UniqueCustomerList implements Iterable<Customer> {
         if (!internalList.remove(toRemove)) {
             throw new CustomerNotFoundException();
         }
+    }
+
+    public Customer getCustomer(String customerUid) {
+        requireNonNull(customerUid);
+
+        List<Customer> customers = internalList.stream()
+                .filter(c -> c.getUid().equals(customerUid))
+                .collect(Collectors.toList());
+        if (customers.size() > 1) {
+            throw new DuplicateCustomerException();
+        } else if (customers.size() == 0) {
+            throw new CustomerNotFoundException();
+        }
+        return customers.get(0);
     }
 
     public void setCustomers(UniqueCustomerList replacement) {

@@ -180,6 +180,16 @@ public class AddCustomerCommandTest {
         public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Order> getFilteredCustomerOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredCustomerOrderList(Customer customer) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -1,0 +1,35 @@
+.base {
+    -fx-padding: 0;
+}
+
+#orderListView {
+    -fx-control-inner-background-alt: -fx-control-inner-background;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+    -fx-border-color: #D9D9D9;
+    -fx-border-width: 0 0 1 0;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: white;
+}
+
+.list-cell .label {
+    -fx-text-fill: black;
+}
+
+.list-cell:hover .header-label {
+    -fx-text-fill: #4F46E5;
+}
+
+.list-cell:empty {
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+}

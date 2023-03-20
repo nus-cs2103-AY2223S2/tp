@@ -61,7 +61,7 @@ class JsonSerializableAddressBook {
             addressBook.addCustomer(customer);
         }
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
-            Order order = jsonAdaptedOrder.toModelType();
+            Order order = jsonAdaptedOrder.toModelType(addressBook);
             if (addressBook.hasOrder(order)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
             }

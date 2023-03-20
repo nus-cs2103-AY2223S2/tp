@@ -116,6 +116,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredCustomerOrderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(
+                UnsupportedOperationException.class, () -> modelManager.getFilteredCustomerOrderList().remove(0));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withCustomer(ALICE).withCustomer(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
