@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.function.Predicate;
@@ -27,7 +28,11 @@ public class StartTimeWithinDaysPredicate implements Predicate<Event> {
         if (isStartTimeBeforeNow) {
             return false;
         }
-        long fullDaysBetween = timeNow.until(eventStartTime, ChronoUnit.DAYS);
+
+        LocalDate dateNow = timeNow.toLocalDate();
+        LocalDate eventStartDate = eventStartTime.toLocalDate();
+
+        long fullDaysBetween = ChronoUnit.DAYS.between(dateNow, eventStartDate);
         return fullDaysBetween <= days;
     }
 

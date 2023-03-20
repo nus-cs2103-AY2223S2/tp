@@ -3,9 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.time.LocalDateTime;
-import java.time.Month;
+import static seedu.address.testutil.TypicalLocalDateTimes.TIME_NOW;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,10 +12,8 @@ import seedu.address.model.event.StartTimeWithinDaysPredicate;
 
 public class RemindCommandParserTest {
 
-    // March 1 2023, 00:00
-    private LocalDateTime timeNow = LocalDateTime.of(
-            2023, Month.MARCH, 1, 0, 0);
-    private RemindCommandParser parser = new RemindCommandParser(timeNow);
+
+    private RemindCommandParser parser = new RemindCommandParser(TIME_NOW);
 
     @Test
     public void parse_emptyArg_throwsParseException() {
@@ -29,7 +25,7 @@ public class RemindCommandParserTest {
     public void parse_validArgs_returnsRemindCommand() {
         // no leading and trailing whitespaces
         RemindCommand expectedRemindCommand =
-                new RemindCommand(new StartTimeWithinDaysPredicate(timeNow, 3));
+                new RemindCommand(new StartTimeWithinDaysPredicate(TIME_NOW, 3));
         assertParseSuccess(parser, "3", expectedRemindCommand);
     }
 
