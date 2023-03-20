@@ -25,6 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    private static Text title = new Text("PowerCard");
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -121,8 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        Text text = new Text("PowerCard");
-        titlePanel.getChildren().add(text);
+        titlePanel.getChildren().add(title);
 
         personListPanel = new PersonListPanel(logic.getFilteredCardList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

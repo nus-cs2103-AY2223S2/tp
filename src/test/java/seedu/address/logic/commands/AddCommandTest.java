@@ -189,6 +189,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public void moveCards(Deck oldDeck, Deck newDeck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
         @Override
         public void deleteDeck(Deck key) {
             throw new AssertionError("This method should not be called.");

@@ -96,6 +96,7 @@ public interface Model {
 
 
     /* NEWLY ADDED COMMANDS TO SUPPORT DECK LIST (NOT IN AB3) */
+
     void updateFilteredDeckList(Predicate<Deck> predicate);
 
     /** Returns the deck */
@@ -107,12 +108,21 @@ public interface Model {
      * Returns true if a deck with the same name as {@code deck} exists.
      */
     boolean hasDeck(Deck deck);
+
     /**
      * Replaces the given deck {@code target} with {@code editedDeck}.
      * {@code target} must exist.
      * The deck name of {@code editedDeck} must not be the same as another existing deck.
      */
     void setDeck(Deck target, Deck editedDeck);
+
+    /**
+     * Changes the association of all the cards from the old deck to the new deck.
+     *
+     * @param oldDeck The deck which cards are currently associated with.
+     * @param newDeck The deck which cards are to be associated with.
+     */
+    void moveCards(Deck oldDeck, Deck newDeck);
 
     void deleteDeck(Deck key);
 
