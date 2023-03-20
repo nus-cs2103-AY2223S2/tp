@@ -11,7 +11,7 @@ public class ProjectRepoName {
     /** As tested in form validation on <a href="https://github.com/new">Create a New Repository</a> */
     public static final String MESSAGE_CONSTRAINTS =
         "Repository name may only contain alphanumeric characters, periods, hyphens, or underscores, "
-            + "and may not exceed 100 characters.";
+            + "and may not exceed 100 characters";
     /**
      * May only contain alphanumeric characters, periods, hyphens, or underscores. Maximum 100 characters.
      * May be empty.
