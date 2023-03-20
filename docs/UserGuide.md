@@ -205,7 +205,7 @@ Creates either an isolated or weekly recurring event.
 #### 1) Isolated event: `event_create`
 Format: `event_create INDEX ie/EVENT_NAME f/START_DATE t/END_DATE`
 
-* `INDEX` refer to the person index where the recurring event will be added to
+* `INDEX` refers to the index of the person whose isolated event list will be added with the given isolated event
 * Creates an event with the specified name `EVENT_NAME` using the flag `ie/` which stands for Isolated event
 * The flags `f/` represent the word __from__ and `t/` represents the word __to__
 * The format of both `START_DATE` and `END_DATE` would be in `dd/MM/yyyy HH:mm`
@@ -217,7 +217,7 @@ Examples:
 #### 2) Weekly Recurring Event `event_create_recur`
 Format: `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`
 
-* `INDEX` refer to the person index where the recurring event will be added to
+* `INDEX` refers to the index of the person whose recurring event list will be added with the given recurring event
 * Creates a recurring event with the specified name `EVENT_NAME` using the flag `re` which stands for Recurring event
 * The flag `d` represents the day of the week
 * The remaining flags `f/` represent the word __from__ and `t/` represents the word __to__
@@ -234,10 +234,10 @@ Delete either an isolated or a weekly recurring event
 
 Deletes an existing isolated event from person's isolated event list in the address book.
 
-Format: `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]}`
+Format: `ie_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`
 
 * Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
-* Both person and event index and cannot be empty and must be an existing person and index
+* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
 
 Examples:
 * `ie_delete 1 1`
@@ -248,7 +248,7 @@ Deletes a recurring event from a person's recurring event list in the address bo
 Format: `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`
 
 * Deletes an event with the specified event index `INDEX_OF_EVENT` from the specified person index `INDEX_OF_PERSON`
-* Both person and event index and cannot be empty and must be an existing person and index
+* Both `INDEX_OF_PERSON` and `INDEX_OF_EVENT` and cannot be empty and must be an existing person and index
 
 Examples:
 * `re_delete 1 1`
