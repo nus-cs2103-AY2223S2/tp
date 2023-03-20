@@ -7,7 +7,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
 /**
- * Format full help instructions for every command for display.
+ * Displays the help window.
  */
 public class HelpCommand extends Command {
 

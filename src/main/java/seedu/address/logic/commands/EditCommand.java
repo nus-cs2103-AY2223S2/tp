@@ -15,6 +15,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -27,7 +28,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
-
 
 /**
  * Edits the details of an existing elderly or volunteer in FriendlyLink.
@@ -61,7 +61,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_AGE + "AGE] "
-            + "[" + PREFIX_REGION + "NEW_REGION] "
+            + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " S4263131J "
@@ -73,8 +73,10 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param nric of the person in volunteer or elderly list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * Creates an {@code EditCommand} to edit a person.
+     *
+     * @param nric Of the person in volunteer or elderly list to edit.
+     * @param editPersonDescriptor Details to edit the person with.
      */
     public EditCommand(Nric nric, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(nric);
@@ -85,46 +87,54 @@ public class EditCommand extends Command {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new CommandException(Messages.MESSAGE_NOT_EDITED);
         }
-
         requireNonNull(model);
 
-        Elderly elderlyToEdit = model.getElderly(nric);
-        Volunteer volunteerToEdit = model.getVolunteer(nric);
-        if (volunteerToEdit == null && elderlyToEdit == null) {
+        if (model.hasElderly(nric)) {
+            return editElderly(model);
+        } else if (model.hasVolunteer(nric)) {
+            return editVolunteer(model);
+        } else {
             throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
         }
-        if (elderlyToEdit != null) {
-            Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(
-                    elderlyToEdit,
-                    editPersonDescriptor
-            );
-            if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
-                throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
-            }
+    }
 
-            model.setElderly(elderlyToEdit, editedElderly);
-            model.updateFilteredElderlyList((Predicate<Elderly>) PREDICATE_SHOW_ALL);
-            return new CommandResult(String.format(
-                    EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
+    private CommandResult editElderly(Model model) throws CommandException {
+        Elderly elderlyToEdit = model.getElderly(nric);
+        Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(
+                elderlyToEdit, editPersonDescriptor);
+        if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
         }
+
+        model.setElderly(elderlyToEdit, editedElderly);
+
+        @SuppressWarnings("unchecked")
+        Predicate<Elderly> predicate = (Predicate<Elderly>) PREDICATE_SHOW_ALL;
+        model.updateFilteredElderlyList(predicate);
+        return new CommandResult(String.format(
+                EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly));
+    }
+
+    private CommandResult editVolunteer(Model model) throws CommandException {
+        Volunteer volunteerToEdit = model.getVolunteer(nric);
         Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(
-                volunteerToEdit,
-                editPersonDescriptor
-        );
+                volunteerToEdit, editPersonDescriptor);
         if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_VOLUNTEER);
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);
-        model.updateFilteredVolunteerList((Predicate<Volunteer>) PREDICATE_SHOW_ALL);
+        @SuppressWarnings("unchecked")
+        Predicate<Volunteer> predicate = (Predicate<Volunteer>) PREDICATE_SHOW_ALL;
+        model.updateFilteredVolunteerList(predicate);
         return new CommandResult(String.format(
                 EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
+
 
     @Override
     public boolean equals(Object other) {
@@ -142,5 +152,10 @@ public class EditCommand extends Command {
         EditCommand e = (EditCommand) other;
         return nric.equals(e.nric)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nric, editPersonDescriptor);
     }
 }

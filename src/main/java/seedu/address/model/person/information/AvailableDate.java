@@ -1,14 +1,14 @@
 package seedu.address.model.person.information;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 /**
- * Represents the availability dates for a person.
+ * Represents the availability dates for a person in FriendlyLink.
  * Guarantees: immutable;
  */
 public class AvailableDate {
@@ -22,13 +22,13 @@ public class AvailableDate {
     private final LocalDate endDate;
 
     /**
-     * Initializes the AvailableDate constructor
+     * Initializes the AvailableDate constructor.
      *
-     * @param startDate starting date
-     * @param endDate ending date
+     * @param startDate Starting date.
+     * @param endDate Ending date.
      */
     public AvailableDate(String startDate, String endDate) {
-        requireNonNull(startDate, endDate);
+        requireAllNonNull(startDate, endDate);
         checkArgument(isValidDate(startDate, endDate), MESSAGE_CONSTRAINTS);
 
         try {
@@ -51,10 +51,23 @@ public class AvailableDate {
         return startDate;
     }
 
+    /**
+     * Returns true if a given strings is are valid dates.
+     *
+     * @param dates Dates to be tested.
+     * @return True if {@code dates} contain only valid dates and false otherwise.
+     */
     public static boolean isValidDate(String ...dates) {
         return Arrays.stream(dates).allMatch(date -> date.matches(VALIDATION_REGEX));
     }
 
+    /**
+     * Returns true if the date ranges intersect.
+     *
+     * @param ostartDate Other start date.
+     * @param oendDate Other end date.
+     * @return True if the date ranges intersect and false otherwise.
+     */
     public boolean isIntersect(LocalDate ostartDate, LocalDate oendDate) {
         return !endDate.isBefore(ostartDate) && !oendDate.isBefore(startDate);
     }

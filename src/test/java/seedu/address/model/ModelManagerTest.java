@@ -25,9 +25,9 @@ import seedu.address.model.pair.Pair;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.FriendlyLinkBuilder;
 import seedu.address.testutil.ModelManagerBuilder;
-import seedu.address.testutil.TypicalElderly;
 
 public class ModelManagerTest {
 
@@ -108,13 +108,40 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasElderly_nullElderly_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasElderly(null));
+    public void hasElderly_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasElderly((Nric) null));
+    }
+
+    @Test
+    public void hasVolunteer_nullNric_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasVolunteer((Nric) null));
+    }
+
+    @Test
+    public void hasElderly_nricNotInFriendlyLink_returnsFalse() {
+        assertFalse(modelManager.hasElderly(ALICE.getNric()));
+    }
+
+    @Test
+    public void hasVolunteer_nricNotInFriendlyLink_returnsFalse() {
+        assertFalse(modelManager.hasVolunteer(DANIEL.getNric()));
+    }
+
+    @Test
+    public void hasElderly_nricInFriendlyLink_returnsTrue() {
+        modelManager.addElderly(ALICE);
+        assertTrue(modelManager.hasElderly(ALICE.getNric()));
+    }
+
+    @Test
+    public void hasVolunteer_nricInFriendlyLink_returnsTrue() {
+        modelManager.addVolunteer(DANIEL);
+        assertTrue(modelManager.hasVolunteer(DANIEL.getNric()));
     }
 
     @Test
     public void hasVolunteer_nullVolunteer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasVolunteer(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasVolunteer((Volunteer) null));
     }
 
     @Test
@@ -129,8 +156,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasElderly_elderlyInFriendlyLink_returnsTrue() {
-        modelManager.addElderly(TypicalElderly.ALICE);
-        assertTrue(modelManager.hasElderly(TypicalElderly.ALICE));
+        modelManager.addElderly(ALICE);
+        assertTrue(modelManager.hasElderly(ALICE));
     }
 
     @Test

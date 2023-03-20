@@ -14,6 +14,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import java.util.Objects;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
@@ -68,7 +70,9 @@ public class AddVolunteerCommand extends Command {
     private final Volunteer toAdd;
 
     /**
-     * Creates an AddVolunteerCommand to add to the specified {@code volunteer}
+     * Creates an AddVolunteerCommand to add the specified {@code volunteer}
+     *
+     * @param volunteer Volunteer to add.
      */
     public AddVolunteerCommand(Volunteer volunteer) {
         requireNonNull(volunteer);
@@ -92,5 +96,10 @@ public class AddVolunteerCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddVolunteerCommand // instanceof handles nulls
                 && toAdd.equals(((AddVolunteerCommand) other).toAdd));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

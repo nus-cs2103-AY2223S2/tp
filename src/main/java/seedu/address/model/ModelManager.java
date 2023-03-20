@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -110,6 +111,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasElderly(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.hasElderly(nric);
+    }
+
+    @Override
     public boolean hasElderly(Elderly elderly) {
         requireNonNull(elderly);
         return friendlyLink.hasElderly(elderly);
@@ -152,6 +159,12 @@ public class ModelManager implements Model {
     public Volunteer getVolunteer(Nric nric) {
         requireNonNull(nric);
         return friendlyLink.getVolunteer(nric);
+    }
+
+    @Override
+    public boolean hasVolunteer(Nric nric) {
+        requireNonNull(nric);
+        return friendlyLink.hasVolunteer(nric);
     }
 
     @Override
@@ -302,4 +315,9 @@ public class ModelManager implements Model {
                 && filteredPairs.equals(other.filteredPairs);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(friendlyLink, userPrefs, filteredElderly,
+                filteredVolunteers, filteredPairs);
+    }
 }

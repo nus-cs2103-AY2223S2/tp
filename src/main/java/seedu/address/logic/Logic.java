@@ -13,13 +13,14 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
-     * @return the result of the command execution.
+     * @return The result of the command execution.
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
@@ -32,37 +33,59 @@ public interface Logic {
      */
     FriendlyLink getFriendlyLink();
 
-    /** Returns an unmodifiable view of the filtered list of elderly */
+    /**
+     * Returns an unmodifiable view of the filtered list of elderly.
+     *
+     * @return Filtered elderly list.
+     */
     ObservableList<Elderly> getFilteredElderlyList();
 
-    /** Returns an unmodifiable view of the filtered list of volunteers */
+    /**
+     * Returns an unmodifiable view of the filtered list of volunteers.
+     *
+     * @return Filtered volunteer list.
+     */
     ObservableList<Volunteer> getFilteredVolunteerList();
 
-    /** Returns an unmodifiable view of the filtered list of pairs */
+    /**
+     * Returns an unmodifiable view of the filtered list of pairs.
+     *
+     * @return Filtered pair list.
+     */
     ObservableList<Pair> getFilteredPairList();
 
     /**
      * Returns the user prefs' elderly file path.
+     *
+     * @return Elderly file path.
      */
     Path getElderlyFilePath();
 
     /**
      * Returns the user prefs' volunteer file path.
+     *
+     * @return Volunteer file path.
      */
     Path getVolunteerFilePath();
 
     /**
      * Returns the user prefs' pair file path.
+     *
+     * @return Pair file path.
      */
     Path getPairFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
+     *
+     * @return GUI settings.
      */
     GuiSettings getGuiSettings();
 
     /**
      * Set the user prefs' GUI settings.
+     *
+     * @param guiSettings GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 }

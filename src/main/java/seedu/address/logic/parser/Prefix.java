@@ -19,6 +19,7 @@ public class Prefix {
         return prefix;
     }
 
+    @Override
     public String toString() {
         return getPrefix();
     }
@@ -27,11 +28,6 @@ public class Prefix {
 //    public String getPrompt() {
 //        return compulsory ? prompt : "[" + prompt + "]";
 //    }
-
-    @Override
-    public int hashCode() {
-        return prefix == null ? 0 : prefix.hashCode();
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -46,4 +42,8 @@ public class Prefix {
         return otherPrefix.getPrefix().equals(getPrefix());
     }
 
+    @Override
+    public int hashCode() {
+        return prefix == null ? 0 : prefix.hashCode();
+    }
 }
