@@ -78,7 +78,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     private void intializeCommandInput() {
-        commandInput = new CommandInput(this);
+        commandInput = new CommandInput(this, logic);
         commandInput.getRoot().prefHeightProperty().bind(stageHeight.multiply(0.1));
 
         commandInputComponent.getChildren().add(commandInput.getRoot());

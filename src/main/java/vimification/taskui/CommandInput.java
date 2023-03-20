@@ -6,6 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import vimification.logic.Logic;
+import vimification.logic.commands.CommandException;
+import vimification.logic.parser.ParseException;
 
 /**
  *
@@ -14,10 +17,12 @@ public class CommandInput extends UiPart<TextField> {
 
     private static final String FXML = "CommandInput.fxml";
     private MainScreen parent;
+    private Logic logic;
 
-    public CommandInput(MainScreen parent) {
+    public CommandInput(MainScreen parent, Logic logic) {
         super(FXML);
         this.parent = parent;
+        this.logic = logic;
     }
 
     /**
@@ -57,6 +62,14 @@ public class CommandInput extends UiPart<TextField> {
 
     private void executeCommand(String commandString) {
         System.out.println("Your command is " + commandString);
+
+        try {
+            logic.execute(commandString);
+        } catch (CommandException e) {
+            // TODO : Load Error message at the bottom components
+        } catch (ParseException e) {
+            // TODO : Load Error message at the bottom components
+        }
 
         // TODO: Remove dummy parser after Viet Anh pushes new parser
         String index = (commandString.split(":"))[1];
