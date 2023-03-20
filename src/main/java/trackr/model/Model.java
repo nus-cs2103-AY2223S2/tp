@@ -74,11 +74,6 @@ public interface Model {
     // =================================================== Supplier ===================================================
 
     /**
-     * Replaces supplier list data with the data in {@code supplierList}.
-     */
-    void setSupplierList(ReadOnlySupplierList supplierList);
-
-    /**
      * Returns the SupplierList
      */
     ReadOnlySupplierList getSupplierList();
@@ -98,11 +93,6 @@ public interface Model {
     // ===================================================== Task =====================================================
 
     /**
-     * Replaces task list data with the data in {@code taskList}.
-     */
-    void setTaskList(ReadOnlyTaskList taskList);
-
-    /**
      * Returns the TaskList
      */
     ReadOnlyTaskList getTaskList();
@@ -120,11 +110,6 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     // ================================================= Order =================================================
-
-    /**
-     * Replaces order list data with the data in {@code orderList}.
-     */
-    void setOrderList(ReadOnlyOrderList orderList);
 
     /**
      * Returns the OrderList

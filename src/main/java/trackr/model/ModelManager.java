@@ -238,11 +238,6 @@ public class ModelManager implements Model {
     //=========== AddressBook - Supplier ==============================================================================
 
     @Override
-    public void setSupplierList(ReadOnlySupplierList supplierList) {
-        this.supplierList.resetData(supplierList);
-    }
-
-    @Override
     public ReadOnlySupplierList getSupplierList() {
         return supplierList;
     }
@@ -267,11 +262,6 @@ public class ModelManager implements Model {
     //=========== TaskList ===================================================================================
 
     @Override
-    public void setTaskList(ReadOnlyTaskList taskList) {
-        this.taskList.resetData(taskList);
-    }
-
-    @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
@@ -294,11 +284,6 @@ public class ModelManager implements Model {
     }
 
     //=========== OrderList ===================================================================================
-
-    @Override
-    public void setOrderList(ReadOnlyOrderList orderList) {
-        this.orderList.resetData(orderList);
-    }
 
     @Override
     public ReadOnlyOrderList getOrderList() {

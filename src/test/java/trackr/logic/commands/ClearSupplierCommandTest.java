@@ -11,7 +11,6 @@ import trackr.logic.commands.supplier.ClearSupplierCommand;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
-import trackr.model.SupplierList;
 import trackr.model.UserPrefs;
 
 public class ClearSupplierCommandTest {
@@ -33,7 +32,7 @@ public class ClearSupplierCommandTest {
                 getTypicalOrderList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalOrderList(), new UserPrefs());
-        expectedModel.setSupplierList(new SupplierList());
+        expectedModel.setItemList(ModelEnum.SUPPLIER);
 
         assertCommandSuccess(new ClearSupplierCommand(),
                 model,
