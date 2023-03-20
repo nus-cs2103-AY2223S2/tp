@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's instagram in the address book.
+ * Represents a Person's instagram in ConnectUS.
  * Guarantees: immutable; is valid as declared in {@link #isValid(String)}
  */
 public class Instagram {

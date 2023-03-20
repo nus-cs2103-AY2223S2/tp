@@ -20,7 +20,7 @@ import seedu.connectus.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ConnectUsParser {
 
     /**
      * Used for initial separation of command word and args.

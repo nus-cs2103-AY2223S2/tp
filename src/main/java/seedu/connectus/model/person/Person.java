@@ -13,7 +13,7 @@ import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the ConnectUS.
  * Guarantees: details are present and not null, field values are validated,
  * immutable.
  */

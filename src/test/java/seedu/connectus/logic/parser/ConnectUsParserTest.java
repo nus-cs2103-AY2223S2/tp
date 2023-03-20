@@ -29,9 +29,9 @@ import seedu.connectus.testutil.EditPersonDescriptorBuilder;
 import seedu.connectus.testutil.PersonBuilder;
 import seedu.connectus.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ConnectUsParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ConnectUsParser parser = new ConnectUsParser();
 
     @Test
     public void parseCommand_add() throws Exception {

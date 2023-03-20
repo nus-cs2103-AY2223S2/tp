@@ -8,7 +8,7 @@ import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.connectus.testutil.Assert.assertThrows;
 import static seedu.connectus.testutil.TypicalPersons.ALICE;
-import static seedu.connectus.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.connectus.testutil.TypicalPersons.getTypicalConnectUs;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,25 +23,25 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.exceptions.DuplicatePersonException;
 import seedu.connectus.testutil.PersonBuilder;
 
-public class AddressBookTest {
+public class ConnectUsTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ConnectUs connectUs = new ConnectUs();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), connectUs.getPersonList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> connectUs.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyConnectUs_replacesData() {
+        ConnectUs newData = getTypicalConnectUs();
+        connectUs.resetData(newData);
+        assertEquals(newData, connectUs);
     }
 
     @Test
@@ -50,47 +50,47 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .withModules(VALID_MODULE_CS2101).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        ConnectUsStub newData = new ConnectUsStub(newPersons);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePersonException.class, () -> connectUs.resetData(newData));
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> connectUs.hasPerson(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(ALICE));
+    public void hasPerson_personNotInConnectUs_returnsFalse() {
+        assertFalse(connectUs.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
-        assertTrue(addressBook.hasPerson(ALICE));
+    public void hasPerson_personInConnectUs_returnsTrue() {
+        connectUs.addPerson(ALICE);
+        assertTrue(connectUs.hasPerson(ALICE));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(ALICE);
+        connectUs.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .withModules(VALID_MODULE_CS2101).build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(connectUs.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> connectUs.getPersonList().remove(0));
     }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ConnectUsStub implements ReadOnlyConnectUs {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        ConnectUsStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

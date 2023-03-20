@@ -7,7 +7,7 @@ import seedu.connectus.commons.core.GuiSettings;
 import seedu.connectus.logic.commands.CommandResult;
 import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.logic.parser.exceptions.ParseException;
-import seedu.connectus.model.ReadOnlyAddressBook;
+import seedu.connectus.model.ReadOnlyConnectUs;
 import seedu.connectus.model.person.Person;
 
 /**
@@ -26,9 +26,9 @@ public interface Logic {
     /**
      * Returns the ConnectUS.
      *
-     * @see seedu.connectus.model.Model#getAddressBook()
+     * @see seedu.connectus.model.Model#getConnectUs()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyConnectUs getConnectUs();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getConnectUsFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

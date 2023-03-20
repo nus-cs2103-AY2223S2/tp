@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.connectus.model.AddressBook;
-import seedu.connectus.model.ReadOnlyAddressBook;
+import seedu.connectus.model.ConnectUs;
+import seedu.connectus.model.ReadOnlyConnectUs;
 import seedu.connectus.model.person.Address;
 import seedu.connectus.model.person.Birthday;
 import seedu.connectus.model.person.Email;
@@ -20,7 +20,7 @@ import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ConnectUS} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -82,8 +82,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyConnectUs getSampleConnectUs() {
+        ConnectUs sampleAb = new ConnectUs();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

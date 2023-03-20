@@ -15,15 +15,15 @@ import seedu.connectus.commons.util.ConfigUtil;
 import seedu.connectus.commons.util.StringUtil;
 import seedu.connectus.logic.Logic;
 import seedu.connectus.logic.LogicManager;
-import seedu.connectus.model.AddressBook;
+import seedu.connectus.model.ConnectUs;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.ModelManager;
-import seedu.connectus.model.ReadOnlyAddressBook;
+import seedu.connectus.model.ReadOnlyConnectUs;
 import seedu.connectus.model.ReadOnlyUserPrefs;
 import seedu.connectus.model.UserPrefs;
 import seedu.connectus.model.util.SampleDataUtil;
-import seedu.connectus.storage.AddressBookStorage;
-import seedu.connectus.storage.JsonAddressBookStorage;
+import seedu.connectus.storage.ConnectUsStorage;
+import seedu.connectus.storage.JsonConnectUsStorage;
 import seedu.connectus.storage.JsonUserPrefsStorage;
 import seedu.connectus.storage.Storage;
 import seedu.connectus.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ConnectUsStorage connectUsStorage = new JsonConnectUsStorage(userPrefs.getConnectUsFilePath());
+        storage = new StorageManager(connectUsStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s ConnectUS and {@code userPrefs}. <br>
+     * The data from the sample ConnectUS will be used instead if {@code storage}'s ConnectUS is not found,
+     * or an empty ConnectUS will be used instead if errors occur when reading {@code storage}'s ConnectUS.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyConnectUs> connectUsOptional;
+        ReadOnlyConnectUs initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            connectUsOptional = storage.readConnectUs();
+            if (!connectUsOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ConnectUS.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = connectUsOptional.orElseGet(SampleDataUtil::getSampleConnectUs);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ConnectUS.");
-            initialData = new AddressBook();
+            initialData = new ConnectUs();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ConnectUS.");
-            initialData = new AddressBook();
+            initialData = new ConnectUs();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping ConnectUS ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

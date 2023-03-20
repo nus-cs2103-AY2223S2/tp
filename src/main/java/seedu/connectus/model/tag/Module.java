@@ -1,7 +1,7 @@
 package seedu.connectus.model.tag;
 
 /**
- * Represents a Module in the address book.
+ * Represents a Module in the ConnectUS.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Module extends Tag {

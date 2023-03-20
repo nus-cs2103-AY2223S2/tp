@@ -6,7 +6,7 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
 import seedu.connectus.model.person.Phone;
 
 /**
- * Represents a Person's WhatsApp in the address book.
+ * Represents a Person's WhatsApp in ConnectUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidWhatsApp(String)}
  */
 public class WhatsApp {

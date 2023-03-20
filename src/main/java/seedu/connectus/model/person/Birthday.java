@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a Person's birthday in the address book.
+ * Represents a Person's birthday in ConnectUS.
  */
 public class Birthday {
     public static final String MESSAGE_CONSTRAINTS = "Birthday should be of the format DD/MM/YYYY";

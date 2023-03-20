@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.connectus.commons.core.GuiSettings;
 import seedu.connectus.logic.commands.exceptions.CommandException;
-import seedu.connectus.model.AddressBook;
+import seedu.connectus.model.ConnectUs;
 import seedu.connectus.model.Model;
-import seedu.connectus.model.ReadOnlyAddressBook;
+import seedu.connectus.model.ReadOnlyConnectUs;
 import seedu.connectus.model.ReadOnlyUserPrefs;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.testutil.PersonBuilder;
@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getConnectUsFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setConnectUsFilePath(Path connectUsFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setConnectUs(ReadOnlyConnectUs newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyConnectUs getConnectUs() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -186,8 +186,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyConnectUs getConnectUs() {
+            return new ConnectUs();
         }
     }
 

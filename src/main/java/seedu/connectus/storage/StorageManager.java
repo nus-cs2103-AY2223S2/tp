@@ -7,24 +7,24 @@ import java.util.logging.Logger;
 
 import seedu.connectus.commons.core.LogsCenter;
 import seedu.connectus.commons.exceptions.DataConversionException;
-import seedu.connectus.model.ReadOnlyAddressBook;
+import seedu.connectus.model.ReadOnlyConnectUs;
 import seedu.connectus.model.ReadOnlyUserPrefs;
 import seedu.connectus.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of ConnectUS data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private ConnectUsStorage connectUsStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code ConnectUsStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(ConnectUsStorage connectUsStorage, UserPrefsStorage userPrefsStorage) {
+        this.connectUsStorage = connectUsStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -46,33 +46,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ ConnectUs methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getConnectUsFilePath() {
+        return connectUsStorage.getConnectUsFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyConnectUs> readConnectUs() throws DataConversionException, IOException {
+        return readConnectUs(connectUsStorage.getConnectUsFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyConnectUs> readConnectUs(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return connectUsStorage.readConnectUs(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveConnectUs(ReadOnlyConnectUs connectUs) throws IOException {
+        saveConnectUs(connectUs, connectUsStorage.getConnectUsFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveConnectUs(ReadOnlyConnectUs connectUs, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        connectUsStorage.saveConnectUs(connectUs, filePath);
     }
 
 }
