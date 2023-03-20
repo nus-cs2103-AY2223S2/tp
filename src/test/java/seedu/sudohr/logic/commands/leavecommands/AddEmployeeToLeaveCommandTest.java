@@ -104,7 +104,7 @@ public class AddEmployeeToLeaveCommandTest {
 
     // Handle adding null leave date
     @Test
-    public void execute_addEmployeeToNullDepartment_throwsCommandException() throws CommandException {
+    public void execute_addEmployeeToNullLeave_throwsCommandException() throws CommandException {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
 
         assertThrows(NullPointerException.class, () ->
