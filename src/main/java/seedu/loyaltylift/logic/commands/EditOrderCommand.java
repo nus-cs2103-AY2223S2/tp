@@ -42,7 +42,6 @@ public class EditOrderCommand extends Command {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in LoyaltyLift.";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -118,19 +117,13 @@ public class EditOrderCommand extends Command {
         private Name name;
         private Quantity quantity;
         private Address address;
-        private Status status;
 
         public EditOrderDescriptor() {}
 
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
         public EditOrderDescriptor(EditOrderDescriptor toCopy) {
             setName(toCopy.name);
             setQuantity(toCopy.quantity);
             setAddress(toCopy.address);
-            this.status = toCopy.status;
         }
 
         /**
@@ -162,10 +155,6 @@ public class EditOrderCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
-        }
-
-        public Optional<Status> getStatus() {
-            return Optional.ofNullable(status);
         }
 
         @Override

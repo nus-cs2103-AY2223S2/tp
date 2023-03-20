@@ -5,7 +5,6 @@ import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.loyaltylift.model.order.Status.PENDING;
 
 import java.util.stream.Stream;
@@ -17,25 +16,23 @@ import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
-import seedu.loyaltylift.model.order.Status;
 
 /**
- * Parses input arguments and creates a new AddCustomerCommand object
+ * Parses input arguments and creates a new AddOrderCommand object
  */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCustomerCommand
-     * and returns an AddCustomerCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddOrderCommand
+     * and returns an AddOrderCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddOrderCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                PREFIX_QUANTITY, PREFIX_ADDRESS, PREFIX_STATUS);
+                PREFIX_QUANTITY, PREFIX_ADDRESS);
         Quantity quantity;
         Address address;
-        Status status;
         Index customerIndex;
 
         try {
@@ -53,19 +50,12 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             quantity = new Quantity(1);
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            //Address currently returns Customer.address, should be returning
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         } else {
             address = ParserUtil.parseAddress("NOT IMPLEMENTED");
-            //get address from given customer
-            //Address address = new Quantity(1);
+            //retrieve address from tagged customer
         }
-        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
-        } else {
-            status = PENDING;
-        }
-        Order order = new Order(name, quantity, status, address);
+        Order order = new Order(name, quantity, PENDING, address);
         return new AddOrderCommand(order);
     }
 

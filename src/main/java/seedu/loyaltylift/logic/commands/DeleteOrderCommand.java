@@ -11,7 +11,7 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.order.Order;
 
 /**
- * Deletes a customer identified using it's displayed index from the address book.
+ * Deletes an order identified using it's displayed index from the address book.
  */
 public class DeleteOrderCommand extends Command {
 

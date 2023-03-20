@@ -160,7 +160,7 @@ public class ParserUtil {
         Status status;
         try {
             status = Status.fromString(statusString);
-        } catch (IllegalArgumentException | NullPointerException e) {
+        } catch (IllegalArgumentException e) {
             throw new ParseException(Status.MESSAGE_FAIL_CONVERSION);
         }
         return status;
