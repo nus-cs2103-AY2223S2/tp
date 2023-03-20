@@ -28,7 +28,7 @@ public class Course {
     public Course(String course) {
         requireNonNull(course);
         checkArgument(isValidCourse(course), MESSAGE_CONSTRAINTS);
-        this.course = course;
+        this.course = course.toUpperCase();
     }
 
     /**

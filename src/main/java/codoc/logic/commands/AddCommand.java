@@ -34,6 +34,7 @@ public class AddCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_COURSE + "COMP SCI "
             + PREFIX_GITHUB + "j0hn-Do3 "
             + PREFIX_LINKEDIN + "linkedin.com/in/j0hn-Do3 "
             + PREFIX_SKILL + "python "
