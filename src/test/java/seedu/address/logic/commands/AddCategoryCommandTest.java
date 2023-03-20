@@ -10,10 +10,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.category.UserDefinedCategory;
 
 public class AddCategoryCommandTest {
-    UserDefinedCategory toAdd = new UserDefinedCategory("test", "test");
-    UserDefinedCategory toAdd2 = new UserDefinedCategory("test2", "test2");
-    ModelStub model = new ModelStub();
-    
+    private UserDefinedCategory toAdd = new UserDefinedCategory("test", "test");
+    private UserDefinedCategory toAdd2 = new UserDefinedCategory("test2", "test2");
+    private ModelStub model = new ModelStub();
+
     @Test
     public void addCategoryCommandTest() throws CommandException {
         requireNonNull(model);
@@ -21,7 +21,7 @@ public class AddCategoryCommandTest {
         model.addCategory(toAdd2);
     }
 
-    @Test 
+    @Test
     public void addSameCategoryCommandTest() throws CommandException {
         requireNonNull(model);
         model.addCategory(toAdd);

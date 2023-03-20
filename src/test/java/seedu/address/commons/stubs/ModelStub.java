@@ -1,14 +1,12 @@
 package seedu.address.commons.stubs;
 
+import static java.util.Objects.requireNonNull;
+
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-
-import static java.util.Objects.requireNonNull;
-
-import java.nio.file.Path;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
@@ -17,39 +15,56 @@ import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.expense.Expense;
 
-public class ModelStub implements Model{
-    /*
-     * This class is a stub for Model.
-     */
-    ArrayList<Category> categories = new ArrayList<Category>();
-    ArrayList<Expense> expenses = new ArrayList<Expense>();
+/**
+ * A default model stub that have some of the methods failing.
+ */
+public class ModelStub implements Model {
+    private ArrayList<Category> categories = new ArrayList<Category>();
+    private ArrayList<Expense> expenses = new ArrayList<Expense>();
 
+    @Override
     public void addCategory(Category toAdd) {
         requireNonNull(toAdd);
         categories.add(toAdd);
     }
 
+    @Override
     public void addExpense(Expense toAdd) {
         requireNonNull(toAdd);
         expenses.add(toAdd);
     }
 
+    /*
+     * get the list of categories
+     */
     public ArrayList<Category> getCategories() {
         return categories;
     }
 
+    /*
+     * get the list of expenses
+     */
     public ArrayList<Expense> getExpenses() {
         return expenses;
     }
 
+    /*
+     * get the list of expenses in a category
+     */
     public void setCategories(ArrayList<Category> categories) {
         this.categories = categories;
     }
 
+    /*
+     * get the list of expenses in a category
+     */
     public void setExpenses(ArrayList<Expense> expenses) {
         this.expenses = expenses;
     }
 
+    /*
+     * set the category of an expense
+     */
     public void setCategory(Category target, Category editedCategory) {
         int index = categories.indexOf(target);
         categories.set(index, editedCategory);

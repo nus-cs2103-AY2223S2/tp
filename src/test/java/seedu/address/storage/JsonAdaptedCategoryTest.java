@@ -4,12 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedCategory.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.category.UserDefinedCategory;
 import seedu.address.model.category.MiscellaneousCategory;
+import seedu.address.model.category.UserDefinedCategory;
 
 public class JsonAdaptedCategoryTest {
     private static final String VALID_CATEGORY = "Category";

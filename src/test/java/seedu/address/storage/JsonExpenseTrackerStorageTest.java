@@ -55,17 +55,16 @@ public class JsonExpenseTrackerStorageTest {
      * Valid Date data
      * Invalid Date data
      * Valid Expense data
-     * Invalid Expense data 
+     * Invalid Expense data
      * Combinations
      */
-    
     @Test
     public void saveExpenseTracker_nullExpenseTracker_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveExpenseTracker(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code expenseTracker} at the specified {@code filePath}.
      */
     private void saveExpenseTracker(ReadOnlyExpenseTracker expenseTracker, String filePath) {
         try {

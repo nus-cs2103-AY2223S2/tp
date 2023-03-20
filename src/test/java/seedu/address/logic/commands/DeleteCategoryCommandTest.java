@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -11,9 +12,9 @@ import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
 
 public class DeleteCategoryCommandTest {
-    ModelStub model = new ModelStub();
-    Category toDelete = new UserDefinedCategory("test", "test");
-    Category toDelete2 = new UserDefinedCategory("test2", "test2");
+    private ModelStub model = new ModelStub();
+    private Category toDelete = new UserDefinedCategory("test", "test");
+    private Category toDelete2 = new UserDefinedCategory("test2", "test2");
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws CommandException {

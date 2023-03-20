@@ -2,15 +2,12 @@ package seedu.address.model.expense;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UserDefinedCategory;
-import seedu.address.model.expense.Expense;
-import seedu.address.model.expense.ExpenseList;
 
 public class ExpenseListTest {
     private final ExpenseList expenseList = new ExpenseList();
@@ -74,5 +71,4 @@ public class ExpenseListTest {
         expenseList.add(expense2);
         assertEquals(expenseList.getTotalAmount(), 3.0);
     }
-    
 }
