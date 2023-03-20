@@ -101,15 +101,15 @@ public class EditCommand extends Command {
         assert tuteeToEdit != null;
 
         TuteeBuilder builder = TuteeBuilder.fromExistingTutee(tuteeToEdit);
-        editPersonDescriptor.getName().ifPresent(builder::setName);
-        editPersonDescriptor.getPhone().ifPresent(builder::setPhone);
-        editPersonDescriptor.getEmail().ifPresent(builder::setEmail);
-        editPersonDescriptor.getAddress().ifPresent(builder::setAddress);
-        editPersonDescriptor.getSubject().ifPresent(builder::setSubject);
-        editPersonDescriptor.getSchedule().ifPresent(builder::setSchedule);
-        editPersonDescriptor.getStartTime().ifPresent(builder::setStartTime);
-        editPersonDescriptor.getEndTime().ifPresent(builder::setEndTime);
-        editPersonDescriptor.getTags().ifPresent(builder::setTags);
+        editPersonDescriptor.getName().ifPresent(builder::withName);
+        editPersonDescriptor.getPhone().ifPresent(builder::withPhone);
+        editPersonDescriptor.getEmail().ifPresent(builder::withEmail);
+        editPersonDescriptor.getAddress().ifPresent(builder::withAddress);
+        editPersonDescriptor.getSubject().ifPresent(builder::withSubject);
+        editPersonDescriptor.getSchedule().ifPresent(builder::withSchedule);
+        editPersonDescriptor.getStartTime().ifPresent(builder::withStartTime);
+        editPersonDescriptor.getEndTime().ifPresent(builder::withEndTime);
+        editPersonDescriptor.getTags().ifPresent(builder::withTags);
 
         return builder.build();
     }

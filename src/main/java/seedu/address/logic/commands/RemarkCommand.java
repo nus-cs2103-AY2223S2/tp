@@ -57,7 +57,7 @@ public class RemarkCommand extends Command {
 
         Tutee tuteeToEdit = lastShownList.get(index.getZeroBased());
         TuteeBuilder builder = TuteeBuilder.fromExistingTutee(tuteeToEdit);
-        Tutee editedTutee = builder.setRemark(remark).build();
+        Tutee editedTutee = builder.withRemark(remark).build();
 
         model.setTutee(tuteeToEdit, editedTutee);
         model.updateFilteredTuteeList(PREDICATE_SHOW_ALL_TUTEES);

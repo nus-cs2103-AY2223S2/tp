@@ -41,36 +41,36 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         TuteeBuilder builder = new TuteeBuilder();
-        builder.setName(
+        builder.withName(
             ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get())
         )
-        .setPhone(
+        .withPhone(
             ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get())
         )
-        .setEmail(
+        .withEmail(
             ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())
         )
-        .setAddress(
+        .withAddress(
             ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
         )
         // add command does not allow adding remarks straight away
-        .setRemark(new Remark(""))
-        .setSubject(
+        .withRemark(new Remark(""))
+        .withSubject(
             ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get())
         )
-        .setSchedule(
+        .withSchedule(
             ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get())
         )
-        .setStartTime(
+        .withStartTime(
             ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get())
         )
-        .setEndTime(
+        .withEndTime(
             ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get(), argMultimap.getValue(PREFIX_STARTTIME).get())
         )
-        .setTags(
+        .withTags(
             ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
         )
-        .setAttendance(new Attendance());
+        .withAttendance(new Attendance());
 
         Tutee tutee = builder.build();
 

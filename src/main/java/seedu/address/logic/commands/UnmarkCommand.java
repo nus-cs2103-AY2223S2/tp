@@ -33,7 +33,7 @@ public class UnmarkCommand extends Command {
     TuteeBuilder modified = TuteeBuilder.fromExistingTutee(toMarkAttendance);
     Attendance attendance = toMarkAttendance.getAttendance();
     try {
-      modified.setAttendance(attendance.unmarkAttendance(date));
+      modified.withAttendance(attendance.unmarkAttendance(date));
       model.setTutee(toMarkAttendance, modified.build());
       
       return new CommandResult(

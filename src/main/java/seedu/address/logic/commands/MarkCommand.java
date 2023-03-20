@@ -30,7 +30,7 @@ public class MarkCommand extends Command {
     requireNonNull(model);
     TuteeBuilder modified = TuteeBuilder.fromExistingTutee(toMarkAttendance);
     Attendance attendance = toMarkAttendance.getAttendance();
-    modified.setAttendance(attendance.markAttendance(date));
+    modified.withAttendance(attendance.markAttendance(date));
     model.setTutee(toMarkAttendance, modified.build());
 
     return new CommandResult(
