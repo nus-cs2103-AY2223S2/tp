@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -84,4 +85,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds the given tag to the person
+     * Person must already exist in the address book
+     */
+    void addTag(Person person, Tag tag);
+
+    /**
+     * Delete the tag with the given name from the person
+     * specified by input index according to the address book list.
+     *
+     * @param person The person to delete tag from.
+     * @param tag The tag to delete.
+     */
+    void deleteTag(Person person, Tag tag);
 }

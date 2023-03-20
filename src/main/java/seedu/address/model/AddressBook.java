@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Wraps all data at the address-book level
@@ -64,6 +65,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Adds a tag to the person in the address book
+     * Person must already exist in the address book
+     *
+     * @param person the person to add the tag to
+     * @param tag the tag added to the person
+     */
+    public void addTag(Person person, Tag tag) {
+        persons.addTag(person, tag);
+    }
+
+    /**
+     * Deletes a tag from the person in the address book
+     * Person and the tag must already exist in the address book
+     *
+     * @param person the person to delete tag from
+     * @param tag the tag to be deleted
+     */
+    public void deleteTag(Person person, Tag tag) {
+        persons.deleteTag(person, tag);
     }
 
     /**
