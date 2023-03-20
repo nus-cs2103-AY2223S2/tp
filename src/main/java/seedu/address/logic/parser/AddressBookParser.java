@@ -6,19 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteTagCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.ExportCommand;
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,8 +42,12 @@ public class AddressBookParser {
             return new EditCommandParser().parse(arguments);
         } else if (DeleteCommand.COMMAND_WORD.contains(commandWord)) {
             return new DeleteCommandParser().parse(arguments);
+        } else if (DeleteTagCommand.COMMAND_WORD.contains(commandWord)) {
+            return new DeleteTagCommandParser().parse(arguments);
         } else if (ClearCommand.COMMAND_WORD.contains(commandWord)) {
             return new ClearCommand();
+        } else if (FilterCommand.COMMAND_WORD.contains(commandWord)) {
+            return new FilterCommandParser().parse(arguments);
         } else if (FindCommand.COMMAND_WORD.contains(commandWord)) {
             return new FindCommandParser().parse(arguments);
         } else if (ListCommand.COMMAND_WORD.contains(commandWord)) {
@@ -64,6 +56,8 @@ public class AddressBookParser {
             return new ExitCommand();
         } else if (HelpCommand.COMMAND_WORD.contains(commandWord)) {
             return new HelpCommand();
+        } else if (TagCommand.COMMAND_WORD.contains(commandWord)) {
+            return new TagCommandParser().parse(arguments);
         } else if (ExportCommand.COMMAND_WORD.contains(commandWord)) {
             return new ExportCommand();
         } else {

@@ -10,12 +10,14 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
 
+import java.util.List;
+
 /**
  * Finds and lists all persons in the address book whose field entries each match at least one of the provided regexes.
  */
 public class FilterCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final List<String> COMMAND_WORD = List.of(new String[]{"filter", "fil"});
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose every field matches "
             + "at least one respective regex filter, and displays them as a list with index numbers.\n"

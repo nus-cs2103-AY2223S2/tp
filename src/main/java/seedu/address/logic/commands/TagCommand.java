@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class TagCommand extends Command {
 
-    public static final String COMMAND_WORD = "tag";
+    public static final List<String> COMMAND_WORD = List.of(new String[]{"tag", "t"});
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the person identified by the index used in the displayed person list.\n"
