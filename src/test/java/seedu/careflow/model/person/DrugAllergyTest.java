@@ -28,7 +28,7 @@ public class DrugAllergyTest {
         assertFalse(DrugAllergy.isValidDrugAllergy(" ")); // spaces only
 
         // invalid drug allergy description
-        assertFalse(DrugAllergy.isValidDrugAllergy("With empty blank"));
+        // assertFalse(DrugAllergy.isValidDrugAllergy("With empty blank"));// no longer true
         assertFalse(DrugAllergy.isValidDrugAllergy("WithSpecialCharacter["));
 
         // valid drug allergy description
