@@ -111,19 +111,14 @@ public class AddTaskCommandTest {
 
         @Override
         public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
-            addTask((Task) item);
+            requireNonNull(item);
+            tasksAdded.add((Task) item);
         }
 
         @Override
         public boolean hasTask(Task task) {
             requireNonNull(task);
             return tasksAdded.stream().anyMatch(task::isSameItem);
-        }
-
-        @Override
-        public void addTask(Task task) {
-            requireNonNull(task);
-            tasksAdded.add(task);
         }
 
         @Override

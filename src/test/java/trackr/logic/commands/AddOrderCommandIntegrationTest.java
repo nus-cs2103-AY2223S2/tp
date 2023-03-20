@@ -34,7 +34,7 @@ public class AddOrderCommandIntegrationTest {
         Order validOrder = new OrderBuilder().build();
         Model expectedModel = new ModelManager(model.getSupplierList(),
                 model.getTaskList(), getTypicalOrderList(), new UserPrefs());
-        expectedModel.addOrder(validOrder);
+        expectedModel.addItem(validOrder, ModelEnum.ORDER);
 
         assertCommandSuccess(new AddOrderCommand(validOrder),
                 model,

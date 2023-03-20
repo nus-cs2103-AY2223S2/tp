@@ -306,12 +306,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addTask(Task task) {
-        taskList.addItem(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
-    }
-
-    @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
@@ -356,12 +350,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteOrder(Order target) {
         orderList.removeItem(target);
-    }
-
-    @Override
-    public void addOrder(Order order) {
-        orderList.addItem(order);
-        updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override

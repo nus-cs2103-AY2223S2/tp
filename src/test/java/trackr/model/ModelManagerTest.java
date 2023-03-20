@@ -114,7 +114,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskInTaskList_returnsTrue() {
-        modelManager.addTask(SORT_INVENTORY_N);
+        modelManager.addItem(SORT_INVENTORY_N, ModelEnum.TASK);
         assertTrue(modelManager.hasTask(SORT_INVENTORY_N));
     }
 
@@ -135,7 +135,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasOrder_orderInOrderList_returnsTrue() {
-        modelManager.addOrder(CHOCOLATE_COOKIES);
+        modelManager.addItem(CHOCOLATE_COOKIES, ModelEnum.ORDER);
         assertTrue(modelManager.hasOrder(CHOCOLATE_COOKIES));
     }
 

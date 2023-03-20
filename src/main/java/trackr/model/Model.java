@@ -138,12 +138,6 @@ public interface Model {
     void deleteTask(Task target);
 
     /**
-     * Adds the given task.
-     * {@code task} must not already exist in the task list.
-     */
-    void addTask(Task task);
-
-    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
@@ -184,12 +178,6 @@ public interface Model {
      * The order must exist in the order list.
      */
     void deleteOrder(Order target);
-
-    /**
-     * Adds the given order.
-     * {@code order} must not already exist in the order list.
-     */
-    void addOrder(Order order);
 
     /**
      * Replaces the given order {@code target} with {@code editedOrder}.

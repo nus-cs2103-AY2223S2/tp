@@ -196,11 +196,6 @@ public class TestUtil {
         }
 
         @Override
-        public void addTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
@@ -232,11 +227,6 @@ public class TestUtil {
 
         @Override
         public void deleteOrder(Order target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addOrder(Order order) {
             throw new AssertionError("This method should not be called.");
         }
 

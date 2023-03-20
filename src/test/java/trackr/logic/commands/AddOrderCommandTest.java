@@ -111,19 +111,14 @@ public class AddOrderCommandTest {
 
         @Override
         public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
-            addOrder((Order) item);
+            requireNonNull(item);
+            ordersAdded.add((Order) item);
         }
 
         @Override
         public boolean hasOrder(Order order) {
             requireNonNull(order);
             return ordersAdded.stream().anyMatch(order::isSameItem);
-        }
-
-        @Override
-        public void addOrder(Order order) {
-            requireNonNull(order);
-            ordersAdded.add(order);
         }
 
         @Override
