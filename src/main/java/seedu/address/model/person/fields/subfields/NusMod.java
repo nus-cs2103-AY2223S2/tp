@@ -33,7 +33,7 @@ public class NusMod {
             while ((line = reader.readLine()) != null) {
                 if (line.contains("\"moduleCode\":")) {
                     String moduleCode = line.split(":")[1].trim().replace("\"", "");
-                    if (moduleCode.equals(trimmedTag)) {
+                    if (moduleCode.equalsIgnoreCase(trimmedTag)) {
                         reader.close();
                         return true;
                     }
