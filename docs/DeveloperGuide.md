@@ -155,6 +155,41 @@ Classes used by multiple components are in the `bookopedia.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Mark delivery feature
+
+#### Implementation details
+
+The mark delivery feature is supported by `DeliveryStatus` enumerable that represents the possible delivery statuses:
+- DONE (delivery that has been completed)
+- OTW (delivery that is in progress)
+- FAILED (delivery that failed to deliver)
+- PENDING (delivery that is still pending)
+
+A new command argument prefix, `s/`, is assigned to capture delivery status argument. The argument has to be either lowercase or uppercase of the aforementioned statuses.
+
+The `Person` class will have an attribute `deliveryStatus` of type `DeliveryStatus` to indicate the status of the delivery.
+
+The `MarkCommand` will update the delivery status of the target `Person` with the aforementioned statuses. Before `MarkCommand` is created, `MarkCommandParser` checks if the command arguments are of the correct format. The command requires both the index and the status. `MarkCommand` will then be executed: it will first get the current address book list, get the target person at the index, create a copy of the person with the new status, and then replacing the target person with its new copy.
+
+The following activity diagram summarizes what happens when a user executes the mark delivery command.
+
+![Mark Delivery Activity Diagram](images/MarkDeliveryActivityDiagram.png)
+
+The following sequence diagram shows the interaction between the objects when a user executes the mark delivery command.
+
+![Mark Delivery Sequence Diagram](images/MarkDeliverySequenceDiagram.png)
+
+#### Alternatives considered
+
+- **Alternative 1**:
+  - Add `DeliveryStatus` as `Parcel`'s attribute
+    - May be too complicated for user's understanding, hence kept it simple 
+    - Delivery rider delivers all parcels at one go for a recipient
+- **Alternative 2** _(implemented)_:
+  - Add `DeliveryStatus` as `Person`'s attribute
+    - Mark all parcels under a person as delivered in one go
+    - Simple for the user to understand and easy to implement for the developer
+
 ### \[Proposed\] Undo/redo feature {TO BE DELETED BUT LEFT HERE AS REFERENCE}
 
 #### Proposed Implementation
