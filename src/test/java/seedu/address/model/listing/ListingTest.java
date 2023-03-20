@@ -1,5 +1,6 @@
 package seedu.address.model.listing;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
@@ -79,6 +80,6 @@ public class ListingTest {
     public void stringTest() {
         String expected = "Chicken Rice Uncle; "
                 + "JobDescription: Make delicious chicken rice!";
-        assertTrue(CHICKEN_RICE_UNCLE.toString().equals(expected));
+        assertEquals(CHICKEN_RICE_UNCLE.toString(), expected);
     }
 }
