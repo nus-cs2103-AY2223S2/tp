@@ -361,7 +361,7 @@
 
 #tags .label {
     -fx-text-fill: black;
-    -fx-background-color: #90ee90;
+    -fx-background-color: #ededed;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
