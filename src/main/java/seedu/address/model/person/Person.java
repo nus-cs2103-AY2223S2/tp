@@ -85,6 +85,25 @@ public class Person {
     }
 
     /**
+     * Gets the most recent meeting that the person has
+     */
+    public Meeting getUpcomingMeeting() {
+        if (meetings.isEmpty()) {
+            return new Meeting();
+        }
+
+        Meeting mostUpcomingMeeting = meetings.get(0);
+
+        for (Meeting meeting : meetings) {
+            if (mostUpcomingMeeting.compareTo(meeting) > 0) {
+                mostUpcomingMeeting = meeting;
+            }
+        }
+
+        return mostUpcomingMeeting;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */

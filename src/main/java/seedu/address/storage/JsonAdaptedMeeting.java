@@ -1,11 +1,13 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.Meeting;
 
 /**
@@ -20,9 +22,10 @@ class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedMeeting} with the given {@code start @code name}.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(String start, String end) throws Exception {
-        this.start = LocalDateTime.parse(start);
-        this.end = LocalDateTime.parse(end);
+    public JsonAdaptedMeeting(String dateTime) throws Exception {
+        String[] dateTimeStrings = dateTime.split("\\?");
+        this.start = LocalDateTime.parse(dateTimeStrings[0].trim());
+        this.end = LocalDateTime.parse(dateTimeStrings[1].trim());
         if (this.end.isBefore(this.start)) {
             throw new Exception("End time is after start!");
         }
@@ -52,5 +55,4 @@ class JsonAdaptedMeeting {
         // }
         return new Meeting(this.start, this.end);
     }
-
 }
