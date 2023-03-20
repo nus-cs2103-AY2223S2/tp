@@ -24,21 +24,20 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Meeting> meetings = new ArrayList<>();
+    private final ArrayList<Meeting> meetings;
 
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Meeting> meetings) {
-        requireAllNonNull(name, phone, email, address, tags, meetings);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.meetings.addAll(meetings);
+        this.meetings = new ArrayList<>();
     }
 
     /**
@@ -70,9 +69,6 @@ public class Person {
         return address;
     }
 
-    public ArrayList<Meeting> getMeetings() {
-        return meetings;
-    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -169,8 +165,8 @@ public class Person {
 
         ArrayList<Meeting> meetings = getMeetings();
         String meetingHeader = meetings.size() == 1
-                ? "; Meeting: "
-                : "; Meetings: ";
+            ? "; Meeting: "
+            : "; Meetings: ";
         if (!meetings.isEmpty()) {
             builder.append(meetingHeader);
             meetings.forEach(builder::append);

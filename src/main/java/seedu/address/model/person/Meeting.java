@@ -16,12 +16,8 @@ public class Meeting implements Comparable<Meeting> {
      *
      * @param start start date and time of meeting
      * @param end   end date and time of meeting
-     * @throws IllegalValueException if meeting ends before it starts
      */
     public Meeting(LocalDateTime start, LocalDateTime end) {
-        // if (end.isBefore(start)) {
-        //     throw new IllegalValueException("End time is after start!");
-        // }
         this.start = start;
         this.end = end;
     }
