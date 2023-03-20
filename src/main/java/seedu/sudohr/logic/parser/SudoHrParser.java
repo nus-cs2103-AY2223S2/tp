@@ -12,6 +12,7 @@ import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
+import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
 import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
 import seedu.sudohr.logic.commands.department.ListDepartmentCommand;
 import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentCommand;
@@ -75,12 +76,13 @@ public class SudoHrParser {
         case EditDepartmentCommand.COMMAND_WORD:
             return new EditDepartmentCommandParser().parse(arguments);
 
+        case DeleteDepartmentCommand.COMMAND_WORD:
+            return new DeleteDepartmentCommandParser().parse(arguments);
+        case AddEmployeeToDepartmentCommand.COMMAND_WORD:
+            return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
         case ListDepartmentCommand.COMMAND_WORD:
             return new ListDepartmentCommand();
-
-        case AddEmployeeToDepartmentCommand.COMMAND_WORD:
-            return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
         case RemoveEmployeeFromDepartmentCommand.COMMAND_WORD:
             return new RemoveEmployeeFromDepartmentCommandParser().parse(arguments);

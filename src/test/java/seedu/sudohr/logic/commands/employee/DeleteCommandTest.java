@@ -5,9 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES;
+import static seedu.sudohr.testutil.TypicalDepartments.getTypicalSudoHr;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+
+import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +20,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.employee.Employee;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -74,6 +78,44 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validIndexCascadeToDepartment_success() {
+
+        Employee employeeToDelete = EMPLOYEE_IN_HUMAN_RESOURCES;
+
+        assertTrue(employeeToDelete != null);
+        int indexOfEmployeeToDelete = IntStream.range(0, model.getFilteredEmployeeList().size())
+                .filter(i -> model.getFilteredEmployeeList().get(i).equals(employeeToDelete))
+                .findFirst()
+                .getAsInt();
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
+
+        Model expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
+        expectedModel.deleteEmployee(employeeToDelete);
+
+        DeleteCommand deleteCommand = new DeleteCommand(Index.fromZeroBased(indexOfEmployeeToDelete));
+
+        // normal deletion success
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+
+        /*
+        Check if employee deletion cascaded to department.
+
+        Checking equality of model does not mean that the cascading succeeded
+        as the equality check for department is by name.
+
+        So Checking whether a list of department is equal to other list of department will not
+        check through the employees in the department.
+         */
+        assertFalse(
+                model.getFilteredDepartmentList().stream()
+                        .anyMatch(d -> d.getEmployees().contains(employeeToDelete))
+        );
+
+
     }
 
     @Test

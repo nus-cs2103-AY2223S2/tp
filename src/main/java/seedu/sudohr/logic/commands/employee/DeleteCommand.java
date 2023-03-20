@@ -10,6 +10,7 @@ import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 
 /**
@@ -40,6 +41,7 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Employee> lastShownList = model.getFilteredEmployeeList();
+        List<Department> departmentList = model.getFilteredDepartmentList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
@@ -47,6 +49,13 @@ public class DeleteCommand extends Command {
 
         Employee employeeToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteEmployee(employeeToDelete);
+
+        // cascade delete to department
+        departmentList.stream()
+                .filter(d -> d.hasEmployee(employeeToDelete))
+                .forEach(d -> d.removeEmployee(employeeToDelete));
+
+
         model.cascadeDeleteUserInLeaves(employeeToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete));
     }
@@ -57,4 +66,7 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                         && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
+
+
+
 }
