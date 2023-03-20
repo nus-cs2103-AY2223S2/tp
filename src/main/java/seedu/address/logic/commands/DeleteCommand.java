@@ -44,7 +44,6 @@ public class DeleteCommand extends Command {
         model.deleteInternship(internshipToDelete);
         //Update right panel
         if (internshipToDelete.equals(model.getSelectedInternship())) {
-            System.out.println("reached");
             model.updateSelectedInternship(null);
         }
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete));

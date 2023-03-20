@@ -8,9 +8,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -58,6 +60,12 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
     @FXML
     private ScrollPane rightPanel;
+    @FXML
+    private Text introOne;
+    @FXML
+    private Text introTwo;
+    @FXML
+    private ImageView introThree;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -75,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -208,12 +217,18 @@ public class MainWindow extends UiPart<Stage> {
     private void updateRightPanel() {
         Internship selectedInternship = logic.getSelectedInternship();
         if (selectedInternship != null) {
+            //Update with internship information
             internshipDetailsCard = new InternshipDetailsCard(selectedInternship, primaryStage.getScene());
             internshipDetailsPanelPlaceholder.getChildren().clear();
             internshipDetailsPanelPlaceholder.getChildren().add(internshipDetailsCard.getRoot());
             internshipDetailsPanelPlaceholder.setAlignment(Pos.TOP_CENTER);
         } else {
-            System.out.println("reached");
+            //Reset to original introduction information
+            internshipDetailsPanelPlaceholder.getChildren().clear();
+            internshipDetailsPanelPlaceholder.getChildren().add(introOne);
+            internshipDetailsPanelPlaceholder.getChildren().add(introTwo);
+            internshipDetailsPanelPlaceholder.getChildren().add(introThree);
+            internshipDetailsPanelPlaceholder.setAlignment(Pos.CENTER);
         }
     }
 
