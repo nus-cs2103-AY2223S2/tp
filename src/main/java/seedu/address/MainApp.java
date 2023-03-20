@@ -81,8 +81,8 @@ public class MainApp extends Application {
             if (!ultronOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Ultron");
             }
-            // initialData = ultronOptional.orElseGet(SampleDataUtilNew::getSampleUltron);
-            initialData = SampleDataUtilNew.getSampleUltron();
+            initialData = ultronOptional.orElseGet(SampleDataUtilNew::getSampleUltron);
+            //initialData = SampleDataUtilNew.getSampleUltron();
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Ultron");
             initialData = new Ultron();

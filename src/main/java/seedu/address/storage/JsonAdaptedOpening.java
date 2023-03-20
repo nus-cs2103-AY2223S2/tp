@@ -37,10 +37,10 @@ class JsonAdaptedOpening {
      * Constructs a {@code JsonAdaptedOpening} with the given Opening details.
      */
     @JsonCreator
-    public JsonAdaptedOpening(@JsonProperty("Position") String position, @JsonProperty("Company") String company,
-                              @JsonProperty("email") String email, @JsonProperty("Status") String status,
+    public JsonAdaptedOpening(@JsonProperty("position") String position, @JsonProperty("company") String company,
+                              @JsonProperty("email") String email, @JsonProperty("status") String status,
                               @JsonProperty("remark") String remark,
-                              @JsonProperty("Dateged") List<JsonAdaptedDate> dates) {
+                              @JsonProperty("dates") List<JsonAdaptedDate> dates) {
         this.position = position;
         this.company = company;
         this.email = email;
