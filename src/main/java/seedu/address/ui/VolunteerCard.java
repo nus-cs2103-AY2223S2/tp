@@ -43,6 +43,10 @@ public class VolunteerCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private FlowPane region;
+    @FXML
+    private FlowPane medicalTags;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -61,6 +65,12 @@ public class VolunteerCard extends UiPart<Region> {
         address.setText(volunteer.getAddress().value);
         age.setText(volunteer.getAge().value);
         email.setText(volunteer.getEmail().value);
+        region.getChildren().add(
+                new Label(volunteer.getRegion().region.name())
+        );
+        volunteer.getMedicalTags().stream()
+                 .sorted(Comparator.comparing(tag -> tag.tagName))
+                 .forEach(tag -> medicalTags.getChildren().add(new Label(tag.toFullString())));
         volunteer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

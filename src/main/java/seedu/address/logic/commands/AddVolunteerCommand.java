@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,7 +34,9 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_NRIC_VOLUNTEER + "NRIC "
             + PREFIX_AGE + "AGE "
-            + "[" + PREFIX_TAG + "TAG]..."
+            + PREFIX_REGION + "REGION "
+            + "[" + PREFIX_MEDICAL_TAG + "MEDICAL TAG] "
+            + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -43,6 +46,7 @@ public class AddVolunteerCommand extends Command {
             + PREFIX_NRIC_VOLUNTEER + "S1234567A "
             + PREFIX_AGE + "20 "
             + PREFIX_REGION + "NORTH "
+            + PREFIX_MEDICAL_TAG + "CPR BASIC "
             + PREFIX_TAG + "new "
             + PREFIX_TAG + "undergradStudent "
             + PREFIX_AVAILABILITY + "2023-05-11,2023-05-12";

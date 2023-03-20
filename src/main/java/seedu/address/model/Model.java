@@ -215,7 +215,7 @@ public interface Model {
      * @param elderlyNric Nric of the elderly of the pair to add.
      * @param volunteerNric Nric of the volunteer of the pair to add.
      */
-    void addPair(Nric elderlyNric, Nric volunteerNric);
+    boolean addPair(Nric elderlyNric, Nric volunteerNric);
 
     /**
      * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.

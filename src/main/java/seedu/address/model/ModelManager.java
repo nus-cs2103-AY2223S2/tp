@@ -212,11 +212,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
-        friendlyLink.addPair(elderlyNric, volunteerNric);
+    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
+        boolean result = friendlyLink.addPair(elderlyNric, volunteerNric);
         @SuppressWarnings("unchecked")
         Predicate<Pair> predicate = (Predicate<Pair>) PREDICATE_SHOW_ALL;
         updateFilteredPairList(predicate);
+        return result;
     }
 
     @Override

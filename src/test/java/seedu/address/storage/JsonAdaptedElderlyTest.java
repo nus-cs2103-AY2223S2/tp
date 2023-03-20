@@ -22,7 +22,6 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.storage.elderly.JsonAdaptedElderly;
-import seedu.address.storage.volunteer.JsonAdaptedVolunteer;
 
 
 public class JsonAdaptedElderlyTest {
@@ -210,11 +209,11 @@ public class JsonAdaptedElderlyTest {
         } catch (IllegalValueException e) {
             fail();
         }
-        JsonAdaptedVolunteer volunteer =
-                new JsonAdaptedVolunteer(
+        JsonAdaptedElderly elderly =
+                new JsonAdaptedElderly(
                         VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_TAGS, invalidDates);
-        assertThrows(IllegalValueException.class, () -> volunteer.toModelType(appTestCache));
+                        VALID_NRIC, VALID_AGE, VALID_REGION, VALID_RISK, VALID_TAGS, invalidDates);
+        assertThrows(IllegalValueException.class, () -> elderly.toModelType(appTestCache));
     }
 
 }

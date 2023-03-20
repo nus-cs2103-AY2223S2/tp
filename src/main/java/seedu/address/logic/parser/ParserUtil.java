@@ -18,6 +18,7 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
+import seedu.address.model.tag.MedicalQualificationTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -241,6 +242,29 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String medicalTag} into a {@code MedicalQualificationTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medicalTag} is invalid.
+     */
+    public static MedicalQualificationTag parseMedicalTag(String medicalTag) throws ParseException {
+        requireNonNull(medicalTag);
+        String skillset;
+        String level;
+        try {
+            String[] trimmedList = medicalTag.trim().split(" ");
+            skillset = trimmedList[0];
+            level = trimmedList[1];
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            throw new ParseException(MedicalQualificationTag.MESSAGE_CONSTRAINTS);
+        }
+        if (!MedicalQualificationTag.isValidQualification(level)) {
+            throw new ParseException(MedicalQualificationTag.MESSAGE_CONSTRAINTS_SKILL);
+        }
+        return new MedicalQualificationTag(skillset, level);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      *
      * @param tags Tags of the person.
@@ -252,6 +276,18 @@ public class ParserUtil {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> medicalTags} into a {@code Set<MedicalQualificationTag>}.
+     */
+    public static Set<MedicalQualificationTag> parseMedicalTags(Collection<String> medicalTags) throws ParseException {
+        requireNonNull(medicalTags);
+        final Set<MedicalQualificationTag> tagSet = new HashSet<>();
+        for (String tagName: medicalTags) {
+            tagSet.add(parseMedicalTag(tagName));
         }
         return tagSet;
     }
