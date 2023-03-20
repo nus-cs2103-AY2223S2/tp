@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.Tutee;
@@ -18,18 +19,19 @@ import seedu.address.model.tutee.fields.Attendance;
 public class UnmarkCommand extends Command {
   public static final String COMMAND_WORD = "unmark";
 
-  private final Tutee toMarkAttendance;
+  private final Index index;
   private final LocalDate date;
 
-  public UnmarkCommand(Tutee tutee, LocalDate date) {
-    requireNonNull(tutee);
-    this.toMarkAttendance = tutee;
+  public UnmarkCommand(Index index, LocalDate date) {
+    requireNonNull(date);
+    this.index = index;
     this.date = date;
   }
 
   @Override
   public CommandResult execute(Model model) throws CommandException {
     requireNonNull(model);
+    Tutee toMarkAttendance = model.getFilteredTuteeList().get(index.getZeroBased());
     TuteeBuilder modified = new TuteeBuilder(toMarkAttendance);
     Attendance attendance = toMarkAttendance.getAttendance();
     try {
@@ -39,14 +41,14 @@ public class UnmarkCommand extends Command {
       return new CommandResult(
         String.format("Marked %s's attendance for %s as absent",
         toMarkAttendance.getName(),
-        date.format(DateTimeFormatter.ofPattern("YYYY-MM-DD"))
+        date.format(DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT))
         )
       );
     } catch (NoSuchElementException e) {
       return new CommandResult(String.format(
         "%s was not present on %s!",
         toMarkAttendance.getName(),
-        date.format(DateTimeFormatter.ofPattern("YYYY-MM-DD"))
+        date.format(DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT))
       ));
     }
   }
