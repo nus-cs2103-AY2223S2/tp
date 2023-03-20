@@ -12,7 +12,7 @@ import seedu.wife.model.tag.Tag;
 import seedu.wife.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Food objects.
  */
 public class FoodBuilder {
     public static final String DEFAULT_NAME = "Meiji";
@@ -38,7 +38,7 @@ public class FoodBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the FoodBuilder with the data of {@code foodToCopy}.
      */
     public FoodBuilder(Food foodToCopy) {
         name = foodToCopy.getName();
@@ -49,7 +49,7 @@ public class FoodBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Food} that we are building.
      */
     public FoodBuilder withName(String name) {
         this.name = new Name(name);
@@ -57,7 +57,7 @@ public class FoodBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Food} that we are building.
      */
     public FoodBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -65,7 +65,7 @@ public class FoodBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Unit} of the {@code Food} that we are building.
      */
     public FoodBuilder withUnit(String unit) {
         this.unit = new Unit(unit);
@@ -73,7 +73,7 @@ public class FoodBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Quantity} of the {@code Food} that we are building.
      */
     public FoodBuilder withQuantity(String quantity) {
         this.quantity = new Quantity(quantity);
@@ -81,7 +81,7 @@ public class FoodBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code ExpiryDate} of the {@code Food} that we are building.
      */
     public FoodBuilder withExpiryDate(String expiryDate) {
         this.expiryDate = new ExpiryDate(expiryDate);

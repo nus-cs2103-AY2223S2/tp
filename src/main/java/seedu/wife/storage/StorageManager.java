@@ -12,7 +12,7 @@ import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Wife data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code WifeStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(WifeStorage wifeStorage, UserPrefsStorage userPrefsStorage) {
         this.wifeStorage = wifeStorage;
@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveWife(ReadOnlyWife addressBook) throws IOException {
-        saveWife(addressBook, wifeStorage.getWifeFilePath());
+    public void saveWife(ReadOnlyWife wife) throws IOException {
+        saveWife(wife, wifeStorage.getWifeFilePath());
     }
 
     @Override
-    public void saveWife(ReadOnlyWife addressBook, Path filePath) throws IOException {
+    public void saveWife(ReadOnlyWife wife, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        wifeStorage.saveWife(addressBook, filePath);
+        wifeStorage.saveWife(wife, filePath);
     }
 
 }

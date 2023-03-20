@@ -13,7 +13,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<<<<<<< HEAD
 <fx:root alwaysOnTop="true" minHeight="300.0" minWidth="480.0" onCloseRequest="#handleExit" title="WIFE" type="javafx.stage.Stage" width="680.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+=======
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         title="WIFE" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+>>>>>>> staging
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -58,8 +63,24 @@
 
                 <Button fx:id="addFoodButton" alignment="TOP_RIGHT" mnemonicParsing="false" stylesheets="@DarkTheme.css" text="Enter" />
 
+<<<<<<< HEAD
                </children>
             </HBox>
+=======
+        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+                   minHeight="100" prefHeight="100" maxHeight="100">
+          <padding>
+            <Insets top="5" right="10" bottom="5" left="10" />
+          </padding>
+        </StackPane>
+
+        <VBox fx:id="foodList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+          </padding>
+          <StackPane fx:id="foodListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
+>>>>>>> staging
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             <VBox fx:id="foodList1" alignment="BOTTOM_CENTER" minWidth="340" prefHeight="0.0" prefWidth="682.0" styleClass="pane-with-border">

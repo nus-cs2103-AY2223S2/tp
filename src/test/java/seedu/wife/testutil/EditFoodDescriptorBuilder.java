@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.wife.logic.commands.EditCommand.EditFoodDescriptor;
+import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
 import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.food.Name;
