@@ -3,6 +3,7 @@ package seedu.recipe.logic.util;
 import seedu.recipe.commons.util.CollectionUtil;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
+import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
@@ -41,6 +42,37 @@ public class RecipeDescriptor {
         setTags(toCopy.tags);
         setIngredients(toCopy.ingredients);
         setSteps(toCopy.steps);
+    }
+
+    /**
+     * Creates and returns a {@code Recipe} with the details of {@code recipeToEdit}
+     * edited with {@code editRecipeDescriptor}.
+     */
+    public static Recipe createEditedRecipe(Recipe recipeToEdit, RecipeDescriptor recipeDescriptor) {
+        assert recipeToEdit != null;
+
+        Name updatedName = recipeDescriptor.getName().orElse(recipeToEdit.getName());
+        Recipe newRecipe = new Recipe(updatedName);
+
+        RecipeDuration updatedDuration = recipeDescriptor.getDuration().orElse(recipeToEdit.getDurationNullable());
+        newRecipe.setDuration(updatedDuration);
+
+        RecipePortion updatedPortion = recipeDescriptor.getPortion().orElse(recipeToEdit.getPortionNullable());
+        newRecipe.setPortion(updatedPortion);
+
+        Tag[] updatedTags = recipeDescriptor.getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
+        newRecipe.setTags(updatedTags);
+
+        Ingredient[] updatedIngredients = recipeDescriptor
+                .getIngredients()
+                .orElse(recipeToEdit.getIngredients())
+                .toArray(Ingredient[]::new);
+        newRecipe.setIngredients(updatedIngredients);
+
+        Step[] updatedSteps = recipeDescriptor.getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
+        newRecipe.setSteps(updatedSteps);
+
+        return newRecipe;
     }
 
     /**

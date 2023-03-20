@@ -5,13 +5,7 @@ import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.model.recipe.RecipeDuration;
-import seedu.recipe.model.recipe.RecipePortion;
-import seedu.recipe.model.recipe.Step;
-import seedu.recipe.model.tag.Tag;
 
 import java.util.List;
 
@@ -70,37 +64,6 @@ public class EditCommand extends Command {
         this.recipeDescriptor = new RecipeDescriptor(recipeDescriptor);
     }
 
-    /**
-     * Creates and returns a {@code Recipe} with the details of {@code recipeToEdit}
-     * edited with {@code editRecipeDescriptor}.
-     */
-    private static Recipe createEditedRecipe(Recipe recipeToEdit, RecipeDescriptor recipeDescriptor) {
-        assert recipeToEdit != null;
-
-        Name updatedName = recipeDescriptor.getName().orElse(recipeToEdit.getName());
-        Recipe newRecipe = new Recipe(updatedName);
-
-        RecipeDuration updatedDuration = recipeDescriptor.getDuration().orElse(recipeToEdit.getDurationNullable());
-        newRecipe.setDuration(updatedDuration);
-
-        RecipePortion updatedPortion = recipeDescriptor.getPortion().orElse(recipeToEdit.getPortionNullable());
-        newRecipe.setPortion(updatedPortion);
-
-        Tag[] updatedTags = recipeDescriptor.getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
-        newRecipe.setTags(updatedTags);
-
-        Ingredient[] updatedIngredients = recipeDescriptor
-                .getIngredients()
-                .orElse(recipeToEdit.getIngredients())
-                .toArray(Ingredient[]::new);
-        newRecipe.setIngredients(updatedIngredients);
-
-        Step[] updatedSteps = recipeDescriptor.getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
-        newRecipe.setSteps(updatedSteps);
-
-        return newRecipe;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -111,7 +74,7 @@ public class EditCommand extends Command {
         }
 
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
-        Recipe editedRecipe = createEditedRecipe(recipeToEdit, recipeDescriptor);
+        Recipe editedRecipe = RecipeDescriptor.createEditedRecipe(recipeToEdit, recipeDescriptor);
 
         // TODO: ensure that these model methods work properly
         if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
