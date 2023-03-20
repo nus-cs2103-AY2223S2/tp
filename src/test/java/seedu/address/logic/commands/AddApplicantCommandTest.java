@@ -40,22 +40,26 @@ public class AddApplicantCommandTest {
 
     @Test
     public void execute_allFieldsPresent_success() {
-        Applicant applicantToAdd = new ApplicantBuilder().build();
-        AddApplicantCommand addApplicantCommand = new AddApplicantCommand(INDEX_FIRST_LISTING, applicantToAdd);
+        Listing newListing = new ListingBuilder().build();
+        model.addListing(newListing);
 
-        Listing initialListing = model.getFilteredListingList().get(0);
-        ArrayList<Applicant> editedApplicants = new ArrayList<>(initialListing.getApplicants());
+        Applicant applicantToAdd = new ApplicantBuilder().build();
+        AddApplicantCommand addApplicantCommand = new AddApplicantCommand(
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                applicantToAdd);
+
+        ArrayList<Applicant> editedApplicants = new ArrayList<>(newListing.getApplicants());
         editedApplicants.add(applicantToAdd);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
-        Listing editedListing = new ListingBuilder(initialListing).withApplicants(editedApplicants).build();
+        Listing editedListing = new ListingBuilder(newListing).withApplicants(editedApplicants).build();
 
-        expectedModel.setListing(initialListing, editedListing);
+        expectedModel.setListing(newListing, editedListing);
 
         String expectedMessage = String.format(
                 AddApplicantCommand.MESSAGE_SUCCESS,
                 applicantToAdd.getName().fullName,
-                initialListing.getTitle().fullTitle);
+                newListing.getTitle().fullTitle);
 
         assertCommandSuccess(addApplicantCommand, model, expectedMessage, expectedModel);
     }
