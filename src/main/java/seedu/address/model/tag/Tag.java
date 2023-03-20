@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a tag in InternBuddy.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
@@ -28,6 +28,8 @@ public class Tag {
 
     /**
      * Returns true if a given string is a valid tag name.
+     *
+     * @param test The string to be tested for tag validity.
      */
     public static boolean isValidTagName(String test) {
         if (test.isEmpty() || !test.matches(VALIDATION_REGEX)) {
