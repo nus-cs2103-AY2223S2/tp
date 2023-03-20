@@ -12,7 +12,7 @@ public class Code {
      * The constant MESSAGE_CONSTRAINTS.
      */
     public static final String MESSAGE_CONSTRAINTS =
-            "Module code should not be blank and is alphanumeric";
+            "Module code is missing, invalid or at the wrong position. It should be alphanumeric.";
 
     private static final String VALIDATION_REGEX = "^[A-Z]{2,4}[0-9]{4}[A-Z]{0,1}$";
 

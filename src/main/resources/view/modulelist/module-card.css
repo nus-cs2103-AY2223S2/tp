@@ -1,0 +1,45 @@
+.module-card {
+    -fx-min-height: 100;
+    -fx-padding: 10 25;
+
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+
+    -fx-background-color: -dark-grey;
+}
+.module-card-placeholder {
+    visibility: hidden;
+}
+
+.module-card-tag {
+    -fx-padding: 2 5;
+
+    -fx-text-fill: -black;
+
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
+}
+
+.module-card-tag-red {
+    -fx-background-color: -tag-red;
+}
+
+.module-card-tag-orange {
+    -fx-background-color: -tag-orange;
+}
+
+.module-card-tag-yellow {
+    -fx-background-color: -tag-orange;
+}
+
+.module-card-tag-green {
+    -fx-background-color: -tag-green;
+}
+
+.module-card-tag-blue {
+    -fx-background-color: -tag-blue;
+}
+
+.module-card-tag-purple {
+    -fx-background-color: -tag-purple;
+}

@@ -30,8 +30,8 @@ public class TagCommand extends Command {
      * The constant MESSAGE_USAGE.
      */
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds tags to the module identified "
-            + "Parameters: CODE (module code) include/remove"
+            + ": Adds tags to the module identified.\n"
+            + "Parameters: CODE (module code) include/remove\n"
             + "Example: " + COMMAND_WORD + " CS1101S " + "include "
             + "/t UNIVERSITY LEVEL REQUIREMENTS";
 
@@ -120,6 +120,7 @@ public class TagCommand extends Command {
         // state check
         TagCommand e = (TagCommand) other;
         return code.equals(e.code)
+                && isInclude == e.isInclude
                 && tags.equals(e.tags);
     }
 }

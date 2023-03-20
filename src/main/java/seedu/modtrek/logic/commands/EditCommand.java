@@ -36,7 +36,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CREDIT + "CREDITS] "
             + "[" + PREFIX_SEMYEAR + "SEMESTER-YEAR] "
             + "[" + PREFIX_GRADE + "GRADE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG...]\n"
             + "Example: " + COMMAND_WORD + " CS2106 "
             + PREFIX_CREDIT + " 4 "
             + PREFIX_SEMYEAR + " Y2S2";

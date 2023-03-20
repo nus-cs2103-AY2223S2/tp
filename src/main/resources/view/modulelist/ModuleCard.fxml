@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<VBox fx:id="moduleCard" GridPane.hgrow="always" GridPane.vgrow="always" alignment="CENTER" styleClass="module-card" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@module-card.css" />
+    </stylesheets>
+
+    <Label fx:id="moduleCardCode" styleClass="h3" />
+
+    <HBox alignment="CENTER">
+        <padding>
+            <Insets top="10" bottom="10"/>
+        </padding>
+        <Label fx:id="moduleCardCredits" styleClass="p1" />
+        <Label text="        " styleClass="p1" />
+        <Label fx:id="moduleCardGrade" styleClass="p1" />
+    </HBox>
+
+    <FlowPane alignment="CENTER" hgap="5" vgap="5" fx:id="moduleCardTagGroup" />
+</VBox>

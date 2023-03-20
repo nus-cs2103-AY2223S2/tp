@@ -1,0 +1,17 @@
+.footer-button-container {
+    -fx-cursor: hand;
+}
+.footer-button {
+    -fx-text-fill: -white;
+
+    -fx-background-color: transparent;
+}
+.footer-button-selected {
+    -fx-text-fill: -light-teal;
+}
+.footer-button:hover {
+    -fx-opacity: 0.75;
+}
+.footer-button-selected-deco {
+    -fx-fill: -light-teal
+}
