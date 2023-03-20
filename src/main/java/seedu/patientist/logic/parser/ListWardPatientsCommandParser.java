@@ -34,6 +34,7 @@ public class ListWardPatientsCommandParser implements Parser<ListWardPatientsCom
             }
         }
 
+        //TODO: THIS IS NO LONGER CORRECT. PATIENTINWARDPREDICATE NO LONGER WORKS BECAUSE WARDS ARE NO LONGER TAGS
         return new ListWardPatientsCommand(new PatientInWardPredicate(Arrays.asList(wardKeywords)));
     }
 }

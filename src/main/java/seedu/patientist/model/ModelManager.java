@@ -91,13 +91,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return patientist.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPerson(Person person, Ward ward) {
+        requireAllNonNull(person, ward);
+        return patientist.hasPerson(person, ward);
+    }
+
+    @Override
     public boolean hasPatient(Patient patient, Ward ward) {
-        return false;//todo
+        return false; //todo
     }
 
     @Override
     public boolean hasStaff(Staff staff, Ward ward) {
-        return false;//todo
+        return false; //todo
     }
 
     @Override

@@ -10,7 +10,6 @@ import seedu.patientist.model.person.staff.Staff;
 
 /**
  * Represents a ward in Patientist, which holds a collection of Patients and a collection of Staff.
- * TODO: implement
  */
 public class Ward {
 

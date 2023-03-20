@@ -59,6 +59,9 @@ public abstract class Person {
         return id;
     }
 
+    /**
+     * Returns the tag of the person that identifies their role.
+     */
     public abstract RoleTag getRoleTag();
 
     /**

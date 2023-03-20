@@ -55,6 +55,21 @@ public interface Model {
     ReadOnlyPatientist getPatientist();
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the patientist book (all wards).
+     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson} overridden from Person
+     * Staff are uniquely identified by name, through {@code Person::isSamePerson} inherited from Person
+     */
+    boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the given {@code ward}.
+     * {@code ward} must exist.
+     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson}
+     * Staff are uniquely identified by name, through {@code Staff::isSamePerson}
+     */
+    boolean hasPerson(Person person, Ward ward);
+
+    /**
      * Returns true if a patient with the same identity as {@code patient} exists in the ward.
      * Patients are uniquely identified by ID, through {@code Person::isSamePerson}.
      */
