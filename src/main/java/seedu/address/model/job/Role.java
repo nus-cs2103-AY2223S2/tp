@@ -106,7 +106,8 @@ public class Role {
         }
 
         return otherRole != null
-                && otherRole.getName().equals(getName());
+                && otherRole.getName().equals(getName())
+                && otherRole.getCompany().equals(getCompany());
     }
 
     /**

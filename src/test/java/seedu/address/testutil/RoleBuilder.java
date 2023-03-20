@@ -24,7 +24,7 @@ public class RoleBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_COMPANY = "GOOGLE";
     public static final String DEFAULT_JOBDESCRIPTION = "Software Engineer Intern @ DBS";
     public static final String DEFAULT_SALARY = "4000";
     public static final String DEFAULT_DEADLINE = "2023-10-20";
@@ -49,7 +49,7 @@ public class RoleBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        company = new Company(DEFAULT_ADDRESS);
+        company = new Company(DEFAULT_COMPANY);
         jd = new JobDescription(DEFAULT_JOBDESCRIPTION);
         tags = new HashSet<>();
         salary = new Salary(DEFAULT_SALARY);
@@ -93,7 +93,7 @@ public class RoleBuilder {
     /**
      * Sets the {@code Company} of the {@code Role} that we are building.
      */
-    public RoleBuilder withAddress(String address) {
+    public RoleBuilder withCompany(String address) {
         this.company = new Company(address);
         return this;
     }

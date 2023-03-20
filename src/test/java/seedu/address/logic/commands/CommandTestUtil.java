@@ -39,8 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_WEB_AMY = "www.google.com";
     public static final String VALID_WEB_BOB = "www.google.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_COMPANY_AMY = "Google";
+    public static final String VALID_COMPANY_BOB = "Facebook";
     public static final String VALID_JOBDESCRIPTION_AMY = "Software Engineer Intern @ DBS";
     public static final String VALID_JOBDESCRIPTION_BOB = "Civil Engineer Intern @ HDB";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -59,8 +59,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_CONTACT + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_COMPANY + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_COMPANY + VALID_ADDRESS_BOB;
+    public static final String ADDRESS_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_AMY;
+    public static final String ADDRESS_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_BOB;
     public static final String JOBDESCRIPTION_DESC_AMY = " " + PREFIX_JOBDESCRIPTION + VALID_JOBDESCRIPTION_AMY;
     public static final String JOBDESCRIPTION_DESC_BOB = " " + PREFIX_JOBDESCRIPTION + VALID_JOBDESCRIPTION_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -91,12 +91,12 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditRoleDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_ADDRESS_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY)
                 .withTags(VALID_TAG_FRIEND).withWebsite(VALID_WEB_AMY).withJobDescription(VALID_JOBDESCRIPTION_AMY)
                 .withTags(VALID_TAG_FRIEND).withSalary(VALID_SALARY_AMY)
                 .withDeadline(VALID_DEADLINE_AMY).withExperience(VALID_EXPERIENCE_AMY).build();
         DESC_BOB = new EditRoleDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_ADDRESS_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withWebsite(VALID_WEB_BOB)
                 .withJobDescription(VALID_JOBDESCRIPTION_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withSalary(VALID_SALARY_BOB).withDeadline(VALID_DEADLINE_BOB)
