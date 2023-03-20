@@ -17,7 +17,7 @@ public class TypicalTasks {
             .withContent("Finish up slides for meeting on 1st March.").build();
     public static final Task STOCK_PANTRY = new TaskBuilder().withTitle("Stock pantry")
             .withContent("Purchase food for the pantry on level 6.").build();
-    public static final Task CHECK_BALANCES = new TaskBuilder().withTitle("Check balances")
+    public static final Task CHECK_BALANCES = new TaskBuilder().withTitle("Check balances").withStatus(true)
             .withContent("Check all bank statements.").build();
     public static final Task DEPOSIT_CASH = new TaskBuilder().withTitle("Deposit cash")
             .withContent("Deposit cash from last week at the bank.").build();

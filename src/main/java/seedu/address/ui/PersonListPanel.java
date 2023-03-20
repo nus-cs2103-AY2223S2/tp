@@ -53,7 +53,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, officeConnectModel).getRoot());
                 setOnMouseClicked(event -> {
                     if (event.getClickCount() == 1) { // Single Click
                         logger.info("An item selected: " + PersonListViewCell.super.getItem().toString());

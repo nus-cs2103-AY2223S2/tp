@@ -41,13 +41,17 @@ public class SampleDataUtil {
 
         sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(0).getId(),
             sampleTasksRepo.getData().get(0).getId()));
-        sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(1).getId(),
-            sampleTasksRepo.getData().get(1).getId()));
-        sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(2).getId(),
-            sampleTasksRepo.getData().get(2).getId()));
         sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(0).getId(),
             sampleTasksRepo.getData().get(1).getId()));
         sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(1).getId(),
+            sampleTasksRepo.getData().get(1).getId()));
+        sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(1).getId(),
+            sampleTasksRepo.getData().get(3).getId()));
+        sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(2).getId(),
+            sampleTasksRepo.getData().get(0).getId()));
+        sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(2).getId(),
+            sampleTasksRepo.getData().get(2).getId()));
+        sampleAssignTaskRepo.addItem(new AssignTask(samplePersonRepo.getPersonList().get(2).getId(),
             sampleTasksRepo.getData().get(3).getId()));
     }
 
