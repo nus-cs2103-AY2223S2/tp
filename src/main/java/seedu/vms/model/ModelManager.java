@@ -11,6 +11,9 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.logic.parser.ParseResult;
+import seedu.vms.logic.parser.VmsParser;
+import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
@@ -99,6 +102,14 @@ public class ModelManager implements Model {
     public void setPatientManagerFilePath(Path patientManagerFilePath) {
         requireNonNull(patientManagerFilePath);
         userPrefs.setPatientManagerFilePath(patientManagerFilePath);
+    }
+
+    // =========== Parsing =======================================================================================
+
+    @Override
+    public ParseResult parseCommand(String userCommand) throws ParseException {
+        // TODO: Avoid creating a new parser everytime
+        return new VmsParser().parseCommand(userCommand);
     }
 
     // =========== PatientManager ================================================================================

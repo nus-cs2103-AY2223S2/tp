@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -139,9 +141,12 @@ public class AddVaxTypeTest {
         checkExecutionEx("<15 characters><15 characters>a", ParseException.class);
         // duplicate
         VaxTypeModelStub model = new VaxTypeModelStub();
-        new AddVaxTypeParser().parse(SampleVaxTypeData.CMD_NAME_1).execute(model);
-        assertThrows(CommandException.class,
-                () -> new AddVaxTypeParser().parse(SampleVaxTypeData.CMD_NAME_1).execute(model));
+        ArgumentMultimap argsMap1 = ArgumentTokenizer.tokenize(SampleVaxTypeData.CMD_NAME_1);
+        new AddVaxTypeParser().parse(argsMap1).execute(model);
+        assertThrows(CommandException.class, () -> {
+            ArgumentMultimap argsMap2 = ArgumentTokenizer.tokenize(SampleVaxTypeData.CMD_NAME_1);
+            new AddVaxTypeParser().parse(argsMap2).execute(model);
+        });
     }
 
 
@@ -176,7 +181,8 @@ public class AddVaxTypeTest {
         VaxType expected = new VaxType(name, groups, minAge, maxAge, allergyReq, historyReq);
 
         VaxTypeModelStub model = new VaxTypeModelStub();
-        new AddVaxTypeParser().parse(command).execute(model);
+        ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(command);
+        new AddVaxTypeParser().parse(argsMap).execute(model);
         VaxType actual = model.manager.get(name.getName()).get();
 
         assertEquals(expected, actual);
@@ -184,6 +190,9 @@ public class AddVaxTypeTest {
 
 
     private <T extends Throwable> void checkExecutionEx(String command, Class<T> exception) {
-        assertThrows(exception, () -> new AddVaxTypeParser().parse(command).execute(new VaxTypeModelStub()));
+        assertThrows(exception, () -> {
+            ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(command);
+            new AddVaxTypeParser().parse(argsMap).execute(new VaxTypeModelStub());
+        });
     }
 }

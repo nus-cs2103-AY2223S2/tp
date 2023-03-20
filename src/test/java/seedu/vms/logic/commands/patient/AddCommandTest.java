@@ -16,7 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.exceptions.IllegalValueException;
-import seedu.vms.logic.commands.CommandResult;
+import seedu.vms.logic.CommandMessage;
+import seedu.vms.logic.parser.ParseResult;
+import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -43,7 +45,7 @@ public class AddCommandTest {
         ModelStubAcceptingPatientAdded modelStub = new ModelStubAcceptingPatientAdded();
         Patient validPatient = new PatientBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
+        CommandMessage commandResult = new AddCommand(validPatient).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPatient), commandResult.getMessage());
         assertEquals(Arrays.asList(validPatient), modelStub.patientsAdded);
@@ -210,6 +212,12 @@ public class AddCommandTest {
         public void setAppointmentManager(AppointmentManager manager) {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+        }
+
+        @Override
+        public ParseResult parseCommand(String userCommand) throws ParseException {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
         }
     }
 

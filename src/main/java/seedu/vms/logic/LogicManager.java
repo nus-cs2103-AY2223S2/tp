@@ -13,9 +13,8 @@ import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.logic.commands.exceptions.CommandException;
-import seedu.vms.logic.parser.VmsParser;
+import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
@@ -45,9 +44,8 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final VmsParser vmsParser;
 
-    private Consumer<List<CommandResult>> onExecutionComplete = results -> {};
+    private Consumer<List<CommandMessage>> onExecutionComplete = results -> {};
 
     private final LinkedBlockingDeque<String> commandQueue = new LinkedBlockingDeque<>();
     private volatile boolean isExecuting = true;
@@ -58,7 +56,6 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        vmsParser = new VmsParser();
     }
 
 
@@ -83,9 +80,9 @@ public class LogicManager implements Logic {
         try {
             process.run();
         } catch (Throwable deathEx) {
-            completeExecution(List.of(new CommandResult(
+            completeExecution(List.of(new CommandMessage(
                     deathEx.toString(),
-                    CommandResult.State.DEATH)));
+                    CommandMessage.State.DEATH)));
         }
     }
 
@@ -93,22 +90,24 @@ public class LogicManager implements Logic {
     private void parseCommand(String commandText) {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
-            execute(vmsParser.parseCommand(commandText));
+            execute(model.parseCommand(commandText));
         } catch (ParseException parseEx) {
-            completeExecution(List.of(new CommandResult(
+            completeExecution(List.of(new CommandMessage(
                     parseEx.getMessage(),
-                    CommandResult.State.ERROR)));
+                    CommandMessage.State.ERROR)));
         }
     }
 
 
-    private void execute(Command command) {
-        ArrayList<CommandResult> results = new ArrayList<>();
+    private void execute(ParseResult parseResult) {
+        ArrayList<CommandMessage> results = new ArrayList<>();
+        parseResult.getMessage().ifPresent(results::add);
+        Command command = parseResult.getCommand();
 
         try {
             results.add(command.execute(model));
         } catch (CommandException ex) {
-            results.add(new CommandResult(ex.getMessage(), CommandResult.State.ERROR));
+            results.add(new CommandMessage(ex.getMessage(), CommandMessage.State.ERROR));
             completeExecution(results);
             return;
         }
@@ -116,31 +115,36 @@ public class LogicManager implements Logic {
         try {
             storage.savePatientManager(model.getPatientManager());
         } catch (IOException ioe) {
-            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+            results.add(new CommandMessage(FILE_OPS_ERROR_MESSAGE + ioe, CommandMessage.State.WARNING));
         }
 
         try {
             storage.saveVaxTypes(model.getVaxTypeManager());
         } catch (IOException ioe) {
-            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+            results.add(new CommandMessage(FILE_OPS_ERROR_MESSAGE + ioe, CommandMessage.State.WARNING));
         }
 
         try {
             storage.saveAppointments(model.getAppointmentManager());
         } catch (IOException ioe) {
-            results.add(new CommandResult(FILE_OPS_ERROR_MESSAGE + ioe, CommandResult.State.WARNING));
+            results.add(new CommandMessage(FILE_OPS_ERROR_MESSAGE + ioe, CommandMessage.State.WARNING));
         }
 
         completeExecution(results, command.getFollowUp());
     }
 
 
-    private void completeExecution(List<CommandResult> results) {
+    private void execute(Command command) {
+        execute(new ParseResult(command));
+    }
+
+
+    private void completeExecution(List<CommandMessage> results) {
         completeExecution(results, Optional.empty());
     }
 
 
-    private synchronized void completeExecution(List<CommandResult> results, Optional<Command> followUp) {
+    private synchronized void completeExecution(List<CommandMessage> results, Optional<Command> followUp) {
         onExecutionComplete.accept(results);
         if (followUp.isPresent()) {
             new Thread(() -> attemptProcess(
@@ -213,26 +217,26 @@ public class LogicManager implements Logic {
 
     private void sendLoadInfo(String message) {
         logger.info(message);
-        onExecutionComplete.accept(List.of(new CommandResult(message)));
+        onExecutionComplete.accept(List.of(new CommandMessage(message)));
     }
 
 
     private void sendLoadWarning(String message) {
         logger.warning(message);
-        onExecutionComplete.accept(List.of(new CommandResult(
-                message, CommandResult.State.WARNING)));
+        onExecutionComplete.accept(List.of(new CommandMessage(
+                message, CommandMessage.State.WARNING)));
     }
 
 
     private void sendLoadDeath(String message) {
         logger.severe(message);
-        onExecutionComplete.accept(List.of(new CommandResult(
-                message, CommandResult.State.DEATH)));
+        onExecutionComplete.accept(List.of(new CommandMessage(
+                message, CommandMessage.State.DEATH)));
     }
 
 
     @Override
-    public void setOnExecutionCompletion(Consumer<List<CommandResult>> onExecutionComplete) {
+    public void setOnExecutionCompletion(Consumer<List<CommandMessage>> onExecutionComplete) {
         this.onExecutionComplete = onExecutionComplete;
     }
 
