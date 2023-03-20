@@ -164,7 +164,7 @@ public class CommandTestUtil {
     public static final String ORDER_QUANTITY_DESC_ONE =
             " " + PREFIX_ORDERQUANTITY + VALID_ORDER_QUANTITY_ONE;
     public static final String ORDER_QUANTITY_DESC_TWO =
-            " " + PREFIX_DEADLINE + VALID_ORDER_QUANTITY_TWO;
+            " " + PREFIX_ORDERQUANTITY + VALID_ORDER_QUANTITY_TWO;
     public static final String CUSTOMER_NAME_DESC_NIGEL =
             " " + PREFIX_NAME + VALID_CUSTOMER_NAME;
     public static final String CUSTOMER_PHONE_DESC =
