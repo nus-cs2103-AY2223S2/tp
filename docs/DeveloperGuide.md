@@ -158,6 +158,20 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Delete event feature
+
+#### Current Implementation
+
+Deleting an event is a feature that uses the command `delevent [EVENT_INDEX]`. The following sequence diagram shows how the delete event operation works.
+
+![DelEventSequenceDiagram](images/DelEventSequenceDiagram.png)
+
+This operation is similar to that of deleting a person. Deleting an event involves calling `Model#deleteEvent(1)`, which in turn calls `AddressBook#deleteEvent(1)` to delete the event at index `1` in the `AddressBook`. 
+
+Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
+
+The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
