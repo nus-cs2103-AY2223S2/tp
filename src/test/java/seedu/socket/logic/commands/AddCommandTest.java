@@ -21,6 +21,7 @@ import seedu.socket.model.ReadOnlySocket;
 import seedu.socket.model.ReadOnlyUserPrefs;
 import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
+import seedu.socket.model.project.Project;
 import seedu.socket.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -108,6 +109,17 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
+        @Override
+        public ObservableList<Project> getViewedProject() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateViewedProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public Path getSocketFilePath() {
             throw new AssertionError("This method should not be called.");
@@ -160,6 +172,41 @@ public class AddCommandTest {
 
         @Override
         public void sortPersonList(String category) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasProject(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteProject(Project target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProject(Project target, Project editedProject) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Project> getFilteredProjectList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredProjectList(Predicate<Project> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortProjectList(String category) {
             throw new AssertionError("This method should not be called.");
         }
 
