@@ -1,10 +1,12 @@
 package seedu.address.model.meeting;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
+import java.time.Year;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,18 +57,32 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDateTime("")); // empty string
         assertFalse(DateTime.isValidDateTime(" ")); // spaces only
         assertFalse(DateTime.isValidDateTime(" 22/05/2023")); // starts with a space
-        assertFalse(DateTime.isValidDateTime("22/05/2023"));
-        assertFalse(DateTime.isValidDateTime("22-05-2023"));
-        assertFalse(DateTime.isValidDateTime("22052023"));
-        assertFalse(DateTime.isValidDateTime("22-05-2023 13:22"));
-        assertFalse(DateTime.isValidDateTime("22052023 13:22"));
         assertFalse(DateTime.isValidDateTime("22/05/2023 1:32am"));
         assertFalse(DateTime.isValidDateTime("22/05/2023 1:32pm"));
+        assertFalse(DateTime.isValidDateTime("22/05/2023 1:32 AM"));
+        assertFalse(DateTime.isValidDateTime("22/05/2023 1:32 PM"));
         assertFalse(DateTime.isValidDateTime("next thursday")); // NLP
         assertFalse(DateTime.isValidDateTime("this coming friday 2:30pm")); // NLP
+        assertFalse(DateTime.isValidDateTime("22/05/2023 13:32PM"));
 
         // valid dates/times
+        assertTrue(DateTime.isValidDateTime("22052023 13:22"));
+        assertTrue(DateTime.isValidDateTime("22-05-2023 13:22"));
+        assertTrue(DateTime.isValidDateTime("22/05/2023"));
+        assertTrue(DateTime.isValidDateTime("22-05-2023"));
+        assertTrue(DateTime.isValidDateTime("22.05.2023"));
+        assertTrue(DateTime.isValidDateTime("22052023"));
+        assertTrue(DateTime.isValidDateTime("22/05/23"));
+        assertTrue(DateTime.isValidDateTime("22-05-23"));
+        assertTrue(DateTime.isValidDateTime("22.05.23"));
+        assertTrue(DateTime.isValidDateTime("220523"));
+        assertTrue(DateTime.isValidDateTime("2205"));
+        assertTrue(DateTime.isValidDateTime("22/05"));
+        assertTrue(DateTime.isValidDateTime("22.05"));
+        assertTrue(DateTime.isValidDateTime("22-05"));
         assertTrue(DateTime.isValidDateTime("22/05/2023 13:22"));
+        assertTrue(DateTime.isValidDateTime("22/05/2023 1:32AM"));
+        assertTrue(DateTime.isValidDateTime("22/05/2023 12:32PM"));
     }
 
     @Test
@@ -82,5 +98,38 @@ public class DateTimeTest {
 
         // valid dates/times
         assertTrue(DateTime.isValidDuration(LocalDateTime.MIN, LocalDateTime.MAX));
+    }
+
+    @Test
+    public void getDateTime() {
+        assertEquals(new DateTime("22/02/2022").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22-02-2022").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22.02.2022").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22022022").getDateTime(), "22/02/2022");
+
+        assertEquals(new DateTime("22/02/22").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22-02-22").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("22.02.22").getDateTime(), "22/02/2022");
+        assertEquals(new DateTime("220222").getDateTime(), "22/02/2022");
+
+        assertEquals(new DateTime("22/02").getDateTime(), "22/02/" + Year.now());
+        assertEquals(new DateTime("22-02").getDateTime(), "22/02/" + Year.now());
+        assertEquals(new DateTime("22.02").getDateTime(), "22/02/" + Year.now());
+        assertEquals(new DateTime("2202").getDateTime(), "22/02/" + Year.now());
+
+        assertEquals(new DateTime("22022022 13:00").getDateTime(), "22/02/2022 13:00");
+        assertEquals(new DateTime("22022022 13.00").getDateTime(), "22/02/2022 13:00");
+        assertEquals(new DateTime("22022022 1:00AM").getDateTime(), "22/02/2022 01:00");
+        assertEquals(new DateTime("22022022 1:00PM").getDateTime(), "22/02/2022 13:00");
+    }
+
+    @Test
+    public void get() {
+        assertEquals(new DateTime("22022022 13:00").get(),
+                LocalDateTime.of(2022, 2, 22, 13, 0));
+        assertEquals(new DateTime("22022022").get(),
+                LocalDateTime.of(2022, 2, 22, 0, 0));
+        assertEquals(new DateTime("22022022 12:00AM").get(),
+                LocalDateTime.of(2022, 2, 22, 0, 0));
     }
 }
