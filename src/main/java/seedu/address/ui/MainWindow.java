@@ -11,6 +11,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -57,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private Cursor customCursor;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -75,8 +79,8 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         Image customCursorImage = new Image("/images/cursor.png");
-        Cursor customCursor = new ImageCursor(customCursorImage);
-        mainVbox.setCursor(customCursor);
+        this.customCursor = new ImageCursor(customCursorImage);
+        primaryStage.getScene().getRoot().setCursor(customCursor);
     }
 
     public Stage getPrimaryStage() {
@@ -114,6 +118,11 @@ public class MainWindow extends UiPart<Stage> {
                 menuItem.getOnAction().handle(new ActionEvent());
                 event.consume();
             }
+        });
+
+        // set event filter on menu to set custom cursor on hover
+        primaryStage.getScene().addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
+            primaryStage.getScene().setCursor(customCursor);
         });
     }
 

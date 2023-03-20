@@ -607,11 +607,11 @@ In the example above, the user story is clearly defined at the top, followed by 
 
       Use case ends.
 ---
-**Use case 11: Review task assigned to an individual**
+**Use case 11: Find tasks assigned to an individual**
 
 **Main Success Scenario (MSS):**
 
-1. User reviews the list of tasks assigned to a specific person.
+1. User requests for the list of tasks assigned to a specific person.
 
 2. OfficeConnect displays all the tasks assigned to the person.
 
@@ -624,11 +624,11 @@ In the example above, the user story is clearly defined at the top, followed by 
   Use case ends.
 
 ---
-**Use case 12: Review the group of individuals assigned to a task**
+**Use case 12: Find the group of individuals assigned to a task**
 
 **Main Success Scenario (MSS):**
 
-1. User reviews the list of people assigned to a specific task.
+1. User requests for the list of persons assigned to a specific task.
 
 2. OfficeConnect displays all the individuals assigned to the task.
 
