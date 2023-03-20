@@ -51,6 +51,8 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Main Mode
 
 Main mode will be started by default when the program is launched.
@@ -63,6 +65,21 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Adding a new Deck : `addDeck`
+
+Adds a new masterDeck.
+
+Format: `addDeck DECKNAME`
+
+Examples:
+* `addDeck Science`
+
+### Editing a Deck : `editDeck`
+
+Edits the name of a masterDeck.
+
+Format: `editDeck d\DECKNAME`
+
 ### Listing all Decks : `list`
 
 _**No Decks should not be selected to use this command.**_
@@ -71,23 +88,24 @@ Shows a list of all Decks.
 
 Format: `list`
 
-### Selecting a Deck : `select`
+### Selecting a Deck : `selectDeck`
 
 Selects a masterDeck. 
 
-Format: `select INDEX`
+Format: `selectDeck INDEX`
 
 Examples:
-* `select 2`
+* `selectDeck 2`
 
-### Unselecting a Deck : `unselect`
+### Unselecting a Deck : `unselectDeck`
 
-Unselects masterDeck
+Unselects the current masterDeck.
 
-Format: `unselect`
+Format: `unselectDeck`
 
 Examples:
-* `unselect`
+* `unselectDeck`
+
 
 ### Adding a Powercard: `add`
 
@@ -95,14 +113,15 @@ _**User must select a masterDeck to use this command.**_
 
 Adds a Powercard to the **selected** Deck.
 
-Format: `add q/QUESTION a/ANSWER`
+Format: `add q\QUESTION a\ANSWER t\TAG`
 
 <!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A card can have any number of tags (including 0)
 </div> -->
 
 Examples:
-* `add q/What is chemical symbol for Oxygen? a/O`
+* `add q\What is chemical symbol for Oxygen? a\O`
+* `add q\What is gravity? a\A force of attraction between objects due to their mass t\Easy`
 
 ### Listing all Powercards : `list`
 
@@ -116,30 +135,77 @@ Format: `list`
 
 _**User must select a masterDeck to use this command.**_
 
-Edits an existing Powercard in a Deck.
+Edits an existing Powercard in a Deck. 
 
-Format: `edit INDEX [q/QUESTION] [a/ANSWER]`
+Format: `edit INDEX q\QUESTION a\ANSWER`
 
 * Edits the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit 1 q/What is chemical symbol for Caarbon? a/C` Edits the question and answer of the 1st Powercard to be `What is chemical symbol for Oxygen?` and `C` respectively.
+*  `edit 1 q\What is chemical symbol for Caarbon? a\C` Edits the question and answer of the 1st Powercard to be `What is chemical symbol for Oxygen?` and `C` respectively.
 
 ### Reviewing a masterDeck: `review`
 
 _**User must select a masterDeck to use this command.**_
 
-Begins reviewing a masterDeck. 
+Begins reviewing the selected masterDeck.
 
-Format: `review`
+Format: `review INDEX`
+
+Examples:
+* `review 2`
+
+### Setting the number of cards per review: `setNumCardsPerReview`
+
+Sets the number of cards per review to a non-zero positive integer. After setting, only the entered number of cards will appear in future reviews.
+Setting it to none sets back to view all cards in future reviews.
+
+Format: `setNumCardsPerReview INDEX` or `setNumCardsPerReview none`
+
+Examples:
+* `setNumCardsPerReview 30`
+* `setNumCardsPerReview none`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Clearing the data : `clear`
+
+Clears existing decks and cards. 
+
+Format: `clear`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Review Mode
+
+Review mode is started when `review INDEX` has been entered on the main mode.
+
+### Flipping the Powercard: `flip`
+
+Flips the Powercard to check the answer of it.
+
+Format: `[`
+
+### Marking the Powercard as correct: `correct`
+
+Marks the current Powercard as correct.
+
+Format: `'`
+
+### Marking the Powercard as wrong: `wrong`
+
+Marks the current PowerCard as wrong.
+
+Format: `;`
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
 
@@ -156,28 +222,6 @@ If your changes to the data file makes its format invalid, PCs will discard all 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
-
-## Review Mode
-
-Review mode is started when `review` has been entered on the main mode.
-
-### Flipping the Powercard: `flip`
-
-Flips the Powercard to check the answer of it.
-
-Format: `flip`
-
-### Marking the Powercard as correct: `correct`
-
-Marks the current Powercard as correct.
-
-Format: `correct`
-
-### Marking the Powercard as wrong: `wrong`
-
-Marks the current PowerCard as wrong.
-
-Format: `wrong`
 
 
 --------------------------------------------------------------------------------------------------------------------
