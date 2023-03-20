@@ -84,14 +84,6 @@ public interface Model {
     ReadOnlySupplierList getSupplierList();
 
     /**
-     * Replaces the given supplier {@code target} with {@code editedSupplier}.
-     * {@code target} must exist in the supplier list.
-     * The person identity of {@code editedSupplier} must not be the same
-     * as another existing supplier in the supplier list.
-     */
-    void setSupplier(Supplier target, Supplier editedSupplier);
-
-    /**
      * Returns an unmodifiable view of the filtered supplier list
      */
     ObservableList<Supplier> getFilteredSupplierList();
@@ -116,13 +108,6 @@ public interface Model {
     ReadOnlyTaskList getTaskList();
 
     /**
-     * Replaces the given task {@code target} with {@code editedTask}.
-     * {@code target} must exist in the task list.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
-     */
-    void setTask(Task target, Task editedTask);
-
-    /**
      * Returns an unmodifiable view of the filtered task list
      */
     ObservableList<Task> getFilteredTaskList();
@@ -145,13 +130,6 @@ public interface Model {
      * Returns the OrderList
      */
     ReadOnlyOrderList getOrderList();
-
-    /**
-     * Replaces the given order {@code target} with {@code editedOrder}.
-     * {@code target} must exist in the order list.
-     * The order identity of {@code editedOrder} must not be the same as another existing order in the order list.
-     */
-    void setOrder(Order target, Order editedOrder);
 
     /**
      * Returns an unmodifiable view of the filtered order list

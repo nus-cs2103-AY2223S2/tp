@@ -54,7 +54,7 @@ public class EditSupplierCommandTest {
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
-        expectedModel.setSupplier(model.getFilteredSupplierList().get(0), editedSupplier);
+        expectedModel.setItem(model.getFilteredSupplierList().get(0), editedSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -78,7 +78,7 @@ public class EditSupplierCommandTest {
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
-        expectedModel.setSupplier(lastSupplier, editedSupplier);
+        expectedModel.setItem(lastSupplier, editedSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -113,7 +113,7 @@ public class EditSupplierCommandTest {
 
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
-        expectedModel.setSupplier(model.getFilteredSupplierList().get(0), editedSupplier);
+        expectedModel.setItem(model.getFilteredSupplierList().get(0), editedSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

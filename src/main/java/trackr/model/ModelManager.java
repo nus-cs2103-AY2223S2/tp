@@ -247,13 +247,6 @@ public class ModelManager implements Model {
         return supplierList;
     }
 
-    @Override
-    public void setSupplier(Supplier target, Supplier editedSupplier) {
-        requireAllNonNull(target, editedSupplier);
-
-        supplierList.setItem(target, editedSupplier);
-    }
-
     //=========== Filtered Supplier List Accessors =============================================================
 
     /**
@@ -283,13 +276,6 @@ public class ModelManager implements Model {
         return taskList;
     }
 
-    @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        taskList.setItem(target, editedTask);
-    }
-
     //=========== Filtered Task List Accessors ===============================================================
 
     /**
@@ -317,13 +303,6 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyOrderList getOrderList() {
         return orderList;
-    }
-
-    @Override
-    public void setOrder(Order target, Order editedOrder) {
-        requireAllNonNull(target, editedOrder);
-
-        orderList.setItem(target, editedOrder);
     }
 
     //=========== Filtered Order List Accessors =============================================================
