@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.testutil.ModuleBuilder;
 
-class ModuleCodePredicateTest {
+class ModulePredicateTest {
 
     @Test
     public void equals() {
