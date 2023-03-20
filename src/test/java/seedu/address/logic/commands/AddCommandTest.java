@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ReadOnlyTuteeManagingSystem;
-import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyTuteeManagingSystem;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.testutil.PersonBuilder;
 
@@ -75,7 +75,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override

@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -42,7 +42,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTutee);
 
-        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()),
+                new UserPrefs());
         expectedModel.setTutee(model.getFilteredTuteeList().get(0), editedTutee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +64,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTutee);
 
-        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()),
+                new UserPrefs());
         expectedModel.setTutee(lastTutee, editedTutee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +78,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTutee);
 
-        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()),
+                new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +95,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedTutee);
 
-        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()), new UserPrefs());
+        Model expectedModel = new ModelManager(new TuteeManagingSystem(model.getTuteeManagingSystem()),
+                new UserPrefs());
         expectedModel.setTutee(model.getFilteredTuteeList().get(0), editedTutee);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
