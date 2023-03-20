@@ -11,7 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.socket.commons.exceptions.IllegalValueException;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.project.*;
+import seedu.socket.model.project.Project;
+import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectMeeting;
+import seedu.socket.model.project.ProjectName;
+import seedu.socket.model.project.ProjectRepoHost;
+import seedu.socket.model.project.ProjectRepoName;
+
 
 /**
  * Jackson-friendly version of {@link Project}.

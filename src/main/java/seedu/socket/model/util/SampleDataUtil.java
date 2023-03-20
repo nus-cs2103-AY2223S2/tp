@@ -14,7 +14,13 @@ import seedu.socket.model.person.Person;
 import seedu.socket.model.person.Phone;
 import seedu.socket.model.person.tag.Language;
 import seedu.socket.model.person.tag.Tag;
-import seedu.socket.model.project.*;
+import seedu.socket.model.project.Project;
+import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectMeeting;
+import seedu.socket.model.project.ProjectName;
+import seedu.socket.model.project.ProjectRepoHost;
+import seedu.socket.model.project.ProjectRepoName;
+
 
 /**
  * Contains utility methods for populating {@code Socket} with sample data.
