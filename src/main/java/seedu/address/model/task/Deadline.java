@@ -53,9 +53,13 @@ public class Deadline {
         return testDate.compareTo(LocalDate.now()) >= 0;
     }
 
+    public String toDisplayString() {
+        return deadline.format(OUTPUT_FORMAT);
+    }
+
     @Override
     public String toString() {
-        return deadline.format(OUTPUT_FORMAT);
+        return deadline.format(INPUT_FORMAT);
     }
 
     @Override

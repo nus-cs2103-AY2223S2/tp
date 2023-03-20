@@ -51,7 +51,7 @@ public class ApplicationCard extends UiPart<Region> {
         if (application.hasTask()) {
             cardPane.getChildren().addAll(
                     new Label(application.getTask().getDescription().value),
-                    new Label(application.getTask().getDeadline().toString())
+                    new Label(application.getTask().getDeadline().toDisplayString())
             );
         }
     }
