@@ -141,11 +141,6 @@ public class TestUtil {
         }
 
         @Override
-        public void addSupplier(Supplier person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setSupplierList(ReadOnlySupplierList newData) {
             throw new AssertionError("This method should not be called.");
         }

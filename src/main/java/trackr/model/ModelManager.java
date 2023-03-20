@@ -35,7 +35,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given supplier list, taskList and userPrefs.
      */
     public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(supplierList, taskList, orderList, userPrefs);
 
         logger.fine("Initializing with supplier list: " + supplierList
@@ -256,12 +256,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteSupplier(Supplier target) {
         supplierList.removeItem(target);
-    }
-
-    @Override
-    public void addSupplier(Supplier supplier) {
-        supplierList.addItem(supplier);
-        updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override

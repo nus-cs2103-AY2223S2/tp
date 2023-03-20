@@ -93,7 +93,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addSupplier(ALICE);
+        modelManager.addItem(ALICE, ModelEnum.SUPPLIER);
         assertTrue(modelManager.hasSupplier(ALICE));
     }
 

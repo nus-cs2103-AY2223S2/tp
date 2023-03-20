@@ -93,7 +93,7 @@ public class LogicManagerTest {
                 + ADDRESS_DESC_AMY;
         Supplier expectedSupplier = new SupplierBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addSupplier(expectedSupplier);
+        expectedModel.addItem(expectedSupplier, ModelEnum.SUPPLIER);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addSupplierCommand, CommandException.class, expectedMessage, expectedModel);
     }

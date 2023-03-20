@@ -111,19 +111,14 @@ public class AddSupplierCommandTest {
 
         @Override
         public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
-            addSupplier((Supplier) item);
+            requireNonNull(item);
+            suppliersAdded.add((Supplier) item);
         }
 
         @Override
         public boolean hasSupplier(Supplier supplier) {
             requireNonNull(supplier);
             return suppliersAdded.stream().anyMatch(supplier::isSameItem);
-        }
-
-        @Override
-        public void addSupplier(Supplier supplier) {
-            requireNonNull(supplier);
-            suppliersAdded.add(supplier);
         }
 
         @Override

@@ -36,7 +36,7 @@ public class AddSupplierCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getSupplierList(),
                 model.getTaskList(), model.getOrderList(), new UserPrefs());
-        expectedModel.addSupplier(validSupplier);
+        expectedModel.addItem(validSupplier, ModelEnum.SUPPLIER);
 
         assertCommandSuccess(new AddSupplierCommand(validSupplier), model,
                 String.format(AddSupplierCommand.MESSAGE_SUCCESS,

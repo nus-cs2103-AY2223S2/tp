@@ -95,12 +95,6 @@ public interface Model {
     void deleteSupplier(Supplier target);
 
     /**
-     * Adds the given supplier.
-     * {@code supplier} must not already exist in the address book.
-     */
-    void addSupplier(Supplier supplier);
-
-    /**
      * Replaces the given supplier {@code target} with {@code editedSupplier}.
      * {@code target} must exist in the supplier list.
      * The person identity of {@code editedSupplier} must not be the same
