@@ -10,6 +10,9 @@ import java.util.Set;
 import trackr.commons.core.index.Index;
 import trackr.commons.util.StringUtil;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.commons.Deadline;
+import trackr.model.commons.Name;
+import trackr.model.commons.Tag;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
@@ -17,11 +20,10 @@ import trackr.model.order.OrderStatus;
 import trackr.model.order.customer.CustomerAddress;
 import trackr.model.order.customer.CustomerName;
 import trackr.model.order.customer.CustomerPhone;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
-import trackr.model.supplier.Phone;
-import trackr.model.tag.Tag;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
@@ -36,6 +38,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -52,13 +55,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static PersonName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new PersonName(trimmedName);
     }
 
     /**
@@ -67,13 +70,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static PersonPhone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(trimmedPhone)) {
+            throw new ParseException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new PersonPhone(trimmedPhone);
     }
 
     /**
@@ -82,13 +85,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
+    public static PersonAddress parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(trimmedAddress)) {
+            throw new ParseException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new PersonAddress(trimmedAddress);
     }
 
     /**
@@ -97,13 +100,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
+    public static PersonEmail parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        if (!PersonEmail.isValidPersonEmail(trimmedEmail)) {
+            throw new ParseException(PersonEmail.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new PersonEmail(trimmedEmail);
     }
 
     /**
@@ -134,6 +137,7 @@ public class ParserUtil {
     }
 
     //========================Parse those related to task==================================
+
     /**
      * Parses a {@code String taskName} into a {@code TaskName}.
      * Leading and trailing whitespaces will be trimmed.
@@ -143,8 +147,8 @@ public class ParserUtil {
     public static TaskName parseTaskName(String taskName) throws ParseException {
         requireNonNull(taskName);
         String trimmedTaskName = taskName.trim();
-        if (!TaskName.isValidTaskName(trimmedTaskName)) {
-            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidName(trimmedTaskName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new TaskName(trimmedTaskName);
     }
@@ -158,8 +162,8 @@ public class ParserUtil {
     public static TaskDeadline parseTaskDeadline(String taskDeadline) throws ParseException {
         requireNonNull(taskDeadline);
         String trimmedTaskDeadline = taskDeadline.trim();
-        if (!TaskDeadline.isValidTaskDeadline(trimmedTaskDeadline)) {
-            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        if (!TaskDeadline.isValidDeadline(trimmedTaskDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new TaskDeadline(trimmedTaskDeadline);
     }
@@ -177,13 +181,14 @@ public class ParserUtil {
         }
 
         String trimmedTaskStatus = taskStatus.get().trim();
-        if (!TaskStatus.isValidTaskStatus(trimmedTaskStatus)) {
+        if (!TaskStatus.isValidStatus(trimmedTaskStatus, TaskStatus.STATUSES)) {
             throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
         return new TaskStatus(trimmedTaskStatus);
     }
 
     //========================Parse those related to order==================================
+
     /**
      * Parses a {@code String orderName} into a {@code OrderName}.
      * Leading and trailing whitespaces will be trimmed.

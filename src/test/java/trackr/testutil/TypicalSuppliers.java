@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import trackr.model.SupplierList;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 
 /**
  * A utility class containing a list of {@code Supplier} objects to be used in tests.
@@ -35,17 +35,17 @@ public class TypicalSuppliers {
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Supplier DANIEL = new SupplierBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Supplier ELLE = new SupplierBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Supplier ELLE = new SupplierBuilder().withName("Elle Meyer").withPhone("94823244")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Supplier FIONA = new SupplierBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Supplier FIONA = new SupplierBuilder().withName("Fiona Kunz").withPhone("94824273")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Supplier GEORGE = new SupplierBuilder().withName("George Best").withPhone("9482442")
+    public static final Supplier GEORGE = new SupplierBuilder().withName("George Best").withPhone("94824423")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
-    public static final Supplier HOON = new SupplierBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Supplier HOON = new SupplierBuilder().withName("Hoon Meier").withPhone("84824243")
             .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Supplier IDA = new SupplierBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Supplier IDA = new SupplierBuilder().withName("Ida Mueller").withPhone("84821313")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -65,7 +65,7 @@ public class TypicalSuppliers {
     public static SupplierList getTypicalSupplierList() {
         SupplierList sl = new SupplierList();
         for (Supplier person : getTypicalSuppliers()) {
-            sl.addSupplier(person);
+            sl.addItem(person);
         }
         return sl;
     }

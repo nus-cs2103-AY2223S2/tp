@@ -15,6 +15,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.model.commons.Tag;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
@@ -22,11 +23,10 @@ import trackr.model.order.OrderStatus;
 import trackr.model.order.customer.CustomerAddress;
 import trackr.model.order.customer.CustomerName;
 import trackr.model.order.customer.CustomerPhone;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
-import trackr.model.supplier.Phone;
-import trackr.model.tag.Tag;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
@@ -73,7 +73,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -97,14 +97,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
+        PersonName expectedName = new PersonName(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
+        PersonName expectedName = new PersonName(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
@@ -120,15 +120,15 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        PersonPhone expectedPersonPhone = new PersonPhone(VALID_PHONE);
+        assertEquals(expectedPersonPhone, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        PersonPhone expectedPersonPhone = new PersonPhone(VALID_PHONE);
+        assertEquals(expectedPersonPhone, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test
@@ -143,15 +143,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+        PersonAddress expectedPersonAddress = new PersonAddress(VALID_ADDRESS);
+        assertEquals(expectedPersonAddress, ParserUtil.parseAddress(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+        PersonAddress expectedPersonAddress = new PersonAddress(VALID_ADDRESS);
+        assertEquals(expectedPersonAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test
@@ -166,15 +166,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+        PersonEmail expectedPersonEmail = new PersonEmail(VALID_EMAIL);
+        assertEquals(expectedPersonEmail, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+        PersonEmail expectedPersonEmail = new PersonEmail(VALID_EMAIL);
+        assertEquals(expectedPersonEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
     @Test
@@ -348,7 +348,7 @@ public class ParserUtilTest {
     @Test
     public void parseOrderStatus_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil
-            .parseOrderStatus(Optional.ofNullable(INVALID_ORDER_STATUS)));
+                .parseOrderStatus(Optional.ofNullable(INVALID_ORDER_STATUS)));
     }
 
     @Test

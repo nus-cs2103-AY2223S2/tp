@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 
 import trackr.logic.commands.AddSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
-import trackr.model.supplier.Phone;
-import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
+import trackr.model.commons.Tag;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
+import trackr.model.person.Supplier;
 
 /**
  * Parses input arguments and creates a new AddSupplierCommand object
@@ -39,13 +39,13 @@ public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        PersonName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        PersonPhone personPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        PersonEmail personEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        PersonAddress personAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Supplier supplier = new Supplier(name, phone, email, address, tagList);
+        Supplier supplier = new Supplier(name, personPhone, personEmail, personAddress, tagList);
 
         return new AddSupplierCommand(supplier);
     }

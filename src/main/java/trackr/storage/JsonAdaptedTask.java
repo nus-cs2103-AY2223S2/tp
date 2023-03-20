@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
+import trackr.model.commons.Deadline;
+import trackr.model.commons.Name;
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
@@ -36,7 +38,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        taskName = source.getTaskName().fullTaskName;
+        taskName = source.getTaskName().getName();
         taskDeadline = source.getTaskDeadline().toJsonString();
         taskStatus = source.getTaskStatus().toJsonString();
     }
@@ -51,8 +53,8 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskName.class.getSimpleName()));
         }
-        if (!TaskName.isValidTaskName(taskName)) {
-            throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidName(taskName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final TaskName modelTaskName = new TaskName(taskName);
 
@@ -60,8 +62,8 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskDeadline.class.getSimpleName()));
         }
-        if (!TaskDeadline.isValidTaskDeadline(taskDeadline)) {
-            throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        if (!TaskDeadline.isValidDeadline(taskDeadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
         }
         final TaskDeadline modelTaskDeadline = new TaskDeadline(taskDeadline);
 
@@ -69,7 +71,7 @@ class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskStatus.class.getSimpleName()));
         }
-        if (!TaskStatus.isValidTaskStatus(taskStatus)) {
+        if (!TaskStatus.isValidStatus(taskStatus, TaskStatus.STATUSES)) {
             throw new IllegalValueException(TaskStatus.MESSAGE_CONSTRAINTS);
         }
         final TaskStatus modelTaskStatus = new TaskStatus(taskStatus);

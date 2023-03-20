@@ -19,12 +19,12 @@ import trackr.commons.core.index.Index;
 import trackr.commons.util.CollectionUtil;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
-import trackr.model.supplier.Phone;
-import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
+import trackr.model.commons.Tag;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
+import trackr.model.person.Supplier;
 
 /**
  * Edits the details of an existing supplier in the supplier list.
@@ -55,7 +55,7 @@ public class EditSupplierCommand extends Command {
     private final EditSupplierDescriptor editSupplierDescriptor;
 
     /**
-     * @param index of the supplier in the filtered supplier list to edit
+     * @param index                  of the supplier in the filtered supplier list to edit
      * @param editSupplierDescriptor details to edit the supplier with
      */
     public EditSupplierCommand(Index index, EditSupplierDescriptor editSupplierDescriptor) {
@@ -78,7 +78,7 @@ public class EditSupplierCommand extends Command {
         Supplier supplierToEdit = lastShownList.get(index.getZeroBased());
         Supplier editedSupplier = createEditedSupplier(supplierToEdit, editSupplierDescriptor);
 
-        if (!supplierToEdit.isSameSupplier(editedSupplier) && model.hasSupplier(editedSupplier)) {
+        if (!supplierToEdit.isSameItem(editedSupplier) && model.hasSupplier(editedSupplier)) {
             throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
@@ -92,16 +92,17 @@ public class EditSupplierCommand extends Command {
      * edited with {@code editSupplierDescriptor}.
      */
     private static Supplier createEditedSupplier(Supplier supplierToEdit,
-            EditSupplierDescriptor editSupplierDescriptor) {
+                                                 EditSupplierDescriptor editSupplierDescriptor) {
         assert supplierToEdit != null;
 
-        Name updatedName = editSupplierDescriptor.getName().orElse(supplierToEdit.getName());
-        Phone updatedPhone = editSupplierDescriptor.getPhone().orElse(supplierToEdit.getPhone());
-        Email updatedEmail = editSupplierDescriptor.getEmail().orElse(supplierToEdit.getEmail());
-        Address updatedAddress = editSupplierDescriptor.getAddress().orElse(supplierToEdit.getAddress());
-        Set<Tag> updatedTags = editSupplierDescriptor.getTags().orElse(supplierToEdit.getTags());
+        PersonName updatedName = editSupplierDescriptor.getName().orElse(supplierToEdit.getPersonName());
+        PersonPhone updatedPersonPhone = editSupplierDescriptor.getPhone().orElse(supplierToEdit.getPersonPhone());
+        PersonEmail updatedPersonEmail = editSupplierDescriptor.getEmail().orElse(supplierToEdit.getPersonEmail());
+        PersonAddress updatedPersonAddress = editSupplierDescriptor.getAddress()
+                .orElse(supplierToEdit.getPersonAddress());
+        Set<Tag> updatedTags = editSupplierDescriptor.getTags().orElse(supplierToEdit.getPersonTags());
 
-        return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Supplier(updatedName, updatedPersonPhone, updatedPersonEmail, updatedPersonAddress, updatedTags);
     }
 
     @Override
@@ -127,13 +128,14 @@ public class EditSupplierCommand extends Command {
      * corresponding field value of the supplier.
      */
     public static class EditSupplierDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private PersonName name;
+        private PersonPhone personPhone;
+        private PersonEmail personEmail;
+        private PersonAddress personAddress;
         private Set<Tag> tags;
 
-        public EditSupplierDescriptor() {}
+        public EditSupplierDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -141,9 +143,9 @@ public class EditSupplierCommand extends Command {
          */
         public EditSupplierDescriptor(EditSupplierDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setPhone(toCopy.personPhone);
+            setEmail(toCopy.personEmail);
+            setAddress(toCopy.personAddress);
             setTags(toCopy.tags);
         }
 
@@ -151,39 +153,39 @@ public class EditSupplierCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, personPhone, personEmail, personAddress, tags);
         }
 
-        public void setName(Name name) {
+        public void setName(PersonName name) {
             this.name = name;
         }
 
-        public Optional<Name> getName() {
+        public Optional<PersonName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(PersonPhone personPhone) {
+            this.personPhone = personPhone;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<PersonPhone> getPhone() {
+            return Optional.ofNullable(personPhone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setEmail(PersonEmail personEmail) {
+            this.personEmail = personEmail;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<PersonEmail> getEmail() {
+            return Optional.ofNullable(personEmail);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setAddress(PersonAddress personAddress) {
+            this.personAddress = personAddress;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<PersonAddress> getAddress() {
+            return Optional.ofNullable(personAddress);
         }
 
         /**

@@ -1,17 +1,11 @@
 package trackr.model;
 
-import javafx.collections.ObservableList;
-import trackr.model.supplier.Supplier;
+import trackr.model.item.ReadOnlyItemList;
+import trackr.model.person.Supplier;
 
 /**
- * Unmodifiable view of an supplier list.
+ * Unmodifiable view of a supplier list.
  */
-public interface ReadOnlySupplierList {
-
-    /**
-     * Returns an unmodifiable view of the Supplier list.
-     * This list will not contain any duplicate suppliers.
-     */
-    ObservableList<Supplier> getSupplierList();
+public interface ReadOnlySupplierList extends ReadOnlyItemList<Supplier> {
 
 }

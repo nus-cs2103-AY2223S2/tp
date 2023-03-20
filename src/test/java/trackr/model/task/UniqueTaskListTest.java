@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import trackr.model.task.exceptions.DuplicateTaskException;
-import trackr.model.task.exceptions.TaskNotFoundException;
+import trackr.model.item.exceptions.DuplicateItemException;
+import trackr.model.item.exceptions.ItemNotFoundException;
 import trackr.testutil.TaskBuilder;
 
 public class UniqueTaskListTest {
@@ -55,28 +55,28 @@ public class UniqueTaskListTest {
     @Test
     public void add_duplicateTask_throwsDuplicateTaskException() {
         uniqueTaskList.add(SORT_INVENTORY_N);
-        assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.add(SORT_INVENTORY_N));
+        assertThrows(DuplicateItemException.class, () -> uniqueTaskList.add(SORT_INVENTORY_N));
     }
 
     @Test
     public void setTask_nullTargetTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTaskList.setTask(null, SORT_INVENTORY_N));
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.setItem(null, SORT_INVENTORY_N));
     }
 
     @Test
     public void setTask_nullEditedTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTaskList.setTask(SORT_INVENTORY_N, null));
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.setItem(SORT_INVENTORY_N, null));
     }
 
     @Test
     public void setTask_targetTaskNotInList_throwsTaskNotFoundException() {
-        assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.setTask(SORT_INVENTORY_N, SORT_INVENTORY_N));
+        assertThrows(ItemNotFoundException.class, () -> uniqueTaskList.setItem(SORT_INVENTORY_N, SORT_INVENTORY_N));
     }
 
     @Test
     public void setTask_editedTaskIsSameTask_success() {
         uniqueTaskList.add(SORT_INVENTORY_N);
-        uniqueTaskList.setTask(SORT_INVENTORY_N, SORT_INVENTORY_N);
+        uniqueTaskList.setItem(SORT_INVENTORY_N, SORT_INVENTORY_N);
 
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(SORT_INVENTORY_N);
@@ -89,7 +89,7 @@ public class UniqueTaskListTest {
         uniqueTaskList.add(SORT_INVENTORY_N);
         Task editedTask = new TaskBuilder(SORT_INVENTORY_N)
                 .withTaskStatus(VALID_TASK_STATUS_DONE).build();
-        uniqueTaskList.setTask(SORT_INVENTORY_N, editedTask); //change task status
+        uniqueTaskList.setItem(SORT_INVENTORY_N, editedTask); //change task status
 
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(editedTask);
@@ -100,7 +100,7 @@ public class UniqueTaskListTest {
     @Test
     public void setTask_editedTaskHasDifferentIdentity_success() {
         uniqueTaskList.add(SORT_INVENTORY_N);
-        uniqueTaskList.setTask(SORT_INVENTORY_N, BUY_FLOUR_N);
+        uniqueTaskList.setItem(SORT_INVENTORY_N, BUY_FLOUR_N);
 
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(BUY_FLOUR_N);
@@ -112,7 +112,7 @@ public class UniqueTaskListTest {
     public void setTask_editedTaskHasNonUniqueIdentity_throwsDuplicateTaskException() {
         uniqueTaskList.add(SORT_INVENTORY_N);
         uniqueTaskList.add(BUY_EGGS_D);
-        assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(SORT_INVENTORY_N, BUY_EGGS_D));
+        assertThrows(DuplicateItemException.class, () -> uniqueTaskList.setItem(SORT_INVENTORY_N, BUY_EGGS_D));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class UniqueTaskListTest {
 
     @Test
     public void remove_taskDoesNotExist_throwsTaskNotFoundException() {
-        assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.remove(SORT_INVENTORY_N));
+        assertThrows(ItemNotFoundException.class, () -> uniqueTaskList.remove(SORT_INVENTORY_N));
     }
 
     @Test
@@ -137,7 +137,7 @@ public class UniqueTaskListTest {
 
     @Test
     public void setTasks_nullUniqueTaskList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTaskList.setTasks((UniqueTaskList) null));
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.setItems((UniqueTaskList) null));
     }
 
     @Test
@@ -147,21 +147,21 @@ public class UniqueTaskListTest {
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(BUY_FLOUR_N);
 
-        uniqueTaskList.setTasks(expectedUniqueTaskList);
+        uniqueTaskList.setItems(expectedUniqueTaskList);
 
         assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
     @Test
     public void setTasks_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueTaskList.setTasks((List<Task>) null));
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.setItems((List<Task>) null));
     }
 
     @Test
     public void setTasks_list_replacesOwnListWithProvidedList() {
         uniqueTaskList.add(SORT_INVENTORY_N);
         List<Task> taskList = Collections.singletonList(BUY_EGGS_D);
-        uniqueTaskList.setTasks(taskList);
+        uniqueTaskList.setItems(taskList);
 
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(BUY_EGGS_D);
@@ -172,7 +172,7 @@ public class UniqueTaskListTest {
     @Test
     public void setTasks_listWithDuplicateTasks_throwsDuplicateTaskException() {
         List<Task> listWithDuplicateTasks = Arrays.asList(SORT_INVENTORY_N, SORT_INVENTORY_N);
-        assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTasks(listWithDuplicateTasks));
+        assertThrows(DuplicateItemException.class, () -> uniqueTaskList.setItems(listWithDuplicateTasks));
     }
 
     @Test

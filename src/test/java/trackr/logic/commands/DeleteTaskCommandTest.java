@@ -75,7 +75,7 @@ public class DeleteTaskCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of task list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getItemList().size());
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
 

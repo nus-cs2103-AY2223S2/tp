@@ -1,13 +1,13 @@
-package trackr.model.supplier;
+package trackr.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Supplier's email in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
+ * Represents a Person's email.
+ * Guarantees: immutable; is valid as declared in {@link #isValidPersonEmail(String)}
  */
-public class Email {
+public class PersonEmail {
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -31,41 +31,41 @@ public class Email {
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
-    public final String value;
+    public final String personEmail;
 
     /**
-     * Constructs an {@code Email}.
+     * Constructs an {@code PersonEmail}.
      *
-     * @param email A valid email address.
+     * @param personEmail A valid person email address.
      */
-    public Email(String email) {
-        requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+    public PersonEmail(String personEmail) {
+        requireNonNull(personEmail);
+        checkArgument(isValidPersonEmail(personEmail), MESSAGE_CONSTRAINTS);
+        this.personEmail = personEmail;
     }
 
     /**
      * Returns if a given string is a valid email.
      */
-    public static boolean isValidEmail(String test) {
+    public static boolean isValidPersonEmail(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return personEmail;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                || (other instanceof PersonEmail // instanceof handles nulls
+                && personEmail.equals(((PersonEmail) other).personEmail)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return personEmail.hashCode();
     }
 
 }

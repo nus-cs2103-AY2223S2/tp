@@ -13,7 +13,7 @@ import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.UserPrefs;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 
 /**

@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import trackr.model.supplier.Supplier;
-import trackr.model.supplier.exceptions.DuplicateSupplierException;
+import trackr.model.item.exceptions.DuplicateItemException;
+import trackr.model.person.Supplier;
 import trackr.testutil.SupplierBuilder;
 
 public class SupplierListTest {
@@ -29,7 +29,7 @@ public class SupplierListTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), supplierList.getSupplierList());
+        assertEquals(Collections.emptyList(), supplierList.getItemList());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class SupplierListTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlysupplierList_replacesData() {
+    public void resetData_withValidReadOnlySupplierList_replacesData() {
         SupplierList newData = getTypicalSupplierList();
         supplierList.resetData(newData);
         assertEquals(newData, supplierList);
@@ -52,47 +52,47 @@ public class SupplierListTest {
         List<Supplier> newSuppliers = Arrays.asList(ALICE, editedAlice);
         SupplierListStub newData = new SupplierListStub(newSuppliers);
 
-        assertThrows(DuplicateSupplierException.class, () -> supplierList.resetData(newData));
+        assertThrows(DuplicateItemException.class, () -> supplierList.resetData(newData));
     }
 
     @Test
     public void hasSupplier_nullSupplier_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> supplierList.hasSupplier(null));
+        assertThrows(NullPointerException.class, () -> supplierList.hasItem(null));
     }
 
     @Test
-    public void hasSupplier_supplierNotInsupplierList_returnsFalse() {
-        assertFalse(supplierList.hasSupplier(ALICE));
+    public void hasSupplier_supplierNotInSupplierList_returnsFalse() {
+        assertFalse(supplierList.hasItem(ALICE));
     }
 
     @Test
     public void hasSupplier_supplierInSupplierList_returnsTrue() {
-        supplierList.addSupplier(ALICE);
-        assertTrue(supplierList.hasSupplier(ALICE));
+        supplierList.addItem(ALICE);
+        assertTrue(supplierList.hasItem(ALICE));
     }
 
     @Test
-    public void hasSupplier_supplierWithSameIdentityFieldsInsupplierList_returnsTrue() {
-        supplierList.addSupplier(ALICE);
+    public void hasSupplier_supplierWithSameIdentityFieldsInSupplierList_returnsTrue() {
+        supplierList.addItem(ALICE);
         Supplier editedAlice = new SupplierBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(supplierList.hasSupplier(editedAlice));
+        assertTrue(supplierList.hasItem(editedAlice));
     }
 
     @Test
     public void getSupplierList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> supplierList.getSupplierList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> supplierList.getItemList().remove(0));
     }
 
     @Test
     public void equals() {
-        supplierList.addSupplier(ALICE);
+        supplierList.addItem(ALICE);
 
         SupplierList differentSupplierList = new SupplierList();
-        differentSupplierList.addSupplier(BOB);
+        differentSupplierList.addItem(BOB);
 
         SupplierList sameSupplierList = new SupplierList();
-        sameSupplierList.addSupplier(ALICE);
+        sameSupplierList.addItem(ALICE);
 
         assertTrue(supplierList.equals(supplierList)); //same object
         assertTrue(supplierList.equals(sameSupplierList)); //contains the same suppliers
@@ -113,7 +113,7 @@ public class SupplierListTest {
         }
 
         @Override
-        public ObservableList<Supplier> getSupplierList() {
+        public ObservableList<Supplier> getItemList() {
             return suppliers;
         }
     }

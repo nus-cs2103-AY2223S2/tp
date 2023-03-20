@@ -27,7 +27,7 @@ import trackr.model.OrderList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
 import trackr.model.UserPrefs;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.testutil.EditSupplierDescriptorBuilder;
 import trackr.testutil.SupplierBuilder;
 
@@ -121,7 +121,7 @@ public class EditSupplierCommandTest {
         showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
 
         // edit supplier in filtered list into a duplicate in address book
-        Supplier supplierInList = model.getSupplierList().getSupplierList().get(INDEX_SECOND_OBJECT.getZeroBased());
+        Supplier supplierInList = model.getSupplierList().getItemList().get(INDEX_SECOND_OBJECT.getZeroBased());
         EditSupplierCommand editCommand = new EditSupplierCommand(INDEX_FIRST_OBJECT,
                 new EditSupplierDescriptorBuilder(supplierInList).build());
 
@@ -146,7 +146,7 @@ public class EditSupplierCommandTest {
         showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSupplierList().getSupplierList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSupplierList().getItemList().size());
 
         EditSupplierCommand editCommand = new EditSupplierCommand(outOfBoundIndex,
                 new EditSupplierDescriptorBuilder().withName(VALID_NAME_BOB).build());

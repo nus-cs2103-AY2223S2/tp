@@ -128,7 +128,7 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_OBJECT);
 
         // edit task in filtered task list into a duplicate in task list
-        Task taskInList = model.getTaskList().getTaskList().get(INDEX_SECOND_OBJECT.getZeroBased());
+        Task taskInList = model.getTaskList().getItemList().get(INDEX_SECOND_OBJECT.getZeroBased());
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT,
                 new TaskDescriptorBuilder(taskInList).build());
 
@@ -154,7 +154,7 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_OBJECT);
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of task list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getItemList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex,
                 new TaskDescriptorBuilder().withTaskName(VALID_TASK_NAME_SORT_INVENTORY).build());

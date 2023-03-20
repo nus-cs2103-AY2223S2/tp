@@ -18,7 +18,7 @@ import trackr.commons.core.index.Index;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -74,7 +74,7 @@ public class DeleteSupplierCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getSupplierList().getSupplierList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSupplierList().getItemList().size());
 
         DeleteSupplierCommand deleteCommand = new DeleteSupplierCommand(outOfBoundIndex);
 

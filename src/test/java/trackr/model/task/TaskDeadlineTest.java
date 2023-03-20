@@ -35,18 +35,18 @@ public class TaskDeadlineTest {
     @Test
     public void isValidTaskDeadline() {
         // null task deadline
-        assertThrows(NullPointerException.class, () -> TaskDeadline.isValidTaskDeadline(null));
+        assertThrows(NullPointerException.class, () -> TaskDeadline.isValidDeadline(null));
 
         // invalid task deadline
 
         String wrongFormatDate = "2024-01-01";
-        assertFalse(TaskDeadline.isValidTaskDeadline(wrongFormatDate)); //deadline is in the wrong format
+        assertFalse(TaskDeadline.isValidDeadline(wrongFormatDate)); //deadline is in the wrong format
 
         String invalidDate = "35/14/2024";
-        assertFalse(TaskDeadline.isValidTaskDeadline(invalidDate)); //deadline is an invalid date in the calendar
+        assertFalse(TaskDeadline.isValidDeadline(invalidDate)); //deadline is an invalid date in the calendar
 
         String notADate = "Not a Date";
-        assertFalse(TaskDeadline.isValidTaskDeadline(notADate)); // deadline is not a date
+        assertFalse(TaskDeadline.isValidDeadline(notADate)); // deadline is not a date
 
         // valid task deadline
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -54,10 +54,10 @@ public class TaskDeadlineTest {
         String tomorrow = LocalDate.now().plusDays(1).format(dtf);
         String futureDate = LocalDate.now().plusMonths(7).plusDays(21).format(dtf);
         String pastDate = LocalDate.now().minusMonths(7).minusDays(10).format(dtf);
-        assertTrue(TaskDeadline.isValidTaskDeadline(todayDate)); // today's date
-        assertTrue(TaskDeadline.isValidTaskDeadline(tomorrow)); // tomorrow's date
-        assertTrue(TaskDeadline.isValidTaskDeadline(futureDate)); // future date
-        assertTrue(TaskDeadline.isValidTaskDeadline(pastDate)); // past date
+        assertTrue(TaskDeadline.isValidDeadline(todayDate)); // today's date
+        assertTrue(TaskDeadline.isValidDeadline(tomorrow)); // tomorrow's date
+        assertTrue(TaskDeadline.isValidDeadline(futureDate)); // future date
+        assertTrue(TaskDeadline.isValidDeadline(pastDate)); // past date
     }
 
     @Test

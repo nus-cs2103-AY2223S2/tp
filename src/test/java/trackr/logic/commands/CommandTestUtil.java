@@ -24,8 +24,8 @@ import trackr.model.SupplierList;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
 import trackr.model.order.OrderDescriptor;
-import trackr.model.supplier.NameContainsKeywordsPredicate;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.PersonNameContainsKeywordsPredicate;
+import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
@@ -262,8 +262,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredSupplierList().size());
 
         Supplier supplier = model.getFilteredSupplierList().get(targetIndex.getZeroBased());
-        final String[] splitName = supplier.getName().fullName.split("\\s+");
-        model.updateFilteredSupplierList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = supplier.getPersonName().getName().split("\\s+");
+        model.updateFilteredSupplierList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredSupplierList().size());
     }
@@ -276,7 +276,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        final String[] splitTaskName = task.getTaskName().fullTaskName.split("\\s+");
+        final String[] splitTaskName = task.getTaskName().getName().split("\\s+");
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setTaskNameKeywords(Arrays.asList(splitTaskName[0]));
         model.updateFilteredTaskList(predicate);

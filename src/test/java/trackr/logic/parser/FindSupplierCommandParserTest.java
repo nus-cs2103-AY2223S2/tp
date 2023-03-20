@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.FindSupplierCommand;
-import trackr.model.supplier.NameContainsKeywordsPredicate;
+import trackr.model.person.PersonNameContainsKeywordsPredicate;
 
 public class FindSupplierCommandParserTest {
 
@@ -25,7 +25,7 @@ public class FindSupplierCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindSupplierCommand expectedFindCommand =
-                new FindSupplierCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindSupplierCommand(new PersonNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

@@ -8,7 +8,7 @@ import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 
 /**
  * Deletes a supplier identified using it's displayed index from the supplier list.

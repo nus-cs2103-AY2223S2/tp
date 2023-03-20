@@ -9,7 +9,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 
 /**
  * Adds a supplier to Trackr.

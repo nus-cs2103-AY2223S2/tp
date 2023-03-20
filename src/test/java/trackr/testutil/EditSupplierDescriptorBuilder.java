@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import trackr.logic.commands.EditSupplierCommand.EditSupplierDescriptor;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
-import trackr.model.supplier.Phone;
-import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
+import trackr.model.commons.Tag;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
+import trackr.model.person.Supplier;
 
 /**
  * A utility class to help with building EditSupplierDescriptor objects.
@@ -32,18 +32,18 @@ public class EditSupplierDescriptorBuilder {
      */
     public EditSupplierDescriptorBuilder(Supplier person) {
         descriptor = new EditSupplierDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setPhone(person.getPhone());
-        descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(person.getPersonName());
+        descriptor.setPhone(person.getPersonPhone());
+        descriptor.setEmail(person.getPersonEmail());
+        descriptor.setAddress(person.getPersonAddress());
+        descriptor.setTags(person.getPersonTags());
     }
 
     /**
      * Sets the {@code Name} of the {@code EditSupplierDescriptor} that we are building.
      */
     public EditSupplierDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new PersonName(name));
         return this;
     }
 
@@ -51,7 +51,7 @@ public class EditSupplierDescriptorBuilder {
      * Sets the {@code Phone} of the {@code EditSupplierDescriptor} that we are building.
      */
     public EditSupplierDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setPhone(new PersonPhone(phone));
         return this;
     }
 
@@ -59,7 +59,7 @@ public class EditSupplierDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditSupplierDescriptor} that we are building.
      */
     public EditSupplierDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(new PersonEmail(email));
         return this;
     }
 
@@ -67,7 +67,7 @@ public class EditSupplierDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditSupplierDescriptor} that we are building.
      */
     public EditSupplierDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(new PersonAddress(address));
         return this;
     }
 

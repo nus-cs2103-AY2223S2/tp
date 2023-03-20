@@ -12,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
 import trackr.model.order.Order;
-import trackr.model.supplier.Supplier;
+import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 
 /**
@@ -45,8 +45,8 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.orderList = new OrderList(orderList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredSuppliers = new FilteredList<>(this.supplierList.getSupplierList());
-        filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        filteredSuppliers = new FilteredList<>(this.supplierList.getItemList());
+        filteredTasks = new FilteredList<>(this.taskList.getItemList());
         filteredOrders = new FilteredList<>(this.orderList.getOrderList());
     }
 
@@ -104,17 +104,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasSupplier(Supplier supplier) {
         requireNonNull(supplier);
-        return supplierList.hasSupplier(supplier);
+        return supplierList.hasItem(supplier);
     }
 
     @Override
     public void deleteSupplier(Supplier target) {
-        supplierList.removeSupplier(target);
+        supplierList.removeItem(target);
     }
 
     @Override
     public void addSupplier(Supplier supplier) {
-        supplierList.addSupplier(supplier);
+        supplierList.addItem(supplier);
         updateFilteredSupplierList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -122,7 +122,7 @@ public class ModelManager implements Model {
     public void setSupplier(Supplier target, Supplier editedSupplier) {
         requireAllNonNull(target, editedSupplier);
 
-        supplierList.setSupplier(target, editedSupplier);
+        supplierList.setItem(target, editedSupplier);
     }
 
     //=========== Filtered Supplier List Accessors =============================================================
@@ -157,17 +157,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTask(Task task) {
         requireNonNull(task);
-        return taskList.hasTask(task);
+        return taskList.hasItem(task);
     }
 
     @Override
     public void deleteTask(Task target) {
-        taskList.removeTask(target);
+        taskList.removeItem(target);
     }
 
     @Override
     public void addTask(Task task) {
-        taskList.addTask(task);
+        taskList.addItem(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -175,7 +175,7 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        taskList.setTask(target, editedTask);
+        taskList.setItem(target, editedTask);
     }
 
     //=========== Filtered Task List Accessors ===============================================================

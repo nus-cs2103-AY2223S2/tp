@@ -10,6 +10,7 @@ import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.SupplierList;
 import trackr.model.TaskList;
+import trackr.model.commons.Tag;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
@@ -19,12 +20,11 @@ import trackr.model.order.customer.Customer;
 import trackr.model.order.customer.CustomerAddress;
 import trackr.model.order.customer.CustomerName;
 import trackr.model.order.customer.CustomerPhone;
-import trackr.model.supplier.Address;
-import trackr.model.supplier.Email;
-import trackr.model.supplier.Name;
-import trackr.model.supplier.Phone;
-import trackr.model.supplier.Supplier;
-import trackr.model.tag.Tag;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonEmail;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
+import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
@@ -36,23 +36,23 @@ import trackr.model.task.TaskStatus;
 public class SampleDataUtil {
     public static Supplier[] getSampleSuppliers() {
         return new Supplier[] {
-            new Supplier(new Name("Prima Flour"), new Phone("87438807"), new Email("sales.primaflour@prima.com.sg"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
+            new Supplier(new PersonName("Prima Flour"), new PersonPhone("87438807"),
+                new PersonEmail("sales.primaflour@prima.com.sg"), new PersonAddress("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("flour")),
-            new Supplier(new Name("Kim Guan Guan Coffee"), new Phone("99272758"), new Email("info@kimguanguan.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Supplier(new PersonName("Kim Guan Guan Coffee"), new PersonPhone("99272758"),
+                new PersonEmail("info@kimguanguan.com"), new PersonAddress("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("coffee")),
-            new Supplier(new Name("N Supplies"), new Phone("93210283"), new Email("sales@nsupplies.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Supplier(new PersonName("N Supplies"), new PersonPhone("93210283"),
+                new PersonEmail("sales@nsupplies.com"), new PersonAddress("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("halal")),
-            new Supplier(new Name("Teck Leong Pte Ltd"), new Phone("91031282"), new Email("teckleong@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("confectionery")),
-            new Supplier(new Name("Chip Seng"), new Phone("92492021"), new Email("chipseng@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
+            new Supplier(new PersonName("Teck Leong Pte Ltd"), new PersonPhone("91031282"),
+                new PersonEmail("teckleong@example.com"),
+                new PersonAddress("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet("confectionery")),
+            new Supplier(new PersonName("Chip Seng"), new PersonPhone("92492021"),
+                    new PersonEmail("chipseng@example.com"), new PersonAddress("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("sugar")),
-            new Supplier(new Name("Roy Selva"), new Phone("92624417"), new Email("roys@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
+            new Supplier(new PersonName("Roy Selva"), new PersonPhone("92624417"), new PersonEmail("roys@example.com"),
+                new PersonAddress("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("driver"))
         };
     }
@@ -60,7 +60,7 @@ public class SampleDataUtil {
     public static ReadOnlySupplierList getSampleSupplierList() {
         SupplierList sampleSupplierList = new SupplierList();
         for (Supplier sampleSupplier : getSampleSuppliers()) {
-            sampleSupplierList.addSupplier(sampleSupplier);
+            sampleSupplierList.addItem(sampleSupplier);
         }
         return sampleSupplierList;
     }
@@ -85,7 +85,7 @@ public class SampleDataUtil {
     public static ReadOnlyTaskList getSampleTaskList() {
         TaskList sampleTl = new TaskList();
         for (Task sampleTask : getSampleTasks()) {
-            sampleTl.addTask(sampleTask);
+            sampleTl.addItem(sampleTask);
         }
         return sampleTl;
     }
