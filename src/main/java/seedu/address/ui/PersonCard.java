@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        status.setText(person.getStatus().name() + " " + person.getInterviewDateTimeString());
+        status.setText(person.getStatus().name() + " " + person.getInterviewDateTimeDisplay());
         person.getNotes().stream()
                 .sorted(Comparator.comparing(note -> note.noteName))
                 .forEach(note -> tags.getChildren().add(new Label(note.noteName)));
