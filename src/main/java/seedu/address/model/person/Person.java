@@ -40,19 +40,6 @@ public class Person {
         this.meetings = new ArrayList<>();
     }
 
-    /**
-     * Overloaded constructor to take in meetings as an argument
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Meeting> meetings) {
-        requireAllNonNull(name, phone, email, address, tags, meetings);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.meetings = meetings;
-    }
 
     /**
      * Overloaded constructor to take in meetings as an argument
@@ -66,6 +53,7 @@ public class Person {
         this.tags.addAll(tags);
         this.meetings = meetings;
     }
+
 
     public Name getName() {
         return name;
@@ -81,26 +69,6 @@ public class Person {
 
     public Address getAddress() {
         return address;
-    }
-
-
-    /**
-     * Gets the most recent meeting that the person has
-     */
-    public Meeting getUpcomingMeeting() {
-        if (meetings.isEmpty()) {
-            return new Meeting();
-        }
-
-        Meeting mostUpcomingMeeting = meetings.get(0);
-
-        for (Meeting meeting : meetings) {
-            if (mostUpcomingMeeting.compareTo(meeting) > 0) {
-                mostUpcomingMeeting = meeting;
-            }
-        }
-
-        return mostUpcomingMeeting;
     }
 
     /**

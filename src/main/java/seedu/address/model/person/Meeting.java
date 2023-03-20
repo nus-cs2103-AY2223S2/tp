@@ -29,14 +29,6 @@ public class Meeting implements Comparable<Meeting> {
         this.end = LocalDateTime.MAX;
     }
 
-    public LocalDateTime getStart() {
-        return this.start;
-    }
-
-    public LocalDateTime getEnd() {
-        return this.end;
-    }
-
     /**
      * Checks if there are timing clashes between this meeting and m
      * Returns true if timings do clash, false otherwise
@@ -105,17 +97,6 @@ public class Meeting implements Comparable<Meeting> {
         String endDnT = end.format(customFormat);
 
         return "(Starts at: " + startDnT + " Ends at: " + endDnT + ")";
-    }
-
-    @Override
-    public int compareTo(Meeting otherMeeting) {
-        if (this.start.isBefore(otherMeeting.start)) {
-            return -1;
-        } else if (this.start.equals(otherMeeting.start)) {
-            return 0;
-        } else {
-            return 1;
-        }
     }
 
     public boolean isEmpty() {

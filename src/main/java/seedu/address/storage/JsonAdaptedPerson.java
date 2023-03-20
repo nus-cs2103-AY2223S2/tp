@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final ArrayList<JsonAdaptedMeeting> meetings = new ArrayList<>();
-    
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -47,7 +47,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        
+
         if (meetings != null) {
             this.meetings.addAll(meetings);
         }
@@ -75,11 +75,6 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-        final ArrayList<Meeting> personMeetings = new ArrayList<>();
-        for (JsonAdaptedMeeting meeting : meetings) {
-            personMeetings.add(meeting.toModelType());
-        }
-
         final ArrayList<Meeting> personMeetings = new ArrayList<>();
         for (JsonAdaptedMeeting meeting : meetings) {
             personMeetings.add(meeting.toModelType());
