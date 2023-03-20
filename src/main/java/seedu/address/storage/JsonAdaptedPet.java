@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,13 +33,16 @@ class JsonAdaptedPet {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
+    private final LocalDateTime timestamp = LocalDateTime.now();
+
     /**
      * Constructs a {@code JsonAdaptedPet} with the given pet details.
      */
     @JsonCreator
     public JsonAdaptedPet(@JsonProperty("ownerName") String ownerName, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("address") String address,
+                          @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;

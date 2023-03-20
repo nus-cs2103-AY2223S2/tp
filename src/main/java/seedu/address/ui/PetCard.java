@@ -41,6 +41,8 @@ public class PetCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label AmountDue;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,6 +57,7 @@ public class PetCard extends UiPart<Region> {
         phone.setText(pet.getPhone().value);
         address.setText(pet.getAddress().value);
         email.setText(pet.getEmail().value);
+        AmountDue.setText("0");
         pet.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
