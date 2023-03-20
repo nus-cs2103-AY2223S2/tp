@@ -36,7 +36,6 @@ public class CareFlowModelManager implements CareFlowModel {
      * Initializes a CareFlowModelManager with the given patientRecord, drugInventory and userPrefs.
      * @param patientRecord patient records
      * @param drugInventory drug inventory
-     * @param hospitalRecord hospital records
      * @param userPrefs user preferences
      */
     public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory, ReadOnlyUserPrefs userPrefs) {
