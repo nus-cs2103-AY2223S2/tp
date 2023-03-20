@@ -2,7 +2,7 @@ package arb.model;
 
 import arb.model.client.Client;
 import arb.model.project.Project;
-import arb.model.tag.Tag;
+import arb.model.tag.TagMapping;
 import javafx.collections.ObservableList;
 
 /**
@@ -23,8 +23,8 @@ public interface ReadOnlyAddressBook {
     ObservableList<Project> getProjectList();
 
     /**
-     * Returns an unmodifiable view of the tags list.
-     * This list will not contain any duplicate tags.
+     * Returns an unmodifiable view of the tag mappings list.
+     * This list will not contain any duplicate tag mappings.
      */
-    ObservableList<Tag> getTagList();
+    ObservableList<TagMapping> getTagMappingList();
 }

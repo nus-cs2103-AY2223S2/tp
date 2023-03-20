@@ -3,8 +3,10 @@ package arb.logic.parser.project;
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import arb.logic.commands.project.AddProjectCommand;
@@ -17,6 +19,7 @@ import arb.logic.parser.exceptions.ParseException;
 import arb.model.project.Deadline;
 import arb.model.project.Project;
 import arb.model.project.Title;
+import arb.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddProjectCommand object
@@ -30,7 +33,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,7 +48,9 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             deadline = ParserUtil.parseDeadline(deadlineString.get());
         }
 
-        Project project = new Project(title, deadline);
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        Project project = new Project(title, deadline, tagList);
 
         return new AddProjectCommand(project);
     }

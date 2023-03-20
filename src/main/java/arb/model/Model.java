@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import arb.commons.core.GuiSettings;
 import arb.model.client.Client;
 import arb.model.project.Project;
-import arb.model.tag.Tag;
+import arb.model.tag.TagMapping;
 import javafx.collections.ObservableList;
 
 /**
@@ -175,7 +175,6 @@ public interface Model {
      */
     void updateSortedProjectList(Comparator<Project> comparator);
 
-    /** Returns an unmodifiable view of the tag list */
-    ObservableList<Tag> getTagList();
-
+    /** Returns an unmodifiable view of the tag mapping list */
+    ObservableList<TagMapping> getTagMappingList();
 }

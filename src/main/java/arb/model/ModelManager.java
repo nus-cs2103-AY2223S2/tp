@@ -13,7 +13,7 @@ import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.model.client.Client;
 import arb.model.project.Project;
-import arb.model.tag.Tag;
+import arb.model.tag.TagMapping;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     private final SortedList<Client> sortedClients;
     private final FilteredList<Project> filteredProjects;
     private final SortedList<Project> sortedProjects;
-    private final ObservableList<Tag> tags;
+    private final ObservableList<TagMapping> tagMappings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,7 +46,7 @@ public class ModelManager implements Model {
         sortedClients = new SortedList<>(this.filteredClients);
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
         sortedProjects = new SortedList<>(this.filteredProjects);
-        tags = this.addressBook.getTagList();
+        tagMappings = this.addressBook.getTagMappingList();
     }
 
     public ModelManager() {
@@ -218,15 +218,11 @@ public class ModelManager implements Model {
         sortedProjects.setComparator(comparator);
     }
 
-    //=========== Tag List Accessors ========================================================================
+    //=========== Tag Mapping List Accessors ================================================================
 
-    /**
-     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
     @Override
-    public ObservableList<Tag> getTagList() {
-        return tags;
+    public ObservableList<TagMapping> getTagMappingList() {
+        return tagMappings;
     }
 
     @Override
@@ -249,7 +245,7 @@ public class ModelManager implements Model {
                 && filteredProjects.equals(other.filteredProjects)
                 && sortedClients.equals(other.sortedClients)
                 && sortedProjects.equals(other.sortedProjects)
-                && tags.equals(other.tags);
+                && tagMappings.equals(other.tagMappings);
     }
 
 }

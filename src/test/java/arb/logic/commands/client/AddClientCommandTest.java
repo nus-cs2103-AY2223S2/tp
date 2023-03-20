@@ -24,7 +24,7 @@ import arb.model.ReadOnlyAddressBook;
 import arb.model.ReadOnlyUserPrefs;
 import arb.model.client.Client;
 import arb.model.project.Project;
-import arb.model.tag.Tag;
+import arb.model.tag.TagMapping;
 import arb.testutil.ClientBuilder;
 import javafx.collections.ObservableList;
 
@@ -216,7 +216,7 @@ public class AddClientCommandTest {
         }
 
         @Override
-        public ObservableList<Tag> getTagList() {
+        public ObservableList<TagMapping> getTagMappingList() {
             throw new AssertionError("This method should not be called.");
         }
     }

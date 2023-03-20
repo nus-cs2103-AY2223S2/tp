@@ -46,6 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_OIL_PAINTING = "Oil Painting";
     public static final String VALID_DEADLINE_SKY_PAINTING = "6pm 2023-02-02";
     public static final String VALID_DEADLINE_OIL_PAINTING = "midnight 2023-05-05";
+    public static final String VALID_TAG_PAINTING = "painting";
+    public static final String VALID_TAG_POTTERY = "pottery"; 
 
     public static final String VALID_SORTING_OPTION_DEADLINE = "deadline";
     public static final String VALID_SORTING_OPTION_TITLE = "name";

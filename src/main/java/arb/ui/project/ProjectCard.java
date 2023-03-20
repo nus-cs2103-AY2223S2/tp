@@ -1,9 +1,12 @@
 package arb.ui.project;
 
+import java.util.Comparator;
+
 import arb.model.project.Project;
 import arb.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -37,6 +40,8 @@ public class ProjectCard extends UiPart<Region> {
     private Label status;
     @FXML
     private Label id;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
@@ -54,6 +59,10 @@ public class ProjectCard extends UiPart<Region> {
         }
 
         status.setText("Status: " + project.getStatus());
+
+        project.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

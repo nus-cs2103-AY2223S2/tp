@@ -2,8 +2,13 @@ package arb.model.project;
 
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+
+import arb.model.tag.Tag;
 
 /**
  * Represents a Project in the address book.
@@ -16,14 +21,18 @@ public class Project {
     private final Optional<Deadline> deadline;
     private final Status status;
 
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
+
     /**
      * Constructs a {@code Project}.
-     * Title must be present and not null.
+     * Title and tags must be present and not null.
      */
-    public Project(Title title, Deadline deadline) {
-        requireAllNonNull(title);
+    public Project(Title title, Deadline deadline, Set<Tag> tags) {
+        requireAllNonNull(title, tags);
         this.title = title;
         this.deadline = Optional.ofNullable(deadline);
+        this.tags.addAll(tags);
         status = new Status();
     }
 
@@ -40,6 +49,10 @@ public class Project {
 
     public Deadline getDeadline() {
         return deadline.orElse(null);
+    }
+
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     public Status getStatus() {
@@ -76,6 +89,12 @@ public class Project {
             builder.append(", due by: ").append(getDeadline());
         }
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
@@ -92,6 +111,7 @@ public class Project {
         Project otherProject = (Project) other;
 
         boolean isTitleEqual = otherProject.getTitle().equals(getTitle());
+        boolean isTagsEqual = otherProject.getTags().equals(getTags());
         boolean isStatusEqual = otherProject.getStatus().equals(getStatus());
 
         boolean isDeadlineEqual;
@@ -101,11 +121,11 @@ public class Project {
             isDeadlineEqual = getDeadline().equals(otherProject.getDeadline());
         }
 
-        return isTitleEqual && isStatusEqual && isDeadlineEqual;
+        return isTitleEqual && isStatusEqual && isDeadlineEqual && isTagsEqual;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, deadline, status);
+        return Objects.hash(title, deadline, status, tags);
     }
 }

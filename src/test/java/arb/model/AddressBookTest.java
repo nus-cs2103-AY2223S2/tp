@@ -6,6 +6,7 @@ import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalProjects.SKY_PAINTING;
+import static arb.testutil.TypicalTagMappings.HUSBAND_TAG;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,9 +22,11 @@ import arb.model.client.Client;
 import arb.model.client.exceptions.DuplicateClientException;
 import arb.model.project.Project;
 import arb.model.project.exceptions.DuplicateProjectException;
-import arb.model.tag.Tag;
+import arb.model.tag.TagMapping;
+import arb.model.tag.exceptions.DuplicateTagMappingException;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ProjectBuilder;
+import arb.testutil.TagMappingBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -70,6 +73,18 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(Arrays.asList(), newProjects, Arrays.asList());
 
         assertThrows(DuplicateProjectException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateTagMappings_throwsDuplicateTagMappingException() {
+        // Two tag mappings with the same identity fields
+        TagMapping editedTagMapping = new TagMappingBuilder(HUSBAND_TAG).build();
+        editedTagMapping.tagClient();
+        List<TagMapping> newTagMappings = Arrays.asList(HUSBAND_TAG, editedTagMapping);
+
+        AddressBookStub newData = new AddressBookStub(Arrays.asList(), Arrays.asList(), newTagMappings);
+
+        assertThrows(DuplicateTagMappingException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -129,18 +144,23 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getProjectList().remove(0));
     }
 
+    @Test
+    public void getTagMappingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagMappingList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose clients list and projects list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
-        private final ObservableList<Tag> tags = FXCollections.observableArrayList();
+        private final ObservableList<TagMapping> tagMappings = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Client> clients, Collection<Project> projects, Collection<Tag> tags) {
+        AddressBookStub(Collection<Client> clients, Collection<Project> projects, Collection<TagMapping> tagMappings) {
             this.clients.setAll(clients);
             this.projects.setAll(projects);
-            this.tags.setAll(tags);
+            this.tagMappings.setAll(tagMappings);
         }
 
         @Override
@@ -154,8 +174,8 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Tag> getTagList() {
-            return tags;
+        public ObservableList<TagMapping> getTagMappingList() {
+            return tagMappings;
         }
     }
 

@@ -29,6 +29,7 @@ import arb.logic.commands.project.ClearProjectCommand;
 import arb.logic.commands.project.DeleteProjectCommand;
 import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
+import arb.logic.commands.tag.ListTagCommand;
 import arb.logic.commands.project.FindProjectCommand;
 import arb.logic.commands.project.ListProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
@@ -164,6 +165,12 @@ public class AddressBookParserTest {
     public void parseCommand_listProject() throws Exception {
         assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD) instanceof ListProjectCommand);
         assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD + " 3") instanceof ListProjectCommand);
+    }
+
+    @Test
+    public void parseCommand_listTag() throws Exception {
+        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_WORD) instanceof ListProjectCommand);
+        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_WORD + " 3") instanceof ListProjectCommand);
     }
 
     @Test

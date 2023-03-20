@@ -9,8 +9,8 @@ import arb.model.client.Client;
 import arb.model.client.UniqueClientList;
 import arb.model.project.Project;
 import arb.model.project.UniqueProjectList;
-import arb.model.tag.Tag;
-import arb.model.tag.UniqueTagList;
+import arb.model.tag.TagMapping;
+import arb.model.tag.UniqueTagMappingList;
 import javafx.collections.ObservableList;
 
 /**
@@ -21,7 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueClientList clients;
     private final UniqueProjectList projects;
-    private final UniqueTagList tags;
+    private final UniqueTagMappingList tagMappings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,7 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         clients = new UniqueClientList();
         projects = new UniqueProjectList();
-        tags = new UniqueTagList();
+        tagMappings = new UniqueTagMappingList();
     }
 
     public AddressBook() {}
@@ -65,6 +65,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the tag mapping list with {@code tagMappings}.
+     * {@code tagMappings} must not contain duplicate tag mappings.
+     */
+    public void setTagMappings(List<TagMapping> tagMappings) {
+        this.tagMappings.setTagMappings(tagMappings);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -72,6 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setClients(newData.getClientList());
         setProjects(newData.getProjectList());
+        setTagMappings(newData.getTagMappingList());
     }
 
     //// client-level operations
@@ -96,8 +105,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a client to the address book.
      * The client must not already exist in the address book.
      */
-    public void addClient(Client p) {
-        clients.add(p);
+    public void addClient(Client c) {
+        clients.add(c);
+        tagMappings.addClientTags(c);
     }
 
     /**
@@ -106,6 +116,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addProject(Project p) {
         projects.add(p);
+        tagMappings.addProjectTags(p);
     }
 
     /**
@@ -117,6 +128,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
+        tagMappings.editClientTags(target, editedClient);
     }
 
     /**
@@ -129,6 +141,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedProject);
 
         projects.setProject(target, editedProject);
+        tagMappings.editProjectTags(target, editedProject);
     }
 
     /**
@@ -137,6 +150,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeClient(Client key) {
         clients.remove(key);
+        tagMappings.deleteClientTags(key);
     }
 
     /**
@@ -145,6 +159,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeProject(Project key) {
         projects.remove(key);
+        tagMappings.deleteProjectTags(key);
     }
 
     //// util methods
@@ -152,8 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return clients.asUnmodifiableObservableList().size() + " clients, "
-                + projects.asUnmodifiableObservableList().size() + " projects, "
-                + tags.asUnmodifiableObservableList().size() + " tags";
+                + projects.asUnmodifiableObservableList().size() + " projects";
         // TODO: refine later
     }
 
@@ -168,21 +182,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Tag> getTagList() {
-        return tags.asUnmodifiableObservableList();
+    public ObservableList<TagMapping> getTagMappingList() {
+        return tagMappings.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && clients.equals(((AddressBook) other).clients))
+                && clients.equals(((AddressBook) other).clients)
                 && projects.equals(((AddressBook) other).projects)
-                && tags.equals(((AddressBook) other).tags);
+                && tagMappings.equals(((AddressBook) other).tagMappings));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(clients, projects, tags);
+        return Objects.hash(clients, projects, tagMappings);
     }
 }

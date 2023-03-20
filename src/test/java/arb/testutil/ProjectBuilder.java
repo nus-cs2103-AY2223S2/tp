@@ -1,10 +1,14 @@
 package arb.testutil;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import arb.model.project.Deadline;
 import arb.model.project.Project;
 import arb.model.project.Title;
+import arb.model.tag.Tag;
+import arb.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Project objects.
@@ -16,6 +20,7 @@ public class ProjectBuilder {
 
     private Title title;
     private Optional<Deadline> deadline;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ProjectBuilder} with the default details.
@@ -23,6 +28,7 @@ public class ProjectBuilder {
     public ProjectBuilder() {
         title = new Title(DEFAULT_TITLE);
         deadline = Optional.of(new Deadline(DEFAULT_DEADLINE));
+        tags = new HashSet<>();
     }
 
     /**
@@ -31,6 +37,7 @@ public class ProjectBuilder {
     public ProjectBuilder(Project projectToCopy) {
         title = projectToCopy.getTitle();
         deadline = Optional.ofNullable(projectToCopy.getDeadline());
+        tags = new HashSet<>(projectToCopy.getTags());
     }
 
     /**
@@ -54,11 +61,19 @@ public class ProjectBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Project} that we are building.
+     */
+    public ProjectBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
      * Builds the Project.
      * @return The new Project.
      */
     public Project build() {
-        return new Project(title, this.deadline.orElse(null));
+        return new Project(title, this.deadline.orElse(null), tags);
     }
 
 }

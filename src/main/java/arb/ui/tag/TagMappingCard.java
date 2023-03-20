@@ -1,6 +1,6 @@
 package arb.ui.tag;
 
-import arb.model.tag.Tag;
+import arb.model.tag.TagMapping;
 import arb.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,11 +9,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
- * An UI component that displays information of a {@code Tag}.
+ * An UI component that displays information of a {@code TagMapping}.
  */
-public class TagCard extends UiPart<Region> {
+public class TagMappingCard extends UiPart<Region> {
 
-    private static final String FXML = "tag/TagListCard.fxml";
+    private static final String FXML = "tag/TagMappingListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -23,7 +23,7 @@ public class TagCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Tag tag;
+    public final TagMapping tagMapping;
 
     @FXML
     private HBox cardPane;
@@ -39,15 +39,15 @@ public class TagCard extends UiPart<Region> {
     private Label numberOfProjectsTagged;
 
     /**
-     * Creates a {@code TagCard} with the given {@code Tag} and index to display.
+     * Creates a {@code TagMappingCard} with the given {@code TagMapping} and index to display.
      */
-    public TagCard(Tag tag, int displayedIndex) {
+    public TagMappingCard(TagMapping tagMapping, int displayedIndex) {
         super(FXML);
-        this.tag = tag;
+        this.tagMapping = tagMapping;
         id.setText(displayedIndex + ". ");
-        name.setText(tag.tagName);
-        numberOfClientsTagged.setText("Number of clients tagged: " + tag.getNumberOfClientsTagged());
-        numberOfProjectsTagged.setText("Number of projects tagged: " + tag.getNumberOfProjectsTagged());
+        name.setText(tagMapping.getTag().tagName);
+        numberOfClientsTagged.setText("Number of clients tagged: " + tagMapping.getNumberOfClientsTagged());
+        numberOfProjectsTagged.setText("Number of projects tagged: " + tagMapping.getNumberOfProjectsTagged());
     }
 
     @Override
@@ -58,13 +58,13 @@ public class TagCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TagCard)) {
+        if (!(other instanceof TagMappingCard)) {
             return false;
         }
 
         // state check
-        TagCard card = (TagCard) other;
+        TagMappingCard card = (TagMappingCard) other;
         return id.getText().equals(card.id.getText())
-                && tag.equals(card.tag);
+                && tagMapping.equals(card.tagMapping);
     }
 }

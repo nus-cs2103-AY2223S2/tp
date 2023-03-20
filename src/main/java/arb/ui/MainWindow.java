@@ -11,7 +11,7 @@ import arb.logic.parser.exceptions.ParseException;
 import arb.model.ListType;
 import arb.ui.client.ClientListPanel;
 import arb.ui.project.ProjectListPanel;
-import arb.ui.tag.TagListPanel;
+import arb.ui.tag.TagMappingListPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -38,7 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private ProjectListPanel projectListPanel;
-    private TagListPanel tagListPanel;
+    private TagMappingListPanel tagMappingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -119,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         clientListPanel = new ClientListPanel(logic.getSortedClientList());
         projectListPanel = new ProjectListPanel(logic.getSortedProjectList());
-        tagListPanel = new TagListPanel(logic.getTagList());
+        tagMappingListPanel = new TagMappingListPanel(logic.getTagMappingList());
 
         setCurrentlyShownList(ListType.CLIENT);
 
@@ -181,6 +181,10 @@ public class MainWindow extends UiPart<Stage> {
         return projectListPanel;
     }
 
+    public TagMappingListPanel getTagMappingListPanel() {
+        return tagMappingListPanel;
+    }
+
     private void replaceShownList(Node newList) {
         this.listPanelPlaceholder.getChildren().clear();
         this.listPanelPlaceholder.getChildren().add(newList);
@@ -198,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void showTagList() {
         this.logic.setListType(ListType.TAG);
-        this.replaceShownList(tagListPanel.getRoot());
+        this.replaceShownList(tagMappingListPanel.getRoot());
     }
 
     private void setCurrentlyShownList(ListType listToBeShown) {
