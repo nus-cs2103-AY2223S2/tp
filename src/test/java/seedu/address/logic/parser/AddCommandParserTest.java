@@ -28,7 +28,7 @@ import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SALARY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPERIENCE_BOB;
@@ -47,14 +47,14 @@ import static seedu.address.testutil.TypicalRoles.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.job.Address;
+import seedu.address.model.job.Company;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
 import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 import seedu.address.testutil.RoleBuilder;
 
 public class AddCommandParserTest {
@@ -134,7 +134,7 @@ public class AddCommandParserTest {
                 + EXPERIENCE_DESC_BOB, expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_COMPANY_BOB
                 + JOBDESCRIPTION_DESC_BOB + WEBSITE + SALARY_DESC_BOB + DEADLINE_DESC_BOB
                 + EXPERIENCE_DESC_BOB, expectedMessage);
 
@@ -149,7 +149,7 @@ public class AddCommandParserTest {
                 + VALID_EXPERIENCE_BOB, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_COMPANY_BOB
                 + JOBDESCRIPTION_DESC_BOB + WEBSITE + VALID_SALARY_BOB
                 + VALID_DEADLINE_BOB + VALID_EXPERIENCE_BOB, expectedMessage);
     }
@@ -178,7 +178,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + JOBDESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + WEBSITE + SALARY_DESC_BOB
                         + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
-                Address.MESSAGE_CONSTRAINTS);
+                Company.MESSAGE_CONSTRAINTS);
 
         // invalid job description
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

@@ -36,7 +36,7 @@ public class RoleCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label company;
     @FXML
     private Label email;
     @FXML
@@ -61,13 +61,13 @@ public class RoleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(role.getName().fullName);
         phone.setText(role.getPhone().value);
-        address.setText(role.getAddress().value);
+        company.setText(role.getCompany().value);
         email.setText(role.getEmail().value);
         role.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         website.setText(role.getWebsite().value);
-        salary.setText(role.getSalary().salary);
+        salary.setText("$" + role.getSalary().salary);
         deadline.setText(role.getDeadline().deadline);
         jobDescription.setText(role.getJobDescription().value);
         experience.setText(role.getExperience().value);

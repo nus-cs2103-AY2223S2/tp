@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -16,7 +16,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
 import seedu.address.model.job.Role;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 
 
 
@@ -41,7 +41,7 @@ public class RoleUtil {
         sb.append(PREFIX_ROLE + role.getName().fullName + " ");
         sb.append(PREFIX_CONTACT + role.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + role.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + role.getAddress().value + " ");
+        sb.append(PREFIX_COMPANY + role.getCompany().value + " ");
         sb.append(PREFIX_JOBDESCRIPTION + role.getJobDescription().value + " ");
         sb.append(PREFIX_WEBSITE + role.getWebsite().value + " ");
         sb.append(PREFIX_SALARY + role.getSalary().salary + " ");
@@ -61,7 +61,7 @@ public class RoleUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_ROLE).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_CONTACT).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getCompany().ifPresent(address -> sb.append(PREFIX_COMPANY).append(address.value).append(" "));
         descriptor.getJobDescription().ifPresent(jobDescription -> sb.append(PREFIX_JOBDESCRIPTION)
                         .append(jobDescription.value).append(" "));
         descriptor.getWebsite().ifPresent(website -> sb.append(PREFIX_WEBSITE).append(website.value).append(" "));

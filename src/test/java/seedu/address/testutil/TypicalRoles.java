@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPERIENCE_AMY;
@@ -28,58 +28,58 @@ import seedu.address.model.job.Role;
 public class TypicalRoles {
 
     public static final Role ALICE = new RoleBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withCompany("Google").withEmail("alice@example.com")
             .withPhone("94351253").withJobDescription("Software Engineer @ Riot Games")
             .withTags("friends").withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience("Javascript - 2 Years").build();
     public static final Role BENSON = new RoleBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withJobDescription("Civil Engineer @ NTU")
+            .withCompany("Google").withJobDescription("Civil Engineer @ NTU")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20")
             .withExperience("C - 1 Year")
             .build();
     public static final Role CARL = new RoleBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").withJobDescription("Electrical Engineer @ NUS")
+            .withEmail("heinz@example.com").withCompany("Wall street").withJobDescription("Electrical Engineer @ NUS")
             .withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience("Python - 10 Years").build();
     public static final Role DANIEL = new RoleBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street")
+            .withEmail("cornelia@example.com").withCompany("Jane Street")
             .withJobDescription("Software Engineer @ Jane Street").withTags("friends").withWebsite("www.google.com")
             .withSalary("4000")
             .withDeadline("2023-10-20")
             .withExperience("Rust - 6 Years").build();
     public static final Role ELLE = new RoleBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").withJobDescription("Analyst @ DBS")
+            .withEmail("werner@example.com").withCompany("NUS").withJobDescription("Analyst @ DBS")
             .withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience("Lua - 2 Years").build();
     public static final Role FIONA = new RoleBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").withJobDescription("Analyst @ Goldman")
+            .withEmail("lydia@example.com").withCompany("Little Tokyo").withJobDescription("Analyst @ Goldman")
             .withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience("Coffeescript - 3 Years").build();
     public static final Role GEORGE = new RoleBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").withJobDescription("Analyst @ CitiBank")
+            .withEmail("anna@example.com").withCompany("Mary Street").withJobDescription("Analyst @ CitiBank")
             .withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience("Go - 5 Years").build();
 
     // Manually added
     public static final Role HOON = new RoleBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india")
+            .withEmail("stefan@example.com").withCompany("little india")
             .withJobDescription("Quantitative Trader @ Alphalabs")
             .withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience("Rust - 5 Years").build();
     public static final Role IDA = new RoleBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").withJobDescription("Analyst @ Goldman")
+            .withEmail("hans@example.com").withCompany("chicago ave").withJobDescription("Analyst @ Goldman")
             .withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience("C - 5 Years").build();
 
     // Manually added - Role's details found in {@code CommandTestUtil}
     public static final Role AMY = new RoleBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withJobDescription(VALID_JOBDESCRIPTION_AMY)
+            .withEmail(VALID_EMAIL_AMY).withCompany(VALID_COMPANY_AMY).withJobDescription(VALID_JOBDESCRIPTION_AMY)
             .withTags(VALID_TAG_FRIEND).withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience(VALID_EXPERIENCE_AMY).build();
     public static final Role BOB = new RoleBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withJobDescription(VALID_JOBDESCRIPTION_BOB)
+            .withEmail(VALID_EMAIL_BOB).withCompany(VALID_COMPANY_BOB).withJobDescription(VALID_JOBDESCRIPTION_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withWebsite("www.google.com").withSalary("4000")
             .withDeadline("2023-10-20").withExperience(VALID_EXPERIENCE_BOB).build();
 
