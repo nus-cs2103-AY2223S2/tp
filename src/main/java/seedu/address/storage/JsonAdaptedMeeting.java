@@ -46,7 +46,7 @@ class JsonAdaptedMeeting {
      */
     public Meeting toModelType() throws IllegalValueException {
         if (this.end.isBefore(this.start)) {
-             throw new IllegalValueException("End time is after start!");
+            throw new IllegalValueException("End time is after start!");
         }
         return new Meeting(this.start, this.end);
     }
