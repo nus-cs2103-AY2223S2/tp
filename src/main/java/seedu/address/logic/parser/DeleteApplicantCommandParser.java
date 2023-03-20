@@ -14,6 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new DeleteApplicantCommand object
  */
 public class DeleteApplicantCommandParser implements Parser<DeleteApplicantCommand> {
+    public static final String HASHCODE_MESSAGE_CONSTRAINTS = "The id must be a 4-digit integer";
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteApplicantCommand
      * and returns a DeleteApplicantCommand object for execution.
