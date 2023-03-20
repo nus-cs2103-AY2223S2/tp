@@ -60,11 +60,17 @@ Format:
 `add n/RECIPE_NAME [d/RECIPE_DURATION] [p/RECIPE_PORTION] [t/RECIPE_TAGS]... [s/RECIPE_STEPS]... [i/RECIPE_INGREDIENTS]...`
 
 > :bulb: Tip: A recipe can have any number of steps, tags and ingredients (including 0)!
+> 
 > :bulb: Tip: It is only compulsory to include the **recipe name** when you first add the recipe into recipe book!
+> 
 > Although optional, we do however still suggest adding in the other fields if possible for your own convenience.
+> 
 > We recommend you add in your own units of measurement for the optional fields! (i.e g/kg for ingredient weights)
+> 
 > If you have multiple inputs for tags, steps or ingredients, treat each input as a separate field (i.e s/Step1 s/step2)
+> 
 > Each field does not have to be input in order (/p can come before /d etc.)
+> 
 > However, for steps, please input the steps in the order that they are intended to be performed
 
 **Example(s) of usage**:
@@ -84,9 +90,12 @@ Format:
 
 > Lists all recipes that are in the storage, in the chronological order they were
 added. 
+> 
 > Depending on the size of the window, the user may add multiple columns to display
 more recipes.
+> 
 > :bulb: Tip: The `list` command can be used to reset the most recently searched list to the full recipe list after performing a `find` command!
+> 
 > In order to zoom in on a particular recipe in the list, user can double-click on the corresponding recipe
 
 
@@ -99,10 +108,15 @@ Format:
 `find KEYWORD [KEYWORDS]...`
 
 > Recipes matching at least one keyword will be returned, e.g. searching `sandwich fries` will return the search results `cheese fries` and `ham sandwich`
+>
 > Recipes are listed in the chronological order that they were added.
+> 
 > Only the name of the recipe is searched
+> 
 > The search is case-insensitive. e.g. chicken will match Chicken
+> 
 > The order of the keywords does not matter. e.g. ham sandwich will match sandwich ham
+> 
 > Only full words will be matched. e.g. chick will **not** match chicken
 
 Example of usage:
@@ -118,6 +132,7 @@ Format:
 `delete INDEX`
 
 > Deletes the dish at the specified `INDEX` of the latest list that was displayed.
+> 
 > The index **must be a positive integer** 1, 2, 3, …
 
 Example of usage:
