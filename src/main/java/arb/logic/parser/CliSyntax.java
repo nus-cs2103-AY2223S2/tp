@@ -6,10 +6,10 @@ package arb.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("name/");
-    public static final Prefix PREFIX_PHONE = new Prefix("phone/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("email/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_DEADLINE = new Prefix("deadline/");
-    public static final Prefix PREFIX_OPTION = new Prefix("option/");
+    public static final Prefix PREFIX_NAME = new Prefix("name/", "n/");
+    public static final Prefix PREFIX_PHONE = new Prefix("phone/", "p/");
+    public static final Prefix PREFIX_EMAIL = new Prefix("email/", "e/");
+    public static final Prefix PREFIX_TAG = new Prefix("tag/", "t/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("deadline/", "d/");
+    public static final Prefix PREFIX_OPTION = new Prefix("option/", "o/");
 }
