@@ -28,7 +28,9 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+        System.out.println("hi");
         this.persons.addAll(persons);
+        System.out.println("ho");
     }
 
     /**
