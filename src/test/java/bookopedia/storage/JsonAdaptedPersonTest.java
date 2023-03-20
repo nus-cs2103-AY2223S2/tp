@@ -25,7 +25,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DELIVERY_STATUS = "HUH";
-    private static int INVALID_NO_OF_DELIVERY_ATTEMPTS = -1;
+    private static final int INVALID_NO_OF_DELIVERY_ATTEMPTS = -1;
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -35,7 +35,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedParcel::new)
             .collect(Collectors.toList());
     private static final String VALID_DELIVERY_STATUS = "PENDING";
-    private static int VALID_NO_OF_DELIVERY_ATTEMPTS = 1;
+    private static final int VALID_NO_OF_DELIVERY_ATTEMPTS = 1;
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

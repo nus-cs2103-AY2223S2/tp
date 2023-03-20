@@ -4,11 +4,8 @@ import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static bookopedia.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import bookopedia.logic.commands.exceptions.CommandException;
 import org.junit.jupiter.api.Test;
 
 import bookopedia.commons.core.index.Index;
