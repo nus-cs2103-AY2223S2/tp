@@ -42,7 +42,7 @@ The pairs are stored in a list similar to persons.
 
 <img src="images/developerGuide/Pair.png" width="350" />
 
-Two pairs are identical if they have the same elderly and Volunteer NRIC.
+Two pairs are identical if they have the same elderly and volunteer NRIC.
 * Just like persons, we do not allow duplicate pairs (due to add or edit pair)
 * Elderly and volunteer NRIC is used to identify a pair for deletion.
 
