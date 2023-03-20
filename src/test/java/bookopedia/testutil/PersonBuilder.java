@@ -27,8 +27,8 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Parcel> parcels;
-
     private DeliveryStatus deliveryStatus;
+    private int noOfDeliveryAttempts;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +40,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         parcels = new HashSet<>();
         deliveryStatus = DeliveryStatus.PENDING;
+        noOfDeliveryAttempts = 0;
     }
 
     /**
@@ -52,6 +53,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         parcels = new HashSet<>(personToCopy.getParcels());
         deliveryStatus = personToCopy.getDeliveryStatus();
+        noOfDeliveryAttempts = personToCopy.getNoOfDeliveryAttempts();
     }
 
     /**
@@ -102,8 +104,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code noOfDeliveryAttempts} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNoOfDeliveryAttempts(int noOfDeliveryAttempts) {
+        this.noOfDeliveryAttempts = noOfDeliveryAttempts;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, parcels, deliveryStatus);
+        return new Person(name, phone, email, address, parcels, deliveryStatus, noOfDeliveryAttempts);
     }
 
 }

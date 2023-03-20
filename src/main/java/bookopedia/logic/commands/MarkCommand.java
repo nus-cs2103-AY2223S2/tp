@@ -48,8 +48,13 @@ public class MarkCommand extends Command {
         }
 
         Person personToMark = lastShownList.get(targetIndex.getZeroBased());
+
+        int noOfDeliveryAttempts = newStatus == DeliveryStatus.FAILED
+                ? personToMark.getNoOfDeliveryAttempts() + 1 : personToMark.getNoOfDeliveryAttempts();
+
         Person updatedPersonToMark = new Person(personToMark.getName(), personToMark.getPhone(),
-                personToMark.getEmail(), personToMark.getAddress(), personToMark.getParcels(), newStatus);
+                personToMark.getEmail(), personToMark.getAddress(), personToMark.getParcels(),
+                newStatus, noOfDeliveryAttempts);
 
         model.setPerson(personToMark, updatedPersonToMark);
 

@@ -25,12 +25,13 @@ public class Person {
     private final Address address;
     private final Set<Parcel> parcels = new HashSet<>();
     private final DeliveryStatus deliveryStatus;
+    private final int noOfDeliveryAttempts;
 
     /**
      * Every field must be present and not null except phone and email.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Parcel> parcels,
-                  DeliveryStatus deliveryStatus) {
+                  DeliveryStatus deliveryStatus, int noOfDeliveryAttempts) {
         requireAllNonNull(name, address, parcels);
         this.name = name;
         this.phone = phone;
@@ -38,6 +39,7 @@ public class Person {
         this.address = address;
         this.parcels.addAll(parcels);
         this.deliveryStatus = deliveryStatus;
+        this.noOfDeliveryAttempts = noOfDeliveryAttempts;
     }
 
     /**
@@ -51,6 +53,7 @@ public class Person {
         this.address = address;
         this.parcels.addAll(parcels);
         this.deliveryStatus = DeliveryStatus.PENDING;
+        this.noOfDeliveryAttempts = 0;
     }
 
     public Name getName() {
@@ -79,6 +82,10 @@ public class Person {
 
     public DeliveryStatus getDeliveryStatus() {
         return deliveryStatus;
+    }
+
+    public int getNoOfDeliveryAttempts() {
+        return noOfDeliveryAttempts;
     }
 
     /**
@@ -115,13 +122,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getParcels().equals(getParcels())
-                && otherPerson.getDeliveryStatus().equals(getDeliveryStatus());
+                && otherPerson.getDeliveryStatus().equals(getDeliveryStatus())
+                && otherPerson.getNoOfDeliveryAttempts() == getNoOfDeliveryAttempts();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, parcels);
+        return Objects.hash(name, phone, email, address, parcels, deliveryStatus, noOfDeliveryAttempts);
     }
 
     @Override
@@ -141,8 +149,12 @@ public class Person {
             parcels.forEach(builder::append);
         }
 
-        builder.append("; Delivery Status: ");
-        builder.append(getDeliveryStatus().name());
+        builder.append("; Delivery Status: ")
+                .append(getDeliveryStatus().name())
+                .append("; Number of delivery attempts: ")
+                .append(getNoOfDeliveryAttempts());
+
+
 
         return builder.toString();
     }

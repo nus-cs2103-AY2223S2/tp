@@ -30,8 +30,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedParcel> parcels = new ArrayList<>();
-
     private final String deliveryStatus;
+    private final int noOfDeliveryAttempts;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +40,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("parcels") List<JsonAdaptedParcel> parcels,
-            @JsonProperty("deliveryStatus") String deliveryStatus) {
+            @JsonProperty("deliveryStatus") String deliveryStatus,
+            @JsonProperty("noOfDeliveryAttempts") int noOfDeliveryAttempts) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +50,7 @@ class JsonAdaptedPerson {
             this.parcels.addAll(parcels);
         }
         this.deliveryStatus = deliveryStatus;
+        this.noOfDeliveryAttempts = noOfDeliveryAttempts;
     }
 
     /**
@@ -63,6 +65,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedParcel::new)
                 .collect(Collectors.toList()));
         deliveryStatus = source.getDeliveryStatus().name();
+        noOfDeliveryAttempts = source.getNoOfDeliveryAttempts();
     }
 
     /**
@@ -120,7 +123,13 @@ class JsonAdaptedPerson {
         }
 
         final Set<Parcel> modelParcels = new HashSet<>(personParcels);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelParcels, modelDeliveryStatus);
+
+        if (noOfDeliveryAttempts < 0) {
+            throw new IllegalValueException("No. of delivery attempts cannot be negative!");
+        }
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelParcels,
+                modelDeliveryStatus, noOfDeliveryAttempts);
     }
 
 }
