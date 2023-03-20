@@ -80,9 +80,10 @@ Other than the icons mentioned above, there are also some other notations used i
 
 [Back to Table of Contents](#table-of-contents)
 
+=======
 ---
 
-## Installation
+## Getting started
 
 1. Ensure you have `Java 11` or above installed in your computer
 2. Download the latest `HMHero` from [here](https://github.com/AY2223S2-CS2103T-W14-4/tp/releases).
@@ -146,7 +147,7 @@ are already familiar with the application!
 - Format: `delete n/NAME p/PHONE_NUMBER`
 
 - Examples:
-  - `delete n/Jack Dill p/PHONE_NUMBER`
+    - `delete n/Jack Dill p/PHONE_NUMBER`
 
 ### 5. Advancing an applicant's status: `advance`
 
@@ -158,7 +159,7 @@ Shortlists a candidate
 - Format: `advance n/NAME p/PHONE_NUMBER`
 
 - Examples:
-  - `advance n/Jack Dill p/91234567`
+    - `advance n/Jack Dill p/91234567`
 
 ### 6. Rejecting an applicant: `reject`
 
@@ -170,7 +171,7 @@ Rejects a candidate or interviewee
 - Format: `reject n/NAME p/PHONE_NUMBER`
 
 - Examples:
-  - `reject n/Jack Dill p/91234567`
+    - `reject n/Jack Dill p/91234567`
 
 ### 7. Find an applicant: `find`
 
@@ -179,7 +180,7 @@ Find applicants using keywords (name OR phone number OR both)
 - Format:
   - Format 1: `find NAME or PHONE NUMBER` (only need to provide either one)
   - Format 2: `find n/NAME p/PHONE NUMBER` (must provide both)
-- Example:
+- Example: 
   - Example 1: `find Jack Dill`, `find 91234567`
   - Example 2: `find n/Jack Dill p/91234567`
 
