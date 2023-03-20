@@ -1,4 +1,4 @@
-package seedu.address.model.tutee;
+package seedu.address.model.tutee.fields;
 
 import java.time.Instant;
 import java.time.LocalTime;

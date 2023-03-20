@@ -18,7 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutee.Tutee;
-import seedu.address.model.tutee.Remark;
+import seedu.address.model.tutee.fields.Remark;
 import seedu.address.testutil.PersonBuilder;
 class RemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";

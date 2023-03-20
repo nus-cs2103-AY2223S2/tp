@@ -11,14 +11,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutee.*;
 import seedu.address.model.tutee.Tutee;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Remark;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -40,18 +40,39 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-        Schedule schedule = ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get());
-        StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get());
-        EndTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get(), argMultimap.getValue(PREFIX_STARTTIME).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        TuteeBuilder builder = new TuteeBuilder();
+        builder.setName(
+            ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get())
+        )
+        .setPhone(
+            ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get())
+        )
+        .setEmail(
+            ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())
+        )
+        .setAddress(
+            ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
+        )
+        // add command does not allow adding remarks straight away
+        .setRemark(new Remark(""))
+        .setSubject(
+            ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get())
+        )
+        .setSchedule(
+            ParserUtil.parseSchedule(argMultimap.getValue(PREFIX_SCHEDULE).get())
+        )
+        .setStartTime(
+            ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get())
+        )
+        .setEndTime(
+            ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get(), argMultimap.getValue(PREFIX_STARTTIME).get())
+        )
+        .setTags(
+            ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG))
+        )
+        .setAttendance(new Attendance());
 
-        Tutee tutee = new Tutee(name, phone, email, address, remark, subject, schedule, startTime, endTime, tagList);
+        Tutee tutee = builder.build();
 
         return new AddCommand(tutee);
     }

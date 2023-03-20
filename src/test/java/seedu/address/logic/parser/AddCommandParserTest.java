@@ -34,6 +34,10 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tutee.*;
 import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 

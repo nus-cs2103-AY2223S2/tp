@@ -1,9 +1,10 @@
-package seedu.address.model.tutee;
+package seedu.address.model.tutee.fields;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tutee.Tutee;
 
 /**
  * Tests that a {@code Tutee}'s {@code Name} matches any of the keywords given.

@@ -1,4 +1,4 @@
-package seedu.address.model.tutee;
+package seedu.address.model.tutee.fields;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

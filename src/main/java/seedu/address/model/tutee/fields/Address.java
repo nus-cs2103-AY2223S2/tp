@@ -1,4 +1,4 @@
-package seedu.address.model.tutee;
+package seedu.address.model.tutee.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;

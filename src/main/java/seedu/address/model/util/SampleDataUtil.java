@@ -8,6 +8,15 @@ import seedu.address.model.ReadOnlyTuteeManagingSystem;
 import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.tutee.*;
 import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Remark;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
