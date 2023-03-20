@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import static seedu.address.logic.commands.CommandTestUtil.ANSWER_DESC_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_PHOTOSYNTHESIS;
+
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ANSWER_PHOTOSYNTHESIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_PHOTOSYNTHESIS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -10,6 +12,26 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -37,6 +59,7 @@ public class AddCommandParserTest {
         //                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedCardMultipleTags));
     }
 
+
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
@@ -45,17 +68,26 @@ public class AddCommandParserTest {
         //                new AddCommand(expectedCard));
     }
 
+
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+
 
         // missing name prefix
         assertParseFailure(parser, VALID_QUESTION_PHOTOSYNTHESIS + ANSWER_DESC_PHOTOSYNTHESIS,
                 expectedMessage);
 
+
         // missing address prefix
+
         assertParseFailure(parser, QUESTION_DESC_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,
                 expectedMessage);
+
+
+
+
+
 
         // all prefixes missing
         assertParseFailure(parser, VALID_QUESTION_PHOTOSYNTHESIS + VALID_ANSWER_PHOTOSYNTHESIS,
