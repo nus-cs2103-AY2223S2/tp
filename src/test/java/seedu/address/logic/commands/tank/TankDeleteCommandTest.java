@@ -37,7 +37,7 @@ public class TankDeleteCommandTest {
         String expectedMessage = String.format(TankDeleteCommand.MESSAGE_DELETE_TANK_SUCCESS, tankToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                model.getTankList());
+                getTypicalTankList());
         expectedModel.deleteTank(tankToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -61,7 +61,7 @@ public class TankDeleteCommandTest {
         String expectedMessage = String.format(TankDeleteCommand.MESSAGE_DELETE_TANK_SUCCESS, tankToDelete);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                model.getTankList());
+                getTypicalTankList());
         expectedModel.deleteTank(tankToDelete);
         showNoTank(expectedModel);
 

@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalFishes.CARL;
 import static seedu.address.testutil.TypicalFishes.ELLE;
 import static seedu.address.testutil.TypicalFishes.FIONA;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.util.Arrays;
@@ -18,7 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.fish.NameContainsKeywordsPredicate;
 
@@ -27,9 +27,9 @@ import seedu.address.model.fish.NameContainsKeywordsPredicate;
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-            new TankList());
+            getTypicalTankList());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-            new TankList());
+            getTypicalTankList());
 
     @Test
     public void equals() {

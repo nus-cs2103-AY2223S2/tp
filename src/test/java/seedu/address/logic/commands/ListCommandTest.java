@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFishAtIndex;
 import static seedu.address.testutil.TypicalFishes.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_FISH;
+import static seedu.address.testutil.TypicalTanks.getTypicalTankList;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.TankList;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -25,8 +25,9 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), new TankList());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList(), new TankList());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList(),
+                getTypicalTankList());
     }
 
     @Test
