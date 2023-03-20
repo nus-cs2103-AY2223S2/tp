@@ -1,13 +1,7 @@
 package vimification.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static vimification.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static vimification.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static vimification.logic.parser.CliSyntax.PREFIX_NAME;
-import static vimification.logic.parser.CliSyntax.PREFIX_PHONE;
-import static vimification.logic.parser.CliSyntax.PREFIX_TAG;
 
-import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 

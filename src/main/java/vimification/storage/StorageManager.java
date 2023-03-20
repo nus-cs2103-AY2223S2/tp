@@ -17,13 +17,15 @@ import vimification.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private TaskPlannerStorage taskPlannerStorage;
+    private LogicTaskListStorage taskPlannerStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TaskPlannerStorage} and
+     * {@code UserPrefStorage}.
      */
-    public StorageManager(TaskPlannerStorage taskPlannerStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(LogicTaskListStorage taskPlannerStorage,
+            UserPrefsStorage userPrefsStorage) {
         this.taskPlannerStorage = taskPlannerStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
@@ -54,12 +56,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTaskPlanner> readTaskList() throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskPlanner> readTaskList()
+            throws DataConversionException, IOException {
         return readTaskList(taskPlannerStorage.getTaskListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTaskPlanner> readTaskList(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskPlanner> readTaskList(Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return taskPlannerStorage.readTaskList(filePath);
     }

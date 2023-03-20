@@ -15,15 +15,14 @@ import vimification.commons.util.ConfigUtil;
 import vimification.commons.util.StringUtil;
 import vimification.logic.Logic;
 import vimification.logic.LogicManager;
-import vimification.model.TaskPlanner;
 import vimification.model.Model;
 import vimification.model.ModelManager;
 import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.model.util.SampleDataUtil;
-import vimification.storage.TaskPlannerStorage;
-import vimification.storage.JsonTaskPlannerStorage;
+import vimification.storage.LogicTaskListStorage;
+import vimification.storage.JsonLogicTaskListStorage;
 import vimification.storage.JsonUserPrefsStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
@@ -56,16 +55,14 @@ public class Gui extends Application {
 
         // TODO: Temporary fix until Jiayue finishes implementation.
         // TaskPlannerStorage addressBookStorage = null;
-        TaskPlannerStorage addressBookStorage =
-                new JsonTaskPlannerStorage(userPrefs.getTaskListFilePath());
+        LogicTaskListStorage addressBookStorage =
+                new JsonLogicTaskListStorage(userPrefs.getTaskListFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
-
         logic = new LogicManager(model, storage);
-
         ui = new UiManager(logic);
     }
 

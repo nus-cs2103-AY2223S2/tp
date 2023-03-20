@@ -3,7 +3,6 @@ package vimification.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import vimification.commons.core.Messages;
-import vimification.logic.commands.exceptions.CommandException;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 

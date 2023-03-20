@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import vimification.model.task.Task;
 
@@ -16,16 +18,16 @@ public class LogicTaskList {
 
     private final List<Task> tasks;
 
+    public LogicTaskList(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     public LogicTaskList() {
-        this.tasks = new ArrayList<>();
+        this(new ArrayList<>());
     }
 
-    public LogicTaskList(List<Task> list) {
-        this.tasks = list;
-    }
-
-    public LogicTaskList(Task... arr) {
-        this.tasks = new ArrayList<Task>(Arrays.asList(arr));
+    public LogicTaskList(Task... tasks) {
+        this(new ArrayList<>(Arrays.asList(tasks)));
     }
 
     public int size() {
@@ -37,44 +39,58 @@ public class LogicTaskList {
     /**
      * Returns the task with the specified index.
      */
-    public Task get(int idx) {
-        return tasks.get(idx);
-    }
-
-    /**
-     * Returns true if a task that is the same as {@code t} exists in the task list.
-     */
-    public boolean contains(Task t) {
-        requireNonNull(t);
-        for (Task task : tasks) {
-            if (t.isSameTask(task)) {
-                return true;
-            }
-        }
-        return false;
+    public Task get(int index) {
+        return tasks.get(index);
     }
 
     /**
      * Adds a task to the task list.
      */
-    public void add(Task t) {
-        requireNonNull(t);
-        tasks.add(t);
+    public void add(Task task) {
+        requireNonNull(task);
+        tasks.add(task);
     }
 
     /**
      * Inserts a task to the task list at the specified index.
      */
-    public void add(int idx, Task t) {
-        requireNonNull(t);
-        tasks.add(idx, t);
+    public void add(int index, Task task) {
+        requireNonNull(task);
+        tasks.add(index, task);
     }
 
     /**
      * Removes the task with the specified index from the task list.
      */
-    public Task remove(int idx) {
-        return tasks.remove(idx);
+    public Task remove(int index) {
+        return tasks.remove(index);
+    }
+
+    /**
+     * Replaces the task with the specified index with the given task.
+     */
+    public void set(int index, Task newTask) {
+        requireNonNull(newTask);
+        tasks.set(index, newTask);
+    }
+
+    /**
+     * Returns the index of the task with the specified index.
+     */
+    public int indexOf(Task t) {
+        return tasks.indexOf(t);
+    }
+
+    /**
+     * Returns true if a task that is the same as {@code t} exists in the task list.
+     */
+    public boolean contains(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
+
+    public Stream<Task> stream() {
+        return tasks.stream();
     }
 
     /**
@@ -87,30 +103,15 @@ public class LogicTaskList {
     /**
      * Marks the task with the specified index as done.
      */
-    public void markTask(int idx) {
-        tasks.get(idx).mark();
+    public void mark(int index) {
+        tasks.get(index).mark();
     }
 
     /**
      * Unmarks the task with the specified index as not done.
      */
-    public void unmarkTask(int idx) {
-        tasks.get(idx).unmark();
-    }
-
-    /**
-     * Replaces the task with the specified index with the given task.
-     */
-    public void set(int idx, Task newTask) {
-        requireNonNull(newTask);
-        tasks.set(idx, newTask);
-    }
-
-    /**
-     * Returns the index of the task with the specified index.
-     */
-    public int indexOf(Task t) {
-        return tasks.indexOf(t);
+    public void unmark(int index) {
+        tasks.get(index).unmark();
     }
 
     //// util methods
@@ -120,17 +121,15 @@ public class LogicTaskList {
     }
 
     public LogicTaskList filter(Predicate<Task> pred) {
-        LogicTaskList result = new LogicTaskList();
-        for (Task t : tasks) {
-            if (pred.test(t)) {
-                result.add(t);
-            }
-        }
-        return result;
+        List<Task> filteredTasks = stream()
+                .filter(pred)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return new LogicTaskList(filteredTasks);
     }
 
     @Override
     public String toString() {
+        // TODO: rewrite this, too confusing
         String result = "";
         for (int i = 0; i < size(); i++) {
             String prefix = i + 1 < 10 ? "0" : "";

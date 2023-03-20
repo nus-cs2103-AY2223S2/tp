@@ -1,22 +1,19 @@
 package vimification.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 public abstract class Task {
 
     private String description;
     private boolean isDone;
-    private final TaskType type;
 
     /**
      * Every field must be present and not null.
      */
-    Task(String description, boolean isDone, TaskType type) {
+    Task(String description, boolean isDone) {
         requireNonNull(description);
         this.description = description;
         this.isDone = isDone;
-        this.type = type;
     }
 
     public String getDescription() {
@@ -25,10 +22,6 @@ public abstract class Task {
 
     public boolean isDone() {
         return isDone;
-    }
-
-    public TaskType getType() {
-        return type;
     }
 
     public void setDescription(String description) {
@@ -50,9 +43,7 @@ public abstract class Task {
         if (otherTask == this) {
             return true;
         }
-
-        return otherTask != null
-                && otherTask.getDescription().equals(getDescription());
+        return otherTask.description.equals(description);
     }
 
     /**
@@ -64,23 +55,20 @@ public abstract class Task {
         if (other == this) {
             return true;
         }
-
         if (!(other instanceof Task)) {
             return false;
         }
-
         Task otherTask = (Task) other;
-        return (otherTask.getDescription().equals(getDescription())
-                && otherTask.isDone == isDone);
+        return otherTask.description.equals(description) && otherTask.isDone == isDone;
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Description: ")
-                .append(getDescription())
-                .append("; Status: ")
-                .append(isDone ? "Done" : "Not done");
+        builder.append("description: ")
+                .append(description)
+                .append("; status: ")
+                .append(isDone ? "done" : "not done");
         return builder.toString();
     }
 }

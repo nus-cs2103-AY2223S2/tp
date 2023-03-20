@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import vimification.commons.exceptions.IllegalValueException;
-import vimification.model.ReadOnlyTaskPlanner;
-import vimification.model.TaskPlanner;
+import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
 import vimification.model.task.Deadline;
@@ -17,24 +18,27 @@ import vimification.model.task.Event;
 /**
  * An Immutable TaskPlanner that is serializable to JSON format.
  */
-@JsonRootName(value = "taskList")
-public class JsonSerializableTaskList {
-
-    public static final String MESSAGE_DUPLICATE_PERSON = "Task list contains duplicate task(s).";
+@JsonRootName(value = "logictasklist")
+public class JsonAdaptedLogicTaskList {
 
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
+    @JsonCreator
+    public JsonAdaptedLogicTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+        this.tasks.addAll(tasks);
+    }
 
     /**
      * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created
+     *        {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableTaskList(ReadOnlyTaskPlanner source) {
-        tasks.addAll(source.getTaskList().stream().map(this::toJsonAdaptedTask).collect(Collectors.toList()));
+    public JsonAdaptedLogicTaskList(LogicTaskList source) {
+        tasks.addAll(source.stream().map(this::toJsonAdaptedTask).collect(Collectors.toList()));
     }
 
-    private JsonAdaptedTask toJsonAdaptedTask (Task task) {
+    private JsonAdaptedTask toJsonAdaptedTask(Task task) {
         if (task instanceof Todo) {
             return new JsonAdaptedTodo((Todo) task);
         } else if (task instanceof Deadline) {
@@ -49,16 +53,12 @@ public class JsonSerializableTaskList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public TaskPlanner toModelType() throws IllegalValueException {
-        TaskPlanner taskList = new TaskPlanner();
+    public LogicTaskList toModelType() throws IllegalValueException {
+        LogicTaskList taskList = new LogicTaskList();
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
-            Task t =  jsonAdaptedTask.toModelType();
-            if (taskList.hasTask(t)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
-            }
-            taskList.addTask(t);
+            Task task = jsonAdaptedTask.toModelType();
+            taskList.add(task);
         }
         return taskList;
     }
-
 }

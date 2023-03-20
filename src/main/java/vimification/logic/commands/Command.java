@@ -1,8 +1,5 @@
 package vimification.logic.commands;
 
-import vimification.logic.commands.exceptions.CommandException;
-import vimification.model.Model;
-
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
  */

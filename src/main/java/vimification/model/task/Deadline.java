@@ -4,10 +4,11 @@ import java.time.LocalDateTime;
 import static java.util.Objects.requireNonNull;
 
 public class Deadline extends Task {
+
     private LocalDateTime deadline;
 
     public Deadline(String description, boolean isDone, LocalDateTime deadline) {
-        super(description, isDone, TaskType.DEADLINE);
+        super(description, isDone);
         requireNonNull(deadline);
         this.deadline = deadline;
     }
@@ -20,6 +21,10 @@ public class Deadline extends Task {
         return deadline;
     }
 
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
     @Override
     public Deadline clone() {
         return new Deadline(getDescription(), isDone(), deadline);
@@ -30,14 +35,11 @@ public class Deadline extends Task {
         if (task == this) {
             return true;
         }
-
         if (!(task instanceof Deadline)) {
             return false;
         }
-
         Deadline otherDeadline = (Deadline) task;
-        return isSameTask(otherDeadline)
-                && otherDeadline.getDeadline().equals(deadline);
+        return super.isSameTask(otherDeadline) && otherDeadline.deadline.equals(deadline);
     }
 
     @Override
@@ -45,20 +47,16 @@ public class Deadline extends Task {
         if (other == this) {
             return true;
         }
-
         if (!(other instanceof Deadline)) {
             return false;
         }
-
         Deadline otherDeadline = (Deadline) other;
-        return super.equals(otherDeadline)
-                && otherDeadline.getDeadline().equals(deadline);
+        return super.equals(otherDeadline) && otherDeadline.deadline.equals(deadline);
     }
 
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getType())
-                .append(" ")
+        builder.append("Deadline ")
                 .append(super.toString())
                 .append("; by: ")
                 .append(getDeadline());
