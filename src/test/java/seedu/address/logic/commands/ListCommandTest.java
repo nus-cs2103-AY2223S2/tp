@@ -3,12 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.getTypicalTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -73,7 +73,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_moduleNotFound() {
-        ModuleCode moduleCode = new ModuleCode("CS1231S");
+        ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         String input = String.format("list /mod %s", moduleCode);
         try {
             listCommand = new ListCommandParser().parse(input);
