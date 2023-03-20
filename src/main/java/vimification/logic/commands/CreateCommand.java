@@ -17,9 +17,8 @@ import vimification.model.task.Task;
 public class CreateCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "create";
-    public static final String SUCCESS_MESSAGE = "New task created: %1$s";
-    public static final String UNDO_MESSAGE =
-            "The command has been undoed. The new task has been deleted.";
+    public static final String SUCCESS_MESSAGE_FORMAT = "New task created: %1$s";
+    public static final String UNDO_MESSAGE = "The command has been undoed. The new task has been deleted.";
 
     private final Task newTask;
 

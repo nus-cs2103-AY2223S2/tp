@@ -17,9 +17,9 @@ public class DeleteCommand extends UndoableLogicCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: delete 1";
 
-    public static final String SUCCESS_MESSAGE = "Deleted Task: %1$s";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Deleted Task: %1$s";
     public static final String UNDO_MESSAGE =
             "The command has been undoed. The deleted task has been added back.";
 

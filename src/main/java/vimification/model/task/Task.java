@@ -12,7 +12,7 @@ public abstract class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(String description, boolean isDone, TaskType type) {
+    Task(String description, boolean isDone, TaskType type) {
         requireNonNull(description);
         this.description = description;
         this.isDone = isDone;

@@ -24,11 +24,11 @@ public class LogicTaskList {
         this.tasks = list;
     }
 
-    public LogicTaskList(Task[] arr) {
-        this.tasks = Arrays.asList(arr);
+    public LogicTaskList(Task... arr) {
+        this.tasks = new ArrayList<Task>(Arrays.asList(arr));
     }
 
-    public int length() {
+    public int size() {
         return tasks.size();
     }
 
@@ -44,7 +44,7 @@ public class LogicTaskList {
     /**
      * Returns true if a task that is the same as {@code t} exists in the task list.
      */
-    public boolean has(Task t) {
+    public boolean contains(Task t) {
         requireNonNull(t);
         for (Task task : tasks) {
             if (t.isSameTask(task)) {
@@ -65,7 +65,7 @@ public class LogicTaskList {
     /**
      * Inserts a task to the task list at the specified index.
      */
-    public void insert(int idx, Task t) {
+    public void add(int idx, Task t) {
         requireNonNull(t);
         tasks.add(idx, t);
     }
@@ -73,7 +73,7 @@ public class LogicTaskList {
     /**
      * Removes the task with the specified index from the task list.
      */
-    public Task delete(int idx) throws IndexOutOfBoundsException {
+    public Task remove(int idx) {
         return tasks.remove(idx);
     }
 
@@ -88,14 +88,14 @@ public class LogicTaskList {
      * Marks the task with the specified index as done.
      */
     public void markTask(int idx) {
-        get(idx).mark();
+        tasks.get(idx).mark();
     }
 
     /**
      * Unmarks the task with the specified index as not done.
      */
     public void unmarkTask(int idx) {
-        get(idx).unmark();
+        tasks.get(idx).unmark();
     }
 
     /**
