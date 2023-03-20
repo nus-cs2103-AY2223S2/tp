@@ -17,7 +17,7 @@ import seedu.socket.model.Model;
 import seedu.socket.model.ModelManager;
 import seedu.socket.model.Socket;
 import seedu.socket.model.UserPrefs;
-import seedu.socket.model.person.predicate.TagContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandTagPredicate;
 
 public class ClearCommandTest {
 
@@ -25,7 +25,7 @@ public class ClearCommandTest {
     public void execute_clearTagNotExist_throwCommandException() {
         Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
         List<String> tagKeywords = Arrays.asList("CS2103", "Haha");
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(tagKeywords);
+        FindCommandTagPredicate predicate = new FindCommandTagPredicate(tagKeywords);
         ClearCommand clearCommand = new ClearCommand(predicate);
         assertThrows(CommandException.class, ClearCommand.MESSAGE_NOT_SUCCESS, () -> clearCommand.execute(model));
     }
@@ -35,14 +35,14 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSocket(), new UserPrefs());
         expectedModel.setSocket(new Socket());
-        TagContainsKeywordsPredicate emptyPredicate = new TagContainsKeywordsPredicate(new ArrayList<>());
+        FindCommandTagPredicate emptyPredicate = new FindCommandTagPredicate(new ArrayList<>());
         assertCommandSuccess(new ClearCommand(emptyPredicate), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void testEqual() {
         List<String> tagKeywords = Arrays.asList("CS2103", "Haha");
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(tagKeywords);
+        FindCommandTagPredicate predicate = new FindCommandTagPredicate(tagKeywords);
 
         ClearCommand clearCommand = new ClearCommand(predicate);
         // same tag predicate -> returns true

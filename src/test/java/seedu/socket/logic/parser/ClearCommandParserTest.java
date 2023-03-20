@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.ClearCommand;
-import seedu.socket.model.person.predicate.TagContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandTagPredicate;
 
 public class ClearCommandParserTest {
     private ClearCommandParser parser = new ClearCommandParser();
@@ -16,7 +16,7 @@ public class ClearCommandParserTest {
     @Test
     public void parse_emptyArg_returnsClearCommand() {
         List<String> emptyKeywords = Collections.emptyList();
-        ClearCommand command = new ClearCommand(new TagContainsKeywordsPredicate(emptyKeywords));
+        ClearCommand command = new ClearCommand(new FindCommandTagPredicate(emptyKeywords));
         assertParseSuccess(parser, "", command);
     }
 }
