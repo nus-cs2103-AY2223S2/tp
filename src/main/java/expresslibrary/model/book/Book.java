@@ -126,9 +126,9 @@ public class Book {
         return otherBook.getTitle().equals(getTitle())
                 && otherBook.getAuthor().equals(getAuthor())
                 && otherBook.getIsbn().equals(getIsbn())
-                && otherBook.getBorrower().equals(getBorrower())
-                && otherBook.getBorrowDate().equals(getBorrowDate())
-                && otherBook.getDueDate().equals(getDueDate());
+                && Objects.equals(otherBook.getBorrower(), getBorrower())
+                && Objects.equals(otherBook.getBorrowDate(), getBorrowDate())
+                && Objects.equals(otherBook.getDueDate(), getDueDate());
     }
 
     @Override

@@ -10,6 +10,7 @@ import expresslibrary.model.book.Author;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.book.Isbn;
 import expresslibrary.model.book.Title;
+import expresslibrary.model.person.Person;
 
 /**
  * A utility class to help with building Book objects.
@@ -24,6 +25,7 @@ public class BookBuilder {
     private Title title;
     private Author author;
     private Isbn isbn;
+    private Person borrower;
     private LocalDate borrowDate;
     private LocalDate dueDate;
 
@@ -43,6 +45,11 @@ public class BookBuilder {
         title = bookToCopy.getTitle();
         author = bookToCopy.getAuthor();
         isbn = bookToCopy.getIsbn();
+        if (bookToCopy.getBorrower() != null) {
+            borrower = bookToCopy.getBorrower();
+            borrowDate = bookToCopy.getBorrowDate();
+            dueDate = bookToCopy.getDueDate();
+        }
     }
 
     /**
@@ -70,12 +77,13 @@ public class BookBuilder {
     }
 
     /**
-     * Sets the {@code borrowDate} and {@code returnDate} of the {@code Book} that we are building.
+     * Sets the {@code borrower}, {@code borrowDate} and {@code returnDate} of the {@code Book} that we are building.
      */
-    public BookBuilder withBorrowAndReturnDate(String borrowDate, String returnDate) {
+    public BookBuilder withBorrower(Person borrower, String borrowDate, String returnDate) {
         try {
             this.borrowDate = DateUtil.parseDate(borrowDate);
             this.dueDate = DateUtil.parseDate(returnDate);
+            this.borrower = borrower;
         } catch (DateTimeParseException e) {
             logger.info("Date format is invalid");
             e.printStackTrace();
@@ -88,10 +96,12 @@ public class BookBuilder {
      * Builds the book object.
      */
     public Book build() {
-        if (borrowDate == null || dueDate == null) {
-            return new Book(title, author, isbn);
+        Book book;
+        book = new Book(title, author, isbn);
+        if (borrower != null) {
+            book.loanBookTo(borrower, borrowDate, dueDate);
         }
-        return new Book(title, author, isbn, borrowDate, dueDate);
+        return book;
     }
 
 }
