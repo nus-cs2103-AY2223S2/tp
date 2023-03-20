@@ -376,10 +376,49 @@ Each `Person` in CoDoc is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
 
-All `Person` have a `Name`, `Email`, `Course` and `Year` and a set of `Skill` and `Module`.
+All `Person` have a `Name`, `Email`, `Course` and `Year`.
+
 `Person`s can have a `Github` and `LinkedIn` URL added to their profile, and as many `Skills` and `Modules` as desired.
 
 <div style="page-break-after: always;"></div>
+
+[Scroll back to top](#table-of-contents)
+
+### **Edit Command**
+
+Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
+For `name`, `year`, `course`, `email`, `GitHub`, `LinkedIn`, the command will replace the old data with the new input.
+
+For `Skills` and `Modules`, the command is capable of adding, deleting and updating existing data.
+
+`Edit` has the prefixes as follows:
+* `n/` for name
+* `e/` for email
+* `y/` for year
+* `c/` for course
+* `g/` for GitHub
+* `l/` for LinkedIn
+* `m+/` for adding a new module
+* `m-/` for deleting an existing module
+* `mo/` for updating the old module
+* `mn/` for the new module that the old module would be replaced with
+* `s+/` for adding a new skill
+* `s-/` for deleting an existing skill
+* `so/` for updating the old skill
+* `sn/` for the new skill that the old skill would be replaced with
+
+#### Implementation Flow
+
+Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the person.
+
+![Edit Command Sequence Diagram](images/ModuleCommandSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+Given below is an activity diagram to illustrate the behaviour of editing Person within `Logic`.
+
+![Edit Activity Diagram](images/ModuleActivityDiagram.png)
+
 
 ### \[Proposed\] Undo/redo feature
 
