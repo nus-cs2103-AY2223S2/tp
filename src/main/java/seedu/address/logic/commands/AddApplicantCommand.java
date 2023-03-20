@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import java.util.ArrayList;
 import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -54,10 +53,22 @@ public class AddApplicantCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);
         }
 
-        Listing listingToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteListing(listingToDelete);
+        Listing listingToAddApplicantTo = lastShownList.get(targetIndex.getZeroBased());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        Listing editedListing = createListingWithApplicant(listingToAddApplicantTo, applicantToAdd);
+
+        model.setListing(listingToAddApplicantTo, editedListing);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS,
+                applicantToAdd.getName().fullName,
+                listingToAddApplicantTo.getTitle().fullTitle));
+    }
+
+    private Listing createListingWithApplicant(Listing listingToChange, Applicant applicantToAdd) {
+        ArrayList<Applicant> oldApplicants = listingToChange.getApplicants();
+        oldApplicants.add(applicantToAdd);
+
+        return new Listing(listingToChange.getTitle(), listingToChange.getDescription(), oldApplicants);
     }
 
     @Override
