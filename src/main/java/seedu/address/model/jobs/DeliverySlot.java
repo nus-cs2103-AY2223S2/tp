@@ -42,6 +42,13 @@ public class DeliverySlot {
         return value.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns slot value in integer
+     */
+    public int getSlot() {
+        return Integer.parseInt(value);
+    }
+
     @Override
     public String toString() {
         return value;

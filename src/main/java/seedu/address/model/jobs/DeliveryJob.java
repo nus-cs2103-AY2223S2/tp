@@ -1,6 +1,7 @@
 package seedu.address.model.jobs;
 
 import static java.util.Objects.requireNonNull;
+import java.util.NoSuchElementException;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -26,7 +27,6 @@ public class DeliveryJob {
      *
      * @param recepient
      * @param sender
-     * @param deliverySlot
      * @param earning
      */
     public DeliveryJob(String recepient, String sender, String earning) {
@@ -106,8 +106,12 @@ public class DeliveryJob {
         return isDelivered;
     }
 
-    public LocalDate getDeliverDate() {
-        return LocalDate.now();
+    public LocalDate getDate() throws NoSuchElementException {
+        return deliveryDate.get().getDate();
+    }
+
+    public int getSlot() throws NoSuchElementException {
+        return deliverySlot.get().getSlot();
     }
 
     /**

@@ -5,13 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -66,7 +60,7 @@ public class ModelManager implements Model {
         this.filteredDeliveryJobs = new FilteredList<>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         //updateSortedDeliveryJobListByDate();
-        this.jobListGroupedByDate = getSortedDeliveryJobListByDate();
+        this.jobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
         this.weekJobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
         this.reminderList = this.addressBook.getReminderList();
         this.focusDate = LocalDate.now();
@@ -235,24 +229,26 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobListByDate() {
-        updateSortedDeliveryJobList(SORTER_BY_DATE);
+        //updateSortedDeliveryJobList(SORTER_BY_DATE);
 
         for (int i = 0; i < sortedDeliveryJobs.size(); i++) {
-            LocalDate jobDate = sortedDeliveryJobs.get(i).getDeliverDate();
-            String jobSlot = sortedDeliveryJobs.get(i).getDeliverySlot().get().value;
-            int slotIndex = Integer.parseInt(jobSlot) - 1;
-            DeliveryJob toAdd = sortedDeliveryJobs.get(i);
-            if (jobListGroupedByDate.containsKey(jobDate)) {
-                DeliveryList jobsInCurrentSlot = jobListGroupedByDate.get(jobDate);
-                if (jobsInCurrentSlot.size() == 0) {
-                    jobsInCurrentSlot = createEmptyDayJobList();
+            if (sortedDeliveryJobs.get(i).isScheduled()) {
+                LocalDate jobDate = sortedDeliveryJobs.get(i).getDate();
+                int jobSlot = sortedDeliveryJobs.get(i).getSlot();
+                int slotIndex = (jobSlot) - 1;
+                DeliveryJob toAdd = sortedDeliveryJobs.get(i);
+                if (jobListGroupedByDate.containsKey(jobDate)) {
+                    DeliveryList jobsInCurrentSlot = jobListGroupedByDate.get(jobDate);
+                    if (jobsInCurrentSlot.size() == 0) {
+                        jobsInCurrentSlot = createEmptyDayJobList();
+                    }
+                    jobsInCurrentSlot.get(slotIndex).add(toAdd);
+                    jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
+                } else {
+                    DeliveryList newDateJobList = createEmptyDayJobList();
+                    newDateJobList.get(slotIndex).add(toAdd);
+                    jobListGroupedByDate.put(jobDate, newDateJobList);
                 }
-                jobsInCurrentSlot.get(slotIndex).add(toAdd);
-                jobListGroupedByDate.put(jobDate, jobsInCurrentSlot);
-            } else {
-                DeliveryList newDateJobList = createEmptyDayJobList();
-                newDateJobList.get(slotIndex).add(toAdd);
-                jobListGroupedByDate.put(jobDate, newDateJobList);
             }
         }
     }
@@ -286,6 +282,7 @@ public class ModelManager implements Model {
     public void updateFocusDate(LocalDate jobDate) {
         this.focusDate = jobDate;
     }
+
     private void addWeekJobList(LocalDate dayToAdd) {
         if (jobListGroupedByDate.containsKey(dayToAdd)) {
             DeliveryList currentJobList = jobListGroupedByDate.get(dayToAdd);
@@ -296,7 +293,10 @@ public class ModelManager implements Model {
     }
 
     private DeliveryList createEmptyDayJobList() {
-        ArrayList<ArrayList<DeliveryJob>> newEmptyArr = new ArrayList<ArrayList<DeliveryJob>>(100);
+        ArrayList<ArrayList<DeliveryJob>> newEmptyArr = new ArrayList<ArrayList<DeliveryJob>>();
+        for (int i = 0; i < 5; i++) {
+            newEmptyArr.add(new ArrayList<DeliveryJob>());
+        }
         return new DeliveryList(newEmptyArr);
     }
 

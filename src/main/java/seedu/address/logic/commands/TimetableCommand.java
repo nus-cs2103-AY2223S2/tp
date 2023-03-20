@@ -17,7 +17,7 @@ public class TimetableCommand extends Command {
             + "sorted based on increasing timing\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String SHOWING_TIMETABLE_MESSAGE = "Opened timetable window.";
+    public static final String SHOWING_TIMETABLE_MESSAGE = "Opened timetable window of current week.";
 
     public static final SortbyTime SORTER = new SortbyTime();
 
@@ -25,9 +25,9 @@ public class TimetableCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.updateSortedDeliveryJobList(SORTER);
+        /*model.updateSortedDeliveryJobList(SORTER);
         model.getSortedDeliveryJobListByDate();
-        model.updateSortedDeliveryJobListByDate();
+        model.updateSortedDeliveryJobListByDate(); */
 
         return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false);
     }

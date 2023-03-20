@@ -1,5 +1,7 @@
 package seedu.address.model.jobs;
 
+import java.time.LocalDate;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -37,6 +39,13 @@ public class DeliveryDate {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns date in LocalDate format
+     */
+    public LocalDate getDate() {
+        return LocalDate.parse(this.date);
     }
 
     @Override
