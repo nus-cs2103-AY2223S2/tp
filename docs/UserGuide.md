@@ -27,7 +27,7 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 <br>e.g. your clipboard.jar is stored in `user/app/task/`, you run `cd user/app/task/` then `java -jar clipboard.jar`
 <br>A GUI similar to the above should appear in a few seconds. Note how the app contains some sample data.
 
-5. Type the command in the command box and press Enter to execute it. 
+5. Type the command in the command box and press Enter to execute it.
 <br>e.g. typing `help` and pressing Enter will open the help window.
     <br>Some example commands you can try:
     1. `list` : Lists all students.
@@ -54,7 +54,7 @@ List of commands:
 
 Adds a student to the student roster.
 
-Format: 
+Format:
 ```
 add n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_NUMBER> m/<MODULES> [t/<TAG>]
 ```
@@ -67,7 +67,7 @@ Examples:
 
 Deletes a student from the student roster.
 
-Format: 
+Format:
 ```
 delete <INDEX>
 ```
@@ -129,7 +129,7 @@ Examples:
 
 Clears all entries in the student roster.
 
-Format: 
+Format:
 ```
 clear
 ```

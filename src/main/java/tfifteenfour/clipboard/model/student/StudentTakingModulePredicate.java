@@ -30,4 +30,5 @@ public class StudentTakingModulePredicate implements Predicate<Student> {
                 || (other instanceof StudentTakingModulePredicate // instanceof handles nulls
                 && moduleToCheck.equals(((StudentTakingModulePredicate) other).moduleToCheck)); // state check
     }
+
 }

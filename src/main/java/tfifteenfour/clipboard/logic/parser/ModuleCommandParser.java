@@ -28,4 +28,5 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
         String moduleKeywords = trimmedArgs;
         return new ModuleCommand(new StudentTakingModulePredicate(moduleKeywords));
     }
+
 }
