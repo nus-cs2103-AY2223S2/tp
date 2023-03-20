@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.task.commons.core.Messages;
+import seedu.task.commons.core.index.Index;
+import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.tag.Tag;
 
 /**
@@ -24,6 +27,7 @@ public abstract class Task implements Comparable<Task> {
     // Data fields
     protected final Set<Tag> tags = new HashSet<>();
     protected Effort effort;
+    protected UniqueSubtaskList subtasks;
 
     /**
      * Name, Description and Tag must be present and not null.
@@ -64,6 +68,17 @@ public abstract class Task implements Comparable<Task> {
         return Collections.unmodifiableSet(tags);
     }
 
+    public void addSubtask(Subtask subtask) {
+        requireAllNonNull(subtask);
+        subtasks.addSubtask(subtask);
+    }
+
+    public void removeSubtask(Index index) {
+        requireAllNonNull(index);
+        Subtask subtask = this.subtasks.getSubtask(index.getZeroBased());
+        subtasks.remove(subtask);
+    }
+
     public Effort getEffort() {
         return this.effort;
     }
@@ -86,6 +101,7 @@ public abstract class Task implements Comparable<Task> {
     public abstract boolean isDeadline();
 
     public abstract boolean isEvent();
+
 
     /**
      * Returns true if both tasks have the same identity and data fields.

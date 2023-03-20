@@ -33,6 +33,11 @@ public class SimpleTask extends Task {
     }
 
     @Override
+    public void addSubtask(Subtask subtask) {
+
+    }
+
+    @Override
     public boolean isComingUp() {
         return false;
     }
