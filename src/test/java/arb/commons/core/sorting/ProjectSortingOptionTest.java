@@ -25,9 +25,10 @@ public class ProjectSortingOptionTest {
                 .getComparator());
         assertEquals(PROJECT_TITLE_COMPARATOR, ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_TITLE)
                 .getComparator());
-        
+
         // check equality when using aliases
-        assertEquals(PROJECT_DEADLINE_COMPARATOR, ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_DEADLINE_ALIAS)
+        assertEquals(PROJECT_DEADLINE_COMPARATOR, ProjectSortingOption
+                .getSortingOption(VALID_SORTING_OPTION_DEADLINE_ALIAS)
                 .getComparator());
         assertEquals(PROJECT_TITLE_COMPARATOR, ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_TITLE_ALIAS)
                 .getComparator());

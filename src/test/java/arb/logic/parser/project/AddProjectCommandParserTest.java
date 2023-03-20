@@ -1,18 +1,18 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_OIL_PAINTING;
-import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static arb.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static arb.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static arb.logic.commands.CommandTestUtil.TITLE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_OIL_PAINTING;
-import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.TITLE_DESC_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;

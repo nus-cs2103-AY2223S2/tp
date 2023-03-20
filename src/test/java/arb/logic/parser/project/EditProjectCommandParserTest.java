@@ -1,14 +1,14 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_OIL_PAINTING;
-import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
-import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
@@ -82,7 +82,7 @@ public class EditProjectCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
-        
+
         // using main prefixes
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
                 + TITLE_DESC_SKY_PAINTING;
@@ -111,7 +111,7 @@ public class EditProjectCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST;
-        
+
         // using main prefixes
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING;
 

@@ -172,7 +172,6 @@ public class AddressBookParserTest {
                     commandWord + CommandTestUtil.SORTING_OPTION_DESC);
             assertEquals(new SortProjectCommand(TypicalProjectSortingOptions.BY_DEADLINE), sortProjectCommand);
         }
-        
     }
 
     @Test
@@ -198,7 +197,6 @@ public class AddressBookParserTest {
             assertTrue(parser.parseCommand(commandWord + " 3") instanceof ListProjectCommand);
         }
     }
-        
 
     @Test
     public void parseCommand_markProject() throws Exception {
