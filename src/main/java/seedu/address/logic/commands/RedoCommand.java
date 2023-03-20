@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Restores the previously undone modification to CLInkedIn.
+ * Restores the previously undone modification.
  */
 public class RedoCommand extends Command {
 
