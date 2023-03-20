@@ -21,7 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Text to be displayed when the user gets help.
      */
-    public static final String AB3_NAME = "AddressBook v1.2 2023\n\n";
+    public static final String AB3_NAME = "AddressBook v1.3 2023\n\n";
     public static final String OPTIONS = "Usage: \n"
             + "  add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]              add a new contact\n"
             + "  edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]      edit details of an existing contact\n"

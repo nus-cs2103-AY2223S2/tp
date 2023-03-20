@@ -6,11 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.FieldsMatchRegexPredicate;
-
-import java.util.List;
 
 /**
  * Finds and lists all persons in the address book whose field entries each match at least one of the provided regexes.
