@@ -219,7 +219,7 @@ The JAR file not launching even after double-clicking the file.
 
 The JAR file not launching in Windows Subsystem for Linux (WSL).
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note: ** 
+<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note:** 
 WSL does not support GUI applications by default. 
 </div>
 
