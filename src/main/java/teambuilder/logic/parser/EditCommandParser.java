@@ -10,10 +10,7 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import teambuilder.commons.core.index.Index;
 import teambuilder.logic.commands.EditCommand;
@@ -62,6 +59,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setMajor(ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+//        if (argMultimap.getAllValues(PREFIX_TEAM).isEmpty()) {
+//            editPersonDescriptor.setTeams(new HashSet<>());
+//        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TEAM)).ifPresent(editPersonDescriptor::setTeams);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

@@ -219,6 +219,14 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException} if modification is
+         * attempted. Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
          * Sets {@code teams} to this object's {@code teams}. A defensive copy of {@code teams} is used internally.
          */
         public void setTeams(Set<Tag> teams) {
@@ -231,14 +239,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTeams() {
             return (teams != null) ? Optional.of(Collections.unmodifiableSet(teams)) : Optional.empty();
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException} if modification is
-         * attempted. Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
@@ -262,8 +262,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getMajor().equals(e.getMajor())
-                    && getTags().equals(e.getTags())
-                    && getTeams().equals(e.getTeams());
+                    //&& getTeams().equals(e.getTeams())
+                    && getTags().equals(e.getTags());
             // @formatter:on
         }
     }
