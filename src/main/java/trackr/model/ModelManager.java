@@ -253,12 +253,6 @@ public class ModelManager implements Model {
         return filteredSuppliers;
     }
 
-    @Override
-    public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
-        requireNonNull(predicate);
-        filteredSuppliers.setPredicate(predicate);
-    }
-
     //=========== TaskList ===================================================================================
 
     @Override
@@ -277,12 +271,6 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
-    }
-
     //=========== OrderList ===================================================================================
 
     @Override
@@ -299,12 +287,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
-    }
-
-    @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
-        requireNonNull(predicate);
-        filteredOrders.setPredicate(predicate);
     }
 
     //========================================================================================================

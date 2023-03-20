@@ -113,7 +113,7 @@ public class DeleteSupplierCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoSupplier(Model model) {
-        model.updateFilteredSupplierList(p -> false);
+        model.updateFilteredItemList(p -> false, ModelEnum.SUPPLIER);
 
         assertTrue(model.getFilteredSupplierList().isEmpty());
     }

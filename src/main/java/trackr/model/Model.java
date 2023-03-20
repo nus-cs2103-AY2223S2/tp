@@ -83,13 +83,6 @@ public interface Model {
      */
     ObservableList<Supplier> getFilteredSupplierList();
 
-    /**
-     * Updates the filter of the filtered supplier list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredSupplierList(Predicate<Supplier> predicate);
-
     // ===================================================== Task =====================================================
 
     /**
@@ -102,13 +95,6 @@ public interface Model {
      */
     ObservableList<Task> getFilteredTaskList();
 
-    /**
-     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredTaskList(Predicate<Task> predicate);
-
     // ================================================= Order =================================================
 
     /**
@@ -120,11 +106,4 @@ public interface Model {
      * Returns an unmodifiable view of the filtered order list
      */
     ObservableList<Order> getFilteredOrderList();
-
-    /**
-     * Updates the filter of the filtered order list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredOrderList(Predicate<Order> predicate);
 }

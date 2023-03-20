@@ -182,7 +182,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.SUPPLIER);
 
         // different filteredTaskList -> returns false
         String[] taskKeywords = SORT_INVENTORY_N.getTaskName().getName().split("\\s+");
@@ -192,7 +192,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.TASK);
 
         // different addressBook and different taskList -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTaskList,
@@ -209,8 +209,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.SUPPLIER);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.TASK);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

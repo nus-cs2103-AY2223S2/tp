@@ -151,11 +151,6 @@ public class TestUtil {
         }
 
         @Override
-        public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyTaskList getTaskList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -166,22 +161,12 @@ public class TestUtil {
         }
 
         @Override
-        public void updateFilteredTaskList(Predicate<Task> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyOrderList getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Order> getFilteredOrderList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

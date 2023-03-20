@@ -113,7 +113,7 @@ public class DeleteOrderCommandTest {
      * Updates {@code model}'s filtered task list to show no one.
      */
     private void showNoOrder(Model model) {
-        model.updateFilteredOrderList(p -> false);
+        model.updateFilteredItemList(p -> false, ModelEnum.ORDER);
 
         assertTrue(model.getFilteredOrderList().isEmpty());
     }

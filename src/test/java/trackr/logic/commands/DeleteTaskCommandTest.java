@@ -114,7 +114,7 @@ public class DeleteTaskCommandTest {
      * Updates {@code model}'s filtered task list to show no one.
      */
     private void showNoTask(Model model) {
-        model.updateFilteredTaskList(p -> false);
+        model.updateFilteredItemList(p -> false, ModelEnum.TASK);
 
         assertTrue(model.getFilteredTaskList().isEmpty());
     }
