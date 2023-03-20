@@ -23,7 +23,7 @@ public class Card {
 
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
     private Deck deck;
     private boolean isFlipped = true;
 
@@ -60,6 +60,9 @@ public class Card {
 
     public void setDeck(Deck newDeck) {
         this.deck = newDeck;
+    }
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
     }
 
     /**

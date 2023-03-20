@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Review session that is currently underway.
@@ -103,7 +104,7 @@ public class Review {
 
     public void unflipCard() {
         currCard.setAsUnflipped();
-    }
+    } // can remove?
 
     public boolean isFlipped() {
         return currCard.isFlipped();
@@ -177,6 +178,14 @@ public class Review {
 
     public void flipAllCards() {
         cardList.stream().forEach(Card::setAsFlipped);
+    }
+
+    /**
+     * Tags current card in review based on enum Hard, Medium, Easy
+     * @param tagName
+     */
+    public void tagCurrentCard(String tagName) {
+        currCard.addTag(new Tag(tagName));
     }
 
 }

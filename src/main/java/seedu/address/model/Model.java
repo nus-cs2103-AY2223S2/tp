@@ -153,4 +153,6 @@ public interface Model {
     boolean goToNextCard();
 
     void setNumCardsPerReview(int i);
+
+    void tagCurrentCardInReview(String tagName);
 }
