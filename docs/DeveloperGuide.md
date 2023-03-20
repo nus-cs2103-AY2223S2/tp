@@ -2,8 +2,208 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+## Table of Contents
+- [CoDoc Developer Guide](#codoc-developer-guide)
+- [Navigating the Developer Guide](#navigating-the-developer-guide)
+- [Glossary](#glossary)
+- [Acknowledgements](#acknowledgements)
+- [Setting up](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI Component](#ui-component)
+  - [Logic Component](#logic-component)
+  - [Model Component](#model-component)
+  - [Storage Component](#storage-component)
+  - [Common Classes](#common-classes)
+- [Implementation](#implementation)
+  - [Find Contacts](#find-feature)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product Scope](#product-scope-%EF%B8%8F)
+  - [User Stories](#user-stories-)
+  - [Use Cases](#use-cases)
+  - [Non-functional Requirements](#non-functional-requirements)
+- [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## **CoDoc Developer Guide**
+
+CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
+of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
+while still having the benefits of a **Graphical User Interface** (GUI).
+
+For students who are fast typers, CoDoc is an excellent platform for you to find and identify your friends with certain capabilities and experience, 
+so you can spend less time searching through chats, and spend more time making
+meaningful connections and engaging in productive work.
+
+The goal of this Developer Guide is to document and illustrate the underlying architecture of CoDoc, and provide
+insights on how our product is designed, implemented and tested as well as the design considerations that were involved
+in the deciding the implementation of various features offered by CoDoc.
+
+You are recommended to read the [Navigating the Developer Guide](#navigating-the-developer-guide) and [Glossary](#glossary)
+sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
+Developer Guide and help you navigate it with ease.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Navigating the Developer Guide**
+
+The Developer Guide is divided into the following sections :
+- [Design](#design)
+- [Implementation](#implementation)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+- [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+
+The [Design](#design) section gives an overview of the architecture of CoDoc.
+In this section, you will be provided with:
+
+1. The API (Application Programming Interface) of the major components of CoDoc.
+2. A Class Diagram to illustrate the internals of each component.
+3. An explanation of how each component works.
+4. A Sequence Diagram to give an example of the flow of events within the component where applicable.
+
+The [Implementation](#implementation) section outlines how the features offered by CoDoc are
+implemented. In this section, you will be provided with:
+
+1. A description of the feature.
+2. Some example commands to execute to use the feature.
+3. A Class Diagram or screenshot to illustrate and explain the implementation of each feature where applicable.
+4. A Sequence Diagram to give an example of the implementation flow of the feature where applicable.
+5. An Activity Diagram to show all possible behaviours of the feature where applicable.
+6. An Object Diagram to model relationships between objects of the same components where applicable.
+7. Design considerations and alternatives taken into consideration that justifies our implementation of the feature.
+
+The [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops) section
+provides the links to the aforementioned documents. In this section, you will be provided with the links to:
+
+1. Documentation guide.
+2. Testing guide.
+3. Logging guide.
+4. Configuration guide.
+5. DevOps guide.
+
+The [Appendix: Requirements](#appendix-requirements) section provides details on the motivation behind creating CoDoc
+and how we intend for users to use CoDoc.
+In this section, you will be provided with
+1. Product Scope.
+2. User Stories.
+3. Use Cases.
+4. Non-functional requirements.
+
+The [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing) section gives detailed instructions
+on how you can perform testing on the features in CoDoc. In this section, you will be provided with:
+1. An overview of the command to execute to test the feature.
+2. Sample test cases to be executed.
+3. The expected behaviour of the test command.
+
+You can jump into the various sections from the Table of Contents to view different sections of the Developer Guide, and
+click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to access the Table
+of Contents to quickly jump to another section.
+
+We would recommend you to read the [Glossary](#glossary) section next.
+
+[Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+## **Glossary**
+
+The glossary illustrated in the table below will help you understand the terminologies used in this
+Developer Guide.
+
+<table>
+  <tr>
+    <th><strong>Terminology</strong></th>
+    <th><strong>Meaning / Purpose</strong></th>
+  </tr>
+  <tr>
+    <td><strong>Command Line Interface (CLI)</strong></td>
+    <td>
+      A text-based interface that is used to operate software (such as CoDoc) and operating systems. CLI
+      allows a user to perform tasks by entering commands. <br>
+      Users enter the specific command, press “Enter”, and then wait for a response.
+      After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Graphical User Interface (GUI)</strong></td>
+    <td>
+      A system of interactive visual components for computer software. A GUI displays objects that convey information,
+      and represent actions that can be taken by the user. The objects change color, size, or visibility when the user
+      interacts with them.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Application Programming Interface (API)</strong></td>
+    <td>
+      A set of definitions and protocols for building and integrating application software and simplifies how
+      developers integrate new application components into an existing architecture.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Mainstream OS</strong></td>
+    <td>
+      Windows, Linux, Unix, OS-X.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Architecture</strong></td>
+    <td>
+      Shows the overall organization of the system and can be viewed as a very high-level design.
+      Consists of a set of interacting components that fit together to achieve the required functionality . It is a
+      simple and technically viable structure that is well-understood and agreed-upon by everyone in the development
+      team, and it forms the basis for the implementation..
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Class Diagram</strong></td>
+    <td>
+      Describe the structure but not the behavior of an Object-Oriented Programming (OOP) solution.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Object-Oriented Programming (OOP)</strong></td>
+    <td>
+      A computer programming model that organizes software design around data, or objects, rather than functions and logic.
+      An object can be defined as a data field that has unique attributes and behavior.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Sequence Diagram</strong></td>
+    <td>
+      Captures the interactions between multiple objects for a given scenario.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Activity Diagram</strong></td>
+    <td>
+      Models workflows, which define the flow in which a process or a set of tasks is executed.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Object Diagram</strong></td>
+    <td>
+      Used to complement class diagrams. Object diagrams can be used to model different object
+      structures that can result from a design represented by a given class diagram.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>User Stories</strong></td>
+    <td>
+       Short, simple descriptions of a feature told from the perspective of the person who desires the new capability,
+       usually a user or customer of the system.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Use Case</strong></td>
+    <td>
+      Describes an interaction between the user and the system for a specific functionality of the system.
+    </td>
+  </tr>
+</table>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -11,11 +211,15 @@ title: Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
+[Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,6 +229,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Scroll back to top](#table-of-contents)
 
 ### Architecture
 
@@ -67,6 +273,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Scroll back to top](#table-of-contents)
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -83,6 +291,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[Scroll back to top](#table-of-contents)
 
 ### Logic component
 
@@ -113,6 +323,8 @@ How the parsing works:
 * When called upon to parse a user command, the `CodocParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodocParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Scroll back to top](#table-of-contents)
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -132,6 +344,7 @@ The `Model` component,
 
 </div>
 
+[Scroll back to top](#table-of-contents)
 
 ### Storage component
 
@@ -144,15 +357,77 @@ The `Storage` component,
 * inherits from both `CodocStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Scroll back to top](#table-of-contents)
+
 ### Common classes
 
 Classes used by multiple components are in the `codoc.commons` package.
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### **Person Class**
+Each `Person` in CoDoc is implemented in the following way:
+
+![Person Class Diagram](images/PersonClassDiagram.png)
+
+All `Person` have a `Name`, `Email`, `Course` and `Year`.
+
+`Person`s can have a `Github` and `LinkedIn` URL added to their profile, and as many `Skills` and `Modules` as desired.
+
+<div style="page-break-after: always;"></div>
+
+[Scroll back to top](#table-of-contents)
+
+### **Edit Command**
+
+Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
+For `name`, `year`, `course`, `email`, `GitHub`, `LinkedIn`, the command will replace the old data with the new input.
+
+For `Skills` and `Modules`, the command is capable of adding, deleting and updating existing data.
+
+`Edit` has the prefixes as follows:
+* `n/` for name
+* `e/` for email
+* `y/` for year
+* `c/` for course
+* `g/` for GitHub
+* `l/` for LinkedIn
+* `m+/` for adding a new module
+* `m-/` for deleting an existing module
+* `mo/` for updating the old module
+* `mn/` for the new module that the old module would be replaced with
+* `s+/` for adding a new skill
+* `s-/` for deleting an existing skill
+* `so/` for updating the old skill
+* `sn/` for the new skill that the old skill would be replaced with
+
+#### Implementation Flow
+
+Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the person.
+
+![Edit Command Sequence Diagram](images/ModuleCommandSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+Given below is an activity diagram to illustrate the behaviour of editing Person within `Logic`.
+
+![Edit Activity Diagram](images/ModuleActivityDiagram.png)
+
+#### Design Considerations
+
+Updating the `Skills` and `Modules` using old and new prefixes ensures the user does not update the skillsets and modules unneccessarily.
+Even though the behaviour is similar to simply deleting and adding new modules and skills, update is more restrictive and maintains the integrity of the size of the hash tables that `Skills` and `Modules` are stored in. 
+
+[Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -219,6 +494,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+[Scroll back to top](#table-of-contents)
+
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -234,9 +511,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+[Scroll back to top](#table-of-contents)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+[Scroll back to top](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -248,6 +529,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -277,6 +560,7 @@ CoDoc is not only able to help users manage large contact database fast through 
 relevant contact information through a comprehensive UI. Furthermore, users can utilize the powerful filtering system
 to effectively sort/filter contacts to easily identify people of interest, such as study or project partners.
 
+[Scroll back to top](#table-of-contents)
 
 ### User stories 📝
 
@@ -293,6 +577,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Scroll back to top](#table-of-contents)
 
 ### Use cases
 
@@ -429,6 +714,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Scroll back to top](#table-of-contents)
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -438,10 +725,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -471,6 +755,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+[Scroll back to top](#table-of-contents)
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -488,6 +774,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+[Scroll back to top](#table-of-contents)
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -495,3 +783,6 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+[Scroll back to top](#table-of-contents)
+
