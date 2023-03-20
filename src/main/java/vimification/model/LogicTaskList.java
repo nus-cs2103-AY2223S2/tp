@@ -81,7 +81,7 @@ public class LogicTaskList {
      * Removes the last task from the task list.
      */
     public void pop() {
-        delete(length() - 1);
+        tasks.remove(size() - 1);
     }
 
     /**
@@ -132,10 +132,10 @@ public class LogicTaskList {
     @Override
     public String toString() {
         String result = "";
-        for (int i = 0; i < length(); i++) {
+        for (int i = 0; i < size(); i++) {
             String prefix = i + 1 < 10 ? "0" : "";
             result += prefix + (i + 1) + ". " + get(i).toString();
-            if (i < length() - 1) {
+            if (i < size() - 1) {
                 result += "\n";
             }
         }

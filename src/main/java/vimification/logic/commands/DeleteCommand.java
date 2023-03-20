@@ -36,14 +36,14 @@ public class DeleteCommand extends UndoableLogicCommand {
     public CommandResult execute(LogicTaskList taskList)
             throws IndexOutOfBoundsException, CommandException {
         requireNonNull(taskList);
-        deletedTask = taskList.delete(targetIndex);
-        return new CommandResult(String.format(SUCCESS_MESSAGE, deletedTask));
+        deletedTask = taskList.remove(targetIndex);
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask));
     }
 
     @Override
     public CommandResult undo(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
-        taskList.insert(targetIndex, deletedTask);
+        taskList.add(targetIndex, deletedTask);
         return new CommandResult(String.format(UNDO_MESSAGE, deletedTask));
     }
 

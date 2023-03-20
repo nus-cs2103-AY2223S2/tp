@@ -18,7 +18,8 @@ public class CreateCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "create";
     public static final String SUCCESS_MESSAGE_FORMAT = "New task created: %1$s";
-    public static final String UNDO_MESSAGE = "The command has been undoed. The new task has been deleted.";
+    public static final String UNDO_MESSAGE =
+            "The command has been undoed. The new task has been deleted.";
 
     private final Task newTask;
 
@@ -35,7 +36,7 @@ public class CreateCommand extends UndoableLogicCommand {
     public CommandResult execute(LogicTaskList taskList) throws CommandException {
         requireNonNull(taskList);
         taskList.add(newTask);
-        return new CommandResult(String.format(SUCCESS_MESSAGE, newTask));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, newTask));
     }
 
     @Override
