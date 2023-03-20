@@ -93,8 +93,8 @@ public class RoleBuilder {
     /**
      * Sets the {@code Company} of the {@code Role} that we are building.
      */
-    public RoleBuilder withCompany(String address) {
-        this.company = new Company(address);
+    public RoleBuilder withCompany(String company) {
+        this.company = new Company(company);
         return this;
     }
 
