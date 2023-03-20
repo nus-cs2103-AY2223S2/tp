@@ -371,6 +371,16 @@ Classes used by multiple components are in the `codoc.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### **Person Class**
+Each `Person` in CoDoc is implemented in the following way:
+
+![Person Class Diagram](images/PersonClassDiagram.png)
+
+All `Person` have a `Name`, `Email`, `Course` and `Year` and a set of `Skill` and `Module`.
+`Person`s can have a `Github` and `LinkedIn` URL added to their profile, and as many `Skills` and `Modules` as desired.
+
+<div style="page-break-after: always;"></div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
