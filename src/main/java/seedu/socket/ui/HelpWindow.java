@@ -29,7 +29,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "Format: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] "
             + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
             + "4. Removing a person's attribute : remove\n"
-            + "Format: remove INDEX [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] \"\n"
+            + "Format: remove INDEX [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] \n\n"
             + "[g/GITHUBPROFILE] [l/LANGUAGE] [t/TAG]…\n\n"
             + "5. Clearing groups of person : clear\n"
             + "Format: clear [t/TAG]...\n\n"
