@@ -28,6 +28,8 @@ public class Opening {
      */
     public Opening(Position position, Company company, Email email, Status status, Remark remark, Set<Date> dates) {
         requireAllNonNull(position, company, email, status, dates);
+        System.out.println("Creating opening");
+        System.out.println(toString());
         this.position = position;
         this.company = company;
         this.email = email;
