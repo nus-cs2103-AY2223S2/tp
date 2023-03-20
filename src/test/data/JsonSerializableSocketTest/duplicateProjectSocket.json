@@ -20,6 +20,7 @@
     "projectRepoHost": "alice-pauline",
     "projectRepoName": "AlphaRepo",
     "projectDeadline": "01/01/23-2359",
+    "projectMeeting": "01/01/23-1000",
     "members": [ {
       "name" : "Alice Pauline",
       "profile": "alice-pauline",
@@ -41,6 +42,7 @@
     "projectRepoHost": "pauline",
     "projectRepoName": "Alpha",
     "projectDeadline": "02/02/22-2359",
+    "projectMeeting": "02/02/22-1000",
     "members": [ {
       "name" : "Alice Pauline",
       "profile": "alice-pauline",

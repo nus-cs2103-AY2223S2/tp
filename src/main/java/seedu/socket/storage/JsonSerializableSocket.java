@@ -79,7 +79,7 @@ class JsonSerializableSocket {
                 }
             }
             Project projectWithReferences = new Project(project.getName(), project.getRepoHost(),
-                    project.getRepoName(), project.getDeadline(), memberReferences);
+                    project.getRepoName(), project.getDeadline(), project.getMeeting(), memberReferences);
             socket.addProject(projectWithReferences);
         }
         return socket;

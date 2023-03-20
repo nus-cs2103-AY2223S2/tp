@@ -78,6 +78,8 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_REPO_NAME_BRAVO = "BravoRepo";
     public static final String VALID_PROJECT_DEADLINE_ALPHA = "01/01/23-2359";
     public static final String VALID_PROJECT_DEADLINE_BRAVO = "02/01/23-2359";
+    public static final String VALID_PROJECT_MEETING_ALPHA = "01/01/23-1000";
+    public static final String VALID_PROJECT_MEETING_BRAVO= "02/01/23-1000";
     public static final EditCommand.EditPersonDescriptor EDIT_DESC_AMY;
     public static final EditCommand.EditPersonDescriptor EDIT_DESC_BOB;
     public static final RemoveCommand.RemovePersonDescriptor REMOVE_DESC_AMY;

@@ -14,11 +14,7 @@ import seedu.socket.model.person.Person;
 import seedu.socket.model.person.Phone;
 import seedu.socket.model.person.tag.Language;
 import seedu.socket.model.person.tag.Tag;
-import seedu.socket.model.project.Project;
-import seedu.socket.model.project.ProjectDeadline;
-import seedu.socket.model.project.ProjectName;
-import seedu.socket.model.project.ProjectRepoHost;
-import seedu.socket.model.project.ProjectRepoName;
+import seedu.socket.model.project.*;
 
 /**
  * Contains utility methods for populating {@code Socket} with sample data.
@@ -58,9 +54,11 @@ public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[] {
             new Project(new ProjectName("Project 1"), new ProjectRepoHost(""),
-                new ProjectRepoName("project-1"), new ProjectDeadline("01/01/23-2359"), getMemberSet()),
+                new ProjectRepoName("project-1"), new ProjectDeadline("01/01/23-2359"),
+                    new ProjectMeeting("01/01/23-1000"), getMemberSet()),
             new Project(new ProjectName("Project 2"), new ProjectRepoHost(""),
-                new ProjectRepoName("project-2"), new ProjectDeadline("02/01/23-2359"), getMemberSet())
+                new ProjectRepoName("project-2"), new ProjectDeadline("02/01/23-2359"),
+                    new ProjectMeeting("02/01/23-1000"), getMemberSet())
         };
     }
 

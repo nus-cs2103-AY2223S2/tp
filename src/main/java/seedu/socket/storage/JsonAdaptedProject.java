@@ -11,11 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.socket.commons.exceptions.IllegalValueException;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.project.Project;
-import seedu.socket.model.project.ProjectDeadline;
-import seedu.socket.model.project.ProjectName;
-import seedu.socket.model.project.ProjectRepoHost;
-import seedu.socket.model.project.ProjectRepoName;
+import seedu.socket.model.project.*;
 
 /**
  * Jackson-friendly version of {@link Project}.
@@ -28,6 +24,7 @@ public class JsonAdaptedProject {
     private final String projectRepoHost;
     private final String projectRepoName;
     private final String projectDeadline;
+    private final String projectMeeting;
     private final List<JsonAdaptedPerson> members = new ArrayList<>();
 
 
@@ -39,11 +36,13 @@ public class JsonAdaptedProject {
             @JsonProperty("projectRepoHost") String projectRepoHost,
             @JsonProperty("projectRepoName") String projectRepoName,
             @JsonProperty("projectDeadline") String projectDeadline,
+            @JsonProperty("projectMeeting") String projectMeeting,
             @JsonProperty("members") List<JsonAdaptedPerson> members) {
         this.projectName = projectName;
         this.projectRepoHost = projectRepoHost;
         this.projectRepoName = projectRepoName;
         this.projectDeadline = projectDeadline;
+        this.projectMeeting = projectMeeting;
         if (members != null) {
             this.members.addAll(members);
         }
@@ -57,6 +56,7 @@ public class JsonAdaptedProject {
         projectRepoHost = source.getRepoHost().value;
         projectRepoName = source.getRepoName().value;
         projectDeadline = source.getDeadline().deadline;
+        projectMeeting = source.getMeeting().meeting;
         members.addAll(source.getMembers().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
@@ -104,13 +104,23 @@ public class JsonAdaptedProject {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProjectDeadline.class.getSimpleName()));
         }
+
         if (!ProjectDeadline.isValidProjectDeadline(projectDeadline)) {
             throw new IllegalValueException(ProjectDeadline.MESSAGE_CONSTRAINTS);
         }
         final ProjectDeadline modelDeadline = new ProjectDeadline(projectDeadline);
+        if (projectMeeting == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ProjectMeeting.class.getSimpleName()));
+        }
+        if (!ProjectMeeting.isValidProjectMeeting(projectMeeting)) {
+            throw new IllegalValueException(ProjectMeeting.MESSAGE_CONSTRAINTS);
+        }
+        final ProjectMeeting modelMeeting = new ProjectMeeting(projectMeeting);
+
 
         final Set<Person> modelMembers = new HashSet<>(projectMembers);
-        return new Project(modelName, modelRepoHost, modelRepoName, modelDeadline, modelMembers);
+        return new Project(modelName, modelRepoHost, modelRepoName, modelDeadline, modelMeeting, modelMembers);
     }
 
 }
