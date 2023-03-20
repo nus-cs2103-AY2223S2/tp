@@ -31,10 +31,23 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
 
-        if (test.equals("Insert student phone number here!") || test.equals("Insert parent phone here!")) {
+        if (isDefaultPhone(test)) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when a phone number isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultPhone(String test) {
+        if (test.equals("Insert student phone number here!") || test.equals("Insert parent phone here!")) {
+            return true;
+        }
+        return false;
     }
 
     @Override

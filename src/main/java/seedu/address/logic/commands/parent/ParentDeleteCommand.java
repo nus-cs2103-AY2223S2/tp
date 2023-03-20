@@ -18,7 +18,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a parent identified using its name and phone number displayed on PowerConnect's parent list.
  */
 public class ParentDeleteCommand extends ParentCommand {
 
@@ -64,15 +64,13 @@ public class ParentDeleteCommand extends ParentCommand {
                 if (parent.hasStudents()) {
                     throw new CommandException(Messages.MESSAGE_INVALID_PARENT_DELETE);
                 }
-                if (!parent.getName().equals(parentName)) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PARENT_NAME);
+                if (parent.getName().equals(parentName)) {
+                    model.deleteParent(parent);
+                    return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, parent));
                 }
-                model.deleteParent(parent);
-                return new CommandResult(String.format(MESSAGE_DELETE_PARENT_SUCCESS, parent));
             }
         }
-
-        throw new CommandException(Messages.MESSAGE_INVALID_PARENT_DISPLAYED_NUMBER);
+        throw new CommandException(Messages.MESSAGE_INVALID_PARENT);
     }
 
     @Override

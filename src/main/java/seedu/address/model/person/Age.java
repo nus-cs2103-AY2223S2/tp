@@ -34,13 +34,26 @@ public class Age {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAge(String test) {
+        if (isDefaultAge(test)) {
+            return true;
+        }
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when an Age isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultAge(String test) {
         if (test.equals("Insert student age here!")) {
             return true;
         }
         if (test.equals("Insert parent age here!")) {
             return true;
         }
-        return test.matches(VALIDATION_REGEX);
+        return false;
     }
 
     @Override

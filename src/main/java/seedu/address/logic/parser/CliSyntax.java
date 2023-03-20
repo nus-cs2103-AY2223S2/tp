@@ -7,6 +7,7 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_ADD = new Prefix("add");
     public static final Prefix PREFIX_DELETE = new Prefix("delete");
+    public static final Prefix PREFIX_EDIT = new Prefix("edit");
     public static final Prefix PREFIX_GRADE = new Prefix("grade");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_PARENTAGE = new Prefix("ageP/");
@@ -22,6 +23,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_IMAGEPARENT = new Prefix("imgP/");
     public static final Prefix PREFIX_INDEXNUMBER = new Prefix("in/");
     public static final Prefix PREFIX_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_NEWNAME = new Prefix("nn/");
+    public static final Prefix PREFIX_NEWPHONEPARENT = new Prefix("npnP/");
     public static final Prefix PREFIX_PARENTNAME = new Prefix("pn/");
     public static final Prefix PREFIX_PHONEPARENT = new Prefix("pnP/");
     public static final Prefix PREFIX_PHONESTUDENT = new Prefix("pnS/");
