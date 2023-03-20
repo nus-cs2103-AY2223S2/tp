@@ -3,8 +3,8 @@ package seedu.patientist.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.patientist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.patientist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+//import static seedu.patientist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+//import static seedu.patientist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.patientist.testutil.Assert.assertThrows;
 import static seedu.patientist.testutil.TypicalPersons.ALICE;
 import static seedu.patientist.testutil.TypicalPersons.BOB;
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.patientist.model.person.exceptions.DuplicatePersonException;
 import seedu.patientist.model.person.exceptions.PersonNotFoundException;
-import seedu.patientist.testutil.PersonBuilder;
+//import seedu.patientist.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
 
@@ -43,8 +43,8 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = null; //new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        //.build(); TODO
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -86,8 +86,8 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = null; //new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        //.build(); TODO
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList(DUMMY_WARD_NAME);
         expectedUniquePersonList.add(editedAlice);

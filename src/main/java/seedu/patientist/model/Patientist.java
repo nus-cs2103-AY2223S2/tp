@@ -8,6 +8,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.exceptions.DuplicatePersonException;
+import seedu.patientist.model.person.exceptions.PersonNotFoundException;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
@@ -139,18 +141,6 @@ public class Patientist implements ReadOnlyPatientist {
 
     /**
      * Removes {@code key} from all {@code ward}s.
-     * {@code key} must exist.
-     */
-    public void removeStaff(Staff key) {
-        for (Ward ward : wards) {
-            if (ward.containsStaff(key)) {
-                ward.deleteStaff(key);
-            }
-        }
-    }
-
-    /**
-     * Removes {@code key} from all {@code ward}s.
      * {@code key} could be a staff or patient, all instances will be removed.
      */
     public void removePerson(Person key) {
@@ -182,6 +172,38 @@ public class Patientist implements ReadOnlyPatientist {
      */
     public void removePatient(Patient key, Ward ward) {
         ward.deletePatient(key);
+    }
+
+    /**
+     * Removes patient from original ward and adds patient to target ward.
+     * Patient must exist in original ward.
+     * Patient must not exist in target ward.
+     */
+    public void transferPatient(Patient patient, Ward original, Ward target) {
+        if (!original.containsPatient(patient)) {
+            throw new PersonNotFoundException();
+        }
+        if (target.containsPatient(patient)) {
+            throw new DuplicatePersonException();
+        }
+        original.deletePatient(patient);
+        target.addPatient(patient);
+    }
+
+    /**
+     * Removes staff from original ward and adds staff to target ward.
+     * Staff must exist in original ward.
+     * Staff must not exist in target ward.
+     */
+    public void transferStaff(Staff staff, Ward original, Ward target) {
+        if (!original.containsStaff(staff)) {
+            throw new PersonNotFoundException();
+        }
+        if (target.containsStaff(staff)) {
+            throw new DuplicatePersonException();
+        }
+        original.deleteStaff(staff);
+        target.addStaff(staff);
     }
 
     //// ward level methods

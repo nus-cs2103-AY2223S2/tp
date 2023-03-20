@@ -15,7 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.patientist.testutil.StaffBuilder;
 import seedu.patientist.testutil.TypicalPatients;
-import seedu.patientist.testutil.TypicalPersons;
+//import seedu.patientist.testutil.TypicalPersons;
+import seedu.patientist.testutil.TypicalStaff;
 
 public class StaffTest {
     @Test
@@ -42,12 +43,12 @@ public class StaffTest {
 
         // name differs in case, all other attributes same -> returns false
         Staff editedBob = new StaffBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
+        assertFalse(TypicalStaff.BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new StaffBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(TypicalPersons.BOB.isSamePerson(editedBob));
+        assertFalse(TypicalStaff.BOB.isSamePerson(editedBob));
     }
 
     @Test
@@ -66,7 +67,7 @@ public class StaffTest {
         assertFalse(AMY.equals(5));
 
         // different person -> returns false
-        assertFalse(AMY.equals(TypicalPersons.BOB));
+        assertFalse(AMY.equals(TypicalStaff.BOB));
 
         // different name -> returns false
         Staff editedAmy = new StaffBuilder(AMY).withName(VALID_NAME_BOB).build();

@@ -137,9 +137,19 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteStaff(Staff target) {
+        public boolean hasPatient(Patient patient, Ward ward) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean hasStaff(Staff staff, Ward ward) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //@Override
+        //public void deleteStaff(Staff target) {
+        //    throw new AssertionError("This method should not be called.");
+        //}
 
         @Override
         public void deleteStaff(Staff target, Ward ward) {
@@ -151,15 +161,15 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
+        //@Override
+        //public void deletePerson(Person target) {
+        //    throw new AssertionError("This method should not be called.");
+        //}
 
-        @Override
-        public void deletePerson(Person target, Ward ward) {
-            throw new AssertionError("This method should not be called.");
-        }
+        //@Override
+        //public void deletePerson(Person target, Ward ward) {
+        //    throw new AssertionError("This method should not be called.");
+        //}
 
         @Override
         public void addPatient(Patient patient, Ward ward) {
@@ -182,9 +192,19 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
+        public void transferPatient(Patient patient, Ward original, Ward target) {
+
         }
+
+        @Override
+        public void transferStaff(Staff staff, Ward original, Ward target) {
+
+        }
+
+        //@Override
+        //public void setPerson(Person target, Person editedPerson) {
+        //    throw new AssertionError("This method should not be called.");
+        //}
 
         @Override
         public boolean hasWard(Ward ward) {

@@ -1,7 +1,5 @@
 package seedu.patientist.model.person.staff;
 
-import static seedu.patientist.model.person.staff.Staff.STAFF_TAG;
-
 import java.util.function.Predicate;
 
 import seedu.patientist.model.person.Person;

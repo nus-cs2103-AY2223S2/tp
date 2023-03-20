@@ -1,8 +1,11 @@
 package seedu.patientist.model.tag;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.patientist.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents the role of a person in the addressbook.
+ * Staff have a RoleTag named "Staff", Patient have a RoleTag named "Patient".
+ */
 public class RoleTag extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Role Tag names should be either Patient or Staff";

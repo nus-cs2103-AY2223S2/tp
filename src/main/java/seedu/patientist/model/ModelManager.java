@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.patientist.commons.core.GuiSettings;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.exceptions.DuplicatePersonException;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
 import seedu.patientist.model.ward.Ward;
@@ -91,87 +92,95 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
+    public boolean hasPerson(Person person) { //checked
         requireNonNull(person);
         return patientist.hasPerson(person);
     }
 
     @Override
-    public boolean hasPerson(Person person, Ward ward) {
+    public boolean hasPerson(Person person, Ward ward) { //checked
         requireAllNonNull(person, ward);
         return patientist.hasPerson(person, ward);
     }
 
     @Override
-    public boolean hasPatient(Patient patient, Ward ward) {
-        return false; //todo
+    public boolean hasPatient(Patient patient, Ward ward) { //checked
+        return hasPerson(patient, ward);
     }
 
     @Override
-    public boolean hasStaff(Staff staff, Ward ward) {
-        return false; //todo
+    public boolean hasStaff(Staff staff, Ward ward) { //checked
+        return hasPerson(staff, ward);
     }
 
     @Override
-    public void deleteStaff(Staff target, Ward ward) {
+    public void deleteStaff(Staff target, Ward ward) { //checked
         patientist.removeStaff(target, ward);
     }
 
     @Override
-    public void deletePatient(Patient target, Ward ward) {
+    public void deletePatient(Patient target, Ward ward) { //checked
         patientist.removePatient(target, ward);
     }
 
     @Override
-    public void addPatient(Patient patient, Ward ward) {
+    public void addPatient(Patient patient, Ward ward) { //checked
+        if (hasPerson(patient)) { // global uniqueness check
+            throw new DuplicatePersonException();
+        }
         patientist.addPatient(patient, ward);
     }
 
     @Override
-    public void addStaff(Staff staff, Ward ward) {
+    public void addStaff(Staff staff, Ward ward) { //checked
+        if (hasPerson(staff)) { // global uniqueness check
+            throw new DuplicatePersonException();
+        }
         patientist.addStaff(staff, ward);
     }
 
 
     @Override
-    public void setPatient(Patient target, Patient edited) {
+    public void setPatient(Patient target, Patient edited) { //checked? global uniqueness not enforced
+        //difficult to enforce global uniqueness as delete op happens in UPlist
         requireAllNonNull(target, edited);
         patientist.setPatient(target, edited);
     }
 
     @Override
-    public void setStaff(Staff target, Staff edited) {
+    public void setStaff(Staff target, Staff edited) { //checked? global uniqueness not enforced
+        //difficult to enforce global uniqueness as delete op happens in UPlist
         requireAllNonNull(target, edited);
         patientist.setStaff(target, edited);
     }
 
     @Override
     public void transferPatient(Patient patient, Ward original, Ward target) {
-        //todo
+        patientist.transferPatient(patient, original, target);
     }
 
     @Override
     public void transferStaff(Staff staff, Ward original, Ward target) {
-        //todo
+        patientist.transferStaff(staff, original, target);
     }
 
     @Override
-    public boolean hasWard(Ward ward) {
+    public boolean hasWard(Ward ward) { //checked
         return patientist.hasWard(ward);
     }
 
     @Override
-    public void addWard(Ward ward) {
+    public void addWard(Ward ward) { //checked
         patientist.addWard(ward);
     }
 
     @Override
-    public void deleteWard(Ward ward) {
+    public void deleteWard(Ward ward) { //checked
         patientist.deleteWard(ward);
     }
 
     @Override
-    public void setWard(Ward target, Ward editedWard) {
+    public void setWard(Ward target, Ward editedWard) { //checked
         patientist.setWard(target, editedWard);
     }
 
