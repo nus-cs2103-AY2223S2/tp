@@ -42,19 +42,22 @@ public class ListCommand extends Command {
     private LectureName lectureName;
 
     /**
-     * Creates an empty ListCommand
+     * Creates a ListCommand to list content from current context
      */
     public ListCommand() {}
 
     /**
-     * Creates an ListCommand to add the specified {@code ModuleCode}
+     * Creates a ListCommand to list lecture contents from module context
+     * @param moduleCode
      */
     public ListCommand(ModuleCode moduleCode) {
         this.moduleCode = moduleCode;
     }
 
     /**
-     * Creates an ListCommand to add the specified {@code ModuleCode, LectureName}
+     * Creates a ListCommand to list video contents from lecture context
+     * @param moduleCode
+     * @param lectureName
      */
     public ListCommand(ModuleCode moduleCode, LectureName lectureName) {
         this.moduleCode = moduleCode;
