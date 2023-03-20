@@ -111,7 +111,7 @@ public class PersonListPanel extends UiPart<Region> {
         protected void updateItem(String url, boolean empty) {
             super.updateItem("", empty);
             imageView.setImage(new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream("/images/student.png"))));
+                    .getResourceAsStream("/images/studentProfiles/student_1.png"))));
             imageView.setFitWidth(24);
             imageView.setFitHeight(23);
             setGraphic(imageView);
