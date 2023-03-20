@@ -199,17 +199,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredVideoList(Predicate<? super Video> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

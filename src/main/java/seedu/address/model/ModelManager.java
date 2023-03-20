@@ -296,16 +296,6 @@ public class ModelManager implements Model {
         }
     }
 
-    @Override
-    public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate) {
-        requireNonNull(predicate);
-        try {
-            filteredLectures.setPredicate(predicate);
-        } catch (NullPointerException ex) {
-            logger.warning("Lecture list has no module reference");
-        }
-    }
-
     //=========== Filtered Video List Accessors =============================================================
 
     @Override
@@ -324,16 +314,6 @@ public class ModelManager implements Model {
         filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
         if (filteredLectures != null) {
             filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
-        }
-    }
-
-    @Override
-    public void updateFilteredVideoList(Predicate<? super Video> predicate) {
-        requireNonNull(predicate);
-        try {
-            filteredVideos.setPredicate(predicate);
-        } catch (NullPointerException ex) {
-            logger.warning("Video list has no module and lecture reference");
         }
     }
 

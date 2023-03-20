@@ -24,6 +24,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.CodeContainsKeywordsPredicate;
 import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
 import seedu.address.testutil.LectureBuilder;
@@ -67,6 +68,7 @@ public class FindCommandTest {
         CodeContainsKeywordsPredicate predicate = (CodeContainsKeywordsPredicate) preparePredicate(" ", Level.MODULE);
         FindCommand command = new FindCommand(Collections.emptyList());
         expectedModel.updateFilteredModuleList(predicate);
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
     }
@@ -76,17 +78,10 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 0);
         LectureNameContainsKeywordsPredicate predicate =
             (LectureNameContainsKeywordsPredicate) preparePredicate(" ", Level.LECTURE);
-        LectureNameContainsKeywordsPredicate randomPredicate =
-            (LectureNameContainsKeywordsPredicate) preparePredicate("random", Level.LECTURE);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
-
-        expectedModel.navigateTo(module.getCode());
-        expectedModel.updateFilteredLectureList(randomPredicate, module); // Should be called upon navigation
-        expectedModel.updateFilteredLectureList(predicate);
-
-        model.navigateTo(module.getCode());
-        model.updateFilteredLectureList(randomPredicate, module); // Should be called upon navigation
-        FindCommand command = new FindCommand(Collections.emptyList());
+        ModuleCode moduleCode = module.getCode();
+        expectedModel.updateFilteredLectureList(predicate, module);
+        FindCommand command = new FindCommand(Collections.emptyList(), moduleCode);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredLectureList());
@@ -97,19 +92,10 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 0);
         VideoNameContainsKeywordsPredicate predicate =
             (VideoNameContainsKeywordsPredicate) preparePredicate(" ", Level.VIDEO);
-        VideoNameContainsKeywordsPredicate randomPredicate =
-            (VideoNameContainsKeywordsPredicate) preparePredicate("random", Level.VIDEO);
-
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         ReadOnlyLecture lecture = new LectureBuilder(CS2040S_WEEK_1).build();
-
-        expectedModel.navigateTo(module.getCode(), lecture.getName());
-        expectedModel.updateFilteredVideoList(randomPredicate, lecture); // Should be called upon navigation
-        expectedModel.updateFilteredVideoList(predicate);
-
-        model.navigateTo(module.getCode(), lecture.getName());
-        model.updateFilteredVideoList(randomPredicate, lecture); // Should be called upon navigation
-        FindCommand command = new FindCommand(Collections.emptyList());
+        expectedModel.updateFilteredVideoList(predicate, lecture);
+        FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), lecture.getName());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredVideoList());

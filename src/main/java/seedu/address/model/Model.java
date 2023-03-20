@@ -305,14 +305,6 @@ public interface Model {
     void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module);
 
     /**
-     * Updates the filter of the filtered lecture list to filter by the given {@code predicate}.
-     *
-     * @param predicate The predicate to filter lecture by.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate);
-
-    /**
      * Updates the filter of the filtered video list to filter by the given {@code predicate}.
      *
      * @param predicate The predicate to filter video by.
@@ -320,14 +312,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture);
-
-    /**
-     * Updates the filter of the filtered video list to filter by the given {@code predicate}.
-     *
-     * @param predicate The predicate to filter video by.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredVideoList(Predicate<? super Video> predicate);
 
     /**
      * Updates the filter to hide all the contents of a list.
