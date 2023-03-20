@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+          prefHeight="400.0" maxHeight="400.0" prefWidth="800.0"
+          alignment="CENTER_LEFT" hgap="10" vgap="10">
+    <padding>
+        <Insets top="5" right="10" bottom="5" left="10" />
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="250" />
+    </columnConstraints>
+    <VBox fx:id="doctorList" VBox.vgrow="ALWAYS"
+          GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="1">
+        <StackPane fx:id="doctorListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+    </VBox>
+    <VBox fx:id="patientList" VBox.vgrow="ALWAYS"
+          GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="1">
+        <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+    </VBox>
+    <VBox fx:id="enlargedContactPane" VBox.vgrow="ALWAYS"
+          GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1">
+        <StackPane fx:id="enlargedPersonInfoCardPlaceholder" VBox.vgrow="ALWAYS" />
+    </VBox>
+</GridPane>

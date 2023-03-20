@@ -10,10 +10,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Docedex" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Docedex" minWidth="850" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -48,24 +46,14 @@
               </padding>
             </StackPane>
 
-            <GridPane alignment="CENTER_LEFT" hgap="10" vgap="10">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="contactDisplayPlaceholder"
+                       minHeight="300" >
               <padding>
                 <Insets top="5" right="10" bottom="5" left="10" />
               </padding>
-              <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="250" />
-              </columnConstraints>
-              <VBox fx:id="personList" VBox.vgrow="ALWAYS"
-                    GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-              </VBox>
-              <VBox fx:id="enlargedContactPane" VBox.vgrow="ALWAYS"
-                    GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1">
-                <StackPane fx:id="enlargedDoctorInfoCardPlaceholder" VBox.vgrow="ALWAYS" />
-              </VBox>
-            </GridPane>
-          </VBox>
+            </StackPane>
 
+          </VBox>
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
