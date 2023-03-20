@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 /**
  * Represents a Person's meetings in the address book.
  */
-public class Meeting implements Comparable<Meeting>{
+public class Meeting implements Comparable<Meeting> {
     protected LocalDateTime start;
     protected LocalDateTime end;
 
