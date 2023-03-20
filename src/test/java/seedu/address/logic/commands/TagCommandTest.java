@@ -36,89 +36,6 @@ public class TagCommandTest {
     private static final String VALID_TAG_1 = "cool";
     private static final String VALID_TAG_2 = "hard";
 
-    /**
-     * A {@code Model} stub that contains a single module.
-     */
-    private class ModelStubWithModule extends ModelStub {
-        private Module module;
-
-        public ModelStubWithModule(Module module) {
-            requireNonNull(module);
-            this.module = module;
-        }
-
-        @Override
-        public boolean hasModule(ModuleCode module) {
-            requireNonNull(module);
-            return this.module.getCode().equals(module);
-        }
-
-        @Override
-        public boolean hasLecture(ModuleCode module, LectureName lecture) {
-            requireAllNonNull(module, lecture);
-            return this.module.getLecture(lecture) != null;
-        }
-
-        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
-            requireAllNonNull(module, lecture, video);
-            return lecture.hasVideo(video);
-        }
-
-
-        public ReadOnlyModule getModule(ModuleCode moduleCode) {
-            return module;
-        }
-
-        @Override
-        public void setModule(ReadOnlyModule target, Module editedModule) {
-            this.module = editedModule;
-        }
-
-        @Override
-        public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
-            this.module.setLecture(target, editedLecture);
-        }
-    }
-
-    private class ModelStubAcceptingTaggedVideo extends ModelStub {
-        private Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
-        private Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
-        private Video video;
-
-        public ModelStubAcceptingTaggedVideo(Video video) {
-            this.video = video;
-        }
-
-        @Override
-        public boolean hasModule(ModuleCode moduleCode) {
-            return true;
-        }
-
-        @Override
-        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
-            return true;
-        }
-
-        @Override
-        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
-            return true;
-        }
-
-        @Override
-        public void setVideo(ReadOnlyLecture targetLecture, Video taggingVideo, Video taggedVideo) {
-            this.video = taggedVideo;
-        }
-
-        @Override
-        public ReadOnlyModule getModule(ModuleCode moduleCode) {
-            return this.module;
-        }
-
-        public Video getVideo(VideoName taggedVideo) {
-            return this.video;
-        }
-    }
-
     @Test
     public void execute_nullModel_throwsNullPointerException() {
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
@@ -313,5 +230,88 @@ public class TagCommandTest {
         Set<Tag> updatedTagSet = moduleStub.getVideo(videoName).getTags();
         assertTrue(updatedTagSet.contains(firstTag));
         assertTrue(updatedTagSet.contains(secondTag));
+    }
+
+    /**
+     * A {@code Model} stub that contains a single module.
+     */
+    private class ModelStubWithModule extends ModelStub {
+        private Module module;
+
+        public ModelStubWithModule(Module module) {
+            requireNonNull(module);
+            this.module = module;
+        }
+
+        @Override
+        public boolean hasModule(ModuleCode module) {
+            requireNonNull(module);
+            return this.module.getCode().equals(module);
+        }
+
+        @Override
+        public boolean hasLecture(ModuleCode module, LectureName lecture) {
+            requireAllNonNull(module, lecture);
+            return this.module.getLecture(lecture) != null;
+        }
+
+        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+            requireAllNonNull(module, lecture, video);
+            return lecture.hasVideo(video);
+        }
+
+
+        public ReadOnlyModule getModule(ModuleCode moduleCode) {
+            return module;
+        }
+
+        @Override
+        public void setModule(ReadOnlyModule target, Module editedModule) {
+            this.module = editedModule;
+        }
+
+        @Override
+        public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
+            this.module.setLecture(target, editedLecture);
+        }
+    }
+
+    private class ModelStubAcceptingTaggedVideo extends ModelStub {
+        private Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
+        private Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        private Video video;
+
+        public ModelStubAcceptingTaggedVideo(Video video) {
+            this.video = video;
+        }
+
+        @Override
+        public boolean hasModule(ModuleCode moduleCode) {
+            return true;
+        }
+
+        @Override
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+            return true;
+        }
+
+        @Override
+        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+            return true;
+        }
+
+        @Override
+        public void setVideo(ReadOnlyLecture targetLecture, Video taggingVideo, Video taggedVideo) {
+            this.video = taggedVideo;
+        }
+
+        @Override
+        public ReadOnlyModule getModule(ModuleCode moduleCode) {
+            return this.module;
+        }
+
+        public Video getVideo(VideoName taggedVideo) {
+            return this.video;
+        }
     }
 }

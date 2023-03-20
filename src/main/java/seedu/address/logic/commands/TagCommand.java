@@ -90,7 +90,7 @@ public class TagCommand extends Command {
         requireNonNull(model);
 
         if (this.tags.isEmpty()) {
-            throw new CommandException(Messages.EMPTY_TAGS);
+            throw new CommandException(Messages.MESSAGE_EMPTY_TAGS);
         }
 
         if (this.isTaggingMod) {
