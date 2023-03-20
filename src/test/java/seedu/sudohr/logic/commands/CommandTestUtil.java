@@ -78,6 +78,8 @@ public class CommandTestUtil {
     public static final String DEPARTMENT_NAME_DESC_ENGINEERING = " " + PREFIX_DEPARTMENT_NAME
             + VALID_DEPARTMENT_NAME_ENGINEERING;
 
+    public static final String VALID_LEAVE_DATE_LEAVE_TYPE_2 = "2005-04-03";
+
     // '&' not allowed in names
     public static final String INVALID_DEPARTMENT_NAME_DESC = " " + PREFIX_DEPARTMENT_NAME + "Engineering&";
 
