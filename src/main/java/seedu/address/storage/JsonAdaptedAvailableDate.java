@@ -15,6 +15,8 @@ public class JsonAdaptedAvailableDate {
 
     /**
      * Constructs a {@code JsonAdaptedAvailableDate} with the given {@code dateRange}.
+     *
+     * @param dateRange date range for Jackson usage.
      */
     @JsonCreator
     public JsonAdaptedAvailableDate(String dateRange) throws IllegalValueException {
@@ -30,6 +32,8 @@ public class JsonAdaptedAvailableDate {
 
     /**
      * Constructs a {@code JsonAdaptedAvailableDate} with the given {@code AvailableDate}.
+     *
+     * @param src {@code AvailableDate} for Jackson usage.
      */
     public JsonAdaptedAvailableDate(AvailableDate src) {
         this.endDate = src.getEndDate().toString();
@@ -44,7 +48,8 @@ public class JsonAdaptedAvailableDate {
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code AvailableDate} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted availableDate.
+     * @return Model's {@code AvailableDate} object.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted availableDate.
      */
     public AvailableDate toModelType() throws IllegalValueException {
         if (!AvailableDate.isValidDate(startDate, endDate)) {

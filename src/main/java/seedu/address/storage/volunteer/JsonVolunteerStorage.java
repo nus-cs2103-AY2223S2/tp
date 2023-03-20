@@ -23,6 +23,11 @@ public class JsonVolunteerStorage extends JsonAppStorage<ReadOnlyVolunteer, Frie
 
     private static final Logger logger = LogsCenter.getLogger(JsonVolunteerStorage.class);
 
+    /**
+     * Creates a {@code JsonVolunteerStorage} to access volunteer file data.
+     *
+     * @param filePath Volunteer data file path.
+     */
     public JsonVolunteerStorage(Path filePath) {
         super(filePath);
     }
@@ -38,13 +43,7 @@ public class JsonVolunteerStorage extends JsonAppStorage<ReadOnlyVolunteer, Frie
         return super.read(JsonSerializableVolunteer.class, logger, friendlyLink);
     }
 
-    /**
-     * Similar to {@link VolunteerStorage#readVolunteer(FriendlyLink)}.
-     *
-     * @param filePath     location of the data. Cannot be null.
-     * @param friendlyLink the cache the volunteer list will be read to.
-     * @throws DataConversionException if the file is not in the correct format.
-     */
+    @Override
     public Optional<ReadOnlyVolunteer> readVolunteer(Path filePath, FriendlyLink friendlyLink)
             throws DataConversionException {
         return super.read(filePath, JsonSerializableVolunteer.class, logger, friendlyLink);
@@ -55,11 +54,7 @@ public class JsonVolunteerStorage extends JsonAppStorage<ReadOnlyVolunteer, Frie
         saveVolunteer(entity, super.getFilePath());
     }
 
-    /**
-     * Similar to {@link #saveVolunteer(ReadOnlyVolunteer)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
+    @Override
     public void saveVolunteer(ReadOnlyVolunteer volunteer, Path filePath) throws IOException {
         requireNonNull(volunteer);
         requireNonNull(filePath);

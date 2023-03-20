@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Arrays;
 
 /**
- * Represents a Person's region in the database.
+ * Represents a Person's region in FriendlyLink.
  * Guarantees: immutable; is valid as declared in {@link #isValidRegion(String)}
  */
 public class Region {
@@ -37,6 +37,9 @@ public class Region {
 
     /**
      * Returns true if a given string is a valid region.
+     *
+     * @param region Region to be tested.
+     * @return True if {@code test} is a valid region and false otherwise.
      */
     public static boolean isValidRegion(String region) {
         if (region != null) {

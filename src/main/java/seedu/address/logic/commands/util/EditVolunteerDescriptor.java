@@ -19,11 +19,15 @@ import seedu.address.model.tag.Tag;
  * corresponding field value of the volunteer.
  */
 public class EditVolunteerDescriptor extends EditPersonDescriptor {
+    /**
+     * Constructs a default empty descriptor.
+     */
     public EditVolunteerDescriptor() {}
 
     /**
-     * Copy constructor.
-     * A defensive copy of {@code tags} is used internally.
+     * Constructs a descriptor using a copy.
+     *
+     * @param toCopy {@code EditPersonDescriptor} for copying.
      */
     public EditVolunteerDescriptor(EditVolunteerDescriptor toCopy) {
         super(toCopy);
@@ -31,10 +35,14 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
 
     /**
      * Creates and returns a {@code Volunteer} with the details of {@code volunteerToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editVolunteerDescriptor}.
+     *
+     * @param volunteerToEdit Volunteer to edit.
+     * @param editPersonDescriptor Edit details.
+     * @return Edited volunteer.
      */
     public static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-                                                   EditPersonDescriptor editPersonDescriptor) {
+            EditPersonDescriptor editPersonDescriptor) {
         assert volunteerToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(volunteerToEdit.getName());

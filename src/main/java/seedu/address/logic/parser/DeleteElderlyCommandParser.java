@@ -8,14 +8,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Parses input arguments and creates a new DeleteElderlyCommand object
+ * Parses input arguments and creates a new DeleteElderlyCommand object.
  */
 public class DeleteElderlyCommandParser implements Parser<DeleteElderlyCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteElderlyCommand
      * and returns a DeleteElderlyCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments.
+     * @return {@code DeleteElderlyCommand} for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public DeleteElderlyCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();

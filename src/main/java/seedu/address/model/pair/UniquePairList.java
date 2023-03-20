@@ -15,9 +15,8 @@ import seedu.address.model.pair.exceptions.PairNotFoundException;
  * A list of pairs that enforces uniqueness between its elements and does not allow nulls.
  * A pair is considered unique by comparing using {@code Pair#isSamePair(Pair)}. As such, adding and updating of
  * pairs uses Pair#isSamePair(Pair) for equality so as to ensure that the pair being added or updated is
- * unique in terms of identity in the UniquePairList. However, the removal of a person uses Pair#equals(Object) so
+ * unique in terms of identity in the UniquePairList. However, the removal of a pair uses Pair#equals(Object) so
  * as to ensure that the pair with exactly the same fields will be removed.
- *
  * Supports a minimal set of list operations.
  *
  * @see Pair#isSamePair(Pair)
@@ -103,7 +102,7 @@ public class UniquePairList implements Iterable<Pair> {
      * Replaces the contents of this list with {@code pairs}.
      * {@code pairs} must not contain duplicate pairs.
      *
-     * @param pairs replacement pair list.
+     * @param pairs Replacement pair list.
      */
     public void setPairs(List<Pair> pairs) {
         requireAllNonNull(pairs);
@@ -116,6 +115,8 @@ public class UniquePairList implements Iterable<Pair> {
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
+     *
+     * @return Unmodifiable pair list.
      */
     public ObservableList<Pair> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
@@ -140,6 +141,9 @@ public class UniquePairList implements Iterable<Pair> {
 
     /**
      * Returns true if {@code pairs} contains only unique pairs.
+     *
+     * @param pairs List of pairs to check.
+     * @return True if {@code pairs} contains only unique pairs and false otherwise.
      */
     private boolean pairsAreUnique(List<Pair> pairs) {
         for (int i = 0; i < pairs.size() - 1; i++) {

@@ -37,6 +37,8 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
 
     /**
      * Converts a given {@code Pair} into this class for Jackson use.
+     *
+     * @param source Pair for Jackson use.
      */
     public JsonAdaptedPair(Pair source) {
         elderlyNric = source.getElderly().getNric().value;
@@ -46,7 +48,9 @@ class JsonAdaptedPair implements JsonSerializable<Pair> {
     /**
      * Converts this Jackson-friendly adapted pair object into the model's {@code Pair} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted pair.
+     * @param friendlyLink FriendlyLink cache.
+     * @return Model's {@code Pair} object.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted pair.
      */
     public Pair toModelType(FriendlyLink friendlyLink) throws IllegalValueException {
         if (elderlyNric == null) {

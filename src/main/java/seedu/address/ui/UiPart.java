@@ -22,6 +22,8 @@ public abstract class UiPart<T> {
     /**
      * Constructs a UiPart with the specified FXML file URL.
      * The FXML file must not specify the {@code fx:controller} attribute.
+     *
+     * @param fxmlFileUrl Url of the FXML file.
      */
     public UiPart(URL fxmlFileUrl) {
         loadFxmlFile(fxmlFileUrl, null);
@@ -29,6 +31,8 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
+     *
+     * @param fxmlFileName FXML file to create the UiPart.
      * @see #UiPart(URL)
      */
     public UiPart(String fxmlFileName) {
@@ -38,6 +42,9 @@ public abstract class UiPart<T> {
     /**
      * Constructs a UiPart with the specified FXML file URL and root object.
      * The FXML file must not specify the {@code fx:controller} attribute.
+     *
+     * @param fxmlFileUrl Url of the FXML file.
+     * @param root Root of the object hierarchy.
      */
     public UiPart(URL fxmlFileUrl, T root) {
         loadFxmlFile(fxmlFileUrl, root);
@@ -45,6 +52,9 @@ public abstract class UiPart<T> {
 
     /**
      * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     *
+     * @param fxmlFileName FXML file to create the UiPart.
+     * @param root Root of the object hierarchy.
      * @see #UiPart(URL, T)
      */
     public UiPart(String fxmlFileName, T root) {
@@ -60,6 +70,7 @@ public abstract class UiPart<T> {
 
     /**
      * Loads the object hierarchy from a FXML document.
+     *
      * @param location Location of the FXML document.
      * @param root Specifies the root of the object hierarchy.
      */
@@ -77,6 +88,9 @@ public abstract class UiPart<T> {
 
     /**
      * Returns the FXML file URL for the specified FXML file name within {@link #FXML_FILE_FOLDER}.
+     *
+     * @param fxmlFileName FXML file to obtain the URL.
+     * @return Url of the FXML file.
      */
     private static URL getFxmlFileUrl(String fxmlFileName) {
         requireNonNull(fxmlFileName);

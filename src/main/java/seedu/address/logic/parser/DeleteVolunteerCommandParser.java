@@ -8,14 +8,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new DeleteVolunteerCommand object.
  */
 public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments.
+     * @return {@code DeleteVolunteerCommand} for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public DeleteVolunteerCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();

@@ -14,9 +14,9 @@ import seedu.address.model.FriendlyLink;
 /**
  * An abstract AppStorage that implements common read operations from files.
  *
- * @param <T> The ReadOnlyEntity
- * @param <K> FriendlyLink
- * @param <R> Any JsonSerializableObjects
+ * @param <T> The ReadOnlyEntity.
+ * @param <K> FriendlyLink.
+ * @param <R> Any JsonSerializableObjects.
  */
 public abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<K>> {
 
@@ -36,7 +36,13 @@ public abstract class JsonAppStorage<T, K extends T, R extends JsonSerializable<
     }
 
     /**
+     * Reads the file and converts the data to populate {@code FriendlyLink}.
+     *
      * @param filePath location of the data. Cannot be null.
+     * @param classInfo Information of classes in this app.
+     * @param logger Message logger.
+     * @param friendlyLink FriendlyLink cache.
+     * @return {@code Optional} of data red from the file.
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<T> read(Path filePath, Class<R> classInfo, Logger logger, FriendlyLink friendlyLink)

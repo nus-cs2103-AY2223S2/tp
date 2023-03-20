@@ -54,8 +54,10 @@ public class EditElderlyCommand extends Command {
     private final EditElderlyDescriptor editElderlyDescriptor;
 
     /**
-     * @param index of the elderly in the filtered elderly list to edit
-     * @param editElderlyDescriptor details to edit the elderly with
+     * Creates an {@code EditElderlyCommand} to edit an elderly.
+     *
+     * @param index Index of the elderly in the filtered elderly list to edit.
+     * @param editElderlyDescriptor Details to edit the elderly with.
      */
     public EditElderlyCommand(Index index, EditElderlyDescriptor editElderlyDescriptor) {
         requireNonNull(index);

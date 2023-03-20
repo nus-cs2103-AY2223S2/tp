@@ -19,14 +19,17 @@ import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditElderlyCommand object
+ * Parses input arguments and creates a new EditElderlyCommand object.
  */
 public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditElderlyCommand
      * and returns an EditElderlyCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Arguments.
+     * @return {@code EditElderlyCommand} for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public EditElderlyCommand parse(String args) throws ParseException {
         requireNonNull(args);
