@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Client values as in TypicalClients#getTypicalAddressBook()",
+  "_comment": "AddressBook save file which contains the same Client values as in TypicalClients#getTypicalAddressBook() and the same Project values as in TypicalProjects#getTypicalAddressBook()",
   "clients" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
@@ -51,5 +51,21 @@
     "email" : null,
     "tagged" : [ ]
   } ],
-  "projects" : [ ]
+  "projects" : [ {
+    "title": "Portrait Commission",
+    "deadline": "2pm 2025-02-01",
+    "status": "NOT DONE"
+  }, {
+    "title": "Crayon Drawing",
+    "deadline": "3pm tomorrow",
+    "status": "NOT DONE"
+  }, {
+    "title": "Digital Drawing",
+    "deadline": null,
+    "status": "NOT DONE"
+  }, {
+    "title": "Sculpture Project",
+    "deadline": null,
+    "status": "NOT DONE"
+  }]
 }
