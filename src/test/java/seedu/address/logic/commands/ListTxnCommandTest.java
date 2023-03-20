@@ -1,14 +1,16 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalTransactions.getTypicalAddressBook;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.txncommands.ListTxnCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTransactions.getTypicalAddressBook;
 
 public class ListTxnCommandTest {
 
@@ -28,9 +30,9 @@ public class ListTxnCommandTest {
 
     // TODO filtering of transaction (through TransactionDescContainsKeywordPredicate) is required
     // for this filteredList test
-//    @Test
-//    public void execute_listIsFiltered_showsEverything() {
-//        showTransactionAtIndex(model, INDEX_FIRST_TRANSACTION);
-//        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_listIsFiltered_showsEverything() {
+    //        showTransactionAtIndex(model, INDEX_FIRST_TRANSACTION);
+    //        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    //    }
 }
