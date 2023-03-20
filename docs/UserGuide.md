@@ -20,9 +20,68 @@ In a conventional application cycle, the large influx of applicants makes it cha
 
 ## How to use this Guide
 
+Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
+
+```info
+We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding 
+of how to use HMHero. 
+```
+
+If you are a **new user**, and you have not installed HMHero yet, head over to the [Installation](#installation)
+section.
+
+Once HMHero is installed, you can find the necessary information to get started in the [Quick Start](#quick-start)
+section!
+
+If you are an **experienced user**, you may head over to the [Command Summary](#command-summary) to get a quick overview
+of all the commands available in HMHero!
+
+If you are stuck, please refer to the section on [Troubleshooting](#troubleshooting) or [FAQ](#faq).
+
+You can also refer to the [Glossary](#glossary) for definitions of commonly used terminologies in HMHero.
+
+```tip
+To aid in your navigation, we have included the a [Back to Table of Contents](#table-of-contents) link in every
+sub-section in this User Guide so that it is easy for you to jump across different sections!
+```
+
+```tip
+This User Guide contains many clickable links for you to navigate around different sections. 
+You may use the keyboard shortcuts `Alt + Left arrow` and `Alt + Right arrow` to navigate back and forth 
+between the links quickly. (`Command + Left arrow` and `Command + Right arrow` if you are using Mac).
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+### Admonition Boxes
+
+In this guide, you will often come across colored boxes containing text that will aid you in better understanding
+how to use each feature.
+
+<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note:** 
+Highlight and display information you should pay attention to. </div>
+
+
+<div markdown="span" class="alert alert-success" role="alert">:bulb: **Tip:** 
+Highlight tips which you might find useful. </div>
+
+
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: **Caution:** 
+Highlight dangers and things to look out for. </div>
+
+[Back to Table of Contents](#table-of-contents)
+
+### Miscellaneous Notations
+
+Other than the icons mentioned above, there are also some other notations used in this guide:
+
+- <a href> Clickable phrases underlined in blue </a> are hyperlinks that will bring you to another part of this documentation that is relevant to the phrase.
+
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
-## Getting started
+## Installation
 
 1. Ensure you have `Java 11` or above installed in your computer
 2. Download the latest `HMHero` from [here]()
@@ -66,7 +125,7 @@ In a conventional application cycle, the large influx of applicants makes it cha
 - Format: `delete n/NAME p/PHONE_NUMBER`
 
 - Examples:
-    - `delete n/Jack Dill p/PHONE_NUMBER`
+  - `delete n/Jack Dill p/PHONE_NUMBER`
 
 ### 5. Advancing an applicant's status: `advance`
 
@@ -78,7 +137,7 @@ Shortlists a candidate
 - Format: `advance n/NAME p/PHONE_NUMBER`
 
 - Examples:
-    - `advance n/Jack Dill p/91234567`
+  - `advance n/Jack Dill p/91234567`
 
 ### 6. Rejecting an applicant: `reject`
 
@@ -90,7 +149,7 @@ Rejects a candidate or interviewee
 - Format: `reject n/NAME p/PHONE_NUMBER`
 
 - Examples:
-    - `reject n/Jack Dill p/91234567`
+  - `reject n/Jack Dill p/91234567`
 
 ### 7. Find an applicant: `find`
 
@@ -99,7 +158,7 @@ Find applicants using keywords (name OR phone number OR both)
 - Format:
   - Format 1: `find NAME or PHONE NUMBER` (only need to provide either one)
   - Format 2: `find n/NAME p/PHONE NUMBER` (must provide both)
-- Example: 
+- Example:
   - Example 1: `find Jack Dill`, `find 91234567`
   - Example 2: `find n/Jack Dill p/91234567`
 
