@@ -17,7 +17,7 @@ QC is specially designed for:
 
 * _Seamless_ creation and management of contacts and meetings
 * Users who have a _large_ number of contacts and _meetings_
-* Keyboardists
+* Typists
 
 For more information, check out our [developer guide](https://ay2223s2-cs2103t-t11-2.github.io/tp/DeveloperGuide.html)
 
