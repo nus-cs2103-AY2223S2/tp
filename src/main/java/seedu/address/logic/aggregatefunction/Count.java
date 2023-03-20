@@ -2,6 +2,7 @@ package seedu.address.logic.aggregatefunction;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * An {@code AggregateFunction} to count the number of items in a {@code list}.
@@ -10,9 +11,9 @@ import java.util.function.Predicate;
  */
 public class Count<T> extends AggregateFunction {
 
-    private final List<T> list;
-    private final String description;
-    private Predicate<T> predicate;
+    protected final List<T> list;
+    protected final String description;
+    protected Predicate<T> predicate;
 
     /**
      * Constructs the Count {@code Aggregate function}.
@@ -30,11 +31,15 @@ public class Count<T> extends AggregateFunction {
      * Specifies a predicate for which the items are included in the count.
      *
      * @param predicate Predicate to filter items.
-     * @return Updated count aggregate function.
+     * @return Updated Count aggregate function.
      */
     public Count<T> with(Predicate<T> predicate) {
         this.predicate = predicate;
         return this;
+    }
+
+    protected Stream<T> streamFilteredList() {
+        return list.stream().filter(predicate);
     }
 
     @Override
@@ -44,6 +49,6 @@ public class Count<T> extends AggregateFunction {
 
     @Override
     public String getResult() {
-        return Integer.toString(list.stream().filter(predicate).toArray().length);
+        return Integer.toString(streamFilteredList().toArray().length);
     }
 }
