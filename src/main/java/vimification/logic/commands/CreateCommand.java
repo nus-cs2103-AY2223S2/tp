@@ -8,22 +8,18 @@ import static vimification.logic.parser.CliSyntax.PREFIX_PHONE;
 import static vimification.logic.parser.CliSyntax.PREFIX_TAG;
 
 import vimification.logic.commands.exceptions.CommandException;
-import vimification.model.Model;
+import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
-import vimification.model.task.TaskType;
-import vimification.model.task.Todo;
 
 /**
  * Creates a new task and adds it to the task planner.
  */
-public class CreateCommand extends LogicCommand {
+public class CreateCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "create";
-    public static final String MESSAGE_SUCCESS = "New task created: %1$s";
+    public static final String SUCCESS_MESSAGE_FORMAT = "New task created: %1$s";
     public static final String UNDO_MESSAGE =
             "The command has been undoed. The new task has been deleted.";
-    public static final String MESSAGE_DUPLICATE_TASK =
-            "This task already exists in the task planner";
 
     private final Task newTask;
 
@@ -35,32 +31,19 @@ public class CreateCommand extends LogicCommand {
         newTask = task;
     }
 
-    public CreateCommand(TaskType taskType, String... taskComponents) {
-        this(Todo.createTask(taskComponents));
+    // Pass a TaskList instead
+    @Override
+    public CommandResult execute(LogicTaskList taskList) throws CommandException {
+        requireNonNull(taskList);
+        taskList.add(newTask);
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, newTask));
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        checkBeforeExecuting();
-
-        if (model.hasTask(newTask)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-
-        model.addTask(newTask);
-        setUndoable(true);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
-    }
-
-    @Override
-    public CommandResult undo(Model model) throws CommandException {
-        requireNonNull(model);
-        checkBeforeUndoing();
-
-        model.deleteTask(newTask);
-        setUndoable(false);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
+    public CommandResult undo(LogicTaskList taskList) throws CommandException {
+        requireNonNull(taskList);
+        taskList.pop();
+        return new CommandResult(UNDO_MESSAGE);
     }
 
     @Override

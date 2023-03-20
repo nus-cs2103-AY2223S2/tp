@@ -2,72 +2,64 @@ package vimification.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import vimification.commons.core.Messages;
-import vimification.commons.core.index.Index;
 import vimification.logic.commands.exceptions.CommandException;
-import vimification.model.Model;
+import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
 /**
  * Deletes a task identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends LogicCommand {
+public class DeleteCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: delete 1";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Deleted Task: %1$s";
     public static final String UNDO_MESSAGE =
             "The command has been undoed. The deleted task has been added back.";
 
-    private final Index targetIndex;
-    private Task taskToDelete;
+    // targetIndex is ZERO-BASED
+    private final int targetIndex;
+    private Task deletedTask;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteCommand(int targetIndex) {
         this.targetIndex = targetIndex;
-        this.taskToDelete = null;
+        this.deletedTask = null;
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        checkBeforeExecuting();
-        List<Task> lastShownList = model.getFilteredTaskList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        taskToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteTask(taskToDelete);
-        setUndoable(true);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+    public CommandResult execute(LogicTaskList taskList)
+            throws IndexOutOfBoundsException, CommandException {
+        requireNonNull(taskList);
+        deletedTask = taskList.remove(targetIndex);
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask));
     }
 
     @Override
-    public CommandResult undo(Model model) throws CommandException {
-        requireNonNull(model);
-        checkBeforeUndoing();
-
-        if (taskToDelete == null) { // This guard clause might be useless
-            throw new CommandException(NOT_UNDOABLE_MESSAGE);
-        }
-
-        model.addTask(taskToDelete);
-        setUndoable(true);
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, taskToDelete));
+    public CommandResult undo(LogicTaskList taskList) throws CommandException {
+        requireNonNull(taskList);
+        taskList.add(targetIndex, deletedTask);
+        return new CommandResult(String.format(UNDO_MESSAGE, deletedTask));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                        && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof DeleteCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
+        return targetIndex == otherDeleteCommand.targetIndex // state check
+                && ((this.deletedTask == null && otherDeleteCommand.deletedTask == null)
+                        || deletedTask.equals(otherDeleteCommand.deletedTask));
     }
 }
