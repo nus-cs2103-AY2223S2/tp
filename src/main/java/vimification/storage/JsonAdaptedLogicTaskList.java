@@ -18,14 +18,14 @@ import vimification.model.task.Event;
 /**
  * An Immutable TaskPlanner that is serializable to JSON format.
  */
-@JsonRootName(value = "logictasklist")
+@JsonRootName(value = "logicTaskList")
 public class JsonAdaptedLogicTaskList {
 
-    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks;
 
     @JsonCreator
     public JsonAdaptedLogicTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
-        this.tasks.addAll(tasks);
+        this.tasks = tasks;
     }
 
     /**
@@ -35,7 +35,7 @@ public class JsonAdaptedLogicTaskList {
      *        {@code JsonSerializableAddressBook}.
      */
     public JsonAdaptedLogicTaskList(LogicTaskList source) {
-        tasks.addAll(source.stream().map(this::toJsonAdaptedTask).collect(Collectors.toList()));
+        tasks = source.stream().map(this::toJsonAdaptedTask).collect(Collectors.toList());
     }
 
     private JsonAdaptedTask toJsonAdaptedTask(Task task) {

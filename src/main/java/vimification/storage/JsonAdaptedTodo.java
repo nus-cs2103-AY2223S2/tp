@@ -6,23 +6,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
-// import vimification.model.task.Type;
 import vimification.model.task.components.Description;
+
 
 public class JsonAdaptedTodo extends JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Todo's %s field is missing!";
 
-    // @JsonCreator
-    // public JsonAdaptedTodo(
-    // @JsonProperty()
-    // )
+    @JsonCreator
+    public JsonAdaptedTodo(
+        @JsonProperty("description") String description,
+        @JsonProperty("isDone") boolean isDone) {
+        super(description, isDone);
+    }
 
     public JsonAdaptedTodo(Todo task) {
         super(task);
     }
 
     public Task toModelType() throws IllegalValueException {
+        // TODO: add input validation
+        /*
         if (description == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
@@ -40,7 +44,7 @@ public class JsonAdaptedTodo extends JsonAdaptedTask {
         // throw new IllegalValueException(Type.MESSAGE_CONSTRAINTS);
         // }
         // final Type modelType = new Type(type);
-
+        */
         return new Todo(description, isDone);
     }
 }

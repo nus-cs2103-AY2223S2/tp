@@ -1,5 +1,7 @@
 package vimification.storage;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,12 +11,18 @@ import vimification.model.task.Task;
 /**
  * Jackson-friendly version of {@link Task}.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = JsonAdaptedTodo.class, name = "todo"),
+        @JsonSubTypes.Type(value = JsonAdaptedDeadline.class, name = "deadline"),
+        @JsonSubTypes.Type(value = JsonAdaptedEvent.class, name = "event")
+})
 public abstract class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
-    public final String description;
-    public final boolean isDone;
+    final String description;
+    final boolean isDone;
 
     @JsonCreator
     public JsonAdaptedTask(
@@ -30,14 +38,15 @@ public abstract class JsonAdaptedTask {
     public JsonAdaptedTask(Task task) {
         description = task.getDescription();
         isDone = task.isDone();
-        // type = task.getType().value;
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *         person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted
+     *                               person.
      */
     public abstract Task toModelType() throws IllegalValueException;
 }
