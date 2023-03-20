@@ -134,6 +134,16 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public ReadOnlyObjectProperty<Person> getSelectedPerson() {
+        return addressBook.getSelectedPerson();
+    }
+    @Override
+    public void setSelectedPerson(Index index) {
+        Person selectedPerson = filteredPersons.get(index.getZeroBased());
+        addressBook.setSelectedPerson(selectedPerson);
+    }
+
     //=========== UserData ================================================================================
 
     @Override

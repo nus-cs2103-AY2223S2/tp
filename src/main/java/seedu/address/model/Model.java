@@ -124,4 +124,7 @@ public interface Model {
     ReadOnlyObjectProperty<TabInfo> getSelectedTab();
 
     void setSelectedTab(Index index);
+
+    ReadOnlyObjectProperty<Person> getSelectedPerson();
+    void setSelectedPerson(Index index);
 }

@@ -9,6 +9,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.ui.tab.TabInfo;
 import seedu.address.ui.UiPart;
 import seedu.address.ui.body.address.AddressPanel;
+import seedu.address.ui.body.address.PersonDetailPanel;
 import seedu.address.ui.body.calendar.CalendarPanel;
 import seedu.address.ui.body.user.UserPanel;
 
@@ -27,6 +28,8 @@ public class BodyPanel extends UiPart<Region> {
     private final CalendarPanel calendarPanel;
     private final UserPanel userPanel;
 
+    private final PersonDetailPanel detailPanel;
+
     /**
      * Creates a {@code BodyPanel} with the given {@code Logic}.
      */
@@ -35,6 +38,7 @@ public class BodyPanel extends UiPart<Region> {
 
         this.logic = logic;
         this.addressPanel = new AddressPanel(logic.getFilteredPersonList());
+        this.detailPanel = new PersonDetailPanel().setPerson(logic.getSelectedPerson().get());
         this.calendarPanel = new CalendarPanel(logic.getEventList());
         this.userPanel = new UserPanel(logic.getUserData());
 

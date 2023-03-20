@@ -63,4 +63,8 @@ public interface Logic {
     void setSelectedTab(Index index);
 
     ObservableList<Event> getEventList();
+
+    ReadOnlyObjectProperty<Person> getSelectedPerson();
+
+    void setSelectedPerson(Index index);
 }
