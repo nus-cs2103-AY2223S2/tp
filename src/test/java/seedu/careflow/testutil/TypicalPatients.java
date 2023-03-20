@@ -8,7 +8,7 @@ import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.person.Patient;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
 public class TypicalPatients {
 
@@ -44,7 +44,7 @@ public class TypicalPatients {
     public static final Patient IDA = new PatientBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Patient's details found in {@code CommandTestUtil}
 //    public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
 //            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
 //    public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -56,7 +56,7 @@ public class TypicalPatients {
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical patients.
      */
     public static PatientRecord getTypicalPatientRecord() {
         PatientRecord pr = new PatientRecord();
