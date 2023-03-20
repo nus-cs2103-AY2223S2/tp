@@ -160,7 +160,7 @@ Due to the limited space on most displays, the application uses tabs to switch b
 
 The tab switching mechanism is facilitated by `TabUtil`, which contains the list of all tabs relevant in the application. Tabs are represented by `TabInfo`, made up of an `Index` (which the user references in the `tab` command) and a `TabType` (which defines the possible tabs in the application). Their relationship is shown below:
 
-![Structure of `TabUtil`]()
+![Structure of `TabUtil`](images/TabClassDiagram.png)
 
 #### Design considerations:
 
