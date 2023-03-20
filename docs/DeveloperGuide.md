@@ -576,7 +576,36 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. To simulate data file is not found:
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisite: `QuickContacts` is currently not running and the data files have been generated.
 
+   2. Rename the file `quickcontacts.json` in the same directory to `quickcontacts.json.backup`.
+
+   3. Launch `QuickContacts`.
+
+   Expected: `QuickContacts` launches normally and re-generates the sample default data.
+
+2. To simulate data file is corrupted:
+
+   1. Prerequisite: `QuickContacts` is currently not running and the data files have been generated.
+
+   2. Open `quickcontacts.json` with a text editor, add a few random characters and save it.
+
+   3. Launch `QuickContacts`.
+
+   Expected: A warning message will be displayed and `QuickContacts` will start from an empty data file.
+
+3. To simulate restoring data from a backup data file:
+
+   1. Prerequisite: `QuickContacts` is currently not running and the data files have been generated and you have the backup file ready. Assume that the backup file is named `quickcontacts.json.backup`.
+
+   2. Delete `quickcontacts.json` from the directory that contains `quickcontacts.jar`.
+
+   3. Move `quickcontacts.json.backup` into the same directory as `quickcontacts.jar`.
+
+   4. Rename `quickcontacts.json.backup` to `quickcontacts.json`.
+
+   5. Launch `QuickContacts`.
+
+   Expected: `QuickContacts` will launch normally with the data restored from the backup.
