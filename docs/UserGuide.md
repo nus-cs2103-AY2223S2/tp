@@ -18,7 +18,7 @@ In a conventional application cycle, the large influx of applicants makes it cha
 
 ---
 
-## How to use this Guide
+## How to use this User Guide
 
 Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
 
@@ -76,7 +76,7 @@ Highlight dangers and things to look out for. </div>
 
 Other than the icons mentioned above, there are also some other notations used in this guide:
 
-- <a href> Clickable phrases underlined in blue </a> are hyperlinks that will bring you to another part of this documentation that is relevant to the phrase.
+- <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of this documentation that is relevant to the phrase.
 
 [Back to Table of Contents](#table-of-contents)
 
