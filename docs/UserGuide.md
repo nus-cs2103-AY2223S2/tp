@@ -48,6 +48,9 @@ E-Lister is a **desktop app for managing contacts, optimized for use via a Comma
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+* Most of the commands can be abbreviated to one or two characters. These are equivalent to the full-length commands, for greater convenience and speed.
+  e.g. `h` is equivalent to `help`.
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
@@ -65,7 +68,7 @@ E-Lister is a **desktop app for managing contacts, optimized for use via a Comma
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help` or `h`
 
 Shows a help message detailing the various commands available in E-Lister. 
 A link can also bring the user to the online user guide for more detailed help.
@@ -75,7 +78,7 @@ A link can also bring the user to the online user guide for more detailed help.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a person: `add` or `a`
 
 Adds a person to the address book.
 
@@ -89,13 +92,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all persons : `list` or `l`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person : `edit` or `ed`
 
 Edits an existing person in the address book.
 
@@ -112,7 +115,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by name: `find` or `f`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -131,7 +134,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find mart On` returns `Martin Henz`, `Ong Wai Kit`
 
-### Deleting a person : `delete`
+### Deleting a person : `delete` or `d`
 
 Deletes the specified person from the address book.
 
@@ -145,7 +148,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Adding a remark : `remark`
+### Adding a remark : `remark` or `r`
 
 Adds a remark to any given person stored in the address book.
 
@@ -158,7 +161,7 @@ Format: `remark INDEX [r/REMARK]`
 Examples:
 * `list` followed by `remark 2 He is a cheese lover` adds the remark “He is a cheese lover” to the 2nd person.
 
-### Adding a tag : `tag`
+### Adding a tag : `tag` or `t`
 
 Adds a tag to any given person stored in the address book.
 
@@ -171,7 +174,7 @@ Format: `tag INDEX [t/TAG]`
 Examples:
 * `list` followed by `add_tag 2 banker` adds the tag “banker” to the 2nd person.
 
-### Deleting a tag : `delete_tag`
+### Deleting a tag : `delete_tag` or `dt`
 
 Deletes a tag on a person.
 
@@ -185,7 +188,7 @@ Format: `delete_tag INDEX [t/TAG]`
 Examples:
 * `list` followed by `delete_tag 3 teacher` deletes the tag “teacher” from the 2nd person.
 
-### Filter by tag : `filter`
+### Filter by tag : `filter` or `f`
 
 Search for all persons with a corresponding tag.
 
@@ -196,7 +199,7 @@ Format: `filter [t/TAG]`
 Examples:
 * `filter banker` will list all persons with the tag “banker”.
 
-### Clearing all entries : `clear`
+### Clearing all entries : `clear` or `c`
 
 Clears all entries from the address book.
 
@@ -220,13 +223,12 @@ E-Lister data is saved as a JSON file `[JAR file location]/data/addressbook.json
 If your changes to the data file makes its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
 </div>
 
-### Import data from CSV : `[coming in v1.3]`
+### Import data from CSV : `import` or `i`
 
 Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
 
-_Details coming soon ..._
 
-### Export data to CSV `export`
+### Export data to CSV : `export` or `ex`
 
 Opens a file chooser to select a directory where you can save the data to a CSV file.
 

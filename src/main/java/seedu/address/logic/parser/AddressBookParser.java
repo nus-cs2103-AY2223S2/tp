@@ -46,47 +46,28 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        // if the user's command fits a keyword for a command, create a parser
+        if (AddCommand.COMMAND_WORD.contains(commandWord)) {
             return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
+        } else if (EditCommand.COMMAND_WORD.contains(commandWord)) {
             return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
+        } else if (DeleteCommand.COMMAND_WORD.contains(commandWord)) {
             return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
+        } else if (ClearCommand.COMMAND_WORD.contains(commandWord)) {
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
+        } else if (FindCommand.COMMAND_WORD.contains(commandWord)) {
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
+        } else if (ListCommand.COMMAND_WORD.contains(commandWord)) {
             return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
+        } else if (ExitCommand.COMMAND_WORD.contains(commandWord)) {
             return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
+        } else if (HelpCommand.COMMAND_WORD.contains(commandWord)) {
             return new HelpCommand();
-
-        case TagCommand.COMMAND_WORD:
-            return new TagCommandParser().parse(arguments);
-
-        case DeleteTagCommand.COMMAND_WORD:
-            return new DeleteTagCommandParser().parse(arguments);
-
-        case ExportCommand.COMMAND_WORD:
+        } else if (ExportCommand.COMMAND_WORD.contains(commandWord)) {
             return new ExportCommand();
-
-        case FilterCommand.COMMAND_WORD:
-            return new FilterCommandParser().parse(arguments);
-
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        } else {
+        throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
