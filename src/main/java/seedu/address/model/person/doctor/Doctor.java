@@ -94,7 +94,8 @@ public class Doctor extends Person {
                 && otherDoctor.getEmail().equals(getEmail())
                 && otherDoctor.getSpecialty().equals(getSpecialty())
                 && otherDoctor.getYoe().equals(getYoe())
-                && otherDoctor.getTags().equals(getTags());
+                && otherDoctor.getTags().equals(getTags())
+                && otherDoctor.getPatients().equals(getPatients());
     }
 
     @Override
