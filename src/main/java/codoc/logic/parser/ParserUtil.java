@@ -110,11 +110,11 @@ public class ParserUtil {
      */
     public static Course parseCourse(String course) throws ParseException {
         requireNonNull(course);
-        String trimmedCourse = course.trim();
-        if (!Course.isValidCourse(trimmedCourse)) {
+        String trimmedIndex = course.trim();
+        if (!Course.isValidCourse(trimmedIndex)) {
             throw new ParseException(Course.MESSAGE_CONSTRAINTS);
         }
-        return new Course(trimmedCourse);
+        return new Course(trimmedIndex);
     }
     /**
      * Parses a {@code String Year} into an {@code Year}.

@@ -107,6 +107,7 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidLinkedin_throwsIllegalValueException() {
+        System.out.println(VALID_COURSE);
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(
                         VALID_NAME,

@@ -24,7 +24,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(
                     new Name("Alex Yeoh"),
-                    new Course("CS"),
+                    new Course("1"),
                     new Year("1"),
                     new Github("alexyeoh"),
                     new Email("alexyeoh@example.com"),
@@ -34,7 +34,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Bernice Yu"),
-                    new Course("BZA"),
+                    new Course("2"),
                     new Year("2"),
                     new Github("bernice-yu"),
                     new Email("berniceyu@example.com"),
@@ -44,7 +44,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Charlotte Oliveiro"),
-                    new Course("CS"),
+                    new Course("1"),
                     new Year("3"),
                     new Github("ch4rl0tt3"),
                     new Email("charlotte@example.com"),
@@ -54,7 +54,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("David Li"),
-                    new Course("INFOSYS"),
+                    new Course("3"),
                     new Year("4"),
                     new Github("David-Li"),
                     new Email("lidavid@example.com"),
@@ -64,7 +64,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Irfan Ibrahim"),
-                    new Course("INFOSEC"),
+                    new Course("3"),
                     new Year("2"),
                     new Github("iRf4n"),
                     new Email("irfan@example.com"),
@@ -74,7 +74,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Roy Balakrishnan"),
-                    new Course("CEG"),
+                    new Course("4"),
                     new Year("2"),
                     new Github("b4l4Kr15H-n4n"),
                     new Email("royb@example.com"),
@@ -84,7 +84,7 @@ public class SampleDataUtil {
             ),
             new Person(
                     new Name("Roy Boy"),
-                    new Course("CEG"),
+                    new Course("5"),
                     new Year("4"),
                     new Github("b4l4Kr15H-n4nn"),
                     new Email("royboy@example.com"),
