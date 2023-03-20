@@ -210,6 +210,14 @@ In order of priority, the planner will prioritise `Events`, then `Deadlines`, th
 Examples:
 - `plan 5` will plan your month according to an ideal effort level of 5 per day.
 
+### Show your daily plans : `schedule DATE`
+
+Displays tasks to be done on 'DATE' entered. Valid dates include 30 days from the last time plan command was ran. 
+
+Examples:
+- `schedule 2023-03-25` will display all tasks which should be done on that day, provided the plan command was run
+-  within the past 30 days of 25 March 2023.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -249,16 +257,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                    |
-|------------|---------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                   |
+|------------|--------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]` <br> e.g., `add n/read book d/Lord of the Flies t/leisure E/5` |
-| **Clear**  | `clear`                                                                                                             |
-| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                              |
-| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                  |
-| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                  |
-| **List**   | `list`                                                                                                              |
-| **Help**   | `help`                                                                                                              |
-| **Stats**  | `stats`                                                                                                             |
-| **sort**   | `sort`                                                                                                              |
-| **alert**  | `alert ALERT_WINDOW`                                                                                                |
-| **plan**   | `plan EFFORT`                                                                                                       |
+| **Clear**  | `clear`                                                                                                            |
+| **Delete** | `delete INDEX(S)`<br> e.g., `delete 3`                                                                             |
+| **Edit**   | `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`<br> e.g.,`edit 2 n/study d/CS2103T`                 |
+| **Find**   | `find n/NAME` or `find d/DESCRIPTION`<br> e.g., `find n/read book`                                                 |
+| **List**   | `list`                                                                                                             |
+| **Help**   | `help`                                                                                                             |
+| **Stats**  | `stats`                                                                                                            |
+| **sort**   | `sort`                                                                                                             |
+| **alert**  | `alert ALERT_WINDOW`                                                                                               |
+| **plan**   | `plan EFFORT`                                                                                                      |
