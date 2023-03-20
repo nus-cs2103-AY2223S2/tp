@@ -118,6 +118,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getFilteredContactList();
+
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.

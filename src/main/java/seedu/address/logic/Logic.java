@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyEventBook;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 
 /**
@@ -35,6 +36,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of events */
     ObservableList<Event> getFilteredEventList();
+
+    /** Returns an unmodifiable view of the filtered list of contacts */
+    ObservableList<Contact> getFilteredContactList();
 
     /**
      * Returns the user prefs' address book file path.
