@@ -60,7 +60,7 @@ public class PetCard extends UiPart<Region> {
         address.setText(pet.getAddress().value);
         email.setText(pet.getEmail().value);
         LocalDateTime arrival = pet.getTimeStamp();
-        String amt = String.valueOf(Duration.between(arrival, LocalDateTime.now()).getSeconds() * 1/100);
+        String amt = String.valueOf(Duration.between(arrival, LocalDateTime.now()).getSeconds() * (0.01));
         amountDue.setText(amt);
         pet.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
