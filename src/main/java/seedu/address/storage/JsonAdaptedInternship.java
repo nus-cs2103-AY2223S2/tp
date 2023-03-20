@@ -43,10 +43,10 @@ class JsonAdaptedInternship {
         this.role = role;
         this.status = status;
         this.date = date;
-        if (comment != null) {
-            this.comment = comment;
+        if (comment == null) {
+            this.comment = "";
         } else {
-            this.comment = "NA";
+            this.comment = comment;
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -111,6 +111,10 @@ class JsonAdaptedInternship {
         }
         final Date modelDate = new Date(date);
 
+
+        if (!Comment.isValidComment(comment)) {
+            throw new IllegalValueException(Comment.MESSAGE_CONSTRAINTS);
+        }
         final Comment modelComment = new Comment(comment);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);

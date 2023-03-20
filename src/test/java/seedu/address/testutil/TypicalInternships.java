@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONT;
 
@@ -27,6 +29,7 @@ public class TypicalInternships {
             .withRole("Cloud Architect")
             .withStatus("assessment")
             .withDate("2023-02-01")
+            .withComment("I love Amazon!")
             .withTags("aws", "back").build();
     public static final Internship FOODPANDA = new InternshipBuilder().withCompanyName("Food Panda")
             .withRole("Back end Developer")
@@ -44,6 +47,7 @@ public class TypicalInternships {
             .withRole("Game Client Developer")
             .withStatus("interview")
             .withDate("2023-02-05")
+            .withComment("I love Riot Games!")
             .withTags("game", "developer").build();
 
     public static final Internship SAMSUNG = new InternshipBuilder().withCompanyName("Samsung")
@@ -54,6 +58,7 @@ public class TypicalInternships {
             .withRole("Game Designer")
             .withStatus("new")
             .withDate("2023-02-07")
+            .withComment("I love Supercell Games!")
             .withTags("design", "game").build();
 
 
@@ -72,11 +77,13 @@ public class TypicalInternships {
             .withRole(VALID_ROLE_APPLE)
             .withStatus(VALID_STATUS_APPLE)
             .withDate(VALID_DATE_APPLE)
+            .withComment(VALID_COMMENT_APPLE)
             .withTags(VALID_TAG_FRONT).build();
     public static final Internship GOOGLE = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
             .withRole(VALID_ROLE_GOOGLE)
             .withStatus(VALID_STATUS_GOOGLE)
             .withDate(VALID_DATE_GOOGLE)
+            .withComment(VALID_COMMENT_GOOGLE)
             .withTags(VALID_TAG_FRONT, VALID_TAG_BACK)
             .build();
 

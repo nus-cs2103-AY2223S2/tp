@@ -38,7 +38,7 @@ public class Internship {
      * @param tags The set of tags associated with the Internship.
      */
     public Internship(CompanyName companyName, Role role, Status status, Date date, Comment comment, Set<Tag> tags) {
-        requireAllNonNull(companyName, role, status, date, comment, tags);
+        requireAllNonNull(companyName, role, status, date, tags);
         this.companyName = companyName;
         this.role = role;
         this.status = status;

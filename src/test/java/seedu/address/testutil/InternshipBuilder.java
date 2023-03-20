@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
@@ -20,11 +21,13 @@ public class InternshipBuilder {
     public static final String DEFAULT_ROLE = "Mobile Developer";
     public static final String DEFAULT_STATUS = "interview";
     public static final String DEFAULT_DATE = "2023-02-01";
+    public static final String DEFAULT_COMMENT = "NA";
 
     private CompanyName companyName;
     private Role role;
     private Status status;
     private Date date;
+    private Comment comment;
     private Set<Tag> tags;
 
     /**
@@ -74,6 +77,20 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code Comment} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withComment(String comment) {
+        if (comment != null) {
+            this.comment = new Comment(comment);
+        } else {
+            this.comment = new Comment("NA");
+        }
+        return this;
+    }
+
+
+
+    /**
      * Sets the {@code Role} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withRole(String role) {
@@ -90,7 +107,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(companyName, role, status, date, tags);
+        return new Internship(companyName, role, status, date, comment, tags);
     }
 
 }

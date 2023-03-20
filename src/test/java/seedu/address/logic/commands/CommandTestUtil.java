@@ -76,10 +76,10 @@ public class CommandTestUtil {
     static {
         DESC_APPLE = new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
                 .withRole(VALID_ROLE_APPLE).withStatus(VALID_STATUS_APPLE).withDate(VALID_DATE_APPLE)
-                .withTags(VALID_TAG_FRONT).build();
+                .withComment(VALID_COMMENT_APPLE).withTags(VALID_TAG_FRONT).build();
         DESC_GOOGLE = new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
                 .withRole(VALID_ROLE_GOOGLE).withStatus(VALID_STATUS_GOOGLE).withDate(VALID_DATE_GOOGLE)
-                .withTags(VALID_TAG_BACK, VALID_TAG_FRONT).build();
+                .withComment(VALID_COMMENT_GOOGLE).withTags(VALID_TAG_BACK, VALID_TAG_FRONT).build();
     }
 
     /**
