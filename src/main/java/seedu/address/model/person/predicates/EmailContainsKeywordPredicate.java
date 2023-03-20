@@ -1,5 +1,7 @@
 package seedu.address.model.person.predicates;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -17,6 +19,7 @@ public class EmailContainsKeywordPredicate<T extends Person> implements Predicat
      * @param keyword The matching string.
      */
     public EmailContainsKeywordPredicate(String keyword) {
+        requireNonNull(keyword);
         this.keyword = keyword.toLowerCase();
     }
 

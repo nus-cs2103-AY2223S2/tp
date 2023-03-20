@@ -1,7 +1,7 @@
 package seedu.address.model.person.information;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -28,7 +28,7 @@ public class AvailableDate {
      * @param endDate Ending date.
      */
     public AvailableDate(String startDate, String endDate) {
-        requireNonNull(startDate, endDate);
+        requireAllNonNull(startDate, endDate);
         checkArgument(isValidDate(startDate, endDate), MESSAGE_CONSTRAINTS);
 
         try {

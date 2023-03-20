@@ -1,5 +1,7 @@
 package seedu.address.model.person.predicates;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -17,6 +19,7 @@ public class AgeIsEqualPredicate<T extends Person> implements Predicate<T> {
      * @param age The matching string.
      */
     public AgeIsEqualPredicate(String age) {
+        requireNonNull(age);
         this.age = age;
     }
 

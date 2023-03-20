@@ -1,5 +1,7 @@
 package seedu.address.model.person.predicates;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -18,6 +20,7 @@ public class RiskLevelIsEqualPredicate<T extends Elderly> implements Predicate<T
      * @param risk The matching risk.
      */
     public RiskLevelIsEqualPredicate(Risk risk) {
+        requireNonNull(risk);
         this.risk = risk;
     }
 

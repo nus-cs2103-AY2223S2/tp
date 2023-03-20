@@ -67,6 +67,7 @@ public class UniquePairList implements Iterable<Pair> {
         if (index == -1) {
             throw new PairNotFoundException();
         }
+        assert index < internalList.size() : "Index should be in range";
 
         if (!target.isSamePair(editedPair) && contains(editedPair)) {
             throw new DuplicatePairException();

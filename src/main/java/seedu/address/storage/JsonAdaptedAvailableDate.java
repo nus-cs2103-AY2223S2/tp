@@ -25,6 +25,7 @@ public class JsonAdaptedAvailableDate {
         if (dates.length < 2) {
             throw new IllegalValueException("Start or end date not specified");
         }
+        assert dates.length == 2 : "Dates array size should be exactly 2";
 
         this.startDate = dates[0];
         this.endDate = dates[1];
