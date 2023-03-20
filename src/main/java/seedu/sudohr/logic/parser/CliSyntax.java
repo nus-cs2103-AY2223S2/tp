@@ -21,5 +21,4 @@ public class CliSyntax {
 
     /* Prefix definitions for leave*/
     public static final Prefix PREFIX_DATE = new Prefix("g/");
-    public static final Prefix PREFIX_EMPLOYEE_INDEX = new Prefix("p/");
 }

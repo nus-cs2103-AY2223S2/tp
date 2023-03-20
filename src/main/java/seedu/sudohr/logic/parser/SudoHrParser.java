@@ -20,9 +20,9 @@ import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.employee.FindCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
-import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.DeleteEmployeeFromLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.ListEmployeeInLeaveCommand;
+import seedu.sudohr.logic.commands.leaveCommands.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leaveCommands.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leaveCommands.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.department.AddDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.AddEmployeeToDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.EditDepartmentCommandParser;
@@ -32,6 +32,9 @@ import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
 import seedu.sudohr.logic.parser.employee.EditCommandParser;
 import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.DeleteEmployeeFromLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.ListEmployeeInLeaveCommandParser;
 
 /**
  * Parses user input.

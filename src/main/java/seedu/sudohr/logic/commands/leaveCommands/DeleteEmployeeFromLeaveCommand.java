@@ -1,15 +1,15 @@
-package seedu.sudohr.logic.commands.leavecommands;
+package seedu.sudohr.logic.commands.leaveCommands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Date;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
@@ -20,8 +20,7 @@ import seedu.sudohr.model.leave.LeaveContainsEmployeePredicate;
 public class DeleteEmployeeFromLeaveCommand extends Command {
     public static final String COMMAND_WORD = "deleteEmployeeLeave";
 
-    public static final String MESSAGE_EMPLOYEE_DOES_NOT_EXIST = "This employee does not exists"
-            + "in the leave in sudohr book";
+    public static final String MESSAGE_EMPLOYEE_NOT_FOUND = "The given employee does not exist in SudoHR.";
 
     public static final String MESSAGE_SUCCESS = "employee %1$s is deleted from %2$s";
 
@@ -29,32 +28,30 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
 
     public static final String MESSAGE_INVALID_DATE = "The employee has not taken a leave";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in the sudohr book. ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in SudoHR. ";
 
     private final Date dateToDelete;
-    private final Index employeeToDeleteIndex;
+    private final Id employeeId;
 
     /**
      * Creates an DeleteEmployeeFromLeaveCommand to delete the employee at specified
      * {@code employeeIndex} from the leave at the specified {@code Index}
      */
-    public DeleteEmployeeFromLeaveCommand(Index employeeIndex, Date dateToDelete) {
-        requireNonNull(employeeIndex);
+    public DeleteEmployeeFromLeaveCommand(Id employeeId, Date dateToDelete) {
+        requireNonNull(employeeId);
         requireNonNull(dateToDelete);
         this.dateToDelete = dateToDelete;
-        employeeToDeleteIndex = employeeIndex;
+        this.employeeId = employeeId;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Employee> lastShownEmployeeList = model.getFilteredEmployeeList();
+        Employee employeeToDelete = model.getEmployee(employeeId);
 
-        if (employeeToDeleteIndex.getZeroBased() >= lastShownEmployeeList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
+        if (employeeToDelete == null) {
+            throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND);
         }
-
-        Employee employeeToDelete = lastShownEmployeeList.get(employeeToDeleteIndex.getZeroBased());
 
         Leave leaveToDelete = new Leave(dateToDelete);
 
@@ -78,8 +75,7 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteEmployeeFromLeaveCommand // instanceof handles nulls
                         && dateToDelete.equals(((DeleteEmployeeFromLeaveCommand) other).dateToDelete)
-                        && employeeToDeleteIndex
-                                .equals(((DeleteEmployeeFromLeaveCommand) other).employeeToDeleteIndex));
+                        && employeeId.equals(((DeleteEmployeeFromLeaveCommand) other).employeeId));
     }
 
 }
