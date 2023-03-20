@@ -67,14 +67,19 @@ public class JsonAdaptedDrug {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TradeName.class.getSimpleName()));
         }
+        if (!TradeName.isValidTradeName(tradeName)) {
+            throw new IllegalValueException(TradeName.MESSAGE_CONSTRAINTS);
+        }
 
         final TradeName modelTradeName = new TradeName(tradeName);
-
 
 
         if (activeIngredient == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ActiveIngredient.class.getSimpleName()));
+        }
+        if(!ActiveIngredient.isValidIngredient(activeIngredient)) {
+            throw new IllegalValueException(ActiveIngredient.MESSAGE_CONSTRAINTS);
         }
 
         final ActiveIngredient modelActiveIngredient = new ActiveIngredient(activeIngredient);
@@ -83,11 +88,17 @@ public class JsonAdaptedDrug {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Direction.class.getSimpleName()));
         }
+        if (!Direction.isValidDirection(direction)) {
+            throw new IllegalValueException(Direction.MESSAGE_CONSTRAINTS);
+        }
         final Direction modelDirection = new Direction(direction);
 
         if (purposes == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Purpose.class.getSimpleName()));
+        }
+        if (!Purpose.isValidPurpose(purposes)) {
+            throw new IllegalValueException(Purpose.MESSAGE_CONSTRAINTS);
         }
 
         final Purpose modelPurpose = new Purpose(purposes);
@@ -96,11 +107,17 @@ public class JsonAdaptedDrug {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     SideEffect.class.getSimpleName()));
         }
+        if (!SideEffect.isValidSideEffect(sideEffects)) {
+            throw new IllegalValueException(SideEffect.MESSAGE_CONSTRAINTS);
+        }
         final SideEffect modelSideEffects = new SideEffect(sideEffects);
 
         if (storageCount == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     StorageCount.class.getSimpleName()));
+        }
+        if (!StorageCount.isValidStorageCount(storageCount)) {
+            throw new IllegalValueException(StorageCount.MESSAGE_CONSTRAINTS);
         }
         final StorageCount modelStorageCount = new StorageCount(storageCount);
 

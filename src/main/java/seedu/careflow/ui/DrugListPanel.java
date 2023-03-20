@@ -74,7 +74,7 @@ public class DrugListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Drug} using a {@code DrugCard}.
      */
-    class DrugListViewCell extends ListCell<Drug> {
+    static class DrugListViewCell extends ListCell<Drug> {
         @Override
         protected void updateItem(Drug drug, boolean empty) {
             super.updateItem(drug, empty);

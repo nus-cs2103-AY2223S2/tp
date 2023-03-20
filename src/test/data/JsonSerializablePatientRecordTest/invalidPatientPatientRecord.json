@@ -1,0 +1,15 @@
+{
+  "patients": [
+    {
+      "name": "Patient with invalid gender",
+      "phone": "94824241",
+      "email": "penny@example.com",
+      "address": "9th street",
+      "birthDate": "01-01-2000",
+      "gender": "lol",
+      "ic": "T9997777K",
+      "drugAllergy": "Penicillin",
+      "emergencyContact": null
+    }
+  ]
+}

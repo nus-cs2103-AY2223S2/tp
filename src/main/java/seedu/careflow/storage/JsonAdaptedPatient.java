@@ -112,16 +112,28 @@ public class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
+        if (birthDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateOfBirth.class.getSimpleName()));
+        }
         if (!DateOfBirth.isValidBirthDate(birthDate)) {
             throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         final DateOfBirth modelBirthDate = new DateOfBirth(birthDate);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Gender.class.getSimpleName()));
+        }
         if (!Gender.isValidGender(gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
 
+        if (ic == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Ic.class.getSimpleName()));
+        }
         if (!Ic.isValidIc(ic)) {
             throw new IllegalValueException(Ic.MESSAGE_CONSTRAINTS);
         }
@@ -131,16 +143,24 @@ public class JsonAdaptedPatient {
             throw new IllegalValueException(DrugAllergy.MESSAGE_CONSTRAINTS);
         }
 
+        DrugAllergy modelDrugAllergy = null;
+        if (drugAllergy != null ) {
+            modelDrugAllergy = new DrugAllergy(drugAllergy);
+        }
+
         if (emergencyContact != null && !Phone.isValidPhone(emergencyContact)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
 
-        if (drugAllergy == null && emergencyContact == null) {
+        Phone modelEmergencyContact = null;
+        if (emergencyContact != null) {
+            modelEmergencyContact = new Phone(emergencyContact);
+        }
+
+        if (modelDrugAllergy == null && modelEmergencyContact == null) {
             return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelBirthDate, modelGender, modelIc);
         }
 
-        final DrugAllergy modelDrugAllergy = new DrugAllergy(drugAllergy);
-        final Phone modelEmergencyContact = new Phone(emergencyContact);
         return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelBirthDate, modelGender, modelIc,
                 modelDrugAllergy, modelEmergencyContact);
     }
