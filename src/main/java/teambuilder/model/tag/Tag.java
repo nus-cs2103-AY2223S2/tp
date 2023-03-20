@@ -9,8 +9,9 @@ import static teambuilder.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric,"
+            + " with only a single whitespace between words if there are multiple words";
+    public static final String VALIDATION_REGEX = "^([a-zA-Z0-9]+\\s)*[a-zA-Z0-9]+$";
 
     public final String tagName;
 

@@ -31,6 +31,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String major;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedTag> teams = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +39,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("major") String major, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("major") String major, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("teams") List<JsonAdaptedTag> teams) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +48,9 @@ class JsonAdaptedPerson {
         this.major = major;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (teams != null) {
+            this.teams.addAll(teams);
         }
     }
 
@@ -61,6 +66,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        teams.addAll(source.getTeams().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -72,6 +80,10 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        final List<Tag> personTeams = new ArrayList<>();
+        for (JsonAdaptedTag tag : teams) {
+            personTeams.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -115,7 +127,10 @@ class JsonAdaptedPerson {
         final Major modelMajor = new Major(major);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMajor, modelTags);
+
+        final Set<Tag> modelTeams = new HashSet<>(personTeams);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelMajor, modelTags, modelTeams);
     }
 
 }

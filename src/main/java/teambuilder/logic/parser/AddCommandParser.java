@@ -7,6 +7,7 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -47,8 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Major major = ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> teamList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TEAM));
 
-        Person person = new Person(name, phone, email, address, major, tagList);
+        Person person = new Person(name, phone, email, address, major, tagList, teamList);
 
         return new AddCommand(person);
     }

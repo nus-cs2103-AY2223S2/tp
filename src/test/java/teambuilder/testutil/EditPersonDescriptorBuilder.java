@@ -39,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setMajor(person.getMajor());
         descriptor.setTags(person.getTags());
+        descriptor.setTeams(person.getTeams());
     }
 
     /**
@@ -90,6 +91,17 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(tagSet);
         return this;
     }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withTeams(String... teams) {
+        Set<Tag> tagSet = Stream.of(teams).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTeams(tagSet);
+        return this;
+    }
+    //TODO: withTeams test
 
     public EditPersonDescriptor build() {
         return descriptor;
