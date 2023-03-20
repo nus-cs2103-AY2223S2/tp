@@ -30,7 +30,7 @@ title: Developer Guide
 
 ## **CoDoc Developer Guide**
 
-CoDoc is **designed for NUS Computer Science students** by providing a centralised platform for them to keep track
+CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
 of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
 while still having the benefits of a **Graphical User Interface** (GUI).
 
@@ -60,12 +60,12 @@ The Developer Guide is divided into the following sections :
 The [Design](#design) section gives an overview of the architecture of ConnectNUS.
 In this section, you will be provided with:
 
-1. The API (Application Programming Interface) of the major components of ConnectNUS.
+1. The API (Application Programming Interface) of the major components of CoDoc.
 2. A Class Diagram to illustrate the internals of each component.
 3. An explanation of how each component works.
 4. A Sequence Diagram to give an example of the flow of events within the component where applicable.
 
-The [Implementation](#implementation) section outlines how the features offered by ConnectNUS are
+The [Implementation](#implementation) section outlines how the features offered by CoDoc are
 implemented. In this section, you will be provided with:
 
 1. A description of the feature.
@@ -85,7 +85,7 @@ provides the links to the aforementioned documents. In this section, you will be
 4. Configuration guide.
 5. DevOps guide.
 
-The [Appendix: Requirements](#appendix-requirements) section provides details on the motivation behind creating ConnectNUS
+The [Appendix: Requirements](#appendix-requirements) section provides details on the motivation behind creating CoDoc
 and how we intend for users to use ConnectNUS.
 In this section, you will be provided with
 1. Product Scope.
@@ -94,7 +94,7 @@ In this section, you will be provided with
 4. Non-functional requirements.
 
 The [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing) section gives detailed instructions
-on how you can perform testing on the features in ConnectNUS. In this section, you will be provided with:
+on how you can perform testing on the features in CoDoc. In this section, you will be provided with:
 1. An overview of the command to execute to test the feature.
 2. Sample test cases to be executed.
 3. The expected behaviour of the test command.
@@ -223,11 +223,15 @@ Developer Guide.
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
+[Scroll back to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -237,6 +241,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Scroll back to top](#table-of-contents)
 
 ### Architecture
 
@@ -279,6 +285,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Scroll back to top](#table-of-contents)
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -295,6 +303,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[Scroll back to top](#table-of-contents)
 
 ### Logic component
 
@@ -325,6 +335,8 @@ How the parsing works:
 * When called upon to parse a user command, the `CodocParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodocParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Scroll back to top](#table-of-contents)
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -344,6 +356,7 @@ The `Model` component,
 
 </div>
 
+[Scroll back to top](#table-of-contents)
 
 ### Storage component
 
@@ -356,9 +369,13 @@ The `Storage` component,
 * inherits from both `CodocStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Scroll back to top](#table-of-contents)
+
 ### Common classes
 
 Classes used by multiple components are in the `codoc.commons` package.
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -431,6 +448,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+[Scroll back to top](#table-of-contents)
+
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -446,9 +465,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+[Scroll back to top](#table-of-contents)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+[Scroll back to top](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -460,6 +483,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -489,6 +514,7 @@ CoDoc is not only able to help users manage large contact database fast through 
 relevant contact information through a comprehensive UI. Furthermore, users can utilize the powerful filtering system
 to effectively sort/filter contacts to easily identify people of interest, such as study or project partners.
 
+[Scroll back to top](#table-of-contents)
 
 ### User stories 📝
 
@@ -505,6 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Scroll back to top](#table-of-contents)
 
 ### Use cases
 
@@ -641,6 +668,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Scroll back to top](#table-of-contents)
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -649,6 +678,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. The interface should adhere to the figma diagrams.
 
 *{More to be added}*
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -678,6 +709,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+[Scroll back to top](#table-of-contents)
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -695,6 +728,8 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+[Scroll back to top](#table-of-contents)
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -702,3 +737,6 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+[Scroll back to top](#table-of-contents)
+
