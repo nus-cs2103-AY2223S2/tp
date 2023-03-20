@@ -212,7 +212,7 @@ Examples:
 
 ### Show your daily plans : `schedule DATE`
 
-Displays tasks to be done on 'DATE' entered. Valid dates include 30 days from the last time plan command was ran. 
+Displays tasks to be done on 'DATE' entered. Valid dates include 30 days from the last time plan command was ran.
 
 Examples:
 - `schedule 2023-03-25` will display all tasks which should be done on that day, provided the plan command was run
