@@ -2,7 +2,10 @@ package seedu.socket.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.socket.model.person.Person;
@@ -112,6 +115,21 @@ public class Socket implements ReadOnlySocket {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        // remove key references
+        ArrayList<Project> projectsToEdit = new ArrayList<>(); // store projects to edit to avoid concurrent update
+        for (Project project : projects) {
+            if (project.getMembers().contains(key)) {
+                projectsToEdit.add(project);
+            }
+        }
+        while (!projectsToEdit.isEmpty()) { // update matching projects in projects
+            Project projectToUpdate = projectsToEdit.remove(0);
+            Set<Person> updatedMembers = new HashSet<>(projectToUpdate.getMembers());
+            updatedMembers.remove(key);
+            Project updatedProject = new Project(projectToUpdate.getName(), projectToUpdate.getRepoHost(),
+                    projectToUpdate.getRepoName(), projectToUpdate.getDeadline(), updatedMembers);
+            setProject(projectToUpdate, updatedProject);
+        }
     }
 
     //// project-level operations
