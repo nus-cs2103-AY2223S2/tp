@@ -171,9 +171,21 @@ Unable to exit/save HMHero to data file
 **A:** Install HMHero on the other computer and overwrite the empty data file with the data file created by HMHero in your current computer.
 
 ---
+## Acknowledgements
 
+HMHero is a brownfield software engineering project based off [AddressBook Level-3](https://nus-cs2103-ay2223s2.github.io/tp/), taken under the [CS2103T Software Engineering](https://nus-cs2103-ay2223s2.github.io/website/admin/index.html) held by School of Computing at National University of Singapore.
+
+Java dependencies:
+* [JavaFX](https://openjfx.io/) for Graphical User Interface
+* [Jackson](https://github.com/FasterXML/jackson) for JSON-related operations
+* [JUnit5](https://github.com/junit-team/junit5) for testing
+
+
+Documentation dependencies:
+* [PlantUML](https://plantuml.com/) for creating UML diagrams
+
+---
 ## Glossary
-
 
 ### A
 > #### ADDRESS (Placeholder)
@@ -182,7 +194,6 @@ Unable to exit/save HMHero to data file
 > The address of the applicant provided by the user.
 > #### Admonitions
 > Admonition boxes (or simply “admonitions”) are coloured boxes containing highlighted pieces of text. <br>
->
 > #### Applicant
 > The person who apply to the company for the job.
 
