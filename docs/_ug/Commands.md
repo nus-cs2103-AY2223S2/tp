@@ -125,14 +125,14 @@ What you should expect to find:
 
 #### Create a new applicant: `add`
 
-**Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
+**Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/TAG]`
 
 > Creates a new applicant with the provided information
 
 **Info**
-* All fields apart from `NOTE` are compulsory.
+* All fields apart from `TAG` are compulsory.
 * `PHONE` does not require you to include the country code. Only include the numbers.
-* THe value of `NOTE` will be `-` if it is not provided.
+* THe value of `TAG` will be `-` if it is not provided.
 
 
 
@@ -292,7 +292,7 @@ HMHero contains the following applicants, each with their own attributes:
 
 #### Advance an applicant: `advance`
 
-**Format**: `advance n/NAME p/PHONE d/[INTERVIEW DATETIME]
+**Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]
 
 > Advances an applicant in HMHero using name, phone and interview datetime
 
@@ -306,6 +306,14 @@ HMHero contains the following applicants, each with their own attributes:
 * The `INTERVIEW DATETIME` is required to advance `Applicant` from `status` `APPLIED` to `status` `SHORTLISTED`.
 * However, `INTERVIEW DATETIME` is not required to advance `Applicant` from `status` `SHORTLISTED` 
 to `status` `ACCEPTED`.
+* The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
+  * “dd”: Day of the month. For example, “10” would represent the 10th day of the month.
+  * “mm”: Month of the year, ranging from 1 to 12 for January to December respectively.
+    For example, “05” would represent May.
+  * “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023.
+  * "HH": Hour of the day, ranging from 0-23 in 24-hour clock format.
+    For example, "15" would represent 15th hour of the day.
+  * "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour.
 
 
 **Example:**
@@ -409,91 +417,176 @@ HMHero contains the following applicants, each with their own attributes:
 ---
 
 
+#### Edit an existing applicant: `edit`
+
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/TAG]`
+
+> Edits an existing applicant with the provided information
+
+**Info**
+* All fields apart from `INDEX` are optional. However, you need to include at least one optional parameter.
+* The format for `INTERVIEW DATETIME` should follow: "dd-mm-yyyy HH:MM".
+  * “dd”: Day of the month. For example, “10” would represent the 10th day of the month.
+  * “mm”: Month of the year, ranging from 1 to 12 for January to December respectively. 
+  For example, “05” would represent May.
+  * “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023.
+  * "HH": Hour of the day, ranging from 0-23 in 24-hour clock format.
+  For example, "15" would represent 15th hour of the day.
+  * "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour.
 
 
+🚨Note
+* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+* However, if two or more values of `TAG` are provided, both parameter will be taken in.
 
 
+**Example:**
 
-edit
+**Assumption:**
+
+* The currently displayed `list` in HMHero shows the applicant named "Thomas Tan" at INDEX value 1.
+* Initially, the "Thomas Tan" applicant has the following values:
+  * Phone: 91918153
+  * Email: thomastan@gmail.com
+  * Address: 7 Sims Drive (s)543212
+  * Interview DateTime: 24-06-2023 15:15
+  * Tag: C
+
+
+**Command Input Box:**
+
+`edit 1 p/97833468 n/Tammy note/Python note/Java`
+
+**Command Output Box:**
+
+`Edited Person: Tammy; Phone: 97833468; Email: thomastan@gmail.com;
+Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Tags: [Python] [Java]`
+
+---
+
+
+#### Remind on applicant's interview date: `remind`
+- Will update soon
+
+
 ### Statistics Command
 
-{% include_relative _ug/commands/StatisticsCommands.md %}
+- Will update soon
 
 ### General Commands
 
-{% include_relative _ug/commands/GeneralCommands.md %}
+#### Receive help during usage: `help`
 
+**Format**: `help [COMMAND_WORD]`
 
-The first word of every command allows HMHero to distinguish different commands.
-## Features
+> Displays help for HMHero
 
-| Note                                                                                                                                                                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Words in UPPER_CASE are the parameters to be supplied by the user.<br>e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.                                                                           |
-| Items in square brackets are optional.<br>e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.                                                                                                           |
-| Items with `…​` after them can be used multiple times including zero times.<br>e.g. `[t/TAG]…​` can be used as ` `, `t/friend`, `t/friend t/family` etc.                                                                           |
-| Parameters can be in any order.<br>e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.                                                                                              |
-| If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. |
-| Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>e.g. if the command specifies `help 123`, it will be interpreted as `help`.                     |
+```
+🚨 Note
+COMMAND_WORD is strictly any of the following:
+
+* exit
+* help
+* add
+* delete
+* edit
+* find
+* interview
+* list
+* advance
+* reject
+* remind (implementing)
+* stats (implementing)
+```
+
+**Example:**
+
+**Command Input Box:**
+
+Possible inputs:
+```
+help
+```
+```
+help delete
+```
+```
+help help
+```
+
+**Help Window:**
+
+The [[ help-window:Help Window ]] will open showing the instructions.
+
+If no `COMMAND_WORD` was specified, only a general help message will be provided. The general help message 
+shows a list of commands available to the user and a [[ url:URL ]] to this User Guide.
+
+If a `COMMAND_WORD` was specified, additional help for that command will be provided.
+
 
 ---
-// Additional features: can list out the tag(skillset) of the applicants.
-### **Command**
 
-### 1. Viewing help: `help`
+#### Exit HMHero: `exit`
 
-- Format: `help`
+**Format**: `exit`
 
-### 2. Adding a person: `add`
+> Exits HMHero
 
-- Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [note/NOTES]`
+```warning
+This command is the only guaranteed way for the data file to be saved when you exit the application.
+To prevent, always exit the application using this command instead of any other way.
+```
 
-- Examples: `add n/Jack Dill p/91234567 e/jackdill@example.com a/John Street, block 123 #01-01`
+**Example:**
 
-### 3. List applicant: `list`
 
-- Format: `list`
+**Command Input Box:**
 
-### 4. Delete applicants: `delete`
+Possible inputs:
 
-- Format: `delete n/NAME p/PHONE_NUMBER`
+```
+exit
+```
 
-- Examples:
-    - `delete n/Jack Dill p/PHONE_NUMBER`
+**Expected Outcomes:**
 
-### 5. Advancing an applicant's status: `advance`
+* All HMHero application windows will close
+* Your inventory data is saved.
 
-- Applied -> Shortlisted
-- Shortlisted -> Accepted
 
-Shortlists a candidate
 
-- Format: `advance n/NAME p/PHONE_NUMBER`
+```
+🚨Note
+If your inventory data cannot be saved successfully, HMHero will not close in order to prevent data loss.
+```
 
-- Examples:
-    - `advance n/Jack Dill p/91234567`
 
-### 6. Rejecting an applicant: `reject`
 
-- Shortlisted -> Rejected
-- Applied -> Rejected
+## Command Summary
 
-Rejects a candidate or interviewee
+### Applicant Commands
+ Action                                 | Format                                                                                                                                                                           | Example                                                                     |
+|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/TAG]`                                                                                                                                | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
+| Search for an applicant                | `find [KEY]` <br> (Minimally one `KEY` must be provided) <br> <br> **Note:** You can provide multiple key to find an applicant using `NAME` . For example, `find n/Thomas Marry` | `find n/Thomas p/98764321`                                                  |
+| List all applicants                    | `list`                                                                                                                                                                           | `list`                                                                      |
+| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                                          | `delete n/Thomas p/98765432`                                                |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED`             | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
+| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                                          | `reject n/Thomas p/98765432`                                                |
+| View the interview dates of applicants | `interview`                                                                                                                                                                      | `interview`                                                                 |
+| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/TAG]`                                                                                         | `edit 1 n/Marry p/98763245`                                                 |
+| Remind an applicant's interview date   | To be updated                                                                                                                                                                    | To be updated                                                               |
 
-- Format: `reject n/NAME p/PHONE_NUMBER`
+### Statistics Commands
+ Action                                  | Format  | Example |
+|-----------------------------------------|---------|---------|
+| Displays statistics collected by HMHero | `stats` | `stats` |
 
-- Examples:
-    - `reject n/Jack Dill p/91234567`
+### General Commands
+ Action                                                | Format | Example |
+|-------------------------------------------------------|--------|---------|
+| Shows a help dialog with a list of available commands | `help` | `help`  |
+| Exits HMHero                                          | `exit` | `exit`  |
 
-### 7. Find an applicant: `find`
-
-Find applicants using keywords (name OR phone number OR both)
-
-- Format:
-    - Format 1: `find NAME or PHONE NUMBER` (only need to provide either one)
-    - Format 2: `find n/NAME p/PHONE NUMBER` (must provide both)
-- Example:
-    - Example 1: `find Jack Dill`, `find 91234567`
-    - Example 2: `find n/Jack Dill p/91234567`
 
 ---
