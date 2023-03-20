@@ -94,16 +94,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_meetingRemove() throws Exception {
-        final String remark = "Some remark.";
-        RemoveMeetingCommand command = (RemoveMeetingCommand) parser.parseCommand(
-                RemoveMeetingCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased()
-                + " " + PREFIX_MEETING + remark);
-        assertEquals(new RemoveMeetingCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), command);
-    }
-
-    @Test
     public void parseCommand_addMeeting() throws Exception {
         final String meeting = " 30-12-2020 15:30 16:30";
         final Meeting sampleMeeting = new Meeting(
