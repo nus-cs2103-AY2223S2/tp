@@ -2,7 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.model.person.information.Nric.VALIDATION_REGEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
+import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
 import seedu.address.logic.commands.DeleteVolunteerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,12 +25,16 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
     public DeleteVolunteerCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty() || (!trimmedArgs.matches(VALIDATION_REGEX))) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVolunteerCommand.MESSAGE_USAGE));
         }
-        Nric nric = new Nric(trimmedArgs);
-        return new DeleteVolunteerCommand(nric);
+        if (!Nric.isValidNric(trimmedArgs)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_PERSON_NRIC, "volunteer", MESSAGE_CONSTRAINTS));
+        }
+
+        return new DeleteVolunteerCommand(new Nric(trimmedArgs));
     }
 
 }

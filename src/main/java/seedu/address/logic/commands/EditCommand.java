@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -14,7 +18,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
@@ -68,7 +71,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(Messages.MESSAGE_NOT_EDITED);
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
         requireNonNull(model);
 
@@ -77,7 +80,7 @@ public class EditCommand extends Command {
         } else if (model.hasVolunteer(nric)) {
             return editVolunteer(model);
         } else {
-            throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
+            throw new CommandException(MESSAGE_NRIC_NOT_EXIST);
         }
     }
 
@@ -86,7 +89,7 @@ public class EditCommand extends Command {
         Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(
                 elderlyToEdit, editPersonDescriptor);
         if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
+            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
         }
 
         model.setElderly(elderlyToEdit, editedElderly);
@@ -103,7 +106,7 @@ public class EditCommand extends Command {
         Volunteer editedVolunteer = EditVolunteerDescriptor.createEditedVolunteer(
                 volunteerToEdit, editPersonDescriptor);
         if (!volunteerToEdit.isSamePerson(editedVolunteer) && model.hasVolunteer(editedVolunteer)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_VOLUNTEER);
+            throw new CommandException(MESSAGE_DUPLICATE_VOLUNTEER);
         }
 
         model.setVolunteer(volunteerToEdit, editedVolunteer);
@@ -113,7 +116,6 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(
                 EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer));
     }
-
 
     @Override
     public boolean equals(Object other) {

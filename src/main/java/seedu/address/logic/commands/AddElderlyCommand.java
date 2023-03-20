@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -14,7 +15,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Objects;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
@@ -47,8 +47,8 @@ public class AddElderlyCommand extends Command {
             + PREFIX_REGION + "WEST "
             + PREFIX_RISK + "LOW "
             + PREFIX_TAG + "diabetes "
-            + PREFIX_TAG + "lonely"
-            + PREFIX_AVAILABILITY + "2023-05-11 to 2023-05-12";
+            + PREFIX_TAG + "lonely "
+            + PREFIX_AVAILABILITY + "2023-05-11,2023-05-12";
 
     public static final String MESSAGE_SUCCESS = "New elderly added: %1$s";
 
@@ -71,7 +71,7 @@ public class AddElderlyCommand extends Command {
         // hasPerson makes the judgement based on if same name
         // in Elderly, criteria is same name and age
         if (model.hasElderly(toAdd)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
+            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
         }
 
         model.addElderly(toAdd);
