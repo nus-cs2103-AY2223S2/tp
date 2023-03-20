@@ -9,18 +9,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.testutil.ModuleBuilder;
 
+import java.util.HashSet;
+
 class ModuleCodePredicateTest {
 
     @Test
     public void equals() {
-        ModulePredicate firstPredicate = new ModulePredicate(CS1101S.getCode());
-        ModulePredicate secondPredicate = new ModulePredicate(ST2334.getCode());
+        ModulePredicate firstPredicate = new ModulePredicate(CS1101S.getCode().toString(), "", "", "", new HashSet<>());
+        ModulePredicate secondPredicate = new ModulePredicate(ST2334.getCode().toString(), "", "", "", new HashSet<>());
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ModulePredicate firstPredicateCopy = new ModulePredicate(CS1101S.getCode());
+        ModulePredicate firstPredicateCopy = new ModulePredicate(CS1101S.getCode().toString(), "", "", "", new HashSet<>());
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -36,7 +38,7 @@ class ModuleCodePredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        ModulePredicate predicate = new ModulePredicate(CS1101S.getCode());
+        ModulePredicate predicate = new ModulePredicate(CS1101S.getCode().toString(), "", "", "", new HashSet<>());
         assertFalse(predicate.test(new ModuleBuilder().withCode("ST2334").build()));
     }
 

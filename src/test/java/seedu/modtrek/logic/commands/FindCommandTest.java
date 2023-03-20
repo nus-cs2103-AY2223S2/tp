@@ -13,6 +13,8 @@ import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
 import seedu.modtrek.model.module.ModulePredicate;
 
+import java.util.HashSet;
+
 class FindCommandTest {
     private Model model = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalDegreeProgression(), new UserPrefs());
@@ -20,9 +22,9 @@ class FindCommandTest {
     @Test
     public void equals() {
         ModulePredicate firstPredicate =
-                new ModulePredicate(CS2100.getCode());
+                new ModulePredicate(CS2100.getCode().toString(), "", "", "", new HashSet<>());
         ModulePredicate secondPredicate =
-                new ModulePredicate(ST2334.getCode());
+                new ModulePredicate(ST2334.getCode().toString(), "", "", "", new HashSet<>());
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);

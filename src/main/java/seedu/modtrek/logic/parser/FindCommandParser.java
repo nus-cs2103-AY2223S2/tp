@@ -71,12 +71,12 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        String modCode = codePrefixString;
         if (!argMultimap.getPreamble().isEmpty()) {
             Code code = ParserUtil.parseCode(argMultimap.getPreamble());
-            modCode = code.toString();
+            return new FindCommand(new ModulePredicate(code.toString(), "",
+                    "", "", new HashSet<>()));
         }
-        return new FindCommand(new ModulePredicate(modCode, creditString,
+        return new FindCommand(new ModulePredicate(codePrefixString, creditString,
                 semYearString, gradeString, (HashSet<Tag>) tagList));
     }
 
