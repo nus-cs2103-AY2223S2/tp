@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditDeckCommand;
-import seedu.address.logic.commands.SelectDeckCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.deck.Deck;
 
@@ -21,7 +20,7 @@ public class EditDeckCommandParser implements Parser<EditDeckCommand> {
      */
     public EditDeckCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args); // are we using this?
 
         Index index;
 
@@ -30,7 +29,7 @@ public class EditDeckCommandParser implements Parser<EditDeckCommand> {
             index = ParserUtil.parseIndex(i);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SelectDeckCommand.MESSAGE_USAGE), pe);
+                    EditDeckCommand.MESSAGE_USAGE), pe);
         }
 
         Deck editedDeck = ParserUtil.parseDeck(args.substring(2));

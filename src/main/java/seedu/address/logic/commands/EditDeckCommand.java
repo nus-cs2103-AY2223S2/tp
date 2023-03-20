@@ -28,6 +28,7 @@ public class EditDeckCommand extends Command {
             + "LAC1201";
 
     public static final String MESSAGE_EDIT_DECK_SUCCESS = "Successfully renamed deck to %1$s";
+    public static final String MESSAGE_NOT_EDITED = "Deck name must be provided.";
     public static final String MESSAGE_DUPLICATE_DECK = "This deck name already exists.";
 
     private final Index index;

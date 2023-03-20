@@ -70,7 +70,7 @@ public class DeleteDeckCommandTest {
         showDeckAtIndex(model, INDEX_FIRST);
 
         Index outOfBoundIndex = INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of master deck list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMasterDeck().getDeckList().size());
 
         DeleteDeckCommand deleteDeckCommand = new DeleteDeckCommand(outOfBoundIndex);

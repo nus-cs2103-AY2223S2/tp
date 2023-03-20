@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 public class Deck {
 
+    public static final String MESSAGE_CONSTRAINTS = "Deck can take any values, and it should not be blank";
     public final String deckName;
 
     /**
