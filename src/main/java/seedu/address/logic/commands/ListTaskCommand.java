@@ -17,7 +17,7 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) {
         requireAllNonNull(model, officeConnectModel);
-        officeConnectModel.getTaskModelManager().updateFilteredItemList(PREDICATE_SHOW_ALL_TASKS);
+        officeConnectModel.updateTaskModelManagerFilteredItemList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

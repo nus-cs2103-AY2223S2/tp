@@ -195,10 +195,10 @@ public class CommandTestUtil {
     public static void showTaskAtIndex(OfficeConnectModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getTaskModelManager().getFilteredItemList().size());
 
-        Task task = model.getTaskModelManager().getFilteredItemList().get(targetIndex.getZeroBased());
+        Task task = model.getTaskModelManagerFilteredItemList().get(targetIndex.getZeroBased());
         String taskSubject = task.getTitle().getValue();
-        model.getTaskModelManager().updateFilteredItemList(x -> x.getTitle().getValue().equals(taskSubject));
-        assertEquals(1, model.getTaskModelManager().getFilteredItemList().size());
+        model.updateTaskModelManagerFilteredItemList(x -> x.getTitle().getValue().equals(taskSubject));
+        assertEquals(1, model.getTaskModelManagerFilteredItemList().size());
 
     }
 
