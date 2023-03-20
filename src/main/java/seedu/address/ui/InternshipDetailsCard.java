@@ -185,17 +185,27 @@ public class InternshipDetailsCard extends UiPart<Region> {
     public String getTips() {
         switch (this.internship.getStatus().toString()) {
         case APPLIED:
-            return "longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooohiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooohiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring longstring hellooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooohiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
+            return "While waiting for the company's response, you can try applying to other companies as well"
+                    + " to have a higher chance of landing an internship";
         case ASSESSMENT:
-            return "Assessment tips";
+            return "Practice makes perfect! Visit sites such as HackerRank and LeetCode to practice your algorithms" +
+                    " and problem-solving skills. You could also attempt the practices under a time trial to give" +
+                    " you a better sense of the actual coding assignment.";
         case INTERVIEW:
-            return "Interview tips";
+            return "Be natural! The role of the interviewer is not to put you in a tight position, but rather to" +
+                    " learn more about who you are as a person. It's good if you could share what makes you special" +
+                    " and about your personalised experience that makes you suitable for the job.";
         case OFFERED:
-            return "Offered tips";
+            return "Congratulations! Your hard work has paid off. Remember to read through the details of the" +
+                    " letter of offer such as job scope and working hours before committing to the offer.";
         case REJECTED:
-            return "Rejected tips";
+            return "Fret not! The process of landing an internship is not a smooth-sailing one, and failures are" +
+                    " part of the journey. Continue your search and you will eventually a suitable internship." +
+                    " Fighting!";
         default:
-            return "New tips";
+            return "If possible, try to apply early because once companies receive applications, they would start" +
+                    " screening for potential candidates. Also, remember to do a thorough check of your resume" +
+                    " before sending out your application.";
         }
     }
 
