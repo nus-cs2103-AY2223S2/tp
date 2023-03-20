@@ -5,12 +5,12 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "meeting": "No Meetings!"
+    "meeting": ["2007-12-03T10:15:30?2007-12-03T10:16:30"]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "meeting": "No Meetings!"
+    "meeting": ["2008-12-03T10:15:30?2008-12-03T10:16:30"]
   } ]
 }

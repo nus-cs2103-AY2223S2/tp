@@ -20,9 +20,10 @@ class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedMeeting} with the given {@code start @code name}.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(String start, String end) throws Exception {
-        this.start = LocalDateTime.parse(start);
-        this.end = LocalDateTime.parse(end);
+    public JsonAdaptedMeeting(String dateTime) throws Exception {
+        String[] dateTimeStrings = dateTime.split("\\?");
+        this.start = LocalDateTime.parse(dateTimeStrings[0].trim());
+        this.end = LocalDateTime.parse(dateTimeStrings[1].trim());
         if (this.end.isBefore(this.start)) {
             throw new Exception("End time is after start!");
         }
@@ -38,7 +39,7 @@ class JsonAdaptedMeeting {
 
     @JsonValue
     public String getString() {
-        return this.start.toString() + this.end.toString();
+        return this.start.toString() + "?" + this.end.toString();
     }
 
     /**
@@ -47,9 +48,6 @@ class JsonAdaptedMeeting {
      * @throws IllegalValueException if start is after end
      */
     public Meeting toModelType() throws IllegalValueException {
-        if (this.end.isBefore(this.start)) {
-            throw new IllegalValueException("End time is after start!");
-        }
         return new Meeting(this.start, this.end);
     }
 

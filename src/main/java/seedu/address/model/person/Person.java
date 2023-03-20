@@ -54,6 +54,19 @@ public class Person {
         this.meetings = meetings;
     }
 
+    /**
+     * Overloaded constructor to take in meetings as an argument
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Meeting> meetings) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.meetings = meetings;
+    }
+
     public Name getName() {
         return name;
     }
@@ -102,6 +115,33 @@ public class Person {
     }
 
     /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public ArrayList<Meeting> getMeetings() {
+        return meetings;
+    }
+
+    /**
+     * Gets the most recent meeting that the person has
+     */
+    public Meeting getUpcomingMeeting() {
+        if (meetings.isEmpty()) {
+            return new Meeting();
+        }
+
+        Meeting mostUpcomingMeeting = meetings.get(0);
+
+        for (Meeting meeting : meetings) {
+            if (mostUpcomingMeeting.compareTo(meeting) > 0) {
+                mostUpcomingMeeting = meeting;
+            }
+        }
+
+        return mostUpcomingMeeting;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -133,8 +173,7 @@ public class Person {
             && otherPerson.getPhone().equals(getPhone())
             && otherPerson.getEmail().equals(getEmail())
             && otherPerson.getAddress().equals(getAddress())
-            && otherPerson.getTags().equals(getTags())
-            && otherPerson.getMeetings().equals(getMeetings());
+            && otherPerson.getTags().equals(getTags());
     }
 
     @Override

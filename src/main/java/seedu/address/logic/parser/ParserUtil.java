@@ -119,6 +119,47 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code String meeting} into a {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if start time given is after the end time given
+     */
+    public static Meeting parseMeeting(String meeting) throws ParseException {
+        requireNonNull(meeting);
+        String trimmedMeeting = meeting.trim();
+
+        LocalDateTime[] dateTimes = parseDateTime(trimmedMeeting);
+        LocalDateTime start = dateTimes[0];
+        LocalDateTime end = dateTimes[1];
+
+        return new Meeting(start, end);
+    }
+
+    /**
+     * Parses {@code String dateTime} into a pair of
+     * {@code LocalDateTime} objects
+     */
+    public static LocalDateTime[] parseDateTime(String dateTime) {
+        String[] dateTimeStrings = dateTime.split(" ");
+        String[] dateString = dateTimeStrings[0].split("-");
+        String[] startTimeString = dateTimeStrings[1].split(":");
+        String[] endTimeString = dateTimeStrings[2].split(":");
+
+        int day = Integer.parseInt(dateString[0]);
+        int month = Integer.parseInt(dateString[1]);
+        int year = Integer.parseInt(dateString[2]);
+        int startHour = Integer.parseInt(startTimeString[0]);
+        int startMinute = Integer.parseInt(startTimeString[1]);
+        int endHour = Integer.parseInt(endTimeString[0]);
+        int endMinute = Integer.parseInt(endTimeString[1]);
+
+        return new LocalDateTime[] {
+            LocalDateTime.of(year, month, day, startHour, startMinute),
+            LocalDateTime.of(year, month, day, endHour, endMinute)
+        };
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {

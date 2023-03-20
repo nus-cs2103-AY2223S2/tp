@@ -104,9 +104,8 @@ public class PersonBuilder {
         return this;
     }
 
-
     /**
-     * Sets the {@code Meeting} of the  {@code Person} that we are building
+     * Sets the {@code Meeting} of the {@code Person} that we are building
      * using String inputs
      */
     public PersonBuilder withMeetings(String dateTime) {
@@ -114,7 +113,8 @@ public class PersonBuilder {
             this.meetings.add(new Meeting());
         } else {
             LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
-            Meeting meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
+            Meeting meetingToAdd;
+            meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
             this.meetings.add(meetingToAdd);
         }
 
@@ -124,5 +124,4 @@ public class PersonBuilder {
     public Person build() {
         return new Person(name, phone, email, address, tags, meetings);
     }
-
 }

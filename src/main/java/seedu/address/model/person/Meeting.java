@@ -14,7 +14,8 @@ public class Meeting implements Comparable<Meeting> {
      * Constructor for Meeting
      *
      * @param start start date and time of meeting
-     * @param end   end date and time of meeting. Must be after start
+     * @param end   end date and time of meeting
+     * @throws IllegalValueException if meeting ends before it starts
      */
     public Meeting(LocalDateTime start, LocalDateTime end) {
         this.start = start;
@@ -27,6 +28,14 @@ public class Meeting implements Comparable<Meeting> {
     public Meeting() {
         this.start = LocalDateTime.MAX;
         this.end = LocalDateTime.MAX;
+    }
+
+    public LocalDateTime getStart() {
+        return this.start;
+    }
+
+    public LocalDateTime getEnd() {
+        return this.end;
     }
 
     /**
@@ -61,6 +70,17 @@ public class Meeting implements Comparable<Meeting> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Meeting otherMeeting) {
+        if (this.start.isBefore(otherMeeting.start)) {
+            return -1;
+        } else if (this.start.equals(otherMeeting.start)) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
     @Override
