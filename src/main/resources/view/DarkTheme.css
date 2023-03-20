@@ -147,19 +147,17 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-background-color: #DB93B0;
+    -fx-control-inner-background: #DB93B0;
+    -fx-font-family: "Amiko";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: #181A19;
+    -fx-border-width: 0px;
 }
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: #181A19;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
