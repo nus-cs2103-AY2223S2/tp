@@ -75,7 +75,7 @@ public class DeleteOrderCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of task list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderList().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderList().getItemList().size());
 
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 

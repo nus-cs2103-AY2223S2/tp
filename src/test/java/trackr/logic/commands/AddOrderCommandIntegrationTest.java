@@ -44,7 +44,7 @@ public class AddOrderCommandIntegrationTest {
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-        Order orderInList = model.getOrderList().getOrderList().get(0);
+        Order orderInList = model.getOrderList().getItemList().get(0);
         assertCommandFailure(new AddOrderCommand(orderInList), model,
                 String.format(AddOrderCommand.MESSAGE_DUPLICATE_ITEM, ModelEnum.ORDER, ModelEnum.ORDER));
     }

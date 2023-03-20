@@ -63,7 +63,7 @@ public class TypicalOrders {
     public static OrderList getTypicalOrderList() {
         OrderList orderList = new OrderList();
         for (Order order : getTypicalOrders()) {
-            orderList.addOrder(order);
+            orderList.addItem(order);
         }
         return orderList;
     }

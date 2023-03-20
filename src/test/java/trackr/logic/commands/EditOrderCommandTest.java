@@ -141,7 +141,7 @@ public class EditOrderCommandTest {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
 
         // edit order in filtered order list into a duplicate in order list
-        Order orderInList = model.getOrderList().getOrderList().get(INDEX_SECOND_OBJECT.getZeroBased());
+        Order orderInList = model.getOrderList().getItemList().get(INDEX_SECOND_OBJECT.getZeroBased());
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT,
                 new OrderDescriptorBuilder(orderInList).build());
 
@@ -167,7 +167,7 @@ public class EditOrderCommandTest {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
         Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of order list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderList().getOrderList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getOrderList().getItemList().size());
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex,
                 new OrderDescriptorBuilder().withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES).build());

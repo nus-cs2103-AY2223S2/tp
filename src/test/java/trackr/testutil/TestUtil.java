@@ -16,6 +16,7 @@ import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.item.Item;
+import trackr.model.item.ReadOnlyItemList;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -105,6 +106,11 @@ public class TestUtil {
         }
 
         @Override
+        public ReadOnlyItemList<? extends Item> getItemList(ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
             throw new AssertionError("This method should not be called.");
         }
@@ -121,6 +127,16 @@ public class TestUtil {
 
         @Override
         public <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<? extends Item> getFilteredItemList(ModelEnum modelEnum) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum) {
             throw new AssertionError("This method should not be called.");
         }
 
