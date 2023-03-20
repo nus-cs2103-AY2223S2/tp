@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 public class PointsTest {
     @Test
     public void equals() {
-        Points points = new Points(100);
+        Points points = new Points(100, 100);
 
         // same object -> returns true
         assertTrue(points.equals(points));
 
         // same values -> returns true
-        Points pointsCopy = new Points(points.value);
+        Points pointsCopy = new Points(points.value, points.cumulative);
         assertTrue(points.equals(pointsCopy));
 
         // different types -> returns false
@@ -22,8 +22,8 @@ public class PointsTest {
         // null -> returns false
         assertFalse(points.equals(null));
 
-        // different remark -> returns false
-        Points differentPoints = new Points(200);
+        // different points -> returns false
+        Points differentPoints = new Points(200, 200);
         assertFalse(points.equals(differentPoints));
     }
 }

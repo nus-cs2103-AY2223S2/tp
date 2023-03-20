@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
 import seedu.loyaltylift.logic.commands.AddOrderCommand;
+import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.Command;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
@@ -18,7 +19,9 @@ import seedu.loyaltylift.logic.commands.ExitCommand;
 import seedu.loyaltylift.logic.commands.FindCustomerCommand;
 import seedu.loyaltylift.logic.commands.HelpCommand;
 import seedu.loyaltylift.logic.commands.ListCustomerCommand;
+import seedu.loyaltylift.logic.commands.MarkCustomerCommand;
 import seedu.loyaltylift.logic.commands.SetPointsCommand;
+import seedu.loyaltylift.logic.commands.UnmarkCustomerCommand;
 import seedu.loyaltylift.logic.commands.ViewCustomerCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 
@@ -67,6 +70,12 @@ public class AddressBookParser {
         case ListCustomerCommand.COMMAND_WORD:
             return new ListCustomerCommand();
 
+        case MarkCustomerCommand.COMMAND_WORD:
+            return new MarkCustomerCommandParser().parse(arguments);
+
+        case UnmarkCustomerCommand.COMMAND_WORD:
+            return new UnmarkCustomerCommandParser().parse(arguments);
+
         case ViewCustomerCommand.COMMAND_WORD:
             return new ViewCustomerCommandParser().parse(arguments);
 
@@ -87,6 +96,9 @@ public class AddressBookParser {
 
         case SetPointsCommand.COMMAND_WORD:
             return new SetPointsCommandParser().parse(arguments);
+
+        case AddPointsCommand.COMMAND_WORD:
+            return new AddPointsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

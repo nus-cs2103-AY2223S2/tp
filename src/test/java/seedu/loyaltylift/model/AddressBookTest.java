@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.loyaltylift.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
+import static seedu.loyaltylift.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.loyaltylift.testutil.TypicalCustomers.ALICE;
-import static seedu.loyaltylift.testutil.TypicalCustomers.getTypicalAddressBook;
+import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_A;
+import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_B;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +23,7 @@ import javafx.collections.ObservableList;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.exceptions.DuplicateCustomerException;
 import seedu.loyaltylift.model.order.Order;
+import seedu.loyaltylift.model.order.exceptions.DuplicateOrderException;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 
 public class AddressBookTest {
@@ -50,9 +53,17 @@ public class AddressBookTest {
         Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Customer> newCustomers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newCustomers);
+        AddressBookStub newData = new AddressBookStub(newCustomers, Arrays.asList());
 
         assertThrows(DuplicateCustomerException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateOrders_throwsDuplicateOrderException() {
+        List<Order> newOrders = Arrays.asList(ORDER_A, ORDER_A);
+        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newOrders);
+
+        assertThrows(DuplicateOrderException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -84,6 +95,27 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getCustomerList().remove(0));
     }
 
+    @Test
+    public void setCustomer_ordersAssociationUpdated_success() {
+        addressBook.addCustomer(ALICE);
+        addressBook.addOrder(ORDER_A); // belongs to ALICE
+        addressBook.addOrder(ORDER_B); // belongs to ALICE
+
+        Customer newAlice = new CustomerBuilder(ALICE).withEmail("anotheralice@gmail.com").build();
+        addressBook.setCustomer(ALICE, newAlice);
+        assertTrue(addressBook.getOrderList().stream().allMatch(o -> o.getCustomer().equals(newAlice)));
+    }
+
+    @Test
+    public void deleteCustomer_ordersRemoved_success() {
+        addressBook.addCustomer(ALICE);
+        addressBook.addOrder(ORDER_A); // belongs to ALICE
+        addressBook.addOrder(ORDER_B); // belongs to ALICE
+
+        addressBook.removeCustomer(ALICE);
+        assertEquals(0, addressBook.getOrderList().size());
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose customers list can violate interface constraints.
      */
@@ -91,8 +123,9 @@ public class AddressBookTest {
         private final ObservableList<Customer> customers = FXCollections.observableArrayList();
         private final ObservableList<Order> orders = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Customer> customers) {
+        AddressBookStub(Collection<Customer> customers, Collection<Order> orders) {
             this.customers.setAll(customers);
+            this.orders.setAll(orders);
         }
 
         @Override

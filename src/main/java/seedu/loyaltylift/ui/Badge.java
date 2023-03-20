@@ -44,7 +44,6 @@ public class Badge extends UiPart<StackPane> {
      * Constructs a {@code Badge} based on the {@code CustomerType}.
      * @param customerType The CustomerType of the customer.
      * @return An instance of the Badge.
-     * @throws IllegalArgumentException Thrown if CustomerType is not recognised or null.
      */
     public static Badge createCustomerTypeBadge(CustomerType customerType) {
         switch (customerType) {
@@ -61,10 +60,21 @@ public class Badge extends UiPart<StackPane> {
      * Constructs a {@code Badge} based on the {@code Status} of an {@code Order}.
      * @param status The status of the Order.
      * @return An instance of the Badge.
-     * @throws IllegalArgumentException Thrown if Status is not recognised or null.
      */
     public static Badge createOrderStatusBadge(Status status) {
-        // TODO: update for different status type
-        return new Badge(Color.valueOf("#4F46E5"), Color.WHITE, status.toString());
+        switch (status) {
+        case PENDING:
+            return new Badge(Color.valueOf("#E4544B"), Color.WHITE, "Pending");
+        case PAID:
+            return new Badge(Color.valueOf("#26A92B"), Color.WHITE, "Paid");
+        case SHIPPED:
+            return new Badge(Color.valueOf("#4F46E5"), Color.WHITE, "Shipped");
+        case COMPLETED:
+            return new Badge(Color.valueOf("#4F46E5"), Color.WHITE, "Completed");
+        case CANCELLED:
+            return new Badge(Color.valueOf("#95352F"), Color.WHITE, "Cancelled");
+        default:
+            throw new IllegalArgumentException();
+        }
     }
 }

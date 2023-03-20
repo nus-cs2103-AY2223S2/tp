@@ -73,7 +73,6 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-
 ### Adding a customer : `addc`
 
 Adds a customer to the current list.
@@ -109,6 +108,34 @@ Examples:
 * `listc` followed by `deletec 2` deletes the 2nd person in the address book.
 * `findc Betsy` followed by `delete 1` deletes the 1st person in the results of the `findc` command.
 
+### Marking a person: `markc`
+
+Bookmarks a customer from the list of customers.
+
+Format: `markc INDEX`
+
+* Bookmarks the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `markc 2` bookmarks the 2nd person in the address book.
+* `findc Betsy` followed by `markc 1` bookmarks the 1st person in the results of the `findc` command.
+
+### Unmarking a person: `unmarkc`
+
+Un-bookmarks a customer from the list of customers.
+
+Format: `unmarkc INDEX`
+
+* Un-bookmarks the customer at the specified `INDEX`.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listc` followed by `unmarkc 2` un-bookmarks the 2nd person in the address book.
+* `findc Betsy` followed by `unmarkc 1` bookmarks the 1st person in the results of the `findc` command.
+
 ### Setting reward points for a customer : `setpoints`
 
 Sets a customer's reward points.
@@ -122,6 +149,8 @@ Format: `setpoints INDEX pt/POINTS`
 * The points refers to the reward points of the customer
 * The points **must be a positive integer** 1, 2, 3, ​​…
 * The points can only range from 0 to 999999
+* Setting points will also set cumulative points to the same amount, if you wish to keep the current cumulative points,
+use the `addpoints` command instead.
 
 Examples:
 * `listc` followed by `setpoints 2 pt/100` sets the 2nd customer points as 100.
@@ -131,7 +160,7 @@ Examples:
 
 Edits a customer's reward points by adding or removing from it.
 
-Format: `addpoints INDEX +/-POINTS`
+Format: `addpoints INDEX pt/[+/-]POINTS`
 
 * Add or subtract the points of the customer at the specified `INDEX` to `POINTS`.
 * If the points subtracted is greater than what the user has, the command will not be executed
@@ -141,10 +170,12 @@ Format: `addpoints INDEX +/-POINTS`
 * The +/- refers to whether you wish to add or subtract from the reward points of the customer, + to add, - to subtract
 * The points refers to how much you wish to add or subtract the reward points of the customer
 * The points **must be a positive integer** 1, 2, 3, ​​…
+* Addition will also result in an addition of cumulative points, subtraction will not change cumulative points.
 
 Examples:
-* `listc` followed by `addpoints 2 100` adds 100 reward points to the 2nd customer.
-* `findc Betsy` followed by `addpoints 1 300` adds 300 reward poitns to the 1st customer in the results of the `findc` command.
+* `listc` followed by `addpoints 2 pt/100` adds 100 reward points to the 2nd customer.
+* `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from
+the 1st customer in the results of the `findc` command.
 
 ### Setting tiers for your reward system : `settier`
 

@@ -5,21 +5,21 @@ import static seedu.loyaltylift.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Order's quantity in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(int)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(Integer)}
  */
 public class Quantity {
 
 
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should be a positive integer";
-    public final int value;
+    public final Integer value;
 
     /**
      * Constructs a {@code Quantity}.
      *
      * @param quantity A valid quantity.
      */
-    public Quantity(int quantity) {
+    public Quantity(Integer quantity) {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         value = quantity;
@@ -28,7 +28,7 @@ public class Quantity {
     /**
      * Returns true if a given string is a valid quantity.
      */
-    public static boolean isValidQuantity(int test) {
+    public static boolean isValidQuantity(Integer test) {
         return test > 0;
     }
 
@@ -46,7 +46,7 @@ public class Quantity {
 
     @Override
     public int hashCode() {
-        return Integer.hashCode(value);
+        return value.hashCode();
     }
 
 }

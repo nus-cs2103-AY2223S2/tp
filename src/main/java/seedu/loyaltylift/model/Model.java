@@ -120,4 +120,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<Order> predicate);
+
+    /** Returns an unmodifiable view of the filtered customer's order list */
+    ObservableList<Order> getFilteredCustomerOrderList();
+
+    /**
+     * Updates the filter of the filtered customer's order list to filter by the given {@code customer}.
+     * @throws NullPointerException if {@code customer} is null.
+     */
+    void updateFilteredCustomerOrderList(Customer customer);
 }

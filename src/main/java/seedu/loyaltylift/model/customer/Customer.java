@@ -25,6 +25,7 @@ public class Customer {
 
     // Data fields
     private final Address address;
+    private final Marked marked;
     private final Set<Tag> tags = new HashSet<>();
 
     private final Points points;
@@ -39,14 +40,15 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.points = new Points(0);
+        this.points = new Points(0, 0);
+        this.marked = new Marked(false);
     }
 
     /**
      * Every field must be present and not null.
      */
     public Customer(CustomerType customerType, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                    Points points) {
+                    Points points, Marked marked) {
         requireAllNonNull(name, phone, email, address, tags, points);
         this.customerType = customerType;
         this.name = name;
@@ -55,6 +57,7 @@ public class Customer {
         this.address = address;
         this.tags.addAll(tags);
         this.points = points;
+        this.marked = marked;
     }
 
     public CustomerType getCustomerType() {
@@ -77,6 +80,10 @@ public class Customer {
         return address;
     }
 
+    public Marked getMarked() {
+        return marked;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -90,6 +97,15 @@ public class Customer {
     }
 
     /**
+     * Returns a unique ID for the {@code Customer}.
+     * No 2 customer should exist with the same unique ID.
+     * @return A string representation of the unique identification of the customer.
+     */
+    public final String getUid() {
+        return getName().fullName;
+    }
+
+    /**
      * Returns true if both customers have the same name.
      * This defines a weaker notion of equality between two customers.
      */
@@ -99,7 +115,7 @@ public class Customer {
         }
 
         return otherCustomer != null
-                && otherCustomer.getName().equals(getName());
+                && otherCustomer.getUid().equals(getUid());
     }
 
     /**
@@ -122,7 +138,8 @@ public class Customer {
                 && otherCustomer.getEmail().equals(getEmail())
                 && otherCustomer.getAddress().equals(getAddress())
                 && otherCustomer.getTags().equals(getTags())
-                && otherCustomer.getCustomerType().equals(getCustomerType());
+                && otherCustomer.getCustomerType().equals(getCustomerType())
+                && otherCustomer.getPoints().equals(getPoints());
     }
 
     @Override
@@ -144,7 +161,9 @@ public class Customer {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Points: ")
-                .append(getPoints());
+                .append(getPoints())
+                .append("; Bookmarked: ")
+                .append(getMarked());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

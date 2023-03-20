@@ -8,6 +8,7 @@ import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 import seedu.loyaltylift.model.customer.Email;
+import seedu.loyaltylift.model.customer.Marked;
 import seedu.loyaltylift.model.customer.Phone;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.tag.Tag;
@@ -23,7 +24,9 @@ public class CustomerBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_POINTS = 0;
+    public static final Integer DEFAULT_CUMULATIVE_POINTS = 0;
     public static final CustomerType DEFAULT_CUSTOMER_TYPE = CustomerType.INDIVIDUAL;
+    public static final Boolean DEFAULT_MARKED = false;
 
     private Name name;
     private Phone phone;
@@ -32,6 +35,7 @@ public class CustomerBuilder {
     private Set<Tag> tags;
     private Points points;
     private CustomerType customerType;
+    private Marked marked;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -42,8 +46,9 @@ public class CustomerBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        points = new Points(DEFAULT_POINTS);
+        points = new Points(DEFAULT_POINTS, DEFAULT_CUMULATIVE_POINTS);
         customerType = DEFAULT_CUSTOMER_TYPE;
+        marked = new Marked(DEFAULT_MARKED);
     }
 
     /**
@@ -57,6 +62,7 @@ public class CustomerBuilder {
         tags = new HashSet<>(customerToCopy.getTags());
         points = customerToCopy.getPoints();
         customerType = customerToCopy.getCustomerType();
+        marked = customerToCopy.getMarked();
     }
 
     /**
@@ -102,8 +108,8 @@ public class CustomerBuilder {
     /**
      * Sets the {@code Points} of the {@code Customer} that we are building.
      */
-    public CustomerBuilder withPoints(Integer points) {
-        this.points = new Points(points);
+    public CustomerBuilder withPoints(Integer points, Integer cumulativePoints) {
+        this.points = new Points(points, cumulativePoints);
         return this;
     }
 
@@ -112,6 +118,14 @@ public class CustomerBuilder {
      */
     public CustomerBuilder withCustomerType(CustomerType customerType) {
         this.customerType = customerType;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Marked} of the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withMarked(Boolean marked) {
+        this.marked = new Marked(marked);
         return this;
     }
 

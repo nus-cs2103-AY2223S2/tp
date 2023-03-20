@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.logic.commands.AddCustomerCommand;
+import seedu.loyaltylift.logic.commands.AddPointsCommand;
 import seedu.loyaltylift.logic.commands.ClearCommand;
 import seedu.loyaltylift.logic.commands.DeleteCustomerCommand;
 import seedu.loyaltylift.logic.commands.EditCustomerCommand;
@@ -62,8 +63,6 @@ public class AddressBookParserTest {
     public void parseCommand_editc() throws Exception {
         Customer customer = new CustomerBuilder().build();
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder(customer).build();
-        System.out.println(EditCustomerCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
         EditCustomerCommand command = (EditCustomerCommand) parser.parseCommand(EditCustomerCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CUSTOMER.getOneBased() + " " + CustomerUtil.getEditCustomerDescriptorDetails(descriptor));
         assertEquals(new EditCustomerCommand(INDEX_FIRST_CUSTOMER, descriptor), command);
@@ -104,10 +103,18 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_setpoints() throws Exception {
-        final Points points = new Points(100);
+        final Points points = new Points(100, 100);
         SetPointsCommand command = (SetPointsCommand) parser.parseCommand(SetPointsCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + points.value);
         assertEquals(new SetPointsCommand(INDEX_FIRST_CUSTOMER, points), command);
+    }
+
+    @Test
+    public void parseCommand_addpoints() throws Exception {
+        final Integer addPoints = 100;
+        AddPointsCommand command = (AddPointsCommand) parser.parseCommand(AddPointsCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CUSTOMER.getOneBased() + " " + PREFIX_POINTS + addPoints);
+        assertEquals(new AddPointsCommand(INDEX_FIRST_CUSTOMER, addPoints), command);
     }
 
     @Test

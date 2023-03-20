@@ -15,6 +15,11 @@ public class BadgeTest {
     }
 
     @Test
+    public void createOrderStatusBadge_nullStatus_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> Badge.createOrderStatusBadge(null));
+    }
+
+    @Test
     public void colorToHex() {
         assertEquals(Badge.colorToHex(Color.WHITE), "#ffffff");
         assertEquals(Badge.colorToHex(Color.valueOf("#1a1a1a")), "#1a1a1a");

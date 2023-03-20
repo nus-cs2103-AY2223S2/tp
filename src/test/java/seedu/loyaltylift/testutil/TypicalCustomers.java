@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.customer.Customer;
 import seedu.loyaltylift.model.customer.CustomerType;
 
@@ -31,7 +30,7 @@ public class TypicalCustomers {
     public static final Customer BENSON = new CustomerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withPoints(0, 0).withMarked(true).build();
     public static final Customer CARL = new CustomerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -66,19 +65,6 @@ public class TypicalCustomers {
             .withCustomerType(CustomerType.ENTERPRISE).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
-    private TypicalCustomers() {} // prevents instantiation
-
-    /**
-     * Returns an {@code AddressBook} with all the typical customers.
-     */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Customer customer : getTypicalCustomers()) {
-            ab.addCustomer(customer);
-        }
-        return ab;
-    }
 
     public static List<Customer> getTypicalCustomers() {
         return new ArrayList<>(

@@ -71,6 +71,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Order> getFilteredCustomerOrderList() {
+        return model.getFilteredCustomerOrderList();
+    }
+
+    @Override
+    public void updateFilteredCustomerOrderList(Customer customer) {
+        model.updateFilteredCustomerOrderList(customer);
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
