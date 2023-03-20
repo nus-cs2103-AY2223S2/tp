@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import codoc.model.course.Course;
 import codoc.model.module.Module;
 import codoc.model.skill.Skill;
 

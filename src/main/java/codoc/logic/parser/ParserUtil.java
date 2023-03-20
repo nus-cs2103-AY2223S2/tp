@@ -10,7 +10,7 @@ import codoc.commons.core.index.Index;
 import codoc.commons.util.StringUtil;
 import codoc.logic.parser.exceptions.ParseException;
 import codoc.model.module.Module;
-import codoc.model.person.Course;
+import codoc.model.course.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;

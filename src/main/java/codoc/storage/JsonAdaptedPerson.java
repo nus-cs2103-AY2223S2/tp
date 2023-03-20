@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import codoc.commons.exceptions.IllegalValueException;
 import codoc.model.module.Module;
-import codoc.model.person.Course;
+import codoc.model.course.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;

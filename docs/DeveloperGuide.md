@@ -385,6 +385,27 @@ All `Person` have a `Name`, `Email`, `Course` and `Year`.
 
 [Scroll back to top](#table-of-contents)
 
+### **Course and CourseList Class**
+Each `Course` in CoDoc is implemented in the following way:
+
+![Course Class Diagram](images/CourseClassDiagram.png)
+
+All `Course` hava a `String` representing the name of the course.
+
+#### Design Considerations
+
+The `Course` constructor accepts a `String` input that represents the index of the course name 
+residing in `COURSE_LIST` found in the `CourseList.java`. 
+
+Instead of parsing the name of the course directly into
+the `Course` constructor, we wanted to standardize the names of courses without allowing users to
+input their own course names. This prevents 1 course from having multiple `String` representations
+in our `Storage` as well as the courses displayed in the application.
+
+<div style="page-break-after: always;"></div>
+
+[Scroll back to top](#table-of-contents)
+
 ### **Edit Command**
 
 Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.

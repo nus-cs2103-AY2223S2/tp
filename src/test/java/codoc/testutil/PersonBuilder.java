@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import codoc.model.module.Module;
-import codoc.model.person.Course;
+import codoc.model.course.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;

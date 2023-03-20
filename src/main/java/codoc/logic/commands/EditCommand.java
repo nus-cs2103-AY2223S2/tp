@@ -26,7 +26,7 @@ import codoc.commons.util.CollectionUtil;
 import codoc.logic.commands.exceptions.CommandException;
 import codoc.model.Model;
 import codoc.model.module.Module;
-import codoc.model.person.Course;
+import codoc.model.course.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
