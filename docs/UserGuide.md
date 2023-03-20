@@ -44,9 +44,18 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `delete-lecture /module {module_code} /lecture {lecture_id}`: Deletes the specified lecture from the specified module
   - `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`: Deletes the specified video from the specified lecture from the specified module
 - Tag
-  - `tag /module {module_code} /lecture {lecture_id} /description {tag_description}`: Tags a module from Le Tracker
-  - `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}`: Untags a module from Le Tracker
-
+  - `tag {module_code} /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a module from Le Tracker
+  - `tag {lecture_name} [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a lecture from 
+    a module 
+  - `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: 
+    Tags a video from a lecture
+  - `untag {module_code} /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes specified tags from a module 
+    from Le Tracker
+  - `untag {lecture_name} [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes the 
+    specified tags from a lecture 
+  - `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag 1} {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
+       Removes the specified tags of a video
+  
 Refer to the [Features](#features) below for details of each command.
 
 ---
@@ -254,11 +263,10 @@ Examples:
 
 ### Tag a module
 
-Tag a specified module from the current list of modules in Le Tracker with a description
+Tag a specified module from the current list of modules in Le Tracker with descriptions
 
-Format: `tag {module_code} /tags {tag_1}, [{tag_2}, {tag_3}, ...]`
+Format: `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-- Tag a module of the specified `module_code` from the current list of modules in Le Tracker
 - `module_code` must belong to an existing module
 - `tag_1, tag_2, ...` must be of correct format
 
@@ -267,12 +275,12 @@ Example:
 
 ### Tag a lecture
 
-Tag a specified lecture from a specified module with a description
+Tag a specified lecture with descriptions
 
-Format: `tag {lecture_name} /mod {module_code} /tags {tag_1}, [{tag_2}, {tag_3}, ...]`
+Format: `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-- Tag a lecture of the specified `lecture_name` from the specified `module_code`
 - `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 - `lecture_name` must belong to an existing lecture in the specified module
 - `tag_1, tag_2, ...` must be of correct format
 
@@ -282,13 +290,14 @@ Examples:
 
 ### Tag a video
 
-Tag a specified video from a specified lecture of a specified module with a description
+Tag a specified video with descriptions
 
-Format: `tag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}, [{tag_2}, {tag_3}, ...]`
+Format: `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-- Tag a video of the specified `video_name` from a specified lecture `lecture_name` of a module `module_code`
 - `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 - `lecture_name` must belong to an existing lecture in the specified module
+- `lecture_name` if not specified, defaults to the lecture name of the module in the current context (if any)
 - `video_name` must belong to an existing video in the specified lecture
 - `tag_1, tag_2, ...` must be of correct format
 
@@ -298,11 +307,10 @@ Examples:
 
 ### Untag a module
 
-Untag a specified module from the current list of modules in Le Tracker with a description
+Remove specified tags from a specified module in the current list of modules in Le Tracker
 
-Format: `untag {module_code} /tags {tag_1}, [{tag_2}, {tag_3}, ...]`
+Format: `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-- Untag a module of the specified `module_code` from the current list of modules in Le Tracker
 - `module_code` must belong to an existing module
 - `tag_1, tag_2, ...` must belong to existing tags of the specified module
 
@@ -313,10 +321,10 @@ Example:
 
 Untag a specified lecture from a specified module with a description
 
-Format: `untag {lecture_name} /module {module_code} /tags {tag_1}, [{tag_2}, {tag_3}, ...]`
+Format: `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-- Untag a lecture of the specified `lecture_name` from the specified `module_code`
 - `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 - `lecture_name` must belong to an existing lecture in the specified module
 - `tag_1, tag_2, ...` must belong to existing tags of the specified lecture
 
@@ -325,13 +333,14 @@ Examples:
 
 ### Untag a video
 
-Untag a specified video from a specified lecture of a specified module with a description
+Remove specified tags from video
 
-Format: `untag {video_name} /lec {lecture_name} /mod {module_code} /tags {tag_1}, [{tag_2}, {tag_3}, ...]`
+Format: `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-- Untag a video of the specified `video_name` from a specified lecture `lecture_name` of a module `module_code`
 - `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 - `lecture_name` must belong to an existing lecture in the specified module
+- `lecture_name` if not specified, defaults to the lecture name of the module in the current context (if any)
 - `video_name` must belong to an existing video in the specified lecture
 - `tag_1, tag_2, ...` must belong to existing tags of the specified video
 
