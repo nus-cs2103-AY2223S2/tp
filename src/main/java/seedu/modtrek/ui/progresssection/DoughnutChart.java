@@ -165,9 +165,10 @@ public class DoughnutChart extends PieChart {
         double centerY = chartProperties.get("centerY");
         double radius = chartProperties.get("radius") * offsetScale;
 
-        int i = 0;
         ObservableList<Data> doughnutData = getData();
-        for (VBox dataLabel : dataLabels) {
+        assert dataLabels.length == doughnutData.size() / 2 : "Number of data labels should be half the number of doughnut data";
+        for (int i = 0; i < doughnutData.size(); i += 2) {
+            VBox dataLabel = dataLabels[i / 2];
             Data completeData = doughnutData.get(i);
             String tag = completeData.getName().split("_")[0];
 
@@ -177,7 +178,6 @@ public class DoughnutChart extends PieChart {
 
             dataLabel.setLayoutX(xCoord);
             dataLabel.setLayoutY(yCoord);
-            i += 2;
         }
     }
 
