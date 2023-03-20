@@ -265,7 +265,7 @@ add n/John Doe p/91234567 e/john@gmail.com a/SoC COM 1
 ```
 
 The example above provides all the required fields to add an applicant
-* What if we wanted to also note down some key skillsets for John?
+- What if we wanted to also note down some key skillsets for John?
 
 We could edit our command to include it!
 ```agsl
