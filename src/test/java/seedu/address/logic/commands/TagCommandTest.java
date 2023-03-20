@@ -78,12 +78,44 @@ public class TagCommandTest {
         public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
             this.module.setLecture(target, editedLecture);
         }
+    }
+
+    private class ModelStubAcceptingTaggedVideo extends ModelStub {
+        private Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
+        private Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        private Video video;
+
+        public ModelStubAcceptingTaggedVideo(Video video) {
+            this.video = video;
+        }
 
         @Override
-        public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
-            ReadOnlyLecture lec = this.module.getLecture(lecture.getName());
-            Lecture lectureToSet = ((Lecture) lec);
-            lectureToSet.setVideo(target, editedVideo);
+        public boolean hasModule(ModuleCode moduleCode) {
+            return true;
+        }
+
+        @Override
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+            return true;
+        }
+
+        @Override
+        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+            return true;
+        }
+
+        @Override
+        public void setVideo(ReadOnlyLecture targetLecture, Video taggingVideo, Video taggedVideo) {
+            this.video = taggedVideo;
+        }
+
+        @Override
+        public ReadOnlyModule getModule(ModuleCode moduleCode) {
+            return this.module;
+        }
+
+        public Video getVideo(VideoName taggedVideo) {
+            return this.video;
         }
     }
 
@@ -233,6 +265,7 @@ public class TagCommandTest {
         assertTrue(updatedTagSet.contains(firstTag));
         assertTrue(updatedTagSet.contains(secondTag));
     }
+
     @Test
     public void execute_tagLecture_success() throws CommandException {
         Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
@@ -255,13 +288,14 @@ public class TagCommandTest {
         assertTrue(updatedTagSet.contains(firstTag));
         assertTrue(updatedTagSet.contains(secondTag));
     }
+
     @Test
     public void execute_tagVideo_success() throws CommandException {
         Module testModule = new ModuleBuilder(TypicalModules.CS2040S).build();
         Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
         Video testVideo = new VideoBuilder(TypicalVideos.INTRO_VIDEO).build();
 
-        ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
+        ModelStubAcceptingTaggedVideo moduleStub = new ModelStubAcceptingTaggedVideo(testVideo);
 
         Tag firstTag = new Tag(VALID_TAG_1);
         Tag secondTag = new Tag(VALID_TAG_2);
@@ -271,11 +305,12 @@ public class TagCommandTest {
         VideoName videoName = testVideo.getName();
         TagCommand tagCommand = new TagCommand(tagSet, moduleCode, lectureName, videoName);
 
+
         CommandResult commandResult = tagCommand.execute(moduleStub);
         assertEquals(String.format(TagCommand.MESSAGE_SUCCESS, videoName),
                 commandResult.getFeedbackToUser());
 
-        Set<Tag> updatedTagSet = moduleStub.getModule(moduleCode).getLecture(lectureName).getVideo(videoName).getTags();
+        Set<Tag> updatedTagSet = moduleStub.getVideo(videoName).getTags();
         assertTrue(updatedTagSet.contains(firstTag));
         assertTrue(updatedTagSet.contains(secondTag));
     }

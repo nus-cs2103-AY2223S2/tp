@@ -77,14 +77,47 @@ public class UntagCommandTest {
         public void setLecture(ReadOnlyModule module, ReadOnlyLecture target, Lecture editedLecture) {
             this.module.setLecture(target, editedLecture);
         }
+    }
+
+    private class ModelStubAcceptingUntaggedVideo extends ModelStub {
+        private Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
+        private Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        private Video video;
+
+        public ModelStubAcceptingUntaggedVideo(Video video) {
+            this.video = video;
+        }
 
         @Override
-        public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
-            ReadOnlyLecture lec = this.module.getLecture(lecture.getName());
-            Lecture lectureToSet = ((Lecture) lec);
-            lectureToSet.setVideo(target, editedVideo);
+        public boolean hasModule(ModuleCode moduleCode) {
+            return true;
+        }
+
+        @Override
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+            return true;
+        }
+
+        @Override
+        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+            return true;
+        }
+
+        @Override
+        public void setVideo(ReadOnlyLecture targetLecture, Video taggingVideo, Video taggedVideo) {
+            this.video = taggedVideo;
+        }
+
+        @Override
+        public ReadOnlyModule getModule(ModuleCode moduleCode) {
+            return this.module;
+        }
+
+        public Video getVideo(VideoName untaggedVideo) {
+            return this.video;
         }
     }
+
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
@@ -266,7 +299,7 @@ public class UntagCommandTest {
         Lecture testLecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
         Video testVideo = new VideoBuilder(TypicalVideos.INTRO_VIDEO).build();
 
-        ModelStubWithModule moduleStub = new ModelStubWithModule(testModule);
+        ModelStubAcceptingUntaggedVideo moduleStub = new ModelStubAcceptingUntaggedVideo(testVideo);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.INTRO_VIDEO));
         VideoName videoName = testVideo.getName();
         LectureName lectureName = testLecture.getName();
@@ -276,7 +309,8 @@ public class UntagCommandTest {
         CommandResult commandResult = untagCommand.execute(moduleStub);
         assertEquals(String.format(UntagCommand.MESSAGE_SUCCESS, videoName),
                 commandResult.getFeedbackToUser());
-        Set<Tag> updatedTagSet = moduleStub.getModule(moduleCode).getLecture(lectureName).getVideo(videoName).getTags();
+
+        Set<Tag> updatedTagSet = moduleStub.getVideo(videoName).getTags();
         assertFalse(updatedTagSet.contains(TypicalTags.CS2040S_1));
         assertFalse(updatedTagSet.contains(TypicalTags.CS2040S_2));
     }
