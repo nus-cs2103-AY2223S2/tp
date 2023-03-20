@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.job.Address;
+import seedu.address.model.job.Company;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
@@ -13,8 +13,8 @@ import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
 import seedu.address.model.job.Website;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.tag.Tag;
 
 /**
  * A utility class to help with building Role objects.
@@ -34,7 +34,7 @@ public class RoleBuilder {
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Company company;
     private JobDescription jd;
     private Set<Tag> tags;
     private Salary salary;
@@ -49,7 +49,7 @@ public class RoleBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        company = new Company(DEFAULT_ADDRESS);
         jd = new JobDescription(DEFAULT_JOBDESCRIPTION);
         tags = new HashSet<>();
         salary = new Salary(DEFAULT_SALARY);
@@ -65,7 +65,7 @@ public class RoleBuilder {
         name = roleToCopy.getName();
         phone = roleToCopy.getPhone();
         email = roleToCopy.getEmail();
-        address = roleToCopy.getAddress();
+        company = roleToCopy.getCompany();
         jd = roleToCopy.getJobDescription();
         salary = roleToCopy.getSalary();
         deadline = roleToCopy.getDeadline();
@@ -91,10 +91,10 @@ public class RoleBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Role} that we are building.
+     * Sets the {@code Company} of the {@code Role} that we are building.
      */
     public RoleBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.company = new Company(address);
         return this;
     }
 
@@ -156,7 +156,7 @@ public class RoleBuilder {
 
 
     public Role build() {
-        return new Role(name, phone, email, address, jd, tags, website, salary, deadline, experience);
+        return new Role(name, phone, email, company, jd, tags, website, salary, deadline, experience);
     }
 
 }

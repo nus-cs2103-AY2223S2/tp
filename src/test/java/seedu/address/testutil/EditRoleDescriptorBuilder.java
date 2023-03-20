@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
-import seedu.address.model.job.Address;
+import seedu.address.model.job.Company;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
@@ -15,7 +15,7 @@ import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
 import seedu.address.model.job.Website;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 
 /**
  * A utility class to help with building EditRoleDescriptor objects.
@@ -40,7 +40,7 @@ public class EditRoleDescriptorBuilder {
         descriptor.setName(role.getName());
         descriptor.setPhone(role.getPhone());
         descriptor.setEmail(role.getEmail());
-        descriptor.setAddress(role.getAddress());
+        descriptor.setCompany(role.getCompany());
         descriptor.setJobDescription(role.getJobDescription());
         //descriptor.setWebsite(role.getWebsite());
         descriptor.setTags(role.getTags());
@@ -74,10 +74,10 @@ public class EditRoleDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditRoleDescriptor} that we are building.
+     * Sets the {@code Company} of the {@code EditRoleDescriptor} that we are building.
      */
-    public EditRoleDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditRoleDescriptorBuilder withCompany(String company) {
+        descriptor.setCompany(new Company(company));
         return this;
     }
 

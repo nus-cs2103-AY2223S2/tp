@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -24,7 +24,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.job.Address;
+import seedu.address.model.job.Company;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
@@ -34,11 +34,11 @@ import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
 import seedu.address.model.job.Website;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 
 
 /**
- * Edits the details of an existing role in the address book.
+ * Edits the details of an existing role in the company book.
  */
 public class EditCommand extends Command {
 
@@ -51,7 +51,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ROLE + "NAME] "
             + "[" + PREFIX_CONTACT + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_COMPANY + "ADDRESS] "
             + "[" + PREFIX_JOBDESCRIPTION + "JOBDESCRIPTION] "
             + "[" + PREFIX_SALARY + "SALARY] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
@@ -68,7 +68,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Role: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This role already exists in the company book.";
 
     private final Index index;
     private final EditRoleDescriptor editRoleDescriptor;
@@ -117,13 +117,13 @@ public class EditCommand extends Command {
         Name updatedName = editRoleDescriptor.getName().orElse(roleToEdit.getName());
         Phone updatedPhone = editRoleDescriptor.getPhone().orElse(roleToEdit.getPhone());
         Email updatedEmail = editRoleDescriptor.getEmail().orElse(roleToEdit.getEmail());
-        Address updatedAddress = editRoleDescriptor.getAddress().orElse(roleToEdit.getAddress());
+        Company updatedCompany = editRoleDescriptor.getCompany().orElse(roleToEdit.getCompany());
         JobDescription updatedJd = editRoleDescriptor.getJobDescription().orElse(roleToEdit.getJobDescription());
         Set<Tag> updatedTags = editRoleDescriptor.getTags().orElse(roleToEdit.getTags());
         Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
         Deadline updatedDeadline = editRoleDescriptor.getDeadline().orElse(roleToEdit.getDeadline());
         Experience updatedExperience = editRoleDescriptor.getExperience().orElse(roleToEdit.getExperience());
-        return new Role(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedJd, updatedTags, updatedWebsite,
+        return new Role(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJd, updatedTags, updatedWebsite,
                 updatedSalary, updatedDeadline, updatedExperience);
     }
 
@@ -153,7 +153,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Company company;
         private JobDescription jd;
         private Set<Tag> tags;
         private Website website;
@@ -173,7 +173,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setCompany(toCopy.company);
             setJobDescription(toCopy.jd);
             setTags(toCopy.tags);
             setWebsite(toCopy.website);
@@ -186,7 +186,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, website,
+            return CollectionUtil.isAnyNonNull(name, phone, email, company, tags, website,
                     salary, deadline, experience);
         }
 
@@ -214,12 +214,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setCompany(Company company) {
+            this.company = company;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Company> getCompany() {
+            return Optional.ofNullable(company);
         }
 
         public void setJobDescription(JobDescription jd) {
@@ -297,7 +297,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getCompany().equals(e.getCompany())
                     && getTags().equals(e.getTags())
                     && getWebsite().equals(e.getWebsite())
                     && getJobDescription().equals(e.getJobDescription())

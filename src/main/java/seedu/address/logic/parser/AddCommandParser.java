@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.exceptions.exceptions.ParseException;
-import seedu.address.model.job.Address;
+import seedu.address.model.job.Company;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
@@ -27,7 +27,7 @@ import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
 import seedu.address.model.job.Website;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 
 
 /**
@@ -45,10 +45,10 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ROLE, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_JOBDESCRIPTION,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_WEBSITE, PREFIX_SALARY, PREFIX_DEADLINE, PREFIX_EXPERIENCE);
+                        PREFIX_COMPANY, PREFIX_TAG, PREFIX_WEBSITE, PREFIX_SALARY, PREFIX_DEADLINE, PREFIX_EXPERIENCE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROLE, PREFIX_CONTACT,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_WEBSITE,
+                PREFIX_EMAIL, PREFIX_COMPANY, PREFIX_WEBSITE,
                 PREFIX_JOBDESCRIPTION, PREFIX_SALARY, PREFIX_DEADLINE,
                 PREFIX_EXPERIENCE) || !argMultimap.getPreamble().isEmpty()) {
 
@@ -58,14 +58,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ROLE).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CONTACT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Company company = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_COMPANY).get());
         JobDescription jd = ParserUtil.parseJobDescription(argMultimap.getValue(PREFIX_JOBDESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Website website = ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get());
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Deadline deadline = ParserUtil.parseDateline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Experience experience = ParserUtil.parseExperience(argMultimap.getValue(PREFIX_EXPERIENCE).get());
-        Role role = new Role(name, phone, email, address, jd, tagList, website, salary, deadline, experience);
+        Role role = new Role(name, phone, email, company, jd, tagList, website, salary, deadline, experience);
 
         return new AddCommand(role);
     }

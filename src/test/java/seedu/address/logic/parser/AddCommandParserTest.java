@@ -47,14 +47,14 @@ import static seedu.address.testutil.TypicalRoles.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.job.Address;
+import seedu.address.model.job.Company;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
 import seedu.address.model.job.JobDescription;
 import seedu.address.model.job.Name;
 import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 import seedu.address.testutil.RoleBuilder;
 
 public class AddCommandParserTest {
@@ -178,7 +178,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + JOBDESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + WEBSITE + SALARY_DESC_BOB
                         + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
-                Address.MESSAGE_CONSTRAINTS);
+                Company.MESSAGE_CONSTRAINTS);
 
         // invalid job description
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

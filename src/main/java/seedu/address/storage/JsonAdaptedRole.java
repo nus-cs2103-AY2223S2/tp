@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.job.Address;
+import seedu.address.model.job.Company;
 import seedu.address.model.job.Deadline;
 import seedu.address.model.job.Email;
 import seedu.address.model.job.Experience;
@@ -20,7 +20,7 @@ import seedu.address.model.job.Phone;
 import seedu.address.model.job.Role;
 import seedu.address.model.job.Salary;
 import seedu.address.model.job.Website;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Role}.
@@ -32,7 +32,7 @@ class JsonAdaptedRole {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String company;
     private final String jobDescription;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String salary;
@@ -46,7 +46,7 @@ class JsonAdaptedRole {
     @JsonCreator
 
     public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                @JsonProperty("email") String email, @JsonProperty("address") String address,
+                @JsonProperty("email") String email, @JsonProperty("address") String company,
                 @JsonProperty("JobDescription") String jd, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                 @JsonProperty("website") String website,
                 @JsonProperty("salary") String salary, @JsonProperty("deadline") String deadline,
@@ -55,7 +55,7 @@ class JsonAdaptedRole {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.company = company;
         this.jobDescription = jd;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -73,7 +73,7 @@ class JsonAdaptedRole {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        company = source.getCompany().value;
         jobDescription = source.getJobDescription().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -119,13 +119,13 @@ class JsonAdaptedRole {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Company.isValidCompany(company)) {
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Company modelCompany = new Company(company);
 
         if (jobDescription == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -173,7 +173,7 @@ class JsonAdaptedRole {
         }
         final Experience modelExperience = new Experience(experience);
 
-        return new Role(modelName, modelPhone, modelEmail, modelAddress, modelJobDescription, modelTags,
+        return new Role(modelName, modelPhone, modelEmail, modelCompany, modelJobDescription, modelTags,
                 modelWebsite, modelSalary, modelDeadline, modelExperience);
     }
 

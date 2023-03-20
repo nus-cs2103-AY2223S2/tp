@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -37,7 +36,7 @@ public class RoleCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label company;
     @FXML
     private Label email;
     @FXML
@@ -62,7 +61,7 @@ public class RoleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(role.getName().fullName);
         phone.setText(role.getPhone().value);
-        address.setText(role.getAddress().value);
+        company.setText(role.getCompany().value);
         email.setText(role.getEmail().value);
         role.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
