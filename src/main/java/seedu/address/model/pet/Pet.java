@@ -2,6 +2,7 @@ package seedu.address.model.pet;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,17 +25,19 @@ public class Pet {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final LocalDateTime timestamp;
 
     /**
      * Every field must be present and not null.
      */
-    public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address, LocalDateTime timestamp, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.timestamp = timestamp;
         this.tags.addAll(tags);
     }
     public OwnerName getOwnerName() {
@@ -55,6 +58,9 @@ public class Pet {
 
     public Address getAddress() {
         return address;
+    }
+    public LocalDateTime getTimeStamp() {
+        return timestamp;
     }
 
     /**
@@ -127,5 +133,6 @@ public class Pet {
         }
         return builder.toString();
     }
+
 
 }

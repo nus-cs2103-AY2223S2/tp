@@ -63,7 +63,7 @@ public class TypicalPets {
     private TypicalPets() {} // prevents instantiation
 
     /**
-     * Returns an {@code PetPal} with all the typical persons.
+     * Returns an {@code PetPal} with all the typical pets.
      */
     public static PetPal getTypicalPetPal() {
         PetPal pp = new PetPal();

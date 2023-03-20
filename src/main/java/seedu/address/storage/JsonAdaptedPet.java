@@ -1,5 +1,10 @@
 package seedu.address.storage;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -32,17 +37,22 @@ class JsonAdaptedPet {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
+    private String timestamp;
+
     /**
      * Constructs a {@code JsonAdaptedPet} with the given pet details.
      */
     @JsonCreator
     public JsonAdaptedPet(@JsonProperty("ownerName") String ownerName, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("address") String address, @JsonProperty("timestamp") String timestamp,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.timestamp = timestamp;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -58,6 +68,8 @@ class JsonAdaptedPet {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        timestamp = source.getTimeStamp().toString();
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -113,8 +125,15 @@ class JsonAdaptedPet {
         }
         final Address modelAddress = new Address(address);
 
+        if (timestamp == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
+        }
+        Instant i = Instant.parse(timestamp + "Z");
+        final LocalDateTime modelTimeStamp = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
+
         final Set<Tag> modelTags = new HashSet<>(petTags);
-        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTimeStamp, modelTags);
     }
 
 }
