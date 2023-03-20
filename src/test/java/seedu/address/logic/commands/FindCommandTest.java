@@ -4,7 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_LISTINGS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalListings.*;
+import static seedu.address.testutil.TypicalListings.CHICKEN_RICE_UNCLE;
+import static seedu.address.testutil.TypicalListings.GAME_DEVELOPER;
+import static seedu.address.testutil.TypicalListings.MEDIA_DEVELOPER;
+import static seedu.address.testutil.TypicalListings.SOFTWARE_DEVELOPER;
+import static seedu.address.testutil.TypicalListings.TOILET_CLEANER;
+import static seedu.address.testutil.TypicalListings.getTypicalListingBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -87,7 +92,8 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredListingList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(MEDIA_DEVELOPER, GAME_DEVELOPER, SOFTWARE_DEVELOPER), model.getFilteredListingList());
+        assertEquals(Arrays.asList(MEDIA_DEVELOPER, GAME_DEVELOPER,
+                SOFTWARE_DEVELOPER), model.getFilteredListingList());
     }
 
     @Test
