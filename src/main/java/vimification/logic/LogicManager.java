@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import vimification.commons.core.GuiSettings;
 import vimification.commons.core.LogsCenter;
 import vimification.logic.commands.CreateCommand;
@@ -29,6 +31,7 @@ public class LogicManager implements Logic {
 
     private final LogicTaskList taskList;
     private final Storage storage;
+    private final ObservableList<Task> viewTaskList;
     // TODO : FIX THIS
     // private final AddressBookParser addressBookParser;
 
@@ -38,7 +41,7 @@ public class LogicManager implements Logic {
     public LogicManager(LogicTaskList taskList, Storage storage) {
         this.taskList = taskList;
         this.storage = storage;
-        // addressBookParser = new AddressBookParser();
+        this.viewTaskList = FXCollections.observableList(taskList.getInternalList());
     }
 
     @Override
@@ -66,10 +69,9 @@ public class LogicManager implements Logic {
     // return model.getTaskList();
     // }
 
-    // @Override
-    // public ObservableList<Task> getFilteredTaskList() {
-    // return model.getFilteredTaskList();
-    // }
+    public ObservableList<Task> getFilteredTaskList() {
+        return viewTaskList;
+    }
 
     // @Override
     // public Path getTaskListFilePath() {

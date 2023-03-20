@@ -28,7 +28,7 @@ public class JsonLogicTaskListStorage implements LogicTaskListStorage {
     }
 
     @Override
-    public Path getFilePath() {
+    public Path getLogicTaskListFilePath() {
         return filePath;
     }
 
@@ -62,8 +62,8 @@ public class JsonLogicTaskListStorage implements LogicTaskListStorage {
     }
 
     @Override
-    public void saveTaskList(LogicTaskList taskList) throws IOException {
-        saveTaskList(taskList, filePath);
+    public void saveLogicTaskList(LogicTaskList taskList) throws IOException {
+        saveLogicTaskList(taskList, filePath);
     }
 
     /**
@@ -71,7 +71,8 @@ public class JsonLogicTaskListStorage implements LogicTaskListStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTaskList(LogicTaskList taskList, Path filePath) throws IOException {
+    @Override
+    public void saveLogicTaskList(LogicTaskList taskList, Path filePath) throws IOException {
         requireNonNull(taskList);
         requireNonNull(filePath);
 

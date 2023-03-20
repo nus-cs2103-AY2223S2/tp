@@ -15,7 +15,7 @@ public interface LogicTaskListStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getFilePath();
+    Path getLogicTaskListFilePath();
 
     /**
      * Returns TaskPlanner data as a {@link ReadOnlyTaskPlanner}. Returns {@code Optional.empty()}

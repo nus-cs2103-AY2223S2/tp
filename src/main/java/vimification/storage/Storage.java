@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import vimification.commons.exceptions.DataConversionException;
-import vimification.model.ReadOnlyTaskPlanner;
+import vimification.model.LogicTaskList;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 
@@ -21,11 +21,11 @@ public interface Storage extends LogicTaskListStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getTaskListFilePath();
+    Path getLogicTaskListFilePath();
 
     @Override
-    Optional<ReadOnlyTaskPlanner> readTaskList() throws DataConversionException, IOException;
+    Optional<LogicTaskList> readLogicTaskList() throws DataConversionException, IOException;
 
     @Override
-    void saveTaskList(ReadOnlyTaskPlanner taskList) throws IOException;
+    void saveLogicTaskList(LogicTaskList taskList) throws IOException;
 }

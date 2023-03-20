@@ -30,6 +30,10 @@ public class LogicTaskList {
         this(new ArrayList<>(Arrays.asList(tasks)));
     }
 
+    public List<Task> getInternalList() {
+        return tasks;
+    }
+
     public int size() {
         return tasks.size();
     }

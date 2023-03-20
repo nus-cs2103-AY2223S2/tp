@@ -31,7 +31,7 @@ public class TaskDetailPanel extends UiPart<VBox> {
     }
 
     public void setup() {
-        descriptionText.setText(task.getDescription().description);
+        descriptionText.setText(task.getDescription());
         typeText.setText("Todo");
     }
 

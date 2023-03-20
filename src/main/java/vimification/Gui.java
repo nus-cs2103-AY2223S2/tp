@@ -15,9 +15,7 @@ import vimification.commons.util.ConfigUtil;
 import vimification.commons.util.StringUtil;
 import vimification.logic.Logic;
 import vimification.logic.LogicManager;
-import vimification.model.Model;
-import vimification.model.ModelManager;
-import vimification.model.ReadOnlyTaskPlanner;
+import vimification.model.LogicTaskList;
 import vimification.model.ReadOnlyUserPrefs;
 import vimification.model.UserPrefs;
 import vimification.model.util.SampleDataUtil;
@@ -35,7 +33,6 @@ public class Gui extends Application {
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
-    protected Model model;
     protected Config config;
 
 
@@ -61,8 +58,7 @@ public class Gui extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(initLogicTaskList(storage, userPrefs), storage);
         ui = new UiManager(logic);
     }
 
@@ -78,27 +74,25 @@ public class Gui extends Application {
      * is not found, or an empty address book will be used instead if errors occur when reading
      * {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyTaskPlanner> addressBookOptional;
-        ReadOnlyTaskPlanner initialData;
+    private LogicTaskList initLogicTaskList(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<LogicTaskList> addressBookOptional;
+        LogicTaskList initialData;
         try {
-            addressBookOptional = storage.readTaskList();
+            addressBookOptional = storage.readLogicTaskList();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData =
-                    addressBookOptional.orElseGet(SampleDataUtil::getSampleReadOnlyTaskPlanner);
+            initialData = addressBookOptional.orElseGet(LogicTaskList::new);
         } catch (DataConversionException e) {
             logger.warning(
                     "Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new TaskPlanner();
+            initialData = new LogicTaskList();
         } catch (IOException e) {
             logger.warning(
                     "Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new TaskPlanner();
+            initialData = new LogicTaskList();
         }
-
-        return new ModelManager(initialData, userPrefs);
+        return initialData;
     }
 
     private void initLogging(Config config) {

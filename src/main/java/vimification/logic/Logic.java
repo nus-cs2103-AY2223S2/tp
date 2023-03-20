@@ -1,13 +1,9 @@
 package vimification.logic;
 
-import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
-import vimification.commons.core.GuiSettings;
 import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.parser.ParseException;
-import vimification.model.ReadOnlyTaskPlanner;
 import vimification.model.task.Task;
 
 /**
@@ -32,7 +28,7 @@ public interface Logic {
     // ReadOnlyTaskPlanner getTaskList();
 
     // /** Returns an unmodifiable view of the filtered list of persons */
-    // ObservableList<Task> getFilteredTaskList();
+    ObservableList<Task> getFilteredTaskList();
 
     // /**
     // * Returns the user prefs' address book file path.

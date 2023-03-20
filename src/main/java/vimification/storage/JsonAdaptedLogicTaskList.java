@@ -1,6 +1,5 @@
 package vimification.storage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.LogicTaskList;
-import vimification.model.task.Task;
-import vimification.model.task.Todo;
 import vimification.model.task.Deadline;
 import vimification.model.task.Event;
+import vimification.model.task.Task;
+import vimification.model.task.Todo;
 
 /**
  * An Immutable TaskPlanner that is serializable to JSON format.
