@@ -4,14 +4,14 @@
     "role": "Software Engineer",
     "status": "applied",
     "date": "2023-02-01",
-    "comment": [ "My dream company" ],
+    "comment": "My dream company",
     "tagged": [ "Go" ]
   }, {
     "companyName": "Google",
     "role": "Software Engineer",
     "status": "applied",
     "date": "2023-02-01",
-    "comment": [ "Not my dream company"],
+    "comment": "Not my dream company",
     "tagged": [ "Java" ]
   } ]
 }

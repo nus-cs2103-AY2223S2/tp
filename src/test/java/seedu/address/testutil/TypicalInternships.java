@@ -34,14 +34,17 @@ public class TypicalInternships {
     public static final Internship FOODPANDA = new InternshipBuilder().withCompanyName("Food Panda")
             .withRole("Back end Developer")
             .withStatus("assessment")
+            .withComment("I love Food Panda!")
             .withDate("2023-02-02").build();
     public static final Internship GOLDMAN = new InternshipBuilder().withCompanyName("Goldman")
             .withRole("Cyber Security Analyst")
             .withStatus("offered")
+            .withComment("I love Goldman!")
             .withDate("2023-02-03").build();
     public static final Internship GRAB = new InternshipBuilder().withCompanyName("Grab")
             .withRole("Front end Engineer")
             .withStatus("rejected")
+            .withComment("I love Grab!")
             .withDate("2023-02-04").build();
     public static final Internship RIOTGAMES = new InternshipBuilder().withCompanyName("Riot Games")
             .withRole("Game Client Developer")
@@ -53,7 +56,9 @@ public class TypicalInternships {
     public static final Internship SAMSUNG = new InternshipBuilder().withCompanyName("Samsung")
             .withRole("Android Developer")
             .withStatus("applied")
-            .withDate("2023-02-06").build();
+            .withDate("2023-02-06")
+            .withComment("I love Samsung!").build();
+
     public static final Internship SUPERCELLGAMES = new InternshipBuilder().withCompanyName("Supercell Games")
             .withRole("Game Designer")
             .withStatus("new")
@@ -72,7 +77,7 @@ public class TypicalInternships {
             .withStatus("interview")
             .withDate("2023-02-09").build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Internship's details found in {@code CommandTestUtil}
     public static final Internship APPLE = new InternshipBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
             .withRole(VALID_ROLE_APPLE)
             .withStatus(VALID_STATUS_APPLE)

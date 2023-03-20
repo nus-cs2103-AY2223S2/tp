@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -34,6 +35,7 @@ public class InternshipUtil {
         sb.append(PREFIX_ROLE + internship.getRole().fullRole + " ");
         sb.append(PREFIX_STATUS + internship.getStatus().toString() + " ");
         sb.append(PREFIX_DATE + internship.getDate().fullDate + " ");
+        sb.append(PREFIX_COMMENT + internship.getComment().commentContent + " ");
         internship.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -50,6 +52,8 @@ public class InternshipUtil {
         descriptor.getRole().ifPresent(role -> sb.append(PREFIX_ROLE).append(role.fullRole).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.toString()).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.fullDate).append(" "));
+        descriptor.getComment().ifPresent(comment -> sb.append(PREFIX_COMMENT).append(comment.commentContent).
+                append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

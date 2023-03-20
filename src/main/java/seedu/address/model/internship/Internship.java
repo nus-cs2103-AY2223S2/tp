@@ -146,8 +146,6 @@ public class Internship {
 
 
 
-
-
         return otherInternship.getCompanyName().equals(getCompanyName())
                 && otherInternship.getRole().equals(getRole())
                 && otherInternship.getStatus().equals(getStatus())

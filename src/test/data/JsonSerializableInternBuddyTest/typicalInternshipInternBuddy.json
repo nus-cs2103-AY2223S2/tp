@@ -5,41 +5,45 @@
       "role" : "Cloud Architect",
       "status" : "assessment",
       "date" : "2023-02-01",
-      "comment": "I love Amazon",
+      "comment": "I love Amazon!",
       "tagged" : [ "aws", "back" ]
   }, {
     "companyName" : "Food Panda",
     "role" : "Back end Developer",
     "status" : "assessment",
+    "comment": "I love Food Panda!",
     "date" : "2023-02-02"
   }, {
     "companyName" : "Goldman",
     "role" : "Cyber Security Analyst",
     "status" : "offered",
+    "comment": "I love Goldman!",
     "date" : "2023-02-03"
   }, {
     "companyName" : "Grab",
     "role" : "Front end Engineer",
     "status" : "rejected",
+    "comment": "I love Grab!",
     "date" : "2023-02-04"
   }, {
     "companyName" : "Riot Games",
     "role" : "Game Client Developer",
     "status" : "interview",
     "date" : "2023-02-05",
-    "comment": "I love Riot Games",
+    "comment": "I love Riot Games!",
     "tagged" : [ "game", "developer" ]
   }, {
     "companyName" : "Samsung",
     "role" : "Android Developer",
     "status" : "applied",
+    "comment": "I love Samsung!",
     "date" : "2023-02-06"
   }, {
     "companyName" : "Supercell Games",
     "role" : "Game Designer",
     "status" : "new",
     "date" : "2023-02-07",
-    "comment": "I love Supercell Games",
+    "comment": "I love Supercell Games!",
     "tagged" : [ "design", "game" ]
   } ]
 }
