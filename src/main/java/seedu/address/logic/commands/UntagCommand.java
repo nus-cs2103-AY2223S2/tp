@@ -185,7 +185,7 @@ public class UntagCommand extends Command {
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
 
         if (!model.hasVideo(targetLecture, this.videoName)) {
-            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_TAG_DOES_NOT_EXIST, this.videoName,
+            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST, this.videoName,
                     this.lectureName,
                     this.moduleCode));
         }
@@ -197,8 +197,8 @@ public class UntagCommand extends Command {
                 .filter(tag -> !currentTags.contains(tag)).map(tag -> tag.getTagName()).collect(Collectors.toList());
 
         if (listOfUnfoundTags.size() > 0) {
-            throw new CommandException(String.format(Messages.MESSAGE_MODULE_TAG_DOES_NOT_EXIST,
-                    String.join(", ", listOfUnfoundTags),
+            throw new CommandException(String.format(Messages.MESSAGE_VIDEO_TAG_DOES_NOT_EXIST,
+                    String.join(", ", listOfUnfoundTags), this.videoName, this.lectureName,
                     moduleCode));
         }
 
