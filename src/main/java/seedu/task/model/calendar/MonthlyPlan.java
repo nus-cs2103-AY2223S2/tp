@@ -16,8 +16,8 @@ import seedu.task.model.task.SimpleTaskList;
  * A 30-day overview of the work left to be done.
  */
 public class MonthlyPlan {
+    private static LocalDate today;
     private DailyPlan[] dailyPlans = new DailyPlan[30];
-    private LocalDate today;
 
     /**
      * Instantiates 30 days of daily plans starting from the date the command ran
@@ -40,6 +40,10 @@ public class MonthlyPlan {
     public MonthlyPlan(DailyPlan[] dp, LocalDate today) {
         this.dailyPlans = dp;
         this.today = today;
+    }
+
+    public static LocalDate lastGenerated() {
+        return today;
     }
 
     /**

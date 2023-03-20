@@ -14,15 +14,16 @@ import seedu.task.model.calendar.DailyPlan;
 import seedu.task.model.task.Task;
 
 /**
- * Version of {@link Task}.
+ * Jackson-friendly version of {@link DailyPlan}.
  */
 public class JsonAdaptedDailyPlan {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "DailyPlan's %s field is missing!";
+    public static final String NEGATIVE_FIELD_MESSAGE_FORMAT = "DailyPlan's %s field must be non-negative!";
     private final List<JsonAdaptedTask> task = new ArrayList<>();
     private long desiredWorkload;
     private long currentWorkload;
-    private LocalDate date;
+    private String date;
 
     /**
      * Constructs a {@code JsonAdaptedDailyPlan} with the given Daily Plan details.
@@ -31,15 +32,19 @@ public class JsonAdaptedDailyPlan {
     public JsonAdaptedDailyPlan(@JsonProperty("task") List<JsonAdaptedTask> task,
                                 @JsonProperty("desiredWorkload") Long desiredWorkload,
                                 @JsonProperty("currentWorkload") Long currentWorkload,
-                                @JsonProperty("date") LocalDate date) {
+                                @JsonProperty("date") String date) {
         this.task.addAll(task);
-        this.desiredWorkload = desiredWorkload;
-        this.currentWorkload = currentWorkload;
+        if (desiredWorkload != null) {
+            this.desiredWorkload = desiredWorkload;
+        }
+        if (currentWorkload != null) {
+            this.currentWorkload = currentWorkload;
+        }
         this.date = date;
     }
 
     /**
-     * Converts a given {@code DailyPlan} into this class to use
+     * Converts a given {@code DailyPlan} into this class for Jackson use
      */
     public JsonAdaptedDailyPlan(DailyPlan source) {
         task.addAll(source.getTasks().stream()
@@ -48,7 +53,7 @@ public class JsonAdaptedDailyPlan {
 
         desiredWorkload = source.getDesiredWorkload();
         currentWorkload = source.getCurrentWorkload();
-        date = source.getDate();
+        date = source.getDate().toString();
     }
 
     /**
@@ -63,19 +68,35 @@ public class JsonAdaptedDailyPlan {
             tasksList.add(t.toModelType());
         }
 
-        if (Objects.isNull(desiredWorkload)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Desired Workload"));
+        if (desiredWorkload < 0) {
+            throw new IllegalValueException(String.format(NEGATIVE_FIELD_MESSAGE_FORMAT, "Desired Workload"));
         }
 
-        if (Objects.isNull(currentWorkload)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Current Workload"));
+        if (currentWorkload < 0) {
+            throw new IllegalValueException(String.format(NEGATIVE_FIELD_MESSAGE_FORMAT, "Current Workload"));
         }
 
-        if (Objects.isNull(date)) {
+        if (Objects.isNull(date) || date == "") {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date"));
         }
 
-        return new DailyPlan(tasksList, desiredWorkload, currentWorkload, date);
+        LocalDate actualDate = LocalDate.parse(date);
+
+        return new DailyPlan(tasksList, desiredWorkload, currentWorkload, actualDate);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (!(other instanceof JsonAdaptedDailyPlan)) {
+            return false;
+        } else {
+            JsonAdaptedDailyPlan dp = (JsonAdaptedDailyPlan) other;
+            return dp.task.equals(this.task)
+                    && dp.desiredWorkload == this.desiredWorkload
+                    && dp.currentWorkload == this.currentWorkload
+                    && dp.date == this.date;
+        }
+    }
 }

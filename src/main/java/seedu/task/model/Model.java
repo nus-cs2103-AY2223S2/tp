@@ -1,11 +1,12 @@
 package seedu.task.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.task.commons.core.GuiSettings;
-import seedu.task.model.task.Date;
+import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.task.Task;
 
 /**
@@ -110,5 +111,5 @@ public interface Model {
      */
     ReadOnlyPlanner getPlanner();
 
-    void schedule(Date date);
+    void schedule(LocalDate date) throws CommandException;
 }

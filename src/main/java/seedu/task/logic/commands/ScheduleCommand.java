@@ -1,8 +1,9 @@
 package seedu.task.logic.commands;
 
+import java.time.LocalDate;
+
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
-import seedu.task.model.task.Date;
 
 /**
  * Gets schedule for a date specified by user (limited to 30 days from when schedule was created)
@@ -12,12 +13,13 @@ public class ScheduleCommand extends Command {
     public static final String COMMAND_WORD = "schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": returns a day's work plan.\n"
-            + "Example: " + COMMAND_WORD + " 2023-04-26 0000";
+            + "Example: " + COMMAND_WORD + " 2023-04-26";
 
     public static final String SCHEDULE_SUCCESS_MESSAGE = "Daily Plan Displayed";
-
-    private final Date date;
-    public ScheduleCommand(Date date) {
+    public static final String OUT_OF_RANGE_MESSAGE = "Date entered is outside of planner date range.\n"
+            + "Try re-planning or entering another date.";
+    private final LocalDate date;
+    public ScheduleCommand(LocalDate date) {
         this.date = date;
     }
 

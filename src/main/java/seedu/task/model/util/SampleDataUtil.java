@@ -56,8 +56,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Creates a 30-day sample daily plan
+     */
     public static DailyPlan[] getSampleDailyPlan() {
-        LocalDate startDate = LocalDate.parse("2023-04-26");
+        LocalDate startDate = LocalDate.now();
         DailyPlan[] dailyPlans = new DailyPlan[30];
         for (int i = 0; i < 30; i++) {
             dailyPlans[i] = new DailyPlan(5, startDate.plusDays(i));
@@ -65,6 +68,9 @@ public class SampleDataUtil {
         return dailyPlans;
     }
 
+    /**
+     * Stores generated daily plans in a Planner
+     */
     public static ReadOnlyPlanner getSamplePlanner() {
         Planner sample = new Planner();
         for (DailyPlan samplePlan : getSampleDailyPlan()) {

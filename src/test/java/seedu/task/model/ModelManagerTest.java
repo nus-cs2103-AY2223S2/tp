@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.task.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.task.testutil.Assert.assertThrows;
-import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalPlanner;
 import static seedu.task.testutil.TypicalTasks.ALICE;
 import static seedu.task.testutil.TypicalTasks.BENSON;
 
@@ -98,7 +98,7 @@ public class ModelManagerTest {
         TaskBook taskBook = new TaskBookBuilder().withTask(ALICE).withTask(BENSON).build();
         TaskBook differentTaskBook = new TaskBook();
         UserPrefs userPrefs = new UserPrefs();
-        Planner samePlanner = getTypicalDailyPlans();
+        Planner samePlanner = getTypicalPlanner();
 
         // same values -> returns true
         modelManager = new ModelManager(taskBook, userPrefs, samePlanner);

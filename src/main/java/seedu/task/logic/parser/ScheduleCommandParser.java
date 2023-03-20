@@ -2,9 +2,10 @@ package seedu.task.logic.parser;
 
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.time.LocalDate;
+
 import seedu.task.logic.commands.ScheduleCommand;
 import seedu.task.logic.parser.exceptions.ParseException;
-import seedu.task.model.task.Date;
 
 /**
  * Parses input arguments and creates a new ScheduleCommand object
@@ -18,7 +19,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
     @Override
     public ScheduleCommand parse(String args) throws ParseException {
         try {
-            Date date = ParserUtil.parseDate(args);
+            LocalDate date = ParserUtil.parseLocalDate(args);
             return new ScheduleCommand(date);
         } catch (ParseException pe) {
             throw new ParseException(

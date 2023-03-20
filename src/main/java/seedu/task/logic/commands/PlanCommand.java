@@ -1,5 +1,6 @@
 package seedu.task.logic.commands;
 
+import seedu.task.commons.core.Messages;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 
@@ -22,6 +23,9 @@ public class PlanCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (workload < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EFFORT);
+        }
         model.plan(workload);
         return new CommandResult(PLAN_SUCCESS_MESSAGE);
     }

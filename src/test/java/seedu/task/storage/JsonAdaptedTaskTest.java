@@ -55,7 +55,6 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTask task =
-
                 new JsonAdaptedTask(null, VALID_DESCRIPTION, VALID_TAGS,
                         EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
 

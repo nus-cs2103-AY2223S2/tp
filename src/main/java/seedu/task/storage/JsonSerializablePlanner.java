@@ -14,7 +14,7 @@ import seedu.task.model.ReadOnlyPlanner;
 import seedu.task.model.calendar.DailyPlan;
 
 /**
- * An immutable Planner that is serializable to JSON format.
+ * An immutable planner that is serializable to JSON format.
  */
 @JsonRootName(value = "planner")
 public class JsonSerializablePlanner {
@@ -24,7 +24,7 @@ public class JsonSerializablePlanner {
      * Constructs a {@code JsonSerializablePlanner} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializablePlanner(@JsonProperty("dailyplan") List<JsonAdaptedDailyPlan> plans) {
+    public JsonSerializablePlanner(@JsonProperty("plans") List<JsonAdaptedDailyPlan> plans) {
         this.plans.addAll(plans);
     }
 
@@ -38,7 +38,7 @@ public class JsonSerializablePlanner {
     }
 
     /**
-     * Converts this task book into the model's {@code TaskBook} object.
+     * Converts this planner into the model's {@code Planner} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

@@ -79,6 +79,8 @@ public class StorageManager implements Storage {
         taskBookStorage.saveTaskBook(taskBook, filePath);
     }
 
+    // ================ Planner methods ==============================
+
     @Override
     public Path getPlannerFilePath() {
         return plannerStorage.getPlannerFilePath();
@@ -86,12 +88,13 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyPlanner> readPlanner() throws DataConversionException, IOException {
-        return Optional.empty();
+        return readPlanner(plannerStorage.getPlannerFilePath());
     }
 
     @Override
     public Optional<ReadOnlyPlanner> readPlanner(Path filePath) throws DataConversionException, IOException {
-        return Optional.empty();
+        logger.fine("Attempting to read data from file: " + filePath);
+        return plannerStorage.readPlanner(filePath);
     }
 
     @Override

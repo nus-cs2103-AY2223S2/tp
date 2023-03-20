@@ -42,11 +42,13 @@ public class TypicalDailyPlans {
     public static final DailyPlan MAY23 = new DailyPlan(5, TypicalLocalDates.MAY23);
     public static final DailyPlan MAY24 = new DailyPlan(5, TypicalLocalDates.MAY24);
     public static final DailyPlan MAY25 = new DailyPlan(5, TypicalLocalDates.MAY25);
+    public static final DailyPlan JULY18 = new DailyPlan(21, TypicalLocalDates.JULY18);
+    public static final DailyPlan AUG22 = new DailyPlan(21, TypicalLocalDates.AUGUST22);
 
     /**
      * Returns an {@code Planner} with all the typical DailyPlans.
      */
-    public static Planner getTypicalDailyPlans() {
+    public static Planner getTypicalPlanner() {
         Planner p = new Planner();
         for (DailyPlan dp : getDailyPlans()) {
             p.addDailyPlan(dp);
@@ -59,4 +61,5 @@ public class TypicalDailyPlans {
                 MAY5, MAY6, MAY7, MAY8, MAY9, MAY10, MAY11, MAY12, MAY13, MAY14, MAY15, MAY16, MAY17, MAY18, MAY19,
                 MAY20, MAY21, MAY22, MAY23, MAY24, MAY25)));
     }
+
 }

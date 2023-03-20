@@ -10,7 +10,7 @@ import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.task.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.task.logic.commands.CommandTestUtil.showTaskAtIndex;
-import static seedu.task.testutil.TypicalDailyPlans.getTypicalDailyPlans;
+import static seedu.task.testutil.TypicalDailyPlans.getTypicalPlanner;
 import static seedu.task.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.task.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.task.testutil.TypicalTasks.getTypicalTaskBook;
@@ -34,7 +34,7 @@ import seedu.task.testutil.SimpleTaskBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalDailyPlans());
+    private Model model = new ModelManager(getTypicalTaskBook(), new UserPrefs(), getTypicalPlanner());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {

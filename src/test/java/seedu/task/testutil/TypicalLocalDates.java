@@ -41,4 +41,6 @@ public class TypicalLocalDates {
     public static final LocalDate MAY23 = LocalDate.parse("2023-05-23");
     public static final LocalDate MAY24 = LocalDate.parse("2023-05-24");
     public static final LocalDate MAY25 = LocalDate.parse("2023-05-25");
+    public static final LocalDate JULY18 = LocalDate.parse("2023-07-18");
+    public static final LocalDate AUGUST22 = LocalDate.parse("2023-08-22");
 }

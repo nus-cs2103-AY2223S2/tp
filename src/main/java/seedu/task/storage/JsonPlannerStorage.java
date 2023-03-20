@@ -38,14 +38,14 @@ public class JsonPlannerStorage implements PlannerStorage {
     public Optional<ReadOnlyPlanner> readPlanner(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializablePlanner> jsonTaskBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializablePlanner> jsonPlanner = JsonUtil.readJsonFile(
                 filePath, JsonSerializablePlanner.class);
-        if (!jsonTaskBook.isPresent()) {
+        if (!jsonPlanner.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonTaskBook.get().toModelType());
+            return Optional.of(jsonPlanner.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

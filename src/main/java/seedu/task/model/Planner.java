@@ -2,11 +2,11 @@ package seedu.task.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import seedu.task.model.calendar.DailyPlan;
-import seedu.task.model.task.Date;
 
 /**
  * Wraps all data at the planner level
@@ -53,14 +53,32 @@ public class Planner implements ReadOnlyPlanner {
         return plansList;
     }
 
-    public DailyPlan getDailyPlanOn(Date date) {
-        for (int i = 0; i < 30; i++) {
-            if (plansList.get(i).getDate().isEqual(date.getDate())) {
+    public DailyPlan getDailyPlanOn(LocalDate date) {
+        int n = plansList.size();
+
+        for (int i = 0; i < n; i++) {
+            if (plansList.get(i).getDate().isEqual(date)) {
                 return plansList.get(i);
             }
         }
+
         return null;
     }
 
-    //TODO: implement methods for toString, equals, hashCode
+    @Override
+    public String toString() {
+        return plansList.size() + " daily plans";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Planner
+                && plansList.equals(((Planner) other).plansList));
+    }
+
+    @Override
+    public int hashCode() {
+        return plansList.hashCode();
+    }
 }

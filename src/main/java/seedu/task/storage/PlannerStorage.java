@@ -6,9 +6,10 @@ import java.util.Optional;
 
 import seedu.task.commons.exceptions.DataConversionException;
 import seedu.task.model.ReadOnlyPlanner;
+import seedu.task.model.calendar.DailyPlan;
 
 /**
- * Represents a storage for {@link seedu.task.model.calendar.DailyPlan}.
+ * Represents a storage for {@link DailyPlan}.
  */
 public interface PlannerStorage {
     /**
@@ -17,7 +18,7 @@ public interface PlannerStorage {
     Path getPlannerFilePath();
 
     /**
-     * Returns TaskBook data as a {@link ReadOnlyPlanner}.
+     * Returns Planner data as a {@link ReadOnlyPlanner}.
      * Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -37,7 +38,7 @@ public interface PlannerStorage {
     void savePlanner(ReadOnlyPlanner plans) throws IOException;
 
     /**
-     * TODO: edit method descriptors (ref TaskBookStorage)
+     * @see #savePlanner(ReadOnlyPlanner)
      */
     void savePlanner(ReadOnlyPlanner plans, Path filePath) throws IOException;
 }

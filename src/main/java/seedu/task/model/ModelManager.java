@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -12,8 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.task.commons.core.GuiSettings;
 import seedu.task.commons.core.LogsCenter;
+import seedu.task.logic.commands.ScheduleCommand;
+import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.calendar.DailyPlan;
-import seedu.task.model.task.Date;
 import seedu.task.model.task.IsSameTaskPredicate;
 import seedu.task.model.task.Task;
 
@@ -22,7 +24,6 @@ import seedu.task.model.task.Task;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final TaskBook taskBook;
     private final UserPrefs userPrefs;
     private final Planner planner;
@@ -140,10 +141,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void schedule(Date date) {
+    public void schedule(LocalDate date) throws CommandException {
         DailyPlan plans = planner.getDailyPlanOn(date);
         if (plans == null) {
-            return;
+            throw new CommandException(ScheduleCommand.OUT_OF_RANGE_MESSAGE);
         }
         List<Task> tasksToBeDisplayed = plans.getTasks();
         updateFilteredTaskList(new IsSameTaskPredicate(tasksToBeDisplayed));
