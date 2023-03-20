@@ -4,7 +4,10 @@ import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
@@ -19,12 +22,14 @@ import arb.model.project.Project;
  * Unmarks a project identified using its displayed index from the address book.
  */
 public class UnmarkProjectCommand extends Command {
-    public static final String COMMAND_WORD = "unmark";
+    private static final String MAIN_COMMAND_WORD = "unmark";
+    private static final String ALIAS_COMMAND_WORD = "up";
+    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD
             + ": Unmarks the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + MAIN_COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNMARK_PROJECT_SUCCESS = "Unmarked Project: %1$s";
 
@@ -61,5 +66,9 @@ public class UnmarkProjectCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof UnmarkProjectCommand // instanceof handles nulls
                 && targetIndex.equals(((UnmarkProjectCommand) other).targetIndex)); // state check
+    }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
     }
 }

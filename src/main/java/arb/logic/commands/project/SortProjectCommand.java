@@ -3,6 +3,10 @@ package arb.logic.commands.project;
 import static arb.logic.parser.CliSyntax.PREFIX_OPTION;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import arb.commons.core.sorting.ProjectSortingOption;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
@@ -14,13 +18,15 @@ import arb.model.Model;
  */
 public class SortProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "sort-project";
+    private static final String MAIN_COMMAND_WORD = "sort-project";
+    private static final String ALIAS_COMMAND_WORD = "sp";
+    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the project list. "
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Sorts the project list. "
             + "Parameters: "
             + PREFIX_OPTION + "OPTION\n"
             + "The options are \'name\' and \'deadline\'\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + MAIN_COMMAND_WORD + " "
             + PREFIX_OPTION + "name";
 
     private final ProjectSortingOption sorter;
@@ -44,5 +50,9 @@ public class SortProjectCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof SortProjectCommand // instanceof handles nulls
                 && sorter.equals(((SortProjectCommand) other).sorter)); // state check
+    }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
     }
 }

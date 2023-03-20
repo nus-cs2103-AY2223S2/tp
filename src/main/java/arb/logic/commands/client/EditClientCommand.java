@@ -8,6 +8,7 @@ import static arb.model.Model.CLIENT_NO_COMPARATOR;
 import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -33,9 +34,11 @@ import arb.model.tag.Tag;
  */
 public class EditClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit-client";
+    private static final String MAIN_COMMAND_WORD = "edit-client";
+    private static final String ALIAS_COMMAND_WORD = "ec";
+    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -43,7 +46,7 @@ public class EditClientCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + MAIN_COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -123,6 +126,10 @@ public class EditClientCommand extends Command {
         EditClientCommand e = (EditClientCommand) other;
         return index.equals(e.index)
                 && editClientDescriptor.equals(e.editClientDescriptor);
+    }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
     }
 
     /**

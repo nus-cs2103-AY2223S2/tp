@@ -4,7 +4,10 @@ import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
@@ -20,12 +23,14 @@ import arb.model.project.Project;
  */
 public class MarkProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
+    private static final String MAIN_COMMAND_WORD = "mark";
+    private static final String ALIAS_COMMAND_WORD = "mp";
+    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD
             + ": Marks the project identified by the index number used in the displayed project list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + MAIN_COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_PROJECT_SUCCESS = "Marked Project: %1$s";
 
@@ -62,5 +67,9 @@ public class MarkProjectCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof MarkProjectCommand // instanceof handles nulls
                 && targetIndex.equals(((MarkProjectCommand) other).targetIndex)); // state check
+    }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
     }
 }

@@ -2,6 +2,10 @@ package arb.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import arb.commons.core.Messages;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
@@ -14,9 +18,11 @@ import arb.model.Model;
  */
 public class ClearClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "clear-client";
-    public static final String MESSAGE_SUCCESS = "Client list has been cleared!";
+    private static final String MAIN_COMMAND_WORD = "clear-client";
+    private static final String ALIAS_COMMAND_WORD = "cc";
+    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
+    public static final String MESSAGE_SUCCESS = "Client list has been cleared!";
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) throws CommandException {
@@ -28,5 +34,9 @@ public class ClearClientCommand extends Command {
 
         model.resetClientList();
         return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
+    }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
     }
 }

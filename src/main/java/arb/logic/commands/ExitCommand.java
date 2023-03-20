@@ -1,5 +1,9 @@
 package arb.logic.commands;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import arb.model.ListType;
 import arb.model.Model;
 
@@ -8,7 +12,8 @@ import arb.model.Model;
  */
 public class ExitCommand extends Command {
 
-    public static final String COMMAND_WORD = "exit";
+    private static final String MAIN_COMMAND_WORD = "exit";
+    private static final Set<String> COMMAND_WORDS = new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD));
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
@@ -17,4 +22,7 @@ public class ExitCommand extends Command {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true, ListType.NONE);
     }
 
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
+    }
 }
