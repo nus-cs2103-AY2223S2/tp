@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
@@ -28,19 +29,25 @@ class JsonAdaptedInternship {
     private final String role;
     private final String status;
     private final String date;
+    private final String comment;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedInternship} with the given person details.
+     * Constructs a {@code JsonAdaptedInternship} with the given internship details.
      */
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("companyName") String companyName, @JsonProperty("role") String role,
             @JsonProperty("status") String status, @JsonProperty("date") String date,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("comment") String comment, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.companyName = companyName;
         this.role = role;
         this.status = status;
         this.date = date;
+        if (comment != null) {
+            this.comment = comment;
+        } else {
+            this.comment = "NA";
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +61,7 @@ class JsonAdaptedInternship {
         role = source.getRole().fullRole;
         status = source.getStatus().toString();
         date = source.getDate().fullDate;
+        comment = source.getComment().commentContent;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,7 +111,9 @@ class JsonAdaptedInternship {
         }
         final Date modelDate = new Date(date);
 
+        final Comment modelComment = new Comment(comment);
+
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompanyName, modelRole, modelStatus, modelDate, modelTags);
+        return new Internship(modelCompanyName, modelRole, modelStatus, modelDate, modelComment, modelTags);
     }
 }

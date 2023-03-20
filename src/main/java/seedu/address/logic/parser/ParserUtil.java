@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Role;
@@ -39,6 +40,8 @@ public class ParserUtil {
      * Parses a {@code String companyName} into a {@code CompanyName}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param companyName The raw company name string.
+     * @return a {@CompanyName} object encapsulating the company name.
      * @throws ParseException if the given {@code companyName} is invalid.
      */
     public static CompanyName parseCompanyName(String companyName) throws ParseException {
@@ -51,10 +54,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String role} into a {@code Role}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @param role The raw role string to be parsed.
+     * @return the {@code Role} object encapsulating the role.
+     * @throws ParseException if the given {@code role} is invalid.
      */
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
@@ -69,6 +74,8 @@ public class ParserUtil {
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param status The raw status string to be parsed.
+     * @return the {@code Status} object encapsulating the status.
      * @throws ParseException if the given {@code status} is invalid.
      */
     public static Status parseStatus(String status) throws ParseException {
@@ -81,10 +88,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String date} into an {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @param date The raw date string to be parsed.
+     * @return the {@code Date} object encapsulating the date.
+     * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
@@ -96,9 +105,29 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String comment} into an {@code Comment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param commentContent The raw comment to be parsed.
+     * @return a {@code Comment} object encapsulating the comment content.
+     * @throws ParseException if the given {@code comment} is invalid.
+     */
+    public static Comment parseComment(String commentContent) throws ParseException {
+        requireNonNull(commentContent);
+        String trimmedComment = commentContent.trim();
+        if (!Comment.isValidComment(trimmedComment)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Comment(trimmedComment);
+    }
+
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param tag The raw tag string to be parsed.
+     * @return the {@code Tag} encapsulating the tag string.
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
@@ -112,6 +141,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
+     * @param tags The collection of tag strings to be parsed.
+     * @return a set of {@code Tag} objects encapsulating the tag strings.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);

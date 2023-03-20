@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -19,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_COMMENT + "COMMENT] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ROLE + "Backend Engineer "
@@ -99,9 +102,11 @@ public class EditCommand extends Command {
         Role updatedRole = editInternshipDescriptor.getRole().orElse(internshipToEdit.getRole());
         Status updatedStatus = editInternshipDescriptor.getStatus().orElse(internshipToEdit.getStatus());
         Date updatedDate = editInternshipDescriptor.getDate().orElse(internshipToEdit.getDate());
+        Comment updatedComment = editInternshipDescriptor.getComment().orElse(internshipToEdit.getComment());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompanyName, updatedRole, updatedStatus, updatedDate, updatedTags);
+        return new Internship(updatedCompanyName, updatedRole, updatedStatus, updatedDate, updatedComment,
+                updatedTags);
     }
 
     @Override
@@ -131,6 +136,7 @@ public class EditCommand extends Command {
         private Role role;
         private Status status;
         private Date date;
+        private Comment comment;
         private Set<Tag> tags;
 
         public EditInternshipDescriptor() {}
@@ -144,6 +150,7 @@ public class EditCommand extends Command {
             setRole(toCopy.role);
             setStatus(toCopy.status);
             setDate(toCopy.date);
+            setComment(toCopy.comment);
             setTags(toCopy.tags);
         }
 
@@ -187,6 +194,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
+        public void setComment(Comment comment) {
+            this.comment = comment;
+        }
+
+        public Optional<Comment> getComment() {
+            return Optional.ofNullable(comment);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -223,6 +238,7 @@ public class EditCommand extends Command {
                     && getRole().equals(e.getRole())
                     && getStatus().equals(e.getStatus())
                     && getDate().equals(e.getDate())
+                    && getComment().equals(e.getComment())
                     && getTags().equals(e.getTags());
         }
     }

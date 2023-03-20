@@ -23,6 +23,8 @@ public class Internship {
     private final Status status;
 
     private final Date date;
+
+    private final Comment comment;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -30,15 +32,18 @@ public class Internship {
      *
      * @param companyName The name of the company associated with the Internship.
      * @param role The role or job position associated with the Internship.
-     * @param status The status of the Internship application.
+     * @param status The status of the Internship entry.
+     * @param date The date of the Internship entry.
+     * @param comment The comment of the Internship entry.
      * @param tags The set of tags associated with the Internship.
      */
-    public Internship(CompanyName companyName, Role role, Status status, Date date, Set<Tag> tags) {
-        requireAllNonNull(companyName, role, status, date, tags);
+    public Internship(CompanyName companyName, Role role, Status status, Date date, Comment comment, Set<Tag> tags) {
+        requireAllNonNull(companyName, role, status, date, comment, tags);
         this.companyName = companyName;
         this.role = role;
         this.status = status;
         this.date = date;
+        this.comment = comment;
         this.tags.addAll(tags);
     }
 
@@ -76,6 +81,15 @@ public class Internship {
      */
     public Date getDate() {
         return date;
+    }
+
+    /**
+     * Gets the comment for the Internship entry.
+     *
+     * @return the comment associated with the Internship entry.
+     */
+    public Comment getComment() {
+        return comment;
     }
 
     /**
@@ -121,18 +135,19 @@ public class Internship {
             return false;
         }
 
-        Internship otherPerson = (Internship) other;
-        return otherPerson.getCompanyName().equals(getCompanyName())
-                && otherPerson.getRole().equals(getRole())
-                && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.getDate().equals(getDate())
-                && otherPerson.getTags().equals(getTags());
+        Internship otherInternship = (Internship) other;
+        return otherInternship.getCompanyName().equals(getCompanyName())
+                && otherInternship.getRole().equals(getRole())
+                && otherInternship.getStatus().equals(getStatus())
+                && otherInternship.getDate().equals(getDate())
+                && otherInternship.getComment().equals(getComment())
+                && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(companyName, role, status, date, tags);
+        return Objects.hash(companyName, role, status, date, comment, tags);
     }
 
     @Override
@@ -143,8 +158,11 @@ public class Internship {
                 .append(getRole())
                 .append("; Status: ")
                 .append(getStatus())
+                .append("; Comment: ")
+                .append(getComment())
                 .append("; Date: ")
                 .append(getDate());
+
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
