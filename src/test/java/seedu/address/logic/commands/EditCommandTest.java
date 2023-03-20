@@ -44,11 +44,10 @@ public class EditCommandTest {
         Person originalPerson = model.getFilteredPersonList().get(0);
 
         // Expected person can have fields Name, Phone, Email, Address, Tag edited,
-        // but meeting field should NOT change with edit command. 
-        // Using updated expectedPerson enforces this behaviour by setting expectedPerson's 
+        // but meeting field should NOT change with edit command.
+        // Using updated expectedPerson enforces this behaviour by setting expectedPerson's
         // meeting field to the original person's meeting.
         Person expectedPerson = new PersonBuilder(editedPerson).withMeeting(originalPerson.getMeetings()).build();
-        
         // System should call toString() on the expectedPerson instead of the editedPerson
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, expectedPerson);
 
