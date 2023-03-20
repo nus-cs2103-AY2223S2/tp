@@ -1,6 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.UntagCommandParser;
 import seedu.address.model.lecture.Lecture;
@@ -17,17 +29,6 @@ import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalTags;
 import seedu.address.testutil.TypicalVideos;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class UntagCommandTest {
     private final UntagCommandParser parser = new UntagCommandParser();
@@ -77,7 +78,8 @@ public class UntagCommandTest {
         @Override
         public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
             ReadOnlyLecture lec = this.module.getLecture(lecture.getName());
-            ((Lecture) lec).setVideo(target, editedVideo);
+            Lecture lectureToSet = ((Lecture) lec);
+            lectureToSet.setVideo(target, editedVideo);
         }
     }
 
@@ -85,14 +87,14 @@ public class UntagCommandTest {
     public void execute_nullModel_throwsNullPointerException() {
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2));
-        UntagCommand command = new UntagCommand(tagSet,moduleCode);
+        UntagCommand command = new UntagCommand(tagSet, moduleCode);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
     public void equals() {
         ModuleCode firstModuleCode = TypicalModules.CS2040S.getCode();
-        Set<Tag> firstTagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1,TypicalTags.CS2040S_2,
+        Set<Tag> firstTagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2,
                 TypicalTags.CS2040S_3));
 
         ModuleCode secondModuleCode = TypicalModules.CS2107.getCode();
@@ -127,7 +129,7 @@ public class UntagCommandTest {
     @Test
     public void execute_untagModule_moduleNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
-        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1,TypicalTags.CS2040S_2,
+        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2,
                 TypicalTags.CS2040S_3));
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode);
@@ -135,9 +137,9 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagModule_TagNotFound() {
+    public void execute_untagModule_tagNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
-        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2107_1,TypicalTags.CS2107_2,
+        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2107_1, TypicalTags.CS2107_2,
                 TypicalTags.CS2040S_3));
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode);
@@ -145,7 +147,7 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagLecture_ModuleNotFound() {
+    public void execute_untagLecture_moduleNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
@@ -155,7 +157,7 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagLecture_LectureNotFound() {
+    public void execute_untagLecture_lectureNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
@@ -165,9 +167,9 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagLecture_TagNotFound() {
+    public void execute_untagLecture_tagNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
-        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG,TypicalTags.CS2107_LECTURE_1,
+        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG, TypicalTags.CS2107_LECTURE_1,
                 TypicalTags.CS2040S_3));
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
@@ -176,7 +178,7 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagVideo_ModuleNotFound() {
+    public void execute_untagVideo_moduleNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
@@ -187,7 +189,7 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagVideo_LectureNotFound() {
+    public void execute_untagVideo_lectureNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
@@ -198,7 +200,7 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagVideo_VideoNotFound() {
+    public void execute_untagVideo_videoNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
@@ -209,9 +211,9 @@ public class UntagCommandTest {
     }
 
     @Test
-    public void execute_untagVideo_TagNotFound() {
+    public void execute_untagVideo_tagNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
-        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.VIDEO_TAG_1,TypicalTags.VIDEO_TAG_2));
+        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.VIDEO_TAG_1, TypicalTags.VIDEO_TAG_2));
         VideoName videoName = TypicalVideos.INTRO_VIDEO.getName();
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
@@ -222,7 +224,7 @@ public class UntagCommandTest {
     @Test
     public void execute_untagModule_success() throws CommandException {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
-        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1,TypicalTags.CS2040S_2));
+        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2));
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode);
 
@@ -266,5 +268,4 @@ public class UntagCommandTest {
         assertFalse(updatedTagSet.contains(TypicalTags.CS2040S_1));
         assertFalse(updatedTagSet.contains(TypicalTags.CS2040S_2));
     }
-
 }

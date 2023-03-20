@@ -1,17 +1,17 @@
 package seedu.address.logic.parser;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.TagCommand;
+
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
@@ -20,8 +20,8 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.video.VideoName;
 
 
-public class UntagCommandParserTest{
-    private final UntagCommandParser parser = new UntagCommandParser();
+
+public class UntagCommandParserTest {
     private static final String VALID_MODULE = "CS2030";
     private static final String VALID_LECTURE = "OOP";
     private static final String VALID_VIDEO = "Video1";
@@ -38,6 +38,8 @@ public class UntagCommandParserTest{
     private static final String INVALID_TAG_LECTURE_COMMAND = VALID_LECTURE + PREFIX_MODULE + " " + VALID_MODULE;
     private static final String INVALID_TAG_VIDEO_COMMAND =
             VALID_VIDEO + PREFIX_LECTURE + " " + VALID_LECTURE;
+    private final UntagCommandParser parser = new UntagCommandParser();
+
 
     @Test
     public void parse_untagModule_success() {
@@ -66,18 +68,17 @@ public class UntagCommandParserTest{
         assertParseSuccess(parser, VALID_TAG_VIDEO_COMMAND, expectedUntagCommand);
     }
     @Test
-    public void parse_invalidUntagModule_throwParseException () {
+    public void parse_invalidUntagModule_throwParseException() {
         assertThrows(ParseException.class, () -> parser.parse(INVALID_TAG_MODULE_COMMAND));
     }
 
     @Test
-    public void parse_invalidTagLecture_throwParseException () {
+    public void parse_invalidTagLecture_throwParseException() {
         assertThrows(ParseException.class, () -> parser.parse(INVALID_TAG_LECTURE_COMMAND));
     }
 
     @Test
-    public void parse_invalidTagVideo_throwParseException () {
+    public void parse_invalidTagVideo_throwParseExceptio() {
         assertThrows(ParseException.class, () -> parser.parse(INVALID_TAG_VIDEO_COMMAND));
     }
-
 }

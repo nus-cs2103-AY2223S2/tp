@@ -189,13 +189,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_StringWithInvalidTags_throwsParseException() {
+    public void parseTags_stringWithInvalidTags_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(INVALID_TAG));
         assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(VALID_TAG_1 + ", " + INVALID_TAG));
     }
 
     @Test
-    public void parseTags_ListWithInvalidTags_throwsParseException() {
+    public void parseTags_listWithInvalidTags_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(List.of(INVALID_TAG)));
         assertThrows(ParseException.class, () -> ParserUtil.parseMultiTags(List.of(VALID_TAG_1, INVALID_TAG)));
     }
@@ -206,7 +206,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_StringWithValidTags_returnsTagSet() throws Exception {
+    public void parseTags_stringWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseMultiTags(VALID_TAG_1 + ", " + VALID_TAG_2);
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
@@ -214,7 +214,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_ListWithValidTags_returnsTagSet() throws Exception {
+    public void parseTags_listWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseMultiTags(List.of(VALID_TAG_1, VALID_TAG_2));
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
@@ -222,7 +222,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_StringWithValidTagsWithWhitespace_returnsTagSet() throws Exception {
+    public void parseTags_stringWithValidTagsWithWhitespace_returnsTagSet() throws Exception {
         String firstTagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         String secondTagWithWhitespace = WHITESPACE + VALID_TAG_2 + WHITESPACE;
         Set<Tag> actualTagSet = ParserUtil.parseMultiTags(firstTagWithWhitespace + ", " + secondTagWithWhitespace);
@@ -231,7 +231,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_ListWithValidTagsWithWhitespace_returnsTagSet() throws Exception {
+    public void parseTags_listWithValidTagsWithWhitespace_returnsTagSet() throws Exception {
         String firstTagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         String secondTagWithWhitespace = WHITESPACE + VALID_TAG_2 + WHITESPACE;
         List<String> listOfTags = List.of(firstTagWithWhitespace, secondTagWithWhitespace);

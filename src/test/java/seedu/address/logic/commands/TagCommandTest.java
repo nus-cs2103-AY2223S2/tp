@@ -1,6 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
@@ -16,17 +28,6 @@ import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalTags;
 import seedu.address.testutil.TypicalVideos;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class TagCommandTest {
     private static final String VALID_TAG_1 = "cool";
@@ -78,7 +79,8 @@ public class TagCommandTest {
         @Override
         public void setVideo(ReadOnlyLecture lecture, Video target, Video editedVideo) {
             ReadOnlyLecture lec = this.module.getLecture(lecture.getName());
-            ((Lecture) lec).setVideo(target, editedVideo);
+            Lecture lectureToSet = ((Lecture) lec);
+            lectureToSet.setVideo(target, editedVideo);
         }
     }
 
@@ -86,14 +88,14 @@ public class TagCommandTest {
     public void execute_nullModel_throwsNullPointerException() {
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2));
-        TagCommand command = new TagCommand(tagSet,moduleCode);
+        TagCommand command = new TagCommand(tagSet, moduleCode);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
     public void equals() {
         ModuleCode firstModuleCode = TypicalModules.CS2040S.getCode();
-        Set<Tag> firstTagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1,TypicalTags.CS2040S_2,
+        Set<Tag> firstTagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2,
                 TypicalTags.CS2040S_3));
 
         ModuleCode secondModuleCode = TypicalModules.CS2107.getCode();
@@ -128,7 +130,7 @@ public class TagCommandTest {
     @Test
     public void execute_tagModule_moduleNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
-        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1,TypicalTags.CS2040S_2,
+        Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_1, TypicalTags.CS2040S_2,
                 TypicalTags.CS2040S_3));
         ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
         TagCommand tagCommand = new TagCommand(tagSet, moduleCode);
@@ -136,7 +138,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void execute_tagLecture_ModuleNotFound() {
+    public void execute_tagLecture_moduleNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
@@ -145,7 +147,7 @@ public class TagCommandTest {
         assertThrows(CommandException.class, () -> tagCommand.execute(moduleStub));
     }
     @Test
-    public void execute_tagLecture_LectureNotFound() {
+    public void execute_tagLecture_lectureNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
@@ -155,7 +157,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void execute_tagVideo_ModuleNotFound() {
+    public void execute_tagVideo_moduleNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2107);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
@@ -165,7 +167,7 @@ public class TagCommandTest {
         assertThrows(CommandException.class, () -> tagCommand.execute(moduleStub));
     }
     @Test
-    public void execute_tagVideo_LectureNotFound() {
+    public void execute_tagVideo_lectureNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2107_LECTURE_1.getName();
@@ -176,7 +178,7 @@ public class TagCommandTest {
     }
 
     @Test
-    public void execute_tagVideo_VideoNotFound() {
+    public void execute_tagVideo_videoNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.CS2040S);
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
         LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
