@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-
 import java.util.Objects;
 
 import seedu.address.commons.core.Messages;

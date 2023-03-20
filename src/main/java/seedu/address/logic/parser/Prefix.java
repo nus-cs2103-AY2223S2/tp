@@ -6,13 +6,9 @@ package seedu.address.logic.parser;
  */
 public class Prefix {
     private final String prefix;
-//    private final boolean compulsory;
-//    private final String prompt;
 
     public Prefix(String prefix) {
         this.prefix = prefix;
-//        this.compulsory = compulsory;
-//        this.prompt = prompt;
     }
 
     public String getPrefix() {
@@ -23,11 +19,6 @@ public class Prefix {
     public String toString() {
         return getPrefix();
     }
-
-
-//    public String getPrompt() {
-//        return compulsory ? prompt : "[" + prompt + "]";
-//    }
 
     @Override
     public boolean equals(Object obj) {

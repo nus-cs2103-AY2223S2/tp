@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 
 import java.util.HashMap;
-
 import java.util.Objects;
 
 import seedu.address.commons.core.Messages;

@@ -108,7 +108,8 @@ public class CommandBox extends UiPart<Region> {
             String userInput = commandTextField.getText();
             if (e.getCode() == KeyCode.TAB) {
                 String commandSuggestion = commandRecommendationEngine.recommendCommand(userInput);
-                String autocompletedCommand = commandRecommendationEngine.autocompleteCommand(userInput, commandSuggestion);
+                String autocompletedCommand =
+                        commandRecommendationEngine.autocompleteCommand(userInput, commandSuggestion);
                 if (!autocompletedCommand.equals("")) {
                     commandTextField.setText(autocompletedCommand);
                     commandTextField.end();
