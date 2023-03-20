@@ -554,6 +554,26 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Creating a meeting
+
+1. Creating a meeting with a contact:
+
+    1. Prerequisites: Contact `Alex Yeo` exists in QuickContacts.
+
+    2. Test case: `addm m/Lunch with Alex dt/2003 15:00 p/Alex Yeo`<br>
+       Expected: New meeting with `Alex Yeo` on 20 March (of the current year) at 3PM is created, and it is displayed in the meetings list.
+
+    3. Test case: `addm m/Lunch with Alex dt/2003 25:00 p/Alex Yeo l/The Deck des/Weekly catch-up`<br>
+       Expected: Meeting is not created since `25:00` is an invalid time. Error details shown in the status message. Status bar remains the same.
+
+2. Creating a meeting without a contact:
+    
+    1. Test case: `addm m/Dinner at home dt/2003222`<br>
+       Expected: New meeting is created for `200322` (20 March 2022).
+
+    2. Test case: `addm m/Dinner at home`<br>
+       Expected: Meeting is not created as a date(and time) is required. Error details shown in the status message. Status bar remains the same.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
