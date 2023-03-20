@@ -23,6 +23,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.*;
 import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -92,19 +100,18 @@ public class EditCommand extends Command {
     private static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert tuteeToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(tuteeToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(tuteeToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(tuteeToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(tuteeToEdit.getAddress());
-        Remark updatedRemark = tuteeToEdit.getRemark(); // edit command does not allow editing remarks
-        Subject updatedSubject = editPersonDescriptor.getSubject().orElse(tuteeToEdit.getSubject());
-        Schedule updatedSchedule = editPersonDescriptor.getSchedule().orElse(tuteeToEdit.getSchedule());
-        StartTime updatedStartTime = editPersonDescriptor.getStartTime().orElse(tuteeToEdit.getStartTime());
-        EndTime updatedEndTime = editPersonDescriptor.getEndTime().orElse(tuteeToEdit.getEndTime());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(tuteeToEdit.getTags());
+        TuteeBuilder builder = TuteeBuilder.fromExistingTutee(tuteeToEdit);
+        editPersonDescriptor.getName().ifPresent(builder::setName);
+        editPersonDescriptor.getPhone().ifPresent(builder::setPhone);
+        editPersonDescriptor.getEmail().ifPresent(builder::setEmail);
+        editPersonDescriptor.getAddress().ifPresent(builder::setAddress);
+        editPersonDescriptor.getSubject().ifPresent(builder::setSubject);
+        editPersonDescriptor.getSchedule().ifPresent(builder::setSchedule);
+        editPersonDescriptor.getStartTime().ifPresent(builder::setStartTime);
+        editPersonDescriptor.getEndTime().ifPresent(builder::setEndTime);
+        editPersonDescriptor.getTags().ifPresent(builder::setTags);
 
-        return new Tutee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedSubject
-                ,updatedSchedule, updatedStartTime, updatedEndTime, updatedTags);
+        return builder.build();
     }
 
     @Override
