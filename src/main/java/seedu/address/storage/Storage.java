@@ -21,7 +21,7 @@ public interface Storage extends PairStorage, VolunteerStorage, ElderlyStorage, 
      *
      * @return FriendlyLink cache with red data.
      * @throws DataConversionException If there is error during conversion of data from one format to another.
-     * @throws IOException If I/O operations fail or  are interrupted.
+     * @throws IOException If I/O operations fail or are interrupted.
      */
     FriendlyLink read() throws DataConversionException, IOException;
 

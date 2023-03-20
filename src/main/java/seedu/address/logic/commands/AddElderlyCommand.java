@@ -53,7 +53,7 @@ public class AddElderlyCommand extends Command {
     private final Elderly toAdd;
 
     /**
-     * Creates an AddElderlyCommand to add to the specified {@code Elderly}.
+     * Creates an AddElderlyCommand to add the specified {@code Elderly}.
      *
      * @param elderly Elderly to add.
      */

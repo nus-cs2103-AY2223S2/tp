@@ -120,7 +120,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendlyLink cache.
      *
      * @param e Elderly to be checked.
-     * @return True if {@code e} exists.
+     * @return True if {@code e} exists, false otherwise.
      */
     public boolean hasElderly(Elderly e) {
         requireNonNull(e);
@@ -131,7 +131,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendlyLink cache.
      *
      * @param volunteer Volunteer to be checked.
-     * @return True if {@code volunteer} exists.
+     * @return True if {@code volunteer} exists, false otherwise.
      */
     public boolean hasVolunteer(Volunteer volunteer) {
         requireNonNull(volunteer);

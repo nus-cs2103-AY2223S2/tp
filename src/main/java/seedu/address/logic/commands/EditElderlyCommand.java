@@ -55,7 +55,7 @@ public class EditElderlyCommand extends Command {
     /**
      * Creates an {@code EditElderlyCommand} to edit an elderly.
      *
-     * @param index Of the elderly in the filtered elderly list to edit.
+     * @param index Index of the elderly in the filtered elderly list to edit.
      * @param editElderlyDescriptor Details to edit the elderly with.
      */
     public EditElderlyCommand(Index index, EditElderlyDescriptor editElderlyDescriptor) {

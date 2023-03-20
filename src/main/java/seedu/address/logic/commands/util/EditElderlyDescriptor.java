@@ -24,7 +24,7 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
     private RiskLevel riskLevel;
 
     /**
-     * Default empty constructor.
+     * Constructs a default empty descriptor.
      */
     public EditElderlyDescriptor() {}
 

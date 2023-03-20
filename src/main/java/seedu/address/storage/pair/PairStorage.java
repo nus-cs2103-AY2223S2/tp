@@ -39,7 +39,7 @@ public interface PairStorage {
 
     /**
      * Saves the given {@link ReadOnlyPair} to the storage.
-     * @param pair Cannot be null.
+     * @param pair Pair to save. Cannot be null.
      * @throws IOException If there was any problem writing to the file.
      */
     void savePair(ReadOnlyPair pair) throws IOException;

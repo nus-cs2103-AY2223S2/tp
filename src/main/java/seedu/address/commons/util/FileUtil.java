@@ -82,7 +82,7 @@ public class FileUtil {
     }
 
     /**
-     * Assumes file exists and reads from it.
+     * Reads from a file. Assumes the file exists.
      *
      * @param file Location of the file.
      * @return Lines red from the file.

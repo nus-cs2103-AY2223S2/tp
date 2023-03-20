@@ -39,7 +39,7 @@ public interface ElderlyStorage {
     /**
      * Saves the given {@link ReadOnlyElderly} to the storage.
      *
-     * @param elderly Cannot be null.
+     * @param elderly {@code FriendlyLink} cache. Cannot be null.
      * @throws IOException If there was any problem writing to the file.
      */
     void saveElderly(ReadOnlyElderly elderly) throws IOException;

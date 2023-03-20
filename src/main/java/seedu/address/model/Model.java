@@ -123,7 +123,7 @@ public interface Model {
      * Returns true if an elderly with the same identity as {@code elderly} exists in the friendly link database.
      *
      * @param elderly Elderly to be checked.
-     * @return True if {@code elderly} exists in FriendlyLink.
+     * @return True if {@code elderly} exists in FriendlyLink, false otherwise.
      */
     boolean hasElderly(Elderly elderly);
 
@@ -158,7 +158,7 @@ public interface Model {
      * Returns true if a volunteer with the same identity as {@code volunteer} exists in the friendly link database.
      *
      * @param volunteer Volunteer to be checked.
-     * @return True if {@code volunteer} exists in FriendlyLink.
+     * @return True if {@code volunteer} exists in FriendlyLink, false otherwise.
      */
     boolean hasVolunteer(Volunteer volunteer);
 
@@ -211,7 +211,7 @@ public interface Model {
      * Returns true if a pair with the same identity as {@code pair} exists in FriendlyLink.
      *
      * @param pair Pair to be checked.
-     * @return True if {@code pair} exists in FriendlyLink.
+     * @return True if {@code pair} exists in FriendlyLink, false otherwise.
      */
     boolean hasPair(Pair pair);
 

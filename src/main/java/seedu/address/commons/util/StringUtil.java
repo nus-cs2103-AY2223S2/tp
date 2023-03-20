@@ -21,8 +21,8 @@ public class StringUtil {
      *       containsWordIgnoreCase("ABc def", "AB") == false //not a full word match
      *       </pre>
      *
-     * @param sentence Cannot be null.
-     * @param word Cannot be null, cannot be empty, must be a single word.
+     * @param sentence Sentence to check against. Cannot be null.
+     * @param word Word to check for in sentence. Cannot be null, cannot be empty, must be a single word.
      * @return True if contain word and false otherwise.
      */
     public static boolean containsWordIgnoreCase(String sentence, String word) {

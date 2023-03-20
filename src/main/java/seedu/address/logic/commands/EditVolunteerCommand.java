@@ -55,7 +55,7 @@ public class EditVolunteerCommand extends Command {
     /**
      * Creates an {@code EditVolunteerCommand} to edit a volunteer.
      *
-     * @param index Of the volunteer in the filtered volunteer list to edit.
+     * @param index Index of the volunteer in the filtered volunteer list to edit.
      * @param editVolunteerDescriptor Details to edit the volunteer with.
      */
     public EditVolunteerCommand(Index index, EditVolunteerDescriptor editVolunteerDescriptor) {

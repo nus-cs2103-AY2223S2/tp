@@ -33,7 +33,7 @@ public interface UserPrefsStorage {
     /**
      * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.
      *
-     * @param userPrefs Cannot be null.
+     * @param userPrefs {@code UserPrefs} to save. Cannot be null.
      * @throws IOException If there was any problem writing to the file.
      */
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;

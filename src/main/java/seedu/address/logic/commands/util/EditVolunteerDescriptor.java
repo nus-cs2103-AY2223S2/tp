@@ -19,12 +19,12 @@ import seedu.address.model.tag.Tag;
  */
 public class EditVolunteerDescriptor extends EditPersonDescriptor {
     /**
-     * Default empty constructor.
+     * Constructs a default empty descriptor.
      */
     public EditVolunteerDescriptor() {}
 
     /**
-     * Copy constructor.
+     * Constructs a descriptor using a copy.
      *
      * @param toCopy {@code EditPersonDescriptor} for copying.
      */

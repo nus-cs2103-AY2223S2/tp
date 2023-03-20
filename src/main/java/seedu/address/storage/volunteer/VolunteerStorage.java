@@ -25,8 +25,8 @@ public interface VolunteerStorage {
      *
      * @param friendlyLink FriendlyLink cache.
      * @return {@code Optional} of FriendlyLink cache.
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException if there was any problem when reading from the storage.
+     * @throws DataConversionException If the data in storage is not in the expected format.
+     * @throws IOException If there was any problem when reading from the storage.
      */
     Optional<ReadOnlyVolunteer> readVolunteer(FriendlyLink friendlyLink) throws DataConversionException, IOException;
 
@@ -38,7 +38,7 @@ public interface VolunteerStorage {
 
     /**
      * Saves the given {@link ReadOnlyVolunteer} to the storage.
-     * @param volunteer Cannot be null.
+     * @param volunteer Volunteer to save. Cannot be null.
      * @throws IOException If there was any problem writing to the file.
      */
     void saveVolunteer(ReadOnlyVolunteer volunteer) throws IOException;

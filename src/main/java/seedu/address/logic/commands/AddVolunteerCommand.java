@@ -50,7 +50,7 @@ public class AddVolunteerCommand extends Command {
     private final Volunteer toAdd;
 
     /**
-     * Creates an AddVolunteerCommand to add to the specified {@code volunteer}
+     * Creates an AddVolunteerCommand to add the specified {@code volunteer}
      *
      * @param volunteer Volunteer to add.
      */
