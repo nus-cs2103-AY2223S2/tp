@@ -64,7 +64,7 @@ public class ModuleCard extends UiPart<Region> {
         module.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        deadline.setText("Deadline: " + module.getDeadline().value);
+        deadline.setText("Deadline: " + module.getDeadline().displayFormat());
         teacher.setText("Teacher: " + module.getTeacher().value);
     }
 

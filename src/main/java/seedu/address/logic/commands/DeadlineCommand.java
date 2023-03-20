@@ -24,9 +24,9 @@ public class DeadlineCommand extends Command {
             + ": Edits the deadline of the module identified "
             + "by the index number. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "d/ [DEADLINE]\n"
+            + "d/ [DEADLINE] (format \"ddMMyy HH:mm\")\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "d/ 24th January Written Assignment 1.";
+            + "d/300323 16:00";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Deadline: %2$s";
 
@@ -73,7 +73,8 @@ public class DeadlineCommand extends Command {
      * {@code moduleToEdit}.
      */
     private String generateSuccessMessage(Module moduleToEdit) {
-        String message = !deadline.value.isEmpty() ? MESSAGE_ADD_DEADLINE_SUCCESS : MESSAGE_DELETE_DEADLINE_SUCCESS;
+        String message = !deadline.toString().isEmpty() ? MESSAGE_ADD_DEADLINE_SUCCESS
+                : MESSAGE_DELETE_DEADLINE_SUCCESS;
         return String.format(message, moduleToEdit);
     }
 
