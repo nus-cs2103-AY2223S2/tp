@@ -61,6 +61,7 @@
     "projectRepoHost": "alice-pauline",
     "projectRepoName": "AlphaRepo",
     "projectDeadline": "01/01/23-2359",
+    "projectMeeting": "01/01/23-1000",
     "members": [ {
       "name" : "Alice Pauline",
       "profile": "alice-pauline",
@@ -105,6 +106,7 @@
     "projectRepoHost": "benson-meier",
     "projectRepoName": "CharlieRepo",
     "projectDeadline": "03/01/23-2359",
+    "projectMeeting": "03/01/23-1000",
     "members": [ {
       "name" : "Elle Meyer",
       "profile": "elle-meyer",

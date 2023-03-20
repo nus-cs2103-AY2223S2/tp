@@ -50,6 +50,7 @@ public class ProjectBuilder {
         repoHost = projectToCopy.getRepoHost();
         repoName = projectToCopy.getRepoName();
         deadline = projectToCopy.getDeadline();
+        meeting = projectToCopy.getMeeting();
         members = new HashSet<>(projectToCopy.getMembers());
     }
 
