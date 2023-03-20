@@ -63,8 +63,6 @@ public class ViewCommandTest {
         showInternshipAtIndex(expectedModel, INDEX_FIRST_INTERNSHIP);
         expectedModel.viewInternship(internshipToView);
 
-//        System.out.println(expectedModel.getFilteredInternshipList());
-
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 

@@ -89,7 +89,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
      */
     public void view(Internship toView) {
         requireNonNull(toView);
-        if (! contains(toView)) {
+        if (!contains(toView)) {
             //Desired internship cannot be found
             throw new InternshipNotFoundException();
         }

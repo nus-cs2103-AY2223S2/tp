@@ -3,7 +3,6 @@ package seedu.address.ui;
 import static seedu.address.model.internship.Status.APPLIED;
 import static seedu.address.model.internship.Status.ASSESSMENT;
 import static seedu.address.model.internship.Status.INTERVIEW;
-import static seedu.address.model.internship.Status.NEW;
 import static seedu.address.model.internship.Status.OFFERED;
 import static seedu.address.model.internship.Status.REJECTED;
 
@@ -12,16 +11,16 @@ import java.util.HashMap;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.Scene;
 import seedu.address.model.internship.Internship;
 
 
@@ -129,24 +128,24 @@ public class InternshipDetailsCard extends UiPart<Region> {
             return "While waiting for the company's response, you can try applying to other companies as well"
                     + " to have a higher chance of landing an internship";
         case ASSESSMENT:
-            return "Practice makes perfect! Visit sites such as HackerRank and LeetCode to practice your algorithms" +
-                    " and problem-solving skills. You could also attempt the practices under a time trial to give" +
-                    " you a better sense of the actual coding assignment.";
+            return "Practice makes perfect! Visit sites such as HackerRank and LeetCode to practice your algorithms"
+                    + " and problem-solving skills. You could also attempt the practices under a time trial to give"
+                    + " you a better sense of the actual coding assignment.";
         case INTERVIEW:
-            return "Be natural! The role of the interviewer is not to put you in a tight position, but rather to" +
-                    " learn more about who you are as a person. It's good if you could share what makes you special" +
-                    " and about your personalised experience that makes you suitable for the job.";
+            return "Be natural! The role of the interviewer is not to put you in a tight position, but rather to"
+                    + " learn more about who you are as a person. It's good if you could share what makes you special"
+                    + " and about your personalised experience that makes you suitable for the job.";
         case OFFERED:
-            return "Congratulations! Your hard work has paid off. Remember to read through the details of the" +
-                    " letter of offer such as job scope and working hours before committing to the offer.";
+            return "Congratulations! Your hard work has paid off. Remember to read through the details of the"
+                    + " letter of offer such as job scope and working hours before committing to the offer.";
         case REJECTED:
-            return "Fret not! The process of landing an internship is not a smooth-sailing one, and failures are" +
-                    " part of the journey. Continue your search and you will eventually a suitable internship." +
-                    " Fighting!";
+            return "Fret not! The process of landing an internship is not a smooth-sailing one, and failures are"
+                    + " part of the journey. Continue your search and you will eventually a suitable internship."
+                    + " Fighting!";
         default:
-            return "If possible, try to apply early because once companies receive applications, they would start" +
-                    " screening for potential candidates. Also, remember to do a thorough check of your resume" +
-                    " before sending out your application.";
+            return "If possible, try to apply early because once companies receive applications, they would start"
+                    + " screening for potential candidates. Also, remember to do a thorough check of your resume"
+                    + " before sending out your application.";
         }
     }
 }

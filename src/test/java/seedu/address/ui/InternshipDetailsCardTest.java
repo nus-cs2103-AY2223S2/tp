@@ -54,7 +54,7 @@ public class InternshipDetailsCardTest extends GuiUnitTest {
         Group rootGroup = new Group();
         Scene sceneNew = new Scene(rootGroup, 300, 300, Color.BLACK);
 
-        InternshipDetailsCard internshipDetailsCard = new InternshipDetailsCard(internship,  sceneNew);
+        InternshipDetailsCard internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
         uiPartExtension.setUiPart(internshipDetailsCard);
         assertInternshipDetailsCardEqual(internshipDetailsCard, internship);
     }
@@ -100,9 +100,9 @@ public class InternshipDetailsCardTest extends GuiUnitTest {
         Internship internship = new InternshipBuilder().withStatus(NEW).build();
         InternshipDetailsCard internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
         assertEquals(internshipDetailsCard.getTips(),
-                "If possible, try to apply early because once companies receive applications, they would start" +
-                        " screening for potential candidates. Also, remember to do a thorough check of your resume" +
-                        " before sending out your application.");
+                "If possible, try to apply early because once companies receive applications, they would start"
+                        + " screening for potential candidates. Also, remember to do a thorough check of your resume"
+                        + " before sending out your application.");
 
         // Test Applied
         internship = new InternshipBuilder().withStatus(APPLIED).build();
@@ -115,32 +115,32 @@ public class InternshipDetailsCardTest extends GuiUnitTest {
         internship = new InternshipBuilder().withStatus(ASSESSMENT).build();
         internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
         assertEquals(internshipDetailsCard.getTips(),
-                "Practice makes perfect! Visit sites such as HackerRank and LeetCode to practice your" +
-                        " algorithms and problem-solving skills. You could also attempt the practices under a time" +
-                        " trial to give you a better sense of the actual coding assignment.");
+                "Practice makes perfect! Visit sites such as HackerRank and LeetCode to practice your"
+                        + " algorithms and problem-solving skills. You could also attempt the practices under a time"
+                        + " trial to give you a better sense of the actual coding assignment.");
 
         // Test Interview
         internship = new InternshipBuilder().withStatus(INTERVIEW).build();
         internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
         assertEquals(internshipDetailsCard.getTips(),
-                "Be natural! The role of the interviewer is not to put you in a tight position, but rather to" +
-                        " learn more about who you are as a person. It's good if you could share what makes you" +
-                        " special and about your personalised experience that makes you suitable for the job.");
+                "Be natural! The role of the interviewer is not to put you in a tight position, but rather to"
+                        + " learn more about who you are as a person. It's good if you could share what makes you"
+                        + " special and about your personalised experience that makes you suitable for the job.");
 
         // Test Offered
         internship = new InternshipBuilder().withStatus(OFFERED).build();
         internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
         assertEquals(internshipDetailsCard.getTips(),
-                "Congratulations! Your hard work has paid off. Remember to read through the details of the" +
-                        " letter of offer such as job scope and working hours before committing to the offer.");
+                "Congratulations! Your hard work has paid off. Remember to read through the details of the"
+                        + " letter of offer such as job scope and working hours before committing to the offer.");
 
         // Test Rejected
         internship = new InternshipBuilder().withStatus(REJECTED).build();
         internshipDetailsCard = new InternshipDetailsCard(internship, sceneNew);
         assertEquals(internshipDetailsCard.getTips(),
-                "Fret not! The process of landing an internship is not a smooth-sailing one, and failures are" +
-                        " part of the journey. Continue your search and you will eventually a suitable internship." +
-                        " Fighting!");
+                "Fret not! The process of landing an internship is not a smooth-sailing one, and failures are"
+                        + " part of the journey. Continue your search and you will eventually a suitable internship."
+                        + " Fighting!");
 
     }
 
