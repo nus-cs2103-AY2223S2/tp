@@ -3,50 +3,97 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant ":InternEaseParser" as InternEaseParser LOGIC_COLOR
+participant ":ClearByCommandParser" as ClearByCommandParser LOGIC_COLOR
+participant "c:ClearByCommand" as ClearByCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant "model:Model" as Model MODEL_COLOR
+participant "internEase:InternEase" as InternEase MODEL_COLOR
+participant ":UniqueApplicationList" as UniqueApplicationList MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute(clear_by)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> InternEaseParser : parseCommand(clear_by)
+activate InternEaseParser
 
-create UndoCommand
-AddressBookParser -> UndoCommand
-activate UndoCommand
+create ClearByCommandParser
+InternEaseParser -> ClearByCommandParser : parse(clear_by)
+activate ClearByCommandParser
 
-UndoCommand --> AddressBookParser
-deactivate UndoCommand
+ClearByCommandParser --> InternEaseParser
+deactivate ClearByCommandParser
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+InternEaseParser -> ClearByCommandParser : parse(argument)
+activate ClearByCommandParser
 
-LogicManager -> UndoCommand : execute()
-activate UndoCommand
+create ClearByCommand
+ClearByCommandParser -> ClearByCommand
+activate ClearByCommand
 
-UndoCommand -> Model : undoAddressBook()
+ClearByCommand --> ClearByCommandParser
+deactivate ClearByCommand
+
+ClearByCommandParser --> InternEaseParser
+deactivate ClearByCommandParser
+ClearByCommandParser -[hidden]-> InternEaseParser : result
+destroy ClearByCommandParser
+
+InternEaseParser --> LogicManager : c
+deactivate InternEaseParser
+
+LogicManager -> ClearByCommand : execute()
+activate ClearByCommand
+
+ClearByCommand -> Model : getFilteredInternshipList()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> InternEase : getInternshipList()
+activate InternEase
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+InternEase -> UniqueApplicationList :asUnmodifiableObservableList()
+activate UniqueApplicationList
 
-Model --> UndoCommand
+UniqueApplicationList --> InternEase
+deactivate UniqueApplicationList
+
+InternEase --> Model
+deactivate InternEase
+
+Model --> ClearByCommand : internshipList
 deactivate Model
 
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+ClearByCommand -> ClearByCommand : getFilteredList(internshipList) : filteredList
+
+loop size of filteredList
+
+ClearByCommand -> Model : addInternshipToCache(application)
+activate Model
+
+Model --> ClearByCommand
+deactivate Model
+
+ClearByCommand -> Model : deleteInternship(application)
+activate Model
+
+Model --> ClearByCommand
+deactivate Model
+
+end
+
+create CommandResult
+ClearByCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearByCommand
+deactivate CommandResult
+
+ClearByCommand --> LogicManager : r
+deactivate ClearByCommand
+
 
 [<--LogicManager
 deactivate LogicManager

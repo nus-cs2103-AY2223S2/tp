@@ -73,16 +73,18 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `MixedPanel`, `NoteListPanel`, `TodoListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `InternshipApplication` object residing in the `Model`.
+* listens on each other in the `Ui` component, as `CommandBox` calls functions in `MainWindow` to `execute()` `Logic`.
+* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `NoteListPanel`, `InternshipListPanel` and `NoteListPanel` to implement the switching between each panel.
 
 ### Logic component
 
@@ -154,70 +156,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Clear_by feature
+This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
 
-#### Proposed Implementation
+#### How CLEAR_BY Feature is implemented
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `clear_by` feature enables user to clear the internship applications in batch with the specific attribute and the specific keyword. There are 3 cases (attributes) available in this feature.
+In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#execute` functionality. The parsing process is facilitated by both the `AddressBookParser#parse` and `ClearByCommandParser#parse`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The workflow of a `clear_by` command during its execution is shown by the activity diagram below:
+[!ClearByActivityDiagram](images/ClearByActivityDiagram.png)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+There are 3 constructors `ClearByCommand::new` provided for 3 different cases stated below : 
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+* Case 1 : clear_by `COMPANY_NAME`
+  * `PREFIX` should be set to `n`
+  * Allows user to remove all internship applications with `ParamType=COMPANYNAME` fully match with the provided keyword.
+  
+* Case 2 : clear_by `JOB_TITLE`
+  * `PREFIX` should be set to `j`
+  * Allows user to remove all internship applications with `ParamType=JOBTITLE` fully match with the provided keyword.
+  
+* Case 3 : clear_by `STATUS`
+  * `PREFIX` should be set to `s`, the keywords accepted include `NA, PENDING, RECEIVED, REJECTED, NO`.
+  * Allows user to remove all internship applications with `ParamType=STATUS` fully match with the correct provided keyword.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+>**Note:** 
+> The assignation of cases will be done by `ClearByCommandParser#parse`, each unavailable fields will be set to null.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+These operations are involved in the `Model` interface as `Model#getFilteredInternshipList`, `Model#addInternshipToCache` and `Model#deleteInternship`
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The execution process of `Clear_by` is demonstrated by the sequence diagram below.
+[!ClearByActivityDiagram](images/ClearBySequenceDiagram.png)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Given below is a step-wise explanation on `clear_by` mechanism's behaviour.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 1. Parsing
+    The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `clear_by`, it will then be passed to `ClearByParser#parse`.
+    The `PREFIX` in the argument will then be investigated. Different constructor of `ClearByCommand` object will be using based on the `PREFIX`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+Step 2. Execution
+    `ClearByCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getFilteredInternshipList`. Then, the list is filtered by `ClearByCommand#getFilteredList` to filter out the applications to be cleared.
+    The size of the list-to-clear is checked before an iteration to `Model#deleteInternship` and `Model#addInternshipToCache`. The cleared items are stored in the cache list to support `RevertCommand` in current InternEase session.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Step 3. Result
+    The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 2.5 seconds.
 
-</div>
+>**NOTE:** 
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+#### Why is it implemented this way
 
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+The `ClearByCommand` is an enhanced feature for both `DeleteCommand` and `ClearCommand`. It resolves user's request to perform customized batch deletion of internship applications.
+Based on utility, the 3 fixed fields in an internship application are taken as the key attributes for this `clear_by` feature. The `PREFIX` for specifying the `clear_by` attribute is also the same as InternEase convention.
+For the ease of implementation and avoid ambiguity, constructor `ClearByCommand::new` is overloaded, taking different fields. The usage of enum `ParamType` to specify the operating attribute type generalized the `ClearByCommand#execute`.
+The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
 
 #### Design considerations:
 
@@ -426,7 +419,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
     
-
 **Use case: UC09 Help**
 
 **MSS**
@@ -472,6 +464,250 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a2. User enters a new command.
 
       Steps 2a1 to 2a2 are repeated until a valid attribute is provided. Use case resumes at step 4.
+
+**Use case: UC12 Add a todo task entry**
+
+**MSS**
+
+1.  User requests to add a todo task.
+2.  InternEase adds the todo task, displays the todo list and a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The command format is invalid.
+    * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+
+      Use case ends.
+
+**Use case: UC13 List todo**
+
+**MSS**
+
+1.  User requests to view the list of todo tasks.
+2.  InternEase shows all the todo tasks as a list with their indexes specified.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. InternEase shows an alert message that there is no todo task in the list.
+
+      Use case ends.
+
+**Use case: UC14 Edit the note content of a todo task**
+
+**MSS**
+
+1.  User requests to view the list of todo tasks.
+2.  InternEase shows the todo task list with their indexes specified.
+3.  User requests to edit the note content of a specific todo task in the list by specifying its respective index.
+4.  InternEase updates the note content of the todo task and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. InternEase shows an alert message that there is no todo task in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new todo task index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The command format is invalid.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3b2. User enters a new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+**Use case: UC15 Edit the deadline of a todo task**
+
+**MSS**
+
+1.  User requests to view the list of todo tasks.
+2.  InternEase shows the todo task list with their indexes specified.
+3.  User requests to edit the deadlines of a specific todo task in the list by specifying its respective index.
+4.  InternEase updates the deadline of the todo task and displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    * 2a1. InternEase shows an alert message that there is no todo task in the list.
+
+      Use case ends.
+
+* 3a. The provided index is invalid.
+
+    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
+    * 3a2. User enters a new todo task index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
+
+* 3b. The command format is invalid.
+    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+    * 3b2. User enters a new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+
+**Use case: UC16 Delete a todo task entry**
+
+**MSS**
+
+1. User requests to view the list of todo tasks.
+2. InternEase shows the todo list with their indexes specified.
+3. User requests to delete a specific todo task in the list by specifying its respective index.
+4. InterEase deletes the todo task from the list and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no todo task in the list.
+
+      Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. InternEase shows an error message and gives specific suggestion on the index's range.
+
+    * 3a2. User enters new todo task index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided.
+      Use case resumes at step 4.
+
+* 3b. The command format is incorrect.
+
+    * 3b1. InternEase shows an error message and gives specific suggestion on the command format.
+
+    * 3b2. User enters new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is provided.
+      Use case resumes at step 4.
+
+**Use case: UC17 Clear all todo task entries**
+
+**MSS**
+
+1. User requests to clear all the data in the todo list.
+2. InternEase clears all the todo task entries, shows an empty list of todo task data and displays a success message.
+
+   Use case ends.
+
+**Use case: UC18 Add a note**
+
+**MSS**
+
+1.  User requests to add a note.
+2.  InternEase adds the note, displays the note list and a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The command format is invalid.
+    * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
+
+      Use case ends.
+
+**Use case: UC19 List note**
+
+**MSS**
+
+1.  User requests to view the list of notes.
+2.  InternEase shows all the notes as a list with their indexes specified.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. InternEase shows an alert message that there is no note in the list.
+
+      Use case ends.
+
+**Use case: UC20 Delete a note entry**
+
+**MSS**
+
+1. User requests to view the list of notes.
+2. InternEase shows the notes listed with their indexes specified.
+3. User requests to delete a specific note in the list by specifying its respective index.
+4. InterEase deletes the note from the list and displays a success message.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+    * 2a1. InternEase shows an alert message that there is no note in the list.
+
+      Use case ends.
+
+* 3a. The given index is invalid.
+    * 3a1. InternEase shows an error message and gives specific suggestion on the index's range.
+
+    * 3a2. User enters new note index.
+
+      Steps 3a1 to 3a2 are repeated until a valid index is provided.
+      Use case resumes at step 4.
+
+* 3b. The command format is incorrect.
+
+    * 3b1. InternEase shows an error message and gives specific suggestion on the command format.
+
+    * 3b2. User enters new command.
+
+      Steps 3b1 to 3b2 are repeated until a valid command is provided.
+      Use case resumes at step 4.
+
+**Use case: UC21 Clear all note entries**
+
+**MSS**
+
+1. User requests to clear all the data in the note list.
+2. InternEase clears all the notes, shows an empty list of note data and displays a success message.
+
+   Use case ends.
+
+**Use case: UC22 List task**
+
+**MSS**
+
+1.  User requests to view the list of todo tasks and notes.
+2.  InternEase shows a list of todo tasks and a list of notes with their indexes specified.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. InternEase shows an alert message that there is no note or todo task in the list.
+
+      Use case ends.
+
+**Use case: UC23 Find a task by its field**
+
+**MSS**
+
+1.  User enters keyword for the note or todo task.
+2.  InternEase shows a list of notes and a list of todo tasks whose fulfill the matching keyword.
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. InternEase shows an alert message that there is no note or todo task in the list.
+
+      Use case ends.
 
 ### Non-Functional Requirements
 
