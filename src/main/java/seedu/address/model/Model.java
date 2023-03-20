@@ -7,8 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
-import seedu.address.model.todo.InternshipTodo;
-import seedu.address.model.todo.Note;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
 
 /**
  * The API of the Model component.
@@ -64,6 +64,12 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Returns the TodoList */
+    ReadOnlyTodoList getTodoList();
+
+    /** Returns the NoteList */
+    ReadOnlyNote getNoteList();
+
     /**
      * Returns true if an internship application with the same identity as
      * {@code internshipApplication} exists in the address book.
@@ -114,12 +120,12 @@ public interface Model {
     /**
      * Clears todo list.
      */
-    void clearTodo(ReadOnlyAddressBook internEase);
+    void clearTodo(ReadOnlyTodoList internEase);
 
     /**
      * Clears note list.
      */
-    void clearNote(ReadOnlyAddressBook internEase);
+    void clearNote(ReadOnlyNote internEase);
 
     /**
      * Adds the given application.
@@ -163,7 +169,8 @@ public interface Model {
      * {@code target} must exist in the tracker.
      * The identity of {@code editedTodo} must not be the same as another existing todo in the tracker.
      */
-    void setTodo(InternshipTodo target, InternshipTodo editedTodo);
+    void setTodo(InternshipTodo target,
+                 InternshipTodo editedTodo);
 
     /**
      * Replaces the given note {@code target} with {@code editedNote}.

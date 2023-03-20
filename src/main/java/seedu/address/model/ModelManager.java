@@ -13,8 +13,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
-import seedu.address.model.todo.InternshipTodo;
-import seedu.address.model.todo.Note;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +24,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final TodoList todoList;
+    private final NoteList noteList;
     private final FilteredList<InternshipApplication> filteredInternships;
     private final FilteredList<InternshipTodo> filteredTodo;
     private final FilteredList<Note> filteredNote;
@@ -32,21 +34,24 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyTodoList todoList, ReadOnlyNote noteList) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.noteList = new NoteList(noteList);
+        this.todoList = new TodoList(todoList);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
-        filteredTodo = new FilteredList<>(this.addressBook.getTodoList());
-        filteredNote = new FilteredList<>(this.addressBook.getNoteList());
+        filteredTodo = new FilteredList<>(this.todoList.getTodoList());
+        filteredNote = new FilteredList<>(this.noteList.getNoteList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new TodoList(), new NoteList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -97,6 +102,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyTodoList getTodoList() {
+        return todoList;
+    }
+
+    @Override
+    public ReadOnlyNote getNoteList() {
+        return noteList;
+    }
+
+    @Override
     public boolean hasApplication(InternshipApplication application) {
         requireNonNull(application);
         return addressBook.hasApplication(application);
@@ -105,13 +120,13 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTodo(InternshipTodo todo) {
         requireNonNull(todo);
-        return addressBook.hasTodo(todo);
+        return todoList.hasTodo(todo);
     }
 
     @Override
     public boolean hasNote(Note note) {
         requireNonNull(note);
-        return addressBook.hasNote(note);
+        return noteList.hasNote(note);
     }
 
     @Override
@@ -132,22 +147,22 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTodo(InternshipTodo target) {
-        addressBook.removeTodo(target);
+        todoList.removeTodo(target);
     }
 
     @Override
     public void deleteNote(Note target) {
-        addressBook.removeNote(target);
+        noteList.removeNote(target);
     }
 
     @Override
-    public void clearTodo(ReadOnlyAddressBook internEase) {
-        addressBook.clearTodo(internEase);
+    public void clearTodo(ReadOnlyTodoList internEase) {
+        todoList.clearTodo(internEase);
     }
 
     @Override
-    public void clearNote(ReadOnlyAddressBook internEase) {
-        addressBook.clearNote(internEase);
+    public void clearNote(ReadOnlyNote internEase) {
+        noteList.clearNote(internEase);
     }
 
     @Override
@@ -158,14 +173,14 @@ public class ModelManager implements Model {
 
     @Override
     public void addTodo(InternshipTodo todo) {
-        addressBook.addTodo(todo);
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        todoList.addTodo(todo);
+        updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
     }
 
     @Override
     public void addNote(Note note) {
-        addressBook.addNote(note);
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        noteList.addNote(note);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
     }
 
     @Override
@@ -189,17 +204,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
+    public void setTodo(InternshipTodo target,
+                        InternshipTodo editedTodo) {
         requireAllNonNull(target, editedTodo);
 
-        addressBook.setTodo(target, editedTodo);
+        todoList.setTodo(target, editedTodo);
     }
 
     @Override
     public void setNote(Note target, Note editedNote) {
         requireAllNonNull(target, editedNote);
 
-        addressBook.setNote(target, editedNote);
+        noteList.setNote(target, editedNote);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -269,7 +285,9 @@ public class ModelManager implements Model {
 
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTodo.equals(other.filteredTodo)
+                && filteredNote.equals(other.filteredNote);
     }
 
 }

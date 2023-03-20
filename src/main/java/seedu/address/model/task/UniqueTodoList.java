@@ -1,4 +1,4 @@
-package seedu.address.model.todo;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicateTodoException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -27,7 +26,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * @see Person#isSamePerson(Person)
  */
 public class UniqueTodoList implements Iterable<InternshipTodo> {
-    private final ObservableList<InternshipTodo> internalTodoList = FXCollections.observableArrayList();
+    private final ObservableList<InternshipTodo> internalTodoList =
+            FXCollections.observableArrayList();
     private final ObservableList<InternshipTodo> internalUnmodifiableTodoList =
             FXCollections.unmodifiableObservableList(internalTodoList);
     /**
@@ -58,7 +58,8 @@ public class UniqueTodoList implements Iterable<InternshipTodo> {
      * @param target
      * @param editedTodo
      */
-    public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
+    public void setTodo(InternshipTodo target,
+                        InternshipTodo editedTodo) {
         requireAllNonNull(target, editedTodo);
 
         int index = internalTodoList.indexOf(target);
@@ -67,7 +68,7 @@ public class UniqueTodoList implements Iterable<InternshipTodo> {
         }
 
         if (!target.isSameTodo(editedTodo) && containsTodo(editedTodo)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTodoException();
         }
 
         internalTodoList.set(index, editedTodo);

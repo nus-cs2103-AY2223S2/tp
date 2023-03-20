@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+
 /**
  * A list of InternshipApplications that enforces uniqueness between its elements and does not allow nulls.
  * An InternshipApplication is considered unique by comparing using

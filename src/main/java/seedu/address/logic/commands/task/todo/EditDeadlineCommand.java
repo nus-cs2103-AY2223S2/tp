@@ -14,9 +14,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.todo.ApplicationDeadline;
-import seedu.address.model.todo.InternshipTodo;
-import seedu.address.model.todo.NoteContent;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.ApplicationDeadline;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.NoteContent;
 
 /**
  * Edits the deadline of a todo identified using it's displayed index from the list of todos.
@@ -28,11 +29,13 @@ public class EditDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the deadline of the specified todo from current available list.\n"
             + "Parameters: INDEX (INDEX must be a positive integer) "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] (must be in format dd-mm-yyyy)\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE] (must be in format yyyy-mm-dd)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DEADLINE + "01-10-2023\n";
 
     public static final String MESSAGE_UPDATE_STATUS_SUCCESS = "Deadline updated: %1$s";
+
+    private static final TodoType type = TodoType.TODO;
 
     private final Index targetIndex;
 
@@ -59,18 +62,21 @@ public class EditDeadlineCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         }
 
-        InternshipTodo todoToUpdateDeadline = lastShownList.get(targetIndex.getZeroBased());
-        InternshipTodo updatedTodo = createdUpdatedTodo(todoToUpdateDeadline, toUpdate);
+        InternshipTodo todoToUpdateDeadline = lastShownList.get(
+                targetIndex.getZeroBased());
+        InternshipTodo updatedTodo = createdUpdatedTodo(
+                todoToUpdateDeadline, toUpdate);
 
         model.setTodo(todoToUpdateDeadline, updatedTodo);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
-        return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedTodo));
+        return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedTodo), type);
     }
 
     /**
      * Creates and returns a {@code InternshipApplication} with the deadline of {@code deadline}
      */
-    private static InternshipTodo createdUpdatedTodo(InternshipTodo todo, ApplicationDeadline deadline) {
+    private static InternshipTodo createdUpdatedTodo(
+            InternshipTodo todo, ApplicationDeadline deadline) {
         assert todo != null;
 
         CompanyName companyName = todo.getInternshipTitle();

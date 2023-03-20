@@ -9,10 +9,6 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniqueApplicationList;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.todo.InternshipTodo;
-import seedu.address.model.todo.Note;
-import seedu.address.model.todo.UniqueNoteList;
-import seedu.address.model.todo.UniqueTodoList;
 
 /**
  * Wraps all data at the address-book level
@@ -22,21 +18,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueApplicationList applications;
-    private final UniqueTodoList todos;
-    private final UniqueNoteList notes;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     * NoteList that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
     {
         persons = new UniquePersonList();
         applications = new UniqueApplicationList();
-        todos = new UniqueTodoList();
-        notes = new UniqueNoteList();
     }
 
     public AddressBook() {}
@@ -68,44 +59,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the todo list with {@code todos}.
-     * {@code persons} must not contain duplicate todos.
-     */
-    public void setTodo(List<InternshipTodo> todos) {
-        this.todos.setTodo(todos);
-    }
-
-    /**
-     * Replaces the given todo {@code target} with {@code editedTodo}.
-     * {@code target} must exist in the tracker.
-     * The identity of {@code editedTodo} must not be the same as another existing todo in the tracker.
-     */
-    public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
-        requireNonNull(editedTodo);
-
-        todos.setTodo(target, editedTodo);
-    }
-
-    /**
-     * Replaces the contents of the note list with {@code notes}.
-     * {@code persons} must not contain duplicate notes.
-     */
-    public void setNote(List<Note> notes) {
-        this.notes.setNotes(notes);
-    }
-
-    /**
-     * Replaces the given note {@code target} with {@code editedNote}.
-     * {@code target} must exist in the tracker.
-     * The identity of {@code editedNote} must not be the same as another existing note in the tracker.
-     */
-    public void setNote(Note target, Note editedNote) {
-        requireNonNull(editedNote);
-
-        notes.setNotes(target, editedNote);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -123,25 +76,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(application);
         return applications.contains(application);
     }
-
-    /**
-     * Returns true if a todo with the same identity
-     * as {@code todo} exists in the tracker.
-     */
-    public boolean hasTodo(InternshipTodo todo) {
-        requireNonNull(todo);
-        return todos.containsTodo(todo);
-    }
-
-    /**
-     * Returns true if a todo with the same identity
-     * as {@code todo} exists in the tracker.
-     */
-    public boolean hasNote(Note note) {
-        requireNonNull(note);
-        return notes.containsNote(note);
-    }
-
     //// person-level operations
 
     /**
@@ -158,22 +92,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addApplication(InternshipApplication application) {
         applications.add(application);
-    }
-
-    /**
-     * Adds a todo to the tracker.
-     * The todo must not already exist in the tracker.
-     */
-    public void addTodo(InternshipTodo todo) {
-        todos.addTodo(todo);
-    }
-
-    /**
-     * Adds a note to the tracker.
-     * The note must not already exist in the tracker.
-     */
-    public void addNote(Note note) {
-        notes.addNote(note);
     }
 
     /**
@@ -221,37 +139,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeApplication(InternshipApplication key) {
         applications.remove(key);
     }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeTodo(InternshipTodo key) {
-        todos.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeNote(Note key) {
-        notes.remove(key);
-    }
-
-    /**
-     * Clear todo list.
-     */
-    public void clearTodo(ReadOnlyAddressBook newData) {
-        setTodo(newData.getTodoList());
-    }
-
-    /**
-     * Clear note list.
-     */
-    public void clearNote(ReadOnlyAddressBook newData) {
-        setNote(newData.getNoteList());
-    }
-
     //// util methods
 
     @Override
@@ -270,15 +157,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    @Override
-    public ObservableList<InternshipTodo> getTodoList() {
-        return todos.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Note> getNoteList() {
-        return notes.asUnmodifiableObservableList();
-    }
 
     @Override
     public boolean equals(Object other) {

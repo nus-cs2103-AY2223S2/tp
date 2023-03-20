@@ -1,17 +1,29 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.NoteList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyNote;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.TodoList;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.ApplicationDeadline;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
+import seedu.address.model.task.NoteContent;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -40,12 +52,49 @@ public class SampleDataUtil {
         };
     }
 
+    public static InternshipTodo[] getSampleTodo() {
+        return new InternshipTodo[] {
+            new InternshipTodo(new CompanyName("Google"), new JobTitle("SE"),
+                    new ApplicationDeadline(LocalDate.parse("2023-10-01")),
+                    new NoteContent("no note"), LocalDate.parse("2023-03-11"), TodoType.TODO),
+            new InternshipTodo(new CompanyName("Meta"), new JobTitle("Web Dev"),
+                    new ApplicationDeadline(LocalDate.parse("2023-07-10")),
+                    new NoteContent("no note"), LocalDate.parse("2023-02-11"), TodoType.TODO),
+            new InternshipTodo(new CompanyName("Amazon"), new JobTitle("App Dev"),
+                    new ApplicationDeadline(LocalDate.parse("2023-10-02")),
+                    new NoteContent("no note"), LocalDate.parse("2023-01-11"), TodoType.TODO)
+        };
+    }
+
+    public static Note[] getSampleNotes() {
+        return new Note[] {new Note(new NoteContent("Vacation starts next week!")),
+            new Note(new NoteContent("Project should be finalized by this week!")),
+            new Note(new NoteContent("Write letter!"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyTodoList getSampleTodoList() {
+        TodoList sampleTd = new TodoList();
+        for (InternshipTodo sampleTodo : getSampleTodo()) {
+            sampleTd.addTodo(sampleTodo);
+        }
+        return sampleTd;
+    }
+
+    public static ReadOnlyNote getSampleNoteList() {
+        NoteList sampleNl = new NoteList();
+        for (Note sampleNote : getSampleNotes()) {
+            sampleNl.addNote(sampleNote);
+        }
+        return sampleNl;
     }
 
     /**
