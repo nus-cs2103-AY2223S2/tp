@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
+import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
 
 import java.util.HashMap;
 import java.util.Objects;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
@@ -32,8 +32,6 @@ public class DeleteVolunteerCommand extends Command {
             + "Parameters: NRIC \n"
             + "Example: " + COMMAND_WORD + " S1234567I";
 
-    public static final String MESSAGE_INVALID_NRIC_VOLUNTEER =
-            String.format(Messages.MESSAGE_INVALID_NRIC, "volunteer");
     public static final String MESSAGE_DELETE_VOLUNTEER_SUCCESS = "Deleted Volunteer: %1$s";
 
     private final Nric targetNric;
@@ -55,7 +53,7 @@ public class DeleteVolunteerCommand extends Command {
             model.deleteVolunteer(volunteerToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_VOLUNTEER_SUCCESS, volunteerToDelete));
         } catch (VolunteerNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_NRIC_NOT_EXIST);
+            throw new CommandException(MESSAGE_NRIC_NOT_EXIST);
         }
     }
 

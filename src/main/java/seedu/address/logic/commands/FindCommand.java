@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_LISTED_OVERVIEW;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -107,7 +108,7 @@ public class FindCommand extends Command {
         model.updateFilteredPairList(getPairPredicate(model));
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_LISTED_OVERVIEW, model.getFilteredVolunteerList().size(),
+                String.format(MESSAGE_LISTED_OVERVIEW, model.getFilteredVolunteerList().size(),
                         model.getFilteredElderlyList().size(), model.getFilteredPairList().size()));
     }
 

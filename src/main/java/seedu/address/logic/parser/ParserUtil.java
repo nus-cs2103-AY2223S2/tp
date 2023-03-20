@@ -217,8 +217,8 @@ public class ParserUtil {
     public static Set<AvailableDate> parseDateRanges(Collection<String> datePairs) throws ParseException {
         requireNonNull(datePairs);
         final Set<AvailableDate> datesSet = new HashSet<>();
-        for (String tagName : datePairs) {
-            datesSet.add(parseDateRange(tagName));
+        for (String startEndDate : datePairs) {
+            datesSet.add(parseDateRange(startEndDate));
         }
         return datesSet;
     }

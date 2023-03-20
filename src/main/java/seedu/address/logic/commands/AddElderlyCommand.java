@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
@@ -16,7 +17,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
@@ -88,7 +88,7 @@ public class AddElderlyCommand extends Command {
         // hasPerson makes the judgement based on if same name
         // in Elderly, criteria is same name and age
         if (model.hasElderly(toAdd)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_ELDERLY);
+            throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
         }
 
         model.addElderly(toAdd);

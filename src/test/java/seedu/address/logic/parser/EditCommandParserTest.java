@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TO_EDIT_NRIC;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.AGE_DESC_AMY;
@@ -42,10 +44,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_STRONG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.util.EditPersonDescriptor;
 import seedu.address.model.person.information.Address;
@@ -70,25 +72,29 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no nric specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY,
+                String.format(MESSAGE_INVALID_TO_EDIT_NRIC, MESSAGE_CONSTRAINTS));
 
         // no field specified
-        assertParseFailure(parser, VALID_NRIC_AMY, Messages.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, VALID_NRIC_AMY, MESSAGE_NOT_EDITED);
 
-        // no index and no field specified
+        // no nric and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // index
-        assertParseFailure(parser, "1337" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        // invalid nric
+        assertParseFailure(parser, "1337" + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_TO_EDIT_NRIC, MESSAGE_CONSTRAINTS));
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string",
+                String.format(MESSAGE_INVALID_TO_EDIT_NRIC, MESSAGE_CONSTRAINTS));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, VALID_NRIC_AMY + " i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NRIC_AMY + " i/ string",
+                String.format(MESSAGE_INVALID_TO_EDIT_NRIC, MESSAGE_CONSTRAINTS));
     }
 
     @Test
