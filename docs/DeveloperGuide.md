@@ -154,6 +154,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Command for tab switching
+
+Due to the limited space on most displays, the application uses tabs to switch between various panels, such as the address book, events, and personal information panels.
+
+The tab switching mechanism is facilitated by `TabUtil`, which contains the list of all tabs relevant in the application. Tabs are represented by `TabInfo`, made up of an `Index` (which the user references in the `tab` command) and a `TabType` (which defines the possible tabs in the application). Their relationship is shown below:
+
+![Structure of `TabUtil`]()
+
+#### Design considerations:
+
+There are two ways to switch between tabs:
+* **Method 1:** Click on individual tabs in the tabs bar
+* **Method 2:** Use the `tab` command
+
+Consequently, the state of the selected tab needs to be shared between the two methods, so that the user can be correctly notified if they are already on a tab that they are trying to navigate to.
+
+> **Example:** If the user has navigated from the 1st tab to the 3rd using the tab bar before trying to navigate back to the 1st tab using `tab 1`, they should not be warned that they are already on the 1st tab. In other words, both methods should have their states in sync from the perspective of the user, so as not to induce unexpected behaviour.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
