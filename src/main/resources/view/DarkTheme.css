@@ -150,7 +150,7 @@
 }
 
 .result-display {
-    -fx-background-color: #d9d9d9;
+    -fx-background-color: #b7b7b7;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-font-family: "Segoe UI Light";
@@ -297,7 +297,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
