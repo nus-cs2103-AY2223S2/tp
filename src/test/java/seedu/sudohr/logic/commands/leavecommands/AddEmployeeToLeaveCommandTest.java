@@ -1,21 +1,22 @@
-
-package seedu.sudohr.logic.commands.department;
+package seedu.sudohr.logic.commands.leavecommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_LEAVE_DATE_LEAVE_TYPE_1;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
+import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
@@ -28,62 +29,88 @@ import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveDate;
-import seedu.sudohr.testutil.DepartmentBuilder;
+import seedu.sudohr.testutil.TypicalEmployees;
+import seedu.sudohr.testutil.TypicalLeave;
 
-public class AddDepartmentCommandTest {
+/**
+ * Adds a employee using it's displayed index to a specific leave using it's
+ * displayed index in sudohr book.
+ */
+public class AddEmployeeToLeaveCommandTest {
 
     @Test
-    public void constructor_nullDepartment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddDepartmentCommand(null));
-    }
+    public void execute_employeeAcceptedByLeave_addSuccessful() throws CommandException {
 
-    @Test
-    public void execute_departmentAcceptedByModel_addSuccessful() throws Exception {
-        AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded modelStub =
-                new AddDepartmentCommandTest.ModelStubAcceptingDepartmentAdded();
-        Department validDepartment = new DepartmentBuilder().build();
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+        modelStub.addEmployee(TypicalEmployees.ALICE);
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        CommandResult commandResult = new AddDepartmentCommand(validDepartment).execute(modelStub);
-
-        assertEquals(String.format(AddDepartmentCommand.MESSAGE_SUCCESS, validDepartment),
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_SUCCESS,
+                TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validDepartment), modelStub.departmentsAdded);
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_LEAVE_DATE_LEAVE_TYPE_1))))
+                .hasEmployee(TypicalEmployees.ALICE));
     }
+
+    // handle adding to leave objects that already exists
 
     @Test
-    public void execute_duplicateDepartment_throwsCommandException() {
-        Department validDepartment = new DepartmentBuilder().build();
-        AddDepartmentCommand addDepartmentCommand = new AddDepartmentCommand(validDepartment);
-        AddDepartmentCommandTest.ModelStub modelStub =
-                new AddDepartmentCommandTest.ModelStubWithDepartment(validDepartment);
+    public void execute_employeeAcceptedByLeaveAndPreviousEmployeeExists_addSuccessful() throws CommandException {
 
-        assertThrows(CommandException.class, AddDepartmentCommand.MESSAGE_DUPLICATE_DEPARTMENT, () ->
-                addDepartmentCommand.execute(modelStub));
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+        modelStub.addEmployee(TypicalEmployees.ALICE);
+        modelStub.addEmployee(TypicalEmployees.BENSON);
+
+        new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(Index.fromOneBased(2),
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_SUCCESS,
+                TypicalEmployees.BENSON, TypicalLeave.LEAVE_TYPE_1),
+                commandResult.getFeedbackToUser());
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_LEAVE_DATE_LEAVE_TYPE_1))))
+                .hasEmployee(TypicalEmployees.ALICE));
     }
 
+    // handle duplicate employee in Leave
     @Test
-    public void equals() {
-        Department humanResources = new DepartmentBuilder().withDepartmentName("Human Resources").build();
-        Department engineering = new DepartmentBuilder().withDepartmentName("Engineering").build();
-        AddDepartmentCommand addHumanResourcesCommand = new AddDepartmentCommand(humanResources);
-        AddDepartmentCommand addEngineeringCommand = new AddDepartmentCommand(engineering);
+    public void execute_duplicateEmployeeInLeave_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+        modelStub.addEmployee(TypicalEmployees.ALICE);
+        new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        // same object -> returns true
-        assertTrue(addHumanResourcesCommand.equals(addHumanResourcesCommand));
+        assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
 
-        // same values -> returns true
-        AddDepartmentCommand addHumanResourcesCommandCopy = new AddDepartmentCommand(humanResources);
-        assertTrue(addHumanResourcesCommand.equals(addHumanResourcesCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addHumanResourcesCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addHumanResourcesCommand.equals(null));
-
-        // different employee -> returns false
-        assertFalse(addHumanResourcesCommand.equals(addEngineeringCommand));
     }
+
+    // Handle adding null employee
+    @Test
+    public void execute_addNullEmployeeToLeave_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+
+        assertThrows(NullPointerException.class, () -> new AddEmployeeToLeaveCommand(null,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+    }
+
+    // Handle adding null leave date
+    @Test
+    public void execute_addEmployeeToNullDepartment_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+
+        assertThrows(NullPointerException.class, () ->
+                new AddEmployeeToLeaveCommand(Index.fromOneBased(1), null).execute(modelStub));
+    }
+
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -138,6 +165,7 @@ public class AddDepartmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
         public boolean hasEmployee(Employee employee) {
             throw new AssertionError("This method should not be called.");
         }
@@ -300,44 +328,89 @@ public class AddDepartmentCommandTest {
     }
 
     /**
-     * A Model stub that contains a single department.
+     * A Model stub that always accept the employee being added to the leave.
      */
-    private class ModelStubWithDepartment extends AddDepartmentCommandTest.ModelStub {
-        private final Department department;
+    private class ModelStubAcceptingEmployeeAdded extends ModelStub {
+        private SudoHr sudoHr = new SudoHr();
+        private final FilteredList<Employee> filteredEmployees;
 
-        ModelStubWithDepartment(Department department) {
-            requireNonNull(department);
-            this.department = department;
+        private ModelStubAcceptingEmployeeAdded() {
+            this.filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
         }
 
         @Override
-        public boolean hasDepartment(Department department) {
-            requireNonNull(department);
-            return this.department.equals(department);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the department being added.
-     */
-    private class ModelStubAcceptingDepartmentAdded extends AddDepartmentCommandTest.ModelStub {
-        final ArrayList<Department> departmentsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasDepartment(Department department) {
-            requireNonNull(department);
-            return departmentsAdded.stream().anyMatch(department::equals);
+        public void addEmployee(Employee employee) {
+            sudoHr.addEmployee(employee);
         }
 
         @Override
-        public void addDepartment(Department department) {
-            requireNonNull(department);
-            departmentsAdded.add(department);
+        public Employee getEmployee(Id employeeId) {
+            requireNonNull(employeeId);
+            return sudoHr.getEmployee(employeeId);
+        }
+
+        @Override
+        public ObservableList<Employee> getFilteredEmployeeList() {
+            return filteredEmployees;
+
         }
 
         @Override
         public ReadOnlySudoHr getSudoHr() {
-            return new SudoHr();
+            return sudoHr;
+        }
+
+        @Override
+        public void addLeave(Leave leave) {
+            requireNonNull(leave);
+            sudoHr.addLeave(leave);
+
+        }
+
+        @Override
+        public boolean hasLeave(Leave leave) {
+            requireNonNull(leave);
+            return sudoHr.hasLeave(leave);
+        }
+
+        @Override
+        public ObservableList<Leave> getLeavesList() {
+            return this.sudoHr.getLeavesList();
+        }
+
+        @Override
+        public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
+            if (sudoHr.hasLeave(leaveToAdd)) {
+                return sudoHr.getLeave(leaveToAdd);
+            } else {
+                sudoHr.addLeave(leaveToAdd);
+                return leaveToAdd;
+            }
+        }
+
+        @Override
+        public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
+            requireAllNonNull(date, employee);
+            return sudoHr.hasEmployeeOnLeave(date, employee);
+        }
+
+        @Override
+        public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
+            requireAllNonNull(leaveToAdd, employeeToAdd);
+
+            sudoHr.addEmployeeToLeave(leaveToAdd, employeeToAdd);
+        }
+
+        @Override
+        public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
+            requireAllNonNull(leaveToDelete, employeeToDelete);
+
+            sudoHr.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
+        }
+
+        // for this we do not modify the filtered list to facilitate testing
+        @Override
+        public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         }
     }
 }
