@@ -84,7 +84,7 @@ public class PatientistParser {
             return new ListPatientsCommand();
 
         case ListWardPatientsCommand.COMMAND_WORD:
-            return new ListWardPatientsCommand(arguments);
+            return new ListWardPatientsCommandParser().parse(arguments);
 
         case ListStaffCommand.COMMAND_WORD:
             return new ListStaffCommand();
