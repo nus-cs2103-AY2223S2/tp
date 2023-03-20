@@ -1,10 +1,8 @@
-package trackr.logic;
+package trackr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
-import trackr.logic.commands.Command;
-import trackr.logic.commands.CommandResult;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.item.Item;
@@ -12,7 +10,7 @@ import trackr.model.item.Item;
 /**
  * Lists all items in the item list to the user.
  */
-public class ListItemCommand<T extends Item> extends Command {
+public abstract class ListItemCommand<T extends Item> extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all %ss";
 

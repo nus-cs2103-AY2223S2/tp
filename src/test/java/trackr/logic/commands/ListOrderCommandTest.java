@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.order.ListOrderCommand;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.UserPrefs;
 
@@ -33,12 +34,18 @@ public class ListOrderCommandTest {
 
     @Test
     public void execute_orderListIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListOrderCommand(),
+                model,
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER.toString().toLowerCase()),
+                expectedModel);
     }
 
     @Test
     public void execute_taskListIsFiltered_showsEverything() {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
-        assertCommandSuccess(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListOrderCommand(),
+                model,
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.ORDER.toString().toLowerCase()),
+                expectedModel);
     }
 }

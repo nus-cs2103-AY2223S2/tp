@@ -20,11 +20,13 @@ import org.junit.jupiter.api.io.TempDir;
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.logic.commands.CommandResult;
+import trackr.logic.commands.ListItemCommand;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.commands.supplier.AddSupplierCommand;
 import trackr.logic.commands.supplier.ListSupplierCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
@@ -71,7 +73,9 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listSupplierCommand = ListSupplierCommand.COMMAND_WORD;
-        assertCommandSuccess(listSupplierCommand, ListSupplierCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listSupplierCommand,
+                String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.SUPPLIER.toString().toLowerCase()),
+                model);
     }
 
     @Test
