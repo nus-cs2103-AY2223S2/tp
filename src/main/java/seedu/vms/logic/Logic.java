@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.IdData;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
@@ -31,7 +30,7 @@ public interface Logic {
      * @param onExecutionComplete - the {@code Consumer} to be called after a
      *      command completes its execution.
      */
-    void setOnExecutionCompletion(Consumer<List<CommandResult>> onExecutionComplete);
+    void setOnExecutionCompletion(Consumer<List<CommandMessage>> onExecutionComplete);
 
 
     /**

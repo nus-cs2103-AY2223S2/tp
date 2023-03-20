@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import seedu.vms.commons.core.index.Index;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.model.IdData;
@@ -84,13 +85,13 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the returned {@link CommandMessage} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandMessage expectedCommandResult,
             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandMessage result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -99,12 +100,12 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandMessage, Model)}
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandMessage expectedCommandResult = new CommandMessage(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

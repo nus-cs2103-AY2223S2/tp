@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.vaccination.EditVaxTypeParser;
 import seedu.vms.model.Age;
@@ -83,6 +85,7 @@ public class EditVaxTypeTest {
 
 
     private void attemptExecution(String command) throws Exception {
-        new EditVaxTypeParser().parse(command).execute(model);
+        ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(command);
+        new EditVaxTypeParser().parse(argsMap).execute(model);
     }
 }

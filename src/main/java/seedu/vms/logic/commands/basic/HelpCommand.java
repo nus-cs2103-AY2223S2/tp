@@ -1,7 +1,7 @@
 package seedu.vms.logic.commands.basic;
 
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+    public CommandMessage execute(Model model) {
+        return new CommandMessage(SHOWING_HELP_MESSAGE, true, false);
     }
 }

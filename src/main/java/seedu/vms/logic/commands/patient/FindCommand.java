@@ -3,8 +3,8 @@ package seedu.vms.logic.commands.patient;
 import static java.util.Objects.requireNonNull;
 
 import seedu.vms.commons.core.Messages;
+import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
-import seedu.vms.logic.commands.CommandResult;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 
@@ -30,10 +30,10 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandMessage execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
-        return new CommandResult(
+        return new CommandMessage(
                 String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
     }
 

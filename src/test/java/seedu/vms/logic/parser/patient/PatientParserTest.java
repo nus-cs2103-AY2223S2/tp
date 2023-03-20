@@ -35,20 +35,20 @@ public class PatientParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Patient patient = new PatientBuilder().build();
-        AddCommand command = (AddCommand) parser.parse(PatientUtil.getAddCommand(patient));
+        AddCommand command = (AddCommand) parser.parse(PatientUtil.getAddCommand(patient)).getCommand();
         assertEquals(new AddCommand(patient), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parse(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parse(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        assertTrue(parser.parse(ClearCommand.COMMAND_WORD).getCommand() instanceof ClearCommand);
+        assertTrue(parser.parse(ClearCommand.COMMAND_WORD + " 3").getCommand() instanceof ClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parse(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased()).getCommand();
         assertEquals(new DeleteCommand(INDEX_FIRST_PATIENT), command);
     }
 
@@ -57,7 +57,8 @@ public class PatientParserTest {
         Patient patient = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditCommand command = (EditCommand) parser.parse(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor));
+                + INDEX_FIRST_PATIENT.getOneBased() + " " + PatientUtil.getEditPatientDescriptorDetails(descriptor))
+                .getCommand();
         assertEquals(new EditCommand(INDEX_FIRST_PATIENT, descriptor), command);
     }
 
@@ -65,14 +66,15 @@ public class PatientParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parse(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")))
+                .getCommand();
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parse(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD).getCommand() instanceof ListCommand);
+        assertTrue(parser.parse(ListCommand.COMMAND_WORD + " 3").getCommand() instanceof ListCommand);
     }
 
     @Test
