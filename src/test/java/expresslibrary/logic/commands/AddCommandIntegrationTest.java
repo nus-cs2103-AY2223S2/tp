@@ -2,7 +2,7 @@ package expresslibrary.logic.commands;
 
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandFailure;
 import static expresslibrary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static expresslibrary.testutil.TypicalPersons.getTypicalExpressLibrary;
+import static expresslibrary.testutil.TypicalExpressLibrary.getTypicalExpressLibrary;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

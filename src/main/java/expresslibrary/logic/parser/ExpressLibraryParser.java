@@ -14,6 +14,7 @@ import expresslibrary.logic.commands.EditCommand;
 import expresslibrary.logic.commands.ExitCommand;
 import expresslibrary.logic.commands.FindCommand;
 import expresslibrary.logic.commands.HelpCommand;
+import expresslibrary.logic.commands.ListBookCommand;
 import expresslibrary.logic.commands.ListCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
 
@@ -61,6 +62,9 @@ public class ExpressLibraryParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListBookCommand.COMMAND_WORD:
+            return new ListBookCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

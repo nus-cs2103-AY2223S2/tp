@@ -13,6 +13,7 @@ import expresslibrary.logic.parser.ExpressLibraryParser;
 import expresslibrary.logic.parser.exceptions.ParseException;
 import expresslibrary.model.Model;
 import expresslibrary.model.ReadOnlyExpressLibrary;
+import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 import expresslibrary.storage.Storage;
 import javafx.collections.ObservableList;
@@ -63,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Book> getFilteredBookList() {
+        return model.getFilteredBookList();
     }
 
     @Override
