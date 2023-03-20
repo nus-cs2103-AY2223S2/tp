@@ -28,7 +28,6 @@ import seedu.address.testutil.ListingBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for DeleteApplicantCommand.
  */
 public class DeleteApplicantCommandTest {
-    private Model model = new ModelManager(getTypicalListingBook(), new UserPrefs());
     private static final Applicant BENEDICT_1 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
     private static final Applicant BENEDICT_2 = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_BENEDICT).build();
     private static final Applicant CHRIS = new ApplicantBuilder().withName(VALID_APPLICANT_NAME_CHRIS).build();
@@ -38,6 +37,8 @@ public class DeleteApplicantCommandTest {
             + BENEDICT_1.hashCode();
     private static final String VALID_BENEDICT_2_NAME_WITH_ID = VALID_APPLICANT_NAME_BENEDICT + "#"
             + BENEDICT_2.hashCode();
+
+    private Model model = new ModelManager(getTypicalListingBook(), new UserPrefs());
 
     @Test
     public void execute_deleteUniqueApplicantName_success() {
