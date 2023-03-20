@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.UniqueRoutineList;
 
@@ -91,6 +92,17 @@ public class FitBookExerciseRoutine implements ReadOnlyFitBookExerciseRoutine {
      */
     public void removeRoutine(Routine key) {
         routines.remove(key);
+    }
+
+    public void addExercise(Routine routine, Exercise exercise) {
+        requireNonNull(routine);
+        requireNonNull(exercise);
+        routine.addExercise(exercise);
+    }
+
+    public void removeExercise(Routine routine, int targetIndex) {
+        requireNonNull(routine);
+        routine.deleteExercise(targetIndex);
     }
 
     //// util methods
