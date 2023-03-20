@@ -16,7 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
-import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
 /**
@@ -49,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveExpenseTracker(model.getAddressBook());
+            storage.saveExpenseTracker(model.getExpenseTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -59,7 +58,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyExpenseTracker getAddressBook() {
-        return model.getAddressBook();
+        return model.getExpenseTracker();
     }
 
     @Override
@@ -74,18 +73,14 @@ public class LogicManager implements Logic {
 
     @Override
     public int getExpenseListCount() {
-        return model.getExpenseListCount();
+        return model.getFilteredExpenseListCount();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getExpenseTrackerFilePath();
     }
 
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
 
     @Override
     public GuiSettings getGuiSettings() {

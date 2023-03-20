@@ -3,7 +3,6 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
-import seedu.address.model.person.Person;
 
 /**
  * Unmodifiable view of an address book
@@ -11,13 +10,14 @@ import seedu.address.model.person.Person;
 public interface ReadOnlyExpenseTracker {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the category list.
+     * This list will not contain any duplicate categories.
      */
-    ObservableList<Person> getPersonList();
-
     ObservableList<Category> getCategoryList();
 
+    /**
+     * Returns an unmodifiable view of the expense list.
+     */
     ObservableList<Expense> getExpenseList();
 
 }

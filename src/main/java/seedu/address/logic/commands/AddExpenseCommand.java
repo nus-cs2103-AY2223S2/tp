@@ -46,8 +46,8 @@ public class AddExpenseCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Category newCategory = newExpense.getCategory();
-        if (model.hasCategory(newCategory.getCategoryName())) {
-            Category existingCategory = model.getCategoryInstance(newCategory.getCategoryName());
+        Category existingCategory = model.getCategoryInstance(newCategory.getCategoryName());
+        if (existingCategory != null) {
             newExpense.setCategory(existingCategory);
         } else {
             model.addCategory(newCategory);

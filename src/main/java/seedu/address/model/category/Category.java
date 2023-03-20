@@ -44,11 +44,7 @@ public abstract class Category {
             return true;
         }
 
-        if (toCheck != null && toCheck.getCategoryName().equals(this.getCategoryName())) {
-            return true;
-        }
-
-        return false;
+        return toCheck != null && toCheck.getCategoryName().equals(this.getCategoryName());
     }
 
     @Override
