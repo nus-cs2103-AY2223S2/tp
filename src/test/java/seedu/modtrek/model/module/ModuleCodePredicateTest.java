@@ -41,7 +41,8 @@ class ModuleCodePredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
-        ModuleCodePredicate predicate = new ModuleCodePredicate(CS1101S.getCode().toString(), "", "", "", new HashSet<>());
+        ModuleCodePredicate predicate = new ModuleCodePredicate(CS1101S.getCode().toString(),
+                "", "", "", new HashSet<>());
         assertFalse(predicate.test(new ModuleBuilder().withCode("ST2334").build()));
     }
 
