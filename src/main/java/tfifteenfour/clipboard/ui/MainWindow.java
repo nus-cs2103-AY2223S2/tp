@@ -15,6 +15,7 @@ import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
+import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.ViewCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.RosterParser;
@@ -187,7 +188,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (RosterParser.parseCommand(commandText) instanceof ViewCommand) {
+            if (RosterParser.parseCommand(commandText) instanceof ViewCommand ||
+                    RosterParser.parseCommand(commandText) instanceof UploadCommand) {
                 studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
                 studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
             }
