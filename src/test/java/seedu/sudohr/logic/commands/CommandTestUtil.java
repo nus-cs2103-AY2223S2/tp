@@ -3,8 +3,10 @@ package seedu.sudohr.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE_INDEX;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -80,8 +82,18 @@ public class CommandTestUtil {
     public static final String DEPARTMENT_NAME_DESC_ENGINEERING = " " + PREFIX_DEPARTMENT_NAME
             + VALID_DEPARTMENT_NAME_ENGINEERING;
 
+    // leave
     public static final String VALID_LEAVE_DATE_LEAVE_TYPE_2 = "2005-04-03";
+    public static final String VALID_LEAVE_DATE_LEAVE_TYPE_1 = "2000-03-02";
 
+    public static final String DATE_DESC_LEAVE_TYPE_2 = " " + PREFIX_DATE + VALID_LEAVE_DATE_LEAVE_TYPE_2;
+    public static final String DATE_DESC_LEAVE_TYPE_1 = " " + PREFIX_DATE + VALID_LEAVE_DATE_LEAVE_TYPE_1;
+
+    public static final String EMPLOYEE_INDEX_DESC_1 = " " + PREFIX_EMPLOYEE_INDEX + "1";
+    public static final String EMPLOYEE_INDEX_DESC_2 = " " + PREFIX_EMPLOYEE_INDEX + "2";
+
+    public static final String INVALID_LEAVE_DATE_DESC = " " + PREFIX_DATE + "12/23/24";
+    public static final String INVALID_INDEX_DESC = " " + PREFIX_EMPLOYEE_INDEX + "3k21309";
     // '&' not allowed in names
     public static final String INVALID_DEPARTMENT_NAME_DESC = " " + PREFIX_DEPARTMENT_NAME + "Engineering&";
 

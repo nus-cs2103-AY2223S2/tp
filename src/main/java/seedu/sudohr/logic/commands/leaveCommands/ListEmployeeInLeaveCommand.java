@@ -25,8 +25,8 @@ public class ListEmployeeInLeaveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists the employees part of the leave identified by the index number "
             + "used in the displayed employees list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: Date (must be a date in the form of YYYY-mm-dd)\n"
+            + "Example: " + COMMAND_WORD + " 2022-03-04";
 
     private final LeaveDate targetDate;
 
@@ -50,5 +50,12 @@ public class ListEmployeeInLeaveCommand extends Command {
         model.updateFilteredEmployeeList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_EMPLOYEES_LISTED_OVERVIEW, model.getFilteredEmployeeList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListEmployeeInLeaveCommand // instanceof handles nulls
+                        && targetDate.equals(((ListEmployeeInLeaveCommand) other).targetDate));
     }
 }

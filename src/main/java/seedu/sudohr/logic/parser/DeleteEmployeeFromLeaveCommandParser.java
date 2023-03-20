@@ -15,7 +15,7 @@ import seedu.sudohr.model.leave.LeaveDate;
  * Parses input arguments and creates a new DeleteEmployeeFromLeaveCommandParser
  * object
  */
-public class DeleteEmployeeFromLeaveCommandParser {
+public class DeleteEmployeeFromLeaveCommandParser implements Parser<DeleteEmployeeFromLeaveCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the
      * DeleteEmployeeFromLeaveCommand
