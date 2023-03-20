@@ -9,7 +9,6 @@ import static seedu.patientist.testutil.TypicalStaff.AMY;
 import static seedu.patientist.testutil.TypicalStaff.BOB;
 import static seedu.patientist.testutil.TypicalStaff.CHARLES;
 import static seedu.patientist.testutil.TypicalStaff.DACIA;
-import static seedu.patientist.testutil.TypicalStaff.getTypicalPatientist;
 
 import java.util.Arrays;
 
@@ -21,8 +20,8 @@ import seedu.patientist.model.UserPrefs;
 import seedu.patientist.model.person.staff.IsStaffPredicate;
 
 public class ListStaffCommandTest {
-    private Model model = new ModelManager(getTypicalPatientist(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalPatientist(), new UserPrefs());
+    private Model model = null; // new ModelManager(getTypicalPatientist(), new UserPrefs());
+    private Model expectedModel = null; //new ModelManager(getTypicalPatientist(), new UserPrefs());
 
     @Test
     public void equals() {

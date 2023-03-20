@@ -160,6 +160,10 @@ public class Ward {
 
     @Override
     public String toString() {
-        return this.wardName; //TODO: not sure whats needed here
+        return this.wardName;
+    }
+
+    public String getWardName() {
+        return wardName;
     }
 }
