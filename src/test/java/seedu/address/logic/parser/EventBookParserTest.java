@@ -26,6 +26,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NewContactCommand;
 import seedu.address.logic.commands.RateCommand;
+import seedu.address.logic.commands.RevenueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
@@ -119,12 +120,18 @@ public class EventBookParserTest {
     @Test
     public void parseCommand_linkContact() throws Exception {
         Contact contact = new ContactBuilder().build();
-        Event event = new EventBuilder().build();
         LinkContactCommand command = (LinkContactCommand) parser.parseCommand(
                 LinkContactCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased() + " "
                         + contact.getPhone().value);
         assertEquals(new LinkContactCommand(INDEX_FIRST_EVENT, contact.getPhone().value), command);
     }
+
+    @Test
+    public void parseCommand_revenue() throws Exception {
+        assertTrue(parser.parseCommand(RevenueCommand.COMMAND_WORD) instanceof RevenueCommand);
+        assertTrue(parser.parseCommand(RevenueCommand.COMMAND_WORD + " 3") instanceof RevenueCommand);
+    }
+
 
 
     @Test
