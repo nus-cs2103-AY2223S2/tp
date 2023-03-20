@@ -13,7 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.doctor.Doctor;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of doctors.
  */
 public class DoctorListPanel extends UiPart<Region> {
     private static final String FXML = "DoctorListPanel.fxml";
