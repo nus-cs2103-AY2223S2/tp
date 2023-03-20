@@ -1,39 +1,25 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_LISTING;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_LISTING_ALT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_ALT;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showListingAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_LISTING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_LAST_LISTING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_LISTING;
 import static seedu.address.testutil.TypicalListings.getTypicalListingBook;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
+
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditListingDescriptor;
-import seedu.address.logic.commands.exceptions.CommandException;
+
 import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.applicant.Applicant;
-import seedu.address.model.applicant.Name;
 import seedu.address.model.listing.Listing;
 import seedu.address.testutil.ApplicantBuilder;
-import seedu.address.testutil.EditListingDescriptorBuilder;
 import seedu.address.testutil.ListingBuilder;
 
 /**
