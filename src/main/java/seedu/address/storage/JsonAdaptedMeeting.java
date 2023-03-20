@@ -41,7 +41,7 @@ class JsonAdaptedMeeting {
 
     @JsonValue
     public String getString() {
-        return this.start.toString() + this.end.toString();
+        return this.start.toString() + "?" + this.end.toString();
     }
 
     /**
