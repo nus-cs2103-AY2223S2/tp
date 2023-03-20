@@ -36,10 +36,10 @@ import codoc.testutil.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_COURSE_AMY = "Computer Science";
+    public static final String VALID_COURSE_AMY = "1";
     public static final String VALID_YEAR_AMY = "2";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_COURSE_BOB = "Business";
+    public static final String VALID_COURSE_BOB = "3";
     public static final String VALID_YEAR_BOB = "1";
     public static final String VALID_GITHUB_AMY = "amy-123";
     public static final String VALID_GITHUB_BOB = "bob-456";

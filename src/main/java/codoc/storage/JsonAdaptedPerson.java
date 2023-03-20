@@ -119,10 +119,10 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (course != null && !Course.isValidCourse(course)) {
+        if (course != null && !Course.isValidCourse(Course.getIndex(course))) {
             throw new IllegalValueException(Course.MESSAGE_CONSTRAINTS);
         }
-        final Course modelCourse = new Course(course);
+        final Course modelCourse = new Course(Course.getIndex(course));
 
         if (year != null && !Year.isValidYear(year)) {
             throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);

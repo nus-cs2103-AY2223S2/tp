@@ -31,7 +31,7 @@ public class TypicalPersons {
             .withGithub("alice-Pauline")
             .withSkills("python").withMods().build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withCourse("Computer Science")
+            .withCourse("1")
             .withYear("1")
             .withLinkedin("linkedin.com/in/alice")
             .withEmail("johnd@example.com").withGithub("bensonmeier")

@@ -25,7 +25,7 @@ import codoc.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_COURSE = "Computer Science";
+    public static final String DEFAULT_COURSE = "1";
     public static final String DEFAULT_YEAR = "1";
     public static final String DEFAULT_GITHUB = "amy-123";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -154,7 +154,7 @@ public class PersonBuilder {
      */
     public Person buildEditedPerson() {
         name = new Name("Test name");
-        course = new Course("Computer Science");
+        course = new Course("1");
         year = new Year("1");
         github = new Github("987654321");
         email = new Email("test@gmail.com");

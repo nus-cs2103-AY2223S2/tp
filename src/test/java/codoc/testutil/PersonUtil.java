@@ -16,6 +16,7 @@ import java.util.Set;
 import codoc.logic.commands.AddCommand;
 import codoc.logic.commands.EditCommand.EditPersonDescriptor;
 import codoc.model.module.Module;
+import codoc.model.person.Course;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
 
@@ -37,7 +38,7 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_COURSE + person.getCourse().course + " ");
+        sb.append(PREFIX_COURSE + Course.getIndex(person.getCourse().course) + " ");
         sb.append(PREFIX_YEAR + person.getYear().year + " ");
         sb.append(PREFIX_GITHUB + person.getGithub().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
