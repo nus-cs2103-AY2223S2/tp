@@ -329,8 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HMHero shows an error message.
 
       Use case resumes at step 2.
-      
-      
+    
 **Use case: Advance an applicant’s status**
 
 **MSS**
@@ -431,7 +430,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     2. Shortlisted
     3. Accepted
     4. Rejected
-* **Application stage**: 
+* **Application stage**:
     * All applicants added are at the Applied status by default. From there, hiring managers can advance their
     application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
 ![Application Stage](images/application_stage.png)

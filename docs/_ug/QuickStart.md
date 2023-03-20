@@ -4,7 +4,7 @@ This User Guide is split into various sections, and we advise you to read throug
 
 If you have not downloaded `HMHero` feel free to head to the [Installation](#3-installation) section.
 
-After installation, head on to the [Quick Reference](#quick-reference-guide) section to get an overview of `HMHero`. 
+After installation, head on to the [Quick Reference](#quick-reference-guide) section to get an overview of `HMHero`.
 This includes:
 * The [user interface]() of HMHero
 * How each `Applicant` is represented
@@ -38,6 +38,5 @@ Remember to add `HMHero.jar` into an empty folder as additional data and configu
 ## Quick Reference Guide
 
 ### 4. How to make use of this guide?
-
 
 ---

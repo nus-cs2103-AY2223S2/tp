@@ -64,9 +64,9 @@ Example
 - **Enhancements to existing features**:
 
   - Make error messages presented more specific to the user's situation
-  - Example: 
+  - Example:
   `Invalid Date and Time Provided. Expected Format: "DD-MM-YYYY HH:MM"`
- 
+
 
 - **Documentation**:
 

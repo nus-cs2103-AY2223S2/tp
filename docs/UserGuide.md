@@ -14,9 +14,9 @@
 
 HMHero is a tool that helps Hiring Managers easily track the statuses of candidates' applications.
 
-In a conventional application cycle, the large influx of applicants makes it challenging for 
-Hiring Managers to track and monitor the progress of each applicant. This application includes 
-features such as quick searching of applicants, algorithm to prioritize applicants according 
+In a conventional application cycle, the large influx of applicants makes it challenging for
+Hiring Managers to track and monitor the progress of each applicant. This application includes
+features such as quick searching of applicants, algorithm to prioritize applicants according
 to their strengths and tabs on every applicant's application status.
 
 ---
@@ -25,9 +25,9 @@ to their strengths and tabs on every applicant's application status.
 
 Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note: ** 
-We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding 
-of how to use HMHero. 
+<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note: **
+We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding
+of how to use HMHero.
 </div>
 
 If you are a **new user**, and you have not installed HMHero yet, head over to the [Installation](#installation)
@@ -49,9 +49,9 @@ sub-section in this User Guide so that it is easy for you to jump across differe
 </div>
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
-This User Guide contains many clickable links for you to navigate around different sections. 
-You may use the keyboard shortcuts <code>Alt + Left arrow`</code>  and <code>`Alt + Right arrow`</code> 
-to navigate back and forth between the links quickly. (<code>Command + Left arrow`</code> and 
+This User Guide contains many clickable links for you to navigate around different sections.
+You may use the keyboard shortcuts <code>Alt + Left arrow`</code>  and <code>`Alt + Right arrow`</code>
+to navigate back and forth between the links quickly. (<code>Command + Left arrow`</code> and
 <code>`Command + Right arrow`</code> if you are using Mac).
 </div>
 
@@ -79,7 +79,8 @@ Highlight dangers and things to look out for. </div>
 
 Other than the icons mentioned above, there are also some other notations used in this guide:
 
-- <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of this documentation that is relevant to the phrase.
+- <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of 
+this documentation that is relevant to the phrase.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -89,16 +90,16 @@ Other than the icons mentioned above, there are also some other notations used i
 
 1. Ensure you have  or above installed in your computer
 2. Download the latest `HMHero` from [here](https://github.com/AY2223S2-CS2103T-W14-4/tp/releases).
-3. Copy the file to an empty folder. This folder is where all the information needed for the HMHero application 
+3. Copy the file to an empty folder. This folder is where all the information needed for the HMHero application
 will reside in.
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: **Caution: **
-Ensure that the file is added to an empty folder as additional data and configuration files will be created when HMHero 
+Ensure that the file is added to an empty folder as additional data and configuration files will be created when HMHero
 is launched for the first time in your computer!
 </div>
 4. Double-click on the jar file to launch HMHero.
 5. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.
-   
+
 **(To Insert Picture of Launch Screen)**
 
 <div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
@@ -120,7 +121,7 @@ Of special note is the [Key Definitions]() and [Command Format]() sections, whic
 HMHero's features.
 
 ### 6.1 Layout
-When you launch HMHero, HMHero appears on your screen as a [Graphical User Interface](GUI). Let's explore the 
+When you launch HMHero, HMHero appears on your screen as a [Graphical User Interface](GUI). Let's explore the
 layout of the different components of HMHero.
 
 HMHero's GUI consists of a single main window consisting of 3 main sections.
@@ -152,7 +153,7 @@ The following are the attributes stored for each `Applicant`
 * Email
 * Notes
 
-Applicants are unique by name and phone number and Case Sensitive. 
+Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
 ### 6.2.2 Notes
@@ -194,7 +195,7 @@ These placeholders follow immediately after a [Flag](#623-flags).
 | note/  | `NOTE`                    |
 | d/     | `DATETIME`                |
 
-Please refer to the subsequent [Command Format]() section to see how [Flags](#623-flags) 
+Please refer to the subsequent [Command Format]() section to see how [Flags](#623-flags)
 and [Placeholders](#624-placeholders) are used together.
 
 ### 6.2.4 Placeholders
@@ -213,7 +214,7 @@ Please refer to the subsequent [Command Format](#63-command-format) section to s
 | DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
 
 ### 6.3 Command Format
-You will encounter HMHero commands throughout this User Guide. 
+You will encounter HMHero commands throughout this User Guide.
 Before you delve into the different commands in Commands, let’s learn what a command consists of.
 
 Here is an example:
@@ -236,13 +237,13 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTES]`
 
 The first word of every command allows HMHero to distinguish different commands
 * add tells HMHero that this is the command to add an applicant into HMHero
-* [Flags]() such as `n/` and `p/` are delimiters that enable HMHero to distinguish different parameters 
+* [Flags]() such as `n/` and `p/` are delimiters that enable HMHero to distinguish different parameters
 supplied by you without ambiguity
 * [Placeholders]() such as NAME and PHONE shows you what you should place in each portion of the command
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong>
-The <a href="#624-placeholders">Placeholders </a> section covers the restrictions for respective placeholders. 
-For example, the datetime format for interviews, certain characters you cannot 
+The <a href="#624-placeholders">Placeholders </a> section covers the restrictions for respective placeholders.
+For example, the datetime format for interviews, certain characters you cannot
 use and the limit and precision of numbers.
 </div>
 
@@ -349,7 +350,7 @@ Find applicants using keywords (name OR phone number OR both)
 - Format:
   - Format 1: `find NAME or PHONE NUMBER` (only need to provide either one)
   - Format 2: `find n/NAME p/PHONE NUMBER` (must provide both)
-- Example: 
+- Example:
   - Example 1: `find Jack Dill`, `find 91234567`
   - Example 2: `find n/Jack Dill p/91234567`
 
