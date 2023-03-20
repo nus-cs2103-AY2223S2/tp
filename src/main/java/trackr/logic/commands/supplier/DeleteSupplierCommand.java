@@ -19,6 +19,6 @@ public class DeleteSupplierCommand extends DeleteItemCommand<Supplier> {
             + "Example: " + COMMAND_WORD + " 1";
 
     public DeleteSupplierCommand(Index targetIndex) {
-        super(targetIndex, COMMAND_WORD, COMMAND_WORD_SHORTCUT, MESSAGE_USAGE, ModelEnum.SUPPLIER);
+        super(targetIndex, ModelEnum.SUPPLIER);
     }
 }

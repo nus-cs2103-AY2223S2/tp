@@ -5,6 +5,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.logic.commands.AddItemCommand;
+import trackr.model.ModelEnum;
 import trackr.model.task.Task;
 /**
  * Adds a task to the task list.
@@ -27,6 +28,6 @@ public class AddTaskCommand extends AddItemCommand<Task> {
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
     public AddTaskCommand(Task task) {
-        super(task, COMMAND_WORD, COMMAND_WORD_SHORTCUT, MESSAGE_USAGE);
+        super(task, ModelEnum.TASK);
     }
 }

@@ -18,6 +18,6 @@ public class DeleteOrderCommand extends DeleteItemCommand<Order> {
             + "Example: " + COMMAND_WORD + " 1";
 
     public DeleteOrderCommand(Index targetIndex) {
-        super(targetIndex, COMMAND_WORD, COMMAND_WORD_SHORTCUT, MESSAGE_USAGE, ModelEnum.ORDER);
+        super(targetIndex, ModelEnum.ORDER);
     }
 }

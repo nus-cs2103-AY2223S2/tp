@@ -13,6 +13,6 @@ public class ClearTaskCommand extends ClearItemCommand<Task> {
     public static final String COMMAND_WORD_SHORTCUT = "clear_t";
 
     public ClearTaskCommand() {
-        super(COMMAND_WORD, COMMAND_WORD_SHORTCUT, ModelEnum.TASK);
+        super(ModelEnum.TASK);
     }
 }

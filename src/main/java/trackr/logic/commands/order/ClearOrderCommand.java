@@ -13,6 +13,6 @@ public class ClearOrderCommand extends ClearItemCommand<Order> {
     public static final String COMMAND_WORD_SHORTCUT = "clear_o";
 
     public ClearOrderCommand() {
-        super(COMMAND_WORD, COMMAND_WORD_SHORTCUT, ModelEnum.ORDER);
+        super(ModelEnum.ORDER);
     }
 }

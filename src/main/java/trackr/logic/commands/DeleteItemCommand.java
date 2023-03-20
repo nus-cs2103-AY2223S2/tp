@@ -19,22 +19,15 @@ public abstract class DeleteItemCommand<T extends Item> extends Command {
 
     public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted %s: %s";
 
-    public final String commandWord;
-    public final String commandWordShortcut;
-    public final String messageUsage;
     private final Index targetIndex;
     private ModelEnum modelEnum;
 
     /**
-     * Deletes item from item list.
+     * Creates an DeleteItemCommand to delete the specified {@code Item} at the target index.
      */
-    public DeleteItemCommand(Index targetIndex, String commandWord, String commandWordShortcut, String messageUsage,
-                             ModelEnum modelEnum) {
-        requireAllNonNull(targetIndex, commandWord, commandWordShortcut, messageUsage, modelEnum);
+    public DeleteItemCommand(Index targetIndex, ModelEnum modelEnum) {
+        requireAllNonNull(targetIndex, modelEnum);
         this.targetIndex = targetIndex;
-        this.commandWord = commandWord;
-        this.commandWordShortcut = commandWordShortcut;
-        this.messageUsage = messageUsage;
         this.modelEnum = modelEnum;
     }
 
@@ -44,7 +37,8 @@ public abstract class DeleteItemCommand<T extends Item> extends Command {
         List<? extends Item> lastShownList = model.getFilteredItemList(modelEnum);
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, modelEnum));
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX,
+                    modelEnum.toString().toLowerCase()));
         }
 
         Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());

@@ -19,6 +19,6 @@ public class DeleteTaskCommand extends DeleteItemCommand<Task> {
             + "Example: " + COMMAND_WORD + " 1";
 
     public DeleteTaskCommand(Index targetIndex) {
-        super(targetIndex, COMMAND_WORD, COMMAND_WORD_SHORTCUT, MESSAGE_USAGE, ModelEnum.TASK);
+        super(targetIndex, ModelEnum.TASK);
     }
 }

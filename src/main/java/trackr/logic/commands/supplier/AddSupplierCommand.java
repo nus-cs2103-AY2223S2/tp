@@ -7,6 +7,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAG;
 
 import trackr.logic.commands.AddItemCommand;
+import trackr.model.ModelEnum;
 import trackr.model.person.Supplier;
 
 /**
@@ -36,6 +37,6 @@ public class AddSupplierCommand extends AddItemCommand<Supplier> {
      * Creates an AddSupplierCommand to add the specified {@code supplier}
      */
     public AddSupplierCommand(Supplier supplier) {
-        super(supplier, COMMAND_WORD, COMMAND_WORD_SHORTCUT, MESSAGE_USAGE);
+        super(supplier, ModelEnum.SUPPLIER);
     }
 }

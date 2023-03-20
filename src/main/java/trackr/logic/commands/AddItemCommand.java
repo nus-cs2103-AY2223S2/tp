@@ -15,23 +15,16 @@ public abstract class AddItemCommand<T extends Item> extends Command {
     public static final String MESSAGE_SUCCESS = "New %s added: %s";
     public static final String MESSAGE_DUPLICATE_ITEM = "This %s already exists in the %s list";
 
-    public final String commandWord;
-    public final String commandWordShortcut;
-    public final String messageUsage;
-
     private final ModelEnum modelEnum;
     private final T toAdd;
 
     /**
      * Creates an AddItemCommand to add the specified {@code Item}
      */
-    public AddItemCommand(T item, String commandWord, String commandWordShortcut, String messageUsage) {
-        requireAllNonNull(item, commandWord, commandWordShortcut, messageUsage);
-        this.commandWord = commandWord;
-        this.messageUsage = messageUsage;
-        this.commandWordShortcut = commandWordShortcut;
+    public AddItemCommand(T item, ModelEnum modelEnum) {
+        requireAllNonNull(item, modelEnum);
         toAdd = item;
-        modelEnum = item.getModelEnum();
+        this.modelEnum = modelEnum;
     }
 
     @Override

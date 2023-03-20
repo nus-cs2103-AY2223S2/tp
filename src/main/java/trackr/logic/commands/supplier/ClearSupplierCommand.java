@@ -13,6 +13,6 @@ public class ClearSupplierCommand extends ClearItemCommand<Supplier> {
     public static final String COMMAND_WORD_SHORTCUT = "clear_s";
 
     public ClearSupplierCommand() {
-        super(COMMAND_WORD, COMMAND_WORD_SHORTCUT, ModelEnum.SUPPLIER);
+        super(ModelEnum.SUPPLIER);
     }
 }

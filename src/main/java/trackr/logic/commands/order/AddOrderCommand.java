@@ -9,6 +9,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_PHONE;
 import static trackr.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import trackr.logic.commands.AddItemCommand;
+import trackr.model.ModelEnum;
 import trackr.model.order.Order;
 
 /**
@@ -40,6 +41,6 @@ public class AddOrderCommand extends AddItemCommand<Order> {
      * Creates an AddOrderCommand to add the specified {@code Order}
      */
     public AddOrderCommand(Order order) {
-        super(order, COMMAND_WORD, COMMAND_WORD_SHORTCUT, MESSAGE_USAGE);
+        super(order, ModelEnum.ORDER);
     }
 }

@@ -1,7 +1,6 @@
 package trackr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import trackr.model.Model;
 import trackr.model.ModelEnum;
@@ -14,18 +13,13 @@ public abstract class ClearItemCommand<T extends Item> extends Command {
 
     public static final String MESSAGE_SUCCESS = "%s list has been cleared!";
 
-    public final String commandWord;
-    public final String commandWordShortcut;
-
     private final ModelEnum modelEnum;
 
     /**
      * Creates an ClearItemCommand to clear the specified item list.
      */
-    public ClearItemCommand(String commandWord, String commandWordShortcut, ModelEnum modelEnum) {
-        requireAllNonNull(commandWord, commandWordShortcut, modelEnum);
-        this.commandWord = commandWord;
-        this.commandWordShortcut = commandWordShortcut;
+    public ClearItemCommand(ModelEnum modelEnum) {
+        requireNonNull(modelEnum);
         this.modelEnum = modelEnum;
     }
 
