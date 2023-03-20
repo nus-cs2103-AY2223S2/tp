@@ -39,12 +39,11 @@ public class CareFlowModelManager implements CareFlowModel {
      * @param hospitalRecord hospital records
      * @param userPrefs user preferences
      */
-    public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory,
-                                ReadOnlyHospitalRecords hospitalRecord, ReadOnlyUserPrefs userPrefs) {
+    public CareFlowModelManager(ReadOnlyPatientRecord patientRecord, ReadOnlyDrugInventory drugInventory, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(drugInventory, patientRecord, userPrefs);
         logger.fine(String.format(LOGGER_MESSAGE, patientRecord, drugInventory, userPrefs));
 
-        this.careFlow = new CareFlow(patientRecord, drugInventory, hospitalRecord);
+        this.careFlow = new CareFlow(patientRecord, drugInventory);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPatients = new FilteredList<>(this.careFlow.getPatientList());
         this.filteredDrugs = new FilteredList<>(this.careFlow.getDrugList());
@@ -53,7 +52,7 @@ public class CareFlowModelManager implements CareFlowModel {
     }
 
     public CareFlowModelManager() {
-        this(new PatientRecord(), new DrugInventory() , new HospitalRecord(), new UserPrefs());
+        this(new PatientRecord(), new DrugInventory(), new UserPrefs());
     }
 
     //=========== UserPrefs ================================================================================
