@@ -1,18 +1,15 @@
 package trackr.logic.commands.task;
 
-import static java.util.Objects.requireNonNull;
-
-import trackr.commons.core.Messages;
-import trackr.logic.commands.Command;
-import trackr.logic.commands.CommandResult;
-import trackr.model.Model;
+import trackr.logic.commands.FindItemCommand;
+import trackr.model.ModelEnum;
+import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 
 /**
  * Finds and lists all task in task list whose description contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
-public class FindTaskCommand extends Command {
+public class FindTaskCommand extends FindItemCommand<Task> {
 
     public static final String COMMAND_WORD = "find_task";
     public static final String COMMAND_WORD_SHORTCUT = "find_t";
@@ -22,24 +19,7 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " flour buy";
 
-    private final TaskContainsKeywordsPredicate predicate;
-
     public FindTaskCommand(TaskContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredTaskList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindTaskCommand // instanceof handles nulls
-                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
+        super(predicate, ModelEnum.TASK);
     }
 }

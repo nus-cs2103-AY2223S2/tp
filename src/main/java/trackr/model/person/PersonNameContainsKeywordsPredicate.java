@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import trackr.commons.util.StringUtil;
+import trackr.model.item.Item;
 
 /**
  * Tests that a {@code Suppliers}'s {@code Name} matches any of the keywords given.
  */
-public class PersonNameContainsKeywordsPredicate implements Predicate<Supplier> {
+public class PersonNameContainsKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 
     public PersonNameContainsKeywordsPredicate(List<String> keywords) {
@@ -16,7 +17,13 @@ public class PersonNameContainsKeywordsPredicate implements Predicate<Supplier> 
     }
 
     @Override
-    public boolean test(Supplier supplier) {
+    public boolean test(Item item) {
+        if (!(item instanceof Supplier)) {
+            return false;
+        }
+
+        Supplier supplier = (Supplier) item;
+
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(supplier.getPersonName().getName(), keyword));
     }

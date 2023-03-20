@@ -20,6 +20,7 @@ import java.util.List;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.model.Model;
+import trackr.model.ModelEnum;
 import trackr.model.SupplierList;
 import trackr.model.order.Order;
 import trackr.model.order.OrderContainsKeywordsPredicate;
@@ -264,7 +265,8 @@ public class CommandTestUtil {
 
         Supplier supplier = model.getFilteredSupplierList().get(targetIndex.getZeroBased());
         final String[] splitName = supplier.getPersonName().getName().split("\\s+");
-        model.updateFilteredSupplierList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredItemList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])),
+                ModelEnum.SUPPLIER);
 
         assertEquals(1, model.getFilteredSupplierList().size());
     }
@@ -280,7 +282,7 @@ public class CommandTestUtil {
         final String[] splitTaskName = task.getTaskName().getName().split("\\s+");
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setTaskNameKeywords(Arrays.asList(splitTaskName[0]));
-        model.updateFilteredTaskList(predicate);
+        model.updateFilteredItemList(predicate, ModelEnum.TASK);
 
         assertEquals(1, model.getFilteredTaskList().size());
     }
@@ -296,7 +298,7 @@ public class CommandTestUtil {
         final String[] splitOrderName = task.getOrderName().value.split("\\s+");
         OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate();
         predicate.setOrderNameKeywords(Arrays.asList(splitOrderName[0]));
-        model.updateFilteredOrderList(predicate);
+        model.updateFilteredItemList(predicate, ModelEnum.ORDER);
 
         assertEquals(1, model.getFilteredOrderList().size());
     }
