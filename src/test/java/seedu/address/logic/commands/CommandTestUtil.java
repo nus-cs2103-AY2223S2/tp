@@ -63,7 +63,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "23-02-02";
 
     // Comment cannot be empty
-    public static final String INVALID_COMMENT_DESC = " " + "";
+    public static final String INVALID_COMMENT_DESC = " " + PREFIX_COMMENT + "";
 
     // tag more than 30 characters
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";

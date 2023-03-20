@@ -35,6 +35,7 @@ import static seedu.address.testutil.TypicalInternships.GOOGLE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Internship;
@@ -77,7 +78,7 @@ public class AddCommandParserTest {
 
         // multiple comments - last comment accepted
         assertParseSuccess(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + DATE_DESC_APPLE + COMMENT_DESC_APPLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
+                + DATE_DESC_GOOGLE + COMMENT_DESC_APPLE + COMMENT_DESC_GOOGLE + TAG_DESC_FRONT,
                 new AddCommand(expectedInternship));
 
 
@@ -92,14 +93,14 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         //zero comments
-        Internship expectedInternship = new InternshipBuilder(APPLE).withComment(null).build();
+        Internship expectedInternship = new InternshipBuilder(APPLE).withComment("NA").build();
         assertParseSuccess(parser, COMPANY_NAME_DESC_APPLE + ROLE_DESC_APPLE + STATUS_DESC_APPLE
-                + DATE_DESC_APPLE + COMMENT_DESC_APPLE, new AddCommand(expectedInternship));
+                + DATE_DESC_APPLE + TAG_DESC_FRONT, new AddCommand(expectedInternship));
 
-        // zero tags
+        //zero tags
         expectedInternship = new InternshipBuilder(APPLE).withTags().build();
         assertParseSuccess(parser, COMPANY_NAME_DESC_APPLE + ROLE_DESC_APPLE + STATUS_DESC_APPLE
-                        + DATE_DESC_APPLE, new AddCommand(expectedInternship));
+                        + DATE_DESC_APPLE + COMMENT_DESC_APPLE, new AddCommand(expectedInternship));
 
     }
 
@@ -149,7 +150,8 @@ public class AddCommandParserTest {
 
         // invalid comment
         assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE
-                + DATE_DESC_GOOGLE + INVALID_COMMENT_DESC + TAG_DESC_BACK + TAG_DESC_FRONT, Date.MESSAGE_CONSTRAINTS);
+                + DATE_DESC_GOOGLE + INVALID_COMMENT_DESC + TAG_DESC_BACK + TAG_DESC_FRONT,
+                Comment.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, COMPANY_NAME_DESC_GOOGLE + ROLE_DESC_GOOGLE + STATUS_DESC_GOOGLE

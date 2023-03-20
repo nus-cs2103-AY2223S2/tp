@@ -136,6 +136,18 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
+
+        System.out.println(otherInternship.getCompanyName().equals(getCompanyName()));
+        System.out.println(otherInternship.getRole().equals(getRole()));
+        System.out.println(otherInternship.getStatus().equals(getStatus()));
+        System.out.println(otherInternship.getDate().equals(getDate()));
+        System.out.println(otherInternship.getComment().equals(getComment()));
+        System.out.println(otherInternship.getTags().equals(getTags()));
+
+
+
+
+
         return otherInternship.getCompanyName().equals(getCompanyName())
                 && otherInternship.getRole().equals(getRole())
                 && otherInternship.getStatus().equals(getStatus())

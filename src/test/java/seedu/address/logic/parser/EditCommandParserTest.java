@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
@@ -36,6 +37,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditInternshipDescriptor;
+import seedu.address.model.internship.Comment;
 import seedu.address.model.internship.CompanyName;
 import seedu.address.model.internship.Date;
 import seedu.address.model.internship.Role;
@@ -96,6 +98,9 @@ public class EditCommandParserTest {
         // valid role followed by invalid role. The test case for invalid role followed by valid role
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + ROLE_DESC_GOOGLE + INVALID_ROLE_DESC, Role.MESSAGE_CONSTRAINTS);
+
+        // invalid comment
+        assertParseFailure(parser, "1" + INVALID_COMMENT_DESC, Comment.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Internship} being edited,
         // parsing it together with a valid tag results in error

@@ -21,7 +21,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_ROLE = "Mobile Developer";
     public static final String DEFAULT_STATUS = "interview";
     public static final String DEFAULT_DATE = "2023-02-01";
-    public static final String DEFAULT_COMMENT = "NA";
+    public static final String DEFAULT_COMMENT = "I love Apple!";
 
     private CompanyName companyName;
     private Role role;
@@ -38,6 +38,7 @@ public class InternshipBuilder {
         role = new Role(DEFAULT_ROLE);
         status = new Status(DEFAULT_STATUS);
         date = new Date(DEFAULT_DATE);
+        comment = new Comment(DEFAULT_COMMENT);
         tags = new HashSet<>();
     }
 
@@ -49,6 +50,7 @@ public class InternshipBuilder {
         role = internshipToCopy.getRole();
         status = internshipToCopy.getStatus();
         date = internshipToCopy.getDate();
+        comment = internshipToCopy.getComment();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 

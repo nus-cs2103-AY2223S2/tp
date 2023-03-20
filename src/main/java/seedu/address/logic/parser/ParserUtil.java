@@ -113,9 +113,6 @@ public class ParserUtil {
      * @throws ParseException if the given {@code comment} is invalid.
      */
     public static Comment parseComment(String commentContent) throws ParseException {
-        if (commentContent == null) {
-            commentContent = "NA";
-        }
         String trimmedComment = commentContent.trim();
         if (!Comment.isValidComment(trimmedComment)) {
             throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
