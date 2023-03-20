@@ -8,8 +8,8 @@ import java.util.Objects;
  * A group of cards
  */
 public class Deck {
-
-    public static final String MESSAGE_CONSTRAINTS = "Deck can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Deck name can take any values, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String deckName;
 
     /**
@@ -27,6 +27,13 @@ public class Deck {
      */
     public String getDeckName() {
         return this.deckName;
+    }
+
+    /**
+     * Returns true if a given string is a valid deck name.
+     */
+    public static boolean isValidDeckName(String deckName) {
+        return deckName.matches(VALIDATION_REGEX);
     }
 
     /**

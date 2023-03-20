@@ -52,11 +52,11 @@ public class PersonCard extends UiPart<Region> {
         }
         card.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new cardTag(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new CardTag(tag.tagName)));
     }
 
-    class cardTag extends Label {
-        public cardTag(String name) {
+    static class CardTag extends Label {
+        public CardTag(String name) {
             super(name);
             if (name.equals("easy")) {
                 setStyle("-fx-background-color:#00FF00;");
@@ -67,6 +67,7 @@ public class PersonCard extends UiPart<Region> {
             }
         }
     }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

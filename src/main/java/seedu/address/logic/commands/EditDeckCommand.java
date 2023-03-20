@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_DECKS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DECK_NAME;
 
 import java.util.List;
 
@@ -21,14 +21,12 @@ public class EditDeckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the name of the deck "
             + "by the index number used in the displayed deck list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[DECK NAME]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "LAC1201";
+            + "Parameters: INDEX (must be a positive integer) " + PREFIX_DECK_NAME + "DECK NAME\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DECK_NAME + "LAC1201";
 
-    public static final String MESSAGE_EDIT_DECK_SUCCESS = "Successfully renamed deck to %1$s";
+    public static final String MESSAGE_EDIT_DECK_SUCCESS = "Deck %1$s is successfully renamed to \"%2$s\".";
     public static final String MESSAGE_NOT_EDITED = "Deck name must be provided.";
+
     public static final String MESSAGE_DUPLICATE_DECK = "This deck name already exists.";
 
     private final Index index;
@@ -49,9 +47,10 @@ public class EditDeckCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Deck> lastShownList = model.getFilteredDeckList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        List<Deck> lastShownList = model.getFilteredDeckList();
+        boolean isIndexOutOfBound = index.getZeroBased() >= lastShownList.size();
+        if (isIndexOutOfBound) {
             throw new CommandException(Messages.MESSAGE_INVALID_DECK_DISPLAYED_INDEX);
         }
 
@@ -60,10 +59,12 @@ public class EditDeckCommand extends Command {
         }
 
         Deck deckToEdit = lastShownList.get(index.getZeroBased());
-        model.setDeck(deckToEdit, editedDeck);
-        model.updateFilteredDeckList(PREDICATE_SHOW_ALL_DECKS);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_DECK_SUCCESS, editedDeck.getDeckName()));
+        model.setDeck(deckToEdit, editedDeck);
+        model.moveCards(deckToEdit, editedDeck);
+
+        return new CommandResult(String.format(MESSAGE_EDIT_DECK_SUCCESS,
+                index.getOneBased(), editedDeck.getDeckName()));
     }
 
     @Override
