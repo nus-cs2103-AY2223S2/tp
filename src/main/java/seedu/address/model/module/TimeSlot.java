@@ -1,10 +1,11 @@
 package seedu.address.model.module;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Module's timeSlot in the address book.
