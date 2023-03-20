@@ -1,7 +1,5 @@
 package seedu.address.model.applicant;
 
-import java.util.Objects;
-
 /**
  * Represents an Applicant in a Listing.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -41,6 +39,13 @@ public class Applicant {
                 && otherApplicant.getName().equals(this.getName());
     }
 
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        // To consistently output a 4 digit hash code
+        return Math.abs(hash % 9000) + 1000;
+    }
+
     /**
      * Returns true if both applicants have the same identity and data fields.
      * This defines a stronger notion of equality between two applicants.
@@ -57,12 +62,6 @@ public class Applicant {
 
         Applicant otherApplicant = (Applicant) other;
         return otherApplicant.getName().equals(getName());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
     }
 
     @Override
