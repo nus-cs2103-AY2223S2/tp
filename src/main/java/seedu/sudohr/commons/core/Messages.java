@@ -12,5 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_LEAVE_DISPLAYED_INDEX = "The leave index provided is invalid";
     public static final String MESSAGE_EMPLOYEES_LISTED_OVERVIEW = "%1$d employees listed!";
 
+    public static final String MESSAGE_DEPARTMENT_LISTED_OVERVIEW = "%1$d departments listed!";
+
     public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The department to edit does not exist in SudoHR.";
 }
