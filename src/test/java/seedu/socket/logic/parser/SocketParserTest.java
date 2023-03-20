@@ -45,7 +45,7 @@ import seedu.socket.logic.commands.UndoCommand;
 import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.person.predicate.PersonContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
 import seedu.socket.testutil.EditPersonDescriptorBuilder;
 import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.PersonUtil;
@@ -98,7 +98,7 @@ public class SocketParserTest {
         List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
         FindCommand findNameCommand = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_NAME + nameKeywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
+        assertEquals(new FindCommand(new FindCommandPersonPredicate(
                 nameKeywords,
                 emptyKeywords,
                 emptyKeywords,
@@ -114,7 +114,7 @@ public class SocketParserTest {
                         + " "
                         + PREFIX_PROFILE
                         + profileKeywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
+        assertEquals(new FindCommand(new FindCommandPersonPredicate(
                 emptyKeywords,
                 profileKeywords,
                 emptyKeywords,
@@ -129,7 +129,7 @@ public class SocketParserTest {
                         + " "
                         + PREFIX_PHONE
                         + phoneKeywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
+        assertEquals(new FindCommand(new FindCommandPersonPredicate(
                 emptyKeywords,
                 emptyKeywords,
                 phoneKeywords,
@@ -144,7 +144,7 @@ public class SocketParserTest {
                         + " "
                         + PREFIX_EMAIL
                         + emailKeywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
+        assertEquals(new FindCommand(new FindCommandPersonPredicate(
                 emptyKeywords,
                 emptyKeywords,
                 emptyKeywords,
@@ -159,7 +159,7 @@ public class SocketParserTest {
                         + " "
                         + PREFIX_ADDRESS
                         + addressKeywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
+        assertEquals(new FindCommand(new FindCommandPersonPredicate(
                 emptyKeywords,
                 emptyKeywords,
                 emptyKeywords,
@@ -174,7 +174,7 @@ public class SocketParserTest {
                         + " "
                         + PREFIX_LANGUAGE
                         + languageKeywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
+        assertEquals(new FindCommand(new FindCommandPersonPredicate(
                 emptyKeywords,
                 emptyKeywords,
                 emptyKeywords,
@@ -189,7 +189,7 @@ public class SocketParserTest {
                         + " "
                         + PREFIX_TAG
                         + tagKeywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(
+        assertEquals(new FindCommand(new FindCommandPersonPredicate(
                 emptyKeywords,
                 emptyKeywords,
                 emptyKeywords,

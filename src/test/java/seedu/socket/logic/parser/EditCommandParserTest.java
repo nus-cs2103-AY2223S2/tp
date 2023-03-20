@@ -56,8 +56,8 @@ import seedu.socket.model.person.Email;
 import seedu.socket.model.person.GitHubProfile;
 import seedu.socket.model.person.Name;
 import seedu.socket.model.person.Phone;
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.Tag;
+import seedu.socket.model.person.tag.Language;
+import seedu.socket.model.person.tag.Tag;
 import seedu.socket.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {

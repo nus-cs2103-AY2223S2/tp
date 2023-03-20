@@ -1,4 +1,4 @@
-package seedu.socket.model.tag;
+package seedu.socket.model.person.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.socket.commons.util.AppUtil.checkArgument;

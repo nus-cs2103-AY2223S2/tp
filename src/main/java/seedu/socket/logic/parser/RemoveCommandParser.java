@@ -17,8 +17,8 @@ import java.util.Set;
 import seedu.socket.commons.core.index.Index;
 import seedu.socket.logic.commands.RemoveCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
-import seedu.socket.model.tag.Language;
-import seedu.socket.model.tag.Tag;
+import seedu.socket.model.person.tag.Language;
+import seedu.socket.model.person.tag.Tag;
 
 /**
  * Parses input arguments and creates a new RemoveCommand object

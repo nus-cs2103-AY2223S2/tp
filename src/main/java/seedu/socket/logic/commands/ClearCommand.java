@@ -6,7 +6,7 @@ import static seedu.socket.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.socket.logic.commands.exceptions.CommandException;
 import seedu.socket.model.Model;
 import seedu.socket.model.Socket;
-import seedu.socket.model.person.predicate.TagContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandTagPredicate;
 
 /**
  * Clears SOCket.
@@ -25,9 +25,9 @@ public class ClearCommand extends Command {
 
     public static final String MESSAGE_NOT_SUCCESS = "No such tag found!";
 
-    private final TagContainsKeywordsPredicate tagPredicate;
+    private final FindCommandTagPredicate tagPredicate;
 
-    public ClearCommand(TagContainsKeywordsPredicate tagPredicate) {
+    public ClearCommand(FindCommandTagPredicate tagPredicate) {
         this.tagPredicate = tagPredicate;
     }
 

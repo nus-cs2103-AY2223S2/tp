@@ -11,7 +11,7 @@ import static seedu.socket.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.socket.commons.core.Messages;
 import seedu.socket.model.Model;
-import seedu.socket.model.person.predicate.PersonContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
 
 /**
  * Finds & lists all persons in SOCket whose fields contain any of the argument keyword(s) for the respective fields.
@@ -34,9 +34,9 @@ public class FindCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " n/alice l/python";
 
-    private final PersonContainsKeywordsPredicate personPredicate;
+    private final FindCommandPersonPredicate personPredicate;
 
-    public FindCommand(PersonContainsKeywordsPredicate personPredicate) {
+    public FindCommand(FindCommandPersonPredicate personPredicate) {
         this.personPredicate = personPredicate;
     }
 

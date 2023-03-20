@@ -8,7 +8,7 @@ import java.util.List;
 import seedu.socket.commons.util.StringUtil;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
-import seedu.socket.model.person.predicate.TagContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandTagPredicate;
 
 /**
  * Parses the clear command entered by user
@@ -29,6 +29,6 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         List<String> tagArguments = StringUtil.convertArgumentsIntoList(
                 argMultimap.getValue(PREFIX_TAG).orElse(""));
 
-        return new ClearCommand(new TagContainsKeywordsPredicate(tagArguments));
+        return new ClearCommand(new FindCommandTagPredicate(tagArguments));
     }
 }

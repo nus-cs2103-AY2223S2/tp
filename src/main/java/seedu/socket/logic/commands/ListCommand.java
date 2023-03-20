@@ -8,8 +8,8 @@ import java.util.function.Predicate;
 import seedu.socket.commons.core.Messages;
 import seedu.socket.model.Model;
 import seedu.socket.model.person.Person;
-import seedu.socket.model.tag.LanguageContainsKeywordsPredicate;
-import seedu.socket.model.tag.TagContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.ListCommandLanguagePredicate;
+import seedu.socket.model.person.predicate.ListCommandTagPredicate;
 
 /**
  * Lists all persons in SOCket to the user or based on tag or language.
@@ -21,15 +21,15 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
     private final Predicate<Person> predicate;
-    private final TagContainsKeywordsPredicate predicateTag;
+    private final ListCommandTagPredicate predicateTag;
 
-    private final LanguageContainsKeywordsPredicate predicateLang;
+    private final ListCommandLanguagePredicate predicateLang;
     private final boolean isKeywordPresent;
 
     /**
      * Initializes a ListCommand with the given predicates and whether a keyword is present.
      */
-    public ListCommand(TagContainsKeywordsPredicate predicateTag, LanguageContainsKeywordsPredicate predicateLang,
+    public ListCommand(ListCommandTagPredicate predicateTag, ListCommandLanguagePredicate predicateLang,
                        boolean isKeywordPresent) {
         this.predicateTag = predicateTag;
         this.predicateLang = predicateLang;

@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.FindCommand;
-import seedu.socket.model.person.predicate.PersonContainsKeywordsPredicate;
+import seedu.socket.model.person.predicate.FindCommandPersonPredicate;
 
 public class FindCommandParserTest {
 
@@ -18,7 +18,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_emptyArg_returnsFindCommand() {
         List<String> emptyKeywords = Collections.emptyList();
-        FindCommand command = new FindCommand(new PersonContainsKeywordsPredicate(
+        FindCommand command = new FindCommand(new FindCommandPersonPredicate(
                 emptyKeywords,
                 emptyKeywords,
                 emptyKeywords,
@@ -36,7 +36,7 @@ public class FindCommandParserTest {
 
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new PersonContainsKeywordsPredicate(
+                new FindCommand(new FindCommandPersonPredicate(
                         nameKeywords,
                         emptyKeywords,
                         emptyKeywords,

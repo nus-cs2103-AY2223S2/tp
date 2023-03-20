@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.socket.commons.exceptions.IllegalValueException;
-import seedu.socket.model.tag.Language;
+import seedu.socket.model.person.tag.Language;
 
 /**
  * Jackson-friendly version of {@link Language}.

@@ -5,6 +5,7 @@ import static seedu.socket.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Project's deadline in SOCket.
@@ -13,10 +14,9 @@ import java.time.format.DateTimeFormatter;
 public class ProjectDeadline {
     public static final String DATE_TIME_FORMAT = "dd/MM/yy-HHmm";
     public static final String MESSAGE_CONSTRAINTS =
-        "Date should be in format DD/MM/YY-HHmm";
-    public static final String VALIDATION_REGEX = "";
+        "Date should be in format dd/MM/yy-HHmm";
+    public static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
     public final String deadline;
-    public final DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
 
     /**
      * Constructs a {@code ProjectDeadline}.
@@ -28,21 +28,33 @@ public class ProjectDeadline {
         deadline = date;
     }
 
-    private Boolean isValidProjectDeadline(String test) {
-        //TODO add actual validation
-        return !test.equals(" ");
+    /**
+     * Checks if the given DateTime {@code String} is of a valid format.
+     * @param test {@code String} form of DateTime to check.
+     * @return true if {@code String} is of valid DateTime format, else false.
+     */
+    public static Boolean isValidProjectDeadline(String test) {
+        if (test == "") {
+            return true;
+        }
+        try {
+            LocalDateTime.parse(test, FORMAT);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     /**
-     * Returns a LocalDateTime object if deadline is not empty.
-     * @return LocalDateTime
+     * Returns a {@code LocalDateTime} object if {@code deadline} is not empty.
+     *
+     * @return {@code LocalDateTime} object parsed from the stored {@code String deadline}.
+     * @throws DateTimeParseException if {@code deadline} is empty.
      */
-    public LocalDateTime toLocalDateTime() {
-        if (deadline == "") {
-            return null;
-        }
-        return LocalDateTime.parse(deadline, format);
+    public LocalDateTime toLocalDateTime() throws DateTimeParseException {
+        return LocalDateTime.parse(deadline, FORMAT);
     }
+
     @Override
     public String toString() {
         return deadline;
