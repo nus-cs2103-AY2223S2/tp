@@ -45,20 +45,16 @@ public class JsonUltronStorage implements UltronStorage {
      */
     public Optional<ReadOnlyUltron> readUltron(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
-        System.out.println("0");
+
         Optional<JsonSerializableUltron> jsonUltron = JsonUtil.readJsonFile(
                 filePath, JsonSerializableUltron.class);
-        System.out.println("1");
         if (!jsonUltron.isPresent()) {
-            System.out.println("2");
             return Optional.empty();
         }
-        System.out.println("3");
+
         try {
-            System.out.println("4");
             return Optional.of(jsonUltron.get().toModelType());
         } catch (IllegalValueException ive) {
-            System.out.println("5");
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }

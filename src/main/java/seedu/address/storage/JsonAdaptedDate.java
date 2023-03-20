@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -19,7 +18,7 @@ class JsonAdaptedDate {
      * Constructs a {@code JsonAdapteddate} with the given {@code dateName}.
      */
     @JsonCreator
-    public JsonAdaptedDate(@JsonProperty("name") String name, @JsonProperty("date") String date) {
+    public JsonAdaptedDate(String name, String date) {
         this.name = name;
         this.date = date;
     }
@@ -31,7 +30,6 @@ class JsonAdaptedDate {
         name = source.fullName;
         date = source.fullDate;
     }
-
 
     @JsonValue
     public String getdateName() {

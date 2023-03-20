@@ -16,7 +16,7 @@ import seedu.address.model.opening.Opening;
 /**
  * An Immutable Ultron that is serializable to JSON format.
  */
-@JsonRootName(value = "ultron")
+@JsonRootName(value = "Ultron")
 class JsonSerializableUltron {
 
     public static final String MESSAGE_DUPLICATE_OPENING = "Openings list contains duplicate opening(s).";
