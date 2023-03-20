@@ -8,6 +8,16 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Attendance;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Remark;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 
 /**
  * Represents a Tutee in the address book.
@@ -22,6 +32,7 @@ public class Tutee {
 
     // Data fields
     private final Address address;
+    private final Attendance attendance;
     private final Remark remark;
     private final Subject subject;
     private final Schedule schedule;
@@ -32,12 +43,13 @@ public class Tutee {
     /**
      * Every field must be present and not null.
      */
-    public Tutee(Name name, Phone phone, Email email, Address address, Remark remark, Subject subject, Schedule schedule
+    public Tutee(Name name, Phone phone, Email email, Address address, Attendance attendance, Remark remark, Subject subject, Schedule schedule
             , StartTime startTime, EndTime endTime, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, remark, subject, schedule, startTime, endTime, tags);
+        requireAllNonNull(name, phone, email, attendance, address, remark, subject, schedule, startTime, endTime, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.attendance = attendance;
         this.address = address;
         this.remark = remark;
         this.subject = subject;
@@ -64,6 +76,10 @@ public class Tutee {
         return address;
     }
 
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
     public Remark getRemark() { return remark; }
 
     public Subject getSubject() { return subject; }
@@ -75,7 +91,7 @@ public class Tutee {
     public EndTime getEndTime() { return endTime; }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws {@link UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
