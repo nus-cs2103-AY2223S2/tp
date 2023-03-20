@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
 import trackr.model.item.Item;
+import trackr.model.item.ReadOnlyItemList;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -56,6 +57,8 @@ public interface Model {
 
     <T extends Item> void setItemList(ModelEnum modelEnum);
 
+    ReadOnlyItemList<? extends Item> getItemList(ModelEnum modelEnum);
+
     <T extends Item> boolean hasItem(T item, ModelEnum modelEnum);
 
     <T extends Item> void deleteItem(T item, ModelEnum modelEnum);
@@ -63,6 +66,10 @@ public interface Model {
     <T extends Item> void addItem(T item, ModelEnum modelEnum);
 
     <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum);
+
+    ObservableList<? extends Item> getFilteredItemList(ModelEnum modelEnum);
+
+    void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum);
 
     // =================================================== Supplier ===================================================
 

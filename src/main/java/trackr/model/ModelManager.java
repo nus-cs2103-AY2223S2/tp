@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import trackr.commons.core.GuiSettings;
 import trackr.commons.core.LogsCenter;
 import trackr.model.item.Item;
+import trackr.model.item.ReadOnlyItemList;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -48,7 +49,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredSuppliers = new FilteredList<>(this.supplierList.getItemList());
         filteredTasks = new FilteredList<>(this.taskList.getItemList());
-        filteredOrders = new FilteredList<>(this.orderList.getOrderList());
+        filteredOrders = new FilteredList<>(this.orderList.getItemList());
     }
 
     public ModelManager() {
@@ -96,13 +97,13 @@ public class ModelManager implements Model {
     public <T extends Item> void setItemList(ModelEnum modelEnum) {
         switch (modelEnum) {
         case SUPPLIER:
-            setSupplierList(new SupplierList());
+            this.supplierList.resetData(supplierList);
             break;
         case TASK:
-            setTaskList(new TaskList());
+            this.taskList.resetData(taskList);
             break;
         case ORDER:
-            setOrderList(new OrderList());
+            this.orderList.resetData(orderList);
             break;
         case CUSTOMER:
         default:
@@ -111,14 +112,30 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
+    public ReadOnlyItemList<? extends Item> getItemList(ModelEnum modelEnum) {
         switch (modelEnum) {
         case SUPPLIER:
-            return hasSupplier((Supplier) item);
+            return supplierList;
         case TASK:
-            return hasTask((Task) item);
+            return taskList;
         case ORDER:
-            return hasOrder((Order) item);
+            return orderList;
+        case CUSTOMER:
+        default:
+            return null;
+        }
+    }
+
+    @Override
+    public <T extends Item> boolean hasItem(T item, ModelEnum modelEnum) {
+        requireNonNull(item);
+        switch (modelEnum) {
+        case SUPPLIER:
+            return supplierList.hasItem((Supplier) item);
+        case TASK:
+            return taskList.hasItem((Task) item);
+        case ORDER:
+            return orderList.hasItem((Order) item);
         case CUSTOMER:
         default:
             return false;
@@ -129,13 +146,13 @@ public class ModelManager implements Model {
     public <T extends Item> void deleteItem(T item, ModelEnum modelEnum) {
         switch (modelEnum) {
         case SUPPLIER:
-            deleteSupplier((Supplier) item);
+            supplierList.removeItem((Supplier) item);
             break;
         case TASK:
-            deleteTask((Task) item);
+            taskList.removeItem((Task) item);
             break;
         case ORDER:
-            deleteOrder((Order) item);
+            orderList.removeItem((Order) item);
             break;
         case CUSTOMER:
         default:
@@ -147,13 +164,16 @@ public class ModelManager implements Model {
     public <T extends Item> void addItem(T item, ModelEnum modelEnum) {
         switch (modelEnum) {
         case SUPPLIER:
-            addSupplier((Supplier) item);
+            supplierList.addItem((Supplier) item);
+            updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, modelEnum);
             break;
         case TASK:
-            addTask((Task) item);
+            taskList.addItem((Task) item);
+            updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, modelEnum);
             break;
         case ORDER:
-            addOrder((Order) item);
+            orderList.addItem((Order) item);
+            updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, modelEnum);
             break;
         case CUSTOMER:
         default:
@@ -163,15 +183,50 @@ public class ModelManager implements Model {
 
     @Override
     public <T extends Item> void setItem(T item, T itemEdited, ModelEnum modelEnum) {
+        requireAllNonNull(item, itemEdited);
         switch (modelEnum) {
         case SUPPLIER:
-            setSupplier((Supplier) item, (Supplier) itemEdited);
+            supplierList.setItem((Supplier) item, (Supplier) itemEdited);
             break;
         case TASK:
-            setTask((Task) item, (Task) itemEdited);
+            taskList.setItem((Task) item, (Task) itemEdited);
             break;
         case ORDER:
-            setOrder((Order) item, (Order) itemEdited);
+            orderList.setItem((Order) item, (Order) itemEdited);
+            break;
+        case CUSTOMER:
+        default:
+            break;
+        }
+    }
+
+    @Override
+    public FilteredList<? extends Item> getFilteredItemList(ModelEnum modelEnum) {
+        switch (modelEnum) {
+        case SUPPLIER:
+            return filteredSuppliers;
+        case TASK:
+            return filteredTasks;
+        case ORDER:
+            return filteredOrders;
+        case CUSTOMER:
+        default:
+            return null;
+        }
+    }
+
+    @Override
+    public void updateFilteredItemList(Predicate<Item> predicate, ModelEnum modelEnum) {
+        requireNonNull(predicate);
+        switch (modelEnum) {
+        case SUPPLIER:
+            filteredSuppliers.setPredicate(predicate);
+            break;
+        case TASK:
+            filteredTasks.setPredicate(predicate);
+            break;
+        case ORDER:
+            filteredOrders.setPredicate(predicate);
             break;
         case CUSTOMER:
         default:
@@ -301,17 +356,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasOrder(Order order) {
         requireNonNull(order);
-        return orderList.hasOrder(order);
+        return orderList.hasItem(order);
     }
 
     @Override
     public void deleteOrder(Order target) {
-        orderList.removeOrder(target);
+        orderList.removeItem(target);
     }
 
     @Override
     public void addOrder(Order order) {
-        orderList.addOrder(order);
+        orderList.addItem(order);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
@@ -319,7 +374,7 @@ public class ModelManager implements Model {
     public void setOrder(Order target, Order editedOrder) {
         requireAllNonNull(target, editedOrder);
 
-        orderList.setOrder(target, editedOrder);
+        orderList.setItem(target, editedOrder);
     }
 
     //=========== Filtered Order List Accessors =============================================================
