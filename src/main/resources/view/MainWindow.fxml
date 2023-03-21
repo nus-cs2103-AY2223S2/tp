@@ -48,13 +48,13 @@
                <SplitPane dividerPositions="0.3" orientation="VERTICAL" BorderPane.alignment="CENTER">
                   <items>
          
-                                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300.0" minHeight="200.0" prefHeight="200.0" styleClass="pane-with-border">
+                                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="325.0" minHeight="-Infinity" prefHeight="135.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
                    <padding>
                      <Insets bottom="5" left="10" right="10" top="5" />
                    </padding>
                  </StackPane>
          
-                                   <VBox fx:id="personList" alignment="CENTER" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
+                                   <VBox fx:id="personList" alignment="CENTER" minWidth="340.0" prefWidth="340.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
                    <padding>
                      <Insets bottom="10" left="10" right="10" top="10" />
                    </padding>
@@ -67,7 +67,7 @@
             </center>
          </BorderPane>
          <stylesheets>
-            <URL value="@DarkTheme.css" />
+            <URL value="@StyloMilo.css" />
             <URL value="@Extensions.css" />
          </stylesheets>
     </Scene>
