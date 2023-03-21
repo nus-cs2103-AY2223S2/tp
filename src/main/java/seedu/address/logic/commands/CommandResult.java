@@ -14,8 +14,21 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Help information should be shown to the user. */
+    private final boolean showQuickstart;
+
     /** The application should exit. */
     private final boolean exit;
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showQuickstart) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showQuickstart = showQuickstart;
+    }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -24,6 +37,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showQuickstart = false;
     }
 
     /**
@@ -31,7 +45,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +58,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowQuickstart() {
+        return showQuickstart;
     }
 
     @Override
@@ -65,11 +83,11 @@ public class CommandResult {
 
     @Override
     public String toString() {
-        return String.format("Command Result: %s, %b, %b", feedbackToUser, showHelp, exit);
+        return String.format("Command Result: %s, %b, %b", feedbackToUser, showHelp, exit, showQuickstart);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showQuickstart);
     }
 
 }
