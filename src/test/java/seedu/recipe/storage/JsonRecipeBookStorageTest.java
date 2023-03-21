@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.recipe.commons.exceptions.DataConversionException;
-import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.ReadOnlyRecipeBook;
+import seedu.recipe.model.RecipeBook;
 
 public class JsonRecipeBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonRecipeBookStorageTest");
@@ -63,6 +63,7 @@ public class JsonRecipeBookStorageTest {
     public void readAndSaveRecipeBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempRecipeBook.json");
         RecipeBook original = getTypicalRecipeBook();
+        original.removeRecipe(CORNDOGS);
         JsonRecipeBookStorage jsonRecipeBookStorage = new JsonRecipeBookStorage(filePath);
 
         // Save in new file and read back

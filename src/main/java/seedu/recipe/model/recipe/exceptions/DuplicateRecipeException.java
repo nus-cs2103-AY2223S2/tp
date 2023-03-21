@@ -6,6 +6,6 @@ package seedu.recipe.model.recipe.exceptions;
  */
 public class DuplicateRecipeException extends RuntimeException {
     public DuplicateRecipeException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate recipes");
     }
 }

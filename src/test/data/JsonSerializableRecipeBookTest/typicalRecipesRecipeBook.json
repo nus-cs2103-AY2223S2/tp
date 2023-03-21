@@ -1,0 +1,28 @@
+{
+  "recipes" : [
+    {
+      "title": "Corndogs",
+      "desc": "Awesome cheap corndogs",
+      "ingredients": [
+        "eggs",
+        "flour"
+      ],
+      "steps": [
+        "CDTest1",
+        "CDTest2"
+      ]
+    },
+    {
+      "title": "Soup",
+      "desc": "Tasty delicious soupy goodness",
+      "ingredients": [
+        "water",
+        "salt"
+      ],
+      "steps": [
+        "STest1",
+        "STest2"
+      ]
+    }
+  ]
+}
