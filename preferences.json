@@ -1,10 +1,10 @@
 {
   "guiSettings" : {
-    "windowWidth" : 1295.0,
-    "windowHeight" : 735.0,
+    "windowWidth" : 740.0,
+    "windowHeight" : 600.0,
     "windowCoordinates" : {
-      "x" : 0,
-      "y" : 0
+      "x" : 398,
+      "y" : 72
     },
     "theme" : "DARK"
   },

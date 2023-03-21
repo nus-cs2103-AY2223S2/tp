@@ -35,4 +35,11 @@ public class FindCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_DRUGS_LISTED_OVERVIEW, model.getFilteredDrugList().size()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindCommand // instanceof handles nulls
+                && predicate.equals(((FindCommand) other).predicate)); // state check
+    }
 }

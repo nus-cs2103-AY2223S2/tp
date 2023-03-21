@@ -118,14 +118,16 @@ public class Patient {
             return false;
         }
 
-        Patient otherPatient = (Patient) other;
-        return otherPatient.getName().equals(getName())
-                && otherPatient.getPhone().equals(getPhone())
-                && otherPatient.getEmail().equals(getEmail())
-                && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getBirthDate().equals(getBirthDate())
-                && otherPatient.getGender().equals(getGender())
-                && otherPatient.getIc().equals(getIc());
+        Patient otherPerson = (Patient) other;
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getBirthDate().equals(getBirthDate())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getIc().equals(getIc())
+                && otherPerson.drugAllergy.equals(drugAllergy)
+                && otherPerson.emergencyContact.equals(emergencyContact);
     }
 
     @Override

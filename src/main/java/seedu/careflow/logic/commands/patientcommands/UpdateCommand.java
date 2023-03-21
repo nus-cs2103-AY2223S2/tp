@@ -268,7 +268,8 @@ public class UpdateCommand extends Command {
             // state check
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
-            return getPhone().equals(e.getPhone())
+            return getName().equals(e.getName())
+                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getDateOfBirth().equals(e.getDateOfBirth())

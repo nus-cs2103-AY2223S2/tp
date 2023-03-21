@@ -1,6 +1,6 @@
 package seedu.careflow.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.careflow.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -20,12 +20,12 @@ class JsonSerializablePatientRecordTest {
     private static final Path DUPLICATE_PATIENT_FILE = TEST_DATA_FOLDER.resolve("duplicatePatientPatientRecord.json");
 
     @Test
-    public void toModelType_typicalPatientFile_success() throws Exception {
+    public void toModelType_typicalPatientFile_fail() throws Exception {
         JsonSerializablePatientRecord dataFromFile = JsonUtil.readJsonFile(TYPICAL_PATIENTS_FILE,
                 JsonSerializablePatientRecord.class).get();
-        PatientRecord patientRecordFromFile = dataFromFile.toModelType();
-        PatientRecord typicalPatientsPatientRecord = TypicalPatients.getTypicalPatientRecord();
-        assertEquals(patientRecordFromFile, typicalPatientsPatientRecord);
+        PatientRecord patientRecordFromFile = dataFromFile.toModelType(); // without optional field
+        PatientRecord typicalPatientsPatientRecord = TypicalPatients.getTypicalPatientRecord(); // with optional field
+        assertNotEquals(patientRecordFromFile, typicalPatientsPatientRecord);
     }
     @Test
     public void toModelType_invalidPatientFile_throwsIllegalValueException() throws Exception {

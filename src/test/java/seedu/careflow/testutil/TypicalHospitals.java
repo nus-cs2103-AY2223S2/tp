@@ -1,4 +1,5 @@
 package seedu.careflow.testutil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -6,38 +7,43 @@ import java.util.List;
 import seedu.careflow.model.HospitalRecord;
 import seedu.careflow.model.hospital.Hospital;
 
-
 /**
  * A utility class containing a list of {@code Hospital} objects to be used in tests.
  */
 public class TypicalHospitals {
+    public static final Hospital CHANGI_GENERAL_HOSPITAL =
+            new HospitalBuilder().withHospitalName("Changi General Hospital").withHotline("+65 6788 8833").build();
+    public static final Hospital SINGAPORE_GENERAL_HOSPITAL =
+            new HospitalBuilder().withHospitalName("Singapore General Hospital").withHotline("+65 6222 3322").build();
+    public static final Hospital TAN_TOCK_SENG_HOSPITAL =
+            new HospitalBuilder().withHospitalName("Tan Tock Seng Hospital").withHotline("+65 6256 6011").build();
+    public static final Hospital ALEXANDRA_HOSPITAL =
+            new HospitalBuilder().withHospitalName("Alexandra Hospital").withHotline("+65 6472 0000").build();
 
-    public static final Hospital KK_WOMEN_AND_CHILDREN = new Hospital("KK Women's and Children's Hospital",
-            "+65 62255554");
-    public static final Hospital CHANGI_GENERAL = new Hospital("Changi General Hospital",
-            "+65 67888833");
-    public static final Hospital KHOO_TECK_PHAT = new Hospital("Khoo Teck Puat Hospital",
-            "+65 65558000");
-    public static final Hospital TAN_TOCK_SENG = new Hospital("Tan Tock Seng Hospital",
-            "+65 62566011");
+    public static final Hospital NATIONAL_UNIVERSITY_HOSPITAL =
+            new HospitalBuilder().withHospitalName("National University Hospital").withHotline("+65 6779 5555").build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final Hospital CRAWFURD_HOSPITAL =
+            new HospitalBuilder().withHospitalName("Crawfurd Hospital").withHotline("+65-6933-3723").build();
+
+    public static final String VALID_TAN_TOCK_SENG_HOSPITAL_NAME = "Tan Tock Seng Hospital";
+    public static final String VALID_TAN_TOCK_SENG_HOSPITAL_HOTLINE = "+65 6256 6011";
 
     private TypicalHospitals() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Careflow} with all the typical hospital.
      */
     public static HospitalRecord getTypicalHospitalRecord() {
         HospitalRecord hr = new HospitalRecord();
-        for (Hospital hospital : getTypicalHospital()) {
+        for (Hospital hospital : getTypicalHospitals()) {
             hr.addHospital(hospital);
         }
         return hr;
     }
 
-    public static List<Hospital> getTypicalHospital() {
-        return new ArrayList<>(Arrays.asList(KK_WOMEN_AND_CHILDREN, CHANGI_GENERAL,
-                KHOO_TECK_PHAT, TAN_TOCK_SENG));
+    public static List<Hospital> getTypicalHospitals() {
+        return new ArrayList<>(Arrays.asList(CHANGI_GENERAL_HOSPITAL, SINGAPORE_GENERAL_HOSPITAL,
+                TAN_TOCK_SENG_HOSPITAL, ALEXANDRA_HOSPITAL));
     }
 }

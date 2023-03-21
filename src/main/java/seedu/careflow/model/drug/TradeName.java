@@ -12,7 +12,7 @@ public class TradeName {
                     + "it should not be blank and less than 50 characters";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the trade name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alnum} ]{0,49}";

@@ -30,8 +30,9 @@ class AddCommandParserTest {
                 " -n Amy Bee -ph abc123 -em amy@gmail.com "
                         + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
                         + "-g female -ic A7654321B -da penicillin -ec 88888888",
-                "Phone numbers should only contain numbers, "
-                        + "and it should be at least 3 digits long.");
+                "Phone numbers should contain numbers, special character "
+                        + "like: space, +, -, (), and it should be at least 3 or at most 20 "
+                        + "digit and special character long");
     }
 
     @Test
@@ -50,8 +51,9 @@ class AddCommandParserTest {
                 " -n Amy Bee -ph 85355255 -em amy@gmail.com "
                         + "-ad 123, Jurong West Ave 6, #08-111 -dob 01-01-1990 "
                         + "-g female -ic A7654321B -da penicillin -ec abc",
-                "Phone numbers should only contain numbers, "
-                        + "and it should be at least 3 digits long.");
+                "Phone numbers should contain numbers, special character "
+                        + "like: space, +, -, (), and it should be at least 3 or at most 20 "
+                        + "digit and special character long");
     }
 
     @Test

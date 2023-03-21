@@ -28,6 +28,7 @@ public class GenderTest {
         assertFalse(Gender.isValidGender(" ")); // spaces only
 
         // invalid gender
+        assertFalse(Gender.isValidGender("-")); // with special character
         assertFalse(Gender.isValidGender("fm"));
         assertFalse(Gender.isValidGender("no idea"));
 
@@ -36,5 +37,21 @@ public class GenderTest {
         assertTrue(Gender.isValidGender("feMale"));
         assertTrue(Gender.isValidGender("M"));
         assertTrue(Gender.isValidGender("Male"));
+    }
+
+    @Test
+    public void equals() {
+        Gender gender = new Gender("female");
+        // null -> returns false
+        assertFalse(gender.equals(null));
+
+        // same object -> returns true
+        assertTrue(gender.equals(gender));
+
+        // same values -> returns true
+        assertTrue(gender.equals(new Gender("female")));
+
+        // different values -> return false
+        assertFalse(gender.equals("male"));
     }
 }

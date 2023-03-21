@@ -448,11 +448,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User request to add a new drug to the system
 2. The user enters drug details
    1. The following are required information:
-         - Trade name 
+         - Trade name
          - Active ingredients
-         - Direction 
-         - Purpose 
-         - Side effect 
+         - Direction
+         - Purpose
+         - Side effect
          - Storage count
 3. The system creates the new drug entry
 4. The system show the new created drug in the drug list

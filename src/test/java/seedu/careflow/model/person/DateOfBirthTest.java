@@ -27,20 +27,21 @@ public class DateOfBirthTest {
         assertFalse(DateOfBirth.isValidBirthDate("")); // empty string
         assertFalse(DateOfBirth.isValidBirthDate(" ")); // spaces only
 
-        // future date can't be birth date
-        assertFalse(DateOfBirth.isValidBirthDate("13/11/2023"));
-        assertFalse(DateOfBirth.isValidBirthDate("13.11.2023"));
-        assertFalse(DateOfBirth.isValidBirthDate("13-11-2023"));
-        assertFalse(DateOfBirth.isValidBirthDate("13/11/23"));
-        assertFalse(DateOfBirth.isValidBirthDate("13.11.23"));
-        assertFalse(DateOfBirth.isValidBirthDate("13-11-23"));
+        // future date can't be date of birth
+        assertFalse(DateOfBirth.isValidBirthDate("13/11/2099"));
+        assertFalse(DateOfBirth.isValidBirthDate("13.11.2099"));
+        assertFalse(DateOfBirth.isValidBirthDate("13-11-2099"));
+        assertFalse(DateOfBirth.isValidBirthDate("13/11/99"));
+        assertFalse(DateOfBirth.isValidBirthDate("13.11.99"));
+        assertFalse(DateOfBirth.isValidBirthDate("13-11-99"));
 
-        // year before 1900 shouldn't be birth date
+        // year before 1900 shouldn't be date of birth
         assertFalse(DateOfBirth.isValidBirthDate("13/11/1800"));
         assertFalse(DateOfBirth.isValidBirthDate("13.11.1800"));
         assertFalse(DateOfBirth.isValidBirthDate("13-11-1800"));
 
         // invalid date format
+        assertFalse(DateOfBirth.isValidBirthDate("no date")); // invalid day
         assertFalse(DateOfBirth.isValidBirthDate("32-01-2022")); // invalid day
         assertFalse(DateOfBirth.isValidBirthDate("13-13-2022")); // invalid month
 
@@ -51,5 +52,21 @@ public class DateOfBirthTest {
         assertTrue(DateOfBirth.isValidBirthDate("13/11/22"));
         assertTrue(DateOfBirth.isValidBirthDate("13.11.22"));
         assertTrue(DateOfBirth.isValidBirthDate("13-11-22"));
+    }
+
+    @Test
+    public void equals() {
+        DateOfBirth dob = new DateOfBirth("19/03/23");
+        // null -> returns false
+        assertFalse(dob.equals(null));
+
+        // same object -> returns true
+        assertTrue(dob.equals(dob));
+
+        // same values -> returns true
+        assertTrue(dob.equals(new DateOfBirth("19/03/23")));
+
+        // different values -> return false
+        assertFalse(dob.equals("18/03/23"));
     }
 }

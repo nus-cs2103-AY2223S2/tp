@@ -60,7 +60,7 @@ public class PatientBuilder {
         address = patientToCopy.getAddress();
         dateOfBirth = patientToCopy.getBirthDate();
         gender = patientToCopy.getGender();
-        ic = new Ic(DEFAULT_IC);
+        ic = patientToCopy.getIc();
         drugAllergy = patientToCopy.getDrugAllergy();
         emergencyContact = patientToCopy.getEmergencyContact();
     }
@@ -148,5 +148,4 @@ public class PatientBuilder {
     public Patient build() {
         return new Patient(name, phone, email, address, dateOfBirth, gender, ic, drugAllergy, emergencyContact);
     }
-
 }

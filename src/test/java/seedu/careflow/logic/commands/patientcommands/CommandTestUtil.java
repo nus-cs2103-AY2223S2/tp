@@ -87,12 +87,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withBirthDate(VALID_BIRTHDATE_AMY).withGender(VALID_GENDER_AMY).withIc(VALID_IC_AMY)
+                .withDob(VALID_BIRTHDATE_AMY).withGender(VALID_GENDER_AMY).withIc(VALID_IC_AMY)
                 .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
                 .build();
         DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withBirthDate(VALID_BIRTHDATE_BOB).withGender(VALID_GENDER_BOB).withIc(VALID_IC_BOB)
+                .withDob(VALID_BIRTHDATE_BOB).withGender(VALID_GENDER_BOB).withIc(VALID_IC_BOB)
                 .withDrugAllergy(VALID_DRUG_ALLERGY_BOB).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
                 .build();
     }

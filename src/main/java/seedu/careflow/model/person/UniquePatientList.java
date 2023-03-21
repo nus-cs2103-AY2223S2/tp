@@ -13,11 +13,10 @@ import seedu.careflow.model.person.exceptions.PatientNotFoundException;
 
 /**
  * A list of patients that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePatient()(Person)}. As such,
- * adding and updating of persons uses Person#isSamePatient()(Person) for equality so as to ensure
- * that the person being added or updated is unique in terms of identity in the UniquePersonList.
- * However, the removal of a patient uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A patient is considered unique by comparing using {@code Patient#isSamePerson(Patient)}. As such, adding and
+ * updating of patient uses Patient#isSamePerson(Patient) for equality so as to ensure that the patient being added or
+ * updated is unique in terms of identity in the UniquePatientList. However, the removal of a patient uses
+ * Patient#equals(Object) so as to ensure that the patient with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
  * @see Patient#isSamePatient(Patient)
@@ -85,8 +84,8 @@ public class UniquePatientList implements Iterable<Patient> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code patients}.
+     * {@code patients} must not contain duplicate patients.
      */
     public void setPatients(List<Patient> patients) {
         requireAllNonNull(patients);
@@ -122,7 +121,7 @@ public class UniquePatientList implements Iterable<Patient> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code patients} contains only unique patients.
      */
     private boolean patientsAreUnique(List<Patient> patients) {
         for (int i = 0; i < patients.size() - 1; i++) {
