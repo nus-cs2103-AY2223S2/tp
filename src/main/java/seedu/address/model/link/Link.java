@@ -98,6 +98,18 @@ public class Link<K, T extends Item,
         fill(this.shape, this.contents);
     }
 
+    /**
+     * Creates a link with the given data, and returns a new one if the
+     * creation failed.
+     *
+     * @param shape       the shape of the link.
+     * @param contents    the contents of the link.
+     * @param managerLazy the lazy instantiation of the manager.
+     * @param <K>         the type of the key.
+     * @param <T>         the type of the item.
+     * @param <M>         the type of the manager.
+     * @return the link created.
+     */
     public static <K, T extends Item, M extends ReadOnlyItemManager<T>> Link<K, T, M> fromOrCreate(
             Map<K, Integer> shape,
             Map<K, Deque<String>> contents,

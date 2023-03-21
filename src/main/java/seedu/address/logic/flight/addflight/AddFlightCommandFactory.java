@@ -7,7 +7,6 @@ import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.flight.Flight;
-import seedu.address.model.link.exceptions.LinkException;
 
 
 /**

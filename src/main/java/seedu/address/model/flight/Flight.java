@@ -10,7 +10,6 @@ import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.Link;
-import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
