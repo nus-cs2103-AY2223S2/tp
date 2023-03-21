@@ -13,8 +13,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.PrefixUtil;
