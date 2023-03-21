@@ -98,6 +98,10 @@ public class Person {
         return this.image.getFullString();
     }
 
+    public static String getDefaultImagePath() {
+        return Image.DEFAULT_IMAGE_PATH;
+    }
+
     public boolean hasDefaultImage() {
         return this.image.isDefaultImage();
     }

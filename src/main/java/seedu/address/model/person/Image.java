@@ -5,7 +5,7 @@ package seedu.address.model.person;
  */
 public class Image {
 
-    public static final String IMAGE_PATH = "data/images/";
+    public static final String IMAGE_PATH = "profile_pictures/";
     public static final String DEFAULT_IMAGE = "default_image.png";
     public static final String DEFAULT_IMAGE_PATH = "images/default_image.png";
     public final String imageName;
