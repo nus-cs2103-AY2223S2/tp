@@ -161,13 +161,25 @@ The **Adding a Patient** mechanism is facilated by `VMS`. The Patient created is
 
 #### Usage
 
-The activity diagram below illustrates the workflow of patient `addCommand` behaves when executed by a user:
+The activity diagram below illustrates the workflow of patient `addCommand` behaves when executed by a user when they enter `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command
 
 <img src="images/patient/AddPatientActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Adding a Patient** mechanism behaves at every step.
 
 <img src="images/patient/AddPaitentSequenceDiagram.png" width="550" />
+
+Within `AddCommandParser#parse`, the following methods in `ParserUtil` will be invoked to help with parsing:
+`ParserUtil#parseName` will be called to create a Name object using "John Doe".
+`ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
+`ParserUtil#parseDob` will be called to create a Dob object using "2001-03-19".
+`ParserUtil#parseBloodType` will be called to create a BloodType object using "B+".
+`ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
+`ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
+
+Then, it will create a Patient using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>.
+
+Note that `Allergies` and `Vaccines` are optional, so the user does not need to include `--a ` or `--v` if the it is not applicable.
 
 ### Listing Patients
 
