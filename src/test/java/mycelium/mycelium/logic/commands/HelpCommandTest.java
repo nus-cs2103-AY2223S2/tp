@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
+import mycelium.mycelium.ui.action.ShowHelpAction;
 
 public class HelpCommandTest {
     private Model model = new ModelManager();
@@ -11,7 +12,7 @@ public class HelpCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(HelpCommand.SHOWING_HELP_MESSAGE, true, false);
+        CommandResult expectedCommandResult = new CommandResult(HelpCommand.SHOWING_HELP_MESSAGE, new ShowHelpAction());
         CommandTestUtil.assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 }

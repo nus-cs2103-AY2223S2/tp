@@ -8,6 +8,8 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.ui.action.TabSwitch;
+import mycelium.mycelium.ui.action.TabSwitchAction;
 
 /**
  * Adds a new project to Mycelium.
@@ -58,11 +60,15 @@ public class AddProjectCommand extends Command {
         requireNonNull(model);
 
         if (model.hasProject(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROJECT_NAME);
+            throw new CommandException(
+                MESSAGE_DUPLICATE_PROJECT_NAME,
+                new TabSwitchAction(TabSwitch.PROJECT));
         }
 
         model.addProject(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(
+            String.format(MESSAGE_SUCCESS, toAdd),
+            new TabSwitchAction(TabSwitch.PROJECT));
     }
 
 

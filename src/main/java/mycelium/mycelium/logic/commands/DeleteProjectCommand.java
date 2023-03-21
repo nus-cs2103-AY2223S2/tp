@@ -9,6 +9,8 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.ui.action.TabSwitch;
+import mycelium.mycelium.ui.action.TabSwitchAction;
 
 /**
  * A command to delete an existing project.
@@ -39,10 +41,14 @@ public class DeleteProjectCommand extends Command {
         requireNonNull(model);
         Optional<Project> targetProject = model.getUniqueProject(p -> p.getName().equals(targetProjectName));
         if (targetProject.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT);
+            throw new CommandException(
+                Messages.MESSAGE_INVALID_PROJECT,
+                new TabSwitchAction(TabSwitch.PROJECT));
         }
         model.deleteProject(targetProject.get());
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, targetProject.get()));
+        return new CommandResult(
+            String.format(MESSAGE_DELETE_PROJECT_SUCCESS, targetProject.get()),
+            new TabSwitchAction(TabSwitch.PROJECT));
     }
 
     @Override

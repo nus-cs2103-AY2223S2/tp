@@ -1,6 +1,5 @@
 package mycelium.mycelium.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -9,6 +8,8 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.ui.action.TabSwitch;
+import mycelium.mycelium.ui.action.TabSwitchAction;
 
 /**
  * Adds a new client to Mycelium.
@@ -56,11 +57,15 @@ public class AddClientCommand extends Command {
         requireNonNull(model);
 
         if (model.hasClient(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT_NAME);
+            throw new CommandException(
+                MESSAGE_DUPLICATE_CLIENT_NAME,
+                new TabSwitchAction(TabSwitch.CLIENT));
         }
 
         model.addClient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(
+            String.format(MESSAGE_SUCCESS, toAdd),
+            new TabSwitchAction(TabSwitch.CLIENT));
     }
 
     @Override

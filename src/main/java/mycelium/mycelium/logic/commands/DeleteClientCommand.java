@@ -10,6 +10,8 @@ import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.ui.action.TabSwitch;
+import mycelium.mycelium.ui.action.TabSwitchAction;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -40,10 +42,14 @@ public class DeleteClientCommand extends Command {
         requireNonNull(model);
         Optional<Client> targetClient = model.getUniqueClient(c -> c.getEmail().equals(targetEmail));
         if (targetClient.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT);
+            throw new CommandException(
+                Messages.MESSAGE_INVALID_CLIENT,
+                new TabSwitchAction(TabSwitch.CLIENT));
         }
         model.deleteClient(targetClient.get());
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, targetClient.get()));
+        return new CommandResult(
+            String.format(MESSAGE_DELETE_PERSON_SUCCESS, targetClient.get()),
+            new TabSwitchAction(TabSwitch.CLIENT));
     }
 
     @Override

@@ -16,16 +16,10 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.model.client.Client;
-import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.commandbox.CommandBox;
 import mycelium.mycelium.ui.commandlog.CommandLog;
+import mycelium.mycelium.ui.entitypanel.EntityPanel;
 import mycelium.mycelium.ui.helpwindow.HelpWindow;
-import mycelium.mycelium.ui.resultoutput.ClientListCard;
-import mycelium.mycelium.ui.resultoutput.ListPanel;
-import mycelium.mycelium.ui.resultoutput.ProjectListCard;
-import mycelium.mycelium.ui.resultoutput.TabPage;
-import mycelium.mycelium.ui.resultoutput.TabsHolder;
 import mycelium.mycelium.ui.statusbarfooter.StatusBarFooter;
 
 /**
@@ -45,11 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CommandBox commandBox;
     private CommandLog commandLog;
-    private ListPanel<Client> clientListPanel;
-    private ListPanel<Project> projectListPanel;
-    private TabPage projectTab;
-    private TabPage clientTab;
-    private TabsHolder tabsHolder;
+    private EntityPanel entityPanel;
     private StatusBarFooter statusBarFooter;
 
     @FXML
@@ -126,6 +116,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     private void fillInnerParts() {
+        logger.info("Filling inner parts of MainWindow...");
         helpWindow = new HelpWindow();
 
         commandBox = new CommandBox(this::executeCommand);
@@ -134,12 +125,8 @@ public class MainWindow extends UiPart<Stage> {
         commandLog = new CommandLog();
         commandLogPlaceholder.getChildren().add(commandLog.getRoot());
 
-        projectListPanel = new ListPanel<Project>(logic.getFilteredProjectList(), ProjectListCard::new);
-        clientListPanel = new ListPanel<Client>(logic.getFilteredClientList(), ClientListCard::new);
-        projectTab = new TabPage("Projects", projectListPanel);
-        clientTab = new TabPage("Client", clientListPanel);
-        tabsHolder = new TabsHolder(projectTab, clientTab);
-        resultOutputPlaceholder.getChildren().add(tabsHolder.getRoot());
+        entityPanel = new EntityPanel(logic);
+        resultOutputPlaceholder.getChildren().add(entityPanel.getRoot());
 
         statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -178,7 +165,7 @@ public class MainWindow extends UiPart<Stage> {
      * Closes the application.
      */
     @FXML
-    private void handleExit() {
+    public void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
             (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
@@ -186,12 +173,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public ListPanel<Client> getClientListPanel() {
-        return clientListPanel;
-    }
-
-    public ListPanel<Project> getProjectListPanel() {
-        return projectListPanel;
+    public EntityPanel getEntityPanel() {
+        return entityPanel;
     }
 
     /**
@@ -204,17 +187,14 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             commandLog.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
+            commandResult.executeUiAction(this);
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException e) {
+            logger.info("Command exception: " + commandText);
+            commandLog.setFeedbackToUser(e.getMessage());
+            e.executeUiAction(this);
+            throw e;
+        } catch (ParseException e) {
             logger.info("Invalid command: " + commandText);
             commandLog.setFeedbackToUser(e.getMessage());
             throw e;

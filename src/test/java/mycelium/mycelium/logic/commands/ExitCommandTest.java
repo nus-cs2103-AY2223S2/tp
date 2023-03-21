@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
+import mycelium.mycelium.ui.action.ExitAction;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();
@@ -14,7 +15,7 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, new ExitAction());
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

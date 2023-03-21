@@ -1,8 +1,9 @@
-package mycelium.mycelium.ui.resultoutput;
+package mycelium.mycelium.ui.entitypanel;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.BiFunction;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,13 +11,15 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.ui.UiPart;
 
 /**
  * Panel containing the list of {@code T}.
  */
-public class ListPanel<T> extends UiPart<Region> {
-    private static final String FXML = "ListPanel.fxml";
+public class EntityList<T> extends UiPart<Region> {
+    private static final String FXML = "EntityList.fxml";
+    private Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
     private ListView<T> listView;
@@ -24,10 +27,11 @@ public class ListPanel<T> extends UiPart<Region> {
     /**
      * Creates a {@code ListPanel} with the given {@code ObservableList}.
      */
-    public ListPanel(ObservableList<T> list) {
+    public EntityList(ObservableList<T> list) {
         super(FXML);
         requireNonNull(list);
         listView.setItems(list);
+        logger.fine("Initialized list panel with " + list.size() + " items");
     }
 
     /**
@@ -36,7 +40,7 @@ public class ListPanel<T> extends UiPart<Region> {
      * @param list  ObservableList of items
      * @param biMap BiFunction that transform the list to the approproate {@code UiPart}
      */
-    public ListPanel(
+    public EntityList(
         ObservableList<T> list,
         BiFunction<
             ? super T,
