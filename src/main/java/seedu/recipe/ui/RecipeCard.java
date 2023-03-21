@@ -61,15 +61,13 @@ public class RecipeCard extends UiPart<Region> {
         duration.setText(
                 Optional.ofNullable(recipe.getDurationNullable())
                         .map(Object::toString)
-                        .orElse("Duration was not added.")
-        );
+                        .orElse("Duration was not added."));
 
         //Portion
         portion.setText(
                 Optional.ofNullable(recipe.getPortionNullable())
                         .map(Object::toString)
-                        .orElse("Portion was not added.")
-        );
+                        .orElse("Portion was not added."));
 
         //Tags
         recipe.getTags().stream()

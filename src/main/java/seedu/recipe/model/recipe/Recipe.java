@@ -24,13 +24,12 @@ public class Recipe {
 
     // Identity field
     private final Name name;
-
+    private final Set<Tag> tags = new HashSet<>();
+    private final List<Ingredient> ingredients = new ArrayList<>();
+    private final List<Step> steps = new ArrayList<>();
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
     private Optional<RecipeDuration> duration = Optional.empty();
-    private Set<Tag> tags = new HashSet<>();
-    private List<Ingredient> ingredients = new ArrayList<>();
-    private List<Step> steps = new ArrayList<>();
 
     /**
      * Only the name field is required. The rest are optional (but recommended)
@@ -83,6 +82,7 @@ public class Recipe {
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
      * @return A set of the tags associated with this Recipe.
      */
     public Set<Tag> getTags() {

@@ -27,7 +27,7 @@ public class StepTest {
     private static final String MIN_LENGTH_TOKEN = "Heat, serve.";
     private static final String MULTI_TOKEN = "Heat the oil on a frying pan. When ready, crack an egg into the pan.";
     private static final String MULTI_TOKEN_PAREN = "You may wish to cover the tray "
-            + "(to prevent moisture from escaping)";
+        + "(to prevent moisture from escaping)";
     private static final String MULTI_TOKEN_DECIMAL_RANGE = "Leave in the oven for 3-3.5 hours.";
 
     @Test

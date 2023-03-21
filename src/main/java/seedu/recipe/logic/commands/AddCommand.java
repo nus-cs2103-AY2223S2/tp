@@ -9,6 +9,7 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.Recipe;
 
@@ -37,18 +38,20 @@ public class AddCommand extends Command {
             + PREFIX_INGREDIENT + "parmesan cheese "
             + PREFIX_INGREDIENT + "125g spaghetti noodles "
             + PREFIX_STEP + "Heat a pot with water until it boils "
-            + PREFIX_STEP + "Place the spaghetti in the pot and leave for 5 minutes or until al dente"
+            + PREFIX_STEP
+            + "Place the spaghetti in the pot and leave for 5 minutes or until al "
+            + "dente"
             + PREFIX_STEP + "In a bowl, combine the parmesan and the egg yolks";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book";
 
-    private final Recipe toAdd;
+    private final RecipeDescriptor toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Recipe}
      */
-    public AddCommand(Recipe recipe) {
+    public AddCommand(RecipeDescriptor recipe) {
         requireNonNull(recipe);
         toAdd = recipe;
     }
@@ -57,11 +60,13 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasRecipe(toAdd)) {
+        Recipe recipeToAdd = toAdd.toRecipe();
+
+        if (model.hasRecipe(recipeToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
 
-        model.addRecipe(toAdd);
+        model.addRecipe(recipeToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
