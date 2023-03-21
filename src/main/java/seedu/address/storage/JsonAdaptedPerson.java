@@ -47,6 +47,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
         if (meetings != null) {
             this.meetings.addAll(meetings);
         }

@@ -50,4 +50,5 @@ class JsonAdaptedMeeting {
         }
         return new Meeting(this.start, this.end);
     }
+
 }

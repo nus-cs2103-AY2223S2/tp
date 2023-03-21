@@ -17,6 +17,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddMeetingCommand
+     *
      * @param args String of arguments to be parsed
      * @return AddMeetingCommand object
      * @throws ParseException if the user input does not conform to the expected format
@@ -24,14 +25,14 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_MEETING);
+            PREFIX_MEETING);
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddMeetingCommand.MESSAGE_USAGE), ive);
+                AddMeetingCommand.MESSAGE_USAGE), ive);
         }
 
         Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).orElse(""));

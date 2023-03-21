@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,7 +27,6 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Meeting> meetings;
 
-
     /**
      * Every field must be present and not null.
      */
@@ -40,6 +40,7 @@ public class Person {
         this.meetings = new ArrayList<>();
     }
 
+
     /**
      * Overloaded constructor to take in meetings as an argument
      */
@@ -52,6 +53,7 @@ public class Person {
         this.tags.addAll(tags);
         this.meetings = meetings;
     }
+
 
     public Name getName() {
         return name;
@@ -68,7 +70,6 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -163,7 +164,7 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        ArrayList<Meeting> meetings = getMeetings();
+        List<Meeting> meetings = getMeetings();
         String meetingHeader = meetings.size() == 1
             ? "; Meeting: "
             : "; Meetings: ";

@@ -15,12 +15,12 @@ import seedu.address.model.person.Meeting;
 
 public class AddMeetingParserCommandTest {
     private AddMeetingCommandParser parser = new AddMeetingCommandParser();
-    private final String NonEmptyMeeting = " 09-11-2001 11:30 12:30";
+    private final String nonEmptyMeeting = " 09-11-2001 11:30 12:30";
 
     @Test
-    public void parse_indexSpecified_success() throws Exception {
+    public void parse_indexSpecified_success() {
         // have MEETING
-        String userInput = " 1 " + PREFIX_MEETING + NonEmptyMeeting;
+        String userInput = " 1 " + PREFIX_MEETING + nonEmptyMeeting;
 
         Meeting testMeeting = new Meeting(
             LocalDateTime.of(2001, 11, 9, 11, 30),
@@ -39,6 +39,6 @@ public class AddMeetingParserCommandTest {
         assertParseFailure(parser, AddMeetingCommand.COMMAND_WORD, expectedMessage);
 
         // no index
-        assertParseFailure(parser, AddMeetingCommand.COMMAND_WORD + " " + NonEmptyMeeting, expectedMessage);
+        assertParseFailure(parser, AddMeetingCommand.COMMAND_WORD + " " + nonEmptyMeeting, expectedMessage);
     }
 }

@@ -23,6 +23,10 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code AddMeetingCommand}.
+ */
 public class AddMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final AddMeetingCommand standardCommand = new AddMeetingCommand(INDEX_FIRST_PERSON, VALID_MEETING_AMY);

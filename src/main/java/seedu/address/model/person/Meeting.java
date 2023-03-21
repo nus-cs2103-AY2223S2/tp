@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 /**
  * Represents a Person's meetings in the address book.
  */
@@ -30,14 +29,6 @@ public class Meeting implements Comparable<Meeting> {
         this.end = LocalDateTime.MAX;
     }
 
-    public LocalDateTime getStart() {
-        return this.start;
-    }
-
-    public LocalDateTime getEnd() {
-        return this.end;
-    }
-
     /**
      * Checks if there are timing clashes between this meeting and m
      * Returns true if timings do clash, false otherwise
@@ -46,11 +37,11 @@ public class Meeting implements Comparable<Meeting> {
      */
     public boolean checkTimeClash(Meeting m) {
         //if m starts and end at the same time
-        if (m.start.equals(this.start) && m.end.equals(this.end)) {
+        if (m.start.isEqual(this.start) && m.end.isEqual(this.end)) {
             return true;
         }
         //if m ends at this.start
-        if (m.end.equals(this.start)) {
+        if (m.end.isEqual(this.start)) {
             return true;
         }
         //if m ends in between
@@ -58,7 +49,7 @@ public class Meeting implements Comparable<Meeting> {
             return true;
         }
         //if m starts at the same time
-        if (m.start.equals(this.start)) {
+        if (m.start.isEqual(this.start)) {
             return true;
         }
         //if m starts in between
@@ -66,7 +57,7 @@ public class Meeting implements Comparable<Meeting> {
             return true;
         }
         //if m starts at the end
-        if (m.start.equals(this.end)) {
+        if (m.start.isEqual(this.end)) {
             return true;
         }
         return false;
@@ -98,7 +89,7 @@ public class Meeting implements Comparable<Meeting> {
     @Override
     public String toString() {
         if (isEmpty()) {
-            return "";
+            return "No Meeting!";
         }
 
         DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("eeee MMMM d u HH:mm");
@@ -109,7 +100,19 @@ public class Meeting implements Comparable<Meeting> {
     }
 
     public boolean isEmpty() {
-        return this.start.isEqual(LocalDateTime.MIN)
-            && this.end.isEqual(LocalDateTime.MIN);
+        return this.start.isEqual(LocalDateTime.MAX)
+            && this.end.isEqual(LocalDateTime.MAX);
+    }
+
+    public boolean isCorrectPeriod() {
+        return end.isBefore(start);
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
     }
 }
