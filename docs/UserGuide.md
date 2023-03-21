@@ -3,21 +3,32 @@ layout: page
 title: User Guide
 ---
 
-Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
+Welcome to the Paidlancers User Guide! We're thrilled to have you here! At Paidlancers, we know that freelancing can be both rewarding and challenging.
+As freelancers ourselves, we understand the unique obstacles and opportunities that come with this type of work.
+That's why we created Paidlancers – a desktop app designed to help you streamline your freelancing event management
+tasks.
+
+## Introducing Paidlancers
+
+Paidlancers is a **desktop app for keeping track of your freelancing events, optimised for use via a Command Line
+Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
+Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
+
+This user guide will serve as a guide to help you get up to speed in no time!
 
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
-  * [Add a Contact](#add-a-contact)
+    * [Add a Contact](#add-a-contact)
   <!-- * [View Contact List](#list-all-contacts) -->
-  * [Link Contact to Event](#link-contact-to-event)
-  * [View Rate](#view-rate)
-  * [Tag Rate](#tag-rate)
-  * [Mark Event as Done](#mark-event)
-  * [Create New Event](#create-new-event)
-  * [View Event List](#list-all-events)
-  * [Delete an Event](#delete-an-event)
-  * [Edit an Event](#edit-an-event)
+    * [Link Contact to Event](#link-contact-to-event)
+    * [View Rate](#view-rate)
+    * [Tag Rate](#tag-rate)
+    * [Mark Event as Done](#mark-event)
+    * [Create New Event](#create-new-event)
+    * [View Event List](#list-all-events)
+    * [Delete an Event](#delete-an-event)
+    * [Edit an Event](#edit-an-event)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -26,6 +37,9 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+    * Mac Users are encouraged to use to use the Azul build of OpenJDK11 version found
+      [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
+    * Do choose the `JDK FX` version and not any other version.
 
 1. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
@@ -38,15 +52,17 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
 
-   * `listcontact` : Lists all contacts.
+    * `listcontact` : Lists all contacts.
 
-   * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
+    * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
 
-   * `delete 3` : Deletes the 3rd event shown in the current list.
+    * `delete 3` : Deletes the 3rd event shown in the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+[//]: # (Perhaps we could explain the difference between event and contact here?)
 
 ## Features
 
@@ -58,29 +74,32 @@ Adding a contact to contacts
 
 - Creates a new contact with specified `NAME` and `NUMBER`
 
-
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
-- `newcontact n/Mandy p/98765432`
+- `newcontact n/Tan Jun Wei p/82828234`
+
 
 <!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
 
 Displays all contacts saved in a list
 
 **Format**: `listcontact` -->
+
+
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
 Links client contact to an event.
 
-**Format**: `linkcontact INDEX CONTACT`
+**Format**: `linkcontact INDEX PHONE`
 
-- Links contact to the event at the specified `INDEX`.
+- Links contact using `PHONE` to the event at the specified `INDEX`.
 
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - The `INDEX` refers to the index number in the displayed events list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
+    - The `PHONE` must be a valid phone number in the contact list.
 
 **Example**:
-- `linkcontact 2 91234567` links `2nd event` to contact `91234567` in the list.
+- `linkcontact 2 91234567` links `2nd event` to the contact with phone `91234567` in the list.
 
 
 ### View Rate: `rate` <a id = "view-rate"></a>
@@ -91,8 +110,8 @@ Displays the rate tagged to an event.
 
 - Displays the agreed rate of the event at the specified `INDEX`.
 
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - The `INDEX` refers to the index number in the displayed events list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `rate 2` returns the rate of `2nd event` in the event list.
@@ -107,7 +126,7 @@ Tags a rate to an event.
 - Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
 
   - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+  - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list. -->
@@ -139,9 +158,9 @@ Unmarks a specified event in Paidlancers.
 
 Creates a new event
 
-**Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…​`
+**Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 
-- Times must have the format `dd-MM-yyyy HH:mm`.
+- Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
 - `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
@@ -161,11 +180,11 @@ Deletes the specified event from the event book.
 
 - Deletes the event at the specified `INDEX`
 
-  - The `INDEX` refers to the index number shown in the displayed event list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - The `INDEX` refers to the index number shown in the displayed event list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
-  - `delete 2` deletes the `2nd event` in the event list.
+- `delete 2` deletes the `2nd event` in the event list.
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
@@ -175,25 +194,26 @@ Edits the specified event from the event book.
 
 - Edits the event at the specified `INDEX`
 
-  - The `INDEX` refers to the index number shown in the displayed event list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
-  - At least one of the optional fields must be provided.
-  - Edits will replace existing values, edits are not cumulative.
-  - Tags can be removed by typing `t/` without specifying any tags after it.
+    - The `INDEX` refers to the index number shown in the displayed event list.
+    - `[]` are optional parameters.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
+    - At least one of the optional fields must be provided.
+    - Edits will replace existing values, edits are not cumulative.
+    - Tags can be removed by typing `t/` without specifying any tags after it.
 
 **Example**:
-  - `edit 1 r/100` Edits the rate of the 1st event to be 100.
-  - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd event to be Betsy Crower and clears all existing tags.
+- `edit 1 r/100` Edits the rate of the 1st event to be 100.
+- `edit 2 n/Wedding Dinner t/` Edits the name of the 2nd event to be Wedding Dinner and clears all existing tags.
+- `edit 1 n/Wedding Lunch` Edits the name of the 1st event to be Wedding Lunch.
 
 ### Saving the data
 
-Paidlancers data are saved in the hard disk automatically exiting the program. There is no need to save manually.
+Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
-(#add-a-contact)
 
 ## Command Summary
 |                    Commands                     |               Command Format                |                                Example Usage                                |
@@ -210,3 +230,4 @@ Paidlancers data are saved in the hard disk automatically exiting the program. T
 
 
 [Back to top](#)
+
