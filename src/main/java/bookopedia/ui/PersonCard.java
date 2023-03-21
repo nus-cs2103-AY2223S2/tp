@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label deliveryStatus;
     @FXML
+    private Label noOfDeliveryAttempts;
+    @FXML
     private FlowPane parcels;
 
     /**
@@ -59,6 +61,7 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(parcel -> parcels.getChildren().add(new Label(parcel.parcelName)));
         deliveryStatus.setText(person.getDeliveryStatus().toString());
         deliveryStatus.getStyleClass().add(person.getDeliveryStatus().name());
+        noOfDeliveryAttempts.setText(String.format("Number of Attempts: %d", person.getNoOfDeliveryAttempts()));
     }
 
     @Override

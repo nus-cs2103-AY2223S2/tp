@@ -64,7 +64,10 @@ public class MarkCommandTest {
         DeliveryStatus deliveryStatus = DeliveryStatus.FAILED;
 
         Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person updatedPersonToMark = new PersonBuilder(personToMark).withDeliveryStatus(deliveryStatus).build();
+        Person updatedPersonToMark = new PersonBuilder(personToMark)
+                .withDeliveryStatus(deliveryStatus)
+                .withNoOfDeliveryAttempts(1)
+                .build();
 
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, deliveryStatus);
         String expectedMessage = String.format(MarkCommand.MESSAGE_SUCCESS, personToMark.getName(), deliveryStatus);

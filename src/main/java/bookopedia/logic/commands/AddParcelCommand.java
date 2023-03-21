@@ -58,7 +58,7 @@ public class AddParcelCommand extends Command {
         updatedParcels.add(newParcel);
         Person updatedPerson = new Person(personToAddParcel.getName(), personToAddParcel.getPhone(),
                 personToAddParcel.getEmail(), personToAddParcel.getAddress(), updatedParcels,
-                personToAddParcel.getDeliveryStatus());
+                personToAddParcel.getDeliveryStatus(), personToAddParcel.getNoOfDeliveryAttempts());
 
         model.setPerson(personToAddParcel, updatedPerson);
 

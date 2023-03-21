@@ -45,7 +45,7 @@ public class AddParcelCommandTest {
 
         Person updatedPersonToAddParcel = new Person(personToAddParcel.getName(), personToAddParcel.getPhone(),
                 personToAddParcel.getEmail(), personToAddParcel.getAddress(), updatedParcels,
-                personToAddParcel.getDeliveryStatus());
+                personToAddParcel.getDeliveryStatus(), personToAddParcel.getNoOfDeliveryAttempts());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(
