@@ -1,8 +1,7 @@
 package seedu.address.model.event.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Persons (Persons are considered duplicates if they have the same
- * identity).
+ * Signals that an invalid sort type is passed to the function and the program is unable to return a sort comparator.
  */
 public class SortComparatorException extends RuntimeException {
     public SortComparatorException() {
