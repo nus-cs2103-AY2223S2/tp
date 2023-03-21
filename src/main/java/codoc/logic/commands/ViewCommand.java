@@ -21,7 +21,9 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View details of the person identified "
             + "by the index number used in the displayed person list "
-            + "or by different tab names (c/m/s)\n";
+            + "or by different tab names\n"
+            + "Parameters: c / m / s / index number\n"
+            + "Examples: " + COMMAND_WORD + " m, " + COMMAND_WORD + " 2 ";
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewing details of %1$s at index %2$d";
 
