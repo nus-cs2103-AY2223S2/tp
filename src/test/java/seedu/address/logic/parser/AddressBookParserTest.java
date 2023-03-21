@@ -14,19 +14,27 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditMeetingsCommand;
+import seedu.address.logic.commands.EditMeetingsCommand.EditMeetingDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewMeetingsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.MeetingUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -93,6 +101,30 @@ public class AddressBookParserTest {
     public void parseCommand_viewMeetings() throws ParseException {
         assertTrue(parser.parseCommand(ViewMeetingsCommand.COMMAND_WORD) instanceof ViewMeetingsCommand);
         assertTrue(parser.parseCommand(ViewMeetingsCommand.COMMAND_WORD + " 3") instanceof ViewMeetingsCommand);
+    }
+
+    @Test
+    public void parseCommand_addMeeting() throws Exception {
+        Meeting meeting = new MeetingBuilder().build();
+        AddMeetingCommand command = (AddMeetingCommand) parser.parseCommand(MeetingUtil.getAddMeetingCommand(meeting));
+        assertEquals(new AddMeetingCommand(meeting), command);
+    }
+
+    @Test
+    public void parseCommand_editMeeting() throws Exception {
+        Meeting meeting = new MeetingBuilder().build();
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(meeting).build();
+        EditMeetingsCommand command = (EditMeetingsCommand) parser.parseCommand(
+                EditMeetingsCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + MeetingUtil.getEditMeetingDescriptorDetails(descriptor));
+        assertEquals(new EditMeetingsCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_deleteMeeting() throws Exception {
+        DeleteMeetingCommand command = (DeleteMeetingCommand) parser.parseCommand(
+                DeleteMeetingCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteMeetingCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

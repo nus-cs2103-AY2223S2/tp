@@ -19,6 +19,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_DATETIME = "01/01/2023 13:00";
     public static final String DEFAULT_LOCATION = "Plaza Singapura";
     public static final String DEFAULT_DESCRIPTION = "Celebrate Bob's birthday";
+    public static final Person DEFAULT_PERSON = TypicalPersons.ALICE;
 
     private Title title;
     private DateTime dateTime;
@@ -33,6 +34,7 @@ public class MeetingBuilder {
         title = new Title(DEFAULT_TITLE);
         dateTime = new DateTime(DEFAULT_DATETIME);
         attendees = new HashSet<>();
+        attendees.add(DEFAULT_PERSON);
         location = new Location(DEFAULT_LOCATION);
         description = new Description(DEFAULT_DESCRIPTION);
     }
