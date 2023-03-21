@@ -25,7 +25,8 @@ public class TitleContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TitleContainsKeywordsPredicate firstPredicateCopy = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
+        TitleContainsKeywordsPredicate firstPredicateCopy =
+                new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +42,8 @@ public class TitleContainsKeywordsPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.singletonList("Corndog"));
+        TitleContainsKeywordsPredicate predicate =
+                new TitleContainsKeywordsPredicate(Collections.singletonList("Corndog"));
         assertTrue(predicate.test(new RecipeBuilder().withTitle("Corndog with cheese").build()));
 
         // Multiple keywords
