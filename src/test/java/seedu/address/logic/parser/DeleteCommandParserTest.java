@@ -4,13 +4,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Collections;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-
+import seedu.address.model.person.Nric;
 
 
 /**
@@ -30,9 +27,8 @@ public class DeleteCommandParserTest {
     }
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertParseSuccess(parser, " n/Alice", new DeleteCommand(predicate, "Alice"));
+        Nric nric = new Nric("S9876541C");
+        assertParseSuccess(parser, " ic/S9876541C", new DeleteCommand(nric));
     }
 
     @Test

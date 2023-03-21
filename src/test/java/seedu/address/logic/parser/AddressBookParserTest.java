@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,11 +66,9 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + " n/Alice");
+                DeleteCommand.COMMAND_WORD + " " + " ic/S1234567A");
 
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertEquals(new DeleteCommand(predicate, personToDelete.getName().toString()), command);
+        assertEquals(new DeleteCommand(personToDelete.getNric()), command);
     }
 
     @Test

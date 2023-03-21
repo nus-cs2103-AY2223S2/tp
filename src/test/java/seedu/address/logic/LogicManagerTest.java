@@ -12,13 +12,11 @@ import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
@@ -29,7 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -62,13 +60,11 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsParseException() {
-        String deleteCommand = "delete 9";
-
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("9"));
-        DeleteCommand expectedDeleteCommand = new DeleteCommand(predicate, "9");
+        String deleteCommand = "delete ic/9";
+        Nric nric = new Nric("S9876543C");
+        DeleteCommand expectedDeleteCommand = new DeleteCommand(nric);
         assertParseException(deleteCommand,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, expectedDeleteCommand.MESSAGE_USAGE));
+                String.format(nric.MESSAGE_CONSTRAINTS));
 
     }
 

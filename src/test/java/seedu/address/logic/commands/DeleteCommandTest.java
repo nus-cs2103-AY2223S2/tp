@@ -4,12 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 
@@ -32,118 +29,44 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validNameUnfilteredList_success() {
+    public void execute_validNricUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
 
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, personToDelete.getName().toString());
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getNric());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 personToDelete.getName().toString());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
-        expectedModel.updateFilteredPersonList(predicate);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidNameUnfilteredList_throwsCommandException() {
+    public void execute_invalidNricUnfilteredList_throwsCommandException() {
+        Nric nric = new Nric("S1234567K");
+        DeleteCommand deleteCommand = new DeleteCommand(nric);
 
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Testname"));
-        model.updateFilteredPersonList(predicate);
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, "Testname");
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_NAME);
-    }
-
-    @Test
-    public void execute_validNameFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, personToDelete.getName().toString());
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                personToDelete.getName().toString());
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidNameFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Testname"));
-        model.updateFilteredPersonList(predicate);
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, "Testname");
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_NAME);
-    }
-
-    @Test
-    public void execute_invalidName_throwsCommandException() {
-
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Testname"));
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList("Testname")));
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, "Testname");
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_NAME);
-    }
-
-    @Test
-    public void execute_multipleName_throwsCommandException() {
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("John"));
-        model.updateFilteredPersonList(predicate);
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, "John");
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_NAME);
-    }
-
-    @Test
-    public void execute_multipleNameSuccess_throwCommandException() {
-        Person personToDelete = model.getFilteredPersonList().get(9);
-        NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("John"));
-        model.updateFilteredPersonList(predicate);
-        DeleteCommand deleteCommand = new DeleteCommand(predicate, "John Sena");
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                personToDelete.getName().toString());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_PERSON_NOT_FOUND);
     }
 
 
     @Test
     public void equals() {
         Person firstPersonToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        NameContainsKeywordsPredicate firstpredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        System.out.println("first p" + firstPersonToDelete.getNric());
+        DeleteCommand deleteFirstCommand = new DeleteCommand(firstPersonToDelete.getNric());
         Person secondPersonToDelete = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        NameContainsKeywordsPredicate secondpredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Benson"));
-        DeleteCommand deleteFirstCommand = new DeleteCommand(firstpredicate, firstPersonToDelete.getName().toString());
-        DeleteCommand deleteSecondCommand = new DeleteCommand(secondpredicate,
-                secondPersonToDelete.getName().toString());
+        System.out.println("second p" + secondPersonToDelete.getNric());
 
-        // same object -> returns true
+        DeleteCommand deleteSecondCommand = new DeleteCommand(secondPersonToDelete.getNric());
+
+        //same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(firstpredicate,
-                firstPersonToDelete.getName().toString());
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(firstPersonToDelete.getNric());
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
