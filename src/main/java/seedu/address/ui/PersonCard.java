@@ -58,15 +58,15 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.tutee = tutee;
         id.setText(displayedIndex + ". ");
-        name.setText(tutee.getName().fullName);
-        phone.setText(tutee.getPhone().value);
-        address.setText(tutee.getAddress().value);
-        email.setText(tutee.getEmail().value);
-        subject.setText(tutee.getSubject().subject);
-        schedule.setText(tutee.getSchedule().schedule);
-        startTime.setText(tutee.getStartTime().startTime);
-        endTime.setText(tutee.getEndTime().endTime);
-        remark.setText(tutee.getRemark().value);
+        name.setText("Name: " + tutee.getName().fullName);
+        phone.setText("Phone: " + tutee.getPhone().value);
+        address.setText("Address: " + tutee.getAddress().value);
+        email.setText("Email: " + tutee.getEmail().value);
+        subject.setText("Subject: " + tutee.getSubject().subject);
+        schedule.setText("Schedule: " + tutee.getSchedule().schedule);
+        startTime.setText("Start time: " + tutee.getStartTime().startTime);
+        endTime.setText("End time: " + tutee.getEndTime().endTime);
+        remark.setText("Remark: " + tutee.getRemark().value);
         tutee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
