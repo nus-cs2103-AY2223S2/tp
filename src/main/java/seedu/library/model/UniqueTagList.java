@@ -151,5 +151,9 @@ public class UniqueTagList implements Iterable<Tag> {
     public boolean isEmpty() {
         return internalList.isEmpty();
     }
+
+    public String tagListToString() {
+        return internalUnmodifiableList.toString();
+    }
 }
 

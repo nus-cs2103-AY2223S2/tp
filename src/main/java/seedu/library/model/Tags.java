@@ -10,7 +10,7 @@ import seedu.library.model.tag.Tag;
 
 /**
  * Personal tag list for users to tag bookmark
- * Duplicates are not allowed (by .isSameBookmark comparison)
+ * Duplicates are not allowed (by .isSameTag comparison)
  */
 public class Tags implements ReadOnlyTags {
     private final UniqueTagList tags;
@@ -124,4 +124,9 @@ public class Tags implements ReadOnlyTags {
     public boolean isEmpty() {
         return tags.isEmpty();
     }
+
+    public String tagListToString() {
+        return tags.tagListToString();
+    }
+
 }

@@ -136,6 +136,11 @@ public class ModelManager implements Model {
         return tagList.containsAll(tags);
     }
 
+    @Override
+    public String tagListToString() {
+        return tagList.tagListToString();
+    }
+
     //=========== Filtered Bookmark List Accessors =============================================================
 
     /**

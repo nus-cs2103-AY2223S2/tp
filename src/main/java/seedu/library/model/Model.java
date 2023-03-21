@@ -57,6 +57,9 @@ public interface Model {
     /** Returns the tags */
     ReadOnlyTags getTags();
 
+    /** Returns the tag list as a string */
+    String tagListToString();
+
     /**
      * Returns true if a bookmark with the same identity as {@code bookmark} exists in the library.
      */

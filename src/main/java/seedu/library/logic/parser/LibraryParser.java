@@ -16,6 +16,7 @@ import seedu.library.logic.commands.ExitCommand;
 import seedu.library.logic.commands.FindCommand;
 import seedu.library.logic.commands.HelpCommand;
 import seedu.library.logic.commands.ListCommand;
+import seedu.library.logic.commands.ListTagsCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,6 +66,9 @@ public class LibraryParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListTagsCommand.COMMAND_WORD:
+            return new ListTagsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
