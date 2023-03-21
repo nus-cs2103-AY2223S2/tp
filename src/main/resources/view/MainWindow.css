@@ -3,7 +3,6 @@
 .side-bar {
     -fx-background-color: black;
     -fx-opacity: 0.9;
-    -fx-background-radius: 0 10 0 10;
 }
 
 .side-button {

@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -13,6 +14,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.User;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -44,12 +46,16 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
-    //@FXML
-    //private StackPane statusBarPlaceholder;
-
     @FXML
     private StackPane userProfilePlaceholder;
 
+    @FXML
+    private Label userName;
+
+    public void setUserName(User user) {
+        String name = String.valueOf(user.getName());
+        userName.setText(name);
+    }
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -80,14 +86,13 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        //StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEduMateFilePath());
-        //statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         userProfilePanel = new UserProfilePanel(logic);
         userProfilePlaceholder.getChildren().add(userProfilePanel.getRoot());
+
+        setUserName(logic.getUser());
     }
 
     /**
