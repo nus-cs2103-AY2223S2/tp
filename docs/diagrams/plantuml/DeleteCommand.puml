@@ -1,7 +1,6 @@
 @startuml
 !include Style.puml
 
-
 'https://plantuml.com/sequence-diagram
 
 box Logic LOGIC_COLOR_T1
