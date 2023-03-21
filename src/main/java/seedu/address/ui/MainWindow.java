@@ -180,6 +180,15 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Goes into Review mode.
+     */
+    @FXML
+    private void handleReview() {
+
+    }
+
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -205,6 +214,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isReview()) {
+                handleReview();
             }
 
             return commandResult;

@@ -19,12 +19,12 @@ import seedu.address.model.deck.Deck;
 public class Review {
 
     private final Deck deck;
-    private List<Card> cardList;
-    private List<Boolean> scoreList;
+    private final List<Card> cardList;
+    private final List<Boolean> scoreList;
     private int currCardNum = 1; // 1-Indexed
     private Card currCard;
 
-    private int totalNumCards;
+    private final int totalNumCards;
     private List<Integer> orderOfCards;
 
     /**
