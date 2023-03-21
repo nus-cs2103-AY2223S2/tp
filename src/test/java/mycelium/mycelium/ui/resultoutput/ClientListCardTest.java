@@ -11,13 +11,14 @@ import guitests.guihandles.ClientListCardHandle;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.ui.GuiUnitTest;
+import mycelium.mycelium.ui.entitypanel.ClientEntity;
 
 public class ClientListCardTest extends GuiUnitTest {
 
     @Test
     public void display() {
         Client client = new ClientBuilder().build();
-        ClientListCard clientListCard = new ClientListCard(client, 1);
+        ClientEntity clientListCard = new ClientEntity(client, 1);
         uiPartExtension.setUiPart(clientListCard);
         assertCardDisplay(clientListCard, client, 1);
     }
@@ -25,10 +26,10 @@ public class ClientListCardTest extends GuiUnitTest {
     @Test
     public void equals() {
         Client client = new ClientBuilder().build();
-        ClientListCard clientCard = new ClientListCard(client, 0);
+        ClientEntity clientCard = new ClientEntity(client, 0);
 
         // same person, same index -> returns true
-        ClientListCard copy = new ClientListCard(client, 0);
+        ClientEntity copy = new ClientEntity(client, 0);
         assertTrue(clientCard.equals(copy));
 
         // same object -> returns true
@@ -42,17 +43,17 @@ public class ClientListCardTest extends GuiUnitTest {
 
         // different person, same index -> returns false
         Client differentPerson = new ClientBuilder().withName("differentName").build();
-        assertFalse(clientCard.equals(new ClientListCard(differentPerson, 0)));
+        assertFalse(clientCard.equals(new ClientEntity(differentPerson, 0)));
 
         // same person, different index -> returns false
-        assertFalse(clientCard.equals(new ClientListCard(client, 1)));
+        assertFalse(clientCard.equals(new ClientEntity(client, 1)));
     }
 
     /**
      * Asserts that {@code personCard} displays the details of {@code expectedPerson} correctly and matches
      * {@code expectedId}.
      */
-    private void assertCardDisplay(ClientListCard clientListCard, Client expectedClient, int expectedId) {
+    private void assertCardDisplay(ClientEntity clientListCard, Client expectedClient, int expectedId) {
         guiRobot.pauseForHuman();
 
         ClientListCardHandle clientListCardHandle = new ClientListCardHandle(clientListCard.getRoot());

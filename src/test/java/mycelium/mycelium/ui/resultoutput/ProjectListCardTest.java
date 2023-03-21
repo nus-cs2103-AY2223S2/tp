@@ -12,13 +12,14 @@ import guitests.guihandles.ProjectListCardHandle;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.ProjectBuilder;
 import mycelium.mycelium.ui.GuiUnitTest;
+import mycelium.mycelium.ui.entitypanel.ProjectEntity;
 
 public class ProjectListCardTest extends GuiUnitTest {
 
     @Test
     public void display() {
         Project project = new ProjectBuilder().build();
-        ProjectListCard projectListCard = new ProjectListCard(project, 1);
+        ProjectEntity projectListCard = new ProjectEntity(project, 1);
         uiPartExtension.setUiPart(projectListCard);
         assertCardDisplay(projectListCard, project, 1);
     }
@@ -26,10 +27,10 @@ public class ProjectListCardTest extends GuiUnitTest {
     @Test
     public void equals() {
         Project project = new ProjectBuilder().build();
-        ProjectListCard projectCard = new ProjectListCard(project, 0);
+        ProjectEntity projectCard = new ProjectEntity(project, 0);
 
         // same person, same index -> returns true
-        ProjectListCard copy = new ProjectListCard(project, 0);
+        ProjectEntity copy = new ProjectEntity(project, 0);
         assertTrue(projectCard.equals(copy));
 
         // same object -> returns true
@@ -43,17 +44,17 @@ public class ProjectListCardTest extends GuiUnitTest {
 
         // different person, same index -> returns false
         Project differentPerson = new ProjectBuilder().withName("differentName").build();
-        assertFalse(projectCard.equals(new ProjectListCard(differentPerson, 0)));
+        assertFalse(projectCard.equals(new ProjectEntity(differentPerson, 0)));
 
         // same person, different index -> returns false
-        assertFalse(projectCard.equals(new ProjectListCard(project, 1)));
+        assertFalse(projectCard.equals(new ProjectEntity(project, 1)));
     }
 
     /**
      * Asserts that {@code personCard} displays the details of {@code expectedPerson} correctly and matches
      * {@code expectedId}.
      */
-    private void assertCardDisplay(ProjectListCard projectListCard, Project expectedProject, int expectedId) {
+    private void assertCardDisplay(ProjectEntity projectListCard, Project expectedProject, int expectedId) {
         guiRobot.pauseForHuman();
 
         ProjectListCardHandle projectListCardHandle = new ProjectListCardHandle(projectListCard.getRoot());
