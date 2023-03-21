@@ -10,10 +10,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
+import seedu.ultron.commons.core.GuiSettings;
+import seedu.ultron.model.AddressBook;
+import seedu.ultron.model.ReadOnlyAddressBook;
+import seedu.ultron.model.UserPrefs;
+import seedu.ultron.storage.JsonUserPrefsStorage;
+import seedu.ultron.storage.StorageManager;
 
 public class StorageManagerTest {
 
