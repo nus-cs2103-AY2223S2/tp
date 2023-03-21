@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
 
 /**
@@ -76,8 +77,9 @@ public class AddContactCommand extends Command {
 
         CompanyName companyName = internshipToAddContact.getCompanyName();
         JobTitle jobTitle = internshipToAddContact.getJobTitle();
+        InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, contact);
+        return new InternshipApplication(companyName, jobTitle, contact, interviewDate);
     }
 
     @Override
