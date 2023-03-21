@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="600.0" minWidth="450.0" title="Address App" type="Stage"
+<fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="600.0" minWidth="450.0" title="Advis.io" type="Stage"
          xmlns="http://javafx.com/javafx/19">
     <scene>
-        <Scene>
+        <Scene stylesheets="@Styles.css">
             <VBox>
                 <children>
                     <MenuBar fx:id="menuBar">
