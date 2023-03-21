@@ -10,6 +10,13 @@
     -fx-opacity: 0.9;
 }
 
+#tutorialLabel, #labLabel, #consultationLabel {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #E6ECF0;
+    -fx-opacity: 0.6;
+}
+
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -150,15 +157,15 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #828282;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #828282;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #828282;
+    -fx-background-color: derive(#1d1d1d, 40%);
 }
 
 .list-cell:filled:selected #cardPane {

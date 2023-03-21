@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds a student to an event.
+ * Allows the TA to add student details to an event within one command instead of multiple commands
  */
 public class AddStudentToEventCommand extends Command {
     public static final String COMMAND_WORD = "addStudent";

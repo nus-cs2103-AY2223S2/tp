@@ -6,6 +6,6 @@ package seedu.address.model.event.exceptions;
  */
 public class DuplicateLabException extends RuntimeException {
     public DuplicateLabException() {
-        super("Operation would result in duplicate labs");
+        super("You have already created this lab event!");
     }
 }
