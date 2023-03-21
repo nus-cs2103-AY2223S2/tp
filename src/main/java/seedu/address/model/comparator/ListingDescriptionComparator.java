@@ -4,7 +4,7 @@ import java.util.Comparator;
 import seedu.address.model.listing.Listing;
 
 /**
- * Compares listing according to the title to sort them alphabetically.
+ * Compares listing according to the description to sort them alphabetically.
  */
 public class ListingDescriptionComparator implements Comparator<Listing> {
     @Override
