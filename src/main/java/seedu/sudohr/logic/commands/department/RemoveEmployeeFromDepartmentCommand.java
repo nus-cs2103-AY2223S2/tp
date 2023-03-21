@@ -2,7 +2,7 @@ package seedu.sudohr.logic.commands.department;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
-import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
@@ -23,7 +23,7 @@ public class RemoveEmployeeFromDepartmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes an employee from an existing department.\n"
             + "Parameters: EMPLOYEE_ID, DEPARTMENT_NAME "
             + "[" + PREFIX_DEPARTMENT_NAME + "NAME] "
-            + "Example: " + COMMAND_WORD + " " + PREFIX_ID + " 100 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_EMPLOYEE + "100 "
             + PREFIX_DEPARTMENT_NAME + "Software Engineering";
 
     public static final String MESSAGE_REMOVE_EMPLOYEE_FROM_DEPARTMENT_SUCCESS = "Employee %1$s is removed from %2$s";

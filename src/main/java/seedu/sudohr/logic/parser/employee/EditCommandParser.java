@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,7 +15,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand.EditEmployeeDescriptor;
 import seedu.sudohr.logic.parser.ArgumentMultimap;
@@ -22,6 +22,7 @@ import seedu.sudohr.logic.parser.ArgumentTokenizer;
 import seedu.sudohr.logic.parser.Parser;
 import seedu.sudohr.logic.parser.ParserUtil;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.tag.Tag;
 
 /**
@@ -37,16 +38,15 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_NAME,
+                ArgumentTokenizer.tokenize(args, PREFIX_EMPLOYEE, PREFIX_ID, PREFIX_NAME,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_EMPLOYEE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        Id targetId = ParserUtil.parseId(argMultimap.getValue(PREFIX_EMPLOYEE).get());
 
         EditEmployeeDescriptor editEmployeeDescriptor = new EditCommand.EditEmployeeDescriptor();
         if (argMultimap.getValue(PREFIX_ID).isPresent()) {
@@ -70,7 +70,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editEmployeeDescriptor);
+        return new EditCommand(targetId, editEmployeeDescriptor);
     }
 
     /**

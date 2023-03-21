@@ -16,9 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
+import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
@@ -44,10 +45,11 @@ public class DeleteEmployeeFromLeaveCommandTest {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
 
-        new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+        new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        CommandResult commandResult = new DeleteEmployeeFromLeaveCommand(Index.fromOneBased(1),
+        CommandResult commandResult = new DeleteEmployeeFromLeaveCommand(
+                TypicalEmployees.ALICE_ID,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
         assertEquals(String.format(DeleteEmployeeFromLeaveCommand.MESSAGE_SUCCESS,
@@ -67,7 +69,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
         modelStub.addEmployee(TypicalEmployees.ALICE);
 
         assertThrows(CommandException.class, DeleteEmployeeFromLeaveCommand.MESSAGE_INVALID_DATE, () ->
-                new DeleteEmployeeFromLeaveCommand(Index.fromOneBased(1),
+                new DeleteEmployeeFromLeaveCommand(TypicalEmployees.ALICE_ID,
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
     }
 
@@ -82,7 +84,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
                 TypicalEmployees.ALICE);
 
         assertThrows(CommandException.class, DeleteEmployeeFromLeaveCommand.MESSAGE_INVALID_DATE, () ->
-                new DeleteEmployeeFromLeaveCommand(Index.fromOneBased(2),
+                new DeleteEmployeeFromLeaveCommand(TypicalEmployees.BENSON_ID,
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
     }
 
@@ -309,6 +311,12 @@ public class DeleteEmployeeFromLeaveCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInLeaves'");
         }
+
+        @Override
+        public boolean checkEmployeeExists(Id id) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'checkEmployeeExists'");
+        }
     }
 
     /**
@@ -395,6 +403,12 @@ public class DeleteEmployeeFromLeaveCommandTest {
         // for this we do not modify the filtered list to facilitate testing
         @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+        }
+
+        @Override
+        public boolean checkEmployeeExists(Id id) {
+            requireNonNull(id);
+            return sudoHr.checkEmployeeExists(id);
         }
 
     }

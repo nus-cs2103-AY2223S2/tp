@@ -12,6 +12,7 @@ import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
 import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
+import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
 import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
 import seedu.sudohr.logic.commands.department.ListDepartmentCommand;
 import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentCommand;
@@ -20,9 +21,9 @@ import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.employee.FindCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
-import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.DeleteEmployeeFromLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.ListEmployeeInLeaveCommand;
+import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
 import seedu.sudohr.logic.parser.department.AddDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.AddEmployeeToDepartmentCommandParser;
 import seedu.sudohr.logic.parser.department.EditDepartmentCommandParser;
@@ -32,6 +33,9 @@ import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
 import seedu.sudohr.logic.parser.employee.EditCommandParser;
 import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.DeleteEmployeeFromLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.ListEmployeeInLeaveCommandParser;
 
 /**
  * Parses user input.
@@ -75,12 +79,13 @@ public class SudoHrParser {
         case EditDepartmentCommand.COMMAND_WORD:
             return new EditDepartmentCommandParser().parse(arguments);
 
+        case DeleteDepartmentCommand.COMMAND_WORD:
+            return new DeleteDepartmentCommandParser().parse(arguments);
+        case AddEmployeeToDepartmentCommand.COMMAND_WORD:
+            return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
         case ListDepartmentCommand.COMMAND_WORD:
             return new ListDepartmentCommand();
-
-        case AddEmployeeToDepartmentCommand.COMMAND_WORD:
-            return new AddEmployeeToDepartmentCommandParser().parse(arguments);
 
         case RemoveEmployeeFromDepartmentCommand.COMMAND_WORD:
             return new RemoveEmployeeFromDepartmentCommandParser().parse(arguments);

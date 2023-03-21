@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
-import seedu.sudohr.commons.core.index.Index;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
+import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
@@ -43,10 +43,11 @@ public class AddEmployeeToLeaveCommandTest {
 
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
-        CommandResult commandResult = new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(
+                TypicalEmployees.ALICE_ID,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_SUCCESS,
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
                 TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
 
@@ -64,13 +65,15 @@ public class AddEmployeeToLeaveCommandTest {
         modelStub.addEmployee(TypicalEmployees.ALICE);
         modelStub.addEmployee(TypicalEmployees.BENSON);
 
-        new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+        new AddEmployeeToLeaveCommand(
+                TypicalEmployees.ALICE_ID,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        CommandResult commandResult = new AddEmployeeToLeaveCommand(Index.fromOneBased(2),
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(
+                TypicalEmployees.BENSON_ID,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_SUCCESS,
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
                 TypicalEmployees.BENSON, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
 
@@ -84,11 +87,11 @@ public class AddEmployeeToLeaveCommandTest {
     public void execute_duplicateEmployeeInLeave_throwsCommandException() throws CommandException {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
-        new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+        new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
         assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
-                new AddEmployeeToLeaveCommand(Index.fromOneBased(1),
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
 
     }
@@ -108,7 +111,7 @@ public class AddEmployeeToLeaveCommandTest {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
 
         assertThrows(NullPointerException.class, () ->
-                new AddEmployeeToLeaveCommand(Index.fromOneBased(1), null).execute(modelStub));
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID, null).execute(modelStub));
     }
 
     /**
@@ -325,6 +328,12 @@ public class AddEmployeeToLeaveCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInLeaves'");
         }
+
+        @Override
+        public boolean checkEmployeeExists(Id id) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'checkEmployeeExists'");
+        }
     }
 
     /**
@@ -412,5 +421,13 @@ public class AddEmployeeToLeaveCommandTest {
         @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         }
+
+        @Override
+        public boolean checkEmployeeExists(Id id) {
+            requireNonNull(id);
+            return sudoHr.checkEmployeeExists(id);
+        }
+
+
     }
 }

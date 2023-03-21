@@ -1,4 +1,4 @@
-package seedu.sudohr.logic.parser;
+package seedu.sudohr.logic.parser.leave;
 
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.logic.commands.CommandTestUtil.INVALID_LEAVE_DATE_DESC;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.logic.commands.leavecommands.ListEmployeeInLeaveCommand;
+import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
 import seedu.sudohr.model.leave.LeaveDate;
 
 public class ListEmployeeInLeaveCommandParserTest {
