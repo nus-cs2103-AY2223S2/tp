@@ -2,12 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.CompanyCommand;
 import seedu.address.logic.commands.exceptions.exceptions.ParseException;
 import seedu.address.model.job.CompanyContainsKeywordsPredicate;
-
-
-import java.util.Arrays;
 
 /**
  * Parses input arguments and creates a new SalaryCommand object
