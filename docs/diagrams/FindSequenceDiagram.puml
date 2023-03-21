@@ -22,7 +22,7 @@ activate Model
 Model --> LogicManager : p
 deactivate Model
 
-LogicManager -> CodocParser : parseCommand("find y/2 m/cs2103t, p")
+LogicManager -> CodocParser : parseCommand("find y/2 m/cs2103t", p)
 activate CodocParser
 
 create FindCommandParser
