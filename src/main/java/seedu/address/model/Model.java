@@ -15,9 +15,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Listing> PREDICATE_SHOW_ALL_LISTINGS = unused -> true;
 
-    /** {@code Comparator} that always evaluate to 0 */
-    Comparator<Listing> COMPARATOR_ALL_EQUAL = (listingA, listingB) -> 0;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
