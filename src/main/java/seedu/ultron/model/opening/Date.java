@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * Represents an Opening's date in the address book.
  */
-public class Keydate {
+public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should only be in the format yyyy-MM-dd e.g. 2023-01-01";
 
@@ -18,11 +18,11 @@ public class Keydate {
     public final String fullName;
 
     /**
-     * Constructs a {@code Keydate}.
+     * Constructs a {@code Date}.
      *
      * @param date A valid date.
      */
-    public Keydate(String name, String date) {
+    public Date(String name, String date) {
         requireNonNull(date);
         requireNonNull(name);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
@@ -52,9 +52,9 @@ public class Keydate {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Keydate // instanceof handles nulls
-                && fullName.equals(((Keydate) other).fullName)
-                && fullDate.equals(((Keydate) other).fullDate)); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && fullName.equals(((Date) other).fullName)
+                && fullDate.equals(((Date) other).fullDate)); // state check
     }
 
     @Override
