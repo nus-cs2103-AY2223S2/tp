@@ -52,15 +52,17 @@ This user guide will serve as a guide to help you get up to speed in no time!
 1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
 
-   * `listcontact` : Lists all contacts.
+    * `listcontact` : Lists all contacts.
 
-   * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
+    * `newcontact n/John Doe p/98765432` : Adds a contact named `John Doe` to the contact list.
 
-   * `delete 3` : Deletes the 3rd event shown in the current list.
+    * `delete 3` : Deletes the 3rd event shown in the current list.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+[//]: # (Perhaps we could explain the difference between event and contact here?)
 
 ## Features
 
