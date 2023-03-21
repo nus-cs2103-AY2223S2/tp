@@ -31,6 +31,14 @@ public class PatientCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label nric;
+    @FXML
+    private Label status;
+    @FXML
+    private Label ward;
+    @FXML
+    private Label discharge;
 
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to
@@ -41,6 +49,10 @@ public class PatientCard extends UiPart<Region> {
         this.patient = patient;
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
+        nric.setText(patient.getNric().value);
+        status.setText(patient.getStatus().value);
+        ward.setText(patient.getWard().value);
+
     }
 
     @Override
@@ -57,7 +69,7 @@ public class PatientCard extends UiPart<Region> {
 
         // state check
         PatientCard card = (PatientCard) other;
-        return id.getText().equals(card.id.getText())
+        return nric.getText().equals(card.nric.getText())
                 && patient.equals(card.patient);
     }
 }
