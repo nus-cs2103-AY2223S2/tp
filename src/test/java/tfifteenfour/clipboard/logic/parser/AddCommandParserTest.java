@@ -38,8 +38,8 @@ import org.junit.jupiter.api.Test;
 
 import tfifteenfour.clipboard.logic.commands.AddCommand;
 import tfifteenfour.clipboard.logic.commands.CommandTestUtil;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Student;
@@ -151,7 +151,7 @@ public class AddCommandParserTest {
 
         // invalid module
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENTID_DESC_BOB
-                + INVALID_MODULE_DESC + TAG_DESC_TEAM2, ModuleCode.MESSAGE_CONSTRAINTS);
+                + INVALID_MODULE_DESC + TAG_DESC_TEAM2, Course.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STUDENTID_DESC_BOB

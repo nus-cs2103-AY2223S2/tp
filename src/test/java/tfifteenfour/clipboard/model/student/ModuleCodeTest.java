@@ -8,19 +8,19 @@ public class ModuleCodeTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ModuleCode(null));
+        assertThrows(NullPointerException.class, () -> new Course(null));
     }
 
     @Test
     public void constructor_invalidModuleCode_throwsIllegalArgumentException() {
         String invalidModuleCode = "";
-        assertThrows(IllegalArgumentException.class, () -> new ModuleCode(invalidModuleCode));
+        assertThrows(IllegalArgumentException.class, () -> new Course(invalidModuleCode));
     }
 
     @Test
     public void isValidModuleCode() {
         // null module code
-        assertThrows(NullPointerException.class, () -> ModuleCode.isValidModuleCode(null));
+        assertThrows(NullPointerException.class, () -> Course.isValidModuleCode(null));
     }
 
 }

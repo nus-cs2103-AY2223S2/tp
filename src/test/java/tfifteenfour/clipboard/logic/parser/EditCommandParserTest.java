@@ -42,8 +42,8 @@ import org.junit.jupiter.api.Test;
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.commands.EditCommand;
 import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.StudentId;
@@ -93,7 +93,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_STUDENTID_DESC, StudentId.MESSAGE_CONSTRAINTS); // invalid sid
-        assertParseFailure(parser, "1" + INVALID_MODULE_DESC, ModuleCode.MESSAGE_CONSTRAINTS); // inv mod code
+        assertParseFailure(parser, "1" + INVALID_MODULE_DESC, Course.MESSAGE_CONSTRAINTS); // inv mod code
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email

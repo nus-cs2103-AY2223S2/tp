@@ -7,7 +7,7 @@ import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
  * Represents a Module in the CLIpboard.
  * Guarantees: immutable; name is valid as declared in {@link #isValidModuleCode(String)} (String)}
  */
-public class ModuleCode {
+public class Course {
 
     public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -19,7 +19,7 @@ public class ModuleCode {
      *
      * @param moduleCode A valid module code.
      */
-    public ModuleCode(String moduleCode) {
+    public Course(String moduleCode) {
         requireNonNull(moduleCode);
         checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
         this.moduleCode = moduleCode;
@@ -32,11 +32,19 @@ public class ModuleCode {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns module code
+     * @return String module code
+     */
+    public String getModule() {
+        return this.moduleCode;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleCode // instanceof handles nulls
-                && moduleCode.equals(((ModuleCode) other).moduleCode)); // state check
+                || (other instanceof Course // instanceof handles nulls
+                && moduleCode.equals(((Course) other).moduleCode)); // state check
     }
 
     @Override
