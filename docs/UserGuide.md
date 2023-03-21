@@ -64,6 +64,11 @@ section.
 
 Once HMHero is installed, you can find the necessary information to get started in the [Quick Start](#quick-start)
 section!
+This includes:
+* The [User Interface](#user-interface) of HMHero
+* How each `Applicant` is represented
+* HMHero's Command Format
+* Trying out your very first HMHero command
 
 If you are an **experienced user**, you may head over to the [Command Summary](#command-summary) to get a quick overview
 of all the commands available in HMHero!
