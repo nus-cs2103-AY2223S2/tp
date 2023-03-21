@@ -2,9 +2,13 @@ package seedu.loyaltylift.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.loyaltylift.model.customer.Customer;
+
+import java.io.File;
 
 /**
  * An UI component that displays information of a {@code Customer}.
@@ -48,6 +52,12 @@ public class CustomerCard extends UiPart<Region> {
         name.setText(customer.getName().fullName);
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
+
+        String path = "/src/main/resources/images/marked-icon.png";
+        Image symb = new Image(path,
+                20, 20, false, false);
+        ImageView markSymbol = new ImageView(symb);
+        customerTypePlaceholder.getChildren().add(markSymbol);
 
         Badge customerTypeTag = Badge.createCustomerTypeBadge(customer.getCustomerType());
         customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
