@@ -15,6 +15,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.StatusPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -40,7 +41,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         InternshipStatus status;
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
              status = ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_STATUS).get());
-             return new FindCommand(status);
+             return new FindStatusCommand(new StatusPredicate(status));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

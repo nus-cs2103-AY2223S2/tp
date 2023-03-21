@@ -2,10 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -24,17 +27,14 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " google software engineer intern";
 
     private final NameContainsKeywordsPredicate predicate;
-    private final InternshipStatus status;
+
+    public FindCommand() {
+        this.predicate = null;
+    }
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
-
-    public FindCommand(InternshipStatus status) {
-        this.status = status;
-    }
-
-    public FindCommand()
 
     @Override
     public CommandResult execute(Model model) {
