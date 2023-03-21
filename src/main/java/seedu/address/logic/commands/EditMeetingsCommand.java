@@ -123,7 +123,7 @@ public class EditMeetingsCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditMeetingsCommand)) {
             return false;
         }
 
@@ -138,9 +138,9 @@ public class EditMeetingsCommand extends Command {
      * corresponding field value of the meeting.
      */
     public static class EditMeetingDescriptor {
-        private Set<Name> attendees;
         private Title title;
         private DateTime dateTime;
+        private Set<Name> attendees;
         private Location location;
         private Description description;
 
@@ -150,9 +150,9 @@ public class EditMeetingsCommand extends Command {
          * Copy constructor.
          */
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
-            setAttendees(toCopy.attendees);
             setTitle(toCopy.title);
             setDateTime(toCopy.dateTime);
+            setAttendees(toCopy.attendees);
             setLocation(toCopy.location);
             setDescription(toCopy.description);
         }
@@ -161,7 +161,7 @@ public class EditMeetingsCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(attendees, title, dateTime, location, description);
+            return CollectionUtil.isAnyNonNull(title, dateTime, attendees, location, description);
         }
 
         public void setTitle(Title title) {
