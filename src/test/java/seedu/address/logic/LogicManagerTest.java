@@ -93,6 +93,17 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredInternshipList().remove(0));
     }
 
+    @Test
+    public void getInitialSelectedInternship_equalsNull_success() {
+        assertEquals(logic.getSelectedInternship(), null);
+    }
+
+    @Test
+    public void getNewSelectedInternship_equals_success() {
+        model.updateSelectedInternship(APPLE);
+        assertEquals(logic.getSelectedInternship(), APPLE);
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>

@@ -128,6 +128,25 @@ public class UniqueInternshipListTest {
     }
 
     @Test
+    public void view_nullInternship_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.view(null));
+    }
+
+    @Test
+    public void view_internshipDoesNotExist_throwsInternshipNotFoundException() {
+        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.view(APPLE));
+    }
+
+    @Test
+    public void view_existingInternship_success() {
+        uniqueInternshipList.add(APPLE);
+        uniqueInternshipList.view(APPLE);
+        UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
+        expectedUniqueInternshipList.add(APPLE);
+        assertEquals(uniqueInternshipList, expectedUniqueInternshipList);
+    }
+
+    @Test
     public void setInternships_nullUniqueInternshipList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueInternshipList
                 .setInternships((UniqueInternshipList) null));

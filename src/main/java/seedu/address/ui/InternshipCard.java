@@ -72,7 +72,7 @@ public class InternshipCard extends UiPart<Region> {
         role.setText(ROLE_LABEL + internship.getRole().fullRole);
 
         //Add Date
-        String dateLabel = getDateLabel();
+        String dateLabel = getDateLabel(internship.getStatus().toString());
         date.setText(dateLabel + internship.getDate().fullDate);
 
         //Add Tags
@@ -114,7 +114,7 @@ public class InternshipCard extends UiPart<Region> {
      *
      * @return a hashmap containing the colors associated with each status type
      */
-    public HashMap<String, Color> setupColours() {
+    public static HashMap<String, Color> setupColours() {
         //Hashmap that stores the colours associated with each status
         HashMap<String, Color> colorMap = new HashMap<String, Color>();
         colorMap.put(NEW, Color.rgb(250, 155, 68, 1.0));
@@ -130,11 +130,13 @@ public class InternshipCard extends UiPart<Region> {
     /**
      * Returns the label for the date field in Internship Card.
      *
+     * @param statusString The current status of the associated Internship.
+     *
      * @return the corresponding String as a label for the date.
      */
-    public String getDateLabel() {
+    public static String getDateLabel(String statusString) {
         String dateLabel;
-        switch (this.internship.getStatus().toString()) {
+        switch (statusString) {
         case APPLIED:
             dateLabel = "Date Applied: ";
             break;
