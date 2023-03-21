@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.storage.JsonAdaptedPerson;
 
 public class ExportPersonsCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -30,9 +31,9 @@ public class ExportPersonsCommandTest {
         ObservableList<Person> persons = model.getFilteredPersonList();
         String expectedMessage;
         try {
-            expectedMessage = JsonUtil.toJsonString(new Person[]{
-                    persons.get(INDEX_FIRST_PERSON.getZeroBased()),
-                    persons.get(INDEX_SECOND_PERSON.getZeroBased())
+            expectedMessage = JsonUtil.toJsonString(new JsonAdaptedPerson[]{
+                new JsonAdaptedPerson(persons.get(INDEX_FIRST_PERSON.getZeroBased())),
+                new JsonAdaptedPerson(persons.get(INDEX_SECOND_PERSON.getZeroBased()))
             });
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
