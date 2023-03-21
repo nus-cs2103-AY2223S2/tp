@@ -113,13 +113,17 @@ Example
 - **Enhancements to existing features**:
 
 - Enhanced the `FindCommand` to check the `equals` method to return true when `namePredicate`, `phonePredicate`,
- `nameAndPhoneContainsKeywordsPredicate` returns true if both objects are null to prevent NullPointerException
+ `nameAndPhoneContainsKeywordsPredicate` returns true if both objects are null to prevent NullPointerException.
 
-- Created test cases for AdvanceCommand and AdvanceCommandParser
+- Created test cases for AdvanceCommand and AdvanceCommandParser.
+
+- Enhanced the `EditCommand` to allow edits on `InterviewDateTime` method.
+
+- Improved test cases for EditCommand and EditCommandParser. 
 
 - **Documentation**:
 
-  - to be added soon
+  - Wrote the Commands Section for UserGuide.
 
 - **Community**:
 
