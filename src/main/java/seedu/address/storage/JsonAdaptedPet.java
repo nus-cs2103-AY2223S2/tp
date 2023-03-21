@@ -15,12 +15,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.pet.Address;
-import seedu.address.model.pet.Email;
-import seedu.address.model.pet.Name;
-import seedu.address.model.pet.OwnerName;
-import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.Phone;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +30,7 @@ class JsonAdaptedPet {
     private final String phone;
     private final String email;
     private final String address;
+    private final String deadline;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     private String timestamp;
@@ -46,6 +42,7 @@ class JsonAdaptedPet {
     public JsonAdaptedPet(@JsonProperty("ownerName") String ownerName, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("address") String address, @JsonProperty("timestamp") String timestamp,
+                          @JsonProperty("deadline") String deadline,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
         this.ownerName = ownerName;
@@ -54,6 +51,7 @@ class JsonAdaptedPet {
         this.email = email;
         this.timestamp = timestamp;
         this.address = address;
+        this.deadline = deadline;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -73,6 +71,7 @@ class JsonAdaptedPet {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        deadline = source.getDeadline().toString();
     }
 
     /**
@@ -131,9 +130,19 @@ class JsonAdaptedPet {
         Instant i = Instant.parse(timestamp + "Z");
         final LocalDateTime modelTimeStamp = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
 
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+        }
+
+        String split[] = deadline.split("by", 2);
+        String description = split[0].trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
+        final Deadline modelDeadline = new Deadline(description, time);
+
         final Set<Tag> modelTags = new HashSet<>(petTags);
 
-        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTimeStamp, modelTags);
+        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTimeStamp, modelDeadline, modelTags);
     }
 
 }

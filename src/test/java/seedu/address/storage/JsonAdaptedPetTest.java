@@ -31,6 +31,8 @@ public class JsonAdaptedPetTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_TIMESTAMP = BENSON.getTimeStamp().toString();
+    private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -44,7 +46,7 @@ public class JsonAdaptedPetTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedPet pet =
-                new JsonAdaptedPet(VALID_OWNER_NAME, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedPet(VALID_OWNER_NAME, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -52,7 +54,7 @@ public class JsonAdaptedPetTest {
     @Test
     public void toModelType_invalidOwnerName_throwsIllegalValueException() {
         JsonAdaptedPet pet =
-                new JsonAdaptedPet(INVALID_OWNER_NAME, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedPet(INVALID_OWNER_NAME, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = OwnerName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -60,7 +62,7 @@ public class JsonAdaptedPetTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPet pet = new JsonAdaptedPet(VALID_OWNER_NAME, null, VALID_PHONE,
-                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                VALID_EMAIL, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -69,7 +71,7 @@ public class JsonAdaptedPetTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedPet pet =
                 new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME, INVALID_PHONE,
-                        VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                        VALID_EMAIL, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -77,7 +79,7 @@ public class JsonAdaptedPetTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedPet pet = new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME, null,
-                VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                VALID_EMAIL, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -86,7 +88,7 @@ public class JsonAdaptedPetTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedPet pet =
                 new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME, VALID_PHONE,
-                        INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                        INVALID_EMAIL, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -94,7 +96,7 @@ public class JsonAdaptedPetTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPet pet = new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME,
-                VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
+                VALID_PHONE, null, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -103,7 +105,7 @@ public class JsonAdaptedPetTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedPet pet =
                 new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME, VALID_PHONE,
-                        VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
+                        VALID_EMAIL, INVALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -111,7 +113,7 @@ public class JsonAdaptedPetTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedPet pet = new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
+                VALID_PHONE, VALID_EMAIL, null, VALID_TIMESTAMP, VALID_DEADLINE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
@@ -121,7 +123,7 @@ public class JsonAdaptedPetTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPet pet =
-                new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
+                new JsonAdaptedPet(VALID_OWNER_NAME, VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TIMESTAMP, VALID_DEADLINE, invalidTags);
         assertThrows(IllegalValueException.class, pet::toModelType);
     }
 

@@ -45,6 +45,8 @@ public class PetCard extends UiPart<Region> {
     @FXML
     private Label amountDue;
     @FXML
+    private Label deadline;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -62,6 +64,7 @@ public class PetCard extends UiPart<Region> {
         LocalDateTime arrival = pet.getTimeStamp();
         String amt = String.valueOf(Duration.between(arrival, LocalDateTime.now()).getSeconds() * (0.01));
         amountDue.setText(amt);
+        deadline.setText(pet.getDeadline().toString());
         pet.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

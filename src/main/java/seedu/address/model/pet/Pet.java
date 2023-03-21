@@ -24,20 +24,22 @@ public class Pet {
 
     // Data fields
     private final Address address;
+    private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
     private final LocalDateTime timestamp;
 
     /**
      * Every field must be present and not null.
      */
-    public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address, LocalDateTime timestamp, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Pet(OwnerName ownerName, Name name, Phone phone, Email email, Address address, LocalDateTime timestamp, Deadline deadline, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, timestamp, deadline, tags);
         this.ownerName = ownerName;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.timestamp = timestamp;
+        this.deadline = deadline;
         this.tags.addAll(tags);
     }
     public OwnerName getOwnerName() {
@@ -59,9 +61,12 @@ public class Pet {
     public Address getAddress() {
         return address;
     }
+
     public LocalDateTime getTimeStamp() {
         return timestamp;
     }
+
+    public Deadline getDeadline() { return deadline; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -104,13 +109,15 @@ public class Pet {
                 && otherPet.getPhone().equals(getPhone())
                 && otherPet.getEmail().equals(getEmail())
                 && otherPet.getAddress().equals(getAddress())
+                && otherPet.getTimeStamp().equals(getTimeStamp())
+                && otherPet.getDeadline().equals(getDeadline())
                 && otherPet.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(ownerName, name, phone, email, address, tags);
+        return Objects.hash(ownerName, name, phone, email, address, timestamp, deadline, tags);
     }
 
     @Override
@@ -124,7 +131,11 @@ public class Pet {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Timestamp: ")
+                .append(getTimeStamp())
+                .append("; Deadline: ")
+                .append(getDeadline());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
