@@ -23,6 +23,19 @@ Given below are my contributions to the project.
     * iP undo implementation (bugs)
     * Momento Design Pattern
 
+* **Redo functionality**: 
+  * Justification: 
+    * Careless Users might want to redo their last undo.
+    * Rather than finding the reversing action, they can just use `redo`.
+    * This is especially useful for users that accidentally use the `undo` command after adding someone important and would like to recover their last contact.
+
+  * Highlights: 
+    * Able to redo up to 10 last commands.
+  
+  * Credits:
+    * Momento Design Pattern
+
+
 {::comment}
 
 * **New Feature**: `to be added soon`
@@ -34,13 +47,13 @@ Given below are my contributions to the project.
 
 * **Code contributed**: 
   > [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=WillCWX&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByNone&breakdown=true&since=2023-02-17&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=WillCWX&tabRepo=AY2223S2-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-  * 1570 lines
-  * 17 commits
+  * 1870 lines
+  * 22 commits
 
 * **Project management**:
   * Managed releases.
-  * Created issue: [\#26](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/26) 
-  * In charge of Testing and Integration. 
+  * Created issues: [\#26](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/26), [\#51](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/51), [\#54](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/54), [\#55](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/55), [\#56](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/56)    
+  * In charge of Testing and Integration.
   * `to be added soon`
 
 * **Enhancements to existing features**:
