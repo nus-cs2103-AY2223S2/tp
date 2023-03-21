@@ -51,6 +51,16 @@ public interface Logic {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the user prefs' todo list file path.
+     */
+    Path getTodoListFilePath();
+
+    /**
+     * Returns the user prefs' note list file path.
+     */
+    Path getNoteListFilePath();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();

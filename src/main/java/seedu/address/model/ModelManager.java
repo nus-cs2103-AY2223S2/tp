@@ -87,6 +87,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getTodoListFilePath() {
+        return userPrefs.getTodoListFilePath();
+    }
+
+    @Override
+    public Path getNoteListFilePath() {
+        return userPrefs.getNoteListFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
