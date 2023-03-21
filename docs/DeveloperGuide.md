@@ -658,10 +658,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
 
-    1. Test case: `delete 1 2`<br>
+    1. Test case: `deleteExercise 1 2`<br>
        Expected: Second exercise from the first routine is deleted from the list. Details of the deleted exercise shown in the status message.
 
-    1. Test case: `delete 0 0`<br>
+    1. Test case: `deleteExercise 0 0`<br>
        Expected: No exercise is deleted. Error details shown in the status message.
 
     1. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
