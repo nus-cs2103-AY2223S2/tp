@@ -41,6 +41,10 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
 
+        if (commandText.equals("quickstart")) {
+            commandTextField.setText("");
+        }
+
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
