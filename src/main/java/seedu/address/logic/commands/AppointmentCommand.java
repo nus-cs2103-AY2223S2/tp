@@ -21,7 +21,7 @@ public class AppointmentCommand extends Command {
     public static final String COMMAND_WORD = "appointment";
 
     public static final String MESSAGE_USAGE = "";
-    public static final String MESSAGE_SUCCESS = "New appointment booked for "; // todo patient name
+    public static final String MESSAGE_SUCCESS = "New appointment booked: %1$s"; // todo patient name
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment slot is already booked";
 
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist";
@@ -59,6 +59,7 @@ public class AppointmentCommand extends Command {
             Nric otherPatientNricAppointment = person.getNric();
             if (patientNricAppointment.equals(otherPatientNricAppointment)) {
                 appointmentPatient = (Patient) person;
+                break;
             }
         }
         try {
@@ -67,7 +68,6 @@ public class AppointmentCommand extends Command {
         } catch (DuplicateAppointmentException e) {
             throw new DuplicateAppointmentException();
         }
-        // String s = appointmentPatient.patientAppointmentstoString();
 
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
                 appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
@@ -77,7 +77,7 @@ public class AppointmentCommand extends Command {
         model.setPerson(appointmentPatient, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(fullSuccessMessage(appointment), appointment));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
     }
 
     /**
@@ -91,13 +91,4 @@ public class AppointmentCommand extends Command {
         return patientNameStr;
     }
 
-    /**
-     * Shows message for successful appointment booked.
-     * @param appointment
-     * @return success message
-     */
-    public String fullSuccessMessage(Appointment appointment) {
-        String fullMessage = MESSAGE_SUCCESS + getPatientNric(appointment); // todo show the name instead of ic
-        return fullMessage;
-    }
 }

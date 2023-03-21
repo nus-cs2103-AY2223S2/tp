@@ -51,4 +51,16 @@ public class Appointment {
         return otherPatientNric.equals(thisPatientNric)
                 && thisAppointmentDate.equals(otherAppointmentDate);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("NRIC: ")
+                .append(getPatientNric())
+                .append("; Appointment: ")
+                .append(getBooking())
+                .append("; Doctor: ");
+                // todo doctor
+        return builder.toString();
+    }
 }
