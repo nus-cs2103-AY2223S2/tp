@@ -175,9 +175,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The remind command is facilitated by `RemindCommand`, which extends `Command`. It stores a `StartTimeWithinDaysPredicate`, used to test if an event should be displayed. An instance of `RemindCommand` is created by `RemindCommandParser`.
+The remind command is facilitated by `RemindCommand`, which extends `Command`. It stores a `StartTimeWithinDaysPredicate`, used to test if an event should be displayed. An instance of `RemindCommand` is created by `RemindCommandParser`. `StartTimeWithinDaysPredicate` determines the current time using a `Clock` that is passed to its constructor. This `Clock` is created in `LogicManager`.
 
-When the `EventBookParser` is used to parse user input of a remind command. 
+When the `EventBookParser` is used to parse user input of a remind command, it uses a new `RemindCommandParser` to create a `RemindCommand`.
 
 ### \[Proposed\] Undo/redo feature
 
