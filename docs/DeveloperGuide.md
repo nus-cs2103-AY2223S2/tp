@@ -181,6 +181,24 @@ The following gives a more detailed explanation of the `view` operation.
    the `Internship` obtained from Step 7 such that the right UI panel displays the information
    for this selected `Internship`.
 
+#### Design Considerations
+
+###### Whether to separate the checking of valid user input into 2 classes
+1. **Alternative 1: Allow `ViewCommand` to handle checking of whether user input can be
+     parsed into an integer, and whether it is a valid index**
+    * Pros: No need for a separate `ViewCommandParser` class and any problems with checking of
+      user input can be isolated to the `ViewCommand` class.
+    * Cons: Breaks the abstraction where parsing of user input should be done by the `Parser`
+      classes instead of a `Command` class.
+2. **Alternative 2: Allow `ViewCommandParser` to handle checking of whether user input
+     can be parsed into an integer, and `ViewCommand` to handle checking of whether it
+     is a valid index**
+    * Pros: Maintains the abstraction between `Parser` and `Command` classes. Also, it
+      makes it more maintainable for future extensions in the event that further checks
+      to the user input is required.
+    * Cons: Have to maintain code in 2 separate classes and in the event that there
+      is an issue in processing user input for the `ViewCommand`, there is a need to
+      identify and isolate which of the 2 checks does the problem originate from.
 
 
 
