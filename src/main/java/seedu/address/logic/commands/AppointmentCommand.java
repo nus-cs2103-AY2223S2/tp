@@ -68,6 +68,7 @@ public class AppointmentCommand extends Command {
             throw new DuplicateAppointmentException();
         }
         // String s = appointmentPatient.patientAppointmentstoString();
+
         Patient editedPatient = new Patient(appointmentPatient.getName(), appointmentPatient.getPhone(),
                 appointmentPatient.getEmail(), appointmentPatient.getNric(), appointmentPatient.getAddress(),
                 appointmentPatient.getMedication(), appointmentPatient.getTags(),
@@ -75,6 +76,7 @@ public class AppointmentCommand extends Command {
 
         model.setPerson(appointmentPatient, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(fullSuccessMessage(appointment), appointment));
     }
 
