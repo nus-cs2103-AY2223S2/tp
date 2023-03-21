@@ -26,9 +26,9 @@ public class StringUtil {
         requireNonNull(sentence);
         requireNonNull(word);
 
-        String preppedWord = word.trim();
+        String preppedWord = word.toLowerCase().trim();
         AppUtil.checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        return sentence.contains(preppedWord);
+        return sentence.toLowerCase().contains(preppedWord);
     }
 
     /**

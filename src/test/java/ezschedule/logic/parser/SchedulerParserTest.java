@@ -1,11 +1,11 @@
 package ezschedule.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ezschedule.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static ezschedule.testutil.Assert.assertThrows;
-import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,20 +13,21 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.ClearCommand;
 import ezschedule.logic.commands.DeleteCommand;
 import ezschedule.logic.commands.EditCommand;
-import ezschedule.logic.commands.EditCommand.EditPersonDescriptor;
+import ezschedule.logic.commands.EditCommand.EditEventDescriptor;
 import ezschedule.logic.commands.ExitCommand;
 import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.HelpCommand;
 import ezschedule.logic.commands.ListCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
-import ezschedule.model.person.NameContainsKeywordsPredicate;
-import ezschedule.model.person.Person;
-import ezschedule.testutil.EditPersonDescriptorBuilder;
-import ezschedule.testutil.PersonBuilder;
-import ezschedule.testutil.PersonUtil;
+import ezschedule.model.event.Event;
+import ezschedule.model.event.EventContainsKeywordsPredicate;
+import ezschedule.testutil.EditEventDescriptorBuilder;
+import ezschedule.testutil.EventBuilder;
+import ezschedule.testutil.EventUtil;
 
 public class SchedulerParserTest {
 
@@ -34,9 +35,9 @@ public class SchedulerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Event event = new EventBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(EventUtil.getAddCommand(event));
+        assertEquals(new AddCommand(event), command);
     }
 
     @Test
@@ -48,17 +49,17 @@ public class SchedulerParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_EVENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Event event = new EventBuilder().build();
+        EditEventDescriptor descriptor = new EditEventDescriptorBuilder(event).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_EVENT.getOneBased() + " " + EventUtil.getEditEventDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_EVENT, descriptor), command);
     }
 
     @Test
@@ -72,7 +73,7 @@ public class SchedulerParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new EventContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

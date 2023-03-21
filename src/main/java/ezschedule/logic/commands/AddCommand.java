@@ -8,7 +8,7 @@ import ezschedule.model.Model;
 import ezschedule.model.event.Event;
 
 /**
- * Adds a person to the scheduler.
+ * Adds a event to the scheduler.
  */
 public class AddCommand extends Command {
 

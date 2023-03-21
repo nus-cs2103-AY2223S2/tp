@@ -8,7 +8,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ezschedule.model.person.NameContainsKeywordsPredicate;
+import ezschedule.logic.commands.FindCommand;
+import ezschedule.model.event.EventContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -23,11 +24,10 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new EventContainsKeywordsPredicate(Arrays.asList("A", "B")));
+        assertParseSuccess(parser, "A B", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n A \n \t B  \t", expectedFindCommand);
     }
-
 }

@@ -22,7 +22,7 @@ public class JsonAdaptedEvent {
     private final String endTime;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPerson} with the given event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("date") String date,
@@ -44,9 +44,9 @@ public class JsonAdaptedEvent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Event} object.
+     * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
 
@@ -62,7 +62,7 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
         if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
 
@@ -70,7 +70,7 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
         if (!Time.isValidTime(startTime)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelStartTime = new Time(startTime);
 
@@ -78,7 +78,7 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
         if (!Time.isValidTime(endTime)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelEndTime = new Time(endTime);
 

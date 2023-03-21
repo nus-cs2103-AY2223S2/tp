@@ -1,14 +1,12 @@
 package ezschedule.commons.util;
 
+import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ezschedule.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
-
-import ezschedule.testutil.Assert;
 
 public class StringUtilTest {
 
@@ -58,24 +56,18 @@ public class StringUtilTest {
 
     @Test
     public void containsWordIgnoreCase_nullWord_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase("typical sentence", null));
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase("typical sentence", null));
     }
 
     @Test
     public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
-        Assert.assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
-    }
-
-    @Test
-    public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
-        Assert.assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
-            -> StringUtil.containsWordIgnoreCase("typical sentence", "aaa BBB"));
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+                -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
     public void containsWordIgnoreCase_nullSentence_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
     }
 
     /*
@@ -110,8 +102,8 @@ public class StringUtilTest {
         assertFalse(StringUtil.containsWordIgnoreCase("", "abc")); // Boundary case
         assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
 
-        // Matches a partial word only
-        assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
+        // Matches a partial word only, still return true
+        assertTrue(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
         assertFalse(StringUtil.containsWordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
 
         // Matches word in the sentence, different upper/lower case letters
@@ -134,12 +126,11 @@ public class StringUtilTest {
     @Test
     public void getDetails_exceptionGiven() {
         assertTrue(StringUtil.getDetails(new FileNotFoundException("file not found"))
-            .contains("java.io.FileNotFoundException: file not found"));
+                .contains("java.io.FileNotFoundException: file not found"));
     }
 
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
+        assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
-
 }
