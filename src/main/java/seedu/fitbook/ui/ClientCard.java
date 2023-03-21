@@ -87,7 +87,6 @@ public class ClientCard extends UiPart<Region> {
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         weight.setText(client.getWeight().value + " Kg");
-        //gender.setText(client.getGender().value);
         goal.setText(client.getGoal().value);
         setCalorieCondition(client, calorie);
         client.getAppointments().stream()
@@ -100,7 +99,6 @@ public class ClientCard extends UiPart<Region> {
                 new Image(this.getClass().getResourceAsStream("/images/genderList/" + genderText + ".png")));
         phoneIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/phoneIcon.png")));
         addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/addressIcon.png")));
-        //genderIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/genderIcon.png")));
         emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
         weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
         goalIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/goalIcon.png")));
