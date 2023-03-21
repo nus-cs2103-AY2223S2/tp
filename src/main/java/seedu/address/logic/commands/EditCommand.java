@@ -201,7 +201,7 @@ public class EditCommand extends Command {
         }
 
         public Optional<InterviewDateTime> getDateTime() {
-            return Optional.of(this.dateTime);
+            return Optional.ofNullable(this.dateTime);
         }
 
         /**
