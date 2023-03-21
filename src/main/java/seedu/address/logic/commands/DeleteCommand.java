@@ -43,7 +43,6 @@ public class DeleteCommand extends Command {
         model.deleteListing(listingToDelete);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, listingToDelete));
-
     }
 
     @Override
