@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.*;
+import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Title;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_TITLE = "R@chel";
