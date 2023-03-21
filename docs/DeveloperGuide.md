@@ -2,28 +2,79 @@
 layout: page
 title: Developer Guide
 ---
+InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+It is optimized for typing where it allows users to complete internship management tasks much more efficiently
+via the keyboard as compared to using traditional Graphical User Interface (GUI) applications. InternBuddy runs
+using Java 11, and is available on the Windows, macOS and Linux operating systems.
+
+<br/>
+<p align="center">
+  <img width="300" height="175" src="images/internbuddy-computer.png">
+</p>
+
+
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## About the Developer Guide
+This developer guide aims to provide developers with insights into the implementation details
+of InternBuddy and to explain the design considerations behind the different features. It
+utilises Unified Modeling Language (UML) diagrams created using [PlantUML](https://plantuml.com/)
+for a visual explanation of the implementations.
 
-* InternBuddy is written in **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
-[Jackson](https://github.com/FasterXML/jackson) and [JUnit5](https://github.com/junit-team/junit5) libraries. It
-is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by the [SE-EDU initiative](https://se-education.org).
+Apart from shedding light onto InternBuddy's  internal details, this developer guide also provides
+information on how one can test the features of InternBuddy, and showcases the user study component
+that we went through in the initial development phase for requirements gathering.
 
---------------------------------------------------------------------------------------------------------------------
+Hopefully, interested developers would be able to easily set up the InternBuddy project and
+extends its functionality through this developer guide.
+
+## Using the Developer Guide
+This developer guide uses a set of formatting standards and syntax to better communicate
+information.
+
+### Information Box
+<div markdown="span" class="alert alert-primary">
+
+:info: **Info:** Provides useful information that supplements the main text
+</div>
+
+### Tip Box
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Tip:**  Suggestions on how to enhance your experience
+</div>
+
+### Warning Box
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
+carefully before committing
+</div>
+
+### Code Blocks
+Important code-related text and file paths are indicated using syntax highlighting.
+
+`command`, `PARAMETER`, `filepath.json`, `ClassName`
+
+
+### Keyboard Actions
+Keyboard keys are indicated using rounded boxes.
+
+<kbd>Ctrl</kbd> <kbd>Alt</kbd> <kbd>Space</kbd> <kbd>Enter</kbd> <kbd>&uarr;</kbd>
+
+
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
+set up the InternBuddy project in your personal computer.
 
---------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
@@ -460,3 +511,15 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+
+## **Acknowledgements**
+
+* InternBuddy is written in **Java 11**, with usage of the [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+  and [TestFX](https://github.com/TestFX/TestFX) libraries. It
+  is adapted from the [AddressBook Level 3](https://github.com/se-edu/addressbook-level3) project created by
+  the [SE-EDU initiative](https://se-education.org).
+* InternBuddy also utilises code adapted from [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
+  and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) primarily for the purpose of GUI testing.
