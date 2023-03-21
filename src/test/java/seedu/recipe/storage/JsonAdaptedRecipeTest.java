@@ -2,7 +2,7 @@ package seedu.recipe.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.recipe.storage.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.recipe.storage.jsonadapters.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_DURATION;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
@@ -26,6 +26,15 @@ import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedIngredient;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedName;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedPortionUnit;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipe;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipeDuration;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipePortion;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedStep;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedTag;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedTimeUnit;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_NAME = "7896";

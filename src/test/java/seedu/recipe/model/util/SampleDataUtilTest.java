@@ -18,7 +18,7 @@ public class SampleDataUtilTest {
     @Test
     public void getSampleRecipes() {
         //As the individual classes may have different ::equals
-        Recipe[] expected = new Recipe[] { CACIO_E_PEPE };
+        Recipe[] expected = new Recipe[]{CACIO_E_PEPE};
         Recipe[] actual = SampleDataUtil.getSampleRecipes();
         for (int i = 0; i < actual.length; i++) {
             assertTrue(expected[i].isSameRecipe(actual[i]));
@@ -39,16 +39,13 @@ public class SampleDataUtilTest {
 
     @Test
     public void getTagSet() {
-        String[] tags = new String[] {
-            "Tag 1", "Tag 2", "Tag 3",
-            "Tag 4", "Tag 4"
-        };
+        String[] tags = new String[]{"Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 4"};
         Set<Tag> expected = Set.of(
                 new Tag("Tag 1"),
                 new Tag("Tag 2"),
                 new Tag("Tag 3"),
                 new Tag("Tag 4")
-        );
+                                  );
         assertEquals(expected, SampleDataUtil.getTagSet(tags));
     }
 }

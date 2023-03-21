@@ -9,25 +9,14 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPE;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.commons.util.CollectionUtil;
 import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.model.recipe.RecipeDuration;
-import seedu.recipe.model.recipe.RecipePortion;
-import seedu.recipe.model.recipe.Step;
-import seedu.recipe.model.tag.Tag;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -61,18 +50,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the recipe book.";
 
     private final Index index;
-    private final EditRecipeDescriptor editRecipeDescriptor;
+    private final RecipeDescriptor recipeDescriptor;
 
     /**
-     * @param index                of the recipe in the filtered recipe list to edit
-     * @param editRecipeDescriptor details to edit the recipe with
+     * @param index            of the recipe in the filtered recipe list to edit
+     * @param recipeDescriptor details to edit the recipe with
      */
-    public EditCommand(Index index, EditRecipeDescriptor editRecipeDescriptor) {
+    public EditCommand(Index index, RecipeDescriptor recipeDescriptor) {
         requireNonNull(index);
-        requireNonNull(editRecipeDescriptor);
+        requireNonNull(recipeDescriptor);
 
         this.index = index;
-        this.editRecipeDescriptor = new EditRecipeDescriptor(editRecipeDescriptor);
+        this.recipeDescriptor = new RecipeDescriptor(recipeDescriptor);
     }
 
     @Override
@@ -85,7 +74,7 @@ public class EditCommand extends Command {
         }
 
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
-        Recipe editedRecipe = createEditedRecipe(recipeToEdit, editRecipeDescriptor);
+        Recipe editedRecipe = recipeDescriptor.toRecipe(recipeToEdit);
 
         // TODO: ensure that these model methods work properly
         if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
@@ -95,37 +84,6 @@ public class EditCommand extends Command {
         model.setRecipe(recipeToEdit, editedRecipe);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPE);
         return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe));
-    }
-
-    /**
-     * Creates and returns a {@code Recipe} with the details of {@code recipeToEdit}
-     * edited with {@code editRecipeDescriptor}.
-     */
-    private static Recipe createEditedRecipe(Recipe recipeToEdit, EditRecipeDescriptor editRecipeDescriptor) {
-        assert recipeToEdit != null;
-
-        Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        Recipe newRecipe = new Recipe(updatedName);
-
-        RecipeDuration updatedDuration = editRecipeDescriptor.getDuration().orElse(recipeToEdit.getDurationNullable());
-        newRecipe.setDuration(updatedDuration);
-
-        RecipePortion updatedPortion = editRecipeDescriptor.getPortion().orElse(recipeToEdit.getPortionNullable());
-        newRecipe.setPortion(updatedPortion);
-
-        Tag[] updatedTags = editRecipeDescriptor.getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
-        newRecipe.setTags(updatedTags);
-
-        Ingredient[] updatedIngredients = editRecipeDescriptor
-                .getIngredients()
-                .orElse(recipeToEdit.getIngredients())
-                .toArray(Ingredient[]::new);
-        newRecipe.setIngredients(updatedIngredients);
-
-        Step[] updatedSteps = editRecipeDescriptor.getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
-        newRecipe.setSteps(updatedSteps);
-
-        return newRecipe;
     }
 
     @Override
@@ -143,122 +101,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editRecipeDescriptor.equals(e.editRecipeDescriptor);
+                && recipeDescriptor.equals(e.recipeDescriptor);
     }
 
-    /**
-     * Stores the details to edit the recipe with. Each non-empty field value will replace the
-     * corresponding field value of the recipe.
-     */
-    public static class EditRecipeDescriptor {
-        private Name name;
-        private RecipeDuration duration;
-        private RecipePortion portion;
-        private Set<Tag> tags;
-        private List<Ingredient> ingredients;
-        private List<Step> steps;
-
-        public EditRecipeDescriptor() {
-        }
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditRecipeDescriptor(EditRecipeDescriptor toCopy) {
-            setName(toCopy.name);
-            setDuration(toCopy.duration);
-            setPortion(toCopy.portion);
-            setTags(toCopy.tags);
-            setIngredients(toCopy.ingredients);
-            setSteps(toCopy.steps);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, duration, portion, tags, ingredients, steps);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setDuration(RecipeDuration duration) {
-            this.duration = duration;
-        }
-
-        public Optional<RecipeDuration> getDuration() {
-            return Optional.ofNullable(duration);
-        }
-
-        public void setPortion(RecipePortion portion) {
-            this.portion = portion;
-        }
-
-        public Optional<RecipePortion> getPortion() {
-            return Optional.ofNullable(portion);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        public void setIngredients(List<Ingredient> ingredients) {
-            this.ingredients = (ingredients != null) ? new ArrayList<>(ingredients) : null;
-        }
-
-        public Optional<List<Ingredient>> getIngredients() {
-            return (ingredients != null) ? Optional.of(Collections.unmodifiableList(ingredients)) : Optional.empty();
-        }
-
-        public void setSteps(List<Step> steps) {
-            this.steps = (steps != null) ? new ArrayList<>(steps) : null;
-        }
-
-        public Optional<List<Step>> getSteps() {
-            return (steps != null) ? Optional.of(Collections.unmodifiableList(steps)) : Optional.empty();
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditRecipeDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditRecipeDescriptor e = (EditRecipeDescriptor) other;
-
-            return getName().equals(e.getName())
-                    && getDuration().equals(e.getDuration())
-                    && getPortion().equals(e.getPortion())
-                    && getTags().equals(e.getTags())
-                    && getIngredients().equals(e.getIngredients())
-                    && getSteps().equals(e.getSteps());
-        }
-    }
 }

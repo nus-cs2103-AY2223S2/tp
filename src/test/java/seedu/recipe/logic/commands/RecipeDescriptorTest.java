@@ -2,7 +2,7 @@ package seedu.recipe.logic.commands;
 
 import org.junit.jupiter.api.Test;
 
-public class EditRecipeDescriptorTest {
+public class RecipeDescriptorTest {
 
     @Test
     public void equals() {

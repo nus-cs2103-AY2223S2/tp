@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonadapters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,8 @@ import seedu.recipe.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Recipe}.
  */
-@JsonPropertyOrder({ "name", "portion", "duration", "tags", "ingredients", "steps"})
-class JsonAdaptedRecipe {
+@JsonPropertyOrder({"name", "portion", "duration", "tags", "ingredients", "steps"})
+public class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     @JsonProperty("name")
@@ -82,18 +82,15 @@ class JsonAdaptedRecipe {
         tags.addAll(
                 source.getTags().stream()
                         .map(JsonAdaptedTag::new)
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.toList()));
         ingredients.addAll(
                 source.getIngredients().stream()
                         .map(JsonAdaptedIngredient::new)
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.toList()));
         steps.addAll(
                 source.getSteps().stream()
                         .map(JsonAdaptedStep::new)
-                        .collect(Collectors.toList())
-        );
+                        .collect(Collectors.toList()));
     }
 
     /**
@@ -134,7 +131,7 @@ class JsonAdaptedRecipe {
         res.setTags(tagList.toArray(Tag[]::new));
 
         List<Ingredient> ingredientsList = new ArrayList<>();
-        for (JsonAdaptedIngredient i: ingredients) {
+        for (JsonAdaptedIngredient i : ingredients) {
             ingredientsList.add(i.toModelType());
         }
         res.setIngredients(ingredientsList.toArray(Ingredient[]::new));
