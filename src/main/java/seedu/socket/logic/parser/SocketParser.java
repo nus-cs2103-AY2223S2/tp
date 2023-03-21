@@ -6,7 +6,22 @@ import static seedu.socket.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.socket.logic.commands.*;
+import seedu.socket.logic.commands.AddCommand;
+import seedu.socket.logic.commands.ClearCommand;
+import seedu.socket.logic.commands.ClearProjectCommand;
+import seedu.socket.logic.commands.Command;
+import seedu.socket.logic.commands.DeleteCommand;
+import seedu.socket.logic.commands.DeleteProjectCommand;
+import seedu.socket.logic.commands.EditCommand;
+import seedu.socket.logic.commands.ExitCommand;
+import seedu.socket.logic.commands.FindCommand;
+import seedu.socket.logic.commands.HelpCommand;
+import seedu.socket.logic.commands.ListCommand;
+import seedu.socket.logic.commands.RedoCommand;
+import seedu.socket.logic.commands.RemoveCommand;
+import seedu.socket.logic.commands.SortCommand;
+import seedu.socket.logic.commands.UndoCommand;
+import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
 
 /**
