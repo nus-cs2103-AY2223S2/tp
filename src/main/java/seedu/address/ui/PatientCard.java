@@ -6,6 +6,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.patient.Patient;
 
+
 /**
  * An UI component that displays information of a {@code Patient}.
  */
@@ -50,7 +51,10 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         nric.setText(patient.getNric().value);
-        status.setText(patient.getStatus().value);
+        String statusString = patient.getStatus().getDesc();
+        status.setText(statusString);
+        status.getStyleClass().clear();
+        status.getStyleClass().add("status-" + statusString);
         ward.setText(patient.getWard().value);
 
     }
