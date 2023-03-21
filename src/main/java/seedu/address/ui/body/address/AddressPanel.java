@@ -1,6 +1,5 @@
 package seedu.address.ui.body.address;
 
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
@@ -27,13 +26,11 @@ public class AddressPanel extends UiPart<Region> {
      *
      * @param personObservableList Observable list of {@code Person}s to display.
      */
-    public AddressPanel(ObservableList<Person> personObservableList, ReadOnlyObjectProperty<Person> observableSelectedPerson) {
+    public AddressPanel(ObservableList<Person> personObservableList) {
         super(FXML);
-
         personDetailPanel = new PersonDetailPanel();
         personDetailPanelPlaceholder.getChildren().add(personDetailPanel.getRoot());
-
-        personListPanel = new PersonListPanel(personObservableList, observableSelectedPerson, personDetailPanel);
+        personListPanel = new PersonListPanel(personObservableList, personDetailPanel);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
     }
 

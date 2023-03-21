@@ -118,4 +118,12 @@ public class LogicManager implements Logic {
     public void setSelectedPerson(Index index) {
         model.setSelectedPerson(index);
     }
+    @Override
+    public ReadOnlyObjectProperty<Index> getSelectedIndex() {
+        return model.getSelectedIndex();
+    }
+    @Override
+    public void setSelectedIndex(Index index) {
+        model.setSelectedPerson(index);
+    }
 }

@@ -143,6 +143,14 @@ public class ModelManager implements Model {
         Person selectedPerson = filteredPersons.get(index.getZeroBased());
         addressBook.setSelectedPerson(selectedPerson);
     }
+    @Override
+    public ReadOnlyObjectProperty<Index> getSelectedIndex() {
+        return addressBook.getSelectedIndex();
+    }
+    @Override
+    public void setSelectedIndex(Index index) {
+        addressBook.setSelectedIndex(index);
+    }
 
     //=========== UserData ================================================================================
 

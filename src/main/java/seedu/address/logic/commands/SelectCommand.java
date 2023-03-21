@@ -47,10 +47,11 @@ public class SelectCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
+        model.setSelectedIndex(index);
         model.setSelectedPerson(index);
         Person selectedPerson = model.getSelectedPerson().get();
-        return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, selectedPerson));
+        return new CommandResult(String.format(MESSAGE_SELECT_PERSON_SUCCESS, selectedPerson),
+                false, false, true);
     }
 
     @Override

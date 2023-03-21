@@ -127,4 +127,6 @@ public interface Model {
 
     ReadOnlyObjectProperty<Person> getSelectedPerson();
     void setSelectedPerson(Index index);
+    ReadOnlyObjectProperty<Index> getSelectedIndex();
+    void setSelectedIndex(Index index);
 }

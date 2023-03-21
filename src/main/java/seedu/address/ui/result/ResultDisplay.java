@@ -20,6 +20,7 @@ import seedu.address.logic.commands.FavoriteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TabCommand;
 import seedu.address.logic.commands.UnfavoriteCommand;
 import seedu.address.ui.UiPart;
@@ -34,7 +35,7 @@ public class ResultDisplay extends UiPart<Region> {
             DeleteCommand.COMMAND_WORD, EditContactCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
             UnfavoriteCommand.COMMAND_WORD, FavoriteCommand.COMMAND_WORD, TabCommand.COMMAND_WORD,
-            "Parameters", "Example");
+            SelectCommand.COMMAND_WORD, "Parameters", "Example");
 
     @FXML
     private VBox resultDisplayContainer;

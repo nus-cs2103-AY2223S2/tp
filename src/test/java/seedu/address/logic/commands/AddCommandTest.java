@@ -215,6 +215,22 @@ public class AddCommandTest {
         public void setSelectedTab(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public ReadOnlyObjectProperty<Person> getSelectedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void setSelectedPerson(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ReadOnlyObjectProperty<Index> getSelectedIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void setSelectedIndex(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

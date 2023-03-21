@@ -31,7 +31,7 @@ public class BodyPanel extends UiPart<Region> {
         super(FXML);
 
         this.logic = logic;
-        this.addressPanel = new AddressPanel(logic.getFilteredPersonList(), logic.getSelectedPerson());
+        this.addressPanel = new AddressPanel(logic.getFilteredPersonList());
         this.calendarPanel = new CalendarPanel(logic.getEventList());
         this.userPanel = new UserPanel(logic.getUserData());
 
