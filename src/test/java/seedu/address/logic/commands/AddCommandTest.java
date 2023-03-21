@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,11 +16,14 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
@@ -51,6 +55,15 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_personInvalidGroup_throwsCommandExceptionl() {
+        Person validPerson = new PersonBuilder().withGroups("INVALID").build();
+        AddCommand addCommand = new AddCommand(validPerson);
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_GROUP, () -> addCommand.execute(model));
     }
 
     @Test
