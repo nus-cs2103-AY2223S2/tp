@@ -19,6 +19,10 @@ public class LinkContactCommandParser implements Parser<LinkContactCommand> {
     public LinkContactCommand parse(String args) throws ParseException {
         try {
             String[] argarr = args.trim().split(" ");
+            if (argarr.length < 2) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        LinkContactCommand.MESSAGE_USAGE));
+            }
             Index index = ParserUtil.parseIndex(argarr[0]);
             String num = argarr[1];
             return new LinkContactCommand(index, num);

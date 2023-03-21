@@ -9,7 +9,7 @@ import seedu.address.model.contact.Contact;
 public interface ReadOnlyContactList {
     /**
      * Returns an unmodifiable view of the contact list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate events.
      */
     ObservableList<Contact> getContactList();
 }

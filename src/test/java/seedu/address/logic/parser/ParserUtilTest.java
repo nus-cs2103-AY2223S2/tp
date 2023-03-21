@@ -2,9 +2,10 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DAYS_NUMBER;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,11 +17,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.ContactPhone;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Timing;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Email;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Phone;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -57,10 +58,30 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_EVENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_EVENT, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseDaysNumber_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDaysNumber("10 a"));
+    }
+
+    @Test
+    public void parseDaysNumber_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_DAYS_NUMBER, ()
+                -> ParserUtil.parseDaysNumber(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseDaysNumber_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(INDEX_FIRST_EVENT, ParserUtil.parseIndex("1"));
+
+        // Leading and trailing whitespaces
+        assertEquals(INDEX_FIRST_EVENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -192,31 +213,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTiming_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTiming((String) null, (String) null));
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTiming(VALID_START_TIME, (String) null));
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTiming((String) null, VALID_END_TIME));
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
     }
 
     @Test
-    public void parseTiming_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTiming(INVALID_START_TIME, INVALID_END_TIME));
-        assertThrows(ParseException.class, () -> ParserUtil.parseTiming(INVALID_START_TIME, VALID_END_TIME));
-        assertThrows(ParseException.class, () -> ParserUtil.parseTiming(VALID_START_TIME, INVALID_END_TIME));
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_START_TIME));
     }
 
     @Test
-    public void parseTiming_validValueWithoutWhitespace_returnsTiming() throws Exception {
-        Timing expectedTiming = new Timing(VALID_START_TIME, VALID_END_TIME);
-        assertEquals(expectedTiming, ParserUtil.parseTiming(VALID_START_TIME, VALID_END_TIME));
+    public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
+        Time expectedTime = new Time(VALID_START_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(VALID_START_TIME));
     }
 
     @Test
     public void parseTiming_validValueWithWhitespace_returnsTrimmedTiming() throws Exception {
         String startTimeWithWhitespace = WHITESPACE + VALID_START_TIME + WHITESPACE;
-        String endTimeWithWhitespace = WHITESPACE + VALID_END_TIME + WHITESPACE;
-        Timing expectedTiming = new Timing(VALID_START_TIME, VALID_END_TIME);
-        assertEquals(expectedTiming, ParserUtil.parseTiming(startTimeWithWhitespace, endTimeWithWhitespace));
+        Time expectedTime = new Time(VALID_START_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(startTimeWithWhitespace));
     }
 
     @Test

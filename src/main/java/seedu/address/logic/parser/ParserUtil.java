@@ -11,12 +11,12 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.ContactPhone;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Rate;
-import seedu.address.model.person.Timing;
+import seedu.address.model.event.Address;
+import seedu.address.model.event.Email;
+import seedu.address.model.event.Name;
+import seedu.address.model.event.Phone;
+import seedu.address.model.event.Rate;
+import seedu.address.model.event.Time;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DAYS_NUMBER = "The number of days must be a positive integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -37,6 +38,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code number} into an {@code Integer} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Integer parseDaysNumber(String number) throws ParseException {
+        requireNonNull(number);
+        String trimmedInteger = number.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedInteger)) {
+            throw new ParseException(MESSAGE_INVALID_DAYS_NUMBER);
+        }
+        return Integer.parseInt(trimmedInteger);
+
     }
 
     /**
@@ -145,20 +161,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String timingStart} and a {@code String timingEnd} into a {@code Timing}.
+     * Parses a {@code String time} into a {@code Time}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code timingStart} or {@code timingEnd} is invalid.
+     * @throws ParseException if the given {@code time} is invalid.
      */
-    public static Timing parseTiming(String timingStart, String timingEnd) throws ParseException {
-        requireNonNull(timingStart);
-        requireNonNull(timingEnd);
-        String trimmedTimingStart = timingStart.trim();
-        String trimmedTimingEnd = timingEnd.trim();
-        if (!Timing.isValidTiming(trimmedTimingStart, trimmedTimingEnd)) {
-            throw new ParseException(Timing.MESSAGE_CONSTRAINTS);
+    public static Time parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        return new Timing(trimmedTimingStart, trimmedTimingEnd);
+        return new Time(trimmedTime);
     }
 
     /**
@@ -187,4 +201,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
 }
