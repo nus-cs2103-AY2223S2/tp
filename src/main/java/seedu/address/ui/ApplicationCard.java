@@ -3,6 +3,7 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.application.Application;
 
@@ -35,6 +36,8 @@ public class ApplicationCard extends UiPart<Region> {
     private Label role;
     @FXML
     private Label companyEmail;
+    @FXML
+    private VBox taskDetails;
 
 
     /**
@@ -48,11 +51,11 @@ public class ApplicationCard extends UiPart<Region> {
         status.setText(application.getStatus().value.toString());
         role.setText(application.getRole().roleApplied);
         companyEmail.setText(application.getCompanyEmail().value);
+        taskDetails.setPrefHeight(Region.USE_PREF_SIZE);
         if (application.hasTask()) {
-            cardPane.getChildren().addAll(
-                    new Label(application.getTask().getDescription().value),
-                    new Label(application.getTask().getDeadline().toDisplayString())
-            );
+            Label description = new Label(application.getTask().getDescription().value);
+            Label deadline = new Label(application.getTask().getDeadline().toDisplayString());
+            taskDetails.getChildren().addAll(description, deadline);
         }
     }
 
