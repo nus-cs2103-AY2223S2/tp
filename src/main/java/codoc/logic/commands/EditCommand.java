@@ -81,14 +81,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_UNEQUAL_OLD_NEW_MODS =
             "The number of old modules not equal to number of new modules";
     private final EditPersonDescriptor editPersonDescriptor;
+    private final boolean isSkillRemoved;
+    private final boolean isModuleRemoved;
 
     /**
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(EditPersonDescriptor editPersonDescriptor, boolean isSkillRemoved, boolean isModuleRemoved) {
         requireNonNull(editPersonDescriptor);
 
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.isSkillRemoved = isSkillRemoved;
+        this.isModuleRemoved = isModuleRemoved;
     }
 
     @Override
@@ -97,6 +101,10 @@ public class EditCommand extends Command {
 
         Person personToEdit = model.getProtagonist();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+        if (isSkillRemoved) {
+            checkSkillRemoved(personToEdit, editedPerson);
+        }
 
         if (personToEdit.equals(editedPerson)
                 || (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson))) {
@@ -138,6 +146,14 @@ public class EditCommand extends Command {
         );
     }
 
+    private void checkSkillRemoved(Person personToEdit, Person editedPerson) throws CommandException {
+        Set<Skill> original = personToEdit.getSkills();
+        Set<Skill> edited = personToEdit.getSkills();
+        if (edited.containsAll(original)) {
+            throw new CommandException()
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -166,8 +182,10 @@ public class EditCommand extends Command {
         private Course course;
         private Year year;
         private Linkedin linkedin;
-        private Set<Skill> skills;
-        private Set<Module> modules;
+        private Set<Skill> skillsRemoved;
+        private Set<Skill> skillsAdded;
+        private Set<Module> modulesRemoved;
+        private Set<Module> modulesAdded;
 
         public EditPersonDescriptor() {}
 
@@ -182,9 +200,8 @@ public class EditCommand extends Command {
             this.course = person.getCourse();
             this.year = person.getYear();
             this.linkedin = person.getLinkedin();
-            this.skills = person.getSkills();
-            this.modules = person.getModules();
-
+            // this.skills = person.getSkills();
+            // this.modules = person.getModules();
         }
 
         /**
@@ -198,8 +215,10 @@ public class EditCommand extends Command {
             setYear(toCopy.year);
             setCourse(toCopy.course);
             setLinkedin(toCopy.linkedin);
-            setSkills(toCopy.skills);
-            setModules(toCopy.modules);
+            setSkillsRemoved(toCopy.skillsRemoved);
+            setSkillsAdded(toCopy.skillsAdded);
+            setModulesRemoved(toCopy.modulesRemoved);
+            setModulesAdded(toCopy.modulesAdded);
         }
 
         /**
@@ -252,19 +271,35 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code skills} to this object's {@code skills}.
-         * A defensive copy of {@code skills} is used internally.
+         * Sets {@code skillsRemoved} to this object's {@code skillsRemoved}.
+         * A defensive copy of {@code skillsRemoved} is used internally.
          */
-        public void setSkills(Set<Skill> skills) {
-            this.skills = (skills != null) ? new HashSet<>(skills) : null;
+        public void setSkillsRemoved(Set<Skill> skillsRemoved) {
+            this.skillsRemoved = (skillsRemoved != null) ? new HashSet<>(skillsRemoved) : null;
+        }
+
+        /**
+         * Sets {@code skillsAdded} to this object's {@code skillsAdded}.
+         * A defensive copy of {@code skillsAdded} is used internally.
+         */
+        public void setSkillsAdded(Set<Skill> skillsAdded) {
+            this.skillsAdded = (skillsAdded != null) ? new HashSet<>(skillsAdded) : null;
         }
 
         /**
          * Sets {@code modules} to this object's {@code modules}.
          * A defensive copy of {@code modules} is used internally.
          */
-        public void setModules(Set<Module> modules) {
-            this.modules = (modules != null) ? new HashSet<>(modules) : null;
+        public void setModulesRemoved(Set<Module> modulesRemoved) {
+            this.modulesRemoved = (modulesRemoved != null) ? new HashSet<>(modulesRemoved) : null;
+        }
+
+        /**
+         * Sets {@code modulesAdded} to this object's {@code modulesAdded}.
+         * A defensive copy of {@code modulesAdded} is used internally.
+         */
+        public void setModulesAdded(Set<Module> modulesAdded) {
+            this.modulesAdded = (modulesAdded != null) ? new HashSet<>(modulesAdded) : null;
         }
 
         /**

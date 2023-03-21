@@ -59,8 +59,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-        EditPersonDescriptor originalEditPersonDescriptor = new EditPersonDescriptor(protagonist);
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor(originalEditPersonDescriptor);
+        // EditPersonDescriptor originalEditPersonDescriptor = new EditPersonDescriptor(protagonist);
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -79,6 +79,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_LINKEDIN).isPresent()) {
             editPersonDescriptor.setLinkedin(ParserUtil.parseLinkedin(argMultimap.getValue(PREFIX_LINKEDIN).get()));
+        }
+        if (argMultimap.getValue(PREFIX_SKILL_ADD).isPresent()) {
+            editPersonDescriptor.setSkillsAdded(ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL_ADD).get()));
         }
 
         editSkills(argMultimap, editPersonDescriptor);
