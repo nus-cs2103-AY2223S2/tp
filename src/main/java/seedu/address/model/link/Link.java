@@ -98,6 +98,19 @@ public class Link<K, T extends Item,
         fill(this.shape, this.contents);
     }
 
+    public static <K, T extends Item, M extends ReadOnlyItemManager<T>> Link<K, T, M> fromOrCreate(
+            Map<K, Integer> shape,
+            Map<K, Deque<String>> contents,
+            Lazy<M> managerLazy
+    ) {
+        try {
+            return new Link<>(shape, contents, managerLazy);
+        } catch (LinkException e) {
+            _logger.warning(e.getMessage());
+            return new Link<>(shape, managerLazy);
+        }
+    }
+
     /**
      * Checks if the input contents fits the shape. Otherwise, throw.
      *

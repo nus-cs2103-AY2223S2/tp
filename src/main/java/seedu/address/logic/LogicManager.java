@@ -88,6 +88,7 @@ public class LogicManager implements Logic {
             default:
                 throw new CommandException("Unknown operation mode");
             }
+            storage.saveFlightManager(model.getFlightManager());
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + e, e);

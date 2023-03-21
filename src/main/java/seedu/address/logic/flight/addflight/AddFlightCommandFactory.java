@@ -30,11 +30,7 @@ public class AddFlightCommandFactory implements CommandFactory<AddFlightCommand>
     @Override
     public AddFlightCommand createCommand(CommandParam param) throws ParseException {
         final String code = param.getNamedValuesOrThrow(PREFIX_CODE);
-        try {
-            final Flight flight = new Flight(code);
-            return new AddFlightCommand(flight);
-        } catch (LinkException e) {
-            throw new ParseException(e.getMessage());
-        }
+        final Flight flight = new Flight(code);
+        return new AddFlightCommand(flight);
     }
 }

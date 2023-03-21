@@ -14,7 +14,6 @@ import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.Link;
-import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
@@ -49,12 +48,12 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
      * Constructs a {@code JsonAdaptedFlight} with the given flight details.
      * This is intended for Jackson to use.
      *
-     * @param id                    The id of the flight.
-     * @param code                  The name of the flight.
-     * @param pilotLink             The link between pilot(s) and the flight
-     * @param crewLink              The link between crew(s) and the flight
-     * @param planeLink             The link between plane and the flight
-     * @param locationLink          The link between location(s) and the flight
+     * @param id           The id of the flight.
+     * @param code         The name of the flight.
+     * @param pilotLink    The link between pilot(s) and the flight
+     * @param crewLink     The link between crew(s) and the flight
+     * @param planeLink    The link between plane and the flight
+     * @param locationLink The link between location(s) and the flight
      */
     @JsonCreator
     public JsonAdaptedFlight(
@@ -101,35 +100,38 @@ public class JsonAdaptedFlight implements JsonAdaptedModel<Flight> {
         }
 
         Flight flight;
-        try {
-            Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> linkPilot =
-                    new Link<>(Pilot.SHAPE, pilotLink,
-                            GetUtil
-                                    .getLazy(Model.class)
-                                    .map(Model::getPilotManager)
-                    );
-            Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> linkCrew =
-                    new Link<>(Crew.SHAPE, crewLink,
-                            GetUtil
-                                    .getLazy(Model.class)
-                                    .map(Model::getCrewManager)
-                    );
-            Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> linkPlane =
-                    new Link<>(Plane.SHAPE, planeLink,
-                            GetUtil
-                                    .getLazy(Model.class)
-                                    .map(Model::getPlaneManager)
-                    );
-            Link<FlightLocationType, Location, ReadOnlyItemManager<Location>> linkLocation =
-                    new Link<>(Location.SHAPE, locationLink,
-                            GetUtil
-                                    .getLazy(Model.class)
-                                    .map(Model::getLocationManager)
-                    );
-            flight = new Flight(id, code, linkPilot, linkCrew, linkPlane, linkLocation);
-        } catch (LinkException e) {
-            throw new IllegalValueException(e.getMessage());
-        }
+        Link<FlightPilotType, Pilot, ReadOnlyItemManager<Pilot>> linkPilot =
+                Link.fromOrCreate(Pilot.SHAPE, pilotLink,
+                        GetUtil
+                                .getLazy(Model.class)
+                                .map(Model::getPilotManager)
+                );
+        Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> linkCrew =
+                Link.fromOrCreate(Crew.SHAPE, crewLink,
+                        GetUtil
+                                .getLazy(Model.class)
+                                .map(Model::getCrewManager)
+                );
+        Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> linkPlane =
+                Link.fromOrCreate(Plane.SHAPE, planeLink,
+                        GetUtil
+                                .getLazy(Model.class)
+                                .map(Model::getPlaneManager)
+                );
+        Link<FlightLocationType, Location, ReadOnlyItemManager<Location>> linkLocation =
+                Link.fromOrCreate(Location.SHAPE, locationLink,
+                        GetUtil
+                                .getLazy(Model.class)
+                                .map(Model::getLocationManager)
+                );
+        flight = new Flight(
+                id,
+                code,
+                linkPilot,
+                linkCrew,
+                linkPlane,
+                linkLocation
+        );
 
         return flight;
     }
