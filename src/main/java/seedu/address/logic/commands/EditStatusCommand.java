@@ -11,7 +11,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.*;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.JobTitle;
 
 /**
  * Edits the status of an application identified using it's displayed index from the list of internship applications.
