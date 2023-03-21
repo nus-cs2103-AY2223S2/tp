@@ -18,7 +18,6 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class QuickstartWindow extends UiPart<Stage> {
 
-    private static final Logger logger = LogsCenter.getLogger(QuickstartWindow.class);
     private static final String FXML = "QuickstartWindow.fxml";
 
     /**
@@ -57,9 +56,7 @@ public class QuickstartWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        logger.fine("Showing quickstart guide.");
-        getRoot().show();
-        getRoot().centerOnScreen();
+        this.show();
     }
 
     /**
