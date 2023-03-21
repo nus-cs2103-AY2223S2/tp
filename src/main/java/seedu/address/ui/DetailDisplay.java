@@ -40,7 +40,8 @@ public class DetailDisplay extends UiPart<Region> {
     private Label medicalCondition;
     @FXML
     private Label time;
-
+    @FXML
+    private Label age;
     public DetailDisplay() {
         super(FXML);
     }
@@ -54,11 +55,23 @@ public class DetailDisplay extends UiPart<Region> {
         phone.setText("Phone: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
         address.setText("Address: " + person.getAddress().value);
-        medicalCondition.setText("Medical Condition: " + person.getMedicalCondition().getValue());
+
         if (person.hasTime()) {
             time.setText("Time: " + person.getTime().toString());
         } else {
             time.setText("Time: " + "N.A.");
+        }
+
+        if (person.hasAge()) {
+            age.setText("Age: " + person.getAge().toString());
+        } else {
+            age.setText("Age: " + "N.A.");
+        }
+
+        if (person.hasMedicalCondition()) {
+            medicalCondition.setText("Medical Condition: " + person.getMedicalCondition().getValue());
+        } else {
+            medicalCondition.setText("Medical Condition: " + "N.A.");
         }
 
         //@@author lxz333-reused
@@ -74,6 +87,7 @@ public class DetailDisplay extends UiPart<Region> {
      */
     public void clearDetailDisplay() {
         name.setText(null);
+        age.setText(null);
         phone.setText(null);
         email.setText(null);
         tags.getChildren().clear();
