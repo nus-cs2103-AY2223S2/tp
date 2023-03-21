@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -142,9 +144,15 @@ public class MainWindow extends UiPart<Stage> {
 
         deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList(), (idx, job) -> {
             deliveryJobDetailPlaceholder.getChildren().clear();
-            DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
-            detailPane.fillInnerParts(logic.getAddressBook());
-            deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+            if (idx >= 0) {
+                DeliveryJobDetailPane detailPane = new DeliveryJobDetailPane(job, idx);
+                detailPane.fillInnerParts(logic.getAddressBook());
+                deliveryJobDetailPlaceholder.getChildren().add(detailPane.getRoot());
+            } else {
+                Label emptyLabel = new Label("No job found, create one now!");
+                emptyLabel.setAlignment(Pos.CENTER);
+                deliveryJobDetailPlaceholder.getChildren().add(emptyLabel);
+            }
         }, job -> {
             try {
                 executeCommand(DeleteDeliveryJobCommand.COMMAND_WORD + " " + job.getJobId());
