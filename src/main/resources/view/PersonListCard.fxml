@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19"
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11"
   xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -60,6 +60,16 @@
             </image>
           </ImageView>
           <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        </children>
+      </HBox>
+      <HBox id="socialMediaContainer" fx:id="socialMediaContainer" spacing="4">
+        <children>
+          <ImageView fitHeight="57.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/socialMedia.png" />
+            </image>
+          </ImageView>
+          <Label fx:id="socialMedia" styleClass="cell_small_label" text="\$socialMedia" />
         </children>
       </HBox>
       <HBox id="birthdayContainer" fx:id="birthdayContainer" spacing="4">
