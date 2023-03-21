@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.lecture.exceptions.DuplicateLectureException;
 import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -52,8 +54,12 @@ public class ModuleTest {
         assertFalse(module.isSameModule(editedModule));
     }
 
-    public void hasLecture_nullLecture_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> module.hasLecture(null));
+    public void hasLectureReadOnlyLecture_nullLecture_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> module.hasLecture((ReadOnlyLecture) null));
+    }
+
+    public void hasLectureLectureName_nullLecture_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> module.hasLecture((LectureName) null));
     }
 
     @Test

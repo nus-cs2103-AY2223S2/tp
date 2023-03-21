@@ -80,11 +80,19 @@ public class JsonAdaptedLecture {
     public Lecture toModelType() throws IllegalValueException {
         final Set<Tag> lectureTags = new HashSet<>();
         for (JsonAdaptedTag adaptedTag : tagged) {
+            if (adaptedTag == null) {
+                continue;
+            }
+
             lectureTags.add(adaptedTag.toModelType());
         }
 
         final UniqueVideoList lectureVideos = new UniqueVideoList();
         for (JsonAdaptedVideo adaptedVideo : videos) {
+            if (adaptedVideo == null) {
+                continue;
+            }
+
             Video video = adaptedVideo.toModelType();
 
             if (lectureVideos.contains(video)) {

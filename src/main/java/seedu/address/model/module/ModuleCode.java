@@ -11,7 +11,7 @@ public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally "
-                    + "followed by more uppercase alphabet characters, and it should not be blank";
+                    + "followed by more uppercase alphabet characters";
 
     public static final String VALIDATION_REGEX = "[A-Z]+[0-9]+[A-Z]*";
 

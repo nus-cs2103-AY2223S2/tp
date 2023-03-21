@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the tracker.
  */
 public class ClearCommand extends Command {
 

@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -120,8 +120,8 @@ public class AddLectureCommandTest {
         private final ArrayList<Lecture> lecturesAdded = new ArrayList<>();
 
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -130,7 +130,7 @@ public class AddLectureCommandTest {
         }
 
         @Override
-        public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
             return false;
         }
 
@@ -166,8 +166,8 @@ public class AddLectureCommandTest {
         }
 
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -176,8 +176,8 @@ public class AddLectureCommandTest {
         }
 
         @Override
-        public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
-            return this.module.equals(module) && this.lecture.equals(lecture);
+        public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
+            return module.getCode().equals(moduleCode) && lecture.getName().equals(lectureName);
         }
     }
 

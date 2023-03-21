@@ -255,11 +255,11 @@ public class TagCommandTest {
             return this.module.getLecture(lecture) != null;
         }
 
-        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
-            requireAllNonNull(module, lecture, video);
-            return lecture.hasVideo(video);
+        @Override
+        public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+            requireAllNonNull(moduleCode, lectureName, videoName);
+            return module.getLecture(lectureName).hasVideo(videoName);
         }
-
 
         public ReadOnlyModule getModule(ModuleCode moduleCode) {
             return module;
@@ -296,7 +296,7 @@ public class TagCommandTest {
         }
 
         @Override
-        public boolean hasVideo(ReadOnlyLecture lecture, VideoName video) {
+        public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
             return true;
         }
 

@@ -33,16 +33,6 @@ public class Lecture implements ReadOnlyLecture {
      * Constructs a {@code Lecture}.
      *
      * @param name The name of the lecture.
-     */
-    public Lecture(LectureName name) {
-        requireAllNonNull(name);
-        this.name = name;
-    }
-
-    /**
-     * Constructs a {@code Lecture}.
-     *
-     * @param name The name of the lecture.
      * @param tags The tags applied to the module.
      */
     public Lecture(LectureName name, Set<Tag> tags, List<Video> videos) {

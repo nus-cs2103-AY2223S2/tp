@@ -13,8 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.testutil.TypicalModules;
 
-// TODO: test when duplictes are detected in lectures
-// TODO: test when null is detected in lectures
 public class JsonAdaptedModuleTest {
 
     private static final String INVALID_CODE = "Lorem";
@@ -61,6 +59,43 @@ public class JsonAdaptedModuleTest {
         JsonAdaptedModule module =
                 new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, invalidTags);
         assertThrows(IllegalValueException.class, module::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateLectures_throwsIllegalValueException() {
+        List<JsonAdaptedLecture> duplicatedLectures = new ArrayList<>(VALID_LECTURES);
+        duplicatedLectures.addAll(VALID_LECTURES);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, duplicatedLectures, VALID_TAGS);
+        String expectedMessage = JsonAdaptedModule.MESSAGE_DUPLICATE_LECTURE;
+        assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullInLectures_nullValueIgnored() throws Exception {
+        List<JsonAdaptedLecture> lecturesContainingNull = new ArrayList<>(VALID_LECTURES);
+        lecturesContainingNull.add(null);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, lecturesContainingNull, VALID_TAGS);
+        assertEquals(TypicalModules.CS2040S, module.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_duplicatesIgnored() throws Exception {
+        List<JsonAdaptedTag> duplicatedTags = new ArrayList<>(VALID_TAGS);
+        duplicatedTags.addAll(VALID_TAGS);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, duplicatedTags);
+        assertEquals(TypicalModules.CS2040S, module.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_nullValueIgnored() throws Exception {
+        List<JsonAdaptedTag> tagsContainingNull = new ArrayList<>(VALID_TAGS);
+        tagsContainingNull.add(null);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, tagsContainingNull);
+        assertEquals(TypicalModules.CS2040S, module.toModelType());
     }
 
 }

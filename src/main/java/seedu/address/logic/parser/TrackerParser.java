@@ -27,7 +27,7 @@ import seedu.address.logic.parser.navigation.NavCommandParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class TrackerParser {
 
     /**
      * Used for initial separation of command word and args.

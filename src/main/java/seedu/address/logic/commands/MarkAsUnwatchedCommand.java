@@ -51,14 +51,14 @@ public class MarkAsUnwatchedCommand extends MarkCommand {
 
         ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
 
-        if (!model.hasVideo(lecture, targetVideoName)) {
+        if (!model.hasVideo(moduleCode, lectureName, targetVideoName)) {
             throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST,
                                                         targetVideoName,
                                                         lectureName,
                                                         moduleCode));
         }
 
-        Video targetVideo = model.getVideo(lecture, targetVideoName);
+        Video targetVideo = model.getVideo(moduleCode, lectureName, targetVideoName);
 
         // TODO: ends here
 
