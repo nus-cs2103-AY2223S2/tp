@@ -24,11 +24,15 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
+
+        if (args.equals("")) {
+            return new ListCommand(Optional.empty(), Optional.empty());
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_TIMESPAN);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_TIMESPAN)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 

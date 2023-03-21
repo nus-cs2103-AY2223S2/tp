@@ -1,8 +1,13 @@
 package seedu.address.model.expense;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.category.Category;
+import seedu.address.model.category.MiscellaneousCategory;
+import seedu.address.model.category.UserDefinedCategory;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.testutil.PersonBuilder;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -35,5 +40,42 @@ public class ExpenseInCategoryPredicateTest {
 
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+    }
+
+    @Test
+    public void test_expenseInCategory_returnsTrue() {
+        Category category1 = new UserDefinedCategory("Category1", "Description1");
+        Category miscCat = new MiscellaneousCategory();
+
+        ExpenseInCategoryPredicate predicate = new ExpenseInCategoryPredicate(category1);
+        assertTrue(predicate.test(
+                new Expense("Apple", 1.5, LocalDate.of(2023, 3, 15), category1)));
+
+        predicate = new ExpenseInCategoryPredicate(miscCat);
+        assertTrue(predicate.test(
+                new Expense("Hello", 1.0, LocalDate.now(), miscCat)
+        ));
+    }
+
+    @Test
+    public void test_expenseNotInCategory_returnsFalse() {
+        Category category1 = new UserDefinedCategory("Category1", "Description1");
+        Category category2 = new UserDefinedCategory("Category2", "Description2");
+        Category miscCat = new MiscellaneousCategory();
+
+        Expense expense = new Expense("test", 1, LocalDate.EPOCH, category1);
+
+        // Wrong Category
+        ExpenseInCategoryPredicate predicate = new ExpenseInCategoryPredicate(category2);
+        assertFalse(predicate.test(expense));
+
+        expense = new Expense("test2", 2, LocalDate.EPOCH, miscCat);
+        assertFalse(predicate.test(expense));
+
+        predicate = new ExpenseInCategoryPredicate(miscCat);
+        expense = new Expense("test3", 3, LocalDate.now(), category1);
+        assertFalse(predicate.test(expense));
+
+
     }
 }
