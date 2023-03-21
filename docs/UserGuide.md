@@ -20,6 +20,31 @@ As a hiring manager, you can easily track applicant progress. HMHero allows you 
 
 In addition, HMHero provides analytics regarding your hiring process, such as turnover rate and average time taken to process each applicant. With HMHero, hiring managers can gain further insight on their hiring process, empowering them to make smart decisions to streamline their hiring process.
 
+---
+
+## Features
+
+There are two core features that HMHero provides:
+
+- Applicant Management System
+- Hiring Process Analytics
+
+#### Applicant Management System
+
+HMHero empowers you to manage applicants during hiring process.
+
+1. Easily add, edit, delete, and view your applicants.
+2. Quickly advance applicants through application statuses or reject them.
+3. Filter shortlisted applicants and sort them by interview date.
+4. Filter all applicants based on their skillsets.
+5. View all applicants that have interviews coming up in three days.
+
+#### Hiring Process Analytics
+
+HMHero provides straightforward analysis on your hiring process to streamline and make your hiring process more efficient.
+
+1. Find out how many applicants are accepted out of total applicants.
+2. Find out the average time taken to process each applicant.
 
 ---
 
@@ -118,7 +143,7 @@ are already familiar with the application!
 
 ---
 
-## Features
+## Command Remarks
 
 | Note                                                                                                                                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

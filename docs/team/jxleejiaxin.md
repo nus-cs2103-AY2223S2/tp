@@ -42,7 +42,7 @@ title: <Lee Jia Xin> Project Portfolio Page
 
 - **Documentation**:
 
-  - to be added soon
+  - Wrote the `About HMHero` and `Features` section in the User Guide.
 
 - **Community**:
 
