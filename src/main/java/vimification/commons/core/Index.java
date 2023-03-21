@@ -1,4 +1,4 @@
-package vimification.commons.core.index;
+package vimification.commons.core;
 
 /**
  * Represents a zero-based or one-based index.
@@ -10,6 +10,7 @@ package vimification.commons.core.index;
  * be passed to a different component again.
  */
 public class Index {
+
     private int zeroBasedIndex;
 
     /**
@@ -20,7 +21,6 @@ public class Index {
         if (zeroBasedIndex < 0) {
             throw new IndexOutOfBoundsException();
         }
-
         this.zeroBasedIndex = zeroBasedIndex;
     }
 
@@ -48,8 +48,13 @@ public class Index {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Index // instanceof handles nulls
-                        && zeroBasedIndex == ((Index) other).zeroBasedIndex); // state check
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Index)) {
+            return false;
+        }
+        Index otherIndex = (Index) other;
+        return zeroBasedIndex == otherIndex.zeroBasedIndex;
     }
 }
