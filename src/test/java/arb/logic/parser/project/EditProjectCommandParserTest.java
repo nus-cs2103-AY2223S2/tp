@@ -1,10 +1,13 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
@@ -79,6 +82,8 @@ public class EditProjectCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
+
+        // using main prefixes
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
                 + TITLE_DESC_SKY_PAINTING;
 
@@ -89,11 +94,25 @@ public class EditProjectCommandParserTest {
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // using alias prefixes
+        userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING
+                + TITLE_DESC_ALIAS_SKY_PAINTING;
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // using a mix of main and alias prefixes
+        userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING
+                + TITLE_DESC_SKY_PAINTING;
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST;
+
+        // using main prefixes
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
@@ -102,11 +121,16 @@ public class EditProjectCommandParserTest {
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // using alias prefixes
+        userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING;
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // title
+        // title, using main prefix
         Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_SKY_PAINTING;
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
@@ -114,10 +138,18 @@ public class EditProjectCommandParserTest {
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // deadline
+        // title, using alias prefix
+        userInput = targetIndex.getOneBased() + TITLE_DESC_ALIAS_SKY_PAINTING;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // deadline, using main prefix
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_SKY_PAINTING;
         descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // deadline, using alias prefix
+        userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_SKY_PAINTING;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -125,7 +157,7 @@ public class EditProjectCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_SKY_PAINTING
-                + DEADLINE_DESC_SKY_PAINTING
+                + DEADLINE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_ALIAS_OIL_PAINTING
                 + DEADLINE_DESC_OIL_PAINTING;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()

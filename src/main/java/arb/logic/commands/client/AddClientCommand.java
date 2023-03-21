@@ -6,6 +6,12 @@ import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
@@ -18,23 +24,26 @@ import arb.model.client.Client;
  */
 public class AddClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "add-client";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
+    private static final String MAIN_COMMAND_WORD = "add-client";
+    private static final String ALIAS_COMMAND_WORD = "ac";
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + MAIN_COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
-
-    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
     private final Client toAdd;
 
@@ -64,4 +73,13 @@ public class AddClientCommand extends Command {
                 || (other instanceof AddClientCommand // instanceof handles nulls
                 && toAdd.equals(((AddClientCommand) other).toAdd));
     }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
+    }
+
+    public static List<String> getCommandWords() {
+        return new ArrayList<>(COMMAND_WORDS);
+    }
+
 }

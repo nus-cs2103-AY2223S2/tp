@@ -97,27 +97,10 @@ public class Client {
         }
 
         Client otherClient = (Client) other;
-
-        boolean isNameEqual = otherClient.getName().equals(getName());
-        boolean isTagsEqual = otherClient.getTags().equals(getTags());
-
-        boolean isPhoneEqual;
-
-        if (!isPhonePresent()) {
-            isPhoneEqual = otherClient.getPhone() == null;
-        } else {
-            isPhoneEqual = getPhone().equals(otherClient.getPhone());
-        }
-
-        boolean isEmailEqual;
-
-        if (!isEmailPresent()) {
-            isEmailEqual = otherClient.getEmail() == null;
-        } else {
-            isEmailEqual = getEmail().equals(otherClient.getEmail());
-        }
-
-        return isNameEqual && isTagsEqual && isPhoneEqual && isEmailEqual;
+        return otherClient.getName().equals(getName())
+                && otherClient.phone.equals(phone)
+                && otherClient.email.equals(email)
+                && otherClient.getTags().equals(getTags());
     }
 
     @Override

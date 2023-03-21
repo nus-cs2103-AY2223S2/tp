@@ -54,130 +54,166 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addClient() throws Exception {
         Client client = new ClientBuilder().build();
-        AddClientCommand command = (AddClientCommand) parser
-                .parseCommand(ClientUtil.getAddClientCommand(client));
-        assertEquals(new AddClientCommand(client), command);
+        for (String commandWord : AddClientCommand.getCommandWords()) {
+            AddClientCommand command = (AddClientCommand) parser
+                .parseCommand(ClientUtil.getAddClientCommand(client, commandWord));
+            assertEquals(new AddClientCommand(client), command);
+        }
     }
 
     @Test
     public void parseCommand_addProject() throws Exception {
         Project project = new ProjectBuilder().build();
-        AddProjectCommand command = (AddProjectCommand) parser
-                .parseCommand(ProjectUtil.getAddProjectCommand(project));
-        assertEquals(new AddProjectCommand(project), command);
+        for (String commandWord : AddProjectCommand.getCommandWords()) {
+            AddProjectCommand command = (AddProjectCommand) parser
+                .parseCommand(ProjectUtil.getAddProjectCommand(project, commandWord));
+            assertEquals(new AddProjectCommand(project), command);
+        }
     }
 
     @Test
     public void parseCommand_clearClient() throws Exception {
-        assertTrue(parser.parseCommand(ClearClientCommand.COMMAND_WORD) instanceof ClearClientCommand);
-        assertTrue(parser.parseCommand(ClearClientCommand.COMMAND_WORD + " 3") instanceof ClearClientCommand);
+        for (String commandWord : ClearClientCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof ClearClientCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof ClearClientCommand);
+        }
     }
 
     @Test
     public void parseCommand_clearProject() throws Exception {
-        assertTrue(parser.parseCommand(ClearProjectCommand.COMMAND_WORD) instanceof ClearProjectCommand);
-        assertTrue(parser.parseCommand(ClearProjectCommand.COMMAND_WORD + " 3") instanceof ClearProjectCommand);
+        for (String commandWord : ClearProjectCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof ClearProjectCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof ClearProjectCommand);
+        }
     }
 
     @Test
     public void parseCommand_deleteClient() throws Exception {
-        DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
-                DeleteClientCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new DeleteClientCommand(INDEX_FIRST), command);
+        for (String commandWord : DeleteClientCommand.getCommandWords()) {
+            DeleteClientCommand command = (DeleteClientCommand) parser.parseCommand(
+                    commandWord + " " + INDEX_FIRST.getOneBased());
+            assertEquals(new DeleteClientCommand(INDEX_FIRST), command);
+        }
     }
 
     @Test
     public void parseCommand_deleteProject() throws Exception {
-        DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(
-                DeleteProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new DeleteProjectCommand(INDEX_FIRST), command);
+        for (String commandWord : DeleteProjectCommand.getCommandWords()) {
+            DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(
+                    commandWord + " " + INDEX_FIRST.getOneBased());
+            assertEquals(new DeleteProjectCommand(INDEX_FIRST), command);
+        }
     }
 
     @Test
     public void parseCommand_editClient() throws Exception {
-        Client client = new ClientBuilder().build();
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
-        EditClientCommand command = (EditClientCommand) parser.parseCommand(EditClientCommand.COMMAND_WORD + " "
-                + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
-        assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
+        for (String commandWord : EditClientCommand.getCommandWords()) {
+            Client client = new ClientBuilder().build();
+            EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
+            EditClientCommand command = (EditClientCommand) parser.parseCommand(commandWord + " "
+                    + INDEX_FIRST.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+            assertEquals(new EditClientCommand(INDEX_FIRST, descriptor), command);
+        }
     }
 
     @Test
     public void parseCommand_editProject() throws Exception {
-        Project project = new ProjectBuilder().build();
-        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
-        EditProjectCommand command = (EditProjectCommand) parser
-                .parseCommand(EditProjectCommand.COMMAND_WORD + " "
-                + INDEX_FIRST.getOneBased() + " "
-                + ProjectUtil.getEditProjectDescriptorDetails(descriptor));
-        assertEquals(new EditProjectCommand(INDEX_FIRST, descriptor), command);
+        for (String commandWord : EditProjectCommand.getCommandWords()) {
+            Project project = new ProjectBuilder().build();
+            EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder(project).build();
+            EditProjectCommand command = (EditProjectCommand) parser
+                    .parseCommand(commandWord + " "
+                    + INDEX_FIRST.getOneBased() + " "
+                    + ProjectUtil.getEditProjectDescriptorDetails(descriptor));
+            assertEquals(new EditProjectCommand(INDEX_FIRST, descriptor), command);
+        }
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        for (String commandWord : ExitCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof ExitCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof ExitCommand);
+        }
     }
 
     @Test
     public void parseCommand_findClient() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindClientCommand command = (FindClientCommand) parser.parseCommand(
-                FindClientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindClientCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        for (String commandWord : FindClientCommand.getCommandWords()) {
+            List<String> keywords = Arrays.asList("foo", "bar", "baz");
+            FindClientCommand command = (FindClientCommand) parser.parseCommand(
+                    commandWord + " " + keywords.stream().collect(Collectors.joining(" ")));
+            assertEquals(new FindClientCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        }
     }
 
     @Test
     public void parseCommand_findProject() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindProjectCommand command = (FindProjectCommand) parser.parseCommand(
-                FindProjectCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindProjectCommand(new TitleContainsKeywordsPredicate(keywords)), command);
+        for (String commandWord : FindProjectCommand.getCommandWords()) {
+            List<String> keywords = Arrays.asList("foo", "bar", "baz");
+            FindProjectCommand command = (FindProjectCommand) parser.parseCommand(
+                    commandWord + " " + keywords.stream().collect(Collectors.joining(" ")));
+            assertEquals(new FindProjectCommand(new TitleContainsKeywordsPredicate(keywords)), command);
+        }
     }
 
     @Test
     public void parseCommand_sortClient() throws Exception {
-        assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD) instanceof SortClientCommand);
-        assertTrue(parser.parseCommand(SortClientCommand.COMMAND_WORD + " 3") instanceof SortClientCommand);
+        for (String commandWord : SortClientCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof SortClientCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof SortClientCommand);
+        }
     }
 
     @Test
     public void parseCommand_sortProject() throws Exception {
-        SortProjectCommand sortProjectCommand = (SortProjectCommand) parser.parseCommand(
-                SortProjectCommand.COMMAND_WORD + CommandTestUtil.SORTING_OPTION_DESC);
-        assertEquals(new SortProjectCommand(TypicalProjectSortingOptions.BY_DEADLINE), sortProjectCommand);
+        for (String commandWord : SortProjectCommand.getCommandWords()) {
+            SortProjectCommand sortProjectCommand = (SortProjectCommand) parser.parseCommand(
+                    commandWord + CommandTestUtil.SORTING_OPTION_DESC);
+            assertEquals(new SortProjectCommand(TypicalProjectSortingOptions.BY_DEADLINE), sortProjectCommand);
+        }
     }
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        for (String commandWord : HelpCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof HelpCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof HelpCommand);
+        }
     }
 
     @Test
     public void parseCommand_listClient() throws Exception {
-        assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD) instanceof ListClientCommand);
-        assertTrue(parser.parseCommand(ListClientCommand.COMMAND_WORD + " 3") instanceof ListClientCommand);
+        for (String commandWord : ListClientCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof ListClientCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof ListClientCommand);
+        }
     }
 
     @Test
     public void parseCommand_listProject() throws Exception {
-        assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD) instanceof ListProjectCommand);
-        assertTrue(parser.parseCommand(ListProjectCommand.COMMAND_WORD + " 3") instanceof ListProjectCommand);
+        for (String commandWord : ListProjectCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof ListProjectCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof ListProjectCommand);
+        }
     }
 
     @Test
     public void parseCommand_markProject() throws Exception {
-        MarkProjectCommand command = (MarkProjectCommand) parser.parseCommand(
-                MarkProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new MarkProjectCommand(INDEX_FIRST), command);
+        for (String commandWord : MarkProjectCommand.getCommandWords()) {
+            MarkProjectCommand command = (MarkProjectCommand) parser.parseCommand(
+                    commandWord + " " + INDEX_FIRST.getOneBased());
+            assertEquals(new MarkProjectCommand(INDEX_FIRST), command);
+        }
     }
 
     @Test
     public void parseCommand_unmarkProject() throws Exception {
-        UnmarkProjectCommand command = (UnmarkProjectCommand) parser.parseCommand(
-                UnmarkProjectCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new UnmarkProjectCommand(INDEX_FIRST), command);
+        for (String commandWord : UnmarkProjectCommand.getCommandWords()) {
+            UnmarkProjectCommand command = (UnmarkProjectCommand) parser.parseCommand(
+                    commandWord + " " + INDEX_FIRST.getOneBased());
+            assertEquals(new UnmarkProjectCommand(INDEX_FIRST), command);
+        }
     }
 
     @Test

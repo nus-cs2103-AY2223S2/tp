@@ -20,8 +20,9 @@ public class ClientUtil {
     /**
      * Returns an add client command string for adding the {@code client}.
      */
-    public static String getAddClientCommand(Client client) {
-        return AddClientCommand.COMMAND_WORD + " " + getClientDetails(client);
+    public static String getAddClientCommand(Client client, String commandWord) {
+        assert AddClientCommand.isCommandWord(commandWord);
+        return commandWord + " " + getClientDetails(client);
     }
 
     /**

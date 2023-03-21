@@ -1,7 +1,9 @@
 package arb.commons.core.sorting;
 
 import static arb.logic.commands.CommandTestUtil.VALID_SORTING_OPTION_DEADLINE;
+import static arb.logic.commands.CommandTestUtil.VALID_SORTING_OPTION_DEADLINE_ALIAS;
 import static arb.logic.commands.CommandTestUtil.VALID_SORTING_OPTION_TITLE;
+import static arb.logic.commands.CommandTestUtil.VALID_SORTING_OPTION_TITLE_ALIAS;
 import static arb.model.Model.PROJECT_DEADLINE_COMPARATOR;
 import static arb.model.Model.PROJECT_TITLE_COMPARATOR;
 import static arb.testutil.Assert.assertThrows;
@@ -23,6 +25,13 @@ public class ProjectSortingOptionTest {
                 .getComparator());
         assertEquals(PROJECT_TITLE_COMPARATOR, ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_TITLE)
                 .getComparator());
+
+        // check equality when using aliases
+        assertEquals(PROJECT_DEADLINE_COMPARATOR, ProjectSortingOption
+                .getSortingOption(VALID_SORTING_OPTION_DEADLINE_ALIAS)
+                .getComparator());
+        assertEquals(PROJECT_TITLE_COMPARATOR, ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_TITLE_ALIAS)
+                .getComparator());
     }
 
     @Test
@@ -31,6 +40,9 @@ public class ProjectSortingOptionTest {
 
         // same sorting option -> returns true
         assertTrue(byDeadline.equals(ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_DEADLINE)));
+
+        // same sorting option from alias -> returns true
+        assertTrue(byDeadline.equals(ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_DEADLINE_ALIAS)));
 
         // same object -> returns true
         assertTrue(byDeadline.equals(byDeadline));

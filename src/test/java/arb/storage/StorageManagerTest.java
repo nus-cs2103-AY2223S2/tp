@@ -1,6 +1,6 @@
 package arb.storage;
 
-//import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import arb.commons.core.GuiSettings;
-//import arb.model.AddressBook;
-//import arb.model.ReadOnlyAddressBook;
+import arb.model.AddressBook;
+import arb.model.ReadOnlyAddressBook;
 import arb.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -47,18 +47,18 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    /*@Test
+    @Test
     public void addressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-
+        */
         AddressBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
-    }*/
+    }
 
     @Test
     public void getAddressBookFilePath() {
