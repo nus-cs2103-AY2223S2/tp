@@ -3,11 +3,10 @@ package seedu.recipe.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
 import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.recipe.logic.commands.CommandTestUtil.DESC_DESC_CORNDOGS;
-import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_CORNDOGS;
-import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
-import static seedu.recipe.logic.parser.CliSyntax.*;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
 
