@@ -58,7 +58,7 @@ public class Person {
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags,
-                     LeadStatus status) {
+                  LeadStatus status) {
         requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark,
                 status);
         this.name = name;
@@ -118,6 +118,41 @@ public class Person {
 
     public LeadStatus getStatus() {
         return status;
+    }
+
+    /**
+     * Returns the value of a person's attribute
+     *
+     * @param attribute Attribute of a contact.
+     * @return value of attribute.
+     */
+    public String getAttribute(String attribute) {
+        switch(attribute) {
+        case "name":
+            return name.toString();
+        case "gender":
+            return gender.toString();
+        case "phone":
+            return phone.toString();
+        case "email":
+            return email.toString();
+        case "address":
+            return address.toString();
+        case "company":
+            return company.toString();
+        case "industry":
+            return industry.toString();
+        case "occupation":
+            return occupation.toString();
+        case "job title":
+            return jobTitle.toString();
+        case "remark":
+            return remark.toString();
+        case "lead status":
+            return status.getStatusName().getLabel();
+        default:
+            return "";
+        }
     }
 
     /**
