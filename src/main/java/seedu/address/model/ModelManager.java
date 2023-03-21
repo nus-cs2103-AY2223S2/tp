@@ -313,7 +313,8 @@ public class ModelManager implements Model {
 
     @Override
     public void flipCard() {
-        Optional.ofNullable(currReview).ifPresent(Review::flipCard);
+        assert currReview != null : "Flip command executed without a Review session.";
+        currReview.flipCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 

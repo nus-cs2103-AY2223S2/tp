@@ -222,9 +222,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isReview()) {
+            if (commandResult.isStartReview()) {
                 handleStartReview();
-            } else {
+            }
+
+            if (commandResult.isEndReview()) {
                 handleStopReview();
             }
 

@@ -18,16 +18,19 @@ public class CommandResult {
     private final boolean exit;
 
     /** The application should enter review mode */
-    private final boolean review;
+    private final boolean startReview;
+    private final boolean endReview;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean review) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean startReview, boolean endReview) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.review = review;
+        this.startReview = startReview;
+        this.endReview = endReview;
     }
 
     /**
@@ -35,7 +38,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -50,9 +53,14 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isReview() {
-        return review;
+    public boolean isStartReview() {
+        return startReview;
     }
+
+    public boolean isEndReview() {
+        return endReview;
+    }
+
 
     @Override
     public boolean equals(Object other) {

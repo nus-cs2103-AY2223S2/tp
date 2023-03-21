@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.card.Card;
 
 public class ReviewCard extends UiPart<Region> {
+    private static final String EMPTY_STRING = "";
     private static final String FXML = "ReviewCard.fxml";
 
     /**
@@ -37,34 +38,14 @@ public class ReviewCard extends UiPart<Region> {
     public ReviewCard(Card card) {
         super(FXML);
         this.card = card;
+
         name.setText(card.getQuestion().question);
 
-        if (card.isFlipped()) {
-            address.setText(card.getAnswer().answer);
-        } else {
-            address.setText("");
-        }
+        address.setText(card.isFlipped() ? card.getAnswer().answer : EMPTY_STRING);
 
         card.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new PersonCard.CardTag(tag.tagName)));
-    }
-
-    static class CardTag extends Label {
-        public CardTag(String name) {
-            super(name);
-            switch (name) {
-            case "easy":
-                setStyle("-fx-background-color:#00FF00;");
-                break;
-            case "medium":
-                setStyle("-fx-background-color:#FFA500;");
-                break;
-            case "hard":
-                setStyle("-fx-background-color:#ff0000;");
-                break;
-            }
-        }
     }
 
     @Override
