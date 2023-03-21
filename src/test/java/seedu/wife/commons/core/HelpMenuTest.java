@@ -26,6 +26,6 @@ public class HelpMenuTest {
             sb.append(System.lineSeparator());
         }
         String result = sb.toString();
-        assertEquals(result, HelpMenu.displayHelpMenu());
+        assertEquals(result, HelpMenu.getGeneralHelp());
     }
 }

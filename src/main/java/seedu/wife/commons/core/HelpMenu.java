@@ -1,51 +1,62 @@
 package seedu.wife.commons.core;
 
+import java.util.Arrays;
+
 /**
  * Menu of commands to be displayed in Help Window.
  */
 public enum HelpMenu {
+    INVALID("invalid") {
+        @Override
+        public String getCommandUsage() {
+            return INVALID_MESSAGE + " " + getGeneralHelp();
+        }
+    },
     ADD("add") {
         @Override
-        public String getCommandExample() {
+        public String getCommandUsage() {
             return "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
         }
     },
     UPDATE("update") {
         @Override
-        public String getCommandExample() {
+        public String getCommandUsage() {
             return "Update food item - update OLD ITEM to/NEW ITEM";
         }
     },
     DELETE("delete") {
         @Override
-        public String getCommandExample() {
+        public String getCommandUsage() {
             return "Delete food item - delete INDEX";
         }
     },
     TAG("tag") {
         @Override
-        public String getCommandExample() {
-            return "Tag food item - tag INDEX with/TAG NAME";
+        public String getCommandUsage() {
+            return "Tag food item - tag INDEX t/TAG NAME";
         }
     },
     LIST("list") {
         @Override
-        public String getCommandExample() {
+        public String getCommandUsage() {
             return "List food items - list";
         }
     },
     EXIT("exit") {
         @Override
-        public String getCommandExample() {
+        public String getCommandUsage() {
             return "Exit WIFE - exit";
         }
     };
 
-    private static final String HEADER = "Command Examples: ";
+    private static final String COMMANDS_AVAILABLE = "Commands Available: ";
+
+    private static final String INVALID_MESSAGE = "Command does not exist!";
+
+    private static final String MORE_INFO_MESSAGE =
+            "Type 'help COMMAND' to see specific help for a command.";
 
     private final String command;
-    private String description;
-    private String format;
 
     /**
      * Creates a new HelpMenu.
@@ -56,13 +67,24 @@ public enum HelpMenu {
         this.command = command;
     }
 
-    public abstract String getCommandExample();
-    public String getDescription() {
-        return description;
+    public String getCommand() {
+        return command;
     }
 
-    public String getFormat() {
-        return format;
+    public static String getGeneralHelp() {
+        return displayHelpMenu();
+    }
+
+    public static String getCommandHelp(HelpMenu helpCommand) {
+        return helpCommand.getCommandUsage();
+    }
+
+    public abstract String getCommandUsage();
+
+    public static HelpMenu parseCommand(String commandToParse) {
+        return Arrays.stream(values())
+                .filter(type -> type.command.equals(commandToParse))
+                .findFirst().orElse(INVALID);
     }
 
     /**
@@ -73,12 +95,16 @@ public enum HelpMenu {
      */
     public static String displayHelpMenu() {
         StringBuilder sb = new StringBuilder();
-        sb.append(HEADER + System.lineSeparator());
+        sb.append(MORE_INFO_MESSAGE);
+        sb.append(System.lineSeparator());
+        sb.append(COMMANDS_AVAILABLE);
 
         for (HelpMenu command : HelpMenu.values()) {
-            sb.append(command.getDescription());
-            sb.append(command.getFormat());
-            sb.append(System.lineSeparator());
+            if (command.equals(INVALID)) {
+                continue;
+            }
+            sb.append(command.getCommand());
+            sb.append(", ");
         }
         return sb.toString();
     }

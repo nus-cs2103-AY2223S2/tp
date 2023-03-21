@@ -38,7 +38,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMenu.setText(HelpMenu.displayHelpMenu());
+        helpMenu.setText(HelpMenu.getGeneralHelp());
         helpMessage.setText(HELP_MESSAGE);
     }
 
@@ -92,6 +92,14 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Sets the message to be displayed on the help window
+     *      specific to the command.
+     */
+    public void setHelpMessage(String messageToSet) {
+        helpMenu.setText(messageToSet);
     }
 
     /**
