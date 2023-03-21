@@ -7,24 +7,26 @@ while still having the benefits of a Graphical User Interface (GUI). If you can 
 management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-    * Quick start
-    * Features
-        * General Management
-            * Viewing help : `help`
-            * Exiting the program : `exit`
-            * Saving the data
-            * Editing the data file
-        * Client Management
-            * Adding a client: `add`
-            * Listing all clients : `list`
-            * Editing a client : `edit`
-            * Locating clients by name: `find`
-            * Deleting a client : `delete`
-            * Policy Management
-            * Adding a policy: `addPolicy`
-            * Deleting a policy : `deletePolicy`
-        * FAQ
-        * Command summary
+  * Quick start
+  * Features
+    * General Management
+      * Viewing help : `help`
+      * Undo previous operation : `undo`
+      * Redo previous operation : `redo`
+      * Exiting the program : `exit`
+      * Saving the data
+      * Editing the data file
+    * Client Management
+      * Adding a client: `add`
+      * Listing all clients : `list`
+      * Editing a client : `edit`
+      * Locating clients by name: `find`
+      * Deleting a client : `delete`
+      * Policy Management
+      * Adding a policy: `addPolicy`
+      * Deleting a policy : `deletePolicy`
+    * FAQ
+    * Command summary
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -51,6 +53,11 @@ management tasks done faster than traditional GUI apps.
       to the Address Book.
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
+
+
+    * `undo` : Undo the previous command `delete 3`. Thus original 3rd contact shown in list will come back
+
+    * `redo` : Redo the previous command `delete 3`. Thus 3rd contact will be deleted again from list
 
     * `clear` : Deletes all contacts.
 
@@ -252,6 +259,26 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+### Undo previous command : `undo`
+
+Undo one previous command and restore that version of address book
+
+Format: `undo`
+
+* Restore the specific address book before the command took place
+* `Undo Success` will be shown in the display
+* If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to remind of undo failure
+
+### Redo previous command : `redo`
+
+Redo one previous command and restore that version of address book
+
+Format: `redo`
+
+* Restore the specific address book before the undo command took place
+* `Redo Success` will be shown in the display
+* If current address book is **already the latest**, `There is no more operations to redo!` will be shown in display to remind of redo failure
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -329,14 +356,16 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
- Action              | Format, Examples                                                                                                                                                      
----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Clear**           | `clear`                                                                                                                                                               
- **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
- **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
- **List**            | `list`                                                                                                                                                                
- **Help**            | `help`                                                                                                                                                                
- **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health pd/28.05.2023 pp/300 pf/monthly`                         
- **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List** | `list`
+**Undo** | `undo`
+**Redo** | `redo`
+**Help** | `help`
+**Add a Policy** | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health pd/28.05.2023 pp/300 pf/monthly`
+**Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`
