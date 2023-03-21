@@ -1,5 +1,9 @@
 package mycelium.mycelium.model.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * A utility class for fuzzy string matching.
  */
@@ -79,5 +83,19 @@ public class Fuzzy {
      */
     public static double deltaPercent(String a, String b) {
         return 1 - (double) delta(a, b) / Math.max(a.length(), b.length());
+    }
+
+    /**
+     * Performs a fuzzy search on a list of objects against some query string. Objects which are more similar to the
+     * query string will be at the front of the returned list. Objects which are completely different will not be
+     * included in the returned list.
+     * <p>
+     * Note that this method will not modify the original list. It is a pure function and safe to call multiple times.
+     */
+    public static <T extends FuzzyComparable<String>> List<T> fuzzySearch(List<T> list, String query) {
+        ArrayList<T> xs = new ArrayList<>(list);
+        // This is not very efficient, but it's simple and it works
+        xs.sort((a, b) -> Double.compare(b.fuzzyCompareTo(query), a.fuzzyCompareTo(query)));
+        return xs.stream().filter(x -> x.fuzzyCompareTo(query) > 0.0).collect(Collectors.toList());
     }
 }
