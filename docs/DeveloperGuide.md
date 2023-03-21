@@ -14,6 +14,17 @@ title: Developer Guide
     * [2.5 Storage Component](#25-storage-component)
     * [2.6 Common Classes](#26-common-classes)
   * [3. Implementation](#3-implementation)
+    * [3.1 Add Feature](#31-add-feature)
+    * [3.2 Clear Feature](#32-clear-feature)
+    * [3.3 Delete Feature](#33-delete-feature)
+    * [3.4 Edit Feature](#34-edit-feature)
+    * [3.5 Find Feature](#35-find-feature)
+    * [3.6 List Feature](#36-list-feature)
+    * [3.7 Help Feature](#37-help-feature)
+    * [3.8 Stats Feature](#38-stats-feature)
+    * [3.9 Sort Feature](#39-sort-feature)
+    * [3.10 Alert Feature](#310-alert-feature)
+    * [3.11 Plan Feature](#311-plan-feature)
   * [4. Documentation, Logging, Testing, Configuration, DevOps](#4-documentation-logging-testing-configuration-dev-ops)
   * [5. Appendix: Requirements](#5-appendix-requirements)
   * [6. Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)
@@ -239,13 +250,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -253,6 +264,27 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### 3.1 Add Feature
+
+### 3.2 Clear Feature
+
+### 3.3 Delete Feature
+
+### 3.4 Edit Feature
+
+### 3.5 Find Feature
+
+### 3.6 List Feature
+
+### 3.7 Help Feature
+
+### 3.8 Stats Feature
+
+### 3.9 sort Feature
+
+### 3.10 Alert Feature
+
+### 3.11 Plan Feature
 
 --------------------------------------------------------------------------------------------------------------------
 
