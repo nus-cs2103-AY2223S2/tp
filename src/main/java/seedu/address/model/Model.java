@@ -98,6 +98,13 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Sorts person list by certain attribute
+     *
+     * @param attribute Attribute of a contact.
+     */
+    void sortPersonList(String attribute);
+
     ///**
     //* Updates the filter of the filtered transaction list to filter by the given {@code predicate}
     //*/

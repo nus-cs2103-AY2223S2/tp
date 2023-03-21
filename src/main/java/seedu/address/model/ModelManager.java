@@ -156,6 +156,12 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public void sortPersonList(String attribute) {
+        requireNonNull(attribute);
+        System.out.println(attribute);
+    }
+
     //@Override
     //public void updateFilteredTransactionsList(Predicate<Transaction> predicate) {
     // implementation here
