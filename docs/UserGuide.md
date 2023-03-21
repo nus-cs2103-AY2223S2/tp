@@ -181,7 +181,7 @@ Deletes the specified event from the event book.
 - Deletes the event at the specified `INDEX`
 
     - The `INDEX` refers to the index number shown in the displayed event list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `delete 2` deletes the `2nd event` in the event list.
@@ -195,14 +195,15 @@ Edits the specified event from the event book.
 - Edits the event at the specified `INDEX`
 
     - The `INDEX` refers to the index number shown in the displayed event list.
-    - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - `[]` are optional parameters.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
     - At least one of the optional fields must be provided.
     - Edits will replace existing values, edits are not cumulative.
     - Tags can be removed by typing `t/` without specifying any tags after it.
 
 **Example**:
 - `edit 1 r/100` Edits the rate of the 1st event to be 100.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd event to be Betsy Crower and clears all existing tags.
+- `edit 2 n/Wedding Dinner t/` Edits the name of the 2nd event to be Wedding Dinner and clears all existing tags.
 
 ### Saving the data
 
