@@ -43,6 +43,7 @@ deactivate AddCommandParser
 
 
 InternBuddyParser --> LogicManager : a
+destroy AddCommandParser
 deactivate InternBuddyParser
 
 LogicManager -> AddCommand : execute()
@@ -70,6 +71,6 @@ deactivate AddCommand
 AddCommand -[hidden]-> LogicManager : result
 destroy AddCommand
 
-[<--LogicManager
+[<--LogicManager : cr
 deactivate LogicManager
 @enduml
