@@ -29,6 +29,7 @@ This user guide will serve as a guide to help you get up to speed in no time!
     * [View Event List](#list-all-events)
     * [Delete an Event](#delete-an-event)
     * [Edit an Event](#edit-an-event)
+    * [View Total Revenue](#view-total-revenue)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -206,6 +207,12 @@ Edits the specified event from the event book.
 - `edit 2 n/Wedding Dinner t/` Edits the name of the 2nd event to be Wedding Dinner and clears all existing tags.
 - `edit 1 n/Wedding Lunch` Edits the name of the 1st event to be Wedding Lunch.
 
+### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
+
+Calculates and displays the total revenue based on all the completed events.
+
+**Format**: `revenue`
+
 ### Saving the data
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
@@ -227,7 +234,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
 |       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
 |       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
-
+| [View Total Revenue](#view-total-revenue) | `revenue` | `revenue` |
 
 [Back to top](#)
 
