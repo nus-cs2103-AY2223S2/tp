@@ -69,6 +69,13 @@ public class UniqueCardList implements Iterable<Card> {
         internalList.set(index, editedCard);
     }
 
+
+    /**
+     * Adds a tag to the specified card in the internal list, and updates the list accordingly.
+     *
+     * @param target The card to tag.
+     * @param tag    The tag to add.
+     */
     public void tagCard(Card target, Tag tag) {
         int index = internalList.indexOf(target);
         target.addTag(tag);
