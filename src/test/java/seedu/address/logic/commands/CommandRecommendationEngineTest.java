@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.logic.commands.CommandRecommendationEngine.isValidArgs;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -90,5 +92,113 @@ public class CommandRecommendationEngineTest {
 
         assertThrows(CommandException.class,
                 () -> commandRecommendationEngine.recommendCommand(input));
+    }
+
+    @Test
+    public void parseAddVolunteerArguments_invalidArgs_false() {
+        String userArgs = " n/Zon n/Zon";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(AddVolunteerCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(AddVolunteerCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseAddElderlyArguments_invalidNameArgs_false() {
+        String userArgs = " n/Zon n/Zon";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(AddElderlyCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(AddElderlyCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseAddElderlyArguments_invalidNricArgs_false() {
+        String userArgs = " enr/Zon enr/Zon";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(AddElderlyCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(AddElderlyCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseAddPairArguments_invalidElderlyNricArgs_false() {
+        String userArgs = " enr/Zon enr/Zon";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(AddPairCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(AddPairCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseAddPairArguments_invalidVolunteerNricArgs_false() {
+        String userArgs = " vnr/Zon vnr/Zon";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(AddPairCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(AddPairCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseDeletePairArguments_invalidElderlyNricArgs_false() {
+        String userArgs = " enr/Zon enr/Zon";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(DeletePairCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(DeletePairCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseDeletePairArguments_invalidVolunteerNricArgs_false() {
+        String userArgs = " vnr/Zon vnr/Zon";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(DeletePairCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(DeletePairCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseDeleteElderlyArguments_invalidArgs_false() {
+        String userArgs = " diaohdwoi diowhdaid";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(DeleteElderlyCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(DeleteElderlyCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseDeleteVolunteerArguments_invalidArgs_false() {
+        String userArgs = " diaohdwoi diowhdaid";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(DeleteVolunteerCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(DeleteVolunteerCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
     }
 }
