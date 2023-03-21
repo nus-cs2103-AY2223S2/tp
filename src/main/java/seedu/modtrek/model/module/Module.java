@@ -83,6 +83,10 @@ public class Module {
         return !grade.isEmpty() && !tags.isEmpty();
     }
 
+    public boolean isGradeable() {
+        return grade.isGradeable();
+    }
+
     /**
      * Checks if the module is the same based on its code only.
      *

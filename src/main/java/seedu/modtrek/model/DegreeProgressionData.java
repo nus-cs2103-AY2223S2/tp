@@ -56,7 +56,7 @@ public class DegreeProgressionData {
 
     private void computeModule(Module module) {
         int credit = Integer.valueOf(module.getCredit().toString());
-        if (module.isComplete()) {
+        if (module.isComplete() && module.isGradeable()) {
             module.getTags().forEach((tag) -> {
                 completedRequirementCredits.merge(tag.toString(),
                         credit, (oldValue, newValue) -> {
