@@ -305,6 +305,19 @@
 #cardPane .label{
     -fx-font-size: 20px;
     -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#cardPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
+#cardPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
 }
 
 #deckPane {
@@ -315,7 +328,6 @@
 #deckPane .label{
     -fx-font-size: 20px;
     -fx-text-fill: black;
-
 }
 
 #titlePanel{
