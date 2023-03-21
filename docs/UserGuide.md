@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![Ui](images/Logo.png)
+
 Welcome to the Paidlancers User Guide! We're thrilled to have you here! At Paidlancers, we know that freelancing can be both rewarding and challenging.
 As freelancers ourselves, we understand the unique obstacles and opportunities that come with this type of work.
 That's why we created Paidlancers – a desktop app designed to help you streamline your freelancing event management
@@ -39,7 +41,7 @@ This user guide will serve as a guide to help you get up to speed in no time!
 1. Ensure you have Java `11` or above installed in your Computer.
     * Mac Users are encouraged to use to use the Azul build of OpenJDK11 version found
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
-    * Do choose the `JDK FX` version and not any other version.
+    * Choose the `JDK FX` version and not any other version.
 
 1. Download the latest `Paidlancers.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-3/tp/releases).
 
