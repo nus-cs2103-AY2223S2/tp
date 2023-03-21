@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -65,13 +66,12 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (moduleCode != null && lectureName != null) {
             if (!model.hasLecture(moduleCode, lectureName)) {
-                model.updateAllFilteredListAsHidden();
-                return new CommandResult(
-                    String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode), Level.MODULE);
+                throw new CommandException(
+                    String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
             }
             ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
             model.updateFilteredVideoList(new VideoPredicate(lecture), lecture);
@@ -79,8 +79,8 @@ public class ListCommand extends Command {
         }
         if (moduleCode != null) {
             if (!model.hasModule(moduleCode)) {
-                model.updateAllFilteredListAsHidden();
-                return new CommandResult(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode), Level.LECTURE);
+                throw new CommandException(
+                    String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
             }
             ReadOnlyModule module = model.getModule(moduleCode);
             model.updateFilteredLectureList(new LecturePredicate(module), module);
