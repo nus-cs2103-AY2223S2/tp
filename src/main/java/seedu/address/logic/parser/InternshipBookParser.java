@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -12,6 +11,7 @@ import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ApplicationCommand;
 import seedu.address.logic.commands.DeleteApplicationCommand;
 import seedu.address.logic.commands.EditApplicationCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
 import seedu.address.logic.commands.HelpApplicationCommand;
 import seedu.address.logic.commands.ListApplicationCommand;
@@ -67,6 +67,9 @@ public class InternshipBookParser {
 
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
+
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

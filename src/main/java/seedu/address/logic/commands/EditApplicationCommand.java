@@ -13,6 +13,7 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.Application;
@@ -20,6 +21,8 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
 /**
@@ -27,7 +30,7 @@ import seedu.address.model.task.Task;
  */
 public class EditApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the application identified "
             + "by the index number used in the displayed application list. "
@@ -99,6 +102,22 @@ public class EditApplicationCommand extends ApplicationCommand {
         Task updatedTask = editApplicationDescriptor.getTask().orElse(appToEdit.getTask());
 
         return new Application(updatedRole, updatedCompanyName, updatedCompanyEmail, updatedStatus, updatedTask);
+    }
+
+    /**
+     * Creates and returns a {@code Application} with the details of {@code appToEdit}
+     * edited with {@code editTaskDescriptor}.
+     */
+    protected static Application createEditedApplication(Application appToEdit,
+                                                         EditTaskDescriptor editTaskDescriptor) {
+        assert appToEdit != null;
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(appToEdit.getTask().getDeadline());
+        Description updatedDescription = editTaskDescriptor.getDescription()
+                .orElse(appToEdit.getTask().getDescription());
+        Task updatedTask = new Task(updatedDeadline, updatedDescription);
+
+        return new Application(appToEdit.getRole(), appToEdit.getCompanyName(), appToEdit.getCompanyEmail(),
+                appToEdit.getStatus(), updatedTask);
     }
 
     @Override

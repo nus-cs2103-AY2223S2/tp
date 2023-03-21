@@ -23,10 +23,10 @@ public class AddTaskCommand extends ApplicationCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to an existing application "
             + "in the internship book. "
-            + "Parameters: "
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Online Assessment "
             + PREFIX_DEADLINE + "01-04-2023 ";
 
