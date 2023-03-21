@@ -4,14 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.deck.Deck;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the statistics of the current review.
  */
 public class ReviewStatsPanel extends UiPart<Region> {
     private static final String FXML = "ReviewStatsPanel.fxml";
@@ -21,7 +19,7 @@ public class ReviewStatsPanel extends UiPart<Region> {
     private ListView<String> reviewStatsView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ReviewStatsPanel} with the given {@code ObservableList}.
      */
     public ReviewStatsPanel(ObservableList<String> reviewStatsList) {
         super(FXML);

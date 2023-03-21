@@ -181,12 +181,18 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Shows the review stats panel.
+     */
     public void handleStartReview() {
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().removeAll();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
     }
 
+    /**
+     * Shows the deck list panel.
+     */
     public void handleEndReview() {
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().removeAll();
