@@ -31,9 +31,9 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_newFish_success() {
         Fish validFish = new FishBuilder().build();
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                model.getTankList());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(), getTypicalTankList());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
+                getTypicalTankList());
         expectedModel.addFish(validFish);
 
         assertCommandSuccess(new AddCommand(validFish, Index.fromOneBased(1)), model,

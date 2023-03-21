@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.fish.FishAddCommand.MESSAGE_MISSING_TANK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEEDING_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_FED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -53,7 +54,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_FISH_SUCCESS = "Edited Fish: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_FISH = "This fish already exists in the address book.";
-
+    public static final String MESSAGE_USE_INDEX = "Use a numerical index of a tank eg. /tk 1";
     private final Index index;
     private final EditFishDescriptor editFishDescriptor;
 
@@ -80,12 +81,32 @@ public class EditCommand extends Command {
 
         Fish fishToEdit = lastShownList.get(index.getZeroBased());
         Fish editedFish = createEditedFish(fishToEdit, editFishDescriptor);
+        //editedFish's tank attribute is only an index
+        Tank tank;
+        try {
+            int ind = Integer.valueOf(editedFish.getTank().getTankName().fullTankName);
+            Index tankIndex = Index.fromOneBased(ind);
+            tank = model.getFilteredTankList().get(tankIndex.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_MISSING_TANK);
+        } catch (NumberFormatException e) {
+            throw new CommandException(MESSAGE_USE_INDEX);
+        }
+        editedFish.setTank(tank);
 
         if (!fishToEdit.isSameFish(editedFish) && model.hasFish(editedFish)) {
             throw new CommandException(MESSAGE_DUPLICATE_FISH);
         }
 
         model.setFish(fishToEdit, editedFish);
+        boolean differentTanks = !fishToEdit.getTank().equals(editedFish.getTank());
+        if (differentTanks) { //update fishlist/addressbooks within a tank
+            fishToEdit.getTank().getFishList().removeFish(fishToEdit);
+            editedFish.getTank().getFishList().addFish(fishToEdit);
+        } else {
+            fishToEdit.getTank().getFishList().setFish(fishToEdit, editedFish);
+        }
+
         model.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
         return new CommandResult(String.format(MESSAGE_EDIT_FISH_SUCCESS, editedFish));
     }
