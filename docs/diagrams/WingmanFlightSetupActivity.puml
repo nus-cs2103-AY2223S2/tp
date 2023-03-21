@@ -1,0 +1,43 @@
+@startuml
+start
+
+:switch to mode flight;
+
+if () then (Flight does not exist yet)
+    :Add flight;
+else (Flight already exists)
+endif
+
+if () then (Crew, Locations, Pilots and Plane do not exist)
+    fork
+        :switch to mode crew;
+        :Add crew;
+    fork again
+        :switch to mode location;
+        :Add locations;
+    fork again
+        :switch to mode pilot;
+        :Add pilots;
+    fork again
+        :switch to mode plane;
+        :Add plane;
+    end fork
+else (Crew, Locations, Pilots and Plane already exist)
+endif
+
+fork
+    :switch to mode crew;
+    :Link crew to flight;
+fork again
+    :switch to mode location;
+    :Link locations to flight;
+fork again
+    :switch to mode pilots;
+    :Link pilots to flight;
+fork again
+    :switch to mode plane;
+    :Link plane to flight;
+end fork
+
+stop
+@enduml
