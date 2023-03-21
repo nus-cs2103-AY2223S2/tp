@@ -29,11 +29,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label question;
     @FXML
     private Label id;
     @FXML
-    private Label address;
+    private Label answer;
     @FXML
     private FlowPane tags;
 
@@ -44,8 +44,8 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.card = card;
         id.setText(displayedIndex + ". ");
-        name.setText(card.getQuestion().question);
-        address.setText(card.getAnswer().answer);
+        question.setText(card.getQuestion().question);
+        answer.setText(card.getAnswer().answer);
 
         card.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

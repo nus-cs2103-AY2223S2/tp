@@ -19,9 +19,9 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5">
-                <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" />
+                <Label fx:id="question" text="\$question" styleClass="cell_big_label" wrapText="true" />
             </HBox>
-            <Label fx:id="address" styleClass="cell_small_label" wrapText="true" text="\$address" />
+            <Label fx:id="answer" styleClass="cell_small_label" wrapText="true" text="\$answer" />
             <FlowPane fx:id="tags" />
         </VBox>
     </GridPane>
