@@ -68,7 +68,7 @@ class JsonAdaptedModule {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
-        deadline = source.getDeadline().value;
+        deadline = source.getDeadline().toString();
         teacher = source.getTeacher().value;
     }
 
