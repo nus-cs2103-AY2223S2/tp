@@ -6,16 +6,7 @@ import static expresslibrary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import expresslibrary.logic.commands.AddCommand;
-import expresslibrary.logic.commands.ClearCommand;
-import expresslibrary.logic.commands.Command;
-import expresslibrary.logic.commands.DeleteCommand;
-import expresslibrary.logic.commands.EditCommand;
-import expresslibrary.logic.commands.ExitCommand;
-import expresslibrary.logic.commands.FindCommand;
-import expresslibrary.logic.commands.HelpCommand;
-import expresslibrary.logic.commands.ListBookCommand;
-import expresslibrary.logic.commands.ListCommand;
+import expresslibrary.logic.commands.*;
 import expresslibrary.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,6 +56,9 @@ public class ExpressLibraryParser {
 
         case ListBookCommand.COMMAND_WORD:
             return new ListBookCommand();
+
+        case BorrowCommand.COMMAND_WORD:
+            return new BorrowCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
