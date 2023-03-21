@@ -41,7 +41,9 @@ public class TaskAddCommandParser {
         Index index = getTankIndex(argMultimap);
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Task task = new Task(description, new UnassignedTank(null, null));
+        //if user did not input a tank index, Task will have null for tank
+        UnassignedTank tank = index == null ? null : new UnassignedTank(null, null);
+        Task task = new Task(description, tank);
 
         return new TaskAddCommand(task, index);
     }
