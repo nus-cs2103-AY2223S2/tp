@@ -6,8 +6,8 @@ package seedu.address.ui;
  */
 public class EnlargedInfoCardDisplayController {
 
-    private boolean displayDoctorInfoCard;
-    private boolean displayPatientInfoCard;
+    private boolean shouldDisplayDoctorInfoCard;
+    private boolean shouldDisplayPatientInfoCard;
     private ContactDisplay parent;
 
     /**
@@ -23,8 +23,8 @@ public class EnlargedInfoCardDisplayController {
      * Updates controller state to display {@code EnlargedDoctorInfoCard}.
      */
     public void displayDoctor() {
-        displayDoctorInfoCard = true;
-        displayPatientInfoCard = false;
+        shouldDisplayDoctorInfoCard = true;
+        shouldDisplayPatientInfoCard = false;
         parent.setFeedbackToUser();
     }
 
@@ -32,17 +32,17 @@ public class EnlargedInfoCardDisplayController {
      * Updates controller state to display {@code EnlargedPatientInfoCard}.
      */
     public void displayPatient() {
-        displayDoctorInfoCard = false;
-        displayPatientInfoCard = true;
+        shouldDisplayDoctorInfoCard = false;
+        shouldDisplayPatientInfoCard = true;
         parent.setFeedbackToUser();
     }
 
-    public boolean getDisplayDoctorInfoCard() {
-        return displayDoctorInfoCard;
+    public boolean shouldDisplayDoctorInfoCard() {
+        return shouldDisplayDoctorInfoCard;
     }
 
-    public boolean getDisplayPatientInfoCard() {
-        return displayPatientInfoCard;
+    public boolean shouldDisplayPatientInfoCard() {
+        return shouldDisplayPatientInfoCard;
     }
 
 }

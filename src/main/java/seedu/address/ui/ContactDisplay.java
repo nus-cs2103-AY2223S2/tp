@@ -72,9 +72,9 @@ public class ContactDisplay extends UiPart<Region> {
      */
     public void setFeedbackToUser() {
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
-        if (infoCardDisplayController.getDisplayDoctorInfoCard()) {
+        if (infoCardDisplayController.shouldDisplayDoctorInfoCard()) {
             enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedDoctorInfoCard.getRoot());
-        } else if (infoCardDisplayController.getDisplayPatientInfoCard()) {
+        } else if (infoCardDisplayController.shouldDisplayPatientInfoCard()) {
             enlargedPersonInfoCardPlaceholder.getChildren().add(enlargedPatientInfoCard.getRoot());
         } else {
             //TODO: LOG HERE! This should not be reached.
