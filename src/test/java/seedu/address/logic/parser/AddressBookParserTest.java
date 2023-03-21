@@ -9,20 +9,14 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-<<<<<<< HEAD
 import seedu.address.model.expense.ExpenseContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-=======
->>>>>>> 31566164603c88f486d92c6fa9ca1b1be3e478b2
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -71,15 +65,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-<<<<<<< HEAD
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new ExpenseContainsKeywordsPredicate(keywords)), command);
-=======
-        //FindCommand command = (FindCommand) parser.parseCommand(
-        //        FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        //assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
->>>>>>> 31566164603c88f486d92c6fa9ca1b1be3e478b2
     }
 
     @Test
@@ -97,9 +85,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_remark() throws Exception {
         final Remark remark = new Remark("Some remark.");
-        //RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
-        //        + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark.value);
-        //assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
     }
 
     @Test
