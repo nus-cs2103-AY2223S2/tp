@@ -28,12 +28,12 @@ public class QuickstartWindow extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new QuickstartWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the QuickstartWindow.
      */
     public QuickstartWindow(Stage root) {
-        super(FXML);
+        super(FXML, root);
     }
 
 
@@ -56,7 +56,8 @@ public class QuickstartWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void show() {
-        this.show();
+        getRoot().show();
+        getRoot().centerOnScreen();
     }
 
     /**
