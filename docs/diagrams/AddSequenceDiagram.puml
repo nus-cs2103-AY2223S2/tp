@@ -53,8 +53,10 @@ AddCommand -> Model : addInternship(toAdd)
 activate Model
 
 Model --> AddCommand
+deactivate Model
 
 AddCommand -> Model : updateSelectedInternship(toAdd)
+activate Model
 
 Model --> AddCommand
 deactivate Model
