@@ -19,6 +19,8 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
     - [`clear`](#clearing-all-entries--clear)
     - [`exit`](#exiting-the-program--exit)
     - [`listm`](#view-all-meetings--listm)
+    - [`export`](#export)
+    - [`import`](#import)
     - [Saving of data](#saving-the-data)
     - [Editing of data](#editing-the-data-file)
     - [Archiving of data](#archiving-data-files-coming-in-v20)
@@ -190,12 +192,43 @@ If your changes to the data file makes its format invalid, QuickContacts will di
 
 _Details coming soon ..._
 
-### View all meetings: `listm`
-Lists all meetings in the output box.
+### Exporting of contact: `export`
+* Exports the persons at the specified `INDEX`es.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
-To be converted into a GUI in future.
+Format: `export p/ INDEX1 p/ INDEX2`
 
-Format: `listm`
+### Importing of contacts: `import`
+* Imports the persons in the provided JSON.
+* The JSON **must contain a valid array of persons** 
+
+Example:
+```json
+[
+  {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [
+      "friends"
+    ]
+  },
+  {
+    "name": "Benson Meier",
+    "phone": "98765432",
+    "email": "johnd@example.com",
+    "address": "311, Clementi Ave 2, #02-25",
+    "tagged": [
+      "owesMoney",
+      "friends"
+    ]
+  }
+]
+```
+
+Format: `import JSON`
 
 ### Create meetings `[Coming Soon]`
 _Details coming soon ..._
