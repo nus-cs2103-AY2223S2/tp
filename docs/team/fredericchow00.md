@@ -82,15 +82,28 @@ Example Input: `advance n/John Doe p/(John Doe's number)`
 
 Output: `Successfully advanced John Doe`
 
-2. Wrote test cases for RejectCommand
+2. Enhanced `AdvanceCommand` to detect for duplicate interview date and time when 
+advancing an applicant from `APPLIED` to `SHORTLISTED`.
+
+> Example Situation: There is an applicant, Jane Goh, whose status is 
+`SHORTLISTED` with the `InterviewDateTime` of `05-05-2023 18:00`.
+
+Example Input: `advance n/John Doe p/(John Doe's number) d/05-05-2023 18:00`
+
+Output: `There is a clash of interview date and time with Jane Goh!`
+
+- **Test Cases**:
+
+1. Wrote test cases for RejectCommand
 
     - Test cases that covers possible paths taken by `execute(Model model)` and
    `equals()` in `RejectCommand` class.
 
-3. Wrote test cases for RejectCommandParser
+2. Wrote test cases for RejectCommandParser
 
     - Test cases that covers possible paths taken by `parse(String args)` 
    in `RejectCommandParser` class.
+
 
 - **Documentation**:
 
