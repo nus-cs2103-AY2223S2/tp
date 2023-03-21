@@ -105,8 +105,8 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public boolean removeAll(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        boolean getRemoved = internalList.removeIf(predicate);
-        return getRemoved;
+        boolean isRemoved = internalList.removeIf(predicate);
+        return isRemoved;
     }
 
     public void setPersons(UniquePersonList replacement) {

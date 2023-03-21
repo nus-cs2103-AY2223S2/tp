@@ -139,8 +139,9 @@ public class Socket implements ReadOnlySocket {
      */
     public boolean removeAllPerson(Predicate<Person> predicate) {
         return persons.removeAll(predicate);
-        //// project-level operations
     }
+
+    //// project-level operations
     /**
      * Returns true if a project with the same identity as {@code project} exists in {@code Socket}.
      */
