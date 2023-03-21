@@ -27,5 +27,4 @@ public class VimificationParserTest {
         LogicCommand cmd = VimificationParser.getInstance().parse(input);
         assertTrue(cmd != null);
     }
-
 }

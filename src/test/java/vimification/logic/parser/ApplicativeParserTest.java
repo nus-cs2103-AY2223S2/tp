@@ -12,34 +12,34 @@ public class ApplicativeParserTest {
     private static final Class<ParserException> EXPECTED_EXCEPTION_CLASS = ParserException.class;
 
     @Test
-    public void parseString_validInput_shouldSucceed() {
+    public void string_validInput_shouldSucceed() {
         String input = "Hidden Seasons will pass you by";
-        ApplicativeParser<String> parser = ApplicativeParser.parseString(input);
+        ApplicativeParser<String> parser = ApplicativeParser.string(input);
         Pair<String, String> result = parser.parsePartOf(input);
         assertEquals("", result.getFirst());
         assertEquals(input, result.getSecond());
     }
 
     @Test
-    public void parseString_invalidInput_shouldThrow() {
+    public void string_invalidInput_shouldThrow() {
         String input = "Witching Dream Battle";
-        ApplicativeParser<String> parser = ApplicativeParser.parseString("Maiden's Capriccio");
+        ApplicativeParser<String> parser = ApplicativeParser.string("Maiden's Capriccio");
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> parser.parse(input));
     }
 
     @Test
-    public void parseUntil_validInput_shouldSucceed() {
+    public void until_validInput_shouldSucceed() {
         String input = "Red, White and Black Butterfly";
-        ApplicativeParser<String> parser = ApplicativeParser.parseUntil("Butterfly");
+        ApplicativeParser<String> parser = ApplicativeParser.until("Butterfly");
         Pair<String, String> result = parser.parsePartOf(input);
         assertEquals("", result.getFirst());
         assertEquals("Red, White and Black ", result.getSecond());
     }
 
     @Test
-    public void parseUntil_invalidInput_shouldThrow() {
+    public void until_invalidInput_shouldThrow() {
         String input = "Dichromatic Lotus Butterfly";
-        ApplicativeParser<String> parser = ApplicativeParser.parseUntil("Red and White");
+        ApplicativeParser<String> parser = ApplicativeParser.until("Red and White");
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> parser.parse(input));
     }
 
@@ -47,9 +47,9 @@ public class ApplicativeParserTest {
     public void shouldLiftCorrectly() {
         String input = "The Rabbit Has Landed";
         ApplicativeParser<String> leftParser = ApplicativeParser
-                .parseString("The Rabbit")
+                .string("The Rabbit")
                 .dropNext(ApplicativeParser.skipWhitespaces());
-        ApplicativeParser<String> rightParser = ApplicativeParser.parseString("Has Landed");
+        ApplicativeParser<String> rightParser = ApplicativeParser.string("Has Landed");
         ApplicativeParser<String> parser = ApplicativeParser.lift(
                 (left, right) -> String.join(" ", left, right),
                 leftParser,
@@ -63,7 +63,7 @@ public class ApplicativeParserTest {
     public void shouldMapCorrectly() {
         String input = "Legacy of Lunatic Kingdom";
         ApplicativeParser<String> parser = ApplicativeParser
-                .parseString(input)
+                .string(input)
                 .map(result -> result + " (LoLK)");
         Pair<String, String> result = parser.parsePartOf(input);
         assertEquals("", result.getFirst());
@@ -74,13 +74,13 @@ public class ApplicativeParserTest {
     public void shouldFlatMapCorrectly() {
         String input = "Tonight Stars an Easygoing Egoist";
         ApplicativeParser<String> parser = ApplicativeParser
-                .parseString("Tonight Stars")
+                .string("Tonight Stars")
                 .flatMap(left -> ApplicativeParser
                         .skipWhitespaces()
-                        .takeNext(ApplicativeParser.parseString("an"))
+                        .takeNext(ApplicativeParser.string("an"))
                         .flatMap(middle -> ApplicativeParser
                                 .skipWhitespaces()
-                                .takeNext(ApplicativeParser.parseString("Easygoing Egoist"))
+                                .takeNext(ApplicativeParser.string("Easygoing Egoist"))
                                 .flatMap(right -> ApplicativeParser
                                         .of(String.join(" ", left, middle, right)))));
         Pair<String, String> result = parser.parsePartOf(input);
@@ -102,10 +102,10 @@ public class ApplicativeParserTest {
     public void oneOrMore_validInput_shouldStopAtCorrectPosition() {
         String input = "Shoot the Bullet";
         ApplicativeParser<List<String>> parser = ApplicativeParser
-                .parseNonWhitespaces()
+                .nonWhitespaces()
                 .filter(str -> !str.equals("Bullet"))
                 .dropNext(ApplicativeParser.skipWhitespaces())
-                .oneOrMore();
+                .many1();
         Pair<String, List<String>> result = parser.parsePartOf(input);
         assertEquals("Bullet", result.getFirst());
         assertEquals(List.of("Shoot", "the"), result.getSecond());

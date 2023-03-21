@@ -54,6 +54,9 @@ public final class ApplicativeParser<T> {
         return Optional.of(Pair.of(input.subview(length), input.substringTo(length)));
     });
 
+    private static final ApplicativeParser<Void> SKIP_WHITESPACES_1_PARSER =
+            satisfy(Character::isWhitespace).takeNext(SKIP_WHITESPACES_PARSER);
+
     /////////////////////////////////////
     // INSTANCE FIELDS AND CONSTRUCTOR //
     /////////////////////////////////////
@@ -149,12 +152,16 @@ public final class ApplicativeParser<T> {
         return SKIP_WHITESPACES_PARSER;
     }
 
+    public static ApplicativeParser<Void> skipWhitespaces1() {
+        return SKIP_WHITESPACES_1_PARSER;
+    }
+
     /**
      * Returns a parser that consumes input until it reaches a whitespace character.
      *
      * @return a parser that parses until a whitespace character
      */
-    public static ApplicativeParser<String> parseNonWhitespaces() {
+    public static ApplicativeParser<String> nonWhitespaces() {
         return NON_WHITESPACES_PARSER;
     }
 
@@ -163,7 +170,7 @@ public final class ApplicativeParser<T> {
      *
      * @return a parser that parses until eof
      */
-    public static ApplicativeParser<String> parseUntilEof() {
+    public static ApplicativeParser<String> untilEof() {
         return UNTIL_EOF_PARSER;
     }
 
@@ -174,7 +181,7 @@ public final class ApplicativeParser<T> {
      * @param prefix the given prefix
      * @return a parser that succeeds when the input starts with the given prefix, fails otherwise
      */
-    public static ApplicativeParser<String> parseString(String prefix) {
+    public static ApplicativeParser<String> string(String prefix) {
         return fromRunner(input -> input.startsWith(prefix)
                 ? Optional.of(Pair.of(input.subview(prefix.length()), prefix))
                 : Optional.empty());
@@ -188,7 +195,7 @@ public final class ApplicativeParser<T> {
      * @param end the substring to find
      * @return a parser that parses until the given substring is encountered
      */
-    public static ApplicativeParser<String> parseUntil(String end) {
+    public static ApplicativeParser<String> until(String end) {
         return fromRunner(input -> {
             int offset = input.indexOf(end);
             if (offset < 0) {
@@ -197,6 +204,22 @@ public final class ApplicativeParser<T> {
             StringView nextInput = input.subview(offset + end.length());
             String value = input.substringTo(offset);
             return Optional.of(Pair.of(nextInput, value));
+        });
+    }
+
+    public static ApplicativeParser<Character> character(char ch) {
+        return satisfy(c -> c == ch);
+    }
+
+    public static ApplicativeParser<Character> satisfy(CharPredicate predicate) {
+        return fromRunner(input -> {
+            if (input.isEmpty()) {
+                return Optional.empty();
+            }
+            char value = input.charAt(0);
+            return predicate.test(value)
+                    ? Optional.of(Pair.of(input.subview(1), value))
+                    : Optional.empty();
         });
     }
 
@@ -345,7 +368,7 @@ public final class ApplicativeParser<T> {
         return fromRunner(input -> run(input).or(() -> that.<T>cast().run(input)));
     }
 
-    public ApplicativeParser<List<T>> zeroOrMore() {
+    public ApplicativeParser<List<T>> many() {
         return fromRunner(input -> {
             List<T> result = new ArrayList<>();
             StringView nextInput = input;
@@ -362,7 +385,7 @@ public final class ApplicativeParser<T> {
         });
     }
 
-    public ApplicativeParser<List<T>> oneOrMore() {
+    public ApplicativeParser<List<T>> many1() {
         return fromRunner(input -> run(input).map(pair -> {
             List<T> result = new ArrayList<>();
             StringView nextInput = pair.getFirst();

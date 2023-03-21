@@ -6,7 +6,7 @@ import vimification.logic.commands.DeleteCommand;
 public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
 
     private static final ApplicativeParser<Index> INDEX_PARSER =
-            ApplicativeParser.parseNonWhitespaces().flatMap(indexStr -> {
+            ApplicativeParser.nonWhitespaces().flatMap(indexStr -> {
                 try {
                     int indexInt = Integer.parseInt(indexStr);
                     Index index = Index.fromOneBased(indexInt);
@@ -16,9 +16,7 @@ public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
                 }
             });
 
-    private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER = ApplicativeParser
-            .skipWhitespaces()
-            .takeNext(INDEX_PARSER)
+    private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER = INDEX_PARSER
             .dropNext(ApplicativeParser.skipWhitespaces())
             .dropNext(ApplicativeParser.eof())
             .map(DeleteCommand::new);
@@ -26,7 +24,8 @@ public class DeleteCommandParser implements LogicCommandParser<DeleteCommand> {
     private static final ApplicativeParser<ApplicativeParser<DeleteCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .skipWhitespaces()
-                    .takeNext(ApplicativeParser.parseString("d"))
+                    .takeNext(ApplicativeParser.string("d"))
+                    .takeNext(ApplicativeParser.skipWhitespaces1())
                     .constMap(COMMAND_PARSER);
 
     private static final DeleteCommandParser INSTANCE = new DeleteCommandParser();
