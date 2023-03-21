@@ -119,27 +119,32 @@ public class Client {
         return Objects.hash(name, phone, email, address, tags, policyList);
     }
 
+//    @Override
+//    public String toString() {
+//        final StringBuilder builder = new StringBuilder();
+//        builder.append(getName())
+//                .append("; Phone: ")
+//                .append(getPhone())
+//                .append("; Email: ")
+//                .append(getEmail())
+//                .append("; Address: ")
+//                .append(getAddress());
+//
+//        Set<Tag> tags = getTags();
+//        if (!tags.isEmpty()) {
+//            builder.append("; Tags: ");
+//            tags.forEach(builder::append);
+//        }
+//        if (!policyList.isEmpty()) {
+//            builder.append("; Policies: ");
+//            policyList.forEach(builder::append);
+//        }
+//        return builder.toString();
+//    }
+
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        if (!policyList.isEmpty()) {
-            builder.append("; Policies: ");
-            policyList.forEach(builder::append);
-        }
-        return builder.toString();
+        return this.getName().toString();
     }
 
 }

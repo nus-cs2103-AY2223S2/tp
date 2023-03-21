@@ -4,9 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -15,32 +12,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600.0" minWidth="450.0" title="Advis.io" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="580.0" title="Advis.io" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene stylesheets="@Styles.css">
             <VBox>
                 <children>
-                    <MenuBar fx:id="menuBar">
-                        <menus>
-                            <Menu mnemonicParsing="false" text="File">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                                </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" text="Help">
-                                <items>
-                                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-                                </items>
-                            </Menu>
-                        </menus>
-                    </MenuBar>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
-                     <VBox fx:id="sidebar" alignment="TOP_CENTER" prefWidth="80.0" styleClass="sidebar">
+                     <VBox fx:id="sidebar" alignment="TOP_CENTER" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" styleClass="sidebar" HBox.hgrow="NEVER">
                         <children>
                            <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../../../advisio-logo-zip-file/png/logo-no-background.png" />
+                                 <Image url="@../images/logo-no-background.png" />
                               </image>
                               <VBox.margin>
                                  <Insets bottom="32.0" top="34.0" />
@@ -51,6 +34,44 @@
                                  <Insets left="16.0" right="16.0" />
                               </VBox.margin>
                            </StackPane>
+                           <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                              <VBox.margin>
+                                 <Insets bottom="16.0" top="32.0" />
+                              </VBox.margin>
+                              <image>
+                                 <Image url="@../images/icons8-notification-100.png" />
+                              </image>
+                           </ImageView>
+                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <VBox.margin>
+                                 <Insets bottom="16.0" top="16.0" />
+                              </VBox.margin>
+                              <image>
+                                 <Image url="@../images/icons8-person-90.png" />
+                              </image>
+                           </ImageView>
+                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/icons8-gear-90.png" />
+                              </image>
+                              <VBox.margin>
+                                 <Insets bottom="16.0" top="16.0" />
+                              </VBox.margin>
+                           </ImageView>
+                           <StackPane VBox.vgrow="ALWAYS" />
+                           <StackPane maxHeight="1.0" minHeight="1.0" prefHeight="1.0" styleClass="divider">
+                              <VBox.margin>
+                                 <Insets left="16.0" right="16.0" />
+                              </VBox.margin>
+                           </StackPane>
+                           <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/icons8-log-out-96.png" />
+                              </image>
+                              <VBox.margin>
+                                 <Insets bottom="32.0" top="32.0" />
+                              </VBox.margin>
+                           </ImageView>
                         </children></VBox>
                      <VBox fx:id="dashboard" styleClass="dark-color" HBox.hgrow="ALWAYS">
                         <children>
@@ -66,7 +87,7 @@
                                              <Font name="SansSerif Bold" size="13.0" />
                                           </font>
                                        </Label>
-                                       <Label text="Quickly access your recent clients, policies and workspaces" textFill="WHITE">
+                                       <Label text="Quickly your recent clients, policies and workspaces" textFill="WHITE">
                                           <padding>
                                              <Insets bottom="8.0" left="8.0" right="8.0" />
                                           </padding>

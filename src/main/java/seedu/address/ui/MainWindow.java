@@ -73,7 +73,8 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+        // TODO: Remove Accelerators for MenuBar?
+//        setAccelerators();
 
         helpWindow = new HelpWindow();
     }
@@ -82,9 +83,12 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
+    // TODO: Remove Accelerators for MenuBar?
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
+
+    // TODO: Remove Accelerators for MenuBar?
 
     /**
      * Sets the accelerator of a MenuItem.
