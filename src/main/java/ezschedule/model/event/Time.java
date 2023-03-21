@@ -67,4 +67,18 @@ public class Time implements Comparable<Time> {
     public int hashCode() {
         return time.hashCode();
     }
+
+    /**
+     * Returns true if time is before given time.
+     */
+    public boolean isBefore(Time other) {
+        return this.time.isBefore(other.time);
+    }
+
+    /**
+     * Returns true if time is after given time.
+     */
+    public boolean isAfter(Time other) {
+        return this.time.isAfter(other.time);
+    }
 }
