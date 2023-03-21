@@ -4,9 +4,14 @@ import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.fitbook.commons.core.index.Index;
+import seedu.fitbook.model.routines.Exercise;
+import seedu.fitbook.model.routines.Routine;
+import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
 
 /**
@@ -28,13 +33,14 @@ public class Client {
     private final Set<Appointment> appointments = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private final Calorie calorie;
+    private final Set<Routine> routines = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Appointment> appointments,
-                  Weight weight, Gender gender, Calorie calorie, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, appointments, weight, gender, tags);
+                  Weight weight, Gender gender, Calorie calorie, Set<Tag> tags, Set<Routine> routines) {
+        requireAllNonNull(name, phone, email, address, appointments, weight, gender, tags, routines);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -44,6 +50,7 @@ public class Client {
         this.tags.addAll(tags);
         this.weight = weight;
         this.gender = gender;
+        this.routines.addAll(routines);
     }
 
     public Name getName() {
@@ -69,6 +76,7 @@ public class Client {
     public Weight getWeight() {
         return weight;
     }
+
     public Gender getGender() {
         return gender;
     }
@@ -77,6 +85,41 @@ public class Client {
         return appointments.isEmpty();
     }
 
+    /**
+     * Copies a routine set to this instance object's {@code routine}.
+     */
+    public void copyRoutines(Set<Routine> routines) {
+        this.routines.clear();
+        this.routines.addAll(routines);
+    }
+
+    /**
+     * Returns an immutable routine set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Routine> getRoutines() {
+        return Collections.unmodifiableSet(routines);
+    }
+
+    /**
+     * Returns a set of Routine Names that exists in the client, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<RoutineName> getRoutinesName() {
+        Set<RoutineName> routineNames = new HashSet<>();
+        this.routines.forEach(routine -> routineNames.add(routine.getRoutineName()));
+        return Collections.unmodifiableSet(routineNames);
+    }
+
+    /**
+     * Returns a set of Exercise List for each routine that exists in the client, which throws
+     * {@code UnsupportedOperationException} if modification is attempted.
+     */
+    public Set<List<String>> getExercisesStringForRoutines() {
+        Set<List<String>> exercises = new HashSet<>();
+        this.routines.forEach(routine -> exercises.add(routine.getExercisesName()));
+        return Collections.unmodifiableSet(exercises);
+    }
 
     /**
      * Returns an immutable appointment set, which throws {@code UnsupportedOperationException}
@@ -130,13 +173,14 @@ public class Client {
                 && otherClient.getGender().equals(getGender())
                 && otherClient.getAppointments().equals(getAppointments())
                 && otherClient.getCalorie().equals(getCalorie())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getRoutines().equals(getRoutines());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, appointments, weight, gender, calorie, tags);
+        return Objects.hash(name, phone, email, address, appointments, weight, gender, calorie, tags, routines);
     }
 
     @Override
@@ -167,6 +211,12 @@ public class Client {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Routine> routines = getRoutines();
+        if (!routines.isEmpty()) {
+            builder.append("; Routines: ");
+            routines.forEach(builder::append);
         }
         return builder.toString();
     }

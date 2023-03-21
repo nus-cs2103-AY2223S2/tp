@@ -8,6 +8,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
@@ -25,6 +26,7 @@ import seedu.fitbook.model.client.Gender;
 import seedu.fitbook.model.client.Name;
 import seedu.fitbook.model.client.Phone;
 import seedu.fitbook.model.client.Weight;
+import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.tag.Tag;
 
 /**
@@ -40,7 +42,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG);
+                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG, PREFIX_ROUTINE);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_WEIGHT,
                 PREFIX_GENDER, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -56,7 +58,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Calorie calorie = optionalPresentCaloriePrefix(argMultimap);
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
-        Client client = new Client(name, phone, email, address, appointmentList, weight, gender, calorie, tagList);
+        Set<Routine> routineList = ParserUtil.parseRoutines(argMultimap.getAllValues(PREFIX_ROUTINE));
+        Client client = new Client(name, phone, email, address, appointmentList, weight, gender,
+                calorie, tagList, routineList);
         return new AddCommand(client);
     }
 

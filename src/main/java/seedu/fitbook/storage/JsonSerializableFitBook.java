@@ -41,20 +41,20 @@ class JsonSerializableFitBook {
     }
 
     /**
-     * Converts this address book into the model's {@code FitBook} object.
+     * Converts this FitBook into the model's {@code FitBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public FitBook toFitBookModelType() throws IllegalValueException {
-        FitBook addressBook = new FitBook();
+        FitBook fitBook = new FitBook();
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
             Client client = jsonAdaptedClient.toFitBookModelType();
-            if (addressBook.hasClient(client)) {
+            if (fitBook.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            addressBook.addClient(client);
+            fitBook.addClient(client);
         }
-        return addressBook;
+        return fitBook;
     }
 
 }

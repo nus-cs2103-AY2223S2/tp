@@ -49,6 +49,12 @@ public class Routine {
         return exercises;
     }
 
+    public List<String> getExercisesName() {
+        List<String> exercisesName = new ArrayList<>();
+        exercises.forEach(exercise -> exercisesName.add(exercise.exerciseName));
+        return exercisesName;
+    }
+
     /**
      * Returns true if both routines have the same identity and data fields.
      * This defines a stronger notion of equality between two routines.
