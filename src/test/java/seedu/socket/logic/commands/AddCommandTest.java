@@ -9,6 +9,7 @@ import static seedu.socket.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -197,6 +198,11 @@ public class AddCommandTest {
 
         @Override
         public void setProject(Project target, Project editedProject) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProjects(List<Project> projects) {
             throw new AssertionError("This method should not be called.");
         }
 
