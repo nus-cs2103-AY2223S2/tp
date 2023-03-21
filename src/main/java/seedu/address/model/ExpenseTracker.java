@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
+import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UniqueCategoryList;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseList;
@@ -22,6 +23,8 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     private final UniquePersonList persons;
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
+
+    private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -151,9 +154,16 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         persons.remove(key);
     }
 
+    /**
+     * Deletes the given category {@code key} in the UniqueCategoryList.
+     * Replaces all expenses with {@code key} with the MiscellaneousCategory object.
+     * @param key
+     */
     public void removeCategory(Category key) {
         categories.remove(key);
+        expenses.replaceDeletedCategory(key, MISCELLANEOUS_CATEGORY);
     }
+
 
     //// util methods
 

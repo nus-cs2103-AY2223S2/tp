@@ -29,6 +29,10 @@ public class ExpenseListPanel extends UiPart<Region> {
         expenseListView.setCellFactory(listView -> new ExpenseListViewCell());
     }
 
+    public void refreshList() {
+        expenseListView.refresh();
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Expense} using a {@code ExpenseCard}.
      */

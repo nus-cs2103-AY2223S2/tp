@@ -11,7 +11,7 @@ public class MiscellaneousCategory extends Category {
      * @param description Short description of the category
      */
     public MiscellaneousCategory() {
-        super("Miscellaneous", "Placeholder Description");
+        super("Misc", "Placeholder Description");
     }
 
     @Override

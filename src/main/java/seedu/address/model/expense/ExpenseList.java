@@ -6,8 +6,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.category.Category;
+import seedu.address.model.category.MiscellaneousCategory;
 
 /**
  * A list of expenses that enforces uniqueness between its elements and
@@ -35,6 +38,15 @@ public class ExpenseList implements Iterable<Expense> {
     public void remove(Expense toRemove) {
         requireNonNull(toRemove);
         internalListOfExpenses.remove(toRemove);
+    }
+
+    public void replaceDeletedCategory(Category target, MiscellaneousCategory MISCELLANEOUS_CATEGORY) {
+        requireNonNull(target);
+        internalListOfExpenses.forEach(expense -> {
+            if (expense.getCategory().equals(target)) {
+                expense.setCategory(MISCELLANEOUS_CATEGORY);
+            }
+        });
     }
 
     /**
