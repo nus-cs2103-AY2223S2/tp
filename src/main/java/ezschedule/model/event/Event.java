@@ -4,7 +4,7 @@ package ezschedule.model.event;
  * Represents an Event in the scheduler.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event {
+public class Event implements Comparable<Event> {
     private final Name name;
     private final Date date;
     private final Time startTime;
@@ -47,6 +47,20 @@ public class Event {
 
         return otherEvent != null
             && otherEvent.getName().equals(getName());
+    }
+
+    @Override
+    public int compareTo(Event otherEvent) {
+        if (otherEvent == this) {
+            return 0;
+        }
+
+        int result = getDate().compareTo(otherEvent.getDate()) ;
+        if (result != 0) {
+            return result;
+        }
+
+        return getStartTime().compareTo(otherEvent.getStartTime());
     }
 
     @Override

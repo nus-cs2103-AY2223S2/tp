@@ -11,7 +11,7 @@ import ezschedule.commons.util.AppUtil;
  * Represents an Event's time in the scheduler.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
-public class Time {
+public class Time implements Comparable<Time> {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Time should only contain numeric characters, follows the format HH:mm, and it should not be blank";
@@ -37,6 +37,11 @@ public class Time {
      */
     public static boolean isValidTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public int compareTo(Time otherTime) {
+        return time.compareTo(otherTime.time);
     }
 
     @Override
