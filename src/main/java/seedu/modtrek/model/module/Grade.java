@@ -28,8 +28,6 @@ public class Grade {
         Map.entry("F", 0.0),
         Map.entry("S", 5.0),
         Map.entry("U", 0.0),
-        Map.entry("CS", 5.0),
-        Map.entry("CU", 0.0),
         Map.entry("", -1.0) // Empty grade
     );
 
