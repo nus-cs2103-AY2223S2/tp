@@ -1,16 +1,14 @@
 package seedu.address.logic.parser;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.concurrent.ThreadLocalRandom;
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
@@ -77,7 +75,7 @@ public class ParserUtil {
 
     /**
      * Simulates retriving student photo from NUS backend / database
-     * @return
+     * @return Photo
      * @throws ParseException
      */
     public static Photo parsePhoto() throws ParseException {
@@ -202,9 +200,9 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         //Add custom regex
-        //if (!Name.isValidName(trimmedName)) {
-        //    throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-        //}
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
         return trimmedName;
     }
 
@@ -235,7 +233,7 @@ public class ParserUtil {
         //date can be null or empty as it is optional
         String trimmedFilePath = filePath.trim();
         File file = new File(trimmedFilePath);
-        if(!file.exists()) {
+        if (!file.exists()) {
             throw new ParseException("File not found!");
         }
         return file;

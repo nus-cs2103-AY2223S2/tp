@@ -88,7 +88,9 @@ public class Lab extends Event {
         return super.countStudents();
     }
 
-    public List<String> getStudentProfiles() {return super.getStudentProfiles();}
+    public List<String> getStudentProfiles() {
+        return super.getStudentProfiles();
+    }
 
     /**
      * Gets the date of the event

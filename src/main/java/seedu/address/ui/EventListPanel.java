@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
