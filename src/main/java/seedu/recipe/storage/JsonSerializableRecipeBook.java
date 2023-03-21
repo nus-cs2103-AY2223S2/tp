@@ -1,17 +1,18 @@
 package seedu.recipe.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.storage.jsonAdapters.JsonAdaptedRecipe;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipe;
 
 /**
  * An Immutable RecipeBook that is serializable to JSON format.

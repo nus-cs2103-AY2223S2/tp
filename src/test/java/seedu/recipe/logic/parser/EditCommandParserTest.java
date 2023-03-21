@@ -1,17 +1,18 @@
 package seedu.recipe.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.logic.commands.EditCommand;
-import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
-
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.recipe.commons.core.index.Index;
+import seedu.recipe.logic.commands.EditCommand;
+import seedu.recipe.logic.util.RecipeDescriptor;
+import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
 public class EditCommandParserTest {
 

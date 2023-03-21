@@ -42,7 +42,7 @@ public class ParserUtilTest {
             "Cook the lasagna noodles according to the package instructions. Drain and set aside.";
     private static final String VALID_STEP_2 =
             "Add the crushed tomatoes, tomato paste, basil, oregano, salt, and black pepper to the skillet. "
-            + "Stir to combine and simmer for 10-15 minutes.";
+                    + "Stir to combine and simmer for 10-15 minutes.";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -54,7 +54,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -213,7 +213,7 @@ public class ParserUtilTest {
                 ParserUtil.parseIngredients(Arrays.asList(VALID_INGREDIENT_1, VALID_INGREDIENT_2));
         List<Ingredient> expectedIngredientList =
                 new ArrayList<Ingredient>(Arrays.asList(new Ingredient(VALID_INGREDIENT_1),
-                        new Ingredient(VALID_INGREDIENT_2)));
+                                                        new Ingredient(VALID_INGREDIENT_2)));
 
         assertEquals(expectedIngredientList, actualIngredientList);
     }
@@ -257,7 +257,7 @@ public class ParserUtilTest {
                 ParserUtil.parseSteps(Arrays.asList(VALID_STEP_1, VALID_STEP_2));
         List<Step> expectedStepList =
                 new ArrayList<Step>(Arrays.asList(new Step(VALID_STEP_1),
-                        new Step(VALID_STEP_2)));
+                                                  new Step(VALID_STEP_2)));
 
         assertEquals(expectedStepList, actualStepList);
     }

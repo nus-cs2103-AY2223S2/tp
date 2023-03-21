@@ -37,9 +37,9 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-    //     Recipe expectedRecipe = new RecipeBuilder(AMY).withTags().build();
-    //     assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-    //             new AddCommand(expectedRecipe));
+        //     Recipe expectedRecipe = new RecipeBuilder(AMY).withTags().build();
+        //     assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
+        //             new AddCommand(expectedRecipe));
     }
 
     @Test

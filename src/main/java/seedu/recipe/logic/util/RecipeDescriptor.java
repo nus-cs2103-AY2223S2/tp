@@ -1,5 +1,12 @@
 package seedu.recipe.logic.util;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.recipe.commons.util.CollectionUtil;
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
@@ -8,13 +15,6 @@ import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Stores the details to edit the recipe with. Each non-empty field value will replace the
@@ -74,7 +74,9 @@ public class RecipeDescriptor {
         return newRecipe;
     }
 
-    // converts this RecipeDescriptor into a Recipe
+    /**
+     * Generates a Recipe from this RecipeDescriptor.
+     */
     public Recipe toRecipe() {
         Recipe blank = new Recipe(this.name);
         return this.toRecipe(blank);

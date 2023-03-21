@@ -1,10 +1,5 @@
 package seedu.recipe.logic.commands;
 
-import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.Recipe;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
@@ -12,6 +7,11 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
+
+import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.util.RecipeDescriptor;
+import seedu.recipe.model.Model;
+import seedu.recipe.model.recipe.Recipe;
 
 /**
  * Adds a recipe to the recipe book.
@@ -38,7 +38,9 @@ public class AddCommand extends Command {
             + PREFIX_INGREDIENT + "parmesan cheese "
             + PREFIX_INGREDIENT + "125g spaghetti noodles "
             + PREFIX_STEP + "Heat a pot with water until it boils "
-            + PREFIX_STEP + "Place the spaghetti in the pot and leave for 5 minutes or until al dente"
+            + PREFIX_STEP
+            + "Place the spaghetti in the pot and leave for 5 minutes or until al "
+            + "dente"
             + PREFIX_STEP + "In a bowl, combine the parmesan and the egg yolks";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";

@@ -39,11 +39,12 @@ public class NameContainsKeywordsPredicateTest {
         // different recipe -> returns false
         assertNotEquals(firstPredicate, secondPredicate);
     }
+
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Lasagna"));
+            new NameContainsKeywordsPredicate(Collections.singletonList("Lasagna"));
         assertTrue(predicate.test(new Recipe(new Name("Lasagna"))));
 
         // Multiple keywords

@@ -1,18 +1,5 @@
 package seedu.recipe.logic.commands;
 
-import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.Model;
-import seedu.recipe.model.RecipeBook;
-import seedu.recipe.model.recipe.NameContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DURATION;
@@ -22,6 +9,19 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.recipe.commons.core.index.Index;
+import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.util.RecipeDescriptor;
+import seedu.recipe.model.Model;
+import seedu.recipe.model.RecipeBook;
+import seedu.recipe.model.recipe.NameContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

@@ -1,14 +1,5 @@
 package seedu.recipe.logic.commands;
 
-import seedu.recipe.commons.core.Messages;
-import seedu.recipe.commons.core.index.Index;
-import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.Model;
-import seedu.recipe.model.recipe.Recipe;
-
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
@@ -17,6 +8,15 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPE;
+
+import java.util.List;
+
+import seedu.recipe.commons.core.Messages;
+import seedu.recipe.commons.core.index.Index;
+import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.util.RecipeDescriptor;
+import seedu.recipe.model.Model;
+import seedu.recipe.model.recipe.Recipe;
 
 /**
  * Edits the details of an existing recipe in the recipe book.

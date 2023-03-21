@@ -1,14 +1,14 @@
 package seedu.recipe.testutil;
 
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
+
 import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.tag.Tag;
-
-import java.util.Set;
-
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 
 /**
  * A utility class for Recipe.
@@ -31,9 +31,7 @@ public class RecipeUtil {
         // sb.append(PREFIX_PHONE + recipe.getIngredient().value + " ");
         // sb.append(PREFIX_EMAIL + recipe.getEmail().value + " ");
         // sb.append(PREFIX_ADDRESS + recipe.getAddress().value + " ");
-        recipe.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
-                                         );
+        recipe.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
 

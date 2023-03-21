@@ -51,6 +51,7 @@ public class RecipeBuilder {
 
     /**
      * Generates and returns a Recipe instance that contains all stored parameters within this class.
+     *
      * @return The Recipe instance generated.
      */
     public Recipe build() {
