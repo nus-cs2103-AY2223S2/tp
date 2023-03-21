@@ -61,6 +61,9 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
+        if (trimmedPhone.isEmpty()) {
+            return null;
+        }
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -76,6 +79,9 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
+        if (trimmedAddress.isEmpty()) {
+            return null;
+        }
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -91,6 +97,9 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
+        if (trimmedEmail.isEmpty()) {
+            return null;
+        }
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -107,6 +116,9 @@ public class ParserUtil {
     public static Remark parseRemark(String remark) {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
+        if (trimmedRemark.isEmpty()) {
+            return null;
+        }
         return new Remark(trimmedRemark);
     }
 

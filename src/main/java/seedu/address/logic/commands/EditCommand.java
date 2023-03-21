@@ -98,11 +98,10 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getOptionalPhone().orElse(null));
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getOptionalEmail().orElse(null));
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(
-                personToEdit.getOptionalAddress().orElse(null)
-        );
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getOptionalPhone()).orElse(null);
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getOptionalEmail()).orElse(null);
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getOptionalAddress())
+                .orElse(null);
         Remark oldRemark = personToEdit.getOptionalRemark().orElse(null); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
@@ -134,9 +133,9 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
+        private Optional<Phone> phone;
+        private Optional<Email> email;
+        private Optional<Address> address;
         private Set<Subject> subjects;
         private Set<Tag> tags;
 
@@ -171,26 +170,38 @@ public class EditCommand extends Command {
         }
 
         public void setPhone(Phone phone) {
+            this.phone = Optional.ofNullable(phone);
+        }
+
+        public void setPhone(Optional<Phone> phone) {
             this.phone = phone;
         }
 
-        public Optional<Phone> getPhone() {
+        public Optional<Optional<Phone>> getPhone() {
             return Optional.ofNullable(phone);
         }
 
         public void setEmail(Email email) {
+            this.email = Optional.ofNullable(email);
+        }
+
+        public void setEmail(Optional<Email> email) {
             this.email = email;
         }
 
-        public Optional<Email> getEmail() {
+        public Optional<Optional<Email>> getEmail() {
             return Optional.ofNullable(email);
         }
 
         public void setAddress(Address address) {
+            this.address = Optional.ofNullable(address);
+        }
+
+        public void setAddress(Optional<Address> address) {
             this.address = address;
         }
 
-        public Optional<Address> getAddress() {
+        public Optional<Optional<Address>> getAddress() {
             return Optional.ofNullable(address);
         }
 
