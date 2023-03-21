@@ -12,9 +12,21 @@ import javafx.scene.layout.Region;
 public class EventCard extends UiPart<Region> {
 
     static class Event {
-        String start="2019-09-23 6pm";
-        String end="2019-09-24 8pm";
-        String description="Technical Interview (1st Round)";
+        private String start = "2019-09-23 6pm";
+        private String end = "2019-09-24 8pm";
+        private String description = "Technical Interview (1st Round)";
+
+        public String getStart() {
+            return start;
+        }
+
+        public String getEnd() {
+            return end;
+        }
+
+        public String getDesc() {
+            return description;
+        }
     }
 
     private static final String FXML = "EventCard.fxml";

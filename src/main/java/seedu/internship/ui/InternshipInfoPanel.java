@@ -2,9 +2,7 @@ package seedu.internship.ui;
 
 import static java.util.Objects.isNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -15,7 +13,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.*;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.internship.Internship;
 

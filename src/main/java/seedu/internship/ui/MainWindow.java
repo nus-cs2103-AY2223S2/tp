@@ -55,8 +55,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    private ArrayList<EventCard.Event> dummyEvents
-            = new ArrayList<EventCard.Event>(Arrays.asList(new EventCard.Event(), new EventCard.Event()));
+    private ArrayList<EventCard.Event> dummyEvents = new ArrayList<EventCard.Event>(
+            Arrays.asList(new EventCard.Event(), new EventCard.Event()));
 
 
     /**
