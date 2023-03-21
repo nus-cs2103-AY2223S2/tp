@@ -42,8 +42,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setGithub(person.getGithub());
         descriptor.setEmail(person.getEmail());
         descriptor.setLinkedin(person.getLinkedin());
-        descriptor.addSkills(person.getSkills());
-        descriptor.addMods(person.getModules());
+        descriptor.setSkillsAdded(person.getSkills());
+        descriptor.setModulesAdded(person.getModules());
     }
 
     /**
@@ -98,7 +98,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withSkills(String... skills) {
         Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
-        descriptor.addSkills(skillSet);
+        descriptor.setSkillsAdded(skillSet);
         return this;
     }
     /**
@@ -107,7 +107,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withModules(String... modules) {
         Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
-        descriptor.addMods(moduleSet);
+        descriptor.setModulesAdded(moduleSet);
         return this;
     }
 

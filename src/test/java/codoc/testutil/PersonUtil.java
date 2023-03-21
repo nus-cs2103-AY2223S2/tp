@@ -61,16 +61,16 @@ public class PersonUtil {
         descriptor.getGithub().ifPresent(github -> sb.append(PREFIX_GITHUB).append(github.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getLinkedin().ifPresent(linkedin -> sb.append(PREFIX_LINKEDIN).append(linkedin.value).append(" "));
-        if (descriptor.getSkills().isPresent()) {
-            Set<Skill> skills = descriptor.getSkills().get();
+        if (descriptor.getSkillsAdded().isPresent()) {
+            Set<Skill> skills = descriptor.getSkillsAdded().get();
             if (skills.isEmpty()) {
                 sb.append(PREFIX_SKILL_ADD);
             } else {
                 skills.forEach(s -> sb.append(PREFIX_SKILL_ADD).append(s.skillName).append(" "));
             }
         }
-        if (descriptor.getModules().isPresent()) {
-            Set<Module> modules = descriptor.getModules().get();
+        if (descriptor.getModulesAdded().isPresent()) {
+            Set<Module> modules = descriptor.getModulesAdded().get();
             if (modules.isEmpty()) {
                 sb.append(PREFIX_MOD_ADD);
             } else {

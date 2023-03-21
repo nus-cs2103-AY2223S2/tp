@@ -17,18 +17,9 @@ import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import codoc.logic.commands.EditCommand;
 import codoc.logic.commands.EditCommand.EditPersonDescriptor;
 import codoc.logic.parser.exceptions.ParseException;
-import codoc.model.module.Module;
-import codoc.model.person.Person;
-import codoc.model.skill.Skill;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -77,13 +68,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setSkillsAdded(ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL_ADD)));
         }
         if (argMultimap.getValue(PREFIX_SKILL_DELETE).isPresent()) {
-            editPersonDescriptor.setSkillsRemoved(ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL_DELETE)));
+            editPersonDescriptor.setSkillsRemoved(ParserUtil.parseSkillSet(argMultimap
+                    .getAllValues(PREFIX_SKILL_DELETE)));
         }
         if (argMultimap.getValue(PREFIX_MOD_ADD).isPresent()) {
             editPersonDescriptor.setModulesAdded(ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD_ADD)));
         }
         if (argMultimap.getValue(PREFIX_MOD_DELETE).isPresent()) {
-            editPersonDescriptor.setModulesRemoved(ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD_DELETE)));
+            editPersonDescriptor.setModulesRemoved(ParserUtil.parseModuleSet(argMultimap
+                    .getAllValues(PREFIX_MOD_DELETE)));
         }
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

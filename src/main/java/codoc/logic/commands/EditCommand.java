@@ -329,7 +329,8 @@ public class EditCommand extends Command {
          * Returns {@code Optional#empty()} if {@code modulesRemoved} is null.
          */
         public Optional<Set<Module>> getModulesRemoved() {
-            return (modulesRemoved != null) ? Optional.of(Collections.unmodifiableSet(modulesRemoved)) : Optional.empty();
+            return (modulesRemoved != null) ? Optional.of(Collections.unmodifiableSet(modulesRemoved))
+                    : Optional.empty();
         }
 
         @Override

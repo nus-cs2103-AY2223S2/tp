@@ -17,7 +17,6 @@ import codoc.logic.commands.HelpCommand;
 import codoc.logic.commands.ListCommand;
 import codoc.logic.commands.ViewCommand;
 import codoc.logic.parser.exceptions.ParseException;
-import codoc.model.person.Person;
 
 
 /**
