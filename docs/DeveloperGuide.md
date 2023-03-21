@@ -183,10 +183,21 @@ Note that `Allergies` and `Vaccines` are optional, so the user does not need to 
 
 ### Listing Patients
 
+The **Listing Patients** mechanism is facilated by `VMS`. The Patient created is stored inside `PatientManager` object. It will list all the Patients that are stored in the `PatientManager`.
+
 #### Usage
 
+The activity diagram below illustrates the workflow of patient `ListCommand` behaves when executed by a user when they enter `patient list` as a command
+
 <img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Listing Patients** mechanism behaves at every step.
+
 <img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
+
+List Command does not have a parser as it does not take in additional flags. It will simply call the model `updateFilteredPatientList` to show all the patients.
+
+This command is useful after doing a search, where the display may not show all the patients. This command allows the user to get back to the default view of Patients.
 
 ### Finding a Patient
 
