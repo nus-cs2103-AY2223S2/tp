@@ -1,8 +1,6 @@
 package seedu.address.ui;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -12,7 +10,7 @@ import seedu.address.logic.Logic;
  * The Contact Display displaying the list of doctors,
  * patients and their respective information.
  */
-public class ContactDisplay extends UiPart<Region>{
+public class ContactDisplay extends UiPart<Region> {
 
     private static final String FXML = "ContactDisplay.fxml";
 
@@ -39,6 +37,10 @@ public class ContactDisplay extends UiPart<Region>{
     @FXML
     private StackPane patientListPanelPlaceholder;
 
+    /**
+     * Creates a {@code ContactDisplay}
+     * with the given {@code Logic}.
+     */
     public ContactDisplay(Logic logic) {
         super(FXML);
         this.logic = logic;
@@ -46,6 +48,9 @@ public class ContactDisplay extends UiPart<Region>{
         fillInnerParts();
     }
 
+    /**
+     * Fills up all the placeholders of this {@code ContactDisplay}.
+     */
     private void fillInnerParts() {
         enlargedDoctorInfoCard = new EnlargedDoctorInfoCard();
         enlargedPatientInfoCard = new EnlargedPatientInfoCard();
@@ -60,6 +65,11 @@ public class ContactDisplay extends UiPart<Region>{
         doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
     }
 
+    /**
+     * Updates {@code enlargedPersonInfoCardPlaceholder} to show the
+     * enlarged information of either the doctor or patient.
+     *
+     */
     public void setFeedbackToUser() {
         enlargedPersonInfoCardPlaceholder.getChildren().clear();
         if (infoCardDisplayController.getDisplayDoctorInfoCard()) {

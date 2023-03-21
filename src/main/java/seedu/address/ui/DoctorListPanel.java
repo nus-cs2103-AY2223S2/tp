@@ -11,10 +11,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.doctor.Doctor;
-import seedu.address.model.person.patient.Patient;
 
 /**
  * Panel containing the list of doctors.
