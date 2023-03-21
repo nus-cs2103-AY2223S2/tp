@@ -157,11 +157,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding a Patient
 
-The **Adding a Patient** mechanism is facilated by `VMS`. The Patient created is stored inside `PatientManager` inside
+The **Adding a Patient** mechanism is facilated by `VMS`. The Patient created is stored inside `PatientManager` object.
 
 #### Usage
 
-The activity diagram below illustrates the workflow of patient `addCommand` behaves when executed by a user when they enter `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command
+The activity diagram below illustrates the workflow of patient `AddCommand` behaves when executed by a user when they enter `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command
 
 <img src="images/patient/AddPatientActivityDiagram.png" width="550" />
 
@@ -185,29 +185,29 @@ Note that `Allergies` and `Vaccines` are optional, so the user does not need to 
 
 #### Usage
 
-<img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
 <img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
+<img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
 
 ### Finding a Patient
 
 #### Usage
 
-<img src="images/patient/FindPatientSequenceDiagram.png" width="550" />
 <img src="images/patient/FindPatientActivityDiagram.png" width="550" />
+<img src="images/patient/FindPatientSequenceDiagram.png" width="550" />
 
 ### Editing a Patient
 
 #### Usage
 
-<img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
 <img src="images/patient/EditPatientActivityDiagram.png" width="550" />
+<img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
 
 ### Deleting a Patient
 
 #### Usage
 
-<img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
 <img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
+<img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
 
 ### \[Proposed\] Undo/redo feature
 
