@@ -71,6 +71,10 @@ title: Developer Guide
    * [Use Cases](#use-cases)
    * [Non-Functional Requirements](#non-functional-requirements)
    * [Instructions for Manual Testing](#instructions-for-manual-testing)
+     * [Add a new person to EduMate](#add-a-new-person-to-edumate)
+     * [View a person in EduMate](#view-a-person-in-edumate)
+     * [Edit a person in EduMate](#edit-a-person-in-edumate)
+     * [Delete a person in EduMate](#delete-a-person-in-edumate)
    * [Glossary](#glossary)
    * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 
@@ -939,27 +943,51 @@ testers are expected to do more *exploratory* testing.
     * 2b. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-### **Deleting a person**
+### **Add a new person to EduMate**
 
-1. Deleting a person while all persons are being shown
+`add n/Thomas a/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
-    * 1a. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Expected Output in the Person List: New person added to EduMate.
 
-    * 1b. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+Expected Output in the Command Output Box: New person added message is displayed along with the person's details.
 
-    * 1c. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+`add n/Edward`
 
-    * 1d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+Expected Output in the Command Output Box: Error message for invalid command format.
 
+### **View a person in EduMate**
 
-### **Saving data**
+`view 5`
 
-1. Dealing with missing/corrupted data files
+Expected Output in the Profile Panel: The fifth person's profile is shown.
 
-   * 1a. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+`view n/Thomas`
+
+Expected Output in the Profile Panel: Thomas' profile is shown.
+
+### **Edit a person in EduMate**
+
+`edit 3 n/Henry`
+
+Expected Output in the Person List: The third person's name is changed to Henry.
+
+Expected Output in the Command Output Box: Edited person message is displayed along with the edited details.
+
+`edit n/Gordon`
+
+Expected Output in Profile Panel: The user's name is changed to Gordon.
+
+Expected Output in the Command Output Box: Edited person message is displayed along with the edited details.
+
+### **Delete a person in EduMate**
+
+`delete 4`
+
+Expected Output in the Person List: The fourth person has been removed, and there is no fourth index.
+
+`delete 4`, `add n/James e/james@gmail.com t/@james a/Bishan p/87654321`
+
+Expected Output in the Person List: New person has been added to EduMate, with an index of 4.
 
 ---
 
