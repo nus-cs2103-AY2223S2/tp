@@ -13,32 +13,34 @@ class FuzzyTest {
     private static class Case {
         public final String a;
         public final String b;
-        public final int expected;
-        public final String desc;
+        public final int expectedDelta;
+        public final double expectedPercent;
 
-        Case(String a, String b, int expected, String desc) {
+        Case(String a, String b, int expectedDelta, double expectedPercent) {
             this.a = a;
             this.b = b;
-            this.expected = expected;
-            this.desc = desc;
+            this.expectedDelta = expectedDelta;
+            this.expectedPercent = expectedPercent;
         }
     }
 
     @Test
     void delta() {
+        // NOTE: we are testing both delta and percent here, because they are so closely related.
         Case[] tests = {
-            new Case("uwu", "owo", 2, "replace only"),
-            new Case("horse", "ros", 3, "replace with insert"),
-            new Case("intention", "execution", 5, "replace with insert"),
-            new Case("uwu", "", 3, "RHS empty"),
-            new Case("", "uwu", 3, "LHS empty"),
-            new Case("   ", "uwu", 3, "whitespace"),
-            new Case("uwu", "uwu", 0, "same strings")
+            new Case("uwu", "owo", 2, 2 / (double) 3),
+            new Case("horse", "ros", 3, 3 / (double) 5),
+            new Case("intention", "execution", 5, 5 / (double) 9),
+            new Case("uwu", "", 3, 1),
+            new Case("", "uwu", 3, 1),
+            new Case("   ", "uwu", 3, 1),
+            new Case("foo", "baz bat", 7, 1),
+            new Case("uwu", "uwu", 0, 0)
         };
 
         for (Case test : tests) {
             int actual = Fuzzy.delta(test.a, test.b);
-            assertEquals(test.expected, actual, "While testing case: " + test.desc);
+            assertEquals(test.expectedDelta, actual, "While testing case: " + test.a + ", " + test.b);
         }
     }
 }

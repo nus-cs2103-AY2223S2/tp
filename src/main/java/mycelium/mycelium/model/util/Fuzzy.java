@@ -23,6 +23,10 @@ public class Fuzzy {
             m = n;
             n = tmp2;
         }
+
+        // From here on, `b` is the longer string, and `a` is the shorter string. Accordingly, `n` is the size of the
+        // longer string, and `m` is the size of the shorter string.
+
         if (m == 0) {
             return n;
         }
@@ -36,7 +40,9 @@ public class Fuzzy {
             return n;
         }
 
-        int[] prevRow = new int[b.length() + 1];
+        // NOTE: if we know the max size of the strings beforehand, we can pre-allocate the array, and re-use it for
+        // every call. There is no need to clear the array, since we are only ever writing to it.
+        int[] prevRow = new int[n + 1];
 
         for (int j = 0; j < n + 1; j++) {
             prevRow[j] = j;
@@ -65,5 +71,13 @@ public class Fuzzy {
             }
         }
         return prevRow[n];
+    }
+
+    /**
+     * Computes a "delta-score" between two strings, and returns a value between 0 and 1, where 0 means the two strings
+     * are completely different, and 1 means they are completely the same.
+     */
+    public static double deltaPercent(String a, String b) {
+        return 1 - (double) delta(a, b) / Math.max(a.length(), b.length());
     }
 }
