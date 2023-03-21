@@ -42,6 +42,7 @@ public class ResultsDetails extends UiPart<Region> {
         dateFilter.setText("All");
     }
 
+
     public void switchDetails(String timeFilter, boolean isExpenseDisplay) {
         bindResultsCount(isExpenseDisplay);
         if (isExpenseDisplay) {

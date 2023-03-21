@@ -59,9 +59,8 @@ public class MainApp extends Application {
         initLogging(config);
 
         dataModel = initModelManager(storage, userPrefs);
-        analyticModel = initAnalyticModelManager(storage);
 
-        logic = new LogicManager(dataModel, analyticModel, storage);
+        logic = new LogicManager(dataModel, storage);
 
         ui = new UiManager(logic);
     }
@@ -97,38 +96,6 @@ public class MainApp extends Application {
         }
 
         return new ModelManager(initialData, userPrefs);
-    }
-
-    /**
-     * Returns a {@code AnalyticModelManager} with the data from {@code storage}'s expense tracker
-     * The data from the sample expense tracker will be used instead if
-     * {@code storage}'s expense tracker is not found,
-     * or an empty expense tracker will be used instead if errors occur when reading
-     * {@code storage}'s expense tracker.
-     */
-    private AnalyticModel initAnalyticModelManager(Storage storage) {
-        Optional<ReadOnlyExpenseTracker> expenseTrackerOptional;
-        ReadOnlyExpenseTracker initialExpenseTrackerData;
-        try {
-            expenseTrackerOptional = storage.readExpenseTracker();
-            if (expenseTrackerOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample ExpenseTracker");
-            }
-            // TODO update sample data
-            initialExpenseTrackerData = expenseTrackerOptional.get();
-            // initialData =
-            // addressBookOptional.orElseGet(SampleDataUtil::getSampleCategoryData);
-            // initialData =
-            // addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty ExpenseTracker");
-            initialExpenseTrackerData = new ExpenseTracker();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ExpenseTracker");
-            initialExpenseTrackerData = new ExpenseTracker();
-        }
-
-        return new AnalyticModelManager(initialExpenseTrackerData);
     }
 
     private void initLogging(Config config) {

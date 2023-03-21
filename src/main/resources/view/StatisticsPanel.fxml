@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
@@ -49,11 +50,25 @@
                               <Insets bottom="5.0" />
                            </VBox.margin></Label>
                         <Label fx:id="monthlyRemaining" alignment="CENTER" styleClass="statDetail" text="\$monthlyRemaining" />
-                        <Label fx:id="monthlyChange" alignment="CENTER" maxWidth="130.0" minWidth="-Infinity" prefWidth="130.0" styleClass="change_indicator" text="\$monthlyChange">
+                        <HBox fx:id="monthlyChangeBackground" alignment="CENTER" maxWidth="130.0" prefWidth="130.0" styleClass="change_indicator_background_positive">
+                           <children>
+                              <Label fx:id="monthlySign" text="\$sign">
+                                 <styleClass>
+                                    <String fx:value="change_indicator" />
+                                    <String fx:value="positive_change_indicator" />
+                                 </styleClass>
+                              </Label>
+                              <Label fx:id="monthlyChange" alignment="CENTER" minWidth="-Infinity" text="\$monthlyChange">
+                                 <styleClass>
+                                    <String fx:value="change_indicator" />
+                                    <String fx:value="positive_change_indicator" />
+                                 </styleClass>
+                              </Label>
+                           </children>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
-                        </Label>
+                        </HBox>
                      </children>
                   </VBox>
                   <Region minWidth="30.0" HBox.hgrow="SOMETIMES" />
@@ -69,11 +84,25 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="weeklyChange" alignment="CENTER" maxWidth="130.0" minWidth="-Infinity" prefWidth="130.0" styleClass="change_indicator" text="\$weeklyChange">
+                        <HBox fx:id="weeklyChangeBackground" alignment="CENTER" maxWidth="130.0" prefWidth="130.0" styleClass="change_indicator_background_positive">
+                           <children>
+                              <Label fx:id="weeklySign" text="\$sign">
+                                 <styleClass>
+                                    <String fx:value="change_indicator" />
+                                    <String fx:value="positive_change_indicator" />
+                                 </styleClass>
+                              </Label>
+                              <Label fx:id="weeklyChange" alignment="CENTER" minWidth="-Infinity" text="\$weeklyChange">
+                                 <styleClass>
+                                    <String fx:value="change_indicator" />
+                                    <String fx:value="positive_change_indicator" />
+                                 </styleClass>
+                              </Label>
+                           </children>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
-                        </Label>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
@@ -81,9 +110,9 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" maxWidth="350.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_RIGHT" maxWidth="350.0" styleClass="stat_box" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" maxWidth="130.0" prefWidth="130.0" styleClass="stat_box">
+                  <VBox alignment="CENTER">
                      <children>
                         <Label alignment="CENTER" styleClass="stats_header" text="TOTAL SPENT">
                            <VBox.margin>
@@ -92,20 +121,20 @@
                         <Label fx:id="totalSpending" alignment="CENTER" styleClass="statDetail" text="\$totalSpending" />
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                        <Insets bottom="10.0" left="15.0" right="20.0" top="10.0" />
                      </padding>
                   </VBox>
                   <Region minWidth="30.0" HBox.hgrow="SOMETIMES" />
-                  <VBox alignment="CENTER" maxWidth="130.0" prefWidth="130.0" styleClass="stat_box">
+                  <VBox alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" styleClass="stats_header" text="BUDGET">
+                        <Label alignment="CENTER" styleClass="stats_header" text="BUDGET UTLISED">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin></Label>
                         <Label fx:id="budgetPercentage" alignment="CENTER" styleClass="statDetail" text="\$budgetPercentage" />
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                        <Insets bottom="10.0" left="20.0" right="15.0" top="10.0" />
                      </padding>
                   </VBox>
                </children>

@@ -1,17 +1,11 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.category.Category;
-import seedu.address.model.expense.Expense;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.StringProperty;
+import seedu.address.model.util.AnalyticsType;
 /**
  * The API of the AnalyticModel component.
  */
 public interface AnalyticModel {
-
-
+    DoubleProperty getAnalyticsData(AnalyticsType type);
 }

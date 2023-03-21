@@ -1,118 +1,51 @@
 {
   "categories" : [ {
-    "categoryName" : "b",
-    "summary" : "sjibtsbgr"
-  }, {
-    "categoryName" : "fbjsgbg",
+    "categoryName" : "fruits",
     "summary" : ""
   }, {
-    "categoryName" : "sbfad",
+    "categoryName" : "entertainment",
     "summary" : ""
   }, {
-    "categoryName" : "agbrsbb",
+    "categoryName" : "food",
     "summary" : ""
   }, {
-    "categoryName" : "argaebsb",
+    "categoryName" : "tech",
     "summary" : ""
   }, {
-    "categoryName" : "new cat",
-    "summary" : "safag"
-  }, {
-    "categoryName" : "wfvfde",
+    "categoryName" : "wqfoavj",
     "summary" : ""
-  }, {
-    "categoryName" : "ev",
-    "summary" : ""
-  }, {
-    "categoryName" : "save",
-    "summary" : ""
-  }, {
-    "categoryName" : "ewffegegergreg",
-    "summary" : ""
-  }, {
-    "categoryName" : "ewfwf",
-    "summary" : ""
-  }, {
-    "categoryName" : "hello",
-    "summary" : "wfijeer"
-  }, {
-    "categoryName" : "wfgegojgeq",
-    "summary" : "fabebg"
-  }, {
-    "categoryName" : "sfwregeb",
-    "summary" : "fefbebeb"
   } ],
   "expenses" : [ {
-    "name" : "argaeb",
-    "amount" : "4.5",
-    "date" : "2023-03-15",
+    "name" : "apples",
+    "amount" : "5.0",
+    "date" : "2023-03-10",
     "category" : {
-      "categoryName" : "agbrsbb",
+      "categoryName" : "fruits",
       "summary" : ""
     }
   }, {
-    "name" : "sadfvbq",
-    "amount" : "6.79",
-    "date" : "2023-03-15",
+    "name" : "Movie with friends",
+    "amount" : "7.8",
+    "date" : "2023-03-21",
     "category" : {
-      "categoryName" : "argaebsb",
+      "categoryName" : "entertainment",
       "summary" : ""
     }
   }, {
-    "name" : "svv",
-    "amount" : "3.45",
-    "date" : "2023-03-20",
+    "name" : "chicken rice",
+    "amount" : "8.0",
+    "date" : "2023-02-02",
     "category" : {
-      "categoryName" : "wfvfde",
+      "categoryName" : "food",
       "summary" : ""
     }
   }, {
-    "name" : "evev",
-    "amount" : "3945.0",
-    "date" : "2023-03-20",
+    "name" : "ps5",
+    "amount" : "800.0",
+    "date" : "2023-02-01",
     "category" : {
-      "categoryName" : "ev",
+      "categoryName" : "entertainment",
       "summary" : ""
-    }
-  }, {
-    "name" : "sffjbdbfjdbjodjbdjbjodbjo",
-    "amount" : "6.7",
-    "date" : "2023-03-20",
-    "category" : {
-      "categoryName" : "save",
-      "summary" : ""
-    }
-  }, {
-    "name" : "sdfe",
-    "amount" : "455.0",
-    "date" : "2023-03-20",
-    "category" : {
-      "categoryName" : "ewffegegergreg",
-      "summary" : ""
-    }
-  }, {
-    "name" : "dinner with jjames",
-    "amount" : "3.4",
-    "date" : "2023-03-20",
-    "category" : {
-      "categoryName" : "ewfwf",
-      "summary" : ""
-    }
-  }, {
-    "name" : "dvffvfv",
-    "amount" : "4.58",
-    "date" : "2023-03-20",
-    "category" : {
-      "categoryName" : "save",
-      "summary" : ""
-    }
-  }, {
-    "name" : "rebe",
-    "amount" : "345.0",
-    "date" : "2023-02-04",
-    "category" : {
-      "categoryName" : "hello",
-      "summary" : "wfijeer"
     }
   } ]
 }

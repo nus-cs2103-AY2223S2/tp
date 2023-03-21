@@ -28,7 +28,6 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model dataModel;
-    private final AnalyticModel analyticModel;
     private final Storage storage;
     private final ExpenseTrackerParser addressBookParser;
 
@@ -36,9 +35,8 @@ public class LogicManager implements Logic {
      * Constructs a {@code LogicManager} with the given {@code Model} and
      * {@code Storage}.
      */
-    public LogicManager(Model dataModel, AnalyticModel analyticModel, Storage storage) {
+    public LogicManager(Model dataModel, Storage storage) {
         this.dataModel = dataModel;
-        this.analyticModel = analyticModel;
         this.storage = storage;
         addressBookParser = new ExpenseTrackerParser();
     }
@@ -89,10 +87,5 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         dataModel.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public AnalyticModel getAnalyticModel() {
-        return analyticModel;
     }
 }

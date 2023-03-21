@@ -167,8 +167,26 @@
 .change_indicator {
     -fx-font-family: "Inter Regular";
     -fx-font-size: 12px;
+}
+
+.change_indicator.positive_change_indicator {
     -fx-text-fill: #00FFB2;
     -fx-background-color: #003C40;
+}
+
+.change_indicator.negative_change_indicator {
+    -fx-text-fill: #FF0000;
+    -fx-background-color: #34001D;
+}
+
+.change_indicator_background_positive {
+    -fx-background-color: #003C40;
+    -fx-background-radius: 6px;
+    -fx-padding: 10 12 10 12
+}
+
+.change_indicator_background_negative {
+    -fx-background-color: #34001D;
     -fx-background-radius: 6px;
     -fx-padding: 10 12 10 12
 }

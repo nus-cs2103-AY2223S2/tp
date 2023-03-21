@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import javafx.css.converter.StringConverter;
+
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -30,6 +32,7 @@ public class UserInterfaceUtil {
         String priceString = df.format(amount);
         return "$" + priceString;
     }
+
 
     /**
      * Returns the input string with the first letter capitalized and the rest of the letters in lower case.
