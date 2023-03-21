@@ -340,8 +340,6 @@
     -fx-border-width:5;
 }
 
-
-
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #FFFFFF;
@@ -369,6 +367,7 @@
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-padding: 7;
 }
 
 #tags .label {
@@ -378,5 +377,4 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 15;
-
 }
