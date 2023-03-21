@@ -1,5 +1,6 @@
 package mycelium.mycelium.logic.commands;
 
+import mycelium.mycelium.logic.uiaction.ExitAction;
 import mycelium.mycelium.model.Model;
 
 /**
@@ -13,7 +14,9 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        return new CommandResult(
+            MESSAGE_EXIT_ACKNOWLEDGEMENT,
+            new ExitAction());
     }
 
 }

@@ -5,6 +5,7 @@ import static mycelium.mycelium.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLE
 
 import org.junit.jupiter.api.Test;
 
+import mycelium.mycelium.logic.uiaction.ExitAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
 
@@ -14,7 +15,7 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, new ExitAction());
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
 }

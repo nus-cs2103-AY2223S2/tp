@@ -6,6 +6,6 @@
 
 <Tab text="Untitled Tab" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <StackPane fx:id="contentPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+      <StackPane fx:id="entityListPlaceholder" prefHeight="150.0" prefWidth="200.0" />
    </content>
 </Tab>

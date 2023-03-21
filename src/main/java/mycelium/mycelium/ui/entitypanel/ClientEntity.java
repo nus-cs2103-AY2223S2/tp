@@ -1,9 +1,12 @@
-package mycelium.mycelium.ui.resultoutput;
+package mycelium.mycelium.ui.entitypanel;
+
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Phone;
@@ -12,10 +15,11 @@ import mycelium.mycelium.ui.UiPart;
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class ClientListCard extends UiPart<Region> {
+public class ClientEntity extends UiPart<Region> {
+    private static final String FXML = "ClientEntity.fxml";
+    public final Client client;
 
-    private static final String FXML = "ClientListCard.fxml";
-
+    private Logger logger = LogsCenter.getLogger(getClass());
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -23,8 +27,6 @@ public class ClientListCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    public final Client client;
 
     @FXML
     private HBox cardPane;
@@ -44,7 +46,7 @@ public class ClientListCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ClientListCard(Client client, int displayedIndex) {
+    public ClientEntity(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
         id.setText(displayedIndex + ". ");
@@ -53,6 +55,7 @@ public class ClientListCard extends UiPart<Region> {
         yearOfBirth.setText(client.getYearOfBirth().map(YearOfBirth::toString).orElse("No year of birth").toString());
         source.setText(client.getSource().orElse("No source"));
         mobileNumber.setText(client.getMobileNumber().map(Phone::toString).orElse("No mobile number").toString());
+        logger.fine("Initialized ClientEntity with client: " + client.getName());
     }
 
     @Override
@@ -63,12 +66,12 @@ public class ClientListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ClientListCard)) {
+        if (!(other instanceof ClientEntity)) {
             return false;
         }
 
         // state check
-        ClientListCard card = (ClientListCard) other;
+        ClientEntity card = (ClientEntity) other;
         return id.getText().equals(card.id.getText())
             && client.equals(card.client);
     }

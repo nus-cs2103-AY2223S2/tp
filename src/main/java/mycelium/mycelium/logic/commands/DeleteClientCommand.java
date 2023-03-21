@@ -7,6 +7,8 @@ import java.util.Optional;
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
+import mycelium.mycelium.logic.uiaction.TabSwitch;
+import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.person.Email;
@@ -40,10 +42,14 @@ public class DeleteClientCommand extends Command {
         requireNonNull(model);
         Optional<Client> targetClient = model.getUniqueClient(c -> c.getEmail().equals(targetEmail));
         if (targetClient.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT);
+            throw new CommandException(
+                Messages.MESSAGE_INVALID_CLIENT,
+                new TabSwitchAction(TabSwitch.CLIENT));
         }
         model.deleteClient(targetClient.get());
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, targetClient.get()));
+        return new CommandResult(
+            String.format(MESSAGE_DELETE_PERSON_SUCCESS, targetClient.get()),
+            new TabSwitchAction(TabSwitch.CLIENT));
     }
 
     @Override

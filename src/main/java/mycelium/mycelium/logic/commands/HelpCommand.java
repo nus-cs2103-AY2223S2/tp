@@ -1,5 +1,6 @@
 package mycelium.mycelium.logic.commands;
 
+import mycelium.mycelium.logic.uiaction.ShowHelpAction;
 import mycelium.mycelium.model.Model;
 
 /**
@@ -16,6 +17,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, new ShowHelpAction());
     }
 }

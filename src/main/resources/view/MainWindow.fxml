@@ -44,7 +44,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultOutputPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <StackPane fx:id="entityPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
           </padding>
