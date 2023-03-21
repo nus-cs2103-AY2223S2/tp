@@ -21,7 +21,26 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
+import seedu.address.logic.commands.task.FindTaskCommand;
+import seedu.address.logic.commands.task.ListTaskCommand;
+import seedu.address.logic.commands.task.note.ClearNoteCommand;
+import seedu.address.logic.commands.task.note.DeleteNoteCommand;
+import seedu.address.logic.commands.task.note.ListNoteCommand;
+import seedu.address.logic.commands.task.note.NoteCommand;
+import seedu.address.logic.commands.task.todo.ClearTodoCommand;
+import seedu.address.logic.commands.task.todo.DeleteTodoCommand;
+import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
+import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
+import seedu.address.logic.commands.task.todo.ListTodoCommand;
+import seedu.address.logic.commands.task.todo.TodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.task.FindTaskCommandParser;
+import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
+import seedu.address.logic.parser.task.note.NoteCommandParser;
+import seedu.address.logic.parser.task.todo.DeleteTodoCommandParser;
+import seedu.address.logic.parser.task.todo.EditContentCommandParser;
+import seedu.address.logic.parser.task.todo.EditDeadlineCommandParser;
+import seedu.address.logic.parser.task.todo.TodoCommandParser;
 
 /**
  * Parses user input.
@@ -88,6 +107,42 @@ public class AddressBookParser {
 
         case RevertAllCommand.COMMAND_WORD:
             return new RevertAllCommand();
+
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
+
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskCommandParser().parse(arguments);
+
+        case TodoCommand.COMMAND_WORD:
+            return new TodoCommandParser().parse(arguments);
+
+        case ListTodoCommand.COMMAND_WORD:
+            return new ListTodoCommand();
+
+        case EditDeadlineCommand.COMMAND_WORD:
+            return new EditDeadlineCommandParser().parse(arguments);
+
+        case EditNoteContentCommand.COMMAND_WORD:
+            return new EditContentCommandParser().parse(arguments);
+
+        case DeleteTodoCommand.COMMAND_WORD:
+            return new DeleteTodoCommandParser().parse(arguments);
+
+        case ClearTodoCommand.COMMAND_WORD:
+            return new ClearTodoCommand();
+
+        case NoteCommand.COMMAND_WORD:
+            return new NoteCommandParser().parse(arguments);
+
+        case ListNoteCommand.COMMAND_WORD:
+            return new ListNoteCommand();
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
+
+        case ClearNoteCommand.COMMAND_WORD:
+            return new ClearNoteCommand();
 
         case AddInterviewDateCommand.COMMAND_WORD:
             return new AddInterviewDateCommandParser().parse(arguments);

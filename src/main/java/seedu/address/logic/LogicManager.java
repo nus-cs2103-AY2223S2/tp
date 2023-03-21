@@ -16,6 +16,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
 import seedu.address.storage.Storage;
 
 /**
@@ -47,7 +50,14 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            if (commandResult.getType() == TodoType.NONE) {
+                storage.saveAddressBook(model.getAddressBook());
+            } else if (commandResult.getType() == TodoType.TODO) {
+                storage.saveTodoList(model.getTodoList());
+            } else if (commandResult.getType() == TodoType.NOTE) {
+                storage.saveNoteList(model.getNoteList());
+            }
+
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -68,6 +78,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<InternshipTodo> getFilteredTodoList() {
+        return model.getFilteredTodoList();
+    }
+
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return model.getFilteredNoteList();
     }
 
     @Override
