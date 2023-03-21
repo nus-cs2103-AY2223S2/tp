@@ -7,5 +7,6 @@ import arb.commons.core.sorting.ProjectSortingOption;
  */
 public class TypicalProjectSortingOptions {
     public static final ProjectSortingOption BY_DEADLINE = ProjectSortingOption.getSortingOption("deadline");
+    public static final ProjectSortingOption BY_DEADLINE_ALIAS = ProjectSortingOption.getSortingOption("d");
     public static final ProjectSortingOption BY_TITLE = ProjectSortingOption.getSortingOption("name");
 }

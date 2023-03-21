@@ -1,18 +1,41 @@
 package arb.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Objects;
+import java.util.Optional;
+
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
  */
 public class Prefix {
-    private final String prefix;
+    private final String mainPrefix;
+    private final Optional<String> aliasPrefix;
 
-    public Prefix(String prefix) {
-        this.prefix = prefix;
+    /**
+     * Main prefix must be present and not null.
+     */
+    public Prefix(String mainPrefix, String aliasPrefix) {
+        requireNonNull(mainPrefix);
+        assert !mainPrefix.equals(aliasPrefix);
+        this.mainPrefix = mainPrefix;
+        this.aliasPrefix = Optional.ofNullable(aliasPrefix);
     }
 
     public String getPrefix() {
-        return prefix;
+        return this.mainPrefix;
+    }
+
+    /**
+     * Returns true if this prefix has an alias.
+     */
+    public boolean isAliasPresent() {
+        return this.aliasPrefix.isPresent();
+    }
+
+    public String getAlias() {
+        return this.aliasPrefix.orElse(null);
     }
 
     public String toString() {
@@ -21,7 +44,7 @@ public class Prefix {
 
     @Override
     public int hashCode() {
-        return prefix == null ? 0 : prefix.hashCode();
+        return Objects.hash(mainPrefix, aliasPrefix);
     }
 
     @Override
@@ -34,6 +57,7 @@ public class Prefix {
         }
 
         Prefix otherPrefix = (Prefix) obj;
-        return otherPrefix.getPrefix().equals(getPrefix());
+        return otherPrefix.getPrefix().equals(getPrefix())
+                && otherPrefix.aliasPrefix.equals(aliasPrefix);
     }
 }
