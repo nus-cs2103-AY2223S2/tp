@@ -7,8 +7,8 @@ import seedu.ultron.model.Model;
 import seedu.ultron.model.opening.CompanyOrPositionContainsKeywordsPredicate;
 
 /**
- * Finds and lists all openings in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all openings in Ultron whose company or position contains any of the argument keywords.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
