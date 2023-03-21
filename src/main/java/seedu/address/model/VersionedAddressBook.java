@@ -149,7 +149,7 @@ public class VersionedAddressBook extends AddressBook {
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in
-     * the clinkedin book.
+     * the address book.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -157,8 +157,8 @@ public class VersionedAddressBook extends AddressBook {
     }
 
     /**
-     * Adds a person to the clinkedin book.
-     * The person must not already exist in the clinkedin book.
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -167,9 +167,9 @@ public class VersionedAddressBook extends AddressBook {
     /**
      * Replaces the given person {@code target} in the list with
      * {@code editedPerson}.
-     * {@code target} must exist in the clinkedin book.
+     * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another
-     * existing person in the clinkedin book.
+     * existing person in the address book.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -178,7 +178,7 @@ public class VersionedAddressBook extends AddressBook {
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the clinkedin book.
+     * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
