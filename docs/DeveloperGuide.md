@@ -183,7 +183,7 @@ Note that `Allergies` and `Vaccines` are optional, so the user does not need to 
 
 ### Listing Patients
 
-The **Listing Patients** mechanism is facilated by `VMS`. The Patient created is stored inside `PatientManager` object. It will list all the Patients that are stored in the `PatientManager`.
+The **Listing Patients** mechanism is facilated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
 
 #### Usage
 
@@ -201,10 +201,21 @@ This command is useful after doing a search, where the display may not show all 
 
 ### Finding a Patient
 
+The **Finding a Patient** mechanism is facilated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
+
+<!-- TODO describe the different search flags. That feature is still in progress -->
+
 #### Usage
 
 <img src="images/patient/FindPatientActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Finding a Patient** mechanism behaves at every step.
+
 <img src="images/patient/FindPatientSequenceDiagram.png" width="550" />
+
+`FindCommandParser#parse` will call `String#trim` to trim the search request. If there is no additional flags, it will fall back to the default of using the search term to find Names.
+
+<!-- TODO describe the search flags parsing things, similar to the Add Patient Parsing -->
 
 ### Editing a Patient
 
