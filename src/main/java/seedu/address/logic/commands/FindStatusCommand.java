@@ -1,14 +1,11 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.Model;
-import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.StatusPredicate;
 
 /**
