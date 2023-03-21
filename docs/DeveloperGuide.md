@@ -156,13 +156,13 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Clear_by feature
+### Clear_by feature
 This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
 
 #### How CLEAR_BY Feature is implemented
 
 The `clear_by` feature enables user to clear the internship applications in batch with the specific attribute and the specific keyword. There are 3 cases (attributes) available in this feature.
-In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#execute` functionality. The parsing process is facilitated by both the `AddressBookParser#parse` and `ClearByCommandParser#parse`.
+In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#execute` functionality. The parsing process is facilitated by both the `InternEaseParser#parse` and `ClearByCommandParser#parse`.
 
 The workflow of a `clear_by` command during its execution is shown by the activity diagram below:
 [!ClearByActivityDiagram](images/ClearByActivityDiagram.png)
@@ -192,7 +192,7 @@ The execution process of `Clear_by` is demonstrated by the sequence diagram belo
 Given below is a step-wise explanation on `clear_by` mechanism's behaviour.
 
 Step 1. Parsing
-    The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `clear_by`, it will then be passed to `ClearByParser#parse`.
+    The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `clear_by`, it will then be passed to `ClearByCommandParser#parse`.
     The `PREFIX` in the argument will then be investigated. Different constructor of `ClearByCommand` object will be using based on the `PREFIX`.
 
 Step 2. Execution
