@@ -84,7 +84,7 @@ class JsonAdaptedPerson {
                     .map(JsonAdaptedAppointment::new)
                     .collect(Collectors.toList()));
         } else {
-            medication = null;
+            medication = "";
         }
 
         if (source.isDoctor()) {
