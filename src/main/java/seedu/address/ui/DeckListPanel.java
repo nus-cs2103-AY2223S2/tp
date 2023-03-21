@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.deck.Deck;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Decks
  */
 public class DeckListPanel extends UiPart<Region> {
     private static final String FXML = "DeckListPanel.fxml";
@@ -21,7 +21,7 @@ public class DeckListPanel extends UiPart<Region> {
     private ListView<Deck> deckListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code DeckListPanel} with the given {@code ObservableList}.
      */
     public DeckListPanel(ObservableList<Deck> deckList, boolean isReview) {
         super(FXML);
@@ -34,7 +34,7 @@ public class DeckListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code DeckELement}.
      */
     class DeckListViewCell extends ListCell<Deck> {
         @Override
@@ -45,7 +45,7 @@ public class DeckListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new DeckCard(deck, getIndex() + 1).getRoot());
+                setGraphic(new DeckElement(deck, getIndex() + 1).getRoot());
                 setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 20 10 20; "
                         + "-fx-background-color:#FFFFFF");
             }
