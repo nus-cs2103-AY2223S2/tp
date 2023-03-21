@@ -21,13 +21,13 @@ public class Opening {
     // Data fields
     private final Status status;
     private final Remark remark;
-    private final Set<Date> dates = new HashSet<>();
+    private final Set<Keydate> keydates = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Opening(Position position, Company company, Email email, Status status, Remark remark, Set<Date> dates) {
-        requireAllNonNull(position, company, email, status, dates);
+    public Opening(Position position, Company company, Email email, Status status, Remark remark, Set<Keydate> keydates) {
+        requireAllNonNull(position, company, email, status, keydates);
         System.out.println("Creating opening");
         System.out.println(toString());
         this.position = position;
@@ -35,7 +35,7 @@ public class Opening {
         this.email = email;
         this.status = status;
         this.remark = remark;
-        this.dates.addAll(dates);
+        this.keydates.addAll(keydates);
     }
 
     public Position getPosition() {
@@ -62,8 +62,8 @@ public class Opening {
      * Returns an immutable date set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Date> getKeydates() {
-        return Collections.unmodifiableSet(dates);
+    public Set<Keydate> getKeydates() {
+        return Collections.unmodifiableSet(keydates);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Opening {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(position, company, email, status, remark, dates);
+        return Objects.hash(position, company, email, status, remark, keydates);
     }
 
     @Override
@@ -124,10 +124,10 @@ public class Opening {
                 .append(" Keydates: ");
 
 
-        Set<Date> dates = getKeydates();
-        if (!dates.isEmpty()) {
+        Set<Keydate> keydates = getKeydates();
+        if (!keydates.isEmpty()) {
             builder.append("; Keydates: ");
-            dates.forEach(builder::append);
+            keydates.forEach(builder::append);
         }
         return builder.toString();
     }

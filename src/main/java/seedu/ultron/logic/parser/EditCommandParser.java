@@ -17,7 +17,7 @@ import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.EditCommand;
 import seedu.ultron.logic.commands.EditCommand.EditOpeningDescriptor;
 import seedu.ultron.logic.parser.exceptions.ParseException;
-import seedu.ultron.model.opening.Date;
+import seedu.ultron.model.opening.Keydate;
 
 
 /**
@@ -71,7 +71,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Date>> parseDatesForEdit(Collection<String> dates) throws ParseException {
+    private Optional<Set<Keydate>> parseDatesForEdit(Collection<String> dates) throws ParseException {
         assert dates != null;
 
         if (dates.isEmpty()) {

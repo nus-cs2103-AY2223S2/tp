@@ -27,7 +27,7 @@
         </Label>
         <Label fx:id="company" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="dates" />
+      <FlowPane fx:id="keydates" />
       <Label fx:id="position" styleClass="cell_small_label" text="\$position" />
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />

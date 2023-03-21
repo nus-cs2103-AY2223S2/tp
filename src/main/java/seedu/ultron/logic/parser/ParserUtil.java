@@ -10,7 +10,7 @@ import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.util.StringUtil;
 import seedu.ultron.logic.parser.exceptions.ParseException;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Email;
 import seedu.ultron.model.opening.Position;
 import seedu.ultron.model.opening.Remark;
@@ -103,30 +103,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into an {@code Date}.
+     * Parses a {@code String date} into an {@code Keydate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException
      */
-    public static Date parseDate(String date) throws ParseException {
+    public static Keydate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
         String[] dateArray = trimmedDate.split("@");
-        if (!Date.isValidDate(dateArray[1])) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        if (!Keydate.isValidDate(dateArray[1])) {
+            throw new ParseException(Keydate.MESSAGE_CONSTRAINTS);
         }
-        return new Date(dateArray[0], dateArray[1]);
+        return new Keydate(dateArray[0], dateArray[1]);
     }
 
     /**
-     * Parses {@code Collection<String> dates} into a {@code Set<Date>}.
+     * Parses {@code Collection<String> dates} into a {@code Set<Keydate>}.
      */
-    public static Set<Date> parseDates(Collection<String> dates) throws ParseException {
+    public static Set<Keydate> parseDates(Collection<String> dates) throws ParseException {
         requireNonNull(dates);
-        final Set<Date> dateSet = new HashSet<>();
+        final Set<Keydate> keydateSet = new HashSet<>();
         for (String date : dates) {
-            dateSet.add(parseDate(date));
+            keydateSet.add(parseDate(date));
         }
-        return dateSet;
+        return keydateSet;
     }
 }
