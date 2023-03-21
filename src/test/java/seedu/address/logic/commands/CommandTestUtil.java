@@ -79,6 +79,9 @@ public class CommandTestUtil {
     public static final EditVideoDescriptor EDIT_VIDEO_DESC_V2 = new EditVideoDescriptorBuilder()
             .withName(VALID_VIDEO_NAME_V2).build();
 
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
