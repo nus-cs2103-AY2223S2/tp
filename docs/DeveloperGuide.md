@@ -71,6 +71,16 @@ title: Developer Guide
    * [Use Cases](#use-cases)
    * [Non-Functional Requirements](#non-functional-requirements)
    * [Instructions for Manual Testing](#instructions-for-manual-testing)
+     * [Launch and shutdown](#launch-and-shutdown)
+     * [Add a new person to EduMate](#add-a-new-person-to-edumate)
+     * [View a person in EduMate](#view-a-person-in-edumate)
+     * [Edit a person in EduMate](#edit-a-person-in-edumate)
+     * [Delete a person in EduMate](#delete-a-person-in-edumate)
+     * [Add a tag to a person](#add-a-tag-to-a-person)
+     * [Remove a tag from a person](#remove-a-tag-from-a-person)
+     * [Filter persons by keywords](#filter-persons-by-keywords)
+     * [Arrange persons by criteria](#arrange-persons-by-criteria)
+     * [Generate a sample EduMate](#generate-a-sample-edumate)
    * [Glossary](#glossary)
    * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 
@@ -939,27 +949,99 @@ testers are expected to do more *exploratory* testing.
     * 2b. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-### **Deleting a person**
+### **Add a new person**
 
-1. Deleting a person while all persons are being shown
+`add n/Thomas a/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
-    * 1a. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+Expected Output in the Person List: New person added to EduMate.
 
-    * 1b. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+`add n/Edward`
 
-    * 1c. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+Expected Output in the Command Output Box: Error message for invalid command format.
 
-    * 1d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+### **View a person**
 
+`view 5`
 
-### **Saving data**
+Expected Output in the Profile Panel: The fifth person's profile is shown.
 
-1. Dealing with missing/corrupted data files
+`view n/Thomas`
 
-   * 1a. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Expected Output in the Profile Panel: Thomas' profile is shown.
+
+### **Edit a person**
+
+`edit 3 n/Henry`
+
+Expected Output in the Person List: The third person's name is changed to Henry.
+
+`edit n/Gordon`
+
+Expected Output in Profile Panel: The user's name is changed to Gordon.
+
+### **Delete a person**
+
+`delete 4`
+
+Expected Output in the Person List: The fourth person has been removed, and there is no fourth index.
+
+`delete 4`, `add n/James e/james@gmail.com t/@james a/Bishan p/87654321`
+
+Expected Output in the Person List: New person has been added to EduMate, with an index of 4.
+
+`delete`
+
+Expected Output in the Command Output Box: Error message for invalid command format.
+
+### **Add a tag to a person**
+
+{to be filled}
+
+### **Remove a tag from a person**
+
+{to be filled}
+
+### **Filter persons by keywords**
+
+{to be filled}
+
+### **Arrange persons by criteria**
+
+`sort`
+
+Expected Output in Person List: Contacts are sorted by index.
+
+`sort n/a`
+
+Expected Output in Person List: Contacts are sorted by name in ascending order.
+
+`sort g/d n/`
+
+Expected Output in Person List: Contacts are sorted by number of groups in descending order, with names as tiebreaks.
+
+### **Generate a sample EduMate**
+
+`sample 50`
+
+Expected Output in Person List: A random sample of 50 contacts is generated. Running it multiple times should result in different EduMates.
+
+`sample 101`
+
+Expected Output in Command Output Box: Error message for Invalid Size.
+
+### **Suggest meetup locations and times**
+
+`meet 1 4 5`
+
+Expected Output in Command Output Box: Suggestions on where and when to meet.
+
+`eat 1 4 5`
+
+Expected Output in Command Output Box: Suggestions on where and when to eat.
+
+`study 1 4 5`
+
+Expected Output in Command Output Box: Suggestions on where and when to study.
 
 ---
 
