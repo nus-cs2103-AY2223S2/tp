@@ -15,6 +15,7 @@ import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.Pair;
 
@@ -69,7 +70,7 @@ public class AddClientCommandParserTest {
             Map.entry("invalid mobile number",
                 Pair.of("-cn Jamal -e jamal@hogriders.org -mn hogridaaaa", Phone.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid source (empty)",
-                Pair.of("-cn Jamal -e jamal@hogriders.org -src ", Messages.MESSAGE_EMPTY_STR)),
+                Pair.of("-cn Jamal -e jamal@hogriders.org -src ", NonEmptyString.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid year of birth",
                 Pair.of("-cn Jamal -e jamal@hogriders.org -y 42069", YearOfBirth.MESSAGE_CONSTRAINTS))
         );

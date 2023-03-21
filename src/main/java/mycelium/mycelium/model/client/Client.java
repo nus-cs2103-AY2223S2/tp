@@ -7,6 +7,7 @@ import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.util.IsSame;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * Represents a client with their personal information, including their name, email address,
@@ -21,7 +22,7 @@ public class Client implements IsSame<Client> {
 
     private final Optional<YearOfBirth> yearOfBirth;
 
-    private final Optional<String> source;
+    private final Optional<NonEmptyString> source;
 
     private final Optional<Phone> mobileNumber;
 
@@ -48,7 +49,7 @@ public class Client implements IsSame<Client> {
      * @param source      the source of information about the client.
      */
     public Client(Name name, Email email, Optional<YearOfBirth> yearOfBirth,
-                  Optional<String> source, Optional<Phone> mobileNumber) {
+                  Optional<NonEmptyString> source, Optional<Phone> mobileNumber) {
         this.name = name;
         this.email = email;
         this.yearOfBirth = yearOfBirth;
@@ -88,7 +89,7 @@ public class Client implements IsSame<Client> {
      *
      * @return the source where the developer found out about the client.
      */
-    public Optional<String> getSource() {
+    public Optional<NonEmptyString> getSource() {
         return source;
     }
 

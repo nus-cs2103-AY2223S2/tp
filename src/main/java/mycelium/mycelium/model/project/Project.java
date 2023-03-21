@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.util.IsSame;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * Represents a project.
@@ -17,7 +18,7 @@ public class Project implements IsSame<Project> {
     /**
      * The project's name
      */
-    private final String name;
+    private final NonEmptyString name;
 
     /**
      * The project's status
@@ -33,12 +34,12 @@ public class Project implements IsSame<Project> {
     /**
      * The project's source, e.g. Fiverr
      */
-    private final Optional<String> source;
+    private final Optional<NonEmptyString> source;
 
     /**
      * Arbitrary description for the project
      */
-    private final Optional<String> description;
+    private final Optional<String> description; // Can be empty
 
     /**
      * The date on which this project was accepted
@@ -54,8 +55,7 @@ public class Project implements IsSame<Project> {
      * Creates a new project from the minimal set of required fields. The remaining fields are filled with default
      * values.
      */
-    public Project(String name, Email clientEmail) {
-        // TODO we should probably enforce an invariant that the name is non-empty?
+    public Project(NonEmptyString name, Email clientEmail) {
         this.name = name;
         this.status = ProjectStatus.NOT_STARTED;
         this.clientEmail = clientEmail;
@@ -68,10 +68,10 @@ public class Project implements IsSame<Project> {
     /**
      * Creates a new {@code Project} with every field present and not null.
      */
-    public Project(String name,
+    public Project(NonEmptyString name,
                    ProjectStatus status,
                    Email clientEmail,
-                   Optional<String> source,
+                   Optional<NonEmptyString> source,
                    Optional<String> description,
                    LocalDate acceptedOn,
                    Optional<LocalDate> deadline) {
@@ -84,7 +84,7 @@ public class Project implements IsSame<Project> {
         this.deadline = deadline;
     }
 
-    public String getName() {
+    public NonEmptyString getName() {
         return name;
     }
 
@@ -96,7 +96,7 @@ public class Project implements IsSame<Project> {
         return clientEmail;
     }
 
-    public Optional<String> getSource() {
+    public Optional<NonEmptyString> getSource() {
         return source;
     }
 

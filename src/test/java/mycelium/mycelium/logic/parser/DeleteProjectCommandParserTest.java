@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.DeleteProjectCommand;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 
 public class DeleteProjectCommandParserTest {
@@ -50,7 +51,7 @@ public class DeleteProjectCommandParserTest {
 
     @Test
     public void parse_validProjectName_success() {
-        DeleteProjectCommand want = new DeleteProjectCommand("Luminus");
+        DeleteProjectCommand want = new DeleteProjectCommand(NonEmptyString.of("Luminus"));
         Map<String, String> tests = Map.ofEntries(
                 Map.entry("valid project name", "-pn Luminus"),
                 Map.entry("valid project name with leading whitespace", "-pn       Luminus"),
