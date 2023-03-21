@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
@@ -52,7 +53,9 @@ public class ParentCommandParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
-
+        final String arguments = matcher.group("arguments");
+        ArgumentMultimap argMultimapFind =
+                ArgumentTokenizer.tokenize(args, PREFIX_FIND);
         ArgumentMultimap argMultimapAdd =
                 ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_ADDRESS,
                         PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
@@ -72,6 +75,8 @@ public class ParentCommandParser {
             return deleteCommand(argMultimapDelete);
         } else if (argMultimapEdit.getValue(PREFIX_EDIT).isPresent()) {
             return editCommand(argMultimapEdit);
+        } else if (argMultimapFind.getValue(PREFIX_FIND).isPresent()) {
+            return new ParentFindCommandParser().parse(arguments);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
