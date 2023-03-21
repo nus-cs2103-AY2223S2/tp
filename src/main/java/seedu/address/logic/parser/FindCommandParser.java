@@ -8,7 +8,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.listing.TitleContainsKeywordsPredicate;
 
-
 /**
  * Parses input arguments and creates a new FindCommand object
  */
