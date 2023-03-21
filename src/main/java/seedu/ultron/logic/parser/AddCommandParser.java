@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.parser.exceptions.ParseException;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Email;
 import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Position;
@@ -48,9 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
-        Set<Date> dateList = ParserUtil.parseDates(argMultimap.getAllValues(PREFIX_KEYDATE));
+        Set<Keydate> keydateList = ParserUtil.parseDates(argMultimap.getAllValues(PREFIX_KEYDATE));
 
-        Opening opening = new Opening(position, company, email, status, remark, dateList);
+        Opening opening = new Opening(position, company, email, status, remark, keydateList);
 
         return new AddCommand(opening);
     }
