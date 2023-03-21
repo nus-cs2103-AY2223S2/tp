@@ -23,7 +23,7 @@ public class InterviewDateTime {
     /**
      * method to create InterviewDateTime, used in converting from json
      * @param dateTime String form of dateTime or empty string
-     * @return null if empty String, InterviewDateTime object otherwise
+     * @return {@code Optional.empty()} if empty String, otherwise returns {@code Optional<InterviewDateTime>}.
      * @throws ParseException if dateTime String cannot be parsed
      */
     public static Optional<InterviewDateTime> createInterviewDateTime(String dateTime) throws ParseException {

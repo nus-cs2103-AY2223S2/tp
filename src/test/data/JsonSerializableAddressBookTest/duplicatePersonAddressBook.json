@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "status" : "APPLIED",
+    "applicationDate" : "02-02-2023 14:00",
     "interviewDate" : "",
     "notes": [ "friends" ]
   }, {
@@ -12,6 +13,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "status" : "APPLIED",
+    "applicationDate" : "02-02-2023 14:00",
     "interviewDate" : "",
     "address": "4th street"
   } ]
