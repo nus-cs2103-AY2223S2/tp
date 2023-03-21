@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.ImageUtil;
@@ -58,6 +59,8 @@ public class DeleteImageCommand extends Command {
             ImageUtil.deleteImage(personAtIndex.getImage().imageName);
         } catch (IOException io) {
             throw new CommandException(MESSAGE_DELETE_IMAGE_FAILURE, io);
+        } catch (ParseException pe) {
+            throw new CommandException(MESSAGE_DELETE_IMAGE_FAILURE, pe);
         }
         return new CommandResult(MESSAGE_DELETE_IMAGE_SUCCESS);
     }

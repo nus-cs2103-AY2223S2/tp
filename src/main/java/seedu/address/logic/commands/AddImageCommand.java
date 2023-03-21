@@ -9,6 +9,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Person;
@@ -52,6 +53,8 @@ public class AddImageCommand extends Command {
             }
         } catch (IOException io) {
             throw new CommandException("Failed to update image.", io);
+        } catch (ParseException pe) {
+            throw new CommandException("Failed to update image due to permissions", pe);
         }
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getStatus(), personToEdit.getPhone(), personToEdit.getEmail(),

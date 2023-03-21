@@ -23,7 +23,7 @@ public class AddImageCommandParser implements Parser<AddImageCommand> {
 
     /**
      * Parses given {@code String} of arguments in the context of the {@code AddImageCommand}.
-     * @param args yser input
+     * @param args user input
      * @return {@code AddImageCommand} object for execution
      * @throws ParseException if the user input does not conform to expected format
      */
@@ -43,8 +43,10 @@ public class AddImageCommandParser implements Parser<AddImageCommand> {
 
             String fileName = importImage(path);
             Image image = new Image(fileName);
+
             return new AddImageCommand(index, image);
         } catch (IOException io) {
+
             throw new ParseException("Upload image failed.");
         } catch (ParseException pe) {
             throw pe;
