@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import codoc.commons.core.index.Index;
@@ -146,6 +147,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code List<Skill> skillsList} into a {@code Set<Skill> skillSet}.
+     * Parses all items into Skill and puts them into skillSet
+     *
+     * @throws ParseException if the given {@code skill} is invalid.
+     */
+    public static Set<Skill> parseSkillSet(List<String> skillList) throws ParseException {
+        requireNonNull(skillList);
+        final Set<Skill> skillSet = new HashSet<>();
+        for (String skillName : skillList) { // had to use loop for mat instead of forEach to handle exception
+            Skill skill = parseSkill(skillName);
+            skillSet.add(skill);
+        }
+        return skillSet;
+    }
+
+    /**
      * Parses a {@code String Module} into a {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -160,23 +177,12 @@ public class ParserUtil {
         return new Module(trimmedModule);
     }
     /**
-     * Parses {@code Collection<String> skills} into a {@code Set<Skill>}.
-     */
-    public static Set<Skill> parseSkills(Collection<String> skills) throws ParseException {
-        requireNonNull(skills);
-        final Set<Skill> skillSet = new HashSet<>();
-        for (String skillName : skills) {
-            skillSet.add(parseSkill(skillName));
-        }
-        return skillSet;
-    }
-    /**
      * Parses {@code Collection<String> modules} into a {@code List<Module>}.
      */
-    public static Set<Module> parseModules(Collection<String> modules) throws ParseException {
-        requireNonNull(modules);
+    public static Set<Module> parseModuleSet(List<String> moduleList) throws ParseException {
+        requireNonNull(moduleList);
         final Set<Module> moduleSet = new HashSet<>();
-        for (String moduleName : modules) {
+        for (String moduleName : moduleList) {
             moduleSet.add(parseModule(moduleName));
         }
         return moduleSet;

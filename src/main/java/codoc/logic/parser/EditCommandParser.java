@@ -81,7 +81,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setLinkedin(ParserUtil.parseLinkedin(argMultimap.getValue(PREFIX_LINKEDIN).get()));
         }
         if (argMultimap.getValue(PREFIX_SKILL_ADD).isPresent()) {
-            editPersonDescriptor.setSkillsAdded(ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL_ADD).get()));
+            editPersonDescriptor.setSkillsAdded(ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL_ADD)));
+        }
+        if (argMultimap.getValue(PREFIX_SKILL_DELETE).isPresent()) {
+            editPersonDescriptor.setSkillsRemoved(ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL_DELETE)));
+        }
+        if (argMultimap.getValue(PREFIX_MOD_ADD).isPresent()) {
+            editPersonDescriptor.setModulesAdded(ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD_ADD)));
+        }
+        if (argMultimap.getValue(PREFIX_MOD_DELETE).isPresent()) {
+            editPersonDescriptor.setModulesRemoved(ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD_DELETE)));
         }
 
         editSkills(argMultimap, editPersonDescriptor);
