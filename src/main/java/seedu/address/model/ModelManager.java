@@ -7,11 +7,13 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.policy.Policy;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,8 +24,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
-
     private final VersionedAddressBook versionedAddressBook;
+    private Client selectedClient = null;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -45,14 +48,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        requireNonNull(userPrefs);
+        this.userPrefs.resetData(userPrefs);
     }
 
     @Override
@@ -80,6 +83,11 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
+    public ReadOnlyAddressBook getAddressBook() {
+        return addressBook;
+    }
+
+    @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
         commit();
@@ -88,15 +96,11 @@ public class ModelManager implements Model {
     /**
      * Overload
      * This version doesn't do commit
+     *
      * @param addressBook
      */
     public void setAddressBook(AddressBook addressBook) {
         this.addressBook.resetData(addressBook.clone());
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
     }
 
     @Override
@@ -170,6 +174,22 @@ public class ModelManager implements Model {
     public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredClients.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Policy> getFilteredPolicyList() {
+        if (selectedClient == null) {
+            return FXCollections.observableArrayList();
+        }
+        return selectedClient.getFilteredPolicyList();
+    }
+
+    /**
+     * Updates the selected Client
+     */
+    @Override
+    public void updateSelectedClient(Client targetClient) {
+        this.selectedClient = targetClient;
     }
 
     @Override

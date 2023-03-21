@@ -19,7 +19,7 @@ public class Frequency {
      * The first character of the frequency must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String[] VALIDATION_REGEX = {"monthly", "quarterly", "yearly"};
+    public static final String[] VALIDATION_REGEX = {"monthly", "weekly", "yearly"};
 
     public final String frequency;
 

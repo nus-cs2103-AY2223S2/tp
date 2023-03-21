@@ -14,7 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -71,7 +71,14 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
+    public static final String INVALID_POLICY_NAME = " " + PREFIX_POLICY_NAME
+            + "Life Insurance*"; // '*' not allowed in policy names
+    public static final String INVALID_POLICY_DATE = " " + PREFIX_POLICY_START_DATE
+            + "01/01/2020"; // '/' not allowed in policy dates
+    public static final String INVALID_POLICY_PREMIUM = " " + PREFIX_POLICY_PREMIUM
+            + "$203"; // '$' not allowed in policy premiums
+    public static final String INVALID_POLICY_FREQUENCY = " " + PREFIX_POLICY_FREQUENCY
+            + "daily"; // 'weekly' not allowed in policy frequencies
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -93,7 +100,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -108,7 +115,17 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Client targetClient, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, targetClient);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -129,6 +146,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -138,7 +156,7 @@ public class CommandTestUtil {
 
         Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
         final String[] splitName = client.getName().fullName.split("\\s+");
-        model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredClientList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
     }

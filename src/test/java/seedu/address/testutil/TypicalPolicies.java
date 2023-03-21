@@ -22,8 +22,8 @@ public class TypicalPolicies {
     public static final Policy LIFE = new PolicyBuilder().withPolicyName("Life")
             .withStartDate("02.03.2023")
             .withPremium("98.20")
-            .withFrequency("quarterly").build();
-    public static final Policy PERSONALINJURY = new PolicyBuilder().withPolicyName("Personal Injury")
+            .withFrequency("weekly").build();
+    public static final Policy PERSONAL_INJURY = new PolicyBuilder().withPolicyName("Personal Injury")
             .withStartDate("03.04.2023")
             .withPremium("350.15")
             .withFrequency("yearly").build();
@@ -47,6 +47,6 @@ public class TypicalPolicies {
 
 
     public static List<Policy> getTypicalPolicies() {
-        return new ArrayList<>(Arrays.asList(HEALTH, LIFE, PERSONALINJURY));
+        return new ArrayList<>(Arrays.asList(HEALTH, LIFE, PERSONAL_INJURY));
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.client;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -13,6 +14,8 @@ import static seedu.address.testutil.TypicalClients.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.testutil.ClientBuilder;
 
 public class ClientTest {
@@ -49,7 +52,13 @@ public class ClientTest {
         editedBob = new ClientBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameClient(editedBob));
     }
-    /*
+
+    @Test
+    void getFilteredPolicyList() {
+        Client client = new ClientBuilder().build();
+        assertEquals(FXCollections.observableArrayList(), client.getFilteredPolicyList());
+    }
+
     @Test
     public void equals() {
         // same values -> returns true
@@ -88,5 +97,15 @@ public class ClientTest {
         editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
-     */
+
+    @Test
+    void getPolicyList() {
+        Client client = new ClientBuilder().build();
+        assertEquals(new UniquePolicyList(), client.getPolicyList());
+    }
+    @Test
+    void testHashCode() {
+        Client client = new ClientBuilder(ALICE).build();
+        assertEquals(client.hashCode(), ALICE.hashCode());
+    }
 }

@@ -40,7 +40,7 @@ public class SelectCommand extends Command {
         }
 
         Client clientToSelect = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SELECT_CLIENT_SUCCESS, clientToSelect));
+        return new CommandResult(MESSAGE_SELECT_CLIENT_SUCCESS, clientToSelect, true, false, false);
     }
 
     @Override

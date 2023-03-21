@@ -19,7 +19,7 @@ class UniquePolicyListTest {
     private PolicyName name1 = new PolicyName("Life");
     private CustomDate date = new CustomDate("01.02.2023");
     private Premium premium = new Premium("200");
-    private Frequency frequency = new Frequency("quarterly");
+    private Frequency frequency = new Frequency("weekly");
     private Policy policy = new Policy(name, date, premium, frequency);
     private Policy policy1 = new Policy(name1, date, premium, frequency);
     private UniquePolicyList list = new UniquePolicyList();

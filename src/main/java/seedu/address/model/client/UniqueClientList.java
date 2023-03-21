@@ -17,7 +17,7 @@ import seedu.address.model.client.exceptions.DuplicateClientException;
  * clients uses client#isSameclient(client) for equality so as to ensure that the client being added or updated is
  * unique in terms of identity in the UniqueclientList. However, the removal of a client uses client#equals(Object) so
  * as to ensure that the client with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Client#isSameClient(Client)
@@ -104,6 +104,15 @@ public class UniqueClientList implements Iterable<Client> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the size of the internal list
+     *
+     * @return size
+     */
+    public int size() {
+        return internalList.size();
+    }
+
     @Override
     public Iterator<Client> iterator() {
         return internalList.iterator();
@@ -113,7 +122,7 @@ public class UniqueClientList implements Iterable<Client> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueClientList // instanceof handles nulls
-                        && internalList.equals(((UniqueClientList) other).internalList));
+                && internalList.equals(((UniqueClientList) other).internalList));
     }
 
     @Override

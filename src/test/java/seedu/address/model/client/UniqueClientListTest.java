@@ -166,7 +166,7 @@ public class UniqueClientListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueClientList.asUnmodifiableObservableList().remove(0));
+                -> uniqueClientList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
@@ -188,5 +188,10 @@ public class UniqueClientListTest {
         assertTrue(iterator.hasNext());
         assertEquals(BOB, iterator.next());
         assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    void size() {
+        assertEquals(0, uniqueClientList.size());
     }
 }

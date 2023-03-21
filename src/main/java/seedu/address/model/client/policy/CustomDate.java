@@ -63,7 +63,8 @@ public class CustomDate {
 
     @Override
     public String toString() {
-        return date.toString();
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return outputFormat.format(date);
     }
 
     @Override

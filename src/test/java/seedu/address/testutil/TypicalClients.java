@@ -26,11 +26,21 @@ public class TypicalClients {
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withPolicyList(
+                    new PolicyBuilder().withPolicyName("Fire Insurance").withStartDate("31.01.2023")
+                            .withPremium("1000").withFrequency("monthly").build(),
+                    new PolicyBuilder().withPolicyName("Water Insurance").withStartDate("11.11.2023")
+                            .withPremium("2000").withFrequency("monthly").build()
+            ).build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withPolicyList(
+                    new PolicyBuilder().withPolicyName("Health Insurance").withStartDate("31.01.2023")
+                            .withPremium("1000").withFrequency("weekly").build()
+            ).build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")

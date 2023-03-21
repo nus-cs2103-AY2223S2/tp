@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.policy.Policy;
 
 /**
  * API of the Logic component
@@ -16,10 +17,11 @@ import seedu.address.model.client.Client;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
+     * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
@@ -30,8 +32,20 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of clients */
+    /**
+     * Returns an unmodifiable view of the filtered list of clients
+     */
     ObservableList<Client> getFilteredClientList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of policies of the selected client
+     */
+    ObservableList<Policy> getFilteredPolicyList();
+
+    /**
+     * Updates the selected Client
+     */
+    void updateSelectedClient(Client targetClient);
 
     /**
      * Returns the user prefs' address book file path.

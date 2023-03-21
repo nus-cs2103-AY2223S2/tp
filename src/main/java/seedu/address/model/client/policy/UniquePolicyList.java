@@ -16,7 +16,7 @@ import seedu.address.model.client.exceptions.PolicyNotFoundException;
  * Represents a list of policies that enforces no two policies in the list have the same identity.
  * A policy is considered the same as another policy in the list if they have the same identity.
  * Identity is defined by {@code Policy#isSamePolicy(Policy)}.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Policy#isSamePolicy(Policy)
@@ -26,6 +26,20 @@ public class UniquePolicyList implements Iterable<Policy> {
     private final ObservableList<Policy> internalList = FXCollections.observableArrayList();
     private final ObservableList<Policy> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    /**
+     * Returns true if {@code persons} contains only unique persons.
+     */
+    static boolean policiesAreUnique(List<Policy> policies) {
+        for (int i = 0; i < policies.size() - 1; i++) {
+            for (int j = i + 1; j < policies.size(); j++) {
+                if (policies.get(i).isSamePolicy(policies.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * Returns true if the list contains an equivalent policy as the given argument.
@@ -49,6 +63,7 @@ public class UniquePolicyList implements Iterable<Policy> {
 
     /**
      * Returns true if the list is empty.
+     *
      * @return true if the list is empty.
      */
     public boolean isEmpty() {
@@ -75,17 +90,6 @@ public class UniquePolicyList implements Iterable<Policy> {
         internalList.set(index, editedPolicy);
     }
 
-    /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
-     */
-    public void remove(Policy toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new PolicyNotFoundException();
-        }
-    }
-
     /*
     public void setPolicies(UniquePolicyList replacement) {
         requireNonNull(replacement);
@@ -107,14 +111,23 @@ public class UniquePolicyList implements Iterable<Policy> {
     }
     */
 
-    /*
+    /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public void remove(Policy toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new PolicyNotFoundException();
+        }
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
-     *
+     */
     public ObservableList<Policy> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
-    */
 
     @Override
     public Iterator<Policy> iterator() {
@@ -131,19 +144,5 @@ public class UniquePolicyList implements Iterable<Policy> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code persons} contains only unique persons.
-     */
-    static boolean policiesAreUnique(List<Policy> policies) {
-        for (int i = 0; i < policies.size() - 1; i++) {
-            for (int j = i + 1; j < policies.size(); j++) {
-                if (policies.get(i).isSamePolicy(policies.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

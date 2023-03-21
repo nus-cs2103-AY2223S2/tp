@@ -11,7 +11,7 @@ import seedu.address.model.client.policy.Premium;
  */
 public class PolicyBuilder {
 
-    public static final String DEFAULT_POLICYNAME = "Health";
+    public static final String DEFAULT_POLICY_NAME = "Health";
     public static final String DEFAULT_DATE = "01.01.2023";
     public static final String DEFAULT_PREMIUM = "80.69";
     public static final String DEFAULT_FREQUENCY = "monthly";
@@ -25,7 +25,7 @@ public class PolicyBuilder {
      * Creates a {@code PolicyBuilder} with the default details.
      */
     public PolicyBuilder() {
-        name = new PolicyName(DEFAULT_POLICYNAME);
+        name = new PolicyName(DEFAULT_POLICY_NAME);
         date = new CustomDate(DEFAULT_DATE);
         premium = new Premium(DEFAULT_PREMIUM);
         frequency = new Frequency(DEFAULT_FREQUENCY);

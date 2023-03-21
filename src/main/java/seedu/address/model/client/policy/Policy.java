@@ -11,28 +11,28 @@ import java.util.Objects;
 public class Policy {
 
     // fields
-    private final PolicyName name;
-    private final CustomDate startdate;
+    private final PolicyName policyName;
+    private final CustomDate startDate;
     private final Premium premium;
     private final Frequency frequency;
 
     /**
      * Every field must be present and not null.
      */
-    public Policy(PolicyName name, CustomDate startdate, Premium premium, Frequency frequency) {
-        requireAllNonNull(name, startdate, premium, frequency);
-        this.name = name;
-        this.startdate = startdate;
+    public Policy(PolicyName policyName, CustomDate startDate, Premium premium, Frequency frequency) {
+        requireAllNonNull(policyName, startDate, premium, frequency);
+        this.policyName = policyName;
+        this.startDate = startDate;
         this.premium = premium;
         this.frequency = frequency;
     }
 
     public PolicyName getPolicyName() {
-        return name;
+        return policyName;
     }
 
     public CustomDate getStartDate() {
-        return startdate;
+        return startDate;
     }
 
     public Premium getPremium() {
@@ -80,7 +80,7 @@ public class Policy {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, startdate, premium, frequency);
+        return Objects.hash(policyName, startDate, premium, frequency);
     }
 
     @Override
@@ -92,8 +92,8 @@ public class Policy {
                 .append("; Premium: ")
                 .append(getPremium())
                 .append("; Frequency: ")
-                .append(getFrequency());
-
+                .append(getFrequency())
+                .append("; ");
         return builder.toString();
     }
 }
