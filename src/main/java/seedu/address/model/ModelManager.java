@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final SortedList<Person> sortedList;
     private final FilteredList<Transaction> filteredTransactions;
 
     /**
@@ -36,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedList = new SortedList<>(filteredPersons);
         filteredTransactions = new FilteredList<>(this.addressBook.getTransactionList());
     }
 
@@ -142,7 +146,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return sortedList;
     }
 
     //@Override
@@ -154,12 +158,14 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        sortedList.setComparator(null);
     }
 
     @Override
     public void sortPersonList(String attribute) {
         requireNonNull(attribute);
-        System.out.println(attribute);
+        Comparator<Person> personComparator = Comparator.comparing((Person person) -> person.getAttribute(attribute));
+        sortedList.setComparator(personComparator);
     }
 
     //@Override
