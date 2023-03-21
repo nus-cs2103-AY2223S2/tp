@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -53,6 +56,18 @@ public class EventCard extends UiPart<Region> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         date.setText(event.getDate().format(formatter));
         //notes.setText("" + event.countNotes());
+
+        for (String studentProfile: event.getStudentProfiles()) {
+            ImageView profile = new ImageView();
+            Image newImage = new Image(Objects.requireNonNull(this.getClass()
+                    .getResourceAsStream(studentProfile)));
+            profile.setImage(newImage);
+            profile.setFitWidth(24);
+            profile.setFitHeight(23);
+            studentProfiles.getChildren().addAll(profile);
+        }
+
+
     }
 
     //Add more comparison in equals

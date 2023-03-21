@@ -88,6 +88,8 @@ public class Tutorial extends Event {
         return super.countStudents();
     }
 
+    public List<String> getStudentProfiles() {return super.getStudentProfiles();}
+
     /**
      * Gets the date of the event
      *
