@@ -16,7 +16,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the listing displayed according to the specified field.\n"
             + "Parameters: " + PREFIX_FIELD + "FIELD_COMPARED(none, title, description, applicants)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_FIELD + "number of applicants";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_FIELD + "applicants";
 
     public static final String MESSAGE_SUCCESS = "Listings have been sorted.";
 
