@@ -3,8 +3,6 @@ package seedu.patientist.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.patientist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.patientist.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.patientist.testutil.Assert.assertThrows;
 import static seedu.patientist.testutil.TypicalPersons.ALICE;
 import static seedu.patientist.testutil.TypicalPersons.getTypicalPatientist;
@@ -21,7 +19,6 @@ import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.exceptions.DuplicatePersonException;
 import seedu.patientist.model.ward.Ward;
-//import seedu.patientist.testutil.PersonBuilder;
 
 public class PatientistTest {
 

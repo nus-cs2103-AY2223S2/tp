@@ -9,6 +9,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.ward.exceptions.DuplicateWardException;
+import seedu.patientist.model.ward.exceptions.WardNotFoundException;
 
 /**
  * Representation of a list of wards that enforces uniqueness between the wards.
@@ -37,7 +39,7 @@ public class WardList implements Iterable<Ward> {
     public void setWards(List<Ward> wards) {
         requireAllNonNull(wards);
         if (!wardsAreUnique(wards)) {
-            return; //TODO: impelemnt DuplicateWardException
+            throw new DuplicateWardException();
         }
 
         internalList.setAll(wards);
@@ -53,11 +55,11 @@ public class WardList implements Iterable<Ward> {
 
         int idx = internalList.indexOf(target);
         if (idx == -1) {
-            return; //TODO: implement and throw WardNotFoundException
+            throw new WardNotFoundException();
         }
 
         if (!target.equals(edited) && contains(edited)) {
-            return; //TODO: implement and throw DuplicateWardException
+            throw new DuplicateWardException();
         }
 
         internalList.set(idx, edited);
@@ -70,7 +72,7 @@ public class WardList implements Iterable<Ward> {
     public void add(Ward ward) {
         requireAllNonNull(ward);
         if (contains(ward)) {
-            return; //TODO: implement and throw DuplicateWardException
+            throw new DuplicateWardException();
         }
         internalList.add(ward);
     }
@@ -79,6 +81,7 @@ public class WardList implements Iterable<Ward> {
      * Returns true if targetWard is in the list.
      */
     public boolean contains(Ward targetWard) {
+        requireAllNonNull(targetWard);
         return internalList.stream().anyMatch(targetWard::equals);
     }
 
@@ -87,6 +90,7 @@ public class WardList implements Iterable<Ward> {
      * Person can be staff or patient.
      */
     public boolean contains(Person person) {
+        requireAllNonNull(person);
         for (Ward ward : internalList) {
             if (ward.containsPerson(person)) {
                 return true;
@@ -102,7 +106,7 @@ public class WardList implements Iterable<Ward> {
     public void delete(Ward ward) {
         requireAllNonNull(ward);
         if (!internalList.remove(ward)) {
-            return; //TODO: implement and throw WardNotFoundException
+            throw new WardNotFoundException();
         }
     }
 

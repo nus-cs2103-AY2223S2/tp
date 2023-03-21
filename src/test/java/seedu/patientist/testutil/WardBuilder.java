@@ -27,6 +27,21 @@ public class WardBuilder {
     }
 
     /**
+     * Clones {@code toCopy} into the WardBuilder.
+     */
+    public WardBuilder(Ward toCopy) {
+        wardName = toCopy.getWardName();
+        patients = new UniquePersonList(wardName);
+        for (Person pat : toCopy.getPatientsAsUnmodifiableObservableList()) {
+            patients.add(pat);
+        }
+        staffs = new UniquePersonList(wardName);
+        for (Person stf : toCopy.getStaffsAsUnmodifiableObservableList()) {
+            staffs.add(stf);
+        }
+    }
+
+    /**
      * Adds {@code patient} into ward we are building.
      */
     public WardBuilder withPatient(Patient patient) {

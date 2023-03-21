@@ -1,10 +1,13 @@
 package seedu.patientist.model.ward;
 
+import static seedu.patientist.commons.util.AppUtil.checkArgument;
 import static seedu.patientist.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.collections.ObservableList;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.UniquePersonList;
+import seedu.patientist.model.person.exceptions.DuplicatePersonException;
+import seedu.patientist.model.person.exceptions.PersonNotFoundException;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.staff.Staff;
 
@@ -12,6 +15,8 @@ import seedu.patientist.model.person.staff.Staff;
  * Represents a ward in Patientist, which holds a collection of Patients and a collection of Staff.
  */
 public class Ward {
+
+    private static final String MESSAGE_CONSTRAINTS = "Ward name cannot be blank";
 
     private final UniquePersonList patients;
     private final UniquePersonList staffs;
@@ -21,9 +26,15 @@ public class Ward {
      * Initialises an empty ward with wardName.
      */
     public Ward(String wardName) {
+        requireAllNonNull(wardName);
+        checkArgument(isValidWardName(wardName), MESSAGE_CONSTRAINTS);
         patients = new UniquePersonList(wardName);
         staffs = new UniquePersonList(wardName);
         this.wardName = wardName;
+    }
+
+    public static boolean isValidWardName(String wardName) {
+        return !wardName.equals("");
     }
 
     public boolean containsPatient(Patient patient) {
@@ -47,7 +58,7 @@ public class Ward {
     public void addPatient(Patient patient) {
         requireAllNonNull(patient);
         if (containsPatient(patient)) {
-            return; //TODO: throw DuplicatePersonsException
+            throw new DuplicatePersonException();
         }
         patients.add(patient);
     }
@@ -58,7 +69,7 @@ public class Ward {
     public void addStaff(Staff staff) {
         requireAllNonNull(staff);
         if (containsStaff(staff)) {
-            return; //TODO: throw DuplicatePersonsException
+            throw new DuplicatePersonException();
         }
         staffs.add(staff);
     }
@@ -69,7 +80,7 @@ public class Ward {
     public void deletePatient(Patient patient) {
         requireAllNonNull(patient);
         if (!containsPatient(patient)) {
-            return; //TODO: throw PersonNotFoundException
+            throw new PersonNotFoundException();
         }
         patients.remove(patient);
     }
@@ -80,7 +91,7 @@ public class Ward {
     public void deleteStaff(Staff staff) {
         requireAllNonNull(staff);
         if (!containsStaff(staff)) {
-            return; //TODO: throw PersonNotFoundException
+            throw new PersonNotFoundException();
         }
         staffs.remove(staff);
     }
@@ -92,11 +103,11 @@ public class Ward {
         requireAllNonNull(person);
         if (person instanceof Staff && staffs.contains(person)) {
             staffs.remove(person);
-        }
-        if (person instanceof Patient && patients.contains(person)) {
+        } else if (person instanceof Patient && patients.contains(person)) {
             patients.remove(person);
+        } else {
+            throw new PersonNotFoundException();
         }
-        return; //TODO: throw PersonNotFoundException
     }
 
     /**
@@ -106,7 +117,6 @@ public class Ward {
      */
     public void setPatient(Patient target, Patient updated) {
         requireAllNonNull(target, updated);
-        //TODO: throw PersonNotFoundException
         patients.setPerson(target, updated);
     }
 
@@ -117,7 +127,6 @@ public class Ward {
      */
     public void setStaff(Staff target, Staff updated) {
         requireAllNonNull(target, updated);
-        //TODO: throw PersonNotFoundException
         staffs.setPerson(target, updated);
     }
 
