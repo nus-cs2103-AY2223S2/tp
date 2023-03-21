@@ -133,7 +133,7 @@ public class Person {
             return name.toString();
         case "gender":
             return gender.toString();
-        case "phone":
+        case "phone number":
             return phone.toString();
         case "email":
             return email.toString();
@@ -149,7 +149,7 @@ public class Person {
             return jobTitle.toString();
         case "remark":
             return remark.toString();
-        case "lead status":
+        case "status":
             return status.getStatusName().getLabel();
         default:
             throw new IllegalValueException("Attribute does not exists!");
