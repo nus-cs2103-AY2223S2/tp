@@ -262,7 +262,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getMajor().equals(e.getMajor())
-                    //&& getTeams().equals(e.getTeams())
+                    && getTeams().equals(e.getTeams())
                     && getTags().equals(e.getTags());
             // @formatter:on
         }
