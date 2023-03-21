@@ -38,8 +38,8 @@
       </HBox>
          <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" spacing="5">
             <children>
-               <Label prefHeight="17.0" prefWidth="77.0" style="-fx-font-size: 15px;" text="        Due By: " />
-            <Label fx:id="taskDeadline" prefHeight="17.0" prefWidth="80.0" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskDeadline" />
+               <Label style="-fx-font-size: 15px;" text="        Due By: " />
+            <Label fx:id="taskDeadline" style="-fx-font-size: 15px;" styleClass="cell_small_label" text="\$taskDeadline" />
                <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="459.0" />
             <Label fx:id="personRole" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #A98B3E; -fx-background-radius: 10px; -fx-alignment: center; -fx-label-padding: 5px;" styleClass="cell_small_label" text="\$personRole" />
             </children>

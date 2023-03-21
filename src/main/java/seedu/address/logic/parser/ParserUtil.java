@@ -16,6 +16,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.role.Role;
 import seedu.address.model.task.Comment;
 import seedu.address.model.task.Date;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.TaskDescription;
 
 /**
@@ -198,5 +199,22 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+
+    /**
+     * Parses {@code String score} into a {@code Score}.
+     * @param score
+     * @return score of person
+     * @throws ParseException
+     */
+    public static Score parseScoreValue(String score) throws ParseException {
+        requireNonNull(score);
+        String trimmedScore = score.trim();
+        int scoreValue = Integer.parseInt(trimmedScore);
+        if (!Score.isValidScore(scoreValue)) {
+            throw new ParseException(Score.MESSAGE_CONSTRAINTS);
+        }
+        return new Score(scoreValue);
     }
 }

@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,9 +27,10 @@ public class MarkCommandTest {
     @Test
     public void execute_validIndex_success() throws Exception {
         Task taskToMark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
-        CommandResult commandResult = new MarkCommand(INDEX_FIRST_PERSON).execute(model);
+        Score score = new Score(4);
+        CommandResult commandResult = new MarkCommand(INDEX_FIRST_PERSON, score).execute(model);
 
-        assertEquals(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark),
+        assertEquals(String.format(MarkCommand.MESSAGE_MARK_TASK_SUCCESS, taskToMark, score.toString()),
                 commandResult.getFeedbackToUser());
         assertTrue(taskToMark.isDone());
     }
@@ -36,8 +38,17 @@ public class MarkCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        MarkCommand markCommand = new MarkCommand(outOfBoundIndex);
+        Score score = new Score(4);
+        MarkCommand markCommand = new MarkCommand(outOfBoundIndex, score);
 
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_invalidScore_throwsCommandException() {
+        Score score = new Score(6);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, score);
+        assertCommandFailure(markCommand, model, Score.MESSAGE_CONSTRAINTS);
+    }
+
 }

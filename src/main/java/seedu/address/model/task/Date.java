@@ -33,13 +33,13 @@ public class Date {
 
     /**
      * Returns true if a given string is a valid name.
+     *
+     * @param test
+     * @return true if a given string is a valid name
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
     }
-
-
-
 
     @Override
     public String toString() {

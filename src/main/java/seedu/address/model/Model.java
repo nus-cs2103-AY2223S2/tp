@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Comment;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
 
@@ -108,7 +109,7 @@ public interface Model {
      * Marks the given task {@code task} as done.
      * {@code task} must exist in the address book.
      */
-    void markTask(Task task);
+    void markTask(Task task, Score score);
 
     /**
      * Unmarks the given task {@code task} as not done.

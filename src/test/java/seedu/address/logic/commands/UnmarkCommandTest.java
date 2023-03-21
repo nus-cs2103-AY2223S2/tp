@@ -13,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.task.Score;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,7 +27,8 @@ public class UnmarkCommandTest {
     @Test
     public void execute_validIndex_success() throws Exception {
         Task taskToUnmark = model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased());
-        taskToUnmark.mark();
+        Score score = new Score(4);
+        taskToUnmark.mark(score);
         CommandResult commandResult = new UnmarkCommand(INDEX_FIRST_PERSON).execute(model);
 
         assertEquals(String.format(UnmarkCommand.MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark),

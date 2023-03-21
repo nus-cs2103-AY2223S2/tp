@@ -94,22 +94,22 @@ Examples:
 
 ### Mark task: `mark`
 
-Marks a task as completed
+Marks a task as completed and give score to the marked task
 
-Format: `mark {TASK_ID}`
+Format: `mark t/{TASK_ID} s/{PERFORMANCE_SCORE}`
 
 Examples:
-* `mark 1`
+* `mark t/1 s/4`
 
 
 ### Unmark task: `unmark`
 
 Unmarks a task as not completed
 
-Format: `unmark {TASK_ID}`
+Format: `unmark t/{TASK_ID}`
 
 Examples:
-* `unmark 1`
+* `unmark t/1`
 
 
 ### Delete a person: `delete`
