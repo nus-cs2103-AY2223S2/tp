@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Represents a Session in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Session {
+public class Session implements Comparable<Session>{
 
     public static final String MESSAGE_CONSTRAINTS = "Start date time should be before end date time.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -32,6 +32,9 @@ public class Session {
     public Session(String startDateTime, String endDateTime) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
+        if(!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)){
+            throw new IllegalArgumentException("Date Time should be in the format dd-MM-yyyy HH:mm");
+        }
         if (!this.isValidSession()) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
@@ -202,5 +205,37 @@ public class Session {
                 .append(LocalDateTime.parse(getEndDateTime(),
                         DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
         return builder.toString();
+    }
+
+    public String getDate() {
+        LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
+
+    public int getDay() {
+        LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return dateTime.getDayOfMonth();
+    }
+
+    public int getMonth() {
+        LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return dateTime.getMonthValue();
+    }
+
+    public int getYear() {
+        LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return dateTime.getYear();
+    }
+
+    public String getTimeFormat() {
+        LocalDateTime dateTime = LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return dateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+    }
+    @Override
+    public int compareTo(Session other) {
+        LocalDateTime thisStartDateTime = LocalDateTime.parse(startDateTime, DATE_TIME_FORMATTER);
+        LocalDateTime otherStartDateTime = LocalDateTime.parse(other.startDateTime, DATE_TIME_FORMATTER);
+
+        return thisStartDateTime.compareTo(otherStartDateTime);
     }
 }

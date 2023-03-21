@@ -4,10 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -20,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.calendar.CalendarDisplay;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -37,7 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+    private CalendarDisplay calendarDisplay;
     private HelpWindow helpWindow;
+    private TextField commandTextField;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -47,6 +47,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane calendarDisplayPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -98,9 +101,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private void registerCalendarNavigationForCalendarTab() {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-//            if (calendarTab.isSelected() && !commandTextField.isFocused() && !calendarDisplay.isJumpBoxFocused()) {
-//                calendarDisplay.handleKeyPressed(event);
-//            }
+            if (calendarTab.isSelected() && !commandTextField.isFocused() /*&& !calendarDisplay.isJumpBoxFocused()*/) {
+                calendarDisplay.handleKeyPressed(event);
+            }
         });
     }
 
@@ -152,8 +155,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-//        calendarDisplay = new CalendarDisplay(logic, primaryStage);
-//        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
+        calendarDisplay = new CalendarDisplay(logic, primaryStage);
+        calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
         registerCalendarNavigationForCalendarTab();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

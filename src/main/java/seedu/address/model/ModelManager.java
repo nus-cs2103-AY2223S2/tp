@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -24,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Tag> filteredTags;
+    private final ObservableList<CalendarEvent> calendarEventList;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTags = new FilteredList<>(this.addressBook.getTagList());
+        this.calendarEventList = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -153,6 +158,23 @@ public class ModelManager implements Model {
     public void updateFilteredTagList(Predicate<Tag> predicate) {
         requireNonNull(predicate);
         filteredTags.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
+        ObservableList<Person> lastShownList = this.filteredPersons;
+        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
+        return calendarEventList;    }
+
+    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Person> lastShownList) {
+        calendarEventList.clear();
+        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
+        return calendarEventList;
+    }
+
+    @Override
+    public void updateCalendarEventList() {
+        getCalendarEventList(filteredPersons);
     }
 
     @Override

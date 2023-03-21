@@ -2,11 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.awt.desktop.SystemEventListener;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -128,5 +128,10 @@ public class Person {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+
+    public List<CalendarEvent> getCalendarEvents() {
+        return Collections.singletonList(new CalendarEvent(this));
     }
 }
