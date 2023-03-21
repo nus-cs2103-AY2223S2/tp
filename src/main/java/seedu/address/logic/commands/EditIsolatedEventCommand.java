@@ -13,6 +13,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.person.Person;
@@ -72,7 +74,7 @@ public class EditIsolatedEventCommand extends Command {
         IsolatedEvent originalEvent = personToEdit.getIsolatedEventList().getIsolatedEvent(eventIndex.getZeroBased());
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
 
-        model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
+        editedIsolatedEvent.checkDateTime();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
                 + " from " + originalEvent + " for " + personToEdit.getName());
@@ -168,5 +170,6 @@ public class EditIsolatedEventCommand extends Command {
                     && getStartDate().equals(e.getStartDate());
         }
     }
+
 
 }

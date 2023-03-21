@@ -1,5 +1,9 @@
 package seedu.address.model.event;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -74,6 +78,22 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
         }
 
         return true;
+    }
+
+    /**
+     * Checks if the start date and the end date of the event is valid for isolated event.
+     * @throws ParseException if start time is after the end time or the dates keyed in are before today.
+     */
+    public void checkDateTime() throws CommandException {
+        LocalDateTime now = LocalDateTime.now();
+        if (this.startDate.isAfter(endDate) || this.startDate.equals(endDate)) {
+            throw new CommandException(Messages.MESSAGE_EVENT_START_AFTER_END);
+        }
+
+        if (this.endDate.isBefore(now)) {
+            throw new CommandException(Messages.MESSAGE_EVENT_INVALID_DATE);
+        }
+
     }
 
     @Override

@@ -1,5 +1,8 @@
 package seedu.address.model.event;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -147,6 +150,13 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         } else {
             return true;
         }
+    }
+
+    public void checkPeriod() throws CommandException {
+        if (this.startTime.isAfter(this.endTime) || this.startTime.equals(this.endTime)) {
+            throw new CommandException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
+        }
+
     }
 
     @Override

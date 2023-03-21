@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
@@ -11,8 +12,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddIsolatedEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.IsolatedEvent;
@@ -206,7 +209,7 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if the start time and the end time of the event is valid.
+     * Checks if the start time and the end time of the event is valid for recurring event.
      * @param startTime of which the event start.
      * @param endTime of which the event end.
      * @return true if start time is before the end time.
@@ -218,7 +221,6 @@ public class ParserUtil {
         }
         return true;
     }
-
     /**
      * Parses a {@code String group} into a {@code Group}.
      * Leading and trailing whitespaces will be trimmed.

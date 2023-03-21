@@ -64,6 +64,8 @@ public class AddRecurringEventCommand extends Command {
             throw new EventConflictException(checkConflictsInIsolatedList);
         }
 
+        eventToAdd.checkPeriod();
+
         model.addRecurringEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
