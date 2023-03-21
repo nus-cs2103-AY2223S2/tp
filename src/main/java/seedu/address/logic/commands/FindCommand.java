@@ -4,27 +4,37 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all internship application in record whose name contains any of the argument keywords.
+ * Finds and lists all internship application in record whose CompanyName
+ * and/or JobTitle contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internship applications whose names "
-            + "contain any of the specified keywords (case-insensitive) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internship applications whose "
+            + "CompanyName and/or JobTitle contain any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " google software engineer intern";
 
     private final NameContainsKeywordsPredicate predicate;
+    private final InternshipStatus status;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
+
+    public FindCommand(InternshipStatus status) {
+        this.status = status;
+    }
+
+    public FindCommand()
 
     @Override
     public CommandResult execute(Model model) {
