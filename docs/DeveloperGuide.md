@@ -376,13 +376,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. Updated information is the same as the before information.
 
     * 2b1. NextBigFish shows an error message.
-    
+
     Use case ends.
 
 * 2c. Missing field in updated information.
 
     * 2c1. NextBigFish displays error message.
-    
+
     Use case ends.
 
 * 3a. The given index is invalid.
