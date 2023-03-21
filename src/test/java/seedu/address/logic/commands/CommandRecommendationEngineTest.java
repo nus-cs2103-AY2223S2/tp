@@ -90,8 +90,7 @@ public class CommandRecommendationEngineTest {
     public void parseVolunteerArguments_invalidArgsPrefix_failure() {
         String input = "add_volunteer n/Zon hello/<nric>";
 
-        assertThrows(CommandException.class,
-                () -> commandRecommendationEngine.recommendCommand(input));
+        assertThrows(CommandException.class, () -> commandRecommendationEngine.recommendCommand(input));
     }
 
     @Test
