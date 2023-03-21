@@ -77,9 +77,9 @@ public class ClientCard extends UiPart<Region> {
         this.client = client;
         String genderText;
         if (client.getGender().value.equals("M") || client.getGender().value.equals("m")) {
-            genderText = "male";
+            genderText = "maleIcon";
         } else {
-            genderText = "female";
+            genderText = "femaleIcon";
         }
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);

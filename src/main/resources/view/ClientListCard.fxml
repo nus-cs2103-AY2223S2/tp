@@ -16,8 +16,8 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="10" />
     </columnConstraints>
     <HBox>
-    <HBox alignment="CENTER" prefWidth="100" style="-fx-padding: 0 12 0 20" >
-      <ImageView fx:id="genderList" fitWidth="100" fitHeight="180" />
+    <HBox alignment="TOP_LEFT" prefWidth="100" style="-fx-padding: 0 12 0 20" >
+      <ImageView fx:id="genderList" fitWidth="150" fitHeight="150" />
     </HBox>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
