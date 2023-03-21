@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DIAGNOSIS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
@@ -101,7 +101,7 @@ public class CommandTestUtil {
     public static final String INVALID_HEIGHT_DESC = " " + PREFIX_HEIGHT + "129037"; // Height should be 2 decimal place
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT + "129037"; // Weight maximum 3 digits
     public static final String INVALID_DIAGNOSIS_DESC = " " + PREFIX_DIAGNOSIS + "A!DS"; // '!' not allowed in diagnosis
-    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "hospitalised"; // Status cannot be hospitalised
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "hospitalised"; // Wrong status
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
