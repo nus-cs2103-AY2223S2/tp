@@ -8,6 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
  */
 public class Role {
+
+    public static final String MESSAGE_CONSTRAINTS = "Role can only be Patient or Doctor";
+
     /*
      * The role string must be either "Doctor" or "Patient".
      */

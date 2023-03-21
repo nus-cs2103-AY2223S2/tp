@@ -82,9 +82,7 @@ public class Person {
     }
 
     /**
-<<<<<<< HEAD
      * Returns true if both persons have the same NRIC.
-=======
      * Returns a list of Appointments.
      */
     public ArrayList<Appointment> getPatientAppointments() {
@@ -93,7 +91,6 @@ public class Person {
 
     /**
      * Returns true if both persons have the same name.
->>>>>>> master
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -117,6 +114,7 @@ public class Person {
         return otherNric != null
                 && otherNric.equals(this.getNric());
     }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -176,10 +174,16 @@ public class Person {
     }
 
     public boolean isDoctor() {
+        if (role.toString().equals("Doctor")) {
+            return true;
+        }
         return false;
     }
 
     public boolean isPatient() {
+        if (role.toString().equals("Patient")) {
+            return true;
+        }
         return false;
     }
 

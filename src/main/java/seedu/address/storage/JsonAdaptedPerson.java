@@ -87,7 +87,7 @@ class JsonAdaptedPerson {
                     .map(JsonAdaptedAppointment::new)
                     .collect(Collectors.toList()));
         } else {
-            medication = null;
+            medication = "";
         }
 
         role = source.getRole().role;
@@ -108,10 +108,7 @@ class JsonAdaptedPerson {
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
-        final ArrayList<Appointment> appointments = new ArrayList<>();
-        for (JsonAdaptedAppointment appointment : patientAppointments) {
-            appointments.add(appointment.toModelType());
-        }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -150,24 +147,34 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-
         final Address modelAddress = new Address(address);
-
-        if (medication == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Medication.class.getSimpleName()));
-        }
-        if (!Medication.isValidMedication(medication)) {
-            throw new IllegalValueException(Medication.MESSAGE_CONSTRAINTS);
-        }
-
-        final Medication modelMedication = new Medication(medication);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Role modelRole = new Role(role);
-        final ArrayList<Appointment> modelAppointments = new ArrayList<>(appointments);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelMedication, modelTags,
-                modelAppointments, modelRole);
+        // Return a new Patient object if Role field is "Patient". Otherwise, return new Doctor object.
+        if (role.toString().equals("Patient")) {
+            final ArrayList<Appointment> appointments = new ArrayList<>();
+            for (JsonAdaptedAppointment appointment : patientAppointments) {
+                appointments.add(appointment.toModelType());
+            }
+
+            if (medication == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Medication.class.getSimpleName()));
+            }
+            if (!Medication.isValidMedication(medication)) {
+                throw new IllegalValueException(Medication.MESSAGE_CONSTRAINTS);
+            }
+
+            final Medication modelMedication = new Medication(medication);
+            final ArrayList<Appointment> modelAppointments = new ArrayList<>(appointments);
+
+            return new Patient(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelMedication, modelTags,
+                    modelAppointments, modelRole);
+        } else {
+            final ArrayList<Appointment> modelAppointments = new ArrayList<>();
+            return new Doctor(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelTags, modelAppointments,
+                    modelRole);
+        }
     }
-    // todo this should be for JsonAdaptedPatient, create another for JsonAdaptedDoctor
 }
