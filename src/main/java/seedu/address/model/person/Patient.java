@@ -93,7 +93,7 @@ public class Patient extends Person {
         String string = "";
         for (Appointment appointment : patientAppointments) {
             String appointmentBooking = appointment.getBooking().toString();
-            string += appointmentBooking + "\n";
+            string += appointmentBooking + "; " + appointment.getDrNric().toString() + "\n";
         }
         return string;
     }

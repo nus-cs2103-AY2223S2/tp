@@ -6,10 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Doctor;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.*;
 
 /**
  * The API of the Model component.
@@ -71,7 +68,11 @@ public interface Model {
      */
     boolean hasDoctor(Doctor doctor);
 
+    /**
+     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     */
     boolean hasPatientByNric(Nric nric);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -115,5 +116,9 @@ public interface Model {
 
     void bookAppointment(Appointment appointment);
 
+    /**
+     * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.
+     */
+    boolean hasDrByNric(Nric drNric);
 
 }

@@ -7,11 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.HospitalAppointmentList;
-import seedu.address.model.person.Doctor;
-import seedu.address.model.person.Nric;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.*;
 
 /**
  * Wraps all data at the address-book level
@@ -209,4 +205,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    /**
+     * Returns true if a doctor with the same identity as {@code doctor} by NRIC exists in the address book.
+     */
+    public boolean hasDrByNric(Nric nric) {
+        return persons.containsDrByNric(nric);
+    }
+
+    public Name getNameByNric(Nric drNric) {
+        return persons.getNameByNric(drNric);
+    }
+
 }

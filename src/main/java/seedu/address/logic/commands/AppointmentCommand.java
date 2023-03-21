@@ -25,6 +25,9 @@ public class AppointmentCommand extends Command {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment slot is already booked";
 
     public static final String MESSAGE_INVALID_PERSON = "This patient does not exist";
+    public static final String MESSAGE_INVALID_DOCTOR = "This doctor that you want to schedule an appointment with" +
+            " does not exist";
+
     private final Appointment appointment;
 
     /**
@@ -39,8 +42,12 @@ public class AppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPatientByNric(appointment.getPatientNric())) { // todo hasPerson by name not person
+        if (!model.hasPatientByNric(appointment.getPatientNric())) {
             throw new CommandException(MESSAGE_INVALID_PERSON);
+        }
+
+        if (!model.hasDrByNric(appointment.getDrNric())) {
+            throw new CommandException(MESSAGE_INVALID_DOCTOR);
         }
 
         // todo only disallow appointment duplication per doctor and not the entire system
@@ -79,16 +86,4 @@ public class AppointmentCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
     }
-
-    /**
-     * Gets patient NRIC in String from Appointment.
-     * @param appointment
-     * @return NRIC
-     */
-    public String getPatientNric(Appointment appointment) {
-        Nric patientNric = appointment.getPatientNric();
-        String patientNameStr = patientNric.toString();
-        return patientNameStr;
-    }
-
 }
