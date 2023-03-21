@@ -282,15 +282,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​               | I want to …​                                 | So that I can…​                                                                              |
-| ------ |-----------------------|----------------------------------------------|----------------------------------------------------------------------------------------------|
-| `* * *` | new or forgetful user | see usage instructions                       | refer to instructions when I first start using sprINT or when I forget how to use it         |
-| `* * *` | user                  | view all application entries                 | look through all of them easily                                                              |
-| `* * *` | user                  | add a new application entry                  |                                                                                              |
-| `* *`  | user                  | edit an new application entry                | update progress of an internship application or amend mistakes I might have made in an entry |
-| `* *`  | neat user             | delete an application entry                  | remove entries that I no longer need                                                         |
-| `* *`  | user                  | find application entry to a specific company | keep track of all the positions I have applied to at this company more easily                |
-
+| Priority | As a …​               | I want to …​                                     | So that I can…​                                                                              |
+|----------|-----------------------|--------------------------------------------------|----------------------------------------------------------------------------------------------|
+| `* * *`  | new or forgetful user | see usage instructions                           | refer to instructions when I first start using sprINT or when I forget how to use it         |
+| `* * *`  | user                  | view all application entries                     | look through all of them easily                                                              |
+| `* * *`  | user                  | add a new application entry                      |                                                                                              |
+| `* * *`  | user                  | edit an new application entry                    | update progress of an internship application or amend mistakes I might have made in an entry |
+| `* * *`  | neat user             | delete an application entry                      | remove entries that I no longer need                                                         |
+| `* * *` | user                  | add an upcoming task to an application           | remind myself of the work I need to do for this application                                  |
+| `* * *` | user                  | edit an upcoming task for an application         | update the application with the next task I need to complete                                 |
+| `* *`    | user                  | find application entry to a specified company    | keep track of all the positions I have applied to at this company more easily                |
+| `* *`    | user                  | find application entry with a specified role     | keep track of all the applications with this role                                            |
+| `* *`    | user                  | find application entry with a specified deadline | keep track of all the applications and their upcoming tasks I need to complete by then       |
+| `* *`    | user                  | sort application entries by specified order      | view them in order to get a better idea which ones to prioritise                             |
+| `* *`    | clumsy user           | undo a command                                   | if I ever typed one by mistake                                                               |
+| `* `     | user                  | tag an application                               | label them as I wish                                                                         |
+| `* `     | data-oriented user    | view statistics of all my application entries    | get the general idea of how well I'm doing in my internship hunt                             |
 *{More to be added}*
 
 ### Use cases
