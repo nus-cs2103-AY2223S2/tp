@@ -18,6 +18,7 @@ title: Developer Guide
 - [Implementation](#implementation)
   - [Person Class](#person-class)
   - [Edit Command](#edit-command)
+  - [Find Command](#find-command)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-%EF%B8%8F)
@@ -377,9 +378,26 @@ Each `Person` in CoDoc is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
 
-All `Person` have a `Name`, `Email`, `Course` and `Year`.
+All `Person` must have a `Name`, `Email`, `Course` and `Year`.
 
 `Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
+
+#### Design Considerations
+
+For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different. 
+
+We included the `Skills` attribute to remind users to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.  
+
+**Aspect 1: How to implement the `GitHub` and `Linkedin` attributes:**
+
+- Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL. 
+  - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
+  - Cons: Lack of details - user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
+- Alternative 2: Make them compulsory. 
+  - Pros: Can remind users to ask the person that they are adding for their socials such that they can look them up if they want to.
+  - Cons:
+  Slower and more inconvenient, need to add these attributes when adding a person.
+- Decision: We chose Alternative 1 as speed is important. The LinkedIn profile URL can be very lengthy as well. Since users can already connect with the added persons through their email, which is a compulsory attribute, we decided to make these socials optional.
 
 <div style="page-break-after: always;"></div>
 
@@ -447,6 +465,46 @@ Updating the `Skills` and `Modules` using old and new prefixes ensures the user 
 Even though the behaviour is similar to simply deleting and adding new modules and skills, update is more restrictive and maintains the integrity of the size of the hash tables that `Skills` and `Modules` are stored in. 
 
 [Scroll back to top](#table-of-contents)
+
+### Find Command
+
+Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that users are able to reach out to them for collaboration more quickly.
+
+- filtered list contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user
+- checks if the attributes of the person contain the keywords specified by the user
+- case-insensitive
+
+`find` has the prefixes corresponding to attributes as follows:
+* `n/` for `Name`
+* `y/` for `Year`
+* `c/` for `Course`
+* `m/` for `Module`
+* `s/` for `Skill`
+
+**Implementation Flow**
+
+The following sequence diagram summarizes what happens when a user executes a `findCommand`:
+
+![Find Command Sequence Diagram](images/FindSequenceDiagram.png)
+
+`ModelManager`, which implements the `Model` interface, stores an attribute `filteredPersons`, which is a `FilteredList` of `Person`s that is shown in the `MainWindow` class as a `PersonListPanel`. When a `find` command is called by the user, `ModelManager` updates its `filteredPersons` to only contain `Person`s that satisfy all the `predicate`s corresponding to the attibrutes specified by the user. The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
+
+#### Design Considerations
+
+We made our `find` command able to find by multiple attributes i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby users can find by not just one attribute, but rather a combination of attributes. Users just need to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
+
+Also, our find command can take in multiple keywords for each attribute i.e. find y/2 3 finds people that are
+
+**Aspect 1: `find` by AND vs `find` by OR:**
+
+- Alternative 1 (current choice): `find` by AND
+    - Pros: Users can find people that have multiple attributes each, i.e. `find y/2 c/1` finds people that are both year 2 and enrolled in Computer Science, `find m/cs2109s s/python` finds people that are both proficient in python and taking/have taken CS2109S, etc. 
+    - Cons: More restrictive on the filteredPersons - people must have **all** the attributes specified by the user to be in the FilteredList.
+- Alternative 2: `find` by OR
+    - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the FilteredList i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both. 
+    - Cons:
+      Users cannot find people that have multiple attributes, i.e. the benefits of Alternative 1.
+- Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if users want to find people that have either of the attributes, they can still do so but they must call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites also filter by AND such as GitHub, YouTube and Shopee.
 
 <div style="page-break-after: always;"></div>
 
