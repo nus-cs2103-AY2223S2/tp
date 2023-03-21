@@ -75,10 +75,10 @@ The Sequence Diagram below illustrates the execution of the ```find``` command.
 <img src="images/developerGuide/FindSequenceDiagram.png" width="500" />
 
 The command execution flow is as given below
-1. The ```LoginManager``` will begin the execution of the command.
+1. The ```LogicManager``` will begin the execution of the command.
 2. Input parsed by ```FriendlyLinkParser``` which creates and return a ```FindCommandParser```.
 3. The ```FindCommandParser``` parses the arguments and returns a ```FindCommand``` with the relevant predicates.
-4. The ```LoginManager``` executes the ```FindCommand```.
+4. The ```LogicManager``` executes the ```FindCommand```.
 5. The ```FindCommand``` combines the relevant predicates for elderly and volunteers and calls ```updateFilteredElderlyList``` and ```updateFilteredVoolunteerList``` of ```Model```.
 6. Based on the filtered elderly and volunteers a predicate to get the related pairs is created and ```updateFilteredPairList``` of ```Model``` is called.
 7. ```CommandResult``` with the sizes of the 3 filtered lists is created and returned.
