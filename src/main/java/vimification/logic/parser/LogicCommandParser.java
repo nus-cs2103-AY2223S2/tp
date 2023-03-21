@@ -1,38 +1,45 @@
 package vimification.logic.parser;
 
+import java.util.function.Function;
+
 import vimification.logic.commands.LogicCommand;
 
 /**
- * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}.
+ * Represents a parser that is able to parse user input into a {@code LogicCommand} of type
+ * {@code T}.
+ * <p>
+ * Note that, we need two layers of {@code ApplicativeParser}. The first layer is to parse the
+ * prefix, and the second layer is to parse the actual {@code LogicCommand}.
  */
 @FunctionalInterface
 public interface LogicCommandParser<T extends LogicCommand> {
 
-    /**
-     * Gets the internal parser of this instance.
-     */
-    ApplicativeParser<T> getInternalParser();
+    ApplicativeParser<ApplicativeParser<T>> getInternalParser();
 
-    /**
-     * Runs this parser.
-     */
-    default T parse(String userInput) {
-        return getInternalParser().parse(userInput);
+    default T parse(String input) {
+        return getInternalParser().flatMap(Function.identity()).parse(input);
     }
 
-    default LogicCommandParser<T> or(LogicCommandParser<? extends T> commandParser) {
-        ApplicativeParser<T> internal = getInternalParser().or(commandParser.getInternalParser());
-        return () -> internal;
+    default LogicCommandParser<T> or(LogicCommandParser<? extends T> that) {
+        ApplicativeParser<ApplicativeParser<T>> thisInternal = getInternalParser();
+        ApplicativeParser<ApplicativeParser<T>> thatInternal = that.<T>cast().getInternalParser();
+        ApplicativeParser<ApplicativeParser<T>> combinedInternal = thisInternal.or(thatInternal);
+        return () -> combinedInternal;
     }
 
-    default LogicCommandParser<LogicCommand> safeCast() {
-        @SuppressWarnings("unchecked")
-        LogicCommandParser<LogicCommand> castedThis = (LogicCommandParser<LogicCommand>) this;
-        return castedThis;
+    @SuppressWarnings("unchecked")
+    default <U extends LogicCommand> LogicCommandParser<U> cast() {
+        return (LogicCommandParser<U>) this;
     }
 
-    default LogicCommandParser<T> throwIfFail(String errorMessage) {
-        ApplicativeParser<T> internal = getInternalParser().throwIfFail(errorMessage);
-        return () -> internal;
+    default LogicCommandParser<T> updateInternalParser(
+            Function<ApplicativeParser<ApplicativeParser<T>>, ApplicativeParser<ApplicativeParser<T>>> mapper) {
+        ApplicativeParser<ApplicativeParser<T>> newInternal = mapper.apply(getInternalParser());
+        return () -> newInternal;
     }
+
+    public static <T extends LogicCommand> LogicCommandParser<T> fail() {
+        return ApplicativeParser::fail;
+    }
+
 }

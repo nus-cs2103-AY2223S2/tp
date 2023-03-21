@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class ApplicativeParserTest {
-    private static final Class<ParserException> EXPECTED_EXCEPTION_CLASS =
-            ParserException.class;
+
+    private static final Class<ParserException> EXPECTED_EXCEPTION_CLASS = ParserException.class;
 
     @Test
     public void parseString_validInput_shouldSucceed() {

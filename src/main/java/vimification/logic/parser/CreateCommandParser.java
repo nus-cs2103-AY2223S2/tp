@@ -13,25 +13,31 @@ public class CreateCommandParser implements LogicCommandParser<CreateCommand> {
             .map(ignore -> LocalDateTime.now()); // TODO: Fix after we agree on the format.
 
     private static final ApplicativeParser<Todo> TODO_PARSER = ApplicativeParser
-            .parseString("todo")
+            .skipWhitespaces()
+            .takeNext(ApplicativeParser.parseString("todo"))
             .takeNext(ApplicativeParser.skipWhitespaces())
             .takeNext(ApplicativeParser.parseUntilEof().map(String::strip))
             .map(Todo::new);
 
     private static final ApplicativeParser<Deadline> DEADLINE_PARSER = ApplicativeParser
-            .parseString("deadline")
+            .skipWhitespaces()
+            .takeNext(ApplicativeParser.parseString("deadline"))
             .takeNext(ApplicativeParser.skipWhitespaces())
             .takeNext(ApplicativeParser.parseUntil("/").map(String::strip))
-            .flatMap(description -> DATE_TIME_PARSER
-                    .dropNext(ApplicativeParser.skipWhitespaces())
-                    .dropNext(ApplicativeParser.eof())
-                    .map(deadline -> new Deadline(description, deadline)));
+            .combine(DATE_TIME_PARSER, Deadline::new);
 
-    private static final ApplicativeParser<CreateCommand> CREATE_COMMAND_PARSER = ApplicativeParser
-            .parseString("i")
-            .takeNext(ApplicativeParser.skipWhitespaces())
+    private static final ApplicativeParser<CreateCommand> COMMAND_PARSER = ApplicativeParser
+            .skipWhitespaces()
             .takeNext(ApplicativeParser.choice(TODO_PARSER, DEADLINE_PARSER))
+            .dropNext(ApplicativeParser.skipWhitespaces())
+            .dropNext(ApplicativeParser.eof())
             .map(CreateCommand::new);
+
+    private static final ApplicativeParser<ApplicativeParser<CreateCommand>> INTERNAL_PARSER =
+            ApplicativeParser
+                    .skipWhitespaces()
+                    .takeNext(ApplicativeParser.parseString("i"))
+                    .constMap(COMMAND_PARSER);
 
     private static final CreateCommandParser INSTANCE = new CreateCommandParser();
 
@@ -42,7 +48,7 @@ public class CreateCommandParser implements LogicCommandParser<CreateCommand> {
     }
 
     @Override
-    public ApplicativeParser<CreateCommand> getInternalParser() {
-        return CREATE_COMMAND_PARSER;
+    public ApplicativeParser<ApplicativeParser<CreateCommand>> getInternalParser() {
+        return INTERNAL_PARSER;
     }
 }
