@@ -93,6 +93,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         fishes.remove(key);
     }
 
+    public void setLastFedDateFishes(String newDate) {
+        fishes.setLastFedDateFishes(newDate);
+    }
+
     //// util methods
 
     @Override

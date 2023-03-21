@@ -38,6 +38,10 @@ public class Tank {
         fishList.addFish(fish);
     }
 
+    public void setLastFedDateFishes(String newDate) {
+        fishList.setLastFedDateFishes(newDate);
+    }
+
     /**
      * Returns true if both Tanks have the same tank name.
      * This defines a weaker notion of equality between two Tanks.

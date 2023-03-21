@@ -97,6 +97,11 @@ public class UniqueFishList implements Iterable<Fish> {
         internalList.setAll(fish);
     }
 
+    public void setLastFedDateFishes(String newDate) {
+        requireAllNonNull(newDate);
+        internalList.stream().forEach(fish -> fish.setLastFedDate(newDate));
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

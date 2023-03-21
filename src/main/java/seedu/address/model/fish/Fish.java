@@ -2,6 +2,7 @@ package seedu.address.model.fish;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public class Fish {
     private final Species species;
 
     // Data fields
-    private final LastFedDate lastFedDate;
+    private LastFedDate lastFedDate;
     private final FeedingInterval feedingInterval;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -47,6 +48,11 @@ public class Fish {
 
     public LastFedDate getLastFedDate() {
         return lastFedDate;
+    }
+
+    public void setLastFedDate(String date) {
+        LastFedDate newLastFedDate = new LastFedDate(date);
+        lastFedDate = newLastFedDate;
     }
 
     public Species getSpecies() {

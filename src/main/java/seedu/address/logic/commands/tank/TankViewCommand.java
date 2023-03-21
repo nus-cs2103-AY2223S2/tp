@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tank.Tank;
 
 /**
- * Deletes a {@code Tank} identified using it's displayed index from the {@code TankList}.
+ * Displays a {@code Tank} identified using it's displayed index from the {@code TankList}.
  */
 public class TankViewCommand extends TankCommand {
 
@@ -28,9 +28,9 @@ public class TankViewCommand extends TankCommand {
     private final Index targetIndex;
 
     /**
-     * Constructs an {@code TankDeleteCommand} to delete an existing {@code Tank}.
+     * Constructs an {@code TankViewCommand} to display an existing {@code Tank}.
      *
-     * @param targetIndex The index of the {@code Tank} to delete.
+     * @param targetIndex The index of the {@code Tank} to display.
      */
     public TankViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -54,7 +54,7 @@ public class TankViewCommand extends TankCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TankDeleteCommand // instanceof handles nulls
+                || (other instanceof TankViewCommand // instanceof handles nulls
                 && targetIndex.equals(((TankViewCommand) other).targetIndex)); // state check
     }
 }
