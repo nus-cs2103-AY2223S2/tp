@@ -29,7 +29,7 @@ public class SortCommand extends Command {
             model.sortPersonList(attribute);
             return new CommandResult(
                     String.format(
-                            Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, model.getFilteredPersonList().size(), attribute));
+                            Messages.MESSAGE_PERSONS_SORTED_OVERVIEW, attribute));
         } catch (RuntimeException e) {
             return new CommandResult(e.getMessage());
         }
