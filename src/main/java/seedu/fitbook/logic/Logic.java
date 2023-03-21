@@ -35,7 +35,7 @@ public interface Logic {
     ObservableList<Client> getFilteredClientList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' FitBook file path.
      */
     Path getFitBookFilePath();
 

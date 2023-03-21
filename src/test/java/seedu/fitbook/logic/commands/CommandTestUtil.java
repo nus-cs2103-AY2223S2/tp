@@ -9,6 +9,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EXERCISE_NUMBER;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
@@ -50,6 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_WEIGHT_BOB = "26";
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_GENDER_AMY = "F";
+    public static final String VALID_GOAL_BOB = "gain weight";
+    public static final String VALID_GOAL_AMY = "lose weight";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_CALORIE_AMY = "2101";
     public static final String VALID_CALORIE_BOB = "2100";
@@ -68,6 +71,8 @@ public class CommandTestUtil {
     public static final String WEIGHT_DESC_BOB = " " + PREFIX_WEIGHT + VALID_WEIGHT_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String GOAL_DESC_BOB = " " + PREFIX_GOAL + VALID_GOAL_BOB;
+    public static final String GOAL_DESC_AMY = " " + PREFIX_GOAL + VALID_GOAL_AMY;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String CALORIE_DESC_AMY = " " + PREFIX_CALORIE + VALID_CALORIE_AMY;
@@ -95,11 +100,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).withAppointments(VALID_APPOINTMENT_DATE_ONE)
-                .withCalorie(VALID_CALORIE_AMY).build();
+                .withTags(VALID_TAG_FRIEND).withAppointments(VALID_APPOINTMENT_DATE_ONE).withGoal(VALID_GOAL_AMY)
+                .withCalorie(VALID_CALORIE_AMY).withGender(VALID_GENDER_AMY).withWeight(VALID_WEIGHT_AMY).build();
+
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB)
+                .withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB).withGoal(VALID_GOAL_BOB)
                 .withAppointments(VALID_APPOINTMENT_DATE_ONE, VALID_APPOINTMENT_DATE_TWO)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withCalorie(VALID_CALORIE_BOB).build();
     }
@@ -107,6 +113,7 @@ public class CommandTestUtil {
     // For Routine
     public static final String VALID_ROUTINE_NAME_CARDIO = "Cardio";
     public static final String VALID_ROUTINE_NAME_STRENGTH = "Strength";
+    public static final String VALID_ROUTINE_NAME_SWIM = "Swim";
     public static final String VALID_EXERCISE_PUSHUP = "3x10 Push Ups";
     public static final String VALID_EXERCISE_SITUP = "4x15 Sit ups";
     public static final String VALID_EXERCISE_INDEX = "1";
@@ -156,6 +163,7 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, FitBookModel actualFitBookModel, String expectedMessage,
             FitBookModel expectedFitBookModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+
         assertCommandSuccess(command, actualFitBookModel, expectedCommandResult, expectedFitBookModel);
     }
 
@@ -192,7 +200,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered client list and selected client in {@code actualFitBookModel} remain unchanged
+     * - FitBook, filtered client list and selected client in {@code actualFitBookModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, FitBookModel actualFitBookModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can

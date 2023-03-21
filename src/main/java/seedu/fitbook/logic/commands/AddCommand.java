@@ -6,6 +6,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GOAL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
@@ -38,6 +39,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_WEIGHT + "WEIGHT "
             + PREFIX_GENDER + "GENDER "
+            + PREFIX_GOAL + "GOAL "
             + "[" + PREFIX_CALORIE + "CALORIE_INTAKE]"
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT_TIME]..."
             + "[" + PREFIX_ROUTINE + "ROUTINE]..."
@@ -52,8 +54,9 @@ public class AddCommand extends Command {
             + PREFIX_GENDER + "M "
             + PREFIX_APPOINTMENT + "13-12-2200 19:00"
             + PREFIX_ROUTINE + "1 "
+            + PREFIX_GOAL + "lose weight "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney ";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the FitBook";
@@ -97,7 +100,6 @@ public class AddCommand extends Command {
         requireNonNull(model);
         addRoutine(model);
         if (model.hasClient(toAdd)) {
-
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
         model.addClient(toAdd);

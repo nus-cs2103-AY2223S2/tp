@@ -37,4 +37,12 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
     }
+
+    @Test
+    public void test_equalsSymmetric() {
+        Phone phoneA = new Phone("98763723");
+        Phone phoneB = new Phone("98763723");
+        assertTrue(phoneA.equals(phoneB) && phoneB.equals(phoneA));
+        assertTrue(phoneA.hashCode() == phoneB.hashCode());
+    }
 }

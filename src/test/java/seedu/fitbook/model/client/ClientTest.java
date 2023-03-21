@@ -108,4 +108,12 @@ public class ClientTest {
         editedAlice = new ClientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void test_equalsSymmetric() {
+        Client clientA = ALICE;
+        Client clientB = ALICE;
+        assertTrue(clientA.equals(clientB) && clientB.equals(clientA));
+        assertTrue(clientA.hashCode() == clientB.hashCode());
+    }
 }

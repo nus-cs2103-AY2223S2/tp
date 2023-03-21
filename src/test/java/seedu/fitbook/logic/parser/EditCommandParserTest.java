@@ -8,6 +8,7 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.CALORIE_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.fitbook.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
+import static seedu.fitbook.logic.commands.CommandTestUtil.GOAL_DESC_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.fitbook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.fitbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -25,6 +26,7 @@ import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_CALORIE_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
+import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_GOAL_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.fitbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -201,6 +203,12 @@ public class EditCommandParserTest {
         // gender
         userInput = targetIndex.getOneBased() + GENDER_DESC_AMY;
         descriptor = new EditClientDescriptorBuilder().withGender(VALID_GENDER_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // goal
+        userInput = targetIndex.getOneBased() + GOAL_DESC_AMY;
+        descriptor = new EditClientDescriptorBuilder().withGoal(VALID_GOAL_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

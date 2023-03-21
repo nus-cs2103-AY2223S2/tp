@@ -47,5 +47,4 @@ public interface Storage extends FitBookStorage, UserPrefsStorage, FitBookExerci
     @Override
     void saveFitBookExerciseRoutine(ReadOnlyFitBookExerciseRoutine fitBookExerciseRoutine,
             Path filePath) throws IOException;
-
 }

@@ -70,4 +70,11 @@ public class RoutineTest {
                 .withExercises(VALID_EXERCISE_SITUP).build();
         assertFalse(CARDIO.equals(editedCardio));
     }
+    @Test
+    public void test_equalsSymmetric() {
+        Routine routineA = new RoutineBuilder(CARDIO).withRoutineName(VALID_ROUTINE_NAME_STRENGTH).build();
+        Routine routineCopyA = new RoutineBuilder(CARDIO).withRoutineName(VALID_ROUTINE_NAME_STRENGTH).build();
+        assertTrue(routineA.equals(routineCopyA) && routineCopyA.equals(routineA));
+        assertTrue(routineA.hashCode() == routineCopyA.hashCode());
+    }
 }

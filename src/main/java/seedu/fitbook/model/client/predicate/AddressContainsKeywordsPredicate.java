@@ -10,6 +10,7 @@ import seedu.fitbook.model.client.Client;
  * Tests that a {@code Client}'s {@code Address} matches any of the keywords given.
  */
 public class AddressContainsKeywordsPredicate implements Predicate<Client> {
+
     private final List<String> keywords;
 
     public AddressContainsKeywordsPredicate(List<String> keywords) {

@@ -33,4 +33,12 @@ public class AddressTest {
         assertTrue(Address.isValidAddress("-")); // one character
         assertTrue(Address.isValidAddress("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
     }
+
+    @Test
+    public void test_equalsSymmetric() {
+        Address addressA = new Address("Blk 456, Den Road, #01-355");
+        Address addressB = new Address("Blk 456, Den Road, #01-355");
+        assertTrue(addressA.equals(addressB) && addressB.equals(addressA));
+        assertTrue(addressA.hashCode() == addressB.hashCode());
+    }
 }
