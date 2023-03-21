@@ -25,7 +25,35 @@ The General Architecture of FriendlyLink follows that of [AddressBook3](https://
 
 ### Logic
 
-#### Add and Delete Elderly 
+#### Add and Delete Elderly and Volunteer
+
+In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
+
+The `add_elderly` and `add_volunteer` commands accept attributes of `Elderly` and `Volunteer` through prefixes.
+Each prefix is followed by the information of one attribute. 
+Some prefixes, such as `availableDates`, `tags`, are optional.
+
+* This grants greater flexibility of user input, as the user can key in the attributes in any order.
+* The unspecified optional fields will return `null` value.
+* The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
+* When the `add` command format is invalid, or the user tries to add a duplicated person, 
+the add operation will be aborted.
+
+The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
+
+* Allows for filtering to display a subset of Elderly or Volunteers in UI.
+* Allows for easy retrieval of information for pairing.
+
+The `delete_elderly` and `delete_volunteer` commands make use of `NRIC` 
+attribute of Elderly and Volunteer. 
+FriendlyLink retrieves the target person uniquely identified by its NRIC, 
+and removes it from the database.
+
+* Allows more efficient deletion compare to index-based deletion.
+* The user don't need to check the index of the target person before deletion.
+
+If the deleted Elderly or Volunteer has existing pairing, the associated
+pairs will be automatically removed as well.
 
 #### Edit by index & NRIC
 
