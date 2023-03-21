@@ -110,8 +110,8 @@ Displays the rate tagged to an event.
 
 - Displays the agreed rate of the event at the specified `INDEX`.
 
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - The `INDEX` refers to the index number in the displayed events list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `rate 2` returns the rate of `2nd event` in the event list.
@@ -126,7 +126,7 @@ Tags a rate to an event.
 - Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
 
   - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+  - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list. -->
@@ -158,7 +158,7 @@ Unmarks a specified event in Paidlancers.
 
 Creates a new event
 
-**Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…​`
+**Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 
 - Times must have the format `dd-MM-yyyy HH:mm`.
 
@@ -180,11 +180,11 @@ Deletes the specified event from the event book.
 
 - Deletes the event at the specified `INDEX`
 
-  - The `INDEX` refers to the index number shown in the displayed event list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - The `INDEX` refers to the index number shown in the displayed event list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …​
 
 **Example**:
-  - `delete 2` deletes the `2nd event` in the event list.
+- `delete 2` deletes the `2nd event` in the event list.
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
@@ -194,15 +194,15 @@ Edits the specified event from the event book.
 
 - Edits the event at the specified `INDEX`
 
-  - The `INDEX` refers to the index number shown in the displayed event list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
-  - At least one of the optional fields must be provided.
-  - Edits will replace existing values, edits are not cumulative.
-  - Tags can be removed by typing `t/` without specifying any tags after it.
+    - The `INDEX` refers to the index number shown in the displayed event list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - At least one of the optional fields must be provided.
+    - Edits will replace existing values, edits are not cumulative.
+    - Tags can be removed by typing `t/` without specifying any tags after it.
 
 **Example**:
-  - `edit 1 r/100` Edits the rate of the 1st event to be 100.
-  - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd event to be Betsy Crower and clears all existing tags.
+- `edit 1 r/100` Edits the rate of the 1st event to be 100.
+- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd event to be Betsy Crower and clears all existing tags.
 
 ### Saving the data
 
@@ -229,3 +229,4 @@ Paidlancers data are saved in the hard disk automatically exiting the program. T
 
 
 [Back to top](#)
+
