@@ -15,10 +15,10 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Application}.
