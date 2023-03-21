@@ -12,13 +12,13 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AGE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_REGION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_VOLUNTEER_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NRIC_VOLUNTEER_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NRIC_VOLUNTEER_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_PERSON_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_PERSON_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.REGION_DESC_AMY;
@@ -51,7 +51,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditVolunteerCommand;
-import seedu.address.logic.commands.util.EditVolunteerDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
 import seedu.address.model.person.information.Email;
@@ -60,7 +60,7 @@ import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditVolunteerDescriptorBuilder;
+import seedu.address.testutil.EditDescriptorBuilder;
 
 public class EditVolunteerCommandParserTest {
 
@@ -104,7 +104,7 @@ public class EditVolunteerCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_VOLUNTEER_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
+        assertParseFailure(parser, "1" + INVALID_NRIC_DESC, Nric.MESSAGE_CONSTRAINTS); // invalid nric
         assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid age
         assertParseFailure(parser, "1" + INVALID_REGION_DESC, Region.MESSAGE_CONSTRAINTS); // invalid region
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -131,10 +131,10 @@ public class EditVolunteerCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_SINGLE
-                + NRIC_VOLUNTEER_DESC_AMY + EMAIL_DESC_AMY + AGE_DESC_AMY + REGION_DESC_AMY
+                + NRIC_PERSON_DESC_AMY + EMAIL_DESC_AMY + AGE_DESC_AMY + REGION_DESC_AMY
                 + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_STRONG;
 
-        EditVolunteerDescriptor descriptor = new EditVolunteerDescriptorBuilder()
+        EditDescriptor descriptor = new EditDescriptorBuilder()
                 .withName(VALID_NAME_AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withNric(VALID_NRIC_AMY).withAge(VALID_AGE_AMY)
                 .withRegion(VALID_REGION_AMY)
@@ -150,7 +150,7 @@ public class EditVolunteerCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditVolunteerDescriptor descriptor = new EditVolunteerDescriptorBuilder()
+        EditDescriptor descriptor = new EditDescriptorBuilder()
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).build();
         EditVolunteerCommand expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
 
@@ -162,49 +162,49 @@ public class EditVolunteerCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditVolunteerDescriptor descriptor = new EditVolunteerDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditDescriptor descriptor = new EditDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditVolunteerCommand expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // phone
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditVolunteerDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new EditDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditVolunteerDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
+        descriptor = new EditDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditVolunteerDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        descriptor = new EditDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // nric
-        userInput = targetIndex.getOneBased() + NRIC_VOLUNTEER_DESC_AMY;
-        descriptor = new EditVolunteerDescriptorBuilder().withNric(VALID_NRIC_AMY).build();
+        userInput = targetIndex.getOneBased() + NRIC_PERSON_DESC_AMY;
+        descriptor = new EditDescriptorBuilder().withNric(VALID_NRIC_AMY).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // age
         userInput = targetIndex.getOneBased() + AGE_DESC_AMY;
-        descriptor = new EditVolunteerDescriptorBuilder().withAge(VALID_AGE_AMY).build();
+        descriptor = new EditDescriptorBuilder().withAge(VALID_AGE_AMY).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // region
         userInput = targetIndex.getOneBased() + REGION_DESC_AMY;
-        descriptor = new EditVolunteerDescriptorBuilder().withRegion(VALID_REGION_AMY).build();
+        descriptor = new EditDescriptorBuilder().withRegion(VALID_REGION_AMY).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_STRONG;
-        descriptor = new EditVolunteerDescriptorBuilder().withTags(VALID_TAG_STRONG).build();
+        descriptor = new EditDescriptorBuilder().withTags(VALID_TAG_STRONG).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -214,11 +214,11 @@ public class EditVolunteerCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_STRONG + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_STRONG
-                + NRIC_VOLUNTEER_DESC_AMY + NRIC_VOLUNTEER_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB
+                + NRIC_PERSON_DESC_AMY + NRIC_PERSON_DESC_BOB + AGE_DESC_AMY + AGE_DESC_BOB
                 + REGION_DESC_AMY + REGION_DESC_BOB
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_SINGLE;
 
-        EditVolunteerDescriptor descriptor = new EditVolunteerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditDescriptor descriptor = new EditDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withNric(VALID_NRIC_BOB).withAge(VALID_AGE_BOB).withRegion(VALID_REGION_BOB)
                 .withTags(VALID_TAG_STRONG, VALID_TAG_SINGLE).build();
@@ -233,7 +233,7 @@ public class EditVolunteerCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditVolunteerDescriptor descriptor = new EditVolunteerDescriptorBuilder()
+        EditDescriptor descriptor = new EditDescriptorBuilder()
                 .withPhone(VALID_PHONE_BOB).build();
         EditVolunteerCommand expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -241,7 +241,7 @@ public class EditVolunteerCommandParserTest {
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ADDRESS_DESC_BOB
                 + PHONE_DESC_BOB;
-        descriptor = new EditVolunteerDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        descriptor = new EditDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -252,7 +252,7 @@ public class EditVolunteerCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditVolunteerDescriptor descriptor = new EditVolunteerDescriptorBuilder().withTags().build();
+        EditDescriptor descriptor = new EditDescriptorBuilder().withTags().build();
         EditVolunteerCommand expectedCommand = new EditVolunteerCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

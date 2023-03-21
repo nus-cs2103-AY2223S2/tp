@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
@@ -36,7 +37,7 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC_ELDERLY, PREFIX_AGE, PREFIX_REGION, PREFIX_RISK, PREFIX_TAG);
+                        PREFIX_NRIC, PREFIX_AGE, PREFIX_REGION, PREFIX_RISK, PREFIX_TAG, PREFIX_AVAILABILITY);
 
         Index index;
 
@@ -64,9 +65,9 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
             editDescriptor.setAddress(
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimap.getValue(PREFIX_NRIC_ELDERLY).isPresent()) {
+        if (argMultimap.getValue(PREFIX_NRIC).isPresent()) {
             editDescriptor.setNric(
-                    ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC_ELDERLY).get()));
+                    ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get()));
         }
         if (argMultimap.getValue(PREFIX_AGE).isPresent()) {
             editDescriptor.setAge(

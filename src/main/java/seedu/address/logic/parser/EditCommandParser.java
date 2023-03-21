@@ -44,7 +44,8 @@ public class EditCommandParser implements Parser <EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_AGE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_RISK, PREFIX_TAG);
+                        PREFIX_NRIC, PREFIX_AGE, PREFIX_REGION, PREFIX_AVAILABILITY,
+                        PREFIX_RISK, PREFIX_TAG, PREFIX_MEDICAL_TAG);
 
         Nric nric = checkPreamble(argMultimap.getPreamble());
 

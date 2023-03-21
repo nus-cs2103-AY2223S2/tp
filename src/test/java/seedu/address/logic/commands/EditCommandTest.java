@@ -6,9 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_VOLUNTEER;
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.commons.core.Messages.MESSAGE_NRIC_NOT_EXIST;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_ELDERLY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_PERSON_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -18,8 +17,6 @@ import static seedu.address.testutil.TestUtil.getTypicalModelManager;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.util.EditDescriptor;
-import seedu.address.logic.commands.util.EditElderlyDescriptor;
-import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
@@ -41,7 +38,7 @@ public class EditCommandTest {
         Elderly editedElderly = new ElderlyBuilder().build();
 
         EditDescriptor descriptor = new EditDescriptorBuilder(editedElderly).build();
-        Elderly resultantElderly = EditElderlyDescriptor.createEditedElderly(selectedElderly, descriptor);
+        Elderly resultantElderly = EditDescriptor.createEditedElderly(selectedElderly, descriptor);
         EditCommand editCommand = new EditCommand(selectedNric, descriptor);
 
         String expectedMessage = String.format(EditElderlyCommand.MESSAGE_EDIT_ELDERLY_SUCCESS,
@@ -62,7 +59,7 @@ public class EditCommandTest {
         Volunteer editedVolunteer = new VolunteerBuilder().build();
 
         EditDescriptor descriptor = new EditDescriptorBuilder(editedVolunteer).build();
-        Volunteer resultantVolunteer = EditVolunteerDescriptor.createEditedVolunteer(selectedVolunteer, descriptor);
+        Volunteer resultantVolunteer = EditDescriptor.createEditedVolunteer(selectedVolunteer, descriptor);
         EditCommand editCommand = new EditCommand(selectedNric, descriptor);
 
         String expectedMessage = String.format(EditVolunteerCommand.MESSAGE_EDIT_VOLUNTEER_SUCCESS,
@@ -116,10 +113,10 @@ public class EditCommandTest {
     }
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(new Nric(VALID_NRIC_AMY), DESC_PERSON_AMY);
+        final EditCommand standardCommand = new EditCommand(new Nric(VALID_NRIC_AMY), DESC_AMY);
 
         // same values -> returns true
-        EditDescriptor copyDescriptor = new EditDescriptor(DESC_PERSON_AMY);
+        EditDescriptor copyDescriptor = new EditDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(new Nric(VALID_NRIC_AMY), copyDescriptor);
         assertEquals(standardCommand, commandWithSameValues);
 
@@ -133,9 +130,9 @@ public class EditCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
 
         // different nric -> returns false
-        assertNotEquals(standardCommand, new EditCommand(new Nric(VALID_NRIC_BOB), DESC_ELDERLY_AMY));
+        assertNotEquals(standardCommand, new EditCommand(new Nric(VALID_NRIC_BOB), CommandTestUtil.DESC_AMY));
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new EditCommand(new Nric(VALID_NRIC_AMY), DESC_ELDERLY_BOB));
+        assertNotEquals(standardCommand, new EditCommand(new Nric(VALID_NRIC_AMY), DESC_BOB));
     }
 }
