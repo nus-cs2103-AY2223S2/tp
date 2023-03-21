@@ -8,26 +8,19 @@ import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_DESC_DESC;
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_STEP_DESC;
-
-import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
-import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_SOUP;
-
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
-
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
-
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
-
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_CORNDOGS;
-
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
@@ -70,7 +63,7 @@ public class EditCommandParserTest {
         // negative index
         assertParseFailure(parser, "-5" + TITLE_DESC_CORNDOGS, MESSAGE_INVALID_FORMAT);
 
-//        // zero index
+        // zero index
         assertParseFailure(parser, "0" + TITLE_DESC_CORNDOGS, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
@@ -160,7 +153,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_RECIPE;
 
         String userInput = targetIndex.getOneBased() + TITLE_DESC_CORNDOGS + DESC_DESC_CORNDOGS
-          + TITLE_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP + DESC_DESC_SOUP;
+                + TITLE_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP + DESC_DESC_SOUP;
 
 
         System.out.println(userInput);

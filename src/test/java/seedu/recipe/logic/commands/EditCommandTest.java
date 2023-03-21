@@ -85,9 +85,9 @@ public class EditCommandTest {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
         Recipe recipeInFilteredList = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-        Recipe editedRecipe = new RecipeBuilder(recipeInFilteredList).withTitle(VALID_TITLE_SOUP).build();
+        Recipe editedRecipe = new RecipeBuilder(recipeInFilteredList).withTitle("A Recipe").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE,
-                new EditRecipeDescriptorBuilder().withTitle(VALID_TITLE_SOUP).build());
+                new EditRecipeDescriptorBuilder().withTitle("A Recipe").build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
 

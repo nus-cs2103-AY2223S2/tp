@@ -1,12 +1,12 @@
 package seedu.recipe.testutil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.Arrays;
 
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
@@ -19,8 +19,8 @@ import seedu.recipe.model.recipe.Title;
  */
 public class RecipeBuilder {
 
-    public static final String DEFAULT_TITLE = "Corndogs";
-    public static final String DEFAULT_DESCRIPTION = "Awesome cheap corndogs";
+    public static final String DEFAULT_TITLE = "A Recipe";
+    public static final String DEFAULT_DESCRIPTION = "A Description";
     public static final List<Ingredient> DEFAULT_INGREDIENTS = Arrays.asList(
             new Ingredient("eggs"), new Ingredient("flour"));
     public static final List<Step> DEFAULT_STEPS = Arrays.asList(

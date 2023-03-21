@@ -68,7 +68,7 @@ public class DeleteCommandTest {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
         Index outOfBoundIndex = INDEX_SECOND_RECIPE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of recipe book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getRecipeBook().getRecipeList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
