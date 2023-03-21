@@ -32,6 +32,7 @@ public class TypicalVolunteers {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withTags("friends")
             .withAge("20").withRegion("CENTRAL").withNric("S9673908G")
+            .withMedicalTags("CPR BASIC")
             .withAvailableDates("2023-05-01", "2023-05-12")
             .withAvailableDates("2023-05-02", "2023-05-14")
             .withAvailableDates("2023-05-12", "2023-05-15").build();
@@ -45,7 +46,8 @@ public class TypicalVolunteers {
             .build();
     public static final Volunteer CARL = new VolunteerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withAge("31").withRegion("EAST").withNric("S3634466J").build();
+            .withAge("31").withRegion("EAST")
+            .withMedicalTags("BLS INTERMEDIATE", "AED BASIC").withNric("S3634466J").build();
     public static final Volunteer DANIEL = new VolunteerBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withTags("friends").withAge("25").withRegion("NORTH")
@@ -57,8 +59,9 @@ public class TypicalVolunteers {
     public static final Volunteer FIONA = new VolunteerBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withAge("26").withRegion("EAST")
-            .withAvailableDates("2023-02-01", "2023-03-01")
-            .withNric("S3576311B").build();
+            .withNric("S3576311B").withMedicalTags("AED ADVANCED")
+            .withAvailableDates("2023-02-01", "2023-03-01").build();
+
     public static final Volunteer GEORGE = new VolunteerBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
             .withAge("24").withRegion("CENTRAL")
@@ -70,7 +73,10 @@ public class TypicalVolunteers {
             .build();
 
     public static final Volunteer IDA = new VolunteerBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave")
+            .withAge("26").withRegion("EAST")
+            .withNric("S8866775G").withMedicalTags("CPR ADVANCED", "BLS BASIC")
+            .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Volunteer AMY = new VolunteerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

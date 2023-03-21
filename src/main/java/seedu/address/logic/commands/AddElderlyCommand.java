@@ -51,6 +51,7 @@ public class AddElderlyCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_NRIC_ELDERLY + "NRIC "
             + PREFIX_AGE + "AGE "
+            + PREFIX_REGION + "REGION "
             + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH) "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"

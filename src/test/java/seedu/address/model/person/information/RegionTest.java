@@ -30,4 +30,12 @@ class RegionTest {
         assertTrue(Region.isValidRegion("CenTraL"));
     }
 
+    @Test
+    public void isMatch() {
+        Region targetRegion = new Region("NORTH");
+        assertFalse(targetRegion.isMatch(new Region("NORTHEAST")));
+        assertFalse(targetRegion.isMatch(new Region("EAST")));
+        assertTrue(targetRegion.isMatch(new Region("NORTH")));
+    }
+
 }

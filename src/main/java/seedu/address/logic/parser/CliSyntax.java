@@ -17,6 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_AGE = new Prefix("ag/");
     public static final Prefix PREFIX_RISK = new Prefix("r/");
     public static final Prefix PREFIX_REGION = new Prefix("re/");
+    public static final Prefix PREFIX_MEDICAL_TAG = new Prefix("mt/");
 
     public static final Prefix PREFIX_AVAILABILITY = new Prefix("dr/");
 }
