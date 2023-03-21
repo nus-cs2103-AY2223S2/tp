@@ -300,7 +300,6 @@ public class ParserUtil {
         if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        //Please edit this
         return new Attendance(attendance);
     }
 

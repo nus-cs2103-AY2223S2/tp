@@ -28,6 +28,7 @@ public class Attendance {
         this.value = value;
         if (value.equals("T")) {
             this.date = LocalDate.now();
+            this.value = this.date.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         } else if (!value.equals("F")) {
             this.date = LocalDate.parse(value, java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }
@@ -67,6 +68,14 @@ public class Attendance {
         if (value.equals("F"))
             return false;
         return currDate.isEqual(date);
+    }
+
+    /**
+     * Returns true if there is a localdate associated with the attendance.
+     * @return boolean value to indicate if there is a localdate associated with the attendance.
+     */
+    public boolean isDate() {
+        return this.date != null;
     }
 
     /**

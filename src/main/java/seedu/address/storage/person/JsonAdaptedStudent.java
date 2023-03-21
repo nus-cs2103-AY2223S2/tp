@@ -24,6 +24,7 @@ import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.Test;
+import seedu.address.storage.academics.JsonAdaptedAttendance;
 import seedu.address.storage.academics.JsonAdaptedHomework;
 import seedu.address.storage.academics.JsonAdaptedTest;
 
@@ -41,7 +42,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final String image;
     private final String cca;
     private final String sc;
-    private final String attendance;
+    private final Set<JsonAdaptedAttendance> attendance = new HashSet<>();
     private final Set<JsonAdaptedHomework> homework = new HashSet<>();
     private final Set<JsonAdaptedTest> test = new HashSet<>();
     private final String parentNumber;
@@ -58,7 +59,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("comment") String comment,
                               @JsonProperty("sex") String sex, @JsonProperty("age") String age,
                               @JsonProperty("image") String image, @JsonProperty("cca") String cca,
-                              @JsonProperty("attendance") String attendance,
+                              @JsonProperty("attendance") Set<JsonAdaptedAttendance> attendance,
                               @JsonProperty("homework") Set<JsonAdaptedHomework> homework,
                               @JsonProperty("test") Set<JsonAdaptedTest> test,
                               @JsonProperty("parentNumber") String parentNumber,
@@ -73,10 +74,12 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         this.image = image;
         this.cca = cca;
         this.sc = sc;
-        this.attendance = attendance;
         this.parentNumber = parentNumber;
         this.parentName = parentName;
         this.rls = rls;
+        if (attendance != null) {
+            this.attendance.addAll(attendance);
+        }
         if (homework != null) {
             this.homework.addAll(homework);
         }
@@ -97,19 +100,13 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         this.image = student.getImage().value;
         this.cca = student.getCca().value;
         this.sc = student.getSc().getClassName();
-        this.attendance = student.getAttendance().value;
         this.parentNumber = student.getParentNumber().value;
         this.parentName = student.getParentName().fullName;
         this.rls = student.getRls().rls;
-        /*
-        for (Homework hw : student.getHomework()) {
-            this.homework.add(new JsonAdaptedHomework(hw));
-        }
-        for (Test t : student.getTest()) {
-            this.test.add(new JsonAdaptedTest(t));
-        }
-
-         */
+        attendance.addAll(student.getAttendance().stream()
+                .filter(attendance1 -> !attendance1.isAbsent())
+                .map(JsonAdaptedAttendance::new)
+                .collect(Collectors.toList()));
         homework.addAll(student.getHomework().stream()
                 .map(JsonAdaptedHomework::new)
                 .collect(Collectors.toList()));
@@ -174,15 +171,6 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
             throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
         }
 
-        if (attendance == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance"));
-        }
-        if (!Attendance.isValidAttendance(attendance)) {
-            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
-        }
-        final Attendance modelAttendance = new Attendance(attendance);
-
-
         if (parentNumber == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Parent Number"));
         }
@@ -216,6 +204,15 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
             studentHomework.add(jsonAdaptedHomework.toModelType());
         }
         final Set<Homework> modelHomework = new HashSet<>(studentHomework);
+
+        final List<Attendance> studentAttendance = new ArrayList<>();
+        for (JsonAdaptedAttendance jsonAdaptedAttendance : attendance) {
+            if (!(jsonAdaptedAttendance.getAttendance().equals("F"))) {
+                studentAttendance.add(jsonAdaptedAttendance.toModelType());
+            }
+        }
+        final Set<Attendance> modelAttendance = new HashSet<>(studentAttendance);
+
         return new Student(person.getName(), Class.of(sc), modelIndexNumber, modelSex, modelParentName,
                 modelParentNumber, modelRls, modelAge, modelImage, person.getEmail(), person.getPhone(), modelCca,
                 person.getAddress(), modelAttendance, modelHomework, modelTest, person.getTags(), person.getComment());

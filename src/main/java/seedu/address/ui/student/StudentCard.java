@@ -1,6 +1,7 @@
 package seedu.address.ui.student;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Student;
 import seedu.address.ui.UiPart;
 
@@ -42,6 +44,8 @@ public class StudentCard extends UiPart<Region> {
     private Label sex;
     @FXML
     private Label id;
+    @FXML
+    private Label attendance;
     @FXML
     private Label phone;
     @FXML
@@ -84,6 +88,15 @@ public class StudentCard extends UiPart<Region> {
         index.setText(student.getIndexNumber().value);
         sex.setText(student.getSex().value);
         name.setText(student.getName().fullName);
+
+        LocalDate currDate = LocalDate.now();
+        attendance.setText("F");
+        for (Attendance attendance : student.getAttendance()) {
+            if (attendance.isPresent(currDate)) {
+                this.attendance.setText("T");
+            }
+        }
+
         phone.setText(student.getPhone().value);
         email.setText(student.getEmail().value);
         address.setText(student.getAddress().value);

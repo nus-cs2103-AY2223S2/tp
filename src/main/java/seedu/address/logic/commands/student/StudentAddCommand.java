@@ -1,22 +1,7 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Set;
 
@@ -62,6 +47,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_EMAILSTUDENT + "EMAIL STUDENT "
             + PREFIX_PHONESTUDENT + "PHONE STUDENT "
             + PREFIX_CCA + "CCA "
+            + PREFIX_ATTENDANCE + " T/F "
             + "]\n"
             + "Example: " + "student 1A " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tan Ah Cow "
@@ -75,7 +61,8 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_PHONESTUDENT + "91234567 "
-            + PREFIX_CCA + "Captain Ball";
+            + PREFIX_CCA + "Captain Ball"
+            + PREFIX_ATTENDANCE + "T";
 
     public static final String MESSAGE_SUCCESS = "New student added:";
 
