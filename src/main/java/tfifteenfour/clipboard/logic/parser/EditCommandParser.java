@@ -18,7 +18,7 @@ import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.commands.EditCommand;
 import tfifteenfour.clipboard.logic.commands.EditCommand.EditStudentDescriptor;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
-import tfifteenfour.clipboard.model.student.ModuleCode;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.tag.Tag;
 
 /**
@@ -74,7 +74,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * Parses {@code Collection<String> modules} into a {@code Set<ModuleCode>} if {@code modules} is non-empty.
      * @throws ParseException if {@code modules} contain only one element which is an empty string
      */
-    private Optional<Set<ModuleCode>> parseModulesForEdit(Collection<String> modules) throws ParseException {
+    private Optional<Set<Course>> parseModulesForEdit(Collection<String> modules) throws ParseException {
         Collection<String> moduleSet = modules;
         return Optional.of(ParserUtil.parseModules(moduleSet));
     }

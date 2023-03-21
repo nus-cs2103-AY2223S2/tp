@@ -19,8 +19,8 @@ import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.commons.util.CollectionUtil;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
-        Set<ModuleCode> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
+        Set<Course> updatedModules = editStudentDescriptor.getModules().orElse(studentToEdit.getModules());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         Remark remark = studentToEdit.getRemark();
 
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private StudentId studentId;
-        private Set<ModuleCode> modules;
+        private Set<Course> modules;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -199,7 +199,7 @@ public class EditCommand extends Command {
          * Sets {@code modules} to this object's {@code modules}.
          * A defensive copy of {@code modules} is used internally.
          */
-        public void setModules(Set<ModuleCode> modules) {
+        public void setModules(Set<Course> modules) {
             this.modules = (modules != null) ? new HashSet<>(modules) : null;
         }
 
@@ -208,7 +208,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code modules} is null.
          */
-        public Optional<Set<ModuleCode>> getModules() {
+        public Optional<Set<Course>> getModules() {
             return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
         }
 

@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.Roster;
+import tfifteenfour.clipboard.model.student.Course;
 import tfifteenfour.clipboard.model.student.Email;
-import tfifteenfour.clipboard.model.student.ModuleCode;
 import tfifteenfour.clipboard.model.student.Name;
 import tfifteenfour.clipboard.model.student.Phone;
 import tfifteenfour.clipboard.model.student.Remark;
@@ -94,9 +94,9 @@ public class SampleDataUtil {
     /**
      * Returns a module set containing the list of strings given.
      */
-    public static Set<ModuleCode> getModuleSet(String... strings) {
+    public static Set<Course> getModuleSet(String... strings) {
         return Arrays.stream(strings)
-                .map(ModuleCode::new)
+                .map(Course::new)
                 .collect(Collectors.toSet());
     }
 }

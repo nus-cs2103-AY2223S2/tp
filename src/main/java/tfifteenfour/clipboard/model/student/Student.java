@@ -25,12 +25,12 @@ public class Student {
     private final Remark remark;
     private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<ModuleCode> modules = new HashSet<>();
+    private final Set<Course> modules = new HashSet<>();
 
     /**
      * With remark and tags field.
      */
-    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<ModuleCode> modules,
+    public Student(Name name, Phone phone, Email email, StudentId studentId, Set<Course> modules,
                    Remark remark, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, studentId, modules, remark, tags);
         this.name = name;
@@ -74,7 +74,7 @@ public class Student {
      * Returns an immutable module set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<ModuleCode> getModules() {
+    public Set<Course> getModules() {
         return Collections.unmodifiableSet(modules);
     }
 
@@ -131,7 +131,7 @@ public class Student {
                 .append("; StudentId: ")
                 .append(getStudentId());
 
-        Set<ModuleCode> modules = getModules();
+        Set<Course> modules = getModules();
         builder.append("; Modules: ");
         modules.forEach(builder::append);
 
