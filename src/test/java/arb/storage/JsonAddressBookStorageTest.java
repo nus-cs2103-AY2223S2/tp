@@ -1,13 +1,13 @@
 package arb.storage;
 
 import static arb.testutil.Assert.assertThrows;
-/*import static arb.testutil.TypicalClients.ALICE;
+import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalClients.HOON;
 import static arb.testutil.TypicalClients.IDA;
-import static arb.testutil.TypicalProjects.PUBLIC_PAINTING;
 import static arb.testutil.TypicalProjects.PORTRAIT_PROJECT;
-import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static org.junit.jupiter.api.Assertions.assertEquals;*/
+import static arb.testutil.TypicalProjects.PUBLIC_PAINTING;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
@@ -62,7 +62,7 @@ public class JsonAddressBookStorageTest {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidClientAddressBook.json"));
     }
 
-    /*@Test
+    @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
@@ -87,7 +87,7 @@ public class JsonAddressBookStorageTest {
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));
-    }*/
+    }
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
