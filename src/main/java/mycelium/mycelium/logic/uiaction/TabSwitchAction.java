@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.action;
+package mycelium.mycelium.logic.uiaction;
 
 import java.util.Objects;
 

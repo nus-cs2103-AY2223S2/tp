@@ -5,9 +5,9 @@ import static mycelium.mycelium.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLE
 
 import org.junit.jupiter.api.Test;
 
+import mycelium.mycelium.logic.uiaction.ExitAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
-import mycelium.mycelium.ui.action.ExitAction;
 
 public class ExitCommandTest {
     private Model model = new ModelManager();

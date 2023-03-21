@@ -1,7 +1,7 @@
 package mycelium.mycelium.logic.commands;
 
+import mycelium.mycelium.logic.uiaction.ShowHelpAction;
 import mycelium.mycelium.model.Model;
-import mycelium.mycelium.ui.action.ShowHelpAction;
 
 /**
  * Format full help instructions for every command for display.

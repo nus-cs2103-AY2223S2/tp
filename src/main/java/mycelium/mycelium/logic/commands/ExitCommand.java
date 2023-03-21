@@ -1,7 +1,7 @@
 package mycelium.mycelium.logic.commands;
 
+import mycelium.mycelium.logic.uiaction.ExitAction;
 import mycelium.mycelium.model.Model;
-import mycelium.mycelium.ui.action.ExitAction;
 
 /**
  * Terminates the program.

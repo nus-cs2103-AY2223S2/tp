@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.ui.action.DoNothingAction;
-import mycelium.mycelium.ui.action.ExitAction;
-import mycelium.mycelium.ui.action.ShowHelpAction;
+import mycelium.mycelium.logic.uiaction.DoNothingAction;
+import mycelium.mycelium.logic.uiaction.ExitAction;
+import mycelium.mycelium.logic.uiaction.ShowHelpAction;
 
 public class CommandResultTest {
     @Test

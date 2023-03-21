@@ -7,10 +7,10 @@ import java.util.Optional;
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
+import mycelium.mycelium.logic.uiaction.TabSwitch;
+import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.project.Project;
-import mycelium.mycelium.ui.action.TabSwitch;
-import mycelium.mycelium.ui.action.TabSwitchAction;
 
 /**
  * A command to delete an existing project.

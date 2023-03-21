@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.ui.action.ExitAction;
-import mycelium.mycelium.ui.action.ShowHelpAction;
-import mycelium.mycelium.ui.action.UiAction;
+import mycelium.mycelium.logic.uiaction.ExitAction;
+import mycelium.mycelium.logic.uiaction.ShowHelpAction;
+import mycelium.mycelium.logic.uiaction.UiAction;
 
 public class CommandExceptionTest {
     @Test

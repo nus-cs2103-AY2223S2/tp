@@ -1,4 +1,4 @@
-package mycelium.mycelium.ui.action;
+package mycelium.mycelium.logic.uiaction;
 
 import mycelium.mycelium.ui.MainWindow;
 

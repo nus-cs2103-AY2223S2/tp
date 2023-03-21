@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import mycelium.mycelium.logic.uiaction.DoNothingAction;
+import mycelium.mycelium.logic.uiaction.UiAction;
 import mycelium.mycelium.ui.MainWindow;
-import mycelium.mycelium.ui.action.DoNothingAction;
-import mycelium.mycelium.ui.action.UiAction;
 
 /**
  * Represents the result of a command execution.
