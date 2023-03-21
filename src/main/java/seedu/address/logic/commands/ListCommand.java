@@ -1,11 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-<<<<<<< HEAD
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
-=======
->>>>>>> 31566164603c88f486d92c6fa9ca1b1be3e478b2
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
 import java.util.Optional;
@@ -22,8 +19,6 @@ import seedu.address.model.expense.ExpenseInCategoryPredicate;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-
-    public static final String MESSAGE_SUCCESS = "Listed all expenses";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists expenses based on a filter"
             + "Parameters: "
@@ -51,7 +46,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-<<<<<<< HEAD
+
         if (categoryPredicate.isPresent()) {
             model.updateFilteredExpensesList(categoryPredicate.get());
         }
@@ -60,7 +55,7 @@ public class ListCommand extends Command {
         }
         // TODO: change to expenses listed overview
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, model.getFilteredExpenseList().size()));
     }
 
     @Override
@@ -69,8 +64,5 @@ public class ListCommand extends Command {
                 || (other instanceof ListCommand // instanceof handles nulls
                 && categoryPredicate.equals(((ListCommand) other).categoryPredicate)
                 && timespanPredicate.equals(((ListCommand) other).timespanPredicate)); // state check
-=======
-        return new CommandResult(MESSAGE_SUCCESS);
->>>>>>> 31566164603c88f486d92c6fa9ca1b1be3e478b2
     }
 }
