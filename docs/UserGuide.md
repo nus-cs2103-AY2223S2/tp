@@ -76,7 +76,7 @@ Adding a contact to contacts
 
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
-- `newcontact n/Mandy p/98765432`
+- `newcontact n/Tan Jun Wei p/82828234`
 
 
 <!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
@@ -160,7 +160,7 @@ Creates a new event
 
 **Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 
-- Times must have the format `dd-MM-yyyy HH:mm`.
+- Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
 - `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
