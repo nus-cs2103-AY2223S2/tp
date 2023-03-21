@@ -21,7 +21,7 @@ public class QuickstartWindow extends UiPart<Stage> {
     private static final String FXML = "QuickstartWindow.fxml";
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new QuickstartWindow.
      */
     public QuickstartWindow() {
         this(new Stage());
@@ -38,22 +38,7 @@ public class QuickstartWindow extends UiPart<Stage> {
 
 
     /**
-     * Shows the quickstart window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     * Shows the QuickstartWindow.
      */
     public void show() {
         getRoot().show();
@@ -61,21 +46,21 @@ public class QuickstartWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the QuickstartWindow is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the QuickstartWindow.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the QuickstartWindow.
      */
     public void focus() {
         getRoot().requestFocus();
