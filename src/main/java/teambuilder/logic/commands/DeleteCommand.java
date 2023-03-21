@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import teambuilder.commons.core.Memento;
 import teambuilder.commons.core.Messages;
-import teambuilder.commons.core.Momento;
 import teambuilder.commons.core.index.Index;
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
@@ -42,9 +42,8 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        Momento old = model.save();
-        old.setDescription(COMMAND_WORD + " " + personToDelete);
-        HistoryUtil.getInstance().store(old);
+        Memento old = model.save();
+        HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + personToDelete);
 
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));

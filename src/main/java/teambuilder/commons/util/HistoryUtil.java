@@ -1,20 +1,25 @@
 package teambuilder.commons.util;
 
-import teambuilder.commons.core.Momento;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Optional;
+
+import teambuilder.commons.core.Memento;
 
 /**
  * Represents the history of states in the app.
  */
 public class HistoryUtil {
     private static HistoryUtil singleton = new HistoryUtil();
-
     private static final int MAX_STATE = 10;
-    private Momento[] history;
+
+    private DescribedMemento[] undoHistory;
+    private DescribedMemento[] redoFuture;
     private int currentNum = -1;
-    private String descriptionUndo;
 
     private HistoryUtil() {
-        history = new Momento[MAX_STATE];
+        undoHistory = new DescribedMemento[MAX_STATE];
+        redoFuture = new DescribedMemento[MAX_STATE];
     }
 
     private void incrementCurrentNum() {
@@ -27,7 +32,7 @@ public class HistoryUtil {
             return;
         }
         // check wrap around
-        if (currentNum - 1 < 0 && history[MAX_STATE - 1] != null) {
+        if (currentNum - 1 < 0 && undoHistory[MAX_STATE - 1] != null) {
             currentNum = MAX_STATE - 1;
             return;
         }
@@ -45,42 +50,91 @@ public class HistoryUtil {
     }
 
     /**
+     * Stores a past memento of the app and a description of the memento.
+     * Maximumn of 10 stored momentos at any time.
+     *
+     * @param memo The memento to be stored.
+     * @param desc The description of the memo.
+     */
+    public void storePast(Memento memo, String desc) {
+        requireNonNull(memo);
+        requireNonNull(desc);
+
+        DescribedMemento memoWithDesc = new DescribedMemento(memo, desc);
+        incrementCurrentNum();
+        undoHistory[currentNum] = memoWithDesc;
+        redoFuture = new DescribedMemento[MAX_STATE];
+    }
+
+    /**
      * Restores the app to its previous state.
      *
-     * @return true if successful, false otherwise
+     * @return An Optional containing a string of the description of the state restored if successful,
+     *      contains null otherwise.
      */
-    public boolean undo() {
+    public Optional<String> undo() {
         if (currentNum <= -1) {
-            return false;
+            return Optional.ofNullable(null);
         }
-        if (history[currentNum] == null) {
+        if (undoHistory[currentNum] == null) {
             currentNum = -1;
-            return false;
+            return Optional.ofNullable(null);
         }
 
-        boolean isSuccessful = history[currentNum].restore();
-        descriptionUndo = history[currentNum].toString();
-        history[currentNum] = null;
+        DescribedMemento mementoForUndo = undoHistory[currentNum];
+        DescribedMemento mementoForRedo = mementoForUndo.getUpdatedMemento();
+        boolean isSuccessful = mementoForUndo.restore();
+        String descriptionUndo = mementoForUndo.desc;
+        undoHistory[currentNum] = null;
+        redoFuture[currentNum] = mementoForRedo;
+
         decreaseCurrentNum();
-        return isSuccessful;
+        return isSuccessful ? Optional.of(descriptionUndo) : Optional.ofNullable(null);
     }
 
     /**
-     * Retrieves the description of the last successful undo.
+     * Restores the app to its state before an undo.
      *
-     * @return The string containing the description of the last successful undo
+     * @return An Optional containing a string of the description of the state restored if successful,
+     *      contains null otherwise.
      */
-    public String getLastUndoDescription() {
-        return descriptionUndo == null ? "" : descriptionUndo;
-    }
-
-    /**
-     * Stores a momento of the app. Maximumn of 10 stored momentos at any time.
-     *
-     * @param memo The momento to be stored.
-     */
-    public void store(Momento memo) {
+    public Optional<String> redo() {
         incrementCurrentNum();
-        history[currentNum] = memo;
+
+        if (redoFuture[currentNum] == null) {
+            decreaseCurrentNum();
+            return Optional.ofNullable(null);
+        }
+
+        DescribedMemento mementoForRedo = redoFuture[currentNum];
+        DescribedMemento mementoForUndo = mementoForRedo.getUpdatedMemento();
+        boolean isSuccessful = mementoForRedo.restore();
+        String descriptionRedo = mementoForRedo.desc;
+        undoHistory[currentNum] = mementoForUndo;
+        redoFuture[currentNum] = null;
+
+        return isSuccessful ? Optional.of(descriptionRedo) : Optional.ofNullable(null);
+    }
+
+    /**
+     * Wrapper class for a Memento and its description.
+     */
+    private class DescribedMemento {
+        private Memento memento;
+        private String desc;
+
+        private DescribedMemento(Memento memento, String desc) {
+            this.memento = memento;
+            this.desc = desc;
+        }
+
+        private boolean restore() {
+            return memento.restore();
+        }
+
+        private DescribedMemento getUpdatedMemento() {
+            return new DescribedMemento(memento.getUpdatedMemento(), desc);
+        }
+
     }
 }

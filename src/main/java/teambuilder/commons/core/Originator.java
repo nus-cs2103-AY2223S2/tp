@@ -9,5 +9,5 @@ public interface Originator {
      *
      * @return The Momento containing the current originator and the desired state.
      */
-    public Momento save();
+    public Memento save();
 }

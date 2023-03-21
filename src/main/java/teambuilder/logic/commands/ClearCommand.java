@@ -2,7 +2,7 @@ package teambuilder.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import teambuilder.commons.core.Momento;
+import teambuilder.commons.core.Memento;
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.model.Model;
 import teambuilder.model.TeamBuilder;
@@ -19,9 +19,8 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        Momento old = model.save();
-        old.setDescription(COMMAND_WORD);
-        HistoryUtil.getInstance().store(old);
+        Memento old = model.save();
+        HistoryUtil.getInstance().storePast(old, COMMAND_WORD);
 
         model.setAddressBook(new TeamBuilder());
         return new CommandResult(MESSAGE_SUCCESS);
