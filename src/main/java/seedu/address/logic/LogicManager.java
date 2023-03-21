@@ -19,7 +19,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
 import seedu.address.storage.Storage;
 
@@ -27,6 +26,7 @@ import seedu.address.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
@@ -70,11 +70,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyTracker getTracker() {
         return model.getTracker();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     @Override
