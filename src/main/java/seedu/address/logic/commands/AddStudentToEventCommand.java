@@ -13,6 +13,8 @@ public class AddStudentToEventCommand extends Command {
     public static final String COMMAND_WORD = "addStudent";
     public static final String MESSAGE_SUCCESS = "Student at specified index added to event";
     public static final String TUTORIAL_STRING = "tutorial";
+    public static final String LAB_STRING = "lab";
+    public static final String CONSULTATION_STRING = "consultation";
     private final Index index;
     private final String eventName;
     private final String eventType;
@@ -38,8 +40,10 @@ public class AddStudentToEventCommand extends Command {
         //todo: fix case where event does not exist
         if (this.eventType.equals(TUTORIAL_STRING)) {
             model.addStudentToTutorial(this.index, this.eventName);
-        } else {
+        } else if (this.eventType.equals(LAB_STRING)) {
             model.addStudentToLab(this.index, this.eventName);
+        } else {
+            model.addStudentToConsultation(this.index, this.eventName);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
