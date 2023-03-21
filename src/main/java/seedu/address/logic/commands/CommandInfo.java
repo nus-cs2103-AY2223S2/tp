@@ -19,8 +19,9 @@ public class CommandInfo {
     /**
      * Constructs a new CommandInfo object with the given command word and command prompts.
      *
-     * @param commandWord    the word used to invoke the command.
-     * @param commandPrompts a mapping of prefixes to prompts for the user.
+     * @param commandWord      the word used to invoke the command.
+     * @param commandPrompts   a mapping of prefixes to prompts for the user.
+     * @param commandValidator validator used to validate user args.
      */
     public CommandInfo(String commandWord, HashMap<Prefix, String> commandPrompts,
                        Function<ArgumentMultimap, Boolean> commandValidator) {
@@ -37,7 +38,7 @@ public class CommandInfo {
         return commandPrompts;
     }
 
-    public Function<ArgumentMultimap, Boolean> getCommandValidator() {
+    public Function<ArgumentMultimap, Boolean> getCmdValidator() {
         return commandValidator;
     }
 }

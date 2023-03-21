@@ -246,7 +246,7 @@ public class CommandRecommendationEngine {
      */
     public static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) {
         CommandInfo commandInfo = commandInfoMap.get(command);
-        Function<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCommandValidator();
+        Function<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCmdValidator();
         return argumentValidator.apply(argumentMultimap);
     }
 
