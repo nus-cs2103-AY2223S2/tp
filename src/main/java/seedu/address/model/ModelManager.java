@@ -322,6 +322,7 @@ public class ModelManager implements Model {
     public void tagCurrentCardInReview(Tag tag) {
         masterDeck.tagCard(filteredCards.get(0), tag);
         currReview.tagCurrentCard(tag);
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
     public ObservableList<String> getReviewStatsList() {
         return currReview.getReviewStatsList();
