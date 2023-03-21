@@ -87,7 +87,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!internalList.removeIf(tagName -> tagName.isSameTag(toRemove))) {
             throw new BookmarkNotFoundException();
         }
     }

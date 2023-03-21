@@ -94,13 +94,24 @@ public interface Model {
     void updateFilteredBookmarkList(Predicate<Bookmark> predicate);
 
     /**
-     * Returns true if a tag with the same identity as {@code tag} exists in the tag list.
+     * Returns true if any tag with the same identity as {@code tag} exists in the tag list.
      */
     boolean hasTag(Set<Tag> tag);
+
+    /**
+     * Returns true if a tag with the same identity as {@code tag} exists in the tag list.
+     */
+    boolean hasTag(Tag tag);
 
     /**
      * Adds the given tags.
      * {@code tag} must not already exist in the tag list.
      */
     void addTags(Set<Tag> tag);
+
+    /**
+     * Deletes the given tag.
+     * The tag must exist in the tag list.
+     */
+    void deleteTag(Tag target);
 }

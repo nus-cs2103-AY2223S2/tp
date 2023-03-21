@@ -69,6 +69,10 @@ public class Tags implements ReadOnlyTags {
         return this.tags.containsAll(tags);
     }
 
+    public boolean contains(Tag tag) {
+        return this.tags.contains(tag);
+    }
+
     /**
      * Adds a tag to the tag list.
      * The tag must not already exist in the tag list.

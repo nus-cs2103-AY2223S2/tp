@@ -11,6 +11,7 @@ import seedu.library.logic.commands.AddTagCommand;
 import seedu.library.logic.commands.ClearCommand;
 import seedu.library.logic.commands.Command;
 import seedu.library.logic.commands.DeleteCommand;
+import seedu.library.logic.commands.DeleteTagCommand;
 import seedu.library.logic.commands.EditCommand;
 import seedu.library.logic.commands.ExitCommand;
 import seedu.library.logic.commands.FindCommand;
@@ -57,6 +58,9 @@ public class LibraryParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

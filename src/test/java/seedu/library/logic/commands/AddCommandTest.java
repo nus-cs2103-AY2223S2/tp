@@ -158,7 +158,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTag(Tag tags) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTags(Set<Tag> tags) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag tags) {
             throw new AssertionError("This method should not be called.");
         }
 

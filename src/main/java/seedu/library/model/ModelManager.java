@@ -137,8 +137,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTag(Tag tag) {
+        return tagList.contains(tag);
+    }
+
+    @Override
     public String tagListToString() {
         return tagList.tagListToString();
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        tagList.removeTag(target);
     }
 
     //=========== Filtered Bookmark List Accessors =============================================================
