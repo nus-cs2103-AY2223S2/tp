@@ -1,5 +1,7 @@
 package seedu.internship.ui;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -53,6 +55,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    private ArrayList<EventCard.Event> dummyEvents
+            = new ArrayList<EventCard.Event>(Arrays.asList(new EventCard.Event(), new EventCard.Event()));
 
 
     /**
@@ -190,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            internshipInfoPanel.updateInfoPanel(commandResult.getInternship());
+            internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), dummyEvents);
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
