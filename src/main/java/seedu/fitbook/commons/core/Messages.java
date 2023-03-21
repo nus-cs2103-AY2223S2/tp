@@ -6,7 +6,7 @@ package seedu.fitbook.commons.core;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_NO_ARGS = "Word parameter cannot be empty. \n%1$s";
+    public static final String MESSAGE_NO_KEYWORD = "Keyword parameter cannot be empty. \n%1$s";
     public static final String MESSAGE_NO_PREFIX = "Prefix parameter cannot be empty. \n%1$s";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PREFIX = "Invalid prefix inputted! \n%1$s";

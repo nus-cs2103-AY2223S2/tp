@@ -123,9 +123,10 @@ Examples:
 
 Finds Clients in Fitbook whose details contain any of the given keywords.
 
-Format: `find PREFIX/KEYWORD`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [w/WEIGHT] [g/GENDER] [cal/CALORIE] [t/TAG]
+[app/APPOINTMENT]…​`
 
-* Prefix must be included, or there will be an exception. Only one prefix is allowed per command.
+* Prefix must be included, or there will be an exception. Multiple prefixes are allowed per command.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords matters. e.g. `Hans Bo` will not match `Bo Hans`
 * Details containing the keyword will also be matched, even if both do not match exactly.
@@ -146,6 +147,8 @@ Available Prefixes:
 Examples:
 * `find n/Alex` returns every client with 'Alex' in their name.
 * `find p/91234567` returns every client with phone numbers that matches or contains '91234567'.
+* `find n/Alex p/91234567` returns every client with 'Alex' in their name OR with phone numbers that matches or contains
+'91234567'
 * `find alex david` will throw an exception, since there is a missing prefix in the command.
 
 ### Deleting a client : `delete`
