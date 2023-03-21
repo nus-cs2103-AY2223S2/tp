@@ -93,7 +93,8 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        InternshipCatalogue internshipCatalogue = new InternshipCatalogueBuilder().withInternship(ML2).withInternship(ML1).build();
+        InternshipCatalogue internshipCatalogue = new InternshipCatalogueBuilder().withInternship(ML2)
+                .withInternship(ML1).build();
         InternshipCatalogue differentInternshipCatalogue = new InternshipCatalogue();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -113,11 +114,6 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentInternshipCatalogue, userPrefs)));
-
-//        // different filteredList -> returns false
-//        String[] keywords = ALICE.getName().fullName.split("\\s+");
-//        modelManager1.updateFilteredInternshipList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-//        assertFalse(modelManager1.equals(new ModelManager1(internshipCatalogue, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);

@@ -7,8 +7,6 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
-
-
 import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.commands.AddCommand;
@@ -32,7 +30,6 @@ public class InternshipCatalogueParserTest {
         assertEquals(new AddCommand(internship), command);
     }
 
-
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
@@ -40,30 +37,11 @@ public class InternshipCatalogueParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_INTERNSHIP), command);
     }
 
-    //After Edit Command has been created
-//    @Test
-//    public void parseCommand_edit() throws Exception {
-//        Person person = new PersonBuilder().build();
-//        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-//        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-//                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-//        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
-//    }
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-
-    // Implemented After Command
-//    @Test
-//    public void parseCommand_find() throws Exception {
-//        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-//        FindCommand command = (FindCommand) parser.parseCommand(
-//                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-//        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-//    }
 
     @Test
     public void parseCommand_help() throws Exception {

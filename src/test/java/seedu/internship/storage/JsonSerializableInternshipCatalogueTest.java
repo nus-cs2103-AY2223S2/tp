@@ -13,12 +13,16 @@ import seedu.internship.commons.util.JsonUtil;
 import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.testutil.TypicalInternships;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableInternshipCatalogueTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableInternshipCatalogueTest");
-    private static final Path TYPICAL_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve("typicalInternshipsInternshipCatalogue.json");
-    private static final Path INVALID_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve("invalidInternshipInternshipCatalogue.json");
-    private static final Path DUPLICATE_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve("duplicateInternshipInternshipCatalogue.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get(
+            "src", "test", "data", "JsonSerializableInternshipCatalogueTest");
+    private static final Path TYPICAL_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve(
+            "typicalInternshipsInternshipCatalogue.json");
+    private static final Path INVALID_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve(
+            "invalidInternshipInternshipCatalogue.json");
+    private static final Path DUPLICATE_INTERNSHIP_FILE = TEST_DATA_FOLDER.resolve(
+            "duplicateInternshipInternshipCatalogue.json");
 
     @Test
     public void toModelType_typicalInternshipsFile_success() throws Exception {

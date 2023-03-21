@@ -27,6 +27,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newInternship_success() {
+
         Internship validInternship = new InternshipBuilder().build();
 
         Model expectedModel = new ModelManager(model.getInternshipCatalogue(), new UserPrefs());

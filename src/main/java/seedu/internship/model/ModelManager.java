@@ -142,6 +142,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+        System.out.println(this.filteredInternships);
+        System.out.println(other.filteredInternships);
         return internshipCatalogue.equals(other.internshipCatalogue)
                 && userPrefs.equals(other.userPrefs)
                 && filteredInternships.equals(other.filteredInternships);

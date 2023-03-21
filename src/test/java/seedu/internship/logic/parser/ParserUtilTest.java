@@ -5,8 +5,6 @@ import static seedu.internship.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.internship.testutil.Assert.assertThrows;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
-
-
 import org.junit.jupiter.api.Test;
 
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -114,74 +112,4 @@ public class ParserUtilTest {
         Status expectedAddress = new Status(Integer.valueOf(VALID_STATUS));
         assertEquals(expectedAddress, ParserUtil.parseStatus(statusWithWhitespace));
     }
-
-    // Emails and Tags don;t need to be tested , same goes for Descirpiton,
-//    @Test
-//    public void parseEmail_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
-//    }
-//
-//    @Test
-//    public void parseEmail_invalidValue_throwsParseException() {
-//        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
-//    }
-//
-//    @Test
-//    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-//        Email expectedEmail = new Email(VALID_EMAIL);
-//        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
-//    }
-//
-//    @Test
-//    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-//        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-//        Email expectedEmail = new Email(VALID_EMAIL);
-//        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
-//    }
-//
-//    @Test
-//    public void parseTag_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-//    }
-//
-//    @Test
-//    public void parseTag_invalidValue_throwsParseException() {
-//        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-//    }
-//
-//    @Test
-//    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-//        Tag expectedTag = new Tag(VALID_TAG_1);
-//        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
-//    }
-//
-//    @Test
-//    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-//        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-//        Tag expectedTag = new Tag(VALID_TAG_1);
-//        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-//    }
-//
-//    @Test
-//    public void parseTags_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-//    }
-//
-//    @Test
-//    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-//        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-//    }
-//
-//    @Test
-//    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-//        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-//    }
-//
-//    @Test
-//    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-//        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-//        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-//
-//        assertEquals(expectedTagSet, actualTagSet);
-//    }
 }
