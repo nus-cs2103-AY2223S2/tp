@@ -2,6 +2,7 @@ package seedu.address.model.expense;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import seedu.address.model.category.Category;
 
@@ -69,14 +70,6 @@ public class        Expense {
 
     /**
      * Returns true if a given string is a valid expense name.
-     * @param category Category to be tested
-     */
-    public static boolean isValidCategory(Category category) {
-        return Category.isValidCategoryName(category.getCategoryName());
-    }
-
-    /**
-     * Returns true if a given string is a valid expense name.
      * @param name Name to be tested
      */
     public static boolean isValidName(String name) {
@@ -96,13 +89,24 @@ public class        Expense {
         if (Double.compare(expense.amount, amount) != 0) {
             return false;
         }
-        if (name != null ? !name.equals(expense.name) : expense.name != null) {
+        if (!Objects.equals(name, expense.name)) {
             return false;
         }
-        if (date != null ? !date.equals(expense.date) : expense.date != null) {
+        if (!Objects.equals(date, expense.date)) {
             return false;
         }
-        return category != null ? category.equals(expense.category) : expense.category == null;
+        return Objects.equals(category, expense.category);
+    }
+
+    /**
+     * Returns true if a given expense matches the current expense
+     */
+    public boolean isSameExpense(Expense otherExpense) {
+        if (otherExpense == this) {
+            return true;
+        }
+        return otherExpense != null
+                && otherExpense.equals(this);
     }
 
     @Override
