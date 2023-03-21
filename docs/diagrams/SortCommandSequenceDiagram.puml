@@ -50,5 +50,4 @@ deactivate SortCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml
