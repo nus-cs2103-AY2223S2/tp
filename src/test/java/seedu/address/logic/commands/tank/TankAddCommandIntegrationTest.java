@@ -32,7 +32,7 @@ public class TankAddCommandIntegrationTest {
         Tank validTank = new TankBuilder().build();
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
-                model.getTankList());
+                getTypicalTankList());
         expectedModel.addTank(validTank);
 
         assertCommandSuccess(new TankAddCommand(validTank), model,

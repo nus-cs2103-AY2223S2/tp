@@ -65,6 +65,10 @@ public class Fish {
         tank = t;
     }
 
+    public boolean isInTank(Tank t) {
+        return tank == t;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

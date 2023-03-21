@@ -53,8 +53,7 @@ class JsonSerializableTankList {
             if (tankList.hasTank(tank)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TANK);
             }
-            Tank newTank = new Tank(tank.getTankName(), null);
-            tankList.addTank(newTank);
+            tankList.addTank(tank);
         }
         return tankList;
     }
