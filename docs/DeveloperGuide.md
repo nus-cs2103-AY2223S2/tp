@@ -534,9 +534,9 @@ The User profile will be displayed on the profile panel should there be any exce
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Command Formats**
-- `view` : Displays user's profile on the display panel.
-- `view n/XYZ` : Display XYZ's profile on the display panel.
+:information_source: **Command Formats** <br>
+- `view` : Displays user's profile on the display panel. <br>
+- `view n/XYZ` : Display XYZ's profile on the display panel. <br>
 - `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
 </div>
 
