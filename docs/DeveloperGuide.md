@@ -171,6 +171,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Remind command
+
+#### Implementation
+
+The remind command is facilitated by `RemindCommand`, which extends `Command`. It stores a `StartTimeWithinDaysPredicate` to test if an event should be displayed. An instance of `RemindCommand` is created by `RemindCommandParser`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
