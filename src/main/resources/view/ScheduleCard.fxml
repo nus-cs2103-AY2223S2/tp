@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -24,9 +25,12 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="appointments" styleClass="cell_big_label"/>
+                <Label fx:id="appointments" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="name"  />
+            <HBox alignment="CENTER_LEFT">
+                <ImageView fx:id="personIcon" fitWidth="35" fitHeight="35" />
+                <Label fx:id="name" styleClass="cell_small_label"/>
+            </HBox>
         </VBox>
     </GridPane>
 </HBox>
