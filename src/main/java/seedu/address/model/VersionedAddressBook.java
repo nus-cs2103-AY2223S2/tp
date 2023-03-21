@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * Stores a addressBookStateList which holds history of AddressBook
  */
-public class VersionedAddressBook extends AddressBook {
+public class VersionedAddressBook {
     private LinkedList<AddressBook> addressBookStateList = new LinkedList<>();
     private int currentStatePointer;
 
@@ -77,4 +77,29 @@ public class VersionedAddressBook extends AddressBook {
         }
         return true;
     }
+
+    /**
+     * Helper method
+     * @return linked list of Address Books
+     */
+    public LinkedList<AddressBook> getAddressBookStateList() {
+        return this.addressBookStateList;
+    }
+
+    /**
+     * Helper method
+     * @return int size of addressBookStateList
+     */
+    public int getSize() {
+        return this.addressBookStateList.size();
+    }
+
+    /**
+     * Helper method
+     * @return currentStatePointer
+     */
+    public int getCurrentStatePointer() {
+        return this.currentStatePointer;
+    }
+
 }
