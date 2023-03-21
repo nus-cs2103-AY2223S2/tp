@@ -20,13 +20,16 @@ import arb.model.project.Project;
 public class TypicalProjects {
 
     public static final Project PORTRAIT_PROJECT = new ProjectBuilder().withTitle("Portrait Commission")
-            .withDeadline("2pm 2025-02-01").build();
+            .withDeadline("2pm 2025-02-01")
+            .withTags("painting", "traditional").build();
     public static final Project CRAYON_PROJECT = new ProjectBuilder().withTitle("Crayon Drawing")
-            .withDeadline("3pm tomorrow").build();
+            .withDeadline("3pm tomorrow")
+            .withTags("paper", "crayons").build();
     public static final Project DIGITAL_PROJECT = new ProjectBuilder().withTitle("Digital Drawing")
             .withDeadline(null).build();
     public static final Project SCULPTURE_PROJECT = new ProjectBuilder().withTitle("Sculpture Project")
-            .withDeadline(null).build();
+            .withDeadline(null)
+            .withTags("clay").build();
 
     // Manually added
     public static final Project PUBLIC_PAINTING = new ProjectBuilder().withTitle("Public Painting")

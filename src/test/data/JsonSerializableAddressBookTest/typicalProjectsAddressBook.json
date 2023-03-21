@@ -4,18 +4,21 @@
   "projects" : [ {
     "title": "Portrait Commission",
     "deadline": "2pm 2025-02-01",
-    "status": "NOT DONE"
+    "status": "false",
+    "tagged": [ "painting", "traditional" ]
     }, {
     "title": "Crayon Drawing",
     "deadline": "3pm tomorrow",
-    "status": "NOT DONE"
+    "status": "false",
+    "tagged": [ "paper", "crayons"]
   }, {
     "title": "Digital Drawing",
     "deadline": null,
-    "status": "NOT DONE"
+    "status": "false"
   }, {
     "title": "Sculpture Project",
     "deadline": null,
-    "status": "NOT DONE"
+    "status": "false",
+    "tagged": [ "clay" ]
   }]
 }
