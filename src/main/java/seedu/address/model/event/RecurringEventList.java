@@ -14,10 +14,6 @@ import seedu.address.model.event.exceptions.EventNotFoundException;
 public class RecurringEventList {
     private final TreeSet<RecurringEvent> recurringEvents = new TreeSet<>();
 
-    public void insert(RecurringEvent newEvent) {
-        this.recurringEvents.add(newEvent);
-    }
-
     public TreeSet<RecurringEvent> getRecurringEvents() {
         return recurringEvents;
     }
@@ -28,6 +24,32 @@ public class RecurringEventList {
      */
     public int getSize() {
         return recurringEvents.size();
+    }
+
+    /**
+     * Insert the recurring event object into the recurring event list
+     * @param newEvent to be inserted
+     */
+    public void insert(RecurringEvent newEvent) {
+        this.recurringEvents.add(newEvent);
+    }
+
+    /**
+     * Check if a recurring event exist within the recurring event list
+     * @param event to be checked if exist
+     * @return true if there exist a same event and false if the event does exist
+     * in the event list
+     */
+    public boolean contain(RecurringEvent event) {
+        return recurringEvents.contains(event);
+    }
+
+    /**
+     * Delete the recurring event from the recurring event list.
+     * @param event to be deleted.
+     */
+    public void deleteRecurringEvent(RecurringEvent event) {
+        recurringEvents.remove(event);
     }
 
     /**
@@ -49,20 +71,19 @@ public class RecurringEventList {
         return recurringEvent;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder output = new StringBuilder("Recurring Events\n");
-        int count = 1;
-        for (RecurringEvent re : recurringEvents) {
-            output.append(count).append(". ").append(re.toString()).append("\n");
-            count++;
+    /**
+     * Edit recurring event parameters in the recurring event list
+     * @param originalEvent to be edited
+     * @param editedRecurringEvent to be edited to
+     */
+    public void edit(RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
+        if (!recurringEvents.contains(originalEvent)) {
+            throw new EventNotFoundException();
         }
-        return output.toString();
+        recurringEvents.remove(originalEvent);
+        recurringEvents.add(editedRecurringEvent);
     }
 
-    public boolean contain(RecurringEvent event) {
-        return recurringEvents.contains(event);
-    }
     public void addAll(Set<RecurringEvent> recurringEvents) {
         this.recurringEvents.addAll(recurringEvents);
     }
@@ -88,20 +109,14 @@ public class RecurringEventList {
         return output.toString();
     }
 
-    public void deleteRecurringEvent(RecurringEvent event) {
-        recurringEvents.remove(event);
-    }
-
-    /**
-     * Edit recurring event parameters in the recurring event list
-     * @param originalEvent to be edited
-     * @param editedRecurringEvent to be edited to
-     */
-    public void edit(RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
-        if (!recurringEvents.contains(originalEvent)) {
-            throw new EventNotFoundException();
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder("Recurring Events\n");
+        int count = 1;
+        for (RecurringEvent re : recurringEvents) {
+            output.append(count).append(". ").append(re.toString()).append("\n");
+            count++;
         }
-        recurringEvents.remove(originalEvent);
-        recurringEvents.add(editedRecurringEvent);
+        return output.toString();
     }
 }

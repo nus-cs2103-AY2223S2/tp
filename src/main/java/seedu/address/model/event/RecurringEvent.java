@@ -32,7 +32,6 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
      */
     public RecurringEvent(String eventName, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
         super(eventName);
-
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -159,7 +158,6 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         if (this.startTime.isAfter(this.endTime) || this.startTime.equals(this.endTime)) {
             throw new CommandException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
         }
-
     }
 
     @Override
