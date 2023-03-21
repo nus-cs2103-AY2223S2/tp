@@ -34,6 +34,24 @@ This user guide will serve as a guide to help you get up to speed in no time!
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Using the examples in this Guide
+The examples given in this guide are formatted with the following conventions:
+
+**Command Words** - Command words are the first word in any command.\
+They are written in lowercase. These include examples such as `linkcontact` or `edit`.
+
+**Parameters** - Parameters are the words that follow the command word.\
+They are written in UPPERCASE. These include examples such as `INDEX` or `PHONE`.
+Parameters are meant to be replaced by the user with the relevant information.
+
+**Example** - Examples are shown in the format `commandword + parameters`.\
+This is followed by the expected outcome of the command. These includ examples such as `newcontact n/John Doe p/98765432`.
+These are meant to be used as a reference for the user to see how the command should be formatted.
+The expected action of this command is written behind.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -78,7 +96,9 @@ Adding a contact to contacts
 
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
+  - This command will create a new contact named `Deborah Tan` with phone number `91234567`. 
 - `newcontact n/Tan Jun Wei p/82828234`
+  - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
 
 
 <!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
@@ -101,7 +121,8 @@ Links client contact to an event.
     - The `PHONE` must be a valid phone number in the contact list.
 
 **Example**:
-- `linkcontact 2 91234567` links `2nd event` to the contact with phone `91234567` in the list.
+- `linkcontact 2 91234567`
+  - This command will link the contact with phone number `91234567` to the 2nd event in the event list.
 
 
 ### View Rate: `rate` <a id = "view-rate"></a>
@@ -116,7 +137,8 @@ Displays the rate tagged to an event.
     - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
-- `rate 2` returns the rate of `2nd event` in the event list.
+- `rate 2`
+  - This command will display the rate of the 2nd event in the event list.
 
 
 <!-- ### Tag Rate: `newrate` <a id = "tag-rate"></a>
@@ -142,8 +164,12 @@ Marks a specified event in Paidlancers as done.
 
 - Marks the event at the specified `INDEX` as done.
 
+    - The `INDEX` refers to the index number in the displayed events list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
+
 **Example**:
-- `mark 2` marks the `2nd event` as done.
+- `mark 2`
+  - This command will mark the 2nd event in the event list as done.
 
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
@@ -152,9 +178,12 @@ Unmarks a specified event in Paidlancers.
 **Format**: `unmark INDEX`
 
 - Unmarks the event at the specified `INDEX`.
+    - The `INDEX` refers to the index number in the displayed events list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
-- `unmark 2` unmarks the `2nd event`.
+- `unmark 2`
+  - This command will unmark the 2nd event in the event list.
 
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
@@ -166,12 +195,15 @@ Creates a new event
 
 **Example**:
 - `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
+  - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
 
 ### List all Events: `listevent` <a id = "list-all-events"></a>
 
 Shows a list of all events in Paidlancers
 
 **Format**: `list`
+
+- List down the events in the event book.
 
 
 ### Delete an Event: `delete` <a id = "delete-an-event"></a>
@@ -186,7 +218,8 @@ Deletes the specified event from the event book.
     - The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
-- `delete 2` deletes the `2nd event` in the event list.
+- `delete 2`
+  - This command will delete the 2nd event in the event list.
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
@@ -197,25 +230,32 @@ Edits the specified event from the event book.
 - Edits the event at the specified `INDEX`
 
     - The `INDEX` refers to the index number shown in the displayed event list.
-    - `[]` are optional parameters.
     - The `INDEX` must be a positive integer 1, 2, 3, …
+    - `[]` are optional parameters.
     - At least one of the optional fields must be provided.
     - Edits will replace existing values, edits are not cumulative.
     - Tags can be removed by typing `t/` without specifying any tags after it.
 
 **Example**:
-- `edit 1 r/100` Edits the rate of the 1st event to be 100.
-- `edit 2 n/Wedding Dinner t/` Edits the name of the 2nd event to be Wedding Dinner and clears all existing tags.
-- `edit 1 n/Wedding Lunch` Edits the name of the 1st event to be Wedding Lunch.
+- `edit 1 r/100`
+  - This command will edit the rate of the 1st event to be `100`.
+- `edit 2 n/Wedding Dinner t/`
+  - This command will edit the name of the 2nd event to be `Wedding Dinner` and remove all tags.
+- `edit 1 n/Wedding Lunch`
+  - This command will edit the name of the 1st event to be `Wedding Lunch`.
 
 ### Saving the data
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?
+**Q**: How do I transfer my data to another Computer? \
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
 |                    Commands                     |               Command Format                |                                Example Usage                                |
