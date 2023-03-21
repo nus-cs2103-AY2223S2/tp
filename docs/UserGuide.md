@@ -204,16 +204,16 @@ Edits the specified event from the event book.
 **Example**:
 - `edit 1 r/100` Edits the rate of the 1st event to be 100.
 - `edit 2 n/Wedding Dinner t/` Edits the name of the 2nd event to be Wedding Dinner and clears all existing tags.
+- `edit 1 n/Wedding Lunch` Edits the name of the 1st event to be Wedding Lunch.
 
 ### Saving the data
 
-Paidlancers data are saved in the hard disk automatically exiting the program. There is no need to save manually.
+Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Paidlancers home folder.
-(#add-a-contact)
 
 ## Command Summary
 |                    Commands                     |               Command Format                |                                Example Usage                                |
