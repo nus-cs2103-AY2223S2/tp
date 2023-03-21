@@ -39,7 +39,7 @@ Class ResultDisplay
 Class ResultDisplayCard
 }
 
-note right of UiPart: Extended by all UI components\n except UiManager
+note right of UiPart: Inherited by all UI components\n except UiManager
 
 }
 

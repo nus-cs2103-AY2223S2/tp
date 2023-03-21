@@ -73,16 +73,34 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `BodyPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person`, `Event`, and `User` objects residing in the `Model`.
+
+The UI is styled using CSS, primarily via [`DarkTheme.css`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/DarkTheme.css) and [`Extensions.css`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/Extensions.css) that are imported by `MainWindow.fxml`. The `HelpWindow` has its own separate CSS file, [`HelpWindow.css`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/master/src/main/resources/view/HelpWindow.css).
+
+In `DarkTheme.css`, there is a system of reuse. For example,
+
+* Themes have their own defined variables:
+  * `-fx-primary`: primary theme colour
+  * `-fx-primary-foreground`: primary theme colour, usually for foreground and accented components
+  * `-fx-primary-background`: primary theme colour, usually for background and muted components
+  * `-fx-primary-text`: primary text colour
+  * `-fx-secondary-text`: secondary text colour
+  * `-fx-list-odd`: background colour of odd-indexed list cells
+  * `-fx-list-even`: background colour of even-indexed list cells
+  * `-fx-list-selected`: background colour of selected list cells
+
+* Labels have defined font sizes: `label-h1`, `label-h2`, `label-h3`, `label-h4`, `label-h5`, `label-h6`, and `label-p`, corresponding to the different headings and paragraph font sizes.
+
+* Paddings have been defined and standardised with a width of 10. For example, `pa` represents "all padding", `pt` for "top padding", and `pa-b` for "all padding except bottom".
 
 ### Logic component
 
