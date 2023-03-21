@@ -25,7 +25,6 @@ public class ApplicationStorageManager implements ApplicationStorage {
      * {@code InternshipBookStorage} and {@code UserPrefStorage}.
      */
     public ApplicationStorageManager(InternshipBookStorage internshipBookStorage, UserPrefsStorage userPrefsStorage) {
-        assert(internshipBookStorage != null);
         this.internshipBookStorage = internshipBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
