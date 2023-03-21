@@ -161,12 +161,13 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 The following sequence diagram provides an overview on how the `view` operation works.
 
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
 The following gives a more detailed explanation of the `view` operation.
 ######  Step 1: Validate Input
 1. When the user enters a `view` command, the `ViewCommandParser` parses the user's input.
 2. It checks for the following:
-- The `INDEX` entered by the user must be an integer that can be converted to an index.
+- The `INDEX` entered by the user must be able to be converted into a numeric index.
 3. If the user entered a value of `INDEX` that cannot be converted, a `ParserException` will
    be thrown.
 4. An `Index` will be created from the user's input if Step 2 passes.
@@ -185,17 +186,17 @@ The following gives a more detailed explanation of the `view` operation.
 
 ###### Whether to separate the checking of valid user input into 2 classes
 1. **Alternative 1: Allow `ViewCommand` to handle checking of whether user input can be
-     parsed into an integer, and whether it is a valid index**
+     parsed into an index, and whether it is a valid index**
     * Pros: No need for a separate `ViewCommandParser` class and any problems with checking of
       user input can be isolated to the `ViewCommand` class.
     * Cons: Breaks the abstraction where parsing of user input should be done by the `Parser`
       classes instead of a `Command` class.
-2. **Alternative 2: Allow `ViewCommandParser` to handle checking of whether user input
-     can be parsed into an integer, and `ViewCommand` to handle checking of whether it
+2. **Alternative 2 (chosen): Allow `ViewCommandParser` to handle checking of whether user input
+     can be parsed into an index, and `ViewCommand` to handle checking of whether it
      is a valid index**
-    * Pros: Maintains the abstraction between `Parser` and `Command` classes. Also, it
+    * Pros: Maintains the abstraction between the `Parser` and `Command` classes. Also, it
       makes it more maintainable for future extensions in the event that further checks
-      to the user input is required.
+      to the user input are required.
     * Cons: Have to maintain code in 2 separate classes and in the event that there
       is an issue in processing user input for the `ViewCommand`, there is a need to
       identify and isolate which of the 2 checks does the problem originate from.
