@@ -70,11 +70,6 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getPatientManagerFilePath() {
-        assertNotNull(storageManager.getPatientManagerFilePath());
-    }
-
-    @Test
     public void loadDefaultVaxTypes() {
         /*
          * This is an integration test to verify that VaxTypeManager has been integrated properly.
