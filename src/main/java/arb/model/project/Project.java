@@ -110,18 +110,10 @@ public class Project {
 
         Project otherProject = (Project) other;
 
-        boolean isTitleEqual = otherProject.getTitle().equals(getTitle());
-        boolean isTagsEqual = otherProject.getTags().equals(getTags());
-        boolean isStatusEqual = otherProject.getStatus().equals(getStatus());
-
-        boolean isDeadlineEqual;
-        if (!isDeadlinePresent()) {
-            isDeadlineEqual = otherProject.getDeadline() == null;
-        } else {
-            isDeadlineEqual = getDeadline().equals(otherProject.getDeadline());
-        }
-
-        return isTitleEqual && isStatusEqual && isDeadlineEqual && isTagsEqual;
+        return otherProject.getTitle().equals(getTitle())
+                && otherProject.deadline.equals(deadline)
+                && otherProject.getStatus().equals(getStatus())
+                && otherProject.getTags().equals(getTags());
     }
 
     @Override

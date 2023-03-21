@@ -63,7 +63,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listClientCommand = ListClientCommand.COMMAND_WORD;
+        String listClientCommand = ListClientCommand.getCommandWords().get(0);
         assertCommandSuccess(listClientCommand, ListClientCommand.MESSAGE_SUCCESS, model);
     }
 
@@ -78,7 +78,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add client command
-        String addClientCommand = AddClientCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
+        String addClientCommand = AddClientCommand.getCommandWords().get(0) + NAME_DESC_AMY
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         Client expectedClient = new ClientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addClient(expectedClient);

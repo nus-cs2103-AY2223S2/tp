@@ -2,6 +2,12 @@ package arb.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import arb.commons.core.Messages;
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
@@ -15,12 +21,15 @@ import arb.model.project.TitleContainsKeywordsPredicate;
  */
 public class FindProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "find-project";
+    private static final String MAIN_COMMAND_WORD = "find-project";
+    private static final String ALIAS_COMMAND_WORD = "fp";
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all projects whose titles contain any of "
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all projects whose titles contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " digital sculpture";
+            + "Example: " + MAIN_COMMAND_WORD + " digital sculpture";
 
     private final TitleContainsKeywordsPredicate predicate;
 
@@ -42,5 +51,13 @@ public class FindProjectCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof FindProjectCommand // instanceof handles nulls
                 && predicate.equals(((FindProjectCommand) other).predicate)); // state check
+    }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
+    }
+
+    public static List<String> getCommandWords() {
+        return new ArrayList<>(COMMAND_WORDS);
     }
 }

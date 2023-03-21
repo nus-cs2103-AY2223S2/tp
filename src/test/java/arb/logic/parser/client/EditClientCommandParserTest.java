@@ -1,15 +1,22 @@
 package arb.logic.parser.client;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_AMY;
+import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_ALIAS_BOB;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static arb.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static arb.logic.commands.CommandTestUtil.NAME_DESC_ALIAS_AMY;
 import static arb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static arb.logic.commands.CommandTestUtil.PHONE_DESC_ALIAS_AMY;
+import static arb.logic.commands.CommandTestUtil.PHONE_DESC_ALIAS_BOB;
 import static arb.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static arb.logic.commands.CommandTestUtil.TAG_DESC_ALIAS_FRIEND;
+import static arb.logic.commands.CommandTestUtil.TAG_DESC_ALIAS_HUSBAND;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static arb.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -101,6 +108,8 @@ public class EditClientCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
+
+        // using main prefixes
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
@@ -110,11 +119,25 @@ public class EditClientCommandParserTest {
         EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // using alias prefixes
+        userInput = targetIndex.getOneBased() + PHONE_DESC_ALIAS_BOB + TAG_DESC_ALIAS_HUSBAND
+                + EMAIL_DESC_ALIAS_AMY + NAME_DESC_ALIAS_AMY + TAG_DESC_ALIAS_FRIEND;
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // using a mix of main and alias prefixes
+        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_ALIAS_HUSBAND
+                + EMAIL_DESC_AMY + NAME_DESC_ALIAS_AMY + TAG_DESC_ALIAS_FRIEND;
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST;
+
+        // using main prefixes
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -122,33 +145,59 @@ public class EditClientCommandParserTest {
         EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // using alias prefixes
+        userInput = targetIndex.getOneBased() + PHONE_DESC_ALIAS_BOB + EMAIL_DESC_ALIAS_AMY;
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // using a mix of main and alias prefixes
+        userInput = targetIndex.getOneBased() + PHONE_DESC_ALIAS_BOB + EMAIL_DESC_AMY;
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // name
+        // name, using main prefix
         Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditClientCommand expectedCommand = new EditClientCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // name, using alias prefix
+        userInput = targetIndex.getOneBased() + NAME_DESC_ALIAS_AMY;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // phone, using main prefix
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
         descriptor = new EditClientDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditClientCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // phone, using alias prefix
+        userInput = targetIndex.getOneBased() + PHONE_DESC_ALIAS_AMY;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // email, using main prefix
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditClientDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditClientCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // email, using alias prefix
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_ALIAS_AMY;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // tags, with main prefix
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditClientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // tags, with alias prefix
+        userInput = targetIndex.getOneBased() + TAG_DESC_ALIAS_FRIEND;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -156,8 +205,9 @@ public class EditClientCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+                + TAG_DESC_FRIEND + PHONE_DESC_ALIAS_AMY + EMAIL_DESC_ALIAS_AMY
+                + TAG_DESC_ALIAS_FRIEND + PHONE_DESC_BOB + PHONE_DESC_ALIAS_BOB + EMAIL_DESC_ALIAS_BOB
+                + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)

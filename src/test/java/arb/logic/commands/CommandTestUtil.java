@@ -50,23 +50,43 @@ public class CommandTestUtil {
     public static final String VALID_TAG_POTTERY = "pottery";
 
     public static final String VALID_SORTING_OPTION_DEADLINE = "deadline";
+    public static final String VALID_SORTING_OPTION_DEADLINE_ALIAS = "d";
     public static final String VALID_SORTING_OPTION_TITLE = "name";
+    public static final String VALID_SORTING_OPTION_TITLE_ALIAS = "n";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_ALIAS_AMY = " " + PREFIX_NAME.getAlias() + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_ALIAS_BOB = " " + PREFIX_NAME.getAlias() + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
+    public static final String PHONE_DESC_ALIAS_AMY = " " + PREFIX_PHONE.getAlias() + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String PHONE_DESC_ALIAS_BOB = " " + PREFIX_PHONE.getAlias() + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
+    public static final String EMAIL_DESC_ALIAS_AMY = " " + PREFIX_EMAIL.getAlias() + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String EMAIL_DESC_ALIAS_BOB = " " + PREFIX_EMAIL.getAlias() + VALID_EMAIL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAG_DESC_ALIAS_FRIEND = " " + PREFIX_TAG.getAlias() + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_ALIAS_HUSBAND = " " + PREFIX_TAG.getAlias() + VALID_TAG_HUSBAND;
 
     public static final String TITLE_DESC_SKY_PAINTING = " " + PREFIX_NAME + VALID_TITLE_SKY_PAINTING;
+    public static final String TITLE_DESC_ALIAS_SKY_PAINTING = " " + PREFIX_NAME.getAlias()
+            + VALID_TITLE_SKY_PAINTING;
     public static final String TITLE_DESC_OIL_PAINTING = " " + PREFIX_NAME + VALID_TITLE_OIL_PAINTING;
+    public static final String TITLE_DESC_ALIAS_OIL_PAINTING = " " + PREFIX_NAME.getAlias()
+            + VALID_TITLE_OIL_PAINTING;
     public static final String DEADLINE_DESC_SKY_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_SKY_PAINTING;
+    public static final String DEADLINE_DESC_ALIAS_SKY_PAINTING = " " + PREFIX_DEADLINE.getAlias()
+            + VALID_DEADLINE_SKY_PAINTING;
     public static final String DEADLINE_DESC_OIL_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_OIL_PAINTING;
+    public static final String DEADLINE_DESC_ALIAS_OIL_PAINTING = " " + PREFIX_DEADLINE.getAlias()
+            + VALID_DEADLINE_OIL_PAINTING;
     public static final String TAG_DESC_PAINTING = " " + PREFIX_TAG + VALID_TAG_PAINTING;
+    public static final String TAG_DESC_ALIAS_PAINTING = " " + PREFIX_TAG.getAlias() + VALID_TAG_PAINTING;
     public static final String TAG_DESC_POTTERY = " " + PREFIX_TAG + VALID_TAG_POTTERY;
+    public static final String TAG_DESC_ALIAS_POTTERY = " " + PREFIX_TAG.getAlias() + VALID_TAG_POTTERY;
 
     public static final String SORTING_OPTION_DESC = " " + PREFIX_OPTION + VALID_SORTING_OPTION_DEADLINE;
 
