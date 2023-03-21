@@ -154,11 +154,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Transaction> getFilteredTransactionList() {
-        return filteredTransactions;
-    }
-
-    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
