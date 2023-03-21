@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.ultron.commons.exceptions.IllegalValueException;
-import seedu.ultron.model.opening.Keydate;
+import seedu.ultron.model.opening.Date;
 
 /**
- * Jackson-friendly version of {@link Keydate}.
+ * Jackson-friendly version of {@link Date}.
  */
 class JsonAdaptedDate {
 
@@ -27,7 +27,7 @@ class JsonAdaptedDate {
     /**
      * Converts a given {@code date} into this class for Jackson use.
      */
-    public JsonAdaptedDate(Keydate source) {
+    public JsonAdaptedDate(Date source) {
         name = source.fullName;
         date = source.fullDate;
     }
@@ -42,11 +42,11 @@ class JsonAdaptedDate {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted date.
      */
-    public Keydate toModelType() throws IllegalValueException {
-        if (!Keydate.isValidDate(date)) {
-            throw new IllegalValueException(Keydate.MESSAGE_CONSTRAINTS);
+    public Date toModelType() throws IllegalValueException {
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Keydate(name, date);
+        return new Date(name, date);
     }
 
 }

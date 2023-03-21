@@ -57,7 +57,7 @@ public class OpeningCard extends UiPart<Region> {
         System.out.println(opening.getRemark());
         System.out.println(opening.getRemark().value);
         remark.setText(String.format("Remark: [%s]", opening.getRemark().value));
-        opening.getKeydates().stream()
+        opening.getDates().stream()
                 .sorted(Comparator.comparing(date -> date.fullDate))
                 .forEach(date -> dates.getChildren().add(new Label(date.fullDate)));
     }

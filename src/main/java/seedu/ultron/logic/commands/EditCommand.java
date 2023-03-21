@@ -20,7 +20,7 @@ import seedu.ultron.commons.util.CollectionUtil;
 import seedu.ultron.logic.commands.exceptions.CommandException;
 import seedu.ultron.model.Model;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Keydate;
+import seedu.ultron.model.opening.Date;
 import seedu.ultron.model.opening.Email;
 import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Position;
@@ -99,9 +99,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editOpeningDescriptor.getEmail().orElse(openingToEdit.getEmail());
         Status updatedStatus = editOpeningDescriptor.getStatus().orElse(openingToEdit.getStatus());
         Remark updatedRemark = editOpeningDescriptor.getRemark().orElse(openingToEdit.getRemark());
-        Set<Keydate> updatedKeydates = editOpeningDescriptor.getDates().orElse(openingToEdit.getKeydates());
+        Set<Date> updatedDates = editOpeningDescriptor.getDates().orElse(openingToEdit.getDates());
 
-        return new Opening(updatedPosition, updatedCompany, updatedEmail, updatedStatus, updatedRemark, updatedKeydates);
+        return new Opening(updatedPosition, updatedCompany, updatedEmail, updatedStatus, updatedRemark, updatedDates);
     }
 
     @Override
@@ -132,13 +132,13 @@ public class EditCommand extends Command {
         private Email email;
         private Status status;
         private Remark remark;
-        private Set<Keydate> keydates;
+        private Set<Date> dates;
 
         public EditOpeningDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code keydates} is used internally.
+         * A defensive copy of {@code dates} is used internally.
          */
         public EditOpeningDescriptor(EditOpeningDescriptor toCopy) {
             setPosition(toCopy.position);
@@ -146,14 +146,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setStatus(toCopy.status);
             setRemark(toCopy.remark);
-            setDates(toCopy.keydates);
+            setDates(toCopy.dates);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(position, company, email, status, keydates);
+            return CollectionUtil.isAnyNonNull(position, company, email, status, dates);
         }
 
         public void setPosition(Position position) {
@@ -197,20 +197,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code keydates} to this object's {@code keydates}.
-         * A defensive copy of {@code keydates} is used internally.
+         * Sets {@code dates} to this object's {@code dates}.
+         * A defensive copy of {@code dates} is used internally.
          */
-        public void setDates(Set<Keydate> keydates) {
-            this.keydates = (keydates != null) ? new HashSet<>(keydates) : null;
+        public void setDates(Set<Date> dates) {
+            this.dates = (dates != null) ? new HashSet<>(dates) : null;
         }
 
         /**
          * Returns an unmodifiable date set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code keydates} is null.
+         * Returns {@code Optional#empty()} if {@code dates} is null.
          */
-        public Optional<Set<Keydate>> getDates() {
-            return (keydates != null) ? Optional.of(Collections.unmodifiableSet(keydates)) : Optional.empty();
+        public Optional<Set<Date>> getDates() {
+            return (dates != null) ? Optional.of(Collections.unmodifiableSet(dates)) : Optional.empty();
         }
 
         @Override
