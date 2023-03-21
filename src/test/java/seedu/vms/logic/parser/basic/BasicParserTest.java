@@ -14,13 +14,13 @@ public class BasicParserTest {
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parse(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parse(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertTrue(parser.parse(ExitCommand.COMMAND_WORD).getCommand() instanceof ExitCommand);
+        assertTrue(parser.parse(ExitCommand.COMMAND_WORD + " 3").getCommand() instanceof ExitCommand);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parse(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parse(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parse(HelpCommand.COMMAND_WORD).getCommand() instanceof HelpCommand);
+        assertTrue(parser.parse(HelpCommand.COMMAND_WORD + " 3").getCommand() instanceof HelpCommand);
     }
 }

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.exceptions.ParseException;
 
 public class DeleteVaxTypeParserTest {
@@ -19,6 +21,7 @@ public class DeleteVaxTypeParserTest {
 
 
     private void attemptParse(String command) throws Exception {
-        new DeleteVaxTypeParser().parse(command);
+        ArgumentMultimap args = ArgumentTokenizer.tokenize(command);
+        new DeleteVaxTypeParser().parse(args);
     }
 }

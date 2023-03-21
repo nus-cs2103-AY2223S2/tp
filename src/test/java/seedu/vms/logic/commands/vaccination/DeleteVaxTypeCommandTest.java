@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.ArgumentTokenizer;
 import seedu.vms.logic.parser.vaccination.DeleteVaxTypeParser;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.testutil.SampleVaxTypeData;
@@ -41,6 +43,7 @@ public class DeleteVaxTypeCommandTest {
 
 
     private void attemptDelete(String command) throws Exception {
-        new DeleteVaxTypeParser().parse(command).execute(model);
+        ArgumentMultimap argsMap = ArgumentTokenizer.tokenize(command);
+        new DeleteVaxTypeParser().parse(argsMap).execute(model);
     }
 }
