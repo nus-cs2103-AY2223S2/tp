@@ -179,6 +179,19 @@ The remind command is facilitated by `RemindCommand`, which extends `Command`. I
 
 When the `EventBookParser` is used to parse user input of a remind command, it uses a new `RemindCommandParser` to create a `RemindCommand`.
 
+#### Design considerations:
+
+**Aspect: How remind executes:**
+
+* **Alternative 1 (current choice):** Checks if event is within given days from current time.
+    * Pros: 
+    * Cons: 
+
+* **Alternative 2:** Checks if event is within given days from time of opening app.
+  itself.
+    * Pros:
+    * Cons:
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
