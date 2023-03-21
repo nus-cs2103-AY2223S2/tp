@@ -15,7 +15,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,9 +22,8 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ExpenseTracker addressBook;
+    private final ExpenseTracker expenseTracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
 
@@ -35,17 +33,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyExpenseTracker addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new ExpenseTracker(addressBook);
+    public ModelManager(ReadOnlyExpenseTracker expenseTracker, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(expenseTracker, userPrefs);
+        logger.fine("Initializing with expense tracker: " + expenseTracker + " and user prefs " + userPrefs);
+        this.expenseTracker = new ExpenseTracker(expenseTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredExpenses = new FilteredList<>(this.addressBook.getExpenseList());
-        filteredCategories = new FilteredList<>(this.addressBook.getCategoryList());
-        updateExpenseListCount();
+        filteredExpenses = new FilteredList<>(this.expenseTracker.getExpenseList());
+        filteredCategories = new FilteredList<>(this.expenseTracker.getCategoryList());
     }
 
     public ModelManager() {
@@ -86,85 +80,31 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getExpenseTrackerFilePath() {
+        return userPrefs.getExpenseTrackerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setExpenseTrackerFilePath(Path expenseTrackerFilePath) {
+        requireNonNull(expenseTrackerFilePath);
+        userPrefs.setExpenseTrackerFilePath(expenseTrackerFilePath);
     }
 
-    // =========== AddressBook
+    // =========== ExpenseTracker
     // ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyExpenseTracker addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setExpenseTracker(ReadOnlyExpenseTracker expenseTracker) {
+        this.expenseTracker.resetData(expenseTracker);
     }
 
     @Override
-    public ReadOnlyExpenseTracker getAddressBook() {
-        return addressBook;
+    public ReadOnlyExpenseTracker getExpenseTracker() {
+        return expenseTracker;
     }
 
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void deleteCategory(Category target) {
-        addressBook.removeCategory(target);
-        updateFilteredCategoryList(PREDICATE_SHOW_ALL_CATEGORY);
-        updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-    }
-
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void addCategory(Category toAdd) {
-        addressBook.addCategory(toAdd);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    // =========== Filtered Person List Accessors
+    // =========== Expenses List Accessors
     // =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the
-     * internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -179,9 +119,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return expenseTracker.equals(other.expenseTracker)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredExpenses.equals(other.filteredExpenses)
+                && filteredCategories.equals(other.filteredCategories);
     }
 
     // =========== Category List Accessors
@@ -198,17 +139,47 @@ public class ModelManager implements Model {
         filteredCategories.setPredicate(predicate);
     }
 
-    @Override
-    public boolean hasCategory(String categoryName) {
+    /**
+     * Indicates if a category exists in the category list by name
+     * Used to determine if the category the user has specified already exists in the list,
+     * in order to reference that specific category
+     * @param categoryName the category name to check for
+     */
+    private boolean hasCategoryName(String categoryName) {
         requireNonNull(categoryName);
-        return addressBook.hasCategory(categoryName);
+        return expenseTracker.hasCategoryName(categoryName);
     }
 
+    /**
+     * Indicates if a category exists in the category list
+     * @param category the category to check for
+     */
     @Override
     public boolean hasCategory(Category category) {
         requireNonNull(category);
-        return addressBook.hasCategory(category);
+        return expenseTracker.hasCategory(category);
     }
+
+    @Override
+    public void addCategory(Category toAdd) {
+        expenseTracker.addCategory(toAdd);
+    }
+
+    @Override
+    public void deleteCategory(Category target) {
+        expenseTracker.removeCategory(target);
+        updateFilteredCategoryList(PREDICATE_SHOW_ALL_CATEGORY);
+        updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
+    }
+
+    @Override
+    public Category getCategoryInstance(String categoryName) {
+        if (hasCategoryName(categoryName)) {
+            return expenseTracker.getCategoryInstance(categoryName);
+        }
+        return null;
+    }
+
 
     // =========== Filtered Expense List Accessors
     // =============================================================
@@ -223,6 +194,15 @@ public class ModelManager implements Model {
         return filteredExpenses;
     }
 
+    /**
+     * Replaces the given expense {@code target} with {@code editedExpense}.
+     * {@code target} must exist in the expense list
+     */
+    @Override
+    public void setExpense(Expense target, Expense editedExpense) {
+        //TODO implement this method for editing an expense
+    }
+
     @Override
     public void updateFilteredExpensesList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
@@ -231,20 +211,32 @@ public class ModelManager implements Model {
 
     @Override
     public void addExpense(Expense expense) {
-        addressBook.addExpense(expense);
+        expenseTracker.addExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
         updateExpenseListCount();
     }
 
     @Override
     public void deleteExpense(Expense expense) {
-        addressBook.removeExpense(expense);
+        expenseTracker.removeExpense(expense);
         updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
     }
 
+    /**
+     * Gets a count of the number of expenses in the currently filtered expense list
+     */
     @Override
-    public Category getCategoryInstance(String categoryName) {
-        return addressBook.getCategoryInstance(categoryName);
+    public int getFilteredExpenseListCount() {
+        return 0;
     }
 
+    /**
+     * Indicates if an expense exists in the expense list
+     * @param expense the expense to check for
+     */
+    @Override
+    public boolean hasExpense(Expense expense) {
+        requireNonNull(expense);
+        return expenseTracker.hasExpense(expense);
+    }
 }
