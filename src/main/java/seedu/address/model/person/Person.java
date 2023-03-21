@@ -26,6 +26,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final ArrayList<Meeting> meetings;
 
+
     /**
      * Every field must be present and not null.
      */
@@ -67,6 +68,7 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -141,7 +143,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, meetings);
     }
 
     @Override
@@ -160,6 +162,16 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        ArrayList<Meeting> meetings = getMeetings();
+        String meetingHeader = meetings.size() == 1
+            ? "; Meeting: "
+            : "; Meetings: ";
+        if (!meetings.isEmpty()) {
+            builder.append(meetingHeader);
+            meetings.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

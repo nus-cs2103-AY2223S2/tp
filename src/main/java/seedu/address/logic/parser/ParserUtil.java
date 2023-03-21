@@ -118,13 +118,26 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
     /**
      * Parses {@code String meeting} into a {@code Meeting}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if start time given is after the end time given
      */
-    public static Meeting parseMeeting(String meeting) throws ParseException {
+    public static Meeting parseMeeting(String meeting) {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
 
@@ -157,18 +170,6 @@ public class ParserUtil {
             LocalDateTime.of(year, month, day, startHour, startMinute),
             LocalDateTime.of(year, month, day, endHour, endMinute)
         };
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**
