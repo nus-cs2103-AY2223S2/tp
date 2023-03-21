@@ -16,29 +16,29 @@ import seedu.recipe.testutil.TypicalRecipes;
 public class JsonSerializableRecipeBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableRecipeBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsRecipeBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonRecipeBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonRecipeBook.json");
+    private static final Path TYPICAL_RECIPES_FILE = TEST_DATA_FOLDER.resolve("typicalRecipesRecipeBook.json");
+    private static final Path INVALID_RECIPE_FILE = TEST_DATA_FOLDER.resolve("invalidRecipeRecipeBook.json");
+    private static final Path DUPLICATE_RECIPE_FILE = TEST_DATA_FOLDER.resolve("duplicateRecipeRecipeBook.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+    public void toModelType_typicalRecipesFile_success() throws Exception {
+        JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_RECIPES_FILE,
                 JsonSerializableRecipeBook.class).get();
-        RecipeBook addressBookFromFile = dataFromFile.toModelType();
-        RecipeBook typicalPersonsRecipeBook = TypicalRecipes.getTypicalRecipeBook();
-        assertEquals(addressBookFromFile, typicalPersonsRecipeBook);
+        RecipeBook recipeBookFromFile = dataFromFile.toModelType();
+        RecipeBook typicalRecipesRecipeBook = TypicalRecipes.getTypicalRecipeBook();
+        assertEquals(recipeBookFromFile, typicalRecipesRecipeBook);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+    public void toModelType_invalidRecipeFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(INVALID_RECIPE_FILE,
                 JsonSerializableRecipeBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+    public void toModelType_duplicateRecipes_throwsIllegalValueException() throws Exception {
+        JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_RECIPE_FILE,
                 JsonSerializableRecipeBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableRecipeBook.MESSAGE_DUPLICATE_RECIPE,
                 dataFromFile::toModelType);
