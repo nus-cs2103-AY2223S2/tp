@@ -1,21 +1,16 @@
 package seedu.recipe.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-
-import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
-import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
-import seedu.recipe.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = "This is some !@% invalid description";

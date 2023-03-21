@@ -7,20 +7,27 @@ import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_CORNDO
 import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_DESC_DESC;
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
-import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_STEP_DESC;
+
 import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_SOUP;
+
+import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
+
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
+
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_CORNDOGS;
+
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
@@ -32,10 +39,10 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
 import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
-import seedu.recipe.model.recipe.Title;
-import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Title;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -89,8 +96,8 @@ public class EditCommandParserTest {
 
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_INGREDIENT_DESC + VALID_DESC_CORNDOGS + VALID_STEPS_CORNDOGS,
-                Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_INGREDIENT_DESC
+                        + VALID_DESC_CORNDOGS + VALID_STEPS_CORNDOGS, Title.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -151,8 +158,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_RECIPE;
+
         String userInput = targetIndex.getOneBased() + TITLE_DESC_CORNDOGS + DESC_DESC_CORNDOGS
           + TITLE_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP + DESC_DESC_SOUP;
+
 
         System.out.println(userInput);
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withSteps(VALID_STEPS_SOUP)
@@ -174,10 +183,12 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
+
         userInput = targetIndex.getOneBased() + INGREDIENT_DESC_SOUP + INVALID_DESC_DESC + STEP_DESC_SOUP
                 + DESC_DESC_SOUP;
         descriptor = new EditRecipeDescriptorBuilder().withDesc(VALID_DESC_SOUP).withIngredients(VALID_INGREDIENTS_SOUP)
                 .withSteps(VALID_STEPS_SOUP).build();
+
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
