@@ -63,6 +63,7 @@ public class JsonRecipeBookStorageTest {
     public void readAndSaveRecipeBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempRecipeBook.json");
         RecipeBook original = getTypicalRecipeBook();
+        original.removeRecipe(CORNDOGS);
         JsonRecipeBookStorage jsonRecipeBookStorage = new JsonRecipeBookStorage(filePath);
 
         // Save in new file and read back

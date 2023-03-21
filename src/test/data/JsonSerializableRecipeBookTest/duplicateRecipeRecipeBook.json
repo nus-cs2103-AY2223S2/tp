@@ -1,0 +1,13 @@
+{
+  "recipes": [ {
+      "title": "Corndogs",
+      "desc": "delicious corndogs",
+      "ingredients": ["water", "salt"],
+      "steps": ["step1", "step2"]},
+    {
+      "title": "Corndogs",
+      "desc": "delicious corndogs",
+      "ingredients": ["water", "salt"],
+      "steps": ["step1", "step2"]}
+    ]
+}
