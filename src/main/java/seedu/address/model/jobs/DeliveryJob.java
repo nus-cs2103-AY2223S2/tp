@@ -1,9 +1,9 @@
 package seedu.address.model.jobs;
 
 import static java.util.Objects.requireNonNull;
-import java.util.NoSuchElementException;
 
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
