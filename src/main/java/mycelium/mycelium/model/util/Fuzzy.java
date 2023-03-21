@@ -12,15 +12,16 @@ public class Fuzzy {
     public static int delta(String a, String b) {
         // The intuitive way to do this is through a m-by-n matrix. Here we are only
         // using one array and a temp variable.
-        int m = a.length(), n = b.length();
+        int m = a.length();
+        int n = b.length();
         if (m > n) {
             String tmp = a;
             a = b;
             b = tmp;
 
-            int _tmp = m;
+            int tmp2 = m;
             m = n;
-            n = _tmp;
+            n = tmp2;
         }
         if (m == 0) {
             return n;
@@ -41,7 +42,10 @@ public class Fuzzy {
             prevRow[j] = j;
         }
 
-        int grave, ifDelete, ifInsert, tmp;
+        int grave;
+        int ifDelete;
+        int ifInsert;
+        int tmp;
         for (int i = 0; i < m; i++) {
             grave = i; // grave refers to the upper-left tile (from the matrix POV)
             prevRow[0] = i + 1; // the first entry is always i+1

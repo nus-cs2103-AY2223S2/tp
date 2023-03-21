@@ -1,12 +1,9 @@
 package mycelium.mycelium.model.util;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import mycelium.mycelium.testutil.Pair;
 
 class FuzzyTest {
 
@@ -14,10 +11,10 @@ class FuzzyTest {
      * A test case for the delta function.
      */
     private static class Case {
-        String a;
-        String b;
-        int expected;
-        String desc;
+        public final String a;
+        public final String b;
+        public final int expected;
+        public final String desc;
 
         Case(String a, String b, int expected, String desc) {
             this.a = a;
@@ -44,5 +41,4 @@ class FuzzyTest {
             assertEquals(test.expected, actual, "While testing case: " + test.desc);
         }
     }
-
 }
