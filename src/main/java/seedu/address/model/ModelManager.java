@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     private final PcClass pcClass;
     private final UserPrefs userPrefs;
 
-    private final FilteredList<Student> filteredStudents;
+    private FilteredList<Student> filteredStudents;
 
     private final FilteredList<Parent> filteredParents;
 
@@ -214,6 +214,7 @@ public class ModelManager implements Model {
     public void addStudent(Student student, Class c) {
         c.addStudent(student);
         pcClass.addClass(c);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     /**
@@ -269,6 +270,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
+        filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
         filteredStudents.setPredicate(predicate);
     }
 

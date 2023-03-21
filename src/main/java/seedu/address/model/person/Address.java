@@ -34,10 +34,23 @@ public class Address {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        if (test.equals("Insert Address here!")) {
+        if (isDefaultAddress(test)) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when an Address isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultAddress(String test) {
+        if (test.equals("Insert Address here!")) {
+            return true;
+        }
+        return false;
     }
 
     @Override

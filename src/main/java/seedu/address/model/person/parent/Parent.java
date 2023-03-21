@@ -74,8 +74,17 @@ public class Parent extends Person {
      *
      * @return All Students that the Parent / NOK has relations to.
      */
-    public List<Student> getChildren() {
+    public List<Student> getStudents() {
         return children;
+    }
+
+    /**
+     * A boolean method that checks if the current Parent / NOK has students attached to him / her.
+     *
+     * @return Boolean value indicating if there is at least one Student attached to this Parent.
+     */
+    public boolean hasStudents() {
+        return (children.size() > 0);
     }
 
     /**
@@ -124,7 +133,7 @@ public class Parent extends Person {
                 && otherParent.getEmail().equals(getEmail())
                 && otherParent.getAddress().equals(getAddress())
                 && otherParent.getTags().equals(getTags())
-                && otherParent.getChildren().equals(getChildren());
+                && otherParent.getStudents().equals(getStudents());
     }
 
     @Override
@@ -144,7 +153,7 @@ public class Parent extends Person {
                 .append(getPhone())
                 .append("; Parent/NOK of:");
 
-        List<Student> children = getChildren();
+        List<Student> children = getStudents();
         for (Student child : children) {
             builder.append(" ")
                     .append(child);

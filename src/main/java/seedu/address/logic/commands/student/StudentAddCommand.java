@@ -33,7 +33,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicateParentException;
+import seedu.address.model.person.exceptions.DuplicateStudentException;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
@@ -100,18 +101,16 @@ public class StudentAddCommand extends StudentCommand {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateStudentException();
         }
         /*
         if (!model.canInitialize(toAdd.getParentNumber(), toAdd.getParentName())) {
             throw new DuplicatePhoneException();
         }
-
          */
-
-        model.addStudent(toAdd, toAdd.getStudentClass());
         ObservableList<Parent> parents = model.getFilteredParentList();
         setParent(parents, toAdd, model);
+        model.addStudent(toAdd, toAdd.getStudentClass());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
@@ -150,6 +149,9 @@ public class StudentAddCommand extends StudentCommand {
         Parent newParent = new Parent(parentName, age, image, email, parentNumber,
                 address, tagList); //create new parent as there isnt any matching parent
         newParent.addStudent(student); //bind student to parent
+        if (model.hasParent(newParent)) {
+            throw new DuplicateParentException();
+        }
         model.addParent(newParent);
     }
 }

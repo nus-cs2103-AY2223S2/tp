@@ -2,11 +2,13 @@ package seedu.address.ui.parent;
 
 import java.io.File;
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
@@ -44,7 +46,7 @@ public class ParentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private FlowPane students;
+    private GridPane students;
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -61,18 +63,19 @@ public class ParentCard extends UiPart<Region> {
         parent.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        parent.getChildren().stream()
+        AtomicInteger rowCounter = new AtomicInteger();
+        parent.getStudents().stream()
                 .sorted(Comparator.comparing(Student -> Student.getName().fullName))
                 .forEach(Student -> {
-                    students.getChildren().add(new Label(" Student Name: "));
-                    students.getChildren().add(new Label(Student.getName().fullName));
-                    students.getChildren().add(new Label("\n"));
-                    students.getChildren().add(new Label(" Student Class: "));
-                    students.getChildren().add(new Label(Student.getStudentClass().getClassName()));
-                    students.getChildren().add(new Label("\n"));
-                    students.getChildren().add(new Label(" Index Number: "));
-                    students.getChildren().add(new Label(Student.getIndexNumber().value));
-                    students.getChildren().add(new Label("\n"));
+                    students.add(new Label(" Student Name: "), 0, rowCounter.get());
+                    students.add(new Label(Student.getName().fullName), 1, rowCounter.get());
+                    students.add(new Label("\n"), 2, rowCounter.get());
+                    students.add(new Label(" Student Class: "), 3, rowCounter.get());
+                    students.add(new Label(Student.getStudentClass().getClassName()), 4, rowCounter.get());
+                    students.add(new Label("\n"), 5, rowCounter.get());
+                    students.add(new Label(" Index Number: "), 6, rowCounter.get());
+                    students.add(new Label(Student.getIndexNumber().value), 7, rowCounter.get());
+                    rowCounter.getAndIncrement();
                 });
         String path = "src/main/resources/images/" + parent.getName() + ".png";
         File file = new File(path);

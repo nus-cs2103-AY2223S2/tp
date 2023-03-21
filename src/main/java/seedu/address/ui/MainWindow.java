@@ -17,8 +17,10 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.exceptions.DuplicateParentException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicatePhoneException;
+import seedu.address.model.person.exceptions.DuplicateStudentException;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
 import seedu.address.ui.parent.ParentListPanel;
@@ -220,15 +222,23 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             UniqueStudentList list = new UniqueStudentList();
-            for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
-                UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
-                Iterator<Student> it = curr.iterator();
-                while (it.hasNext()) {
-                    list.add(it.next());
+            if (commandResult.isFind()) {
+                System.out.println(logic.getFilteredStudentList());
+                studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            } else {
+
+                for (int i = 0; i < logic.getPcClass().getClassList().size(); i++) {
+                    UniqueStudentList curr = logic.getPcClass().getClassList().get(i).getStudents();
+                    Iterator<Student> it = curr.iterator();
+                    while (it.hasNext()) {
+                        list.add(it.next());
+                    }
                 }
+
+                studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
+                studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             }
-            studentListPanel = new StudentListPanel(list.asUnmodifiableObservableList());
-            studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -242,6 +252,14 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Duplicate phone number: " + commandText);
             resultDisplay.setFeedbackToUser(dp.getMessage());
             throw dp;
+        } catch (DuplicateStudentException dse) {
+            logger.info("Duplicate student: " + commandText);
+            resultDisplay.setFeedbackToUser(dse.getMessage());
+            throw dse;
+        } catch (DuplicateParentException dpe) {
+            logger.info("Duplicate parent: " + commandText);
+            resultDisplay.setFeedbackToUser(dpe.getMessage());
+            throw dpe;
         }
     }
 }

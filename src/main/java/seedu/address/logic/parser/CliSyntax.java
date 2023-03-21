@@ -26,6 +26,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_NEWCLASS = new Prefix("nc/");
     public static final Prefix PREFIX_NEWINDEXNUMBER = new Prefix("nin/");
+    public static final Prefix PREFIX_NEWNAME = new Prefix("nn/");
+    public static final Prefix PREFIX_NEWPHONEPARENT = new Prefix("npnP/");
     public static final Prefix PREFIX_PARENTNAME = new Prefix("pn/");
     public static final Prefix PREFIX_PHONEPARENT = new Prefix("pnP/");
     public static final Prefix PREFIX_PHONESTUDENT = new Prefix("pnS/");
@@ -39,5 +41,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_WEIGHTAGE = new Prefix("weightage/");
     public static final Prefix PREFIX_HOMEWORKDONE = new Prefix("hwdone/");
     public static final Prefix PREFIX_GRADEDELETE = new Prefix("gradedelete");
+    public static final Prefix PREFIX_FIND = new Prefix("find");
 
 }

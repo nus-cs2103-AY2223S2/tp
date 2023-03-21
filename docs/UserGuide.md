@@ -312,6 +312,20 @@ Examples:
   Sample output: <parent name> <parent phone number> <parent email>
 * `parent list` <br><br>
 
+### Edit Parent:  `edit`
+
+Edits personal details of students
+
+Format: `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/<NEW_NAME> npnP/<NEW_PHONE_NUMBER> ageP/<NEW_AGE> imgP/<NEW_IMAGE> e/<NEW_EMAIL_ADDRESS> a/<NEW_RESIDENTIAL_ADDRESS>]   `
+
+Examples:
+* `parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565`
+* `parent edit n/Tan Ah Niu pnP/91234567 nn/Tan Ah Seng npnP/91274444 ageP/31 imgP/C:// e/tanahcow@gmail.com a/Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)`
+
+**Expected Outcome:**
+* `Edited Parent: Tan Ah Niu; Phone: 65656565`
+* `Edited Parent: Tan Ah Niu; Parent Age: 31; Address: Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245); Image Path: C://; Parent Email: tanahcow@gmail.com; Parent Phone: 91234567; Parent/NOK of: Tan Ah Cow; Student Class: ...` <br><br>
+
 <a name = "deleteparent" />
 
 ### Deleting parent particulars: `delete`

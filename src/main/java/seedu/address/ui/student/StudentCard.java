@@ -2,11 +2,13 @@ package seedu.address.ui.student;
 
 import java.io.File;
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
@@ -67,9 +69,9 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label comment;
     @FXML
-    private FlowPane tests;
+    private GridPane tests;
     @FXML
-    private FlowPane homework;
+    private GridPane homework;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -92,46 +94,57 @@ public class StudentCard extends UiPart<Region> {
         //image.setText(student.getImage().value);
         cca.setText(student.getCca().value);
         comment.setText(student.getComment().value);
+        AtomicInteger rowCounter = new AtomicInteger();
         student.getTest().stream()
-                        .sorted(Comparator.comparing(test -> test.getName()))
-                        .forEach(test -> {
-                            tests.getChildren().add(new Label(" Test Name: "));
-                            tests.getChildren().add(new Label(test.getName()));
-                            tests.getChildren().add(new Label(" Score: "));
-                            tests.getChildren().add(new Label(Integer.toString(test.getScore())));
-                            tests.getChildren().add(new Label(" Weightage: "));
-                            tests.getChildren().add(new Label(Integer.toString(test.getWeightage())));
-                            tests.getChildren().add(new Label(" Deadline: "));
-                            if (test.getDeadline() != null) {
-                                tests.getChildren().add(new Label(test.getDeadline().toString()));
-                            } else {
-                                tests.getChildren().add(new Label("No Deadline"));
-                            }
-
-                        });
+                .sorted(Comparator.comparing(test -> test.getName()))
+                .forEach(test -> {
+                    tests.add(new Label("Name: "), 0, rowCounter.get());
+                    tests.add(new Label(test.getName()), 1, rowCounter.get());
+                    tests.add(new Label(" Score: "), 2, rowCounter.get());
+                    tests.add(new Label(Integer.toString(test.getScore())), 3, rowCounter.get());
+                    tests.add(new Label(" Weightage: "), 4, rowCounter.get());
+                    tests.add(new Label(Integer.toString(test.getWeightage())), 5, rowCounter.get());
+                    tests.add(new Label(" Deadline: "), 6, rowCounter.get());
+                    if (test.getDeadline() != null) {
+                        tests.add(new Label(test.getDeadline().toString()), 7, rowCounter.get());
+                    } else {
+                        tests.add(new Label("No Deadline"), 7, rowCounter.get());
+                    }
+                    rowCounter.getAndIncrement();
+                });
+        rowCounter.set(0);
         student.getHomework().stream()
                 .sorted(Comparator.comparing(hw -> hw.getName()))
                 .forEach(hw -> {
-                    homework.getChildren().add(new Label(" Homework Name: "));
-                    homework.getChildren().add(new Label(hw.getName()));
-                    homework.getChildren().add(new Label(" Score: "));
-                    homework.getChildren().add(new Label(Integer.toString(hw.getScore())));
-                    homework.getChildren().add(new Label(" Weightage: "));
-                    homework.getChildren().add(new Label(Integer.toString(hw.getWeightage())));
-                    homework.getChildren().add(new Label(" Deadline: "));
+                    homework.add(new Label("Name: "), 0, rowCounter.get());
+                    homework.add(new Label(hw.getName()), 1, rowCounter.get());
+                    homework.add(new Label(" Score: "), 2, rowCounter.get());
+                    homework.add(new Label(Integer.toString(hw.getScore())), 3, rowCounter.get());
+                    homework.add(new Label(" Weightage: "), 4, rowCounter.get());
+                    homework.add(new Label(Integer.toString(hw.getWeightage())), 5, rowCounter.get());
+                    homework.add(new Label(" Deadline: "), 6, rowCounter.get());
                     if (hw.getDeadline() != null) {
-                        homework.getChildren().add(new Label(hw.getDeadline().toString()));
+                        homework.add(new Label(hw.getDeadline().toString()), 7, rowCounter.get());
                     } else {
-                        homework.getChildren().add(new Label("No Deadline"));
+                        homework.add(new Label("No Deadline"), 7, rowCounter.get());
                     }
-                    homework.getChildren().add(new Label(" Is Done: "));
-                    homework.getChildren().add(new Label(Boolean.toString(hw.getIsDone())));
+                    homework.add(new Label(" Is Done: "), 8, rowCounter.get());
+                    homework.add(new Label(Boolean.toString(hw.getIsDone())), 9, rowCounter.get());
+                    rowCounter.getAndIncrement();
 
                 });
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        String path = "src/main/resources/images/" + student.getName() + ".png";
+        updateImage();
+    }
+
+    /**
+     * Updates the image of the student.
+     */
+    public void updateImage() {
+        String path = "src/main/resources/images/" + student.getName()
+                + student.getStudentClass().getClassName() + ".png";
         File file = new File(path);
         if (!file.exists()) {
             path = "src/main/resources/images/defaultStudent.png";
@@ -142,6 +155,7 @@ public class StudentCard extends UiPart<Region> {
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
         }
+
     }
 
     @Override

@@ -1,8 +1,39 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENTCOMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEDELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -14,7 +45,6 @@ import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentCommentCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
-import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescriptor;
 import seedu.address.logic.commands.student.StudentGradeCommand;
 import seedu.address.logic.commands.student.StudentGradeDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -73,8 +103,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_ADDRESS);
 
-        ArgumentMultimap argMultimapComment =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_COMMENTCOMMAND, PREFIX_COMMENT, PREFIX_ADD,
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_COMMENTCOMMAND, PREFIX_FIND, PREFIX_COMMENT, PREFIX_ADD,
                         PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
                         PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
                         PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
@@ -99,8 +129,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return addCommand(studentClass, argMultimapAdd);
         } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
             return deleteCommand(studentClass, argMultimapDelete);
-        } else if (argMultimapComment.getValue(PREFIX_COMMENTCOMMAND).isPresent()) {
-            return commentCommand(studentClass, argMultimapComment);
+        } else if (argMultimap.getValue(PREFIX_COMMENTCOMMAND).isPresent()) {
+            return commentCommand(studentClass, argMultimap);
         } else if (argMultimapGrade.getValue(PREFIX_GRADE).isPresent()
             && !argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
             return gradeCommand(studentClass, argMultimapGrade);
@@ -108,6 +138,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return gradeDeleteCommand(studentClass, argMultimapGradeDelete);
         } else if (argMultimapEdit.getValue(PREFIX_EDIT).isPresent()) {
             return EditCommand(studentClass, argMultimapEdit);
+        } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
+            return new StudentFindCommandParser().parse(studentClass + arguments);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
