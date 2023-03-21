@@ -11,4 +11,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d leads listed!";
     public static final String MESSAGE_PERSONS_SORTED_OVERVIEW = "Sorted leads by %1$s";
 
+    public static final String MESSAGE_INVALID_TXN_DISPLAYED_INDEX = "The transaction index provided is invalid";
+
 }

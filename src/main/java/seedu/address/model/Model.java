@@ -78,19 +78,19 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    //    void hasTransaction(Transaction transaction);
-    //
-    //    void addTransaction(Transaction transaction, Person owner);
-    //
-    //    void deleteTransaction(Transaction transaction);
-    //
-    //    void setTransaction(Transaction target, Transaction editedTxn);
+    boolean hasTransaction(Transaction transaction);
+
+    void addTransaction(Transaction transaction);
+
+    void deleteTransaction(Transaction transaction);
+
+    void setTransaction(Transaction target, Transaction editedTxn);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    ///** Returns an unmodifiable view of the filtered transaction list */
-    //ObservableList<Transaction> getFilteredTransactionList();
+    /** Returns an unmodifiable view of the filtered transaction list */
+    ObservableList<Transaction> getFilteredTransactionList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
@@ -105,8 +105,9 @@ public interface Model {
      */
     void sortPersonList(String attribute);
 
-    ///**
-    //* Updates the filter of the filtered transaction list to filter by the given {@code predicate}
-    //*/
-    //void updateFilteredTransactionsList(Predicate<Transaction> predicate);
+    /**
+    * Updates the filter of the filtered transaction list to filter by the given {@code predicate}
+    */
+    void updateFilteredTransactionsList(Predicate<Transaction> predicate);
+
 }

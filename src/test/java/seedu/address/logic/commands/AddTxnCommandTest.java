@@ -16,63 +16,65 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.txncommands.AddTxnCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TransactionBuilder;
 
-public class AddCommandTest {
+public class AddTxnCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTxn_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTxnCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_txnAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTxnAdded modelStub = new ModelStubAcceptingTxnAdded();
+        Transaction validTxn = new TransactionBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddTxnCommand(validTxn).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddTxnCommand.MESSAGE_SUCCESS, validTxn), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTxn), modelStub.txnsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateTxn_throwsCommandException() {
+        Transaction validTxn = new TransactionBuilder().build();
+        AddTxnCommand addTxnCommand = new AddTxnCommand(validTxn);
+        ModelStub modelStub = new ModelStubWithTxn(validTxn);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddTxnCommand.MESSAGE_DUPLICATE_TRANSACTION, (
+                ) -> addTxnCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Transaction coffeeMachines = new TransactionBuilder().withDesc("COFFEEMAcHINEEEEE").build();
+        Transaction coffeeBeans = new TransactionBuilder().withDesc("CAWFEE BEANZ").build();
+        AddTxnCommand addCoffeeMachines = new AddTxnCommand(coffeeMachines);
+        AddTxnCommand addCoffeeBeans = new AddTxnCommand(coffeeBeans);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addCoffeeMachines.equals(addCoffeeMachines));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTxnCommand addMachinesCommandCopy = new AddTxnCommand(coffeeMachines);
+        assertTrue(addCoffeeMachines.equals(addMachinesCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addCoffeeMachines.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addCoffeeMachines.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addCoffeeMachines.equals(addCoffeeBeans));
     }
 
     /**
@@ -163,10 +165,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortPersonList(String attribute) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         public ObservableList<Transaction> getFilteredTransactionList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -185,37 +183,37 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTxn extends ModelStub {
+        private final Transaction txn;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTxn(Transaction txn) {
+            requireNonNull(txn);
+            this.txn = txn;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTransaction(Transaction txn) {
+            requireNonNull(txn);
+            return this.txn.isSameTransaction(txn);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTxnAdded extends ModelStub {
+        final ArrayList<Transaction> txnsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTransaction(Transaction txn) {
+            requireNonNull(txn);
+            return txnsAdded.stream().anyMatch(txn::isSameTransaction);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTransaction(Transaction txn) {
+            requireNonNull(txn);
+            txnsAdded.add(txn);
         }
 
         @Override

@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+//import com.fasterxml.jackson.databind.ObjectWriter;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -115,29 +116,31 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
-    //    @Override
-    //    public void hasTransaction(Transaction transaction) {
-    //        // implementation here
-    //    }
-    //
-    //    @Override
-    //    public void addTransaction(Transaction transaction, Person owner) {
-    //        // implementation here
-    //    }
-    //
-    //    @Override
-    //    public void deleteTransaction(Transaction transaction) {
-    //        // implementation here
-    //    }
-    //
-    //    @Override
-    //    public void setTransaction(Transaction target, Transaction editedTxn) {
-    //        // implementation here
-    //    }
+    @Override
+    public boolean hasTransaction(Transaction transaction) {
+        requireNonNull(transaction);
+        return addressBook.hasTransaction(transaction);
+    }
+
+    @Override
+    public void addTransaction(Transaction transaction) {
+        addressBook.addTransaction(transaction);
+        updateFilteredTransactionList(PREDICATE_SHOW_ALL_TRANSACTIONS);
+    }
+
+    @Override
+    public void deleteTransaction(Transaction target) {
+        addressBook.removeTransaction(target);
+    }
+
+    @Override
+    public void setTransaction(Transaction target, Transaction editedTxn) {
+        requireAllNonNull(target, editedTxn);
+        addressBook.setTransaction(target, editedTxn);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -150,10 +153,10 @@ public class ModelManager implements Model {
         return sortedList;
     }
 
-    //@Override
-    //public ObservableList<Transaction> getFilteredTransactionList() {
-    //return filteredTransactions;
-    //}
+    @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        return filteredTransactions;
+    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -181,6 +184,12 @@ public class ModelManager implements Model {
     //}
 
     @Override
+    public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
+        requireNonNull(predicate);
+        filteredTransactions.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -196,7 +205,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTransactions.equals(other.filteredTransactions);
     }
 
 }
