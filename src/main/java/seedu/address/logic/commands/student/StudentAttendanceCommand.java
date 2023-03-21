@@ -1,5 +1,13 @@
 package seedu.address.logic.commands.student;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,18 +15,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.student.Attendance;
-import seedu.address.model.person.student.Homework;
 import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.Test;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
-
+/**
+ * Adds attendance to a student
+ */
 public class StudentAttendanceCommand extends StudentCommand {
     public static final String COMMAND_WORD = "attendance";
 
@@ -101,7 +104,8 @@ public class StudentAttendanceCommand extends StudentCommand {
                 studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
                 studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
                 studentToEdit.getCca(), studentToEdit.getAddress(), attendanceSetReplaced,
-                studentToEdit.getHomework(), studentToEdit.getTest(), studentToEdit.getTags(), studentToEdit.getComment());
+                studentToEdit.getHomework(), studentToEdit.getTest(),
+                studentToEdit.getTags(), studentToEdit.getComment());
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedStudent));

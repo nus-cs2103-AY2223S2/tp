@@ -1,7 +1,23 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 

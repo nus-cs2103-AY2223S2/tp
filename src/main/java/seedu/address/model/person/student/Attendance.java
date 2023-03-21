@@ -1,9 +1,10 @@
 package seedu.address.model.person.student;
 
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
+
 
 /**
  * Represents the Attendance of a Student object.
@@ -63,10 +64,12 @@ public class Attendance {
      * @return boolean value to indicate if the attendance is present on the given date.
      */
     public boolean isPresent(LocalDate currDate) {
-        if (value.equals("T"))
+        if (value.equals("T")) {
             return true;
-        if (value.equals("F"))
+        }
+        if (value.equals("F")) {
             return false;
+        }
         return currDate.isEqual(date);
     }
 

@@ -2,8 +2,8 @@ package seedu.address.storage.academics;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.student.Assignment;
 import seedu.address.model.person.student.Attendance;
 import seedu.address.storage.JsonAdapted;
 

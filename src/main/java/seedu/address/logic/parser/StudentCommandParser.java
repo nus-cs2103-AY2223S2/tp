@@ -1,7 +1,34 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENTCOMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEDELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -114,7 +141,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         if (!arePrefixesPresent(argumentMultimapAtt, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE)
                 || !argumentMultimapAtt.getPreamble().isEmpty()
                 || studentClass.length() == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentAttendanceCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    StudentAttendanceCommand.MESSAGE_USAGE));
         }
         Class sc = ParserUtil.parseStudentClass(studentClass);
         IndexNumber indexNumber = ParserUtil.parseIndexNumber(argumentMultimapAtt.getValue(PREFIX_INDEXNUMBER).get());
