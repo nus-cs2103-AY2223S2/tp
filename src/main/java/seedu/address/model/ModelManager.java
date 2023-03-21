@@ -15,13 +15,16 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.crew.Crew;
+import seedu.address.model.crew.exceptions.CrewNotFoundException;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.flight.exceptions.FlightNotFoundException;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
 import seedu.address.model.location.exceptions.LocationNotFoundException;
 import seedu.address.model.pilot.Pilot;
+import seedu.address.model.pilot.exceptions.PilotNotFoundException;
 import seedu.address.model.plane.Plane;
+import seedu.address.model.plane.exceptions.PlaneNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -234,6 +237,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean checkPilot(String id) {
+        Optional<Pilot> temp = pilotManager.getItem(id);
+
+        if (temp.isPresent()) {
+            Pilot pilotToCheck = temp.get();
+            return pilotToCheck.isAvailable();
+        } else {
+            throw new PilotNotFoundException();
+        }
+    }
+
+    @Override
     public ObservableList<Pilot> getFilteredPilotList() {
         return filteredPilots;
     }
@@ -380,6 +395,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean checkCrew(String id) {
+        Optional<Crew> temp = crewManager.getItem(id);
+
+        if (temp.isPresent()) {
+            Crew crewToCheck = temp.get();
+            return crewToCheck.isAvailable();
+        } else {
+            throw new CrewNotFoundException();
+        }
+    }
+
+    @Override
     public ObservableList<Crew> getFilteredCrewList() {
         return filteredCrew;
     }
@@ -434,6 +461,18 @@ public class ModelManager implements Model {
     public void setPlane(Plane target, Plane editedPlane) {
         requireAllNonNull(target, editedPlane);
         planeManager.setItem(target, editedPlane);
+    }
+
+    @Override
+    public boolean checkPlane(String id) {
+        Optional<Plane> temp = planeManager.getItem(id);
+
+        if (temp.isPresent()) {
+            Plane planeToCheck = temp.get();
+            return planeToCheck.isAvailable();
+        } else {
+            throw new PlaneNotFoundException();
+        }
     }
 
     @Override

@@ -49,6 +49,11 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
     private final int flightHour;
 
     /**
+     * The availability of the pilot.
+     */
+    private boolean isAvailable;
+
+    /**
      * Constructs a {@code JsonAdaptedPilot} with the given pilot details.
      * This is intended for Jackson to use.
      *
@@ -70,6 +75,7 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
         this.age = age;
         this.gender = gender;
         this.flightHour = flightHour;
+        this.isAvailable = true;
     }
 
 
@@ -85,6 +91,7 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
         this.gender = pilot.getGender().toIndex();
         this.age = pilot.getAge();
         this.flightHour = pilot.getFlightHour();
+        this.isAvailable = pilot.isAvailable();
     }
 
     @Override

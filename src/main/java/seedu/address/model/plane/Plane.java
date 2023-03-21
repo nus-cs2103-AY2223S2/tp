@@ -17,26 +17,32 @@ public class Plane implements Item {
     public static final Map<FlightPlaneType, Integer> SHAPE =
             Map.of(FlightPlaneType.PLANE_USING, 1
             );
+
     private static final String UUID_STRING = "UUID";
     private static final String MODEL_STRING = "Model";
     private static final String AGE_STRING = "Age";
+    private static final String AVAILABILITY_STRING = "Status";
     private final String id;
     private final String model;
     private final int age;
+    private boolean isAvailable;
 
     /**
      * Creates a plane with a random UUID as its id.
+     *
      * @param model the model of the plane.
      * @param age   the age of the plane.
      */
     public Plane(String model, int age) {
+        this.id = UUID.randomUUID().toString();
         this.model = model;
         this.age = age;
-        this.id = UUID.randomUUID().toString();
+        this.isAvailable = true;
     }
 
     /**
      * Creates a plane with a specific given id.
+     *
      * @param model the model of the plane.
      * @param age   the age of the plane.
      * @param id    the id of the plane.
@@ -45,10 +51,12 @@ public class Plane implements Item {
         this.model = model;
         this.age = age;
         this.id = id;
+        this.isAvailable = true;
     }
 
     /**
      * Returns the id of the plane.
+     *
      * @return the id of the plane.
      */
     public String getId() {
@@ -57,6 +65,7 @@ public class Plane implements Item {
 
     /**
      * Returns the model of the plane.
+     *
      * @return the model of the plane.
      */
     public String getModel() {
@@ -65,10 +74,45 @@ public class Plane implements Item {
 
     /**
      * Returns the age of the plane.
+     *
      * @return the age of the plane.
      */
     public int getAge() {
         return this.age;
+    }
+
+    /**
+     * Returns the availability of the plane.
+     *
+     * @return the availability of the plane.
+     */
+    public boolean isAvailable() {
+        return this.isAvailable;
+    }
+
+    /**
+     * Sets the availability of the plane to unavailable.
+     */
+    public void setUnavailable() {
+        this.isAvailable = false;
+    }
+
+    /**
+     * Sets the availability of the plane to available.
+     */
+    public void setAvailable() {
+        this.isAvailable = true;
+    }
+
+    /**
+     * Returns a String corresponding to the availability of the plane.
+     *
+     * @return the availability of the plane as a String
+     */
+    public String getAvailabilityString() {
+        return (this.isAvailable)
+                ? "Available"
+                : "Unavailable";
     }
 
     @Override
@@ -76,13 +120,13 @@ public class Plane implements Item {
         return List.of(
                 String.format("%s: %s", UUID_STRING, id),
                 String.format("%s: %s", MODEL_STRING, model),
-                String.format("%s: %s", AGE_STRING, age)
+                String.format("%s: %s", AGE_STRING, age),
+                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
         );
     }
 
     @Override
     public String toString() {
-        return String.format("%s: %s %s: %s",
-                MODEL_STRING, model, AGE_STRING, age);
+        return String.format("%s (%s: %s)", model, AGE_STRING, age);
     }
 }

@@ -13,27 +13,45 @@ import seedu.address.storage.json.JsonAdaptedModel;
 public class JsonAdaptedPlane implements JsonAdaptedModel<Plane> {
     public static final String MISSING_FIELD_MESSAGE_FORMAT =
             "Plane's %s field is missing!";
+
+    /**
+     * The id of the plane.
+     */
     private final String id;
-    private final String planeModel;
-    private final int planeAge;
+
+    /**
+     * The model of the plane.
+     */
+    private final String model;
+
+    /**
+     * The age of the plane.
+     */
+    private final int age;
+
+    /**
+     * The availability of the plane.
+     */
+    private boolean isAvailable;
 
     /**
      * Constructs a {@code JsonAdaptedPlane} with the given plane details.
      * This is intended for Jackson to use.
      *
-     * @param id         the id of the plane.
-     * @param planeModel the model of the plane.
-     * @param planeAge   the age of the plane.
+     * @param id    the id of the plane.
+     * @param model the model of the plane.
+     * @param age   the age of the plane.
      */
     @JsonCreator
     public JsonAdaptedPlane(
             @JsonProperty("id") String id,
-            @JsonProperty("planeModel") String planeModel,
-            @JsonProperty("planeAge") int planeAge
+            @JsonProperty("model") String model,
+            @JsonProperty("age") int age
     ) {
         this.id = id;
-        this.planeModel = planeModel;
-        this.planeAge = planeAge;
+        this.model = model;
+        this.age = age;
+        this.isAvailable = true;
     }
 
     /**
@@ -43,8 +61,9 @@ public class JsonAdaptedPlane implements JsonAdaptedModel<Plane> {
      */
     public JsonAdaptedPlane(Plane plane) {
         this.id = plane.getId();
-        this.planeModel = plane.getModel();
-        this.planeAge = plane.getAge();
+        this.model = plane.getModel();
+        this.age = plane.getAge();
+        this.isAvailable = plane.isAvailable();
     }
 
     @Override
@@ -55,12 +74,12 @@ public class JsonAdaptedPlane implements JsonAdaptedModel<Plane> {
             );
         }
 
-        if (planeModel == null) {
+        if (model == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "model")
             );
         }
 
-        return new Plane(id, planeModel, planeAge);
+        return new Plane(id, model, age);
     }
 }

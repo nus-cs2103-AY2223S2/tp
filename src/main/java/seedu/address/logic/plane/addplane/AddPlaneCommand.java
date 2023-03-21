@@ -11,13 +11,12 @@ import seedu.address.model.plane.Plane;
  */
 public class AddPlaneCommand implements Command {
     /**
-     * The Plane to be added.
+     * The plane to be added.
      */
     private final Plane plane;
 
     /**
-     * Creates a command that, when executed, adds the plane to the address
-     * book.
+     * Creates a command that, when executed, adds the plane to the Wingman app.
      *
      * @param plane The pilot to be added.
      */

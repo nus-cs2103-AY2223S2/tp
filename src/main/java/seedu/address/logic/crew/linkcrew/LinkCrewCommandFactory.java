@@ -101,7 +101,6 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
         ));
     }
 
-
     private boolean addCrew(
             Optional<String> crewIdOptional,
             FlightCrewType type,
@@ -132,7 +131,6 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
         }
         return flightOptional.get();
     }
-
 
     @Override
     public LinkCrewCommand createCommand(CommandParam param) throws ParseException {
