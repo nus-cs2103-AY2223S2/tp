@@ -85,6 +85,15 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    void addStudentToTutorial() {
+        AddressBook newData = getTypicalAddressBook();
+    }
+
+    @Test
+    void addStudentToLab() {
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
