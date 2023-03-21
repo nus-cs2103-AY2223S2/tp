@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -15,6 +16,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Subject;
 import seedu.address.model.tag.Tag;
 
@@ -36,9 +38,11 @@ public class PersonUtil {
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getOptionalPhone().map(Phone::toString).orElse("") + " ");
-        sb.append(PREFIX_EMAIL + person.getOptionalEmail().map(Email::toString).orElse("") + " ");
-        sb.append(PREFIX_ADDRESS + person.getOptionalAddress().map(Address::toString).orElse("") + " ");
+        person.getOptionalPhone().map(Phone::toString).ifPresent(phone -> sb.append(PREFIX_PHONE + phone + " "));
+        person.getOptionalEmail().map(Email::toString).ifPresent(email -> sb.append(PREFIX_EMAIL + email + " "));
+        person.getOptionalAddress().map(Address::toString)
+                .ifPresent(address -> sb.append(PREFIX_ADDRESS + address + " "));
+        person.getOptionalRemark().map(Remark::toString).ifPresent(remark -> sb.append(PREFIX_REMARK + remark + " "));
         person.getSubjects().stream().forEach(
                 s -> sb.append(PREFIX_SUBJECT + s.subjectName + " ")
         );
