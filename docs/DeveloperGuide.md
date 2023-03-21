@@ -75,16 +75,16 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The user interface (UI) of the system is composed of a `MainWindow` that is made up of various parts such as `CommandBox`, `ResultDisplay`, `PersonListPanel`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities among classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-- executes user commands using the `Logic` component.
-- listens for changes to `Model` data so that the UI can be updated with the modified data.
-- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands by interacting with the `Logic` component.
+- listens for changes to `Model` data and updates the UI with the modified data accordingly.
+- holds a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- relies on some classes in the `Model` component, as it displays `Person` and `Event` object residing in the `Model`.
 
 ### Logic component
 
@@ -125,16 +125,23 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the address book data i.e., all `Person` (which are contained in a `UniquePersonList` object) and `Event` (which are contained in a `UniqueEventList` object) objects .
 - stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the currently 'selected' `Event` objects, similar to how the currently 'selected' `Person` objects are stored and updated. It is stored as an unmodifiable `ObservableList<Event>`.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<<<<<<< HEAD
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Event` object per unique event, instead of each `Person` needing their own `Event` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+=======
+
+> > > > > > > master
 
 ### Storage component
 
@@ -168,8 +175,23 @@ Below is the sequence diagram detailing how the `findevent` operation works.
 ![FindEventSequenceDiagram](images/FindEventSequenceDiagram.png)
 
 Following the same initial steps of parsing commands, searching for an event involves further parsing the keywords into a `EventNameContainsKeywordsPredicate` object.
-This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object. 
+This `EventNameContainsKeywordsPredicate` object is used to instantiate a `FindEventCommand` object.
 The `FindEventCommand` object is then executed in `LogicManager#execute` through `FindEventCommand#execute` which returns the output of the command.
+=======
+
+### \[Implemented] Delete event feature
+
+#### Current Implementation
+
+Deleting an event is a feature that uses the command `delevent [EVENT_INDEX]`. The following sequence diagram shows how the delete event operation works.
+
+![DelEventSequenceDiagram](images/DelEventSequenceDiagram.png)
+
+This operation is similar to that of deleting a person. Deleting an event involves calling `Model#deleteEvent(1)`, which in turn calls `AddressBook#deleteEvent(1)` to delete the event at index `1` in the `AddressBook`.
+
+Additionally, this operation involves searching through all `Person` objects in the `AddressBook` and deleting the event at index `1`. This is done by calling `Model#deleteEventFromPersonList(1)`, which in turn calls `AddressBook#deleteEventFromPersonList(1)`.
+
+The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -287,24 +309,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                 | I want to …​                                               | So that I can…​                                         |
-|-----|-------------------------|------------------------------------------------------------|---------------------------------------------------------|
-| `* * *` | event planner           | add my own event                                           | refer to instructions when I forget how to use the App  |
-| `* * *` | event planner           | view all my events                                         | track all the upcoming events I have                    |
-| `* * *` | event planner           | delete an existing event                                   | delete event that have ended                            |
-| `* * *` | event planner           | add an existing event to a new contact                     | -                                                       |
-| `* *` | event planner           | search for events via names                                | locate events easily  |
-| `* *` | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name  |
-| `* *` | new event planner       | sort upcoming events according to dates                                | prioritize events when I am planning  |
-| `* *` | event planner           | list all contacts from a particular event                                | know the people associated to this event  |
-| `* *` | event planner           | edit events                                | change details  |
-| `* *` | event planner           | list all events and contacts                                | conveniently view everything  |
-| `*` | event planner           | add overall-in-charge for every event                          | know who to approach for issues related to the event  |
-| `*` | event planner           | set up a checklist of customer’s requirements                             | account for every need  |
-| `*` | forgetful event planner | set reminders conveniently                                | be on track with things  |
-| `*` | forgetful event planner | receive reminders for upcoming events                                | avoid forgetting about the event  |
-| `*` | event planner           | archive old events                                | view and take reference from old events  |
-
+| Priority | As a …​                 | I want to …​                                               | So that I can…​                                        |
+| -------- | ----------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
+| `* * *`  | event planner           | add my own event                                           | refer to instructions when I forget how to use the App |
+| `* * *`  | event planner           | view all my events                                         | track all the upcoming events I have                   |
+| `* * *`  | event planner           | delete an existing event                                   | delete event that have ended                           |
+| `* * *`  | event planner           | add an existing event to a new contact                     | -                                                      |
+| `* *`    | event planner           | search for events via names                                | locate events easily                                   |
+| `* *`    | forgetful event planner | be reminded that I have entered the event of the same name | avoid adding the same event name                       |
+| `* *`    | new event planner       | sort upcoming events according to dates                    | prioritize events when I am planning                   |
+| `* *`    | event planner           | list all contacts from a particular event                  | know the people associated to this event               |
+| `* *`    | event planner           | edit events                                                | change details                                         |
+| `* *`    | event planner           | list all events and contacts                               | conveniently view everything                           |
+| `*`      | event planner           | add overall-in-charge for every event                      | know who to approach for issues related to the event   |
+| `*`      | event planner           | set up a checklist of customer’s requirements              | account for every need                                 |
+| `*`      | forgetful event planner | set reminders conveniently                                 | be on track with things                                |
+| `*`      | forgetful event planner | receive reminders for upcoming events                      | avoid forgetting about the event                       |
+| `*`      | event planner           | archive old events                                         | view and take reference from old events                |
 
 ### Use cases
 
@@ -317,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a new event.
 2.  PlanEase shows a prompt to indicate that the event has been added successfully.
 
-  Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -332,13 +353,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. PlanEase prompts User of invalid inputs.
 
   Use case ends.
-  
+
 - 1c. PlanEase detects that the User of entered less than or more than 2 datetime inputs.
 
   - 1c1. PlanEase prompts User of invalid number of datetime inputs.
 
   Use case ends.
-  
+
 - 1d. PlanEase detects that the User has used invalid prefix(es).
 
   - 1d1. PlanEase prompts User of invalid prefix(es) used.
@@ -350,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1e1. PlanEase prompts User of duplicate event used.
 
   Use case ends.
-  
+
 <br>
 
 **Use case: List all events**
@@ -360,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list all events.
 2.  PlanEase shows a list of events.
 
-  Use case ends.
+Use case ends.
 
 <br>
 
@@ -371,7 +392,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific event in the list
 2.  PlanEase deletes the event in the list and deletes all occurrences of the event tied to person in the address book, if any.
 
-  Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -390,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a new contact.
 2.  PlanEase shows a prompt to indicate that the contact has been added successfully.
 
-  Use case ends.
+Use case ends.
 
 **Extensions**
 
@@ -405,13 +426,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 1b1. PlanEase shows an error message.
 
   Use case ends.
-  
+
 - 1c. The prefix(es) used are invalid.
 
   - 1c1. PlanEase shows an error message.
 
   Use case ends.
-  
 
 ### Non-Functional Requirements
 

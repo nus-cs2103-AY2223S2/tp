@@ -23,7 +23,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
             <padding>
                <Insets bottom="5.0" />
             </padding>

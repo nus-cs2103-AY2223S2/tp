@@ -81,6 +81,7 @@ Adds a person to the address book and adds existing event to this person if even
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 
+* Person name cannot exceed 50 characters.
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
@@ -168,6 +169,7 @@ Format: `addevent ev/EVENT_NAME from/DATETIME to/DATETIME`
 
 * Event name can be a combination of alphanumeric and punctuations with spaces.
 * Event name must begin with alphanumeric.
+* Event name cannot exceed 50 characters.
 * Start date time cannot be after the end date time.
 
 Examples:
