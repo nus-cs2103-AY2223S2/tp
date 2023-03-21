@@ -6,10 +6,8 @@ import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
-
 import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
 import static seedu.recipe.testutil.TypicalRecipes.SOUP;
-
 
 import org.junit.jupiter.api.Test;
 
@@ -26,8 +24,8 @@ public class RecipeTest {
         assertFalse(CORNDOGS.isSameRecipe(null));
 
         // same name, all other attributes different -> returns true
-        Recipe editedCorndogs = new RecipeBuilder(CORNDOGS).withDesc(VALID_DESC_SOUP).withIngredients(VALID_INGREDIENTS_SOUP)
-                .withSteps(VALID_STEPS_SOUP).build();
+        Recipe editedCorndogs = new RecipeBuilder(CORNDOGS).withDesc(VALID_DESC_SOUP)
+                .withIngredients(VALID_INGREDIENTS_SOUP).withSteps(VALID_STEPS_SOUP).build();
         assertTrue(CORNDOGS.isSameRecipe(editedCorndogs));
 
         // different name, all other attributes same -> returns false
