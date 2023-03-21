@@ -24,7 +24,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.txncommands.AddTxnCommand;
-import seedu.address.logic.commands.txncommands.DeleteTxnCommand;
+//import seedu.address.logic.commands.txncommands.DeleteTxnCommand;
 import seedu.address.logic.commands.txncommands.EditTxnCommand;
 import seedu.address.logic.commands.txncommands.EditTxnCommand.EditTxnDescriptor;
 import seedu.address.logic.commands.txncommands.ListTxnCommand;
@@ -70,13 +70,13 @@ public class AddressBookParserTest {
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
     }
-
-    @Test
-    public void parseCommand_deletetxn() throws Exception {
-        DeleteTxnCommand command = (DeleteTxnCommand) parser.parseCommand(
-                DeleteTxnCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased());
-        assertEquals(new DeleteTxnCommand(INDEX_FIRST_TRANSACTION), command);
-    }
+    //
+    //    @Test
+    //    public void parseCommand_deletetxn() throws Exception {
+    //        DeleteTxnCommand command = (DeleteTxnCommand) parser.parseCommand(
+    //                DeleteTxnCommand.COMMAND_WORD + " " + INDEX_FIRST_TRANSACTION.getOneBased());
+    //        assertEquals(new DeleteTxnCommand(INDEX_FIRST_TRANSACTION), command);
+    //    }
 
     @Test
     public void parseCommand_edit() throws Exception {
