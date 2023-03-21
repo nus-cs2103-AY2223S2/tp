@@ -25,7 +25,35 @@ The General Architecture of FriendlyLink follows that of [AddressBook3](https://
 
 ### Logic
 
-#### Add and Delete Elderly 
+#### Add and Delete Elderly and Volunteer
+
+In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
+
+The `add_elderly` and `add_volunteer` commands accept attributes of `Elderly` and `Volunteer` through prefixes.
+Each prefix is followed by the information of one attribute. 
+Some prefixes, such as `availableDates`, `tags`, are optional.
+
+* This grants greater flexibility of user input, as the user can key in the attributes in any order.
+* The unspecified optional fields will return `null` value.
+* The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
+* When the `add` command format is invalid, or the user tries to add a duplicated person, 
+the add operation will be aborted.
+
+The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
+
+* Allows for filtering to display a subset of Elderly or Volunteers in UI.
+* Allows for easy retrieval of information for pairing.
+
+The `delete_elderly` and `delete_volunteer` commands make use of `NRIC` 
+attribute of Elderly and Volunteer. 
+FriendlyLink retrieves the target person uniquely identified by its NRIC, 
+and removes it from the database.
+
+* Allows more efficient deletion compare to index-based deletion.
+* The user don't need to check the index of the target person before deletion.
+
+If the deleted Elderly or Volunteer has existing pairing, the associated
+pairs will be automatically removed as well.
 
 #### Edit by index & NRIC
 
@@ -43,25 +71,37 @@ The pairs are stored in a list similar to persons.
 <img src="images/developerGuide/Pair.png" width="350" />
 
 Two pairs are identical if they have the same elderly and volunteer NRIC.
+
 * Just like persons, we do not allow duplicate pairs (due to add or edit pair)
 * Elderly and volunteer NRIC is used to identify a pair for deletion.
 
 ### Storage
 
-#### Save Elderly and Volunteer
+<img src="images/developerGuide/StorageClassDiagram.png" width="500" />
 
-#### Save Pairs
+The `Storage` component,
 
-Pairs are saved in Json Format containing only the NRIC of the elderly and volunteer in the pair.
+- can save `Elderly`, `Volunteer`, `Pair` and `User Preference` data in JSON format, and read them back into
+  corresponding objects.
+- inherits from `ElderlyStorage`, `VolunteerStorage`, `PairStorage` and `UserPrefStorage`, which means it can be treated
+  as either one (if only the functionality of only one is needed).
+- depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that
+  belong to the Model)
+
+#### Pairs
+
+Pairs saved only contains the NRIC of the elderly and volunteer.
 
 Reasons
+
 * Reduce space needed to store pairs
 * Reduce chance of inconsistent data between a person and the corresponding pair,
 * Reduce number of files to amend manually when updating person information.
 
 Implications
+
 * A pair is reconstructed on startup by searching the model for the corresponding person.
-* Elderly and volunteer files need to be read into the model before pair files. 
+* Elderly and volunteer files need to be read into the model before pair files.
 
 --------------------------------------------------------------------------------------------------------------------
 
