@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_BACKGROUND
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "m:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant "contactIndex:ContactIndex" as ContactIndex LOGIC_COLOR
+end box
+
+activate ViewCommandParser
+
+    alt Empty ParseArguments
+    else Non-empty arguments
+
+        ViewCommandParser -> ArgumentTokenizer : tokenize(arguments)
+        note right of ViewCommandParser
+            Arguments can be
+            either a number or
+            name.
+        end note
+        activate ArgumentTokenizer
+        ArgumentTokenizer -> ArgumentTokenizer : findAllPrefixPositions(arguments))
+        activate ArgumentTokenizer
+
+        ArgumentTokenizer --> ArgumentTokenizer : positions
+        deactivate ArgumentTokenizer
+
+        ArgumentTokenizer -> ArgumentTokenizer : extractArguments(arguments, positions)
+        activate ArgumentTokenizer
+
+        create ArgumentMultimap
+        ArgumentTokenizer -> ArgumentMultimap
+        activate ArgumentMultimap
+
+        loop
+            ArgumentTokenizer -> ArgumentMultimap : prefixPosition
+            activate ArgumentMultimap
+            deactivate ArgumentMultimap
+        end
+
+        ArgumentMultimap --> ArgumentTokenizer : m
+        deactivate ArgumentMultimap
+
+        ArgumentTokenizer --> ArgumentTokenizer : m
+        deactivate ArgumentTokenizer
+
+        ArgumentTokenizer --> ViewCommandParser : m
+        deactivate ArgumentTokenizer
+        alt Name present in arguments
+            ViewCommandParser -> ArgumentMultimap : getValue(Prefix.NAME)
+            activate ArgumentMultimap
+            ArgumentMultimap --> ViewCommandParser : name
+            deactivate ArgumentMultimap
+        else Non-empty Preamble
+            ViewCommandParser -> ArgumentMultimap : getPreamble()
+            activate ArgumentMultimap
+
+            ArgumentMultimap --> ViewCommandParser : stringNumber
+            deactivate ArgumentMultimap
+
+            create ContactIndex
+            ViewCommandParser -> ContactIndex : stringNumber
+            activate ContactIndex
+
+            ContactIndex --> ViewCommandParser : contactIndex
+            deactivate ContactIndex
+        end
+    deactivate ViewCommandParser
+end
+@enduml

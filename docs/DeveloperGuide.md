@@ -42,7 +42,7 @@ title: Developer Guide
        * [Edit Command](#edit-command)
        * [Delete Command](#delete-command)
        * [Tag Command](#tag-command)
-       * [User Command](#user-command)
+       * [View Command](#view-command)
        * [Find Command](#find-command)
        * [Sort Command](#sort-command)
        * [List Command](#list-command)
@@ -541,16 +541,16 @@ The User profile will be displayed on the profile panel should there be any exce
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will check if the arguments are empty first.
-If it is will extract try to find tokens that were prefixed `/n`. If a name is not present, it will search for an index (of `int` type) instead. 
+If it is not empty, then `ViewCommandParser` will extract try to find tokens that were prefixed `/n`. If a name is not present, it will search for an index (of `int` type) instead. 
 The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
-{Insert sequence diagram}
+<img src="images/ViewParserSequenceDiagram.png" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+</div>
 
-Below summarises the execution of the `ViewCommand`
-
-{Insert activity diagram for completeness}
 #### **Find Command**
 
 {to be filled by Sean}
