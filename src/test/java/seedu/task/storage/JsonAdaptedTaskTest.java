@@ -36,6 +36,10 @@ public class JsonAdaptedTaskTest {
     private static final String VALID_WINDOW = "24";
     private static final String EMPTY_WINDOW = "";
 
+    private static final List<JsonAdaptedSubtask> VALID_SUBTASK = BENSON.getSubtasks().stream()
+        .map(JsonAdaptedSubtask::new)
+        .collect(Collectors.toList());
+
     @Test
     public void toModelType_validTaskDetails_returnsTask() throws Exception {
         JsonAdaptedTask task = new JsonAdaptedTask(BENSON);
@@ -46,7 +50,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(INVALID_NAME, VALID_DESCRIPTION,
-                        VALID_TAGS, EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        VALID_TAGS, EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -57,7 +61,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
 
                 new JsonAdaptedTask(null, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -68,7 +72,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
 
                 new JsonAdaptedTask(VALID_NAME, INVALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -79,7 +83,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
 
                 new JsonAdaptedTask(VALID_NAME, null, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -90,7 +94,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
 
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        INVALID_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        INVALID_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -100,8 +104,8 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidFromDate_throwsIllegalValueException() {
         JsonAdaptedTask task =
 
-                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION,
-                        VALID_TAGS, EMPTY_DATE, INVALID_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
+                    EMPTY_DATE, INVALID_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -112,7 +116,7 @@ public class JsonAdaptedTaskTest {
         JsonAdaptedTask task =
 
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, VALID_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, VALID_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -122,10 +126,10 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidFromToFormat_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE,
-                        EMPTY_DATE, VALID_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, VALID_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
         JsonAdaptedTask task2 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, VALID_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, VALID_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -136,13 +140,13 @@ public class JsonAdaptedTaskTest {
     public void toModelType_deadlineAndEventOverlap_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        VALID_DATE, VALID_DATE, VALID_DATE, VALID_EFFORT, VALID_WINDOW);
+                        VALID_DATE, VALID_DATE, VALID_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
         JsonAdaptedTask task2 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        VALID_DATE, VALID_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        VALID_DATE, VALID_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
         JsonAdaptedTask task3 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        VALID_DATE, EMPTY_DATE, VALID_WINDOW, VALID_EFFORT, VALID_WINDOW);
+                        VALID_DATE, EMPTY_DATE, VALID_WINDOW, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         String expectedMessage = DEADLINE_EVENT_OVERLAP;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -154,13 +158,13 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullAlertWindow_stillSucceed() throws Exception {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, null);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, null);
         JsonAdaptedTask task1 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, EMPTY_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, EMPTY_WINDOW);
         JsonAdaptedTask task2 =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS,
-                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
         assertEquals(task2.toModelType(), task.toModelType());
         assertEquals(task2.toModelType(), task1.toModelType());
     }
@@ -171,7 +175,7 @@ public class JsonAdaptedTaskTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, invalidTags, EMPTY_DATE,
-                        EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_WINDOW);
+                        EMPTY_DATE, EMPTY_DATE, VALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
 
         assertThrows(IllegalValueException.class, task::toModelType);
     }
@@ -180,7 +184,7 @@ public class JsonAdaptedTaskTest {
     public void toModelType_invalidEffort_throwsInvalidEffortException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(VALID_NAME, VALID_DESCRIPTION, VALID_TAGS, EMPTY_DATE, EMPTY_DATE, EMPTY_DATE,
-                        INVALID_EFFORT, VALID_WINDOW);
+                        INVALID_EFFORT, VALID_SUBTASK, VALID_WINDOW);
         assertThrows(InvalidEffortException.class, task::toModelType);
     }
 

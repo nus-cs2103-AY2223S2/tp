@@ -1,18 +1,32 @@
 package seedu.task.model.task;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.Iterator;
 import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.task.model.task.exceptions.DuplicateTaskException;
 import seedu.task.model.task.exceptions.TaskNotFoundException;
 
+/**
+ * A list of subtasks that enforces uniqueness between its elements and does not allow nulls.
+ * A subtask is considered unique by comparing using {@code Subtask#isSameTask(Subtask)}.
+ * As such, adding and updating of tasks uses Subtask#isSameTask(Subtask) for equality so
+ * as to ensure that the task being added or updated is unique in terms of identity in the
+ * UniqueSubtaskList. However, the removal of a task uses Subtask#equals(Object) so
+ * as to ensure that the task with exactly the same fields will be removed.
+ * <p>
+ * Supports a minimal set of list operations.
+ *
+ * @see Subtask#isSameTask(Subtask)
+ */
 public class UniqueSubtaskList implements Iterable<Subtask> {
 
     protected final ObservableList<Subtask> uniqueList = FXCollections.observableArrayList();
-    protected final ObservableList<Subtask> internalUnmodifiableList = FXCollections.unmodifiableObservableList(uniqueList);
+    protected final ObservableList<Subtask> internalUnmodifiableList =
+        FXCollections.unmodifiableObservableList(uniqueList);
 
     /**
      * Adds a subtask to the list
@@ -56,6 +70,14 @@ public class UniqueSubtaskList implements Iterable<Subtask> {
         return uniqueList.get(index);
     }
 
+    public void setSubtasks(List<Subtask> subtasks) {
+        requireNonNull(subtasks);
+        if (!tasksAreUnique(subtasks)) {
+            throw new DuplicateTaskException();
+        }
+        uniqueList.setAll(subtasks);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      * @return Observable list
@@ -72,27 +94,37 @@ public class UniqueSubtaskList implements Iterable<Subtask> {
         return uniqueList.hashCode();
     }
 
+    /**
+     * Checks the size of the {@code uniqueList}
+     * @return Length of the list
+     */
     public int size() {
         return this.uniqueList.size();
     }
 
+    /**
+     * Creates an iterator to make the list iterable
+     * @return An iterator
+     */
     @Override
     public Iterator<Subtask> iterator() {
         return uniqueList.iterator();
     }
 
 
+    @Override
     public boolean equals(Object other) {
-        return other == this || (other instanceof UniqueSubtaskList && uniqueList.equals(((UniqueSubtaskList) other).uniqueList));
+        return other == this
+            || (other instanceof UniqueSubtaskList && uniqueList.equals(((UniqueSubtaskList) other).uniqueList));
     }
 
     /**
      * Returns true if {@code tasks} contains only unique tasks.
      */
-    private boolean tasksAreUnique(List<Subtask> tasks) {
-        for (int i = 0; i < tasks.size() - 1; i++) {
-            for (int j = i + 1; j < tasks.size(); j++) {
-                if (tasks.get(i).isSameTask(tasks.get(j))) {
+    private boolean tasksAreUnique(List<Subtask> subtasks) {
+        for (int i = 0; i < subtasks.size() - 1; i++) {
+            for (int j = i + 1; j < subtasks.size(); j++) {
+                if (subtasks.get(i).isSameTask(subtasks.get(j))) {
                     return false;
                 }
             }

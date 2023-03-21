@@ -9,7 +9,9 @@ import seedu.task.model.task.Description;
 import seedu.task.model.task.Effort;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
+import seedu.task.model.task.Subtask;
 import seedu.task.model.task.Task;
+import seedu.task.model.task.UniqueSubtaskList;
 import seedu.task.model.util.SampleDataUtil;
 
 /**
@@ -26,6 +28,8 @@ public class SimpleTaskBuilder {
     private Set<Tag> tags;
     private Duration alertWindow;
 
+    private UniqueSubtaskList subtasks;
+
     /**
      * Creates a {@code SimpleTaskBuilder} with the default details.
      */
@@ -34,6 +38,7 @@ public class SimpleTaskBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
         effort = new Effort();
+        subtasks = new UniqueSubtaskList();
     }
 
     /**
@@ -44,6 +49,7 @@ public class SimpleTaskBuilder {
         description = taskToCopy.getDescription();
         tags = new HashSet<>(taskToCopy.getTags());
         effort = taskToCopy.getEffort();
+        subtasks = taskToCopy.getSubtasksAsOriginal();
     }
 
     /**
@@ -76,6 +82,16 @@ public class SimpleTaskBuilder {
     public SimpleTaskBuilder withEffort(long e) {
         this.effort = new Effort(e);
         return this;
+    }
+
+    /**
+     * Sets the {@code UniqueSubtaskList}of the {@code Task} that we are building.
+     * @param subtask A pre-built subtask
+     * @return A SimpleTaskBuilder
+     */
+    public SimpleTaskBuilder withSubtasks(Subtask subtask) {
+       this.subtasks.addSubtask(subtask);
+       return this;
     }
 
     /**

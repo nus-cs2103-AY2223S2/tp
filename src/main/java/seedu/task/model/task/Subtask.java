@@ -9,7 +9,7 @@ import java.util.Objects;
  * Represents a subtask in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Subtask{
+public class Subtask {
 
     // Identity fields
     protected Name name;
@@ -40,7 +40,7 @@ public class Subtask{
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
      */
-    public boolean isSameTask (Subtask otherTask) {
+    public boolean isSameTask(Subtask otherTask) {
         if (otherTask == this) {
             return true;
         }

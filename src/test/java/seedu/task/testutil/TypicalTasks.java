@@ -7,6 +7,7 @@ import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.task.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.task.testutil.TypicalSubtasks.ALICE_HOMEWORK;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ public class TypicalTasks {
             .withDescription("Benson's description")
             .withTags("owesMoney", "friends")
             .withEffort(4)
+            .withSubtasks(ALICE_HOMEWORK)
             .build();
     public static final Task CARL = new SimpleTaskBuilder().withName("Carl Kurz")
             .withDescription("Carl's description")

@@ -3,6 +3,7 @@ package seedu.task.model.task;
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,6 +23,16 @@ public class Deadline extends Task {
      */
     public Deadline(Name name, Description description, Set<Tag> tags, Date deadline, Effort effort) {
         super(name, description, tags, effort);
+        requireAllNonNull(deadline);
+        this.deadline = deadline;
+    }
+
+    /**
+     * Overload the constructor to take in a {@code subtasks} field
+     */
+    public Deadline(Name name, Description description, Set<Tag> tags, Date deadline, Effort effort,
+                    List<Subtask> subtasks) {
+        super(name, description, tags, effort, subtasks);
         requireAllNonNull(deadline);
         this.deadline = deadline;
     }

@@ -45,6 +45,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private Label subsections;
+
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
@@ -56,6 +59,8 @@ public class TaskCard extends UiPart<Region> {
         description.setText(task.getDescription().value);
         time.setText("No specified time");
         effort.setText("Effort: " + task.getEffort().toString());
+        subsections.setText("Subsections: " + task.formatSubtasks());
+
         if (task instanceof Deadline) {
             Deadline tmp = (Deadline) task;
             time.setText("Deadline: " + tmp.getDeadline().toString());

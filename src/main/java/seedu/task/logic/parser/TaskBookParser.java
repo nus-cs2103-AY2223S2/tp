@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.task.logic.commands.AddCommand;
+import seedu.task.logic.commands.AddSubtaskCommand;
 import seedu.task.logic.commands.AlertCommand;
 import seedu.task.logic.commands.ClearCommand;
 import seedu.task.logic.commands.Command;
@@ -83,6 +84,9 @@ public class TaskBookParser {
 
         case PlanCommand.COMMAND_WORD:
             return new PlanCommandParser().parse(arguments);
+
+        case AddSubtaskCommand.COMMAND_WORD:
+            return new AddSubtaskParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
