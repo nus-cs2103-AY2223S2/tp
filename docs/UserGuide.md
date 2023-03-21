@@ -25,7 +25,7 @@ to their strengths and tabs on every applicant's application status.
 
 Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
 
-<div markdown="span" class="alert alert-info" role="alert">:information_source: **Note: **
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong>
 We highly recommend that you read through this User Guide in **sequential order** to get a thorough understanding
 of how to use HMHero.
 </div>
