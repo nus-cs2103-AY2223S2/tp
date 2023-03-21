@@ -2,26 +2,22 @@
   "recipes" : [
     {
       "title": "Corndogs",
-      "desc": "Awesome cheap corndogs",
+      "desc": "Homemade corndogs",
       "ingredients": [
-        "eggs",
         "flour"
       ],
       "steps": [
-        "CDTest1",
-        "CDTest2"
+        "step 1"
       ]
     },
     {
       "title": "Soup",
-      "desc": "Tasty delicious soupy goodness",
+      "desc": "Instant soup",
       "ingredients": [
-        "water",
-        "salt"
+        "water"
       ],
       "steps": [
-        "STest1",
-        "STest2"
+        "step 2"
       ]
     }
   ]
