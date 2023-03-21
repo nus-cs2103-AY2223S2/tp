@@ -16,7 +16,9 @@ public class SortCommand extends Command {
         + ": Sorts the list of contacts by the given category. "
         + "Sorts by name if none is given.\n"
         + "Parameters: [KEYWORD]\n"
-        + "Example: \"" + COMMAND_WORD + " address\" will sort the list by address.";
+        + "Example: \"" + COMMAND_WORD + " address\"\n"
+        + "The following are the available categories:\n"
+        + "name, phone, email, address, tags";
 
     private final String category;
 
