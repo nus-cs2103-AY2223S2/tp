@@ -56,11 +56,11 @@ in the format. This indicates that the parameter is **optional**. Each of these 
 [[ parameter:parameters ]] have a default value based on the commands. These are documented in the [Commands](#commands)
 section for each command.
 
-```
-🚨NOTE
+
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, 
-the date format of PHONE, certain characters you cannot use and the limit and precision of numbers.
-```
+the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
+</div>
 
 **Let's try an example!**
 
@@ -108,13 +108,13 @@ Find out more about restrictions in the sections [Flags](#flags), [Placeholders]
 
 ---
 
+
 Let's try out another command -- the `list` command! `list` lets you see the list of the applicants.
 
-```
-⚠️Warning
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong> <br>
 The format for different commands are not always identical. For example, executing the `add` command and the `list` 
-command will have different formats!
-```
+command will have different formats! 
+</div>
 
 For example, after adding an applicant, you decided to see the list of applicant.
 
@@ -150,12 +150,11 @@ What you should expect to find:
 * Important points to note
 
 
-```
-🚨Note
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 * For each command, "Format" indicates the syntax of the command.
 * Square brackets indicates an optional [[ parameter ]].
-* In most commands, if the same parameter is repeated and only one is required, we take the last value provided.
-```
+* In most commands, if the same parameter is repeated and only one is required, we take the last value provided. 
+</div>
 
 ### Applicant Commands
 
@@ -167,13 +166,15 @@ What you should expect to find:
 
 **Info**
 * All fields apart from `TAG` are compulsory.
+* All `NAME` and `PHONE` must be unique.
+* `NAME` is case-sensitive. (e.g. "Thomas" is different from "thomas").
 * `PHONE` does not require you to include the country code. Only include the numbers.
 * THe value of `TAG` will be `-` if it is not provided.
 
 
-
-🚨Note
-* If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
+* If two or more values of the same parameter are provided, only the last value for that parameter will be taken. 
+</div>
 
 
 **Example:**
@@ -208,11 +209,12 @@ HMHero does not already contain an applicant with the name "Thomas".
   "91918153" will only match "91918153")
 
 
-Tip
-* You can use the [List Command](#list-all-applicants--list) in the next section to display all applicants again!
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
+* You can use the [List Command](#list-all-applicants--list) in the next section to display all applicants again! 
+</div>
 
 
-🚨Note
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 * The `find` command only finds `Applicants` which has a name, phone or both that fully matches the specified search
   of part of the name, phone or both!
 * This means that if the `NAME` `Thomas Lee` and `Thomas Tan` is in HMHero,
@@ -222,6 +224,7 @@ Tip
 * If you try to find an `NAME` `Thomas` by executing the command `Thomas Lee`, it will still work!
 * However, if you try to find an `PHONE` `91918153` by executing the command `919181532`, it will not work!
 * If you try to find `Applicants` using both `NAME` and `PHONE`, it will work the same as finding individually!
+</div>
 
 **Example:**
 
@@ -300,8 +303,9 @@ HMHero contains the following applicants, each with their own attributes:
 * All fields are compulsory.
 
 
-🚨Note
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 * The `delete` command only deletes `Applicant` which has a name and phone that fully matches the specified search.
+</div>
 
 
 **Example:**
@@ -337,7 +341,7 @@ HMHero contains the following applicants, each with their own attributes:
 * [INTERVIEW DATETIME] is compulsory when the initial `status` is `APPLIED`.
 
 
-🚨Note
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 * The `advance` command only advances `Applicant` which has a name and phone that fully matches the specified search.
 * The `INTERVIEW DATETIME` is required to advance `Applicant` from `status` `APPLIED` to `status` `SHORTLISTED`.
 * However, `INTERVIEW DATETIME` is not required to advance `Applicant` from `status` `SHORTLISTED`
@@ -349,7 +353,8 @@ HMHero contains the following applicants, each with their own attributes:
   * “yyyy”: A 4-digit year. For example, “2023” would represent the year 2023.
   * "HH": Hour of the day, ranging from 0-23 in 24-hour clock format.
     For example, "15" would represent 15th hour of the day.
-  * "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour.
+  * "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour. 
+</div>
 
 
 **Example:**
@@ -390,10 +395,11 @@ HMHero contains the following applicants, each with their own attributes:
 * All fields are compulsory.
 
 
-🚨Note
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 * The `reject` command only rejects `Applicant` which has a name and phone that fully matches the specified search.
 * The `NAME` and `PHONE `is required to reject `Applicant` from `status` `APPLIED`, `SHORTLISTED` and `ACCEPTED`
   to `status` `REJECTED`.
+</div>
 
 
 **Example:**
@@ -471,9 +477,10 @@ HMHero contains the following applicants, each with their own attributes:
   * "MM": Minute of the day, ranging from 0-59. For example, "50" would represent the 59th minute of the hour.
 
 
-🚨Note
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 * However, if two or more values of `TAG` are provided, both parameter will be taken in.
+</div>
 
 
 **Example:**
@@ -517,9 +524,10 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Tags: [Python] [Java]`
 
 > Displays help for HMHero
 
-```
-🚨 Note
+
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 COMMAND_WORD is strictly any of the following:
+</div>
 
 * exit
 * help
@@ -533,7 +541,7 @@ COMMAND_WORD is strictly any of the following:
 * reject
 * remind (implementing)
 * stats (implementing)
-```
+
 
 **Example:**
 
@@ -590,11 +598,9 @@ exit
 * Your inventory data is saved.
 
 
-
-```
-🚨Note
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 If your inventory data cannot be saved successfully, HMHero will not close in order to prevent data loss.
-```
+</div>
 
 
 
