@@ -1,25 +1,17 @@
 package seedu.library.logic.parser;
 
-import seedu.library.logic.commands.AddCommand;
-import seedu.library.logic.commands.AddTagCommand;
-import seedu.library.logic.parser.exceptions.ParseException;
-import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Progress;
-import seedu.library.model.bookmark.Title;
-import seedu.library.model.tag.Tag;
+import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import seedu.library.logic.commands.AddTagCommand;
+import seedu.library.logic.parser.exceptions.ParseException;
+import seedu.library.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new AddTagCommand object
+ */
 public class AddTagCommandParser implements Parser<AddTagCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddTagCommand

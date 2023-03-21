@@ -1,12 +1,16 @@
 package seedu.library.storage;
 
-import seedu.library.commons.exceptions.DataConversionException;
-import seedu.library.model.ReadOnlyTags;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import seedu.library.commons.exceptions.DataConversionException;
+import seedu.library.model.ReadOnlyTags;
+import seedu.library.model.Tags;
+
+/**
+ * Represents a storage for {@link Tags}.
+ */
 public interface TagsStorage {
     /**
      * Returns the file path of the data file.

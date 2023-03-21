@@ -13,6 +13,9 @@ import seedu.library.model.ReadOnlyTags;
 import seedu.library.model.Tags;
 import seedu.library.model.tag.Tag;
 
+/**
+ * An Immutable tag list that is serializable to JSON format.
+ */
 @JsonRootName(value = "tags")
 public class JsonSerializableTags {
 

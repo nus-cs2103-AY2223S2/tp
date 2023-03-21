@@ -1,7 +1,5 @@
 package seedu.library.model.tag;
 
-import seedu.library.model.bookmark.Bookmark;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.library.commons.util.AppUtil.checkArgument;
 

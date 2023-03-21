@@ -1,5 +1,12 @@
 package seedu.library.storage;
 
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import seedu.library.commons.core.LogsCenter;
 import seedu.library.commons.exceptions.DataConversionException;
 import seedu.library.commons.exceptions.IllegalValueException;
@@ -7,17 +14,13 @@ import seedu.library.commons.util.FileUtil;
 import seedu.library.commons.util.JsonUtil;
 import seedu.library.model.ReadOnlyTags;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * A class to access tag list data stored as a json file on the hard disk.
+ */
 public class JsonTagsStorage implements TagsStorage {
-    private Path filePath;
-
     private static final Logger logger = LogsCenter.getLogger(JsonLibraryStorage.class);
+
+    private Path filePath;
 
     public JsonTagsStorage(Path filePath) {
         this.filePath = filePath;

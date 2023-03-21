@@ -3,11 +3,11 @@ package seedu.library.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+
 import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Model;
 import seedu.library.model.tag.Tag;
-
-import java.util.Set;
 
 /**
  * Adds a bookmark to the address book.

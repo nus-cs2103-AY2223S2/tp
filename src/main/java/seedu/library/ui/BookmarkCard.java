@@ -60,16 +60,13 @@ public class BookmarkCard extends UiPart<Region> {
         progress.setText(bookmark.getProgress().value);
         b1.setText(bookmark.getProgress().toString());
 
-
         if (bookmark.getProgress().toString().toUpperCase().equals("FINISHED")) {
             b1.setStyle("-fx-background-color: #55b92a");
         } else if (bookmark.getProgress().toString().toUpperCase().equals("READING")) {
-             b1.setStyle("-fx-background-color: #d9e16c");
+            b1.setStyle("-fx-background-color: #d9e16c");
         } else if (bookmark.getProgress().toString().toUpperCase().equals("NOT STARTED")) {
             b1.setStyle("-fx-background-color: #cd4545");
-
         } else {
-
             b1.setVisible(false);
         }
 

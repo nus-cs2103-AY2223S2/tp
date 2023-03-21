@@ -10,7 +10,6 @@ import seedu.library.commons.exceptions.DataConversionException;
 import seedu.library.model.ReadOnlyLibrary;
 import seedu.library.model.ReadOnlyTags;
 import seedu.library.model.ReadOnlyUserPrefs;
-import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 
 /**

@@ -1,12 +1,16 @@
 package seedu.library.model;
 
-import javafx.collections.ObservableList;
-import seedu.library.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.library.model.tag.Tag;
 
+/**
+ * Personal tag list for users to tag bookmark
+ * Duplicates are not allowed (by .isSameBookmark comparison)
+ */
 public class Tags implements ReadOnlyTags {
     private final UniqueTagList tags;
 
