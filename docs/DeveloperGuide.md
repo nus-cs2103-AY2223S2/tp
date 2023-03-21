@@ -43,25 +43,37 @@ The pairs are stored in a list similar to persons.
 <img src="images/developerGuide/Pair.png" width="350" />
 
 Two pairs are identical if they have the same elderly and volunteer NRIC.
+
 * Just like persons, we do not allow duplicate pairs (due to add or edit pair)
 * Elderly and volunteer NRIC is used to identify a pair for deletion.
 
 ### Storage
 
-#### Save Elderly and Volunteer
+<img src="images/developerGuide/StorageClassDiagram.png" width="500" />
 
-#### Save Pairs
+The `Storage` component,
 
-Pairs are saved in Json Format containing only the NRIC of the elderly and volunteer in the pair.
+- can save `Elderly`, `Volunteer`, `Pair` and `User Preference` data in JSON format, and read them back into
+  corresponding objects.
+- inherits from `ElderlyStorage`, `VolunteerStorage`, `PairStorage` and `UserPrefStorage`, which means it can be treated
+  as either one (if only the functionality of only one is needed).
+- depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that
+  belong to the Model)
+
+#### Pairs
+
+Pairs saved only contains the NRIC of the elderly and volunteer.
 
 Reasons
+
 * Reduce space needed to store pairs
 * Reduce chance of inconsistent data between a person and the corresponding pair,
 * Reduce number of files to amend manually when updating person information.
 
 Implications
+
 * A pair is reconstructed on startup by searching the model for the corresponding person.
-* Elderly and volunteer files need to be read into the model before pair files. 
+* Elderly and volunteer files need to be read into the model before pair files.
 
 --------------------------------------------------------------------------------------------------------------------
 
