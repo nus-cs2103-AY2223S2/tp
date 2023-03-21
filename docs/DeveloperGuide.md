@@ -252,7 +252,40 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Adding a task
 
+Syntax: `addtask t/TITLE [c/CONTENT] [st/STATUS]`
+Purpose: Allows users to add tasks into the OfficeConnectModel
+
+#### Implementation
+The implementation of this feature is supported by `AddTaskCommand` and `AddTaskCommandParser`.
+Below is an activity diagram that illustrates how a user might add new tasks into the OfficeConnectModel.
+
+#### Design Considerations
+**Aspect: format of inputs in Add Task Command:**
+
+* **Alternative 1 (current choice):** Only title is required when creating a task. The other fields are optional.
+    * Pros: As users may not have a content or status in mind when creating tasks, this alternative allows flexibility
+  in user input, which makes the app more user-friendly. Some tasks may also be self-explanatory and thus do not 
+  require content description.
+    * Cons: More difficult to implement, more error prone
+
+* **Alternative 2:** Require all fields to be compulsory
+    * Pros: Easier to implement, fewer bugs possible
+    * Cons: Less intuitive and user-friendly, as users might not have content in mind when creating tasks and may be
+  forced to key in random content to add tasks.
+
+#### Constraints
+**Title must be unique:** </br>
+We felt that the title should be unique as it improves organisation and clarity for the user. By mandating unique 
+titles, we can also encourage users to be specific in the purpose of the task (e.g they will set title as 
+"Complete slides for Mr X" rather than "Complete Slides"), which will benefit them in the long run, as they will be 
+able to clearly distinguish the purpose of each task just by looking at the title. 
+Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
+to distinguish between the tasks unless they read each of the task content individually. It would also cause difficulties
+in searching for tasks, as tasks with similar title might clutter up the GUI.
+Hence, our approach in mandating unique titles are geared towards improving organisation and clarity for users in 
+both the short and long term.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
