@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.AddStudentToEventCommand.CONSULTATION_STRING;
 import static seedu.address.logic.commands.AddStudentToEventCommand.LAB_STRING;
 import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_SUCCESS;
+import static seedu.address.logic.commands.AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED;
 import static seedu.address.logic.commands.AddStudentToEventCommand.TUTORIAL_STRING;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_CONSULTATION;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_LAB;
@@ -21,9 +23,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
+import seedu.address.model.person.Person;
 
 class AddStudentToEventCommandTest {
     private Model model;
+    private static String WRONG_TYPE = "tutoria";
+    Index first = INDEX_FIRST_PERSON;
 
     @BeforeEach
     public void setUp() {
@@ -36,8 +41,6 @@ class AddStudentToEventCommandTest {
 
     @Test
     void execute_new_person_success() {
-        Index first = INDEX_FIRST_PERSON;
-
         Model modifiedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         modifiedModel.addTutorial(new Tutorial(SAMPLE_TUTORIAL.getName()));
         modifiedModel.addLab(new Lab(SAMPLE_LAB.getName()));
@@ -58,5 +61,11 @@ class AddStudentToEventCommandTest {
                         first, SAMPLE_CONSULTATION.getName(), CONSULTATION_STRING),
                 model, new CommandResult(MESSAGE_SUCCESS), modifiedModel);
 
+    }
+
+    @Test
+    void execute_event_type_not_recognized() {
+        assertCommandFailure(new AddStudentToEventCommand(first, SAMPLE_TUTORIAL.getName(), WRONG_TYPE),
+                model, MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
     }
 }
