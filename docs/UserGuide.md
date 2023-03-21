@@ -103,6 +103,19 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com c/company X`
 * `add n/Betsy Crowe p/62353535 t/friend`
 
+### Sorting all persons : `sort`
+
+Sorts all persons in the address book based on an attribute.
+
+Format: `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]`
+
+* At least one of the optional fields must be provided.
+* The address book will be sorted based on the specified attribute by their alphanumerical value.
+
+Examples:
+*  `sort name` Sorts all persons alphabetically by name.
+*  `sort occupation` Sorts all persons alphabetically by occupation.
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
@@ -113,7 +126,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`
+Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
