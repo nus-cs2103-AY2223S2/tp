@@ -13,7 +13,8 @@ import java.time.format.DateTimeParseException;
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Date times should follow this format: DD-MM-YYYY HH:mm and only values within valid range are allowed.";
-    public final String dateTime;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    public final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code DateTime}.
@@ -23,14 +24,13 @@ public class DateTime {
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.dateTime = dateTime;
+        this.dateTime = LocalDateTime.parse(dateTime, formatter);
     }
 
     /**
      * Returns true if a given string is a valid date time.
      */
     public static boolean isValidDateTime(String test) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         try {
             LocalDateTime validDateTime = LocalDateTime.parse(test, formatter);
             return true;
@@ -46,15 +46,18 @@ public class DateTime {
         if (!isValidDateTime(startDate) || !isValidDateTime(endDate)) {
             return false;
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime startDateTime = LocalDateTime.parse(startDate, formatter);
         LocalDateTime endDateTime = LocalDateTime.parse(endDate, formatter);
         return startDateTime.equals(endDateTime) || startDateTime.isBefore(endDateTime);
     }
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
     @Override
     public String toString() {
-        return dateTime;
+        return dateTime.format(formatter);
     }
 
     @Override
