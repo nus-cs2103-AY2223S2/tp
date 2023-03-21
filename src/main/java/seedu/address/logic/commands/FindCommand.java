@@ -6,7 +6,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.listing.TitleContainsKeywordsPredicate;
 
-
 /**
  * Finds and lists all listings in listing book which title contains any of the argument keywords.
  * Keyword matching is case-insensitive.
