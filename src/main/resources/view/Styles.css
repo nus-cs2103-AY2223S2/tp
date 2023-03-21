@@ -1,0 +1,164 @@
+.background {
+    -fx-background-color: #1c1f3a;
+}
+
+.menu-bar {
+    -fx-background-color: #1c1f3a;
+}
+
+.menu:hover {
+    -fx-background-color: gray !important;
+}
+
+.divider {
+    -fx-background-color: rgba(128, 128, 128, 0.5);
+}
+
+.header-hbox {
+    -fx-background-color: #1c1f3a;
+}
+
+.header-vbox {
+    -fx-background-color: #1c1f3a;
+}
+
+.hbox {
+    -fx-background-color: #1c1f3a;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 1;
+    -fx-border-color: rgba(128, 128, 128, 0.5);
+    -fx-border-radius: 10px;
+    -fx-spacing: 4px;
+}
+
+.list-cell {
+    -fx-control-inner-background: transparent;
+}
+
+.list-cell:focused, .list-cell:selected {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.list-cell:focused .text {
+    -fx-fill: white;
+}
+
+.label-tag {
+    -fx-background-color: #0073ea;
+    -fx-background-radius: 4px;
+    -fx-padding: 4px 8px;
+}
+
+.text-field {
+    -fx-background-color: #1c1f3a;
+    -fx-background-radius: 4 4 0 0;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.text-area {
+    -fx-background-color: #1c1f3a;
+    -fx-control-inner-background: #1c1f3a;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-text-alignment: right;
+    -fx-alignment: top-right;
+}
+
+.text-area .content {
+    -fx-padding: 0px
+}
+
+.vbox-result {
+    -fx-background-color: #31324d;
+    -fx-background-radius: 25px
+}
+
+.sidebar {
+    -fx-background-color: #2a2e4c;
+}
+
+.light-color {
+    -fx-background-color: #31324d;
+}
+
+.extra-light-color {
+
+}
+
+.dark-color {
+   -fx-background-color: #1c1f3a;
+}
+
+.rounded {
+    -fx-background-radius: 10px;
+}
+
+.no-rounded {
+    -fx-background-radius: 0 0 0 0 !important;
+}
+
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :rgba(128, 128, 128, 0.5);
+    -fx-border-color :rgba(128, 128, 128, 0.5);
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+    -fx-padding: 0 3 0 3;
+    -fx-background-insets: 0 3 0 3;
+}
+
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color :rgba(128, 128, 128, 0.5);
+    -fx-background-radius : 0.0em;
+    -fx-padding : 0 3 0 3;
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding: 0 3 0 3;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color :derive(#2a2438,90.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color :derive(#352f44,10.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
+}

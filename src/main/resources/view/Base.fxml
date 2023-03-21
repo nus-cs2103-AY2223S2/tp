@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="600.0" minWidth="450.0" title="Advis.io" type="Stage"
-         xmlns="http://javafx.com/javafx/19">
+<fx:root minHeight="600.0" minWidth="450.0" title="Advis.io" type="Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene stylesheets="@Styles.css">
             <VBox>
@@ -19,40 +22,103 @@
                         <menus>
                             <Menu mnemonicParsing="false" text="File">
                                 <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+                                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                                 </items>
                             </Menu>
                             <Menu mnemonicParsing="false" text="Help">
                                 <items>
-                                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp"
-                                              text="Help"/>
+                                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                                 </items>
                             </Menu>
                         </menus>
                     </MenuBar>
-                    <HBox VBox.vgrow="ALWAYS">
+               <HBox VBox.vgrow="ALWAYS">
+                  <children>
+                     <VBox fx:id="sidebar" prefWidth="50.0" styleClass="sidebar" />
+                     <VBox fx:id="dashboard" styleClass="dark-color" HBox.hgrow="ALWAYS">
                         <children>
-                            <VBox fx:id="clientList" maxWidth="440.0" minWidth="440.0" prefWidth="440.0">
-                                <children>
-                                    <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                                </children>
-                            </VBox>
-                            <VBox fx:id="policyList" HBox.hgrow="ALWAYS">
-                                <children>
-                                    <StackPane fx:id="clientLabel"/>
-                                    <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                                </children>
-                            </VBox>
+                           <HBox fx:id="header" styleClass="header-hbox">
+                              <children>
+                                 <VBox styleClass="header-vbox">
+                                    <children>
+                                       <Label text="Good Afternoon, Rui Wei!" textFill="#fafafacb">
+                                          <padding>
+                                             <Insets bottom="4.0" left="8.0" right="8.0" top="8.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="SansSerif Bold" size="13.0" />
+                                          </font>
+                                       </Label>
+                                       <Label text="Quickly access your recent clients, policies and workspaces" textFill="WHITE">
+                                          <padding>
+                                             <Insets bottom="8.0" left="8.0" right="8.0" />
+                                          </padding>
+                                          <font>
+                                             <Font name="SansSerif Bold" size="16.0" />
+                                          </font>
+                                       </Label>
+                                    </children>
+                                 </VBox>
+                              </children>
+                              <padding>
+                                 <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                              </padding>
+                           </HBox>
+                           <StackPane maxHeight="1.0" minHeight="1.0" prefHeight="1.0" styleClass="divider" />
+                                <HBox styleClass="hbox" VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <VBox fx:id="clientList" maxWidth="440.0" minWidth="440.0" prefWidth="440.0">
+                                            <children>
+                                                <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                            </children>
+                                    <HBox.margin>
+                                       <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                    </HBox.margin>
+                                    <styleClass>
+                                       <String fx:value="light-color" />
+                                       <String fx:value="rounded" />
+                                    </styleClass>
+                                        </VBox>
+                                        <VBox fx:id="policyList" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <StackPane fx:id="clientLabel" minHeight="88.0">
+                                          <styleClass>
+                                             <String fx:value="light-color" />
+                                             <String fx:value="rounded" />
+                                          </styleClass>
+                                          <VBox.margin>
+                                             <Insets left="16.0" right="16.0" top="16.0" />
+                                          </VBox.margin></StackPane>
+                                                <StackPane fx:id="policyListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                          </VBox.margin>
+                                          <styleClass>
+                                             <String fx:value="rounded" />
+                                             <String fx:value="light-color" />
+                                          </styleClass></StackPane>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                           <StackPane maxHeight="1.0" minHeight="1.0" prefHeight="1.0" styleClass="divider" />
+                                <VBox prefWidth="340.0">
+                                    <children>
+                                        <StackPane fx:id="commandBoxPlaceholder" styleClass="background" />
+                                        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="160.0" minHeight="160.0" prefHeight="160.0" styleClass="dark-color" />
+                                    </children>
+                              <VBox.margin>
+                                 <Insets left="8.0" right="8.0" top="8.0" />
+                              </VBox.margin>
+                                </VBox>
                         </children>
-                    </HBox>
-                    <VBox prefWidth="340.0">
-                        <children>
-                            <StackPane fx:id="commandBoxPlaceholder"/>
-                            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="160.0" minHeight="160.0"
-                                       prefHeight="160.0"/>
-                            <StackPane fx:id="statusbarPlaceholder"/>
-                        </children>
-                    </VBox>
+                        <padding>
+                           <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
+                        </padding>
+                     </VBox>
+                  </children>
+               </HBox>
+                      <StackPane fx:id="statusbarPlaceholder" />
                 </children>
             </VBox>
         </Scene>
