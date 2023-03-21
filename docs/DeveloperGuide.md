@@ -179,7 +179,11 @@ The JSON is generated using the Jackson library, through the use of the JsonUtil
 
 ##### Importing
 Using the exported JSON, one can then import it using `import THE_JSON`.
-The JSON is parsed using the Jackson library.
+Since importing is done using the existing function `ModelManager::addPerson`, duplicates are not allowed and will 
+throw errors.
+
+The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
+is thrown.
 
 ### \[Proposed\] Exporting and importing of Meetings
 #### Proposed implementation
