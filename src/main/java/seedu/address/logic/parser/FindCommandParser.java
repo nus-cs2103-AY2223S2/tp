@@ -36,8 +36,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
         InternshipStatus status;
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-             status = ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_STATUS).get());
-             return new FindStatusCommand(new StatusPredicate(status));
+            status = ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_STATUS).get());
+            return new FindStatusCommand(new StatusPredicate(status));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
