@@ -35,8 +35,13 @@ public class SortEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortEventList(sortEventType);
-        return new CommandResult(String.format("%s based on the %s", MESSAGE_SUCCESS, sortEventType.getDescription()));
+        if (model.getFilteredEventList().size() > 1) {
+            model.sortEventList(sortEventType);
+            return new CommandResult(String.format("%s based on the %s", MESSAGE_SUCCESS,
+                    sortEventType.getDescription()));
+        } else {
+            return new CommandResult("Too few events in the current list to sort");
+        }
     }
 
     @Override
