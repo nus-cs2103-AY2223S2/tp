@@ -106,8 +106,6 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new Socket(modelWithProjects.getSocket()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
-        System.out.println(expectedModel.getFilteredProjectList());
-
         assertCommandSuccess(editCommand, modelWithProjects, expectedMessage, expectedModel);
     }
 
