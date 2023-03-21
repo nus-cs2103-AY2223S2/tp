@@ -25,16 +25,44 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Card> cardList) {
         super(FXML);
+
         personListView.setItems(cardList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new CardListViewCell());
         personListView.setStyle("-fx-background-color: #ededed; "
                 + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width: 5;");
+    }
+
+    public void toggleReview() {
+        personListView.setCellFactory(listView -> new ReviewCardListViewCell());
+    }
+
+    public void endReview() {
+        personListView.setCellFactory(listView -> new CardListViewCell());
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code ReviewCard} using a {@code PersonCard}.
+     */
+    static class ReviewCardListViewCell extends ListCell<Card> {
+        @Override
+        protected void updateItem(Card card, boolean empty) {
+            super.updateItem(card, empty);
+            if (empty || card == null) {
+                setGraphic(null);
+                setText(null);
+
+            } else {
+                setGraphic(new ReviewCard(card).getRoot());
+                setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px; -fx-padding: 10 80 10 80; "
+                        + "-fx-background-color:#ededed ");
+            }
+        }
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Card> {
+    static class CardListViewCell extends ListCell<Card> {
         @Override
         protected void updateItem(Card card, boolean empty) {
             super.updateItem(card, empty);
