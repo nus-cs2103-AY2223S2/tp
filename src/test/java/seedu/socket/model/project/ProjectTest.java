@@ -3,6 +3,7 @@ package seedu.socket.model.project;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_DEADLINE_BRAVO;
+import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_MEETING_BRAVO;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BRAVO;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_REPO_HOST_BRAVO;
 import static seedu.socket.logic.commands.CommandTestUtil.VALID_PROJECT_REPO_NAME_BRAVO;
@@ -86,6 +87,10 @@ public class ProjectTest {
 
         // different deadline -> returns false
         editedAlpha = new ProjectBuilder(ALPHA).withProjectDeadline(VALID_PROJECT_DEADLINE_BRAVO).build();
+        assertFalse(ALPHA.equals(editedAlpha));
+
+        // different deadline -> returns false
+        editedAlpha = new ProjectBuilder(ALPHA).withProjectDeadline(VALID_PROJECT_MEETING_BRAVO).build();
         assertFalse(ALPHA.equals(editedAlpha));
 
         // different members -> returns false

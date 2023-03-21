@@ -20,6 +20,7 @@
     "projectRepoHost": "alice--pauline",
     "projectRepoName": "..",
     "projectDeadline": "first january twenty twenty three",
+    "projectMeeting": "first january twenty twenty three",
     "members": [ {
       "name" : "Alice Pauline",
       "profile": "alice-pauline",

@@ -24,30 +24,35 @@ public class TypicalProjects {
         .withRepoHost("alice-pauline")
         .withRepoName("AlphaRepo")
         .withProjectDeadline("01/01/23-2359")
+        .withProjectMeeting("01/01/23-1000")
         .withMembers(ALICE, BENSON).build();
 
     public static final Project BRAVO = new ProjectBuilder().withName("Bravo Project")
         .withRepoHost("carl-kurz")
         .withRepoName("BravoRepo")
         .withProjectDeadline("02/01/23-2359")
+        .withProjectMeeting("02/01/23-1000")
         .withMembers(CARL, DANIEL).build();
 
     public static final Project CHARLIE = new ProjectBuilder().withName("Charlie Project")
         .withRepoHost("benson-meier")
         .withRepoName("CharlieRepo")
         .withProjectDeadline("03/01/23-2359")
+        .withProjectMeeting("03/01/23-1000")
         .withMembers(ELLE, FIONA).build();
 
     public static final Project EMPTY_PROJECT = new ProjectBuilder().withName("Empty Project 1")
         .withRepoHost("")
         .withRepoName("")
         .withProjectDeadline("")
+        .withProjectMeeting("")
         .withMembers().build();
 
     public static final Project EMPTY_PROJECT_TWO = new ProjectBuilder().withName("Empty Project 2")
         .withRepoHost("")
         .withRepoName("")
         .withProjectDeadline("")
+        .withProjectMeeting("")
         .withMembers().build();
 
     private TypicalProjects() {} // prevents instantiation

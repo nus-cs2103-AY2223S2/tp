@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.project.Project;
 import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectMeeting;
 import seedu.socket.model.project.ProjectName;
 import seedu.socket.model.project.ProjectRepoHost;
 import seedu.socket.model.project.ProjectRepoName;
@@ -20,11 +21,13 @@ public class ProjectBuilder {
     public static final String DEFAULT_REPO_HOST = "";
     public static final String DEFAULT_REPO_NAME = "";
     public static final String DEFAULT_DEADLINE = "";
+    public static final String DEFAULT_MEETING = "";
 
     private ProjectName name;
     private ProjectRepoHost repoHost;
     private ProjectRepoName repoName;
     private ProjectDeadline deadline;
+    private ProjectMeeting meeting;
     private Set<Person> members;
 
     /**
@@ -35,6 +38,7 @@ public class ProjectBuilder {
         repoHost = new ProjectRepoHost(DEFAULT_REPO_HOST);
         repoName = new ProjectRepoName(DEFAULT_REPO_NAME);
         deadline = new ProjectDeadline(DEFAULT_DEADLINE);
+        meeting = new ProjectMeeting(DEFAULT_MEETING);
         members = new HashSet<>();
     }
 
@@ -46,6 +50,7 @@ public class ProjectBuilder {
         repoHost = projectToCopy.getRepoHost();
         repoName = projectToCopy.getRepoName();
         deadline = projectToCopy.getDeadline();
+        meeting = projectToCopy.getMeeting();
         members = new HashSet<>(projectToCopy.getMembers());
     }
 
@@ -82,6 +87,14 @@ public class ProjectBuilder {
     }
 
     /**
+     * Sets the {@code Meeting} of the {@code Project} that we are building.
+     */
+    public ProjectBuilder withProjectMeeting(String meeting) {
+        this.meeting = new ProjectMeeting(meeting);
+        return this;
+    }
+
+    /**
      * Parses the {@code members} into a {@code Set<Member>} and set it to the {@code Project} that we are building.
      */
     public ProjectBuilder withMembers(Person ... members) {
@@ -92,7 +105,7 @@ public class ProjectBuilder {
 
 
     public Project build() {
-        return new Project(name, repoHost, repoName, deadline, members);
+        return new Project(name, repoHost, repoName, deadline, meeting, members);
     }
 
 }

@@ -20,8 +20,9 @@ public class Project {
     public static final String PROJ_REPO_HOST = "repohost";
     public static final String PROJ_REPO_NAME = "reponame";
     public static final String PROJ_DEADLINE = "deadline";
+    public static final String PROJ_MEETING = "meeting";
     private static final String[] categories = {PROJ_NAME, PROJ_REPO_HOST,
-        PROJ_REPO_NAME, PROJ_DEADLINE};
+        PROJ_REPO_NAME, PROJ_DEADLINE, PROJ_MEETING};
 
     public static final List<String> CATEGORIES = Arrays.asList(categories);
 
@@ -36,17 +37,20 @@ public class Project {
     private final ProjectRepoName repoName;
     /** {@code ProjectDeadline} associated with the {@code Project} instance. */
     private final ProjectDeadline deadline;
+    /** {@code ProjectMeeting} associated with the {@code Project} instance. */
+    private final ProjectMeeting meeting;
     /** {@code Set<Person>} associated with the {@code Project} instance. */
     private final Set<Person> members = new HashSet<>();
 
     /** {@code ProjectName} associated with the {@code Person} instance. */
     public Project(ProjectName name, ProjectRepoHost repoHost, ProjectRepoName repoName,
-                   ProjectDeadline deadline, Set<Person> members) {
+                   ProjectDeadline deadline, ProjectMeeting meeting, Set<Person> members) {
         requireAllNonNull(name, repoHost, repoName, deadline, members);
         this.name = name;
         this.repoHost = repoHost;
         this.repoName = repoName;
         this.deadline = deadline;
+        this.meeting = meeting;
         this.members.addAll(members);
     }
 
@@ -65,6 +69,7 @@ public class Project {
     public ProjectDeadline getDeadline() {
         return deadline;
     }
+    public ProjectMeeting getMeeting() { return meeting; }
 
     /**
      * Returns an immutable {@code Person} set, which throws {@code UnsupportedOperationException}
@@ -111,6 +116,7 @@ public class Project {
         Project otherProject = (Project) other;
         return otherProject.getName().equals(getName())
             && otherProject.getDeadline().equals(getDeadline())
+            && otherProject.getMeeting().equals(getMeeting())
             && otherProject.getRepoHost().equals(getRepoHost())
             && otherProject.getRepoName().equals(getRepoName())
             && otherProject.getMembers().equals(getMembers());
@@ -119,7 +125,7 @@ public class Project {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, repoHost, repoName, deadline, members);
+        return Objects.hash(name, repoHost, repoName, deadline, meeting, members);
     }
 
     @Override
@@ -131,7 +137,9 @@ public class Project {
             .append("; Repo Name: ")
             .append(getRepoName())
             .append("; Deadline: ")
-            .append(getDeadline());
+            .append(getDeadline())
+            .append("; Meeting: ")
+            .append(getMeeting());
 
         Set<Person> members = getMembers();
         if (!members.isEmpty()) {

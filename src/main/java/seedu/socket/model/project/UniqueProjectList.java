@@ -3,6 +3,7 @@ package seedu.socket.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.socket.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.socket.model.project.Project.PROJ_DEADLINE;
+import static seedu.socket.model.project.Project.PROJ_MEETING;
 import static seedu.socket.model.project.Project.PROJ_NAME;
 import static seedu.socket.model.project.Project.PROJ_REPO_HOST;
 import static seedu.socket.model.project.Project.PROJ_REPO_NAME;
@@ -179,6 +180,18 @@ public class UniqueProjectList implements Iterable<Project> {
                     return -1;
                 } else {
                     return a.getDeadline().toLocalDateTime().compareTo(b.getDeadline().toLocalDateTime());
+                }
+            });
+        } else if (category.equals(PROJ_MEETING)) {
+            internalList.sort((Project a, Project b) -> {
+                if (a.getMeeting().toString().isEmpty() && b.getMeeting().toString().isEmpty()) {
+                    return a.getName().toString().compareTo(b.getName().toString());
+                } else if (a.getMeeting().toString().isEmpty()) {
+                    return 1;
+                } else if (b.getMeeting().toString().isEmpty()) {
+                    return -1;
+                } else {
+                    return a.getMeeting().toLocalDateTime().compareTo(b.getMeeting().toLocalDateTime());
                 }
             });
         }
