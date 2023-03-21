@@ -154,6 +154,37 @@ Classes used by multiple components are in the `seedu.QuickContacts.commons` pac
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Exporting and importing of contacts
+#### Implementation
+##### Exporting
+Exporting generates a JSON for the contacts at the indices given.
+For example, `export p/ 1 p/2` generates a JSON for the first and second contacts.
+Example JSON:
+```json
+[ {
+  "name" : "Alice Pauline",
+  "phone" : "94351253",
+  "email" : "alice@example.com",
+  "address" : "123, Jurong West Ave 6, #08-111",
+  "tagged" : [ "friends" ]
+}, {
+  "name" : "Benson Meier",
+  "phone" : "98765432",
+  "email" : "johnd@example.com",
+  "address" : "311, Clementi Ave 2, #02-25",
+  "tagged" : [ "owesMoney", "friends" ]
+} ]
+```
+The JSON is generated using the Jackson library, through the use of the JsonUtil utility class.
+
+##### Importing
+Using the exported JSON, one can then import it using `import THE_JSON`.
+The JSON is parsed using the Jackson library.
+
+### \[Proposed\] Exporting and importing of Meetings
+#### Proposed implementation
+Similar to the exporting and importing of contacts.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
