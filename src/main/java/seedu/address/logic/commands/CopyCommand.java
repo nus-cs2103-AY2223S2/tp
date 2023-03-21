@@ -65,8 +65,8 @@ public class CopyCommand extends Command {
         final StringBuilder infoBuilder = new StringBuilder();
         infoBuilder.append("Name: " + personToCopy.getName() + "\n")
                 .append("Phone: " + personToCopy.getPhone() + "\n")
-                .append("Email: " + personToCopy.getEmail() + "\n")
                 .append("Address: " + personToCopy.getAddress() + "\n")
+                .append("Email: " + personToCopy.getEmail() + "\n")
                 .append("Rank: " + personToCopy.getRank() + "\n")
                 .append("Unit: " + personToCopy.getUnit() + "\n")
                 .append("Company: " + personToCopy.getCompany() + "\n")
