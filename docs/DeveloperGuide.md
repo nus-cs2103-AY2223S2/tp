@@ -176,7 +176,7 @@ This section describes some noteworthy details on how certain features are imple
 
 Due to the limited space on most displays, the application uses tabs to switch between various panels, such as the address book, events, and personal information panels.
 
-The tab switching mechanism is facilitated by `TabUtil`, which contains the list of all tabs relevant in the application. Tabs are represented by `TabInfo`, made up of an `Index` (which the user references in the `tab` command) and a `TabType` (which defines the possible tabs in the application). Their relationship is shown below:
+The tab switching mechanism is facilitated by [`TabUtil`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/docs/dg-tab-command/src/main/java/seedu/address/logic/ui/tab/TabUtil.java), which contains the list of all tabs relevant in the application. Tabs are represented by [`TabInfo`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/docs/dg-tab-command/src/main/java/seedu/address/logic/ui/tab/TabInfo.java), made up of an `Index` (which the user references in the `tab` command) and a [`TabType`](https://github.com/AY2223S2-CS2103T-F12-3/tp/blob/docs/dg-tab-command/src/main/java/seedu/address/logic/ui/tab/TabType.java) (which defines the possible tabs in the application). Their relationship is shown below:
 
 ![Structure of `TabUtil`](images/TabClassDiagram.png)
 
