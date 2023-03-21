@@ -31,4 +31,8 @@ public class RedoCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS + description.get());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this; // All undo are different.
+    }
 }
