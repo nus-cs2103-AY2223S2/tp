@@ -10,6 +10,7 @@ import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DES
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.recipe.logic.commands.CommandTestUtil.INVALID_STEP_DESC;
 import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_CORNDOGS;
@@ -19,6 +20,7 @@ import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
@@ -61,14 +63,14 @@ public class EditCommandParserTest {
         // negative index
         assertParseFailure(parser, "-5" + TITLE_DESC_CORNDOGS, MESSAGE_INVALID_FORMAT);
 
-        // zero index
+//        // zero index
         assertParseFailure(parser, "0" + TITLE_DESC_CORNDOGS, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 z/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -149,12 +151,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_RECIPE;
-        String userInput = targetIndex.getOneBased() + STEP_DESC_CORNDOGS + DESC_DESC_CORNDOGS + INGREDIENT_DESC_CORNDOGS
-            + STEP_DESC_CORNDOGS + DESC_DESC_CORNDOGS + INGREDIENT_DESC_CORNDOGS
-                + STEP_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP;
+        String userInput = targetIndex.getOneBased() + TITLE_DESC_CORNDOGS + DESC_DESC_CORNDOGS
+          + TITLE_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP + DESC_DESC_SOUP;
 
+        System.out.println(userInput);
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withSteps(VALID_STEPS_SOUP)
-                .withIngredients(VALID_INGREDIENTS_SOUP).withDesc(VALID_DESC_SOUP)
+                .withIngredients(VALID_INGREDIENTS_SOUP).withDesc(VALID_DESC_SOUP).withTitle(VALID_TITLE_SOUP)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -165,28 +167,19 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_RECIPE;
-        String userInput = targetIndex.getOneBased() + INVALID_STEP_DESC + STEP_DESC_SOUP;
-        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withSteps(VALID_STEPS_SOUP).build();
+        String userInput = targetIndex.getOneBased() + INVALID_DESC_DESC + DESC_DESC_SOUP;
+        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withDesc(VALID_DESC_SOUP).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + INGREDIENT_DESC_SOUP + INVALID_STEP_DESC + DESC_DESC_SOUP
-                + STEP_DESC_SOUP;
-        descriptor = new EditRecipeDescriptorBuilder().withSteps(VALID_STEPS_SOUP).withIngredients(VALID_INGREDIENTS_SOUP)
-                .withDesc(VALID_DESC_SOUP).build();
+        userInput = targetIndex.getOneBased() + INGREDIENT_DESC_SOUP + INVALID_DESC_DESC + STEP_DESC_SOUP
+                + DESC_DESC_SOUP;
+        descriptor = new EditRecipeDescriptorBuilder().withDesc(VALID_DESC_SOUP).withIngredients(VALID_INGREDIENTS_SOUP)
+                .withSteps(VALID_STEPS_SOUP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_RECIPE;
-        String userInput = Integer.toString(targetIndex.getOneBased());
-
-        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 }

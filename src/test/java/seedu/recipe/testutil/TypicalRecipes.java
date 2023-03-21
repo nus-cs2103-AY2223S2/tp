@@ -7,17 +7,29 @@ import java.util.List;
 import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.recipe.Recipe;
 
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_CORNDOGS;
+
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
+
+
+
 /**
  * A utility class containing a list of {@code Recipe} objects to be used in tests.
  */
 public class TypicalRecipes {
 
-    public static final Recipe CORNDOGS = new RecipeBuilder().withTitle("Corndogs")
-            .withDesc("Awesome cheap corndogs").withIngredients("eggs", "flour")
-            .withSteps("CDTest1", "CDTest2").build();
-    public static final Recipe SOUP = new RecipeBuilder().withTitle("Soup")
-            .withDesc("Tasty delicious soupy goodness").withIngredients("water", "salt")
-            .withSteps("STest1", "STest2").build();
+    public static final Recipe CORNDOGS = new RecipeBuilder().withTitle(VALID_TITLE_CORNDOGS)
+            .withDesc(VALID_DESC_CORNDOGS).withIngredients(VALID_INGREDIENTS_CORNDOGS)
+            .withSteps(VALID_STEPS_CORNDOGS).build();
+    public static final Recipe SOUP = new RecipeBuilder().withTitle(VALID_TITLE_SOUP)
+            .withDesc(VALID_DESC_SOUP).withIngredients(VALID_INGREDIENTS_SOUP)
+            .withSteps(VALID_STEPS_SOUP).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

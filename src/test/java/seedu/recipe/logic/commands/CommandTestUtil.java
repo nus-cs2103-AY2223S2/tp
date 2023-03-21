@@ -30,7 +30,7 @@ public class CommandTestUtil {
     public static final String VALID_DESC_CORNDOGS = "Homemade corndogs";
     public static final String VALID_DESC_SOUP = "Instant soup";
 
-    public static final String VALID_STEPS_CORNDOGS = "step 1;";
+    public static final String VALID_STEPS_CORNDOGS = "step 1";
     public static final String VALID_STEPS_SOUP = "step 2";
     public static final String VALID_INGREDIENTS_CORNDOGS = "flour";
     public static final String VALID_INGREDIENTS_SOUP = "water";

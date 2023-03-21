@@ -4,7 +4,6 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.commands.CommandTestUtil.*;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
 import static seedu.recipe.testutil.TypicalRecipes.SOUP;
 
 import org.junit.jupiter.api.Test;
@@ -26,15 +25,16 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP
-                + DESC_DESC_SOUP, new AddCommand(expectedRecipe));
+                + STEP_DESC_SOUP, new AddCommand(expectedRecipe));
 
-        // multiple names - last name accepted
+
+       // multiple names - last name accepted
         assertParseSuccess(parser, TITLE_DESC_CORNDOGS + TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP
-                + DESC_DESC_SOUP, new AddCommand(expectedRecipe));
+                + STEP_DESC_SOUP, new AddCommand(expectedRecipe));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, TITLE_DESC_SOUP + DESC_DESC_CORNDOGS + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP
-                + DESC_DESC_SOUP, new AddCommand(expectedRecipe));
+                + STEP_DESC_SOUP, new AddCommand(expectedRecipe));
 
         // multiple tags - all accepted
         Recipe expectedRecipeMultipleIngredients = new RecipeBuilder(SOUP).withIngredients(VALID_INGREDIENTS_SOUP, VALID_INGREDIENTS_CORNDOGS)
@@ -54,15 +54,15 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_TITLE_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + DESC_DESC_SOUP,
+        assertParseFailure(parser, VALID_TITLE_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP,
                 expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, TITLE_DESC_SOUP + VALID_DESC_SOUP + INGREDIENT_DESC_SOUP + DESC_DESC_SOUP,
+        assertParseFailure(parser, TITLE_DESC_SOUP + VALID_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP,
                 expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + VALID_INGREDIENTS_SOUP + DESC_DESC_SOUP,
+        assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + VALID_INGREDIENTS_SOUP + STEP_DESC_SOUP,
                 expectedMessage);
 
         // missing address prefix
@@ -77,23 +77,23 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid title
-        assertParseFailure(parser, INVALID_TITLE_DESC + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + DESC_DESC_SOUP
+        assertParseFailure(parser, INVALID_TITLE_DESC + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP
              , Title.MESSAGE_CONSTRAINTS);
 
-        // invalid step
-        assertParseFailure(parser, TITLE_DESC_SOUP + INVALID_STEP_DESC + INGREDIENT_DESC_SOUP + DESC_DESC_SOUP
-              , Step.MESSAGE_CONSTRAINTS);
+        // invalid desc
+        assertParseFailure(parser, TITLE_DESC_SOUP + INVALID_DESC_DESC + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP
+              , Description.MESSAGE_CONSTRAINTS);
 
         // invalid ingredient
-        assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INVALID_INGREDIENT_DESC + DESC_DESC_SOUP
+        assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INVALID_INGREDIENT_DESC + STEP_DESC_SOUP
           , Ingredient.MESSAGE_CONSTRAINTS);
 
-        // invalid description
-        assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + INVALID_DESC_DESC,
-               Description.MESSAGE_CONSTRAINTS);
+        // invalid step
+        assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + INVALID_STEP_DESC,
+               Step.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_TITLE_DESC + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + INVALID_DESC_DESC,
+        assertParseFailure(parser, INVALID_TITLE_DESC + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + INVALID_STEP_DESC,
                 Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
