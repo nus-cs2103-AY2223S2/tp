@@ -2,6 +2,8 @@ package mycelium.mycelium.logic.commands.exceptions;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import mycelium.mycelium.ui.MainWindow;
 import mycelium.mycelium.ui.action.DoNothingAction;
 import mycelium.mycelium.ui.action.UiAction;
@@ -50,4 +52,16 @@ public class CommandException extends Exception {
         action.execute(mainWindow);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CommandException // instanceof handles nulls
+                && getMessage().equals(((CommandException) other).getMessage()) // state check
+                && action.equals(((CommandException) other).action)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMessage(), action);
+    }
 }
