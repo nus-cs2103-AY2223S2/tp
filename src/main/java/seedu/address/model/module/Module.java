@@ -89,7 +89,7 @@ public class Module {
         }
 
         return otherModule != null
-                && otherModule.getName().equals(getName()) && otherModule.getResource().equals(getResource());
+                && otherModule.getName().equals(getName()) && otherModule.getTags().equals(getTags());
     }
 
     /**
