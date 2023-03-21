@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
@@ -16,7 +17,7 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
@@ -27,9 +28,15 @@
                 </Label>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
             </HBox>
-            <Label fx:id="startdate" styleClass="cell_small_label" text="\$startdate" />
-            <Label fx:id="premium" styleClass="cell_small_label" text="\$premium" />
-            <Label fx:id="frequency" styleClass="cell_small_label" text="\$frequency" />
+         <StackPane VBox.vgrow="ALWAYS" />
+         <HBox>
+            <children>
+                  <Label fx:id="startdate" styleClass="cell_small_label" text="\$startdate" />
+               <StackPane HBox.hgrow="ALWAYS" />
+                  <Label fx:id="premium" styleClass="cell_small_label" text="\$premium" />
+                  <Label fx:id="frequency" styleClass="cell_small_label" text="\$frequency" />
+            </children>
+         </HBox>
         </VBox>
       <rowConstraints>
          <RowConstraints />
