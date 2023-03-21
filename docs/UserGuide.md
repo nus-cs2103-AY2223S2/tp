@@ -7,7 +7,7 @@ title: User Guide
 
 Welcome to the Paidlancers User Guide! We're thrilled to have you here! At Paidlancers,
 we know that freelancing can be both rewarding and challenging. As freelancers ourselves, we understand the unique
-obstacles and opportunities that come with this type of work. That's why we created Paidlancers – a desktop app
+obstacles and opportunities that come with freelancing. That's why we created Paidlancers – a desktop app
 designed to help you streamline your freelancing event management tasks.
 
 ## Introducing Paidlancers
@@ -55,7 +55,7 @@ The examples given in this guide are formatted with the following conventions:
 - All parameters are required unless wrapped with `[square brackets]`.
 
 **Example**
-- Examples are shown in the format `commandword + parameters`.
+- Examples are shown in the format `commandword parameters`.
 - This is followed by the expected outcome of the command.
 - These include examples such as `newcontact n/John Doe p/98765432`.
 - These are meant to be used as a reference for the user to see how the command should be formatted.
@@ -206,7 +206,7 @@ Creates a new event
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
   - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
 
-### List all Events: `listevent` <a id = "list-all-events"></a>
+### List all Events: `list` <a id = "list-all-events"></a>
 
 Shows a list of all events in Paidlancers
 
@@ -244,6 +244,8 @@ Edits the specified event from the event book.
     - At least one of the optional fields must be provided.
     - Edits will replace existing values, edits are not cumulative.
     - Tags can be removed by typing `t/` without specifying any tags after it.
+    - Do note that `edit` is only for editing the event details, not the contact details.
+    - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
 **Example**:
 - `edit 1 r/100`
