@@ -55,7 +55,7 @@ public class EditTaskCommandTest {
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
 
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setItem(model.getFilteredTaskList().get(0), editedTask, ModelEnum.TASK);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -84,7 +84,7 @@ public class EditTaskCommandTest {
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
 
-        expectedModel.setTask(lastTask, editedTask);
+        expectedModel.setItem(lastTask, editedTask, ModelEnum.TASK);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -120,7 +120,7 @@ public class EditTaskCommandTest {
         Model expectedModel = new ModelManager(new SupplierList(model.getSupplierList()),
                 new TaskList(model.getTaskList()), new OrderList(model.getOrderList()), new UserPrefs());
 
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setItem(model.getFilteredTaskList().get(0), editedTask, ModelEnum.TASK);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
     }

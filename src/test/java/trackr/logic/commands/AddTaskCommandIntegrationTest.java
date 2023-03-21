@@ -36,7 +36,7 @@ public class AddTaskCommandIntegrationTest {
         Task validTask = new TaskBuilder().build();
         Model expectedModel = new ModelManager(model.getSupplierList(),
                 model.getTaskList(), getTypicalOrderList(), new UserPrefs());
-        expectedModel.addTask(validTask);
+        expectedModel.addItem(validTask, ModelEnum.TASK);
 
         assertCommandSuccess(new AddTaskCommand(validTask), model,
                 String.format(AddTaskCommand.MESSAGE_SUCCESS, ModelEnum.TASK, validTask),

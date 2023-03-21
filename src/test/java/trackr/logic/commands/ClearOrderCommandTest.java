@@ -11,7 +11,6 @@ import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
-import trackr.model.OrderList;
 import trackr.model.UserPrefs;
 
 public class ClearOrderCommandTest {
@@ -33,7 +32,7 @@ public class ClearOrderCommandTest {
                 getTypicalOrderList(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
                 getTypicalOrderList(), new UserPrefs());
-        expectedModel.setOrderList(new OrderList());
+        expectedModel.setItemList(ModelEnum.ORDER);
 
         assertCommandSuccess(new ClearOrderCommand(),
                 model,

@@ -83,18 +83,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasSupplier(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.SUPPLIER));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasSupplier(ALICE));
+        assertFalse(modelManager.hasItem(ALICE, ModelEnum.SUPPLIER));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addSupplier(ALICE);
-        assertTrue(modelManager.hasSupplier(ALICE));
+        modelManager.addItem(ALICE, ModelEnum.SUPPLIER);
+        assertTrue(modelManager.hasItem(ALICE, ModelEnum.SUPPLIER));
     }
 
     @Test
@@ -104,18 +104,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.TASK));
     }
 
     @Test
     public void hasTask_taskNotInTaskList_returnsFalse() {
-        assertFalse(modelManager.hasTask(SORT_INVENTORY_N));
+        assertFalse(modelManager.hasItem(SORT_INVENTORY_N, ModelEnum.TASK));
     }
 
     @Test
     public void hasTask_taskInTaskList_returnsTrue() {
-        modelManager.addTask(SORT_INVENTORY_N);
-        assertTrue(modelManager.hasTask(SORT_INVENTORY_N));
+        modelManager.addItem(SORT_INVENTORY_N, ModelEnum.TASK);
+        assertTrue(modelManager.hasItem(SORT_INVENTORY_N, ModelEnum.TASK));
     }
 
     @Test
@@ -125,18 +125,18 @@ public class ModelManagerTest {
 
     @Test
     public void hasOrder_nullOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasOrder(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasItem(null, ModelEnum.ORDER));
     }
 
     @Test
     public void hasOrder_orderNotInOrderList_returnsFalse() {
-        assertFalse(modelManager.hasOrder(CHOCOLATE_COOKIES));
+        assertFalse(modelManager.hasItem(CHOCOLATE_COOKIES, ModelEnum.ORDER));
     }
 
     @Test
     public void hasOrder_orderInOrderList_returnsTrue() {
-        modelManager.addOrder(CHOCOLATE_COOKIES);
-        assertTrue(modelManager.hasOrder(CHOCOLATE_COOKIES));
+        modelManager.addItem(CHOCOLATE_COOKIES, ModelEnum.ORDER);
+        assertTrue(modelManager.hasItem(CHOCOLATE_COOKIES, ModelEnum.ORDER));
     }
 
     @Test
@@ -182,7 +182,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.SUPPLIER);
 
         // different filteredTaskList -> returns false
         String[] taskKeywords = SORT_INVENTORY_N.getTaskName().getName().split("\\s+");
@@ -192,7 +192,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.TASK);
 
         // different addressBook and different taskList -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentTaskList,
@@ -209,8 +209,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, taskList, orderList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.SUPPLIER);
+        modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.TASK);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

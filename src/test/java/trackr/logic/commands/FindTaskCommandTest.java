@@ -115,8 +115,8 @@ public class FindTaskCommandTest {
                 ModelEnum.TASK.toString().toLowerCase());
         TaskContainsKeywordsPredicate predicate = preparePredicate(null, null, "N");
         FindTaskCommand command = new FindTaskCommand(predicate);
-        expectedModel.deleteTask(SORT_INVENTORY_N);
-        model.deleteTask(SORT_INVENTORY_N);
+        expectedModel.deleteItem(SORT_INVENTORY_N, ModelEnum.TASK);
+        model.deleteItem(SORT_INVENTORY_N, ModelEnum.TASK);
         expectedModel.updateFilteredItemList(predicate, ModelEnum.TASK);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());

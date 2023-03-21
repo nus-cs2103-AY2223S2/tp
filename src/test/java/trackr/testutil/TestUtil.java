@@ -141,32 +141,7 @@ public class TestUtil {
         }
 
         @Override
-        public void addSupplier(Supplier person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setSupplierList(ReadOnlySupplierList newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlySupplierList getSupplierList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasSupplier(Supplier person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteSupplier(Supplier target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setSupplier(Supplier target, Supplier editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -176,37 +151,7 @@ public class TestUtil {
         }
 
         @Override
-        public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTaskList(ReadOnlyTaskList taskList) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyTaskList getTaskList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteTask(Task target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -216,47 +161,12 @@ public class TestUtil {
         }
 
         @Override
-        public void updateFilteredTaskList(Predicate<Task> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setOrderList(ReadOnlyOrderList orderList) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyOrderList getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasOrder(Order order) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteOrder(Order target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addOrder(Order order) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setOrder(Order target, Order editedOrder) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Order> getFilteredOrderList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

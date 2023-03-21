@@ -35,7 +35,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given supplier list, taskList and userPrefs.
      */
     public ModelManager(ReadOnlySupplierList supplierList, ReadOnlyTaskList taskList,
-            ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyOrderList orderList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(supplierList, taskList, orderList, userPrefs);
 
         logger.fine("Initializing with supplier list: " + supplierList
@@ -238,37 +238,8 @@ public class ModelManager implements Model {
     //=========== AddressBook - Supplier ==============================================================================
 
     @Override
-    public void setSupplierList(ReadOnlySupplierList supplierList) {
-        this.supplierList.resetData(supplierList);
-    }
-
-    @Override
     public ReadOnlySupplierList getSupplierList() {
         return supplierList;
-    }
-
-    @Override
-    public boolean hasSupplier(Supplier supplier) {
-        requireNonNull(supplier);
-        return supplierList.hasItem(supplier);
-    }
-
-    @Override
-    public void deleteSupplier(Supplier target) {
-        supplierList.removeItem(target);
-    }
-
-    @Override
-    public void addSupplier(Supplier supplier) {
-        supplierList.addItem(supplier);
-        updateFilteredSupplierList(PREDICATE_SHOW_ALL_ITEMS);
-    }
-
-    @Override
-    public void setSupplier(Supplier target, Supplier editedSupplier) {
-        requireAllNonNull(target, editedSupplier);
-
-        supplierList.setItem(target, editedSupplier);
     }
 
     //=========== Filtered Supplier List Accessors =============================================================
@@ -282,46 +253,11 @@ public class ModelManager implements Model {
         return filteredSuppliers;
     }
 
-    @Override
-    public void updateFilteredSupplierList(Predicate<Supplier> predicate) {
-        requireNonNull(predicate);
-        filteredSuppliers.setPredicate(predicate);
-    }
-
     //=========== TaskList ===================================================================================
-
-    @Override
-    public void setTaskList(ReadOnlyTaskList taskList) {
-        this.taskList.resetData(taskList);
-    }
 
     @Override
     public ReadOnlyTaskList getTaskList() {
         return taskList;
-    }
-
-    @Override
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return taskList.hasItem(task);
-    }
-
-    @Override
-    public void deleteTask(Task target) {
-        taskList.removeItem(target);
-    }
-
-    @Override
-    public void addTask(Task task) {
-        taskList.addItem(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_ITEMS);
-    }
-
-    @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        taskList.setItem(target, editedTask);
     }
 
     //=========== Filtered Task List Accessors ===============================================================
@@ -335,46 +271,11 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
-    }
-
     //=========== OrderList ===================================================================================
-
-    @Override
-    public void setOrderList(ReadOnlyOrderList orderList) {
-        this.orderList.resetData(orderList);
-    }
 
     @Override
     public ReadOnlyOrderList getOrderList() {
         return orderList;
-    }
-
-    @Override
-    public boolean hasOrder(Order order) {
-        requireNonNull(order);
-        return orderList.hasItem(order);
-    }
-
-    @Override
-    public void deleteOrder(Order target) {
-        orderList.removeItem(target);
-    }
-
-    @Override
-    public void addOrder(Order order) {
-        orderList.addItem(order);
-        updateFilteredOrderList(PREDICATE_SHOW_ALL_ITEMS);
-    }
-
-    @Override
-    public void setOrder(Order target, Order editedOrder) {
-        requireAllNonNull(target, editedOrder);
-
-        orderList.setItem(target, editedOrder);
     }
 
     //=========== Filtered Order List Accessors =============================================================
@@ -386,12 +287,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return filteredOrders;
-    }
-
-    @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
-        requireNonNull(predicate);
-        filteredOrders.setPredicate(predicate);
     }
 
     //========================================================================================================
