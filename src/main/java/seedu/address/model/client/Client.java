@@ -54,6 +54,7 @@ public class Client {
     public Address getAddress() {
         return address;
     }
+
     public UniquePolicyList getPolicyList() {
         return policyList;
     }
