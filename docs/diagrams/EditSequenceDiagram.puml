@@ -16,7 +16,13 @@ end box
 [-> LogicManager : execute("edit c/2 s+/python")
 activate LogicManager
 
-LogicManager -> CodocParser : parseCommand("edit c/2 s+/python")
+LogicManager -> Model : getProtagonist()
+activate Model
+
+Model --> LogicManager : protagonist
+deactivate Model
+
+LogicManager -> CodocParser : parseCommand("edit c/2 s+/python", protagonist)
 activate CodocParser
 
 create EditCommandParser
