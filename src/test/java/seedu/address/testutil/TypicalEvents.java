@@ -42,7 +42,7 @@ public class TypicalEvents {
             .withTags("owesMoney", "friends").build();
     public static final Event CARL = new EventBuilder().withName("Carl Kurz")
             .withRate("95352563")
-            .withStartTime("25-01-2023 12:00")
+            .withStartTime("04-03-2023 12:00")
             .withEndTime("26-01-2024 12:00")
             .withMark("[ ]")
             .withAddress("wall street").build();
@@ -54,13 +54,13 @@ public class TypicalEvents {
             .withAddress("10th street").withTags("friends").build();
     public static final Event ELLE = new EventBuilder().withName("Elle Meyer")
             .withRate("9482224")
-            .withStartTime("11-03-2025 12:00")
-            .withEndTime("11-03-2025 17:00")
+            .withStartTime("01-03-2023 12:00")
+            .withEndTime("11-03-2023 17:00")
             .withMark("[X]")
             .withAddress("michegan ave").build();
     public static final Event FIONA = new EventBuilder().withName("Fiona Kunz")
             .withRate("9482427")
-            .withStartTime("01-01-2024 12:30")
+            .withStartTime("02-03-2023 23:30")
             .withEndTime("02-01-2024 02:15")
             .withMark("[ ]")
             .withAddress("little tokyo").build();

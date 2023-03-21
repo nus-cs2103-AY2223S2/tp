@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +20,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NewContactCommand;
 import seedu.address.logic.commands.RateCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.RevenueCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,6 +34,12 @@ public class EventBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private final LocalDateTime timeNow;
+
+    public EventBookParser(LocalDateTime timeNow) {
+        this.timeNow = timeNow;
+    }
 
     /**
      * Parses user input into command for execution.
@@ -84,6 +92,9 @@ public class EventBookParser {
         case RateCommand.COMMAND_WORD:
             return new RateCommandParser().parse(arguments);
 
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommandParser(timeNow).parse(arguments);
+
         case RevenueCommand.COMMAND_WORD:
             return new RevenueCommand();
 
@@ -92,6 +103,7 @@ public class EventBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -17,7 +17,7 @@ public class Time {
             "Time should be of the format dd-MM-uuuu hh:mm";
     public static final DateTimeFormatter LOCAL_DATE_TIME_FORMATTER = DateTimeFormatter
             .ofPattern("dd-MM-uuuu HH:mm");
-    private final LocalDateTime time;
+    public final LocalDateTime time;
 
     /**
      * Constructs a {@code Time}.

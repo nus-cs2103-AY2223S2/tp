@@ -6,7 +6,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.TypicalTimes.TIME_NOW;
+import static seedu.address.testutil.TypicalTimes.TYPICAL_DAYS;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,11 +29,13 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.NewContactCommand;
 import seedu.address.logic.commands.RateCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.RevenueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.NameContainsKeywordsPredicate;
+import seedu.address.model.event.StartTimeWithinDaysPredicate;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.ContactUtil;
 import seedu.address.testutil.EditEventDescriptorBuilder;
@@ -39,7 +44,7 @@ import seedu.address.testutil.EventUtil;
 
 public class EventBookParserTest {
 
-    private final EventBookParser parser = new EventBookParser();
+    private final EventBookParser parser = new EventBookParser(TIME_NOW);
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -108,6 +113,15 @@ public class EventBookParserTest {
         RateCommand command = (RateCommand) parser.parseCommand(
             RateCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
         assertEquals(new RateCommand(INDEX_FIRST_EVENT), command);
+    }
+
+    @Test
+    public void parseCommand_remind() throws Exception {
+        LocalDateTime nowTime = LocalDateTime.now();
+
+        RemindCommand command = (RemindCommand) parser.parseCommand(
+                RemindCommand.COMMAND_WORD + " " + TYPICAL_DAYS);
+        assertEquals(new RemindCommand(new StartTimeWithinDaysPredicate(TIME_NOW, TYPICAL_DAYS)), command);
     }
 
     @Test

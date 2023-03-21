@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DAYS_NUMBER;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
@@ -56,6 +57,26 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
+        // No whitespaces
+        assertEquals(INDEX_FIRST_EVENT, ParserUtil.parseIndex("1"));
+
+        // Leading and trailing whitespaces
+        assertEquals(INDEX_FIRST_EVENT, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseDaysNumber_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDaysNumber("10 a"));
+    }
+
+    @Test
+    public void parseDaysNumber_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_DAYS_NUMBER, ()
+                -> ParserUtil.parseDaysNumber(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseDaysNumber_validInput_success() throws Exception {
         // No whitespaces
         assertEquals(INDEX_FIRST_EVENT, ParserUtil.parseIndex("1"));
 
