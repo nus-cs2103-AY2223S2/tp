@@ -161,6 +161,7 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 The following sequence diagram provides an overview on how the `add` operation works.
 
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
 The following gives a more detailed explanation of the `add` operation.
 ######  Step 1: Validate Input
@@ -191,14 +192,14 @@ The following gives a more detailed explanation of the `add` operation.
 ###### Whether to make all fields in the `add` command compulsory
 1. **Alternative 1 (chosen): Make only essential fields compulsory**
     * Pros: More user-centric as not all users want to enter the optional information,
-            which is not exactly critical in tracking internships
-    * Cons: More work to be done in code implementation. For example,the absence of optional
+            which is not exactly critical in tracking internships.
+    * Cons: More work is to be done in code implementation. For example, the absence of optional
             fields should not cause a `ParseException`, and there is a need to include a
             default value of `NA` for input without any `Comment`.
 2. **Alternative 2: Make all fields compulsory**
     * Pros: Easier to implement as there is no need to differentiate between compulsory
-            and optional fields during command parsing, and it is easy to compare between
-            `Internship` since we just require an exact match of all fields.
+            and optional fields during command parsing, and it is easier to compare between
+            different `Internship` since we just require an exact match of all fields.
     * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
             are forced to input something for the `Add` command to work.
 
