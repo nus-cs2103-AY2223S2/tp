@@ -26,13 +26,13 @@ public class AddPolicyCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to a client in the program. "
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + "POLICY (must be a valid policy)"
+            + "POLICY (must be a valid policy)\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + "pn/Fire Insurance"
-            + "d/01-01-2021 "
-            + "pr/1000"
-            + "fr/YEARLY";
+            + "pn/Fire Insurance "
+            + "pd/01.01.2021 "
+            + "pp/1000 "
+            + "pf/yearly";
 
     public final Index index;
     public final Policy policy;
