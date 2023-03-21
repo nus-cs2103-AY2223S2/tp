@@ -55,7 +55,7 @@ public class Event implements Comparable<Event> {
             return 0;
         }
 
-        int result = getDate().compareTo(otherEvent.getDate()) ;
+        int result = getDate().compareTo(otherEvent.getDate());
         if (result != 0) {
             return result;
         }
