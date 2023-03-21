@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Transaction;
 
@@ -164,7 +165,13 @@ public class ModelManager implements Model {
     @Override
     public void sortPersonList(String attribute) {
         requireNonNull(attribute);
-        Comparator<Person> personComparator = Comparator.comparing((Person person) -> person.getAttribute(attribute));
+        Comparator<Person> personComparator = Comparator.comparing((Person person) -> {
+            try {
+                return person.getAttribute(attribute);
+            } catch (IllegalValueException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        });
         sortedList.setComparator(personComparator);
     }
 

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.model.tag.Tag;
@@ -126,7 +127,7 @@ public class Person {
      * @param attribute Attribute of a contact.
      * @return value of attribute.
      */
-    public String getAttribute(String attribute) {
+    public String getAttribute(String attribute) throws IllegalValueException {
         switch(attribute) {
         case "name":
             return name.toString();
@@ -151,7 +152,7 @@ public class Person {
         case "lead status":
             return status.getStatusName().getLabel();
         default:
-            return "";
+            throw new IllegalValueException("Attribute does not exists!");
         }
     }
 
