@@ -8,8 +8,8 @@ import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
 import seedu.address.model.module.Address;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Name;
-import seedu.address.model.module.TimeSlot;
 import seedu.address.model.module.Resource;
+import seedu.address.model.module.TimeSlot;
 import seedu.address.model.tag.Tag;
 
 /**
