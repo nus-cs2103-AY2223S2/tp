@@ -6,7 +6,6 @@ import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static arb.testutil.TypicalClients.ALICE;
 import static arb.testutil.TypicalProjects.SKY_PAINTING;
-import static arb.testutil.TypicalTagMappings.HUSBAND_TAG;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,10 +22,8 @@ import arb.model.client.exceptions.DuplicateClientException;
 import arb.model.project.Project;
 import arb.model.project.exceptions.DuplicateProjectException;
 import arb.model.tag.TagMapping;
-import arb.model.tag.exceptions.DuplicateTagMappingException;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ProjectBuilder;
-import arb.testutil.TagMappingBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -73,18 +70,6 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(Arrays.asList(), newProjects, Arrays.asList());
 
         assertThrows(DuplicateProjectException.class, () -> addressBook.resetData(newData));
-    }
-
-    @Test
-    public void resetData_withDuplicateTagMappings_throwsDuplicateTagMappingException() {
-        // Two tag mappings with the same identity fields
-        TagMapping editedTagMapping = new TagMappingBuilder(HUSBAND_TAG).build();
-        editedTagMapping.tagClient();
-        List<TagMapping> newTagMappings = Arrays.asList(HUSBAND_TAG, editedTagMapping);
-
-        AddressBookStub newData = new AddressBookStub(Arrays.asList(), Arrays.asList(), newTagMappings);
-
-        assertThrows(DuplicateTagMappingException.class, () -> addressBook.resetData(newData));
     }
 
     @Test

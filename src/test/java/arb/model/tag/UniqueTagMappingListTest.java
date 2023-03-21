@@ -11,12 +11,14 @@ import static arb.testutil.TypicalTagMappings.PAINTING_TAG;
 import static arb.testutil.TypicalTagMappings.POTTERY_TAG;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import arb.model.client.Client;
+import arb.model.project.Project;
 import arb.model.tag.exceptions.DuplicateTagMappingException;
 import arb.testutil.TagMappingBuilder;
 
@@ -24,18 +26,12 @@ public class UniqueTagMappingListTest {
 
     private final UniqueTagMappingList uniqueTagMappingList = new UniqueTagMappingList();
 
-    @BeforeEach
-    public void resetUniqueTagMappingList() {
-        uniqueTagMappingList.resetClientTagMappings();
-        uniqueTagMappingList.resetProjectTagMappings();
-    }
-
     @Test
     public void setTagMappings_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTagMappingList.setTagMappings((List<TagMapping>) null));
     }
 
-    /*@Test
+    @Test
     public void setTagMappings_list_replacesOwnListWithProvidedList() {
         uniqueTagMappingList.addClientTags(BOB);
         uniqueTagMappingList.addClientTags(AMY);
@@ -46,9 +42,37 @@ public class UniqueTagMappingListTest {
         UniqueTagMappingList expectedUniqueTagMappingList = new UniqueTagMappingList();
         expectedUniqueTagMappingList.addProjectTags(SKY_PAINTING);
         expectedUniqueTagMappingList.addProjectTags(OIL_PAINTING);
-        uniqueTagMappingList.setTagMappings(Arrays.asList(paintingTagMapping, potteryTagMapping));
+        uniqueTagMappingList.setTagMappings(Arrays.asList(potteryTagMapping, paintingTagMapping));
         assertEquals(expectedUniqueTagMappingList, uniqueTagMappingList);
-    }*/
+    }
+
+    @Test
+    public void setTagMappings_nullClientListOrNullProjectList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTagMappingList
+                .setTagMappings((List<Client>) null, (List<Project>) null));
+        assertThrows(NullPointerException.class, () -> uniqueTagMappingList
+                .setTagMappings(new ArrayList<>(), (List<Project>) null));
+        assertThrows(NullPointerException.class, () -> uniqueTagMappingList
+                .setTagMappings((List<Client>) null, new ArrayList<>()));
+    }
+
+    @Test
+    public void setTagMappings_clientListAndProjectList_replacesOwnList() {
+        uniqueTagMappingList.addClientTags(BOB);
+        uniqueTagMappingList.addProjectTags(SKY_PAINTING);
+
+        TagMapping paintingTagMapping = new TagMappingBuilder(PAINTING_TAG)
+                .withNumberOfProjectsTagged(1).build();
+        TagMapping friendTagMapping = new TagMappingBuilder(FRIEND_TAG)
+                .withNumberOfClientsTagged(1).build();
+        List<TagMapping> expectedTagMappings = Arrays.asList(friendTagMapping, paintingTagMapping);
+        UniqueTagMappingList expectedUniqueTagMappingList = new UniqueTagMappingList();
+        expectedUniqueTagMappingList.setTagMappings(expectedTagMappings);
+
+        uniqueTagMappingList.setTagMappings(Arrays.asList(AMY), Arrays.asList(OIL_PAINTING));
+
+        assertEquals(uniqueTagMappingList, expectedUniqueTagMappingList);
+    }
 
     @Test
     public void setTagMappings_listWithDuplicateTagMappings_throwsDuplicateProjectException() {
@@ -68,40 +92,40 @@ public class UniqueTagMappingListTest {
         assertThrows(NullPointerException.class, () -> uniqueTagMappingList.addClientTags(null));
     }
 
-    /*@Test
+    @Test
     public void addClientTags_success() {
         TagMapping husbandTagMapping = new TagMappingBuilder(HUSBAND_TAG)
                 .withNumberOfClientsTagged(1).build();
         TagMapping friendTagMapping = new TagMappingBuilder(FRIEND_TAG)
                 .withNumberOfClientsTagged(1).build();
-        List<TagMapping> expectedTagMappings = Arrays.asList(husbandTagMapping, friendTagMapping);
+        List<TagMapping> expectedTagMappings = Arrays.asList(friendTagMapping, husbandTagMapping);
         UniqueTagMappingList expectedUniqueTagMappingList = new UniqueTagMappingList();
-        expectedUniqueTagMappingList.setTagMappings(expectedTagMappings); //husbandtagmapping, friendtagmapping
+        expectedUniqueTagMappingList.setTagMappings(expectedTagMappings);
 
         uniqueTagMappingList.addClientTags(BOB);
 
         assertEquals(expectedUniqueTagMappingList, uniqueTagMappingList);
-    }*/
+    }
 
     @Test
     public void addProjectTags_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTagMappingList.addProjectTags(null));
     }
 
-    /*@Test
+    @Test
     public void addProjectTags_success() {
         TagMapping paintingTagMapping = new TagMappingBuilder(PAINTING_TAG)
                 .withNumberOfProjectsTagged(1).build();
         TagMapping potteryTagMapping = new TagMappingBuilder(POTTERY_TAG)
                 .withNumberOfProjectsTagged(1).build();
-        List<TagMapping> expectedTagMappings = Arrays.asList(paintingTagMapping, potteryTagMapping);
+        List<TagMapping> expectedTagMappings = Arrays.asList(potteryTagMapping, paintingTagMapping);
         UniqueTagMappingList expectedUniqueTagMappingList = new UniqueTagMappingList();
         expectedUniqueTagMappingList.setTagMappings(expectedTagMappings);
 
         uniqueTagMappingList.addProjectTags(SKY_PAINTING);
 
         assertEquals(expectedUniqueTagMappingList, uniqueTagMappingList);
-    }*/
+    }
 
     @Test
     public void deleteClientTags_nullClient_throwsNullPointerException() {
@@ -180,13 +204,13 @@ public class UniqueTagMappingListTest {
         assertThrows(NullPointerException.class, () -> uniqueTagMappingList.editProjectTags(null, SKY_PAINTING));
     }
 
-    /*@Test
+    @Test
     public void editProjectTags_success() {
         TagMapping paintingTagMapping = new TagMappingBuilder(PAINTING_TAG)
                 .withNumberOfProjectsTagged(2).build();
         TagMapping potteryTagMapping = new TagMappingBuilder(POTTERY_TAG)
                 .withNumberOfProjectsTagged(2).build();
-        List<TagMapping> expectedTagMappings = Arrays.asList(paintingTagMapping, potteryTagMapping);
+        List<TagMapping> expectedTagMappings = Arrays.asList(potteryTagMapping, paintingTagMapping);
         UniqueTagMappingList expectedUniqueTagMappingList = new UniqueTagMappingList();
         expectedUniqueTagMappingList.setTagMappings(expectedTagMappings);
 
@@ -195,5 +219,47 @@ public class UniqueTagMappingListTest {
         uniqueTagMappingList.editProjectTags(OIL_PAINTING, SKY_PAINTING);
 
         assertEquals(uniqueTagMappingList, expectedUniqueTagMappingList);
-    }*/
+    }
+
+    @Test
+    public void resetClientTags_success() {
+        TagMapping paintingTagMapping = new TagMappingBuilder(PAINTING_TAG)
+                .withNumberOfProjectsTagged(1).build();
+        List<TagMapping> expectedTagMappings = Arrays.asList(paintingTagMapping);
+        UniqueTagMappingList expectedUniqueTagMappingList = new UniqueTagMappingList();
+        expectedUniqueTagMappingList.setTagMappings(expectedTagMappings);
+
+        uniqueTagMappingList.addClientTags(BOB);
+        uniqueTagMappingList.addProjectTags(OIL_PAINTING);
+        uniqueTagMappingList.resetClientTagMappings();
+
+        assertEquals(uniqueTagMappingList, expectedUniqueTagMappingList);
+    }
+
+    @Test
+    public void resetProjectTags_success() {
+        TagMapping friendTagMapping = new TagMappingBuilder(FRIEND_TAG)
+                .withNumberOfClientsTagged(1).build();
+        List<TagMapping> expectedTagMappings = Arrays.asList(friendTagMapping);
+        UniqueTagMappingList expectedUniqueTagMappingList = new UniqueTagMappingList();
+        expectedUniqueTagMappingList.setTagMappings(expectedTagMappings);
+
+        uniqueTagMappingList.addProjectTags(SKY_PAINTING);
+        uniqueTagMappingList.addClientTags(AMY);
+        uniqueTagMappingList.resetProjectTagMappings();
+
+        assertEquals(uniqueTagMappingList, expectedUniqueTagMappingList);
+    }
+
+    @Test
+    public void equals() {
+        UniqueTagMappingList otherTagMappingList = new UniqueTagMappingList();
+        uniqueTagMappingList.addClientTags(BOB);
+        uniqueTagMappingList.addProjectTags(SKY_PAINTING);
+
+        otherTagMappingList.addProjectTags(SKY_PAINTING);
+        otherTagMappingList.addClientTags(BOB);
+
+        assertEquals(uniqueTagMappingList, otherTagMappingList); // different order
+    }
 }

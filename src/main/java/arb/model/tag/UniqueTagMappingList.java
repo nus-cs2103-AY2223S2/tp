@@ -3,6 +3,7 @@ package arb.model.tag;
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -101,8 +102,18 @@ public class UniqueTagMappingList implements Iterable<TagMapping> {
         if (!tagMappingsAreUnique(tagMappings)) {
             throw new DuplicateTagMappingException();
         }
-
         internalList.setAll(tagMappings);
+    }
+
+    /**
+     * Replaces the contents of this list with the client and project tags
+     * of {@code clients} and {@code projects}.
+     */
+    public void setTagMappings(List<Client> clients, List<Project> projects) {
+        requireAllNonNull(clients, projects);
+        internalList.clear();
+        clients.stream().forEach(c -> addClientTags(c));
+        projects.stream().forEach(p -> addProjectTags(p));
     }
 
     /**
@@ -259,9 +270,17 @@ public class UniqueTagMappingList implements Iterable<TagMapping> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueTagMappingList // instanceof handles nulls
-                        && internalList.equals(((UniqueTagMappingList) other).internalList));
+        if (other == this) {
+            return true;
+        } else if (other instanceof UniqueTagMappingList) {
+            // disregard order of tag mappings in the list
+            List<TagMapping> sortedThis = new ArrayList<>(internalList);
+            sortedThis.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
+            List<TagMapping> sortedOther = new ArrayList<>(((UniqueTagMappingList) other).internalList);
+            sortedOther.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
+            return sortedThis.equals(sortedOther);
+        }
+        return false;
     }
 
     @Override

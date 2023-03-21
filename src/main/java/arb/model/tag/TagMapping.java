@@ -42,7 +42,7 @@ public class TagMapping {
      */
     public void untagClient() {
         this.numberOfClientsTagged -= 1;
-        assert this.numberOfClientsTagged >= 0;
+        assert this.numberOfClientsTagged >= 0 : "Number of client tags are negative";
     }
 
     /**
@@ -50,7 +50,7 @@ public class TagMapping {
      */
     public void untagProject() {
         this.numberOfProjectsTagged -= 1;
-        assert this.numberOfProjectsTagged >= 0;
+        assert this.numberOfProjectsTagged >= 0 : "Number of project tags are negative";
     }
 
     /**

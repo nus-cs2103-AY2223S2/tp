@@ -39,7 +39,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Clients in the {@code toBeCopied}
+     * Creates an AddressBook using the Clients and Projects in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -65,11 +65,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the tag mapping list with {@code tagMappings}.
-     * {@code tagMappings} must not contain duplicate tag mappings.
+     * Replaces the contents of the tag mapping list with the client and project tags
+     * of {@code clients} and {@code projects}.
      */
-    public void setTagMappings(List<TagMapping> tagMappings) {
-        this.tagMappings.setTagMappings(tagMappings);
+    public void setTagMappings(List<Client> clients, List<Project> projects) {
+        this.tagMappings.setTagMappings(clients, projects);
     }
 
     /**
@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setClients(newData.getClientList());
         setProjects(newData.getProjectList());
-        setTagMappings(newData.getTagMappingList());
+        setTagMappings(newData.getClientList(), newData.getProjectList());
     }
 
     //// client-level operations
@@ -181,7 +181,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return clients.asUnmodifiableObservableList().size() + " clients, "
-                + projects.asUnmodifiableObservableList().size() + " projects";
+                + projects.asUnmodifiableObservableList().size() + " projects"
+                + tagMappings.asUnmodifiableObservableList().size() + " tags";
         // TODO: refine later
     }
 

@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
-import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
@@ -39,7 +38,7 @@ public class EditProjectCommandTest {
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
@@ -63,7 +62,7 @@ public class EditProjectCommandTest {
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setProject(lastProject, editedProject);
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
@@ -75,10 +74,9 @@ public class EditProjectCommandTest {
         EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST,
                 new EditProjectDescriptor());
         Project editedProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
                 expectedModel);
@@ -95,7 +93,7 @@ public class EditProjectCommandTest {
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
