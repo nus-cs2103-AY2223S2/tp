@@ -31,4 +31,5 @@ public class StudentTakingModulePredicate implements Predicate<Student> {
                 && moduleToCheck.equals(((StudentTakingModulePredicate) other).moduleToCheck)); // state check
     }
 
+    
 }
