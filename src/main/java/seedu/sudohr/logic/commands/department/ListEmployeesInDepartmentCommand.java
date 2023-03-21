@@ -8,6 +8,7 @@ import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.department.Department;
+import seedu.sudohr.model.department.DepartmentName;
 
 /**
  * Lists employees in a given department.
@@ -24,28 +25,39 @@ public class ListEmployeesInDepartmentCommand extends Command {
             + COMMAND_WORD + PREFIX_DEPARTMENT_NAME + "Human Resources";
 
     public static final String MESSAGE_SUCCESS = "Listed all employees in %1$s";
+    public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The given department does not exist in SudoHR.";
 
-    private final Department department;
+
+    private final DepartmentName departmentName;
 
     /**
      * Creates a ListEmployeesInDepartmentCommand to list all employees in the
      * specified {@code Department}
-     * @param department
+     * @param departmentName
      */
-    public ListEmployeesInDepartmentCommand(Department department) {
-        requireNonNull(department);
-        this.department = department;
+    public ListEmployeesInDepartmentCommand(DepartmentName departmentName) {
+        requireNonNull(departmentName);
+        this.departmentName = departmentName;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return null;
+        Department department = model.getDepartment(departmentName);
+
+        if (department == null) {
+            throw new CommandException(MESSAGE_DEPARTMENT_NOT_FOUND);
+        }
+
+        model.updateFilteredEmployeeList(e -> department.hasEmployee(e));
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, departmentName));
+
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ListEmployeesInDepartmentCommand // instanceof handles nulls
-                && department.equals(((ListEmployeesInDepartmentCommand) other).department));
+                && departmentName.equals(((ListEmployeesInDepartmentCommand) other).departmentName));
     }
 }
