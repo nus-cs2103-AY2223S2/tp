@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT_WITH_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -27,6 +28,7 @@ public class CommandTestUtil {
 
     // valid applicant info
     public static final String VALID_APPLICANT_NAME_BENEDICT = "Benedict Green";
+    public static final String VALID_APPLICANT_NAME_WITH_ID_BENEDICT = "Benedict Green#2103";
     public static final String VALID_APPLICANT_NAME_BENEDICT_DESC = " " + PREFIX_APPLICANT
             + VALID_APPLICANT_NAME_BENEDICT;
     public static final String VALID_APPLICANT_NAME_CHRIS = "Chris Toper";
@@ -60,12 +62,20 @@ public class CommandTestUtil {
             + " " + PREFIX_APPLICANT + VALID_APPLICANT_NAME_CHRIS;
     public static final String VALID_APPLICANTS_DESC_ALT =
             " " + PREFIX_APPLICANT + VALID_APPLICANT_NAME_BENEDICT;
+    public static final String VALID_ID_WITHOUT_HASHCODE_BENEDICT_DESC =
+            " " + PREFIX_APPLICANT_WITH_ID + VALID_APPLICANT_NAME_BENEDICT;
+    public static final String VALID_ID_WITH_HASHCODE_BENEDICT_DESC =
+            " " + PREFIX_APPLICANT_WITH_ID + VALID_APPLICANT_NAME_BENEDICT + "#2103";
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "TITLE\n"; // '\n' not allowed in titles
     public static final String INVALID_DESCRIPTION_DESC =
             " " + PREFIX_DESCRIPTION + "^"; // '^' only not allowed in descriptions
     public static final String INVALID_APPLICANT_DESC =
             " " + PREFIX_APPLICANT + "peter*"; // '*' not allowed in applicant names
+    public static final String INVALID_ID_WITHOUT_HASHCODE_DESC =
+            " " + PREFIX_APPLICANT_WITH_ID + "peter*"; // '*' not allowed in applicant names
+    public static final String INVALID_ID_WITH_HASHCODE_DESC =
+            " " + PREFIX_APPLICANT_WITH_ID + "peter#2I03"; // 'I' not allowed in hash, which is 4-digit integer
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

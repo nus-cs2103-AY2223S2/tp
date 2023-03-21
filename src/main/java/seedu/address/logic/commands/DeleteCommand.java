@@ -25,7 +25,13 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteCommand to remove a listing from the listing book using displayed index.
+     * @param targetIndex the displayed index of the listing to be deleted
+     */
     public DeleteCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
+
         this.targetIndex = targetIndex;
     }
 

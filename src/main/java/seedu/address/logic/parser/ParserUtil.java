@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.DeleteApplicantCommandParser.HASHCODE_MESSAGE_CONSTRAINTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,5 +91,31 @@ public class ParserUtil {
             applicantArrayList.add(parseApplicant(applicantName));
         }
         return applicantArrayList;
+    }
+
+    /**
+     * Parses a {@code String applicantNameWithId} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code applicantNameWithId} is invalid.
+     */
+    public static String parseApplicantWithId(String applicantName) throws ParseException {
+        requireNonNull(applicantName);
+        String trimmedName = applicantName.trim();
+
+        if (trimmedName.length() > 5 && trimmedName.charAt(trimmedName.length() - 5) == '#') {
+            if (!trimmedName.substring(trimmedName.length() - 4).matches("\\d{4}")) {
+                throw new ParseException(HASHCODE_MESSAGE_CONSTRAINTS);
+            }
+            if (!Name.isValidName(trimmedName.substring(0, trimmedName.length() - 5))) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+            return trimmedName;
+        } else {
+            if (!Name.isValidName(trimmedName)) {
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            }
+            return trimmedName;
+        }
     }
 }
