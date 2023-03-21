@@ -1,8 +1,11 @@
 package seedu.modtrek.logic.parser;
 
 import static seedu.modtrek.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.modtrek.logic.commands.CommandTestUtil.*;
+import static seedu.modtrek.logic.commands.CommandTestUtil.CODEPREFIX_DESC_CS;
+import static seedu.modtrek.logic.commands.CommandTestUtil.CREDIT_DESC_CS1101S;
 import static seedu.modtrek.logic.commands.CommandTestUtil.GRADE_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.SEMYEAR_DESC_CS1101S;
+import static seedu.modtrek.logic.commands.CommandTestUtil.TAG_DESC_CS1101S;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modtrek.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
