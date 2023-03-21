@@ -64,13 +64,6 @@ public class CommandTestUtil {
     public static final String INVALID_EDIT_LECTURE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_LECTURE_NAME;
     public static final String INVALID_EDIT_VIDEO_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_VIDEO_NAME;
 
-    public static final String VALID_MODULE_CODE = "CS2103T";
-    public static final String VALID_LECTURE_NAME = "Class Diagrams";
-    public static final String VALID_VIDEO_NAME = "Test Video";
-    public static final String MODULE_DESC = " " + PREFIX_MODULE + " " + VALID_MODULE_CODE;
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
     public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2103 = new EditModuleDescriptorBuilder()
             .withCode(VALID_MODULE_CODE_2103).withName(VALID_MODULE_NAME_2103).build();
     public static final EditModuleDescriptor EDIT_MODULE_DESC_CS2040S = new EditModuleDescriptorBuilder()
