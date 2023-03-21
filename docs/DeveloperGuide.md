@@ -182,9 +182,44 @@ The following gives a more detailed explanation of the `add` operation.
 6. If a duplicate `Internship` is found, a `CommandException` will be thrown.
 7. Else if there is no duplicate `Internship`, the `Internship` created will be added into
    the `Model` component.
-8. 
-   
+8. The currently selected `Internship` in the `Model` component will be updated to become
+   this new `Internship` such that the right UI panel displays the information for this new
+   `Internship`.
 
+#### Design Considerations
+
+###### Whether to make all fields in the `add` command compulsory
+1. **Alternative 1 (chosen): Make only essential fields compulsory**
+    * Pros: More user-centric as not all users want to enter the optional information,
+            which is not exactly critical in tracking internships
+    * Cons: More work to be done in code implementation. For example,the absence of optional
+            fields should not cause a `ParseException`, and there is a need to include a
+            default value of `NA` for input without any `Comment`.
+2. **Alternative 2: Make all fields compulsory**
+    * Pros: Easier to implement as there is no need to differentiate between compulsory
+            and optional fields during command parsing, and it is easy to compare between
+            `Internship` since we just require an exact match of all fields.
+    * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
+            are forced to input something for the `Add` command to work.
+
+###### Whether to update the right UI panel according to the `add` command
+
+1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
+    * Pros: Better visual indication that the `add` command has been successfully executed.
+      if the user has  a lot of `Internship` entries, when a new `Internship` is added,
+      the new entry will be placed at the bottom of the left UI panel, which is not visible
+      if the user's scroll position is at the top of the left UI panel. Therefore, updating
+      the right panel enhances visual indication to the user that the `Internship` has been
+      successfully added.
+    * Cons: An additional line of code is required in the `execute` method of `AddCommand`
+      to update the selected `Internship` in the `Model` component in order to update
+      the right panel.
+
+2. **Alternative 2: Do not update the right panel when a new `Internship` is added**
+    * Pros: No additional code is required in the `execute` method of `AddCommand`.
+    * Cons: When the user has a lot of `Internship` entries, the added entry in the left
+      UI panel may not be visible since it is added to the bottom. Without scrolling, users
+      have to rely on the Results Display box to determine if the `AddCommand` is successful.
 
 
 ### \[Proposed\] Undo/redo feature
