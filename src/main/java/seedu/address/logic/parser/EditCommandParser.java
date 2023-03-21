@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEACHER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RESOURCE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -35,8 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESOURCE, PREFIX_TIMESLOT, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_REMARK, PREFIX_DEADLINE, PREFIX_TEACHER);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESOURCE, PREFIX_TIMESLOT, PREFIX_ADDRESS,
+                        PREFIX_TAG, PREFIX_REMARK, PREFIX_DEADLINE, PREFIX_TEACHER);
 
         Index index;
 

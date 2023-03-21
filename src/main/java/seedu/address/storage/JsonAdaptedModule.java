@@ -15,9 +15,9 @@ import seedu.address.model.module.Deadline;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Resource;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -92,7 +92,8 @@ class JsonAdaptedModule {
         final Name modelName = new Name(name);
 
         if (resource == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Resource.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Resource.class.getSimpleName()));
         }
         if (!Resource.isValidResource(resource)) {
             throw new IllegalValueException(Resource.MESSAGE_CONSTRAINTS);
