@@ -29,7 +29,6 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label zoomTag;
 
-    /** Ui for the zoom view panel */
     public ZoomView(Bookmark bookmark) {
         super(FXML);
         this.bookmark = bookmark;
@@ -42,7 +41,6 @@ public class ZoomView extends UiPart<Region> {
 
     }
 
-    /** Hides the fields for the zoom view */
     public void hideFields() {
         viewTitle.setVisible(false);
         authorView.setVisible(false);
@@ -50,6 +48,7 @@ public class ZoomView extends UiPart<Region> {
         progressView.setVisible(false);
         tagsView.setVisible(false);
         zoomTag.setVisible(false);
+
     }
 
 }
