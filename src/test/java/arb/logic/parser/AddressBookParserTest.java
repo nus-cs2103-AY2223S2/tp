@@ -201,8 +201,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listTag() throws Exception {
-        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_WORD) instanceof ListTagCommand);
-        assertTrue(parser.parseCommand(ListTagCommand.COMMAND_WORD + " 3") instanceof ListTagCommand);
+        for (String commandWord : ListTagCommand.getCommandWords()) {
+            assertTrue(parser.parseCommand(commandWord) instanceof ListTagCommand);
+            assertTrue(parser.parseCommand(commandWord + " 3") instanceof ListTagCommand);
+        }
     }
 
     @Test

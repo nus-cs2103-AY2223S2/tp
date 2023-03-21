@@ -174,7 +174,7 @@ public class EditProjectCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_SKY_PAINTING                
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_SKY_PAINTING
                 + DEADLINE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_ALIAS_OIL_PAINTING
                 + DEADLINE_DESC_OIL_PAINTING + TAG_DESC_PAINTING + TAG_DESC_ALIAS_POTTERY;
 

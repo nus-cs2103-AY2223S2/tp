@@ -18,12 +18,12 @@ import arb.model.Model;
  */
 public class ListTagCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "Listed all tags";
+
     private static final String MAIN_COMMAND_WORD = "list-tag";
     private static final String ALIAS_COMMAND_WORD = "lt";
     private static final Set<String> COMMAND_WORDS =
             new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
-
-    public static final String MESSAGE_SUCCESS = "Listed all tags";
 
     @Override
     public CommandResult execute(Model model, ListType currentListBeingShown) {
