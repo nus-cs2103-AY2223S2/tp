@@ -183,9 +183,15 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Goes into Review mode.
      */
-    @FXML
-    private void handleReview() {
+    private void handleStartReview() {
+        personListPanel.toggleReview();
+    }
 
+    /**
+     * Ends into Review mode.
+     */
+    private void handleStopReview() {
+        personListPanel.endReview();
     }
 
 
@@ -217,7 +223,9 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isReview()) {
-                handleReview();
+                handleStartReview();
+            } else {
+                handleStopReview();
             }
 
             return commandResult;
