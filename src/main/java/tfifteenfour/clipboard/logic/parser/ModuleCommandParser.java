@@ -17,7 +17,7 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ModuleCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
+        String trimmedArgs = args.trim().toUpperCase();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModuleCommand.MESSAGE_USAGE));
