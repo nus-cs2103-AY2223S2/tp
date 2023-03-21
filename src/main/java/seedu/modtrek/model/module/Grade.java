@@ -68,7 +68,7 @@ public class Grade {
     }
 
     public boolean isGradeable() {
-        return !gradeToPoints.get(value).equals(0.0);
+        return !value.equals("U");
     }
 
     @Override
