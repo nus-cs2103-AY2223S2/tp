@@ -9,8 +9,14 @@ import seedu.address.commons.core.GuiSettings;
  */
 public interface ReadOnlyUserPrefs {
 
+    /**
+     * Retuns the GUI settings.
+     */
     GuiSettings getGuiSettings();
 
+    /**
+     * Returns the file path of the file containing the Tracker data.
+     */
     Path getTrackerFilePath();
 
 }

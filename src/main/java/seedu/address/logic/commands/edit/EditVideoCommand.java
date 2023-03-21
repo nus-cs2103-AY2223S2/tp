@@ -62,22 +62,20 @@ public class EditVideoCommand extends EditCommand {
             throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
-        ReadOnlyModule module = model.getTracker().getModule(moduleCode);
-
         if (!model.hasLecture(moduleCode, lectureName)) {
             throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
         }
 
-        ReadOnlyLecture lecture = module.getLecture(lectureName);
-
-        if (!model.hasVideo(lecture, videoName)) {
+        if (!model.hasVideo(moduleCode, lectureName, videoName)) {
             throw new CommandException(String.format(MESSAGE_VIDEO_DOES_NOT_EXIST, videoName, lectureName, moduleCode));
         }
 
+        ReadOnlyModule module = model.getModule(moduleCode);
+        ReadOnlyLecture lecture = module.getLecture(lectureName);
         Video videoToEdit = lecture.getVideo(videoName);
         Video editedVideo = createEditedVideo(videoToEdit);
 
-        if (!videoToEdit.isSameVideo(editedVideo) && model.hasVideo(lecture, editedVideo)) {
+        if (!videoToEdit.isSameVideo(editedVideo) && lecture.hasVideo(editedVideo)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_VIDEO, lectureName, moduleCode));
         }
 

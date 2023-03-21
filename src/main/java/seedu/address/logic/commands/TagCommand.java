@@ -179,7 +179,7 @@ public class TagCommand extends Command {
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
 
-        if (!model.hasVideo(targetLecture, this.videoName)) {
+        if (!model.hasVideo(this.moduleCode, this.lectureName, this.videoName)) {
             throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST, this.videoName,
                     this.lectureName,
                     this.moduleCode));

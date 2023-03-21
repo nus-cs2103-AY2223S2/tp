@@ -15,12 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
@@ -150,8 +151,8 @@ public class AddVideoCommandTest {
         private final ArrayList<Video> videosAdded = new ArrayList<>();
 
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -165,7 +166,7 @@ public class AddVideoCommandTest {
         }
 
         @Override
-        public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
+        public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
             return false;
         }
 
@@ -193,8 +194,8 @@ public class AddVideoCommandTest {
      */
     private class ModelStubNoLecture extends ModelStub {
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -223,8 +224,8 @@ public class AddVideoCommandTest {
         }
 
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -238,8 +239,8 @@ public class AddVideoCommandTest {
         }
 
         @Override
-        public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
-            return this.lecture.equals(lecture) && this.video.equals(video);
+        public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+            return this.lecture.getName().equals(lectureName) && this.video.getName().equals(videoName);
         }
     }
 

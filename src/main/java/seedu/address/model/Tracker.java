@@ -73,16 +73,32 @@ public class Tracker implements ReadOnlyTracker {
     }
 
     //// module-level operations
+    @Override
+    public ObservableList<? extends ReadOnlyModule> getModuleList() {
+        return modules.asUnmodifiableObservableList();
+    }
 
-    /**
-     * Returns true if a module with the same code as {@code module} exists in the tracker.
-     *
-     * @param module The module to check if exist.
-     * @return True if a module with the same code as {@code module} exists in the tracker. Otherwise, false.
-     */
+    @Override
+    public ReadOnlyModule getModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+
+        return getModuleList()
+                .stream()
+                .filter((m) -> m.getCode().equals(moduleCode))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
     public boolean hasModule(ReadOnlyModule module) {
         requireNonNull(module);
         return modules.contains((Module) module);
+    }
+
+    @Override
+    public boolean hasModule(ModuleCode moduleCode) {
+        requireNonNull(moduleCode);
+        return getModule(moduleCode) != null;
     }
 
     /**
@@ -130,22 +146,6 @@ public class Tracker implements ReadOnlyTracker {
     public String toString() {
         return modules.asUnmodifiableObservableList().size() + " modules";
         // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<? extends ReadOnlyModule> getModuleList() {
-        return modules.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ReadOnlyModule getModule(ModuleCode code) {
-        requireNonNull(code);
-
-        return getModuleList()
-                .stream()
-                .filter((m) -> m.getCode().equals(code))
-                .findFirst()
-                .orElse(null);
     }
 
     @Override

@@ -15,7 +15,7 @@ public class ModuleCodeTest {
 
     @Test
     public void constructor_invalidCode_throwsIllegalArgumentException() {
-        String invalidCode = "Hello";
+        String invalidCode = "Invalid Code";
         assertThrows(IllegalArgumentException.class, () -> new ModuleCode(invalidCode));
     }
 

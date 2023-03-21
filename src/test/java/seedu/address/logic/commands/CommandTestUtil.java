@@ -18,9 +18,11 @@ import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescripto
 import seedu.address.logic.commands.edit.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.logic.commands.edit.EditVideoCommand.EditVideoDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.Tracker;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.video.Video;
 import seedu.address.testutil.EditLectureDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditVideoDescriptorBuilder;
@@ -152,12 +154,18 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        Tracker expectedTracker = new Tracker(actualModel.getTracker());
+        List<ReadOnlyModule> expectedFilteredModuleList = new ArrayList<>(actualModel.getFilteredModuleList());
+        List<ReadOnlyLecture> expectedFilteredLectureList = actualModel.getFilteredLectureList() == null
+                ? null : new ArrayList<>(actualModel.getFilteredLectureList());
+        List<Video> expectedFilteredVideoList = actualModel.getFilteredVideoList() == null
+                ? null : new ArrayList<>(actualModel.getFilteredVideoList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedTracker, actualModel.getTracker());
+        assertEquals(expectedFilteredModuleList, actualModel.getFilteredModuleList());
+        assertEquals(expectedFilteredLectureList, actualModel.getFilteredLectureList());
+        assertEquals(expectedFilteredVideoList, actualModel.getFilteredVideoList());
     }
 
 }

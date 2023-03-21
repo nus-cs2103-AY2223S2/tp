@@ -33,19 +33,6 @@ public class Module implements ReadOnlyModule {
 
     private final UniqueLectureList lectures = new UniqueLectureList();
 
-    // TODO: Consider removing this, also it is buggy
-    /**
-     * Constructs a {@code Module}.<p>
-     * Every field must be not null.
-     *
-     * @param code The module's code.
-     */
-    public Module(ModuleCode code) {
-        requireAllNonNull(code);
-        this.code = code;
-        this.name = new ModuleName(null);
-    }
-
     /**
      * Every field must be not null.
      *
@@ -98,6 +85,12 @@ public class Module implements ReadOnlyModule {
     public boolean hasLecture(ReadOnlyLecture lecture) {
         requireNonNull(lecture);
         return lectures.contains((Lecture) lecture);
+    }
+
+    @Override
+    public boolean hasLecture(LectureName lectureName) {
+        requireNonNull(lectureName);
+        return getLecture(lectureName) != null;
     }
 
     @Override

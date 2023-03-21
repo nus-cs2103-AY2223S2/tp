@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -18,7 +17,6 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
-import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
@@ -114,11 +112,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
         throw new AssertionError("This method should not be called.");
     }
@@ -144,17 +137,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
+    public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public boolean hasVideo(ReadOnlyLecture lecture, VideoName videoName) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Video getVideo(ReadOnlyLecture lecture, VideoName videoName) {
+    public Video getVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -240,46 +228,6 @@ public class ModelStub implements Model {
 
     @Override
     public void navigateToLecFromMod(LectureName lectureName) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
