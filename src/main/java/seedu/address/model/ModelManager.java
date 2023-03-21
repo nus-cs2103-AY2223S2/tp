@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -318,7 +319,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<String> getReviewStatsList() {
+    public ObservableList<Pair<String, String>> getReviewStatsList() {
         return currReview.getReviewStatsList();
     }
 

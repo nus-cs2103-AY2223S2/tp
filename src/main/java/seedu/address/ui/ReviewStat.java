@@ -7,16 +7,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 
 public class ReviewStat extends UiPart<Region> {
     private static final String FXML = "ReviewStat.fxml";
 
     @FXML
+    private Label title;
+
+    @FXML
     private Label description;
 
-    public ReviewStat(String string) {
+    public ReviewStat(Pair<String, String> pair) {
         super(FXML);
-        description.setText(string);
+        title.setText(pair.getKey());
+        description.setText(pair.getValue());
     }
 
 }
