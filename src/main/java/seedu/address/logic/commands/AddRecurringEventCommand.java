@@ -24,11 +24,11 @@ public class AddRecurringEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New recurring event added: %1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add a recurring event into the recurring event list"
-            + "by the index number used in the last person listing. "
-            + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: event name, week of the day, start time and end time (must be in the format HH:mm) "
-            + "e/[EVENT_NAME] d/[DAY_OF_WEEK] f/[START_TIME] t/[END_TIME] \n"
-            + "Example: " + COMMAND_WORD + "1" + " re/biking" + "d/Monday" + " f/14:00" + " t/15:00";
+            + "by the index number used in the last person listing. \n"
+            + "Parameters: index of person to add the event, event name, week of the day,"
+            + " start time and end time (must be in the format HH:mm) "
+            + "[INDEX] re/[EVENT_NAME] d/[DAY_OF_WEEK] f/[START_TIME] t/[END_TIME] \n"
+            + "Example: " + COMMAND_WORD + " 1" + " re/biking" + " d/Monday" + " f/14:00" + " t/15:00";
 
 
     public final RecurringEvent eventToAdd;

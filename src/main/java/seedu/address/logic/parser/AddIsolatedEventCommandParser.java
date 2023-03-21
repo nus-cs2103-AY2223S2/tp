@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATETIME;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddIsolatedEventCommand;
@@ -20,9 +19,6 @@ import seedu.address.model.event.IsolatedEvent;
  * Parser class for Isolated Event
  */
 public class AddIsolatedEventCommandParser implements Parser<AddIsolatedEventCommand> {
-
-    LocalDateTime now = LocalDateTime.now();
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddIsolatedEventCommand
      * @param args the String input keyed by the user.

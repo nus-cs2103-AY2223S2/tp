@@ -9,7 +9,6 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
@@ -29,9 +28,10 @@ public class AddIsolatedEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add an isolated event into the isolated event list"
             + "by the index number used in the last person listing.\n "
-            + "Parameters: event name, start date and end date (must be in the format of dd/MM/yyyy HH:mm) "
-            + "ie/[EVENT_NAME] f/[START_DATE] t/[END_DATE] \n"
-            + "Example: " + COMMAND_WORD + " ie/biking" + " f/09/03/2023 14:00" + " t/09/03/2023 15:00";
+            + "Parameters: index of person to add the event, event name,"
+            + " start date and end date (must be in the format of dd/MM/yyyy HH:mm) "
+            + "[INDEX] ie/[EVENT_NAME] f/[START_DATE] t/[END_DATE] \n"
+            + "Example: " + COMMAND_WORD + " 1" + " ie/biking" + " f/09/03/2023 14:00" + " t/09/03/2023 15:00";
 
     public final IsolatedEvent eventToAdd;
     public final Index index;

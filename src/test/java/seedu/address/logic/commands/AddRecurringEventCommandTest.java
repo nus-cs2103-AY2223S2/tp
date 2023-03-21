@@ -57,7 +57,7 @@ public class AddRecurringEventCommandTest {
 
         IsolatedEvent isolatedEvent = new IsolatedEvent("Skiing", TWELVE_O_CLOCK_VALID, THREE_O_CLOCK_VALID);
 
-        RecurringEvent recurringEvent = new RecurringEvent("biking", DayOfWeek.THURSDAY,
+        RecurringEvent recurringEvent = new RecurringEvent("biking", DayOfWeek.SATURDAY,
                 TWELVE_O_CLOCK_VALID.toLocalTime(), TWO_O_CLOCK_VALID.toLocalTime());
 
         model.addIsolatedEvent(editedPerson, isolatedEvent);
