@@ -18,16 +18,16 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-f12-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + "\n\n"
             + "Examples of commands:\n"
-            + "Add: add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
-            + "l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java\n"
-            + "View contact: view 3\n"
-            + "View tab: view c, view m, view s\n"
-            + "Edit contact in the right panel: edit n/David m+/AY2223S2 CS2109S s-/python\n"
-            + "Find by attributes: find n/David c/2 m/CS2109S s/java\n"
-            + "List the full list of contacts: list\n"
-            + "Delete contact: delete 3\n"
-            + "Clear all contacts: clear\n"
-            + "View user guide and command list: help";
+            + "Add: \nadd n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
+            + "l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java\n\n"
+            + "View contact:\nview 3\n\n"
+            + "View tab:\nview c, view m, view s\n\n"
+            + "Edit contact in the right panel:\nedit n/David m+/AY2223S2 CS2109S s-/python\n\n"
+            + "Find by attributes:\nfind n/David c/2 m/CS2109S s/java\n\n"
+            + "List the full list of contacts:\nlist\n\n"
+            + "Delete contact:\ndelete 3\n\n"
+            + "Clear all contacts:\nclear\n\n"
+            + "View user guide and command list:\nhelp";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
