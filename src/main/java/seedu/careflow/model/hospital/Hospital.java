@@ -2,8 +2,8 @@ package seedu.careflow.model.hospital;
 
 import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Phone;
 
 /**
  * Represents a Hospital in the hospital record

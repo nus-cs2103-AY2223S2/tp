@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.careflow.commons.exceptions.IllegalValueException;
 import seedu.careflow.model.PatientRecord;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
 
 /**

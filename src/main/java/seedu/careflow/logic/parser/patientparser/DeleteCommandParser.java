@@ -13,7 +13,7 @@ import seedu.careflow.logic.parser.Parser;
 import seedu.careflow.logic.parser.ParserUtil;
 import seedu.careflow.logic.parser.Prefix;
 import seedu.careflow.logic.parser.exceptions.ParseException;
-import seedu.careflow.model.person.Ic;
+import seedu.careflow.model.patient.Ic;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object

@@ -6,7 +6,7 @@ import static seedu.careflow.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Phone;
 
 public class StorageCountTest {
     @Test

@@ -1,4 +1,4 @@
-package seedu.careflow.model.person.exceptions;
+package seedu.careflow.model.patient.exceptions;
 
 
 /**

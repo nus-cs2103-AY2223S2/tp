@@ -1,4 +1,4 @@
-package seedu.careflow.model.person;
+package seedu.careflow.model.patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.careflow.model.person.exceptions.DuplicatePatientException;
-import seedu.careflow.model.person.exceptions.PatientNotFoundException;
+import seedu.careflow.model.patient.exceptions.DuplicatePatientException;
+import seedu.careflow.model.patient.exceptions.PatientNotFoundException;
 import seedu.careflow.testutil.PatientBuilder;
 
 public class UniquePatientListTest {

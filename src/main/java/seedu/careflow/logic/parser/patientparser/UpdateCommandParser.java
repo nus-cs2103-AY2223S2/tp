@@ -18,7 +18,7 @@ import seedu.careflow.logic.parser.ArgumentTokenizer;
 import seedu.careflow.logic.parser.Parser;
 import seedu.careflow.logic.parser.ParserUtil;
 import seedu.careflow.logic.parser.exceptions.ParseException;
-import seedu.careflow.model.person.Name;
+import seedu.careflow.model.patient.Name;
 
 /**
  * Parses input arguments and creates a new UpdateCommand object

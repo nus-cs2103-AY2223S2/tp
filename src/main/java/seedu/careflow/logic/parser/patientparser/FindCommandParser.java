@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.careflow.logic.commands.patientcommands.FindCommand;
 import seedu.careflow.logic.parser.Parser;
 import seedu.careflow.logic.parser.exceptions.ParseException;
-import seedu.careflow.model.person.NameContainsKeywordsPredicate;
+import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

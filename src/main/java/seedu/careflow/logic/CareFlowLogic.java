@@ -9,7 +9,7 @@ import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.logic.parser.exceptions.ParseException;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.hospital.Hospital;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 import seedu.careflow.model.readonly.ReadOnlyHospitalRecords;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;

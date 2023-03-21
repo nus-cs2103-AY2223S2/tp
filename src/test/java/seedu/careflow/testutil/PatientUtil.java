@@ -12,7 +12,7 @@ import static seedu.careflow.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.careflow.logic.commands.patientcommands.AddCommand;
 import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDescriptor;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * A utility class for Patient.

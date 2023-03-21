@@ -25,8 +25,8 @@ import seedu.careflow.model.DrugInventory;
 import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.drug.TradeNameContainsKeywordsPredicate;
-import seedu.careflow.model.person.NameContainsKeywordsPredicate;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.testutil.EditPatientDescriptorBuilder;
 
 /**

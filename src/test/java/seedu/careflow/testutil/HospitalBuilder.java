@@ -1,8 +1,8 @@
 package seedu.careflow.testutil;
 
 import seedu.careflow.model.hospital.Hospital;
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Phone;
 
 /**
  * A utility class to help with building Hospital objects.

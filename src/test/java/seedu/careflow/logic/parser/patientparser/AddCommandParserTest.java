@@ -6,7 +6,7 @@ import static seedu.careflow.logic.parser.CommandParserTestUtil.assertParseSucce
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.logic.commands.patientcommands.AddCommand;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.testutil.PatientBuilder;
 
 
