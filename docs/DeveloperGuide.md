@@ -429,6 +429,13 @@ The `add` command allows users to create a new person and insert them into the a
 | 1. Gwon Se Rang<br/>2. Lao Ming Da |         3         | 3 is the next number in the sequence.                       |
 | 1. Gwon Se Rang<br/>3. Lao Ming Da |         2         | 2 is the lowest number that is not already a contact index. |
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **For Your Information**
+
+The User has the default `ContactIndex` of 0.
+</div>
+
 In summary, the activity diagram is as such:
 
 <img src="images/AddActivityDiagram.png" style="width:60%;margin:0 20%">
@@ -510,10 +517,40 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 {to be filled by Kenny}
 
-#### **User Command**
+#### **View Command**
 
-{to be filled by Russell}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ViewCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/ViewCommandParser.java)
 
+The view command allows users to view their information or their contact's information on the profile panel on the top right 
+of the application. A single `view` command defaults to displaying the profile of the user. On the other hand, we can display
+the contact's information adding their assigned `ContactIndex` or by adding `n/NAME` behind the `view` command.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **For Your Information**
+The User profile will be displayed on the profile panel should there be any exceptions thrown during the parsing process.
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats**
+- `view` : Displays user's profile on the display panel.
+- `view n/XYZ` : Display XYZ's profile on the display panel.
+- `view <INDEX>` : Display the contact's whose `ContactIndex` is `INDEX` on the display panel.
+</div>
+
+**Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will check if the arguments are empty first.
+If it is will extract try to find tokens that were prefixed `/n`. If a name is not present, it will search for an index (of `int` type) instead. 
+The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
+
+Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
+
+{Insert sequence diagram}
+
+Below summarises the execution of the `ViewCommand`
+
+{Insert activity diagram for completeness}
 #### **Find Command**
 
 {to be filled by Sean}
