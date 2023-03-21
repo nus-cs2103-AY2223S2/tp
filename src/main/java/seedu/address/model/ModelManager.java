@@ -45,10 +45,35 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
         this.tankList = new TankList(tankList);
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
+
+        updateTanksOfEachFishAndFishListOfEachTank();
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList());
+    }
+
+    /**
+     * Points the {@code Tank} attribute of a Fish to the correct instance of {@code Tank}
+     * and sets each {@code Fish} in the fishlist/addressbook of a tank to the correct instance
+     */
+    public void updateTanksOfEachFishAndFishListOfEachTank() {
+        for (Fish f : addressBook.getFishList()) {
+            Tank t = f.getTank();
+            Tank realInstance = getTankListTankInstance(t);
+            requireNonNull(realInstance);
+            realInstance.getFishList().addFish(f);
+            f.setTank(realInstance);
+        }
+    }
+
+    public Tank getTankListTankInstance(Tank duplicate) {
+        for (Tank t : tankList.getTankList()) {
+            if (t.equals(duplicate)) {
+                return t;
+            }
+        }
+        return null;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -142,6 +167,7 @@ public class ModelManager implements Model {
     public void addFish(Fish fish) {
         addressBook.addFish(fish);
         updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
+
     }
 
     @Override

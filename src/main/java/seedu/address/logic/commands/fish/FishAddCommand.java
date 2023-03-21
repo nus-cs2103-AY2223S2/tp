@@ -71,6 +71,8 @@ public class FishAddCommand extends FishCommand {
         requireNonNull(tank);
         // assigns fish to tank
         toAdd.setTank(tank);
+        //each tank has individual fishlist/addressbook
+        tank.addFish(toAdd);
 
         model.addFish(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

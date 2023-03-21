@@ -34,7 +34,7 @@ public abstract class ListCommand extends Command {
         public CommandResult execute(Model model) {
             requireNonNull(model);
             model.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
-            model.setGuiMode(GuiSettings.GuiMode.DISPLAY_ALL_FISHES);
+            model.setGuiMode(GuiSettings.GuiMode.DISPLAY_FISHES_TASKS);
             return new CommandResult(MESSAGE_SUCCESS_FISHES, false, false, true);
         }
     }
@@ -44,7 +44,7 @@ public abstract class ListCommand extends Command {
         public CommandResult execute(Model model) {
             requireNonNull(model);
             model.updateFilteredTankList(PREDICATE_SHOW_ALL_TANKS);
-            model.setGuiMode(GuiSettings.GuiMode.DISPLAY_ALL_TANKS);
+            model.setGuiMode(GuiSettings.GuiMode.DISPLAY_TANKS_TASKS);
             return new CommandResult(MESSAGE_SUCCESS_TANKS, false, false, true);
         }
     }
