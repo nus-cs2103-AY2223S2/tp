@@ -38,19 +38,6 @@ public class InterviewDateTime {
         return dateTime;
     }
 
-    /**
-     * Returns if a given dateTime string is valid
-     * Use before invoking createInterviewDateTime to ensure it does not throw ParseException
-     */
-    public static boolean isValidDateTime(String dateTime) {
-        try {
-            DateTimeParser.parseDateTime(dateTime);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
-    }
-
     @Override
     public String toString() {
         return DateTimeParser.datetimeFormatter(dateTime);

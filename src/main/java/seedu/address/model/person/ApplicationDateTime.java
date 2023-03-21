@@ -12,6 +12,8 @@ import seedu.address.logic.parser.DateTimeParser;
  * Represents a Person's interview date and time in the address book.
  */
 public class ApplicationDateTime {
+    public static final String MESSAGE_CONSTRAINTS = "Invalid application date time format!";
+
     private final LocalDateTime applicationDateTime;
 
     /**
