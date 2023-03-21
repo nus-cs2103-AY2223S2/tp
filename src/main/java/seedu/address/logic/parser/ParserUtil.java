@@ -9,8 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Booking;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Medication;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
@@ -112,6 +114,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String medication} into a {@code Medication}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code medication} is invalid.
+     */
+    public static Medication parseMedication(String medication) throws ParseException {
+        requireNonNull(medication);
+        String trimmedMedication = medication.trim();
+        if (!Medication.isValidMedication(trimmedMedication)) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+        return new Medication(trimmedMedication);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -136,5 +153,18 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String booking} into a {@code Booking}.
+     */
+    public static Booking parseBooking(String booking) throws ParseException {
+        requireNonNull(booking);
+        String trimmedBooking = booking.trim();
+        if (!Booking.isValidBookingFormat(trimmedBooking)) {
+            throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Booking(trimmedBooking);
     }
 }
