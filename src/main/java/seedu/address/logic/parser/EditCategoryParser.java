@@ -1,16 +1,16 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCategory;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
-
 /**
  * Parses input arguments and creates a new EditCategory object
  */
-public class EditCategoryParser implements Parser<EditCategory>{
+public class EditCategoryParser implements Parser<EditCategory> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCategory
@@ -20,8 +20,8 @@ public class EditCategoryParser implements Parser<EditCategory>{
      */
     public EditCategory parse(String args) throws ParseException {
         //First check if the given index is valid.
-        ArgumentMultimap argMultiMap
-                = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_SUMMARY);
+        ArgumentMultimap argMultiMap =
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_SUMMARY);
         Index index = ParserUtil.parseIndex(argMultiMap.getPreamble());
 
         //Get the new category name & summary if applicable

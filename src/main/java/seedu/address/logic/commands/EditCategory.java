@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -9,7 +11,6 @@ import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
 
-import java.util.List;
 
 /**
  * Edits a category in the ExpenseTracker
@@ -20,7 +21,6 @@ public class EditCategory extends Command {
     public static final String MESSAGE_NO_EXISTING_CATEGORY = "There is no such category!";
 
     public static final String MESSAGE_DEFAULT_CATEGORY = "The MISC category can not be edited!";
-//    private final UserDefinedCategory toEdit;
     private final Index targetIndex;
 
     private final String newCategoryName;
