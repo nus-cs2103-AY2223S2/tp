@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.AutocompleteResult;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,6 +23,14 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Suggests a {@code Prefix} to be inputted for the current command
+     * input.
+     * @param commandText The command as entered by the user.
+     * @return The {@code AutocompleteResult} based on the command input.
+     */
+    AutocompleteResult autocomplete(String commandText);
 
     /**
      * Returns the AddressBook.

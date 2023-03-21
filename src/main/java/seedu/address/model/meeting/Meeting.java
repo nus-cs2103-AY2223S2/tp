@@ -2,6 +2,7 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -22,6 +23,8 @@ public class Meeting {
     // Data fields
     private final Location location;
     private final Description description;
+
+    private boolean hasPassed = false;
 
     /**
      * Every field must be present and not null.
@@ -72,6 +75,14 @@ public class Meeting {
                 && otherMeeting.getTitle().equals(getTitle())
                 && otherMeeting.getDateTime().equals(getDateTime())
                 && otherMeeting.getAttendees().equals(getAttendees());
+    }
+
+    /**
+     * Returns true if {@code Meeting} has passed based on the current DateTime.
+     */
+    public boolean hasPassed() {
+        this.hasPassed = LocalDateTime.now().isAfter(dateTime.get());
+        return this.hasPassed;
     }
 
     /**

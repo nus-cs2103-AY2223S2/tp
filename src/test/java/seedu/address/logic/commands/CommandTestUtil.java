@@ -24,6 +24,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -68,6 +69,10 @@ public class CommandTestUtil {
     public static final String VALID_MEETING_DATETIME = "01/01/2021 11:11";
     public static final String VALID_MEETING_LOCATION = "In school";
     public static final String VALID_MEETING_DESCRIPTION = "Finish up school project (computer science)";
+    public static final String VALID_MEETING_TITLE_2 = "Project discussion";
+    public static final String VALID_MEETING_DATETIME_2 = "02/01/2023 12:00";
+    public static final String VALID_MEETING_LOCATION_2 = "Central Library";
+    public static final String VALID_MEETING_DESCRIPTION_2 = "URGENT";
 
     public static final String MEETING_TITLE_DESC = " " + PREFIX_MEETING_TITLE + VALID_MEETING_TITLE;
     public static final String MEETING_PERSON_ALICE_DESC = " " + PREFIX_PERSON + "Alice Pauline";
@@ -78,6 +83,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditMeetingsCommand.EditMeetingDescriptor DESC_MEETING_A;
+    public static final EditMeetingsCommand.EditMeetingDescriptor DESC_MEETING_B;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -86,6 +93,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_MEETING_A = new EditMeetingDescriptorBuilder().withTitle(VALID_MEETING_TITLE)
+            .withDateTime(VALID_MEETING_DATETIME).withAttendees().withLocation(VALID_MEETING_LOCATION)
+            .withDescription(VALID_MEETING_DESCRIPTION).build();
+        DESC_MEETING_B = new EditMeetingDescriptorBuilder().withTitle(VALID_MEETING_TITLE_2)
+                .withDateTime(VALID_MEETING_DATETIME_2).withAttendees().withLocation(VALID_MEETING_LOCATION_2)
+                .withDescription(VALID_MEETING_DESCRIPTION_2).build();
     }
 
     /**
