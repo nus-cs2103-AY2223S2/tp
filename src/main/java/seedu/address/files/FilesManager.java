@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
@@ -54,7 +55,7 @@ public class FilesManager {
 
 
 
-    private List<Path> getAllDirectories() {
+    public List<Path> getAllDirectories() {
         List<Path> directories = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(reportsDir)) {
             stream.filter(Files::isDirectory)
@@ -65,7 +66,7 @@ public class FilesManager {
         return directories;
     }
 
-    private List<Path> getAllFiles(Path directory) {
+    public List<Path> getAllFiles(Path directory) {
         List<Path> files = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(directory)) {
             stream.filter(Files::isRegularFile)
@@ -91,6 +92,27 @@ public class FilesManager {
             }
         }
         return false;
+    }
+
+    /**
+     * Display file.
+     *
+     * @param path the path
+     */
+    public void displayFile(Path path) {
+        String fileName = path.getFileName().toString();
+        String extension = fileName.substring(
+                fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
+        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
+            ImageReader imageReader = new ImageReader(path);
+            imageReader.displayImage();
+        } else if (extension.equals("pdf")) {
+            PdfReader pdfReader = new PdfReader(path);
+            pdfReader.displayPdf();
+        } else {
+            //adding custom exception of Wrong File type exception
+            System.out.println("Invlid file type");
+        }
     }
 
 }

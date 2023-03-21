@@ -98,7 +98,7 @@ public class FileGenerator {
                     }
                 }
             }
-            pdfDocument.save(new File("reports/" + person.getName().fullName + "/mc.pdf"));
+            pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + formId + ".pdf"));
             pdfDocument.close();
 
         } catch (IOException e) {
