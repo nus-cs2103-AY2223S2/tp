@@ -245,7 +245,9 @@ public class ParserUtil {
      * Parses a {@code String medicalTag} into a {@code MedicalQualificationTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code medicalTag} is invalid.
+     * @param medicalTag Medical tag of the volunteer.
+     * @return {@code MedicalQualificationTag} object.
+     * @throws ParseException If the given {@code medicalTag} is invalid.
      */
     public static MedicalQualificationTag parseMedicalTag(String medicalTag) throws ParseException {
         requireNonNull(medicalTag);
@@ -282,8 +284,13 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> medicalTags} into a {@code Set<MedicalQualificationTag>}.
+     *
+     * @param medicalTags Medical tags of the elderly.
+     * @return A set of medical tags.
+     * @throws ParseException If any of the medical tags are invalid.
      */
-    public static Set<MedicalQualificationTag> parseMedicalTags(Collection<String> medicalTags) throws ParseException {
+    public static Set<MedicalQualificationTag> parseMedicalTags(Collection<String> medicalTags)
+            throws ParseException {
         requireNonNull(medicalTags);
         final Set<MedicalQualificationTag> tagSet = new HashSet<>();
         for (String tagName: medicalTags) {

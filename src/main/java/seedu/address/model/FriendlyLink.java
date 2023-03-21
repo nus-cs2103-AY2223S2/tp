@@ -291,7 +291,6 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param elderlyNric Nric of elderly.
      * @param volunteerNric Nric of volunteer.
      */
-
     public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
         Elderly elderly = getElderly(elderlyNric);
         Volunteer volunteer = getVolunteer(volunteerNric);
