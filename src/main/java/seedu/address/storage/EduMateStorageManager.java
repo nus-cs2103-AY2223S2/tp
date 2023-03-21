@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -71,6 +72,13 @@ public class EduMateStorageManager implements EduMateStorage {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
+    }
+
+    @Override
+    public ArrayList<String> readEduMateHistory() throws IOException {
+        requireNonNull(eduMateHistoryFilePath);
+        ArrayList<String> eduMateHistory = StringUtil.readStringFile(eduMateHistoryFilePath);
+        return eduMateHistory;
     }
 
     @Override

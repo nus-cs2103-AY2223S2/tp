@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -62,6 +63,11 @@ public class StorageManager implements Storage {
     public Optional<ReadOnlyEduMate> readEduMate(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return eduMateStorage.readEduMate(filePath);
+    }
+
+    @Override
+    public ArrayList<String> readEduMateHistory() throws IOException {
+        return eduMateStorage.readEduMateHistory();
     }
 
     @Override

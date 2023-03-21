@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
@@ -32,6 +33,8 @@ public interface EduMateStorage {
      * @see #getEduMateFilePath()
      */
     Optional<ReadOnlyEduMate> readEduMate(Path filePath) throws DataConversionException, IOException;
+
+    ArrayList<String> readEduMateHistory() throws IOException;
 
     /**
      * Saves the given {@link ReadOnlyEduMate} to the storage.

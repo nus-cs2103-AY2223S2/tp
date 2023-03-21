@@ -1,18 +1,27 @@
 package seedu.address.commons.util;
 
+import seedu.address.commons.core.LogsCenter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 /**
  * Helper functions for handling strings.
  */
 public class StringUtil {
+    private static final Logger logger = LogsCenter.getLogger(StringUtil.class);
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -79,5 +88,15 @@ public class StringUtil {
         requireNonNull(input);
         requireNonNull(filePath);
         FileUtil.writeToFile(filePath, input, true);
+    }
+
+    public static ArrayList<String> readStringFile(Path filePath) throws IOException {
+        if (!Files.exists(filePath)) {
+            logger.info("Command file " + filePath + " not found");
+            return new ArrayList<String>(100);
+        }
+
+        List<String> lines = Files.readAllLines(filePath, Charset.defaultCharset());
+        return new ArrayList<String>(lines);
     }
 }
