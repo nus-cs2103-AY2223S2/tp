@@ -113,7 +113,8 @@ public class Person {
                 && otherPerson.getOptionalEmail().equals(getOptionalEmail())
                 && otherPerson.getOptionalAddress().equals(getOptionalAddress())
                 && otherPerson.getSubjects().equals(getSubjects())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getOptionalRemark().equals(getOptionalRemark());
     }
 
     @Override
@@ -129,10 +130,12 @@ public class Person {
         String email = getOptionalEmail().isEmpty() ? "" : String.format("; Email: %s", getOptionalEmail().get());
         String address = getOptionalAddress().isEmpty() ? "" : String.format("; Address: %s",
                 getOptionalAddress().get());
+        String remarks = getOptionalRemark().isEmpty() ? "" : String.format("; Remarks: %s",
+                getOptionalRemark().get());
         builder.append(getName())
                 .append(phone)
                 .append(email)
-                .append(address)
+                .append(address);
 
         Set<Subject> subjects = getSubjects();
         if (!subjects.isEmpty()) {
@@ -145,6 +148,8 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append(remarks);
 
         return builder.toString();
     }
