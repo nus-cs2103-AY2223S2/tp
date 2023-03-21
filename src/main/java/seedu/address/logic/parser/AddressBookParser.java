@@ -14,6 +14,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.QuickstartCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -102,6 +103,9 @@ public class AddressBookParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case QuickstartCommand.COMMAND_WORD:
+            return new QuickstartCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
