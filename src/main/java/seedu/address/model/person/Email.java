@@ -48,10 +48,23 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        if (test.equals("Insert student email here!") || test.equals("Insert parent email here!")) {
+        if (isDefaultEmail(test)) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when an Email isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultEmail(String test) {
+        if (test.equals("Insert student email here!") || test.equals("Insert parent email here!")) {
+            return true;
+        }
+        return false;
     }
 
     @Override
