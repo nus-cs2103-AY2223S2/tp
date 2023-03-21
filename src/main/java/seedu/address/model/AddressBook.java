@@ -86,9 +86,7 @@ public class AddressBook implements ReadOnlyAddressBook {
                 break;
             }
         }
-        Tutorial added = original;
-        added.addStudent(toAdd);
-        tutorials.setTutorial(original, added);
+        original.addStudent(toAdd);
     }
 
     /**
