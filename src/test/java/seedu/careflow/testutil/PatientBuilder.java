@@ -24,7 +24,6 @@ public class PatientBuilder {
     public static final String DEFAULT_IC = "A7654321B";
     public static final String DEFAULT_DRUG_ALLERGY = "penicillin";
     public static final String DEFAULT_EMERGENCY_CONTACT = "88888888";
-    
     private Name name;
     private Phone phone;
     private Email email;
@@ -61,7 +60,7 @@ public class PatientBuilder {
         address = patientToCopy.getAddress();
         dateOfBirth = patientToCopy.getBirthDate();
         gender = patientToCopy.getGender();
-        ic = new Ic(DEFAULT_IC);
+        ic = patientToCopy.getIc();
         drugAllergy = patientToCopy.getDrugAllergy();
         emergencyContact = patientToCopy.getEmergencyContact();
     }
@@ -149,5 +148,4 @@ public class PatientBuilder {
     public Patient build() {
         return new Patient(name, phone, email, address, dateOfBirth, gender, ic, drugAllergy, emergencyContact);
     }
-
 }

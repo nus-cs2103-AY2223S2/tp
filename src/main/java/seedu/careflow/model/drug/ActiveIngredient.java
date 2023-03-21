@@ -10,7 +10,7 @@ public class ActiveIngredient {
     public static final String MESSAGE_CONSTRAINTS =
             "Active ingredient should only contain alphanumeric characters, spaces and dashes, and it should not be"
                     + " blank but less than 200 characters long";
-    public static final String VALIDATION_REGEX = "[a-zA-Z0-9][a-zA-Z0-9 -]{0,200}";
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9][a-zA-Z0-9 -]{0,199}";
     public final String value;
 
     /**

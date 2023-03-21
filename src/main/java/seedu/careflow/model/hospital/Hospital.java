@@ -1,26 +1,32 @@
 package seedu.careflow.model.hospital;
 
+import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.careflow.model.person.Name;
+import seedu.careflow.model.person.Phone;
+
 /**
  * Represents a Hospital in the hospital record
  */
 public class Hospital {
-    private final String hospitalName;
-    private final String hotline;
+    private final Name hospitalName;
+    private final Phone hotline;
 
     /**
      * Constructs a Hospital,
      * Every field must be present and not null.
      */
-    public Hospital(String hospitalName, String hotline) {
+    public Hospital(Name hospitalName, Phone hotline) {
+        requireAllNonNull(hospitalName, hotline);
         this.hospitalName = hospitalName;
         this.hotline = hotline;
     }
 
-    public String getHospitalName() {
+    public Name getHospitalName() {
         return this.hospitalName;
     }
 
-    public String getHotline() {
+    public Phone getHotline() {
         return this.hotline;
     }
 
@@ -34,5 +40,20 @@ public class Hospital {
         }
         return otherHospital != null
                 && otherHospital.getHospitalName().equals(getHospitalName());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Hospital)) {
+            return false;
+        }
+
+        Hospital otherHospital = (Hospital) other;
+        return otherHospital.getHospitalName().equals(getHospitalName())
+                && otherHospital.getHotline().equals(getHotline());
     }
 }

@@ -125,7 +125,9 @@ public class Patient {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getBirthDate().equals(getBirthDate())
                 && otherPerson.getGender().equals(getGender())
-                && otherPerson.getIc().equals(getIc());
+                && otherPerson.getIc().equals(getIc())
+                && otherPerson.drugAllergy.equals(drugAllergy)
+                && otherPerson.emergencyContact.equals(emergencyContact);
     }
 
     @Override

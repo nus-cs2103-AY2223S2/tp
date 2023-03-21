@@ -28,9 +28,10 @@ public class IcTest {
         assertFalse(Ic.isValidIc(" ")); // spaces only
 
         // invalid ic
-        assertFalse(Ic.isValidIc("a")); // length of ic is not 9
+        assertFalse(Ic.isValidIc("a")); // with one char
         assertFalse(Ic.isValidIc("a123x")); // length of ic is not 9
         assertFalse(Ic.isValidIc("a12345678")); // ic is not end with character
+        assertFalse(Ic.isValidIc("12345678b")); // ic is not start with character
         assertFalse(Ic.isValidIc("a123456bb")); // ic format is invalid
         assertFalse(Ic.isValidIc("a123t567b")); // ic format is invalid
         assertFalse(Ic.isValidIc("a123456*b")); // special character show up
@@ -40,5 +41,21 @@ public class IcTest {
         assertTrue(Ic.isValidIc("A1234567B")); // case insensitive
         assertTrue(Ic.isValidIc("a1234567z"));
         assertTrue(Ic.isValidIc("A7654321Z"));
+    }
+
+    @Test
+    public void equals() {
+        Ic ic = new Ic("A1234567B");
+        // null -> returns false
+        assertFalse(ic.equals(null));
+
+        // same object -> returns true
+        assertTrue(ic.equals(ic));
+
+        // same values -> returns true
+        assertTrue(ic.equals(new Ic("A1234567B")));
+
+        // different values -> return false
+        assertFalse(ic.equals("A1234567C"));
     }
 }

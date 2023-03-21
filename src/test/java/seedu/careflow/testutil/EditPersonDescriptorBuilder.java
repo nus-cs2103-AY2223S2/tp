@@ -2,7 +2,11 @@ package seedu.careflow.testutil;
 
 import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPersonDescriptor;
 import seedu.careflow.model.person.Address;
+import seedu.careflow.model.person.DateOfBirth;
+import seedu.careflow.model.person.DrugAllergy;
 import seedu.careflow.model.person.Email;
+import seedu.careflow.model.person.Gender;
+import seedu.careflow.model.person.Ic;
 import seedu.careflow.model.person.Name;
 import seedu.careflow.model.person.Patient;
 import seedu.careflow.model.person.Phone;
@@ -31,6 +35,11 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
+        descriptor.setDateOfBirth(patient.getBirthDate());
+        descriptor.setGender(patient.getGender());
+        descriptor.setIc(patient.getIc());
+        descriptor.setDrugAllergy(patient.getDrugAllergy());
+        descriptor.setEmergencyContact(patient.getEmergencyContact());
     }
 
     /**
@@ -62,6 +71,46 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DateOfBirth} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDob(String dob) {
+        descriptor.setDateOfBirth(new DateOfBirth(dob));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Ic} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withIc(String ic) {
+        descriptor.setIc(new Ic(ic));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DrugAllergy} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDrugAllergy(String drugAllergy) {
+        descriptor.setDrugAllergy(new DrugAllergy(drugAllergy));
+        return this;
+    }
+
+    /**
+     * Sets the {@code EmergencyContact} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withEmergencyContact(String emergencyContact) {
+        descriptor.setEmergencyContact(new Phone(emergencyContact));
         return this;
     }
 

@@ -1,6 +1,7 @@
 package seedu.careflow.logic.commands.drugcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_UPDATE;
 
@@ -41,6 +42,7 @@ public class UpdateCommand extends Command {
      * @param add a boolean to denote addition or subtraction for the update value
      */
     public UpdateCommand(TradeName tradeName, Integer value, boolean add) {
+        requireAllNonNull(tradeName, value, add);
         this.tradeName = tradeName;
         this.value = value;
         this.add = add;

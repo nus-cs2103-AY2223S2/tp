@@ -1,11 +1,11 @@
 package seedu.careflow.testutil;
 
-import seedu.careflow.model.DrugInventory;
-import seedu.careflow.model.drug.Drug;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.careflow.model.DrugInventory;
+import seedu.careflow.model.drug.Drug;
 
 /**
  * Class for typical drugs
@@ -71,6 +71,15 @@ public class TypicalDrugs {
                     + "drug (NSAID) used to relieve pain and reduce inflammation caused by muscle aches, headaches, "
                     + "toothaches and menstrual cramps.").withSideEffect("Common side effects of Advil may include "
                     + "stomach upset, nausea, and heartburn.").withStorageCount("27").build();
+    public static final String VALID_TRADE_NAME_VISINE = "Visine";
+    public static final String VALID_ACTIVE_INGREDIENT_VISINE = "Tetrahydrozoline";
+    public static final String VALID_PURPOSE_VISINE = "Visine is an eye drop that is used to relieve "
+            + "redness in the eyes caused by minor eye irritations, such as smoke, dust, or wind.";
+    public static final String VALID_DIRECTION_VISINE = "The usual recommended dose of Visine for"
+            + " adults is 1-2 drops in the affected eye(s) up to 4 times a day.";
+    public static final String VALID_SIDE_EFFECT_VISINE = "Common side effects of Visine may include "
+            + "temporary stinging or burning in the eye(s), dryness, and blurred vision.";
+    public static final String VALID_STORAGE_COUNT_VISINE = "7";
 
     private TypicalDrugs() {} // prevents instantiation
 

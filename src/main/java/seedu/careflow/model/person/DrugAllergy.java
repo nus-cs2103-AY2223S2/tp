@@ -3,16 +3,14 @@ package seedu.careflow.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.careflow.commons.util.AppUtil.checkArgument;
 
-import seedu.careflow.model.tag.Tag;
-
 /**
  * Represents a patient's drug allergy in the patient record
  */
 public class DrugAllergy {
     public static final String MESSAGE_CONSTRAINTS = "Drug allergy should be alphanumeric "
             + "and less than 500 characters long";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\p{Space}]{1,499}+";
-    private final Tag drugAllergy;
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum}\\p{Space}-]{0,499}+";
+    private final String drugAllergy;
 
     /**
      * Constructs a {@code DrugAllergy}.
@@ -22,7 +20,7 @@ public class DrugAllergy {
     public DrugAllergy(String drugAllergy) {
         requireNonNull(drugAllergy);
         checkArgument(isValidDrugAllergy(drugAllergy), MESSAGE_CONSTRAINTS);
-        this.drugAllergy = new Tag(drugAllergy);
+        this.drugAllergy = drugAllergy;
     }
 
     /**
@@ -34,7 +32,7 @@ public class DrugAllergy {
 
     @Override
     public String toString() {
-        return drugAllergy.tagName;
+        return drugAllergy;
     }
 
     @Override

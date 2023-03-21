@@ -1,5 +1,24 @@
 package seedu.careflow.testutil;
 
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DOB_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DOB_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DRUG_ALLERGY_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DRUG_ALLERGY_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_IC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_IC_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +27,7 @@ import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.person.Patient;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Patient} objects to be used in tests.
  */
 public class TypicalPatients {
 
@@ -45,19 +64,21 @@ public class TypicalPatients {
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    //    public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-    //            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    //    public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-    //            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-    //            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-    //            .build();
+    public static final Patient AMY = new PatientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withDob(VALID_DOB_AMY)
+            .withGender(VALID_GENDER_AMY).withIc(VALID_IC_AMY).withDrugAllergy(VALID_DRUG_ALLERGY_AMY)
+            .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY).build();
+    public static final Patient BOB = new PatientBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withDob(VALID_DOB_BOB)
+            .withGender(VALID_GENDER_BOB).withIc(VALID_IC_BOB).withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
+            .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code Careflow} with all the typical patients.
      */
     public static PatientRecord getTypicalPatientRecord() {
         PatientRecord pr = new PatientRecord();

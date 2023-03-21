@@ -268,7 +268,8 @@ public class UpdateCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getPhone().equals(e.getPhone())
+            return getName().equals(e.getName())
+                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getDateOfBirth().equals(e.getDateOfBirth())
