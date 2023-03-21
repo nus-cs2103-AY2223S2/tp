@@ -6,6 +6,10 @@
     -fx-background-color: #1c1f3a;
 }
 
+.menu-bar .label {
+    -fx-text-fill: white;
+}
+
 .menu:hover {
     -fx-background-color: gray !important;
 }

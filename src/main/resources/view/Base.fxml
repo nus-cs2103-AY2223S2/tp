@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -34,7 +36,22 @@
                     </MenuBar>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
-                     <VBox fx:id="sidebar" prefWidth="50.0" styleClass="sidebar" />
+                     <VBox fx:id="sidebar" alignment="TOP_CENTER" prefWidth="80.0" styleClass="sidebar">
+                        <children>
+                           <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../../../../../advisio-logo-zip-file/png/logo-no-background.png" />
+                              </image>
+                              <VBox.margin>
+                                 <Insets bottom="32.0" top="34.0" />
+                              </VBox.margin>
+                           </ImageView>
+                           <StackPane maxHeight="1.0" minHeight="1.0" prefHeight="1.0" styleClass="divider">
+                              <VBox.margin>
+                                 <Insets left="16.0" right="16.0" />
+                              </VBox.margin>
+                           </StackPane>
+                        </children></VBox>
                      <VBox fx:id="dashboard" styleClass="dark-color" HBox.hgrow="ALWAYS">
                         <children>
                            <HBox fx:id="header" styleClass="header-hbox">
