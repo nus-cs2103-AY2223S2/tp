@@ -18,7 +18,7 @@ public class AddMeetingParserCommandTest {
     private final String nonEmptyMeeting = " 09-11-2001 11:30 12:30";
 
     @Test
-    public void parse_indexSpecified_success() throws Exception {
+    public void parse_indexSpecified_success() {
         // have MEETING
         String userInput = " 1 " + PREFIX_MEETING + nonEmptyMeeting;
 
