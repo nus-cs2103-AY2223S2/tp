@@ -5,10 +5,10 @@ title: User Guide
 
 ![Ui](images/Logo.png)
 
-Welcome to the Paidlancers User Guide! We're thrilled to have you here! At Paidlancers, we know that freelancing can be both rewarding and challenging.
-As freelancers ourselves, we understand the unique obstacles and opportunities that come with this type of work.
-That's why we created Paidlancers – a desktop app designed to help you streamline your freelancing event management
-tasks.
+Welcome to the Paidlancers User Guide! We're thrilled to have you here! At Paidlancers,
+we know that freelancing can be both rewarding and challenging. As freelancers ourselves, we understand the unique
+obstacles and opportunities that come with this type of work. That's why we created Paidlancers – a desktop app
+designed to help you streamline your freelancing event management tasks.
 
 ## Introducing Paidlancers
 
@@ -16,7 +16,7 @@ Paidlancers is a **desktop app for keeping track of your freelancing events, opt
 Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Paidlancers can get your freelancing event management tasks done faster than traditional GUI apps.
 
-This user guide will serve as a guide to help you get up to speed in no time!
+This user guide will help you get up to speed in no time!
 
 ## Table of Contents
 - [Quick Start](#quick-start)
@@ -40,17 +40,26 @@ This user guide will serve as a guide to help you get up to speed in no time!
 ## Using the examples in this Guide
 The examples given in this guide are formatted with the following conventions:
 
-**Command Words** - Command words are the first word in any command.\
-They are written in lowercase. These include examples such as `linkcontact` or `edit`.
+`commandword PARAMETERS`
 
-**Parameters** - Parameters are the words that follow the command word.\
-They are written in UPPERCASE. These include examples such as `INDEX` or `PHONE`.
-Parameters are meant to be replaced by the user with the relevant information.
+**Command Word**
+- Command word is the first word in any command.
+- It is written in lowercase.
+- These include examples such as `linkcontact` or `edit`.
 
-**Example** - Examples are shown in the format `commandword + parameters`.\
-This is followed by the expected outcome of the command. These includ examples such as `newcontact n/John Doe p/98765432`.
-These are meant to be used as a reference for the user to see how the command should be formatted.
-The expected action of this command is written behind.
+**Parameters**
+- Parameters are the words that follow the command word.
+- Parameters are written in UPPERCASE.
+- These include examples such as `INDEX` or `PHONE`.
+- Parameters are meant to be replaced by the user with the relevant information.
+- All parameters are required unless wrapped with `[square brackets]`.
+
+**Example**
+- Examples are shown in the format `commandword + parameters`.
+- This is followed by the expected outcome of the command.
+- These include examples such as `newcontact n/John Doe p/98765432`.
+- These are meant to be used as a reference for the user to see how the command should be formatted.
+- The expected action of this command is written behind.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,12 +198,12 @@ Unmarks a specified event in Paidlancers.
 
 Creates a new event
 
-**Format**: `newevent n/NAME p/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
+**Format**: `newevent n/NAME r/rate a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
 
 - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
-- `newevent n/DJ at wedding p/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
+- `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
   - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
 
 ### List all Events: `listevent` <a id = "list-all-events"></a>
