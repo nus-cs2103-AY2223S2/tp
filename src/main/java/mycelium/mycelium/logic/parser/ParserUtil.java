@@ -22,6 +22,7 @@ import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.tag.Tag;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -159,13 +160,13 @@ public class ParserUtil {
     /**
      * Parses a string by asserting that it is non empty after trimming.
      */
-    public static String parseNonEmptyString(String source) throws ParseException {
+    public static NonEmptyString parseNonEmptyString(String source) throws ParseException {
         requireNonNull(source);
         String trimmedSource = source.trim();
-        if (source.isEmpty()) {
-            throw new ParseException(Messages.MESSAGE_EMPTY_STR);
+        if (!NonEmptyString.isValid(trimmedSource)) {
+            throw new ParseException(NonEmptyString.MESSAGE_CONSTRAINTS);
         }
-        return trimmedSource;
+        return NonEmptyString.of(trimmedSource);
     }
 
     /**

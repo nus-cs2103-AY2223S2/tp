@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.model.ModelManager;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.Pair;
 import mycelium.mycelium.testutil.ProjectBuilder;
 
@@ -38,19 +39,19 @@ public class DeleteProjectCommandTest {
 
     @Test
     public void execute_nonExistentName_throwsCommandException() {
-        DeleteProjectCommand cmd = new DeleteProjectCommand("Team Fortress 3");
+        DeleteProjectCommand cmd = new DeleteProjectCommand(NonEmptyString.of("Team Fortress 3"));
 
         assertThrows(CommandException.class, () -> cmd.execute(model));
     }
 
     @Test
     public void equals() {
-        DeleteProjectCommand deleteBing = new DeleteProjectCommand("Bing");
-        DeleteProjectCommand deleteBard = new DeleteProjectCommand("Bard");
+        DeleteProjectCommand deleteBing = new DeleteProjectCommand(NonEmptyString.of("Bing"));
+        DeleteProjectCommand deleteBard = new DeleteProjectCommand(NonEmptyString.of("Bard"));
 
         Map<String, Pair<DeleteProjectCommand, DeleteProjectCommand>> equalTests = Map.of(
             "same object", Pair.of(deleteBing, deleteBing),
-            "same name, different object", Pair.of(deleteBing, new DeleteProjectCommand("Bing"))
+            "same name, different object", Pair.of(deleteBing, new DeleteProjectCommand(NonEmptyString.of("Bing")))
         );
         equalTests.forEach((desc, tt) -> {
             assertEquals(tt.first, tt.second, "While testing case: " + desc);

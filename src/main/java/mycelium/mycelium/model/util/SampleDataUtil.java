@@ -52,37 +52,37 @@ public class SampleDataUtil {
                 new Name("Alex Yeoh"),
                 new Email("alexyeoh@example.com"),
                 Optional.ofNullable(new YearOfBirth("1998")),
-                Optional.ofNullable("www.fiverr.com"),
+                NonEmptyString.ofOptional("www.fiverr.com"),
                 Optional.ofNullable(new Phone("87438807"))),
             new Client(
                 new Name("Bernice Yu"),
                 new Email("berniceyu@example.com"),
                 Optional.ofNullable(new YearOfBirth("1972")),
-                Optional.ofNullable("www.upwork.com"),
+                NonEmptyString.ofOptional("www.upwork.com"),
                 Optional.ofNullable(new Phone("99272758"))),
             new Client(
                 new Name("Charlotte Oliveiro"),
                 new Email("charlotte@example.com"),
                 Optional.ofNullable(new YearOfBirth("1999")),
-                Optional.ofNullable("www.guru.com"),
+                NonEmptyString.ofOptional("www.guru.com"),
                 Optional.ofNullable(new Phone("91234567"))),
             new Client(
                 new Name("David Li"),
                 new Email("lidavid@example.com"),
                 Optional.ofNullable(new YearOfBirth("1998")),
-                Optional.ofNullable("www.fiverr.com"),
+                NonEmptyString.ofOptional("www.fiverr.com"),
                 Optional.ofNullable(new Phone("91031282"))),
             new Client(
                 new Name("Irfan Ibrahim"),
                 new Email("irfan@example.com"),
                 Optional.ofNullable(new YearOfBirth("1964")),
-                Optional.ofNullable("www.linkedin.com"),
+                NonEmptyString.ofOptional("www.linkedin.com"),
                 Optional.ofNullable(new Phone("92492021"))),
             new Client(
                 new Name("Roy Balakrishnan"),
                 new Email("royb@example.com"),
                 Optional.ofNullable(new YearOfBirth("2001")),
-                Optional.ofNullable("www.simplyhired.com"),
+                NonEmptyString.ofOptional("www.simplyhired.com"),
                 Optional.ofNullable(new Phone("92624417")))
         };
     }
@@ -90,28 +90,28 @@ public class SampleDataUtil {
     public static Project[] getSampleProjects() {
         return new Project[]{
             new Project(
-                "Bing",
+                NonEmptyString.of("Bing"),
                 ProjectStatus.NOT_STARTED,
                 new Email("johndoe@gmail.com"),
-                Optional.ofNullable("fiver"),
+                NonEmptyString.ofOptional("fiver"),
                 Optional.ofNullable("Create the next google AKA bing"),
                 LocalDate.now(),
                 Optional.empty()
             ),
             new Project(
-                "Havard2.0",
+                NonEmptyString.of("Havard2.0"),
                 ProjectStatus.IN_PROGRESS,
                 new Email("EluidKipchoge@gmail.com"),
-                Optional.ofNullable("Behind the alley"),
+                NonEmptyString.ofOptional("Behind the alley"),
                 Optional.ofNullable("University on the streets"),
                 LocalDate.now(),
                 Optional.ofNullable(LocalDate.now())
             ),
             new Project(
-                "Build Skynet",
+                NonEmptyString.of("Build Skynet"),
                 ProjectStatus.DONE,
                 new Email("VladPutin@hotmale.com"),
-                Optional.ofNullable("Russia"),
+                NonEmptyString.ofOptional("Russia"),
                 Optional.ofNullable("Conquer the world"),
                 LocalDate.now(),
                 Optional.empty()

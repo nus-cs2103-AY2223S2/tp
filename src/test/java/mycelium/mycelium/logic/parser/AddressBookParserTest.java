@@ -26,6 +26,7 @@ import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.NameContainsKeywordsPredicate;
 import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.Assert;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.EditPersonDescriptorBuilder;
@@ -126,7 +127,7 @@ public class AddressBookParserTest {
     public void parseCommand_deleteProject() throws Exception {
         String input = DeleteProjectCommand.COMMAND_ACRONYM + " -pn Bing";
         DeleteProjectCommand got = (DeleteProjectCommand) parser.parseCommand(input);
-        DeleteProjectCommand want = new DeleteProjectCommand("Bing");
+        DeleteProjectCommand want = new DeleteProjectCommand(NonEmptyString.of("Bing"));
         assertEquals(want, got);
     }
 

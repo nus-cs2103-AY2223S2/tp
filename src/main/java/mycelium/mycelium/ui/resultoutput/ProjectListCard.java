@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
 
 /**
@@ -47,10 +48,10 @@ public class ProjectListCard extends UiPart<Region> {
         super(FXML);
         project = p;
         id.setText(displayedIndex + ". ");
-        name.setText(p.getName());
+        name.setText(p.getName().toString());
         status.setText(p.getStatus().toString());
         email.setText(p.getClientEmail().toString());
-        source.setText(p.getSource().orElse("Unknown"));
+        source.setText(p.getSource().map(NonEmptyString::toString).orElse("Unknown"));
         description.setText(p.getDescription().orElse("No description given"));
         acceptedOn.setText(p.getAcceptedOn().format(Project.DATE_FMT));
         deadline.setText(p.getDeadline().map(d -> d.format(Project.DATE_FMT)).orElse("No Deadline"));

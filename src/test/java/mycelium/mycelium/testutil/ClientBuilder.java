@@ -7,6 +7,7 @@ import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * A utility class to help with building Client objects.
@@ -47,7 +48,7 @@ public class ClientBuilder {
         name = client.getName();
         email = client.getEmail();
         yearOfBirth = client.getYearOfBirth().orElse(null);
-        source = client.getSource().orElse(null);
+        source = client.getSource().map(NonEmptyString::getValue).orElse(null);
         mobileNumber = client.getMobileNumber().orElse(null);
     }
 
@@ -97,7 +98,7 @@ public class ClientBuilder {
      */
     public Client build() {
         return new Client(name, email, Optional.ofNullable(yearOfBirth),
-                Optional.ofNullable(source), Optional.ofNullable(mobileNumber));
+                NonEmptyString.ofOptional(source), Optional.ofNullable(mobileNumber));
     }
 
 }

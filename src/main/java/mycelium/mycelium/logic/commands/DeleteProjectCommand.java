@@ -9,6 +9,7 @@ import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.project.Project;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * A command to delete an existing project.
@@ -28,9 +29,9 @@ public class DeleteProjectCommand extends Command {
 
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Project: %1$s";
 
-    private final String targetProjectName;
+    private final NonEmptyString targetProjectName;
 
-    public DeleteProjectCommand(String targetProjectName) {
+    public DeleteProjectCommand(NonEmptyString targetProjectName) {
         this.targetProjectName = targetProjectName;
     }
 

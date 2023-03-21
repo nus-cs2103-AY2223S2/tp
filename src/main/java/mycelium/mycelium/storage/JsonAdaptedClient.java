@@ -1,5 +1,6 @@
 package mycelium.mycelium.storage;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,6 +12,7 @@ import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * Jackson-friendly version of {@link Client}. This class is used to convert a {@code Client} object into a
@@ -52,7 +54,7 @@ class JsonAdaptedClient {
         name = client.getName().fullName;
         email = client.getEmail().value;
         yearOfBirth = client.getYearOfBirth().map(x -> x.value).orElse(null);
-        source = client.getSource().orElse(null);
+        source = client.getSource().map(NonEmptyString::toString).orElse(null);
         mobileNumber = client.getMobileNumber().map(x -> x.value).orElse(null);
     }
 
@@ -108,7 +110,28 @@ class JsonAdaptedClient {
         return new Client(modelName,
             modelEmail,
             Optional.ofNullable(yearOfBirth).map(YearOfBirth::new),
-            Optional.ofNullable(source),
+            NonEmptyString.ofOptional(source),
             Optional.ofNullable(mobileNumber).map(Phone::new));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        JsonAdaptedClient that = (JsonAdaptedClient) o;
+        return Objects.equals(name, that.name)
+            && Objects.equals(email, that.email)
+            && Objects.equals(yearOfBirth, that.yearOfBirth)
+            && Objects.equals(source, that.source)
+            && Objects.equals(mobileNumber, that.mobileNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, yearOfBirth, source, mobileNumber);
     }
 }
