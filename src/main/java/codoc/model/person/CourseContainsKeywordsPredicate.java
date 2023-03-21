@@ -16,7 +16,7 @@ public class CourseContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> person.getCourse().course.toLowerCase().contains(keyword.toLowerCase()));
+                .allMatch(keyword -> person.getCourse().course.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override

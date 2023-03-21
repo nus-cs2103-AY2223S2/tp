@@ -16,7 +16,7 @@ public class YearContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> person.getYear().year.toLowerCase().contains(keyword.toLowerCase()));
+                .allMatch(keyword -> person.getYear().year.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
