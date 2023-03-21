@@ -1,22 +1,20 @@
 package seedu.recipe.testutil;
 
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.recipe.Recipe;
-
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_CORNDOGS;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_CORNDOGS;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_CORNDOGS;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_CORNDOGS;
-
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
-
 
 
 /**
