@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <HBox fillHeight="false">
       <children>
        <VBox alignment="CENTER_LEFT" minHeight="80.0" spacing="3.0">
@@ -52,20 +52,19 @@
    </HBox>
   <GridPane alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="ALWAYS" prefWidth="80.0" />
     </columnConstraints>
       <rowConstraints>
          <RowConstraints />
       </rowConstraints>
       <children>
-      <FlowPane fx:id="tags" alignment="CENTER_LEFT">
-            <padding>
-               <Insets top="-20.0" />
-            </padding>
-         </FlowPane>
+      <FlowPane fx:id="tags" alignment="CENTER_LEFT" prefWrapLength="300.0" rowValignment="BASELINE" GridPane.halignment="LEFT" />
       </children>
       <HBox.margin>
          <Insets left="10.0" />
       </HBox.margin>
+      <padding>
+         <Insets bottom="5.0" top="5.0" />
+      </padding>
   </GridPane>
 </HBox>

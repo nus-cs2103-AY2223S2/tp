@@ -71,7 +71,11 @@ public class LogicManager implements Logic {
 
     @Override
     public void setViewedPerson(int index) {
-        model.updateViewedPerson(getFilteredPersonList().get(index));
+        if (index == -1) {
+            model.updateViewedPerson(null);
+        } else {
+            model.updateViewedPerson(getFilteredPersonList().get(index));
+        }
     }
 
     @Override
