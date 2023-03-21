@@ -158,7 +158,8 @@ This section describes some noteworthy details on how certain features are imple
 
 #### How is the feature implemented
 
-The `add_contact` command allows users to add the contact of a company to an internship application. The implementation of the `add_contact` command is facilitated by the `AddContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method. The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddContactCommandParser#parse` methods.
+The `add_contact` command allows users to add the contact of a company to an internship application. The implementation of the `add_contact` command is facilitated by the `AddContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method. 
+The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddContactCommandParser#parse` methods.
 
 The activity diagram below shows the workflow of the `add_contact` command during its execution.
 
@@ -172,7 +173,7 @@ A sequence diagram is shown here to illustrate the execution process of the `add
 
 ![AddContactSequenceDiagram](images/AddContactSequenceDiagram.png)
 
-Given below is an explanation on the `add_contact` command's behavious.
+Given below is an explanation on the `add_contact` command's behaviours.
 
 Step 1. Parsing
 
@@ -182,7 +183,7 @@ The method `AddContactCommandParser#parse` is invoked only if the command word m
 Step 2. Execution
 
 The `AddContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getFilteredInternshipList`.
-The internship appplication where the contact is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+The internship application where the contact is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
 immutable, a new `InternshipApplication` object is created with the contact details. The `Model#setApplication` method is then invoked to update the specified application in the list.
 
 Step 3. Result
