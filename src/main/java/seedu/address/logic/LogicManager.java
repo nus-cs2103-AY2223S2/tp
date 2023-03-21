@@ -101,4 +101,9 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public ObservableList<String> getReviewStatsList() {
+        return model.getReviewStatsList();
+    }
 }

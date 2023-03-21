@@ -23,10 +23,12 @@ public class DeckListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public DeckListPanel(ObservableList<Deck> deckList) {
+    public DeckListPanel(ObservableList<Deck> deckList, boolean isReview) {
         super(FXML);
         deckListView.setItems(deckList);
-        deckListView.setCellFactory(listView -> new DeckListViewCell());
+        if (!isReview) {
+            deckListView.setCellFactory(listView -> new DeckListViewCell());
+        }
         deckListView.setStyle("-fx-background-color: #FFFFFF;"
                 + "-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-width:5;");
     }
