@@ -11,7 +11,7 @@ public class MedicalQualificationTag extends Tag {
             "Medical qualification must be a skill, followed by a skill-level. "
             + "format: [Skill] [Level]";
     public static final String MESSAGE_CONSTRAINTS_SKILL =
-            "SkillLevel should only contain 3 types of values, "
+            "Skill-level should only contain 3 types of values, "
             + "basic, intermediate, advanced";
 
     /**
@@ -26,12 +26,11 @@ public class MedicalQualificationTag extends Tag {
     /* Level of training attained */
     private SkillLevel qualificationLevel;
 
-    /* Date where qualification becomes invalid */
-    // private LocalDate expiryDate;
-
     /**
-     * Constructs a {@code MedicalQualification}
+     * Constructs a {@code MedicalQualification}.
      * Use "Medical" as the common prefix for medical tags.
+     *
+     * @param skill The skill type.
      * @param qualificationLevel How qualified it is.
      */
     public MedicalQualificationTag(String skill, String qualificationLevel) {
@@ -59,7 +58,10 @@ public class MedicalQualificationTag extends Tag {
     }
 
     /**
-     * Returns if a given string is a valid qualification level.
+     * Returns if a given string is a valid qualification.
+     *
+     * @param qualification Qualification of the volunteer.
+     * @return True if the string is a valid qualification and false otherwise.
      */
     public static boolean isValidQualification(String qualification) {
         if (qualification != null) {
