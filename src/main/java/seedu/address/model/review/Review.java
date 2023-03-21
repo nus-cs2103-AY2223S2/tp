@@ -202,11 +202,11 @@ public class Review {
 
     private void updateReviewStatsList() {
         Pair<String, String> title = new Pair<String, String>("Deck Name", deck.getDeckName());
-        Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:"
-                , String.format("%d/%d", currCardNum, totalNumCards));
-        Pair<String, String> currentScore = new Pair<String, String>("Current Score: "
-                , String.format("%d", getTotalScore()));
+        Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:",
+                String.format("%d/%d", currCardNum, totalNumCards));
+        Pair<String, String> currentScore = new Pair<String, String>("Current Score: ",
+                 String.format("%d", getTotalScore()));
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title,cardsSeen,currentScore);
+        this.reviewStatsList.addAll(title, cardsSeen, currentScore);
     }
 }
