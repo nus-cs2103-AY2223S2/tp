@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Class "<<interface>>\nReadOnlyItemManager" as ReadOnlyItemManager
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class ItemManager
+Class ModelManager
+Class UserPrefs
+
+Class Items
+Class Pilot
+Class Gender <<Enumeration>>
+Class PilotRank <<Enumeration>>
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+ItemManager .up.|> ReadOnlyItemManager
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyItemManager
+ModelManager -left-> "1" ItemManager
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+ItemManager *--> "1" Items
+Items --> "~* all" Pilot
+Pilot *--> "1" Gender
+Pilot *--> "1" PilotRank
+
+ModelManager -->"~* filtered" Pilot
+@enduml
