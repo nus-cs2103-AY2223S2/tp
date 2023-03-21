@@ -83,7 +83,7 @@ public class CommandResult {
 
     @Override
     public String toString() {
-        return String.format("Command Result: %s, %b, %b", feedbackToUser, showHelp, exit, showQuickstart);
+        return String.format("Command Result: %s, %b, %b, %b", feedbackToUser, showHelp, exit, showQuickstart);
     }
     @Override
     public int hashCode() {
