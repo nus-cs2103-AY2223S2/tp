@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.ultron.commons.exceptions.IllegalValueException;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Email;
 import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Position;
@@ -60,7 +60,7 @@ class JsonAdaptedOpening {
         email = source.getEmail().value;
         status = source.getStatus().fullStatus;
         remark = source.getRemark().value;
-        dates.addAll(source.getDates().stream()
+        dates.addAll(source.getKeydates().stream()
                 .map(JsonAdaptedDate::new)
                 .collect(Collectors.toList()));
     }
@@ -71,9 +71,9 @@ class JsonAdaptedOpening {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Opening.
      */
     public Opening toModelType() throws IllegalValueException {
-        final List<Date> openingDates = new ArrayList<>();
+        final List<Keydate> openingKeydates = new ArrayList<>();
         for (JsonAdaptedDate date : dates) {
-            openingDates.add(date.toModelType());
+            openingKeydates.add(date.toModelType());
         }
 
         if (position == null) {
@@ -116,8 +116,8 @@ class JsonAdaptedOpening {
         final Remark modelRemark = new Remark(remark);
 
 
-        final Set<Date> modelDates = new HashSet<>(openingDates);
-        return new Opening(modelPosition, modelCompany, modelEmail, modelStatus, modelRemark, modelDates);
+        final Set<Keydate> modelKeydates = new HashSet<>(openingKeydates);
+        return new Opening(modelPosition, modelCompany, modelEmail, modelStatus, modelRemark, modelKeydates);
     }
 
 }
