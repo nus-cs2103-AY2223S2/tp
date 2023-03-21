@@ -34,7 +34,7 @@ public class CreateCommandParserTest {
         CreateCommand cmd1 = CreateCommandParser.getInstance().parse(input1);
         assertTrue(cmd1 != null);
 
-        String input2 = "i deadline to play Touhou 8 /<change this>";
+        String input2 = "i deadline to play Touhou 8 /<datetime>";
         CreateCommand cmd2 = CreateCommandParser.getInstance().parse(input2);
         assertTrue(cmd2 != null);
     }
