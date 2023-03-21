@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.card.Card;
 
 /**
- * An UI component that displays information of a {@code Card}.
+ * A UI component that displays information of a {@code Card}.
  */
 public class PersonCard extends UiPart<Region> {
 

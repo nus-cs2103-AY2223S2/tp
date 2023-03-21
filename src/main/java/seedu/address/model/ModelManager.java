@@ -306,9 +306,8 @@ public class ModelManager implements Model {
 
     @Override
     public String getReviewDeckName() {
-        return Optional.ofNullable(currReview)
-                .map(Review::getDeckName)
-                .orElse("None");
+        assert currReview != null : "Review command executed without a Review session.";
+        return currReview.getDeckName();
     }
 
     @Override

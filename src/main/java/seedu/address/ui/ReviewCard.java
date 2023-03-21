@@ -9,6 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.card.Card;
 
+/**
+ * A UI component that displays information of a {@code Card}.
+ */
 public class ReviewCard extends UiPart<Region> {
     private static final String EMPTY_STRING = "";
     private static final String FXML = "ReviewCard.fxml";
