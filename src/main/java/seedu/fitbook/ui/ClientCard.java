@@ -4,6 +4,8 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -50,6 +52,22 @@ public class ClientCard extends UiPart<Region> {
     private Label goal;
     @FXML
     private Label calorie;
+    @FXML
+    private ImageView genderList;
+    @FXML
+    private ImageView phoneIcon;
+    @FXML
+    private ImageView addressIcon;
+    @FXML
+    private ImageView genderIcon;
+    @FXML
+    private ImageView emailIcon;
+    @FXML
+    private ImageView weightIcon;
+    @FXML
+    private ImageView goalIcon;
+    @FXML
+    private ImageView caloriesIcon;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -57,14 +75,20 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
+        String genderText;
+        if (client.getGender().value.equals("M") || client.getGender().value.equals("m")) {
+            genderText = "male";
+        } else {
+            genderText = "female";
+        }
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         weight.setText(client.getWeight().value + " Kg");
-        gender.setText("Gender: " + client.getGender().value);
-        goal.setText("Goal: " + client.getGoal().value);
+        //gender.setText(client.getGender().value);
+        goal.setText(client.getGoal().value);
         setCalorieCondition(client, calorie);
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
@@ -72,6 +96,15 @@ public class ClientCard extends UiPart<Region> {
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        genderList.setImage(
+                new Image(this.getClass().getResourceAsStream("/images/genderList/" + genderText + ".png")));
+        phoneIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/phoneIcon.png")));
+        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/addressIcon.png")));
+        //genderIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/genderIcon.png")));
+        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
+        weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
+        goalIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/goalIcon.png")));
+        caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
     }
 
     /**
@@ -83,7 +116,7 @@ public class ClientCard extends UiPart<Region> {
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
-            calorie.setText("Rec Calories intake: " + client.getCalorie().value + " cal");
+            calorie.setText(client.getCalorie().value + " cal");
         } else {
             calorie.setManaged(false);
         }
