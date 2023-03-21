@@ -19,17 +19,21 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox spacing="5">
+      <HBox alignment="TOP_CENTER" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label" text="\$id" wrapText="true">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="question" styleClass="cell_big_label" text="\$question" wrapText="true" />
+        <Label fx:id="question" styleClass="cell_big_label" text="\$question" textAlignment="CENTER" wrapText="true" />
       </HBox>
-      <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" wrapText="true" />
-      <FlowPane fx:id="tags" />
+         <HBox alignment="CENTER">
+            <children>
+            <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" textAlignment="CENTER" wrapText="true" />
+            </children>
+         </HBox>
+      <FlowPane fx:id="tags" alignment="CENTER" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
