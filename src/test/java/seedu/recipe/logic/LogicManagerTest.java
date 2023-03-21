@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
 import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_DESC_CORNDOGS;
+import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.STEP_DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.TITLE_DESC_CORNDOGS;
-import static seedu.recipe.logic.commands.CommandTestUtil.INGREDIENT_DESC_CORNDOGS;
+import static seedu.recipe.logic.parser.CliSyntax.*;
 import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
 
@@ -79,9 +80,10 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_CORNDOGS + INGREDIENT_DESC_CORNDOGS + STEP_DESC_CORNDOGS
-                + DESC_DESC_CORNDOGS;
-        Recipe expectedRecipe = new RecipeBuilder(CORNDOGS).withIngredients().build();
+        String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_CORNDOGS + " " + PREFIX_DESCRIPTION
+                + "Awesome cheap corndogs" + " " + PREFIX_INGREDIENT + "eggs" + " " + PREFIX_INGREDIENT + "flour"
+                + " " + PREFIX_STEP + "CDTest1" + " " + PREFIX_STEP + "CDTest2";
+        Recipe expectedRecipe = new RecipeBuilder(CORNDOGS).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addRecipe(expectedRecipe);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

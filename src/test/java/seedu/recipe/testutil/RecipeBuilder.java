@@ -19,9 +19,9 @@ import seedu.recipe.model.util.SampleDataUtil;
  */
 public class RecipeBuilder {
 
-    public static final String DEFAULT_TITLE = "Corndogs";
-    public static final String DEFAULT_DESCRIPTION = "Awesome cheap corndogs";
-    public static final String DEFAULT_INGREDIENTS = "eggs, flour";
+    public static final String DEFAULT_TITLE = "A Recipe";
+    public static final String DEFAULT_DESCRIPTION = "A Description";
+    public static final String DEFAULT_INGREDIENTS = "Ingredient1, Ingredient2";
     public static final String DEFAULT_STEPS = "Test1, Test2";
 
     private Title title;

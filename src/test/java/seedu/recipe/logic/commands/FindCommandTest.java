@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.commons.core.Messages.MESSAGE_RECIPES_LISTED_OVERVIEW;
 import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.recipe.testutil.TypicalRecipes.CORNDOGS;
+import static seedu.recipe.testutil.TypicalRecipes.SOUP;
 import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
 
 import java.util.Arrays;
@@ -64,12 +65,12 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleRecipesFound() {
-        String expectedMessage = String.format(MESSAGE_RECIPES_LISTED_OVERVIEW, 3);
-        TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        String expectedMessage = String.format(MESSAGE_RECIPES_LISTED_OVERVIEW, 2);
+        TitleContainsKeywordsPredicate predicate = preparePredicate("Corndogs Soup");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredRecipeList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CORNDOGS), model.getFilteredRecipeList());
+        assertEquals(Arrays.asList(CORNDOGS, SOUP), model.getFilteredRecipeList());
     }
 
     /**

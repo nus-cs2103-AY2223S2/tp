@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.recipe.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.recipe.logic.commands.CommandTestUtil.showRecipeAtIndex;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand.EditRecipeDescriptor;
-import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.ModelManager;
+import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.UserPrefs;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
@@ -85,9 +85,9 @@ public class EditCommandTest {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
 
         Recipe recipeInFilteredList = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-        Recipe editedRecipe = new RecipeBuilder(recipeInFilteredList).withTitle(VALID_TITLE_SOUP).build();
+        Recipe editedRecipe = new RecipeBuilder(recipeInFilteredList).withTitle("A Recipe").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RECIPE,
-                new EditRecipeDescriptorBuilder().withTitle(VALID_TITLE_SOUP).build());
+                new EditRecipeDescriptorBuilder().withTitle("A Recipe").build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe);
 
