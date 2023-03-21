@@ -80,7 +80,7 @@ public class VersionedAddressBook {
 
     /**
      * Helper method
-     * @return LinkedList<AddressBook>
+     * @return linked list of Address Books
      */
     public LinkedList<AddressBook> getAddressBookStateList() {
         return this.addressBookStateList;

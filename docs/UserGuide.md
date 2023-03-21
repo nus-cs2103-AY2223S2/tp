@@ -8,6 +8,8 @@ Advis.io (AIO) is a desktop app for managing clients information, optimized for 
   * Features
     * General Management
       * Viewing help : `help`
+      * Undo previous operation : `undo`
+      * Redo previous operation : `redo`
       * Exiting the program : `exit`
       * Saving the data
       * Editing the data file
@@ -47,6 +49,10 @@ Advis.io (AIO) is a desktop app for managing clients information, optimized for 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
+
+   * `undo` : Undo the previous command `delete 3`. Thus original 3rd contact shown in list will come back
+
+   * `redo` : Redo the previous command `delete 3`. Thus 3rd contact will be deleted again from list
 
    * `clear` : Deletes all contacts.
 
@@ -237,6 +243,26 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+### Undo previous command : `undo`
+
+Undo one previous command and restore that version of address book
+
+Format: `undo`
+
+* Restore the specific address book before the command took place
+* `Undo Success` will be shown in the display
+* If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to remind of undo failure
+
+### Redo previous command : `redo`
+
+Redo one previous command and restore that version of address book
+
+Format: `redo`
+
+* Restore the specific address book before the undo command took place
+* `Redo Success` will be shown in the display
+* If current address book is **already the latest**, `There is no more operations to redo!` will be shown in display to remind of redo failure
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -318,6 +344,8 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
+**Undo** | `undo`
+**Redo** | `redo`
 **Help** | `help`
 **Add a Policy** | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health pd/28.05.2023 pp/300 pf/monthly`
 **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`

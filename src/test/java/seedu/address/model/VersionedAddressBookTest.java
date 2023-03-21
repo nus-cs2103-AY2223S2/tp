@@ -6,12 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.Collections;
-import java.util.LinkedList;
 
 import org.junit.jupiter.api.Test;
 
 class VersionedAddressBookTest {
-    private final VersionedAddressBook  versionedAddressBook= new VersionedAddressBook();
+    private final VersionedAddressBook versionedAddressBook = new VersionedAddressBook();
 
     @Test
     public void constructor() {
@@ -23,7 +22,7 @@ class VersionedAddressBookTest {
         AddressBook newData = getTypicalAddressBook();
         versionedAddressBook.commit(newData);
         assertFalse(newData == versionedAddressBook.getAddressBookStateList().get(versionedAddressBook.getSize() - 1));
-        assertEquals(newData,versionedAddressBook.getAddressBookStateList().get(versionedAddressBook.getSize() - 1));
+        assertEquals(newData, versionedAddressBook.getAddressBookStateList().get(versionedAddressBook.getSize() - 1));
     }
 
     @Test
@@ -44,27 +43,11 @@ class VersionedAddressBookTest {
         for (int i = 0; i < undoTime; i++) {
             versionedAddressBook.undo();
         }
-        assertTrue(versionedAddressBook.getCurrentStatePointer() ==
-                commitTime - undoTime -1);
+        assertTrue(versionedAddressBook.getCurrentStatePointer()
+                == commitTime - undoTime - 1);
         versionedAddressBook.commit(newData);
-        assertTrue(versionedAddressBook.getCurrentStatePointer() ==
-                versionedAddressBook.getSize() - 1);
+        assertTrue(versionedAddressBook.getCurrentStatePointer()
+                == versionedAddressBook.getSize() - 1);
     }
 
-    @Test
-    void undo() {
-
-    }
-
-    @Test
-    void redo() {
-    }
-
-    @Test
-    void canUndo() {
-    }
-
-    @Test
-    void canRedo() {
-    }
 }
