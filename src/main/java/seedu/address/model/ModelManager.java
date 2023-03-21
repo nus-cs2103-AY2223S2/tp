@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -103,6 +106,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Person> getPersonsByIndexes(List<Index> indexList) {
+        List<Person> persons = new ArrayList<>();
+        for (Index index : indexList) {
+            persons.add(filteredPersons.get(
+                    index.getZeroBased())
+            );
+        }
+        return persons;
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -163,8 +177,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-            && userPrefs.equals(other.userPrefs)
-            && filteredPersons.equals(other.filteredPersons);
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons);
     }
 
     //================= Meeting accessors ==================//
@@ -179,6 +193,7 @@ public class ModelManager implements Model {
         requireNonNull(meeting);
         return addressBook.hasMeeting(meeting);
     }
+
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);

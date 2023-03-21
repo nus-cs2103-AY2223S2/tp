@@ -14,12 +14,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -33,8 +35,7 @@ public class AddMeetingCommandTest {
 
     @Test
     public void constructor_nullMeeting_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddMeetingCommand(null, null,
-            null, null, null));
+        assertThrows(NullPointerException.class, () -> new AddMeetingCommand(null, null, null, null, null));
     }
 
     @Test
@@ -43,9 +44,8 @@ public class AddMeetingCommandTest {
         Meeting validMeeting = new MeetingBuilder(MEETING_B).build();
 
         CommandResult commandResult = new AddMeetingCommand(MEETING_B.getTitle(), MEETING_B.getDateTime(),
-            new HashSet<>(Arrays.asList(BENSON.getName(), CARL.getName())),
-            MEETING_B.getLocation(), MEETING_B.getDescription())
-            .execute(modelStub);
+                new HashSet<>(Arrays.asList(BENSON.getName(), CARL.getName())), MEETING_B.getLocation(),
+                MEETING_B.getDescription()).execute(modelStub);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
     }
@@ -53,8 +53,8 @@ public class AddMeetingCommandTest {
     @Test
     public void execute_duplicateMeeting_throwsCommandException() {
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(MEETING_A.getTitle(), MEETING_A.getDateTime(),
-            new HashSet<>(Collections.singletonList(ALICE.getName())), MEETING_A.getLocation(),
-            MEETING_A.getDescription());
+                new HashSet<>(Collections.singletonList(ALICE.getName())), MEETING_A.getLocation(),
+                MEETING_A.getDescription());
         ModelStub modelStub = new ModelStubWithMeeting(ALICE, CARL, MEETING_A);
 
         assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () ->
@@ -122,6 +122,11 @@ public class AddMeetingCommandTest {
 
         @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Person> getPersonsByIndexes(List<Index> indexList) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -208,6 +213,7 @@ public class AddMeetingCommandTest {
             return this.person1.isSamePerson(person) || this.person2.isSamePerson(person);
         }
     }
+
     private static class ModelStubWithMeeting extends AddMeetingCommandTest.ModelStub {
         private final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
         private final Person person1;
