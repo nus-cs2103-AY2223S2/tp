@@ -11,14 +11,14 @@ import teambuilder.commons.core.Memento;
  */
 public class HistoryUtil {
     private static HistoryUtil singleton = new HistoryUtil();
-
     private static final int MAX_STATE = 10;
-    private DescribedMemento[] history;
-    private int currentNum = -1;
+
+    private DescribedMemento[] undoHistory;
     private DescribedMemento[] redoFuture;
+    private int currentNum = -1;
 
     private HistoryUtil() {
-        history = new DescribedMemento[MAX_STATE];
+        undoHistory = new DescribedMemento[MAX_STATE];
         redoFuture = new DescribedMemento[MAX_STATE];
     }
 
@@ -32,7 +32,7 @@ public class HistoryUtil {
             return;
         }
         // check wrap around
-        if (currentNum - 1 < 0 && history[MAX_STATE - 1] != null) {
+        if (currentNum - 1 < 0 && undoHistory[MAX_STATE - 1] != null) {
             currentNum = MAX_STATE - 1;
             return;
         }
@@ -50,10 +50,10 @@ public class HistoryUtil {
     }
 
     /**
-     * Stores a past memento of the app and a description of the memento. 
+     * Stores a past memento of the app and a description of the memento.
      * Maximumn of 10 stored momentos at any time.
      *
-     * @param memo The momento to be stored.
+     * @param memo The memento to be stored.
      * @param desc The description of the memo.
      */
     public void storePast(Memento memo, String desc) {
@@ -62,7 +62,7 @@ public class HistoryUtil {
 
         DescribedMemento memoWithDesc = new DescribedMemento(memo, desc);
         incrementCurrentNum();
-        history[currentNum] = memoWithDesc;
+        undoHistory[currentNum] = memoWithDesc;
         redoFuture = new DescribedMemento[MAX_STATE];
     }
 
@@ -70,22 +70,22 @@ public class HistoryUtil {
      * Restores the app to its previous state.
      *
      * @return An Optional containing a string of the description of the state restored if successful,
-     * contains null otherwise.
+     *      contains null otherwise.
      */
     public Optional<String> undo() {
         if (currentNum <= -1) {
             return Optional.ofNullable(null);
         }
-        if (history[currentNum] == null) {
+        if (undoHistory[currentNum] == null) {
             currentNum = -1;
             return Optional.ofNullable(null);
         }
 
-        DescribedMemento mementoForUndo = history[currentNum];
+        DescribedMemento mementoForUndo = undoHistory[currentNum];
         DescribedMemento mementoForRedo = mementoForUndo.getUpdatedMemento();
         boolean isSuccessful = mementoForUndo.restore();
         String descriptionUndo = mementoForUndo.desc;
-        history[currentNum] = null;
+        undoHistory[currentNum] = null;
         redoFuture[currentNum] = mementoForRedo;
 
         decreaseCurrentNum();
@@ -96,13 +96,9 @@ public class HistoryUtil {
      * Restores the app to its state before an undo.
      *
      * @return An Optional containing a string of the description of the state restored if successful,
-     * contains null otherwise.
+     *      contains null otherwise.
      */
     public Optional<String> redo() {
-        if (currentNum <= -1) {
-            return Optional.ofNullable(null);
-        }
-
         incrementCurrentNum();
 
         if (redoFuture[currentNum] == null) {
@@ -110,23 +106,24 @@ public class HistoryUtil {
             return Optional.ofNullable(null);
         }
 
-        DescribedMemento mementoForRedo = history[currentNum];
+        DescribedMemento mementoForRedo = redoFuture[currentNum];
+        DescribedMemento mementoForUndo = mementoForRedo.getUpdatedMemento();
         boolean isSuccessful = mementoForRedo.restore();
         String descriptionRedo = mementoForRedo.desc;
-        history[currentNum] = mementoForRedo;
+        undoHistory[currentNum] = mementoForUndo;
         redoFuture[currentNum] = null;
 
         return isSuccessful ? Optional.of(descriptionRedo) : Optional.ofNullable(null);
     }
 
     /**
-     * Wrapper class for the Memento and its description.
+     * Wrapper class for a Memento and its description.
      */
     private class DescribedMemento {
         private Memento memento;
         private String desc;
 
-        DescribedMemento(Memento memento, String desc) {
+        private DescribedMemento(Memento memento, String desc) {
             this.memento = memento;
             this.desc = desc;
         }

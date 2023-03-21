@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import teambuilder.commons.core.Messages;
 import teambuilder.commons.core.Memento;
+import teambuilder.commons.core.Messages;
 import teambuilder.commons.core.index.Index;
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
