@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_CORNDOGS
                 + INGREDIENT_DESC_CORNDOGS + STEP_DESC_CORNDOGS + DESC_DESC_CORNDOGS;
-        Recipe expectedRecipe = new RecipeBuilder(CORNDOGS).withIngredients().build();
+        Recipe expectedRecipe = new RecipeBuilder(CORNDOGS).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addRecipe(expectedRecipe);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

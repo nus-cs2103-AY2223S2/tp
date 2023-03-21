@@ -50,6 +50,5 @@ public class EditRecipeDescriptorTest {
         // different address -> returns false
         editedAmy = new EditRecipeDescriptorBuilder(DESC_CORNDOGS).withSteps(VALID_STEPS_SOUP).build();
         assertFalse(DESC_CORNDOGS.equals(editedAmy));
-
     }
 }
