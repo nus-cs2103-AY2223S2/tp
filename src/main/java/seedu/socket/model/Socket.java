@@ -198,4 +198,8 @@ public class Socket implements ReadOnlySocket {
     public void sort(String category) {
         persons.sort(category);
     }
+
+    public void sortProjects(String category) {
+        projects.sort(category);
+    }
 }

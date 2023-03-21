@@ -43,6 +43,7 @@ import seedu.socket.logic.commands.RedoCommand;
 import seedu.socket.logic.commands.RemoveCommand;
 import seedu.socket.logic.commands.RemoveCommand.RemovePersonDescriptor;
 import seedu.socket.logic.commands.SortCommand;
+import seedu.socket.logic.commands.SortProjectCommand;
 import seedu.socket.logic.commands.UndoCommand;
 import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
@@ -224,6 +225,12 @@ public class SocketParserTest {
     public void parseCommand_sort() throws Exception {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD) instanceof SortCommand);
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " address") instanceof SortCommand);
+    }
+
+    @Test
+    public void parseCommand_sortpj() throws Exception {
+        assertTrue(parser.parseCommand(SortProjectCommand.COMMAND_WORD) instanceof SortProjectCommand);
+        assertTrue(parser.parseCommand(SortProjectCommand.COMMAND_WORD + " deadline") instanceof SortProjectCommand);
     }
     @Test
     public void parseCommand_remove() throws Exception {
