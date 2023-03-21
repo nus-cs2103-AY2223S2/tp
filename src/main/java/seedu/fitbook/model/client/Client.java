@@ -2,14 +2,13 @@ package seedu.fitbook.model.client;
 
 import static seedu.fitbook.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.fitbook.commons.core.index.Index;
-import seedu.fitbook.model.routines.Exercise;
 import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.routines.RoutineName;
 import seedu.fitbook.model.tag.Tag;
@@ -94,6 +93,22 @@ public class Client {
     }
 
     /**
+     * Changes the {@code routines} set with the updated Routine with updated {@code RoutineName}.
+     */
+    public void changeRoutineNameIfMatch(Routine routineToEdit, Routine routineToChange) {
+        routines.stream().filter(routine -> !routine.isSameRoutineName(routineToEdit));
+        routines.add(routineToChange);
+    }
+
+    /**
+     * Changes the {@code routines} set with the updated Routine with updated {@code Exercise}.
+     */
+    public void changeExerciseIfMatch(Routine routineToChange) {
+        routines.stream().filter(routine -> !routine.isSameRoutineName(routineToChange));
+        routines.add(routineToChange);
+    }
+
+    /**
      * Returns an immutable routine set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -105,20 +120,24 @@ public class Client {
      * Returns a set of Routine Names that exists in the client, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<RoutineName> getRoutinesName() {
-        Set<RoutineName> routineNames = new HashSet<>();
-        this.routines.forEach(routine -> routineNames.add(routine.getRoutineName()));
-        return Collections.unmodifiableSet(routineNames);
+    public List<RoutineName> getRoutinesName() {
+        List<RoutineName> routineNames = new ArrayList<>();
+        List<Routine> routinesList = new ArrayList<>(routines);
+        routinesList.stream().sorted();
+        routinesList.forEach(routine -> routineNames.add(routine.getRoutineName()));
+        return Collections.unmodifiableList(routineNames);
     }
 
     /**
-     * Returns a set of Exercise List for each routine that exists in the client, which throws
+     * Returns a list of Exercise List for each routine that exists in the client, which throws
      * {@code UnsupportedOperationException} if modification is attempted.
      */
-    public Set<List<String>> getExercisesStringForRoutines() {
-        Set<List<String>> exercises = new HashSet<>();
-        this.routines.forEach(routine -> exercises.add(routine.getExercisesName()));
-        return Collections.unmodifiableSet(exercises);
+    public List<List<String>> getExercisesStringForRoutines() {
+        List<List<String>> exercises = new ArrayList<>();
+        List<Routine> routinesList = new ArrayList<>(routines);
+        routinesList.stream().sorted();
+        routinesList.forEach(routine -> exercises.add(routine.getExercisesName()));
+        return Collections.unmodifiableList(exercises);
     }
 
     /**

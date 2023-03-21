@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.fitbook.logic.commands.exceptions.CommandException;
-import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.FitBookModel;
 import seedu.fitbook.model.client.Client;
 import seedu.fitbook.model.routines.Routine;
@@ -58,7 +57,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the FitBook";
-    public static final String MESSAGE_ROUTINE_NAME_WRONG = "Incorrect routine name used";
+    public static final String MESSAGE_ROUTINE_NAME_INVALID =
+            "Invalid routine used for adding. Please use a valid routine from the routine list.";
 
     private final Client toAdd;
 
@@ -79,15 +79,15 @@ public class AddCommand extends Command {
         List<RoutineName> routineNamesToAdd = new ArrayList<>();
         routineToAdd.forEach(routine -> routineNamesToAdd.add(routine.getRoutineName()));
         Set<Routine> finalRoutineToAdd = new HashSet<>();
-        routineNamesToAdd.forEach( routineName ->
-                routinesModel.forEach( routine -> {
+        routineNamesToAdd.forEach(routineName ->
+                routinesModel.forEach(routine -> {
                     if (routineName.equals(routine.getRoutineName())) {
                         finalRoutineToAdd.add(routine);
                     }
                 })
         );
         if (routineNamesToAdd.size() != finalRoutineToAdd.size()) {
-            throw new CommandException(MESSAGE_ROUTINE_NAME_WRONG);
+            throw new CommandException(MESSAGE_ROUTINE_NAME_INVALID);
         }
         toAdd.copyRoutines(finalRoutineToAdd);
     }

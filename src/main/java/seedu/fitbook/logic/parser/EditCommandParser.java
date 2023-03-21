@@ -9,6 +9,7 @@ import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_ROUTINE;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.fitbook.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
@@ -22,6 +23,7 @@ import seedu.fitbook.logic.commands.EditCommand;
 import seedu.fitbook.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Appointment;
+import seedu.fitbook.model.routines.Routine;
 import seedu.fitbook.model.tag.Tag;
 
 /**
@@ -38,7 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG);
+                        PREFIX_APPOINTMENT, PREFIX_WEIGHT, PREFIX_GENDER, PREFIX_CALORIE, PREFIX_TAG, PREFIX_ROUTINE);
         Index index;
 
         try {
@@ -72,6 +74,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseAppointmentsForEdit(argMultimap.getAllValues(PREFIX_APPOINTMENT))
                 .ifPresent(editClientDescriptor::setAppointments);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
+        parseRoutinesForEdit(argMultimap.getAllValues(PREFIX_ROUTINE)).ifPresent(editClientDescriptor::setRoutines);
         if (!editClientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -107,5 +110,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> appointmentSet = appointments.size() == 1 && appointments.contains("")
                 ? Collections.emptySet() : appointments;
         return Optional.of(ParserUtil.parseAppointments(appointmentSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<Routine>> parseRoutinesForEdit(Collection<String> routines) throws ParseException {
+        assert routines != null;
+
+        if (routines.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> routineSet = routines.size() == 1 && routines.contains("")
+                ? Collections.emptySet() : routines;
+        return Optional.of(ParserUtil.parseRoutines(routineSet));
     }
 }
