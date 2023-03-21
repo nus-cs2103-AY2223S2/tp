@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,8 +16,13 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
-    Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
+    /** {@code Predicate} that evaluate to true for all unarchived applications */
+    Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = internshipApplication ->
+            internshipApplication.getStatus() != InternshipStatus.ARCHIVED;
+
+    /** {@code Predicate} that evaluate to true for all archived internship applications */
+    Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = internshipApplication ->
+            internshipApplication.getStatus() == InternshipStatus.ARCHIVED;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
