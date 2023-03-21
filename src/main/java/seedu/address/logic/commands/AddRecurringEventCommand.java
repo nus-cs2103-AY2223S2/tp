@@ -12,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.IsolatedEvent;
 import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.RecurringEventList;
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
@@ -50,6 +51,9 @@ public class AddRecurringEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        eventToAdd.checkPeriod();
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -58,13 +62,20 @@ public class AddRecurringEventCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        String checkConflictsInIsolatedList = listConflictedEventWithIsolated(eventToAdd, personToEdit);
+        RecurringEventList recurringEventList = personToEdit.getRecurringEventList();
+        RecurringEvent checkForEventClash = recurringEventList.checkClashingRecurringEvent(eventToAdd);
+
+        if (checkForEventClash != null) {
+            throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
+        }
+
+        String checkConflictsInIsolatedList =
+                RecurringEventList.listConflictedEventWithIsolated(eventToAdd, personToEdit.getIsolatedEventList());
+
 
         if (!checkConflictsInIsolatedList.equals("0")) {
             throw new EventConflictException(checkConflictsInIsolatedList);
         }
-
-        eventToAdd.checkPeriod();
 
         model.addRecurringEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -89,7 +100,6 @@ public class AddRecurringEventCommand extends Command {
                 return "Isolated Event List:\n" + index + " " + ie;
             }
         }
-
         return "0";
     }
 }

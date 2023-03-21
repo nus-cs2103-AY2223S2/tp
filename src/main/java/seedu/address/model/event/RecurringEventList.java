@@ -1,12 +1,16 @@
 package seedu.address.model.event;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
@@ -32,6 +36,22 @@ public class RecurringEventList {
      */
     public void insert(RecurringEvent newEvent) {
         this.recurringEvents.add(newEvent);
+    }
+
+    public RecurringEvent checkClashingRecurringEvent(RecurringEvent recurringEvent) {
+        Iterator<RecurringEvent> it = recurringEvents.iterator();
+        RecurringEvent currEvent;
+
+        int count = 0;
+        while (it.hasNext()) {
+            currEvent = it.next();
+
+            if (recurringEvent.compareTo(currEvent) == 0) {
+                return currEvent;
+            }
+            count++;
+        }
+        return null;
     }
 
     /**
@@ -93,6 +113,7 @@ public class RecurringEventList {
     public Set<RecurringEvent> getSet() {
         return new TreeSet<>(this.recurringEvents);
     }
+
     /**
      * Prints out a list of all event that occur within the given time period
      * @param startPeriod stand for the starting date of the time period
