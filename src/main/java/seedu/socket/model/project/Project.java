@@ -69,7 +69,10 @@ public class Project {
     public ProjectDeadline getDeadline() {
         return deadline;
     }
-    public ProjectMeeting getMeeting() { return meeting; }
+
+    public ProjectMeeting getMeeting() {
+        return meeting;
+    }
 
     /**
      * Returns an immutable {@code Person} set, which throws {@code UnsupportedOperationException}
