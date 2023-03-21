@@ -282,6 +282,61 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### 3.9 sort Feature
 
+Given below is an example usage scenario and how the sort command behaves at each step
+
+Step 1. The user launches the application.
+
+Step 2. The application displays a list of tasks (that can also be empty).
+
+Step 2. The user executes `sort` command to sort the list. Look at [Sort Design Consideration](#391-design-consideration) for the sorting logic.
+
+Step 3. The sequence diagram below shows how the sort operation works:
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+
+#### 3.9.1 Design Consideration
+
+Sorts the list using the following format:
+
+Aspect: How are tasks sorted:
+
+###### Option 1(current choice):
+
+* SimpleTask is listed above Deadline and Event.
+* Deadline is  listed below SimpleTask and above Event.
+* Event is  listed below SimpleTask and Event.
+* When comparing 2 tasks of the same class:
+  * SimpleTask
+    * The task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+  * Deadline
+    * The task with the earlier deadline is listed above the task with later deadline.
+    * Else if both tasks have the same deadline, the task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+  * Event
+    * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
+    * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
+    * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicgraphical name is listed above the other.
+
+Pros: Neater and more intuitive
+Cons: Will have to scroll down to see the order for Events if there are too many SimpleTasks.
+
+###### Option 2:
+
+Same as above, but:
+* Event is listed above SimpleTask and Deadline.
+* Deadline is  listed below Event and above SimpleTask.
+* SimpleTask is listed below Deadline and Event. 
+
+Pros: Able to see the Events happening close to date.
+Cons: Have to scroll down to see SimpleTasks.
+
 ### 3.10 Alert Feature
 
 ### 3.11 Plan Feature
