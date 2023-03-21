@@ -1,11 +1,11 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.comparator.ListingComparator;
 import seedu.address.model.listing.Listing;
 
 /**
@@ -91,5 +91,5 @@ public interface Model {
      * Updates the sorter of the displayed listing book to sort by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void updateSortedListingBook(Comparator<Listing> comparator);
+    void updateSortedListingBook(ListingComparator comparator);
 }

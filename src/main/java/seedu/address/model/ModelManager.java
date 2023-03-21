@@ -4,16 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.comparator.ListingComparator;
 import seedu.address.model.listing.Listing;
 
 /**
@@ -133,7 +132,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateSortedListingBook(Comparator<Listing> comparator) {
+    public void updateSortedListingBook(ListingComparator comparator) {
         requireNonNull(comparator);
         displayedListings.setComparator(comparator);
     }
@@ -154,6 +153,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return listingBook.equals(other.listingBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredListings.equals(other.filteredListings);
+                && filteredListings.equals(other.filteredListings)
+                && displayedListings.equals(other.displayedListings);
     }
 }

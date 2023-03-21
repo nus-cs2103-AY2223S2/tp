@@ -1,6 +1,7 @@
 package seedu.address.model.comparator;
 
 import java.util.Comparator;
+
 import seedu.address.model.listing.Listing;
 
 /**

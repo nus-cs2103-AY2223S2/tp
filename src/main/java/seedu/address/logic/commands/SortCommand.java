@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.comparator.ListingComparator;
 
 /**
- * Deletes a listing identified using it's displayed index from the listing book.
+ * Sorts the displayed listings according to the provided comparator.
  */
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
@@ -40,6 +40,20 @@ public class SortCommand extends Command {
         model.updateSortedListingBook(comparator);
 
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof SortCommand)) {
+            return false;
+        }
+
+        SortCommand that = (SortCommand) o;
+
+        return comparator == that.comparator;
     }
 
 }

@@ -13,6 +13,9 @@ public enum ListingComparator implements Comparator<Listing> {
     APPLICANTS(new ListingNumberOfApplicantsComparator()),
     NONE((listing1, listing2) -> 0);
 
+    public static final String MESSAGE_CONSTRAINTS = "Field must only be one of these values: "
+            + "NONE, TITLE, DESCRIPTION, APPLICANTS";
+
     private Comparator<Listing> comparator;
 
     /**
