@@ -17,7 +17,7 @@ import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Tracker} with sample data.
  */
 public class SampleDataUtil {
     public static ReadOnlyTracker getSampleTracker() {

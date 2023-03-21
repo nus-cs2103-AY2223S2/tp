@@ -54,9 +54,9 @@ import seedu.address.testutil.ModuleUtil;
 import seedu.address.testutil.VideoBuilder;
 import seedu.address.testutil.VideoUtil;
 
-public class AddressBookParserTest {
+public class TrackerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TrackerParser parser = new TrackerParser();
 
     @Test
     public void parseCommand_addModule() throws Exception {

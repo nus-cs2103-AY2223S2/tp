@@ -22,7 +22,7 @@ import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

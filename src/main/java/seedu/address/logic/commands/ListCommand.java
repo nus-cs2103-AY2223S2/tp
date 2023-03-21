@@ -18,7 +18,7 @@ import seedu.address.model.module.VideoPredicate;
 
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all modules/lectures/videos in the tracker to the user.
  */
 public class ListCommand extends Command {
 

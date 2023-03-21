@@ -21,7 +21,7 @@ public class JsonSerializableTrackerTest {
     private static final Path DUPLICATE_MODULE_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleTracker.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
+    public void toModelType_typicalTrackerFile_success() throws Exception {
         JsonSerializableTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_TRACKER_FILE,
                 JsonSerializableTracker.class).get();
         Tracker trackerFromFile = dataFromFile.toModelType();
@@ -30,14 +30,14 @@ public class JsonSerializableTrackerTest {
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidModuleFile_throwsIllegalValueException() throws Exception {
         JsonSerializableTracker dataFromFile = JsonUtil.readJsonFile(INVALID_MODULE_FILE,
                 JsonSerializableTracker.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicateModules_throwsIllegalValueException() throws Exception {
         JsonSerializableTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MODULE_FILE,
                 JsonSerializableTracker.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableTracker.MESSAGE_DUPLICATE_MODULE,

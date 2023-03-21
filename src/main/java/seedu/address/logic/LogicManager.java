@@ -12,7 +12,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.injector.Injector;
 import seedu.address.logic.injector.NavigationInjector;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
@@ -32,7 +32,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TrackerParser trackerParser;
     private final Injector navigationInjector;
 
     /**
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         this.navigationInjector = new NavigationInjector();
-        addressBookParser = new AddressBookParser();
+        trackerParser = new TrackerParser();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
 
         logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
 
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = trackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

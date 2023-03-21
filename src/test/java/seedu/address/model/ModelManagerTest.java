@@ -66,7 +66,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setTrackerFilePath_validPath_setsAddressBookFilePath() {
+    public void setTrackerFilePath_validPath_setsTrackerFilePath() {
         Path path = Paths.get("tracker/file/path");
         modelManager.setTrackerFilePath(path);
         assertEquals(path, modelManager.getTrackerFilePath());
