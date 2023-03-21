@@ -139,6 +139,9 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 We can only check if the module code is formatted correctly, and we trust users to key in modules that
 are provided only by NUS.
 
+**Q**: Why are the old terms (modules, CAP, MCs) used when referring to modules information<br>
+**A**: We used these terms to specifically cater to our target audience, who are CS students students matriculated in AY 21/22.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary <a name="command_summary"></a>

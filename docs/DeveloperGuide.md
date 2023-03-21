@@ -488,8 +488,17 @@ Use case ends.
 |        Term        |                                                                                                                             Explanation                                                                                                                            |
 |:------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Mainstream OS      | Windows, Linux, Unix, OS-X                                                                                                                                                                                                                                         |
-| Degree Requirement | Each module can be tagged into a degree requirement (or category) of any of the following types: University Level Requirements, Computer Science Foundation, Computer Science Breadth & Depth, IT Professionalism, Mathematics & Sciences, Unrestricted Electives. |
-| Degree Progress    | The completion status of each degree requirement, Cumulative Average Point (CAP), total MCs completed and remaining MCs needed to complete the degree.                                                                                                             |
+| Degree Requirement | Each module can be tagged into a degree requirement (or category) of any of the following types: University Level Requirements (ULR), Computer Science Foundation (CSF), Computer Science Breadth & Depth (CSBD), IT Professionalism (ITP), Mathematics & Sciences (MS), Unrestricted Electives (UE). |
+| Degree Progress / Progression    | The completion status of each degree requirement, Cumulative Average Point (CAP), total MCs completed and remaining MCs needed to complete the degree.                                                                                                             |
+| CS | Computer Science |
+| CAP / GPA | Cumulative Average Point / Grade Point Average can be used interchangeably, denotes a measure of a student's academic performance over the entire duration of his/her studies at NUS. |
+| MC / credits | Modular Credits, denotes the weightage of each module and is used in the calculation of CAP. |
+| Code | Module Code |
+| Year & Semester | Denotes the year (counted by number of years in the course) and semester (Semester 1, Special term 1, Semester 2, special term 2) in which the user has taken the module in. |
+| CLI | Command line interface. This is the bottom-right section of the app, whereby users input data on a command line. |
+| GUI | Graphical user interface. Our app has a GUI that will be launched upon using the jar file |
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These modules information are specific to National University of Singapore. Furthermore, we are using the old terms `Module`, `Modular Credits`, `CAP` prior to 1 August 2023. After 1 August 2023, `Module` is changed to `Course`, `Modular Credits` to `Units`, `CAP` to `GPA` (Grade Point Average). We used these terms to specifically cater to our target audience, who are CS students students matriculated in AY 21/22. </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
