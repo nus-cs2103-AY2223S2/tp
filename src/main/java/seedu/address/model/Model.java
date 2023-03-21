@@ -8,6 +8,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.Person;
+import seedu.address.model.todo.InternshipTodo;
+import seedu.address.model.todo.Note;
 
 /**
  * The API of the Model component.
@@ -27,6 +29,11 @@ public interface Model {
     Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = internshipApplication ->
             internshipApplication.getStatus() == InternshipStatus.ARCHIVED;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<InternshipTodo> PREDICATE_SHOW_ALL_TODO = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -72,6 +79,18 @@ public interface Model {
     boolean hasApplication(InternshipApplication person);
 
     /**
+     * Returns true if a todo with the same identity as
+     * {@code todo} exists in the tracker.
+     */
+    boolean hasTodo(InternshipTodo todo);
+
+    /**
+     * Returns true if a note with the same identity as
+     * {@code note} exists in the tracker.
+     */
+    boolean hasNote(Note note);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
@@ -89,10 +108,44 @@ public interface Model {
     void deleteInternship(InternshipApplication application);
 
     /**
+     * Deletes the given todo.
+     * The todo must exist in the todo list.
+     */
+    void deleteTodo(InternshipTodo target);
+
+    /**
+     * Deletes the given note.
+     * The note must exist in the note list.
+     */
+    void deleteNote(Note target);
+
+    /**
+     * Clears todo list.
+     */
+    void clearTodo(ReadOnlyAddressBook internEase);
+
+    /**
+     * Clears note list.
+     */
+    void clearNote(ReadOnlyAddressBook internEase);
+
+    /**
      * Adds the given application.
      * {@code InternshipApplication} must not already exist in the tracker.
      */
     void addApplication(InternshipApplication application);
+
+    /**
+     * Adds the given todo.
+     * {@code todo} must not already exist in the tracker.
+     */
+    void addTodo(InternshipTodo todo);
+
+    /**
+     * Adds the given note.
+     * {@code note} must not already exist in the tracker.
+     */
+    void addNote(Note note);
 
     /**
      * Adds the given person.
@@ -113,17 +166,49 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the tracker.
+     * The identity of {@code editedTodo} must not be the same as another existing todo in the tracker.
+     */
+    void setTodo(InternshipTodo target, InternshipTodo editedTodo);
+
+    /**
+     * Replaces the given note {@code target} with {@code editedNote}.
+     * {@code target} must exist in the tracker.
+     * The identity of {@code editedNote} must not be the same as another existing note in the tracker.
+     */
+    void setNote(Note target, Note editedNote);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered internship list */
     ObservableList<InternshipApplication> getFilteredInternshipList();
 
+    /** Returns an unmodifiable view of the filtered todo list */
+    ObservableList<InternshipTodo> getFilteredTodoList();
+
+    /** Returns an unmodifiable view of the filtered note list */
+    ObservableList<Note> getFilteredNoteList();
+
     /**
      * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<InternshipApplication> predicate);
+
+    /**
+     * Updates the filter of the filtered todo list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTodoList(Predicate<InternshipTodo> predicate);
+
+    /**
+     * Updates the filter of the filtered note list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredNoteList(Predicate<Note> predicate);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
