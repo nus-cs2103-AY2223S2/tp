@@ -115,7 +115,7 @@ public class HistoryUtilTest {
      * Momento that returns true on restore and also already has a description.
      */
     private class FilledMomentoStub implements Memento {
-        private final static String DESC = "THIS SHOULD APPEAR!";
+        private static final String DESC = "THIS SHOULD APPEAR!";
 
         @Override
         public boolean restore() {
