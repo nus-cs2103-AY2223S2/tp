@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
@@ -27,6 +28,9 @@ public class AddExpenseCommandTest {
         model.addExpense(expense);
         model.addExpense(expense2);
         model.addExpense(expense3);
+        assertEquals(model.getExpenses().get(0), expense);
+        assertEquals(model.getExpenses().get(1), expense2);
+        assertEquals(model.getExpenses().get(2), expense3);
     }
 
     @Test

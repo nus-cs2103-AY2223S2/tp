@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,8 @@ public class AddCategoryCommandTest {
         requireNonNull(model);
         model.addCategory(toAdd);
         model.addCategory(toAdd2);
+        assertEquals(model.getCategories().get(0), toAdd);
+        assertEquals(model.getCategories().get(1), toAdd2);
     }
 
     @Test
