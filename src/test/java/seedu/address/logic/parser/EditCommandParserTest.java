@@ -18,12 +18,12 @@ import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -101,8 +101,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_TIMESLOT_DESC + VALID_ADDRESS_AMY + VALID_RESOURCE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_TIMESLOT_DESC + VALID_ADDRESS_AMY +
+                        VALID_RESOURCE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

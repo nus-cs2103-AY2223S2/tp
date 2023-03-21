@@ -8,9 +8,9 @@ import seedu.address.model.module.Deadline;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Name;
 import seedu.address.model.module.Remark;
+import seedu.address.model.module.Resource;
 import seedu.address.model.module.Teacher;
 import seedu.address.model.module.TimeSlot;
-import seedu.address.model.module.Resource;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,7 +20,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class ModuleBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_TYPE = "85355255";
+    public static final String DEFAULT_RESOURCE = "85355255";
     public static final String DEFAULT_TIMESLOT = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "default remark";
@@ -41,7 +41,7 @@ public class ModuleBuilder {
      */
     public ModuleBuilder() {
         name = new Name(DEFAULT_NAME);
-        resource = new Resource(DEFAULT_TYPE);
+        resource = new Resource(DEFAULT_RESOURCE);
         timeSlot = new TimeSlot(DEFAULT_TIMESLOT);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();

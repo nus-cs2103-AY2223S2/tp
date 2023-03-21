@@ -4,12 +4,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
