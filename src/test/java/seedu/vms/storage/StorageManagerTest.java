@@ -18,6 +18,7 @@ import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.storage.appointment.JsonAppointmentStorage;
+import seedu.vms.storage.patient.JsonPatientManagerStorage;
 import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
 import seedu.vms.testutil.SampleVaxTypeData;
 

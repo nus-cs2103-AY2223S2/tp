@@ -1,4 +1,4 @@
-package seedu.vms.storage;
+package seedu.vms.storage.patient;
 
 import static java.util.Objects.requireNonNull;
 

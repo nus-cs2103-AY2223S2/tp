@@ -10,6 +10,7 @@ import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.appointment.AppointmentStorage;
+import seedu.vms.storage.patient.PatientManagerStorage;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 
 /**
