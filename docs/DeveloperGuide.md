@@ -156,6 +156,37 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Feature
+
+#### Implementation
+The following sequence diagram provides an overview on how the `add` operation works.
+
+
+The following gives a more detailed explanation of the `add` operation.
+######  Step 1: Validate Input
+1. When the user enters an `add` command, the `AddCommandParser` parses the user's input.
+2. It checks for the following:
+- `n/` followed by the company's name [Compulsory]
+- `r/` followed by the role applied [Compulsory]
+- `s/` followed by the status of the internship application [Compulsory]
+- `d/` followed by the date associated with the entry [Compulsory]
+- `c/` followed by the comment for the entry [Optional]
+- `t/` followed by tags for the entry [Optional]
+3. If any of the compulsory fields is missing or any of the fields entered by the user
+   does not meet the parameter requirements, a `ParserException` will be thrown.
+4. An `Internship` will be created from the parsed user's input.
+
+###### Step 2: Adding the Internship
+5. A check is done to see if the `Model` component, which stores all the `Internship` entries,
+   contains the `Internship` created in Step 4.
+6. If a duplicate `Internship` is found, a `CommandException` will be thrown.
+7. Else if there is no duplicate `Internship`, the `Internship` created will be added into
+   the `Model` component.
+8. 
+   
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
