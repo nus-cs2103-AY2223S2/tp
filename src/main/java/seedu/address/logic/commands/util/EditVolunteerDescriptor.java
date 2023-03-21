@@ -22,7 +22,7 @@ import seedu.address.model.tag.Tag;
  * Stores the details to edit the volunteer with. Each non-empty field value will replace the
  * corresponding field value of the volunteer.
  */
-public class EditVolunteerDescriptor extends EditPersonDescriptor {
+public class EditVolunteerDescriptor extends EditDescriptor {
 
     private Set<MedicalQualificationTag> medicalTags;
 
@@ -46,27 +46,27 @@ public class EditVolunteerDescriptor extends EditPersonDescriptor {
      * edited with {@code editVolunteerDescriptor}.
      *
      * @param volunteerToEdit Volunteer to edit.
-     * @param editPersonDescriptor Edit details.
+     * @param editDescriptor Edit details.
      * @return Edited volunteer.
      */
     public static Volunteer createEditedVolunteer(Volunteer volunteerToEdit,
-            EditPersonDescriptor editPersonDescriptor) {
+            EditDescriptor editDescriptor) {
         assert volunteerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(volunteerToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
-        Nric updatedNric = editPersonDescriptor.getNric().orElse(volunteerToEdit.getNric());
-        Age updatedAge = editPersonDescriptor.getAge().orElse(volunteerToEdit.getAge());
-        Region updateRegion = editPersonDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(volunteerToEdit.getTags());
-        Set<AvailableDate> updatedDates = editPersonDescriptor.getAvailableDates()
+        Name updatedName = editDescriptor.getName().orElse(volunteerToEdit.getName());
+        Phone updatedPhone = editDescriptor.getPhone().orElse(volunteerToEdit.getPhone());
+        Email updatedEmail = editDescriptor.getEmail().orElse(volunteerToEdit.getEmail());
+        Address updatedAddress = editDescriptor.getAddress().orElse(volunteerToEdit.getAddress());
+        Nric updatedNric = editDescriptor.getNric().orElse(volunteerToEdit.getNric());
+        Age updatedAge = editDescriptor.getAge().orElse(volunteerToEdit.getAge());
+        Region updateRegion = editDescriptor.getRegion().orElse(volunteerToEdit.getRegion());
+        Set<Tag> updatedTags = editDescriptor.getTags().orElse(volunteerToEdit.getTags());
+        Set<AvailableDate> updatedDates = editDescriptor.getAvailableDates()
                 .orElse(volunteerToEdit.getAvailableDates());
 
         Set<MedicalQualificationTag> updatedMedicalTags = volunteerToEdit.getMedicalTags();
-        if (editPersonDescriptor instanceof EditVolunteerDescriptor) {
-            EditVolunteerDescriptor editVolunteerDescriptor = (EditVolunteerDescriptor) editPersonDescriptor;
+        if (editDescriptor instanceof EditVolunteerDescriptor) {
+            EditVolunteerDescriptor editVolunteerDescriptor = (EditVolunteerDescriptor) editDescriptor;
             updatedMedicalTags = editVolunteerDescriptor.getMedicalTags()
                     .orElse(volunteerToEdit.getMedicalTags());
         }

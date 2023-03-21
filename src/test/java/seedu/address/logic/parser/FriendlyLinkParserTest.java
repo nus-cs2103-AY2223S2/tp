@@ -22,7 +22,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.util.EditElderlyDescriptor;
-import seedu.address.logic.commands.util.EditPersonDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.commands.util.EditVolunteerDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pair.Pair;
@@ -30,7 +30,7 @@ import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 import seedu.address.testutil.EditElderlyDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditDescriptorBuilder;
 import seedu.address.testutil.EditVolunteerDescriptorBuilder;
 import seedu.address.testutil.ElderlyBuilder;
 import seedu.address.testutil.ElderlyUtil;
@@ -81,7 +81,7 @@ public class FriendlyLinkParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Volunteer volunteer = new VolunteerBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(volunteer).build();
+        EditDescriptor descriptor = new EditDescriptorBuilder(volunteer).build();
         EditCommand command = (EditCommand) parser.parseCommand(TestUtil
                 .getEditCommand(volunteer.getNric().value, descriptor));
         assertEquals(new EditCommand(volunteer.getNric(), descriptor), command);

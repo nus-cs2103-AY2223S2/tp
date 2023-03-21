@@ -22,7 +22,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.util.EditElderlyDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
 
@@ -54,24 +54,24 @@ public class EditElderlyCommand extends Command {
     public static final String MESSAGE_EDIT_ELDERLY_SUCCESS = "Edited Elderly: %1$s";
 
     private final Index index;
-    private final EditElderlyDescriptor editElderlyDescriptor;
+    private final EditDescriptor editDescriptor;
 
     /**
      * Creates an {@code EditElderlyCommand} to edit an elderly.
      *
      * @param index Index of the elderly in the filtered elderly list to edit.
-     * @param editElderlyDescriptor Details to edit the elderly with.
+     * @param editDescriptor Details to edit the elderly with.
      */
-    public EditElderlyCommand(Index index, EditElderlyDescriptor editElderlyDescriptor) {
-        requireAllNonNull(index, editElderlyDescriptor);
+    public EditElderlyCommand(Index index, EditDescriptor editDescriptor) {
+        requireAllNonNull(index, editDescriptor);
         this.index = index;
-        this.editElderlyDescriptor = new EditElderlyDescriptor(editElderlyDescriptor);
+        this.editDescriptor = new EditDescriptor(editDescriptor);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public CommandResult execute(Model model) throws CommandException {
-        if (!editElderlyDescriptor.isAnyFieldEdited()) {
+        if (!editDescriptor.isAnyFieldEdited()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
@@ -84,7 +84,7 @@ public class EditElderlyCommand extends Command {
         assert index.getZeroBased() >= 0 : "index should not be negative";
 
         Elderly elderlyToEdit = lastShownList.get(index.getZeroBased());
-        Elderly editedElderly = EditElderlyDescriptor.createEditedElderly(elderlyToEdit, editElderlyDescriptor);
+        Elderly editedElderly = EditDescriptor.createEditedElderly(elderlyToEdit, editDescriptor);
 
         if (!elderlyToEdit.isSamePerson(editedElderly) && model.hasElderly(editedElderly)) {
             throw new CommandException(MESSAGE_DUPLICATE_ELDERLY);
@@ -111,11 +111,11 @@ public class EditElderlyCommand extends Command {
         // state check
         EditElderlyCommand e = (EditElderlyCommand) other;
         return index.equals(e.index)
-                && editElderlyDescriptor.equals(e.editElderlyDescriptor);
+                && editDescriptor.equals(e.editDescriptor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(index, editElderlyDescriptor);
+        return Objects.hash(index, editDescriptor);
     }
 }

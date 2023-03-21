@@ -17,7 +17,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.util.EditPersonDescriptor;
+import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.FriendlyLink;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -115,7 +115,7 @@ public class TestUtil {
     /**
      * Returns an edit command string for editing the {@code person}.
      */
-    public static String getEditCommand(String nric, EditPersonDescriptor descriptor) {
+    public static String getEditCommand(String nric, EditDescriptor descriptor) {
         return EditCommand.COMMAND_WORD + " " + nric
                 + " " + getEditPersonDescriptorDetails(descriptor);
     }
@@ -123,7 +123,7 @@ public class TestUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
  * Stores the details to edit the elderly with. Each non-empty field value will replace the
  * corresponding field value of the elderly.
  */
-public class EditElderlyDescriptor extends EditPersonDescriptor {
+public class EditElderlyDescriptor extends EditDescriptor {
     private RiskLevel riskLevel;
 
     /**
@@ -44,26 +44,26 @@ public class EditElderlyDescriptor extends EditPersonDescriptor {
      * edited with {@code editElderlyDescriptor}.
      *
      * @param elderlyToEdit Elderly to edit.
-     * @param editPersonDescriptor Edit details.
+     * @param editDescriptor Edit details.
      * @return Edited elderly.
      */
-    public static Elderly createEditedElderly(Elderly elderlyToEdit, EditPersonDescriptor editPersonDescriptor) {
+    public static Elderly createEditedElderly(Elderly elderlyToEdit, EditDescriptor editDescriptor) {
         assert elderlyToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(elderlyToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(elderlyToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(elderlyToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
-        Nric updatedNric = editPersonDescriptor.getNric().orElse(elderlyToEdit.getNric());
-        Age updatedAge = editPersonDescriptor.getAge().orElse(elderlyToEdit.getAge());
-        Region updateRegion = editPersonDescriptor.getRegion().orElse(elderlyToEdit.getRegion());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(elderlyToEdit.getTags());
-        Set<AvailableDate> updatedDates = editPersonDescriptor.getAvailableDates()
+        Name updatedName = editDescriptor.getName().orElse(elderlyToEdit.getName());
+        Phone updatedPhone = editDescriptor.getPhone().orElse(elderlyToEdit.getPhone());
+        Email updatedEmail = editDescriptor.getEmail().orElse(elderlyToEdit.getEmail());
+        Address updatedAddress = editDescriptor.getAddress().orElse(elderlyToEdit.getAddress());
+        Nric updatedNric = editDescriptor.getNric().orElse(elderlyToEdit.getNric());
+        Age updatedAge = editDescriptor.getAge().orElse(elderlyToEdit.getAge());
+        Region updateRegion = editDescriptor.getRegion().orElse(elderlyToEdit.getRegion());
+        Set<Tag> updatedTags = editDescriptor.getTags().orElse(elderlyToEdit.getTags());
+        Set<AvailableDate> updatedDates = editDescriptor.getAvailableDates()
                 .orElse(elderlyToEdit.getAvailableDates());
         // Setting elderly-specific attributes
         RiskLevel updatedRiskLevel = elderlyToEdit.getRiskLevel();
-        if (editPersonDescriptor instanceof EditElderlyDescriptor) {
-            EditElderlyDescriptor editElderlyDescriptor = (EditElderlyDescriptor) editPersonDescriptor;
+        if (editDescriptor instanceof EditElderlyDescriptor) {
+            EditElderlyDescriptor editElderlyDescriptor = (EditElderlyDescriptor) editDescriptor;
             updatedRiskLevel = editElderlyDescriptor.getRiskLevel()
                     .orElse(elderlyToEdit.getRiskLevel());
         }
