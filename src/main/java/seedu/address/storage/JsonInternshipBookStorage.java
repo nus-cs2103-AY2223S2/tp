@@ -24,6 +24,7 @@ public class JsonInternshipBookStorage implements InternshipBookStorage {
     private Path filePath;
 
     public JsonInternshipBookStorage(Path filePath) {
+        assert(filePath != null);
         this.filePath = filePath;
     }
 

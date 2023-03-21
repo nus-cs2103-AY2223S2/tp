@@ -34,6 +34,7 @@ public class ApplicationModelManager implements ApplicationModel {
         logger.fine("Initializing with application book: " + internshipBook + " and user prefs " + userPrefs);
 
         this.internshipBook = new InternshipBook(internshipBook);
+        assert(internshipBook != null);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = new FilteredList<>(this.internshipBook.getApplicationList());
     }
