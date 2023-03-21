@@ -16,9 +16,12 @@ import mycelium.mycelium.ui.UiPart;
 public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
+    public static final String LISTENING_STYLE_CLASS = "listening";
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final CommandInputListener commandInputListener;
+    private boolean listening;
 
     @FXML
     private TextField commandTextField;
@@ -26,9 +29,11 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, CommandInputListener commandInputListener) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.commandInputListener = commandInputListener;
+        this.listening = false;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
@@ -38,6 +43,9 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
+        if (listening) {
+            return;
+        }
         String commandText = commandTextField.getText();
         if (commandText.equals("")) {
             return;
@@ -51,10 +59,24 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    @FXML
+    private void handleInputChange() {
+        if (!listening) {
+            return;
+        }
+        String currentText = commandTextField.getText();
+        commandInputListener.onInputChanged(currentText);
+    }
+
     /**
      * Sets the command box style to use the default style.
      */
     private void setStyleToDefault() {
+        if (listening) {
+            setStyleToIndicateListening();
+        } else {
+            commandTextField.getStyleClass().remove(LISTENING_STYLE_CLASS);
+        }
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
     }
 
@@ -72,6 +94,27 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Sets the command box style to indicate listening.
+     */
+    private void setStyleToIndicateListening() {
+        ObservableList<String> styleClass = commandTextField.getStyleClass();
+
+        if (styleClass.contains(LISTENING_STYLE_CLASS)) {
+            return;
+        }
+
+        styleClass.add(LISTENING_STYLE_CLASS);
+    }
+
+    /**
+     * Toggles listening mode.
+     */
+    public void toggleListening() {
+        listening = !listening;
+        setStyleToDefault();
+    }
+
+    /**
      * Represents a function that can execute commands.
      */
     @FunctionalInterface
@@ -84,4 +127,11 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Represents a function that is called on input change.
+     */
+    @FunctionalInterface
+    public interface CommandInputListener {
+        void onInputChanged(String input);
+    }
 }
