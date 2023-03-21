@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.application.Application;
 import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.ApplicationSampleDataUtil;
 
 /**
  * A utility class to help with building Application objects.
@@ -20,6 +25,7 @@ public class ApplicationBuilder {
     private CompanyName companyName;
     private CompanyEmail companyEmail;
     private Status status;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ApplicationBuilder} with the default details.
@@ -29,6 +35,7 @@ public class ApplicationBuilder {
         companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         companyEmail = new CompanyEmail(DEFAULT_COMPANY_EMAIL);
         status = new Status(DEFAULT_STATUS);
+        tags = new HashSet<>();
     }
 
     /**
@@ -39,6 +46,15 @@ public class ApplicationBuilder {
         companyName = applicationToCopy.getCompanyName();
         companyEmail = applicationToCopy.getCompanyEmail();
         status = applicationToCopy.getStatus();
+        tags = new HashSet<>(applicationToCopy.getTags());
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Application} that we are building.
+     */
+    public ApplicationBuilder withTags(String ... tags) {
+        this.tags = ApplicationSampleDataUtil.getTagSet(tags);
+        return this;
     }
 
     /**
@@ -74,7 +90,7 @@ public class ApplicationBuilder {
     }
 
     public Application build() {
-        return new Application(role, companyName, companyEmail, status);
+        return new Application(role, companyName, companyEmail, status, tags);
     }
 
 }
