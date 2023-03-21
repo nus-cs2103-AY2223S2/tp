@@ -13,7 +13,6 @@ import static seedu.careflow.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.careflow.logic.commands.patientcommands.UpdateCommand;
-import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPersonDescriptor;
 import seedu.careflow.logic.parser.ArgumentMultimap;
 import seedu.careflow.logic.parser.ArgumentTokenizer;
 import seedu.careflow.logic.parser.Parser;
@@ -53,41 +52,41 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        UpdateCommand.EditPatientDescriptor editPatientDescriptor = new UpdateCommand.EditPatientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editPatientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editPatientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editPatientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editPatientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_DOB).isPresent()) {
-            editPersonDescriptor.setDateOfBirth(ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DOB).get()));
+            editPatientDescriptor.setDateOfBirth(ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DOB).get()));
         }
         if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            editPersonDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+            editPatientDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
         }
         if (argMultimap.getValue(PREFIX_IC).isPresent()) {
-            editPersonDescriptor.setIc(ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get()));
+            editPatientDescriptor.setIc(ParserUtil.parseIc(argMultimap.getValue(PREFIX_IC).get()));
         }
         if (argMultimap.getValue(PREFIX_DRUG_ALLERGY).isPresent()) {
-            editPersonDescriptor.setDrugAllergy(ParserUtil.parseDrugAllergy(
+            editPatientDescriptor.setDrugAllergy(ParserUtil.parseDrugAllergy(
                     argMultimap.getValue(PREFIX_DRUG_ALLERGY).get()));
         }
         if (argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_NUMBER).isPresent()) {
-            editPersonDescriptor.setEmergencyContact(ParserUtil.parseEmergencyContact(
+            editPatientDescriptor.setEmergencyContact(ParserUtil.parseEmergencyContact(
                     argMultimap.getValue(PREFIX_EMERGENCY_CONTACT_NUMBER).get()));
         }
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editPatientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new UpdateCommand(name, editPersonDescriptor);
+        return new UpdateCommand(name, editPatientDescriptor);
     }
 }

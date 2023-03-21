@@ -95,7 +95,7 @@ public class Patient {
      * Returns true if both patient have the same name.
      * This defines a weaker notion of equality between two patient.
      */
-    public boolean isSamePerson(Patient otherPatient) {
+    public boolean isSamePatient(Patient otherPatient) {
         if (otherPatient == this) {
             return true;
         }

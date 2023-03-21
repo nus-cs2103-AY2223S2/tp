@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.CareFlowModelManager;
-import seedu.careflow.model.HospitalRecord;
 import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.UserPrefs;
 
@@ -21,10 +20,10 @@ class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new CareFlowModelManager(new PatientRecord(), getTypicalDrugInventory(),
-                new HospitalRecord(), new UserPrefs());
-        expectedModel = new CareFlowModelManager(new PatientRecord(), model.getDrugInventory(),
-                new HospitalRecord(), new UserPrefs());
+        model = new CareFlowModelManager(new PatientRecord(),
+                getTypicalDrugInventory(), new UserPrefs());
+        expectedModel = new CareFlowModelManager(new PatientRecord(),
+                model.getDrugInventory(), new UserPrefs());
     }
 
     @Test

@@ -194,7 +194,7 @@ class JsonAdaptedPatientTest {
                         VALID_IC, null, VALID_EMERGENCY_CONTACT);
         try {
             assertTrue((new PatientBuilder(patient.toModelType()).build())
-                    .isSamePerson(new PatientBuilder(SAMPLE_PATIENT).withDrugAllergy(null).build()));
+                    .isSamePatient(new PatientBuilder(SAMPLE_PATIENT).withDrugAllergy(null).build()));
         } catch (IllegalValueException e) {
             fail();
 
@@ -217,7 +217,7 @@ class JsonAdaptedPatientTest {
                         VALID_IC, VALID_DRUG_ALLERGY, null);
         try {
             assertTrue((new PatientBuilder(patient.toModelType()).build())
-                    .isSamePerson(new PatientBuilder(SAMPLE_PATIENT).withEmergencyContact(null).build()));
+                    .isSamePatient(new PatientBuilder(SAMPLE_PATIENT).withEmergencyContact(null).build()));
         } catch (IllegalValueException e) {
             fail();
         }

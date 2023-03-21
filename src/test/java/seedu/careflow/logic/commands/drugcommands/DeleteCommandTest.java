@@ -15,15 +15,14 @@ import seedu.careflow.commons.core.Messages;
 import seedu.careflow.commons.core.index.Index;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.CareFlowModelManager;
-import seedu.careflow.model.HospitalRecord;
 import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.UserPrefs;
 import seedu.careflow.model.drug.Drug;
 
 class DeleteCommandTest {
 
-    private CareFlowModel model = new CareFlowModelManager(new PatientRecord(), getTypicalDrugInventory(),
-            new HospitalRecord(), new UserPrefs());
+    private CareFlowModel model = new CareFlowModelManager(new PatientRecord(),
+            getTypicalDrugInventory(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -32,8 +31,8 @@ class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_SUCCESS, drugToDelete);
 
-        CareFlowModelManager expectedModel = new CareFlowModelManager(new PatientRecord(), model.getDrugInventory(),
-                new HospitalRecord(), new UserPrefs());
+        CareFlowModelManager expectedModel = new CareFlowModelManager(new PatientRecord(),
+                model.getDrugInventory(), new UserPrefs());
         expectedModel.deleteDrug(drugToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,8 +55,8 @@ class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_SUCCESS, drugToDelete);
 
-        CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(), model.getDrugInventory(),
-                new HospitalRecord(), new UserPrefs());
+        CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(),
+                model.getDrugInventory(), new UserPrefs());
         expectedModel.deleteDrug(drugToDelete);
         showNoDrug(expectedModel);
 

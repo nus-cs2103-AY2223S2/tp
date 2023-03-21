@@ -7,8 +7,6 @@ import static seedu.careflow.model.CareFlowModel.PREDICATE_SHOW_ALL_PATIENTS;
 import static seedu.careflow.testutil.Assert.assertThrows;
 import static seedu.careflow.testutil.TypicalDrugs.PROZAC;
 import static seedu.careflow.testutil.TypicalDrugs.ROBITUSSIN;
-import static seedu.careflow.testutil.TypicalHospitals.CRAWFURD_HOSPITAL;
-import static seedu.careflow.testutil.TypicalHospitals.NATIONAL_UNIVERSITY_HOSPITAL;
 import static seedu.careflow.testutil.TypicalPatients.ALICE;
 import static seedu.careflow.testutil.TypicalPatients.BENSON;
 
@@ -21,7 +19,6 @@ import org.junit.jupiter.api.Test;
 import seedu.careflow.commons.core.GuiSettings;
 import seedu.careflow.model.person.NameContainsKeywordsPredicate;
 import seedu.careflow.testutil.DrugInventoryBuilder;
-import seedu.careflow.testutil.HospitalRecordBuilder;
 import seedu.careflow.testutil.PatientRecordBuilder;
 
 public class CareFlowModelManagerTest {
@@ -139,20 +136,14 @@ public class CareFlowModelManagerTest {
     public void equals() {
         PatientRecord patientRecord = new PatientRecordBuilder().withPatient(ALICE).withPatient(BENSON).build();
         DrugInventory drugInventory = new DrugInventoryBuilder().withDrug(PROZAC).withDrug(ROBITUSSIN).build();
-        HospitalRecord hospitalRecord = new HospitalRecordBuilder()
-                .withHospital(CRAWFURD_HOSPITAL)
-                .withHospital(NATIONAL_UNIVERSITY_HOSPITAL)
-                .build();
 
         PatientRecord differentPatientRecord = new PatientRecord();
         DrugInventory differentDrugInventory = new DrugInventory();
-        HospitalRecord differentHospitalRecord = new HospitalRecord();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new CareFlowModelManager(patientRecord, drugInventory, hospitalRecord, userPrefs);
-        CareFlowModelManager modelManagerCopy = new CareFlowModelManager(patientRecord, drugInventory,
-                hospitalRecord, userPrefs);
+        modelManager = new CareFlowModelManager(patientRecord, drugInventory, userPrefs);
+        CareFlowModelManager modelManagerCopy = new CareFlowModelManager(patientRecord, drugInventory, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -166,13 +157,13 @@ public class CareFlowModelManagerTest {
 
         // different careFlow -> returns false
         assertFalse(modelManager.equals(new CareFlowModelManager(differentPatientRecord,
-                differentDrugInventory, differentHospitalRecord, userPrefs)));
+                differentDrugInventory, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new CareFlowModelManager(patientRecord,
-                drugInventory, new HospitalRecord(), userPrefs)));
+                drugInventory, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
@@ -181,6 +172,6 @@ public class CareFlowModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPatientRecordFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new CareFlowModelManager(patientRecord,
-                drugInventory, new HospitalRecord(), differentUserPrefs)));
+                drugInventory, differentUserPrefs)));
     }
 }

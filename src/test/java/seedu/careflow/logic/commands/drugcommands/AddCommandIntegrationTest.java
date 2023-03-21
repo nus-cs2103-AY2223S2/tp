@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.CareFlowModelManager;
-import seedu.careflow.model.HospitalRecord;
 import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.UserPrefs;
 import seedu.careflow.model.drug.Drug;
@@ -23,16 +22,15 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new CareFlowModelManager(new PatientRecord(), getTypicalDrugInventory(),
-                new HospitalRecord(), new UserPrefs());
+        model = new CareFlowModelManager(new PatientRecord(), getTypicalDrugInventory(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Drug validDrug = new DrugBuilder().build();
 
-        CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(), model.getDrugInventory(),
-                new HospitalRecord(), new UserPrefs());
+        CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(),
+                model.getDrugInventory(), new UserPrefs());
         expectedModel.addDrug(validDrug);
 
         assertCommandSuccess(new AddCommand(validDrug), model,

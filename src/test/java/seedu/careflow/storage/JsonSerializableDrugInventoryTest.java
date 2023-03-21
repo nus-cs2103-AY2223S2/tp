@@ -1,5 +1,11 @@
 package seedu.careflow.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.careflow.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.commons.exceptions.IllegalValueException;
@@ -7,11 +13,8 @@ import seedu.careflow.commons.util.JsonUtil;
 import seedu.careflow.model.DrugInventory;
 import seedu.careflow.testutil.TypicalDrugs;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.careflow.testutil.Assert.assertThrows;
+
 
 class JsonSerializableDrugInventoryTest {
 

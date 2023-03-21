@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.CareFlowModelManager;
 import seedu.careflow.model.DrugInventory;
-import seedu.careflow.model.HospitalRecord;
 import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.UserPrefs;
 import seedu.careflow.model.drug.Drug;
@@ -20,8 +19,8 @@ import seedu.careflow.testutil.DrugBuilder;
 
 class UpdateCommandTest {
 
-    private CareFlowModel model = new CareFlowModelManager(new PatientRecord(), getTypicalDrugInventory(),
-            new HospitalRecord(), new UserPrefs());
+    private CareFlowModel model = new CareFlowModelManager(new PatientRecord(),
+            getTypicalDrugInventory(), new UserPrefs());
 
     @Test
     public void execute_allfieldSpecified_success() {
@@ -34,7 +33,7 @@ class UpdateCommandTest {
                 editedDrug.getTradeName(), editedDrug.getStorageCount());
 
         CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(),
-                new DrugInventory(model.getDrugInventory()), new HospitalRecord(), new UserPrefs());
+                new DrugInventory(model.getDrugInventory()), new UserPrefs());
         expectedModel.setDrug(model.getFilteredDrugList().get(0), editedDrug);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
@@ -48,7 +47,7 @@ class UpdateCommandTest {
                 editedDrug.getTradeName(), editedDrug.getStorageCount());
 
         expectedModel = new CareFlowModelManager(new PatientRecord(),
-                new DrugInventory(model.getDrugInventory()), new HospitalRecord(), new UserPrefs());
+                new DrugInventory(model.getDrugInventory()), new UserPrefs());
         expectedModel.setDrug(model.getFilteredDrugList().get(0), editedDrug);
 
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);

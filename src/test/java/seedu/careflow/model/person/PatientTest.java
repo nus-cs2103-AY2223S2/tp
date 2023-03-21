@@ -44,40 +44,40 @@ public class PatientTest {
     @Test
     public void isSamePerson() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSamePatient(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSamePatient(null));
 
         // same name, one attributes different -> returns true
         Patient editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSamePatient(editedAlice));
 
         // same name, all others required attributes different -> returns true
         editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withDob(VALID_DOB_BOB).withGender(VALID_GENDER_BOB)
                 .withIc(VALID_IC_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSamePatient(editedAlice));
 
         // same name, all others required and optional attributes different -> returns true
         editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withDob(VALID_DOB_BOB).withGender(VALID_GENDER_BOB)
                 .withIc(VALID_IC_BOB).withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
                 .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSamePatient(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new PatientBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSamePatient(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Patient editedBob = new PatientBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSamePatient(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PatientBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertFalse(BOB.isSamePatient(editedBob));
     }
 
     @Test

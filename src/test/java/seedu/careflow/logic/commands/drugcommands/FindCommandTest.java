@@ -17,16 +17,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.CareFlowModelManager;
-import seedu.careflow.model.HospitalRecord;
 import seedu.careflow.model.PatientRecord;
 import seedu.careflow.model.UserPrefs;
 import seedu.careflow.model.drug.TradeNameContainsKeywordsPredicate;
 
 class FindCommandTest {
-    private CareFlowModel model = new CareFlowModelManager(new PatientRecord(), getTypicalDrugInventory(),
-            new HospitalRecord(), new UserPrefs());
-    private CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(), getTypicalDrugInventory(),
-            new HospitalRecord(), new UserPrefs());
+    private CareFlowModel model = new CareFlowModelManager(new PatientRecord(),
+            getTypicalDrugInventory(), new UserPrefs());
+    private CareFlowModel expectedModel = new CareFlowModelManager(new PatientRecord(),
+            getTypicalDrugInventory(), new UserPrefs());
 
     @Test
     public void equals() {

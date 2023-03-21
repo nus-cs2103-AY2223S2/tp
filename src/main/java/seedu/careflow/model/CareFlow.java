@@ -37,12 +37,10 @@ public class CareFlow {
      * @param toBeCopiedP the patient records
      * @param toBeCopiedD the drug inventory
      */
-    public CareFlow(ReadOnlyPatientRecord toBeCopiedP, ReadOnlyDrugInventory toBeCopiedD,
-                    ReadOnlyHospitalRecords toBeCopiedH) {
+    public CareFlow(ReadOnlyPatientRecord toBeCopiedP, ReadOnlyDrugInventory toBeCopiedD) {
         this();
         resetPatientData(toBeCopiedP);
         resetDrugData(toBeCopiedD);
-        resetHospitalData(toBeCopiedH);
     }
 
     public ReadOnlyPatientRecord getPatientRecord() {

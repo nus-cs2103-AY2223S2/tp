@@ -55,23 +55,23 @@ public class UpdateCommand extends Command {
             + PREFIX_DRUG_ALLERGY + " Aspirin "
             + PREFIX_EMERGENCY_CONTACT_NUMBER + " 93746552";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Updated Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Updated Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Name name;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditPatientDescriptor editPatientDescriptor;
 
     /**
      * @param name of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param editPatientDescriptor details to edit the person with
      */
-    public UpdateCommand(Name name, EditPersonDescriptor editPersonDescriptor) {
+    public UpdateCommand(Name name, EditPatientDescriptor editPatientDescriptor) {
         requireNonNull(name);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editPatientDescriptor);
 
         this.name = name;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPatientDescriptor = new EditPatientDescriptor(editPatientDescriptor);
     }
 
     @Override
@@ -86,9 +86,9 @@ public class UpdateCommand extends Command {
                 break;
             }
         }
-        Patient editedPatient = createEditedPerson(requireNonNull(patientToEdit), editPersonDescriptor);
+        Patient editedPatient = createEditedPatient(requireNonNull(patientToEdit), editPatientDescriptor);
 
-        if (!patientToEdit.isSamePerson(editedPatient) && careFlowModel.hasPatient(editedPatient)) {
+        if (!patientToEdit.isSamePatient(editedPatient) && careFlowModel.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
@@ -99,22 +99,22 @@ public class UpdateCommand extends Command {
 
     /**
      * Creates and returns a {@code Patient} with the details of {@code patientToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * edited with {@code editPatientDescriptor}.
      */
-    private static Patient createEditedPerson(Patient patientToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
         assert patientToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(patientToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(patientToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(patientToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        DateOfBirth updatedBirthDate = editPersonDescriptor.getDateOfBirth().orElse(patientToEdit.getBirthDate());
-        Gender updatedGender = editPersonDescriptor.getGender().orElse(patientToEdit.getGender());
-        Ic updatedIc = editPersonDescriptor.getIc().orElse(patientToEdit.getIc());
-        DrugAllergy updatedDrugAllergy = editPersonDescriptor
+        Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
+        Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
+        Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
+        Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        DateOfBirth updatedBirthDate = editPatientDescriptor.getDateOfBirth().orElse(patientToEdit.getBirthDate());
+        Gender updatedGender = editPatientDescriptor.getGender().orElse(patientToEdit.getGender());
+        Ic updatedIc = editPatientDescriptor.getIc().orElse(patientToEdit.getIc());
+        DrugAllergy updatedDrugAllergy = editPatientDescriptor
                 .getDrugAllergy()
                 .orElse(patientToEdit.getDrugAllergy());
-        Phone updatedEmergencyContact = editPersonDescriptor
+        Phone updatedEmergencyContact = editPatientDescriptor
                 .getEmergencyContact()
                 .orElse(patientToEdit.getEmergencyContact());
 
@@ -137,14 +137,14 @@ public class UpdateCommand extends Command {
         // state check
         UpdateCommand e = (UpdateCommand) other;
         return name.equals(e.name)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPatientDescriptor.equals(e.editPatientDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class EditPersonDescriptor {
+    public static class EditPatientDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
@@ -155,13 +155,13 @@ public class UpdateCommand extends Command {
         private DrugAllergy drugAllergy;
         private Phone emergencyContact;
 
-        public EditPersonDescriptor() {}
+        public EditPatientDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -261,12 +261,12 @@ public class UpdateCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditPatientDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditPatientDescriptor e = (EditPatientDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

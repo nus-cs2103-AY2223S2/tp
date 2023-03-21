@@ -19,7 +19,7 @@ import java.util.List;
 
 import seedu.careflow.commons.core.index.Index;
 import seedu.careflow.logic.commands.exceptions.CommandException;
-import seedu.careflow.logic.commands.patientcommands.UpdateCommand;
+import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDescriptor;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.DrugInventory;
 import seedu.careflow.model.PatientRecord;
@@ -27,7 +27,7 @@ import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.drug.TradeNameContainsKeywordsPredicate;
 import seedu.careflow.model.person.NameContainsKeywordsPredicate;
 import seedu.careflow.model.person.Patient;
-import seedu.careflow.testutil.EditPersonDescriptorBuilder;
+import seedu.careflow.testutil.EditPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -90,15 +90,15 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final UpdateCommand.EditPersonDescriptor DESC_AMY;
-    public static final UpdateCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPatientDescriptor DESC_AMY;
+    public static final EditPatientDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withDob(VALID_DOB_AMY).withGender(VALID_GENDER_AMY).withIc(VALID_IC_AMY)
                 .withDrugAllergy(VALID_DRUG_ALLERGY_AMY).withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withDob(VALID_DOB_BOB).withGender(VALID_GENDER_BOB).withIc(VALID_IC_BOB)
                 .withDrugAllergy(VALID_DRUG_ALLERGY_BOB).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
@@ -165,10 +165,10 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code CareFlowModel}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code CareFlowModel}'s filtered list to show only the patient at the given {@code targetIndex} in the
      * {@code model}'s CareFlow.
      */
-    public static void showPersonAtIndex(CareFlowModel model, Index targetIndex) {
+    public static void showPatientAtIndex(CareFlowModel model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
         Patient person = model.getFilteredPatientList().get(targetIndex.getZeroBased());

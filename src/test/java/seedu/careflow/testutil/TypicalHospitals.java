@@ -35,11 +35,11 @@ public class TypicalHospitals {
      * Returns an {@code Careflow} with all the typical hospital.
      */
     public static HospitalRecord getTypicalHospitalRecord() {
-        HospitalRecord pr = new HospitalRecord();
+        HospitalRecord hr = new HospitalRecord();
         for (Hospital hospital : getTypicalHospitals()) {
-            pr.addHospital(hospital);
+            hr.addHospital(hospital);
         }
-        return pr;
+        return hr;
     }
 
     public static List<Hospital> getTypicalHospitals() {
