@@ -27,6 +27,7 @@ public class Student extends Person {
     protected Name parentName;
     protected Relationship rls;
     private final IndexNumber indexNumber;
+    protected Phone studentNumber;
     private final Sex sex;
     private final Age age;
     private final Image image;
@@ -61,9 +62,9 @@ public class Student extends Person {
      * @param tags Tag given to student.
      */
     public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, Name parentName, Phone parentPhone,
-                   Relationship rls, Age age, Image image, Email email, Phone phone, Cca cca, Address address,
+                   Relationship rls, Age age, Image image, Email email, Phone studentNumber, Cca cca, Address address,
                    Attendance attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
-        super(name, phone, email, address, tags);
+        super(name, studentNumber, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
         this.age = age;
@@ -206,6 +207,18 @@ public class Student extends Person {
 
     public Class getSc() {
         return sc;
+    }
+
+    public Phone getStudentNumber() {
+        return studentNumber;
+    }
+
+    public Set<Tag> getTagList() {
+        return tags;
+    }
+
+    public Set<Homework> getHomeworkSet() {
+        return homework;
     }
 
     /**
