@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import java.util.HashMap;
+import java.util.function.Function;
 
+import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 
 /**
@@ -12,15 +14,19 @@ public class CommandInfo {
 
     private final HashMap<Prefix, String> commandPrompts;
 
+    private final Function<ArgumentMultimap, Boolean> commandValidator;
+
     /**
      * Constructs a new CommandInfo object with the given command word and command prompts.
      *
      * @param commandWord    the word used to invoke the command.
      * @param commandPrompts a mapping of prefixes to prompts for the user.
      */
-    public CommandInfo(String commandWord, HashMap<Prefix, String> commandPrompts) {
+    public CommandInfo(String commandWord, HashMap<Prefix, String> commandPrompts,
+                       Function<ArgumentMultimap, Boolean> commandValidator) {
         this.commandWord = commandWord;
         this.commandPrompts = commandPrompts;
+        this.commandValidator = commandValidator;
     }
 
     public String getCmdWord() {
@@ -29,5 +35,9 @@ public class CommandInfo {
 
     public HashMap<Prefix, String> getCmdPrompts() {
         return commandPrompts;
+    }
+
+    public Function<ArgumentMultimap, Boolean> getCommandValidator() {
+        return commandValidator;
     }
 }

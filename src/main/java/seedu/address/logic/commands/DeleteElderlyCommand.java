@@ -21,7 +21,6 @@ import seedu.address.model.person.information.Nric;
 public class DeleteElderlyCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_elderly";
-
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {

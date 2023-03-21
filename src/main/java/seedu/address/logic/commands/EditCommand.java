@@ -38,7 +38,6 @@ import seedu.address.model.person.information.Nric;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {

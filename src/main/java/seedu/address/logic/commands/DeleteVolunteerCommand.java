@@ -20,7 +20,6 @@ import seedu.address.model.person.information.Nric;
 public class DeleteVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_volunteer";
-
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new HashMap<>();
 
     static {

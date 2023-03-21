@@ -36,7 +36,6 @@ import seedu.address.model.person.Elderly;
 public class EditElderlyCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_elderly";
-
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {

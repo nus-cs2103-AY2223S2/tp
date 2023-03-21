@@ -35,7 +35,6 @@ import seedu.address.model.person.Volunteer;
 public class EditVolunteerCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_volunteer";
-
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {

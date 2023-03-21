@@ -11,9 +11,7 @@ import seedu.address.model.Model;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
-
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new HashMap<>();
-
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting FriendlyLink as requested ...";
 
     @Override

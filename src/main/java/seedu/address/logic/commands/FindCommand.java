@@ -32,9 +32,7 @@ import seedu.address.model.person.Volunteer;
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
-
     public static final String COMMAND_WORD = "find";
-
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {

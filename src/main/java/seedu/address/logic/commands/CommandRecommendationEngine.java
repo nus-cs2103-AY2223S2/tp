@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddElderlyCommandParser;
@@ -13,19 +15,18 @@ import seedu.address.logic.parser.AddVolunteerCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ClearCommandParser;
-import seedu.address.logic.parser.DeleteElderlyCommandParser;
 import seedu.address.logic.parser.DeletePairCommandParser;
 import seedu.address.logic.parser.DeleteVolunteerCommandParser;
 import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.EditElderlyCommandParser;
-import seedu.address.logic.parser.EditVolunteerCommandParser;
 import seedu.address.logic.parser.ExitCommandParser;
+import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.HelpCommandParser;
 import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.Prefix;
 
 /**
- * Suggests a command based on the user input.
+ * Recommends a command based on the user input.
  */
 public class CommandRecommendationEngine {
     private static final String INVALID_COMMAND_MESSAGE = "No such command exists!"
@@ -34,40 +35,60 @@ public class CommandRecommendationEngine {
             + " Please refer to our user guide for the list of valid arguments.";
 
     private static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
-    private static final Map<String, Function<ArgumentMultimap, Boolean>> validator = new HashMap<>();
 
     static {
-        addCommandInfo(new CommandInfo(DeleteVolunteerCommand.COMMAND_WORD, DeleteVolunteerCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(DeleteElderlyCommand.COMMAND_WORD, DeleteElderlyCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(AddVolunteerCommand.COMMAND_WORD, AddVolunteerCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(EditElderlyCommand.COMMAND_WORD, EditElderlyCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(DeletePairCommand.COMMAND_WORD, DeletePairCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(AddElderlyCommand.COMMAND_WORD, AddElderlyCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(AddPairCommand.COMMAND_WORD, AddPairCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(FindCommand.COMMAND_WORD, FindCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(ExitCommand.COMMAND_WORD, ExitCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(ListCommand.COMMAND_WORD, ListCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(EditCommand.COMMAND_WORD, EditCommand.COMMAND_PROMPTS));
-        addCommandInfo(new CommandInfo(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_PROMPTS));
-
-        addValidator(DeleteVolunteerCommand.COMMAND_WORD, DeleteVolunteerCommandParser::validate);
-        addValidator(DeleteElderlyCommand.COMMAND_WORD, DeleteElderlyCommandParser::validate);
-        addValidator(EditVolunteerCommand.COMMAND_WORD, EditVolunteerCommandParser::validate);
-        addValidator(AddVolunteerCommand.COMMAND_WORD, AddVolunteerCommandParser::validate);
-        addValidator(EditElderlyCommand.COMMAND_WORD, EditElderlyCommandParser::validate);
-        addValidator(AddElderlyCommand.COMMAND_WORD, AddElderlyCommandParser::validate);
-        addValidator(DeletePairCommand.COMMAND_WORD, DeletePairCommandParser::validate);
-        addValidator(AddPairCommand.COMMAND_WORD, AddPairCommandParser::validate);
-        addValidator(ClearCommand.COMMAND_WORD, ClearCommandParser::validate);
-        addValidator(EditCommand.COMMAND_WORD, EditCommandParser::validate);
-        addValidator(ListCommand.COMMAND_WORD, ListCommandParser::validate);
-        addValidator(ExitCommand.COMMAND_WORD, ExitCommandParser::validate);
-        addValidator(HelpCommand.COMMAND_WORD, HelpCommandParser::validate);
-    }
-
-    private static void addValidator(String command, Function<ArgumentMultimap, Boolean> function) {
-        validator.put(command, function);
+        registerCommandInfo(new CommandInfo(
+                DeleteVolunteerCommand.COMMAND_WORD,
+                DeleteVolunteerCommand.COMMAND_PROMPTS,
+                DeleteVolunteerCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                DeleteElderlyCommand.COMMAND_WORD,
+                DeleteElderlyCommand.COMMAND_PROMPTS,
+                DeleteVolunteerCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                AddVolunteerCommand.COMMAND_WORD,
+                AddVolunteerCommand.COMMAND_PROMPTS,
+                AddVolunteerCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                EditElderlyCommand.COMMAND_WORD,
+                EditElderlyCommand.COMMAND_PROMPTS,
+                EditElderlyCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                DeletePairCommand.COMMAND_WORD,
+                DeletePairCommand.COMMAND_PROMPTS,
+                DeletePairCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                AddElderlyCommand.COMMAND_WORD,
+                AddElderlyCommand.COMMAND_PROMPTS,
+                AddElderlyCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                AddPairCommand.COMMAND_WORD,
+                AddPairCommand.COMMAND_PROMPTS,
+                AddPairCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                ClearCommand.COMMAND_WORD,
+                ClearCommand.COMMAND_PROMPTS,
+                ClearCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                FindCommand.COMMAND_WORD,
+                FindCommand.COMMAND_PROMPTS,
+                FindCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                ExitCommand.COMMAND_WORD,
+                ExitCommand.COMMAND_PROMPTS,
+                ExitCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                ListCommand.COMMAND_WORD,
+                ListCommand.COMMAND_PROMPTS,
+                ListCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                EditCommand.COMMAND_WORD,
+                EditCommand.COMMAND_PROMPTS,
+                EditCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                HelpCommand.COMMAND_WORD,
+                HelpCommand.COMMAND_PROMPTS,
+                HelpCommandParser::validate));
     }
 
     /**
@@ -75,7 +96,7 @@ public class CommandRecommendationEngine {
      *
      * @param commandInfo Command info to add.
      */
-    private static void addCommandInfo(CommandInfo commandInfo) {
+    private static void registerCommandInfo(CommandInfo commandInfo) {
         commandInfoMap.put(commandInfo.getCmdWord(), commandInfo);
     }
 
@@ -83,7 +104,7 @@ public class CommandRecommendationEngine {
      * Recommends a command based on the user input.
      *
      * @param userInput User input.
-     * @return Suggested command.
+     * @return Recommended command.
      * @throws CommandException If the user input is invalid.
      */
     public String recommendCommand(String userInput) throws CommandException {
@@ -103,8 +124,8 @@ public class CommandRecommendationEngine {
             String[] userArgsArray = Arrays.copyOfRange(userInputArray, 1, userInputArray.length);
             userArgs = Arrays.stream(userArgsArray).reduce("", ((a, b) -> a + " " + b));
         }
-        String recommendedArguments = generateArgumentRecommendation(commandInfo.getCmdPrompts(), userArgs, command);
 
+        String recommendedArguments = generateArgumentRecommendation(commandInfo, userArgs);
         if (userInputArray.length > 1) { // command is specified
             return userInput.stripTrailing() + recommendedArguments;
         } else {
@@ -116,7 +137,7 @@ public class CommandRecommendationEngine {
      * Returns the new user input when user auto-completes the command.
      *
      * @param userInput          Current User Input.
-     * @param recommendedCommand Current Command Suggestion
+     * @param recommendedCommand Current Command Recommendation
      * @return New User Input.
      */
     public String autocompleteCommand(String userInput, String recommendedCommand) {
@@ -155,27 +176,30 @@ public class CommandRecommendationEngine {
     /**
      * Generates recommendations for parsed arguments. This function is invoked on each keystroke.
      *
-     * @param cmdPrompt The map of prefix to values for a particular command
-     * @param userArgs  The current user input in the command textbox
+     * @param commandInfo   The information for a particular command
+     * @param userArgs      The current user input in the command textbox
      * @return The recommended arguments
      * @throws CommandException User typed an invalid prefix.
      */
-    private String generateArgumentRecommendation(HashMap<Prefix, String> cmdPrompt, String userArgs, String command)
+    private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs)
             throws CommandException {
+
+        HashMap<Prefix, String> cmdPrompt = commandInfo.getCmdPrompts();
+        String command = commandInfo.getCmdWord();
 
         StringBuilder argumentRecommendation = new StringBuilder();
         if (userArgs == null) {
-            cmdPrompt.keySet()
-                    .forEach(key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)));
+            getRemainingArguments(cmdPrompt,
+                    key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
+                    unused -> true);
+
             return argumentRecommendation.toString();
         }
 
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, cmdPrompt.keySet()
                 .toArray(new Prefix[]{}));
 
-
-        Function<ArgumentMultimap, Boolean> argumentValidator = validator.get(command);
-        Boolean isValidArgs = argumentValidator.apply(argumentMultimap);
+        boolean isValidArgs = isValidArgs(command, argumentMultimap);
         if (!isValidArgs) {
             throw new CommandException(INVALID_PREFIX_MESSAGE);
         }
@@ -200,11 +224,31 @@ public class CommandRecommendationEngine {
         }
 
         // current set of arguments is complete -> return remaining recommendation
-        cmdPrompt.keySet()
-                .stream()
-                .filter(key -> argumentMultimap.getValue(key).isEmpty())
-                .forEach(key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)));
+        getRemainingArguments(cmdPrompt,
+                key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
+                key -> argumentMultimap.getValue(key).isEmpty());
 
         return argumentRecommendation.toString();
+    }
+
+    /**
+     * Validates the current set of arguments according to the specified command validator.
+     *
+     * @param command          The command type.
+     * @param argumentMultimap The map of arguments.
+     * @return A boolean value indicating if the set of arguments specified is valid.
+     */
+    private static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) {
+        CommandInfo commandInfo = commandInfoMap.get(command);
+        Function<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCommandValidator();
+        return argumentValidator.apply(argumentMultimap);
+    }
+
+    private static void getRemainingArguments(HashMap<Prefix, String> cmdPrompt, Consumer<? super Prefix> consumer,
+                                              Predicate<Prefix> predicate) {
+        cmdPrompt.keySet()
+                .stream()
+                .filter(predicate)
+                .forEach(consumer);
     }
 }
