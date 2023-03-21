@@ -7,7 +7,8 @@
     "nric" : "S0077007W",
     "age" : "55",
     "region": "CENTRAL",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "medicalTags" : [ ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -16,6 +17,7 @@
     "nric" : "S0077007W",
     "age" : "55",
     "region": "CENTRAL",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "medicalTags" : [ ]
   } ]
 }

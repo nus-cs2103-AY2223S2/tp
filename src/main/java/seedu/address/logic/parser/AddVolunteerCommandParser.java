@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -27,6 +28,7 @@ import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
+import seedu.address.model.tag.MedicalQualificationTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,8 +46,9 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
      */
     public AddVolunteerCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NRIC_VOLUNTEER,
-            PREFIX_AGE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_TAG};
+            PREFIX_AGE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_TAG, PREFIX_MEDICAL_TAG};
         Prefix[] compulsoryPrefixes = Arrays.copyOfRange(availablePrefixes, 0, 7);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, availablePrefixes);
@@ -64,8 +67,11 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
         Set<AvailableDate> availableDates = ParserUtil.parseDateRanges(argMultimap.getAllValues(PREFIX_AVAILABILITY));
         Region region = ParserUtil.parseRegion(argMultimap.getValue(PREFIX_REGION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<MedicalQualificationTag> medicalTagList =
+                ParserUtil.parseMedicalTags(argMultimap.getAllValues(PREFIX_MEDICAL_TAG));
 
-        Volunteer volunteer = new Volunteer(name, phone, email, address, nric, age, region, tagList, availableDates);
+        Volunteer volunteer = new Volunteer(name, phone, email, address, nric,
+                age, region, tagList, medicalTagList, availableDates);
 
         return new AddVolunteerCommand(volunteer);
     }

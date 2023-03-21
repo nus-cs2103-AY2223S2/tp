@@ -7,9 +7,13 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "nric" : "S9673908G",
     "age" : "20",
+    "region": "CENTRAL",
     "tagged" : [ "friends" ],
-    "availableDates": ["2023-05-01 to 2023-05-12", "2023-05-12 to 2023-05-15", "2023-05-02 to 2023-05-14"],
-    "region": "CENTRAL"
+    "medicalTags" : [ {
+      "skill" : "CPR",
+      "level" : "BASIC"
+    } ],
+    "availableDates": ["2023-05-01 to 2023-05-12", "2023-05-12 to 2023-05-15", "2023-05-02 to 2023-05-14"]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -17,9 +21,10 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "nric" : "S6878241D",
     "age" : "23",
+    "region": "WEST",
     "tagged" : [ "owesMoney", "friends" ],
-    "availableDates": ["2023-05-02 to 2023-05-10", "2023-05-01 to 2023-05-12"],
-    "region": "WEST"
+    "medicalTags" : [ ],
+    "availableDates": ["2023-05-02 to 2023-05-10", "2023-05-01 to 2023-05-12"]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -28,7 +33,14 @@
     "nric" : "S3634466J",
     "age" : "31",
     "region": "EAST",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "medicalTags" : [ {
+      "skill" : "BLS",
+      "level" : "INTERMEDIATE"
+    }, {
+      "skill" : "AED",
+      "level" : "BASIC"
+    } ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -37,7 +49,8 @@
     "nric" : "S0203151E",
     "age" : "25",
     "region": "NORTH",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "medicalTags" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -45,9 +58,10 @@
     "address" : "michegan ave",
     "nric" : "S7238791J",
     "age" : "28",
+    "region": "NORTHEAST",
     "tagged" : [ ],
-    "availableDates": ["2023-05-11 to 2023-05-12"],
-    "region": "NORTHEAST"
+    "medicalTags" : [ ],
+    "availableDates": ["2023-05-11 to 2023-05-12"]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -57,6 +71,10 @@
     "age" : "26",
     "region": "EAST",
     "tagged" : [ ],
+    "medicalTags" : [ {
+      "skill" : "AED",
+      "level" : "ADVANCED"
+    } ],
     "availableDates": ["2023-02-01 to 2023-03-01"]
   }, {
     "name" : "George Best",
@@ -66,6 +84,7 @@
     "nric" : "S1262951F",
     "age" : "24",
     "region": "CENTRAL",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "medicalTags" : [ ]
   } ]
 }

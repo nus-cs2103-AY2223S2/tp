@@ -16,6 +16,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.VolunteerNotFoundException;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Nric;
+import seedu.address.model.person.information.Region;
+
 
 /**
  * Wraps all data at the friendly-link level
@@ -289,17 +291,29 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param elderlyNric Nric of elderly.
      * @param volunteerNric Nric of volunteer.
      */
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+
+    public boolean addPair(Nric elderlyNric, Nric volunteerNric) {
         Elderly elderly = getElderly(elderlyNric);
         Volunteer volunteer = getVolunteer(volunteerNric);
+
+        Region elderlyRegion = elderly.getRegion();
+        Region volunteerRegion = volunteer.getRegion();
 
         Set<AvailableDate> elderlyAvailableDates = elderly.getAvailableDates();
         Set<AvailableDate> volunteerAvailableDates = volunteer.getAvailableDates();
 
+        // check if region match. If does not match, issue a warning in feedback
+        boolean issueWarning;
+        if (!elderlyRegion.isMatch(volunteerRegion)) {
+            issueWarning = true;
+        } else {
+            issueWarning = false;
+        }
+
         // no restrictions
         if (elderlyAvailableDates.isEmpty() || volunteerAvailableDates.isEmpty()) {
             pairs.add(new Pair(elderly, volunteer));
-            return;
+            return issueWarning;
         }
 
         // find first matching dates
@@ -307,7 +321,7 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
             for (AvailableDate availableDate : volunteerAvailableDates) {
                 if (date.isIntersect(availableDate.getStartDate(), availableDate.getEndDate())) {
                     pairs.add(new Pair(elderly, volunteer));
-                    return;
+                    return issueWarning;
                 }
             }
         }
