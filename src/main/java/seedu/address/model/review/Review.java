@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 
@@ -25,6 +28,7 @@ public class Review {
 
     private int totalNumCards;
     private List<Integer> orderOfCards;
+    private ObservableList<String> reviewStatsList;
 
     /**
      * Every field must be present and not null.
@@ -47,6 +51,10 @@ public class Review {
 
         // initialise scoreList
         scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
+        Collections.fill(scoreList, false);
+
+        // initialise reviewStats
+        reviewStatsList = FXCollections.observableArrayList();
     }
 
     /**
@@ -83,6 +91,9 @@ public class Review {
 
         // initialise scoreList
         scoreList = new ArrayList<>(Arrays.asList(new Boolean[totalNumCards]));
+        Collections.fill(scoreList, false);
+
+        updateReviewStatsList();
     }
 
     public Card getCurrCard() {
@@ -130,10 +141,12 @@ public class Review {
             if (priorStateIsFlipped) {
                 currCard.setAsFlipped();
             }
+            updateReviewStatsList();
             return false;
         } else {
             currCard = cardList.get(orderOfCards.get(currCardNum - 1));
             currCard.setAsUnflipped();
+            updateReviewStatsList();
             return true;
         }
     }
@@ -147,10 +160,12 @@ public class Review {
         currCardNum--;
         if (currCardNum <= 0) {
             currCardNum++;
+            updateReviewStatsList();
             return false;
         } else {
             currCard = cardList.get(orderOfCards.get(currCardNum - 1));
             currCard.setAsUnflipped();
+            updateReviewStatsList();
             return true;
         }
     }
@@ -179,4 +194,15 @@ public class Review {
         cardList.stream().forEach(Card::setAsFlipped);
     }
 
+    public ObservableList<String> getReviewStatsList() {
+        updateReviewStatsList();
+        return reviewStatsList;
+    }
+
+    private void updateReviewStatsList() {
+        String cardsSeen = String.format("Current Card Number: %d/%d", currCardNum, totalNumCards);
+        String currentScore = String.format("Current Score: %d", getTotalScore());
+        this.reviewStatsList.clear();
+        this.reviewStatsList.addAll(deck.getDeckName(), cardsSeen, currentScore);
+    }
 }
