@@ -86,11 +86,19 @@ public class JsonAdaptedModule {
     public Module toModelType() throws IllegalValueException {
         final Set<Tag> moduleTags = new HashSet<>();
         for (JsonAdaptedTag adaptedTag : tagged) {
+            if (adaptedTag == null) {
+                continue;
+            }
+
             moduleTags.add(adaptedTag.toModelType());
         }
 
         final UniqueLectureList moduleLectures = new UniqueLectureList();
         for (JsonAdaptedLecture adaptedLecture : lectures) {
+            if (adaptedLecture == null) {
+                continue;
+            }
+
             Lecture lecture = adaptedLecture.toModelType();
 
             if (moduleLectures.contains(lecture)) {

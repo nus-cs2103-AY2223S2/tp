@@ -68,6 +68,10 @@ public class JsonAdaptedVideo {
     public Video toModelType() throws IllegalValueException {
         final Set<Tag> videoTags = new HashSet<>();
         for (JsonAdaptedTag adaptedTag : tagged) {
+            if (adaptedTag == null) {
+                continue;
+            }
+
             videoTags.add(adaptedTag.toModelType());
         }
 

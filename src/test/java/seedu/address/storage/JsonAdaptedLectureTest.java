@@ -13,8 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.testutil.TypicalLectures;
 
-// TODO: test when duplictes are detected in videos
-// TODO: test when null is detected in videos
 public class JsonAdaptedLectureTest {
 
     private static final String INVALID_NAME = "Lecture_01**";
@@ -53,6 +51,43 @@ public class JsonAdaptedLectureTest {
         JsonAdaptedLecture lecture =
                 new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, invalidTags);
         assertThrows(IllegalValueException.class, lecture::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateVideos_throwsIllegalValueException() {
+        List<JsonAdaptedVideo> dupicatedVideos = new ArrayList<>(VALID_VIDEOS);
+        dupicatedVideos.addAll(VALID_VIDEOS);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, dupicatedVideos, VALID_TAGS);
+        String expectedMessage = JsonAdaptedLecture.MESSAGE_DUPLICATE_VIDEO;
+        assertThrows(IllegalValueException.class, expectedMessage, lecture::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullInVideos_nullValueIgnored() throws IllegalValueException {
+        List<JsonAdaptedVideo> videosContainingNull = new ArrayList<>(VALID_VIDEOS);
+        videosContainingNull.add(null);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, videosContainingNull, VALID_TAGS);
+        assertEquals(TypicalLectures.CS2040S_WEEK_1, lecture.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_duplicatesIgnored() throws Exception {
+        List<JsonAdaptedTag> duplicatedTags = new ArrayList<>(VALID_TAGS);
+        duplicatedTags.addAll(VALID_TAGS);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, duplicatedTags);
+        assertEquals(TypicalLectures.CS2040S_WEEK_1, lecture.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_nullValueIgnored() throws Exception {
+        List<JsonAdaptedTag> tagsContainingNull = new ArrayList<>(VALID_TAGS);
+        tagsContainingNull.add(null);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, tagsContainingNull);
+        assertEquals(TypicalLectures.CS2040S_WEEK_1, lecture.toModelType());
     }
 
 }

@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTrackerStorage jsonTrackerStorage = new JsonTrackerStorage(getTempFilePath("ab"));
+        JsonTrackerStorage jsonTrackerStorage = new JsonTrackerStorage(getTempFilePath("lt"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(jsonTrackerStorage, userPrefsStorage);
     }
