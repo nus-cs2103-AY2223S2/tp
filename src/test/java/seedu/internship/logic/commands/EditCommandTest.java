@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.commands.CommandTestUtil.DESC_ML1;
 import static seedu.internship.logic.commands.CommandTestUtil.DESC_SE1;
+import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_SE1;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_POSITION_DA1;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_POSITION_SE1;
-import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_SE1;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_TAG_FUN;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.internship.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -43,7 +43,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -64,7 +65,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
         expectedModel.setInternship(lastInternship, editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,7 +79,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -86,14 +89,17 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
-        Internship internshipInFilteredList = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        Internship editedInternship = new InternshipBuilder(internshipInFilteredList).withPosition(VALID_POSITION_DA1).build();
+        Internship internshipInFilteredList = model.getFilteredInternshipList()
+                .get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        Internship editedInternship = new InternshipBuilder(internshipInFilteredList)
+                .withPosition(VALID_POSITION_DA1).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder().withPosition(VALID_POSITION_DA1).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
-        Model expectedModel = new ModelManager(new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new InternshipCatalogue(model.getInternshipCatalogue()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -113,7 +119,8 @@ public class EditCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         // edit internship in filtered list into a duplicate in internship catalogue
-        Internship internshipInList = model.getInternshipCatalogue().getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+        Internship internshipInList = model.getInternshipCatalogue()
+                .getInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder(internshipInList).build());
 
@@ -123,7 +130,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPosition(VALID_POSITION_SE1).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
+                .withPosition(VALID_POSITION_SE1).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
@@ -162,9 +170,7 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        /**
-         * uncomment when clear command is implemented.
-         */
+        // uncomment when clear command is implemented.
         //assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false

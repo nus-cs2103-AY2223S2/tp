@@ -48,7 +48,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the internship catalogue.";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists "
+            + "in the internship catalogue.";
 
     private final Index index;
     private final EditInternshipDescriptor editInternshipDescriptor;
@@ -90,13 +91,15 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Internship} with the details of {@code internshipToEdit}
      * edited with {@code editInternshipDescriptor}.
      */
-    private static Internship createEditedInternship(Internship internshipToEdit, EditInternshipDescriptor editInternshipDescriptor) {
+    private static Internship createEditedInternship(
+            Internship internshipToEdit, EditInternshipDescriptor editInternshipDescriptor) {
         assert internshipToEdit != null;
 
         Position updatedPosition = editInternshipDescriptor.getPosition().orElse(internshipToEdit.getPosition());
         Company updatedCompany = editInternshipDescriptor.getCompany().orElse(internshipToEdit.getCompany());
         Status updatedStatus = editInternshipDescriptor.getStatus().orElse(internshipToEdit.getStatus());
-        Description updatedDescription = editInternshipDescriptor.getDescription().orElse(internshipToEdit.getDescription());
+        Description updatedDescription = editInternshipDescriptor.getDescription()
+                .orElse(internshipToEdit.getDescription());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
         return new Internship(updatedPosition, updatedCompany, updatedStatus, updatedDescription, updatedTags);

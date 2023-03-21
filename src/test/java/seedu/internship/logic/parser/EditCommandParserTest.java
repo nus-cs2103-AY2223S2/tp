@@ -6,7 +6,6 @@ import static seedu.internship.logic.commands.CommandTestUtil.COMPANY_DESC_SE1;
 import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ML1;
 import static seedu.internship.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SE1;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
-//import static seedu.internship.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.internship.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -37,7 +36,6 @@ import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.internship.model.internship.Company;
-import seedu.internship.model.internship.Description;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
 import seedu.internship.model.tag.Tag;
@@ -84,8 +82,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_POSITION_DESC, Position.MESSAGE_CONSTRAINTS); // invalid position
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid company
         assertParseFailure(parser, "1" + INVALID_STATUS_DESC, Status.MESSAGE_CONSTRAINTS); // invalid status
-        // no invalid description now
-        //assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid description
+
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid company followed by valid status
@@ -102,7 +99,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FUN + TAG_DESC_IMPORTANT, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_POSITION_DESC + INVALID_COMPANY_DESC + INVALID_STATUS_DESC, // + INVALID_DESCRIPTION_DESC,
+        assertParseFailure(parser, "1" + INVALID_POSITION_DESC + INVALID_COMPANY_DESC + INVALID_STATUS_DESC,
                 Position.MESSAGE_CONSTRAINTS);
     }
 
@@ -125,7 +122,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_SE1 + COMPANY_DESC_ML1;
 
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withDescription(VALID_DESCRIPTION_SE1)
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
+                .withDescription(VALID_DESCRIPTION_SE1)
                 .withCompany(VALID_COMPANY_ML1).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -137,7 +135,8 @@ public class EditCommandParserTest {
         // position
         Index targetIndex = INDEX_THIRD_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + POSITION_DESC_ML1;
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPosition(VALID_POSITION_ML1).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
+                .withPosition(VALID_POSITION_ML1).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -173,8 +172,11 @@ public class EditCommandParserTest {
                 + TAG_DESC_FUN + COMPANY_DESC_ML1 + STATUS_DESC_ML1 + DESCRIPTION_DESC_ML1 + TAG_DESC_FUN
                 + COMPANY_DESC_SE1 + STATUS_DESC_SE1 + DESCRIPTION_DESC_SE1 + TAG_DESC_IMPORTANT;
 
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_SE1)
-                .withStatus(VALID_STATUS_SE1).withDescription(VALID_DESCRIPTION_SE1).withTags(VALID_TAG_FUN, VALID_TAG_IMPORTANT)
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
+                .withCompany(VALID_COMPANY_SE1)
+                .withStatus(VALID_STATUS_SE1)
+                .withDescription(VALID_DESCRIPTION_SE1)
+                .withTags(VALID_TAG_FUN, VALID_TAG_IMPORTANT)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -186,7 +188,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + INVALID_STATUS_DESC + STATUS_DESC_SE1;
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withStatus(VALID_STATUS_SE1).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
+                .withStatus(VALID_STATUS_SE1).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
