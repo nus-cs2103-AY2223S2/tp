@@ -12,7 +12,6 @@ import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.Title;
-import seedu.recipe.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Recipe objects.

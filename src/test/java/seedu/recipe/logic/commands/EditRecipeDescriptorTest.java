@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_CORNDOGS;
 import static seedu.recipe.logic.commands.CommandTestUtil.DESC_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
-import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
 import static seedu.recipe.logic.commands.CommandTestUtil.VALID_DESC_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_INGREDIENTS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_STEPS_SOUP;
+import static seedu.recipe.logic.commands.CommandTestUtil.VALID_TITLE_SOUP;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +35,8 @@ public class EditRecipeDescriptorTest {
 
 
         // different name -> returns false
-        EditRecipeDescriptor editedAmy = new EditRecipeDescriptorBuilder(DESC_CORNDOGS).withTitle(VALID_TITLE_SOUP).build();
+        EditRecipeDescriptor editedAmy = new EditRecipeDescriptorBuilder(DESC_CORNDOGS)
+                .withTitle(VALID_TITLE_SOUP).build();
         assertFalse(DESC_CORNDOGS.equals(editedAmy));
 
         // different phone -> returns false
