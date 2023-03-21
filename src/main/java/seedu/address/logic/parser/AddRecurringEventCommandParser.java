@@ -55,8 +55,6 @@ public class AddRecurringEventCommandParser implements Parser<AddRecurringEventC
         LocalTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_STARTDATETIME).get());
         LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_ENDDATETIME).get());
 
-        ParserUtil.parsePeriod(startTime, endTime);
-
         RecurringEvent eventToAdd = new RecurringEvent(eventName, day, startTime, endTime);
 
         return new AddRecurringEventCommand(index, eventToAdd);
