@@ -29,7 +29,7 @@ public abstract class Event {
      */
     public Event(String name) {
         this.name = name;
-        eventDate = LocalDate.now();
+        eventDate = new LocalDate;
         students = new ArrayList<>();
         attachments = new ArrayList<>();
         notes = new ArrayList<>();

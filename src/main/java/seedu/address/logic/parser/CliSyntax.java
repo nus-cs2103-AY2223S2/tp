@@ -19,4 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONSULTATION = new Prefix("Consultation/");
     public static final Prefix PREFIX_RECUR = new Prefix("Recur/");
     public static final Prefix PREFIX_COUNT = new Prefix("-n ");
+    public static final Prefix PREFIX_DATE = new Prefix("-date ");
+    public static final Prefix PREFIX_FILE = new Prefix("-file ");
+    public static final Prefix PREFIX_NOTE = new Prefix("-note ");
 }

@@ -20,7 +20,10 @@ public class GuiSettings implements Serializable {
     private static final int DEFAULT_CIRCLE_Y = 17;
     private static final int DEFAULT_CIRCLE_RADIUS = 17;
 
-    private static final String DEFAULT_PHOTO_URL = "https://picsum.photos/id/443/200/300";
+    private static final String DEFAULT_PHOTO_PATH = "/images/studentProfiles/student_";
+    private static final String DEFAULT_PHOTO_FORMAT = ".png";
+    private static final int DEFAULT_PHOTO_START_INDEX = 1;
+    private static final int DEFAULT_PHOTO_END_INDEX = 16;
 
     private static final Point NULL_COORDINATE = null;
 
@@ -32,7 +35,10 @@ public class GuiSettings implements Serializable {
     private final int circleX;
     private final int circleY;
     private final int circleRadius;
-    private final String photo;
+    private final String photoPath;
+    private final String photoFormat;
+    private final int photoStartIndex;
+    private final int photoEndIndex;
 
     /**
      * Constructs a {@code GuiSettings} with the default height, width and position.
@@ -46,7 +52,10 @@ public class GuiSettings implements Serializable {
         circleX = DEFAULT_CIRCLE_X;
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
-        photo = DEFAULT_PHOTO_URL;
+        photoPath = DEFAULT_PHOTO_PATH;
+        photoFormat = DEFAULT_PHOTO_FORMAT;
+        photoStartIndex = DEFAULT_PHOTO_START_INDEX;
+        photoEndIndex = DEFAULT_PHOTO_END_INDEX;
     }
 
     //Allow user to modify student profile size in next iteration
@@ -62,7 +71,10 @@ public class GuiSettings implements Serializable {
         circleX = DEFAULT_CIRCLE_X;
         circleY = DEFAULT_CIRCLE_Y;
         circleRadius = DEFAULT_CIRCLE_RADIUS;
-        photo = DEFAULT_PHOTO_URL;
+        photoPath = DEFAULT_PHOTO_PATH;
+        photoFormat = DEFAULT_PHOTO_FORMAT;
+        photoStartIndex = DEFAULT_PHOTO_START_INDEX;
+        photoEndIndex = DEFAULT_PHOTO_END_INDEX;
     }
 
     public double getWindowWidth() {
@@ -98,7 +110,19 @@ public class GuiSettings implements Serializable {
     }
 
     public String getPhoto() {
-        return photo;
+        return photoPath;
+    }
+
+    public String getPhotoFormat() {
+        return photoFormat;
+    }
+
+    public int getPhotoStartIndex() {
+        return photoStartIndex;
+    }
+
+    public int getPhotoEndIndex() {
+        return photoEndIndex;
     }
 
     @Override

@@ -1,5 +1,10 @@
 package seedu.address.logic.parser;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ThreadLocalRandom;
 import static java.util.Objects.requireNonNull;
 
@@ -7,6 +12,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -75,8 +81,11 @@ public class ParserUtil {
      * @throws ParseException
      */
     public static Photo parsePhoto() throws ParseException {
-        int randomStudentPhotoIndex = ThreadLocalRandom.current().nextInt(1, 15 + 1);
-        String path = "/images/studentProfiles/student_" + randomStudentPhotoIndex + ".png";
+        GuiSettings guiSettings = new GuiSettings();
+        int startIndex = guiSettings.getPhotoStartIndex();
+        int endIndex = guiSettings.getPhotoEndIndex();
+        int randomStudentPhotoIndex = ThreadLocalRandom.current().nextInt(startIndex, endIndex);
+        String path = guiSettings.getPhoto() + randomStudentPhotoIndex + guiSettings.getPhotoFormat();
         return new Photo(path);
     }
 
@@ -200,10 +209,56 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name}.
+     * Parses a {@code String date}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDate parseEventDate(String date) throws ParseException {
+        //date can be null or empty as it is optional
+        String trimmedDate = date.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        if (!trimmedDate.matches("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)")) {
+            throw new ParseException("Invalid date format!");
+        }
+        return LocalDate.parse(trimmedDate, formatter);
+    }
+
+    /**
+     * Parses a {@code String filePath}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code filePath} is invalid.
+     */
+    public static File parseEventFile(String filePath) throws ParseException {
+        //date can be null or empty as it is optional
+        String trimmedFilePath = filePath.trim();
+        File file = new File(trimmedFilePath);
+        if(!file.exists()) {
+            throw new ParseException("File not found!");
+        }
+        //open file
+        //Desktop desktop = Desktop.getDesktop();
+        //desktop.open(file);
+        return file;
+    }
+
+    /**
+     * Parses a {@code String note}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseEventNote(String note) {
+        //date can be null or empty as it is optional
+        String trimmedNote = note.trim();
+        return trimmedNote;
+    }
+
+    /**
+     * Parses a {@code String count}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code count} is invalid.
      */
     public static int parseRecurCount(String count) throws ParseException {
         requireNonNull(count);

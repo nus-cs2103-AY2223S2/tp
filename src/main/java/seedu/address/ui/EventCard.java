@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -47,10 +49,13 @@ public class EventCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
+        attachments.setText("" + event.countAttachments());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        date.setText(event.getDate().format(formatter));
         //notes.setText("" + event.countNotes());
-        //attachments.setText("" + event.countAttachments());
     }
 
+    //Add more comparison in equals
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
