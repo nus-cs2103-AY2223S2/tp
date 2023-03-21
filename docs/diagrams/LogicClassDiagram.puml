@@ -6,14 +6,12 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-Class AddressBookParser
+Class InternBuddyParser
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
-
-
-Class "<<interface>>\nLogic" as Logic
 Class LogicManager
+Class "<<interface>>\nLogic" as LogicInterface
 }
 
 package Model{
@@ -24,23 +22,23 @@ package Storage{
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ..> LogicInterface
 
-LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+LogicManager .left.|> LogicInterface
+LogicManager -left->"1" InternBuddyParser
+InternBuddyParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
+LogicManager .right.> Command : executes >
 
 LogicManager --> Model
 LogicManager --> Storage
 Storage --[hidden] Model
-Command .[hidden]up.> Storage
+'Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
-Logic ..> CommandResult
+LogicInterface ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult : produces >
 @enduml
