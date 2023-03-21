@@ -11,10 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.*;
 
 /**
  * Edits the status of an application identified using it's displayed index from the list of internship applications.
@@ -74,9 +71,14 @@ public class EditStatusCommand extends Command {
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
         Contact contact = internshipApplication.getContact();
+        InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        if (contact != null) {
+        if (contact != null && interviewDate != null) {
+            return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
+        } else if (contact != null) {
             return new InternshipApplication(companyName, jobTitle, contact, status);
+        } else if (interviewDate != null) {
+            return new InternshipApplication(companyName, jobTitle, status, interviewDate);
         } else {
             return new InternshipApplication(companyName, jobTitle, status);
         }
