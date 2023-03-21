@@ -30,10 +30,10 @@ _More details coming soon ..._
   e.g. in `status s/STATUS`, `STATUS` is a parameter which can be used as `status s/interviewing`.
 
 * Items in square brackets are optional.<br>
-  e.g `c/COMPANY [d/KEYDATE]` can be used as `c/Google d/Interview@20230401` or as `c/Google`.
+  e.g `c/COMPANY [d/KEYDATE]` can be used as `c/Google d/Interview@2023-04-01` or as `c/Google`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[d/KEYDATE]…​` can be used as ` ` (i.e. 0 times), `d/Interview@20230401`, `d/Interview@20230401 d/OA@20230502` etc.
+  e.g. `[d/KEYDATE]…​` can be used as ` ` (i.e. 0 times), `d/Interview@2023-04-01`, `d/Interview@2023-04-01 d/OA@2023-05-02` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `p/POSITION c/COMPANY`, `c/COMPANY p/POSITION` is also acceptable.
@@ -56,7 +56,7 @@ Format: `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​`
 * `STATUS` **must be of either found, applied, interviewing, offered, accepted or rejected**.
 
 Examples:
-* `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@20230314`
+* `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14`
 
 ### Listing all openings : `list`
 
@@ -82,23 +82,42 @@ Examples:
 *  `edit 1 c/Goggle e/johndoe@example.com` Edits the company and email address of the 1st opening to be `Goggle` and `johndoe@example.com` respectively.
 *  `edit 2 c/Shopee d/` Edits the company of the 2nd opening to be `Shopee` and clears all existing `KEYDATE`.
 
-### Locating openings by name: `find`
+### Filtering openings by company or position: `find`
 
-Finds openings whose NAME_OF_COMPANY contain any of the given keywords.
+Finds openings whose COMPANY or POSITION contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `google` will match `Google`
 * The order of the keywords does not matter. e.g. `Goldman Sachs` will match `Sachs Goldman`
-* Only the name is searched.
+* Only the company and position field is searched.
 * Only full words will be matched e.g. `Amaz` will not match `Amazon`
-* Openings with NAME_OF_COMPANY matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `google amazon meta` will return `Google`, `Meta`, `Amazon Web Services`
+* Openings with COMPANY or POSITION matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `find google amazon software` will return openings of `Google`, `Software Engineer`, `Amazon Web Services`
 
 Examples:
 * `find Google` returns `google` and `Google Cloud`
-* `find bank america` returns `Bank of America`, `Bank of Singapore`<br>
+* `find bank america` returns `Bank of America`, `Bank of Singapore`, `Bank Manager`<br>
   <!--![result for 'find alex david'](images/findAlexDavidResult.png)-->
+
+### Filtering openings by status: `status`
+
+Finds openings whose STATUS is the given keyword.
+
+Format: `status KEYWORD`
+
+* `KEYWORD` **must be of either found, applied, interviewing, offered, accepted or rejected**.
+* The search is case-insensitive. e.g `Applied` will match `applied`
+* Only the status field is searched.
+* Only full words will be matched e.g. `off` will not match `offered`
+
+Examples:
+* `status Interviewing` returns openings with status Interviewing
+
+### Filter openings by keydate (TBC): `sort`
+
+Finds openings whose KEYDATE are after the date as of the command, in ascending order
+
 
 ### Deleting an opening : `delete`
 
@@ -139,7 +158,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@20230314`
+**Add** | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14`
 **Edit** | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Status** | `status s/STATUS`<br> e.g., `status s/interviewing`
