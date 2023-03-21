@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans Light";
+    font-style: normal;
+    font-weight: 300;
+    src: url("fonts/OpenSans-Light.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans Medium";
+    font-style: normal;
+    font-weight: 300;
+    src: url("fonts/OpenSans-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/OpenSans-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Open Sans Bold Italic";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/OpenSans-BoldItalic.ttf");
+}
+
+@font-face {
+    font-family: "Satoshi Black";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/Satoshi-Black.ttf");
+}
+
+.label {
+    -fx-font-size: 12;
+    -fx-font-family: "Open Sans Medium";
+    -fx-text-fill:  #7f5a41;
+}
+
+#title {
+    -fx-font-size: 17;
+    -fx-font-family: "Open Sans Bold";
+    -fx-text-fill: #574539;
+}
+
+#name {
+    -fx-font-family: "Open Sans Bold";
+    -fx-text-fill: #574539;
+}
+
+#remarkHeader {
+    -fx-font-family: "Open Sans Bold Italic";
+}

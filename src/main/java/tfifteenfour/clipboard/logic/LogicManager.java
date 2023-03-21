@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Student> getViewedStudent() {
+        return model.getViewedStudent();
+    }
+
+    @Override
     public Path getRosterFilePath() {
         return model.getRosterFilePath();
     }

@@ -85,4 +85,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    //=========== Viewed Student Accessors =============================================================
+    ObservableList<Student> getViewedStudent();
+
+    void updateViewedStudent(Predicate<Student> predicate);
 }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tfifteenfour.clipboard.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static tfifteenfour.clipboard.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static tfifteenfour.clipboard.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -34,7 +33,6 @@ public class ViewCommandTest {
                 studentToView.getName(), studentToView.getStudentId());
 
         Model expectedModel = new ModelManager(model.getRoster(), new UserPrefs());
-        showStudentAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
