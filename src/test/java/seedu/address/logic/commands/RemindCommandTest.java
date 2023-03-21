@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalEvents.CARL;
 import static seedu.address.testutil.TypicalEvents.ELLE;
 import static seedu.address.testutil.TypicalEvents.FIONA;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
-import static seedu.address.testutil.TypicalTimes.TIME_NOW;
+import static seedu.address.testutil.TypicalTimes.CLOCK_FIXED_AT_TIME_NOW;
 import static seedu.address.testutil.TypicalTimes.TYPICAL_DAYS;
 
 import java.util.Arrays;
@@ -34,9 +34,9 @@ public class RemindCommandTest {
     @Test
     public void equals() {
         StartTimeWithinDaysPredicate firstPredicate =
-                new StartTimeWithinDaysPredicate(TIME_NOW, 3);
+                new StartTimeWithinDaysPredicate(CLOCK_FIXED_AT_TIME_NOW, 3);
         StartTimeWithinDaysPredicate secondPredicate =
-                new StartTimeWithinDaysPredicate(TIME_NOW, 4);
+                new StartTimeWithinDaysPredicate(CLOCK_FIXED_AT_TIME_NOW, 4);
 
         RemindCommand remindFirstCommand = new RemindCommand(firstPredicate);
         RemindCommand remindSecondCommand = new RemindCommand(secondPredicate);
@@ -72,6 +72,6 @@ public class RemindCommandTest {
      * Parses {@code userInput} into a {@code StartTimeWithinDaysPredicate}.
      */
     private StartTimeWithinDaysPredicate preparePredicate(String userInput) {
-        return new StartTimeWithinDaysPredicate(TIME_NOW, TYPICAL_DAYS);
+        return new StartTimeWithinDaysPredicate(CLOCK_FIXED_AT_TIME_NOW, TYPICAL_DAYS);
     }
 }
