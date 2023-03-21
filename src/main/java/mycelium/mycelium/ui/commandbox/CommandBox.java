@@ -112,6 +112,7 @@ public class CommandBox extends UiPart<Region> {
     public void toggleListening() {
         listening = !listening;
         setStyleToDefault();
+        commandTextField.setText("");
     }
 
     /**
