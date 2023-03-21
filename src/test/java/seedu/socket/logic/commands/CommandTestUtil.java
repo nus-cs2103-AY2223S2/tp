@@ -21,6 +21,8 @@ import seedu.socket.model.Model;
 import seedu.socket.model.Socket;
 import seedu.socket.model.person.Person;
 import seedu.socket.model.person.predicate.FindCommandNamePredicate;
+import seedu.socket.model.person.predicate.FindCommandProjectNamePredicate;
+import seedu.socket.model.project.Project;
 import seedu.socket.testutil.EditPersonDescriptorBuilder;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
 import seedu.socket.testutil.TypicalPersons;
@@ -149,6 +151,7 @@ public class CommandTestUtil {
         assertEquals(expectedSocket, actualModel.getSocket());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s {@code Socket}.
@@ -161,6 +164,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new FindCommandNamePredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the project at the given {@code targetIndex} in the
+     * {@code model}'s {@code Socket}.
+     */
+    public static void showProjectAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredProjectList().size());
+
+        Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
+        final String[] splitName = project.getName().projectName.split("\\s+");
+        model.updateFilteredProjectList(new FindCommandProjectNamePredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredProjectList().size());
     }
 
     /**

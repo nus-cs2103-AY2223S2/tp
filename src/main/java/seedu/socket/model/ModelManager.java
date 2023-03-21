@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.socket.commons.core.GuiSettings;
 import seedu.socket.commons.core.LogsCenter;
 import seedu.socket.model.person.Person;
+import seedu.socket.model.project.Project;
 
 /**
  * Represents the in-memory model of the {@code Socket} data.
@@ -23,8 +24,11 @@ public class ModelManager implements Model {
     private final VersionedSocket versionedSocket;
     private final UserPrefs userPrefs;
     private FilteredList<Person> filteredPersons;
+    private FilteredList<Project> filteredProjects;
 
     private FilteredList<Person> viewedPerson;
+    private FilteredList<Project> viewedProject;
+
 
     /**
      * Initializes a {@code ModelManager} with the given {@code ReadOnlySocket} socket
@@ -41,6 +45,9 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.socket.getPersonList());
         viewedPerson = new FilteredList<>(this.socket.getPersonList());
         viewedPerson.setPredicate(x -> false);
+        filteredProjects = new FilteredList<>(this.socket.getProjectList());
+        viewedProject = new FilteredList<>(this.socket.getProjectList());
+        viewedProject.setPredicate(x -> false);
     }
 
     public ModelManager() {
@@ -125,6 +132,30 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProject(Project project) {
+        requireNonNull(project);
+        return socket.hasProject(project);
+    }
+
+    @Override
+    public void deleteProject(Project target) {
+        socket.removeProject(target);
+    }
+
+    @Override
+    public void addProject(Project project) {
+        socket.addProject(project);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void setProject(Project target, Project editedProject) {
+        requireAllNonNull(target, editedProject);
+
+        socket.setProject(target, editedProject);
+    }
+
+    @Override
     public void commitSocket() {
         versionedSocket.commit(socket);
     }
@@ -182,6 +213,38 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedSocket}
+     */
+    @Override
+    public ObservableList<Project> getFilteredProjectList() {
+        return filteredProjects;
+    }
+
+    @Override
+    public void updateFilteredProjectList(Predicate<Project> predicate) {
+        requireNonNull(predicate);
+        filteredProjects.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Project> getViewedProject() {
+        return viewedProject;
+    }
+
+    @Override
+    public void updateViewedProject(Project project) {
+        viewedProject.setPredicate(x -> x.isSameProject(project));
+    }
+
+    @Override
+    public void sortProjectList(String category) {
+        // TODO modify to sort project
+        // socket.sort(category);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -199,7 +262,9 @@ public class ModelManager implements Model {
         return socket.equals(other.socket)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && viewedPerson.equals(other.viewedPerson);
+                && viewedPerson.equals(other.viewedPerson)
+                && filteredProjects.equals(other.filteredProjects)
+                && viewedProject.equals(other.viewedProject);
     }
 
 }

@@ -20,6 +20,7 @@ import static seedu.socket.logic.parser.CliSyntax.PREFIX_PROFILE;
 import static seedu.socket.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.socket.testutil.Assert.assertThrows;
 import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.socket.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import seedu.socket.logic.commands.AddCommand;
 import seedu.socket.logic.commands.ClearCommand;
 import seedu.socket.logic.commands.DeleteCommand;
+import seedu.socket.logic.commands.DeleteProjectCommand;
 import seedu.socket.logic.commands.EditCommand;
 import seedu.socket.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.socket.logic.commands.ExitCommand;
@@ -73,6 +75,13 @@ public class SocketParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deletepj() throws Exception {
+        DeleteProjectCommand command = (DeleteProjectCommand) parser.parseCommand(
+                DeleteProjectCommand.COMMAND_WORD + " " + INDEX_FIRST_PROJECT.getOneBased());
+        assertEquals(new DeleteProjectCommand(INDEX_FIRST_PROJECT), command);
     }
 
     @Test
