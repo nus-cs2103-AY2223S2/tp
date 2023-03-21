@@ -13,6 +13,7 @@ import seedu.address.logic.commands.DeleteApplicantCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -44,32 +45,35 @@ public class ListingBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case ViewCommand.COMMAND_WORD:
-            return new ViewCommand();
+            case ViewCommand.COMMAND_WORD:
+                return new ViewCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().parse(arguments);
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
 
-        case DeleteApplicantCommand.COMMAND_WORD:
-            return new DeleteApplicantCommandParser().parse(arguments);
-            
-        case AddApplicantCommand.COMMAND_WORD:
-            return new AddApplicantCommandParser().parse(arguments);
+            case DeleteApplicantCommand.COMMAND_WORD:
+                return new DeleteApplicantCommandParser().parse(arguments);
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
+
+            case AddApplicantCommand.COMMAND_WORD:
+                return new AddApplicantCommandParser().parse(arguments);
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

@@ -32,6 +32,17 @@ public class TypicalListings {
             .withDescription(VALID_DESCRIPTION)
             .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants()))
             .build();
+    public static final Listing MEDIA_DEVELOPER = new ListingBuilder()
+            .withTitle("Media Developer")
+            .withDescription("Help with the development of media")
+            .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants()))
+            .build();
+    public static final Listing GAME_DEVELOPER = new ListingBuilder()
+            .withTitle("Game Developer")
+            .withDescription("Help to create new PS5 games")
+            .withApplicants(new ArrayList<>(TypicalApplicants.getTypicalApplicants()))
+            .build();
+
 
     private TypicalListings() {} // prevents instantiation
 
@@ -47,6 +58,7 @@ public class TypicalListings {
     }
 
     public static List<Listing> getTypicalListings() {
-        return new ArrayList<>(Arrays.asList(CHICKEN_RICE_UNCLE, TOILET_CLEANER, SOFTWARE_DEVELOPER));
+        return new ArrayList<>(Arrays.asList(CHICKEN_RICE_UNCLE, TOILET_CLEANER, MEDIA_DEVELOPER,
+                GAME_DEVELOPER, SOFTWARE_DEVELOPER));
     }
 }
