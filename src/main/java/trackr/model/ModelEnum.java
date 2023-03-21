@@ -8,7 +8,8 @@ public enum ModelEnum {
     SUPPLIER("Supplier"),
     TASK("Task"),
     ORDER("Order"),
-    CUSTOMER("Customer");
+    CUSTOMER("Customer"),
+    Item("Item");
 
     private final String strRepresentation;
 
