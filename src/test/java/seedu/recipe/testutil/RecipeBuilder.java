@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Arrays;
 
 import seedu.recipe.model.recipe.Description;
 import seedu.recipe.model.recipe.Ingredient;
@@ -20,8 +21,10 @@ public class RecipeBuilder {
 
     public static final String DEFAULT_TITLE = "Corndogs";
     public static final String DEFAULT_DESCRIPTION = "Awesome cheap corndogs";
-    public static final String DEFAULT_INGREDIENTS = "eggs, flour";
-    public static final String DEFAULT_STEPS = "Test1, Test2";
+    public static final List<Ingredient> DEFAULT_INGREDIENTS = Arrays.asList(
+            new Ingredient("eggs"), new Ingredient("flour"));
+    public static final List<Step> DEFAULT_STEPS = Arrays.asList(
+            new Step("step 1"), new Step("step 2"));
 
     private Title title;
     private Description desc;
@@ -34,8 +37,8 @@ public class RecipeBuilder {
     public RecipeBuilder() {
         title = new Title(DEFAULT_TITLE);
         desc = new Description(DEFAULT_DESCRIPTION);
-        ingredients = new HashSet<>();
-        steps = new ArrayList<>();
+        ingredients = new HashSet<Ingredient>(DEFAULT_INGREDIENTS);
+        steps = new ArrayList<Step>(DEFAULT_STEPS);
     }
 
     /**

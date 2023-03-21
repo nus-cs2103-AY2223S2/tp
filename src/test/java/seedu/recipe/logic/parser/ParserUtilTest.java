@@ -91,7 +91,7 @@ public class ParserUtilTest {
     @Test
     public void parseIngredient_validValueWithWhitespace_returnsTrimmedIngredient() throws Exception {
         String ingredientWithWhitespace = WHITESPACE + VALID_INGREDIENT1 + WHITESPACE;
-        Ingredient expectedIngredient = new Ingredient(ingredientWithWhitespace);
+        Ingredient expectedIngredient = new Ingredient(VALID_INGREDIENT1);
         assertEquals(expectedIngredient, ParserUtil.parseIngredientHelper(ingredientWithWhitespace));
     }
 
@@ -114,7 +114,7 @@ public class ParserUtilTest {
     @Test
     public void parseSteps_validValueWithWhitespace_returnsTrimmedSteps() throws Exception {
         String stepWithWhitespace = WHITESPACE + VALID_STEP1 + WHITESPACE;
-        Ingredient expectedStep = new Ingredient(stepWithWhitespace);
+        Ingredient expectedStep = new Ingredient(VALID_STEP1);
         assertEquals(expectedStep, ParserUtil.parseIngredientHelper(stepWithWhitespace));
     }
 

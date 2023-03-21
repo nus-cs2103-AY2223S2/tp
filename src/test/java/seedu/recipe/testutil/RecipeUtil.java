@@ -23,6 +23,7 @@ public class RecipeUtil {
      * Returns an add command string for adding the {@code recipe}.
      */
     public static String getAddCommand(Recipe recipe) {
+        System.out.println(AddCommand.COMMAND_WORD + " " + getRecipeDetails(recipe));
         return AddCommand.COMMAND_WORD + " " + getRecipeDetails(recipe);
     }
 
@@ -33,8 +34,14 @@ public class RecipeUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + recipe.getTitle().toString() + " ");
         sb.append(PREFIX_DESCRIPTION + recipe.getDesc().toString() + " ");
-        sb.append(PREFIX_INGREDIENT + recipe.getIngredients().toString() + " ");
-        sb.append(PREFIX_STEP + recipe.getSteps().toString() + " ");
+
+        recipe.getIngredients().stream().forEach(
+                s -> sb.append(PREFIX_INGREDIENT + s.ingredient + " ")
+        );
+        recipe.getSteps().stream().forEach(
+                s -> sb.append(PREFIX_STEP + s.step + " ")
+        );
+
         return sb.toString();
     }
 
