@@ -34,14 +34,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Status status,
-                  Optional<InterviewDateTime> interviewDateTime, Set<Note> notes) {
+                  ApplicationDateTime applicationDateTime, Optional<InterviewDateTime> interviewDateTime, Set<Note> notes) {
         requireAllNonNull(name, phone, email, address, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
-        this.applicationDateTime = new ApplicationDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        this.applicationDateTime = applicationDateTime;
         this.interviewDateTime = interviewDateTime;
         this.notes.addAll(notes);
     }
@@ -51,7 +51,7 @@ public class Person {
      */
     public Person(Person person, Status newStatus) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-                newStatus, person.getInterviewDateTime(), person.getNotes());
+                newStatus, person.getApplicationDateTime(), person.getInterviewDateTime(), person.getNotes());
     }
 
     /**
@@ -59,7 +59,7 @@ public class Person {
      */
     public Person(Person person, Status newStatus, Optional<InterviewDateTime> interviewDateTime) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-                newStatus, interviewDateTime, person.getNotes());
+                newStatus, person.getApplicationDateTime(), interviewDateTime, person.getNotes());
     }
 
     public Name getName() {
