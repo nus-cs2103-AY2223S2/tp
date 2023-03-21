@@ -34,7 +34,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Card} using a {@code PersonCard}.
      */
-    class PersonListViewCell extends ListCell<Card> {
+    static class PersonListViewCell extends ListCell<Card> {
         @Override
         protected void updateItem(Card card, boolean empty) {
             super.updateItem(card, empty);

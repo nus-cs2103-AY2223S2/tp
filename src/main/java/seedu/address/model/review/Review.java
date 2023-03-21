@@ -1,6 +1,7 @@
 package seedu.address.model.review;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,8 +31,7 @@ public class Review {
      * Every field must be present and not null.
      */
     public Review(Deck deck, List<Card> cardList) {
-        requireNonNull(deck);
-        requireNonNull(cardList);
+        requireAllNonNull(deck, cardList);
 
         this.deck = deck;
         this.cardList = cardList;
