@@ -18,9 +18,17 @@
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-             <Label fx:id="question" styleClass="cell_big_label" text="\$question" wrapText="true" />
-            <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" wrapText="true" />
-            <FlowPane fx:id="tags" />
+         <HBox alignment="TOP_CENTER">
+            <children>
+                   <Label fx:id="question" styleClass="cell_big_label" text="\$question" textAlignment="CENTER" wrapText="true" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER">
+            <children>
+                  <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" wrapText="true" />
+            </children>
+         </HBox>
+            <FlowPane fx:id="tags" alignment="CENTER" />
         </VBox>
       <rowConstraints>
          <RowConstraints />
