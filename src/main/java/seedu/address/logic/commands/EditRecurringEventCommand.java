@@ -88,6 +88,8 @@ public class EditRecurringEventCommand extends Command {
         RecurringEvent editedRecurringEvent =
                 createEditedRecurringEvent(personToEdit, originalEvent, editEventDescriptor);
 
+        editedRecurringEvent.checkPeriod();
+
         model.setRecurringEvent(personToEdit, originalEvent, editedRecurringEvent);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedRecurringEvent)
