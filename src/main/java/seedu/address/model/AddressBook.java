@@ -89,15 +89,23 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addIsolatedEvent(Person person, IsolatedEvent event) {
         person.addIsolatedEvent(event);
+        persons.setPerson(person, person);
     }
 
-    public void deleteIsolatedEvent(Person personToEdit, IsolatedEvent event) {
-        personToEdit.getIsolatedEventList().deleteIsolatedEvent(event);
+    /**
+     * Deletes the given {@code IsolatedEvent} from the given {@code Person}'s {@code IsolatedEventList}.
+     * @param person The {@code Person} to delete the given {@code IsolatedEvent} from.
+     * @param event The given {@code IsolatedEvent} to delete.
+     */
+    public void deleteIsolatedEvent(Person person, IsolatedEvent event) {
+        person.getIsolatedEventList().deleteIsolatedEvent(event);
+        persons.setPerson(person, person);
     }
 
     public void setIsolatedEvent(Person person, IsolatedEvent originalEvent, IsolatedEvent editedEvent) {
         requireNonNull(editedEvent);
         person.getIsolatedEventList().edit(originalEvent, editedEvent);
+        persons.setPerson(person, person);
     }
 
     /**
@@ -107,15 +115,23 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addRecurringEvent(Person person, RecurringEvent event) {
         person.addRecurringEvent(event);
+        persons.setPerson(person, person);
     }
 
+    /**
+     * Deletes the given {@code RecurringEvent} from the given {@code Person}'s {@code RecurringEventList}.
+     * @param person The {@code Person} to delete the given {@code RecurringEvent} from.
+     * @param event The given {@code RecurringEvent} to delete.
+     */
     public void deleteRecurringEvent(Person person, RecurringEvent event) {
         person.getRecurringEventList().deleteRecurringEvent(event);
+        persons.setPerson(person, person);
     }
 
     public void setRecurringEvent(Person person, RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
         requireNonNull(editedRecurringEvent);
         person.getRecurringEventList().edit(originalEvent, editedRecurringEvent);
+        persons.setPerson(person, person);
     }
 
 
