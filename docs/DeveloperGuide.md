@@ -175,7 +175,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The remind command is facilitated by `RemindCommand`, which extends `Command`. It stores a `StartTimeWithinDaysPredicate` to test if an event should be displayed. An instance of `RemindCommand` is created by `RemindCommandParser`.
+The remind command is facilitated by `RemindCommand`, which extends `Command`. It stores a `StartTimeWithinDaysPredicate`, used to test if an event should be displayed. An instance of `RemindCommand` is created by `RemindCommandParser`.
+
+When the `EventBookParser` is used to parse user input of a remind command. 
 
 ### \[Proposed\] Undo/redo feature
 
