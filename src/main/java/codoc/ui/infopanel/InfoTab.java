@@ -51,7 +51,7 @@ public class InfoTab extends UiPart<Region> {
             sb.append("Year ");
             sb.append(protagonist.getYear());
             sb.append(", ");
-            sb.append(protagonist.getCourse());
+            sb.append(protagonist.getCourse().toString());
             identity.setText(sb.toString());
             detailedInfoPlaceholder.getChildren().add(detailedInfo.getRoot());
         }
