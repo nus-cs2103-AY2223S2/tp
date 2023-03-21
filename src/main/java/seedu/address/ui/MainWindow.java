@@ -188,6 +188,8 @@ public class MainWindow extends UiPart<Stage> {
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().removeAll();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+
+        personListPanel.toggleReview();
     }
 
     /**
@@ -197,6 +199,8 @@ public class MainWindow extends UiPart<Stage> {
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().removeAll();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+
+        personListPanel.endReview();
     }
 
 
