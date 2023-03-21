@@ -200,4 +200,52 @@ public class CommandRecommendationEngineTest {
         boolean isValidArgs = isValidArgs(DeleteVolunteerCommand.COMMAND_WORD, argumentMultimap);
         assertFalse(isValidArgs);
     }
+
+    @Test
+    public void parseEditArguments_invalidNameArgs_false() {
+        String userArgs = " n/Zon p/21323321 e/21323321 a/21323321 ag/30 re/cadd t/dawd nr/dwadad nr/dawdad";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(EditCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(EditCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseEditElderlyArguments_invalidNameArgs_false() {
+        String userArgs = " n/Zon p/21323321 e/21323321 a/21323321 ag/30 re/cadd t/dawd enr/dwadad enr/dawdad";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(EditElderlyCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(EditElderlyCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseEditVolunteerArguments_invalidNameArgs_false() {
+        String userArgs = " n/Zon p/21323321 e/21323321 a/21323321 ag/30 re/cadd t/dawd vnr/dwadad vnr/dawdad";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(EditVolunteerCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(EditVolunteerCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
+
+    @Test
+    public void parseFindArguments_invalidNameArgs_false() {
+        String userArgs = " n/Zon p/21323321 e/21323321 a/21323321 ag/30 re/cadd t/dawd nr/dwadad nr/dawdad";
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
+                CommandRecommendationEngine.commandInfoMap.get(FindCommand.COMMAND_WORD)
+                        .getCmdPrompts().keySet()
+                        .toArray(new Prefix[]{}));
+
+        boolean isValidArgs = isValidArgs(FindCommand.COMMAND_WORD, argumentMultimap);
+        assertFalse(isValidArgs);
+    }
 }

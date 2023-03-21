@@ -81,7 +81,7 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) {
-        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_NRIC_ELDERLY).orElse(List.of()).size() > 1);
+        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_NRIC_ELDERLY).orElse(List.of()).size() > 1);
     }
 }

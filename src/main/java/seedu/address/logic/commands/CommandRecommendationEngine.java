@@ -20,6 +20,7 @@ import seedu.address.logic.parser.DeletePairCommandParser;
 import seedu.address.logic.parser.DeleteVolunteerCommandParser;
 import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.EditElderlyCommandParser;
+import seedu.address.logic.parser.EditVolunteerCommandParser;
 import seedu.address.logic.parser.ExitCommandParser;
 import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.HelpCommandParser;
@@ -54,6 +55,10 @@ public class CommandRecommendationEngine {
                 EditElderlyCommand.COMMAND_WORD,
                 EditElderlyCommand.COMMAND_PROMPTS,
                 EditElderlyCommandParser::validate));
+        registerCommandInfo(new CommandInfo(
+                EditVolunteerCommand.COMMAND_WORD,
+                EditVolunteerCommand.COMMAND_PROMPTS,
+                EditVolunteerCommandParser::validate));
         registerCommandInfo(new CommandInfo(
                 DeletePairCommand.COMMAND_WORD,
                 DeletePairCommand.COMMAND_PROMPTS,

@@ -93,14 +93,14 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) {
-        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_PHONE).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_EMAIL).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_ADDRESS).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_AGE).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_TAG).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_REGION).orElse(List.of()).size() > 1)
-                && !(map.getArrayValue(PREFIX_NRIC_VOLUNTEER).orElse(List.of()).size() > 1);
+        return !(map.getArrayValue(PREFIX_NAME).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_PHONE).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_EMAIL).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_ADDRESS).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_AGE).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_TAG).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_REGION).orElse(List.of()).size() > 1
+                || map.getArrayValue(PREFIX_NRIC_VOLUNTEER).orElse(List.of()).size() > 1);
     }
 }
 
