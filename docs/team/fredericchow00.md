@@ -25,7 +25,8 @@ title: <Frederic Chow> Project Portfolio Page
 
 (**Code contributions**)
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fredericchow00&breakdown=true)
+- **Code contributed**: 
+[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fredericchow00&breakdown=true)
 
 - **Project management**:
 

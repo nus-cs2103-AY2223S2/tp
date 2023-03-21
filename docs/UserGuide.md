@@ -79,7 +79,7 @@ Highlight dangers and things to look out for. </div>
 
 Other than the icons mentioned above, there are also some other notations used in this guide:
 
-- <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of 
+- <a href> Phrases underlined in blue </a> are hyperlinks that will bring you to another part of
 this documentation that is relevant to the phrase.
 
 [Back to Table of Contents](#table-of-contents)
@@ -202,7 +202,8 @@ and [Placeholders](#624-placeholders) are used together.
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#623-flags).
 
-Please refer to the subsequent [Command Format](#63-command-format) section to see how Flags and Placeholders are used together.
+Please refer to the subsequent [Command Format](#63-command-format) 
+section to see how Flags and Placeholders are used together.
 
 | Placeholder  | Corresponding Flag | Description                                                                                  |
 |--------------|--------------------|----------------------------------------------------------------------------------------------|
@@ -222,7 +223,7 @@ Here is an example:
 A command consists of:
 Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands]().
 [Flags](#623-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
-[Placeholders](#624-placeholders): Represents data that you wish to input. Replace this with valid data. 
+[Placeholders](#624-placeholders): Represents data that you wish to input. Replace this with valid data.
 For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
 
 ## 6.4 Trying your first command
