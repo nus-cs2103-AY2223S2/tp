@@ -23,20 +23,20 @@ public class ContactTest {
 
         // same name, all other attributes different -> returns true
         Contact editedAlice = new ContactBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertTrue(ALICE.isSameContact(editedAlice));
+        assertFalse(ALICE.isSameContact(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new ContactBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameContact(editedAlice));
+        assertTrue(ALICE.isSameContact(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Contact editedBob = new ContactBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameContact(editedBob));
+        assertTrue(BOB.isSameContact(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new ContactBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameContact(editedBob));
+        assertTrue(BOB.isSameContact(editedBob));
     }
 
     @Test

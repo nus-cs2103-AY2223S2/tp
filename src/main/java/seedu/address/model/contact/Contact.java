@@ -44,11 +44,7 @@ public class Contact {
             return true;
         }
 
-        if (this.name == otherContact.name) {
-            return true;
-        }
-
-        if (otherContact.getName().equals(this.getName())) {
+        if (otherContact.getPhone().equals(this.getPhone())) {
             return true;
         }
 
