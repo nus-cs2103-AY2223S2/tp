@@ -13,6 +13,7 @@ import seedu.address.model.contact.Phone;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
 
 /**
@@ -25,6 +26,7 @@ public class JsonAdaptedInternshipApplication {
     private final String jobTitle;
     private final List<String> contact = new ArrayList<>();
     private final String status;
+    private final String interviewDate;
 
     /**
      * Constructs a {@code JsonAdaptedInternshipApplication} with the given InternshipApplication details.
@@ -33,6 +35,7 @@ public class JsonAdaptedInternshipApplication {
     public JsonAdaptedInternshipApplication(@JsonProperty("companyName") String companyName,
                                             @JsonProperty("jobTitle") String jobTitle,
                                             @JsonProperty("status") String status,
+                                            @JsonProperty("interviewDate") String interviewDate,
                                             @JsonProperty("contact") List<String> contact) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
@@ -40,6 +43,7 @@ public class JsonAdaptedInternshipApplication {
             this.contact.addAll(contact);
         }
         this.status = status;
+        this.interviewDate = interviewDate;
     }
 
     /**
@@ -53,6 +57,11 @@ public class JsonAdaptedInternshipApplication {
             contact.add(source.getContact().getEmail().value);
         }
         status = source.getStatus().name();
+        if (source.getInterviewDate() != null) {
+            interviewDate = source.getInterviewDate().toString();
+        } else {
+            interviewDate = null;
+        }
     }
 
     /**
@@ -89,6 +98,11 @@ public class JsonAdaptedInternshipApplication {
         }
         final InternshipStatus modelStatus = InternshipStatus.valueOf(status);
 
+        if (!InterviewDate.isValidInterviewDate(interviewDate)) {
+            throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
+        }
+        final InterviewDate modelInterviewDate = interviewDate == null ? null : new InterviewDate(interviewDate);
+
         if (contact.size() == 2) {
             if (!Phone.isValidPhone(contact.get(0))) {
                 throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -101,7 +115,14 @@ public class JsonAdaptedInternshipApplication {
             final Email modelEmail = new Email(contact.get(1));
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus);
+            if (modelInterviewDate != null) {
+                return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
+                        modelInterviewDate);
+            } else {
+                return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus);
+            }
+        } else if (modelInterviewDate != null) {
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus, modelInterviewDate);
         } else {
             return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus);
         }
