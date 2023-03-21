@@ -94,6 +94,9 @@ public class PersonListPanel extends UiPart<Region> {
             }
         });
 
+        //Disable sort by photo
+        photo.setSortable(false);
+
         //Custom callbacks to modify basic data for photo
         photo.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
             @Override
