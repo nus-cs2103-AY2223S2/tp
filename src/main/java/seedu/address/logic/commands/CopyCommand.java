@@ -70,7 +70,9 @@ public class CopyCommand extends Command {
                 .append("Rank: " + personToCopy.getRank() + "\n")
                 .append("Unit: " + personToCopy.getUnit() + "\n")
                 .append("Company: " + personToCopy.getCompany() + "\n")
-                .append("Platoon: " + personToCopy.getPlatoon() + "\n");
+                .append("Platoon: " + personToCopy.getPlatoon() + "\n")
+                .append("Tags: ");
+        personToCopy.getTags().forEach(tag -> infoBuilder.append(tag));
         return infoBuilder.toString();
     }
 
