@@ -35,7 +35,7 @@ title: <Frederic Chow> Project Portfolio Page
 
 - **Features implemented**
 
-1. Implemented "list" feature that lists out all applicants across all statuses,
+1. Implemented `list` feature that lists out all applicants across all statuses,
    with a statistic that shows the number of applicants in each status
 
 Example Input: `list`
@@ -53,6 +53,9 @@ Shortlisted: 1
 Accepted: 1
 Rejected: 0
 ```
+
+2. Implemented `ApplicationDateTime` class that is an additional field under Person,
+   so as to track the date of application for usage in other commands.
 
 - **Enhancements to existing features**:
 

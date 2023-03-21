@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationDateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Status status;
+    private ApplicationDateTime applicationDateTime;
     private Optional<InterviewDateTime> interviewDateTime;
     private Set<Note> notes;
 
@@ -120,6 +123,19 @@ public class PersonBuilder {
             }
         } catch (ParseException e) {
             this.interviewDateTime = Optional.empty();
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code InterviewDateTime} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withApplicationDateTime(String applicationDateTime) throws AssertionError {
+        try {
+            assert (!applicationDateTime.equals(""));
+            this.applicationDateTime = new ApplicationDateTime(DateTimeParser.parseDateTime(applicationDateTime));
+        } catch (ParseException e) {
+            throw new AssertionError("There should never be a ParseException thrown here.");
         }
         return this;
     }
