@@ -29,7 +29,7 @@ public class Review {
 
     private int totalNumCards;
     private List<Integer> orderOfCards;
-    private ObservableList<Pair<String,String> > reviewStatsList;
+    private ObservableList<Pair<String, String> > reviewStatsList;
 
     /**
      * Every field must be present and not null.
@@ -195,15 +195,17 @@ public class Review {
         cardList.stream().forEach(Card::setAsFlipped);
     }
 
-    public ObservableList<Pair<String,String> > getReviewStatsList() {
+    public ObservableList<Pair<String, String> > getReviewStatsList() {
         updateReviewStatsList();
         return reviewStatsList;
     }
 
     private void updateReviewStatsList() {
         Pair<String, String> title = new Pair<String, String>("Deck Name", deck.getDeckName());
-        Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:", String.format("%d/%d", currCardNum, totalNumCards));
-        Pair<String, String> currentScore = new Pair<String, String>("Current Score: ", String.format("%d", getTotalScore()));
+        Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:"
+                , String.format("%d/%d", currCardNum, totalNumCards));
+        Pair<String, String> currentScore = new Pair<String, String>("Current Score: "
+                , String.format("%d", getTotalScore()));
         this.reviewStatsList.clear();
         this.reviewStatsList.addAll(title,cardsSeen,currentScore);
     }

@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import javafx.util.Pair;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.card.Card;
 
 /**
  * Panel containing the statistics of the current review.
@@ -24,7 +23,7 @@ public class ReviewStatsPanel extends UiPart<Region> {
     /**
      * Creates a {@code ReviewStatsPanel} with the given {@code ObservableList}.
      */
-    public ReviewStatsPanel(ObservableList<Pair<String,String>> reviewStatsList) {
+    public ReviewStatsPanel(ObservableList<Pair<String, String>> reviewStatsList) {
         super(FXML);
         reviewStatsView.setItems(reviewStatsList);
         reviewStatsView.setCellFactory(listView -> new ReviewStatsPanel.ReviewStatsViewCell());
