@@ -1,8 +1,8 @@
-package seedu.sudohr.logic.commands.leavecommands;
+package seedu.sudohr.logic.commands.leave;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_LEAVE_DATE_LEAVE_TYPE_1;
 import static seedu.sudohr.testutil.Assert.assertThrows;
@@ -18,8 +18,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
 import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
-import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
-import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
 import seedu.sudohr.model.ReadOnlyUserPrefs;
@@ -34,67 +32,85 @@ import seedu.sudohr.testutil.TypicalEmployees;
 import seedu.sudohr.testutil.TypicalLeave;
 
 /**
- * Deletes a employee from a specific leave in sudohr book.
+ * Adds a employee using it's displayed index to a specific leave using it's
+ * displayed index in sudohr book.
  */
-public class DeleteEmployeeFromLeaveCommandTest {
+public class AddEmployeeToLeaveCommandTest {
 
-    // Handle removing an employee
     @Test
-    public void execute_employeeAcceptedByLeave_deleteSuccessful() throws CommandException {
+    public void execute_employeeAcceptedByLeave_addSuccessful() throws CommandException {
 
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
-
-        new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
-                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
-
-        CommandResult commandResult = new DeleteEmployeeFromLeaveCommand(
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(
                 TypicalEmployees.ALICE_ID,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        assertEquals(String.format(DeleteEmployeeFromLeaveCommand.MESSAGE_SUCCESS,
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
                 TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
                 commandResult.getFeedbackToUser());
 
-        assertFalse(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
                 VALID_LEAVE_DATE_LEAVE_TYPE_1))))
                 .hasEmployee(TypicalEmployees.ALICE));
     }
 
-    // Remove from nonexistent leave
+    // handle adding to leave objects that already exists
+
     @Test
-    public void execute_removeEmployeeFromNonExistentLeave_throwsCommandException() {
-        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+    public void execute_employeeAcceptedByLeaveAndPreviousEmployeeExists_addSuccessful() throws CommandException {
 
-        modelStub.addEmployee(TypicalEmployees.ALICE);
-
-        assertThrows(CommandException.class, DeleteEmployeeFromLeaveCommand.MESSAGE_INVALID_DATE, () ->
-                new DeleteEmployeeFromLeaveCommand(TypicalEmployees.ALICE_ID,
-                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
-    }
-
-    // Remove a nonexistent employee
-    @Test
-    public void execute_removeNonExistentEmployeeFromLeave_throwsCommandException() {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
         modelStub.addEmployee(TypicalEmployees.BENSON);
 
-        modelStub.addEmployeeToLeave(new Leave(new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))),
-                TypicalEmployees.ALICE);
+        new AddEmployeeToLeaveCommand(
+                TypicalEmployees.ALICE_ID,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
-        assertThrows(CommandException.class, DeleteEmployeeFromLeaveCommand.MESSAGE_INVALID_DATE, () ->
-                new DeleteEmployeeFromLeaveCommand(TypicalEmployees.BENSON_ID,
-                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+        CommandResult commandResult = new AddEmployeeToLeaveCommand(
+                TypicalEmployees.BENSON_ID,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+
+        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
+                TypicalEmployees.BENSON, TypicalLeave.LEAVE_TYPE_1),
+                commandResult.getFeedbackToUser());
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_LEAVE_DATE_LEAVE_TYPE_1))))
+                .hasEmployee(TypicalEmployees.ALICE));
     }
 
-    // Remove null
+    // handle duplicate employee in Leave
+    @Test
+    public void execute_duplicateEmployeeInLeave_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+        modelStub.addEmployee(TypicalEmployees.ALICE);
+        new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
+                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+
+        assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
+                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+
+    }
+
+    // Handle adding null employee
     @Test
     public void execute_addNullEmployeeToLeave_throwsCommandException() throws CommandException {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
 
-        assertThrows(NullPointerException.class, () -> new DeleteEmployeeFromLeaveCommand(null,
+        assertThrows(NullPointerException.class, () -> new AddEmployeeToLeaveCommand(null,
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+    }
+
+    // Handle adding null leave date
+    @Test
+    public void execute_addEmployeeToNullLeave_throwsCommandException() throws CommandException {
+        ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
+
+        assertThrows(NullPointerException.class, () ->
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID, null).execute(modelStub));
     }
 
     /**
@@ -410,6 +426,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
             requireNonNull(id);
             return sudoHr.checkEmployeeExists(id);
         }
+
 
     }
 }

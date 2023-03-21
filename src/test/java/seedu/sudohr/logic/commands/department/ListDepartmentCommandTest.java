@@ -31,5 +31,4 @@ public class ListDepartmentCommandTest {
         assertCommandSuccess(new ListDepartmentCommand(), model, ListDepartmentCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
-
 }
