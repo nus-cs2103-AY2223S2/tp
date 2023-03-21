@@ -35,7 +35,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Listing listingToDelete = model.getFilteredListingList().get(INDEX_FIRST_LISTING.getZeroBased());
+        Listing listingToDelete = model.getDisplayedListingBook().get(INDEX_FIRST_LISTING.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_LISTING);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_SUCCESS, listingToDelete);
@@ -46,7 +46,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredListingList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getDisplayedListingBook().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_LISTING_DISPLAYED_INDEX);
@@ -80,8 +80,8 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoListing(Model model) {
-        model.updateFilteredListingList(l -> false);
+        model.updateFilteredListingBook(l -> false);
 
-        assertTrue(model.getFilteredListingList().isEmpty());
+        assertTrue(model.getDisplayedListingBook().isEmpty());
     }
 }

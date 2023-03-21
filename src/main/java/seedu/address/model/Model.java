@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -13,6 +14,9 @@ import seedu.address.model.listing.Listing;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Listing> PREDICATE_SHOW_ALL_LISTINGS = unused -> true;
+
+    /** {@code Comparator} that always evaluate to 0 */
+    Comparator<Listing> COMPARATOR_ALL_EQUAL = (listingA, listingB) -> 0;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -77,12 +81,18 @@ public interface Model {
      */
     void setListing(Listing target, Listing editedListing);
 
-    /** Returns an unmodifiable view of the filtered listing book */
-    ObservableList<Listing> getFilteredListingList();
+    /** Returns an unmodifiable view of the displayed listing book */
+    ObservableList<Listing> getDisplayedListingBook();
 
     /**
-     * Updates the filter of the filtered listing book to filter by the given {@code predicate}.
+     * Updates the filter of the displayed listing book to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredListingList(Predicate<Listing> predicate);
+    void updateFilteredListingBook(Predicate<Listing> predicate);
+
+    /**
+     * Updates the sorter of the displayed listing book to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedListingBook(Comparator<Listing> comparator);
 }

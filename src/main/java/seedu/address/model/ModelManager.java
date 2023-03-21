@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.listing.Listing;
@@ -21,6 +24,7 @@ public class ModelManager implements Model {
     private final ListingBook listingBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Listing> filteredListings;
+    private final SortedList<Listing> displayedListings;
 
     /**
      * Initializes a ModelManager with the given listingBook and userPrefs.
@@ -33,6 +37,7 @@ public class ModelManager implements Model {
         this.listingBook = new ListingBook(listingBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredListings = new FilteredList<>(this.listingBook.getListingList());
+        displayedListings = new SortedList<>(this.filteredListings);
     }
 
     public ModelManager() {
@@ -100,7 +105,7 @@ public class ModelManager implements Model {
     @Override
     public void addListing(Listing listing) {
         listingBook.addListing(listing);
-        updateFilteredListingList(PREDICATE_SHOW_ALL_LISTINGS);
+        updateFilteredListingBook(PREDICATE_SHOW_ALL_LISTINGS);
     }
 
     @Override
@@ -117,14 +122,20 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Listing> getFilteredListingList() {
-        return filteredListings;
+    public ObservableList<Listing> getDisplayedListingBook() {
+        return displayedListings;
     }
 
     @Override
-    public void updateFilteredListingList(Predicate<Listing> predicate) {
+    public void updateFilteredListingBook(Predicate<Listing> predicate) {
         requireNonNull(predicate);
         filteredListings.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedListingBook(Comparator<Listing> comparator) {
+        requireNonNull(comparator);
+        displayedListings.setComparator(comparator);
     }
 
     @Override
