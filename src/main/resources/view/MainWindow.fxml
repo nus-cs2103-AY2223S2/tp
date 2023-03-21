@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600.0" minWidth="800.0" onCloseRequest="#handleExit" title="Paidlancers" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="800.0" onCloseRequest="#handleExit" title="Paidlancers" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <icons>
        <Image url="@/images/paidlancers.png" />
    </icons>
