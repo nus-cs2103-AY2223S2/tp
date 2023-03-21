@@ -1,8 +1,12 @@
 package ezschedule.storage;
 
+import static ezschedule.testutil.Assert.assertThrows;
+import static ezschedule.testutil.TypicalEvents.ART;
+import static ezschedule.testutil.TypicalEvents.EAT;
+import static ezschedule.testutil.TypicalEvents.FISHING;
+import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static ezschedule.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,24 +16,23 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import ezschedule.commons.exceptions.DataConversionException;
+import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.Scheduler;
 import ezschedule.testutil.Assert;
-import ezschedule.testutil.TypicalPersons;
-import ezschedule.model.ReadOnlyScheduler;
 
 
 public class JsonSchedulerStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSchedulerStorageTest");
 
     @TempDir
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readScheduler_nullFilePath_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> readScheduler(null));
     }
 
-    private java.util.Optional<ReadOnlyScheduler> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyScheduler> readScheduler(String filePath) throws Exception {
         return new JsonSchedulerStorage(Paths.get(filePath)).readScheduler(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -41,45 +44,45 @@ public class JsonSchedulerStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readScheduler("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readScheduler("notJsonFormatScheduler.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        Assert.assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readScheduler_invalidEventScheduler_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readScheduler("invalidEventScheduler.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        Assert.assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readScheduler_invalidAndValidEventScheduler_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readScheduler("invalidAndValidEventScheduler.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveScheduler_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempScheduler.json");
 
-        Scheduler original = getTypicalAddressBook();
+        Scheduler original = getTypicalScheduler();
         JsonSchedulerStorage jsonSchedulerStorage = new JsonSchedulerStorage(filePath);
 
         // Save in new file and read back
-        jsonSchedulerStorage.saveAddressBook(original, filePath);
-        ReadOnlyScheduler readBack = jsonSchedulerStorage.readAddressBook(filePath).get();
+        jsonSchedulerStorage.saveScheduler(original, filePath);
+        ReadOnlyScheduler readBack = jsonSchedulerStorage.readScheduler(filePath).get();
         assertEquals(original, new Scheduler(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addEvent(HOON);
-        original.removeEvent(ALICE);
+        original.addEvent(EAT);
+        original.removeEvent(ART);
         jsonSchedulerStorage.saveScheduler(original, filePath);
         readBack = jsonSchedulerStorage.readScheduler(filePath).get();
         assertEquals(original, new Scheduler(readBack));
 
         // Save and read without specifying file path
-        original.addEvent(IDA);
+        original.addEvent(FISHING);
         jsonSchedulerStorage.saveScheduler(original); // file path not specified
         readBack = jsonSchedulerStorage.readScheduler().get(); // file path not specified
         assertEquals(original, new Scheduler(readBack));
@@ -87,25 +90,24 @@ public class JsonSchedulerStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveScheduler_nullScheduler_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveScheduler(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code scheduler} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyScheduler addressBook, String filePath) {
+    private void saveScheduler(ReadOnlyScheduler scheduler, String filePath) {
         try {
             new JsonSchedulerStorage(Paths.get(filePath))
-                    .saveScheduler(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveScheduler(scheduler, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new Scheduler(), null));
-
+    public void saveScheduler_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveScheduler(new Scheduler(), null));
     }
 }

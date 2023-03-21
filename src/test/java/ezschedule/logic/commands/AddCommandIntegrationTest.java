@@ -1,7 +1,7 @@
 package ezschedule.logic.commands;
 
 import static ezschedule.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static ezschedule.testutil.TypicalPersons.getTypicalAddressBook;
+import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import ezschedule.model.Model;
 import ezschedule.model.ModelManager;
 import ezschedule.model.UserPrefs;
-import ezschedule.model.person.Person;
-import ezschedule.testutil.PersonBuilder;
+import ezschedule.model.event.Event;
+import ezschedule.testutil.EventBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -21,24 +21,23 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalScheduler(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().build();
+        Event validEvent = new EventBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validPerson);
+        Model expectedModel = new ModelManager(model.getScheduler(), new UserPrefs());
+        expectedModel.addEvent(validEvent);
 
-        assertCommandSuccess(new AddCommand(validPerson), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+        assertCommandSuccess(new AddCommand(validEvent), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validEvent), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getAddressBook().getPersonList().get(0);
-        CommandTestUtil.assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Event eventInList = model.getScheduler().getEventList().get(0);
+        CommandTestUtil.assertCommandFailure(new AddCommand(eventInList), model, AddCommand.MESSAGE_DUPLICATE_EVENT);
     }
-
 }

@@ -1,10 +1,10 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ezschedule.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,66 +13,65 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import ezschedule.model.event.Event;
-import javafx.collections.ObservableList;
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.logic.commands.exceptions.CommandException;
-import ezschedule.model.Scheduler;
 import ezschedule.model.Model;
 import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.ReadOnlyUserPrefs;
-import ezschedule.model.person.Person;
-import ezschedule.testutil.PersonBuilder;
+import ezschedule.model.Scheduler;
+import ezschedule.model.event.Event;
+import ezschedule.testutil.EventBuilder;
+import javafx.collections.ObservableList;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_eventAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
-        Person validPerson = new PersonBuilder().build();
+        Event validEvent = new EventBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validEvent).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.eventsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validEvent), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validEvent), modelStub.eventsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithEvent(validPerson);
+    public void execute_duplicateEvent_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        AddCommand addCommand = new AddCommand(validEvent);
+        ModelStub modelStub = new ModelStubWithEvent(validEvent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EVENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Event a = new EventBuilder().withName("Event A").build();
+        Event b = new EventBuilder().withName("Event B").build();
+        AddCommand addEventACommand = new AddCommand(a);
+        AddCommand addEventBCommand = new AddCommand(b);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addEventACommand.equals(addEventACommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addEventACommandCopy = new AddCommand(a);
+        assertTrue(addEventACommand.equals(addEventACommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addEventACommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addEventACommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different event -> returns false
+        assertFalse(addEventACommand.equals(addEventBCommand));
     }
 
     /**
@@ -80,12 +79,12 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -105,7 +104,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setSchedulerFilePath(Path addressBookFilePath) {
+        public void setSchedulerFilePath(Path schedulerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -115,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setScheduler(ReadOnlyScheduler newData) {
+        public ReadOnlyScheduler getScheduler() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyScheduler getScheduler() {
+        public void setScheduler(ReadOnlyScheduler newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -135,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEvent(Event target, Event editedPerson) {
+        public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,7 +150,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single event.
      */
     private class ModelStubWithEvent extends ModelStub {
         private final Event event;
@@ -169,7 +168,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the event being added.
      */
     private class ModelStubAcceptingEventAdded extends ModelStub {
         final ArrayList<Event> eventsAdded = new ArrayList<>();
@@ -191,5 +190,4 @@ public class AddCommandTest {
             return new Scheduler();
         }
     }
-
 }

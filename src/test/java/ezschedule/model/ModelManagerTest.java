@@ -1,10 +1,12 @@
 package ezschedule.model;
 
+import static ezschedule.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+import static ezschedule.testutil.Assert.assertThrows;
+import static ezschedule.testutil.TypicalEvents.ART;
+import static ezschedule.testutil.TypicalEvents.BOAT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ezschedule.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static ezschedule.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,8 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import ezschedule.commons.core.GuiSettings;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
-import ezschedule.testutil.Assert;
-import ezschedule.testutil.TypicalPersons;
 import ezschedule.testutil.SchedulerBuilder;
 
 public class ModelManagerTest {
@@ -31,26 +31,26 @@ public class ModelManagerTest {
 
     @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setSchedulerFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setSchedulerFilePath(Paths.get("scheduler/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setSchedulerFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setSchedulerFilePath(Paths.get("new/scheduler/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
     }
 
     @Test
@@ -61,42 +61,42 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setSchedulerFilePath(null));
+    public void setSchedulerFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setSchedulerFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+    public void setSchedulerFilePath_validPath_setsSchedulerFilePath() {
+        Path path = Paths.get("scheduler/file/path");
         modelManager.setSchedulerFilePath(path);
         assertEquals(path, modelManager.getSchedulerFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasEvent(TypicalPersons.ALICE));
+    public void hasEvent_eventNotInScheduler_returnsFalse() {
+        assertFalse(modelManager.hasEvent(ART));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addEvent(TypicalPersons.ALICE);
-        assertTrue(modelManager.hasEvent(TypicalPersons.ALICE));
+    public void hasEvent_eventInScheduler_returnsTrue() {
+        modelManager.addEvent(ART);
+        assertTrue(modelManager.hasEvent(ART));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
     }
 
     @Test
     public void equals() {
         Scheduler scheduler =
-                new SchedulerBuilder().withEvent(TypicalPersons.ALICE).withEvent(TypicalPersons.BENSON).build();
+                new SchedulerBuilder().withEvent(ART).withEvent(BOAT).build();
         Scheduler differentScheduler = new Scheduler();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -114,16 +114,16 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different scheduler -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentScheduler, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TypicalPersons.ALICE.getName().fullName.split("\\s+");
+        String[] keywords = ART.getName().fullName.split("\\s+");
         modelManager.updateFilteredEventList(new EventContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(scheduler, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

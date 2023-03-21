@@ -1,0 +1,24 @@
+{
+  "_comment": "Scheduler save file which contains the same Event values as in TypicalEvents#getTypicalScheduler()",
+  "events" : [ {
+    "name" : "Art class",
+    "date": "2023-05-01",
+    "startTime": "12:00",
+    "endTime": "14:00"
+  }, {
+    "name" : "Boat race",
+    "date": "2023-05-02",
+    "startTime": "14:00",
+    "endTime": "16:00"
+  }, {
+    "name" : "Carnival",
+    "date": "2023-05-03",
+    "startTime": "16:00",
+    "endTime": "18:00"
+  }, {
+    "name" : "Drag race",
+    "date": "2023-05-04",
+    "startTime": "18:00",
+    "endTime": "20:00"
+  } ]
+}

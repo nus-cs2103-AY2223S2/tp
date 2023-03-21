@@ -1,9 +1,13 @@
 package ezschedule.model;
 
+import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
+import static ezschedule.testutil.Assert.assertThrows;
+import static ezschedule.testutil.TypicalEvents.ART;
+import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ezschedule.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,12 +16,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ezschedule.logic.commands.CommandTestUtil;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.exceptions.DuplicateEventException;
-import ezschedule.testutil.Assert;
-import ezschedule.testutil.PersonBuilder;
-import ezschedule.testutil.TypicalPersons;
+import ezschedule.testutil.EventBuilder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -32,70 +33,67 @@ public class SchedulerTest {
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> scheduler.resetData(null));
+        assertThrows(NullPointerException.class, () -> scheduler.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Scheduler newData = TypicalPersons.getTypicalAddressBook();
+    public void resetData_withValidReadOnlyScheduler_replacesData() {
+        Scheduler newData = getTypicalScheduler();
         scheduler.resetData(newData);
         assertEquals(newData, scheduler);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                .build();
-        List<Person> newPersons = Arrays.asList(TypicalPersons.ALICE, editedAlice);
-        SchedulerStub newData = new SchedulerStub(newPersons);
+    public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
+        // Two events with the same identity fields
+        Event editedA = new EventBuilder(ART).withStartTime(VALID_START_TIME_B).build();
+        List<Event> newEvents = Arrays.asList(ART, editedA);
+        SchedulerStub newData = new SchedulerStub(newEvents);
 
-        Assert.assertThrows(DuplicateEventException.class, () -> scheduler.resetData(newData));
+        assertThrows(DuplicateEventException.class, () -> scheduler.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> scheduler.hasEvent(null));
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> scheduler.hasEvent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(scheduler.hasEvent(TypicalPersons.ALICE));
+    public void hasEvent_eventNotInScheduler_returnsFalse() {
+        assertFalse(scheduler.hasEvent(ART));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        scheduler.addEvent(TypicalPersons.ALICE);
-        assertTrue(scheduler.hasEvent(TypicalPersons.ALICE));
+    public void hasEvent_eventInScheduler_returnsTrue() {
+        scheduler.addEvent(ART);
+        assertTrue(scheduler.hasEvent(ART));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        scheduler.addEvent(TypicalPersons.ALICE);
-        Person editedAlice = new PersonBuilder(TypicalPersons.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB).withTags(CommandTestUtil.VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(scheduler.hasEvent(editedAlice));
+    public void hasEvent_eventWithSameIdentityFieldsInScheduler_returnsTrue() {
+        scheduler.addEvent(ART);
+        Event editedA = new EventBuilder(ART).withStartTime(VALID_START_TIME_A).build();
+        assertTrue(scheduler.hasEvent(editedA));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        Assert.assertThrows(UnsupportedOperationException.class, () -> scheduler.getEventList().remove(0));
+    public void getEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> scheduler.getEventList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyScheduler whose events list can violate interface constraints.
      */
     private static class SchedulerStub implements ReadOnlyScheduler {
-        private final ObservableList<Event> persons = FXCollections.observableArrayList();
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        SchedulerStub(Collection<Event> persons) {
-            this.persons.setAll(persons);
+        SchedulerStub(Collection<Event> events) {
+            this.events.setAll(events);
         }
 
         @Override
         public ObservableList<Event> getEventList() {
-            return persons;
+            return events;
         }
     }
-
 }

@@ -4,7 +4,7 @@ import ezschedule.model.event.Event;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an scheduler
  */
 public interface ReadOnlyScheduler {
 
