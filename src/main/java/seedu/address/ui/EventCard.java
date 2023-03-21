@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.awt.*;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -7,9 +9,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 
 /**
@@ -60,17 +64,22 @@ public class EventCard extends UiPart<Region> {
         date.setText(event.getDate().format(formatter));
         //notes.setText("" + event.countNotes());
 
-        if (event.countAttachments() > 0) {
+        GuiSettings guiSettings = new GuiSettings();
+        int size = guiSettings.getEventIconSize();
+
+        //Set attachment icon
+        if (event.getAttachments().size() > 0) {
             Image attachmentIcon = new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream("/images/attachment.png")));
+                    .getResourceAsStream(guiSettings.getAttachmentIcon())));
             attachmentLogo.setImage(attachmentIcon);
-            attachmentLogo.setFitWidth(24);
-            attachmentLogo.setFitHeight(23);
-
-            //bind a click for now
-            
-
-
+            attachmentLogo.setFitWidth(size);
+            attachmentLogo.setFitHeight(size);
+        } else {
+            Image attachmentIcon = new Image(Objects.requireNonNull(this.getClass()
+                    .getResourceAsStream(guiSettings.getNoAttachmentIcon())));
+            attachmentLogo.setImage(attachmentIcon);
+            attachmentLogo.setFitWidth(size);
+            attachmentLogo.setFitHeight(size);
         }
 
         //set list of student profiles at top right
@@ -79,12 +88,24 @@ public class EventCard extends UiPart<Region> {
             Image newImage = new Image(Objects.requireNonNull(this.getClass()
                     .getResourceAsStream(studentProfile)));
             profile.setImage(newImage);
-            profile.setFitWidth(24);
-            profile.setFitHeight(23);
+            profile.setFitWidth(size);
+            profile.setFitHeight(size);
             studentProfiles.getChildren().addAll(profile);
         }
 
-
+        //bind a click to open the attachment (only works for single attachment for now
+        //Only prints error message for now
+        if (event.getAttachments().size() > 0 && event.getAttachments().get(0).exists()) {
+            cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.open(event.getAttachments().get(0));
+                } catch (IOException e) {
+                    System.out.println("file processing error!");
+                }
+                click.consume();
+            });
+        }
     }
 
     //Add more comparison in equals

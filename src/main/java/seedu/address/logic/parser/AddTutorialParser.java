@@ -38,7 +38,7 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
         //newArgs to trim first word when more commands added to switch-case in AddressBookParser
         String newArgs = args.trim().replaceFirst("Tutorial", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_DATE, PREFIX_FILE, PREFIX_NOTE);
 
         //Make the user not create tutorial and students with the same command
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,

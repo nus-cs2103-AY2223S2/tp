@@ -238,9 +238,6 @@ public class ParserUtil {
         if(!file.exists()) {
             throw new ParseException("File not found!");
         }
-        //open file
-        //Desktop desktop = Desktop.getDesktop();
-        //desktop.open(file);
         return file;
     }
 
