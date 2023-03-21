@@ -52,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandLogPlaceholder;
 
     @FXML
-    private StackPane resultOutputPlaceholder;
+    private StackPane entityPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         commandLogPlaceholder.getChildren().add(commandLog.getRoot());
 
         entityPanel = new EntityPanel(logic);
-        resultOutputPlaceholder.getChildren().add(entityPanel.getRoot());
+        entityPanelPlaceholder.getChildren().add(entityPanel.getRoot());
 
         statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
