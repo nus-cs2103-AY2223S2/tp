@@ -132,13 +132,13 @@ public class EditCommandNew extends CommandNew {
         private Email email;
         private Status status;
         private Remark remark;
-        private Set<Date> keydates;
+        private Set<Date> dates;
 
         public EditOpeningDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code keydates} is used internally.
+         * A defensive copy of {@code dates} is used internally.
          */
         public EditOpeningDescriptor(EditOpeningDescriptor toCopy) {
             setPosition(toCopy.position);
@@ -146,14 +146,14 @@ public class EditCommandNew extends CommandNew {
             setEmail(toCopy.email);
             setStatus(toCopy.status);
             setRemark(toCopy.remark);
-            setDates(toCopy.keydates);
+            setDates(toCopy.dates);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(position, company, email, status, keydates);
+            return CollectionUtil.isAnyNonNull(position, company, email, status, dates);
         }
 
         public void setPosition(Position position) {
@@ -197,20 +197,20 @@ public class EditCommandNew extends CommandNew {
         }
 
         /**
-         * Sets {@code keydates} to this object's {@code keydates}.
-         * A defensive copy of {@code keydates} is used internally.
+         * Sets {@code dates} to this object's {@code dates}.
+         * A defensive copy of {@code dates} is used internally.
          */
-        public void setDates(Set<Date> keydates) {
-            this.keydates = (keydates != null) ? new HashSet<>(keydates) : null;
+        public void setDates(Set<Date> dates) {
+            this.dates = (dates != null) ? new HashSet<>(dates) : null;
         }
 
         /**
          * Returns an unmodifiable date set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code keydates} is null.
+         * Returns {@code Optional#empty()} if {@code dates} is null.
          */
         public Optional<Set<Date>> getDates() {
-            return (keydates != null) ? Optional.of(Collections.unmodifiableSet(keydates)) : Optional.empty();
+            return (dates != null) ? Optional.of(Collections.unmodifiableSet(dates)) : Optional.empty();
         }
 
         @Override
