@@ -16,7 +16,7 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="10" />
     </columnConstraints>
     <HBox>
-    <HBox alignment="TOP_LEFT" prefWidth="100" style="-fx-padding: 0 12 0 20" >
+    <HBox alignment="TOP_LEFT" prefWidth="100" >
       <ImageView fx:id="genderList" fitWidth="150" fitHeight="150" />
     </HBox>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
@@ -31,6 +31,9 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <padding>
+          <Insets  bottom="10" />
+        </padding>
       </HBox>
       <FlowPane fx:id="tags"/>
       <FlowPane fx:id="appointments"/>
