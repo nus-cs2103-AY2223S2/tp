@@ -72,7 +72,7 @@ public class EditIsolatedEventCommand extends Command {
         IsolatedEvent originalEvent = personToEdit.getIsolatedEventList().getIsolatedEvent(eventIndex.getZeroBased());
         IsolatedEvent editedIsolatedEvent = createEditedIsolatedEvent(personToEdit, originalEvent, editEventDescriptor);
 
-        model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
+        editedIsolatedEvent.checkDateTime();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
                 + " from " + originalEvent + " for " + personToEdit.getName());
@@ -168,5 +168,6 @@ public class EditIsolatedEventCommand extends Command {
                     && getStartDate().equals(e.getStartDate());
         }
     }
+
 
 }

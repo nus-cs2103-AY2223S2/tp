@@ -31,7 +31,7 @@ class IsolatedEventTest {
     @Test
     void toString_test() {
         IsolatedEvent event = new IsolatedEvent("biking", TWO_O_CLOCK_VALID, THREE_O_CLOCK_VALID);
-        assertEquals("biking from: 09/03/2023 14:00 to: 09/03/2023 15:00", event.toString());
+        assertEquals("biking from: 09/03/2024 14:00 to: 09/03/2024 15:00", event.toString());
     }
 
 }

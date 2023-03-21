@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents an {@code Event} that occurs on a weekly basis.
  */
@@ -147,6 +149,17 @@ public class RecurringEvent extends Event implements Comparable<RecurringEvent> 
         } else {
             return true;
         }
+    }
+
+    /**
+     * Checks if the start time and the end time of the event is valid for recurring event.
+     * @throws CommandException if start time is after the end time.
+     */
+    public void checkPeriod() throws CommandException {
+        if (this.startTime.isAfter(this.endTime) || this.startTime.equals(this.endTime)) {
+            throw new CommandException(RecurringEvent.MESSAGE_CONSTRAINTS_PERIOD);
+        }
+
     }
 
     @Override

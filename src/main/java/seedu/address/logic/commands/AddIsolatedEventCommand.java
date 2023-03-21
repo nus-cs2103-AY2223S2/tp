@@ -28,9 +28,10 @@ public class AddIsolatedEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add an isolated event into the isolated event list"
             + "by the index number used in the last person listing.\n "
-            + "Parameters: event name, start date and end date (must be in the format of dd/MM/yyyy HH:mm) "
-            + "ie/[EVENT_NAME] f/[START_DATE] t/[END_DATE] \n"
-            + "Example: " + COMMAND_WORD + " ie/biking" + " f/09/03/2023 14:00" + " t/09/03/2023 15:00";
+            + "Parameters: index of person to add the event, event name,"
+            + " start date and end date (must be in the format of dd/MM/yyyy HH:mm) "
+            + "[INDEX] ie/[EVENT_NAME] f/[START_DATE] t/[END_DATE] \n"
+            + "Example: " + COMMAND_WORD + " 1" + " ie/biking" + " f/09/03/2023 14:00" + " t/09/03/2023 15:00";
 
     public final IsolatedEvent eventToAdd;
     public final Index index;
@@ -70,6 +71,8 @@ public class AddIsolatedEventCommand extends Command {
         if (checkForEventClash != null) {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
         }
+
+        eventToAdd.checkDateTime();
 
         model.addIsolatedEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

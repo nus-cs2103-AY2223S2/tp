@@ -206,7 +206,7 @@ public class ParserUtil {
     }
 
     /**
-     * Checks if the start time and the end time of the event is valid.
+     * Checks if the start time and the end time of the event is valid for recurring event.
      * @param startTime of which the event start.
      * @param endTime of which the event end.
      * @return true if start time is before the end time.
@@ -218,7 +218,6 @@ public class ParserUtil {
         }
         return true;
     }
-
     /**
      * Parses a {@code String group} into a {@code Group}.
      * Leading and trailing whitespaces will be trimmed.
