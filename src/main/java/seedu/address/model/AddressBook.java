@@ -73,7 +73,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a student to a tutorial.
+     * Adds a student to a specific tutorial.
      *
      * @param toAdd the student to be added.
      * @param name the name of the tutorial that the student will be added into.
@@ -92,7 +92,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a student to a lab.
+     * Adds a student to a specific lab.
      *
      * @param toAdd the student to be added.
      * @param name the name of the lab that the student will be added into.
@@ -111,9 +111,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Allows student to be assigned to a specific consultation
-     * @param toAdd
-     * @param name
+     * Adds a student to a specific consultation
+     *
+     * @param toAdd the student to be added.
+     * @param name the name of the consultation that the student will be added into.
      */
     public void addStudentToConsultation(Person toAdd, String name) {
         Consultation original = consultations.get(0);
