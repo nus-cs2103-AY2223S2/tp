@@ -74,29 +74,32 @@ Adding a contact to contacts
 
 - Creates a new contact with specified `NAME` and `NUMBER`
 
-
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
 - `newcontact n/Mandy p/98765432`
+
 
 <!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
 
 Displays all contacts saved in a list
 
 **Format**: `listcontact` -->
+
+
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
 Links client contact to an event.
 
-**Format**: `linkcontact INDEX CONTACT`
+**Format**: `linkcontact INDEX PHONE`
 
-- Links contact to the event at the specified `INDEX`.
+- Links contact using `PHONE` to the event at the specified `INDEX`.
 
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …​
+    - The `INDEX` refers to the index number in the displayed events list.
+    - The `INDEX` must be a positive integer 1, 2, 3, …
+    - The `PHONE` must be a valid phone number in the contact list.
 
 **Example**:
-- `linkcontact 2 91234567` links `2nd event` to contact `91234567` in the list.
+- `linkcontact 2 91234567` links `2nd event` to the contact with phone `91234567` in the list.
 
 
 ### View Rate: `rate` <a id = "view-rate"></a>
