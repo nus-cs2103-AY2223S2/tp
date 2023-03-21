@@ -58,10 +58,6 @@ public class Staff extends Person {
         }
 
         Staff otherStaff = (Staff) object;
-        return otherStaff.getName().equals(getName())
-                && otherStaff.getPhone().equals(getPhone())
-                && otherStaff.getEmail().equals(getEmail())
-                && otherStaff.getAddress().equals(getAddress())
-                && otherStaff.getTags().equals(getTags());
+        return super.equals(otherStaff);
     }
 }

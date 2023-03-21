@@ -12,7 +12,8 @@ public class IdNumberTest {
     private static final IdNumber PID1_LOWER = new IdNumber("a12345b");
     private static final IdNumber PID2_UPPER = new IdNumber("C67890D");
     private static final IdNumber PID2_LOWER = new IdNumber("c67890d");
-
+    private static final String INVALID_PID_1 = "there are spaces in this pid";
+    private static final String INVALID_PID_2 = "+_(#$";
 
     @Test
     public void equals_sameId_true() {
@@ -33,7 +34,8 @@ public class IdNumberTest {
 
     @Test
     public void constructor_invalidIdNumberInput() {
-        assertThrows(IllegalArgumentException.class, () -> new IdNumber("Invalid as there are spaces"));
+        assertThrows(IllegalArgumentException.class, () -> new IdNumber(INVALID_PID_1));
+        assertThrows(IllegalArgumentException.class, () -> new IdNumber(INVALID_PID_2));
     }
 
     @Test

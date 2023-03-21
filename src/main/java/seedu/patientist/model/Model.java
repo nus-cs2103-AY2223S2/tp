@@ -56,8 +56,7 @@ public interface Model {
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the patientist book (all wards).
-     * Patients are uniquely identified by Patient ID, through {@code Patient::isSamePerson} overridden from Person
-     * Staff are uniquely identified by name, through {@code Person::isSamePerson} inherited from Person
+     * This method makes use of {@code Person::isSamePerson} to check identity
      */
     boolean hasPerson(Person person);
 

@@ -17,6 +17,7 @@ import seedu.patientist.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code Patientist} with sample data.
+ * TODO: refactor this to create a valid sample Patientist
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {

@@ -77,7 +77,7 @@ public class Patient extends Person {
         }
 
         Patient otherPat = (Patient) other;
-        return getIdNumber().equals(otherPat.getIdNumber()) && this.getName().equals(otherPat.getName());
+        return super.equals(otherPat);
     }
 
     @Override
@@ -85,11 +85,6 @@ public class Patient extends Person {
         return PATIENT_TAG;
     }
 
-    /**
-     * Compares 2 Person objects. The Patient class makes use of its <code>equals</code> method, which checks
-     * equality between 2 <code>Patient</code>'s id numbers.
-     * @param otherPatient the other <code>Person</code> object to be compared to.
-     */
     @Override
     public boolean isSamePerson(Person otherPatient) {
         if (otherPatient == this) {

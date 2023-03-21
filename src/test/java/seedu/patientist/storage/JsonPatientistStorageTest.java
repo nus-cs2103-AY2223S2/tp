@@ -6,7 +6,7 @@ import static seedu.patientist.testutil.Assert.assertThrows;
 import static seedu.patientist.testutil.TypicalPatients.ADAM;
 //import static seedu.patientist.testutil.TypicalPatients.AMY;
 //import static seedu.patientist.testutil.TypicalPatients.CHARLIE;
-import static seedu.patientist.testutil.TypicalPatients.getTypicalPatientist;
+import static seedu.patientist.testutil.TypicalWards.getTypicalPatientist;
 
 import java.io.IOException;
 import java.nio.file.Path;
