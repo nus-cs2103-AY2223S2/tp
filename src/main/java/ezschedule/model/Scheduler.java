@@ -59,6 +59,13 @@ public class Scheduler implements ReadOnlyScheduler {
     //// event-level operations
 
     /**
+     * Deletes events which have past from the scheduler.
+     */
+    public void deletePastEvents() {
+        events.deletePastEvents();
+    }
+
+    /**
      * Returns true if an event with the same identity as {@code event} exists in the scheduler.
      */
     public boolean hasEvent(Event event) {

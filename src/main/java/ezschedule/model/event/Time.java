@@ -39,6 +39,13 @@ public class Time implements Comparable<Time> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if this time has past current present time.
+     */
+    public boolean isPastTime() {
+        return time.isBefore(LocalTime.now());
+    }
+
     @Override
     public int compareTo(Time otherTime) {
         return time.compareTo(otherTime.time);

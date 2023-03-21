@@ -1,5 +1,7 @@
 package ezschedule.model.event;
 
+import java.time.LocalTime;
+
 /**
  * Represents an Event in the scheduler.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -34,6 +36,10 @@ public class Event implements Comparable<Event> {
 
     public Time getEndTime() {
         return endTime;
+    }
+
+    public boolean isPastEvent() {
+        return endTime.isPastTime();
     }
 
     /**
