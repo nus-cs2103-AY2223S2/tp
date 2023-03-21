@@ -55,7 +55,6 @@ public class RemindCommandTest {
         expectedModel.updateFilteredPersonList(RemindCommand.INTERVIEW_IN_THREE_DAYS_PREDICATE);
 
         String expectedMessage = RemindCommand.MESSAGE_SUCCESS_FORMAT_WITHOUT_APPLICANTS;
-        
         CommandResult result = remindCommand.execute(model);
         CommandResult expectedResult = new CommandResult(expectedMessage);
         assertEquals(expectedResult, result);
