@@ -7,6 +7,7 @@ import java.util.function.UnaryOperator;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * A utility class to easily construct Projects. Offers some sensible defaults for each field of a {@code Project} to
@@ -40,10 +41,10 @@ public class ProjectBuilder {
      * Constructs a new {@code PersonBuilder} using existing fields on some {@code Project}.
      */
     public ProjectBuilder(Project project) {
-        this.name = project.getName();
+        this.name = project.getName().toString();
         this.status = project.getStatus();
         this.clientEmail = project.getClientEmail();
-        this.source = project.getSource().orElse(null);
+        this.source = project.getSource().map(NonEmptyString::getValue).orElse(null);
         this.description = project.getDescription().orElse(null);
         this.acceptedOn = project.getAcceptedOn();
         this.deadline = project.getDeadline().orElse(null);
@@ -53,7 +54,17 @@ public class ProjectBuilder {
      * Sets the project's name.
      */
     public ProjectBuilder withName(String name) {
+        // NOTE: we are not doing any validation in this method. If the name is invalid, e.g. it is actually null,
+        // then it will fail when the project is built.
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Sets the project's name.
+     */
+    public ProjectBuilder withName(NonEmptyString name) {
+        this.name = name.toString();
         return this;
     }
 
@@ -133,10 +144,10 @@ public class ProjectBuilder {
      * Builds a project with the given fields.
      */
     public Project build() {
-        return new Project(name,
+        return new Project(NonEmptyString.of(name),
             status,
             clientEmail,
-            Optional.ofNullable(source),
+            NonEmptyString.ofOptional(source),
             Optional.ofNullable(description),
             acceptedOn,
             Optional.ofNullable(deadline));

@@ -16,6 +16,7 @@ import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 
 /**
@@ -47,7 +48,7 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Optional<Phone> mobileNumber = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_CLIENT_MOBILE_NUMBER),
             ParserUtil::parsePhone);
-        Optional<String> source = ParserUtil.parseOptionalWith(
+        Optional<NonEmptyString> source = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_SOURCE),
             ParserUtil::parseNonEmptyString);
         Optional<YearOfBirth> yearOfBirth = ParserUtil.parseOptionalWith(

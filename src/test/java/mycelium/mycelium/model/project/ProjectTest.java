@@ -11,6 +11,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.Pair;
 import mycelium.mycelium.testutil.ProjectBuilder;
 
@@ -90,8 +91,8 @@ public class ProjectTest {
 
     @Test
     public void constructor_minimalFields_isOk() {
-        Project project = new Project("my awesome project", new Email("chungus@chungus.org"));
-        assertEquals(project.getName(), "my awesome project");
+        Project project = new Project(NonEmptyString.of("my awesome project"), new Email("chungus@chungus.org"));
+        assertEquals(project.getName(), NonEmptyString.of("my awesome project"));
         assertEquals(project.getClientEmail(), new Email("chungus@chungus.org"));
         assertEquals(project.getSource(), Optional.empty());
         assertEquals(project.getDescription(), Optional.empty());
@@ -101,7 +102,7 @@ public class ProjectTest {
 
     @Test
     public void toString_works() {
-        Project project = new Project("Bing", new Email("jamal@hogriders.org"));
+        Project project = new Project(NonEmptyString.of("Bing"), new Email("jamal@hogriders.org"));
         assertEquals("Bing from client jamal@hogriders.org", project.toString());
     }
 }

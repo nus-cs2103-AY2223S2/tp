@@ -4,13 +4,20 @@ import static mycelium.mycelium.testutil.Assert.assertThrows;
 import static mycelium.mycelium.testutil.TypicalPersons.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
+import mycelium.mycelium.commons.util.JsonUtil;
+import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.testutil.ClientBuilder;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "K@NY3 W3ST";
@@ -20,17 +27,17 @@ public class JsonAdaptedClientTest {
     private static final String VALID_NAME = WEST.getName().toString();
     private static final String VALID_EMAIL = WEST.getEmail().toString();
     private static final String VALID_YEAR_OF_BIRTH = WEST.getYearOfBirth().get().value;
-    private static final String VALID_SOURCE = WEST.getSource().get();
+    private static final String VALID_SOURCE = WEST.getSource().get().toString();
     private static final String VALID_MOBILE_NUMBER = WEST.getMobileNumber().get().value;
 
-    //    @Test
-    //    public void basicSerialization() throws JsonProcessingException, IOException {
-    //        Client client = new ClientBuilder().build();
-    //        JsonAdaptedClient se = new JsonAdaptedClient(client);
-    //        String jsonStr = JsonUtil.toJsonString(se);
-    //        JsonAdaptedClient de = JsonUtil.fromJsonString(jsonStr, JsonAdaptedClient.class);
-    //        assertEquals(se, de);
-    //    }
+    @Test
+    public void basicSerialization() throws JsonProcessingException, IOException {
+        Client client = new ClientBuilder().build();
+        JsonAdaptedClient se = new JsonAdaptedClient(client);
+        String jsonStr = JsonUtil.toJsonString(se);
+        JsonAdaptedClient de = JsonUtil.fromJsonString(jsonStr, JsonAdaptedClient.class);
+        assertEquals(se, de);
+    }
 
     @Test
     public void toModelType_validClientDetails_returnsClient() throws Exception {

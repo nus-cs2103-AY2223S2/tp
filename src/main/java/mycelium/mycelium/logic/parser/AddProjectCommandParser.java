@@ -17,6 +17,7 @@ import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * A command to add a new project.
@@ -41,7 +42,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         }
 
         // For projects, the only required field is the project name and the client's email.
-        String name = ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        NonEmptyString name = ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         Email clientEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
 
         // The project's status and acceptedOn date take default values.
@@ -54,17 +55,24 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             ? ParserUtil.parseLocalDate(maybeAcceptedOn.get(), Project.DATE_FMT)
             : LocalDate.now();
 
-        Optional<String> source = ParserUtil.parseOptionalWith(
+        Optional<NonEmptyString> source = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_SOURCE),
             ParserUtil::parseNonEmptyString);
-        Optional<String> description = ParserUtil.parseOptionalWith(
-            argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION),
-            ParserUtil::parseNonEmptyString);
+        // NOTE: the description is allowed to be empty. Thus we do not wrap it into a NonEmptyString.
+        Optional<String> description = argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION);
         Optional<LocalDate> deadline = ParserUtil.parseOptionalWith(
             argMultimap.getValue(PREFIX_DEADLINE_DATE),
             d -> ParserUtil.parseLocalDate(d, Project.DATE_FMT));
 
-        Project project = new Project(name, projectStatus, clientEmail, source, description, acceptedOn, deadline);
+        Project
+            project =
+            new Project(name,
+                projectStatus,
+                clientEmail,
+                source,
+                description,
+                acceptedOn,
+                deadline);
 
         return new AddProjectCommand(project);
     }

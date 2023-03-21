@@ -5,6 +5,7 @@ import static mycelium.mycelium.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 
 import mycelium.mycelium.logic.commands.DeleteProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 
 /**
@@ -25,7 +26,9 @@ public class DeleteProjectCommandParser implements Parser<DeleteProjectCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));
         }
 
-        String targetProjectName = ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        NonEmptyString
+            targetProjectName =
+            ParserUtil.parseNonEmptyString(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
         return new DeleteProjectCommand(targetProjectName);
     }
 }

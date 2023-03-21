@@ -12,6 +12,7 @@ import mycelium.mycelium.commons.exceptions.IllegalValueException;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
+import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * Jackson friendly version of {@link Project}.
@@ -52,10 +53,10 @@ public class JsonAdaptedProject {
      * Constructs this class from a vanilla {@link Project}.
      */
     public JsonAdaptedProject(Project project) {
-        name = project.getName();
+        name = project.getName().toString();
         status = project.getStatus();
         clientEmail = project.getClientEmail().value;
-        source = project.getSource().orElse(null);
+        source = project.getSource().map(NonEmptyString::toString).orElse(null);
         description = project.getDescription().orElse(null);
         acceptedOn = project.getAcceptedOn();
         deadline = project.getDeadline().orElse(null);
@@ -78,11 +79,11 @@ public class JsonAdaptedProject {
         assertField(status != null, "status");
         assertField(clientEmail != null, "clientEmail");
         assertField(acceptedOn != null, "acceptedOn");
-        // NOTE: it is okay for the deadline to be null.
-        return new Project(name,
+        // NOTE: it is okay for the deadline and description to be null
+        return new Project(NonEmptyString.of(name),
             status,
             new Email(clientEmail),
-            Optional.ofNullable(source),
+            NonEmptyString.ofOptional(source),
             Optional.ofNullable(description),
             acceptedOn,
             Optional.ofNullable(deadline));

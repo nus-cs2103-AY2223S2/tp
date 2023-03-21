@@ -10,6 +10,7 @@ import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.YearOfBirth;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
 
 /**
@@ -53,7 +54,7 @@ public class ClientEntity extends UiPart<Region> {
         name.setText(client.getName().toString());
         email.setText(client.getEmail().toString());
         yearOfBirth.setText(client.getYearOfBirth().map(YearOfBirth::toString).orElse("No year of birth").toString());
-        source.setText(client.getSource().orElse("No source"));
+        source.setText(client.getSource().map(NonEmptyString::toString).orElse("No source"));
         mobileNumber.setText(client.getMobileNumber().map(Phone::toString).orElse("No mobile number").toString());
         logger.fine("Initialized ClientEntity with client: " + client.getName());
     }
