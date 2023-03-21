@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import java.util.regex.Matcher;
 
 import seedu.address.logic.commands.navigation.NavCommand;
-import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.TrackerParser;
 import seedu.address.model.Model;
 import seedu.address.model.navigation.NavigationContext;
 
