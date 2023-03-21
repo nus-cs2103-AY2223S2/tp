@@ -39,7 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setNotes(person.getNotes());
-        descriptor.setDateTime(person.getInterviewDateTime().get());
+        descriptor.setDateTime(person.getInterviewDateTime().orElse(null));
     }
 
     /**
