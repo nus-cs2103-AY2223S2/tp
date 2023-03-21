@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FriendlyLinkParser" as FriendlyLinkParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "d:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find n/John")
+activate LogicManager
+
+LogicManager -> FriendlyLinkParser : parseCommand("find n/John")
+activate FriendlyLinkParser
+
+create FindCommandParser
+FriendlyLinkParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> FriendlyLinkParser
+deactivate FindCommandParser
+
+FriendlyLinkParser -> FindCommandParser : parse("n/John")
+activate FindCommandParser
+
+FindCommandParser -> FindCommandParser : parseSharedPredicates(argMultimap)
+activate FindCommandParser
+return
+
+FindCommandParser -> FindCommandParser : parseElderlyOnlyPredicates(argMultimap)
+activate FindCommandParser
+return
+
+FindCommandParser -> FindCommandParser : parseVolunteerOnlyPredicates(argMultimap)
+activate FindCommandParser
+return
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> FriendlyLinkParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> FriendlyLinkParser
+destroy FindCommandParser
+
+FriendlyLinkParser --> LogicManager : f
+deactivate FriendlyLinkParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredElderlyList(combinedElderlyPredicate)
+activate Model
+
+FindCommand -> Model : updateFilteredVolunteerList(combinedVolunteerPredicate)
+
+FindCommand -> FindCommand : getPairPredicate(model)
+activate FindCommand
+return p
+
+FindCommand -> Model : updateFilteredPairList(p)
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

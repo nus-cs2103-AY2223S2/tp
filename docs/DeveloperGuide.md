@@ -59,6 +59,38 @@ pairs will be automatically removed as well.
 
 #### Find by keyword
 
+The ```find``` command allows users to easily filter and locate the relevant elderly and volunteers, together with their related parings.
+The results of the ```find``` command are displayed as the filtered version of the elderly, volunteers and pairs lists, 
+together with the number of entities listed being shown in the command result box.
+
+Volunteers and elderly who match all of the provided attributes are filtered out and displayed in their respective list.
+For each filtered person, Any pairing that they are involve in would be filtered and displayed in the pair list.
+
+Arguments for the ```find``` command involves at least one of the attributes belonging to an elderly or a volunteer.
+Any number of attributes can be specified but if multiple of the same attribute is specified then only the last one will be
+used in the search.
+
+The Sequence Diagram below illustrates the execution of the ```find``` command.
+
+<img src="images/developerGuide/FindSequenceDiagram.png" width="500" />
+
+The command execution flow is as given below
+1. The ```LoginManager``` will begin the execution of the command.
+2. Input parsed by ```FriendlyLinkParser``` which creates and return a ```FindCommandParser```.
+3. The ```FindCommandParser``` parses the arguments and returns a ```FindCommand``` with the relevant predicates.
+4. The ```LoginManager``` executes the ```FindCommand```.
+5. The ```FindCommand``` combines the relevant predicates for elderly and volunteers and calls ```updateFilteredElderlyList``` and ```updateFilteredVoolunteerList``` of ```Model```.
+6. Based on the filtered elderly and volunteers a predicate to get the related pairs is created and ```updateFilteredPairList``` of ```Model``` is called.
+7. ```CommandResult``` with the sizes of the 3 filtered lists is created and returned.
+
+Design decisions:
+- Name, address, email and phone attributes allows substring searching.
+  - Easier to search with only partial information available.
+- When multiple attributes and stated, the result must match all instead of any.
+  - The search should narrow the field with each additional new attribute for a more targeted result.
+- Related pairings are also shown during the search.
+  - Provides a comprehensive search results where all information related to the people found are shown.
+
 #### Pairing and unpairing of elderly and volunteers
 
 Pairs are implemented as a class with 2 referenced attributes, elderly and volunteer.
