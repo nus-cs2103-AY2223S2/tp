@@ -29,12 +29,12 @@ import seedu.address.logic.parser.Prefix;
  * Recommends a command based on the user input.
  */
 public class CommandRecommendationEngine {
+    public static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
     private static final String INVALID_COMMAND_MESSAGE = "No such command exists!"
             + " Please refer to our user guide for the list of valid commands.";
     private static final String INVALID_PREFIX_MESSAGE = "Invalid prefix!"
             + " Please refer to our user guide for the list of valid arguments.";
 
-    private static final Map<String, CommandInfo> commandInfoMap = new LinkedHashMap<>();
 
     static {
         registerCommandInfo(new CommandInfo(
@@ -238,7 +238,7 @@ public class CommandRecommendationEngine {
      * @param argumentMultimap The map of arguments.
      * @return A boolean value indicating if the set of arguments specified is valid.
      */
-    private static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) {
+    public static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) {
         CommandInfo commandInfo = commandInfoMap.get(command);
         Function<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCommandValidator();
         return argumentValidator.apply(argumentMultimap);
