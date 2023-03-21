@@ -45,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem quickMenuItem;
+
+    @FXML
     private StackPane personListPanelPlaceholder;
 
     @FXML
@@ -84,6 +87,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(quickMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -159,6 +163,15 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    @FXML
+    public void handleQuickstart() {
+        if (!quickstartWindow.isShowing()) {
+            quickstartWindow.show();
+        } else {
+            quickstartWindow.focus();
         }
     }
 
