@@ -163,23 +163,39 @@ The **Adding a Patient** mechanism is facilated by `VMS`. The Patient created is
 
 The activity diagram below illustrates the workflow of patient `addCommand` behaves when executed by a user:
 
+<img src="images/patient/AddPatientActivityDiagram.png" width="550" />
+
 Given below is an sequence diagram that illustrates the **Adding a Patient** mechanism behaves at every step.
+
+<img src="images/patient/AddPaitentSequenceDiagram.png" width="550" />
 
 ### Listing Patients
 
 #### Usage
 
+<img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
+<img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
+
 ### Finding a Patient
 
 #### Usage
+
+<img src="images/patient/FindPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/FindPatientActivityDiagram.png" width="550" />
 
 ### Editing a Patient
 
 #### Usage
 
+<img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
+<img src="images/patient/EditPatientActivityDiagram.png" width="550" />
+
 ### Deleting a Patient
 
 #### Usage
+
+<img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
+<img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
 
 ### \[Proposed\] Undo/redo feature
 
