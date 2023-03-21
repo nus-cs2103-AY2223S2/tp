@@ -21,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DrugAllergy;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -101,9 +102,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        DrugAllergy updatedAllergy = editPersonDescriptor.getDrugAllergy().orElse(personToEdit.getDrugAllergy());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedNric, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedNric, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAllergy, updatedTags);
     }
 
     @Override
@@ -134,6 +136,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private DrugAllergy drugAllergy;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -148,6 +151,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDrugAllergy(toCopy.drugAllergy);
             setTags(toCopy.tags);
         }
 
@@ -198,6 +202,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
+        public void setDrugAllergy(DrugAllergy drugAllergy) {
+            this.drugAllergy = drugAllergy;
+        }
+
+        public Optional<DrugAllergy> getDrugAllergy() {
+            return Optional.ofNullable(drugAllergy);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -235,6 +247,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getDrugAllergy().equals(e.getDrugAllergy())
                     && getTags().equals(e.getTags());
         }
     }
