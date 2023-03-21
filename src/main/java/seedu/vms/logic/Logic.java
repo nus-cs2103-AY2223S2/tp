@@ -1,6 +1,5 @@
 package seedu.vms.logic;
 
-import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -48,11 +47,6 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered map of Appointments. */
     ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap();
-
-    /**
-     * Returns the user prefs' patient manager file path.
-     */
-    Path getPatientManagerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

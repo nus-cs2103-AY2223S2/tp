@@ -1,7 +1,6 @@
 package seedu.vms.logic;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -169,11 +168,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableMap<Integer, IdData<Appointment>> getFilteredAppointmentMap() {
         return model.getFilteredAppointmentMap();
-    }
-
-    @Override
-    public Path getPatientManagerFilePath() {
-        return model.getPatientManagerFilePath();
     }
 
     @Override

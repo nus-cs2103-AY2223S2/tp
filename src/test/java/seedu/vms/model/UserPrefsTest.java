@@ -12,11 +12,4 @@ public class UserPrefsTest {
         UserPrefs userPref = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPref.setGuiSettings(null));
     }
-
-    @Test
-    public void setPatientManagerFilePath_nullPath_throwsNullPointerException() {
-        UserPrefs userPrefs = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPrefs.setPatientManagerFilePath(null));
-    }
-
 }

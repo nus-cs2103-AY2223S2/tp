@@ -65,8 +65,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage();
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage(
-                userPrefs.getPatientManagerFilePath());
+        PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage();
         VaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
         AppointmentStorage appointmentStorage = new JsonAppointmentStorage();
         storage = new StorageManager(patientManagerStorage, vaxTypeStorage, appointmentStorage, userPrefsStorage);

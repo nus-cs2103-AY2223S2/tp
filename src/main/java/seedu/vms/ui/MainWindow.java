@@ -1,7 +1,5 @@
 package seedu.vms.ui;
 
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -13,7 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.vms.commons.core.GuiSettings;
-import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.logic.Logic;
 import seedu.vms.model.IdData;
 import seedu.vms.model.appointment.Appointment;
@@ -29,8 +26,6 @@ import seedu.vms.ui.vaccination.VaxTypeCard;
 public class MainWindow extends UiPart<Stage> implements Refreshable {
 
     private static final String FXML = "MainWindow.fxml";
-
-    private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
@@ -51,8 +46,6 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
     @FXML private StackPane appointmentListPanelPlaceholder;
 
     @FXML private VBox resultDisplayPlaceholder;
-
-    @FXML private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -143,9 +136,6 @@ public class MainWindow extends UiPart<Stage> implements Refreshable {
         Region resultDisplayRegion = resultDisplay.getRoot();
         resultDisplayPlaceholder.getChildren().add(resultDisplayRegion);
         logic.setOnExecutionCompletion(resultDisplay::setFeedbackToUser);
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPatientManagerFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(logic::queue);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
