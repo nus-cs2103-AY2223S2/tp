@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -36,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     //PLACEHOLDER FOR DECKLIST
-    private DeckListPanel deckListPanel;
+    private UiPart<Region> leftPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,10 +48,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane rightPanelPlaceholder;
 
     @FXML
-    private StackPane deckListPanelPlaceholder;
+    private StackPane leftPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -125,10 +126,10 @@ public class MainWindow extends UiPart<Stage> {
         titlePanel.getChildren().add(title);
 
         personListPanel = new PersonListPanel(logic.getFilteredCardList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        deckListPanel = new DeckListPanel(logic.getFilteredDeckList());
-        deckListPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
+        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -180,12 +181,31 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Shows the review stats panel.
+     */
+    public void handleStartReview() {
+        leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
+        leftPanelPlaceholder.getChildren().removeAll();
+        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+    }
+
+    /**
+     * Shows the deck list panel.
+     */
+    public void handleEndReview() {
+        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        leftPanelPlaceholder.getChildren().removeAll();
+        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+    }
+
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
 
-    public DeckListPanel getDeckListPanel() {
-        return deckListPanel;
+    public UiPart<Region> getLeftPanel() {
+        return leftPanel;
     }
 
     /**
@@ -205,6 +225,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isStartReview()) {
+                handleStartReview();
+            }
+
+            if (commandResult.isEndReview()) {
+                handleEndReview();
             }
 
             return commandResult;

@@ -317,4 +317,9 @@ public class ModelManager implements Model {
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
 
+    @Override
+    public ObservableList<String> getReviewStatsList() {
+        return currReview.getReviewStatsList();
+    }
+
 }

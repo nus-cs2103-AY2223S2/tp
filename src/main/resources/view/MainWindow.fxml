@@ -12,7 +12,7 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.text.TextFlow?>
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PowerCard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -38,12 +38,12 @@
           <items>
             <VBox prefHeight="0.0" prefWidth="0.0">
               <children>
-                <StackPane fx:id="deckListPanelPlaceholder" minWidth="50.0" styleClass="panel" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="leftPanelPlaceholder" minWidth="50.0" styleClass="panel" VBox.vgrow="ALWAYS" />
               </children>
             </VBox>
             <VBox prefHeight="0.0" prefWidth="0.0">
               <children>
-                <StackPane fx:id="personListPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
               </children>
             </VBox>
           </items>
