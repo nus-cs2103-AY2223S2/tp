@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.socket.model.person.Person;
@@ -132,8 +133,15 @@ public class Socket implements ReadOnlySocket {
         }
     }
 
-    //// project-level operations
+    /**
+     * Removes all persons by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    public boolean removeAllPerson(Predicate<Person> predicate) {
+        return persons.removeAll(predicate);
+    }
 
+    //// project-level operations
     /**
      * Returns true if a project with the same identity as {@code project} exists in {@code Socket}.
      */
