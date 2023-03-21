@@ -1,25 +1,17 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.Age;
-import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.Email;
 import seedu.address.model.person.information.Name;
 import seedu.address.model.person.information.Nric;
 import seedu.address.model.person.information.Phone;
 import seedu.address.model.person.information.Region;
 import seedu.address.model.person.information.RiskLevel;
-import seedu.address.model.tag.MedicalQualificationTag;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,31 +20,19 @@ import seedu.address.model.util.SampleDataUtil;
 public class EditDescriptorBuilder {
 
     private EditDescriptor descriptor;
-    private Set<AvailableDate> availableDates;
-    private Set<MedicalQualificationTag> medicalTags;
 
     public EditDescriptorBuilder() {
         descriptor = new EditDescriptor();
-        availableDates = new HashSet<>();
-        medicalTags = new HashSet<>();
     }
 
     public EditDescriptorBuilder(EditDescriptor descriptor) {
         this.descriptor = new EditDescriptor(descriptor);
-        availableDates = new HashSet<>();
-        if (descriptor.getAvailableDates().isPresent()) {
-            descriptor.getAvailableDates().get().stream().map(availableDate -> availableDates.add(availableDate));
-        }
-        medicalTags = new HashSet<>();
-        if (descriptor.getMedicalTags().isPresent()) {
-            descriptor.getMedicalTags().get().stream().map(tag -> medicalTags.add(tag));
-        }
     }
 
     /**
      * Returns an {@code EditPersonDescriptorBuilder} with fields containing {@code person}'s details
      */
-    public EditDescriptorBuilder(Person person) {
+    private EditDescriptorBuilder(Person person) {
         descriptor = new EditDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
@@ -63,7 +43,6 @@ public class EditDescriptorBuilder {
         descriptor.setRegion(person.getRegion());
         descriptor.setAvailableDates(person.getAvailableDates());
         descriptor.setTags(person.getTags());
-        availableDates = person.getAvailableDates();
     }
 
     public EditDescriptorBuilder(Elderly elderly) {
@@ -74,11 +53,10 @@ public class EditDescriptorBuilder {
     public EditDescriptorBuilder(Volunteer volunteer) {
         this((Person) volunteer);
         descriptor.setMedicalTags(volunteer.getMedicalTags());
-        medicalTags = volunteer.getMedicalTags();
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -86,7 +64,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -94,7 +72,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -102,7 +80,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -110,7 +88,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Nric} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Nric} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withNric(String nric) {
         descriptor.setNric(new Nric(nric));
@@ -118,7 +96,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Age} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Age} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withAge(String age) {
         descriptor.setAge(new Age(age));
@@ -126,7 +104,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Region} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Region} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withRegion(String region) {
         descriptor.setRegion(new Region(region));
@@ -134,7 +112,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code RiskLevel} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code RiskLevel} of the {@code EditDescriptor} that we are building.
      */
     public EditDescriptorBuilder withRiskLevel(String riskLevel) {
         descriptor.setRiskLevel(new RiskLevel(riskLevel.toUpperCase()));
@@ -142,35 +120,34 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditDescriptor}
      * that we are building.
      */
     public EditDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        descriptor.setTags(SampleDataUtil.getTagSet(tags));
         return this;
     }
 
     /**
-     * Adds the {@code AvailableDate} of the {@code EditPersonDescriptor} that we are building.
+     * Parsers the {@code dates} and sets the {@code Set<AvailableDate>} of the
+     * {@code EditDescriptor} that we are building.
      */
-    public EditDescriptorBuilder withAvailableDate(String startDate, String endDate) {
-        availableDates.add(SampleDataUtil.getAvailableDate(startDate, endDate));
+    public EditDescriptorBuilder withAvailableDates(String... dates) {
+        descriptor.setAvailableDates(SampleDataUtil.getAvailableDateSet(dates));
         return this;
     }
 
     /**
-     * Adds the {@code MedicalQualificationLevel} of the {@code EditPersonDescriptor} that we are building.
+     * Parsers the {@code tags} and sets the {@code Set<MedicalQualificationTag>} of the
+     * {@code EditDescriptor} that we are building.
      */
-    public EditDescriptorBuilder withMedicalQualificationTag(String skill, String qualificationLevel) {
-        medicalTags.add(new MedicalQualificationTag(skill, qualificationLevel));
+    public EditDescriptorBuilder withMedicalQualificationTags(String... tags) {
+        descriptor.setMedicalTags(SampleDataUtil.getMedicalTagSet(tags));
         return this;
     }
 
 
     public EditDescriptor build() {
-        descriptor.setAvailableDates(availableDates);
-        descriptor.setMedicalTags(medicalTags);
         return descriptor;
     }
 }
