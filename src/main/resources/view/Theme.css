@@ -69,9 +69,6 @@
     -fx-opacity: 1;
 }
 
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
 
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: transparent;
@@ -214,15 +211,6 @@
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
-.button:hover {
-    -fx-background-color: #3a3a3a;
-}
-
-.button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
-}
-
 .button:focused {
     -fx-border-color: white, white;
     -fx-border-width: 1, 1;
@@ -242,9 +230,6 @@
     -fx-text-fill: #ffffff;
 }
 
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
-}
 
 .dialog-pane {
     -fx-background-color: #1d1d1d;
@@ -318,6 +303,19 @@
 
 }
 
+#reviewStatsPane {
+    -fx-background-color:white;
+}
+#reviewStatsPane #title {
+    -fx-text-fill: black;
+    -fx-underline: true;
+}
+
+#reviewStatsPane #description {
+    -fx-text-fill: black;
+    -fx-font-size: 40px;
+}
+
 #titlePanel{
     -fx-font-size: 30px;
 }
@@ -343,7 +341,7 @@
     -fx-text-fill: black;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #cardListPanel, #cardWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 
@@ -28,7 +29,7 @@ public class Review {
 
     private int totalNumCards;
     private List<Integer> orderOfCards;
-    private ObservableList<String> reviewStatsList;
+    private ObservableList<Pair<String, String> > reviewStatsList;
 
     /**
      * Every field must be present and not null.
@@ -194,15 +195,18 @@ public class Review {
         cardList.stream().forEach(Card::setAsFlipped);
     }
 
-    public ObservableList<String> getReviewStatsList() {
+    public ObservableList<Pair<String, String> > getReviewStatsList() {
         updateReviewStatsList();
         return reviewStatsList;
     }
 
     private void updateReviewStatsList() {
-        String cardsSeen = String.format("Current Card Number: %d/%d", currCardNum, totalNumCards);
-        String currentScore = String.format("Current Score: %d", getTotalScore());
+        Pair<String, String> title = new Pair<String, String>("Deck Name", deck.getDeckName());
+        Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:",
+                String.format("%d/%d", currCardNum, totalNumCards));
+        Pair<String, String> currentScore = new Pair<String, String>("Current Score: ",
+                 String.format("%d", getTotalScore()));
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(deck.getDeckName(), cardsSeen, currentScore);
+        this.reviewStatsList.addAll(title, cardsSeen, currentScore);
     }
 }
