@@ -5,41 +5,44 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 skinparam groupInheritance 1
 
-top to bottom direction
-
 Abstract Class "{abstract}\nItem" as Item
 Abstract Class "{abstract}\nPerson" as Person
-together{
 Class Supplier
 Class Customer
-}
 Abstract Class "{abstract}\nName" as Name
 
+together{
 Class PersonName
 Class PersonAddress
 Class PersonEmail
 Class PersonPhone
 Class Tag
-Class PersonList extends ItemList
-Class UniquePersonList extends UniqueItemList
+}
 
 Class ItemList<T extends Item>
 Class UniqueItemList<T>
 
-ItemList *-r> "1 " UniqueItemList
-UniqueItemList -r> Item
+ItemList *--> "1" UniqueItemList
+UniqueItemList --> Item
 
-PersonList *-r> "1 " UniquePersonList
-UniquePersonList -r> Person
+SupplierList *--> "1" UniqueSupplierList
+UniqueSupplierList --> Supplier
+SupplierList --l|> ItemList
+UniqueSupplierList --l|> UniqueItemList
+CustomerList *--d> "1" UniqueCustomerList
+UniqueCustomerList --d> Customer
+CustomerList --r|> ItemList
+UniqueCustomerList --r|> UniqueItemList
+
 Person *--> "1" PersonName
 Person *--> "1" PersonPhone
-Person *--> "     1" PersonEmail
+Person *--> "1" PersonEmail
 Person *--> "1" PersonAddress
 Person *--> "*" Tag
-Person -u|> Item
+Person --u|> Item
 
-Person <|- Supplier
-Person <|- Customer
+Supplier --|> Person
+Customer --|> Person
 
 PersonName --|> Name
 
