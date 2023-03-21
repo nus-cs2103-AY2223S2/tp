@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -13,6 +14,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * Panel containing the list of doctors.
@@ -31,7 +33,8 @@ public class DoctorListPanel extends UiPart<Region> {
      */
     public DoctorListPanel(ObservableList<Doctor> doctorList,
                            EnlargedDoctorInfoCard enlargedDoctorInfoCard,
-                           EnlargedInfoCardDisplayController infoCardDisplayController) {
+                           EnlargedInfoCardDisplayController infoCardDisplayController,
+                           PatientListPanel patientListPanel) {
         super(FXML);
         doctorListView.setItems(doctorList);
         doctorListView.setCellFactory(listView -> {
@@ -42,7 +45,7 @@ public class DoctorListPanel extends UiPart<Region> {
             return generatedCell;
         });
         setSelectedDoctor(doctorList);
-        showSelectedDoctorInfo(enlargedDoctorInfoCard);
+        showSelectedDoctorInfo(enlargedDoctorInfoCard, patientListPanel);
     }
 
     /**
@@ -73,9 +76,11 @@ public class DoctorListPanel extends UiPart<Region> {
      * @param enlargedDoctorInfoCard the UI part displaying the information of {@code Doctor} selected
      */
     private void showSelectedDoctorInfo(
-            EnlargedDoctorInfoCard enlargedDoctorInfoCard) {
+            EnlargedDoctorInfoCard enlargedDoctorInfoCard,
+            PatientListPanel patientListPanel) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
+            patientListPanel.setPatients(FXCollections.observableArrayList(selectedDoctor.getPatients()));
             enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));
         };
         doctorListView.getSelectionModel().selectedItemProperty().addListener(changeListener);

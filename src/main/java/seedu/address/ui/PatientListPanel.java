@@ -33,7 +33,7 @@ public class PatientListPanel extends UiPart<Region> {
                             EnlargedPatientInfoCard enlargedPatientInfoCard,
                             EnlargedInfoCardDisplayController infoCardDisplayController) {
         super(FXML);
-        patientListView.setItems(patientList);
+        setPatients(patientList);
         patientListView.setCellFactory(listView -> {
             PatientListViewCell generatedCell = new PatientListViewCell();
             generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -64,6 +64,15 @@ public class PatientListPanel extends UiPart<Region> {
         if (!patientList.isEmpty()) {
             selectedPatient = patientList.get(0);
         }
+    }
+
+    /**
+     * Sets the list of {@code Patient} objects to be shown.
+     *
+     * @param patientList list of {@code Patient} objects to be shown.
+     */
+    public void setPatients(ObservableList<Patient> patientList) {
+        patientListView.setItems(patientList);
     }
 
     /**
