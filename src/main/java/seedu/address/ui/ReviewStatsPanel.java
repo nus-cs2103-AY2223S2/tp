@@ -40,7 +40,7 @@ public class ReviewStatsPanel extends UiPart<Region> {
                 setText(null);
 
             } else {
-                setGraphic(new ReviewStatsElement(pair).getRoot());
+                setGraphic(new ReviewStat(pair).getRoot());
             }
         }
     }
