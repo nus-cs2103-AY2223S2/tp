@@ -63,7 +63,7 @@ public class MainApp extends Application {
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage();
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage(
                 userPrefs.getPatientManagerFilePath());
@@ -160,9 +160,6 @@ public class MainApp extends Application {
      * reading from the file.
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
-        Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.info("Using prefs file : " + prefsFilePath);
-
         UserPrefs initializedPrefs;
         try {
             initializedPrefs = storage.readUserPrefs();

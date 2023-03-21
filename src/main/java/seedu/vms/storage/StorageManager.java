@@ -1,7 +1,6 @@
 package seedu.vms.storage;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import seedu.vms.commons.core.LogsCenter;
@@ -39,11 +38,6 @@ public class StorageManager implements Storage {
     }
 
     // ================ UserPrefs methods ==============================
-
-    @Override
-    public Path getUserPrefsFilePath() {
-        return userPrefsStorage.getUserPrefsFilePath();
-    }
 
     @Override
     public UserPrefs readUserPrefs() throws IOException {
