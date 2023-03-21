@@ -34,9 +34,9 @@ If you plan to use IntelliJ IDEA (highly recommended):
 ## Before writing code
 
 1. **Configure the coding style** 
-    
+
     If using IDEA, follow the guide *[[se-edu/guides] IDEA: Configuring the code style](https://se-education.org/guides/tutorials/intellijCodeStyle.html)* to set up IDEA’s coding style to match ours.
-    
+
 
 <aside>
 💡 Tip: Optionally, you can follow the guide *[[se-edu/guides] Using Checkstyle](https://se-education.org/guides/tutorials/checkstyle.html)* to find how to use the CheckStyle within IDEA e.g., to report problems *as* you write code.
@@ -44,13 +44,13 @@ If you plan to use IntelliJ IDEA (highly recommended):
 </aside>
 
 1. **Set up CI**
-    
+
     This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. No set up is required.
-    
+
 2. **Learn the design**
-    
+
     When you are ready to start coding, we recommend that you get a sense of the overall design by reading about [AddressBook’s architecture](https://se-education.org/addressbook-level3/DeveloperGuide.html#architecture).
-    
+
 3. **Do the tutorials** These tutorials will help you get acquainted with the codebase.
     - [Tracing code](https://se-education.org/addressbook-level3/tutorials/TracingCode.html)
     - [Adding a new command](https://se-education.org/addressbook-level3/tutorials/AddRemark.html)
@@ -123,21 +123,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 2. ListingHub shows a list of listings
 3. The recruiter requests to delete a specific listing from the list
 4. ListingHub deletes the listing
-    
+
     Use case ends.
-    
+
 
 **Extensions**
 
 - 2a. The list is empty.
-    
+
     Use case ends.
-    
+
 - 3a. The given index is invalid.
     - 3a1. ListingHub shows an error message.
-        
+
         Use case resumes at step 2.
-        
+
 
 
 ### **Use case: List all job listings**
@@ -166,29 +166,29 @@ Use case ends.
 
 - 2a. The placeholders used are invalid
     - 2a1. ListingBook shows an error message.
-        
+
         Use case resumes at step 1.
-        
+
 - 2b. The new job title is invalid
     - 2b1. ListingBook shows an error message.
-        
+
         Use case resumes at step 1.
-        
+
 - 2c. The new job description is invalid
     - 2c1. ListingBook shows an error message.
-        
+
         Use case resumes at step 1.
-        
+
 - 2d. There is a duplicate listing in the listing book
     - 2d1. ListingBook shows an error message.
-        
+
         Use case resumes at step 1.
-        
+
 - 2e. Update filtered listing got some problem la idk
     - 2e1. ListingBook shows an error message.
-        
+
         Use case resumes at step 1.
-        
+
 
 
 ### **Use case: Update a job listing**
@@ -210,29 +210,29 @@ Use case ends.
     Use case resumes at step 2.
 - 3b. The placeholders used are invalid
     - 3b1. ListingBook shows an error message.
-        
+
         Use case resumes at step 2.
-        
+
 - 3c. The new job title is invalid
     - 3c1. ListingBook shows an error message.
-        
+
         Use case resumes at step 2.
-        
+
 - 3d. The new job description is invalid
     - 3d1. ListingBook shows an error message.
-        
+
         Use case resumes at step 2.
-        
+
 - 3e. There is a duplicate listing in the listing book
     - 3e1. ListingBook shows an error message.
-        
+
         Use case resumes at step 2.
-        
+
 - 3f. Update filtered listing got some problem la idk
     - 3f1. ListingBook shows an error message.
-        
+
         Use case resumes at step 2.
-        
+
 
 
 ### **Use case: Find a job listing**
@@ -248,9 +248,9 @@ Use case ends.
 - 2a. No job listings match the keyword.
 Use case ends.
 - 2b. The list is empty.
-    
+
     Use case ends.
-    
+
 
 ### **Use case: Sort job listings**
 
@@ -264,9 +264,9 @@ Use case ends.
 ********************Extensions********************
 
 - 2a. The list is empty.
-    
+
     Use case ends.
-    
+
 
 ### **Use case: Filter job listings**
 
@@ -282,9 +282,9 @@ Use case ends.
 - 4a. No job listings match the filter criteria.
 Use case ends.
 - 4b. The list is empty.
-    
+
     Use case ends.
-    
+
 
 ## Non-Functional Requirements
 
