@@ -1,14 +1,17 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.application.Application;
 
 /**
- * An UI component that displays information of a {@code Application}.
+ * A UI component that displays information of a {@code Application}.
  */
 public class ApplicationCard extends UiPart<Region> {
 
@@ -38,7 +41,8 @@ public class ApplicationCard extends UiPart<Region> {
     private Label companyEmail;
     @FXML
     private VBox taskDetails;
-
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ApplicationCard} with the given {@code Application} and index to display.
@@ -57,6 +61,9 @@ public class ApplicationCard extends UiPart<Region> {
             Label deadline = new Label(application.getTask().getDeadline().toDisplayString());
             taskDetails.getChildren().addAll(description, deadline);
         }
+        application.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

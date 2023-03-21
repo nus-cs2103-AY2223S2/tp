@@ -1,5 +1,11 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +18,7 @@ import seedu.address.model.application.Status;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Application}.
@@ -26,6 +33,7 @@ class JsonAdaptedApplication {
     private final String role;
     private final String taskDescription;
     private final String taskDeadline;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedApplication} with the given application details.
@@ -36,13 +44,17 @@ class JsonAdaptedApplication {
                                   @JsonProperty("status") String status,
                                   @JsonProperty("role") String role,
                                   @JsonProperty("taskDescription") String taskDescription,
-                                  @JsonProperty("taskDeadline") String taskDeadline) {
+                                  @JsonProperty("taskDeadline") String taskDeadline,
+                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.companyName = companyName;
         this.companyEmail = companyEmail;
         this.status = status;
         this.role = role;
         this.taskDescription = taskDescription;
         this.taskDeadline = taskDeadline;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -60,6 +72,9 @@ class JsonAdaptedApplication {
             taskDescription = null;
             taskDeadline = null;
         }
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +83,10 @@ class JsonAdaptedApplication {
      * @throws IllegalValueException if there were any data constraints violated in the adapted application.
      */
     public Application toModelType() throws IllegalValueException {
+        final List<Tag> applicationTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            applicationTags.add(tag.toModelType());
+        }
 
         if (companyName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -112,7 +131,7 @@ class JsonAdaptedApplication {
                     Description.class.getSimpleName()));
         }
 
-        Task task = null;
+        Task modelTask = null;
         if (taskDescription != null) {
             if (!Description.isValidDescription(taskDescription)) {
                 throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -125,9 +144,10 @@ class JsonAdaptedApplication {
             }
             final Description modelDescription = new Description(taskDescription);
             final Deadline modelDeadline = new Deadline(taskDeadline);
-            task = new Task(modelDeadline, modelDescription);
+            modelTask = new Task(modelDeadline, modelDescription);
         }
-        return new Application(modelRole, modelCompanyName, modelCompanyEmail, modelStatus, task);
+        final Set<Tag> modelTags = new HashSet<>(applicationTags);
+        return new Application(modelRole, modelCompanyName, modelCompanyEmail, modelStatus, modelTask, modelTags);
     }
 
 }
