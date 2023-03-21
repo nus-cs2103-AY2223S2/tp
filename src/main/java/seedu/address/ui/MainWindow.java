@@ -36,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
+    private final QuickstartWindow quickstartWindow;
+
     @FXML
     private StackPane commandBoxPlaceholder;
     @FXML
@@ -75,6 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        quickstartWindow = new QuickstartWindow();
 
         Image customCursorImage = new Image("/images/cursor.png");
         ImageCursor cursor = new ImageCursor(customCursorImage);
@@ -87,7 +90,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-        setAccelerator(quickMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
