@@ -22,7 +22,8 @@ public class ListEmployeesInDepartmentCommandParser implements Parser<ListEmploy
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DEPARTMENT_NAME);
 
-        if (argumentMultimap.getValue(PREFIX_DEPARTMENT_NAME).isEmpty()) {
+        if (argumentMultimap.getValue(PREFIX_DEPARTMENT_NAME).isEmpty()
+                || !argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ListEmployeesInDepartmentCommand.MESSAGE_USAGE));
         }
