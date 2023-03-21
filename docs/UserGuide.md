@@ -23,43 +23,34 @@ If this is the first time you are using this user guide, we highly recommend you
 4. [**Quick Start**](#quick-start)
     1. [**System Requirements**](#system-requirements)
     2. [**Installation Instructions**](#installation-instructions)
+    3. [**Try it out!**](#try-it-out-)
+    4. [**Getting Help**](#getting-help)
 5. [**User Interface**](#user-interface)
     1. [**Person List**](#person-list)
-    2. [**Person Profile**](#person-profile)
-    3. [**Command Line**](#command-line)
-    4. [**Command Result**](#command-result)
+    2. [**Profile Panel**](#profile-panel)
+    3. [**Command Box**](#command-box)
+    4. [**Command Response**](#command-response)
 6. [**Commands**](#commands)
     1. [**How to interpret the command format**](#how-to-interpret-the-command-format)
     2. [**Arguments**](#arguments)
-        1. [**Name**](#name)
-        2. [**Phone Number**](#phone-number)
-        3. [**Email Address**](#email-address)
-        4. [**Home Address**](#home-address)
-        5. [**Telegram Handle**](#telegram-handle)
-        6. [**Group**](#group)
-        7. [**Module**](#module)
     3. [**Basic Commands**](#basic-commands)
-        1. [**Exit the application `exit`**](#exit-the-application)
-        2. [**View help window `help`**](#view-help-window-help)
-        3. [**List all contacts `list`**](#list-all-contacts-list)
-        4. [**Add a contact `add`**](#add-a-contact-add)
-        5. [**View a contact's profile `view`**](#view-a-contacts-profile-view)
-        6. [**Edit a contact's details `edit`**](#edit-a-contacts-details-edit)
-        7. [**Delete a contact `delete`**](#delete-a-contact-delete)
-        8. [**Add or remove a label from a contact `tag`**](#add-or-remove-a-label-from-a-contact-tag)
-    4. [**Search Commands**](#search-commands)
-        1. [**Find contacts that match your criteria `find`**](#find-contacts-that-match-your-criteria-find)
-        2. [**Sort contacts based on your criteria `sort`**](#sort-contacts-based-on-your-criteria-sort)
-    5. [**Storage Commands**](#storage-commands)
-        1. [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
-        2. [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
-    6. [**Meet Commands**](#meet-commands)
-        1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
-    7. [**Advanced Commands**](#advanced-commands)
-        1. [**View your past command history `history`**](#view-your-past-command-history-history)
-    8. [**Miscellaneous Commands**](#miscellaneous-commands)
-        1. [**Clear the contents of EduMate `clear`**](#clear-the-contents-of-edumate-clear)
-        2. [**Generate a random EduMate `sample`**](#generate-a-random-edumate-sample)
+        1. [**Add a contact `add`**](#add-a-contact-add)
+        2. [**View a contact's profile `view`**](#view-a-contacts-profile-view)
+        3. [**Edit a contact's details `edit`**](#edit-a-contacts-details-edit)
+        4. [**Delete a contact `delete`**](#delete-a-contact-delete)
+        5. [**Add a label to a contact `tag`**](#add-a-label-to-a-contact-tag)
+        6. [**Remove a label from a contact `untag`**](#remove-a-label-from-a-contact-untag)
+    4. [**Advanced Commands**](#advanced-commands)
+       1. [**Search Commands**](#search-commands)
+          1. [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
+          2. [**Arrange contacts based on criteria `sort`**](#arrange-contacts-based-on-criteria-sort)
+       2. [**Storage Commands**](#storage-commands)
+          1. [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
+          2. [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
+       3. [**Meet Commands**](#meet-commands)
+          1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
+    5. [**Other Commands**](#other-commands)
+        1. [**Exit the application**](#exit-the-application)
 7. [**FAQ**](#faq)
 8. [**Summary**](#summary)
     1. [**Prefixes**](#prefixes)
@@ -127,17 +118,17 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
    <br>
-4. Type the command in the command box and press Enter to execute it.<br>
-   Some example commands you can try:
 
-    * `help`: Displays a link leading to this User Guide.
+### Try it out!
 
-    * `list`: Lists the contacts in EduMate.
+Before we begin our journey through EduMate's many features, do choose whether you would like a guided or unguided experience.
 
-    * `view 1`: View the first contact in the profile window.
+1. For a guided experience, type `sample 100` in the command box located at the top left of the application. This will create 100 sample contacts in your EduMate to serve as your playground.
+2. If you want to start with a fresh EduMate, type `clear` in the same command box.
 
-    * `exit`: Ends the application.
-      <br>
+### Getting help
+
+Should you get stuck at any point, it is likely that the solution can be found in the [Commands](#commands) section of this User Guide. Otherwise, type in the `help` command...
 
 [Return to the top](#table-of-contents)
 
@@ -151,15 +142,15 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 
 {to be filled in}
 
-### Person Profile
+### Profile Panel
 
 {to be filled in}
 
-### Command Line
+### Command Box
 
 {to be filled in}
 
-### Command Result
+### Command Response
 
 {to be filled in}
 
@@ -277,80 +268,9 @@ Example: `m/CS2107`
 
 ## Basic Commands
 
-### Exit the application
-
-Shows a message explaining how to access the help page.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-* you want to end the program
-* you are done using the application
-
-</div>
-
-Formats:
-* `exit`
-
-What you should see:<br>
-  {Explanation}
-
-Examples:
-* `exit`
-
-### View help window `help`
-
-Shows a message explaining how to access the help page.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-* you are unsure of how to use the application
-* you need a refresher of how to use the commands
-
-</div>
-
-Formats:
-* `help`
-
-What you should see:<br>
-![help message](images/helpMessage.png)<br>
-{Explanation}
-
-Examples:
-* `help`
-
-### List all contacts `list`
-
-Lists all the contacts currently stored within EduMate.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-* you want to see all your contacts
-
-</div>
-
-Formats:
-* `list`
-
-What you should see:<br>
-{GUI}
-{Explanation}
-
-Examples:
-* `list`
-
 ### Add a contact `add`
 
 Adds a contact to the EduMate.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-* you want to add a new contact into the EduMate.
-
-</div>
 
 Formats:
 * `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`: {fill in}
@@ -371,13 +291,13 @@ Examples:
 
 ### View a contact's profile `view`
 
-You can use the view command to look up their current information, or their contact's information on the Panel to the right.
+You can use the view command to look up your details, or a contact's details on the [Profile Panel](#profile-panel).
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: You can use this command if:
 * you want to view a contact's full details
-* you are unsure of the person's index when using other command
+* you are unsure what index to use for a particular contact
 
 </div>
 
@@ -387,35 +307,16 @@ Formats:
 * `view n/NAME`: Views the contact with name `NAME`.
 
 What you should see:<br>
-
-|                               `view`                               |
-|:------------------------------------------------------------------:|
-| <img src='images/userprofile.png' style="width:50%; margin:0 15%"> |
-|             User's own profile displayed on the panel              |
-
-|                                     `view 5`                                     |
-|:--------------------------------------------------------------------------------:|
-|    <img src='images/fifthPersonProfile.png' style="width:50%; margin:0 15%">     |
-| The profile of the 5th person indexed by EduMate will be displayed on the panel. |
-
-|                       `view n/Charles Windsor`                        |
-|:---------------------------------------------------------------------:|
-| <img src='images/charlesWindsor.png' style="width:50%; margin:0 15%"> |
-|    The profile of Charles Windsor will be displayed on the panel.     |
+{GUI}<br>
+{Explanation}
 
 Examples:
-
+* `view 5`: Views the profile of the fifth contact in EduMate.
+* `view n/Wen Li`: Views Wen Li's profile. 
 
 ### Edit a contact's details `edit`
 
-Edits the profile of a contact.
-
-<div markdown="block" class="alert alert-info">
-
-You can use this command if:
-* you want to quickly edit a particular field of a particular contact
-
-</div>
+Edits the profile of a contact. You can choose to edit as many fields as you'd like.
 
 Formats:
 * `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
@@ -434,13 +335,6 @@ Examples:
 
 Removes a contact from EduMate.
 
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-* you no longer want to keep a contact in EduMate.
-
-</div>
-
 Formats:
 * `delete INDEX`: Deletes the contact at index `INDEX`.
 
@@ -451,7 +345,7 @@ What you should see:<br>
 Examples:
 * `delete 5`: Removes the fifth contact from EduMate.
 
-### Add or remove a label from a contact `tag`
+### Add a label to a contact `tag`
 
 Adds module tag(s) to an existing contact.
 
@@ -492,7 +386,7 @@ Description of outcome:
 
 CS2103T is added to John Doe's, the user, list of modules.
 
-### Untagging a module from an existing contact : `untag`
+### Remove a label from a contact `untag`
 
 Removes a module tag from an existing contact.
 
@@ -533,7 +427,15 @@ Description of outcome:
 
 CS2103T is added to John Doe's, the user, list of modules.
 
-### Locating persons by keyowrds : `find`
+## Advanced Commands
+
+Once you have learned the basics of EduMate, let's go through our more sophisticated features. Remember that you can run `sample 100` to have a more guided experience through this section.
+
+### Search Commands
+
+The search commands allow you to easily navigate and manage your EduMate. Instead of scrolling through the dozens of contacts, you can use these commands to customise how EduMate displays them.
+
+#### Filter contacts by keywords `find`
 
 Finds persons whose specified fields contain any of the given keywords.
 
@@ -567,14 +469,15 @@ Examples:
 * `find n/Edward Richards`: Returns all persons with names Edward or Richards
 * `find p/9093`: Returns all persons with phone numbers starting with 9093
 
-### Sort contacts based on your criteria `sort`
+#### Arrange contacts based on criteria `sort`
 
 Sorts persons based on certain criteria. For example, you can sort the contacts by name (in alphabetical order).
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: You can use this command if:
-* you want to 
+* you want to know who shares the most number of modules with you
+* you want to know who is likely going to be a close friend this semester
 
 </div>
 
@@ -593,8 +496,8 @@ Formats:
 * The `NAME`, `EMAIL`, `ADDRESS`, `PHONE` and `TELEGRAM` attributes are sorted by alphabetical order, and is default in **ascending** order.
 * For `GROUP`, we sort the contacts based on the number of groups the contact belongs to. By default, we sort in **descending order**.<br>
   e.g. if Alex has 2 groups (TA, NS), and Ben has one group (TA), Alex will be placed before Ben in the default ordering.
-* For `MODULE`, we sort the contacts based on the number of common modules they share with you. By default, we sort in **descending order**.<br>
-  e.g. if Alex has 2 modules (CS1101S, CS1231S), Ben has one module (CS1101S), and you have 2 modules(CS1231S, MA2001), Alex has 1 module in common with you (CS1231S) and Ben has 0 modules in common with you. As such, Alex will be placed before Ben in the default ordering.
+* For `MODULE`, we sort the contacts based on the number of **common modules** they share with you. By default, we sort in **descending order**.<br>
+  e.g. if Alex has 2 modules (CS1101S, CS1231S), Ben has one module (CS1101S), and you have 2 modules (CS1231S, MA2001), then Alex has 1 module in common with you (CS1231S) and Ben has 0 modules in common with you. As such, Alex will be placed before Ben in the default ordering.
 
 </div>
 
@@ -607,18 +510,22 @@ Examples:
 * `sort m/a`: Sorts by the number of modules they have in common with you (in ascending order)
 * `sort t/`: Sorts by Telegram handle in its default ordering (ascending)
 
-## Storage Commands
+### Storage Commands
 
-### Save a copy of EduMate `save`
-
-Saves the EduMate into a file with a name of your choice.
+The storage commands allow you to save and load your EduMate data into a file.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: You can use this command if:
+:information_source: You can use these commands if:
 * You want to create backups of your EduMate
+* You want to explore the functions of EduMate without fear of losing your data
+* You want to maintain multiple versions of EduMate
 
 </div>
+
+#### Save a copy of EduMate `save`
+
+Saves the EduMate into a file with a name of your choice.
 
 Formats:
 * `save FILENAME`: Saves the EduMate into a file at `FILENAME.json`.
@@ -630,36 +537,30 @@ What you should see:<br>
 Examples:
 * `save backup`: Saves the EduMate in the `backup.json` file.
 
-### Load a copy of EduMate `load`
+#### Load a copy of EduMate `load`
 
-Edits the profile of a contact.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-*
-
-</div>
+Loads the save data of an EduMate from a file.
 
 Formats:
-*
+* `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
 
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
 Examples:
+* `load backup`: Loads the EduMate from the `backup.json` file.
 
-## Meet Commands
+### Meet Commands
 
-### Suggest places to meet with your contacts `meet`
+#### Suggest places to meet with your contacts `meet`
 
 Edits the profile of a contact.
 
 <div markdown="block" class="alert alert-info">
 
 You can use this command if:
-*
+* 
 
 </div>
 
@@ -672,70 +573,11 @@ What you should see:<br>
 
 Examples:
 
-## Advanced Commands
+## Other Commands
 
-### View your past command history `history`
+### Exit the application
 
-Edits the profile of a contact.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-*
-
-</div>
-
-Formats:
-*
-
-What you should see:<br>
-{GUI}<br>
-{Explanation}
-
-Examples:
-
-## Miscellaneous Commands
-
-### Clear the contents of EduMate `clear`
-
-Edits the profile of a contact.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-*
-
-</div>
-
-Formats:
-*
-
-What you should see:<br>
-{GUI}<br>
-{Explanation}
-
-Examples:
-
-### Generate a random EduMate `sample`
-
-Edits the profile of a contact.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: You can use this command if:
-*
-
-</div>
-
-Formats:
-*
-
-What you should see:<br>
-{GUI}<br>
-{Explanation}
-
-Examples:
-
+If you want to end the application, simply type `exit`, or click on the `Exit` button located on the left of the interface.
 
 ## FAQ
 
@@ -752,16 +594,20 @@ Examples:
 
 ### Command Summary
 
-| Action            | Format, Examples                                                                      |
-|-------------------|---------------------------------------------------------------------------------------|
-| **User**          | `user`                                                                                |
-| **Add Person**    | `add n/NAME` <br> e.g., `add n/John Doe`                                              |
-| **Delete Person** | `delete n/NAME`<br> e.g., `delete n/John Doe`                                         |
-| **Tag Module**    | `tag n/NAME m/MODULE_TAG`<br> e.g.,`tag n/John Doe m/CS2103T`                         |
-| **Untag Module**  | `untag n/NAME m/MODULE_TAG`<br> e.g., `untag n/John Doe m/CS2103T`                    |
-| **Filter By Mod** | `filter m/MODULE_TAG` <br> e.g., `filter m/CS2103T`                                   |
-| **Sort**          | `sort`                                                                                |
-| **View**          | `view`<br/> `view <index>`<br/>`view n/NAME`<br/>e.g., `view 5` or `view n/Komyo San` |
+| Action               | Format                                               | Examples                                     |
+|----------------------|------------------------------------------------------|----------------------------------------------|
+| **Add a contact**    | `add n/NAME p/PHONE...`                              | `add n/Wen Li...`                            |
+| **View a profile**   | `view`, `view INDEX`, `view n/NAME`                  | `view 5`, `view n/Wen Li`                    |
+| **Edit a contact**   | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`         | `edit 4 n/Wen Qing`, `edit a/NUS t/@wenqing` |
+| **Delete a contact** | `delete INDEX`                                       | `delete 3`                                   |
+| **Tag a contact**    | {Kenny pls}                                          | {Kenny pls}                                  |
+| **Untag a contact**  | {Kenny pls}                                          | {Kenny pls}                                  |
+| **Filter contacts**  | `find z/FIELD`                                       | `find n/Tan`, `find m/CS1231`                |
+| **Sort contacts**    | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`        | `sort`, `sort n/a`, `sort m/ p/d`            |
+| **Save a copy**      | `save FILE_NAME`                                     | `save backup`                                |
+| **Load a copy**      | `load FILE_NAME`                                     | `load backup`                                |
+| **Suggest meetups**  | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​` | `meet 1 6 4`, `eat 10 4 7`                   |
+
 
 ## Troubleshooting
 
