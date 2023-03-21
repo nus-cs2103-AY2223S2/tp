@@ -17,6 +17,7 @@ import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.customer.Customer;
+import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
 import seedu.loyaltylift.model.order.Status;
@@ -89,8 +90,9 @@ public class EditOrderCommand extends Command {
         Status currentStatus = orderToEdit.getStatus();
         Quantity updatedQuantity = editOrderDescriptor.getQuantity().orElse(orderToEdit.getQuantity());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
+        CreatedDate createdDate = orderToEdit.getCreatedDate();
 
-        return new Order(currentCustomer, updatedName, updatedQuantity, currentStatus, updatedAddress);
+        return new Order(currentCustomer, updatedName, updatedQuantity, currentStatus, updatedAddress, createdDate);
     }
 
     @Override

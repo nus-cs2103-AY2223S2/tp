@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.loyaltylift.commons.exceptions.IllegalValueException;
 import seedu.loyaltylift.commons.util.JsonUtil;
 import seedu.loyaltylift.model.AddressBook;
+import seedu.loyaltylift.model.customer.exceptions.CustomerNotFoundException;
 import seedu.loyaltylift.testutil.TypicalAddressBook;
 
 public class JsonSerializableAddressBookTest {
@@ -49,7 +50,7 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_noSuchCustomer_throwsIllegalValueException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(CUSTOMER_NOT_FOUND_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+        assertThrows(CustomerNotFoundException.class, dataFromFile::toModelType);
     }
 
 }

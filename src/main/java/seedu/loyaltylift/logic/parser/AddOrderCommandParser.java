@@ -32,13 +32,13 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         Index customerIndex;
         Name orderName;
 
-        try {
-            customerIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            orderName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
+
+        customerIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        orderName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         AddOrderDescriptor addOrderDescriptor = new AddOrderDescriptor();
         addOrderDescriptor.setName(orderName);
