@@ -109,7 +109,7 @@ Sorts all persons in the address book based on an attribute.
 Format: `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]`
 
 * At least one of the optional fields must be provided.
-* The address book will be sorted based on the specified attribute by their alphanumerical value.
+* The address book will be sorted based on the specified attribute by their value.
 
 Examples:
 *  `sort name` Sorts all persons alphabetically by name.
@@ -295,18 +295,17 @@ _Details coming soon ..._
 
 *italic* - optional
 
-| Action         | Format, Examples                                                                                                                         |
-|----------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] ...​` <br> e.g., `add n/John Doe p/98765432 c/company X`                            |
-| **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`      |
-| **Clear**      | `clear`                                                                                                                                  |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                      |                                                                                               |
-| **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                |
-| **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/COMPANY] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                      |
-| **Status**     | `status INDEX_NUMBER` *`[STATUS …]`*<br> `status NAME` *`[STATUS …]`*<br> e.g., `status 1, status David closed-won`                      |
-| **List**       | `list`                                                                                                                                   |
-| **List Txn**   | `listtxn`                                                                                                                                |
-| **Help**       | `help`                                                                                                                                   |
-
-``
+| Action         | Format, Examples                                                                                                                                                                                                                                                                           |
+|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh i/automobile o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
+| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]` <br> e.g., `sort name`                                                                                                                                             |
+| **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                        |
+| **Clear**      | `clear`                                                                                                                                                                                                                                                                                    |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                        |                                                                                               |
+| **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                                                  |
+| **Edit**       | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                               |
+| **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                                        |
+| **Status**     | `status INDEX_NUMBER` *`[STATUS …]`*<br> `status NAME` *`[STATUS …]`*<br> e.g., `status 1, status David closed-won`                                                                                                                                                                        |
+| **List**       | `list`                                                                                                                                                                                                                                                                                     |
+| **List Txn**   | `listtxn`                                                                                                                                                                                                                                                                                  |
+| **Help**       | `help`                                                                                                                                                                                                                                                                                     |
