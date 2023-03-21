@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         Remark oldRemark = personToEdit.getOptionalRemark().orElse(null); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, oldRemark, 
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, oldRemark,
                     updatedSubjects, updatedTags);
     }
 
