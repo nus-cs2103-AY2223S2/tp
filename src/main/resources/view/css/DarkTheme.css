@@ -82,6 +82,10 @@
     -fx-background-color: #001E3C;
 }
 
+.enlarged-contacts-details-container {
+    -fx-background-color: #001E3C;
+}
+
 .enlarged-contacts-details-pane {
     -fx-background-color: #001E3C;
 }
@@ -97,6 +101,8 @@
     -fx-font-size: 13pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #FFFFFF;
+    -fx-wrap-text: true;
+    -fx-max-width: 300px;
 }
 
 /*
@@ -198,7 +204,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #doctorListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -310,12 +316,16 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
+    -fx-wrap-text: true;
+    -fx-max-width: 150px;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+    -fx-wrap-text: true;
+    -fx-max-width: 150px;
 }
 
 .stack-pane {

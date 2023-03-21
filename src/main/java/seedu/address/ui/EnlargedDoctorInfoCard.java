@@ -13,8 +13,8 @@ import seedu.address.model.person.doctor.Doctor;
 /**
  * An UI component that displays all information of a {@code Doctor}.
  */
-public class EnlargedContactCard extends UiPart<Region> {
-    private static final String FXML = "EnlargedContactCard.fxml";
+public class EnlargedDoctorInfoCard extends UiPart<Region> {
+    private static final String FXML = "EnlargedDoctorInfoCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,7 +27,7 @@ public class EnlargedContactCard extends UiPart<Region> {
     private Optional<Doctor> selectedDoctorOptional;
 
     @javafx.fxml.FXML
-    private VBox enlargedContactCard;
+    private VBox enlargedDoctorInfoCard;
     @FXML
     private Label name;
     @FXML
@@ -42,23 +42,23 @@ public class EnlargedContactCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code EnlargedContactCard} with the given {@code Optional< Doctor >}.
+     * Creates a {@code EnlargedDoctorInfoCard} with the given {@code Optional< Doctor >}.
      */
-    public EnlargedContactCard(Optional<Doctor> selectedDoctorOptional) {
+    public EnlargedDoctorInfoCard(Optional<Doctor> selectedDoctorOptional) {
         super(FXML);
         updateSelectedDoctorOptional(selectedDoctorOptional);
     }
 
     /**
-     * Creates an empty {@code EnlargedContactCard}.
+     * Creates an empty {@code EnlargedDoctorInfoCard}.
      */
-    public EnlargedContactCard() {
+    public EnlargedDoctorInfoCard() {
         super(FXML);
         clearDisplay();
     }
 
     /**
-     * Updates the selected doctor stored in {@code EnlargedContactCard}.
+     * Updates the selected doctor stored in {@code EnlargedDoctorInfoCard}.
      *
      * @param selectedDoctor the given {@code Optional< Doctor >}
      */
@@ -68,9 +68,9 @@ public class EnlargedContactCard extends UiPart<Region> {
     }
 
     /**
-     * Updates the information shown on the {@code EnlargedContactCard}
+     * Updates the information shown on the {@code EnlargedDoctorInfoCard}
      * with that of the stored {@code Optional< Doctor >}.
-     * If no doctor is stored, then the {@code EnlargedContactCard} is cleared.
+     * If no doctor is stored, then the {@code EnlargedDoctorInfoCard} is cleared.
      */
     private void updateDisplay() {
         if (selectedDoctorOptional.isEmpty()) {
@@ -90,7 +90,7 @@ public class EnlargedContactCard extends UiPart<Region> {
     }
 
     /**
-     * Clears the information shown on the {@code EnlargedContactCard}.
+     * Clears the information shown on the {@code EnlargedDoctorInfoCard}.
      */
     public void clearDisplay() {
         name.setText("No Doctor Selected");
@@ -109,12 +109,12 @@ public class EnlargedContactCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EnlargedContactCard)) {
+        if (!(other instanceof EnlargedDoctorInfoCard)) {
             return false;
         }
 
         // state check
-        EnlargedContactCard card = (EnlargedContactCard) other;
+        EnlargedDoctorInfoCard card = (EnlargedDoctorInfoCard) other;
         return selectedDoctorOptional.equals(card.selectedDoctorOptional);
     }
 }
