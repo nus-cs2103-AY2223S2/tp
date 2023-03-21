@@ -154,6 +154,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[In Progress\] Sort feature
+
+#### About
+sprINT offers the options to sort the applications list in two ways:
+- `sort deadline` will sort by the deadline of upcoming tasks
+- `sort alphabetical` will sort by the alphabetical order of the internship roles; if there are two internship roles 
+that are the same, the tiebreaker will be the alphabetical order of the company name
+
+#### Implementation
+_to be added_
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -395,6 +406,25 @@ ___
   
   Use case resumes at step 2.
 
+---
+
+**Use case 5: Sort applications by specified order**
+
+**MSS**
+
+1. User requests to sort applications by alphabetical order.
+2. sprINT displays the sorted list of entries.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User requests to sort applications by order of deadline of their upcoming task, with applications that have
+upcoming tasks of closer deadlines being showed first.
+* sprINT displays the sorted list of entries.
+
+    Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -410,6 +440,7 @@ ___
 ### Glossary
 
 * **GUI**: Graphical User Interface
+* **CLI**: Command Line Interface
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
