@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <HBox id="cardPane" fx:id="cardPane" spacing="20" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane style="-fx-background-radius: 16; -fx-background-color: C4C4C4;" HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -33,10 +34,10 @@
                 <children>
                 </children>
             </HBox>
-         <HBox alignment="CENTER_LEFT" spacing="5">
+         <HBox fx:id="details" alignment="CENTER_LEFT" spacing="5">
              <ProgressBar prefHeight="15.0" prefWidth="91.0" progress="0.35" style="-fx-accent: #643FDB;" />
              <Label fx:id="date" styleClass="cell_big_label"/>
-             <Label fx:id="attachments" styleClass="cell_big_label"/>
+             <ImageView fx:id="attachmentLogo"></ImageView>
          </HBox>
         </VBox>
       <HBox prefHeight="81.0" prefWidth="150.0" />

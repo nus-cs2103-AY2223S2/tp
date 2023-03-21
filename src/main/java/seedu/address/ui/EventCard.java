@@ -25,6 +25,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private HBox studentProfiles;
     @FXML
+    private HBox details;
+    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -39,6 +41,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label attendance;
     @FXML
+    private ImageView attachmentLogo;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,11 +56,24 @@ public class EventCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
-        attachments.setText("" + event.countAttachments());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         date.setText(event.getDate().format(formatter));
         //notes.setText("" + event.countNotes());
 
+        if (event.countAttachments() > 0) {
+            Image attachmentIcon = new Image(Objects.requireNonNull(this.getClass()
+                    .getResourceAsStream("/images/attachment.png")));
+            attachmentLogo.setImage(attachmentIcon);
+            attachmentLogo.setFitWidth(24);
+            attachmentLogo.setFitHeight(23);
+
+            //bind a click for now
+            
+
+
+        }
+
+        //set list of student profiles at top right
         for (String studentProfile: event.getStudentProfiles()) {
             ImageView profile = new ImageView();
             Image newImage = new Image(Objects.requireNonNull(this.getClass()
