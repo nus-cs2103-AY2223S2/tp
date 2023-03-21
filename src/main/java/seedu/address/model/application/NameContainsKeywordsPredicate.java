@@ -12,6 +12,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
+        assert(keywords != null);
         this.keywords = keywords;
     }
 
