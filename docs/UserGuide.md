@@ -10,11 +10,16 @@
 
 ---
 
-## Overview
+## About HMHero
 
-HMHero is a tool that helps Hiring Managers easily track the statuses of candidates' applications.
+In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant.
 
-In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant. This application includes features such as quick searching of applicants, algorithm to prioritize applicants according to their strengths and tabs on every applicant's application status.
+HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, and recruiters who want to streamline the recruitment process and make it more efficient, helping their organizations manage job applications and hiring processes more effectively. 
+
+As a hiring manager, you can easily track applicant progress. HMHero allows you to store all applicant information in one centralized location, making it easy to filter applicants based on skillsets to find the right applicant for your job.
+
+In addition, HMHero provides analytics regarding your hiring process, such as turnover rate and average time taken to process each applicant. With HMHero, hiring managers can gain further insight on their hiring process, empowering them to make smart decisions to streamline their hiring process.
+
 
 ---
 
