@@ -15,9 +15,11 @@ Class UserPrefs
 Class UniquePersonList
 Class Person
 Class Address
+Class Education
 Class Email
 Class Name
 Class Phone
+Class Subject
 Class Tag
 
 }
@@ -40,7 +42,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Education
 Person *--> "*" Tag
+Person *--> "*" Subject
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
