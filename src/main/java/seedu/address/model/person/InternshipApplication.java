@@ -18,7 +18,9 @@ public class InternshipApplication {
     // Identity fields
     private final CompanyName companyName;
     private final JobTitle jobTitle;
+    private final InterviewDate interviewDate;
     private final InternshipStatus status;
+
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -33,6 +35,7 @@ public class InternshipApplication {
         this.jobTitle = job;
         this.contact = null;
         this.status = InternshipStatus.NA;
+        this.interviewDate = null;
     }
 
     /**
@@ -44,6 +47,19 @@ public class InternshipApplication {
         this.jobTitle = job;
         this.contact = contact;
         this.status = InternshipStatus.NA;
+        this.interviewDate = null;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InterviewDate interviewDate) {
+        requireAllNonNull(name, job);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.contact = contact;
+        this.status = InternshipStatus.NA;
+        this.interviewDate = interviewDate;
     }
 
     /**
@@ -55,6 +71,18 @@ public class InternshipApplication {
         this.jobTitle = job;
         this.contact = null;
         this.status = status;
+        this.interviewDate = null;
+    }
+    /**
+     * Every field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, InternshipStatus status, InterviewDate interviewDate) {
+        requireAllNonNull(name, job, status);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.contact = null;
+        this.status = status;
+        this.interviewDate = interviewDate;
     }
 
     /**
@@ -66,6 +94,20 @@ public class InternshipApplication {
         this.jobTitle = job;
         this.contact = contact;
         this.status = status;
+        this.interviewDate = null;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InternshipStatus status,
+                                 InterviewDate interviewDate) {
+        requireAllNonNull(name, job, contact, status, interviewDate);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.contact = contact;
+        this.status = status;
+        this.interviewDate = interviewDate;
     }
 
     public CompanyName getCompanyName() {
@@ -89,6 +131,10 @@ public class InternshipApplication {
 
     public Contact getContact() {
         return contact;
+    }
+
+    public InterviewDate getInterviewDate() {
+        return interviewDate;
     }
 
     /**
@@ -151,6 +197,11 @@ public class InternshipApplication {
                     .append(contact.getPhone())
                     .append("; Company Email: ")
                     .append(contact.getEmail());
+        }
+
+        if (interviewDate != null) {
+            builder.append("; Interview Date: ")
+                    .append(getInterviewDate());
         }
         return builder.toString();
     }
