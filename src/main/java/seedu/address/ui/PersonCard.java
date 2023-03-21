@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InterviewDate;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -45,6 +46,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label internshipStatus;
+    @FXML
+    private Label interviewDate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -64,6 +67,12 @@ public class PersonCard extends UiPart<Region> {
             phone.setVisible(true);
             email.setManaged(true);
             phone.setManaged(true);
+        }
+        InterviewDate interviewDateStr = application.getInterviewDate();
+        if (interviewDateStr != null) {
+            interviewDate.setText(interviewDateStr.toString());
+            interviewDate.setVisible(true);
+            interviewDate.setManaged(true);
         }
     }
 
