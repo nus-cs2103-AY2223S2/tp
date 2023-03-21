@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.AddLabCommand;
 import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Tutorial;
@@ -37,8 +38,8 @@ public class AddTutorialParser implements Parser<AddTutorialCommand> {
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
                 PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL)
-                || argMultimap.getPreamble().isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
+                || !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabCommand.MESSAGE_USAGE));
         }
 
         String name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());

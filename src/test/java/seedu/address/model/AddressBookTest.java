@@ -10,7 +10,6 @@ import static seedu.address.testutil.TypicalEvents.SAMPLE_LAB;
 import static seedu.address.testutil.TypicalEvents.SAMPLE_TUTORIAL;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,6 +18,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
@@ -107,6 +107,7 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Tutorial> tutorials = FXCollections.observableArrayList();
         private final ObservableList<Lab> labs = FXCollections.observableArrayList();
+        private final ObservableList<Consultation> consultations = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -126,6 +127,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Lab> getLabList() {
             return labs;
+        }
+
+        @Override
+        public ObservableList<Consultation> getConsultationList() {
+            return consultations;
         }
 
     }

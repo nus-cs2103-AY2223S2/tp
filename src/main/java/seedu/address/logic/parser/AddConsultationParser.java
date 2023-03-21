@@ -2,8 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERFORMANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -13,37 +13,39 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddLabCommand;
+import seedu.address.logic.commands.AddConsultationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.Lab;
+import seedu.address.model.event.Consultation;
 
 /**
- * Parses input arguments and creates a new AddLab object
+ * Parses input arguments and creates a new AddConsultation object
  */
-public class AddEventParser {
+public class AddConsultationParser implements Parser<AddConsultationCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddLab
-     * and returns an AddLab object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddConsultation
+     * and returns an AddConsultation object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddLabCommand parse(String args) throws ParseException {
-        String newArgs = args.trim().replaceFirst("Lab", "");
+    public AddConsultationCommand parse(String args) throws ParseException {
+        //newArgs to trim first word when more commands added to switch-case in AddressBookParser
+        String newArgs = args.trim().replaceFirst("Consultation", "");
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(newArgs, PREFIX_LAB);
-
+                ArgumentTokenizer.tokenize(args, PREFIX_CONSULTATION);
+        System.out.println("newArgs" + args);
         //Make the user not create lab and students with the same command
         if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
-                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_LAB)
+                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_CONSULTATION)
                 || !argMultimap.getPreamble().isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddConsultationCommand.MESSAGE_USAGE));
         }
 
-        String name = ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get());
+        String name = ParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_CONSULTATION).get());
 
-        Lab lab = new Lab(name);
-        return new AddLabCommand(lab);
+        Consultation lab = new Consultation(name);
+        return new AddConsultationCommand(lab);
     }
 
     /**

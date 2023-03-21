@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
@@ -127,12 +128,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addConsultation(Consultation consultation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addStudentToTutorial(Index toAdd, String tutName) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addStudentToLab(Index toAdd, String labName) {
+        public void addStudentToLab(Index toAdd, String tutName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudentToConsultation(Index toAdd, String tutName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -218,6 +229,31 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredLabList(Predicate<Lab> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConsultation(Consultation lab) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteConsultation(Consultation target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setConsultation(Consultation target, Consultation editedConsultation) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Consultation> getFilteredConsultationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

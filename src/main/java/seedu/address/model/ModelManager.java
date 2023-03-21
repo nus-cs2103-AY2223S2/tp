@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Person;
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Lab> filteredLabs;
     private final FilteredList<Tutorial> filteredTutorials;
+    private final FilteredList<Consultation> filteredConsultations;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -41,6 +43,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredLabs = new FilteredList<>(this.addressBook.getLabList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
+        filteredConsultations = new FilteredList<>(this.addressBook.getConsultationList());
     }
 
     public ModelManager() {
@@ -178,6 +181,35 @@ public class ModelManager implements Model {
         addressBook.addStudentToLab(toAddPerson, labName);
     }
 
+    @Override
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultation(consultation);
+    }
+
+    @Override
+    public void deleteConsultation(Consultation target) {
+        addressBook.removeConsultation(target);
+    }
+
+    @Override
+    public void addConsultation(Consultation consultation) {
+        addressBook.addConsultation(consultation);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setConsultation(Consultation target, Consultation editedConsultation) {
+        requireAllNonNull(target, editedConsultation);
+        addressBook.setConsultation(target, editedConsultation);
+    }
+
+    @Override
+    public void addStudentToConsultation(Index toAdd, String consultationName) {
+        Person toAddPerson = this.getFilteredPersonList().get(toAdd.getZeroBased());
+        addressBook.addStudentToConsultation(toAddPerson, consultationName);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -221,6 +253,19 @@ public class ModelManager implements Model {
         filteredLabs.setPredicate(predicate);
     }
 
+    //=========== Filtered Consultation List Accessors =============================================================
+
+    @Override
+    public ObservableList<Consultation> getFilteredConsultationList() {
+        return filteredConsultations;
+    }
+
+    @Override
+    public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+        requireNonNull(predicate);
+        filteredConsultations.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -239,6 +284,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredTutorials.equals(other.filteredTutorials)
-                && filteredLabs.equals(other.filteredLabs);
+                && filteredLabs.equals(other.filteredLabs)
+                && filteredConsultations.equals(other.filteredConsultations);
     }
 }
