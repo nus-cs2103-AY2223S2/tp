@@ -133,10 +133,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasTag(Set<Tag> tags) {
-        for (Tag tagToCheck : tags) {
-            return tagList.hasTag(tagToCheck);
-        }
-        return false;
+        return tagList.containsAll(tags);
     }
 
     //=========== Filtered Bookmark List Accessors =============================================================

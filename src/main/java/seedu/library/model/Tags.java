@@ -3,6 +3,7 @@ package seedu.library.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.library.model.tag.Tag;
@@ -64,6 +65,10 @@ public class Tags implements ReadOnlyTags {
         return tags.contains(tag);
     }
 
+    public boolean containsAll(Set<Tag> tags) {
+        return this.tags.containsAll(tags);
+    }
+
     /**
      * Adds a tag to the tag list.
      * The tag must not already exist in the tag list.
@@ -114,5 +119,9 @@ public class Tags implements ReadOnlyTags {
     @Override
     public int hashCode() {
         return tags.hashCode();
+    }
+
+    public boolean isEmpty() {
+        return tags.isEmpty();
     }
 }

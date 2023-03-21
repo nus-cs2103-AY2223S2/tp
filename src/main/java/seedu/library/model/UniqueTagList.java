@@ -5,6 +5,7 @@ import static seedu.library.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,16 @@ public class UniqueTagList implements Iterable<Tag> {
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTag);
+    }
+
+    /**
+     * Returns true if all the tags in toCheck are in the tag list.
+     * @param toCheck Set of tags to check.
+     * @return true if all the tags in toCheck are in the tag list.
+     */
+    public boolean containsAll(Set<Tag> toCheck) {
+        requireNonNull(toCheck);
+        return internalList.containsAll(toCheck);
     }
 
     /**
@@ -135,6 +146,10 @@ public class UniqueTagList implements Iterable<Tag> {
             }
         }
         return true;
+    }
+
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
 }
 
