@@ -8,6 +8,7 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -34,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_MAJOR, PREFIX_TAG);
+                        PREFIX_ADDRESS, PREFIX_MAJOR, PREFIX_TAG, PREFIX_TEAM);
 
         Index index;
 
@@ -61,6 +62,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setMajor(ParserUtil.parseMajor(argMultimap.getValue(PREFIX_MAJOR).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TEAM)).ifPresent(editPersonDescriptor::setTeams);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

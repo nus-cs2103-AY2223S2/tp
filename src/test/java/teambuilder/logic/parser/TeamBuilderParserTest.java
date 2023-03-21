@@ -22,6 +22,7 @@ import teambuilder.logic.commands.ExitCommand;
 import teambuilder.logic.commands.FindCommand;
 import teambuilder.logic.commands.HelpCommand;
 import teambuilder.logic.commands.ListCommand;
+import teambuilder.logic.commands.SortCommand;
 import teambuilder.logic.parser.exceptions.ParseException;
 import teambuilder.model.person.NameContainsKeywordsPredicate;
 import teambuilder.model.person.Person;
@@ -57,9 +58,10 @@ public class TeamBuilderParserTest {
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        EditCommand expected = new EditCommand(INDEX_FIRST_PERSON, descriptor);
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(expected, command);
     }
 
     @Test
@@ -86,6 +88,13 @@ public class TeamBuilderParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + "desc" + " " + "tcount");
+        assertEquals(new SortCommand("desc", "tcount"), command);
     }
 
     @Test

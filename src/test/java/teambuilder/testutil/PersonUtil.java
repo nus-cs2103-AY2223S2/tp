@@ -6,6 +6,7 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
+import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 
 import java.util.Set;
 
@@ -39,6 +40,9 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        person.getTeams().stream().forEach(
+                s -> sb.append(PREFIX_TEAM + s.tagName + " ")
+        );
         return sb.toString();
     }
 
@@ -55,9 +59,17 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getTeams().isPresent()) {
+            Set<Tag> teams = descriptor.getTeams().get();
+            if (teams.isEmpty()) {
+                sb.append(PREFIX_TEAM).append(" ");
+            } else {
+                teams.forEach(s -> sb.append(PREFIX_TEAM).append(s.tagName).append(" "));
             }
         }
         return sb.toString();

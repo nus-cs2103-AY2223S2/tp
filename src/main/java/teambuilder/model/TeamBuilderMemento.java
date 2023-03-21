@@ -1,22 +1,26 @@
 package teambuilder.model;
 
-import teambuilder.commons.core.Momento;
+import static java.util.Objects.requireNonNull;
+
+import teambuilder.commons.core.Memento;
 
 /**
  * This class stores the state of a TeamBuilder
  */
-public class TeamBuilderMomento implements Momento {
+public class TeamBuilderMemento implements Memento {
     private TeamBuilder state;
     private ModelManager origin;
-    private String description;
 
     /**
-     * Constructs a TeamBuilderMomento.
+     * Constructs a TeamBuilderMemento.
      *
      * @param state The state of the TeamBuilder to be saved.
      * @param origin The Model manager to restore the TeamBuilder from.
      */
-    public TeamBuilderMomento(TeamBuilder state, ModelManager origin) {
+    public TeamBuilderMemento(TeamBuilder state, ModelManager origin) {
+        requireNonNull(state);
+        requireNonNull(origin);
+
         this.state = state;
         this.origin = origin;
     }
@@ -28,12 +32,7 @@ public class TeamBuilderMomento implements Momento {
     }
 
     @Override
-    public void setDescription(String desc) {
-        description = desc;
-    }
-
-    @Override
-    public String toString() {
-        return description;
+    public Memento getUpdatedMemento() {
+        return origin.save();
     }
 }

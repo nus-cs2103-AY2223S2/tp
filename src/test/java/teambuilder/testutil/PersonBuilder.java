@@ -29,6 +29,8 @@ public class PersonBuilder {
     private Address address;
     private Major major;
     private Set<Tag> tags;
+    private Set<Tag> teams;
+
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         major = new Major(DEFAULT_MAJOR);
         tags = new HashSet<>();
+        teams = new HashSet<>();
     }
 
     /**
@@ -52,6 +55,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         major = personToCopy.getMajor();
         tags = new HashSet<>(personToCopy.getTags());
+        teams = new HashSet<>(personToCopy.getTeams());
     }
 
     /**
@@ -67,6 +71,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTeams(String ... tags) {
+        this.teams = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -103,7 +115,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, major, tags);
+        return new Person(name, phone, email, address, major, tags, teams);
     }
 
 }

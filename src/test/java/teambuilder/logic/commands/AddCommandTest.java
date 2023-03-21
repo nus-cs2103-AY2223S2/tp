@@ -9,13 +9,14 @@ import static teambuilder.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import teambuilder.commons.core.GuiSettings;
-import teambuilder.commons.core.Momento;
+import teambuilder.commons.core.Memento;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
@@ -80,16 +81,16 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public Momento save() {
-            return new Momento() {
+        public Memento save() {
+            return new Memento() {
                 @Override
                 public boolean restore() {
                     return true;
                 }
 
                 @Override
-                public void setDescription(String desc) {
-                    return;
+                public Memento getUpdatedMemento() {
+                    return this;
                 }
             };
         }
@@ -155,12 +156,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getSortedPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSort(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
