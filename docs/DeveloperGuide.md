@@ -156,6 +156,36 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### View Feature
+
+#### Implementation
+The following sequence diagram provides an overview on how the `view` operation works.
+
+
+The following gives a more detailed explanation of the `view` operation.
+######  Step 1: Validate Input
+1. When the user enters a `view` command, the `ViewCommandParser` parses the user's input.
+2. It checks for the following:
+- The `INDEX` entered by the user must be an integer that can be converted to an index.
+3. If the user entered a value of `INDEX` that cannot be converted, a `ParserException` will
+   be thrown.
+4. An `Index` will be created from the user's input if Step 2 passes.
+
+###### Step 2: Viewing the Internship
+5. A check is done to see if the `Index` created in Step 4 is a valid index given the number
+   of `Internship` entries in the filtered `Internship` list of the `Model` component.
+6. If the `Index` is invalid, a `CommandException` will be thrown.
+7. Else if the `Index` is valid, the `Internship` which belongs to that `Index` will be
+   retrieved by accessing the filtered `Internship` list.
+8. The currently selected `Internship` in the `Model` component will be updated to become
+   the `Internship` obtained from Step 7 such that the right UI panel displays the information
+   for this selected `Internship`.
+
+
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
