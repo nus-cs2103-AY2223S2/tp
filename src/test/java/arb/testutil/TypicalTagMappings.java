@@ -16,6 +16,6 @@ public class TypicalTagMappings {
     public static final TagMapping FRIEND_TAG = new TagMappingBuilder().withTag(VALID_TAG_FRIEND).build();
 
     public static final TagMapping PAINTING_TAG = new TagMappingBuilder().withTag(VALID_TAG_PAINTING).build();
-    public static final TagMapping POTTERY_TAG =  new TagMappingBuilder().withTag(VALID_TAG_POTTERY).build();
+    public static final TagMapping POTTERY_TAG = new TagMappingBuilder().withTag(VALID_TAG_POTTERY).build();
 
 }

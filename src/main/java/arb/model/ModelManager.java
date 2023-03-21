@@ -102,11 +102,13 @@ public class ModelManager implements Model {
 
     @Override
     public void resetProjectList() {
+        addressBook.resetProjectTagMappings();
         addressBook.setProjects(new ArrayList<Project>());
     }
 
     @Override
     public void resetClientList() {
+        addressBook.resetClientTagMappings();
         addressBook.setClients(new ArrayList<Client>());
     }
 

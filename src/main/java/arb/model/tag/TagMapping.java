@@ -54,6 +54,20 @@ public class TagMapping {
     }
 
     /**
+     * Resets the number of clients tagged by the {@code Tag} to 0.
+     */
+    public void resetClientTaggings() {
+        this.numberOfClientsTagged = 0;
+    }
+
+    /**
+     * Resets the number of projects tagged by the {@code Tag} to 0.
+     */
+    public void resetProjectTaggings() {
+        this.numberOfProjectsTagged = 0;
+    }
+
+    /**
      * Returns true if {@code otherTagMapping} wraps around the same
      * {@Tag}.
      */

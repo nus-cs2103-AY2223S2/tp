@@ -180,6 +180,15 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseTags_withCaseDifferences_returnsSameTagSet() throws Exception {
+        Set<Tag> tagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> capitalTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1.toUpperCase(),
+                VALID_TAG_2.toUpperCase()));
+
+        assertEquals(tagSet, capitalTagSet);
+    }
+
+    @Test
     public void parseTitle_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle((String) null));
     }
@@ -244,5 +253,11 @@ public class ParserUtilTest {
     public void parseSortingOption_validValueWithWhitespace_returnsSortingOption() throws Exception {
         String sortingOptionWithWhitespace = WHITESPACE + VALID_SORTING_OPTION + WHITESPACE;
         assertEquals(BY_DEADLINE, ParserUtil.parseSortingOption(sortingOptionWithWhitespace));
+    }
+
+    @Test
+    public void parseSortingOption_withCaseDifferences_returnsSortingOption() throws Exception {
+        String capitalSortingOption = VALID_SORTING_OPTION.toUpperCase();
+        assertEquals(BY_DEADLINE, ParserUtil.parseSortingOption(capitalSortingOption));
     }
 }

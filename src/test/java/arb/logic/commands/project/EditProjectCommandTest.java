@@ -2,7 +2,7 @@ package arb.logic.commands.project;
 
 import static arb.logic.commands.CommandTestUtil.DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DESC_SKY_PAINTING;
-import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -53,12 +53,12 @@ public class EditProjectCommandTest {
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);
         Project editedProject = projectInList.withTitle(VALID_TITLE_OIL_PAINTING)
-                .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withTags(VALID_TAG_PAINTING)
                 .build();
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_OIL_PAINTING)
-                .withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
+                .withTags(VALID_TAG_PAINTING).build();
         EditProjectCommand editProjectCommand = new EditProjectCommand(indexLastProject, descriptor);
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);

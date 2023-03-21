@@ -5,10 +5,15 @@ import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static arb.logic.commands.CommandTestUtil.TAG_DESC_PAINTING;
+import static arb.logic.commands.CommandTestUtil.TAG_DESC_POTTERY;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_TAG_POTTERY;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
+import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
@@ -25,6 +30,8 @@ import arb.model.project.Title;
 import arb.testutil.EditProjectDescriptorBuilder;
 
 public class EditProjectCommandParserTest {
+
+    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE);
@@ -80,11 +87,12 @@ public class EditProjectCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
-                + TITLE_DESC_SKY_PAINTING;
+                + TITLE_DESC_SKY_PAINTING + TAG_DESC_PAINTING;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_SKY_PAINTING)
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withTags(VALID_TAG_PAINTING)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
@@ -119,6 +127,12 @@ public class EditProjectCommandParserTest {
         descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // tags
+        userInput = targetIndex.getOneBased() + TAG_DESC_PAINTING;
+        descriptor = new EditProjectDescriptorBuilder().withTags(VALID_TAG_PAINTING).build();
+        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -126,10 +140,12 @@ public class EditProjectCommandParserTest {
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_SKY_PAINTING
                 + DEADLINE_DESC_SKY_PAINTING
-                + DEADLINE_DESC_OIL_PAINTING;
+                + DEADLINE_DESC_OIL_PAINTING
+                + TAG_DESC_PAINTING + TAG_DESC_POTTERY;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withTags(VALID_TAG_PAINTING, VALID_TAG_POTTERY)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
@@ -151,6 +167,17 @@ public class EditProjectCommandParserTest {
                 + DEADLINE_DESC_OIL_PAINTING;
         descriptor = new EditProjectDescriptorBuilder().withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetTags_success() {
+        Index targetIndex = INDEX_THIRD;
+        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+
+        EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder().withTags().build();
+        EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

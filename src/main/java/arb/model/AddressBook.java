@@ -73,6 +73,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Removes all client tag mappings in the tag mapping list.
+     */
+    public void resetClientTagMappings() {
+        this.tagMappings.resetClientTagMappings();
+    }
+
+    /**
+     * Removes all project tag mappings in the tag mapping list.
+     */
+    public void resetProjectTagMappings() {
+        this.tagMappings.resetProjectTagMappings();
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {

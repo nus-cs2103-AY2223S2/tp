@@ -145,7 +145,7 @@ public class EditProjectCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline);
+            return CollectionUtil.isAnyNonNull(title, deadline, tags);
         }
 
         public void setTitle(Title title) {

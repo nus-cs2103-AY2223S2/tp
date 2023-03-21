@@ -21,7 +21,7 @@ public class ProjectBuilder {
     private Title title;
     private Optional<Deadline> deadline;
     private Set<Tag> tags;
-
+    private boolean isDone;
     /**
      * Creates a {@code ProjectBuilder} with the default details.
      */
@@ -29,6 +29,7 @@ public class ProjectBuilder {
         title = new Title(DEFAULT_TITLE);
         deadline = Optional.of(new Deadline(DEFAULT_DEADLINE));
         tags = new HashSet<>();
+        isDone = false;
     }
 
     /**
@@ -38,6 +39,7 @@ public class ProjectBuilder {
         title = projectToCopy.getTitle();
         deadline = Optional.ofNullable(projectToCopy.getDeadline());
         tags = new HashSet<>(projectToCopy.getTags());
+        isDone = projectToCopy.getStatus().getStatus();
     }
 
     /**
@@ -69,11 +71,23 @@ public class ProjectBuilder {
     }
 
     /**
+     * Sets whether the project to be built is meant to be done.
+     */
+    public ProjectBuilder withStatus(boolean isDone) {
+        this.isDone = isDone;
+        return this;
+    }
+
+    /**
      * Builds the Project.
      * @return The new Project.
      */
     public Project build() {
-        return new Project(title, this.deadline.orElse(null), tags);
+        Project project = new Project(title, this.deadline.orElse(null), tags);
+        if (isDone) {
+            project.markAsDone();
+        }
+        return project;
     }
 
 }

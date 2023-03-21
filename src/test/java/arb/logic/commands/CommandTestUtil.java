@@ -47,7 +47,7 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_SKY_PAINTING = "6pm 2023-02-02";
     public static final String VALID_DEADLINE_OIL_PAINTING = "midnight 2023-05-05";
     public static final String VALID_TAG_PAINTING = "painting";
-    public static final String VALID_TAG_POTTERY = "pottery"; 
+    public static final String VALID_TAG_POTTERY = "pottery";
 
     public static final String VALID_SORTING_OPTION_DEADLINE = "deadline";
     public static final String VALID_SORTING_OPTION_TITLE = "name";
@@ -65,6 +65,8 @@ public class CommandTestUtil {
     public static final String TITLE_DESC_OIL_PAINTING = " " + PREFIX_NAME + VALID_TITLE_OIL_PAINTING;
     public static final String DEADLINE_DESC_SKY_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_SKY_PAINTING;
     public static final String DEADLINE_DESC_OIL_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_OIL_PAINTING;
+    public static final String TAG_DESC_PAINTING = " " + PREFIX_TAG + VALID_TAG_PAINTING;
+    public static final String TAG_DESC_POTTERY = " " + PREFIX_TAG + VALID_TAG_POTTERY;
 
     public static final String SORTING_OPTION_DESC = " " + PREFIX_OPTION + VALID_SORTING_OPTION_DEADLINE;
 
