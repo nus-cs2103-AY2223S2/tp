@@ -319,15 +319,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-<<<<<<< HEAD
     public void tagCurrentCardInReview(Tag tag) {
         masterDeck.tagCard(filteredCards.get(0), tag);
         currReview.tagCurrentCard(tag);
     }
-=======
     public ObservableList<String> getReviewStatsList() {
         return currReview.getReviewStatsList();
     }
-
->>>>>>> upstream/master
 }

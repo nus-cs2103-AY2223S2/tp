@@ -155,9 +155,6 @@ public interface Model {
 
     void setNumCardsPerReview(int i);
 
-<<<<<<< HEAD
     void tagCurrentCardInReview(Tag tag);
-=======
     ObservableList<String> getReviewStatsList();
->>>>>>> upstream/master
 }

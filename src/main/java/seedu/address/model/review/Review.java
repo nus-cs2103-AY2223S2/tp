@@ -195,7 +195,6 @@ public class Review {
         cardList.stream().forEach(Card::setAsFlipped);
     }
 
-<<<<<<< HEAD
     /**
      * Tags current card in review based on enum Hard, Medium, Easy
      * @param tag
@@ -204,7 +203,6 @@ public class Review {
         currCard.addTag(tag);
     }
 
-=======
     public ObservableList<String> getReviewStatsList() {
         updateReviewStatsList();
         return reviewStatsList;
@@ -216,5 +214,4 @@ public class Review {
         this.reviewStatsList.clear();
         this.reviewStatsList.addAll(deck.getDeckName(), cardsSeen, currentScore);
     }
->>>>>>> upstream/master
 }
