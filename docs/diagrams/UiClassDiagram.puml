@@ -10,15 +10,37 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
-Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+
+package Body <<Rectangle>> {
+package User <<Rectangle>> {
+Class UserPanel
+}
+package Calendar <<Rectangle>> {
+Class CalendarPanel
+Class CalendarDayCard
+Class CalendarEventCard
+}
+package Address <<Rectangle>> {
+Class AddressPanel
+Class PersonCard
+Class PersonModulesCard
+Class PersonDetailCard
+Class PersonDetailPanel
+Class PersonListDivider
+Class PersonListPanel
+}
+Class BodyPanel
 }
 
-package Model <<Rectangle>> {
-Class HiddenModel #FFFFFF
+package Result <<Rectangle>> {
+Class ResultDisplay
+Class ResultDisplayCard
+}
+
+note right of UiPart: Inherited by all UI components\n except UiManager
+
 }
 
 package Logic <<Rectangle>> {
@@ -28,33 +50,47 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .right.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" BodyPanel
+MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" StatusBarFooter
-MainWindow --> "0..1" HelpWindow
+MainWindow -left-> "1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+'MainWindow --|> UiPart
+'ResultDisplay --|> UiPart
+'CommandBox --|> UiPart
+'PersonListPanel --|> UiPart
+'PersonCard --|> UiPart
+'StatusBarFooter --|> UiPart
+'HelpWindow --|> UiPart
 
-MainWindow -left-|> UiPart
+UiManager -up-> Logic
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow --|> UiPart
+BodyPanel *-down-> "1" AddressPanel
+BodyPanel *-down-> "1" CalendarPanel
+BodyPanel *-down-> "1" UserPanel
 
-PersonCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
+CalendarDayCard *-down-> "*" CalendarEventCard
+CalendarPanel *-down-> "*" CalendarDayCard
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+AddressPanel *-down-> "1" PersonListPanel
+AddressPanel *-down-> "1" PersonDetailPanel
+PersonListPanel *-down-> "*" PersonCard
+PersonListPanel *-down-> "*" PersonListDivider
+PersonDetailPanel *-down-> "*" PersonDetailCard
+PersonDetailPanel *-down-> "1" PersonModulesCard
 
-MainWindow -[hidden]-|> UiPart
+UserPanel *--down-> "*" PersonDetailCard
+
+ResultDisplay *-down-> "*" ResultDisplayCard
+
+Logic -[hidden]right- HiddenOutside
+Ui -[hidden]right- UiPart
+StatusBarFooter -[hidden]right- CommandBox
+CommandBox -[hidden]right- ResultDisplay
+ResultDisplay -[hidden]right- BodyPanel
+CalendarPanel -[hidden]right- UserPanel
+
 @enduml
