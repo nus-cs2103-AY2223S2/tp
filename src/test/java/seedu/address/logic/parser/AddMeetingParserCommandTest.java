@@ -15,7 +15,7 @@ import seedu.address.model.person.Meeting;
 
 public class AddMeetingParserCommandTest {
     private AddMeetingCommandParser parser = new AddMeetingCommandParser();
-    private final String NonEmptyMeeting = " 09-11-2001 11:30 12:30";
+    private final String nonEmptyMeeting = " 09-11-2001 11:30 12:30";
 
     @Test
     public void parse_indexSpecified_success() throws Exception {
