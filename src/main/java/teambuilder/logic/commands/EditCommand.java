@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import teambuilder.commons.core.Messages;
-import teambuilder.commons.core.Momento;
+import teambuilder.commons.core.Memento;
 import teambuilder.commons.core.index.Index;
 import teambuilder.commons.util.CollectionUtil;
 import teambuilder.commons.util.HistoryUtil;
@@ -90,9 +90,8 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        Momento old = model.save();
-        old.setDescription(COMMAND_WORD + " " + editedPerson);
-        HistoryUtil.getInstance().store(old);
+        Memento old = model.save();
+        HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + editedPerson);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

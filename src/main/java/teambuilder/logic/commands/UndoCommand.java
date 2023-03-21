@@ -2,6 +2,8 @@ package teambuilder.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
@@ -20,12 +22,12 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        boolean isSuccessful = history.undo();
-        if (!isSuccessful) {
+        Optional<String> description = history.undo();
+        if (!description.isPresent()) {
             return new CommandResult(MESSAGE_FAILURE);
         }
 
-        return new CommandResult(MESSAGE_SUCCESS + history.getLastUndoDescription());
+        return new CommandResult(MESSAGE_SUCCESS + description.get());
     };
 
     @Override

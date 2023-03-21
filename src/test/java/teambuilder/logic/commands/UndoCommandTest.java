@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import teambuilder.commons.core.GuiSettings;
-import teambuilder.commons.core.Momento;
+import teambuilder.commons.core.Memento;
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
@@ -31,7 +31,8 @@ public class UndoCommandTest {
     public void execute_undoUnsuccessful_failureMessage() throws CommandException {
         Model stub = new ModelStub();
         HistoryUtil history = HistoryUtil.getInstance();
-        while (history.undo());
+        while (history.undo().isPresent())
+            ;
         CommandResult commandResult = new UndoCommand().execute(stub);
         assertEquals(UndoCommand.MESSAGE_FAILURE, commandResult.getFeedbackToUser());
     }
@@ -40,9 +41,9 @@ public class UndoCommandTest {
     public void execute_undoSuccessFul_successMessage() throws CommandException {
         Model stub = new ModelStub();
         HistoryUtil history = HistoryUtil.getInstance();
-        history.store(new FilledMomento());
+        history.storePast(new FilledMomento(), FilledMomento.DESC);
         CommandResult commandResult = new UndoCommand().execute(stub);
-        assertEquals(UndoCommand.MESSAGE_SUCCESS + "Everything", commandResult.getFeedbackToUser());
+        assertEquals(UndoCommand.MESSAGE_SUCCESS + FilledMomento.DESC, commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -64,8 +65,8 @@ public class UndoCommandTest {
 
     }
 
-    private class FilledMomento implements Momento {
-        private String desc = "Everything";
+    private class FilledMomento implements Memento {
+        private static final String DESC = "Everything";
 
         @Override
         public boolean restore() {
@@ -73,21 +74,26 @@ public class UndoCommandTest {
         }
 
         @Override
-        public void setDescription(String desc) {
-            throw new UnsupportedOperationException("Unimplemented method 'setDescription'");
-        }
-
-        @Override
-        public String toString() {
-            return desc;
+        public Memento getUpdatedMemento() {
+            return new FilledMomento();
         }
     }
 
     private class ModelStub implements Model {
 
         @Override
-        public Momento save() {
-            throw new UnsupportedOperationException("Unimplemented method 'save'");
+        public Memento save() {
+            return new Memento() {
+                @Override
+                public boolean restore() {
+                    return true;
+                }
+
+                @Override
+                public Memento getUpdatedMemento() {
+                    return this;
+                }
+            };
         }
 
         @Override

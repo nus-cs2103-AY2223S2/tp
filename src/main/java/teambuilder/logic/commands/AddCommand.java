@@ -8,7 +8,7 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_NAME;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 
-import teambuilder.commons.core.Momento;
+import teambuilder.commons.core.Memento;
 import teambuilder.commons.util.HistoryUtil;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
@@ -60,9 +60,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        Momento old = model.save();
-        old.setDescription(COMMAND_WORD + " " + toAdd);
-        HistoryUtil.getInstance().store(old);
+        Memento old = model.save();
+        HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + toAdd);
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
