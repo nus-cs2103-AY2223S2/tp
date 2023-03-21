@@ -10,8 +10,10 @@ Class InternBuddyParser
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
-Class LogicManager
+
+
 Class "<<interface>>\nLogic" as LogicInterface
+Class LogicManager
 }
 
 package Model{
@@ -24,17 +26,17 @@ package Storage{
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> LogicInterface
 
-LogicManager .left.|> LogicInterface
-LogicManager -left->"1" InternBuddyParser
+LogicManager .right.|> LogicInterface
+LogicManager -right->"1" InternBuddyParser
 InternBuddyParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
-LogicManager .right.> Command : executes >
+LogicManager .left.> Command : executes >
 
 LogicManager --> Model
 LogicManager --> Storage
 Storage --[hidden] Model
-'Command .[hidden]up.> Storage
+Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
