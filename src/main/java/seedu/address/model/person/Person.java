@@ -2,8 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -34,7 +32,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Status status,
-                  ApplicationDateTime applicationDateTime, Optional<InterviewDateTime> interviewDateTime, Set<Note> notes) {
+                  ApplicationDateTime applicationDateTime, Optional<InterviewDateTime> interviewDateTime,
+                  Set<Note> notes) {
         requireAllNonNull(name, phone, email, address, notes);
         this.name = name;
         this.phone = phone;

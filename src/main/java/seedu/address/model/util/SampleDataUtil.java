@@ -9,13 +9,19 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.note.Note;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationDateTime;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static final LocalDateTime SAMPLE_DATE_TIME = LocalDateTime.of(2023,04,04,16,25);
+    private static final LocalDateTime SAMPLE_DATE_TIME = LocalDateTime.of(2023, 04, 04, 16, 25);
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -40,7 +46,7 @@ public class SampleDataUtil {
                 getNoteSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), Status.APPLIED,
-                    new ApplicationDateTime(SAMPLE_DATE_TIME),Optional.empty(),
+                    new ApplicationDateTime(SAMPLE_DATE_TIME), Optional.empty(),
                 getNoteSet("colleagues"))
         };
     }

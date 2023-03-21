@@ -13,7 +13,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.note.Note;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationDateTime;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.InterviewDateTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -142,8 +149,8 @@ class JsonAdaptedPerson {
         }
 
         //will not throw ParseException as it has been checked in previous line
-        final Optional<InterviewDateTime> modelInterviewDateTime = InterviewDateTime.
-                createInterviewDateTime(interviewDate);
+        final Optional<InterviewDateTime> modelInterviewDateTime = InterviewDateTime
+                .createInterviewDateTime(interviewDate);
 
         final Set<Note> modelNotes = new HashSet<>(personNotes);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelApplicationDateTime,
