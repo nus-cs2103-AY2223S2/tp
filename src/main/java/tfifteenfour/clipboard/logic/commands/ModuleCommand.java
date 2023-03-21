@@ -1,10 +1,15 @@
 package tfifteenfour.clipboard.logic.commands;
-import tfifteenfour.clipboard.commons.core.Messages;
-import tfifteenfour.clipboard.model.Model;
-import tfifteenfour.clipboard.model.student.*;
-
 import static java.util.Objects.requireNonNull;
 
+import tfifteenfour.clipboard.commons.core.Messages;
+import tfifteenfour.clipboard.model.Model;
+import tfifteenfour.clipboard.model.student.StudentTakingModulePredicate;
+
+
+/**
+ * Finds and lists all persons who is taking that module
+ * Module code is case insensitive.
+ */
 public class ModuleCommand extends Command {
     public static final String COMMAND_WORD = "module";
 
@@ -15,7 +20,7 @@ public class ModuleCommand extends Command {
 
     private final StudentTakingModulePredicate predicate;
 
-    public ModuleCommand(StudentTakingModulePredicate predicate ) {
+    public ModuleCommand(StudentTakingModulePredicate predicate) {
         this.predicate = predicate;
     }
     @Override

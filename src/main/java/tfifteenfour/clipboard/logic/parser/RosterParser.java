@@ -6,7 +6,19 @@ import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_UNKNOWN_COMMA
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tfifteenfour.clipboard.logic.commands.*;
+import tfifteenfour.clipboard.logic.commands.AddCommand;
+import tfifteenfour.clipboard.logic.commands.ClearCommand;
+import tfifteenfour.clipboard.logic.commands.Command;
+import tfifteenfour.clipboard.logic.commands.DeleteCommand;
+import tfifteenfour.clipboard.logic.commands.EditCommand;
+import tfifteenfour.clipboard.logic.commands.ExitCommand;
+import tfifteenfour.clipboard.logic.commands.FindCommand;
+import tfifteenfour.clipboard.logic.commands.HelpCommand;
+import tfifteenfour.clipboard.logic.commands.ListCommand;
+import tfifteenfour.clipboard.logic.commands.ModuleCommand;
+import tfifteenfour.clipboard.logic.commands.RemarkCommand;
+import tfifteenfour.clipboard.logic.commands.UploadCommand;
+import tfifteenfour.clipboard.logic.commands.ViewCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**

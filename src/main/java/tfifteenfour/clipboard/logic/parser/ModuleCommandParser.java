@@ -1,8 +1,6 @@
-
 package tfifteenfour.clipboard.logic.parser;
 
 import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 
 import tfifteenfour.clipboard.logic.commands.ModuleCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
@@ -28,6 +26,5 @@ public class ModuleCommandParser implements Parser<ModuleCommand> {
         String moduleKeywords = trimmedArgs;
         return new ModuleCommand(new StudentTakingModulePredicate(moduleKeywords));
     }
-
 
 }
