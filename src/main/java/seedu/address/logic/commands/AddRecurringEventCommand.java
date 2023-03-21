@@ -9,11 +9,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.IsolatedEvent;
-import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.event.RecurringEventList;
-import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.person.Person;
 
 /**
@@ -69,13 +66,7 @@ public class AddRecurringEventCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_EVENT_CLASH, checkForEventClash));
         }
 
-        String checkConflictsInIsolatedList =
-                RecurringEventList.listConflictedEventWithIsolated(eventToAdd, personToEdit.getIsolatedEventList());
-
-
-        if (!checkConflictsInIsolatedList.equals("0")) {
-            throw new EventConflictException(checkConflictsInIsolatedList);
-        }
+        RecurringEventList.listConflictedEventWithIsolated(eventToAdd, personToEdit.getIsolatedEventList());
 
         model.addRecurringEvent(personToEdit, eventToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -83,23 +74,5 @@ public class AddRecurringEventCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) + " to "
                 + personToEdit.getName());
 
-    }
-
-    /**
-     * This function cross-check with the isolated event list to check for any conflicts
-     * @param recurringEvent is the event to be added
-     * @param person of the event that is to be added
-     * @return "0" if there are no conflicts and return the conflicted event string if there is a conflict
-     */
-    public String listConflictedEventWithIsolated(RecurringEvent recurringEvent, Person person) {
-
-        IsolatedEventList isolatedEventList = person.getIsolatedEventList();
-        int index = 1;
-        for (IsolatedEvent ie : isolatedEventList.getIsolatedEvents()) {
-            if (recurringEvent.occursBetween(ie.getStartDate(), ie.getEndDate())) {
-                return "Isolated Event List:\n" + index + " " + ie;
-            }
-        }
-        return "0";
     }
 }

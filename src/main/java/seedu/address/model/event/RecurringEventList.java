@@ -1,8 +1,6 @@
 package seedu.address.model.event;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
@@ -10,7 +8,6 @@ import java.util.TreeSet;
 
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
-import seedu.address.model.person.Person;
 
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
@@ -38,6 +35,11 @@ public class RecurringEventList {
         this.recurringEvents.add(newEvent);
     }
 
+    /**
+     * Check if the isolated event object is in the isolated event list.
+     * @param recurringEvent of which event to be added
+     * @return
+     */
     public RecurringEvent checkClashingRecurringEvent(RecurringEvent recurringEvent) {
         Iterator<RecurringEvent> it = recurringEvents.iterator();
         RecurringEvent currEvent;
@@ -58,7 +60,7 @@ public class RecurringEventList {
      * Check if a recurring event exist within the recurring event list
      * @param event to be checked if exist
      * @return true if there exist a same event and false if the event does exist
-     * in the event list
+     *      in the event list
      */
     public boolean contain(RecurringEvent event) {
         return recurringEvents.contains(event);
@@ -102,6 +104,52 @@ public class RecurringEventList {
         }
         recurringEvents.remove(originalEvent);
         recurringEvents.add(editedRecurringEvent);
+    }
+
+    /**
+     * This function cross-check with the isolated event list to check for any conflicts
+     * @param recurringEvent is the event to be added
+     * @param isolatedEventList is the event list to be checked with
+     * @throws EventConflictException if there is a conflicted event
+     */
+    public static void listConflictedEventWithIsolated(
+            RecurringEvent recurringEvent, IsolatedEventList isolatedEventList) throws EventConflictException {
+
+        int index = 1;
+        for (IsolatedEvent ie : isolatedEventList.getIsolatedEvents()) {
+            LocalDateTime startPeriod = ie.getStartDate();
+            LocalDateTime endPeriod = ie.getEndDate();
+
+            long count = recurringEvent.numberOfDaysBetween(startPeriod, endPeriod, recurringEvent.getDayOfWeek());
+
+            if (count == -1) {
+                continue;
+            }
+
+            LocalDateTime recurringEventDate = startPeriod.plusDays(count);
+
+            LocalDateTime dummyEventStartDate =
+                    LocalDateTime.of(recurringEventDate.toLocalDate(), recurringEvent.getStartTime());
+
+            LocalDateTime dummyEventEndDate =
+                    LocalDateTime.of(recurringEventDate.toLocalDate(), recurringEvent.getEndTime());
+
+            boolean isEventBefore = false;
+            boolean isEventAfter = false;
+
+            if (!dummyEventStartDate.isAfter(startPeriod) && !dummyEventEndDate.isAfter(startPeriod)) {
+                isEventBefore = true;
+            }
+
+            if (!dummyEventStartDate.isBefore(endPeriod) && !dummyEventEndDate.isBefore(endPeriod)) {
+                isEventAfter = true;
+            }
+
+            if (!(isEventBefore || isEventAfter)) {
+                throw new EventConflictException("Isolated Event List:\n" + index + " " + ie);
+            }
+
+        }
     }
 
     public void addAll(Set<RecurringEvent> recurringEvents) {

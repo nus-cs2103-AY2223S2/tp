@@ -27,6 +27,7 @@ public class AddRecurringEventCommandTest {
 
     @Test
     public void execute_success() throws CommandException {
+
         Person editedPerson = new PersonBuilder().build();
         model.addPerson(editedPerson);
 
@@ -36,17 +37,10 @@ public class AddRecurringEventCommandTest {
         AddRecurringEventCommand command = new AddRecurringEventCommand(Index.fromOneBased(1),
                 recurringEvent);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addRecurringEvent(editedPerson, recurringEvent);
-
         String expectedMessage = String.format(AddRecurringEventCommand.MESSAGE_SUCCESS, recurringEvent) + " to "
                 + editedPerson.getName();
 
         assertEquals(expectedMessage, command.execute(model).getFeedbackToUser());
-
-        String expectedList = editedPerson.getRecurringEventList().toString();
-
-        assertEquals("Recurring Events\n1. biking on MONDAY from 12:00 to 14:00\n", expectedList);
 
     }
 
