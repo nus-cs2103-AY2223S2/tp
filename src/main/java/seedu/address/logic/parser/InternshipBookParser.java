@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddApplicationCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ApplicationCommand;
 import seedu.address.logic.commands.DeleteApplicationCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditApplicationCommand;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.FindApplicationCommand;
@@ -70,6 +71,9 @@ public class InternshipBookParser {
 
         case EditTaskCommand.COMMAND_WORD:
             return new EditTaskCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

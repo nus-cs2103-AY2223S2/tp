@@ -45,7 +45,7 @@ public class AddTaskCommand extends ApplicationCommand {
         requireNonNull(editApplicationDescriptor);
 
         this.targetIndex = targetIndex;
-        this.editApplicationDescriptor = editApplicationDescriptor;
+        this.editApplicationDescriptor = new EditApplicationDescriptor(editApplicationDescriptor);
     }
 
     @Override

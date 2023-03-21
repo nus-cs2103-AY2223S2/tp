@@ -120,6 +120,14 @@ public class EditApplicationCommand extends ApplicationCommand {
                 appToEdit.getStatus(), updatedTask);
     }
 
+    /**
+     * Creates and returns an {@code Application} with no task.
+     */
+    protected static Application createEditedApplicationWithoutTask(Application appToEdit) {
+        return new Application(appToEdit.getRole(), appToEdit.getCompanyName(), appToEdit.getCompanyEmail(),
+                appToEdit.getStatus(), null);
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

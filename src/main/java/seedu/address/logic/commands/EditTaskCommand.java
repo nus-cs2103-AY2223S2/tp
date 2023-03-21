@@ -48,7 +48,7 @@ public class EditTaskCommand extends ApplicationCommand {
         requireNonNull(editTaskDescriptor);
 
         this.targetIndex = targetIndex;
-        this.editTaskDescriptor = editTaskDescriptor;
+        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
     @Override
@@ -66,7 +66,6 @@ public class EditTaskCommand extends ApplicationCommand {
         }
 
         Application editedApplication = createEditedApplication(applicationToEditTask, editTaskDescriptor);
-
         model.setApplication(applicationToEditTask, editedApplication);
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplication.getTask()));
