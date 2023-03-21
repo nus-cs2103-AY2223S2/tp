@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import codoc.model.Codoc;
 import codoc.model.ReadOnlyCodoc;
+import codoc.model.course.Course;
 import codoc.model.module.Module;
-import codoc.model.person.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;

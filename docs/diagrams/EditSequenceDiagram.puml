@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CodocParser" as CodocParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit c/2 s+/python")
+activate LogicManager
+
+LogicManager -> CodocParser : parseCommand("edit c/2 s+/python")
+activate CodocParser
+
+create EditCommandParser
+CodocParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> CodocParser
+deactivate EditCommandParser
+
+CodocParser -> EditCommandParser : parse("c/2 s+/python")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : d
+deactivate EditCommand
+
+EditCommandParser --> CodocParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> CodocParser
+destroy EditCommandParser
+
+CodocParser --> LogicManager : d
+deactivate CodocParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : getProtagonist()
+activate Model
+
+Model --> EditCommand : personToEdit
+deactivate Model
+
+EditCommand -> EditCommand : createEditedPerson(personToEdit, editPersonDescriptor)
+activate EditCommand
+deactivate EditCommand
+
+EditCommand -> Model : setPerson(personToEdit, editedPerson)"
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> Model : setProtagonist(editedPerson)"
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

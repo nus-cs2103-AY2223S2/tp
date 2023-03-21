@@ -19,15 +19,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import codoc.commons.util.CollectionUtil;
 import codoc.logic.commands.exceptions.CommandException;
 import codoc.model.Model;
+import codoc.model.course.Course;
 import codoc.model.module.Module;
-import codoc.model.person.Course;
 import codoc.model.person.Email;
 import codoc.model.person.Github;
 import codoc.model.person.Linkedin;
@@ -95,7 +94,6 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
         Person personToEdit = model.getProtagonist();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);

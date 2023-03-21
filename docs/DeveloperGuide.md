@@ -16,7 +16,8 @@ title: Developer Guide
   - [Storage Component](#storage-component)
   - [Common Classes](#common-classes)
 - [Implementation](#implementation)
-  - [Find Contacts](#find-feature)
+  - [Person Class](#person-class)
+  - [Edit Command](#edit-command)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-%EF%B8%8F)
@@ -378,7 +379,28 @@ Each `Person` in CoDoc is implemented in the following way:
 
 All `Person` have a `Name`, `Email`, `Course` and `Year`.
 
-`Person`s can have a `Github` and `LinkedIn` URL added to their profile, and as many `Skills` and `Modules` as desired.
+`Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
+
+<div style="page-break-after: always;"></div>
+
+[Scroll back to top](#table-of-contents)
+
+### **Course and CourseList Class**
+Each `Course` in CoDoc is implemented in the following way:
+
+![Course Class Diagram](images/CourseClassDiagram.png)
+
+All `Course` hava a `String` representing the name of the course.
+
+#### Design Considerations
+
+The `Course` constructor accepts a `String` input that represents the index of the course name 
+residing in `COURSE_LIST` found in the `CourseList.java`. 
+
+Instead of parsing the name of the course directly into
+the `Course` constructor, we wanted to standardize the names of courses without allowing users to
+input their own course names. This prevents 1 course from having multiple `String` representations
+in our `Storage` as well as the courses displayed in the application.
 
 <div style="page-break-after: always;"></div>
 
@@ -411,13 +433,13 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the person.
 
-![Edit Command Sequence Diagram](images/ModuleCommandSequenceDiagram.png)
+![Edit Command Sequence Diagram](images/EditSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
 Given below is an activity diagram to illustrate the behaviour of editing Person within `Logic`.
 
-![Edit Activity Diagram](images/ModuleActivityDiagram.png)
+![Edit Activity Diagram](images/EditActivityDiagram.png)
 
 #### Design Considerations
 

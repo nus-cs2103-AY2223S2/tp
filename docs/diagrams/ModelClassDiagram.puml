@@ -7,7 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyCodoc" as ReadOnlyCodoc
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
-Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nModel" as ModelInterface
 Class Codoc
 Class ModelManager
 Class UserPrefs
@@ -19,17 +19,19 @@ Class Email
 Class Name
 Class Github
 Class Skill
-
+Class Module
+Class Course
+Class Year
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> ModelInterface
 
 Codoc .up.|> ReadOnlyCodoc
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyCodoc
+ModelManager .up.|> ModelInterface
+ModelInterface .right.> ReadOnlyUserPrefs
+ModelInterface .left.> ReadOnlyCodoc
 ModelManager -left-> "1" Codoc
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
@@ -37,14 +39,20 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 Codoc *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
+Person *--> Course
+Person *--> Year
 Person *--> Github
 Person *--> Email
 Person *--> Linkedin
 Person *--> "*" Skill
+Person *--> "*" Module
 
-Name -[hidden]right-> Github
+Name -[hidden]right-> Email
+Email -[hidden]right-> Course
+Course -[hidden]right-> Year
+Year -[hidden]right-> Github
 Github -[hidden]right-> Linkedin
-Linkedin -[hidden]right-> Email
+Linkedin -[hidden]right-> Skill
 
 ModelManager -->"~* filtered" Person
 @enduml

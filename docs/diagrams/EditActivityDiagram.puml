@@ -1,0 +1,54 @@
+@startuml
+start
+:User inputs Edit command;
+:CodocParser reads user input and recognises the edit command;
+:EditCommandParser reads the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([has arguments])
+    :create 2 person descriptors;
+    if () then ([prefix n/ is present])
+        :Update person's name;
+    else ([else])
+    endif
+    if () then ([prefix y/ is present])
+        :Update person's year of study;
+    else ([else])
+        endif
+    if () then ([prefix c/ is present])
+        :Update person's course;
+    else ([else])
+    endif
+    if () then ([prefix e/ is present])
+        :Update person's email;
+    else ([else])
+    endif
+    if () then ([prefix g/ is present])
+            :Update person's Github link;
+    else ([else])
+    endif
+    if () then ([prefix l/ is present])
+            :Update person's Linkedin link;
+    else ([else])
+    endif
+    if () then ([prefix g/ is present])
+            :Update person's Github link;
+    else ([else])
+    endif
+    :editSkills;
+    :editModules;
+    if () then ([originalPersonDescriptor not equals
+    editedPersonDescriptor])
+        :create edited person with the
+        editedPersonDescriptor and
+        update the existing person;
+    else ([else])
+        :Show person not edited error message;
+    endif
+else ([else])
+    :throw invalid command format error message;
+endif
+stop
+@enduml

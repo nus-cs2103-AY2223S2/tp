@@ -15,8 +15,8 @@ import java.util.Set;
 
 import codoc.logic.commands.AddCommand;
 import codoc.logic.commands.EditCommand.EditPersonDescriptor;
+import codoc.model.course.Course;
 import codoc.model.module.Module;
-import codoc.model.person.Course;
 import codoc.model.person.Person;
 import codoc.model.skill.Skill;
 
