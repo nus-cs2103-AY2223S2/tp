@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
 import java.util.*;
 
@@ -19,17 +19,18 @@ import seedu.recipe.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = "This is some !@% invalid description";
-    private static final Collection<String> INVALID_INGREDIENT = new HashSet<String>(Arrays.asList("&salt"));
-    private static final String INVALID_STEP = "Mix the cookie batter in the %^&, Do this next";
+    private static final String INVALID_INGREDIENT = "#clam";
+    private static final String INVALID_STEP = "step 1 & 2";
     private static final String INVALID_TITLE = "~~Mala Xiangguo~~";
-//    private static final String INVALID_TAG = "#friend";
+
 
     private static final String VALID_DESCRIPTION = "A yummy recipe for your stomach";
-    private static final String VALID_INGREDIENT = "salt, pepper";
-    private static final String VALID_STEP = "Mix the butter in the batter, then add sugar";
+    private static final String VALID_INGREDIENT1 = "salt";
+    private static final String VALID_INGREDIENT2 = "pepper";
+    private static final String VALID_STEP1 = "step 1";
+    private static final String VALID_STEP2 = "step 2";
     private static final String VALID_TITLE = "Gelato";
-//    private static final String VALID_TAG_1 = "friend";
-//    private static final String VALID_TAG_2 = "neighbour";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -41,16 +42,16 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_RECIPE, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_RECIPE, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -78,62 +79,48 @@ public class ParserUtilTest {
 
     @Test
     public void parseIngredient_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredients((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIngredientHelper((String) null));
     }
 
     @Test
     public void parseIngredient_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIngredients(INVALID_INGREDIENT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIngredientHelper(INVALID_INGREDIENT));
     }
 
     @Test
     public void parseIngredient_validValueWithoutWhitespace_returnsIngredients() throws Exception {
-        String[] tempIng = VALID_INGREDIENT.split(",");
-        ArrayList<Ingredient> actualIng = ParserUtil.parseIngredients(VALID_INGREDIENT);
-        for (int i = 0; i < tempIng.length; i++) {
-            Ingredient expectedIngredient = new Ingredient(tempIng[i]);
-            assertEquals(expectedIngredient, actualIng.get(i));
-        }
+        Ingredient expectedIngredient = new Ingredient(VALID_INGREDIENT1);
+        assertEquals(expectedIngredient, ParserUtil.parseIngredientHelper(VALID_INGREDIENT1));
     }
 
     @Test
     public void parseIngredient_validValueWithWhitespace_returnsTrimmedIngredient() throws Exception {
-        String[] tempIng = VALID_INGREDIENT.split(",");
-        ArrayList<Ingredient> actualIng = ParserUtil.parseIngredients(WHITESPACE+ VALID_INGREDIENT + WHITESPACE);
-        for (int i = 0; i < tempIng.length; i++) {
-            Ingredient expectedIngredient = new Ingredient(tempIng[i]);
-            assertEquals(expectedIngredient, actualIng.get(i));
-        }
+        String ingredientWithWhitespace = WHITESPACE + VALID_INGREDIENT1 + WHITESPACE;
+        Ingredient expectedIngredient = new Ingredient(ingredientWithWhitespace);
+        assertEquals(expectedIngredient, ParserUtil.parseIngredientHelper(ingredientWithWhitespace));
     }
 
     @Test
     public void parseSteps_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseSteps((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStepHelper((String) null));
     }
 
     @Test
     public void parseSteps_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseSteps(INVALID_STEP));
+        assertThrows(ParseException.class, () -> ParserUtil.parseStepHelper(INVALID_STEP));
     }
 
     @Test
     public void parseSteps_validValueWithoutWhitespace_returnsSteps() throws Exception {
-        String[] tempStep = VALID_STEP.split(",");
-        ArrayList<Step> actualStep = ParserUtil.parseSteps(VALID_STEP);
-        for (int i = 0; i < tempStep.length; i++) {
-            Step expectedStep = new Step(tempStep[i]);
-            assertEquals(expectedStep, actualStep.get(i));
-        }
+        Ingredient expectedStep = new Ingredient(VALID_STEP2);
+        assertEquals(expectedStep, ParserUtil.parseIngredientHelper(VALID_STEP2));
     }
 
     @Test
     public void parseSteps_validValueWithWhitespace_returnsTrimmedSteps() throws Exception {
-        String[] tempStep = VALID_STEP.split(",");
-        ArrayList<Step> actualStep = ParserUtil.parseSteps(WHITESPACE + VALID_STEP + WHITESPACE);
-        for (int i = 0; i < tempStep.length; i++) {
-            Step expectedStep = new Step(tempStep[i]);
-            assertEquals(expectedStep, actualStep.get(i));
-        }
+        String stepWithWhitespace = WHITESPACE + VALID_STEP1 + WHITESPACE;
+        Ingredient expectedStep = new Ingredient(stepWithWhitespace);
+        assertEquals(expectedStep, ParserUtil.parseIngredientHelper(stepWithWhitespace));
     }
 
     @Test
@@ -158,50 +145,4 @@ public class ParserUtilTest {
         Title expectedTitle = new Title(VALID_TITLE);
         assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
     }
-//
-//    @Test
-//    public void parseTag_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
-//    }
-//
-//    @Test
-//    public void parseTag_invalidValue_throwsParseException() {
-//        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
-//    }
-//
-//    @Test
-//    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-//        Tag expectedTag = new Tag(VALID_TAG_1);
-//        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
-//    }
-//
-//    @Test
-//    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-//        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-//        Tag expectedTag = new Tag(VALID_TAG_1);
-//        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
-//    }
-//
-//    @Test
-//    public void parseTags_null_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-//    }
-//
-//    @Test
-//    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-//        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-//    }
-//
-//    @Test
-//    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-//        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-//    }
-//
-//    @Test
-//    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-//        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-//        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-//
-//        assertEquals(expectedTagSet, actualTagSet);
-//    }
 }

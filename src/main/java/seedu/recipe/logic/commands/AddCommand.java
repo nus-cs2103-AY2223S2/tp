@@ -14,7 +14,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a skeleton recipe to recipe book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to recipe book. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE";
 
