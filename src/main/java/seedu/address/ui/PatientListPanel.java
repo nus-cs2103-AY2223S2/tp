@@ -42,7 +42,7 @@ public class PatientListPanel extends UiPart<Region> {
             return generatedCell;
         });
         setSelectedPatient(patientList);
-        showSelectedPatientInfo(enlargedPatientInfoCard, infoCardDisplayController);
+        showSelectedPatientInfo(enlargedPatientInfoCard);
     }
 
     /**
@@ -73,8 +73,7 @@ public class PatientListPanel extends UiPart<Region> {
      * @param enlargedPatientInfoCard the UI part displaying the information of {@code Patient} selected
      */
     private void showSelectedPatientInfo(
-            EnlargedPatientInfoCard enlargedPatientInfoCard,
-            EnlargedInfoCardDisplayController infoCardDisplayController) {
+            EnlargedPatientInfoCard enlargedPatientInfoCard) {
         ChangeListener<Patient> changeListener = (observable, oldValue, newValue) -> {
             selectedPatient = observable.getValue();
             enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(selectedPatient));

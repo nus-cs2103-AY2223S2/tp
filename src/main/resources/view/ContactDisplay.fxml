@@ -10,16 +10,22 @@
         <Insets top="5" right="10" bottom="5" left="10" />
     </padding>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="250" />
+        <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="225" />
     </columnConstraints>
     <VBox fx:id="doctorList" VBox.vgrow="ALWAYS"
           GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="1">
         <StackPane fx:id="doctorListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
     </VBox>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="225" prefWidth="225" />
+    </columnConstraints>
     <VBox fx:id="patientList" VBox.vgrow="ALWAYS"
           GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="1">
         <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
     </VBox>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="300" prefWidth="300" />
+    </columnConstraints>
     <VBox fx:id="enlargedContactPane" VBox.vgrow="ALWAYS"
           GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="1">
         <StackPane fx:id="enlargedPersonInfoCardPlaceholder" VBox.vgrow="ALWAYS" />
