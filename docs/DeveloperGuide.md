@@ -187,7 +187,7 @@ The **Listing Patients** mechanism is facilated by `VMS`. It will list all the P
 
 #### Usage
 
-The activity diagram below illustrates the workflow of patient `ListCommand` behaves when executed by a user when they enter `patient list` as a command
+The activity diagram below illustrates the workflow of patient `ListCommand` behaves when executed by a user when they enter `patient list` as a command.
 
 <img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
 
@@ -207,6 +207,10 @@ The **Finding a Patient** mechanism is facilated by `VMS`. It will find specific
 
 #### Usage
 
+The activity diagram below illustrates the workflow of patient `FindCommand` behaves when executed by a user when they enter `patient find --n` as a command.
+
+<!-- TODO add sample commands -->
+
 <img src="images/patient/FindPatientActivityDiagram.png" width="550" />
 
 Given below is an sequence diagram that illustrates the **Finding a Patient** mechanism behaves at every step.
@@ -219,7 +223,11 @@ Given below is an sequence diagram that illustrates the **Finding a Patient** me
 
 ### Editing a Patient
 
+The **Editing a Patient** mechanism is facilated by `VMS`. It will read and modify a target Patient object from `PatientManger` inside `VMS` object.
+
 #### Usage
+
+The activity diagram below illustrates the workflow of patient `ListCommand` behaves when executed by a user when they enter `patient list` as a command.
 
 <img src="images/patient/EditPatientActivityDiagram.png" width="550" />
 <img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
