@@ -8,10 +8,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class EventName {
 
+    public static final int CHAR_LIMIT = 50;
     public static final String MESSAGE_CONSTRAINTS =
             "Event names should only contain alphanumeric and punctuations. "
             + "It should not be blank and contain punctuations only. "
-            + "It should only begin with alphanumeric characters. ";
+            + "It should only begin with alphanumeric characters. "
+            + "It should not exceed " + CHAR_LIMIT + " characters. ";
 
     /*
      * The first character of the event name must not be a whitespace or any other non-alphanumeric characters
@@ -35,7 +37,7 @@ public class EventName {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() <= CHAR_LIMIT;
     }
 
 
