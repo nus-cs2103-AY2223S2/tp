@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
@@ -16,7 +17,7 @@ import seedu.address.model.person.Person;
 public class SummaryCommand extends Command {
     public static final String COMMAND_WORD = "summary";
     public static final String MESSAGE_SUCCESS_FORMAT =
-            "Plotted summary of time to interview for applicants\n%.2f";
+            "Plotted summary of time to interview for applicants\n%.2f days";
 
     /**
      * Returns the average 'time to interview' for applicants in HMHero.
@@ -40,7 +41,8 @@ public class SummaryCommand extends Command {
         int numApplicantsWithInterview = 0;
         for (Person applicant : applicants) {
             if (applicant.getInterviewDateTime().isEmpty() != true) {
-                Duration duration = Duration.between(applicant.getApplicationDateTime(),
+                LocalDateTime interviewDateTime = applicant.getInterviewDateTime().get().getDateTime();
+                Duration duration = Duration.between(interviewDateTime,
                         applicant.getApplicationDateTime());
                 averageTimeToInterview += duration.toDays();
                 numApplicantsWithInterview++;
