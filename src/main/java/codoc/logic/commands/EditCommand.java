@@ -81,30 +81,38 @@ public class EditCommand extends Command {
     public static final String MESSAGE_UNEQUAL_OLD_NEW_MODS =
             "The number of old modules not equal to number of new modules";
     private final EditPersonDescriptor editPersonDescriptor;
-    private final boolean isSkillRemoved;
-    private final boolean isModuleRemoved;
 
     /**
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(EditPersonDescriptor editPersonDescriptor, boolean isSkillRemoved, boolean isModuleRemoved) {
+    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.isSkillRemoved = isSkillRemoved;
-        this.isModuleRemoved = isModuleRemoved;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         Person personToEdit = model.getProtagonist();
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (isSkillRemoved) {
-            checkSkillRemoved(personToEdit, editedPerson);
+        if (editPersonDescriptor.getSkillsRemoved().isPresent()) {
+            Set<Skill> original = personToEdit.getSkills();
+            Set<Skill> edited = editPersonDescriptor.getSkillsRemoved().get();
+            if (!original.containsAll(edited)) { // Can be improved by specifying which skill is not present
+                throw new CommandException(MESSAGE_SKILL_DOES_NOT_EXIST);
+            }
         }
+
+        if (editPersonDescriptor.getModulesRemoved().isPresent()) {
+            Set<Module> original = personToEdit.getModules();
+            Set<Module> edited = editPersonDescriptor.getModulesRemoved().get();
+            if (!original.containsAll(edited)) { // Can be improved by specifying which module is not present
+                throw new CommandException(MESSAGE_MOD_DOES_NOT_EXIST);
+            }
+        }
+
+        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (personToEdit.equals(editedPerson)
                 || (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson))) {
@@ -114,6 +122,7 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.setProtagonist(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -130,8 +139,16 @@ public class EditCommand extends Command {
         Course updatedCourse = editPersonDescriptor.getCourse().orElse(personToEdit.getCourse());
         Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         Linkedin updatedLinkedin = editPersonDescriptor.getLinkedin().orElse(personToEdit.getLinkedin());
-        Set<Skill> updatedSkills = editPersonDescriptor.getSkills().orElse(personToEdit.getSkills());
-        Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
+        Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved().orElse(new HashSet<>());
+        Set<Skill> addedSkills = editPersonDescriptor.getSkillsAdded().orElse(new HashSet<>());
+        Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills());
+        updatedSkills.removeAll(removedSkills); // Remove takes priority
+        updatedSkills.addAll(addedSkills);
+        Set<Module> removedModules = editPersonDescriptor.getModulesRemoved().orElse(new HashSet<>());
+        Set<Module> addedModules = editPersonDescriptor.getModulesAdded().orElse(new HashSet<>());
+        Set<Module> updatedModules = new HashSet<>(personToEdit.getModules());
+        updatedModules.removeAll(removedModules); // Remove takes priority
+        updatedModules.addAll(addedModules);
 
         return new Person(
                 updatedName,
@@ -142,16 +159,7 @@ public class EditCommand extends Command {
                 updatedLinkedin,
                 updatedSkills,
                 updatedModules
-
         );
-    }
-
-    private void checkSkillRemoved(Person personToEdit, Person editedPerson) throws CommandException {
-        Set<Skill> original = personToEdit.getSkills();
-        Set<Skill> edited = personToEdit.getSkills();
-        if (edited.containsAll(original)) {
-            throw new CommandException()
-        }
     }
 
     @Override
@@ -225,7 +233,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, github, email, linkedin, skills, modules);
+            return CollectionUtil.isAnyNonNull(name, github, email, linkedin, skillsAdded, skillsRemoved,
+                    modulesAdded, modulesRemoved);
         }
 
         public void setName(Name name) {
@@ -301,182 +310,201 @@ public class EditCommand extends Command {
         public void setModulesAdded(Set<Module> modulesAdded) {
             this.modulesAdded = (modulesAdded != null) ? new HashSet<>(modulesAdded) : null;
         }
+//
+//        /**
+//         * Adds {@code skills} to this object's {@code skills}.
+//         * A defensive copy of {@code skills} is used internally.
+//         */
+//        public void addSkills(Set<Skill> skills) {
+//            Set<Skill> set = new HashSet<>();
+//            if (skills != null && this.skills != null) {
+//                set.addAll(this.skills);
+//                set.addAll(skills);
+//                this.skills = set;
+//            } else {
+//                this.skills = skills;
+//            }
+//        }
+//
+//        /**
+//         * Deletes {@code skills} from this object's {@code skills}.
+//         * A defensive copy of {@code skills} is used internally.
+//         */
+//        public void deleteSkills(Set<Skill> skills) {
+//            if (skills != null && skills.size() == 0) {
+//                this.skills = skills;
+//            } else if (skills != null && this.skills != null) {
+//                if (hasSkills(skills)) {
+//                    deleteSkillsHelper(skills);
+//                } else {
+//                    this.skills = null;
+//                }
+//            }
+//        }
+//
+//        private void deleteSkillsHelper(Set<Skill> skills) {
+//            Set<Skill> result = new HashSet<>();
+//            for (Skill s : this.skills) {
+//                if (!skills.contains(s)) {
+//                    result.add(s);
+//                }
+//            }
+//            this.skills = result;
+//        }
+//
+//        /**
+//         * Updates {@code skills} from this object's {@code skills}.
+//         * A defensive copy of {@code skills} is used internally.
+//         */
+//        public void updateSkills(Set<Skill> oldSkills, Set<Skill> newSkills) {
+//            if (oldSkills != null && newSkills != null && this.skills != null) {
+//                if (hasSkills(oldSkills)) {
+//                    updateSkillsHelper(oldSkills, newSkills);
+//                } else {
+//                    this.skills = null;
+//                }
+//            }
+//        }
+//
+//        private void updateSkillsHelper(Set<Skill> oldSkills, Set<Skill> newSkills) {
+//            Set<Skill> result = new HashSet<>();
+//            for (Skill s : this.skills) {
+//                if (oldSkills.contains(s)) {
+//                    Skill newSkill = newSkills.iterator().next();
+//                    result.add(newSkill);
+//                    newSkills.remove(newSkill);
+//                } else {
+//                    result.add(s);
+//                }
+//            }
+//            this.skills = result;
+//        }
+//
+//        private boolean hasSkills(Set<Skill> oldSkills) {
+//            for (Skill s : oldSkills) {
+//                if (!this.skills.contains(s)) {
+//                    return false;
+//                }
+//            }
+//            return true;
+//        }
+//
+//        /**
+//         * Adds {@code modules} to this object's {@code modules}.
+//         * A defensive copy of {@code modules} is used internally.
+//         */
+//        public void addMods(Set<Module> modules) {
+//            Set<Module> set = new HashSet<>();
+//            if (modules != null && this.modules != null) {
+//                set.addAll(this.modules);
+//                set.addAll(modules);
+//                System.out.println(set);
+//                this.modules = set;
+//            } else {
+//                this.modules = modules;
+//            }
+//        }
+//        //edit m+/AY2223S1 CS2108
+//
+//        /**
+//         * Deletes {@code modules} from this object's {@code modules}.
+//         * A defensive copy of {@code modules} is used internally.
+//         */
+//        public void deleteMods(Set<Module> modules) {
+//            if (modules != null && modules.size() == 0) {
+//                this.modules = modules;
+//            } else if (modules != null && this.modules != null) {
+//                if (hasMods(modules)) {
+//                    deleteModsHelper(modules);
+//                } else {
+//                    this.modules = null;
+//                }
+//            }
+//        }
+//
+//        private void deleteModsHelper(Set<Module> modules) {
+//            Set<Module> result = new HashSet<>();
+//            for (Module m : this.modules) {
+//                if (!modules.contains(m)) {
+//                    result.add(m);
+//                }
+//            }
+//            this.modules = result;
+//        }
+//
+//        /**
+//         * Updates {@code modules} from this object's {@code modules}.
+//         * A defensive copy of {@code modules} is used internally.
+//         */
+//        public void updateMods(Set<Module> oldMods, Set<Module> newMods) {
+//            if (oldMods != null && newMods != null && this.modules != null) {
+//                if (hasMods(oldMods)) {
+//                    updateModsHelper(oldMods, newMods);
+//                } else {
+//                    this.modules = null;
+//                }
+//            }
+//        }
+//
+//        private void updateModsHelper(Set<Module> oldMods, Set<Module> newMods) {
+//            Set<Module> result = new HashSet<>();
+//            for (Module m : this.modules) {
+//                if (oldMods.contains(m)) {
+//                    Module newMod = newMods.iterator().next();
+//                    result.add(newMod);
+//                    newMods.remove(newMod);
+//                } else {
+//                    result.add(m);
+//                }
+//            }
+//            this.modules = result;
+//        }
+//
+//        private boolean hasMods(Set<Module> oldMods) {
+//            for (Module m : oldMods) {
+//                if (!this.modules.contains(m)) {
+//                    return false;
+//                }
+//            }
+//            return true;
+//        }
 
         /**
-         * Adds {@code skills} to this object's {@code skills}.
-         * A defensive copy of {@code skills} is used internally.
+         * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code skillsAdded} is null.
          */
-        public void addSkills(Set<Skill> skills) {
-            Set<Skill> set = new HashSet<>();
-            if (skills != null && this.skills != null) {
-                set.addAll(this.skills);
-                set.addAll(skills);
-                this.skills = set;
-            } else {
-                this.skills = skills;
-            }
-        }
-
-        /**
-         * Deletes {@code skills} from this object's {@code skills}.
-         * A defensive copy of {@code skills} is used internally.
-         */
-        public void deleteSkills(Set<Skill> skills) {
-            if (skills != null && skills.size() == 0) {
-                this.skills = skills;
-            } else if (skills != null && this.skills != null) {
-                if (hasSkills(skills)) {
-                    deleteSkillsHelper(skills);
-                } else {
-                    this.skills = null;
-                }
-            }
-        }
-
-        private void deleteSkillsHelper(Set<Skill> skills) {
-            Set<Skill> result = new HashSet<>();
-            for (Skill s : this.skills) {
-                if (!skills.contains(s)) {
-                    result.add(s);
-                }
-            }
-            this.skills = result;
-        }
-
-        /**
-         * Updates {@code skills} from this object's {@code skills}.
-         * A defensive copy of {@code skills} is used internally.
-         */
-        public void updateSkills(Set<Skill> oldSkills, Set<Skill> newSkills) {
-            if (oldSkills != null && newSkills != null && this.skills != null) {
-                if (hasSkills(oldSkills)) {
-                    updateSkillsHelper(oldSkills, newSkills);
-                } else {
-                    this.skills = null;
-                }
-            }
-        }
-
-        private void updateSkillsHelper(Set<Skill> oldSkills, Set<Skill> newSkills) {
-            Set<Skill> result = new HashSet<>();
-            for (Skill s : this.skills) {
-                if (oldSkills.contains(s)) {
-                    Skill newSkill = newSkills.iterator().next();
-                    result.add(newSkill);
-                    newSkills.remove(newSkill);
-                } else {
-                    result.add(s);
-                }
-            }
-            this.skills = result;
-        }
-
-        private boolean hasSkills(Set<Skill> oldSkills) {
-            for (Skill s : oldSkills) {
-                if (!this.skills.contains(s)) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /**
-         * Adds {@code modules} to this object's {@code modules}.
-         * A defensive copy of {@code modules} is used internally.
-         */
-        public void addMods(Set<Module> modules) {
-            Set<Module> set = new HashSet<>();
-            if (modules != null && this.modules != null) {
-                set.addAll(this.modules);
-                set.addAll(modules);
-                System.out.println(set);
-                this.modules = set;
-            } else {
-                this.modules = modules;
-            }
-        }
-        //edit m+/AY2223S1 CS2108
-
-        /**
-         * Deletes {@code modules} from this object's {@code modules}.
-         * A defensive copy of {@code modules} is used internally.
-         */
-        public void deleteMods(Set<Module> modules) {
-            if (modules != null && modules.size() == 0) {
-                this.modules = modules;
-            } else if (modules != null && this.modules != null) {
-                if (hasMods(modules)) {
-                    deleteModsHelper(modules);
-                } else {
-                    this.modules = null;
-                }
-            }
-        }
-
-        private void deleteModsHelper(Set<Module> modules) {
-            Set<Module> result = new HashSet<>();
-            for (Module m : this.modules) {
-                if (!modules.contains(m)) {
-                    result.add(m);
-                }
-            }
-            this.modules = result;
-        }
-
-        /**
-         * Updates {@code modules} from this object's {@code modules}.
-         * A defensive copy of {@code modules} is used internally.
-         */
-        public void updateMods(Set<Module> oldMods, Set<Module> newMods) {
-            if (oldMods != null && newMods != null && this.modules != null) {
-                if (hasMods(oldMods)) {
-                    updateModsHelper(oldMods, newMods);
-                } else {
-                    this.modules = null;
-                }
-            }
-        }
-
-        private void updateModsHelper(Set<Module> oldMods, Set<Module> newMods) {
-            Set<Module> result = new HashSet<>();
-            for (Module m : this.modules) {
-                if (oldMods.contains(m)) {
-                    Module newMod = newMods.iterator().next();
-                    result.add(newMod);
-                    newMods.remove(newMod);
-                } else {
-                    result.add(m);
-                }
-            }
-            this.modules = result;
-        }
-
-        private boolean hasMods(Set<Module> oldMods) {
-            for (Module m : oldMods) {
-                if (!this.modules.contains(m)) {
-                    return false;
-                }
-            }
-            return true;
+        public Optional<Set<Skill>> getSkillsAdded() {
+            return (skillsAdded != null) ? Optional.of(Collections.unmodifiableSet(skillsAdded)) : Optional.empty();
         }
 
         /**
          * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code skills} is null.
+         * Returns {@code Optional#empty()} if {@code skillsRemoved} is null.
          */
-        public Optional<Set<Skill>> getSkills() {
-            return (skills != null) ? Optional.of(Collections.unmodifiableSet(skills)) : Optional.empty();
+        public Optional<Set<Skill>> getSkillsRemoved() {
+            return (skillsRemoved != null) ? Optional.of(Collections.unmodifiableSet(skillsRemoved)) : Optional.empty();
         }
 
         /**
-         * Returns an unmodifiable module list, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable module set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code modules} is null.
+         * Returns {@code Optional#empty()} if {@code modulesAdded} is null.
          */
-        public Optional<Set<Module>> getModules() {
-            return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
+        public Optional<Set<Module>> getModulesAdded() {
+            return (modulesAdded != null) ? Optional.of(Collections.unmodifiableSet(modulesAdded)) : Optional.empty();
         }
+
+        /**
+         * Returns an unmodifiable module set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code modulesRemoved} is null.
+         */
+        public Optional<Set<Module>> getModulesRemoved() {
+            return (modulesRemoved != null) ? Optional.of(Collections.unmodifiableSet(modulesRemoved)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -498,8 +526,10 @@ public class EditCommand extends Command {
                     && getCourse().equals(e.getCourse())
                     && getYear().equals(e.getYear())
                     && getLinkedin().equals(e.getLinkedin())
-                    && getSkills().equals(e.getSkills())
-                    && getModules().equals(e.getModules());
+                    && getSkillsAdded().equals(e.getSkillsAdded())
+                    && getSkillsRemoved().equals(e.getSkillsRemoved())
+                    && getModulesAdded().equals(e.getModulesAdded())
+                    && getModulesRemoved().equals(e.getModulesRemoved());
         }
     }
 }
