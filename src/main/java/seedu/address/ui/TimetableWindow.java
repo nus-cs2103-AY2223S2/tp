@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -11,6 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -23,7 +25,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
-import seedu.address.ui.jobs.DeliveryJobListPanel;
+import seedu.address.ui.jobs.DayJobListPanel;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
@@ -192,13 +194,13 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         logic.setWeekDeliveryJobList(focusDate);
         Map<LocalDate, DeliveryList> weekJobList = logic.getWeekDeliveryJobList();
 
-        /*addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
+        addJobSlotsToPanel(deliveryJobListPanelPlaceholder1, logic.getDayofWeekJob(1));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder2, logic.getDayofWeekJob(2));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder3, logic.getDayofWeekJob(3));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder4, logic.getDayofWeekJob(4));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder5, logic.getDayofWeekJob(5));
         addJobSlotsToPanel(deliveryJobListPanelPlaceholder6, logic.getDayofWeekJob(6));
-        addJobSlotsToPanel(deliveryJobListPanelPlaceholder7, logic.getDayofWeekJob(7));*/
+        addJobSlotsToPanel(deliveryJobListPanelPlaceholder7, logic.getDayofWeekJob(7));
 
     }
 
@@ -223,18 +225,27 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
         day7.setText(String.valueOf(day7Text));
 
     }
-    private void addJobSlotsToPanel(StackPane panelPlaceholder, ArrayList<ArrayList<DeliveryJob>> jobListInDay) {
-        for (int i = 0; i < jobListInDay.size(); i++) {
-            ObservableList<DeliveryJob> jobListInSlot = FXCollections.observableList(jobListInDay.get(i));
-            StackPane deliveryJobListPanelPlaceholder = new StackPane();
+    private void addJobSlotsToPanel(StackPane panelPlaceholder, DeliveryList jobListInDay) {
+        if (jobListInDay != null) {
+            for (int i = 0; i < jobListInDay.size(); i++) {
+                ObservableList<DeliveryJob> jobListInSlot = FXCollections.observableList(jobListInDay.get(i));
+                StackPane deliveryJobListPanelPlaceholder = new StackPane();
 
-            DeliveryJobListPanel deliveryJobListPanel = new DeliveryJobListPanel(jobListInSlot);
+                DayJobListPanel deliveryJobListPanel = new DayJobListPanel(jobListInSlot);
 
-            Text slotNo = new Text();
-            slotNo.setText(String.format("Slot %d", i + 1));
-            deliveryJobListPanelPlaceholder.getChildren().add(slotNo);
-            deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-            panelPlaceholder.getChildren().add(deliveryJobListPanelPlaceholder);
+                /*Text slotNo = new Text();
+                slotNo.setText(String.format("Slot %d", i + 1));*/
+                TitledPane slotPane = new TitledPane();
+                slotPane.setText(String.format("Slot %d", i + 1));
+                ListView jobDayList = new ListView();
+                AnchorPane slotPaneContainer = new AnchorPane();
+                slotPaneContainer.getChildren().add(deliveryJobListPanel.getRoot());
+                slotPane.setContent(slotPaneContainer);
+
+                deliveryJobListPanelPlaceholder.getChildren().add(slotPane);
+                panelPlaceholder.getChildren().add(deliveryJobListPanelPlaceholder);
+            }
+
         }
     }
 

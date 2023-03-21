@@ -35,4 +35,9 @@ public class DeliveryList {
         return jobList.get(index);
     }
 
+    @Override
+    public String toString() {
+        return jobList.toString();
+    }
+
 }

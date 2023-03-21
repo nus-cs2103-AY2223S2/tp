@@ -1,6 +1,7 @@
 package seedu.address.model.jobs.sorters;
 
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 import seedu.address.model.jobs.DeliveryJob;
 
@@ -17,6 +18,16 @@ public class SortbyTime implements Comparator<DeliveryJob> {
      * @return difference between jobs' timing
      */
     public int compare(DeliveryJob a, DeliveryJob b) {
-        return b.getDeliverDate().compareTo(a.getDeliverDate());
+        try {
+            return a.getDate().compareTo(b.getDate());
+        } catch (NoSuchElementException e) {
+            if (b.isScheduled()) {
+                return -1;
+            } else if (a.isScheduled()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
     }
 }

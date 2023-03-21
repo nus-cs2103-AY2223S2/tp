@@ -3,6 +3,8 @@ package seedu.address.model.jobs;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+
 /**
  * Represents a job's job date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
@@ -37,6 +39,13 @@ public class DeliveryDate {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns date in LocalDate format
+     */
+    public LocalDate getDate() {
+        return LocalDate.parse(this.date);
     }
 
     @Override
