@@ -72,7 +72,6 @@ public class ParserUtil {
         if (!Time.isValidTime(trimmedTime)) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        System.out.println("i am here");
         return new Time(trimmedTime);
     }
 }

@@ -4,9 +4,7 @@ import ezschedule.model.Scheduler;
 import ezschedule.model.event.Event;
 
 /**
- * A utility class to help with building Addressbook objects.
- * Example usage: <br>
- *     {@code Scheduler ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ * A utility class to help with building Scheduler objects.
  */
 public class SchedulerBuilder {
 
