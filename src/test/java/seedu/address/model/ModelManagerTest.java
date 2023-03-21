@@ -130,6 +130,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredContactList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredContactList().remove(0));
+    }
+
+    @Test
     public void linkContact() {
         modelManager.addContact(AMY);
         modelManager.addEvent(ALICE);

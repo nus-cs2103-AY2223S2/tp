@@ -118,14 +118,15 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getFilteredContactList();
+
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
-
-    void updateFilteredContactList(Predicate<Contact> contact);
 
     void linkContact(Event event, Event linkedEvent);
 }
