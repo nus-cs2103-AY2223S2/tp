@@ -61,11 +61,17 @@ public class NonEmptyString {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null) {
             return false;
         }
-        NonEmptyString that = (NonEmptyString) o;
-        return value.equals(that.value);
+        // We allow comparision against regular strings too, for convenience.
+        if (o instanceof String) {
+            return value.equals(o);
+        }
+        if (o instanceof NonEmptyString) {
+            return value.equals(((NonEmptyString) o).value);
+        }
+        return false;
     }
 
     @Override
