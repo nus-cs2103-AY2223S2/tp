@@ -17,15 +17,18 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should enter review mode */
+    /** The application should start a review **/
     private final boolean startReview;
+
+    /** The application should end a review **/
     private final boolean endReview;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean startReview, boolean endReview) {
+    public CommandResult(
+            String feedbackToUser, boolean showHelp, boolean exit, boolean startReview, boolean endReview) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -60,7 +63,6 @@ public class CommandResult {
     public boolean isEndReview() {
         return endReview;
     }
-
 
     @Override
     public boolean equals(Object other) {
