@@ -30,7 +30,7 @@ public class EditDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptorBuilder} with fields containing {@code person}'s details
+     * Returns an {@code EditDescriptorBuilder} with fields containing {@code person}'s details
      */
     private EditDescriptorBuilder(Person person) {
         descriptor = new EditDescriptor();
@@ -45,11 +45,17 @@ public class EditDescriptorBuilder {
         descriptor.setTags(person.getTags());
     }
 
+    /**
+     * Returns an {@code EditDescriptorBuilder} with fields containing {@code elderly}'s details
+     */
     public EditDescriptorBuilder(Elderly elderly) {
         this((Person) elderly);
         descriptor.setRiskLevel(elderly.getRiskLevel());
     }
 
+    /**
+     * Returns an {@code EditDescriptorBuilder} with fields containing {@code volunteer}'s details
+     */
     public EditDescriptorBuilder(Volunteer volunteer) {
         this((Person) volunteer);
         descriptor.setMedicalTags(volunteer.getMedicalTags());

@@ -25,8 +25,8 @@ import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Volunteer;
 import seedu.address.testutil.EditDescriptorBuilder;
-import seedu.address.testutil.VolunteerBuilder;
 import seedu.address.testutil.ModelManagerBuilder;
+import seedu.address.testutil.VolunteerBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditVolunteerCommand.
