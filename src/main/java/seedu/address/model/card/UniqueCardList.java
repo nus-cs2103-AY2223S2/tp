@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.card.exceptions.CardNotFoundException;
 import seedu.address.model.card.exceptions.DuplicateCardException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of cards that enforces uniqueness between its elements and does not allow nulls.
@@ -66,6 +67,13 @@ public class UniqueCardList implements Iterable<Card> {
         }
 
         internalList.set(index, editedCard);
+    }
+
+    public void tagCard(Card target, Tag tag) {
+        int index = internalList.indexOf(target);
+        target.addTag(tag);
+        Card newCard = new Card(target.getQuestion(), target.getAnswer(), target.getTags(), target.getDeck().get());
+        internalList.set(index, newCard);
     }
 
     /**
