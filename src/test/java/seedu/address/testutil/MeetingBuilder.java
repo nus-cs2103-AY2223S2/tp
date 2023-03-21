@@ -19,7 +19,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_DATETIME = "01/01/2023 13:00";
     public static final String DEFAULT_LOCATION = "Plaza Singapura";
     public static final String DEFAULT_DESCRIPTION = "Celebrate Bob's birthday";
-    public static final Person DEFAULT_PERSON = new PersonBuilder().build();
+    public static final Person DEFAULT_PERSON = TypicalPersons.ALICE;
 
     private Title title;
     private DateTime dateTime;
