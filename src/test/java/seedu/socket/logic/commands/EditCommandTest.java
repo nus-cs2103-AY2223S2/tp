@@ -28,6 +28,7 @@ import seedu.socket.model.UserPrefs;
 import seedu.socket.model.person.Person;
 import seedu.socket.testutil.EditPersonDescriptorBuilder;
 import seedu.socket.testutil.PersonBuilder;
+import seedu.socket.testutil.TypicalProjects;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -35,6 +36,7 @@ import seedu.socket.testutil.PersonBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
+    private Model modelWithProjects = new ModelManager(TypicalProjects.getTypicalSocket(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -48,6 +50,20 @@ public class EditCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredListPersonInProject_success() {
+        Person editedPerson = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+
+        Model expectedModel = new ModelManager(new Socket(modelWithProjects.getSocket()), new UserPrefs());
+        expectedModel.setPerson(modelWithProjects.getFilteredPersonList().get(0), editedPerson);
+
+        assertCommandSuccess(editCommand, modelWithProjects, expectedMessage, expectedModel);
     }
 
     @Test
@@ -70,6 +86,29 @@ public class EditCommandTest {
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredListPersonInProject_success() {
+        Person firstPerson = modelWithProjects.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        PersonBuilder personInList = new PersonBuilder(firstPerson);
+        Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withLanguages(VALID_LANGUAGE_CPLUSPLUS).withTags(VALID_TAG_HUSBAND).build();
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withLanguages(VALID_LANGUAGE_CPLUSPLUS)
+                .withTags(VALID_TAG_HUSBAND).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+
+        Model expectedModel = new ModelManager(new Socket(modelWithProjects.getSocket()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, editedPerson);
+
+        System.out.println(expectedModel.getFilteredProjectList());
+
+        assertCommandSuccess(editCommand, modelWithProjects, expectedMessage, expectedModel);
     }
 
     @Test
