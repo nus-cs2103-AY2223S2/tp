@@ -4,14 +4,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.getTypicalTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -72,7 +71,7 @@ public class ListCommandTest {
         ModuleCode moduleCode = new ModuleCode(VALID_MODULE_CODE_2103);
         listCommand = new ListCommand(moduleCode);
         String expectedString = String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode);
-        assertThrows(CommandException.class, expectedString, () -> listCommand.execute(expectedModel));
+        assertCommandFailure(listCommand, expectedModel, expectedString);
     }
 
     @Test
@@ -80,6 +79,6 @@ public class ListCommandTest {
         LectureName lectureName = new LectureName(VALID_LECTURE_NAME_L1);
         String expectedString = String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, existingModuleCode);
         listCommand = new ListCommand(existingModuleCode, lectureName);
-        assertThrows(CommandException.class, expectedString, () -> listCommand.execute(expectedModel));
+        assertCommandFailure(listCommand, expectedModel, expectedString);
     }
 }
