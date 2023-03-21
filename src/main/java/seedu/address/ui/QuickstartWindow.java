@@ -34,7 +34,7 @@ public class QuickstartWindow extends UiPart<Stage> {
      * @param root Stage to use as the root of the HelpWindow.
      */
     public QuickstartWindow(Stage root) {
-        super(FXML, root);
+        super(FXML);
     }
 
 
