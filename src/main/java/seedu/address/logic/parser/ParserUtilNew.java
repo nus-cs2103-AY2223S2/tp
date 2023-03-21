@@ -111,10 +111,10 @@ public class ParserUtilNew {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
+        String[] dateArray = trimmedDate.split("@");
+        if (!Date.isValidDate(dateArray[1])) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        String[] dateArray = trimmedDate.split("@");
         return new Date(dateArray[0], dateArray[1]);
     }
 
