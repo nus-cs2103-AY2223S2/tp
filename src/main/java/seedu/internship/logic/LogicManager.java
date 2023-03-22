@@ -13,7 +13,9 @@ import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.InternshipCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
 import seedu.internship.model.Model;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.storage.Storage;
 
@@ -67,6 +69,22 @@ public class LogicManager implements Logic {
     @Override
     public Path getInternshipCatalogueFilePath() {
         return model.getInternshipCatalogueFilePath();
+    }
+
+    //Events
+    @Override
+    public ReadOnlyEventCatalogue getEventCatalogue() {
+        return model.getEventCatalogue();
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getFilteredEventList();
+    }
+
+    @Override
+    public Path getEventCatalogueFilePath() {
+        return model.getEventCatalogueFilePath();
     }
 
     @Override

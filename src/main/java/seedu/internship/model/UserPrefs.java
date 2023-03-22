@@ -14,6 +14,7 @@ import seedu.internship.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path internshipCatalogueFilePath = Paths.get("data", "internshipcatalogue.json");
+    private Path eventCatalogueFilePath = Paths.get("data", "eventcatalogue.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -53,6 +54,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setInternshipCatalogueFilePath(Path internshipCatalogueFilePath) {
         requireNonNull(internshipCatalogueFilePath);
         this.internshipCatalogueFilePath = internshipCatalogueFilePath;
+    }
+
+    public Path getEventCatalogueFilePath() {
+        return eventCatalogueFilePath;
+    }
+
+    public void setEventCatalogueFilePath(Path eventCatalogueFilePath) {
+        requireNonNull(eventCatalogueFilePath);
+        this.eventCatalogueFilePath = eventCatalogueFilePath;
     }
 
     @Override

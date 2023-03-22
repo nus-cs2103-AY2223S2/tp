@@ -15,9 +15,11 @@ import seedu.internship.commons.util.ConfigUtil;
 import seedu.internship.commons.util.StringUtil;
 import seedu.internship.logic.Logic;
 import seedu.internship.logic.LogicManager;
+import seedu.internship.model.EventCatalogue;
 import seedu.internship.model.InternshipCatalogue;
 import seedu.internship.model.Model;
 import seedu.internship.model.ModelManager;
+import seedu.internship.model.ReadOnlyEventCatalogue;
 import seedu.internship.model.ReadOnlyInternshipCatalogue;
 import seedu.internship.model.ReadOnlyUserPrefs;
 import seedu.internship.model.UserPrefs;
@@ -80,6 +82,8 @@ public class MainApp extends Application {
         Optional<ReadOnlyInternshipCatalogue> internshipCatalogueOptional;
         ReadOnlyInternshipCatalogue initialData;
 
+        ReadOnlyEventCatalogue initialEvent = new EventCatalogue();
+
         try {
             internshipCatalogueOptional = storage.readInternshipCatalogue();
             if (!internshipCatalogueOptional.isPresent()) {
@@ -94,7 +98,7 @@ public class MainApp extends Application {
             initialData = new InternshipCatalogue();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData,initialEvent,  userPrefs);
     }
 
     private void initLogging(Config config) {
