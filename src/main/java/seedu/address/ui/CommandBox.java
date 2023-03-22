@@ -1,12 +1,16 @@
 package seedu.address.ui;
 
+import java.nio.file.Paths;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.CommandHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -17,6 +21,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final CommandHistory commandHistory = new CommandHistory(Paths.get("data", "command_history.txt"));
 
     @FXML
     private TextField commandTextField;
@@ -43,9 +48,41 @@ public class CommandBox extends UiPart<Region> {
 
         try {
             commandExecutor.execute(commandText);
+            commandHistory.commitUserInput(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    @FXML
+    private void handleKeyPressed(KeyEvent keyEvent) {
+        String currentUserInput = commandTextField.getText();
+
+        switch (keyEvent.getCode()) {
+        case UP:
+            String previousUserInput = commandHistory.getPreviousUserInput(currentUserInput);
+            if (previousUserInput == null) {
+                return;
+            }
+            commandTextField.setText(previousUserInput);
+            commandTextField.end();
+            setStyleToDefault();
+            break;
+
+        case DOWN:
+            String nextUserInput = commandHistory.getNextUserInput();
+            if (nextUserInput == null) {
+                return;
+            }
+            commandTextField.setText(nextUserInput);
+            commandTextField.end();
+            setStyleToDefault();
+            break;
+
+        default:
+            // do nothing
+            break;
         }
     }
 
