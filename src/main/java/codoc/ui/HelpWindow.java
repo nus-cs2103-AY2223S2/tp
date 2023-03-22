@@ -74,8 +74,8 @@ public class HelpWindow extends UiPart<Stage> {
         exampleCol.setCellValueFactory(new PropertyValueFactory<>("Example"));
         commandCol.setStyle("-fx-text-fill: black");
         exampleCol.setStyle("-fx-text-fill: black");
-
-
+        commandCol.setResizable(false);
+        exampleCol.setResizable(false);
         tvtable.setItems(commandExamples);
         copyExample();
         wrapTextinCell();
