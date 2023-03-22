@@ -1,0 +1,49 @@
+@startuml
+start
+:User inputs command;
+:CodocParser parses input command;
+:Input command matches Find command;
+:CodocParser creates new FindCommandParser;
+:FindCommandParser parses the arguments;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([else])
+    :Create ArgumentMultimap to recognise prefixes;
+    if () then ([else])
+        :Create a combinedPredicate;
+        if () then ([name arguments not empty])
+                :Add namePredicate to combinedPredicate using logical AND;
+        else ([else])
+        endif
+        if () then ([year arguments not empty])
+                :Add yearPredicate to combinedPredicate using logical AND;
+        else ([else])
+        endif
+        if () then ([course arguments not empty])
+                :Add coursePredicate to combinedPredicate using logical AND;
+        else ([else])
+        endif
+        if () then ([module arguments not empty])
+                :Add modulePredicate to combinedPredicate using logical AND;
+        else ([else])
+        endif
+        if () then ([skill arguments not empty])
+                :Add skillPredicate to combinedPredicate using logical AND;
+        else ([else])
+        endif
+        :Create a FindCommand based on combinedPredicate;
+        :LogicManager executes the FindCommand on the model;
+        :ModelManager updates the FilteredPersonList by setting the combinedPredicate;
+        :UiManager gets the FilteredPersonList and displays it to user;
+    else ([preamble not empty])
+        :Throw new ParseException;
+        :Show error message to user;
+    endif
+else ([trimmed arguments is empty])
+    :Throw new ParseException;
+    :Show error message to user;
+endif
+stop
+@enduml
