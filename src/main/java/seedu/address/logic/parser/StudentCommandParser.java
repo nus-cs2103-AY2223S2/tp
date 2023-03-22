@@ -125,7 +125,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
                         PREFIX_ADDRESS, PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME);
-                        
+
         ArgumentMultimap argumentMultimapAtt =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADDATTENDANCE, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE);
 
@@ -147,7 +147,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
             return new StudentFindCommandParser().parse(studentClass + arguments);
         } else {
-            //Rest of logic (Need to edit)
+            //Rest of logic (Need to  edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
     }
@@ -347,14 +347,14 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Cca newCca = ParserUtil.parseCca(argMultimap.getValue(PREFIX_CCA).get());
         Class studentClass = ParserUtil.parseStudentClass(sc);
         Class newStudentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_NEWCLASS).get());
-        Attendance newAttendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
+        //Attendance newAttendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
         Comment newComment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
         Name newParentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENTNAME).get());
         Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
         return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
-                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca, newAttendance,
+                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca,
                 newComment, newStudentPhoneNumber, newEmail, newAddress, newTagList);
     }
 

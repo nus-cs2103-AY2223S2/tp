@@ -2,7 +2,6 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
@@ -66,7 +65,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "AGE"
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT"
             + PREFIX_CCA + "CCA"
-            + PREFIX_ATTENDANCE + "ATTENDANCE"
+            //+ PREFIX_ATTENDANCE + "ATTENDANCE"
             + PREFIX_COMMENT + "COMMENT"
             + PREFIX_PHONESTUDENT + "STUDENT NUMBER"
             + PREFIX_EMAILSTUDENT + "STUDENT EMAIL"
@@ -84,7 +83,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "10 "
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_CCA + "AIKIDO "
-            + PREFIX_ATTENDANCE + "T "
+            //+ PREFIX_ATTENDANCE + "T "
             + PREFIX_COMMENT + "GOOD BOY "
             + PREFIX_PHONESTUDENT + "90909090 "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
@@ -103,7 +102,7 @@ public class StudentEditCommand extends StudentCommand {
     private Age newAge;
     private Image newImage;
     private Cca newCca;
-    private Attendance newAttendance;
+    private Set<Attendance> newAttendance;
     private Comment newComment;
     private Phone newStudentPhoneNumber;
     private Email newEmail;
@@ -125,7 +124,7 @@ public class StudentEditCommand extends StudentCommand {
     public StudentEditCommand(Name name, Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
                               Name newParentName, Relationship newRelationship, Age newAge, Image newImage, Cca newCca,
-                              Attendance newAttendance, Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
+                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
                               Address newAddress, Set<Tag> newTagList) {
         requireNonNull(indexNumber);
         requireNonNull(studentClass);
@@ -139,7 +138,6 @@ public class StudentEditCommand extends StudentCommand {
         this.newAge = newAge;
         this.newImage = newImage;
         this.newCca = newCca;
-        this.newAttendance = newAttendance;
         this.newComment = newComment;
         this.newStudentPhoneNumber = newStudentPhoneNumber;
         this.newEmail = newEmail;
@@ -187,9 +185,6 @@ public class StudentEditCommand extends StudentCommand {
                 if (Cca.isDefaultCca(newCca.value)) {
                     this.newCca = student.getCca();
                 }
-                if (Attendance.isDefaultAttendance(newAttendance.value)) {
-                    this.newAttendance = student.getAttendance();
-                }
                 if (Comment.isDefaultComment(newComment.value)) {
                     this.newComment = student.getComment();
                 }
@@ -216,6 +211,7 @@ public class StudentEditCommand extends StudentCommand {
                 this.newTest = student.getTest();
                 this.newHomework = student.getHomeworkSet();
                 this.newName = student.getName();
+                this.newAttendance = student.getAttendance();
 
                 Student newStudent = new Student(newName, this.newStudentClass, this.newIndexNumber, this.newSex,
                         this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newAge, this.newImage,
