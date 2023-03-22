@@ -59,7 +59,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Calorie calorie = optionalPresentCaloriePrefix(argMultimap);
         Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
-        Goal goal = ParserUtil.parseGoal(argMultimap.getValue(PREFIX_GOAL).get());
+        Goal goal = ParserUtil.parseGoal(argMultimap.getValue(PREFIX_GOAL).orElse("client has not added a goal"));
         Client client = new Client(name, phone, email, address, appointmentList, weight, gender, calorie, goal,
                 tagList);
         return new AddCommand(client);

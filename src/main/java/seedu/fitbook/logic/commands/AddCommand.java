@@ -44,7 +44,7 @@ public class AddCommand extends Command {
             + PREFIX_WEIGHT + "23.2 "
             + PREFIX_GENDER + "M "
             + PREFIX_GOAL + "lose weight "
-            + PREFIX_APPOINTMENT + "13-12-2200 "
+            + PREFIX_APPOINTMENT + "13-12-2200 18:00 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney ";
 
