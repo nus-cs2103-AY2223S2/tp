@@ -86,7 +86,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
-<p align="centre">
+<p align="center">
   <img src="images/UiClassDiagram.svg" />
 </p>
 
@@ -107,7 +107,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<p align="centre">
+<p align="center">
   <img src="images/LogicClassDiagram.png" width="550"/>
 </p>
 
@@ -128,7 +128,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<p align="centre">
+<p align="center">
   <img src="images/ParserClasses.png" width="600"/>
 </p> 
 
@@ -141,7 +141,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
-<p align="centre">
+<p align="center">
   <img src="images/ModelClassDiagram.svg" width="450" />
 </p>
 
@@ -156,7 +156,7 @@ The `Model` component,
 
 Here is the `Item` class that is what all model objects depend on.
 
-<p align="centre">
+<p align="center">
   <img src="images/ItemClassDiagram.svg" width="350" />
 </p>
 
@@ -165,7 +165,7 @@ Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`
 
 This is the class representation for the `Supplier` and `Customer` class.
 
-<p align="centre">
+<p align="center">
   <img src="images/PersonClassDiagram.svg" width="500" />
 </p>
 
@@ -178,7 +178,7 @@ Here is how `Supplier` and `Customer` works:
 
 This is the class representation for the `Task` class.
 
-<p align="centre">
+<p align="center">
   <img src="images/TaskClassDiagram.svg" width="450" />
 </p>
 
@@ -192,7 +192,7 @@ Here is how `Task` works:
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<p>
+<p align="center">
   <img src="images/StorageClassDiagram.svg" width="550" />
 </p>
 
