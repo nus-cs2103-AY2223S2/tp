@@ -1,9 +1,40 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENTCOMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEDELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -105,7 +136,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         } else if (argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
             return gradeDeleteCommand(studentClass, argMultimapGradeDelete);
         } else if (argMultimapEdit.getValue(PREFIX_EDIT).isPresent()) {
-            return EditCommand(studentClass, argMultimapEdit);
+            return editCommand(studentClass, argMultimapEdit);
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
             return new StudentFindCommandParser().parse(studentClass + arguments);
         } else {
@@ -272,7 +303,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @return A StudentEditCommand
      * @throws ParseException
      */
-    private StudentEditCommand EditCommand(String sc, ArgumentMultimap argMultimap) throws ParseException {
+    private StudentEditCommand editCommand(String sc, ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
                 || !argMultimap.getPreamble().isEmpty()
                 || sc.length() == 0) {
@@ -300,8 +331,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
         return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass,newStudentClass, newSex,
-                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca, newAttendance, newComment,
-                newStudentPhoneNumber, newEmail, newAddress, newTagList);
+                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca, newAttendance,
+                newComment, newStudentPhoneNumber, newEmail, newAddress, newTagList);
     }
 
     /**

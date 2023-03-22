@@ -10,9 +10,6 @@ public class IndexNumber {
     public static final String MESSAGE_CONSTRAINTS =
             "Index Number can only be digits (0-9), and it should not be blank";
 
-    public static final String test =
-            "new Index Number can only be digits (0-9), and it should not be blank";
-
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

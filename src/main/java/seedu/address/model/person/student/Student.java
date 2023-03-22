@@ -26,8 +26,8 @@ public class Student extends Person {
     protected Phone parentNumber;
     protected Name parentName;
     protected Relationship rls;
-    private final IndexNumber indexNumber;
     protected Phone studentNumber;
+    private final IndexNumber indexNumber;
     private final Sex sex;
     private final Age age;
     private final Image image;
