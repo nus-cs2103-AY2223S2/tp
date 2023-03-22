@@ -10,7 +10,8 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 Given below are my contributions to the project.
 
 * **New Feature**: To be added
-  * To be added
+  * Added sorting to person's list
+  * Added sort by number of tags
   
 * **New Feature**: To be added
 
@@ -24,9 +25,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * To be added
+    * Add sort command description
   * Developer Guide:
-    * To be added.
+    * Update target user profile, value proposition, user stories, use cases
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): To be added
