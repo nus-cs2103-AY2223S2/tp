@@ -20,6 +20,7 @@ import seedu.address.model.card.CardInDeckPredicate;
 import seedu.address.model.card.IsSameCardPredicate;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the master deck data.
@@ -319,8 +320,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void tagCurrentCardInReview(Tag tag) {
+        masterDeck.tagCard(filteredCards.get(0), tag);
+        currReview.tagCurrentCard(tag);
+        updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
     public ObservableList<Pair<String, String>> getReviewStatsList() {
         return currReview.getReviewStatsList();
     }
-
 }
