@@ -7,6 +7,9 @@
 
     -fx-background-color: -dark-grey;
 }
+.module-card:hover {
+    -fx-opacity: 1;
+}
 .module-card-incomplete {
     -fx-opacity: 0.5;
 }

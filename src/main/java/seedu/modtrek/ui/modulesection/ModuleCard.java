@@ -44,6 +44,10 @@ public class ModuleCard extends UiPart<Region> {
     public ModuleCard(Module module) {
         super(FXML);
 
+        if (!module.isComplete()) {
+            addIncompleteStyles();
+        }
+
         fillCard(module);
     }
 
@@ -92,5 +96,16 @@ public class ModuleCard extends UiPart<Region> {
         Tooltip tagToolTip = new Tooltip(tagNameLong);
         Tooltip.install(tag, tagToolTip);
         tagToolTip.setShowDelay(Duration.seconds(0.05));
+    }
+
+    /**
+     * Adds CSS styles to ModuleCard for the case where module is incomplete.
+     */
+    private void addIncompleteStyles() {
+        this.getRoot().getStyleClass().add("module-card-incomplete");
+
+        Tooltip incompleteWarning = new Tooltip("This module is incomplete!");
+        Tooltip.install(this.getRoot(), incompleteWarning);
+        incompleteWarning.setShowDelay(Duration.seconds(0.05));
     }
 }
