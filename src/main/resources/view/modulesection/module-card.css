@@ -29,6 +29,9 @@
     -fx-border-radius: 7;
     -fx-background-radius: 7;
 }
+.module-card-tag:hover {
+    -fx-opacity: 0.75;
+}
 
 .module-card-tag-red {
     -fx-background-color: -tag-red;
