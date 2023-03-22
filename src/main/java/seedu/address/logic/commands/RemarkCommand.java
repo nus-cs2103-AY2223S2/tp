@@ -59,7 +59,11 @@ public class RemarkCommand extends Command {
                 personToEdit.getOptionalPhone().orElse(null),
                 personToEdit.getOptionalEmail().orElse(null),
                 personToEdit.getOptionalAddress().orElse(null),
-                remark, personToEdit.getSubjects(), personToEdit.getTags());
+                personToEdit.getOptionalEducation().orElse(null),
+                remark,
+                personToEdit.getSubjects(),
+                personToEdit.getTags()
+        );
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

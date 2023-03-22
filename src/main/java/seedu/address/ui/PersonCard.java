@@ -61,6 +61,9 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
         email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
         remark.setText(person.getOptionalRemark().map(Remark::toString).orElse(null));
+        person.getOptionalEducation()
+                .map(education -> new Label("Education: " + education.value))
+                .ifPresent(label -> tags.getChildren().add(label));
         person.getSubjects().stream()
                 .sorted(Comparator.comparing(subject -> subject.subjectName))
                 .forEach(subject -> tags.getChildren().add(new Label(subject.subjectName)));

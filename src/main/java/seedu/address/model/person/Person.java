@@ -25,6 +25,7 @@ public class Person {
     // Data fields
     private final Optional<Address> address;
     private final Optional<Remark> remark;
+    private final Optional<Education> education;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Subject> subjects = new HashSet<>();
 
@@ -32,13 +33,14 @@ public class Person {
      * Every field must be present and not null.
      */
 
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark,
-                  Set<Subject> subjects, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Education education, Remark remark,
+            Set<Subject> subjects, Set<Tag> tags) {
         requireAllNonNull(name);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.address = Optional.ofNullable(address);
+        this.education = Optional.ofNullable(education);
         this.remark = Optional.ofNullable(remark);
         this.tags.addAll(tags);
         this.subjects.addAll(subjects);
@@ -58,6 +60,10 @@ public class Person {
 
     public Optional<Address> getOptionalAddress() {
         return address;
+    }
+
+    public Optional<Education> getOptionalEducation() {
+        return education;
     }
 
     public Optional<Remark> getOptionalRemark() {
@@ -120,22 +126,19 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, subjects, remark, tags);
+        return Objects.hash(name, phone, email, address, education, subjects, remark, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String phone = getOptionalPhone().isEmpty() ? "" : String.format("; Phone: %s", getOptionalPhone().get());
-        String email = getOptionalEmail().isEmpty() ? "" : String.format("; Email: %s", getOptionalEmail().get());
-        String address = getOptionalAddress().isEmpty() ? "" : String.format("; Address: %s",
-                getOptionalAddress().get());
-        String remarks = getOptionalRemark().isEmpty() ? "" : String.format("; Remarks: %s",
-                getOptionalRemark().get());
-        builder.append(getName())
-                .append(phone)
-                .append(email)
-                .append(address);
+        builder.append(getName());
+
+        getOptionalPhone().ifPresent(phone -> builder.append("; Phone: ").append(phone));
+        getOptionalEmail().ifPresent(email -> builder.append("; Email: ").append(email));
+        getOptionalAddress().ifPresent(address -> builder.append("; Address: ").append(address));
+        getOptionalEducation().ifPresent(education -> builder.append("; Education: ").append(education));
+        getOptionalRemark().ifPresent(remark -> builder.append("; Remark: ").append(remark));
 
         Set<Subject> subjects = getSubjects();
         if (!subjects.isEmpty()) {
@@ -148,8 +151,6 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-
-        builder.append(remarks);
 
         return builder.toString();
     }
