@@ -121,8 +121,9 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the patientist data, i,e all `Ward` objects (contained in a singleton `WardList` object), all `Person` objects (contained within `UniquePersonList` objects within their respective wards)
+* differentiates between `Patient` and `Staff` objects within each `Ward`, each are kept in their separate `UniquePersonList`.
+* stores the currently 'selected' `Person` objects (e.g. results of search, lsward, lsstf, lspat etc) as separate filtered list which is available to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -153,6 +154,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Wards feature
+#### Implementation
+The mechanism will extend the functionality provided by AddressBook's base code to provide for functionality
+that allows `Staff` and `Patient`s to be grouped logically according to the `Ward` they are assigned to. This allows
+us to implement the following functionalities:
+* `Ward#contains(Patient)`
+* `Ward#addPatient(Patient)`
+* `Ward#deletePatient(Patient)`
+* `Ward#setPatient(Patient)`
+
+and similar functionality for `Staff` as well. This makes for easy implementation of searching for a particular
+person within a ward and other operations involving transferring between wards, through providing a clean 
+abstraction that performs checking of duplicates, checking for presence/absence of a person, etc. These 
+changes reflect in the modification of the API supplied by `Model`, which requires specification of which ward
+a `Staff` or `Patient` is to be added to, and also implements operations to add, remove and edit wards, and transfer
+`Person` between wards.
+
+Other alternatives considered for this functionality were simply assigning the ward and role of a `Person` through the
+`Tag` field that already exists in the base application. However, this makes for very poor object oriented design as
+there would not exist any trace of wards in the model, which is intuitively a container object for `Staff` and `Patient`.
+Furthermore, operations such as searching and deleting will become extremely counterintuitive as to delete a specific
+ward along with all patients and staff inside, we would have to search through all `Patient` and `Staff` objects, look through
+their tags and delete them one by one. Wards will thus become a fully abstract concept not modelled anywhere in the code,
+which is not ideal as it is a core part of what our application seeks to manage.
+
+[DRAW THE UML DIAGRAMS AND WHATNOT EVENTUALLY...................]
 
 ### \[Proposed\] Undo/redo feature
 
