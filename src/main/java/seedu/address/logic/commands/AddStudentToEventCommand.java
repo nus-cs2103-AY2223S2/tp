@@ -18,10 +18,12 @@ public class AddStudentToEventCommand extends Command {
     private final String eventType;
 
     /**
-     * Ensures the correct student is assigned to the correct event through an index, name and type
-     * @param index
-     * @param name
-     * @param type
+     * Constructs an AddStudentToEventCommand object to add the student at the specified index
+     * to an event of the specified type and name.
+     *
+     * @param index the index of the student within the student list to be added.
+     * @param name the name of the event the student will be added into.
+     * @param type the type of the event the student will be added into.
      */
     public AddStudentToEventCommand(Index index, String name, String type) {
         this.index = index;
@@ -33,6 +35,7 @@ public class AddStudentToEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        //todo: fix case where event does not exist
         if (this.eventType.equals(TUTORIAL_STRING)) {
             model.addStudentToTutorial(this.index, this.eventName);
         } else {
