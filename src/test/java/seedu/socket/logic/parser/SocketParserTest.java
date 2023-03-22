@@ -31,6 +31,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.socket.logic.commands.AddCommand;
 import seedu.socket.logic.commands.ClearCommand;
+import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.DeleteCommand;
 import seedu.socket.logic.commands.DeleteProjectCommand;
 import seedu.socket.logic.commands.EditCommand;
@@ -69,6 +70,11 @@ public class SocketParserTest {
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + TAG_DESC_FRIEND) instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_clearpj() throws Exception {
+        assertTrue(parser.parseCommand(ClearProjectCommand.COMMAND_WORD) instanceof ClearProjectCommand);
     }
 
     @Test

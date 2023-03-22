@@ -19,7 +19,7 @@ public class ClearCommand extends Command {
             + "contain any of the keyword(s) (case-insensitive) in the tag fields.\n"
             + "Parameters: "
             + "[" + PREFIX_TAG + "TAG]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "friend OR " + COMMAND_WORD;;
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "friend OR " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "SOCket has been cleared!";
 

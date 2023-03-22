@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.socket.logic.commands.AddCommand;
 import seedu.socket.logic.commands.ClearCommand;
+import seedu.socket.logic.commands.ClearProjectCommand;
 import seedu.socket.logic.commands.Command;
 import seedu.socket.logic.commands.DeleteCommand;
 import seedu.socket.logic.commands.DeleteProjectCommand;
@@ -95,6 +96,9 @@ public class SocketParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case ClearProjectCommand.COMMAND_WORD:
+            return new ClearProjectCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

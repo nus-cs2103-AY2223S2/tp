@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.socket.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -153,6 +154,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedProject);
 
         socket.setProject(target, editedProject);
+    }
+
+    @Override
+    public void setProjects(List<Project> projects) {
+        socket.setProjects(projects);
     }
 
     @Override
