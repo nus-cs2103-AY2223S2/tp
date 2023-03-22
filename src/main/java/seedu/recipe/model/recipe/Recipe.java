@@ -2,16 +2,11 @@ package seedu.recipe.model.recipe;
 
 import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
+import seedu.recipe.model.recipe.recipefield.RecipeIngredientQuantity;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -27,6 +22,8 @@ public class Recipe {
     private final Set<Tag> tags = new HashSet<>();
     private final List<Ingredient> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
+    private final Hashtable<RecipeIngredientQuantity, Ingredient> ingredientTable = new Hashtable<>();
+
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
     private Optional<RecipeDuration> duration = Optional.empty();
