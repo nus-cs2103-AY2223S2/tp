@@ -16,6 +16,7 @@ import java.util.List;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.exceptions.CommandException;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.recipe.NameContainsKeywordsPredicate;
@@ -34,8 +35,8 @@ public class CommandTestUtil {
     public static final String VALID_DURATION_FISH = "15 minutes";
     public static final String VALID_TAG_CHINESE = "Chinese";
     public static final String VALID_TAG_ITALIAN = "Italian";
-    public static final String VALID_INGREDIENT_CHICKEN = "1 chicken breast";
-    public static final String VALID_INGREDIENT_FISH = "200g fish";
+    public static final String VALID_INGREDIENT_CHICKEN = "-a 1 -n chicken breast";
+    public static final String VALID_INGREDIENT_FISH = "-a 200g -n fish";
     public static final String VALID_STEP_CHICKEN = "In a bowl, marinate the chicken in oyster sauce";
     public static final String VALID_STEP_FISH = "On a chopping board, remove the skin of the fish";
 
@@ -65,8 +66,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditRecipeDescriptor DESC_CHICKEN;
-    public static final EditCommand.EditRecipeDescriptor DESC_FISH;
+    public static final RecipeDescriptor DESC_CHICKEN;
+    public static final RecipeDescriptor DESC_FISH;
 
     static {
         DESC_CHICKEN = new EditRecipeDescriptorBuilder().withName(VALID_NAME_CHICKEN)
@@ -85,7 +86,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -100,7 +101,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -121,6 +122,7 @@ public class CommandTestUtil {
         assertEquals(expectedRecipeBook, actualModel.getRecipeBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredRecipeList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the recipe at the given {@code targetIndex} in the
      * {@code model}'s address book.

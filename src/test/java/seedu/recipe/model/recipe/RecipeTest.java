@@ -34,51 +34,51 @@ import seedu.recipe.testutil.RecipeBuilder;
 public class RecipeTest {
     // Varying fields
     private static final Recipe FISH_AND_CHIPS_DIFF_PORTION = new RecipeBuilder(
-            FISH_AND_CHIPS.getName(), MASALA_DOSA.getPortion(),
-            FISH_AND_CHIPS.getDuration(), FISH_AND_CHIPS.getTags(),
-            FISH_AND_CHIPS.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
+        FISH_AND_CHIPS.getName(), MASALA_DOSA.getPortion(),
+        FISH_AND_CHIPS.getDuration(), FISH_AND_CHIPS.getTags(),
+        FISH_AND_CHIPS.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
 
     private static final Recipe FISH_AND_CHIPS_DIFF_DURATION = new RecipeBuilder(
-            FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
-            BLUEBERRY_PANCAKES.getDuration(), FISH_AND_CHIPS.getTags(),
-            FISH_AND_CHIPS.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
+        FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
+        BLUEBERRY_PANCAKES.getDuration(), FISH_AND_CHIPS.getTags(),
+        FISH_AND_CHIPS.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
 
     private static final Recipe FISH_AND_CHIPS_DIFF_TAGS = new RecipeBuilder(
-            FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
-            FISH_AND_CHIPS.getDuration(), Set.of(new Tag("fake tag")),
-            FISH_AND_CHIPS.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
+        FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
+        FISH_AND_CHIPS.getDuration(), Set.of(new Tag("fake tag")),
+        FISH_AND_CHIPS.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
 
     private static final Recipe FISH_AND_CHIPS_DIFF_INGREDIENTS = new RecipeBuilder(
-            FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
-            FISH_AND_CHIPS.getDuration(), FISH_AND_CHIPS.getTags(),
-            MASALA_DOSA.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
+        FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
+        FISH_AND_CHIPS.getDuration(), FISH_AND_CHIPS.getTags(),
+        MASALA_DOSA.getIngredients(), FISH_AND_CHIPS.getSteps()).build();
 
     private static final Recipe FISH_AND_CHIPS_DIFF_STEPS = new RecipeBuilder(
-            FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
-            FISH_AND_CHIPS.getDuration(), FISH_AND_CHIPS.getTags(),
-            FISH_AND_CHIPS.getIngredients(), MASALA_DOSA.getSteps()).build();
+        FISH_AND_CHIPS.getName(), FISH_AND_CHIPS.getPortion(),
+        FISH_AND_CHIPS.getDuration(), FISH_AND_CHIPS.getTags(),
+        FISH_AND_CHIPS.getIngredients(), MASALA_DOSA.getSteps()).build();
 
     //Name variations
     private static final Recipe DOSA_COPY_DIFF_NAME = new RecipeBuilder(
-            new Name("fake dosa"), MASALA_DOSA.getPortion(),
-            MASALA_DOSA.getDuration(), MASALA_DOSA.getTags(),
-            MASALA_DOSA.getIngredients(), MASALA_DOSA.getSteps()).build();
+        new Name("fake dosa"), MASALA_DOSA.getPortion(),
+        MASALA_DOSA.getDuration(), MASALA_DOSA.getTags(),
+        MASALA_DOSA.getIngredients(), MASALA_DOSA.getSteps()).build();
 
     private static final Recipe GRILLED_CHEESE_DIFF_CASE = new RecipeBuilder(
-            new Name("pan-fried camembert sandwich"), GRILLED_CHEESE.getPortion(),
-            GRILLED_CHEESE.getDuration(), GRILLED_CHEESE.getTags(),
-            GRILLED_CHEESE.getIngredients(), GRILLED_CHEESE.getSteps()).build();
+        new Name("pan-fried camembert sandwich"), GRILLED_CHEESE.getPortion(),
+        GRILLED_CHEESE.getDuration(), GRILLED_CHEESE.getTags(),
+        GRILLED_CHEESE.getIngredients(), GRILLED_CHEESE.getSteps()).build();
 
     private static final Recipe CACIO_TRAILING_SPACE = new RecipeBuilder(
-            new Name("Cacio e Pepe "), CACIO_E_PEPE.getPortion(),
-            CACIO_E_PEPE.getDuration(), CACIO_E_PEPE.getTags(),
-            CACIO_E_PEPE.getIngredients(), CACIO_E_PEPE.getSteps()).build();
+        new Name("Cacio e Pepe "), CACIO_E_PEPE.getPortion(),
+        CACIO_E_PEPE.getDuration(), CACIO_E_PEPE.getTags(),
+        CACIO_E_PEPE.getIngredients(), CACIO_E_PEPE.getSteps()).build();
 
     //Deep copying
     private static final Recipe CACIO_DEEP_COPY = new RecipeBuilder(
-            CACIO_E_PEPE.getName(), CACIO_E_PEPE.getPortion(),
-            CACIO_E_PEPE.getDuration(), CACIO_E_PEPE.getTags(),
-            CACIO_E_PEPE.getIngredients(), CACIO_E_PEPE.getSteps()).build();
+        CACIO_E_PEPE.getName(), CACIO_E_PEPE.getPortion(),
+        CACIO_E_PEPE.getDuration(), CACIO_E_PEPE.getTags(),
+        CACIO_E_PEPE.getIngredients(), CACIO_E_PEPE.getSteps()).build();
 
     //Querying when fields not present
     private static final Recipe CACIO_NAME_ONLY = new Recipe(CACIO_E_PEPE.getName());
@@ -144,17 +144,14 @@ public class RecipeTest {
     @Test
     public void setTags() {
         Set<Tag> newTagSet = new HashSet<>(CACIO_TAGS);
-        Tag[] tagsToAdd = new Tag[] {
-            new Tag("Tag one"),
-            new Tag("Tag two")
-        };
+        Tag[] tagsToAdd = new Tag[]{new Tag("Tag one"), new Tag("Tag two")};
         Recipe test = new RecipeBuilder(CACIO_E_PEPE).build();
         test.setTags(tagsToAdd);
         newTagSet.addAll(Set.of(tagsToAdd));
         assertEquals(newTagSet, test.getTags());
     }
 
-    //Ingredient logic
+    //IngredientBuilder logic
     @Test
     public void getIngredients() {
         assertEquals(CACIO_INGREDIENTS, CACIO_E_PEPE.getIngredients());
@@ -162,10 +159,10 @@ public class RecipeTest {
 
     @Test
     public void setIngredients() {
-        List<Ingredient> newIngredientList = new ArrayList<>(CACIO_INGREDIENTS);
-        Ingredient[] ingredientsToAdd = new Ingredient[] {
-            new Ingredient("Ingredient one"),
-            new Ingredient("Ingredient two")
+        List<IngredientBuilder> newIngredientList = new ArrayList<>(CACIO_INGREDIENTS);
+        IngredientBuilder[] ingredientsToAdd = new IngredientBuilder[]{
+            new IngredientBuilder("-n IngredientBuilder one"),
+            new IngredientBuilder("-n IngredientBuilder two")
         };
         Recipe test = new RecipeBuilder(CACIO_E_PEPE).build();
         test.setIngredients(ingredientsToAdd);
@@ -173,7 +170,7 @@ public class RecipeTest {
         assertEquals(newIngredientList, test.getIngredients());
     }
 
-    //Ingredient logic
+    //IngredientBuilder logic
     @Test
     public void getSteps() {
         assertEquals(CACIO_STEPS, CACIO_E_PEPE.getSteps());
@@ -181,10 +178,7 @@ public class RecipeTest {
 
     @Test
     public void setSteps() {
-        Step[] newSteps = new Step[] {
-            new Step("Step one"),
-            new Step("Step two")
-        };
+        Step[] newSteps = new Step[]{new Step("Step one"), new Step("Step two")};
         Recipe test = new RecipeBuilder(CACIO_E_PEPE).build();
         test.setSteps(newSteps);
 

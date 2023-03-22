@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.testutil.EditRecipeDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -52,17 +53,17 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        // assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Ingredient.MESSAGE_CONSTRAINTS); // invalid phone
+        // assertParseFailure(parser, "1" + INVALID_PHONE_DESC, IngredientBuilder.MESSAGE_CONSTRAINTS); // invalid phone
         // assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         // assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         // assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        // assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Ingredient.MESSAGE_CONSTRAINTS);
+        // assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, IngredientBuilder.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        // assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Ingredient.MESSAGE_CONSTRAINTS);
+        // assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, IngredientBuilder.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Recipe} being edited,
         // parsing it together with a valid tag results in error
@@ -73,17 +74,17 @@ public class EditCommandParserTest {
         // multiple invalid values, but only the first invalid value is captured
         // assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY +
         // VALID_PHONE_AMY,
-            //      Name.MESSAGE_CONSTRAINTS);
+        //      Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         // Index targetIndex = INDEX_SECOND_PERSON;
         // String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-            //      + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        //      + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
         // EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
-            //      .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-            //      .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        //      .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        //      .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         // EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         // assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -162,7 +163,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withTags().build();
+        RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

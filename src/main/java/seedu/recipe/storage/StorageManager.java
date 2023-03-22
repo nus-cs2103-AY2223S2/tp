@@ -17,8 +17,8 @@ import seedu.recipe.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private RecipeBookStorage recipeBookStorage;
-    private UserPrefsStorage userPrefsStorage;
+    private final RecipeBookStorage recipeBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code RecipeBookStorage} and {@code UserPrefStorage}.
