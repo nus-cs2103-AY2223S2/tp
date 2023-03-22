@@ -117,10 +117,17 @@ public class ClientCard extends UiPart<Region> {
             calorie.setText(client.getCalorie().value + " cal");
         } else {
             calorie.setManaged(false);
-            //caloriesIcon.setManaged(false);
+            caloriesIcon.setManaged(false);
         }
     }
 
+    /**
+     * Sets the goal to be displayed.
+     * If goal value is "client has not added a goal" , remove display.
+     *
+     * @param client The current client.
+     * @param goal The client's goal.
+     */
     private void setGoalCondition(Client client, Label goal) {
         if (!client.getGoal().value.equals("client has not added a goal")) {
             goal.setText(client.getGoal().value);
