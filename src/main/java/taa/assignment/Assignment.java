@@ -46,6 +46,10 @@ public class Assignment {
         }
     }
 
+    /**
+     * @param student
+     * @throws SubmissiontNotFoundException
+     */
     public void ungradeSubmission(Student student) throws SubmissiontNotFoundException {
         if (submissionMap.containsKey(student)) {
             submissionMap.get(student).ungrade();

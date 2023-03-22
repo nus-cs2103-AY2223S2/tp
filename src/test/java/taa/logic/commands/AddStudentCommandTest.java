@@ -201,6 +201,11 @@ public class AddStudentCommandTest {
         public void grade(String assignmentName, int studentId, int marks) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void ungrade(String assignmentName, int studentId) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -48,7 +48,8 @@ public class AssignmentList {
      * @param student
      * @param marks
      */
-    public void grade(String assignmentName, Student student, int marks) throws AssignmentNotFoundException, SubmissiontNotFoundException, InvalidGradeException {
+    public void grade(String assignmentName, Student student, int marks) throws AssignmentNotFoundException,
+            SubmissiontNotFoundException, InvalidGradeException {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
         } else {
@@ -56,7 +57,14 @@ public class AssignmentList {
         }
     }
 
-    public void ungrade(String assignmentName, Student student) throws AssignmentNotFoundException, SubmissiontNotFoundException {
+    /**
+     * @param assignmentName
+     * @param student
+     * @throws AssignmentNotFoundException
+     * @throws SubmissiontNotFoundException
+     */
+    public void ungrade(String assignmentName, Student student) throws AssignmentNotFoundException,
+            SubmissiontNotFoundException {
         if (!assignmentMap.containsKey(assignmentName)) {
             throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
         } else {

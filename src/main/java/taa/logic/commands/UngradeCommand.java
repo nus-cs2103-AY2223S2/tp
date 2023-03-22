@@ -1,9 +1,9 @@
 package taa.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Grades a student submission of an assignment.
