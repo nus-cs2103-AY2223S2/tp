@@ -179,8 +179,17 @@ The JSON is generated using the Jackson library, through the use of the JsonUtil
 
 ##### Importing
 Using the exported JSON, one can then import it using `import THE_JSON`.
-Since importing is done using the existing function `ModelManager::addPerson`, duplicates are not allowed and will 
-throw errors.
+Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing 
+to ensure we do not have "half imports". 
+
+Consider a situation where we have `[Person2, Person3]` in the system. If we 
+import `[Person1, Person2, Person3, Person4]` without considering duplicates first, Person1 will be imported 
+followed by the import of Person2 throwing a DuplicatePersonError, resulting in the command throwing a failure 
+message and Person4 not being imported but the system now has `[Person1, Person2, Person3]`. 
+
+However, if the user wishes to "force import", a `f/` parameter is provided. This imports for each `Person` if the 
+Person does not already exist, and ignores those that do. This allows the previous situation to complete with `
+[Person1, Person2, Person3, Person4]` in the system.
 
 The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
 is thrown.
