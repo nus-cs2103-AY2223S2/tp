@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
-import taa.logic.commands.exceptions.CommandException;
+import taa.assignment.exceptions.InvalidGradeException;
+import taa.assignment.exceptions.SubmissiontNotFoundException;
 import taa.model.student.Student;
 
 /**
  * Assignment class.
  */
 public class Assignment {
-    private String name;
-    private int totalMarks = 100;
-    private String deadline = "now";
-
-    private ArrayList<Submission> submissions = new ArrayList<>();
+    private final String name;
+    private final int totalMarks = 100;
+    private final ArrayList<Submission> submissions = new ArrayList<>();
     private final HashMap<Student, Submission> submissionMap = new HashMap<>();
 
 
@@ -39,11 +38,19 @@ public class Assignment {
      * @param student
      * @param marks
      */
-    public void gradeSubmission(Student student, int marks) throws CommandException {
+    public void gradeSubmission(Student student, int marks) throws SubmissiontNotFoundException, InvalidGradeException {
         if (submissionMap.containsKey(student)) {
             submissionMap.get(student).grade(marks);
         } else {
-            throw new CommandException("Submission of " + student.getName().fullName + " not found");
+            throw new SubmissiontNotFoundException("Submission of " + student.getName().fullName + " not found");
+        }
+    }
+
+    public void ungradeSubmission(Student student) throws SubmissiontNotFoundException {
+        if (submissionMap.containsKey(student)) {
+            submissionMap.get(student).ungrade();
+        } else {
+            throw new SubmissiontNotFoundException("Submission of " + student.getName().fullName + " not found");
         }
     }
 

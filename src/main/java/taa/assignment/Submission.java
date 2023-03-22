@@ -12,8 +12,8 @@ public class Submission implements Comparable<Submission> {
     private boolean isGraded = false;
     private boolean isLateSubmission = false;
     private int marks = 0;
-    private Assignment assignment;
-    private Student student;
+    private final Assignment assignment;
+    private final Student student;
     private Date timeCreated;
 
 
@@ -28,6 +28,7 @@ public class Submission implements Comparable<Submission> {
 
     /**
      * Grades a students submission.
+     *
      * @param marks
      * @throws InvalidGradeException when marks is out of range 0-totalMarks.
      */
@@ -46,6 +47,7 @@ public class Submission implements Comparable<Submission> {
 
     /**
      * Grades a late submission.
+     *
      * @param marks
      * @throws InvalidGradeException
      */

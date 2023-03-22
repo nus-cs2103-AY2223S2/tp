@@ -241,6 +241,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void ungrade(String assignmentName, int studentId) throws CommandException {
+        Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
+        assignmentList.ungrade(assignmentName, student);
+        updateStudent(student);
+    }
+
+    @Override
     public String listAssignments() {
         return assignmentList.list();
     }
