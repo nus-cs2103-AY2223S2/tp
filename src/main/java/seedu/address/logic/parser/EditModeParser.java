@@ -67,8 +67,8 @@ public class EditModeParser {
         final String fieldWord = matcher.group("fieldWord");
         final String arguments = matcher.group("arguments").trim();
 
-        if (fieldWord.equalsIgnoreCase("back") ||
-                fieldWord.equalsIgnoreCase("b")) {
+        if (fieldWord.equalsIgnoreCase("back")
+                || fieldWord.equalsIgnoreCase("b")) {
             return new BackCommand();
         }
 
