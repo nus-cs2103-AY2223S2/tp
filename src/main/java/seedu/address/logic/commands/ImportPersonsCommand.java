@@ -17,25 +17,41 @@ public class ImportPersonsCommand extends Command {
     static final String MALFORMED_JSON = "JSON input malformed";
     static final String DUPLICATE_PERSON = "Duplicate person found";
     static final String SUCCESS = "Persons imported";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports persons in JSON format\n" + "Parameters: f/ "
+            + "true: to force imports regardless of duplicates";
     private final String json;
+    private final boolean isForced;
 
-    public ImportPersonsCommand(String json) {
+    /**
+     * Creates a new ImportPersonsCommand
+     *
+     * @param json     person to be imported
+     * @param isForced whether to force imports regardless of duplicates
+     */
+    public ImportPersonsCommand(String json, boolean isForced) {
         this.json = json;
+        this.isForced = isForced;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
             JsonAdaptedPerson[] personList = JsonUtil.fromJsonString(json, JsonAdaptedPerson[].class);
-            for (JsonAdaptedPerson jsonAdaptedPerson : personList) {
-                // check if duplicate
-                if (model.hasPerson(jsonAdaptedPerson.toModelType())) {
-                    throw new DuplicatePersonException();
+            if (isForced) {
+                for (JsonAdaptedPerson jsonAdaptedPerson : personList) {
+                    if (!model.hasPerson(jsonAdaptedPerson.toModelType())) {
+                        model.addPerson(jsonAdaptedPerson.toModelType());
+                    }
                 }
-            }
-            for (JsonAdaptedPerson p : personList) {
-                model.addPerson(p.toModelType());
+            } else {
+                for (JsonAdaptedPerson jsonAdaptedPerson : personList) {
+                    if (model.hasPerson(jsonAdaptedPerson.toModelType())) {
+                        throw new DuplicatePersonException();
+                    }
+                }
+                for (JsonAdaptedPerson p : personList) {
+                    model.addPerson(p.toModelType());
+                }
             }
             return new CommandResult(SUCCESS);
         } catch (IOException | IllegalValueException e) {

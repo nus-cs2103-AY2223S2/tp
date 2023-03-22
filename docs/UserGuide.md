@@ -18,7 +18,6 @@ Equipped with both a Graphical User Interface (GUI) and Command Line Interface (
     - [`delete`](#deleting-a-person--delete)
     - [`clear`](#clearing-all-entries--clear)
     - [`exit`](#exiting-the-program--exit)
-    - [`listm`](#view-all-meetings--listm)
     - [`export`](#exporting-of-contact--export)
     - [`import`](#importing-of-contacts--import)
     - [Saving of data](#saving-the-data)
@@ -227,8 +226,9 @@ Example:
   }
 ]
 ```
+Optional Parameter `f/ true` that forces imports regardless of duplicate values.
 
-Format: `import JSON`
+Format: `import JSON f/ true`
 
 ### Create meetings `[Coming Soon]`
 _Details coming soon ..._
