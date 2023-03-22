@@ -593,7 +593,7 @@ The `exit` command allows users to exit the EduMate Application via the command 
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Info**: Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes then to the `MainWindow` class to handle the exit.
+:information_source: **Info**: Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes to the `MainWindow` class to handle the exit.
 
 </div>
 
