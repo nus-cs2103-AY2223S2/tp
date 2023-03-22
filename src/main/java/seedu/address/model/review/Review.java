@@ -1,6 +1,7 @@
 package seedu.address.model.review;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +23,12 @@ import seedu.address.model.deck.Deck;
 public class Review {
 
     private final Deck deck;
-    private List<Card> cardList;
-    private List<Boolean> scoreList;
+    private final List<Card> cardList;
+    private final List<Boolean> scoreList;
     private int currCardNum = 1; // 1-Indexed
     private Card currCard;
 
-    private int totalNumCards;
+    private final int totalNumCards;
     private List<Integer> orderOfCards;
     private ObservableList<Pair<String, String> > reviewStatsList;
 
@@ -35,8 +36,7 @@ public class Review {
      * Every field must be present and not null.
      */
     public Review(Deck deck, List<Card> cardList) {
-        requireNonNull(deck);
-        requireNonNull(cardList);
+        requireAllNonNull(deck, cardList);
 
         this.deck = deck;
         this.cardList = cardList;
