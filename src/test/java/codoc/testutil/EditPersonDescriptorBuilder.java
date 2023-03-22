@@ -42,7 +42,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setGithub(person.getGithub());
         descriptor.setEmail(person.getEmail());
         descriptor.setLinkedin(person.getLinkedin());
+        descriptor.setSkillsRemoved(null);
         descriptor.setSkillsAdded(person.getSkills());
+        descriptor.setModulesRemoved(null);
         descriptor.setModulesAdded(person.getModules());
     }
 

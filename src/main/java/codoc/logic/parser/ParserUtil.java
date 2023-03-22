@@ -154,7 +154,10 @@ public class ParserUtil {
     public static Set<Skill> parseSkillSet(List<String> skillList) throws ParseException {
         requireNonNull(skillList);
         final Set<Skill> skillSet = new HashSet<>();
-        for (String skillName : skillList) { // had to use loop for mat instead of forEach to handle exception
+        for (String skillName : skillList) { // Had to use loop for mat instead of forEach to handle exception
+            if (skillName.equals("")) { // Ignore empty entries
+                continue;
+            }
             Skill skill = parseSkill(skillName);
             skillSet.add(skill);
         }
@@ -182,6 +185,9 @@ public class ParserUtil {
         requireNonNull(moduleList);
         final Set<Module> moduleSet = new HashSet<>();
         for (String moduleName : moduleList) {
+            if (moduleName.equals("")) { // Ignore empty entries
+                continue;
+            }
             moduleSet.add(parseModule(moduleName));
         }
         return moduleSet;

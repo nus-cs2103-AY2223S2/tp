@@ -141,14 +141,16 @@ public class EditCommand extends Command {
         Linkedin updatedLinkedin = editPersonDescriptor.getLinkedin().orElse(personToEdit.getLinkedin());
         Set<Skill> removedSkills = editPersonDescriptor.getSkillsRemoved().orElse(new HashSet<>());
         Set<Skill> addedSkills = editPersonDescriptor.getSkillsAdded().orElse(new HashSet<>());
-        Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills());
+        Set<Skill> updatedSkills = new HashSet<>(personToEdit.getSkills()); // Copy off original
         updatedSkills.removeAll(removedSkills); // Remove takes priority
         updatedSkills.addAll(addedSkills);
+        Set<Skill> finalSkills = editPersonDescriptor.getSkillsFinal().orElse(updatedSkills);
         Set<Module> removedModules = editPersonDescriptor.getModulesRemoved().orElse(new HashSet<>());
         Set<Module> addedModules = editPersonDescriptor.getModulesAdded().orElse(new HashSet<>());
-        Set<Module> updatedModules = new HashSet<>(personToEdit.getModules());
+        Set<Module> updatedModules = new HashSet<>(personToEdit.getModules()); // Copy off original
         updatedModules.removeAll(removedModules); // Remove takes priority
         updatedModules.addAll(addedModules);
+        Set<Module> finalModules = editPersonDescriptor.getModulesFinal().orElse(updatedModules);
 
         return new Person(
                 updatedName,
@@ -157,8 +159,8 @@ public class EditCommand extends Command {
                 updatedGithub,
                 updatedEmail,
                 updatedLinkedin,
-                updatedSkills,
-                updatedModules
+                finalSkills,
+                finalModules
         );
     }
 
@@ -192,8 +194,10 @@ public class EditCommand extends Command {
         private Linkedin linkedin;
         private Set<Skill> skillsRemoved;
         private Set<Skill> skillsAdded;
+        private Set<Skill> skillsFinal;
         private Set<Module> modulesRemoved;
         private Set<Module> modulesAdded;
+        private Set<Module> modulesFinal;
 
         public EditPersonDescriptor() {}
 
@@ -210,16 +214,18 @@ public class EditCommand extends Command {
             setLinkedin(toCopy.linkedin);
             setSkillsRemoved(toCopy.skillsRemoved);
             setSkillsAdded(toCopy.skillsAdded);
+            setSkillsFinal(toCopy.skillsFinal);
             setModulesRemoved(toCopy.modulesRemoved);
             setModulesAdded(toCopy.modulesAdded);
+            setModulesFinal(toCopy.modulesFinal);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, github, email, linkedin, skillsAdded, skillsRemoved,
-                    modulesAdded, modulesRemoved);
+            return CollectionUtil.isAnyNonNull(name, github, email, linkedin, skillsRemoved, skillsAdded, skillsFinal,
+                    modulesRemoved, modulesAdded, modulesFinal);
         }
 
         public void setName(Name name) {
@@ -281,6 +287,14 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code skillsFinal} to this object's {@code skillsFinal}.
+         * A defensive copy of {@code skillsFinal} is used internally.
+         */
+        public void setSkillsFinal(Set<Skill> skillsFinal) {
+            this.skillsFinal = (skillsFinal != null) ? new HashSet<>(skillsFinal) : null;
+        }
+
+        /**
          * Sets {@code modules} to this object's {@code modules}.
          * A defensive copy of {@code modules} is used internally.
          */
@@ -297,6 +311,23 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Sets {@code modulesFinal} to this object's {@code modulesFinal}.
+         * A defensive copy of {@code modulesFinal} is used internally.
+         */
+        public void setModulesFinal(Set<Module> modulesFinal) {
+            this.modulesFinal = (modulesFinal != null) ? new HashSet<>(modulesFinal) : null;
+        }
+
+        /**
+         * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code skillsRemoved} is null.
+         */
+        public Optional<Set<Skill>> getSkillsRemoved() {
+            return (skillsRemoved != null) ? Optional.of(Collections.unmodifiableSet(skillsRemoved)) : Optional.empty();
+        }
+
+        /**
          * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code skillsAdded} is null.
@@ -308,10 +339,20 @@ public class EditCommand extends Command {
         /**
          * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code skillsRemoved} is null.
+         * Returns {@code Optional#empty()} if {@code skillsFinal} is null.
          */
-        public Optional<Set<Skill>> getSkillsRemoved() {
-            return (skillsRemoved != null) ? Optional.of(Collections.unmodifiableSet(skillsRemoved)) : Optional.empty();
+        public Optional<Set<Skill>> getSkillsFinal() {
+            return (skillsFinal != null) ? Optional.of(Collections.unmodifiableSet(skillsFinal)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable module set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code modulesRemoved} is null.
+         */
+        public Optional<Set<Module>> getModulesRemoved() {
+            return (modulesRemoved != null) ? Optional.of(Collections.unmodifiableSet(modulesRemoved))
+                    : Optional.empty();
         }
 
         /**
@@ -326,11 +367,10 @@ public class EditCommand extends Command {
         /**
          * Returns an unmodifiable module set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code modulesRemoved} is null.
+         * Returns {@code Optional#empty()} if {@code modulesFinal} is null.
          */
-        public Optional<Set<Module>> getModulesRemoved() {
-            return (modulesRemoved != null) ? Optional.of(Collections.unmodifiableSet(modulesRemoved))
-                    : Optional.empty();
+        public Optional<Set<Module>> getModulesFinal() {
+            return (modulesFinal != null) ? Optional.of(Collections.unmodifiableSet(modulesFinal)) : Optional.empty();
         }
 
         @Override
@@ -354,10 +394,12 @@ public class EditCommand extends Command {
                     && getCourse().equals(e.getCourse())
                     && getYear().equals(e.getYear())
                     && getLinkedin().equals(e.getLinkedin())
-                    && getSkillsAdded().equals(e.getSkillsAdded())
                     && getSkillsRemoved().equals(e.getSkillsRemoved())
+                    && getSkillsAdded().equals(e.getSkillsAdded())
+                    && getSkillsFinal().equals(e.getSkillsFinal())
+                    && getModulesRemoved().equals(e.getModulesRemoved())
                     && getModulesAdded().equals(e.getModulesAdded())
-                    && getModulesRemoved().equals(e.getModulesRemoved());
+                    && getModulesFinal().equals(e.getModulesFinal());
         }
     }
 }

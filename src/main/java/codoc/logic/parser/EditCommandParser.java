@@ -5,11 +5,13 @@ import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
 import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_NEW;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD_OLD;
 import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
@@ -37,8 +39,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COURSE, PREFIX_YEAR,
                         PREFIX_LINKEDIN, PREFIX_EMAIL, PREFIX_GITHUB,
-                        PREFIX_SKILL_ADD, PREFIX_SKILL_DELETE, PREFIX_SKILL_OLD, PREFIX_SKILL_NEW,
-                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD_OLD, PREFIX_MOD_NEW);
+                        PREFIX_SKILL_ADD, PREFIX_SKILL_DELETE, PREFIX_SKILL_OLD, PREFIX_SKILL_NEW, PREFIX_SKILL,
+                        PREFIX_MOD_ADD, PREFIX_MOD_DELETE, PREFIX_MOD_OLD, PREFIX_MOD_NEW, PREFIX_MOD);
 
         if (args.isEmpty() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
@@ -64,19 +66,25 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_LINKEDIN).isPresent()) {
             editPersonDescriptor.setLinkedin(ParserUtil.parseLinkedin(argMultimap.getValue(PREFIX_LINKEDIN).get()));
         }
-        if (argMultimap.getValue(PREFIX_SKILL_ADD).isPresent()) {
-            editPersonDescriptor.setSkillsAdded(ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL_ADD)));
-        }
         if (argMultimap.getValue(PREFIX_SKILL_DELETE).isPresent()) {
             editPersonDescriptor.setSkillsRemoved(ParserUtil.parseSkillSet(argMultimap
                     .getAllValues(PREFIX_SKILL_DELETE)));
         }
-        if (argMultimap.getValue(PREFIX_MOD_ADD).isPresent()) {
-            editPersonDescriptor.setModulesAdded(ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD_ADD)));
+        if (argMultimap.getValue(PREFIX_SKILL_ADD).isPresent()) {
+            editPersonDescriptor.setSkillsAdded(ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL_ADD)));
+        }
+        if (argMultimap.getValue(PREFIX_SKILL).isPresent()) {
+            editPersonDescriptor.setSkillsFinal(ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL)));
         }
         if (argMultimap.getValue(PREFIX_MOD_DELETE).isPresent()) {
             editPersonDescriptor.setModulesRemoved(ParserUtil.parseModuleSet(argMultimap
                     .getAllValues(PREFIX_MOD_DELETE)));
+        }
+        if (argMultimap.getValue(PREFIX_MOD_ADD).isPresent()) {
+            editPersonDescriptor.setModulesAdded(ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD_ADD)));
+        }
+        if (argMultimap.getValue(PREFIX_MOD).isPresent()) {
+            editPersonDescriptor.setModulesFinal(ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD)));
         }
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
