@@ -13,5 +13,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_LANGUAGE = new Prefix("l/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_REPO_HOST = new Prefix("h/");
+    public static final Prefix PREFIX_REPO_NAME = new Prefix("r/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("d/");
+    public static final Prefix PREFIX_MEETING = new Prefix("m/");
 
 }
