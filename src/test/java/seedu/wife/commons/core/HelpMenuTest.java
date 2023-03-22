@@ -8,7 +8,7 @@ public class HelpMenuTest {
     @Test
     void parseCommand_invalidArg_returnsInvalidSuccess() {
         //non-existent command
-        String invalidArg = "8792jhw";
+        String invalidArg = "abcdef";
         assertEquals(HelpMenu.INVALID, HelpMenu.parseCommand(invalidArg));
 
         //empty string
@@ -20,20 +20,23 @@ public class HelpMenuTest {
     }
 
     @Test
-    void getCommandUsage_checkCorrectResult_success() {
-        String format = "add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
-        assertEquals(format, HelpMenu.ADD.getFormat());
+    void parseCommand_validArg_returnsCommandSuccess() {
+        //valid command
+        String validArgAdd = "add";
+        assertEquals(HelpMenu.ADD, HelpMenu.parseCommand(validArgAdd));
     }
-//
-//    @Test
-//    void displayHelpMenu_checkCorrectOutput_success() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("Command Examples: " + System.lineSeparator());
-//        for (HelpMenu h : HelpMenu.values()) {
-//            sb.append(h.getDescription() + h.getFormat());
-//            sb.append(System.lineSeparator());
-//        }
-//        String result = sb.toString();
-//        assertEquals(result, HelpMenu.getGeneralHelp());
-//    }
+    @Test
+    void getCommandUsage_checkCorrectResult_success() {
+        String expected = "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
+        assertEquals(expected, HelpMenu.ADD.getCommandUsage());
+    }
+
+    @Test
+    void displayHelpMenu_checkCorrectOutput_success() {
+        String expected = "Type 'help COMMAND' to see specific help for a command."
+                + System.lineSeparator()
+                + "Commands Available: add, update, delete, tag, list, exit";
+        String actual = HelpMenu.displayHelpMenu();
+        assertEquals(expected, actual);
+    }
 }
