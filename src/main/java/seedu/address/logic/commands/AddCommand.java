@@ -38,11 +38,10 @@ public class AddCommand extends Command {
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "google@example.com "
             + PREFIX_COMPANY + "Google "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney "
+            + PREFIX_TAG + "Java "
+            + PREFIX_TAG + "Golang "
             + PREFIX_WEBSITE + "www.google.com "
             + PREFIX_JOBDESCRIPTION + "Data Engineering team - penultimate students preferred "
-            + PREFIX_TAG + "Tech "
             + PREFIX_SALARY + "4000 "
             + PREFIX_DEADLINE + "2023-10-20 "
             + PREFIX_EXPERIENCE + "Javascript - 1 Year ";

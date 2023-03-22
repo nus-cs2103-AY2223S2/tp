@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -68,7 +69,13 @@ public class RoleCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         website.setText(role.getWebsite().value);
         salary.setText("$" + role.getSalary().salary);
-        deadline.setText(role.getDeadline().deadline);
+        LocalDate currDeadline = LocalDate.parse(role.getDeadline().deadline);
+        if (currDeadline.isBefore(LocalDate.now())) {
+            deadline.setText(" EXPIRED ");
+            deadline.setStyle("-fx-background-color: yellow; -fx-background-radius: 5px; -fx-text-fill: black");
+        } else {
+            deadline.setText(role.getDeadline().deadline);
+        }
         jobDescription.setText(role.getJobDescription().value);
         experience.setText(role.getExperience().value);
     }
