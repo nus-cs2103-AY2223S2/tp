@@ -537,7 +537,7 @@ For example, if the user wants to search for a person but does not know the full
 
 </div>
 
-**Describing the find** - 'ContainsKeywordPredicate' class which extends from 'Predicate' handles storing the `Prefix` and `keywords` to pass into the `ModelManager` class. It then uses the Java `FilteredList` Library to handle the `Predicate` to return a list of people the user requested.
+**Describing the find** - `ContainsKeywordPredicate` class which extends from `Predicate` handles storing the `Prefix` and `keywords` to pass into the `ModelManager` class. It then uses the Java `FilteredList` Library to handle the `Predicate` to return a list of people the user requested.
 
 
 #### **Sort Command**
