@@ -6,20 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.testutil.TypicalWife.getTypicalWifeWithoutFoodTag;
 import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
 import static seedu.wife.testutil.TypicalIndexes.INDEX_THIRD_FOOD;
+import static seedu.wife.testutil.TypicalWife.getTypicalWifeWithoutFoodTag;
 
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.wife.logic.commands.CommandTestUtil;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
-import seedu.wife.model.Wife;
 import seedu.wife.model.Model;
 import seedu.wife.model.ModelManager;
 import seedu.wife.model.UserPrefs;
+import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.FoodBuilder;

@@ -3,6 +3,9 @@ package seedu.wife.testutil;
 import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 
+/**
+ * A utility class containing a list of {@code Wife} objects to be used in tests.
+ */
 public class TypicalWife {
     /**
      * Returns an {@code Wife} with all the typical food (tagged).

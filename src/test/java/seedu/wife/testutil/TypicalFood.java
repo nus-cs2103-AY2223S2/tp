@@ -3,18 +3,16 @@ package seedu.wife.testutil;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_NAME_MEIJI;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_QUANTITY_MEIJI;
-import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_UNIT_MEIJI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Food} objects to be used in tests.
  */
 public class TypicalFood {
     public static final Food CHOCOLATE = new FoodBuilder()
