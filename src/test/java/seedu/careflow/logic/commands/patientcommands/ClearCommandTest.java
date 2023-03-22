@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyCareFlowPatientRecord_success() {
         CareFlowModel model = new CareFlowModelManager(getTypicalPatientRecord(), getTypicalDrugInventory(),
                 new UserPrefs());
         CareFlowModel expectedCareFlowModel = new CareFlowModelManager(getTypicalPatientRecord(),

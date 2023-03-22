@@ -48,8 +48,6 @@ public class UpdateCommand extends Command {
         this.add = add;
     }
 
-
-
     @Override
     public CommandResult execute(CareFlowModel model) throws CommandException {
         requireNonNull(model);
