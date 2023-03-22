@@ -39,6 +39,24 @@ public class MasterDeckParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private String commandWord;
+    private String arguments;
+
+
+    /**
+     * Parses the command word and the arguments from user input String.
+     *
+     * @param userInput The String input from user
+     * @throws ParseException If the user input does not conform to the expected format
+     */
+    private void updateCommandWordAndArguments(String userInput) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        this.commandWord = matcher.group("commandWord");
+        this.arguments = matcher.group("arguments");
+    }
 
     /**
      * Parses user input into command for execution when no deck is selected.
@@ -47,24 +65,22 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandWhenDeckNotSelected(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+    public Command parseCommandInMainMode(String userInput) throws ParseException {
+        updateCommandWordAndArguments(userInput);
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case AddDeckCommand.COMMAND_WORD:
             return new AddDeckCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case DeleteDeckCommand.COMMAND_WORD:
             return new DeleteDeckCommandParser().parse(arguments);
+
+        case EditDeckCommand.COMMAND_WORD:
+            return new EditDeckCommandParser().parse(arguments);
+
+        case SelectDeckCommand.COMMAND_WORD:
+            return new SelectDeckCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
@@ -75,20 +91,17 @@ public class MasterDeckParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-        case EditDeckCommand.COMMAND_WORD:
-            return new EditDeckCommandParser().parse(arguments);
-
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case SelectDeckCommand.COMMAND_WORD:
-            return new SelectDeckCommandParser().parse(arguments);
 
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommandParser().parse(arguments);
 
         case SetNumCardsPerReviewCommand.COMMAND_WORD:
             return new SetNumCardsPerReviewCommandParser().parse(arguments);
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -102,14 +115,9 @@ public class MasterDeckParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandWhenDeckSelected(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+    public Command parseCommandInDeckMode(String userInput) throws ParseException {
+        updateCommandWordAndArguments(userInput);
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -142,20 +150,15 @@ public class MasterDeckParser {
     }
 
     /**
-     * Parses user input into command for execution when a review is underway and the card is unflipped.
+     * Parses user input into command for execution when a review is underway.
      *
      * @param userInput full user input string
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommandWhenReviewingAndUnflipped(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
+    public Command parseCommandInReviewMode(String userInput) throws ParseException {
+        updateCommandWordAndArguments(userInput);
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
         case EndReviewCommand.COMMAND_WORD:
@@ -170,42 +173,11 @@ public class MasterDeckParser {
         case FlipCardCommand.COMMAND_WORD:
             return new FlipCardCommand();
 
-        default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
-    }
-
-    /**
-     * Parses user input into command for execution when a review is underway and the card is flipped.
-     *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public Command parseCommandWhenReviewingAndFlipped(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-
-        case EndReviewCommand.COMMAND_WORD:
-            return new EndReviewCommand();
-
         case MarkCorrectCommand.COMMAND_WORD:
             return new MarkCorrectCommand();
 
         case MarkWrongCommand.COMMAND_WORD:
             return new MarkWrongCommand();
-
-        case PreviousCardCommand.COMMAND_WORD:
-            return new PreviousCardCommand();
-
-        case NextCardCommand.COMMAND_WORD:
-            return new NextCardCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

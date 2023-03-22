@@ -323,7 +323,7 @@ public class ModelManager implements Model {
         if (currReview != null) {
             return ModelState.REVIEW_MODE;
         }
-        
+
         if (selectedDeck != null) {
             return ModelState.DECK_MODE;
         }

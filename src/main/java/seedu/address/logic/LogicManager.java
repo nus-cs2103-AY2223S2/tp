@@ -2,7 +2,6 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -15,10 +14,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.MasterDeckParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelState;
 import seedu.address.model.ReadOnlyMasterDeck;
 import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
-import seedu.address.model.review.Review;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,6 +25,8 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    public static final String UNKNOWN_STATE_MESSAGE = "Unknown state reached";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -47,19 +48,19 @@ public class LogicManager implements Logic {
 
         Command command;
 
-        Optional<Deck> selectedDeck = this.model.getSelectedDeck();
-        Optional<Review> currReview = this.model.getReview();
-
-        if (currReview.isPresent()) {
-            if (currReview.get().isFlipped()) {
-                command = masterDeckParser.parseCommandWhenReviewingAndFlipped(commandText);
-            } else {
-                command = masterDeckParser.parseCommandWhenReviewingAndUnflipped(commandText);
-            }
-        } else if (selectedDeck.isPresent()) {
-            command = masterDeckParser.parseCommandWhenDeckSelected(commandText);
-        } else {
-            command = masterDeckParser.parseCommandWhenDeckNotSelected(commandText);
+        ModelState currentState = model.getState();
+        switch (currentState) {
+        case MAIN_MODE:
+            command = masterDeckParser.parseCommandInMainMode(commandText);
+            break;
+        case DECK_MODE:
+            command = masterDeckParser.parseCommandInDeckMode(commandText);
+            break;
+        case REVIEW_MODE:
+            command = masterDeckParser.parseCommandInReviewMode(commandText);
+            break;
+        default:
+            throw new CommandException(UNKNOWN_STATE_MESSAGE);
         }
 
         CommandResult commandResult = command.execute(model);
