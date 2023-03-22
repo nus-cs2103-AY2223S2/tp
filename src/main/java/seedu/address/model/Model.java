@@ -26,10 +26,6 @@ public interface Model {
      */
     Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
 
-    /** {@code Predicate} that evaluate to true for all unarchived applications */
-    Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = internshipApplication ->
-            internshipApplication.getStatus() != InternshipStatus.ARCHIVED;
-
     /** {@code Predicate} that evaluate to true for all archived internship applications */
     Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = internshipApplication ->
             internshipApplication.getStatus() == InternshipStatus.ARCHIVED;
