@@ -89,6 +89,10 @@ with the values specified in the `EditDescriptor`
 The `Elderly`/`Volunteer` and then edited in the model using the `setElderly`/`setVolunteer` methods
 of `Model` respectively.
 
+As an example, the following sequence diagram shows the sequence for the command `edit S1234567I n/Shaun ag/21`, where
+the NRIC `S1234567I` belongs to an existing **volunteer**:
+![](images/developerGuide/EditSequenceDiagram.png)
+
 #### Find by keyword
 
 #### Pairing and unpairing of elderly and volunteers
