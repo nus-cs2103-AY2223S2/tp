@@ -16,9 +16,12 @@ title: Developer Guide
   - [Storage Component](#storage-component)
   - [Common Classes](#common-classes)
 - [Implementation](#implementation)
-  - [Person Class](#person-class)
-  - [Edit Command](#edit-command)
-  - [Find Command](#find-command)
+  - [Model](#model-implementation)
+    - [Person Class](#person-class)
+  - [Logic](#logic-implementation)
+    - [Edit Command](#edit-command)
+    - [Find Command](#find-command)
+  - [UI](#ui-implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-%EF%B8%8F)
@@ -283,7 +286,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -369,9 +372,14 @@ Classes used by multiple components are in the `codoc.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+## **Model Implementation**
+
+This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more 
+information about this package.
 
 ### **Person Class**
 Each `Person` in CoDoc is implemented in the following way:
@@ -620,6 +628,86 @@ _{Explain here how the data archiving feature will be implemented}_
 
 [Scroll back to top](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+
+## **UI Implementation**
+
+This section describes implementation of features within `ui` package.
+
+On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into two
+sides, the left side [Main Section](#main-section) which handles user input and executes command, the right side
+[Info Panel](#info-panel) which shows more details about a specific person.
+
+[Insert diagram that labels the sides]
+
+Refer to [UI Component](#ui-component) for more information about this package.
+
+## **Main section**
+
+Main section consists of the following components:
+
+[Insert diagram that labels the components]
+
+* [CommandBox](#commandbox)
+* [ResultDisplay](#resultdisplay)
+* [PersonListPanel](#personlistpanel)
+* [StatusBarFooter](#statusbarfooter)
+
+### **CommandBox**
+
+TEXT
+
+### **ResultDisplay**
+
+TEXT
+
+### **PersonListPanel**
+
+TEXT
+
+### **StatusBarFooter**
+
+TEXT
+
+## **Info Panel**
+
+Info Panel is controlled by classes under `infopanel` package. It is initialized by the primary component `InfoTab`
+which shows more information about a person on the top half, and loads up `DetailedInfo` on the bottom part.
+
+Info Panel consists of the following components:
+
+[Insert diagram that labels the components]
+
+* [InfoTab](#infotab)
+* [DetailedInfo](#detailedinfo)
+  * [DetailedContact](#detailedcontact)
+  * [DetailedModule](#detailedmodule)
+  * [DetailedSkill](#detailedskill)
+
+### **InfoTab**
+
+TEXT
+
+### **DetailedInfo**
+
+TEXT
+
+**DetailedContact**
+
+TEXT
+
+**DetailedModule**
+
+TEXT
+
+**DetailedSkill**
+
+TEXT
+
+
+[Scroll back to UI Implementation](#ui-implementation)
+
+[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
