@@ -10,24 +10,26 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.layout.VBox?>
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.GridPane?>
+<fx:root resizable="false" title="Export Student's Progress" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/help_icon.png" />
+    <Image url="@/images/report_icon.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css" />
+        <URL value="@ExportProgressWindow.css" />
       </stylesheets>
-
-      <VBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox>
+        <GridPane HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" fx:id="exportMessageContainer">
         <children>
-          <Label fx:id="helpMessage" text="Label">
+          <Label fx:id="exportMessage" text="Label" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <VBox.margin>
               <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
             </VBox.margin>
           </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+          <Button fx:id="saveAsButton" mnemonicParsing="false" onAction="#saveAs" text="Save As">
             <VBox.margin>
               <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
             </VBox.margin>
@@ -40,6 +42,8 @@
           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </padding>
       </VBox>
+        </GridPane>
+      </HBox>
     </Scene>
   </scene>
 </fx:root>

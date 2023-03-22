@@ -1,22 +1,23 @@
-#copyButton, #helpMessage {
+#exportMessage, #saveAsButton, #directoryChosen {
     -fx-text-fill: white;
     -fx-font-family: "SansSerif";
     -fx-font-size: 12pt;
     -fx-text-alignment: center;
+    -fx-wrap-text: true;
 }
 
-#copyButton {
+#saveAsButton {
     -fx-background-color: #FF94B4;
 }
 
-#copyButton:hover {
+#saveAsButton:hover {
     -fx-background-color: #EF6FA3;
 }
 
-#copyButton:armed {
+#saveAsButton:armed {
     -fx-background-color: #DD689D;
 }
 
-#helpMessageContainer {
+#exportMessageContainer {
     -fx-background-color: #605BF1;
 }

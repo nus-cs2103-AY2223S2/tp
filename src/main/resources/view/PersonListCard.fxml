@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -49,6 +50,11 @@
         <ImageView fx:id="emailIcon" fitWidth="18" fitHeight="18" />
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" style="-fx-padding: 0 0 0 12"/>
       </HBox>
+      <Button fx:id="exportProgressButton" mnemonicParsing="false" onAction="#exportProgress" text="Export Progress Report">
+        <VBox.margin>
+          <Insets bottom="0" left="0" right="0" top="12.0" />
+        </VBox.margin>
+      </Button>
     </VBox>
     </HBox>
   </GridPane>
