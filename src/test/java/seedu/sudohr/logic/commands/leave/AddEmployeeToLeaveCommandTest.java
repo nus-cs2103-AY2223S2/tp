@@ -90,6 +90,10 @@ public class AddEmployeeToLeaveCommandTest {
                 new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
 
         assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID_COPY,
+                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+
+        assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
                 new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
 

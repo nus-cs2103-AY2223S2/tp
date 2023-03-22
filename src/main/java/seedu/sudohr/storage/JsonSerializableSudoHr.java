@@ -38,8 +38,8 @@ class JsonSerializableSudoHr {
      */
     @JsonCreator
     public JsonSerializableSudoHr(@JsonProperty("employees") List<JsonAdaptedEmployee> employees,
-                                  @JsonProperty("departments") List<JsonAdaptedDepartment> departments,
-                                  @JsonProperty("leaves") List<JsonAdaptedLeave> leaves) {
+            @JsonProperty("departments") List<JsonAdaptedDepartment> departments,
+            @JsonProperty("leaves") List<JsonAdaptedLeave> leaves) {
         this.employees.addAll(employees);
         this.departments.addAll(departments);
         this.leaves.addAll(leaves);
@@ -87,7 +87,7 @@ class JsonSerializableSudoHr {
             }
 
             Set<Employee> employees = department.getEmployees();
-            for (Employee employee: employees) {
+            for (Employee employee : employees) {
                 if (!sudoHr.hasEmployee(employee)) {
                     throw new EmployeeNotFoundException();
                 }
@@ -96,14 +96,13 @@ class JsonSerializableSudoHr {
             sudoHr.addDepartment(department);
         }
 
-
         for (JsonAdaptedLeave jsonAdaptedLeave : leaves) {
             Leave leave = jsonAdaptedLeave.toModelType();
             if (sudoHr.hasLeave(leave)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LEAVES);
             }
             List<Employee> employees = leave.getEmployees();
-            for (Employee employee: employees) {
+            for (Employee employee : employees) {
                 if (!sudoHr.hasEmployee(employee)) {
                     throw new EmployeeNotFoundException();
                 }

@@ -29,6 +29,7 @@ public class TypicalEmployees {
     public static final Id ID_NOT_EXIST = new Id("999");
     public static final Id ALICE_ID = new Id("101");
     public static final Id BENSON_ID = new Id("102");
+    public static final Id ALICE_ID_COPY = new Id("101");
 
     public static final Employee ALICE = new EmployeeBuilder().withId("101")
             .withName("Alice Pauline")

@@ -68,7 +68,7 @@ public class LeaveTest {
     }
 
     @Test
-    public void execute_NonExistantEmployee_throwsException() {
+    public void execute_nonExistantEmployee_throwsException() {
         Leave leave = new LeaveBuilder().build();
         assertThrows(EmployeeNotFoundException.class, () -> leave.deleteEmployee(TypicalEmployees.ALICE));
     }
