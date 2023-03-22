@@ -1,17 +1,19 @@
 package seedu.recipe.ui;
+
 import java.util.Comparator;
 import java.util.Optional;
-
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import seedu.recipe.model.recipe.Recipe;
 
 /**
@@ -69,7 +71,6 @@ public class RecipePopup extends UiPart<Region> {
                         .orElse("Portion was not added.")
         );
 
-
         //Tags
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -94,12 +95,13 @@ public class RecipePopup extends UiPart<Region> {
         window.setTitle("Recipe Details");
         window.setMinWidth(500);
         window.setMinHeight(300);
-
-        Button closeButton = new Button("Close");
-        closeButton.setOnAction(event -> window.close());
-        // Create a VBox to hold the RecipeCard
-        VBox vbox = new VBox(getRoot(), closeButton);
+        VBox vbox = new VBox(getRoot());
         Scene scene = new Scene(vbox);
+        scene.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                window.close();
+            }
+        });
         window.setScene(scene);
         window.showAndWait();
     }

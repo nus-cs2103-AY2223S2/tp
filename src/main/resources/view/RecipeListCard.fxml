@@ -29,9 +29,11 @@
       </HBox>
       <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
       <Label fx:id="portion" styleClass="cell_small_label" text="\$portion" />
-      <FlowPane fx:id="tags" />
+      <Label fx:id="ingredientsTitle" styleClass="cell_small_label" text="Ingredients: " />
       <FlowPane fx:id="ingredients"/>
+      <Label fx:id="stepsTitle" styleClass="cell_small_label" text="Steps: " />
       <FlowPane fx:id="steps"/>
+      <FlowPane fx:id="tags" />
     </VBox>
   </GridPane>
 </HBox>
