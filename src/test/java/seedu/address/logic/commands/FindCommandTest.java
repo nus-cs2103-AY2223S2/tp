@@ -4,9 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalLectures.CS2040S_WEEK_1;
-import static seedu.address.testutil.TypicalModules.CS2040S;
-import static seedu.address.testutil.TypicalModules.ST2334;
 import static seedu.address.testutil.TypicalModules.getTypicalTracker;
 
 import java.util.Arrays;
@@ -15,7 +12,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
@@ -24,11 +20,14 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.CodeContainsKeywordsPredicate;
 import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TypicalLectures;
+import seedu.address.testutil.TypicalModules;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -36,6 +35,8 @@ import seedu.address.testutil.ModuleBuilder;
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalTracker(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTracker(), new UserPrefs());
+    private final static Module CS2040S = TypicalModules.getCs2040s();
+    private final static Module ST2334 = TypicalModules.getSt2334();
 
     @Test
     public void equals() {
@@ -78,7 +79,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 0);
         LectureNameContainsKeywordsPredicate predicate =
             (LectureNameContainsKeywordsPredicate) preparePredicate(" ", Level.LECTURE);
-        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
+        ReadOnlyModule module = new ModuleBuilder().build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(Collections.emptyList(), moduleCode);
@@ -93,7 +94,7 @@ public class FindCommandTest {
         VideoNameContainsKeywordsPredicate predicate =
             (VideoNameContainsKeywordsPredicate) preparePredicate(" ", Level.VIDEO);
         ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
-        ReadOnlyLecture lecture = new LectureBuilder(CS2040S_WEEK_1).build();
+        ReadOnlyLecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek1()).build();
         expectedModel.updateFilteredVideoList(predicate, lecture);
         FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), lecture.getName());
 
