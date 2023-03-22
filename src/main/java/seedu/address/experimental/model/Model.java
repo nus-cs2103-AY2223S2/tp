@@ -17,6 +17,7 @@ public interface Model {
      */
     Predicate<Entity> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
 
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

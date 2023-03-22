@@ -5,12 +5,11 @@ import seedu.address.model.entity.Entity;
 
 /**
  * TBC
- * @param <T> TBC
  */
-public interface ReadOnlyEntities<T extends Entity> {
+public interface ReadOnlyEntities {
     /**
      * TBC
      * @return TBC
      */
-    ObservableList<T> getEntityList();
+    ObservableList<Entity> getEntityList();
 }

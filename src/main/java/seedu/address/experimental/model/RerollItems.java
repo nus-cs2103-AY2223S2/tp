@@ -1,15 +1,23 @@
 package seedu.address.experimental.model;
 
-import seedu.address.model.entity.Item;
-
+import javafx.collections.ObservableList;
+import seedu.address.model.entity.Entity;
 
 /**
  * Abstraction of all items
  */
-public class RerollItems extends RerollEntities<Item> {
+public class RerollItems implements ReadOnlyEntities {
 
-    // For convenience
-    private final UniqueEntityList items = entities;
+    private final ObservableList<Entity> items;
+
+    public RerollItems(ObservableList<Entity> items) {
+        this.items = items;
+    }
+
+    @Override
+    public ObservableList<Entity> getEntityList() {
+        return items;
+    }
 
     @Override
     public boolean equals(Object other) {
