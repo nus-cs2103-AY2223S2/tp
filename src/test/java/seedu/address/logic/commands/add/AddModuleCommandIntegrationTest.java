@@ -26,7 +26,7 @@ public class AddModuleCommandIntegrationTest {
 
     @Test
     public void execute_newModule_success() {
-        Module validModule = TypicalModules.CS2107;
+        Module validModule = TypicalModules.getCs2107();
 
         Model expectedModel = new ModelManager(model.getTracker(), new UserPrefs());
         expectedModel.addModule(validModule);

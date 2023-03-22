@@ -32,27 +32,28 @@ public class AddVideoCommandTest {
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddVideoCommand(null, TypicalLectures.CS2040S_WEEK_1.getName(),
+                new AddVideoCommand(null, TypicalLectures.getCs2040sWeek1().getName(),
                         TypicalVideos.CONTENT_VIDEO));
     }
 
     @Test
     public void constructor_nullLectureName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddVideoCommand(TypicalModules.CS2040S.getCode(), null,
+                new AddVideoCommand(TypicalModules.getCs2040s().getCode(), null,
                         TypicalVideos.CONTENT_VIDEO));
     }
 
     @Test
     public void constructor_nullVideo_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddVideoCommand(TypicalModules.CS2040S.getCode(), TypicalLectures.CS2040S_WEEK_1.getName(), null));
+                new AddVideoCommand(TypicalModules.getCs2040s().getCode(),
+                        TypicalLectures.getCs2040sWeek1().getName(), null));
     }
 
     @Test
     public void execute_videoAcceptedByModel_addSuccessful() throws CommandException {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        Lecture lecture = TypicalLectures.CS2040S_WEEK_1;
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
         LectureName lectureName = lecture.getName();
         Video video = TypicalVideos.REVISION_VIDEO;
 
@@ -68,16 +69,16 @@ public class AddVideoCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        AddVideoCommand command = new AddVideoCommand(TypicalModules.CS2040S.getCode(),
-                TypicalLectures.CS2040S_WEEK_1.getName(), TypicalVideos.CONTENT_VIDEO);
+        AddVideoCommand command = new AddVideoCommand(TypicalModules.getCs2040s().getCode(),
+                TypicalLectures.getCs2040sWeek1().getName(), TypicalVideos.CONTENT_VIDEO);
 
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
     public void execute_moduleDoesNotExist_throwsCommandException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         Video video = TypicalVideos.CONTENT_VIDEO;
 
         ModelStub modelStub = new ModelStubNoModule();
@@ -89,8 +90,8 @@ public class AddVideoCommandTest {
 
     @Test
     public void execute_lectureDoesNotExist_throwsCommandException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         Video video = TypicalVideos.CONTENT_VIDEO;
 
         ModelStub modelStub = new ModelStubNoLecture();
@@ -103,8 +104,8 @@ public class AddVideoCommandTest {
 
     @Test
     public void execute_duplicateVideo_throwsCommandException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        Lecture lecture = TypicalLectures.CS2040S_WEEK_1;
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
         LectureName lectureName = lecture.getName();
         Video video = TypicalVideos.CONTENT_VIDEO;
 
@@ -118,8 +119,8 @@ public class AddVideoCommandTest {
 
     @Test
     public void equals() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         AddVideoCommand addContentVideoCommand =
                 new AddVideoCommand(moduleCode, lectureName, TypicalVideos.CONTENT_VIDEO);
         AddVideoCommand addAnalysisVideoCommand =

@@ -33,9 +33,9 @@ public class ListCommandTest {
 
     private ListCommand listCommand;
 
-    private final Module existingModule = TypicalModules.CS2040S;
+    private final Module existingModule = TypicalModules.getCs2040s();
     private final ModuleCode existingModuleCode = existingModule.getCode();
-    private final Lecture existingLecture = TypicalLectures.CS2040S_WEEK_1;
+    private final Lecture existingLecture = TypicalLectures.getCs2040sWeek1();
     private final LectureName existingLectureName = existingLecture.getName();
 
     @BeforeEach

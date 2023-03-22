@@ -32,9 +32,9 @@ public class AddLectureCommandIntegrationTest {
 
     @Test
     public void execute_newLecture_success() {
-        Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module module = TypicalModules.getCs2040s();
         ModuleCode moduleCode = module.getCode();
-        Lecture validLecture = TypicalLectures.ST2334_TOPIC_1;
+        Lecture validLecture = TypicalLectures.getSt2334Topic1();
 
         // Prevents the original module from TypicalModules from being modified
         model.deleteModule(module);
@@ -54,9 +54,9 @@ public class AddLectureCommandIntegrationTest {
 
     @Test
     public void execute_moduleDoesNotExist_throwsCommandException() {
-        Module module = new ModuleBuilder(TypicalModules.CS2107).build();
+        Module module = TypicalModules.getCs2107();
         ModuleCode moduleCode = module.getCode();
-        Lecture validLecture = TypicalLectures.CS2040S_WEEK_1;
+        Lecture validLecture = TypicalLectures.getCs2040sWeek1();
 
         assertCommandFailure(new AddLectureCommand(moduleCode, validLecture), model,
                 String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
@@ -64,9 +64,9 @@ public class AddLectureCommandIntegrationTest {
 
     @Test
     public void execute_duplicateLecture_throwsCommandException() {
-        Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module module = TypicalModules.getCs2040s();
         ModuleCode moduleCode = module.getCode();
-        Lecture lectureInList = TypicalLectures.CS2040S_WEEK_1;
+        Lecture lectureInList = TypicalLectures.getCs2040sWeek1();
 
         assertCommandFailure(new AddLectureCommand(moduleCode, lectureInList), model,
                 String.format(AddLectureCommand.MESSAGE_DUPLICATE_LECTURE, moduleCode));

@@ -41,7 +41,7 @@ public class ListCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         String invalidFormat = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE);
 
-        // Invalid args
+        // Has args
         assertParseFailure(parser, PREAMBLE_NON_EMPTY, invalidFormat);
 
         // Missing module code and invalid lecture name format

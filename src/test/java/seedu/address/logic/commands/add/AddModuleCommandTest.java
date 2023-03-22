@@ -27,7 +27,7 @@ public class AddModuleCommandTest {
 
     @Test
     public void execute_moduleAcceptedByModel_addSuccessful() throws CommandException {
-        Module module = TypicalModules.CS2040S;
+        Module module = TypicalModules.getCs2040s();
         ModelStubAcceptingModuleAdded modelStub = new ModelStubAcceptingModuleAdded();
 
         CommandResult result = new AddModuleCommand(module).execute(modelStub);
@@ -39,14 +39,14 @@ public class AddModuleCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        AddModuleCommand command = new AddModuleCommand(TypicalModules.CS2040S);
+        AddModuleCommand command = new AddModuleCommand(TypicalModules.getCs2040s());
 
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
     public void execute_duplicateModule_throwsCommandException() {
-        Module module = TypicalModules.CS2040S;
+        Module module = TypicalModules.getCs2040s();
         AddModuleCommand command = new AddModuleCommand(module);
         ModelStub modelStub = new ModelStubWithModule(module);
 
@@ -56,14 +56,14 @@ public class AddModuleCommandTest {
 
     @Test
     public void equals() {
-        AddModuleCommand addCs2040sCommand = new AddModuleCommand(TypicalModules.CS2040S);
-        AddModuleCommand addSt2334Command = new AddModuleCommand(TypicalModules.ST2334);
+        AddModuleCommand addCs2040sCommand = new AddModuleCommand(TypicalModules.getCs2040s());
+        AddModuleCommand addSt2334Command = new AddModuleCommand(TypicalModules.getSt2334());
 
         // same object -> returns true
         assertTrue(addCs2040sCommand.equals(addCs2040sCommand));
 
         // same values -> returns true
-        AddModuleCommand addCs2040sCommandCopy = new AddModuleCommand(TypicalModules.CS2040S);
+        AddModuleCommand addCs2040sCommandCopy = new AddModuleCommand(TypicalModules.getCs2040s());
         assertTrue(addCs2040sCommand.equals(addCs2040sCommandCopy));
 
         // different types -> returns false
