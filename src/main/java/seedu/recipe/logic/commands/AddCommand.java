@@ -39,13 +39,13 @@ public class AddCommand extends Command {
         }
 
         model.addRecipe(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getTitle()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd.getTitle()));
+                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
