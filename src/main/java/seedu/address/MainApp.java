@@ -92,8 +92,6 @@ public class MainApp extends Application {
             initialPatientData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
 
             appointmentListOptional = storage.readAppointmentList();
-            System.out.println("appointmentListOptional:");
-            appointmentListOptional.get().getAppointmentList().stream().forEach(appt -> System.out.println(appt));
             if (appointmentListOptional.isEmpty()) {
                 logger.info(
                     "Data file for appointment lists not found. Will be starting with a sample appointment list");
