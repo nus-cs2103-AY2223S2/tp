@@ -21,11 +21,11 @@ Class TaskDeadline
 Class TaskList extends ItemList
 Class UniqueTaskList extends UniqueItemList
 
-ItemList *--r> "1 " UniqueItemList
-UniqueItemList -r> Item
+ItemList *--r> "1" UniqueItemList
+UniqueItemList -r> "*" Item
 
 TaskList *--r> "1 " UniqueTaskList
-UniqueTaskList -r> Task
+UniqueTaskList -r> "*" Task
 Task *--> "1" TaskName
 Task *--> "1" TaskDeadline
 Task *--> "1 " TaskStatus

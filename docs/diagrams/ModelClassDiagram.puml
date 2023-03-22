@@ -30,7 +30,7 @@ XYZList ..u|> ReadOnlyXYZList
 XYZList *--d> "         1" UniqueXYZList
 UniqueXYZList --> "~* all " XYZ
 
-ModelManager --->"  ~* filtered" XYZ
+ModelManager ---->"~* filtered" XYZ
 
 ItemList *-d> "1 " UniqueItemList
 UniqueItemList -d> "              *" Item
