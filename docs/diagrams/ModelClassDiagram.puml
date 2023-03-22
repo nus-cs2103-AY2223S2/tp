@@ -41,5 +41,5 @@ UniqueItemList -d> "              *" Item
 
 UniqueXYZList --l|> UniqueItemList
 XYZList --l|> ItemList
-XYZ --l> Item
+XYZ --l|> Item
 @enduml
