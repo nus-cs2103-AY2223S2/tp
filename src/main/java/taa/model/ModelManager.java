@@ -188,6 +188,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
+        this.activeClassListPredicate = null;
         filteredStudents.setPredicate(predicate);
     }
 
