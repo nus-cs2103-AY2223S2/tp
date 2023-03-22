@@ -3,7 +3,6 @@ package seedu.address.logic.commands.fish;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
-import java.util.List;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -38,13 +37,8 @@ public class FishSortCommand extends FishCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Fish> lastShownList = model.getFilteredFishList();
-
-
         model.sortFilteredFishList(fishComparator);
         model.setGuiMode(GuiSettings.GuiMode.DISPLAY_SORTED_FISHES_TASKS);
-        //model.updateFilteredFishList(x -> true);
-
         return new CommandResult(MESSAGE_VIEW_FISH_SUCCESS, false, false, true);
     }
 

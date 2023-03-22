@@ -24,6 +24,7 @@ public class FishSortCommandParser {
         }
         switch (args.trim().toLowerCase()) {
         case "n":
+            /* Compares names and sorts them lexicographically from small to large */
             Comparator<Fish> nameComparator = new Comparator<Fish>() {
                 @Override
                 public int compare(Fish f1, Fish f2) {
@@ -32,6 +33,7 @@ public class FishSortCommandParser {
             };
             return new FishSortCommand(nameComparator);
         case "lfd":
+            /* Compares last fed date and sorts them lexicographically from small to large */
             Comparator<Fish> lastFedComparator = new Comparator<Fish>() {
                 @Override
                 public int compare(Fish f1, Fish f2) {
@@ -40,6 +42,7 @@ public class FishSortCommandParser {
             };
             return new FishSortCommand(lastFedComparator);
         case "s":
+            /* Compares species and sorts them lexicographically from small to large */
             Comparator<Fish> speciesComparator = new Comparator<Fish>() {
                 @Override
                 public int compare(Fish f1, Fish f2) {
@@ -48,9 +51,25 @@ public class FishSortCommandParser {
             };
             return new FishSortCommand(speciesComparator);
         case "fi":
-
+            /* Compares feeding intervals and sorts them lexicographically from small to large */
+            Comparator<Fish> feedingComparator = new Comparator<Fish>() {
+                @Override
+                public int compare(Fish f1, Fish f2) {
+                    String c1 = f1.getFeedingInterval().days + f1.getFeedingInterval().hours;
+                    String c2 = f2.getFeedingInterval().days + f2.getFeedingInterval().hours;
+                    return c1.compareTo(c2);
+                }
+            };
+            return new FishSortCommand(feedingComparator);
         case "tk":
-
+            /* Compares tank names and sorts them lexicographically from small to large */
+            Comparator<Fish> tankComparator = new Comparator<Fish>() {
+                @Override
+                public int compare(Fish f1, Fish f2) {
+                    return f1.getTank().getTankName().toString().compareTo(f2.getTank().getTankName().toString());
+                }
+            };
+            return new FishSortCommand(tankComparator);
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     FishSortCommand.MESSAGE_USAGE));
