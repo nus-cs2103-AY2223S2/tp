@@ -158,18 +158,6 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Event component
-
-**API** : [`Event.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
-
-<img src="images/StorageClassDiagram.png" width="550" />
-
-The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-
-
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -367,28 +355,157 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `user`, unless specified otherwise)
 
-Old use cases examples
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC01 - Add Tutorial lessons
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Tutorial Teaching Assistant (TA)
+<br>
+Precondition: TA has access to the TrAcker application
 
 **MSS**
 
-1.  User requests to list students
-2.  TrAcker shows a list of students
-3.  User requests to remove student who dropped the module from the list
-4.  TrAcker deletes the person
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to create new tutorial.
+3.  TA confirms creation of tutorial.
+4.  TrAcker displays the new tutorial event.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. There are no students.
+* 3a. TrAcker detects an error in the entered tutorial data.
+  * 3a1. TrAcker requests for the correct tutorial data where there was an error.
+  * 3a2. TA enters new tutorial data.
+  Steps 3a1 - 3a2 are repeated until the data entered to create a new tutorial are correct.
+  <br>
+  Use case resumes from Step 4.
 
-  Use case ends.
+* a. At any time, TA decides not to create a new tutorial.
+  * a1. TA removes input from TrAcker.
 
-* 3a. The given index is invalid.
+Use case ends
 
-    * 3a1. TrAcker shows an error message.
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC02 - Add Lab lessons
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Lab Teaching Assistant (TA)
+<br>
+Precondition: TA has access to the TrAcker application
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to create new lab.
+3.  TA confirms creation of lab.
+4.  TrAcker displays the new lab event.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects an error in the entered lab data.
+    * 3a1. TrAcker requests for the correct lab data where there was an error.
+    * 3a2. TA enters new lab data.
+      Steps 3a1 - 3a2 are repeated until the data entered to create a new lab are correct.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to create a new lab.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC03 - Add Consultation lessons
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Precondition: TA has access to the TrAcker application
+
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to create new consultation.
+3.  TA confirms creation of consultation.
+4.  TrAcker displays the new consultation event.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects an error in the entered consultation data.
+    * 3a1. TrAcker requests for the correct consultation data where there was an error.
+    * 3a2. TA enters new consultation data.
+      Steps 3a1 - 3a2 are repeated until the data entered to create a new consultation are correct.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to create a new consultation.
+    * a1. TA removes input from TrAcker.
+
+Use case ends.
+
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC04 - Add students to event
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions: 
+- TA has access to the TrAcker application
+
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to add student to an event.
+3.  TA confirms addition of student to an event. 
+4.  TrAcker marks the student's attendance as present.
+5.  TrAcker displays the new student in the event.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects that the event does not exist.
+    * 3a1. TrAcker requests for the correct event data.
+    * 3a2. TA enters new event data that the student should be added to.
+      Steps 3a1 - 3a2 are repeated until the event data entered is correct and exists.
+      <br>
+      Use case resumes from Step 4.
+
+* 3b. TrAcker detects that the student does not exist.
+    * 3b1. TrAcker requests for the correct student data.
+    * 3b2. TA enters new student data.
+      Steps 3b1 - 3b2 are repeated until the student data entered is correct and exists.
+      <br>
+      Use case resumes from Step 4.
+
+* 3c. TrAcker detects that the data entered is in a wrong format.
+    * 3c1. TrAcker requests for the correct data format.
+    * 3c2. TA enters new data format.
+      Steps 3c1 - 3c2 are repeated until the data format is correct.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to add a student to the event.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
 
 *{More to be added}*
 
