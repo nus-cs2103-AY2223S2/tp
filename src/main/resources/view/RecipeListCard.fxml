@@ -33,6 +33,7 @@
       <FlowPane fx:id="ingredients"/>
       <Label fx:id="stepsTitle" styleClass="cell_small_label" text="Steps: " />
       <FlowPane fx:id="steps"/>
+      <Label fx:id="tagsTitle" styleClass="cell_small_label" text="Tags: " />
       <FlowPane fx:id="tags" />
     </VBox>
   </GridPane>

@@ -50,6 +50,9 @@ public class RecipeCard extends UiPart<Region> {
     private Label stepsTitle;
 
     @FXML
+    private Label tagsTitle;
+
+    @FXML
     private FlowPane tags;
 
     @FXML
@@ -96,6 +99,7 @@ public class RecipeCard extends UiPart<Region> {
                 .forEach(step -> steps.getChildren().add(new Label(step.toString())));
 
         //Tags
+        tagsTitle.setText("Steps:");
         recipe.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));        
