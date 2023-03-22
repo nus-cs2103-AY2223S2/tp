@@ -14,6 +14,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.doctor.Specialty;
 import seedu.address.model.person.doctor.Yoe;
+import seedu.address.model.person.patient.Diagnosis;
+import seedu.address.model.person.patient.Height;
+import seedu.address.model.person.patient.Remark;
+import seedu.address.model.person.patient.Status;
+import seedu.address.model.person.patient.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -82,6 +87,35 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    //METHODS FOR DOCTOR
+
+    /**
      * Parses a {@code String speciality} into an {@code Speciality}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -111,30 +145,49 @@ public class ParserUtil {
         return new Yoe(trimmedYoe);
     }
 
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    //METHODS FOR PATIENT
+    public static Height parseHeight(String height) throws ParseException {
+        requireNonNull(height);
+        String trimmedHeight = height.trim();
+        if (!Height.isValidHeight(height)) {
+            throw new ParseException(Height.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Height(trimmedHeight);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Weight parseWeight(String weight) throws ParseException {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(weight)) {
+            throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new Weight(trimmedWeight);
+    }
+
+    public static Diagnosis parseDiagnosis(String diagnosis) throws ParseException {
+        requireNonNull(diagnosis);
+        String trimmedDiagnosis = diagnosis.trim();
+        if (!Diagnosis.isValidDiagnosis(diagnosis)) {
+            throw new ParseException(Diagnosis.MESSAGE_CONSTRAINTS);
+        }
+        return new Diagnosis(trimmedDiagnosis);
+    }
+
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(status)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(status);
+    }
+
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(remark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
     }
 }
