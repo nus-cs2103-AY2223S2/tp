@@ -12,7 +12,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 
 /**
- * Converts a Java object instance to JSON and vice versa
+ * Converts a Java object instance to CSV and vice versa.
  */
 public class CsvUtil {
 
