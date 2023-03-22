@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ListEvContactCommandParser" as ListEvContactCommandParser LOGIC_COLOR
-participant "l:ListEvContactCommand" as ListEvContactCommand LOGIC_COLOR
+participant "ec:ListEvContactCommand" as ListEvContactCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -34,19 +34,19 @@ create ListEvContactCommand
 ListEvContactCommandParser -> ListEvContactCommand
 activate ListEvContactCommand
 
-ListEvContactCommand --> ListEvContactCommandParser : l
+ListEvContactCommand --> ListEvContactCommandParser : ec
 deactivate ListEvContactCommand
 
-ListEvContactCommandParser --> AddressBookParser : l
+ListEvContactCommandParser --> AddressBookParser : ec
 deactivate ListEvContactCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ListEvContactCommandParser -[hidden]-> AddressBookParser
 destroy ListEvContactCommandParser
 
-AddressBookParser --> LogicManager : l
+AddressBookParser --> LogicManager : ec
 deactivate AddressBookParser
 
-LogicManager -> ListEvContactCommand : execute()
+LogicManager -> ListEvContactCommand : execute(model)
 activate ListEvContactCommand
 
 create EventSetContainsEventPredicate
@@ -71,6 +71,9 @@ deactivate CommandResult
 
 ListEvContactCommand --> LogicManager : result
 deactivate ListEvContactCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListEvContactCommand -[hidden]-> LogicManager
+destroy ListEvContactCommand
 
 [<--LogicManager
 deactivate LogicManager
