@@ -389,7 +389,9 @@ For example, after adding an applicant, you decided to see the list of applicant
 
 The command you would like to enter into the [Command Input Box](#51-user-interface) would be:
 
-```list```
+```
+list
+```
 
 You should now have a better understanding of how commands are formatted and used. All commands are consolidated
 in the [Command Summary](#7-command-summary).
@@ -401,6 +403,7 @@ Here is a checklist you can use before running a command:
 * [ ] I know the flags for each parameter to be supplied
 * [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
+
 
 ## 6. Commands
 
