@@ -198,7 +198,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | ***      | user   | delete company internship                  | ignore the companies that I don't like                  |
 | ***      | user   | Save data                                  | view my internship job later on                         |
 | **       | user   | rank the jobs                              | know which job I am most interested                     |
-
+| *        | user   | use the UI with ease                       | quicky do certain app operations                        |
+| *        | user   | find by tags                               | filter by certain skills or notes of the job            |
+| *        | user   | sort by salary                             | view by the highest paid role                           |
+| *        | user   | find companies                             | find relevant comapnies and relevant roles              |
 ### Use cases
 (For all use cases below, the System is the TechTrack and the Actor is the user, unless specified otherwise)
 
