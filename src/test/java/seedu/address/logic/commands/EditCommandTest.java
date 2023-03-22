@@ -35,14 +35,17 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Card editedCard = new CardBuilder().build();
+        Card editedCard = new CardBuilder().build(); // in DEFAULT deck
         EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder(editedCard).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor); // edited card has the same deck as LOOP
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
 
         Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
-        expectedModel.setCard(model.getFilteredCardList().get(0), editedCard);
+        Card toEdit = model.getFilteredCardList().get(0); // card at first index
+        Card toReplace = new Card(editedCard.getQuestion(), editedCard.getAnswer(),
+                editedCard.getTags(), toEdit.getDeck()); // new card is in the same deck as old card
+        expectedModel.setCard(toEdit, toReplace);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

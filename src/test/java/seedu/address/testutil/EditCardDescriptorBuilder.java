@@ -9,6 +9,7 @@ import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
+import seedu.address.model.deck.Deck;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -59,6 +60,14 @@ public class EditCardDescriptorBuilder {
     public EditCardDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Deck} of the {@code EditCardDescriptor} that we are building.
+     */
+    public EditCardDescriptorBuilder withDeck(Deck deck) {
+        descriptor.setDeck(deck);
         return this;
     }
 
