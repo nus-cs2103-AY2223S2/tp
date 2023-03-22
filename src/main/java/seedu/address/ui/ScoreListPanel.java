@@ -23,6 +23,8 @@ public class ScoreListPanel extends UiPart<Region> {
     private ListView<Score> scoreListView;
     @FXML
     private Label name;
+    @FXML
+    private Label nameChart;
 
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
@@ -31,6 +33,7 @@ public class ScoreListPanel extends UiPart<Region> {
         super(FXML);
 
         name.setText("No student being checked now");
+        nameChart.setText("No student being checked now");
 
         if (person != null) {
             scoreListView.setItems(person.getScoreList().getInternalList());
@@ -40,8 +43,10 @@ public class ScoreListPanel extends UiPart<Region> {
         if (person != null) {
             if (person.getScoreList().getInternalList().size() != 0) {
                 name.setText("Score history for " + person.getName().fullName);
+                nameChart.setText("Chart for " + person.getName().fullName);
             } else {
                 name.setText("No score history found for " + person.getName().fullName);
+                nameChart.setText("No score chart for " + person.getName().fullName);
             }
         }
     }

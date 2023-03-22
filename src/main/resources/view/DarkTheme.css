@@ -149,6 +149,48 @@
     -fx-text-fill: #4A4A4A;
 }
 
+.list_tab {
+    -fx-background-color: #DAD8FF;
+    -fx-font-family: "SansSerif";
+    -fx-text-fill: #605BF1;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.tab-header-area .tab{
+    -fx-background-radius: 10 10 0 0;
+    -fx-padding: 8;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #605BF1;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+.tab-pane .tab:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab-pane .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+    -fx-border-radius: 10 4 0 0;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
 .cell_big_label {
     -fx-font-family: "SansSerif";
     -fx-font-weight: bold;
