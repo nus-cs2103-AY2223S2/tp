@@ -47,13 +47,14 @@ class JsonSerializableScheduler {
      */
     public Scheduler toModelType() throws IllegalValueException {
         Scheduler scheduler = new Scheduler();
-        scheduler.deletePastEvents();
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
             if (scheduler.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            scheduler.addEvent(event);
+            if (!event.isPastEvent()) {
+                scheduler.addEvent(event);
+            }
         }
         return scheduler;
     }

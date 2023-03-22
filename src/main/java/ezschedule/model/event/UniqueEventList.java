@@ -29,17 +29,6 @@ public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    public void deletePastEvents() {
-        System.out.println("testing delete past");
-        internalList.forEach(event -> {
-            System.out.println("test");
-            if (event.isPastEvent()) {
-                System.out.println("old event found");
-                remove(event);
-            }
-        });
-    }
-
     /**
      * Returns true if the list contains an equivalent event as the given argument.
      */
