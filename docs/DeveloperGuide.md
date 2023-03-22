@@ -307,9 +307,10 @@ searching, we need some way to track the state of the command box, i.e. at any
 point in time, whether it should be taking in commands or performing fuzzy
 searching. This is achieved through a simple boolean `isListening` flag in
 `CommandBox` itself. Toggling between the two states is managed by key actions,
-and is not relevant or necessary for this section. Fuzzy searching is enabled
-if and only if `isListening` is set to `true`. (Indeed, our discussion of fuzzy
-searching above assumed that the `CommandBox` was in the listening state.)
+an explanation for which is not relevant or necessary for this section. Fuzzy
+searching is enabled if and only if `isListening` is set to `true`. (Indeed,
+our discussion of fuzzy searching above assumed that the `CommandBox` was in
+the listening state.)
 
 The activity diagram below illustrates this dispatching of state.
 
