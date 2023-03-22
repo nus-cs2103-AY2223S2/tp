@@ -171,21 +171,23 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Link Contact feature
+### New Contact feature
 
 ### Implementation
 
-The link contact feature is implemented by having the Event class keep track of an additional attribute called 'Contact'. Whilst contact need not be instantiated during the creation of a new event, this feature will allow users the option to link contact to their event.
+The new contact feature is facilitated by the `Contact` class. Contact class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
+A new contact created will be added to the Contact list which will be saved in a JSON file.
 
 ### Design considerations:
 
-**Aspect: How contact to link is determined:**
+**Aspect: How new contact is created:**
 
-* **Alternative 1 (current choice):** Determine contact to link by Phone.
-    * Pros: Phone numbers are unique.
-* **Alternative 2:** Determine contact to link by Name.
-    * Pros: Name is unique to an individual.
-    * Cons: Two people can have the same name.
+* **Alternative 1 (current choice):** Create a new contact through creating `ContactName` and `ContactPhone` attributes.
+    * Pros: More levels of abstraction to prevent the accidental change of information.
+    * Cons: Complicated code.
+* **Alternative 2:** Created a new contact through storing strings input by user.
+    * Pros: Easy to code.
+    * Cons: Might be hard to keep track or do comparisons with.
   
 
 ### Mark feature
