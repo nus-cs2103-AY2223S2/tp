@@ -3,11 +3,8 @@ package seedu.fitbook.model.client;
 import static java.util.Objects.requireNonNull;
 import static seedu.fitbook.commons.util.AppUtil.checkArgument;
 
-import java.text.ParseException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
@@ -47,9 +44,13 @@ public class Appointment implements Comparable<Appointment> {
 
     }
 
+    /**
+     * Returns true if a given string is a valid date.
+     */
     public static boolean isValidDate(String appointment) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm").withResolverStyle(ResolverStyle.STRICT);
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm").withResolverStyle(ResolverStyle.STRICT);
             LocalDateTime.parse(appointment, formatter);
             return appointment.matches(VALIDATION_REGEX);
         } catch (DateTimeParseException e) {

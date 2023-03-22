@@ -50,11 +50,11 @@
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       </HBox>
       <HBox alignment="CENTER_LEFT">
-        <ImageView fx:id="weightIcon" fitWidth="35" fitHeight="35" />
+        <ImageView fx:id="weightIcon" fitWidth="32" fitHeight="32" />
         <Label fx:id="weight" styleClass="cell_small_label" text="\$weight" />
       </HBox>
       <HBox alignment="CENTER_LEFT">
-        <ImageView fx:id="caloriesIcon" fitWidth="35" fitHeight="35" />
+        <ImageView fx:id="caloriesIcon" fitWidth="30" fitHeight="30" />
         <Label fx:id="calorie" styleClass="cell_small_label" text="\$calorie"/>
       </HBox>
       <HBox alignment="CENTER_LEFT">
