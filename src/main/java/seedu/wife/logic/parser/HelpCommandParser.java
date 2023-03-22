@@ -18,18 +18,13 @@ public class HelpCommandParser implements Parser<HelpCommand>{
      * @throws ParseException if the user input does not conform the expected format
      */
     public HelpCommand parse(String args) throws ParseException {
-        try {
-            assert !args.equals(null);
-            String trimmedArgs = args.trim();
-            if (trimmedArgs.isEmpty()) {
-                return new HelpCommand(HelpMenu.getGeneralHelp());
-            }
-
-            HelpMenu helpCommand = HelpMenu.parseCommand(trimmedArgs);
-            return new HelpCommand(HelpMenu.getCommandHelp(helpCommand));
-        } catch (Exception e) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        assert !args.equals(null);
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            return new HelpCommand(HelpMenu.getGeneralHelp());
         }
+
+        HelpMenu helpCommand = HelpMenu.parseCommand(trimmedArgs);
+        return new HelpCommand(HelpMenu.getCommandHelp(helpCommand));
     }
 }
