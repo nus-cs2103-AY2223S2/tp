@@ -170,6 +170,7 @@ User is able to leave the following categories unfilled by simply not putting th
 6. CCA <br><br>
 
 
+
 <a name="gradestudent"/>
 
 ### Adding a grade for student : `grade`
