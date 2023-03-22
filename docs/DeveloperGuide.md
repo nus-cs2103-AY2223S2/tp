@@ -194,6 +194,23 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Policy Feature
+The add policy mechanism is facilitated by `AddPolicyCommand` and `AddPolicyCommandParser`.
+
+`AddPolicyCommand` extends from `Command` by overriding methods from its parent class.
+The logic of this class follows the sequence.
+1. Get the `Client` based on the most updated client list in the `Model`.
+2. Create a new `Policy` based on the given `Policy` details.
+3. Add the `Policy` to the `Client` given, and update the `Client` in the `Model`.
+
+`AddPolicyCommandParser` implements `Parser<AddPolicyCommand>`. 
+The logic of this class follows the sequence.
+1. Get the client index from the preamble of the input.
+2. Get the policy details from the prefix "pn/", "pd/", "pp/", "pf/", 
+which are the Policy Name, Policy Date, Policy Premium, and Policy Frequency respectively.
+
+
+
 ### Delete Policy feature
 
 The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`.
