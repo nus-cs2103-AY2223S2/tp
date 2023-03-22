@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/swx0)] [[portfolio](team/swx0.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Developer guide, Documentation
 
 ### Chen Jiarui
 
