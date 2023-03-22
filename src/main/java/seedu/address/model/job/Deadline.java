@@ -32,10 +32,6 @@ public class Deadline {
     public static boolean isValidDeadline(String test) {
         if (test.matches(VALIDATION_REGEX)) {
             LocalDate lDate = LocalDate.parse(test);
-            if (lDate.isBefore(LocalDate.now())) {
-                setMessageConstraint("Deadline should be older than the current date!");
-                return false;
-            }
             return true;
         } else {
             setMessageConstraint("Deadline should be in this format: {YYYY-MM-DD}");
