@@ -3,6 +3,7 @@ package seedu.address.model.client.policy;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -16,6 +17,8 @@ public class CustomDate {
 
     public static final String MESSAGE_CONSTRAINTS =
             "date should only contain numbers, in the format of dd.mm.yyyy";
+
+    public static final String VALIDATION_REGEX = "^\\d{2}\\.\\d{2}.\\d{4}$";
 
     public final LocalDate date;
 
@@ -46,19 +49,13 @@ public class CustomDate {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String date) {
-        boolean valid = false;
+        boolean valid = true;
         try {
-            // ResolverStyle.STRICT for 30, 31 days checking, and also leap year.
-            LocalDate.parse(date,
-                    DateTimeFormatter.ofPattern("dd.MM.yyyy")
-                            .withResolverStyle(ResolverStyle.STRICT)
-            );
-            valid = true;
-        } catch (DateTimeParseException e) {
-            e.printStackTrace();
+            LocalDate localDate = stringToDate(date);
+        } catch(DateTimeParseException e) {
             valid = false;
         }
-        return valid;
+        return (date.matches(VALIDATION_REGEX) && valid);
     }
 
     @Override
