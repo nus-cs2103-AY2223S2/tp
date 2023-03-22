@@ -37,6 +37,9 @@ public class Event extends Task {
         return this.to;
     }
 
+    /**
+     * Checks if the given date happens during this event's period
+     */
     public boolean isDuringEvent(LocalDate referenceDate) {
         return referenceDate.isBefore(this.to.getDate()) && referenceDate.isAfter(this.from.getDate())
                 || referenceDate.isEqual(this.to.getDate())
