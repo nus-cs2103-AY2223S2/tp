@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.hospital.Hospital;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 import seedu.careflow.model.readonly.ReadOnlyHospitalRecords;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
@@ -82,6 +82,9 @@ public class CareFlow {
         setDrugs(newData.getDrugList());
     }
 
+    /**
+     * Resets the existing data of CareFlow hospital with {@code newData}.
+     */
     public void resetHospitalData(ReadOnlyHospitalRecords newData) {
         setHospitals(newData.getHospitalList());
     }
@@ -101,7 +104,7 @@ public class CareFlow {
     }
 
     /**
-     * Adds a patient to the address book.
+     * Adds a patient to the careFlow.
      * The patient must not already exist in the patient record.
      */
     public void addPatient(Patient p) {
@@ -116,6 +119,10 @@ public class CareFlow {
         drugInventory.addDrug(d);
     }
 
+    /**
+     * Adds a hospital to the careFlow.
+     * The hospital must not already exist in the hospital record.
+     */
     public void addHospital(Hospital h) {
         hospitalRecord.addHospital(h);
     }

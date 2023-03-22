@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.careflow.model.person.Patient;
-import seedu.careflow.model.person.UniquePatientList;
+import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.patient.UniquePatientList;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
 
 /**

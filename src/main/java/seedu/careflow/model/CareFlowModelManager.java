@@ -13,7 +13,9 @@ import seedu.careflow.commons.core.GuiSettings;
 import seedu.careflow.commons.core.LogsCenter;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.hospital.Hospital;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.patient.Phone;
 import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 import seedu.careflow.model.readonly.ReadOnlyHospitalRecords;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
@@ -200,10 +202,10 @@ public class CareFlowModelManager implements CareFlowModel {
      * Set a fixed list of hospital information
      */
     public void setFixedHospitalList() {
-        careFlow.addHospital(new Hospital("KK Women's and Children's Hospital", "+65 62255554"));
-        careFlow.addHospital(new Hospital("Changi General Hospital", "+65 67888833"));
-        careFlow.addHospital(new Hospital("Khoo Teck Puat Hospital", "+65 65558000"));
-        careFlow.addHospital(new Hospital("Tan Tock Seng Hospital", "+65 62566011"));
+        careFlow.addHospital(new Hospital(new Name("KK Women's and Children's Hospital"), new Phone("+65 62255554")));
+        careFlow.addHospital(new Hospital(new Name("Changi General Hospital"), new Phone("+65 67888833")));
+        careFlow.addHospital(new Hospital(new Name("Khoo Teck Puat Hospital"), new Phone("+65 65558000")));
+        careFlow.addHospital(new Hospital(new Name("Tan Tock Seng Hospital"), new Phone("+65 62566011")));
     }
 
     /**
@@ -212,5 +214,26 @@ public class CareFlowModelManager implements CareFlowModel {
     @Override
     public ObservableList<Hospital> getHospitalList() {
         return filteredHospitals;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof CareFlowModelManager)) {
+            return false;
+        }
+
+        // state check
+        CareFlowModelManager other = (CareFlowModelManager) obj;
+        return careFlow.equals(other.careFlow)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredDrugs.equals(other.filteredDrugs)
+                && filteredHospitals.equals(other.filteredHospitals);
     }
 }

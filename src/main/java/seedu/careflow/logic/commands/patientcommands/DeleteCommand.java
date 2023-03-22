@@ -11,8 +11,8 @@ import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
-import seedu.careflow.model.person.Ic;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Ic;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * Deletes a patient from the patient records

@@ -71,4 +71,27 @@ public class DeleteCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, drugToDelete));
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        boolean checkIndexEquality = false;
+        boolean checkTradeNameEquality = false;
+
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteCommand)) {
+            return false;
+        }
+
+        if (targetIndex != null) {
+            checkIndexEquality = targetIndex.equals(((DeleteCommand) other).targetIndex);
+        }
+        if (targetTradeName != null) {
+            checkTradeNameEquality = targetTradeName.equals(((DeleteCommand) other).targetTradeName);
+        }
+
+        return checkIndexEquality || checkTradeNameEquality;
+    }
 }

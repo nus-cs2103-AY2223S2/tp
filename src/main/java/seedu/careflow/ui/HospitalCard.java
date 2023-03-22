@@ -28,8 +28,8 @@ public class HospitalCard extends UiPart<Region> {
     public HospitalCard(Hospital hospital) {
         super(FXML);
         this.hospital = hospital;
-        this.hospitalName.setText(this.hospital.getHospitalName());
-        this.hotline.setText(this.hospital.getHotline());
+        this.hospitalName.setText(this.hospital.getHospitalName().fullName);
+        this.hotline.setText(this.hospital.getHotline().value);
     }
 
     @Override

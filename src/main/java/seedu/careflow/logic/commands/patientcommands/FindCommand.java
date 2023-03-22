@@ -6,7 +6,7 @@ import seedu.careflow.commons.core.Messages;
 import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.model.CareFlowModel;
-import seedu.careflow.model.person.NameContainsKeywordsPredicate;
+import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
 
 /**
  * Finds a patient from the patient records

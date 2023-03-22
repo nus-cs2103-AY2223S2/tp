@@ -9,15 +9,15 @@ import static seedu.careflow.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.commons.exceptions.IllegalValueException;
-import seedu.careflow.model.person.Address;
-import seedu.careflow.model.person.DateOfBirth;
-import seedu.careflow.model.person.DrugAllergy;
-import seedu.careflow.model.person.Email;
-import seedu.careflow.model.person.Gender;
-import seedu.careflow.model.person.Ic;
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Patient;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Address;
+import seedu.careflow.model.patient.DateOfBirth;
+import seedu.careflow.model.patient.DrugAllergy;
+import seedu.careflow.model.patient.Email;
+import seedu.careflow.model.patient.Gender;
+import seedu.careflow.model.patient.Ic;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.patient.Phone;
 import seedu.careflow.model.util.SampleDataUtil;
 import seedu.careflow.testutil.PatientBuilder;
 
@@ -25,7 +25,7 @@ import seedu.careflow.testutil.PatientBuilder;
 class JsonAdaptedPatientTest {
 
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "+651234*";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_DOB = "99-01-1999";

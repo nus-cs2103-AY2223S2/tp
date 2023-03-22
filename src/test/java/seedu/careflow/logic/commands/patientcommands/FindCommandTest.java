@@ -3,7 +3,7 @@ package seedu.careflow.logic.commands.patientcommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.careflow.commons.core.Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
 import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.*;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalPatients.CARL;
@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.CareFlowModelManager;
 import seedu.careflow.model.UserPrefs;
-import seedu.careflow.model.person.NameContainsKeywordsPredicate;
+import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the CareFlowModel) for {@code FindCommand}.
@@ -59,7 +59,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPatientFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedCareFlowModel.updateFilteredPatientList(predicate);
@@ -69,7 +69,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePatientsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PATIENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedCareFlowModel.updateFilteredPatientList(predicate);

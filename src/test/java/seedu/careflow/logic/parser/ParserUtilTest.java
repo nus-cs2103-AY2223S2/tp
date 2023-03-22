@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.careflow.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.careflow.testutil.Assert.assertThrows;
-import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
+import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,15 +14,15 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.logic.parser.exceptions.ParseException;
-import seedu.careflow.model.person.Address;
-import seedu.careflow.model.person.Email;
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Address;
+import seedu.careflow.model.patient.Email;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Phone;
 import seedu.careflow.model.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_PHONE = "+651234*";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PATIENT, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PATIENT, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

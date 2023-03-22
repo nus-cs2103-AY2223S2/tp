@@ -15,14 +15,14 @@ import seedu.careflow.model.drug.Purpose;
 import seedu.careflow.model.drug.SideEffect;
 import seedu.careflow.model.drug.StorageCount;
 import seedu.careflow.model.drug.TradeName;
-import seedu.careflow.model.person.Address;
-import seedu.careflow.model.person.DateOfBirth;
-import seedu.careflow.model.person.DrugAllergy;
-import seedu.careflow.model.person.Email;
-import seedu.careflow.model.person.Gender;
-import seedu.careflow.model.person.Ic;
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Address;
+import seedu.careflow.model.patient.DateOfBirth;
+import seedu.careflow.model.patient.DrugAllergy;
+import seedu.careflow.model.patient.Email;
+import seedu.careflow.model.patient.Gender;
+import seedu.careflow.model.patient.Ic;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Phone;
 import seedu.careflow.model.tag.Tag;
 
 /**

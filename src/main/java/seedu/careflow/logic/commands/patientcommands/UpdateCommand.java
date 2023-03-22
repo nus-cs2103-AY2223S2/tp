@@ -20,15 +20,15 @@ import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
-import seedu.careflow.model.person.Address;
-import seedu.careflow.model.person.DateOfBirth;
-import seedu.careflow.model.person.DrugAllergy;
-import seedu.careflow.model.person.Email;
-import seedu.careflow.model.person.Gender;
-import seedu.careflow.model.person.Ic;
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Patient;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Address;
+import seedu.careflow.model.patient.DateOfBirth;
+import seedu.careflow.model.patient.DrugAllergy;
+import seedu.careflow.model.patient.Email;
+import seedu.careflow.model.patient.Gender;
+import seedu.careflow.model.patient.Ic;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.patient.Phone;
 
 /**
  * Update the details of an existing person in the careflow.
@@ -268,7 +268,8 @@ public class UpdateCommand extends Command {
             // state check
             EditPatientDescriptor e = (EditPatientDescriptor) other;
 
-            return getPhone().equals(e.getPhone())
+            return getName().equals(e.getName())
+                    && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getDateOfBirth().equals(e.getDateOfBirth())

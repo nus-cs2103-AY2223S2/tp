@@ -3,8 +3,8 @@ package seedu.careflow.logic.commands.patientcommands;
 import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.*;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 //import static seedu.careflow.testutil.TypicalIndexes.CARL;
-import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
-import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
+import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.careflow.testutil.TypicalPatients.*;
 
 import seedu.careflow.commons.core.Messages;
@@ -13,8 +13,8 @@ import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDe
 import org.junit.jupiter.api.Test;
 import seedu.careflow.commons.core.index.Index;
 import seedu.careflow.model.*;
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.testutil.EditPatientDescriptorBuilder;
 import seedu.careflow.testutil.PatientBuilder;
 
@@ -109,10 +109,10 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_duplicatePatientFilteredList_failure() {
-        showPatientAtIndex(model, INDEX_FIRST_PATIENT);
+        showPatientAtIndex(model, INDEX_FIRST);
 
         // edit person in filtered list into a duplicate in address book
-        Patient personInList = model.getPatientRecord().getPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
+        Patient personInList = model.getPatientRecord().getPatientList().get(INDEX_SECOND.getZeroBased());
         UpdateCommand editCommand = new UpdateCommand(CARL.getName(),
                 new EditPatientDescriptorBuilder(personInList).build());
 
@@ -134,7 +134,7 @@ public class UpdateCommandTest {
      */
     @Test
     public void execute_invalidPatientNameFilteredList_failure() {
-        showPatientAtIndex(model, INDEX_FIRST_PATIENT);
+        showPatientAtIndex(model, INDEX_FIRST);
         Name invalidName = new Name("InvalidName");
 //        Index outOfBoundIndex = INDEX_SECOND_PATIENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
