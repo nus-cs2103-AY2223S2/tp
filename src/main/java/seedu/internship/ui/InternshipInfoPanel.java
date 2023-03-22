@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.internship.commons.core.LogsCenter;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -76,7 +77,7 @@ public class InternshipInfoPanel extends UiPart<Region> {
     }
 
     /**
-     * Displays a message in the titleSegment of the InternsipInfoPanel.
+     * Displays a message in the titleSegment of the InternshipInfoPanel.
      */
     public void displayDefaultMessage() {
         position.setText("Run 'view' command to view some internships.");
@@ -107,7 +108,8 @@ public class InternshipInfoPanel extends UiPart<Region> {
     /**
      * Sets the content for all controls for InternshipInfoPanel.
      */
-    public void setBodyContent(Internship internship, Collection<EventCard.Event> events) {
+    public void setBodyContent(Internship internship, Collection<Event> events) {
+        eventPanel.getChildren().clear();
         position.setText(internship.getPosition().positionName);
         company.setText(internship.getCompany().companyName);
         status.setText(internship.getStatus().toString());
@@ -117,20 +119,18 @@ public class InternshipInfoPanel extends UiPart<Region> {
                         .getRoot())
                 .collect(Collectors.toList()));
         internship.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.tagName));
+//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     /**
      * Updates the {@code InternshipInfoPanel} displaying all information of an Internship.
      */
-    public void updateInfoPanel(Internship internship, Collection<EventCard.Event> events) {
-        if (!isNull(internship)) {
-            // activate all hidden elements
-            displayFullInfoPanel(true);
-            // set content of body
-            setBodyContent(internship, events);
-        }
+    public void updateInfoPanel(Internship internship, Collection<Event> events) {
+        // activate all hidden elements
+        displayFullInfoPanel(true);
+        // set content of body
+        setBodyContent(internship, events);
     }
 
 

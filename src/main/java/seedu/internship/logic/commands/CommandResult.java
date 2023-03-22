@@ -1,6 +1,6 @@
 package seedu.internship.logic.commands;
 
-import static seedu.internship.model.event.Event.EMPTY_EVENT;
+
 import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_LIST;
 import static seedu.internship.model.internship.Internship.EMPTY_INTERNSHIP;
 
@@ -98,6 +98,10 @@ public class CommandResult {
         return this.events.equals(EMPTY_UNIQUE_EVENTS_LIST);
     }
 
+
+    public ObservableList<Event> getEvents() {
+        return events;
+    }
 
     @Override
     public boolean equals(Object other) {

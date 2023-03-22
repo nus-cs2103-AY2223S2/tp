@@ -427,3 +427,10 @@
     -fx-padding:0;
 }
 
+.event-card-h1, .event-card-text {
+    -fx-font-size: 10;
+}
+
+.event-card-h1 {
+    -fx-font-weight: bold;
+}

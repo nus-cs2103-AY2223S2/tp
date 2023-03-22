@@ -55,9 +55,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-    private ArrayList<EventCard.Event> dummyEvents = new ArrayList<EventCard.Event>(
-            Arrays.asList(new EventCard.Event(), new EventCard.Event()));
-
 
     /**
      * Creates a {@code MainWindow1} with the given {@code Stage} and {@code Logic}.
@@ -194,8 +191,9 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), dummyEvents);
-
+            if (!commandResult.isEmptyInternship()) {
+                internshipInfoPanel.updateInfoPanel(commandResult.getInternship(), commandResult.getEvents());
+            }
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
