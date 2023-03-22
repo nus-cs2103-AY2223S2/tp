@@ -3,16 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_IMAGE;
-import static seedu.address.model.util.ImageUtil.importImage;
-
-import java.io.IOException;
-import java.nio.file.InvalidPathException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddImageCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Image;
+
 
 
 
@@ -36,23 +32,8 @@ public class AddImageCommandParser implements Parser<AddImageCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddImageCommand.MESSAGE_USAGE), ive);
         }
-
         String path = argMultimap.getValue(PREFIX_ADD_IMAGE).orElse("");
-
-        try {
-
-            String fileName = importImage(path);
-            Image image = new Image(fileName);
-
-            return new AddImageCommand(index, image);
-        } catch (IOException io) {
-
-            throw new ParseException("Upload image failed.");
-        } catch (ParseException pe) {
-            throw pe;
-        } catch (InvalidPathException ipe) {
-            throw new ParseException("Path to image provided is invalid.");
-        }
+        return new AddImageCommand(index, path);
 
     }
 
