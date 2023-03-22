@@ -12,12 +12,12 @@ Given below are my contributions to the project.
 ### Summary of Contributions
 
 * **New Feature**: MAGIC to be added soon.
-  * What it does:  
-  * Justification:  
-  * Highlights:  
-  * Credits:  
+  * What it does:
+  * Justification:
+  * Highlights:
+  * Credits:
 
-* **New Feature**: 
+* **New Feature**:
 
 **Enhancements implemented**: to be added soon
 

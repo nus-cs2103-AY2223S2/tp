@@ -13,6 +13,7 @@ import seedu.address.logic.commands.DeleteCategory;
 import seedu.address.logic.commands.DeleteExpenseCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCategory;
 import seedu.address.logic.commands.ListCommand;
@@ -63,6 +64,9 @@ public class ExpenseTrackerParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
