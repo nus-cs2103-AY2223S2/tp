@@ -81,7 +81,7 @@ public class ModelManager implements Model {
         return userPrefs.getPetPalArchiveFilePath();
     }
 
-    public void setPetPalArchiveFilePath(Path petPalArchiveFilePath){
+    public void setPetPalArchiveFilePath(Path petPalArchiveFilePath) {
         requireNonNull(petPalArchiveFilePath);
         userPrefs.setPetPalArchiveFilePath(petPalArchiveFilePath);
     }

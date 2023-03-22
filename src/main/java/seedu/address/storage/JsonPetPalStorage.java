@@ -24,6 +24,9 @@ public class JsonPetPalStorage implements PetPalStorage {
     private Path filePath;
     private Path archiveFilePath;
 
+    /**
+     * Constructs a {@code JsonPetPalStorage} with the given {@code data file Path} and {@code archive file Path}
+     */
     public JsonPetPalStorage(Path filePath, Path archiveFilePath) {
         this.filePath = filePath;
         this.archiveFilePath = archiveFilePath;

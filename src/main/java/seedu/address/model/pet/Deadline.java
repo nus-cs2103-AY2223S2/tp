@@ -1,7 +1,6 @@
 package seedu.address.model.pet;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
@@ -48,8 +47,8 @@ public class Deadline {
 
     @Override
     public String toString() {
-        DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return description + " by " + deadline.format(CUSTOM_FORMATTER) + "";
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return description + " by " + deadline.format(customFormatter) + "";
     }
 
     @Override
