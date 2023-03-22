@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddCommand.AddCardDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Card;
@@ -38,9 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Card card = new Card(question, answer, tagList, null);
+        AddCardDescriptor cardDescriptor = new AddCardDescriptor(question, answer, tagList);
 
-        return new AddCommand(card);
+        return new AddCommand(cardDescriptor);
     }
 
     /**
