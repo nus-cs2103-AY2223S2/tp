@@ -16,6 +16,7 @@ import tfifteenfour.clipboard.model.student.Student;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final boolean modifiesState = true;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by the index number used in the displayed student list.\n"
@@ -27,6 +28,7 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
+        super(true);
         this.targetIndex = targetIndex;
     }
 
@@ -41,7 +43,7 @@ public class DeleteCommand extends Command {
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(studentToDelete);
-        return new CommandResult(this, String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete), true);
+        return new CommandResult(this, String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete), willModifyState);
     }
 
     @Override

@@ -25,14 +25,6 @@ public class CommandResult {
         this.hasChangedModelState = hasChangedModelState;
     }
 
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(Command command, String feedbackToUser) {
-        this(command, feedbackToUser, false);
-    }
-
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -54,12 +46,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && command == otherCommandResult.command;
+                && command == otherCommandResult.command
+                && hasChangedModelState == otherCommandResult.hasChangedModelState;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, command);
+        return Objects.hash(command, feedbackToUser, hasChangedModelState);
     }
 
     public Command getCommand() {

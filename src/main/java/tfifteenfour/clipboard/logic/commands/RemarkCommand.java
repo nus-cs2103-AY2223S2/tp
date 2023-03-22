@@ -40,6 +40,7 @@ public class RemarkCommand extends Command {
      * @param remark that will be added to the student
      */
     public RemarkCommand(Index index, Remark remark) {
+        super(true);
         requireAllNonNull(index, remark);
         this.index = index;
         this.remark = remark;

@@ -21,6 +21,7 @@ public class ModuleCommand extends Command {
     private final StudentTakingModulePredicate predicate;
 
     public ModuleCommand(StudentTakingModulePredicate predicate) {
+        super(false);
         this.predicate = predicate;
     }
     @Override
@@ -28,7 +29,7 @@ public class ModuleCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(this,
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()), willModifyState);
     }
 
     @Override

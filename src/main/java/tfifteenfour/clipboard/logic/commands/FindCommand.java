@@ -22,6 +22,7 @@ public class FindCommand extends Command {
     private final NameContainsKeywordsPredicate predicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
+        super(false);
         this.predicate = predicate;
     }
 
@@ -30,7 +31,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(this,
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()), willModifyState);
     }
 
     @Override

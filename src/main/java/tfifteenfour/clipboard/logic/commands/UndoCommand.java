@@ -14,6 +14,9 @@ public class UndoCommand extends Command {
     private CircularBuffer<Model> stateHistoryBuffer;
     private Model newModel;
 
+    public UndoCommand() {
+        super(false);
+    }
     /**
      * Executes the Undo command.
      *
