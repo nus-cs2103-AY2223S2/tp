@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import seedu.modtrek.model.DegreeProgressionData;
+import seedu.modtrek.model.tag.Tag;
 import seedu.modtrek.model.tag.ValidTag;
 
 /**
@@ -103,14 +105,12 @@ public class DoughnutChart extends PieChart {
      * Creates the data labels of the doughnut chart.
      */
     private void createDataLabels() {
-        final int numTags = 6;
-
-        dataLabels = new VBox[numTags];
+        dataLabels = new VBox[Tag.NUM_TAGS];
 
         Map<String, String> labelTexts = getDataLabelTexts();
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
 
@@ -182,10 +182,8 @@ public class DoughnutChart extends PieChart {
         super.setLabelsVisible(false);
 
         /* Change colors of doughnut chart */
-        final int numTags = 6;
-
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
             Data incompleteData = doughnutData.get(i + 1);
@@ -278,9 +276,6 @@ public class DoughnutChart extends PieChart {
      * @return The positional angles for each data label.
      */
     private Map<String, Double> getDataLabelAngles() {
-        final int numTags = 6;
-        final int totalCurriculumCredits = 160;
-
         Map<String, Double> angles = new HashMap<>();
 
         double accCredits = 0;
@@ -288,23 +283,20 @@ public class DoughnutChart extends PieChart {
         double fullAngle = 2 * Math.PI;
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
-            Data incompleteData = doughnutData.get(i + 1);
-
-            double completeCredits = completeData.getPieValue();
-            double incompleteCredits = incompleteData.getPieValue();
-
-            // TODO: call credits for each Tag from model/logic (?)
-            double totalCredits = completeCredits + incompleteCredits;
 
             String tag = completeData.getName().split("_")[0];
+
+            double completeCredits = completeData.getPieValue();
+            double totalCredits = ValidTag.getTotalCredit(tag);
+            long percentCompleted = Math.round(completeCredits / totalCredits * 100);
 
             double offset = totalCredits / 2;
             offset += accCredits;
 
-            double angle = (offset / totalCurriculumCredits) * fullAngle;
+            double angle = (offset / DegreeProgressionData.TOTALCREDIT) * fullAngle;
             angles.put(tag, angle);
 
             accCredits += totalCredits;
@@ -315,8 +307,6 @@ public class DoughnutChart extends PieChart {
 
 
     private Map<String, String> getDataLabelTexts() {
-        final int numTags = 6;
-
         Map<String, String> tagLongForm = new HashMap<>();
         tagLongForm.put("ULR", "University Level\nRequirements");
         tagLongForm.put("CSF", "CS Foundation");
@@ -328,20 +318,15 @@ public class DoughnutChart extends PieChart {
         Map<String, String> texts = new HashMap<>();
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
-            Data incompleteData = doughnutData.get(i + 1);
-
-            double completeCredits = completeData.getPieValue();
-            double incompleteCredits = incompleteData.getPieValue();
-
-            // TODO: call credits for each Tag from model/logic (?)
-            double totalCredits = completeCredits + incompleteCredits;
-
-            long percentCompleted = Math.round(completeCredits / totalCredits * 100);
 
             String tag = completeData.getName().split("_")[0];
+
+            double completeCredits = completeData.getPieValue();
+            double totalCredits = ValidTag.getTotalCredit(tag);
+            long percentCompleted = Math.round(completeCredits / totalCredits * 100);
 
             String text = tagLongForm.get(tag) + "\n" + percentCompleted + "%";
             texts.put(tag, text);
@@ -352,10 +337,9 @@ public class DoughnutChart extends PieChart {
 
     // TODO: call from logic/storage/model
     private boolean isNoneComplete() {
-        final int numTags = 6;
 
         ObservableList<Data> doughnutData = getData();
-        assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
+        assert doughnutData.size() == Tag.NUM_TAGS * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             Data completeData = doughnutData.get(i);
             if (completeData.getPieValue() > 0) {

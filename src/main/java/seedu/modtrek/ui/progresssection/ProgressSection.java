@@ -22,8 +22,8 @@ public class ProgressSection extends UiPart<Region> {
      */
     public ProgressSection() {
         super(FXML);
-        progressSection.getChildren().add(new DoughnutChart(createDoughnutData()));
 
+        progressSection.getChildren().add(new DoughnutChart(createDoughnutData()));
     }
 
     private ObservableList<PieChart.Data> createDoughnutData() {
