@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -14,18 +16,29 @@ import seedu.address.model.task.Note;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
+
+    /** {@code Predicate} that evaluate to true for all unarchived applications */
+    Predicate<InternshipApplication> PREDICATE_SHOW_ONGOING_APPLICATIONS = internshipApplication ->
+            internshipApplication.getStatus() != InternshipStatus.ARCHIVED;
+
+    /** {@code Predicate} that evaluate to true for all archived internship applications */
+    Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = internshipApplication ->
+            internshipApplication.getStatus() == InternshipStatus.ARCHIVED;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<InternshipTodo> PREDICATE_SHOW_ALL_TODO = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -61,7 +74,9 @@ public interface Model {
      */
     void setInternEase(ReadOnlyAddressBook internEase);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns the TodoList */
@@ -146,10 +161,17 @@ public interface Model {
     void addNote(Note note);
 
     /**
+     * Adds the given applications.
+     * {@code InternshipApplications} must not already exist in the tracker.
+     */
+    void addApplications(List<InternshipApplication> applications);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);
+
     /**
      * Replaces the given person {@code target} with {@code editedApplication}.
      * {@code target} must exist in the address book.
@@ -157,6 +179,7 @@ public interface Model {
      * same as another existing application in the address book.
      */
     void setApplication(InternshipApplication target, InternshipApplication editedApplication);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -179,10 +202,14 @@ public interface Model {
      */
     void setNote(Note target, Note editedNote);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered internship list */
+    /**
+     * Returns an unmodifiable view of the filtered internship list
+     */
     ObservableList<InternshipApplication> getFilteredInternshipList();
 
     /** Returns an unmodifiable view of the filtered todo list */
@@ -193,6 +220,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<InternshipApplication> predicate);
@@ -211,7 +239,34 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns an unmodifiable view of the cached internship list.
+     */
+    List<InternshipApplication> getCachedInternshipList();
+
+
+    /**
+     * Gets and remove item from the cached internship list.
+     */
+    InternshipApplication getAndRemoveCachedApplication();
+
+    /**
+     * Add current deleted internship application to the end of the cached internship list.
+     */
+    void addInternshipToCache(InternshipApplication application);
+
+    /**
+     * Add all cleared internship applications to the end of the cached internship list.
+     */
+    void addAllInternshipToCache(List<InternshipApplication> application);
+
+    /**
+     * Empties the internship cache list.
+     */
+    void setEmptyInternshipCacheList();
 }

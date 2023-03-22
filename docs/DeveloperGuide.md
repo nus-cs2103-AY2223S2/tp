@@ -73,16 +73,18 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `MixedPanel`, `NoteListPanel`, `TodoListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `InternshipApplication` object residing in the `Model`.
+* listens on each other in the `Ui` component, as `CommandBox` calls functions in `MainWindow` to `execute()` `Logic`.
+* keeps a reference to other `Ui` component, as `MainWindow` keeps references of `NoteListPanel`, `InternshipListPanel` and `NoteListPanel` to implement the switching between each panel.
 
 ### Logic component
 
@@ -154,84 +156,116 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add contact feature
 
-#### Proposed Implementation
+#### How is the feature implemented
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `add_contact` command allows users to add the contact of a company to an internship application. The implementation of the `add_contact` command is facilitated by the `AddContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method. 
+The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddContactCommandParser#parse` methods.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The activity diagram below shows the workflow of the `add_contact` command during its execution.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+![AddContactActivityDiagram](images/AddContactActivityDiagram.png)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The constructor of the class `AddContactCommand` requires 2 arguments, a valid positive `Integer` index and a `Contact` object, both of which are obtained after the parsing process mentioned above.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The relevant operations from the `Model` interface are `Model#getFilteredInternshipList`, `Model#setApplication` and `Model#updateFilteredInternshipList`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+A sequence diagram is shown here to illustrate the execution process of the `add_contact` command.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+![AddContactSequenceDiagram](images/AddContactSequenceDiagram.png)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Given below is an explanation on the `add_contact` command's behaviours.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 1. Parsing
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parser`.
+The method `AddContactCommandParser#parse` is invoked only if the command word matches `AddContactCommand.COMMAND_WORD`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Step 2. Execution
 
-</div>
+The `AddContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getFilteredInternshipList`.
+The internship application where the contact is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the contact details. The `Model#setApplication` method is then invoked to update the specified application in the list.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 3. Result
 
-![UndoRedoState3](images/UndoRedoState3.png)
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`. 
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 2.5 seconds. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+>**NOTE:**
+> Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
 
-</div>
+#### Why is it implemented this way
 
-The following sequence diagram shows how the undo operation works:
+The `AddContactCommand` provides enhancement to the existing `AddCommand` by separating the process of adding contact details of the company from the initial process of
+adding a new internship application. This prevents the `AddCommand` from getting cluttered with large amount of arguments that may become difficult for the user to remember. 
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+**Aspect: Where to save the contact details:**
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* **Alternative 1 (current choice):** Separating it into a separate `Contact` class.
+    * Pros: Flexibility to add more details to the contact if needed in the future.
+    * Cons: More time required to implement.
 
-</div>
+* **Alternative 2:** Adding contact details as attributes in the `InternshipApplication` class.
+    * Pros: Easier than implement.
+    * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+### Clear_by feature
+This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+#### How CLEAR_BY Feature is implemented
 
-</div>
+The `clear_by` feature enables user to clear the internship applications in batch with the specific attribute and the specific keyword. There are 3 cases (attributes) available in this feature.
+In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#execute` functionality. The parsing process is facilitated by both the `InternEaseParser#parse` and `ClearByCommandParser#parse`.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+The workflow of a `clear_by` command during its execution is shown by the activity diagram below:
+[!ClearByActivityDiagram](images/ClearByActivityDiagram.png)
 
-![UndoRedoState4](images/UndoRedoState4.png)
+There are 3 constructors `ClearByCommand::new` provided for 3 different cases stated below : 
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+* Case 1 : clear_by `COMPANY_NAME`
+  * `PREFIX` should be set to `n`
+  * Allows user to remove all internship applications with `ParamType=COMPANYNAME` fully match with the provided keyword.
+  
+* Case 2 : clear_by `JOB_TITLE`
+  * `PREFIX` should be set to `j`
+  * Allows user to remove all internship applications with `ParamType=JOBTITLE` fully match with the provided keyword.
+  
+* Case 3 : clear_by `STATUS`
+  * `PREFIX` should be set to `s`, the keywords accepted include `NA, PENDING, RECEIVED, REJECTED, NO`.
+  * Allows user to remove all internship applications with `ParamType=STATUS` fully match with the correct provided keyword.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+>**Note:** 
+> The assignation of cases will be done by `ClearByCommandParser#parse`, each unavailable fields will be set to null.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+These operations are involved in the `Model` interface as `Model#getFilteredInternshipList`, `Model#addInternshipToCache` and `Model#deleteInternship`
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+The execution process of `Clear_by` is demonstrated by the sequence diagram below.
+[!ClearByActivityDiagram](images/ClearBySequenceDiagram.png)
 
-#### Design considerations:
+Given below is a step-wise explanation on `clear_by` mechanism's behaviour.
 
-**Aspect: How undo & redo executes:**
+Step 1. Parsing
+    The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `clear_by`, it will then be passed to `ClearByCommandParser#parse`.
+    The `PREFIX` in the argument will then be investigated. Different constructor of `ClearByCommand` object will be using based on the `PREFIX`.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+Step 2. Execution
+    `ClearByCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getFilteredInternshipList`. Then, the list is filtered by `ClearByCommand#getFilteredList` to filter out the applications to be cleared.
+    The size of the list-to-clear is checked before an iteration to `Model#deleteInternship` and `Model#addInternshipToCache`. The cleared items are stored in the cache list to support `RevertCommand` in current InternEase session.
+    
+Step 3. Result
+    The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 2.5 seconds.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+>**NOTE:** 
+> Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
+#### Why is it implemented this way
+
+The `ClearByCommand` is an enhanced feature for both `DeleteCommand` and `ClearCommand`. It resolves user's request to perform customized batch deletion of internship applications.
+Based on utility, the 3 fixed fields in an internship application are taken as the key attributes for this `clear_by` feature. The `PREFIX` for specifying the `clear_by` attribute is also the same as InternEase convention.
+For the ease of implementation and avoid ambiguity, constructor `ClearByCommand::new` is overloaded, taking different fields. The usage of enum `ParamType` to specify the operating attribute type generalized the `ClearByCommand#execute`.
+The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
@@ -300,9 +334,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command format is invalid.
     * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-    
+
       Use case ends.
-    
+
 
 **Use case: UC02 Add contact details of a company to an internship application**
 
@@ -310,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows the internship application list with their indexes specified.
-3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index. 
+3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index.
 4.  InternEase adds the contact details of the company to the internship application and displays a success message.
 
     Use case ends.
@@ -344,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific internship application in the list by specifying its respective index.
 4. InterEase deletes the internship application from the list and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -355,9 +389,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. InternEase shows an error message and gives specific suggestion on the index's range.
-  
+
     * 3a2. User enters new internship application index.
-        
+
       Steps 3a1 to 3a2 are repeated until a valid index is provided.
       Use case resumes at step 4.
 
@@ -392,7 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to clear all the data in the application.
 2. InternEase clears all the internship application entries, shows an empty list of internship application data and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Use case: UC08 Edit the status of an internship application**
 
@@ -425,8 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b2. User enters a new command.
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
-    
-
+      
 **Use case: UC09 Help**
 
 **MSS**
@@ -440,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows all the internship applications as a list with their indexes specified.
-   
+
     Use case ends.
 
 **Extensions**
@@ -459,7 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. InternEase requests confirmation from user.
 5. InternEase updates the application status of the internship application and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 * 1a. The list is empty.
@@ -473,12 +506,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Steps 2a1 to 2a2 are repeated until a valid attribute is provided. Use case resumes at step 4.
 
+**Use case: UC12 Add a todo task entry**
+
+**MSS**
+
+Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
+
+**Use case: UC13 List todo**
+
+**MSS**
+
+Similar to `UC10 List`except todo tasks are listed instead of internship applications.
+
+**Use case: UC14 Edit the note content of a todo task**
+
+**MSS**
+
+Similar to `UC08 Edit the status of an internship application`except the note content of a todo task is edited.
+
+**Use case: UC15 Edit the deadline of a todo task**
+
+**MSS**
+Similar to `UC14 Edit the note content of a todo task` except the deadline is edited.
+
+**Use case: UC16 Delete a todo task entry**
+
+**MSS**
+
+Similar to `UC05 Delete an internship application entry` except the specified todo task is deleted.
+
+**Use case: UC17 Clear all todo task entries**
+
+**MSS**
+
+Similar to `UC07 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
+
+**Use case: UC18 Add a note**
+
+**MSS**
+
+Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
+
+**Use case: UC19 List note**
+
+**MSS**
+
+Similar to `UC10 List`except note entries are listed instead of internship applications.
+
+**Use case: UC20 Delete a note entry**
+
+**MSS**
+
+Similar to `UC05 Delete an internship application entry` except the specified note entry is deleted.
+
+**Use case: UC21 Clear all note entries**
+
+**MSS**
+
+Similar to `UC07 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
+
+**Use case: UC22 List task**
+
+**MSS**
+
+Similar to `UC10 List`except todo task entries and note entries are listed instead of internship applications.
+
+**Use case: UC23 Find a task by its field**
+
+**MSS**
+
+Similar to `UC06 Find an application by its field`except todo task entries and note entries which match the specified keyword are filtered out and listed.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable increase in sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster typing commands than using the mouse.
-4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application. 
+4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application.
 5. InternEase is unable to remind user through platform outside of the application.
 
 *{More to be added}*
@@ -505,11 +609,11 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch of InternEase
 
     1. Download the jar file and copy into an empty folder
-   2. Launch the application by:
-      1. Double-click the jar file.<br>
-         or
-      2. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
-   Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimal.
+    2. Launch the application by:
+        1. Double-click the jar file.<br>
+           or
+        2. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
+           Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimal.
 
 2. Saving window preferences
 
@@ -519,11 +623,11 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 3. Shutting down InternEase
-   1. Shut down InternEase
-      1. Using `exit` command.<br>
-         or
-      2. Close the window using the 'X' button on top-right of the window frame.
-   2. All prior activities will be saved.
-   3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
+    1. Shut down InternEase
+        1. Using `exit` command.<br>
+           or
+        2. Close the window using the 'X' button on top-right of the window frame.
+    2. All prior activities will be saved.
+    3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
 
 *{More to be added}*

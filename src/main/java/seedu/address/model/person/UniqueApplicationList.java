@@ -50,6 +50,20 @@ public class UniqueApplicationList implements Iterable<InternshipApplication> {
     }
 
     /**
+     * Adds applications to the list.
+     * The application must not already exist in the list.
+     */
+    public void add(List<InternshipApplication> toAdds) {
+        requireNonNull(toAdds);
+
+        for (InternshipApplication toAdd : toAdds) {
+            if (!contains(toAdd)) {
+                internalList.add(toAdd);
+            }
+        }
+    }
+
+    /**
      * Replaces the application {@code target} in the list with {@code editedApplication}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedApplication} must not be the same
