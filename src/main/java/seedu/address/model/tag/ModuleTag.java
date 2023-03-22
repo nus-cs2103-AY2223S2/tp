@@ -100,10 +100,11 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
         return endTime;
     }
 
+    /**
+     * Flags if this moduleTag is a tag for the basic functionality, with no lesson parameters tied to it.
+     * @return boolean if moduleTag is a generated from a simple input with no extra parameters.
+     */
     public boolean isBasicTag() {
-        if (this.day == null && this.startTime == null && this.endTime == null) {
-            return true;
-        }
-        return false;
+        return this.day == null && this.startTime == null && this.endTime == null;
     }
 }

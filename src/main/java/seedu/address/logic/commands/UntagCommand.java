@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 
 import org.joda.time.LocalTime;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.IndexHandler;
@@ -137,7 +138,7 @@ public class UntagCommand extends Command {
             String day = tag.getDayAsStr();
             String startTime = tag.getStartTimeAsStr();
             String endTime = tag.getEndTimeAsStr();
-            if (day == null  || startTime == null || endTime == null) {
+            if (day == null || startTime == null || endTime == null) {
                 continue;
             }
 

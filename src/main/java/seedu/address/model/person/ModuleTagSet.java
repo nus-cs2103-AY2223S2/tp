@@ -66,6 +66,12 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
         }
     }
 
+    /**
+     * Adds lesson to the HashMap of sets of lessons.
+     *
+     * @param hash Module to act as the key.
+     * @param lesson Lesson to be inserted.
+     */
     public void addLesson(ModuleTag hash, Lesson lesson) {
         if (!this.lessons.containsKey(hash)) {
             this.lessons.put(hash, new HashSet<Lesson>());
@@ -91,11 +97,16 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
     public void removeAll(Collection<? extends ModuleTag> moduleTags) {
         for (ModuleTag tag : moduleTags) {
             if (tag.isBasicTag()) {
-                modules.remove(tag);
+                this.remove(tag);
             }
         }
     }
 
+    /**
+     * Removes a lesson from the HashMap of Set of Lessons.
+     * @param hash ModuleTag to act as key
+     * @param lesson Lesson to be removed
+     */
     public void removeLesson(ModuleTag hash, Lesson lesson) {
         if (!this.lessons.containsKey(hash)) {
             return;
@@ -185,6 +196,10 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
                 otherModuleTagSet.getNumberOfCommonModules());
     }
 
+    /**
+     * Alternative toString method to generate the Lessons as a String.
+     * @return String of lessons.
+     */
     public String lessonsAsStr() {
         String result = "";
         for (ModuleTag hash: lessons.keySet()) {

@@ -3,7 +3,13 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.TagCommand;
@@ -152,6 +158,12 @@ public class ParserUtil {
         return new GroupTag(trimmedTag);
     }
 
+    /**
+     * To parse additional arguments for TagCommand.
+     * @param tags String to be parsed.
+     * @return ArrayList for arguments.
+     * @throws ParseException
+     */
     public static ArrayList<String> parseMoreModules(String tags) throws ParseException {
         String trimmedArgs = tags.trim();
         if (trimmedArgs.isEmpty()) {
