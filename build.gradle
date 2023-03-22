@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'docedex.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
