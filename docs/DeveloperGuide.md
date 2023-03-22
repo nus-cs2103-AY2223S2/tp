@@ -78,9 +78,9 @@ the `filteredElderly`/`filteredVolunteer` of `Model`
 If so, we retrieve it; Otherwise, we perform a similar check for `Volunteer`, and retrieve it if 
 such a `Volunteer` exists.
 
-The primary method in which these edits are performed is through the `EditDescriptor` class. This class
+These edits are performed primarily through the `EditDescriptor` class. This class
 contains `Optional` types of the **union** of the fields between `Elderly` and `Volunteer`. In order to "transform"
-a given volunteer/elderly with the new edited fields, 2 important static methods are provided:
+a given volunteer/elderly with the edited fields, 2 important static methods are provided:
 - `createEditedElderly(Elderly, EditDescriptor)`: returns a new `Elderly` representing the given `Elderly` modified 
 with the values specified in the `EditDescriptor`
 - `createEditedVolunteer(Volunteer, EditDescriptor)`: returns a `Volunteer` representing the given `Volunteer` modified 
