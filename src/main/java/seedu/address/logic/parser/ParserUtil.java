@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -28,6 +29,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String TIME_FORMAT_INVALID = "Time format should be yyyy-MM-dd HHmm.";
+    public static final String DATE_FORMAT_INVALID = "Date format should be yyyy-MM-dd";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -148,6 +150,17 @@ public class ParserUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         try {
             return LocalDateTime.parse(trimmedTime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TIME_FORMAT_INVALID);
+        }
+    }
+
+    public static LocalDate parseDate(String date) throws  ParseException {
+        requireNonNull(date);
+        String trimmedTime = date.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            return LocalDate.parse(trimmedTime, formatter);
         } catch (DateTimeParseException e) {
             throw new ParseException(TIME_FORMAT_INVALID);
         }

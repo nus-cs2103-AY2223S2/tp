@@ -16,7 +16,6 @@ public interface Model {
 
     /** {@code Predicate} that filter out person with scheduled time */
     Predicate<Person> PREDICATE_SCHEDULED = Person::hasTime;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -92,5 +91,7 @@ public interface Model {
     void updateScheduledList(Predicate<Person> predicate);
 
     void updateFilteredPersonListByName(Predicate<Person> predicate);
+
+    void updateSearchAppointmentDate(Predicate<Person> predicate);
 
 }

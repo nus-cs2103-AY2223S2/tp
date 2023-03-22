@@ -2,7 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -174,6 +176,13 @@ public class Person {
      */
     public boolean hasTime() {
         return this.time != null;
+    }
+
+    public boolean isOnSearchDate(LocalDate searchDate) {
+        String n = name.fullName;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = time.format(formatter);
+        return date.equals(searchDate.format(formatter));
     }
 
     public Age getAge() {
