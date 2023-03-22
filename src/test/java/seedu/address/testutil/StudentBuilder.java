@@ -46,7 +46,7 @@ public class StudentBuilder {
     public static final String DEFAULT_PARENTADDRESS = "Insert Address here!";
     public static final String DEFAULT_CLASS = "1A";
     public static final String DEFAULT_STUDENTEMAIL = "tanahcow@gmail.com";
-    public static final String DEFAULT_ATTENDANCE = "Insert student attendance here!";
+    public static final String DEFAULT_ATTENDANCE = "01/01/2019";
     public static final String DEFAULT_COMMENT = "Insert student comment here!";
     private Name name;
     private Name parentName;
@@ -68,7 +68,7 @@ public class StudentBuilder {
     private Relationship relationship;
     private Email studentEmail;
     private Address studentAddress;
-    private Attendance studentAttendance;
+    private Set<Attendance> studentAttendance;
     private Set<Homework> homework;
     private Set<Test> test;
     private Comment comment;
@@ -93,7 +93,8 @@ public class StudentBuilder {
         relationship = new Relationship(DEFAULT_RELATIONSHIP);
         studentEmail = new Email(DEFAULT_STUDENTEMAIL);
         studentAddress = new Address(DEFAULT_ADDRESS);
-        studentAttendance = new Attendance(DEFAULT_ATTENDANCE);
+        studentAttendance = new HashSet<>();
+        studentAttendance.add(new Attendance(DEFAULT_ATTENDANCE));
         homework = new HashSet<>();
         test = new HashSet<>();
         comment = new Comment(DEFAULT_COMMENT);
