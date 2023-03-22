@@ -31,7 +31,7 @@ public class MultiFieldContainsKeywordsPredicate implements Predicate<Person> {
         */
 
         boolean hasMatchingKeyword = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(person.getName().fullName, keyword));
         /*
                         || StringUtil.containsIgnoreCase(person.getAddress().value, keyword)
                         || StringUtil.containsIgnoreCase(person.getPhone().value, keyword));
