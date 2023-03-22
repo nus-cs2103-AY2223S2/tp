@@ -351,6 +351,10 @@
     -fx-font-size: 11;
 }
 
+.list-cell #separator {
+    -fx-border-width: 0;
+}
+
 .cell_lead_status_label {
     -fx-text-fill: white;
     -fx-font-family: "Segoe UI";
