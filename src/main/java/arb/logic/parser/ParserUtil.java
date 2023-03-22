@@ -14,6 +14,7 @@ import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Phone;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
 
@@ -139,6 +140,22 @@ public class ParserUtil {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
+    }
+
+
+    /**
+     * Parses a {@code String tag} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(trimmedPrice);
     }
 
     /**

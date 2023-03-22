@@ -1,8 +1,7 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.*;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -15,6 +14,7 @@ import arb.logic.parser.ParserUtil;
 import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
 
@@ -30,7 +30,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
      */
     public AddProjectCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PRICE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,7 +45,13 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
             deadline = ParserUtil.parseDeadline(deadlineString.get());
         }
 
-        Project project = new Project(title, deadline);
+        Optional<String> priceString = argMultimap.getValue(PREFIX_PRICE);
+        Price price = null;
+        if (priceString.isPresent()) {
+            price = ParserUtil.parsePrice(priceString.get());
+        }
+
+        Project project = new Project(title, deadline, price);
 
         return new AddProjectCommand(project);
     }

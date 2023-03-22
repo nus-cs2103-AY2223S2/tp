@@ -14,16 +14,32 @@ public class Project {
     // Details fields. Deadline is optional.
     private final Title title;
     private final Optional<Deadline> deadline;
+    private final Optional<Price> price;
     private final Status status;
 
+//    /**
+//     * Constructs a {@code Project}.
+//     * Title must be present and not null.
+//     */
+//    public Project(Title title, Deadline deadline) {
+//        requireAllNonNull(title);
+//        this.title = title;
+//        this.deadline = Optional.ofNullable(deadline);
+//        this.price = Optional.ofNullable(new Price("2.07"));
+//        status = new Status();
+//    }
+
     /**
-     * Constructs a {@code Project}.
-     * Title must be present and not null.
+     * Created EXTRA copy of Project constructor for now.
+     * @param title
+     * @param deadline
+     * @param price
      */
-    public Project(Title title, Deadline deadline) {
+    public Project(Title title, Deadline deadline, Price price) {
         requireAllNonNull(title);
         this.title = title;
         this.deadline = Optional.ofNullable(deadline);
+        this.price = Optional.ofNullable(price);
         status = new Status();
     }
 
@@ -37,6 +53,7 @@ public class Project {
     public boolean isDeadlinePresent() {
         return deadline.isPresent();
     }
+    public boolean isPricePresent() {return price.isPresent();}
 
     public Deadline getDeadline() {
         return deadline.orElse(null);
@@ -45,6 +62,8 @@ public class Project {
     public Status getStatus() {
         return status;
     }
+
+    public Price getPrice() {return price.orElse(null);}
 
     public void markAsDone() {
         this.status.setTrue();

@@ -3,6 +3,7 @@ package arb.storage;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import arb.model.project.Price;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,15 +27,18 @@ public class JsonAdaptedProject {
 
     private final String status;
 
+    private final String price;
+
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
      */
     @JsonCreator
     public JsonAdaptedProject(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
-                              @JsonProperty("status") String status) {
+                              @JsonProperty("status") String status, @JsonProperty("price") String price) {
         this.title = title;
         this.deadline = Optional.ofNullable(deadline).orElse(null);
         this.status = status;
+        this.price = Optional.ofNullable(price).orElse(null);
     }
 
     /**
@@ -45,6 +49,7 @@ public class JsonAdaptedProject {
         this.title = source.getTitle().fullTitle;
         this.deadline = Optional.ofNullable(source.getDeadline()).map(d -> d.dueDate.toString()).orElse(null);
         this.status = source.getStatus().toString();
+        this.price = Optional.ofNullable(source.getPrice()).map(pr -> pr.toString()).orElse(null);
     }
 
     /**
@@ -66,7 +71,12 @@ public class JsonAdaptedProject {
         }
         final Deadline modelDeadline = Optional.ofNullable(deadline).map(d -> new Deadline(d)).orElse(null);
 
-        Project project = new Project(modelTitle, modelDeadline);
+        if (price != null && !Price.isValidPrice(price)) {
+            throw new IllegalValueException((Price.MESSAGE_CONSTRAINTS));
+        }
+        final Price modelPrice = Optional.ofNullable(price).map(pr -> new Price(pr)).orElse(null);
+
+        Project project = new Project(modelTitle, modelDeadline, modelPrice);
 
         if (status.equals("DONE")) {
             project.markAsDone();

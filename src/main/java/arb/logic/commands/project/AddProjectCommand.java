@@ -1,7 +1,6 @@
 package arb.logic.commands.project;
 
-import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.*;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -34,9 +33,11 @@ public class AddProjectCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_PRICE + "PRICE "
             + "Example: " + MAIN_COMMAND_WORD + " "
             + PREFIX_NAME + "Oil Painting "
-            + PREFIX_DEADLINE + "2023-04-05";
+            + PREFIX_DEADLINE + "2023-04-05 "
+            + PREFIX_PRICE + "2.07";
 
     private final Project toAdd;
 
