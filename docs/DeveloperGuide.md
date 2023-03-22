@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +86,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,28 +114,42 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person`, `Consultation`, `Tutorial`, `Lab` objects (which are contained in a `UniquePersonList`, `UniqueConsultationList`, `UniqueTutorialList`, `UniqueLabList` objects respectively).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Tutorial` objects (e.g., results of a filter / sort query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Tutorial>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Consultation` objects (e.g., results of a filter / sort query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Consultation>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Lab` objects (e.g., results of a filter / sort query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Lab>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* It might seem strange at first as to why can Tutorial, Lab and Consultation exist without students. How can a Tutorial or Lab or Consultation be conducted without students in the first place? That is because the purpose of our application is to remind TAs that they are supposed to attend an event. During the event itself, the TA will add students to the event for attendance taking.
+* Thereafter, the TA will be able to edit the performance (score) of the student for the event related task.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
 <img src="images/BetterModelClassDiagram.png" width="450" />
-
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Tutorial` inherits from.<br>
+<img src="images/BetterTutorialClassDiagram.png" width="450" />
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Lab` inherits from.<br>
+<img src="images/BetterLabClassDiagram.png" width="450" />
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Event` abstract class in the `AddressBook`, which `Consultation` inherits from.<br>
+<img src="images/BetterConsultationClassDiagram.png" width="450" />
+</div>
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -341,28 +355,157 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `user`, unless specified otherwise)
 
-Old use cases examples
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC01 - Add Tutorial lessons
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Tutorial Teaching Assistant (TA)
+<br>
+Precondition: TA has access to the TrAcker application
 
 **MSS**
 
-1.  User requests to list students
-2.  TrAcker shows a list of students
-3.  User requests to remove student who dropped the module from the list
-4.  TrAcker deletes the person
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to create new tutorial.
+3.  TA confirms creation of tutorial.
+4.  TrAcker displays the new tutorial event.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. There are no students.
+* 3a. TrAcker detects an error in the entered tutorial data.
+  * 3a1. TrAcker requests for the correct tutorial data where there was an error.
+  * 3a2. TA enters new tutorial data.
+  Steps 3a1 - 3a2 are repeated until the data entered to create a new tutorial are correct.
+  <br>
+  Use case resumes from Step 4.
 
-  Use case ends.
+* a. At any time, TA decides not to create a new tutorial.
+  * a1. TA removes input from TrAcker.
 
-* 3a. The given index is invalid.
+Use case ends
 
-    * 3a1. TrAcker shows an error message.
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC02 - Add Lab lessons
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Lab Teaching Assistant (TA)
+<br>
+Precondition: TA has access to the TrAcker application
 
-      Use case resumes at step 2.
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to create new lab.
+3.  TA confirms creation of lab.
+4.  TrAcker displays the new lab event.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects an error in the entered lab data.
+    * 3a1. TrAcker requests for the correct lab data where there was an error.
+    * 3a2. TA enters new lab data.
+      Steps 3a1 - 3a2 are repeated until the data entered to create a new lab are correct.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to create a new lab.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC03 - Add Consultation lessons
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Precondition: TA has access to the TrAcker application
+
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to create new consultation.
+3.  TA confirms creation of consultation.
+4.  TrAcker displays the new consultation event.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects an error in the entered consultation data.
+    * 3a1. TrAcker requests for the correct consultation data where there was an error.
+    * 3a2. TA enters new consultation data.
+      Steps 3a1 - 3a2 are repeated until the data entered to create a new consultation are correct.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to create a new consultation.
+    * a1. TA removes input from TrAcker.
+
+Use case ends.
+
+---
+System: Software System (TrAcker)
+<br>
+Use case: UC04 - Add students to event
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions: 
+- TA has access to the TrAcker application
+
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to add student to an event.
+3.  TA confirms addition of student to an event. 
+4.  TrAcker marks the student's attendance as present.
+5.  TrAcker displays the new student in the event.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects that the event does not exist.
+    * 3a1. TrAcker requests for the correct event data.
+    * 3a2. TA enters new event data that the student should be added to.
+      Steps 3a1 - 3a2 are repeated until the event data entered is correct and exists.
+      <br>
+      Use case resumes from Step 4.
+
+* 3b. TrAcker detects that the student does not exist.
+    * 3b1. TrAcker requests for the correct student data.
+    * 3b2. TA enters new student data.
+      Steps 3b1 - 3b2 are repeated until the student data entered is correct and exists.
+      <br>
+      Use case resumes from Step 4.
+
+* 3c. TrAcker detects that the data entered is in a wrong format.
+    * 3c1. TrAcker requests for the correct data format.
+    * 3c2. TA enters new data format.
+      Steps 3c1 - 3c2 are repeated until the data format is correct.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to add a student to the event.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
 
 *{More to be added}*
 
