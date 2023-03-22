@@ -55,7 +55,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ExpenseTrackerStorage expenseTrackerStorage = new JsonExpenseTrackerStorage(userPrefs.getAddressBookFilePath());
+        ExpenseTrackerStorage expenseTrackerStorage = new JsonExpenseTrackerStorage(
+                userPrefs.getExpenseTrackerFilePath());
         storage = new StorageManager(expenseTrackerStorage, userPrefsStorage);
 
         initLogging(config);

@@ -256,10 +256,10 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-* NUS undergraduate students from the School of Computing 
+* NUS undergraduate students from the School of Computing
 * Tech-savvy and able to type fast
 * Comfortable using CLI apps
-* Has to manage a large number of different general consumption and professional recurring expenses 
+* Has to manage a large number of different general consumption and professional recurring expenses
 
 **Value proposition**:
 * Easy-to-use and allows students to log their daily expenses quickly and efficiently via a CLI
@@ -313,14 +313,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. FastTrack responds telling the user that a name is required and the command is invalid.
   * 2a2. User enters add command with the category name.
   * 2a3. Steps 2a1-2a2 are repeated until the data entered are correct.
-  
+
     Use case resumes at step 3.
 
 * 2b. The category name already exists
   * 2b1. FastTrack informs the user that the category name has already been used and prompts the user for a different category name.
   * 2b2. User enters add command with the category name.
   * 2b3. Steps 2b1-2b2 are repeated until the data entered are correct.
-    
+  
     Use case resumes at step 3.
 
 ### Use case: UC2 - Delete a Category
@@ -332,7 +332,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User enters the delete command with the index i of the category to be deleted.
 4. FastTrack deletes the category at index i.
 5. FastTrack displays a success message to the user indicating the category has been successfully deleted.
-  
+
    Use case ends.
 
 **Extensions**
@@ -353,8 +353,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. FastTrack responds with a success message indicating the expense has been successfully edited.
 
 **Extensions**
-* 2a. The user selects an expense that does not exist. 
-    * 2a1. FastTrack displays an error message and does not allow the user to edit the expense. 
+* 2a. The user selects an expense that does not exist.
+    * 2a1. FastTrack displays an error message and does not allow the user to edit the expense.
 * 2b. The user tries to save an expense with invalid or missing data.
     * 2b1. FastTrack displays an error message indicating the fields that need to be corrected.
 
@@ -363,16 +363,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all categories. 
+1.  User requests to list all categories.
 2.  FastTrack displays all categories.
-   
+
    Use case ends.
-  
+
 
 **Extensions**
 * 2a. The user does not have any categories.
     * 2a1. FastTrack only displays the Misc category
-      
+
 ### Use case: UC5 - Add an expense
 
 **MSS**
@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. FastTrack returns an error, requesting that the user inputs information in the correct format.
   * 2a2. User inputs information again.
   * 2a3. Steps 2a1-2a2 are repeated until the information being input is of the correct format.
-   
+
     Use case resumes from step 3.
 
 ## Use case: UC6 - Delete an expense
@@ -407,7 +407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. FastTrack returns an error, requesting that the user inputs the correct expense index.
     * 3a2. User inputs information again.
     * 3a3. Steps 3a1-3a2 are repeated until the expense index being input by the user is valid.
-  
+
       Use case resumes from step 4.
 
 
@@ -426,7 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list all expense in a given category. 
+1.  User requests to list all expense in a given category.
 2.  FastTrack displays all expenses in a given category added by user.
    Use case ends.
 
@@ -458,14 +458,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FastTrack displays all expenses related to the keyword provided.
 
     Use case ends.
-    
+
 ### Use case: UC11 - Clear all expenses from the expense log
 
 **MSS**
 
 1. User wants to wipe all currently-logged expenses.
 2. User keys in the command to clear all logged expenses.
-    
+
     Use case ends.
 
 ### Use case: UC12 - Exit from FastTrack
@@ -477,7 +477,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FastTrack exits and is closed.
 
     Use case ends.
-    
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

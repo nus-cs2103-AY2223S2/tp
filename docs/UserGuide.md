@@ -3,7 +3,7 @@ layout: page
 title: FastTrack User Guide
 ---
 
-FastTrack is an easy-to-use **financial management desktop application** designed for NUS undergraduate students who are living on a tight budget. 
+FastTrack is an easy-to-use **financial management desktop application** designed for NUS undergraduate students who are living on a tight budget.
 With a combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), our app provides a user-friendly and efficient way to track your expenses and manage your finances.
 
 * Table of Contents

@@ -56,6 +56,26 @@ public class ExpenseList implements Iterable<Expense> {
     }
 
     /**
+     * Returns the size of the internal list of expenses
+     * @return Size of the internal list of expenses
+     */
+    public int getSize() {
+        return internalListOfExpenses.size();
+    }
+
+    /**
+     * Returns the total amount of the internal list of expenses
+     * @return Total amount of the internal list of expenses
+     */
+    public double getTotalAmount() {
+        double totalAmount = 0;
+        for (Expense expense : internalListOfExpenses) {
+            totalAmount += expense.getAmount();
+        }
+        return totalAmount;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Expense> asUnmodifiableList() {
@@ -77,6 +97,14 @@ public class ExpenseList implements Iterable<Expense> {
         }
         ExpenseList otherInUniqueList = (ExpenseList) other;
         return this.internalListOfExpenses.equals(otherInUniqueList.internalListOfExpenses);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean contains(Expense toCheck) {
+        requireNonNull(toCheck);
+        return internalListOfExpenses.stream().anyMatch(toCheck::isSameExpense);
     }
 
     @Override
