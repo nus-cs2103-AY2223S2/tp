@@ -29,7 +29,7 @@ public class MainWindow extends UiPart<Stage> {
     private static final String TITLE = "FitBook";
     private static final String EXERCISE = "Exercise";
     private static final String SCHEDULE = "Schedule";
-
+    private static final String STATISTIC = "Statistic";
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -216,6 +216,20 @@ public class MainWindow extends UiPart<Stage> {
 
         setMainTitleText(EXERCISE);
         setSubTitle(EXERCISE);
+        panelPlaceholder.setManaged(false);
+
+        exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
+        panelPlaceholder.getChildren().add(exercisePanel.getRoot());
+
+        panelPlaceholder.setManaged(true);
+    }
+
+    @FXML
+    private void handleStatistics() {
+        resultDisplay.setFeedbackToUser(": Start to handle exercise.");
+
+        setMainTitleText(STATISTIC);
+        setSubTitle(STATISTIC);
         panelPlaceholder.setManaged(false);
 
         exercisePanel = new ExercisePanel(logic.getFilteredRoutineList());
