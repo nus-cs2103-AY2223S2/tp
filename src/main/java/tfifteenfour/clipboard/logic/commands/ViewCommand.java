@@ -44,7 +44,7 @@ public class ViewCommand extends Command {
         //model.updateViewedStudent(studentToView);
         model.updateViewedStudent(isTargetStudent(studentToView));
 
-        return new CommandResult(generateSuccessMessage(studentToView));
+        return new CommandResult(this, generateSuccessMessage(studentToView));
     }
 
     @Override

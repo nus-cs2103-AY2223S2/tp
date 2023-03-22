@@ -9,13 +9,12 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    private final Command command;
+
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
 
     /** The roster state has been modified */
     private final boolean hasChangedModelState;
@@ -23,23 +22,23 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean hasChangedModelState, boolean exit) {
+    public CommandResult(Command command, String feedbackToUser, boolean showHelp, boolean hasChangedModelState) {
+        this.command = command;
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.hasChangedModelState = hasChangedModelState;
-        this.exit = exit;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+    public CommandResult(Command command, String feedbackToUser) {
+        this(command, feedbackToUser, false, false);
     }
 
-    public CommandResult(String feedbackToUser, boolean hasChangedModelState) {
-        this(feedbackToUser, false, hasChangedModelState, false);
+    public CommandResult(Command command, String feedbackToUser, boolean hasChangedModelState) {
+        this(command, feedbackToUser, false, hasChangedModelState);
     }
 
     public String getFeedbackToUser() {
@@ -48,10 +47,6 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
-    }
-
-    public boolean isExit() {
-        return exit;
     }
 
     public boolean isStateModified() {
@@ -72,12 +67,12 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && command == otherCommandResult.command;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, command);
     }
 
 }

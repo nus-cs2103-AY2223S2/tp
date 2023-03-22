@@ -20,7 +20,7 @@ public class UndoCommand extends Command {
 			throw new CommandException("Cannot undo any further");
 		}
 
-		return new CommandResult(String.format("Undid previous command: %s", model.getPrevStateModifyingCommand()), false);
+		return new CommandResult(this, String.format("Undid previous command: %s", model.getPrevStateModifyingCommand()), false);
     }
 
 	public void setStateHistoryBuffer(CircularBuffer<Model> stateHistorBuffer) {

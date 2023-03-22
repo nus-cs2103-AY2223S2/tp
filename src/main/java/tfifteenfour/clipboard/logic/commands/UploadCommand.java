@@ -44,7 +44,7 @@ public class UploadCommand extends Command {
             Path sourcePath = this.sourcePath;
             Path destPath = this.destPath;
             Files.copy(sourcePath, destPath.resolve(sourcePath.getFileName()), REPLACE_EXISTING);
-            return new CommandResult(generateSuccessMessage(sourcePath));
+            return new CommandResult(this, generateSuccessMessage(sourcePath));
         } catch (IOException e) {
             throw new CommandException(MESSAGE_INVALID_FILEPATH);
         }
