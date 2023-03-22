@@ -11,6 +11,8 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.ui.notification.BackgroundNotificationScheduler;
+import seedu.address.ui.notification.NotificationManager;
 
 /**
  * The manager of the UI component.
@@ -44,14 +46,17 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
-            NotificationManager notification = new NotificationManager(logic);
-            notification.checkReminders();
+            NotificationManager notificationManager = new NotificationManager(logic);
+            //notificationManager.applySettings();
+            notificationManager.checkReminderList();
+            new BackgroundNotificationScheduler(notificationManager).run();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
+
 
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
