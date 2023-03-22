@@ -28,7 +28,7 @@ public class JsonAdaptedLeaveTest {
     }
 
     @Test
-    public void toModelType_invalidDepartmentName_throwsIllegalValueException() {
+    public void toModelType_invalidLeaveDate_throwsIllegalValueException() {
         JsonAdaptedLeave leave = new JsonAdaptedLeave(INVALID_LEAVE_DATE, VALID_EMPLOYEES);
         String expectedMessage = LeaveDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, leave::toModelType);
