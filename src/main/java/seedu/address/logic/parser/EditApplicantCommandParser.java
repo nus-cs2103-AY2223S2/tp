@@ -16,6 +16,7 @@ import seedu.address.model.applicant.Applicant;
  */
 public class EditApplicantCommandParser implements Parser<EditApplicantCommand> {
 
+    public static final String HASHCODE_MESSAGE_CONSTRAINTS = "The id must be a 4-digit integer";
     /**
      * Parses the given {@code String} of arguments in the context of the AddApplicantCommand
      * and returns an AddApplicantCommand object for execution.
