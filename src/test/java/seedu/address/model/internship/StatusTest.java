@@ -31,7 +31,6 @@ public class StatusTest {
         // non-default status values
         assertFalse(Status.isValidStatus("waiting"));
         assertFalse(Status.isValidStatus("interviewing"));
-        assertFalse(Status.isValidStatus("accepted"));
         assertFalse(Status.isValidStatus("technical interview"));
         assertFalse(Status.isValidStatus("have not applied"));
         assertFalse(Status.isValidStatus("rejected."));
@@ -48,5 +47,8 @@ public class StatusTest {
         assertTrue(Status.isValidStatus("INTERVIEW"));
         assertTrue(Status.isValidStatus("APPlied"));
         assertTrue(Status.isValidStatus("iNTerview"));
+        assertTrue(Status.isValidStatus("AcCepted"));
+        assertTrue(Status.isValidStatus("ACCEPTED"));
+        assertTrue(Status.isValidStatus("accepted"));
     }
 }
