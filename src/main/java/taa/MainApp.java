@@ -34,7 +34,7 @@ import taa.ui.UiManager;
 /**
  * Runs the application.
  */
-public class MainApp extends Application {
+public class    MainApp extends Application {
 
     public static final Version VERSION = new Version(0, 2, 0, true);
 

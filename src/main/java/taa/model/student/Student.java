@@ -44,8 +44,18 @@ public class Student {
         return name;
     }
 
+    /**
+     * @return number of week student attended class
+     */
     public int getNumWeeksPresent() {
         return this.atd.getNumWeeksPresent();
+    }
+
+    /**
+     * @return the average participation points of student in all classes attended so far
+     */
+    public float getPP() {
+        return this.atd.getAveragePP();
     }
 
     public Attendance getAtd() {

@@ -1,6 +1,7 @@
 package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static taa.logic.parser.CliSyntax.PREFIX_PARTICIPATION_POINTS;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
 import java.util.List;
@@ -13,29 +14,34 @@ import taa.model.student.Attendance;
 import taa.model.student.Student;
 
 /**
- * Marks the attendance of an existing student in the taa.
+ * Class to insert participation points to an existing student in taa
+ * for a specified week
  */
-public class MarkAttendanceCommand extends Command {
-    public static final String COMMAND_WORD = "markAtd";
-    public static final String SUCCESS_MSG = "Attendance marked successfully!";
-    public static final String MESSAGE_DUPLICATE_MARKING = "This student's attendance has already been marked.";
+public class InsertParticipationCommand extends Command {
+    public static final String COMMAND_WORD = "insertPP";
+    public static final String SUCCESS_MSG = "Participation points inserted successfully!";
+    public static final String ATTENDANCE_NOT_MARKED = "Mark the attendance of the student first before inserting points!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance of the student identified\n"
+            + ": Inserts attendance points to the student identified\n"
             + "by the index number used in the displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer), "
             + "[" + PREFIX_WEEK + "WeekToMark] \n"
-            + "Example: " + COMMAND_WORD + " 1 w/1 ";
+            + "[" + PREFIX_PARTICIPATION_POINTS + "ParticipationPoints] \n"
+            + "Example: " + COMMAND_WORD + " 1 w/1 pp/200";
     private final Index index;
     private final Index week;
+
+    private final int points;
 
     /**
      * Constructor for MarkAttendanceCommand
      * @param index index of student to update
      * @param week week to update
      */
-    public MarkAttendanceCommand(Index index, Index week) {
+    public InsertParticipationCommand(Index index, Index week, int points) {
         this.index = index;
         this.week = week;
+        this.points = points;
     }
 
     /**
@@ -56,10 +62,11 @@ public class MarkAttendanceCommand extends Command {
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Attendance studentAtd = studentToEdit.getAtd();
-        if (studentAtd.isMarkedWeek(this.week.getZeroBased())) {
-            return new CommandResult(MESSAGE_DUPLICATE_MARKING);
+        if (!studentAtd.isMarkedWeek(this.week.getZeroBased())) {
+            return new CommandResult(ATTENDANCE_NOT_MARKED);
         }
-        studentAtd.markAttendance(this.week.getZeroBased());
+
+        studentAtd.insertParticipationPoints(this.week.getZeroBased(), this.points);
 
         model.updateStudent(studentToEdit);
         return new CommandResult(SUCCESS_MSG);

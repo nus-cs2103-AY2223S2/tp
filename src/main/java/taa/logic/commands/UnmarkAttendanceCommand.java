@@ -13,7 +13,7 @@ import taa.model.student.Attendance;
 import taa.model.student.Student;
 
 /**
- * Unmarks the attendance of an existing student in the address book.
+ * Unmarks the attendance of an existing student in the taa.
  */
 public class UnmarkAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "unmarkAtd";

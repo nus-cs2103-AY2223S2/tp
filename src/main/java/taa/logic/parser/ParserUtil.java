@@ -58,9 +58,25 @@ public class ParserUtil {
         requireNonNull(week);
         String trimmedWeek = week.trim();
         if (!Attendance.isValidWeek(trimmedWeek)) {
-            throw new ParseException(Attendance.ERROR_MSG);
+            throw new ParseException(Attendance.WEEK_ERROR_MSG);
         }
         return Attendance.convertToIntegerWeek(trimmedWeek);
+    }
+
+    /**
+     * Parses a {@code String points} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param points String version of the points to be parsed
+     * @return int version of points if is valid
+     * @throws ParseException if points are not integers between 0-700
+     */
+    public static int parsePartPoints(String points) throws ParseException {
+        requireNonNull(points);
+        String trimmedPoints = points.trim();
+        if (!Attendance.isValidParticipationPoints(trimmedPoints)) {
+            throw new ParseException(Attendance.POINTS_ERROR_MSG);
+        }
+        return Integer.parseInt(trimmedPoints);
     }
 
     /**
