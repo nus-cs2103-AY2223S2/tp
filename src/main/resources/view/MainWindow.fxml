@@ -50,7 +50,7 @@
                         </StackPane>
                     </items>
                   </SplitPane>
-                  <VBox minWidth="300.0" prefWidth="300.0" styleClass="pane-with-border" HBox.hgrow="NEVER">
+                  <VBox minWidth="300.0" prefWidth="300.0" HBox.hgrow="NEVER">
                      <children>
                         <StackPane fx:id="projectListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
