@@ -1,10 +1,15 @@
 package seedu.address.ui;
 
+import java.util.Optional;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * The Contact Display displaying the list of doctors,
@@ -66,7 +71,7 @@ public class ContactDisplay extends UiPart<Region> {
     }
 
     /**
-     * Updates {@code enlargedPersonInfoCardPlaceholder} to show the
+     * Updates the enlarged info card placeholder to show the
      * enlarged information of either the doctor or patient.
      *
      */
@@ -81,4 +86,47 @@ public class ContactDisplay extends UiPart<Region> {
         }
     }
 
+    /**
+     * Updates the enlarged info card placeholder
+     * to show information about selected {@code Doctor}.
+     *
+     * @param doctor a selected doctor.
+     */
+    public void showSelectedDoctor(Doctor doctor) {
+        enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(doctor));
+        infoCardDisplayController.displayDoctor();
+        setFeedbackToUser();
+    }
+
+    /**
+     * Updates the enlarged info card placeholder
+     * to show information about selected {@code Patient}.
+     *
+     * @param patient a selected patient.
+     */
+    public void showSelectedPatient(Patient patient) {
+        enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(patient));
+        infoCardDisplayController.displayPatient();
+        setFeedbackToUser();
+    }
+
+    /**
+     * Scrolls down the doctor list panel
+     * to show information about selected {@code Doctor}.
+     *
+     * @param doctorIndex the Index of the selected doctor.
+     */
+    public void scrollToSelectedDoctor(Index doctorIndex) {
+        doctorListPanel.scrollTo(doctorIndex);
+    }
+
+    /**
+     * Scrolls down the patient list panel
+     * to show information about selected {@code Patient}.
+     *
+     * @param patientIndex the Index of the selected patient.
+     */
+    public void scrollToSelectedPatient(Index patientIndex) {
+        patientListPanel.scrollTo(patientIndex);
+    }
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.patient.Patient;
 
 /**
@@ -87,6 +88,25 @@ public class PatientListPanel extends UiPart<Region> {
             enlargedPatientInfoCard.updateSelectedPatientOptional(Optional.ofNullable(selectedPatient));
         };
         patientListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
+    }
+
+    /**
+     * Scrolls the {@code ListView} to display the {@code Patient}
+     * at the specified {@code Index}.
+     *
+     * @param patientIndex an Index object representing the Patient.
+     * @throws ArrayIndexOutOfBoundsException if index is invalid.
+     */
+    public void scrollTo(Index patientIndex) throws ArrayIndexOutOfBoundsException {
+        int index = patientIndex.getZeroBased();
+        if (index >= patientListView.getItems().size() || index < 0) {
+            String errorMessage = "Supplied patientIndex ("
+                    + index
+                    + ") must be between 0 and size of listview - 1 ("
+                    + (patientListView.getItems().size() - 1) + ")!";
+            throw new ArrayIndexOutOfBoundsException(errorMessage);
+        }
+        patientListView.scrollTo(index);
     }
 
     /**
