@@ -24,6 +24,7 @@ import seedu.socket.model.UserPrefs;
 import seedu.socket.model.person.Person;
 import seedu.socket.testutil.PersonBuilder;
 import seedu.socket.testutil.RemovePersonDescriptorBuilder;
+import seedu.socket.testutil.TypicalProjects;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RemoveCommand.
@@ -31,6 +32,7 @@ import seedu.socket.testutil.RemovePersonDescriptorBuilder;
 public class RemoveCommandTest {
 
     private Model model = new ModelManager(getTypicalSocket(), new UserPrefs());
+    private Model modelWithProjects = new ModelManager(TypicalProjects.getTypicalSocket(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -56,6 +58,29 @@ public class RemoveCommandTest {
     }
 
     @Test
+    public void execute_allFieldsSpecifiedUnfilteredListPersonInProject_success() {
+        Person firstPerson = modelWithProjects.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        PersonBuilder personInList = new PersonBuilder();
+        Person removedFieldPerson = personInList.withName("Alice Pauline").build();
+
+        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder()
+                .withProfile("alice-pauline")
+                .withAddress("123, Jurong West Ave 6, #08-111")
+                .withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withTags("friends").build();
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_PERSON, descriptor);
+
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
+
+        Model expectedModel = new ModelManager(new Socket(modelWithProjects.getSocket()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, removedFieldPerson);
+
+        assertCommandSuccess(removeCommand, modelWithProjects, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
@@ -75,6 +100,29 @@ public class RemoveCommandTest {
         expectedModel.setPerson(lastPerson, removedFieldPerson);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredListPersonInProject_success() {
+        Person firstPerson = modelWithProjects.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        PersonBuilder personInList = new PersonBuilder();
+        Person removedFieldPerson = personInList.withName("Alice Pauline")
+                .withAddress("123, Jurong West Ave 6, #08-111")
+                .withEmail("alice@example.com").build();
+
+        RemovePersonDescriptor descriptor = new RemovePersonDescriptorBuilder()
+                .withProfile("alice-pauline")
+                .withPhone("94351253")
+                .withTags("friends").build();
+        RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_PERSON, descriptor);
+
+        String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_FIELD_SUCCESS, removedFieldPerson);
+
+        Model expectedModel = new ModelManager(new Socket(modelWithProjects.getSocket()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, removedFieldPerson);
+
+        assertCommandSuccess(removeCommand, modelWithProjects, expectedMessage, expectedModel);
     }
 
     @Test

@@ -2,10 +2,7 @@ package seedu.socket.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -108,6 +105,8 @@ public class Socket implements ReadOnlySocket {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        // update references
+        projects.updateMemberInProjects(target, editedPerson);
     }
 
     /**
@@ -116,22 +115,8 @@ public class Socket implements ReadOnlySocket {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-        // remove key references
-        ArrayList<Project> projectsToEdit = new ArrayList<>(); // store projects to edit to avoid concurrent update
-        for (Project project : projects) {
-            if (project.getMembers().contains(key)) {
-                projectsToEdit.add(project);
-            }
-        }
-        while (!projectsToEdit.isEmpty()) { // update matching projects in projects
-            Project projectToUpdate = projectsToEdit.remove(0);
-            Set<Person> updatedMembers = new HashSet<>(projectToUpdate.getMembers());
-            updatedMembers.remove(key);
-            Project updatedProject = new Project(projectToUpdate.getName(), projectToUpdate.getRepoHost(),
-                    projectToUpdate.getRepoName(), projectToUpdate.getDeadline(),
-                    projectToUpdate.getMeeting(), updatedMembers);
-            setProject(projectToUpdate, updatedProject);
-        }
+        // remove references
+        projects.removeMemberInProjects(key);
     }
 
     /**
@@ -212,5 +197,9 @@ public class Socket implements ReadOnlySocket {
 
     public void sort(String category) {
         persons.sort(category);
+    }
+
+    public void sortProjects(String category) {
+        projects.sort(category);
     }
 }

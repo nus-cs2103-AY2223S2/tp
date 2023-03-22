@@ -69,6 +69,7 @@ public class Project {
     public ProjectDeadline getDeadline() {
         return deadline;
     }
+
     public ProjectMeeting getMeeting() {
         return meeting;
     }

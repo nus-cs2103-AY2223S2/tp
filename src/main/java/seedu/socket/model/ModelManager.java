@@ -246,8 +246,7 @@ public class ModelManager implements Model {
 
     @Override
     public void sortProjectList(String category) {
-        // TODO modify to sort project
-        // socket.sort(category);
+        socket.sortProjects(category);
         updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
     }
 
