@@ -115,8 +115,7 @@ public class Patient {
         }
 
         return otherPatient != null
-            && otherPatient.getNric().equals(this.getNric())
-            && otherPatient.getName().equals(this.getName());
+            && otherPatient.getNric().equals(this.getNric());
     }
 
     /**

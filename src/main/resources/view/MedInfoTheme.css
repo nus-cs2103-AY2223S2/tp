@@ -175,6 +175,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-padding: 5px;
 }
 
 .result-display {
