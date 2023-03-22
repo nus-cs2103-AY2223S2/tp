@@ -215,7 +215,6 @@ public class StudentEditCommand extends StudentCommand {
                 this.newTagList = student.getTagList();
                 this.newTest = student.getTest();
                 this.newHomework = student.getHomeworkSet();
-                this.newName = student.getName();
 
                 Student newStudent = new Student(newName, this.newStudentClass, this.newIndexNumber, this.newSex,
                         this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newAge, this.newImage,
@@ -241,6 +240,7 @@ public class StudentEditCommand extends StudentCommand {
     private Student editStudent(Model model, Student studentToEdit, Student newStudent) {
 
         Phone oldParentNumber = studentToEdit.getParentNumber();
+
 
         if (oldParentNumber == newStudent.getParentNumber()) {
             return newStudent;
