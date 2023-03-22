@@ -126,6 +126,10 @@ public class Navigation implements ReadOnlyNavigation {
         return contextStack.equals(other.contextStack);
     }
 
+
+    /**
+     * Represents different nav layers.
+     */
     public enum NavLayer {
         INVALID(0), ROOT(1), MODULE(2), LECTURE(3);
 
