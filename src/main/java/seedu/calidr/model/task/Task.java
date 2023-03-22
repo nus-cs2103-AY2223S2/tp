@@ -28,6 +28,7 @@ public abstract class Task {
         this.title = title;
         this.description = description;
         this.isDone = false;
+        this.priority = Priority.MEDIUM;
 //        this.priority = priority == null ? Priority.MEDIUM : priority;
     }
 
