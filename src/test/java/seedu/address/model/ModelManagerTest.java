@@ -171,7 +171,7 @@ public class ModelManagerTest {
         modelManager = new ModelManager(addressBook, userPrefs);
 
 
-        double aliceWeeklyEarnings = (1000 / 4) + (2000 / 36);
+        double aliceWeeklyEarnings = (1000 / 4.0) + (2000 / 36.0);
         double bensonWeeklyEarnings = 1000;
         double total = aliceWeeklyEarnings + bensonWeeklyEarnings;
 
@@ -187,7 +187,7 @@ public class ModelManagerTest {
         modelManager = new ModelManager(addressBook, userPrefs);
 
 
-        double aliceWeeklyEarnings = (1000 / 4) + (2000 / 36);
+        double aliceWeeklyEarnings = (1000 / 4.0) + (2000 / 36.0);
         double bensonWeeklyEarnings = 1000;
         double total = aliceWeeklyEarnings + bensonWeeklyEarnings;
 

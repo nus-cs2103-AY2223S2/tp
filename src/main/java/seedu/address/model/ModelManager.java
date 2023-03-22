@@ -193,23 +193,24 @@ public class ModelManager implements Model {
 
     @Override
     public double getWeeklyEarnings() {
-        ObservableList<Client> clientList = filteredClients;
         double totalEarnings = 0;
-        double earnings;
-        for (int i = 0; i < clientList.size(); i++) {
-            selectedClient = clientList.get(i);
+
+        for (int i = 0; i < filteredClients.size(); i++) {
+            selectedClient = filteredClients.get(i);
             ObservableList<Policy> policyList = selectedClient.getFilteredPolicyList();
             for (int j = 0; j < policyList.size(); j++) {
-                Policy policy = policyList.get(i);
+                Policy policy = policyList.get(j);
                 Frequency freq = policy.getFrequency();
                 if (freq.toString() == "monthly") {
-                    earnings = Double.valueOf(policy.getPremium().toString()) / 4;
+                    double earnings = Double.valueOf(policy.getPremium().toString()) / 4;
+                    totalEarnings = totalEarnings + earnings;
                 } else if (freq.toString() == "yearly") {
-                    earnings = Double.valueOf(policy.getPremium().toString()) / 36;
+                    double earnings = Double.valueOf(policy.getPremium().toString()) / 36;
+                    totalEarnings = totalEarnings + earnings;
                 } else {
-                    earnings = Double.valueOf(policy.getPremium().toString());
+                    double earnings = Double.valueOf(policy.getPremium().toString());
+                    totalEarnings = totalEarnings + earnings;
                 }
-                totalEarnings = totalEarnings + earnings;
             }
         }
         return totalEarnings;
