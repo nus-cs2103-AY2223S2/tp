@@ -93,11 +93,17 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `VmsParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a patient).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+How the `Logic` component execution queue works:
+
+1. When `Logic` is called upon to queue a user command, it queues that user command into an internal queue in `LogicManager`.
+2. `LogicManager` continues to parse and execute any previously queued command inputs until the queued command input in step 1 is next.
+3. The next user command is polled from the queue and parsed using `VmsParser` to produce a `ParseResult`.
+4. The `Command` object (more precisely, an object of one of its subclasses eg. `AddCommand`), within the resultant `ParseResult`, is executed.
+5. During execution, the `Command` object communicates with `Model` to perform its task. When it is done, it produces a `CommandMessage`.
+6. `LogicManager` combines the `CommandMessage` within `ParseResult` in 3 and the resultant `CommandMessage` in 5 into a list and passes it to its set `Consumer` to handle these `CommandMessages`. See [IU component](#ui-component) on this is handled.
+7. If the command executed has follow up commands, a new `ParseResult` is created that encapsulates the follow up command and an empty `CommandMessage`. This `ParseResult` is sent to be executed and the process starts from 4.
+8. Else, the execution for this user command ends and `LogicManager` executes the next user command in its internal queue if present, continuing from 3.
+9. If there are no user commands waiting to be executed, `Logic` waits for a user command to be queued and the cycle repeats from 1.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -111,8 +117,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `VmsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `VmsParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+1. When called upon to parse a user command, `VmsParser` a `FeatureParser` or more specifically, one of its subclasses (eg `BasicParser`, `PatientParser`, etc) depending on the user command. Used input from the user command are removed.
+2. The `FeatureParser` in 1 then parses the remaining user command to create a `CommandParser`. Similar to 1, the created `CommandParser` is more specifically one of its subclasses (eg. `AddCommandParser`) and used inputs from the user command are removed.
+3. The resultant `CommandParser` parses the remaining user input to create a `Command` object, such as `AddCommand`, and optionally a `CommandMessage`. Both of which are encapsulated into a `ParseResult` and returned.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/Model.java)
