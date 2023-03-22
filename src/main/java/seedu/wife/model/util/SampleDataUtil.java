@@ -25,11 +25,23 @@ public class SampleDataUtil {
         };
     }
 
+    public static Tag[] getSampleTags() {
+        return new Tag[] {
+            new Tag("New"),
+            new Tag("Used"),
+        };
+    }
+
     public static ReadOnlyWife getSampleWife() {
         Wife sampleWife = new Wife();
         for (Food sampleFood : getSampleFood()) {
             sampleWife.addFood(sampleFood);
         }
+
+        for (Tag sampleTag : getSampleTags()) {
+            sampleWife.createTag(sampleTag);
+        }
+
         return sampleWife;
     }
 
