@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.wife.commons.core.HelpMenu;
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.HelpCommand;
+import seedu.wife.logic.parser.exceptions.ParseException;
 import seedu.wife.model.food.NameContainsKeywordsPredicate;
 
 public class HelpCommandParserTest {
@@ -18,12 +19,12 @@ public class HelpCommandParserTest {
     private HelpCommandParser parser = new HelpCommandParser();
 
     @Test
-    public void parse_invalidArg_returnsInvalidArgMessage() {
+    public void parse_invalidArg_returnsInvalidArgMessage() throws ParseException {
         //invalid string
-//        Command command = parser.parse("sdkjksjks");
+        Command command = parser.parse("sdkjksjks");
+        Command expectedCommand = new HelpCommand(HelpMenu.INVALID.getCommandUsage());
 
-//        assertEquals(expectedCommand, command);
-        assertParseFailure(parser, "sdkjksjks", HelpMenu.INVALID.getCommandUsage());
+        assertEquals(expectedCommand, command);
     }
 
 //    @Test

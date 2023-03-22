@@ -5,17 +5,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class HelpMenuTest {
-//    @Test
-//    void getDescription_checkCorrectDescription_success() {
-//        String description = "Add food item - ";
-//        assertEquals(description, HelpMenu.ADD.getDescription());
-//    }
-//
-//    @Test
-//    void getFormat_checkCorrectFormat_success() {
-//        String format = "add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
-//        assertEquals(format, HelpMenu.ADD.getFormat());
-//    }
+    @Test
+    void parseCommand_invalidArg_returnsInvalidSuccess() {
+        //non-existent command
+        String invalidArg = "8792jhw";
+        assertEquals(HelpMenu.INVALID, HelpMenu.parseCommand(invalidArg));
+
+        //empty string
+        String emptyArg = "";
+        assertEquals(HelpMenu.INVALID, HelpMenu.parseCommand(emptyArg));
+
+        //null input
+        assertEquals(HelpMenu.INVALID, HelpMenu.parseCommand(null));
+    }
+
+    @Test
+    void getCommandUsage_checkCorrectResult_success() {
+        String format = "add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
+        assertEquals(format, HelpMenu.ADD.getFormat());
+    }
 //
 //    @Test
 //    void displayHelpMenu_checkCorrectOutput_success() {
