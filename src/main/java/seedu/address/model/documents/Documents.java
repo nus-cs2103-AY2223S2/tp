@@ -17,24 +17,6 @@ public class Documents {
     /**
      * Every field must be present and not null.
      */
-    public Documents(Resume resume) {
-        requireAllNonNull(resume);
-        this.resume = resume;
-        this.coverLetter = null;
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Documents(CoverLetter coverLetter) {
-        requireAllNonNull(coverLetter);
-        this.resume = null;
-        this.coverLetter = coverLetter;
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
     public Documents(Resume resume, CoverLetter coverLetter) {
         requireAllNonNull(resume, coverLetter);
         this.resume = resume;

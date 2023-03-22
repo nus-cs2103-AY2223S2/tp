@@ -10,6 +10,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
+import seedu.address.model.documents.CoverLetter;
+import seedu.address.model.documents.Documents;
+import seedu.address.model.documents.Resume;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -27,6 +30,7 @@ public class JsonAdaptedInternshipApplication {
     private final List<String> contact = new ArrayList<>();
     private final String status;
     private final String interviewDate;
+    private final List<String> documents = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedInternshipApplication} with the given InternshipApplication details.
@@ -36,7 +40,8 @@ public class JsonAdaptedInternshipApplication {
                                             @JsonProperty("jobTitle") String jobTitle,
                                             @JsonProperty("status") String status,
                                             @JsonProperty("interviewDate") String interviewDate,
-                                            @JsonProperty("contact") List<String> contact) {
+                                            @JsonProperty("contact") List<String> contact,
+                                            @JsonProperty("documents") List<String> documents) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
         if (contact != null) {
@@ -44,6 +49,9 @@ public class JsonAdaptedInternshipApplication {
         }
         this.status = status;
         this.interviewDate = interviewDate;
+        if (documents != null) {
+            this.documents.addAll(documents);
+        }
     }
 
     /**
@@ -61,6 +69,10 @@ public class JsonAdaptedInternshipApplication {
             interviewDate = source.getInterviewDate().toString();
         } else {
             interviewDate = null;
+        }
+        if (source.getDocuments() != null) {
+            documents.add(source.getDocuments().getResume().value);
+            documents.add(source.getDocuments().getCoverLetter().value);
         }
     }
 
@@ -115,16 +127,26 @@ public class JsonAdaptedInternshipApplication {
             final Email modelEmail = new Email(contact.get(1));
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
-            if (modelInterviewDate != null) {
+            if (documents.size() == 2) {
+                if (!Resume.isValidResumeLink(documents.get(0))) {
+                    throw new IllegalValueException(Resume.MESSAGE_CONSTRAINTS);
+                }
+                final Resume modelResume = new Resume(documents.get(0));
+
+                if (!CoverLetter.isValidCoverLetterLink(documents.get(1))) {
+                    throw new IllegalValueException(CoverLetter.MESSAGE_CONSTRAINTS);
+                }
+                final CoverLetter modelCoverLetter = new CoverLetter(documents.get(1));
+                final Documents modelDocuments = new Documents(modelResume, modelCoverLetter);
+
                 return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
-                        modelInterviewDate);
-            } else {
-                return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus);
+                        modelInterviewDate, modelDocuments);
             }
-        } else if (modelInterviewDate != null) {
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus, modelInterviewDate);
-        } else {
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus);
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
+                    modelInterviewDate, null);
         }
+
+        return new InternshipApplication(modelCompanyName, modelJobTitle, null, modelStatus,
+                modelInterviewDate, null);
     }
 }

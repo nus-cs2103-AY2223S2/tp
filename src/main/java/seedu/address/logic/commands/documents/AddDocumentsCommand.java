@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.resume;
+package seedu.address.logic.commands.documents;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COVER_LETTER;
@@ -14,10 +14,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.JobTitle;
+import seedu.address.model.documents.Documents;
+import seedu.address.model.person.*;
 
 /**
  * Adds links to a resume and/or cover letter to an application identified using it's displayed index
@@ -41,20 +39,18 @@ public class AddDocumentsCommand extends Command {
 
     private final Index targetIndex;
 
-    private final String resumeLink;
-    private final String coverLetterLink;
+
+    private final Documents toAdd;
 
     /**
      * @param targetIndex of the internship application to add contact details
-     * @param resumeLink resume to add
-     * @param coverLetterLink cover letter to add
+     * @param documents documents to be added
      */
-    public AddDocumentsCommand(Index targetIndex, String resumeLink, String coverLetterLink) {
+    public AddDocumentsCommand(Index targetIndex, Documents documents) {
         requireNonNull(targetIndex);
 
         this.targetIndex = targetIndex;
-        this.resumeLink = resumeLink;
-        this.coverLetterLink = coverLetterLink;
+        this.toAdd = documents;
     }
 
     @Override
@@ -67,26 +63,28 @@ public class AddDocumentsCommand extends Command {
         }
 
         InternshipApplication internshipToAddDocuments = lastShownList.get(targetIndex.getZeroBased());
-        InternshipApplication internshipWithContact = createInternshipWithContact(internshipToAddContact, toAdd);
+        InternshipApplication internshipWithDocuments = createInternshipWithDocuments(internshipToAddDocuments, toAdd);
 
-        model.setApplication(internshipToAddContact, internshipWithContact);
+        model.setApplication(internshipToAddDocuments, internshipWithDocuments);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
-        return new CommandResult(String.format(MESSAGE_ADD_RESUME_SUCCESS, internshipToAddContact + "\n" + toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_RESUME_SUCCESS, internshipToAddDocuments + "\n" + toAdd));
     }
 
     /**
      * Creates and returns a {@code InternshipApplication} with the details of {@code internshipToAddContact}
      * added with the contact {@code toAdd}.
      */
-    private static InternshipApplication createInternshipWithContact(InternshipApplication internshipToAddContact,
-                                                                     Contact contact) {
-        assert internshipToAddContact != null;
+    private static InternshipApplication createInternshipWithDocuments(InternshipApplication internshipToAddDocuments,
+                                                                     Documents documents) {
+        assert internshipToAddDocuments != null;
 
-        CompanyName companyName = internshipToAddContact.getCompanyName();
-        JobTitle jobTitle = internshipToAddContact.getJobTitle();
-        InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
+        CompanyName companyName = internshipToAddDocuments.getCompanyName();
+        JobTitle jobTitle = internshipToAddDocuments.getJobTitle();
+        Contact contact = internshipToAddDocuments.getContact();
+        InternshipStatus status = internshipToAddDocuments.getStatus();
+        InterviewDate interviewDate = internshipToAddDocuments.getInterviewDate();
 
-        return new InternshipApplication(companyName, jobTitle, contact, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate, documents);
     }
 
     @Override

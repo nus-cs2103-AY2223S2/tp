@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,6 +26,7 @@ public class InternshipApplication {
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
     private final Contact contact;
+    private final Documents documents;
 
     /**
      * Every field must be present and not null.
@@ -36,6 +38,7 @@ public class InternshipApplication {
         this.contact = null;
         this.status = InternshipStatus.NA;
         this.interviewDate = null;
+        this.documents = null;
     }
 
     /**
@@ -48,6 +51,7 @@ public class InternshipApplication {
         this.contact = contact;
         this.status = InternshipStatus.NA;
         this.interviewDate = null;
+        this.documents = null;
     }
 
     /**
@@ -60,6 +64,7 @@ public class InternshipApplication {
         this.contact = contact;
         this.status = InternshipStatus.NA;
         this.interviewDate = interviewDate;
+        this.documents = null;
     }
 
     /**
@@ -72,6 +77,7 @@ public class InternshipApplication {
         this.contact = null;
         this.status = status;
         this.interviewDate = null;
+        this.documents = null;
     }
     /**
      * Every field must be present and not null.
@@ -83,6 +89,7 @@ public class InternshipApplication {
         this.contact = null;
         this.status = status;
         this.interviewDate = interviewDate;
+        this.documents = null;
     }
 
     /**
@@ -95,6 +102,7 @@ public class InternshipApplication {
         this.contact = contact;
         this.status = status;
         this.interviewDate = null;
+        this.documents = null;
     }
 
     /**
@@ -108,6 +116,21 @@ public class InternshipApplication {
         this.contact = contact;
         this.status = status;
         this.interviewDate = interviewDate;
+        this.documents = null;
+    }
+
+    /**
+     * Company name and jobt title field must be present and not null.
+     */
+    public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InternshipStatus status,
+                                 InterviewDate interviewDate, Documents documents) {
+        requireAllNonNull(name, job);
+        this.companyName = name;
+        this.jobTitle = job;
+        this.contact = contact;
+        this.status = status;
+        this.interviewDate = interviewDate;
+        this.documents = documents;
     }
 
     public CompanyName getCompanyName() {
@@ -135,6 +158,10 @@ public class InternshipApplication {
 
     public InterviewDate getInterviewDate() {
         return interviewDate;
+    }
+
+    public Documents getDocuments() {
+        return documents;
     }
 
     /**
