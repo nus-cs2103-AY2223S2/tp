@@ -81,4 +81,6 @@ public class FindCommandTest {
     private PersonContainsKeywordsPredicate preparePredicate(String userInput) {
         return new PersonContainsKeywordsPredicate().withName((Arrays.asList(userInput.split("\\s+"))));
     }
+
+    //TODO: Test if Find command works for different fields.
 }
