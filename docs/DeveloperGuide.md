@@ -321,19 +321,19 @@ Step 4. User wants to amend the details of the `Parent` and hence executes the `
 Step 5. Edited `Parent` is saved to the storage file automatically after the command.
 
 **Full implementation sequence diagram**
-![Sequence Diagram](images/ParentEditCmd(Full Sequence Diagram).jpg)
+![Sequence Diagram](images/ParentEditCmd(Full_Sequence_Diagram).jpg)
 
 **Partial Sequence Diagram 1**
-![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT1).jpg)
+![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT1).jpg)
 
 **Partial Sequence Diagram 2**
-![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT2).jpg)
+![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT2).jpg)
 
 **Partial Sequence Diagram 3**
-![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT3).jpg)
+![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT3).jpg)
 
 **Partial Sequence Diagram 4**
-![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT4).jpg)
+![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT4).jpg)
 
 ### Design considerations
 We want to make it easy for the user to edit `Parent / NOK` particulars without manually deleting the `Parent` and creating a new `Parent` and reassigning each `Student` attached to original `Parent` with the new `Parent`. 
