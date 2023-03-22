@@ -22,6 +22,7 @@ import taa.logic.commands.ListByClassCommand;
 import taa.logic.commands.ListCommand;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.commands.RemarkCommand;
+import taa.logic.commands.UngradeCommand;
 import taa.logic.commands.UnmarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
 
@@ -102,6 +103,9 @@ public class TaaParser {
 
         case GradeCommand.COMMAND_WORD:
             return new GradeCommandParser().parse(arguments);
+
+        case UngradeCommand.COMMAND_WORD:
+            return new UngradeCommandParser().parse(arguments);
 
         case ListAssignmentCommand.COMMAND_WORD:
             return new ListAssignmentCommand();

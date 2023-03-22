@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
-import taa.logic.commands.exceptions.CommandException;
+import taa.assignment.exceptions.AssignmentNotFoundException;
+import taa.assignment.exceptions.InvalidGradeException;
+import taa.assignment.exceptions.SubmissiontNotFoundException;
 import taa.model.student.Student;
 
 /**
  * List of assignments
  */
 public class AssignmentList {
-    private ArrayList<Assignment> assignments = new ArrayList<>();
-    private HashMap<String, Assignment> assignmentMap = new HashMap<>();
+    private final ArrayList<Assignment> assignments = new ArrayList<>();
+    private final HashMap<String, Assignment> assignmentMap = new HashMap<>();
 
     /**
      * @param assignmentName
      * @param sl
      */
-    public void add(String assignmentName, FilteredList<Student> sl) throws CommandException {
+    public void add(String assignmentName, FilteredList<Student> sl) throws AssignmentNotFoundException {
         if (assignmentMap.containsKey(assignmentName)) {
-            throw new CommandException("Duplicate assignment name: " + assignmentName);
+            throw new AssignmentNotFoundException("Duplicate assignment name: " + assignmentName);
         } else {
             Assignment a = new Assignment(assignmentName, sl);
             assignments.add(a);
@@ -31,9 +33,9 @@ public class AssignmentList {
     /**
      * @param assignmentName
      */
-    public void delete(String assignmentName) throws CommandException {
+    public void delete(String assignmentName) throws AssignmentNotFoundException {
         if (!assignmentMap.containsKey(assignmentName)) {
-            throw new CommandException("Assignment: " + assignmentName + " not found");
+            throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
         } else {
             Assignment removed = assignmentMap.remove(assignmentName);
             removed.delete();
@@ -46,14 +48,29 @@ public class AssignmentList {
      * @param student
      * @param marks
      */
-    public void grade(String assignmentName, Student student, int marks) throws CommandException {
+    public void grade(String assignmentName, Student student, int marks) throws AssignmentNotFoundException,
+            SubmissiontNotFoundException, InvalidGradeException {
         if (!assignmentMap.containsKey(assignmentName)) {
-            throw new CommandException("Assignment: " + assignmentName + " not found");
+            throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
         } else {
             assignmentMap.get(assignmentName).gradeSubmission(student, marks);
         }
     }
-    // TODO: delete student from classList = must delete all submissions of studentId for all assignments.
+
+    /**
+     * @param assignmentName
+     * @param student
+     * @throws AssignmentNotFoundException
+     * @throws SubmissiontNotFoundException
+     */
+    public void ungrade(String assignmentName, Student student) throws AssignmentNotFoundException,
+            SubmissiontNotFoundException {
+        if (!assignmentMap.containsKey(assignmentName)) {
+            throw new AssignmentNotFoundException("Assignment: " + assignmentName + " not found");
+        } else {
+            assignmentMap.get(assignmentName).ungradeSubmission(student);
+        }
+    }
 
     /**
      * @return A list of all assignments and submissions

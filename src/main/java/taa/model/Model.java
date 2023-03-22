@@ -120,4 +120,6 @@ public interface Model {
     void grade(String assignmentName, int studentId, int marks) throws CommandException;
 
     String listAssignments();
+
+    void ungrade(String assignmentName, int studentId) throws CommandException;
 }
