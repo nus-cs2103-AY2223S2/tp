@@ -52,7 +52,10 @@ class JsonSerializableScheduler {
             if (scheduler.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
             }
-            if (!event.isPastEvent()) {
+            if (event.isPastEvent()) {
+                event.setCompleted();
+                scheduler.addEvent(event);
+            } else {
                 scheduler.addEvent(event);
             }
         }

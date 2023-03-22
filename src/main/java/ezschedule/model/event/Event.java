@@ -8,6 +8,7 @@ import java.time.LocalTime;
  */
 public class Event implements Comparable<Event> {
     private final Name name;
+    private String completed;
     private final Date date;
     private final Time startTime;
     private final Time endTime;
@@ -17,6 +18,7 @@ public class Event implements Comparable<Event> {
      */
     public Event(Name name, Date date, Time startTime, Time endTime) {
         this.name = name;
+        this.completed = null;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -40,6 +42,14 @@ public class Event implements Comparable<Event> {
 
     public boolean isPastEvent() {
         return endTime.isPastTime();
+    }
+
+    public void setCompleted() {
+        completed = "Completed";
+    }
+
+    public String getCompleted() {
+        return completed;
     }
 
     /**
