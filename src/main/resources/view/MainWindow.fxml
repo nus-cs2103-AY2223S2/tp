@@ -19,7 +19,7 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css"/>
+                <URL value="@Style.css"/>
                 <URL value="@Extensions.css"/>
             </stylesheets>
 
@@ -59,7 +59,7 @@
                 </HBox>
 
                 <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                           minHeight="200">
+                           maxHeight="150">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
