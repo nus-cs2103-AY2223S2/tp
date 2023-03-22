@@ -1,6 +1,7 @@
 package seedu.library.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.library.commons.exceptions.IllegalValueException;
 import seedu.library.model.bookmark.Progress;
@@ -14,7 +15,9 @@ public class JsonAdaptedProgress {
      * Constructs a {@code JsonAdaptedProgress} with the given {@code volume}, {@code chapter} and {@code page}.
      */
     @JsonCreator
-    public JsonAdaptedProgress(String volume, String chapter, String page) {
+    public JsonAdaptedProgress(@JsonProperty("volume") String volume,
+                               @JsonProperty("chapter") String chapter,
+                               @JsonProperty("page") String page) {
         this.volume = volume;
         this.chapter = chapter;
         this.page = page;
