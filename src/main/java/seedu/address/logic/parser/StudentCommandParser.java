@@ -347,14 +347,14 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Cca newCca = ParserUtil.parseCca(argMultimap.getValue(PREFIX_CCA).get());
         Class studentClass = ParserUtil.parseStudentClass(sc);
         Class newStudentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_NEWCLASS).get());
-        Attendance newAttendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
+        //Attendance newAttendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
         Comment newComment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
         Name newParentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENTNAME).get());
         Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
         return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
-                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca, newAttendance,
+                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca,
                 newComment, newStudentPhoneNumber, newEmail, newAddress, newTagList);
     }
 
