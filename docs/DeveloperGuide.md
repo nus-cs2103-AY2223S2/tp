@@ -320,7 +320,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2b1. FastTrack informs the user that the category name has already been used and prompts the user for a different category name.
   * 2b2. User enters add command with the category name.
   * 2b3. Steps 2b1-2b2 are repeated until the data entered are correct.
-  
+
     Use case resumes at step 3.
 
 ### Use case: UC2 - Delete a Category
