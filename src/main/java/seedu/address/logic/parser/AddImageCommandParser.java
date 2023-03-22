@@ -45,13 +45,15 @@ public class AddImageCommandParser implements Parser<AddImageCommand> {
             Image image = new Image(fileName);
 
             return new AddImageCommand(index, image);
-        } catch (IOException io) {
-
-            throw new ParseException("Upload image failed.");
         } catch (ParseException pe) {
             throw pe;
         } catch (InvalidPathException ipe) {
             throw new ParseException("Path to image provided is invalid.");
+        } catch (IOException io) {
+            if (io.getMessage().contains("Operation not permitted")) {
+                throw new ParseException("Upload failed due to lack of permission for directory/file.");
+            }
+            throw new ParseException("Upload image failed.");
         }
 
     }
