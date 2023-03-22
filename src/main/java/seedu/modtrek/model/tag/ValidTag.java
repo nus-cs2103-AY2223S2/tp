@@ -1,5 +1,7 @@
 package seedu.modtrek.model.tag;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +19,23 @@ public enum ValidTag {
 
     // Short-forms Accepted
     ULR, CSF, CSBD, ITP, MS, UE;
+
+    /**
+     * Retrieves the long form string of all the requirements.
+     * @return The long form string of all the requirements.
+     */
+    public static List<String> getTags() {
+        List<String> tags = new ArrayList<>();
+
+        tags.add("COMPUTER_SCIENCE_FOUNDATION");
+        tags.add("MATHEMATICS_AND_SCIENCES");
+        tags.add("UNRESTRICTED_ELECTIVES");
+        tags.add("IT_PROFESSIONALISM");
+        tags.add("UNIVERSITY_LEVEL_REQUIREMENTS");
+        tags.add("COMPUTER_SCIENCE_BREADTH_AND_DEPTH");
+
+        return tags;
+    }
 
     /**
      * Retrieves short form version of the requirement.
@@ -63,4 +82,20 @@ public enum ValidTag {
         return mappedCredits.get(tag);
     }
 
+    /**
+     * Retrieves color for a given tag.
+     * @param tagName The name of the given tag.
+     * @return The color for the given tag.
+     */
+    public static String getColor(String tagName) {
+        Map<ValidTag, String> mappedColors = Map.of(
+                ULR, "red",
+                CSF, "blue",
+                CSBD, "purple",
+                ITP, "orange",
+                MS, "green",
+                UE, "yellow");
+        ValidTag tag = ValidTag.getShortForm(tagName);
+        return mappedColors.get(tag);
+    }
 }
