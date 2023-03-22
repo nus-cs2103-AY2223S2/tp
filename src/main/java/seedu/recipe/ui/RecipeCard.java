@@ -9,10 +9,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.recipe.model.recipe.Ingredient;
+
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
-import seedu.recipe.model.Model;
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -61,6 +60,9 @@ public class RecipeCard extends UiPart<Region> {
 
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
+     * 
+     * @param recipe the {@code Recipe} to display
+     * @param displayedIndex the index of the {@code Recipe} in the list
      */
     public RecipeCard(Recipe recipe, int displayedIndex) {
         super(FXML);
@@ -99,7 +101,7 @@ public class RecipeCard extends UiPart<Region> {
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));        
 
         //Selector focus
-            cardPane.setOnMouseEntered(event -> {
+        cardPane.setOnMouseEntered(event -> {
             cardPane.requestFocus();
         });
 
@@ -110,7 +112,7 @@ public class RecipeCard extends UiPart<Region> {
             popup.display();
         });
 
-        // All key listeners
+        // Handle keypress events
         cardPane.setOnKeyPressed(event -> {
             cardPane.requestFocus();
             KeyCode input = event.getCode();
@@ -122,6 +124,13 @@ public class RecipeCard extends UiPart<Region> {
             } else if (event.getCode() == KeyCode.P) {
                 RecipePopup popup = new RecipePopup(recipe, displayedIndex);
                 popup.display();
+            } else if (event.getCode() == KeyCode.F) {
+                try {
+                    RecipeForm form = new RecipeForm(recipe, displayedIndex);
+                    form.display();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
             }
         });
     }
