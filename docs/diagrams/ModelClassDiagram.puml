@@ -20,6 +20,13 @@ Class Name
 Class Phone
 Class Tag
 
+Class "<<interface>>\nReadOnlyDeliveryJobSystem" as ReadOnlyDeliveryJobSystem
+Class DeliveryJobSystem
+Class UniqueDeliveryJobList
+Class DeliveryJob
+Class DeliveryDate
+Class DeliverySlot
+Class Earning
 }
 
 Class HiddenOutside #FFFFFF
@@ -28,10 +35,14 @@ HiddenOutside ..> Model
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
+Model ..> ReadOnlyUserPrefs
+Model ..> ReadOnlyAddressBook
+Model ..> ReadOnlyDeliveryJobSystem
+
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager --> "1" DeliveryJobSystem
+
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -47,4 +58,14 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" DeliveryJob
+
+DeliveryJobSystem .up.|> ReadOnlyDeliveryJobSystem
+DeliveryJobSystem *--> "1" UniqueDeliveryJobList
+UniqueDeliveryJobList --> "~* all" DeliveryJob
+DeliveryJob *--> DeliveryDate
+DeliveryJob *--> DeliverySlot
+DeliveryJob *--> Earning
+DeliveryJob *--> "Sender" Person
+DeliveryJob *--> "Recipient" Person
 @enduml

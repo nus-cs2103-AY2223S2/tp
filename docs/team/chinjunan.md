@@ -20,7 +20,6 @@ Given below are my contributions to the project.
     * Justification: This feature helps users with busy schedules to remind them of certain task they might have forgotten to do in the upcoming future. Essentialy, it reduces the load of the shoulders of the users in remembering upcoming task/schedules.
     * Highlights: This feature required an addition to the data structure of the address book (an additional list to record reminders). This led to additional classes that involved managing the storage and reading from local memory and hard disk. Fortunately, not much have to be done as it was similar to existing codes. Further improvement to this feature involves running process threads to fire notifications while the app is running in the background.
     * Credits: Existing codes from AB3 which involved the models and storage functionality of the app.
-  
 
 * **Code contributed**: [RepoSense link]()
 
@@ -40,4 +39,3 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trival review comments): #84
   * 
-
