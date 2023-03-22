@@ -2,11 +2,21 @@ package seedu.vms.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.vms.commons.core.Messages;
+import seedu.vms.commons.util.CollectionUtil;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.Model;
+import seedu.vms.model.patient.BloodType;
+import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.NameContainsKeywordsPredicate;
+import seedu.vms.model.patient.Phone;
 
 /**
  * Finds and lists all patients in patient manager whose name contains any of the argument keywords.
@@ -41,6 +51,133 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                        && predicate.equals(((FindCommand) other).predicate)); // state check
+    }
+
+    /**
+     * Stores the details to edit the patient with. Each non-empty field value will replace the
+     * corresponding field value of the patient.
+     */
+    public static class FindPatientDescriptor {
+        private String nameSearch;
+        private Phone phone;
+        private Dob dob;
+        private BloodType bloodType;
+        private Set<GroupName> allergies;
+        private Set<GroupName> vaccines;
+
+        public FindPatientDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code allergies} is used internally.
+         * A defensive copy of {@code vaccines} is used internally.
+         */
+        public FindPatientDescriptor(FindPatientDescriptor toCopy) {
+            setNameSearch(toCopy.nameSearch);
+            setPhone(toCopy.phone);
+            setDob(toCopy.dob);
+            setBloodType(toCopy.bloodType);
+            setAllergies(toCopy.allergies);
+            setVaccines(toCopy.vaccines);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(nameSearch, phone, dob, bloodType, allergies, vaccines);
+        }
+
+        public void setNameSearch(String nameSearch) {
+            this.nameSearch = nameSearch;
+        }
+
+        public Optional<String> getNameSearch() {
+            return Optional.ofNullable(nameSearch);
+        }
+
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public void setDob(Dob dob) {
+            this.dob = dob;
+        }
+
+        public Optional<Dob> getDob() {
+            return Optional.ofNullable(dob);
+        }
+
+        public void setBloodType(BloodType bloodType) {
+            this.bloodType = bloodType;
+        }
+
+        public Optional<BloodType> getBloodType() {
+            return Optional.ofNullable(bloodType);
+        }
+
+        /**
+         * Sets {@code allergies} to this object's {@code allergies}.
+         * A defensive copy of {@code allergies} is used internally.
+         */
+        public void setAllergies(Set<GroupName> allergies) {
+            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
+        }
+
+        /**
+         * Returns an unmodifiable allergy set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code allergies} is null.
+         */
+        public Optional<Set<GroupName>> getAllergies() {
+            return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code vaccines} to this object's {@code vaccines}.
+         * A defensive copy of {@code vaccines} is used internally.
+         */
+        public void setVaccines(Set<GroupName> vaccines) {
+            this.vaccines = (vaccines != null) ? new HashSet<>(vaccines) : null;
+        }
+
+        /**
+         * Returns an unmodifiable vaccine set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code vaccines} is null.
+         */
+        public Optional<Set<GroupName>> getVaccines() {
+            return (vaccines != null) ? Optional.of(Collections.unmodifiableSet(vaccines)) : Optional.empty();
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof FindPatientDescriptor)) {
+                return false;
+            }
+
+            // state check
+            FindPatientDescriptor e = (FindPatientDescriptor) other;
+
+            return getNameSearch().equals(e.getNameSearch())
+                    && getPhone().equals(e.getPhone())
+                    && getDob().equals(e.getDob())
+                    && getBloodType().equals(e.getBloodType())
+                    && getAllergies().equals(e.getAllergies())
+                    && getVaccines().equals(e.getVaccines());
+        }
     }
 }

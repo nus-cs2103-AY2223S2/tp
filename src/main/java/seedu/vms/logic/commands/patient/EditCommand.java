@@ -128,8 +128,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the patient with. Each non-empty field value will
-     * replace the
+     * Stores the details to edit the patient with. Each non-empty field value will replace the
      * corresponding field value of the patient.
      */
     public static class EditPatientDescriptor {
@@ -146,6 +145,7 @@ public class EditCommand extends Command {
         /**
          * Copy constructor.
          * A defensive copy of {@code allergies} is used internally.
+         * A defensive copy of {@code vaccines} is used internally.
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
