@@ -5,6 +5,7 @@ import static teambuilder.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import teambuilder.model.tag.Tag;
@@ -31,7 +32,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Major major,
                   Set<Tag> tags, Set<Tag> teams) {
-        requireAllNonNull(name, phone, email, address, major, tags, teams);
+        requireAllNonNull(name, email, address, major, tags, teams);
         this.name = name;
         this.phone = phone;
         this.email = email;
