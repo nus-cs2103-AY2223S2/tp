@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.SplitPane?>
 
+<?import javafx.scene.text.Text?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -17,7 +17,7 @@
     </columnConstraints>
 
     <HBox>
-      <VBox alignment="CENTER_LEFT" minHeight="105" minWidth="300" HBox.hgrow="ALWAYS" GridPane.columnIndex="0">
+      <VBox alignment="CENTER_LEFT" minHeight="105" minWidth="175" HBox.hgrow="ALWAYS" GridPane.columnIndex="0">
         <padding>
           <Insets top="5" right="5" bottom="5" left="15" />
         </padding>
@@ -29,23 +29,31 @@
             </minWidth>
           </Label>
           <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-
         </HBox>
+
         <Label fx:id="company" styleClass="cell_big_label" text="\$company" />
         <FlowPane fx:id="tags" />
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-        <Label fx:id="website" styleClass="cell_small_label" text="\$website" />
         <Label fx:id="salary" styleClass="cell_small_label" text="\$salary" />
         <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
         <Label fx:id="experience" styleClass="cell_small_label" text="\$experience" />
-
       </VBox>
-      <VBox alignment="TOP_RIGHT" minHeight="105" maxWidth="500" HBox.hgrow="SOMETIMES" GridPane.columnIndex="0">
+
+      <VBox alignment="TOP_CENTER" minHeight="105" minWidth="200" maxWidth="200" HBox.hgrow="ALWAYS" GridPane.columnIndex="0">
+        <padding>
+          <Insets top="15" right="15" bottom="15" left="15" />
+        </padding>
+        <Text fill="white" styleClass="cell_big_label" text="Contact Details"/>
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <Label fx:id="website" styleClass="cell_small_label" text="\$website" />
+      </VBox>
+
+      <VBox alignment="TOP_RIGHT" minHeight="105" minWidth="300" maxWidth="300" HBox.hgrow="ALWAYS" GridPane.columnIndex="0">
         <padding>
           <Insets top="15" right="15" bottom="5" left="5" />
         </padding>
-        <Label fx:id="jobDescription" wrapText="true" styleClass="label-bright" text="\$jobDescription"/>
+        <Text fill="white" styleClass="cell_big_label" text="Job Description"/>
+        <Label fx:id="jobDescription" wrapText="true" styleClass="cell_small_label" text="\$jobDescription"/>
       </VBox>
     </HBox>
 
