@@ -62,7 +62,7 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
         type = source.getType().value;
-        timeSlot = source.getTimeSlot().value;
+        timeSlot = source.getTimeSlot().toString();
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
