@@ -13,9 +13,9 @@ public class Price implements Comparable<Price> {
             "Price must be in a recognisable format, e.g. 4,098.09 or 4098.09 or 380";
 
     public static final String VALIDATION_REGEX = "(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$";
+    private String fullPrice;
     private double price;
 
-    public String fullPrice;
 
     /**
      * Constructs a {@code Price}.
@@ -36,7 +36,9 @@ public class Price implements Comparable<Price> {
         return test.matches(VALIDATION_REGEX);
     }
 
-
+    public String getPrice() {
+        return this.fullPrice;
+    }
     @Override
     public String toString() {
         return "Price: $" + fullPrice;

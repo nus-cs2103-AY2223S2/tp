@@ -28,7 +28,7 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + project.getTitle().fullTitle + " ");
         sb.append(PREFIX_DEADLINE + project.getDeadline().toString() + " ");
-        sb.append(PREFIX_PRICE + project.getPrice().fullPrice + " ");
+        sb.append(PREFIX_PRICE + project.getPrice().getPrice() + " ");
         return sb.toString();
     }
 
@@ -41,7 +41,7 @@ public class ProjectUtil {
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
                 .append(deadline.toString()).append(" "));
         descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE)
-                .append(price.fullPrice.toString()).append(" "));
+                .append(price.getPrice().toString()).append(" "));
         return sb.toString();
     }
 }

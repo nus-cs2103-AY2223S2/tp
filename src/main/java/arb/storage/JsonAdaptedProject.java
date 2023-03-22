@@ -52,7 +52,7 @@ public class JsonAdaptedProject {
         this.deadline = Optional.ofNullable(source.getDeadline()).map(d -> d.dueDate.toString()).orElse(null);
         //System.out.println(this.deadline); -> 2025-02-01T14:00
         this.status = source.getStatus().toString();
-        this.price = Optional.ofNullable(source.getPrice()).map(pr -> pr.fullPrice.toString()).orElse(null);
+        this.price = Optional.ofNullable(source.getPrice()).map(pr -> pr.getPrice().toString()).orElse(null);
         //System.out.println(this.price); -> 2
     }
 
@@ -79,7 +79,6 @@ public class JsonAdaptedProject {
             throw new IllegalValueException((Price.MESSAGE_CONSTRAINTS));
         }
         final Price modelPrice = Optional.ofNullable(price).map(pr -> new Price(pr)).orElse(null);
-        //System.out.println(modelPrice); -> Price : $2
 
         Project project = new Project(modelTitle, modelDeadline, modelPrice);
 

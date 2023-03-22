@@ -29,29 +29,29 @@ class JsonAdaptedProjectTest {
         assertEquals(PORTRAIT_PROJECT, project.toModelType());
     }
 
-//    @Test
-//    public void toModelType_invalidTitle_throwsIllegalValueException() {
-//        JsonAdaptedProject project =
-//                new JsonAdaptedProject(INVALID_TITLE, VALID_DEADLINE, VALID_STATUS, VALID_PRICE);
-//        String expectedMessage = Title.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
-//    }
-//
-//    @Test
-//    public void toModelType_nullTitle_throwsIllegalValueException() {
-//        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_DEADLINE, VALID_STATUS, VALID_PRICE);
-//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
-//        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
-//    }
-//
-//    @Test
-//    public void toModelType_invalidDeadline_throwsIllegalValueException() {
-//        JsonAdaptedProject project =
-//                new JsonAdaptedProject(VALID_TITLE, INVALID_DEADLINE, VALID_STATUS, VALID_PRICE);
-//        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
-//    }
-//
+    @Test
+    public void toModelType_invalidTitle_throwsIllegalValueException() {
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(INVALID_TITLE, VALID_DEADLINE, VALID_STATUS, VALID_PRICE);
+        String expectedMessage = Title.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTitle_throwsIllegalValueException() {
+        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_DEADLINE, VALID_STATUS, VALID_PRICE);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDeadline_throwsIllegalValueException() {
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(VALID_TITLE, INVALID_DEADLINE, VALID_STATUS, VALID_PRICE);
+        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
+
     @Test
     public void toModelType_nullDeadline_returnsProject() throws Exception {
         JsonAdaptedProject project = new JsonAdaptedProject(VALID_TITLE, null, VALID_STATUS, "2");
