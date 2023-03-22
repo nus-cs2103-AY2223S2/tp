@@ -58,7 +58,7 @@ public class ExpressLibraryParser {
             return new ListBookCommand();
 
         case BorrowCommand.COMMAND_WORD:
-            return new BorrowCommand();
+            return new BorrowCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
