@@ -57,6 +57,38 @@ pairs will be automatically removed as well.
 
 #### Edit by index & NRIC
 
+In FriendlyLink, there are 2 methods to  choose which elderly/volunteer to edit:
+- via **index** using the `edit_elderly` and `edit_volunteer` commands
+- via **NRIC** using the `edit` command
+
+Similar to adding elderly/volunteers, editing is done by specifying the desired field(s) to edit using their prefixes, 
+and then providing the new value for the field(s). For consistency, the prefixes between the adding and 
+editing commands are kept the same.
+
+For the editing of fields that accept multiple arguments (i.e. `AvailableDate`, `Tag` and `MedicalQualificationTag`),
+the specified behaviour is to leaves them unchanged if no new values are provided, else overwrite the existing values 
+with the newly provided values.
+
+Retrieving of the desired `Elderly`/`Volunteer` to edit is done differently 
+depending on whether `edit_elderly`/`edit_volunteer`
+or `edit` is called:
+- `edit_elderly`/`edit_volunteer`: The `Elderly`/`Volunteer` is retrieved directly from
+the `filteredElderly`/`filteredVolunteer` of `Model`
+- `edit`: We first check if an `Elderly` with the specified NRIC exists in `Model`. 
+If so, we retrieve it; Otherwise, we perform a similar check for `Volunteer`, and retrieve it if 
+such a `Volunteer` exists.
+
+The primary method in which these edits are performed is through the `EditDescriptor` class. This class
+contains `Optional` types of the **union** of the fields between `Elderly` and `Volunteer`. In order to "transform"
+a given volunteer/elderly with the new edited fields, 2 important static methods are provided:
+- `createEditedElderly(Elderly, EditDescriptor)`: returns a new `Elderly` representing the given `Elderly` modified 
+with the values specified in the `EditDescriptor`
+- `createEditedVolunteer(Volunteer, EditDescriptor)`: returns a `Volunteer` representing the given `Volunteer` modified 
+with the values specified in the `EditDescriptor`
+
+The `Elderly`/`Volunteer` and then edited in the model using the `setElderly`/`setVolunteer` methods
+of `Model` respectively.
+
 #### Find by keyword
 
 #### Pairing and unpairing of elderly and volunteers
