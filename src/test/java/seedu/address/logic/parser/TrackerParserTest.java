@@ -26,6 +26,8 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.MarkAsUnwatchedCommand;
+import seedu.address.logic.commands.MarkAsWatchedCommand;
 import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.add.AddModuleCommand;
@@ -158,6 +160,22 @@ public class TrackerParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(keywords), command);
+    }
+
+    @Test
+    public void parseCommand_markAsWatched() throws Exception {
+        assertTrue(parser.parseCommand(MarkAsWatchedCommand.COMMAND_WORD
+                        + " " + VALID_VIDEO_NAME_V1
+                        + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1)
+                instanceof MarkAsWatchedCommand);
+    }
+
+    @Test
+    public void parseCommand_markAsUnwatched() throws Exception {
+        assertTrue(parser.parseCommand(MarkAsUnwatchedCommand.COMMAND_WORD
+                        + " " + VALID_VIDEO_NAME_V1
+                        + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1)
+                instanceof MarkAsUnwatchedCommand);
     }
 
     @Test
