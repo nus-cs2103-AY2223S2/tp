@@ -14,9 +14,9 @@ public class Price implements Comparable<Price> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Price must be in a recognisable format, e.g. 4,098.09 or 4098.09 or 380";
+            "Price must be in a recognisable format, e.g. 4098.09 or 380 or 0.35";
 
-    public static final String VALIDATION_REGEX = "(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$";
+    public static final String VALIDATION_REGEX = "(([1-9]\\d{0,2})|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$";
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private double fullPrice;
 

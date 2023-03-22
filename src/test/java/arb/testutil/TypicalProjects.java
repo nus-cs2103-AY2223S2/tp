@@ -28,7 +28,7 @@ public class TypicalProjects {
 
     // Manually added
     public static final Project PUBLIC_PAINTING = new ProjectBuilder().withTitle("Public Painting")
-            .withDeadline("5pm 2024-05-06").withPrice("4,098.09").build();
+            .withDeadline("5pm 2024-05-06").withPrice("4098.09").build();
     public static final Project CROCHET = new ProjectBuilder().withTitle("Crochet")
             .withDeadline(null).withPrice("3.05").build();
 
