@@ -1,7 +1,48 @@
 package codoc.logic.parser;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static codoc.logic.commands.CommandTestUtil.*;
+import static codoc.logic.commands.CommandTestUtil.COURSE_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.COURSE_DESC_BOB;
+import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
+import static codoc.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static codoc.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
+import static codoc.logic.commands.CommandTestUtil.INVALID_LINKEDIN_DESC;
+import static codoc.logic.commands.CommandTestUtil.INVALID_MOD_ADD_DESC;
+import static codoc.logic.commands.CommandTestUtil.INVALID_MOD_ADD_SEM_DESC;
+import static codoc.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static codoc.logic.commands.CommandTestUtil.INVALID_SKILL_ADD_DESC;
+import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_BOB;
+import static codoc.logic.commands.CommandTestUtil.MOD_ADD_DESC_AY2223S2_CS2103T;
+import static codoc.logic.commands.CommandTestUtil.MOD_DESC_AY2223S2_CS2103T;
+import static codoc.logic.commands.CommandTestUtil.MOD_REMOVE_DESC_AY2223S2_CS2103T;
+import static codoc.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static codoc.logic.commands.CommandTestUtil.SKILL_ADD_DESC_CSHARP;
+import static codoc.logic.commands.CommandTestUtil.SKILL_ADD_DESC_JAVA;
+import static codoc.logic.commands.CommandTestUtil.SKILL_DESC_CSHARP;
+import static codoc.logic.commands.CommandTestUtil.SKILL_REMOVE_DESC_C;
+import static codoc.logic.commands.CommandTestUtil.VALID_COURSE_AMY;
+import static codoc.logic.commands.CommandTestUtil.VALID_COURSE_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
+import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
+import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_MODULE_AY2223S2_CS2103T;
+import static codoc.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_C;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
+import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
+import static codoc.logic.commands.CommandTestUtil.VALID_YEAR_AMY;
+import static codoc.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
+import static codoc.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
+import static codoc.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
 import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -18,7 +59,6 @@ import codoc.model.person.Linkedin;
 import codoc.model.person.Name;
 import codoc.model.skill.Skill;
 import codoc.testutil.EditPersonDescriptorBuilder;
-import codoc.testutil.PersonBuilder;
 
 public class EditCommandParserTest {
 

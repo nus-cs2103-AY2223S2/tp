@@ -1,6 +1,17 @@
 package codoc.logic.commands;
 
-import static codoc.logic.parser.CliSyntax.*;
+import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
+import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
+import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
+import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 import static codoc.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -40,11 +51,11 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_AY2223S2_CS2103T = "AY2223S2 CS2103T";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String COURSE_DESC_AMY = " " + PREFIX_COURSE + VALID_COURSE_AMY;
     public static final String COURSE_DESC_BOB = " " + PREFIX_COURSE + VALID_COURSE_BOB;
     public static final String YEAR_DESC_AMY = " " + PREFIX_YEAR + VALID_YEAR_AMY;
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
