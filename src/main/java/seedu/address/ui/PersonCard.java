@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,7 +9,10 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.OfficeConnectModel;
+import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -46,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public PersonCard(Person person, int displayedIndex, OfficeConnectModel model) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -62,8 +66,15 @@ public class PersonCard extends UiPart<Region> {
                 tags.getChildren().add(label);
             });
 
-        progressIndicator.setProgress(0.5); // set progress value between 0.0 and 1.0
+        List<AssignTask> assignTasks = model.getAssignTaskModelManager()
+            .filter(t -> t.getPersonId().equals(person.getId()));
 
+        List<Task> tasks = model.getTaskModelManager()
+            .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId())));
+        double doneTask = tasks.stream().filter(t -> t.getStatus().isValue()).count();
+        double taskCompleteness = tasks.size() == 0 ? 1 : doneTask / tasks.size();
+
+        progressIndicator.setProgress(taskCompleteness); // set progress value between 0.0 and 1.0
 
 
     }

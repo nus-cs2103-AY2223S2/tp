@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.UnassignCommand.MESSAGE_NON_EXIST_ASS
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.mapping.AssignTask;
 import seedu.address.model.person.Person;
@@ -44,6 +45,47 @@ public class OfficeConnectModel {
     }
 
     /**
+     * Checks if task model manager contains task
+     * @param task task to be checked
+     * @return true if task model manager contains the item
+     */
+    public boolean hasTaskModelManagerItem(Task task) {
+        return taskModelManager.hasItem(task);
+    }
+
+    /**
+     * Adds task to task model manager
+     * @param task task to be added
+     */
+    public void addTaskModelManagerItem(Task task) {
+        taskModelManager.addItem(task);
+    }
+
+    /**
+     * Updates filtered item list in task model manager
+     * @param predicate predicate that determines if item should stay in the filtered item list
+     */
+    public void updateTaskModelManagerFilteredItemList(Predicate<Task> predicate) {
+        taskModelManager.updateFilteredItemList(predicate);
+    }
+
+    public ObservableList<Task> getTaskModelManagerFilteredItemList() {
+        return taskModelManager.getFilteredItemList();
+    }
+
+    /**
+     * Deletes task from task model manager
+     * @param task task to be deleted
+     */
+    public void deleteTaskModelManagerItem(Task task) {
+        taskModelManager.deleteItem(task);
+    }
+
+    public ReadOnlyRepository<Task> getTaskModelManagerReadOnlyRepository() {
+        return taskModelManager.getReadOnlyRepository();
+    }
+
+    /**
      * Checks the given index is within the filter task list range
      *
      * @param index to check
@@ -75,6 +117,4 @@ public class OfficeConnectModel {
             .anyMatch(a -> a.getTaskId().equals(t.getId())));
         return task;
     }
-
-
 }

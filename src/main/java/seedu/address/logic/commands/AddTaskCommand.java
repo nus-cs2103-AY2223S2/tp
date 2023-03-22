@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.OfficeConnectModel;
-import seedu.address.model.RepositoryModelManager;
 import seedu.address.model.task.Task;
 
 /**
@@ -42,12 +41,11 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model, OfficeConnectModel officeConnectModel) throws CommandException {
         requireNonNull(model);
 
-        RepositoryModelManager<Task> taskModelManager = officeConnectModel.getTaskModelManager();
-        if (taskModelManager.hasItem(toAdd)) {
+        if (officeConnectModel.hasTaskModelManagerItem(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        taskModelManager.addItem(toAdd);
+        officeConnectModel.addTaskModelManagerItem(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
