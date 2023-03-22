@@ -9,7 +9,7 @@ public class ModuleTest {
         String invalidModuleName = "ay1111s1 cs1231";
         assertThrows(IllegalArgumentException.class, () -> new Module(invalidModuleName));
     }
-    @Test public void test_isValidModuleYear_return_false() {
+    @Test public void test_isValidModuleYear_false() {
         String invalidModuleName = "ay1111s1 cs1231";
         assertFalse(Module.isValidModuleYear(invalidModuleName));
     }
