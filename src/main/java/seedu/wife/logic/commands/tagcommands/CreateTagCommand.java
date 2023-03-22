@@ -23,7 +23,7 @@ public class CreateTagCommand extends Command {
             + COMMAND_WORD + " n/vegetable\n"
             + COMMAND_WORD + " n/vegetable n/dairy n/grains\n";
     public static final String MESSAGE_TAG_CREATE_SUCCESS = "Tag(s) successfully created:";
-    public static final String MESSAGE_DUPLICATE_TAG = "The tag you are trying to create has been created before.";
+    public static final String MESSAGE_DUPLICATE_TAG = "The tag you try to add is already in the tag list.";
     private Set<Tag> toCreate;
 
     /**
@@ -48,8 +48,8 @@ public class CreateTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         String messageString = MESSAGE_TAG_CREATE_SUCCESS;
+
         for (Tag tag: this.toCreate) {
             if (model.hasTag(tag)) {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);
