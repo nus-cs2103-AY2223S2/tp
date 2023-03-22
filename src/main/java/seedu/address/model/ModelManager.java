@@ -190,4 +190,13 @@ public class ModelManager implements Model {
         return filteredMeetings;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return filteredMeetings;
+    }
+
 }

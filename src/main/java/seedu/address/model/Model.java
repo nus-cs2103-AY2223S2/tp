@@ -135,4 +135,9 @@ public interface Model {
      * Returns an unmodifiable view of the meetings list
      */
     ObservableList<Meeting> getMeetingsList();
+
+    /**
+     * @return an unmodifiable view of the filtered list of meetings
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
 }
