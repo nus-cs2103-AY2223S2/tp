@@ -347,7 +347,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FitBook adds the client into the list.
 3. FitBook displays that the client has been added.
 
-
    Use case ends.
 
 **Extensions**
@@ -361,12 +360,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
-
-      Use case ends.
-
-
-**Use case: UC03 - List clients**
-
+       
+       Use case ends.
+    
+>**Use case: UC03 - List clients**
 
 **MSS**
 
@@ -413,7 +410,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FitBook displays that the list is cleared.
 
    Use case ends.
-
 
 **Extensions**
 
@@ -482,7 +478,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FitBook displays that the routine list is cleared.
 
    Use case ends.
-
 
 **Extensions**
 
@@ -566,11 +561,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User request to export Client List.
 2. FitBook exports the Client List to csv format.
+   
+   Use case ends.
 
 **Extensions**
 
 * 1a. The Client csv file is opened in the background
     * 1a1. FitBook shows an error message.  
+      
+      Use case ends.
 
 > **Use case: UC14 - Export Routine List**
 
@@ -579,11 +578,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User request to export Routine List.
 2. FitBook exports the Routine List to csv format.
 
+   Use case ends.
+
 **Extensions**
 
 * 1a. The Routine csv file is opened in the background
     * 1a1. FitBook shows an error message.
 
+      Use case ends.
+
+> **Use case: UC15 - Add routine**
+
+**MSS**
+
+1. User request to add a routine.
+2. FitBook adds the routine to its routine list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User request have missing routine name field.
+    * 1a1. FitBook shows an error for missing routine name.
+      
+      Use case ends.
+
+* 1b. User request have missing exercise field.
+  * 1b1. FitBook adds a routine with no exercise. (Only routine itself)
+
+    Use case ends.
+
+* 1c. User request have all missing fields.
+  * 1c1. FitBook shows an error for missing fields.
+
+    Use case ends.
+
+> **Use case: UC16 - Edit routine or exercise in routine**
+
+**MSS**
+
+1. User request to edit a routine.
+2. User either edit by target routine's name or one of the target routine's exercise.
+3. FitBook edits that routine in its routine list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User request have mix fields which is not allowed.
+    * 2a1. FitBook shows an error for incorrect command format.
+
+      Use case ends.
+
+* 2b. User request have all missing field.
+    * 2b1. FitBook shows an error for missing fields
+
+      Use case ends.
+
+* 2c. User request have only target routine field.
+    * 2c1. FitBook shows an error for missing field.
+
+      Use case ends.
+
+* 2d. User request for changing exercise only has one field. (Changing exercise requires two fields)
+    * 2d1. FitBook shows an error for incorrect format.
+
+      Use case ends.
+    
 *{More to be added}
 
 ---
