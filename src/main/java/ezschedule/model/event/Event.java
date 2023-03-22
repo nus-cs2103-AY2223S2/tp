@@ -116,7 +116,7 @@ public class Event implements Comparable<Event> {
 
     private boolean isTimeOverlap(Event otherEvent) {
         return isStartTimeOverlap(otherEvent) || isEndTimeOverlap(otherEvent)
-                || isTimeIsBetween(otherEvent) || isTimeIsEqual(otherEvent);
+                || isTimeInBetween(otherEvent) || isTimeIsEqual(otherEvent);
     }
 
     private boolean isStartTimeOverlap(Event otherEvent) {
@@ -129,7 +129,7 @@ public class Event implements Comparable<Event> {
                 && otherEvent.getEndTime().isAfter(this.getEndTime());
     }
 
-    private boolean isTimeIsBetween(Event otherEvent) {
+    private boolean isTimeInBetween(Event otherEvent) {
         return otherEvent.getStartTime().isAfter(this.getStartTime())
                 && otherEvent.getEndTime().isBefore(this.getEndTime());
     }
