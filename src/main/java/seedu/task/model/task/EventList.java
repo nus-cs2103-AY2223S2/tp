@@ -41,7 +41,7 @@ public class EventList extends CategoricalTaskList {
     public boolean isCorrectType(Task t, LocalDate today) {
         if (t.isEvent()) {
             Event e = (Event) t;
-            if (today.isBefore(e.getTo().getDate()) || today.isEqual(e.getTo().getDate())) {
+            if (e.isDuringEvent(today)) {
                 taskList.add(e);
                 return true;
             }

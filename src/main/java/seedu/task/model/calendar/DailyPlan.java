@@ -59,7 +59,7 @@ public class DailyPlan {
      * @param t task to be added
      */
     public void addTask(Task t) {
-        currentWorkload += t.getEffort().getEffort();
+        currentWorkload += t.getEffortValue();
         taskList.add(t);
     }
 
@@ -71,7 +71,7 @@ public class DailyPlan {
 
         for (int i = 0; i < size; i++) {
             if (taskList.get(i) == t) {
-                this.currentWorkload = this.currentWorkload - taskList.get(i).getEffort().getEffort();
+                this.currentWorkload = this.currentWorkload - taskList.get(i).getEffortValue();
                 taskList.remove(i);
                 return true;
             }

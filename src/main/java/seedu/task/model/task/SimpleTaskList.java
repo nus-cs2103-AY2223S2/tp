@@ -68,7 +68,7 @@ public class SimpleTaskList extends CategoricalTaskList {
     public static class SimpleTaskListComparator implements Comparator<SimpleTask> {
         @Override
         public int compare(SimpleTask o1, SimpleTask o2) {
-            int position = (int) (o2.getEffort().getEffort() - o1.getEffort().getEffort());
+            int position = (int) (o2.getEffortValue() - o1.getEffortValue());
             return position;
         }
     }

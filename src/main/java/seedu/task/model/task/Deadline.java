@@ -2,6 +2,7 @@ package seedu.task.model.task;
 
 import static seedu.task.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -28,6 +29,10 @@ public class Deadline extends Task {
 
     public Date getDeadline() {
         return this.deadline;
+    }
+
+    public boolean isValidDate(LocalDate date) {
+        return date.isBefore(deadline.getDate()) || date.isEqual(deadline.getDate());
     }
 
     @Override
