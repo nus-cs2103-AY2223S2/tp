@@ -35,6 +35,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     public ModelManager() {
@@ -122,6 +123,13 @@ public class ModelManager implements Model {
         addressBook.deleteTag(person, tag);
     }
 
+    @Override
+    public ModelManager stateDetachedCopy() {
+        ModelManager copy = new ModelManager(addressBook.deepCopy(), userPrefs);
+        copy.updateFilteredPersonList(filteredPersons.getPredicate());
+        return copy;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -134,9 +142,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public Predicate<? super Person> getPredicate() {
+        return filteredPersons.getPredicate();
     }
 
     @Override

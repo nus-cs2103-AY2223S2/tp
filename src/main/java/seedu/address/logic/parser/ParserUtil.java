@@ -37,6 +37,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static int parseCommandCount(String count) throws ParseException {
+        String trimmedCount = count.trim();
+        if (trimmedCount.isBlank()) {
+            return 1;
+        }
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedCount)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedCount);
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

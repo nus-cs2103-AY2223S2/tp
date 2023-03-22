@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's address in the address book.
+ * Represents a Person's income in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Income {
-    public static final String MESSAGE_CONSTRAINTS = "income can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Incomes can take any integer values, and it should not be blank";
 
     public final Integer income;
 
@@ -24,7 +24,7 @@ public class Income {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid income.
      */
     public static boolean isValidIncome(String test) {
         try {
