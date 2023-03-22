@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskFeedingReminder;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -329,4 +331,12 @@ public class ModelManager implements Model {
         filteredTanks.setPredicate(predicate);
     }
 
+    @Override
+    public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
+        //create new Feeding reminders and returns it
+        ArrayList<Tank> tanksWithUnfedFish = tankList.getTanksWithUnfedFish();
+        ArrayList<TaskFeedingReminder> reminders = TaskFeedingReminder
+                .createListOfFeedingReminders(tanksWithUnfedFish);
+        return reminders;
+    }
 }

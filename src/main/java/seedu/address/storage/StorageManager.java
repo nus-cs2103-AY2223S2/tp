@@ -146,4 +146,9 @@ public class StorageManager implements Storage {
         tankListStorage.saveTankList(tankList, filePath);
     }
 
+    @Override
+    public void executeFeedingReminderInitStorage() {
+
+    }
+
 }

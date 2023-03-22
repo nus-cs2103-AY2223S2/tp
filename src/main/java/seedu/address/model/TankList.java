@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -90,6 +91,16 @@ public class TankList implements ReadOnlyTankList {
      */
     public void removeTank(Tank key) {
         tanks.remove(key);
+    }
+
+    public ArrayList<Tank> getTanksWithUnfedFish() {
+        ArrayList<Tank> ret = new ArrayList<>();
+        for (Tank t : tanks) {
+            if (t.hasUnfedFish()) {
+                ret.add(t);
+            }
+        }
+        return ret;
     }
 
     //// util methods
