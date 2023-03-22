@@ -4,36 +4,27 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tagged Requirement in the Curriculum
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
 
-    /**
-     * Represents all valid tags.
-     */
-    public enum ValidTag {
-        UNIVERSITY_LEVEL_REQUIREMENTS,
-        COMPUTER_SCIENCE_FOUNDATION,
-        COMPUTER_SCIENCE_BREADTH_AND_DEPTH,
-        IT_PROFESSIONALISM,
-        MATHEMATICS_AND_SCIENCES,
-        UNRESTRICTED_ELECTIVES
-    }
+    public static final int NUM_TAGS = 6;
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be one of possible curriculum requirements";
 
     public final String tagName;
 
+
     /**
      * Constructs a {@code Tag}.
      *
-     * @param tagName A valid tag name.
+     * @param tagName A valid requirement
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName.replace(" ", "_").toUpperCase();;
+        this.tagName = tagName.replace(" ", "_").toUpperCase();
     }
 
     /**
@@ -67,7 +58,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return tagName;
+        return tagName.replace("_", " ");
     }
 
 }

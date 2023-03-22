@@ -64,4 +64,5 @@ public class ModuleTest {
         Module editedCS1101s = new ModuleBuilder(CS1101S).withCode(VALID_CODE_MA2002).build();
         assertFalse(CS1101S.equals(editedCS1101s));
     }
+
 }

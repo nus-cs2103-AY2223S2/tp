@@ -13,18 +13,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.CodePrefix;
 import seedu.modtrek.model.module.Credit;
 import seedu.modtrek.model.module.Grade;
 import seedu.modtrek.model.module.SemYear;
 import seedu.modtrek.model.tag.Tag;
 
 public class ParserUtilTest {
+    private static final String INVALID_CODE_PREFIX = "C@";
     private static final String INVALID_CODE = "CS@3230";
     private static final String INVALID_CREDIT = "+4";
     private static final String INVALID_GRADE = "A++";
     private static final String INVALID_SEMYEAR = "Year 2 Sem 2";
     private static final String INVALID_TAG = "#computer science breath and depth";
 
+    private static final String VALID_CODE_PREFIX = "CS";
     private static final String VALID_CODE = "CS3230";
     private static final String VALID_CREDIT = "4";
     private static final String VALID_GRADE = "A+";
@@ -33,6 +36,29 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "computer science foundation";
 
     private static final String WHITESPACE = " \t\r\n";
+
+    @Test
+    public void parseCodePrefix_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCodePrefix((String) null));
+    }
+
+    @Test
+    public void parseCodePrefix_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCodePrefix(INVALID_CODE_PREFIX));
+    }
+
+    @Test
+    public void parseCodePrefix_validValueWithoutWhitespace_returnsCode() throws Exception {
+        CodePrefix expectedCode = new CodePrefix(VALID_CODE_PREFIX);
+        assertEquals(expectedCode, ParserUtil.parseCodePrefix(VALID_CODE_PREFIX));
+    }
+
+    @Test
+    public void parseCodePrefix_validValueWithWhitespace_returnsTrimmedCode() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_CODE_PREFIX + WHITESPACE;
+        CodePrefix expectedCode = new CodePrefix(VALID_CODE_PREFIX);
+        assertEquals(expectedCode, ParserUtil.parseCodePrefix(nameWithWhitespace));
+    }
 
     @Test
     public void parseCode_null_throwsNullPointerException() {

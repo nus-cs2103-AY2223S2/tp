@@ -72,16 +72,15 @@ public class ModTrekParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        Code findCode = new Code("CS1101S");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + "CS1101S");
-        assertEquals(new FindCommand(new ModuleCodePredicate(findCode)), command);
+        assertEquals(new FindCommand(new ModuleCodePredicate("CS1101S", "", "", "", new HashSet<>())), command);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " add") instanceof HelpCommand);
     }
 
     @Test
