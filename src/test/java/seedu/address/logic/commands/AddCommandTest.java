@@ -163,7 +163,8 @@ public class AddCommandTest {
 
         @Override
         public void updateSelectedInternship(Internship target) {
-            throw new AssertionError("This method should not be called.");
+            //This will be called to update the right panel
+            assert(true);
         }
     }
 

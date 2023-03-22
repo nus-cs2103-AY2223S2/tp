@@ -377,4 +377,8 @@
     -fx-font-size: 14;
 }
 
+.commentField {
+    -fx-text-fill: blue;
+}
+
 

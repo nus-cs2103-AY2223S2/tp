@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
 import seedu.address.testutil.TypicalInternships;
@@ -154,11 +155,13 @@ public class InternshipDetailsCardTest extends GuiUnitTest {
         Label internshipDate = (Label) internshipRegion.lookup("#date");
         Label internshipStatus = (Label) internshipRegion.lookup("#statusLabel");
         String expectedDateLabel = InternshipCard.getDateLabel(internship.getStatus().toString());
+        Text comment = (Text) internshipRegion.lookup("#comment");
         ObservableList<Node> internshipNodeTags = ((FlowPane) internshipRegion.lookup("#tags")).getChildren();
         assertEquals(companyName.getText(), internship.getCompanyName().toString());
         assertEquals(internshipRoleLabel.getText(), ROLE_LABEL + internship.getRole().toString());
 
         assertEquals(internshipDate.getText(), expectedDateLabel + internship.getDate().toString());
+        assertEquals("[" + comment.getText() + "]", internship.getComment().toString());
         assertEquals(internshipStatus.getText(), internship.getStatus().toString().toUpperCase());
         assertIterableEquals(internshipNodeTags.stream().map(node -> ((Label) node).getText()).sorted()
                 .collect(Collectors.toList()), internship.getTags().stream().sorted().collect(Collectors.toList()));

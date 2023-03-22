@@ -72,7 +72,7 @@
                            <children>
                               <StackPane fx:id="internshipDetailsPanelPlaceholder" layoutX="11.0" style="-fx-background-color: #383838;" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to InternBuddy" textAlignment="CENTER">
+                                    <Text fx:id="introOne" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to InternBuddy" textAlignment="CENTER">
                                        <font>
                                           <Font name="Segoe UI Light" size="20.0" />
                                        </font>
@@ -80,7 +80,7 @@
                                           <Insets bottom="300.0" />
                                        </StackPane.margin>
                                     </Text>
-                                    <Text fill="WHITE" lineSpacing="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feeling worried about managing your internships?&#10;InternBuddy is here to save the day!&#10;Whether it is tracking internships or providing reminders&#10;of upcoming deadlines, InternBuddy can do it all." textAlignment="CENTER">
+                                    <Text fx:id="introTwo" fill="WHITE" lineSpacing="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feeling worried about managing your internships?&#10;InternBuddy is here to save the day!&#10;Whether it is tracking internships or providing reminders&#10;of upcoming deadlines, InternBuddy can do it all." textAlignment="CENTER">
                                        <font>
                                           <Font name="Segoe UI Light" size="16.0" />
                                        </font>
@@ -88,7 +88,7 @@
                                           <Insets bottom="100.0" />
                                        </StackPane.margin>
                                     </Text>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="introThree" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../docs/images/internbuddy-hero.png" />
                                        </image>
