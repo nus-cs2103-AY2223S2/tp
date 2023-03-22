@@ -46,7 +46,6 @@ public class AddStudentCommand extends Command {
         }
 
         model.addStudent(toAdd);
-        model.addStudentToTaggedClasses(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

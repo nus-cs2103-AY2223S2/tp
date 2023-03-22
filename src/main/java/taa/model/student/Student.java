@@ -61,14 +61,6 @@ public class Student {
     }
 
     /**
-     * Associates this student with a new class/class list.
-     * @param newClass The new class/class list to associate this student with.
-     */
-    public void addClassTag(Tag newClass) {
-        this.classTags.add(newClass);
-    }
-
-    /**
      * Attributes a new submission to this student.
      */
     public void addSubmission(Submission submission) {
