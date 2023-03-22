@@ -14,7 +14,6 @@
 <fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="800.0"
          minWidth="1000.0"
          title="Address App"
-         fx:controller="seedu.calidr.ui.MainWindow"
          onCloseRequest="#handleExit"
          type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/19">
