@@ -3,12 +3,18 @@ package codoc.ui;
 import java.util.logging.Logger;
 
 import codoc.commons.core.LogsCenter;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
 
 /**
  * Controller for a help page
@@ -16,18 +22,7 @@ import javafx.stage.Stage;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-f12-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + "\n\n"
-            + "Examples of commands:\n"
-            + "Add: \nadd n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
-            + "l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java\n\n"
-            + "View contact:\nview 3\n\n"
-            + "View tab:\nview c, view m, view s\n\n"
-            + "Edit contact in the right panel:\nedit n/David m+/AY2223S2 CS2109S s-/python\n\n"
-            + "Find by attributes:\nfind n/David c/2 m/CS2109S s/java\n\n"
-            + "List the full list of contacts:\nlist\n\n"
-            + "Delete contact:\ndelete 3\n\n"
-            + "Clear all contacts:\nclear\n\n"
-            + "View user guide and command list:\nhelp";
+    public static final String HELP_MESSAGE = "Refer to the user guide:\n" + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -36,8 +31,32 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private TextArea helpMessage;
+    private Label helpMessage;
 
+    @FXML
+    private TableView<CommandExample> tvtable;
+
+    @FXML
+    private TableColumn<CommandExample, String> commandCol;
+
+    @FXML
+    private TableColumn<CommandExample, String> exampleCol;
+
+    @FXML
+    private final CommandExample[] COMMAND_EXAMPLES = {
+            new CommandExample("Add", "add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
+            + "l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java"),
+            new CommandExample("View contact", "view 3"),
+            new CommandExample("View tab", "view c, view m, view s"),
+            new CommandExample("Edit contact in the right panel", "edit n/David m+/AY2223S2 CS2109S s-/python"),
+            new CommandExample("Find by attributes", "find n/David c/2 m/CS2109S s/java"),
+            new CommandExample("List the full list of contacts", "list"),
+            new CommandExample("Delete contact", "delete 3"),
+            new CommandExample("Clear all contacts", "clear"),
+            new CommandExample("View user guide and command list", "help")
+    };
+
+    private final ObservableList<CommandExample> commandExamples = FXCollections.observableArrayList(COMMAND_EXAMPLES);
     /**
      * Creates a new HelpWindow.
      *
@@ -46,7 +65,16 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-        helpMessage.setEditable(false);
+//        helpMessage.setEditable(false);
+        commandCol.setCellValueFactory(new PropertyValueFactory<>("Command"));
+        exampleCol.setCellValueFactory(new PropertyValueFactory<>("Example"));
+        commandCol.setStyle("-fx-text-fill: black");
+        exampleCol.setStyle("-fx-text-fill: black");
+
+
+        tvtable.setItems(commandExamples);
+        copyExample();
+        wrapTextinCell();
     }
 
     /**
@@ -110,5 +138,44 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+    private void copyExample(){
+        // Enable cell selection
+        tvtable.getSelectionModel().setCellSelectionEnabled(true);
+
+        // On focused property change
+        tvtable.getFocusModel().focusedCellProperty().addListener(new ChangeListener<>() {
+
+            @Override
+            public void changed(ObservableValue<? extends TablePosition> arg0, TablePosition arg1, TablePosition arg2) {
+                // Select TableColumn "col2" in the same row
+                Clipboard clipboard = Clipboard.getSystemClipboard();
+                ClipboardContent content = new ClipboardContent();
+                tvtable.getSelectionModel().select(arg2.getRow(), exampleCol);
+                content.putString(COMMAND_EXAMPLES[arg2.getRow()].getExample());
+                clipboard.setContent(content);
+
+            }
+        });
+    }
+    private void wrapTextinCell() {
+        exampleCol.setCellFactory(tc -> {
+            TableCell<CommandExample, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(exampleCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        commandCol.setCellFactory(tc -> {
+            TableCell<CommandExample, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(commandCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
     }
 }
