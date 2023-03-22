@@ -1,6 +1,7 @@
 package seedu.socket.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -134,6 +135,12 @@ public interface Model {
      * {@code Socket}.
      */
     void setProject(Project target, Project editedProject);
+
+    /**
+     * Replaces the contents of the project list with {@code projects}.
+     * {@code projects} must not contain duplicate projects.
+     */
+    void setProjects(List<Project> projects);
 
     /** Returns an unmodifiable view of the filtered project list */
     ObservableList<Project> getFilteredProjectList();
