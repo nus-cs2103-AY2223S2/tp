@@ -1,3 +1,9 @@
+/*
+ * This file contains the CSS for GoodMatch in light mode.
+ * Remember that the order of CSS matters,
+ * CSS that is lower in the file takes priority over others above.
+ */
+
 .background {
     -fx-background-color: derive(#E2E2E2, 20%);
     background-color: #C7C7C7; /* Used in the default.html file */
@@ -41,6 +47,7 @@
 /*
  * I don't see anywhere that uses tab pane or table view
  */
+ /*
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
@@ -86,12 +93,13 @@
 
 .table-view:focused .table-row-cell:filled:focused:selected {
     -fx-background-color: -fx-focus-color;
-}
+}*/
 
 
 /*
  * split pane imported but not used in MainWindow
  */
+ /*
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#E2E2E2, 20%);
     -fx-border-color: transparent transparent transparent #B2B2B2;
@@ -101,7 +109,7 @@
     -fx-border-radius: 1;
     -fx-border-width: 1;
     -fx-background-color: derive(#E2E2E2, 20%);
-}
+}*/
 
 
 /*
@@ -111,12 +119,23 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-background-color: derive(#E2E2E2, 20%);
+    -fx-border-radius: 20;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 5 0 5 0;
+    -fx-border-insets: 5 0 5 0;
+    -fx-background-insets: 5 0 5 0;
+    -fx-background-radius: 20;
+}
+
+.list-cell:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 5);
+    -fx-transition: -fx-translate-y 0.5s ease;
+    -fx-translate-y: -5px;
+    -fx-background-color: #f5f5f5;
 }
 
 .list-cell:filled:even {
@@ -129,11 +148,10 @@
 
 .list-cell:filled:selected {
     -fx-background-color: derive(#0C0054, 100%);
-}
-
-.list-cell:filled:selected #cardPane {
     -fx-border-color: #0C0054;
     -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-padding: 0;
 }
 
 .list-cell .label {
@@ -177,6 +195,10 @@
     -fx-text-fill: white !important;
 }
 
+#resultDisplay .content { /* box that displays the results */
+    -fx-background-color: transparent, derive(#C7C7C7, 30%), transparent, derive(#C7C7C7, 30%);
+}
+
 
 /*
  * CSS related to the status bar below
@@ -202,51 +224,62 @@
     -fx-text-fill: black;
 }
 
+/*
+ * GridPane CSS
+ */
 .grid-pane {
     -fx-background-color: derive(#E2E2E2, 30%);
     -fx-border-color: derive(#E2E2E2, 30%);
     -fx-border-width: 1px;
 }
 
-.grid-pane .stack-pane {
+/*
+.grid-pane .stack-pane { // all StackPanes that are descendants (direct or indirect) of GridPane
     -fx-background-color: derive(#E2E2E2, 30%);
-}
+}*/
 
 
 /*
  * CSS related to the menu bar on top
  */
-.context-menu {
+.context-menu { /* the dropdown that appears when you click a menu button */
     -fx-background-color: derive(#E2E2E2, 50%);
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
 }
 
-.context-menu .label {
+.context-menu .label { /* the text of the dropdown that appears when you click a menu button */
     -fx-text-fill: black;
 }
 
-.menu-bar {
+.menu-bar { /* The menu bar itself */
     -fx-background-color: derive(#E2E2E2, 20%);
 }
 
-.menu-bar .label {
+.menu-bar .label { /* Styles the text on a menu item */
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
 
-.menu {
-    -fx-background-color: red;
+.menu { /* The File and Help menu item */
+    -fx-background-color: transparent;
 }
 
-.menu .left-container {
-    -fx-background-color: white;
+.menu:hover, .context-menu .menu-item:hover { /* menu and context menu's item on hover */
+    -fx-background-color: #C7C7C7;
+}
+
+.menu:showing { /* menu when it's being shown (activated) */
+    -fx-background-color: #C3C1C0;
 }
 
 
 /*
  * Button related CSS but the only button is in the help window and help window got their own css file...
  */
+ /*
 .button {
     -fx-padding: 5 22 5 22;
     -fx-border-color: #1D1D1D;
@@ -290,11 +323,13 @@
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
+*/
 
 
 /*
  * CSS related to the dialog pane but we don't have dialog panes
  */
+/*
 .dialog-pane {
     -fx-background-color: #E2E2E2;
 }
@@ -319,35 +354,61 @@
     -fx-fill: black;
     -fx-text-fill: black;
 }
+*/
 
 
 /*
  * Scrollbar related CSS below
  */
-.scroll-bar {
-    -fx-background-color: derive(#E2E2E2, 20%);
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-border-radius: 2.0em;
 }
 
-.scroll-bar .thumb {
-    -fx-background-color: derive(#E2E2E2, 50%);
-    -fx-background-insets: 3;
-}
 
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
     -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 0.0 10.0 0.0;
+
 }
 
-.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 10.0 0.0 0.0;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
     -fx-shape: " ";
+    -fx-padding: 0.15em 0.0;
 }
 
-.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding: 0.0 0.15em;
 }
 
-.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: derive(black,90.0%);
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: derive(#4D4C4F,10.0%);
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
 }
 
 
@@ -359,10 +420,12 @@
     -fx-border-width: 0;
 }
 
-#commandTypeLabel { /* unused */
+/* unused */
+/*
+#commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
-}
+}*/
 
 #commandTextField { /* input text field that user interacts with */
     -fx-background-color: transparent #C7C7C7 transparent #C7C7C7;
@@ -375,14 +438,11 @@
     -fx-text-fill: black;
 }
 
-#filterField, #personListPanel, #personWebpage { /* unused */
+/* unused */
+/*
+#filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, white, 10, 0, 0, 0);
-}
-
-#resultDisplay .content { /* box that displays the results */
-    -fx-background-color: transparent, #C7C7C7, transparent, #C7C7C7;
-    -fx-background-radius: 0;
-}
+}*/
 
 #applicants { /* for the applicant tags */
     -fx-hgap: 7;
