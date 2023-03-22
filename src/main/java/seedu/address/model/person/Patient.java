@@ -112,6 +112,11 @@ public class Patient extends Person {
     }
 
     @Override
+    public boolean isDoctor() {
+        return false;
+    }
+
+    @Override
     public boolean isPatient() {
         return true;
     }

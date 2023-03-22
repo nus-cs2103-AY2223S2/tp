@@ -94,7 +94,7 @@ public class TypicalPersons {
             .withRole("Patient")
             .buildPatient();
     public static final Doctor SARAH = new PersonBuilder()
-            .withName("Sarah Meier")
+            .withName("Sarah Tan")
             .withPhone("9482427")
             .withEmail("sarah@example.com")
             .withNric("S1234567S")
@@ -106,17 +106,20 @@ public class TypicalPersons {
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india").withNric("S0934581L").withRole("Patient")
+            .build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withNric("S0134381S").withRole("Patient")
+            .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withNric(VALID_NRIC_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withRole("Patient")
+            .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withNric(VALID_NRIC_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withRole("Patient")
             .build();
 
     public static final Person JOHN1 = new PersonBuilder().withName("John Doe").withPhone("9482442")

@@ -173,6 +173,10 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Returns true if a person is a doctor.
+     * Returns false otherwise.
+     */
     public boolean isDoctor() {
         if (role.toString().equals("Doctor")) {
             return true;
@@ -180,6 +184,10 @@ public class Person {
         return false;
     }
 
+    /**
+     * Returns true if a person is a patient.
+     * Returns false otherwise.
+     */
     public boolean isPatient() {
         if (role.toString().equals("Patient")) {
             return true;
