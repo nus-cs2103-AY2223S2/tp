@@ -46,8 +46,10 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && command == otherCommandResult.command
-                && hasChangedModelState == otherCommandResult.hasChangedModelState;
+                && hasChangedModelState == otherCommandResult.hasChangedModelState
+                && (command == null || otherCommandResult.command == null
+                ? command == otherCommandResult.command
+                : command.getClass() == otherCommandResult.command.getClass());
     }
 
     @Override

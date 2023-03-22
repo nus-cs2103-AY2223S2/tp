@@ -24,6 +24,9 @@ public class ViewCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a ViewCommand to view a student at the specified index
+     */
     public ViewCommand(Index targetIndex) {
         super(false);
         this.targetIndex = targetIndex;

@@ -21,6 +21,11 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindCommand to search the list for names containing the specified string
+     *
+     * @param predicate the predicate tester for checking if the student name contains the search string
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         super(false);
         this.predicate = predicate;
@@ -31,7 +36,8 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(this,
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()), willModifyState);
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                        model.getFilteredStudentList().size()), willModifyState);
     }
 
     @Override
