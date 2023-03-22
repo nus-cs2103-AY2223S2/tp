@@ -3,8 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.List;
-
 /**
  * Represents a Person's NRIC in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
@@ -41,18 +39,6 @@ public class Nric {
      */
     public static boolean isValidNric(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * Returns person with specified NRIC from records if exists otherwise returns null.
-     */
-    public static Person hasNric(List<Person> persons, Nric nric) { // might need to create a new person list class
-        for (Person p: persons) {
-            if (p.getNric().equals(nric)) {
-                return p;
-            }
-        }
-        return null;
     }
 
     @Override
