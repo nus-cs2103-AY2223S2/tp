@@ -41,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         filteredTodo = new FilteredList<>(this.addressBook.getTodoList());
         filteredNote = new FilteredList<>(this.addressBook.getNoteList());
     }
