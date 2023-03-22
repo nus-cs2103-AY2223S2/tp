@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * To be added
+    * Add sort command description
   * Developer Guide:
     * Update target user profile, value proposition, user stories, use cases
 
