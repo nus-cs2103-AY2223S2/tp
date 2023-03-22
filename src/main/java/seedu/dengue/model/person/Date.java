@@ -20,12 +20,11 @@ public class Date {
 
 
     public static final String MESSAGE_CONSTRAINTS = "Dates should adhere to the following constraints:\n"
-            + "1. Dates to contain 4-digit years YYYY, 2-digit days and either 2-digit months, 3-letter months, \n"
-            + "or fully-spelled months.\n"
+            + "1. Dates to contain 4-digit years YYYY, 2-digit days dd and either 2-digit months MM," +
+            " 3-letter months MMM, \n"
+            + "or fully-spelled months MMMM.\n"
             + " - If months are given in the MM format and the dates are ambiguous, eg. 20001010 \n "
             + "YYYY will be read first, followed by MM and DD. \n"
-            + " - If months are given in MMM or MMMM formats, months will be read first.\n"
-            + " - eg. march 20 10 february will be read as march \n"
             + "2. Dates must be valid. i.e.\n"
             + " - MM must be a number between 01 and 12 inclusive\n"
             + " - dd must be a number between 01 and 31 inclusive\n"
