@@ -28,9 +28,7 @@ create ":Date" as D COL1
 
 PU -> D
 activate D COL1
-D -> D : requireNonNull(\n"20000101")
-activate D COL1
-deactivate D
+
 D -> DATE : isValidDate("20000101")
 activate DATE COL2
 DATE -> DATE : produceValidationFormat("20000101")
