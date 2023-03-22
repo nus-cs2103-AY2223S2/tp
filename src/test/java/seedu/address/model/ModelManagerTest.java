@@ -152,4 +152,29 @@ public class ModelManagerTest {
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertNotEquals(modelManager, new ModelManager(addressBook, differentUserPrefs));
     }
+
+    @Test
+    public void returnCorrectNumberOfClients() {
+        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+        modelManager = new ModelManager(addressBook, userPrefs);
+
+        // Returns weekly earnings in the addressBook declared.
+        assertEquals(2, modelManager.getNumberOfClients());
+    }
+
+    @Test
+    public void returnCorrectWeeklyEarnings() {
+        AddressBook addressBook = new AddressBookBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+        modelManager = new ModelManager(addressBook, userPrefs);
+
+
+        double aliceWeeklyEarnings = (1000 / 4) + (2000 / 36);
+        double bensonWeeklyEarnings = 1000;
+        double total = aliceWeeklyEarnings + bensonWeeklyEarnings;
+
+        // Returns weekly earnings in the addressBook declared.
+        assertEquals(total, modelManager.getWeeklyEarnings());
+    }
 }

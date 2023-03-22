@@ -103,6 +103,17 @@ public interface Model {
      */
     void updateFilteredClientList(Predicate<Client> predicate);
 
+    /**
+     * Get total number of clients present in address book.
+     */
+    int getNumberOfClients();
+
+    /**
+     * Get total weekly earnings of the user.
+     * @return Total weekly earnings from all the clients the user has.
+     */
+    double getWeeklyEarnings();
+
     boolean canRedo();
 
     //todo

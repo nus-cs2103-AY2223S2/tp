@@ -3,11 +3,9 @@ package seedu.address.model.client.policy;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 
 
 /**
@@ -52,7 +50,7 @@ public class CustomDate {
         boolean valid = true;
         try {
             LocalDate localDate = stringToDate(date);
-        } catch(DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             valid = false;
         }
         return (date.matches(VALIDATION_REGEX) && valid);

@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.Policy;
 
 /**
@@ -182,6 +183,35 @@ public class ModelManager implements Model {
             return FXCollections.observableArrayList();
         }
         return selectedClient.getFilteredPolicyList();
+    }
+
+    @Override
+    public int getNumberOfClients() {
+        return filteredClients.size();
+    }
+
+    @Override
+    public double getWeeklyEarnings() {
+        ObservableList<Client> clientList = filteredClients;
+        double totalEarnings = 0;
+        double earnings;
+        for (int i = 0; i < clientList.size(); i++) {
+            selectedClient = clientList.get(i);
+            ObservableList<Policy> policyList = selectedClient.getFilteredPolicyList();
+            for (int j = 0; j < policyList.size(); j++) {
+                Policy policy = policyList.get(i);
+                Frequency freq = policy.getFrequency();
+                if (freq.toString() == "monthly") {
+                    earnings = Double.valueOf(policy.getPremium().toString()) / 4;
+                } else if (freq.toString() == "yearly") {
+                    earnings = Double.valueOf(policy.getPremium().toString()) / 36;
+                } else {
+                    earnings = Double.valueOf(policy.getPremium().toString());
+                }
+                totalEarnings = totalEarnings + earnings;
+            }
+        }
+        return totalEarnings;
     }
 
     /**

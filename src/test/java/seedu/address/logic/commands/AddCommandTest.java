@@ -158,6 +158,16 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public int getNumberOfClients() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public double getWeeklyEarnings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         //todo
         @Override
         public void commit() {
