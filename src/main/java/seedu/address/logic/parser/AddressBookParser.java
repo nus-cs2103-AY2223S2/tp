@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteCommands;
 import seedu.address.logic.commands.EditCommand;
@@ -20,6 +21,9 @@ import seedu.address.logic.commands.ListByNameCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTime;
 import seedu.address.logic.commands.SearchAppointmentCommand;
+
+import seedu.address.logic.commands.ShowDetailCommand;
+import seedu.address.logic.commands.UploadFileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -62,6 +66,12 @@ public class AddressBookParser {
         case DeleteCommands.COMMAND_WORD:
             return new DeleteCommandsParser().parse(arguments);
 
+        case UploadFileCommand.COMMAND_WORD:
+            return new UploadFileCommandParser().parse(arguments);
+
+        case CreateCommand.COMMAND_WORD:
+            return new CreateCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -76,6 +86,9 @@ public class AddressBookParser {
 
         case ListByNameCommand.COMMAND_WORD:
             return new ListByNameCommand();
+
+        case ShowDetailCommand.COMMAND_WORD:
+            return new ShowDetailCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

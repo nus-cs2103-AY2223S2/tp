@@ -246,4 +246,18 @@ public class ParserUtil {
         }
         return new Age(age);
     }
+
+    /**
+     * Parse day int.
+     *
+     * @param input the input
+     * @return the int
+     * @throws ParseException the parse exception
+     */
+    public static int parseDay(String input) throws ParseException {
+        requireNonNull(input);
+        //add is valid days
+        input.trim();
+        return Integer.parseInt(input);
+    }
 }

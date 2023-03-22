@@ -8,6 +8,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 
 /**
@@ -19,14 +22,31 @@ public class PersonListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Person> personListView;
+    private MainWindow mainWindow;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, MainWindow mainWindow) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.mainWindow = mainWindow;
+    }
+
+    @FXML
+    private void displayDetail() throws CommandException, ParseException {
+        try {
+            int targetIndex = personListView.getSelectionModel().getSelectedIndex() + 1;
+            int size = personListView.getItems().size();
+            if (targetIndex > 0 && targetIndex <= size) {
+                mainWindow.handleClickInPersonListPanel("show " + targetIndex);
+            } else {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + "Something wrong happened when clicking the person.");
+        }
     }
 
     /**

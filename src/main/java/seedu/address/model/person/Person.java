@@ -312,6 +312,7 @@ public class Person {
         return this.time != null;
     }
 
+
     public boolean hasAppointment() {
         return appointment != null;
     }
@@ -320,6 +321,13 @@ public class Person {
     // therefore, isOnSearchDate should be done from Appointment side
     public boolean isOnSearchDate(LocalDate searchDate) {
         return appointment.isOnSearchDate(searchDate);
+
+    public boolean hasAge() {
+        return this.age.getAge() != "";
+    }
+
+    public boolean hasMedicalCondition() {
+        return this.medicalCondition.getValue() != "";
     }
 
     public Age getAge() {
