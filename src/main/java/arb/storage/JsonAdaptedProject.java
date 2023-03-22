@@ -37,10 +37,8 @@ public class JsonAdaptedProject {
                               @JsonProperty("status") String status, @JsonProperty("price") String price) {
         this.title = title;
         this.deadline = Optional.ofNullable(deadline).orElse(null);
-        //System.out.println(this.deadline); //-> Feb 1 2025 14:00PM
         this.status = status;
         this.price = Optional.ofNullable(price).orElse(null);
-        //System.out.println(this.price); //-> Price : $ 2
     }
 
     /**
@@ -50,10 +48,8 @@ public class JsonAdaptedProject {
         logger.info("Logging project: " + source);
         this.title = source.getTitle().fullTitle;
         this.deadline = Optional.ofNullable(source.getDeadline()).map(d -> d.dueDate.toString()).orElse(null);
-        //System.out.println(this.deadline); -> 2025-02-01T14:00
         this.status = source.getStatus().toString();
         this.price = Optional.ofNullable(source.getPrice()).map(pr -> pr.getPrice().toString()).orElse(null);
-        //System.out.println(this.price); -> 2
     }
 
     /**

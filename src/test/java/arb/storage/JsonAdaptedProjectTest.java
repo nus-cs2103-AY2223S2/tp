@@ -19,10 +19,8 @@ class JsonAdaptedProjectTest {
     private static final String INVALID_DEADLINE = "abed";
     private static final String VALID_TITLE = PORTRAIT_PROJECT.getTitle().toString();
     private static final String VALID_DEADLINE = PORTRAIT_PROJECT.getDeadline().toString();
-    // Feb 1 2025 14:00 PM
     private static final String VALID_STATUS = PORTRAIT_PROJECT.getStatus().toString();
     private static final String VALID_PRICE = PORTRAIT_PROJECT.getPrice().toString();
-    // Price: $2
     @Test
     public void toModelType_validProjectDetails_returnsProject() throws Exception {
         JsonAdaptedProject project = new JsonAdaptedProject(PORTRAIT_PROJECT);
