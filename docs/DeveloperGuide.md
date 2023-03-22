@@ -390,10 +390,10 @@ We included the `Skills` attribute to remind the user to add in the person's ski
 
 **Aspect 1: How to implement the `GitHub` and `Linkedin` attributes:**
 
-- Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL. 
+- Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL 
   - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
   - Cons: Lack of details, user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
-- Alternative 2: Make them compulsory. 
+- Alternative 2: Make them compulsory 
   - Pros: Can remind users to ask the person that they are adding for their socials such that they can look them up if they want to.
   - Cons:
   Slower and more inconvenient, need to add these attributes when adding a person.
@@ -473,7 +473,7 @@ Finding i.e filtering a person by their attributes is implemented such that the 
 - `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
 - **Can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills.
 - Checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord).
-- Case-insensitive
+- Case-insensitive.
 - If the user types duplicate prefixes in the query i.e. `find s/java python s/javascript s/c sql`, only the last occurrence of the prefix will be taken i.e. `find s/c sql` will be taken.
 
 `find` has the prefixes corresponding to attributes as follows:
@@ -485,35 +485,39 @@ Finding i.e filtering a person by their attributes is implemented such that the 
 
 **Implementation Flow**
 
-The following sequence diagram summarizes what happens when a user executes a `find` command:
+The following sequence diagram summarizes what happens when the user executes a `find` command:
 
 ![Find Command Sequence Diagram](images/FindSequenceDiagram.png)
 
 `ModelManager`, which implements the `Model` interface, stores an attribute `filteredPersons`, which is a `FilteredList` of `Person`s that is shown in the `MainWindow` class as a `PersonListPanel`. When a `find` command is called by the user, `ModelManager` updates its `filteredPersons` to only contain `Person`s that satisfy all the `predicate`s corresponding to the attibrutes specified by the user. The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 
+Given below is the activity diagram to illustrate what happens when the user calls the `find` command:
+
+![Find Activity Diagram](images/FindActivityDiagram.png)
+
 #### Design Considerations
 
 We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
 
-Our find command can **take in multiple keywords for each attribute** i.e. `find m/cs2109s cs2103t` finds people that are taking have taken both modules CS2109S and CS2103T. We made it this way instead of `find m/cs2109s m/cs2103t` to increase the speed of the search i.e. user requires less key presses.
+Our find command can **take in multiple keywords for each attribute prefix** i.e. `find m/cs2109s cs2103t` finds people that are taking have taken both CS2109S and CS2103T. We made it this way instead of `find m/cs2109s m/cs2103t` to increase the speed of the search i.e. user requires less key presses.
 
 We also chose to make our find command case-insensitive to increase the speed of the search i.e. user does not need to press the Caps Lock key.
 
-**Aspect 1: `find` by AND vs `find` by OR:**
+**Aspect 1: `find` by logical AND vs `find` by logical OR:**
 
-- Alternative 1 (current choice): `find` by AND
-    - Pros: User can find people that have multiple attributes and satisfy all keywords for each attribute, i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T, etc. 
-    - Cons: More restrictive on the filteredPersons - people must have **all** the attributes specified by the user to be in the FilteredList.
-- Alternative 2: `find` by OR
-    - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the FilteredList i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both. 
+- Alternative 1 (current choice): `find` by logical AND
+    - Pros: User can find people that have multiple attributes (includes attributes within a single prefix), i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T.
+    - Cons: More restrictive on the filtered people, people must have **all** the attributes specified by the user to be in the `FilteredList`.
+- Alternative 2: `find` by logical OR
+    - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the `FilteredList` i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both. 
     - Cons:
-      User cannot find people that have multiple attributes, i.e. the benefits of Alternative 1.
-- Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites also filter by AND such as GitHub, YouTube and Shopee.
+      User cannot find people that have multiple attributes.
+- Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so with Alternative 1, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites use find by logical AND such as GitHub, YouTube and Shopee.
 
 **Aspect 2: `find` by contains vs containsWord:**
 
 - Alternative 1 (current choice): `find` by contains
-  - Pros: User can find people that have multiple attributes containing the keywords specified by the user, i.e. `find c/bus` finds people that enrolled in Business Analytics, `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
+  - Pros: User can find people that have attributes containing the keywords specified by the user, i.e. `find c/bus` finds people that enrolled in Business Analytics, `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
   - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam. 
 - Alternative 2: `find` by containsWord (not a built-in method but can be created)
   - Pros: Resolves the cons in Alternative 1.
