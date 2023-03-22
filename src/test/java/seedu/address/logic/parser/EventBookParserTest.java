@@ -6,7 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
-import static seedu.address.testutil.TypicalTimes.TIME_NOW;
+import static seedu.address.testutil.TypicalTimes.CLOCK_FIXED_AT_TIME_NOW;
 import static seedu.address.testutil.TypicalTimes.TYPICAL_DAYS;
 
 import java.time.LocalDateTime;
@@ -44,7 +44,7 @@ import seedu.address.testutil.EventUtil;
 
 public class EventBookParserTest {
 
-    private final EventBookParser parser = new EventBookParser(TIME_NOW);
+    private final EventBookParser parser = new EventBookParser(CLOCK_FIXED_AT_TIME_NOW);
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -121,7 +121,8 @@ public class EventBookParserTest {
 
         RemindCommand command = (RemindCommand) parser.parseCommand(
                 RemindCommand.COMMAND_WORD + " " + TYPICAL_DAYS);
-        assertEquals(new RemindCommand(new StartTimeWithinDaysPredicate(TIME_NOW, TYPICAL_DAYS)), command);
+        assertEquals(
+                new RemindCommand(new StartTimeWithinDaysPredicate(CLOCK_FIXED_AT_TIME_NOW, TYPICAL_DAYS)), command);
     }
 
     @Test
