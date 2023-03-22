@@ -125,6 +125,8 @@ public class AddressBookParser {
 
         case EditMeetingsCommand.COMMAND_WORD:
             return new EditMeetingParser().getAutocompleteSuggestion(arguments);
+        case ExportPersonsCommand.COMMAND_WORD:
+            return new ExportPersonsParser().getAutocompleteSuggestion(arguments);
 
         default:
             return new AutocompleteResult(null, false);
