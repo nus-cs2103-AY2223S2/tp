@@ -28,7 +28,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withEmail("alice@example.com")
             .withAddress("123, Jurong West Ave 6, #08-111")
-            .withRemark("She likes aardvarks.")
+            .withRemark("She hates bob.")
             .withSubjects("Mathematics")
             .withTags("friends")
             .build();
