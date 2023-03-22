@@ -8,16 +8,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -50,7 +45,7 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private final CommandExample[] examples = {
         new CommandExample("Add", "add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
-        + "l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java"),
+                + "l/linkedin.com/in/bom-sim-086g93847 m/AY2223S2 CS2103T m/AY2223S2 CS2101 s/python s/java"),
         new CommandExample("View contact", "view 3"),
         new CommandExample("View tab", "view c, view m, view s"),
         new CommandExample("Edit contact in the right panel", "edit n/David m+/AY2223S2 CS2109S s-/python"),
@@ -77,7 +72,9 @@ public class HelpWindow extends UiPart<Stage> {
         commandCol.setResizable(false);
         exampleCol.setResizable(false);
         tvtable.setItems(commandExamples);
-        copyExample();
+        tvtable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        tvtable.getSelectionModel().setCellSelectionEnabled(true);
+        tvtable.setOnMouseClicked(this::copyExample);
         wrapTextinCell();
     }
 
@@ -144,25 +141,19 @@ public class HelpWindow extends UiPart<Stage> {
         clipboard.setContent(url);
     }
 
-    private void copyExample() {
-        // Enable cell selection
-        tvtable.getSelectionModel().setCellSelectionEnabled(true);
+    private void copyExample(MouseEvent event) {
+        if (event.getClickCount() >= 1) {
+            TablePosition<?, ?> pos = tvtable.getSelectionModel().getSelectedCells().get(0);
+            int row = pos.getRow();
 
-        // On focused property change
-        tvtable.getFocusModel().focusedCellProperty().addListener(new ChangeListener<>() {
-
-            @Override
-            public void changed(ObservableValue<? extends TablePosition> arg0, TablePosition arg1, TablePosition arg2) {
-                // Select TableColumn "col2" in the same row
-                Clipboard clipboard = Clipboard.getSystemClipboard();
-                ClipboardContent content = new ClipboardContent();
-                tvtable.getSelectionModel().select(arg2.getRow(), exampleCol);
-                content.putString(examples[arg2.getRow()].getExample());
-                clipboard.setContent(content);
-
-            }
-        });
+            Object data = pos.getTableColumn().getCellObservableValue(row).getValue();
+            Clipboard clipboard = Clipboard.getSystemClipboard();
+            ClipboardContent content = new ClipboardContent();
+            content.putString(data.toString());
+            clipboard.setContent(content);
+        }
     }
+
     private void wrapTextinCell() {
         exampleCol.setCellFactory(tc -> {
             TableCell<CommandExample, String> cell = new TableCell<>();
