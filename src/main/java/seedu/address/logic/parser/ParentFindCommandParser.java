@@ -8,6 +8,9 @@ import seedu.address.logic.commands.parent.ParentFindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.parent.NameContainsKeywordsPredicate;
 
+/**
+ * a ParentFindCommandParser to parse the parent find command
+ */
 public class ParentFindCommandParser implements Parser<ParentFindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the StudentFindCommand
