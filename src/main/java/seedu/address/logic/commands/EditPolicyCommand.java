@@ -24,6 +24,9 @@ import seedu.address.model.client.policy.PolicyName;
 import seedu.address.model.client.policy.Premium;
 import seedu.address.model.client.policy.UniquePolicyList;
 
+/**
+ * Edits the details of an existing policy in an existing client in the address book.
+ */
 public class EditPolicyCommand extends Command {
 
     public static final String COMMAND_WORD = "editPolicy";
@@ -41,16 +44,17 @@ public class EditPolicyCommand extends Command {
             + PREFIX_POLICY_NAME + "Travel Insurance "
             + PREFIX_POLICY_PREMIUM + "2000";
     public static final String MESSAGE_EDIT_POLICY_SUCCESS = "Edited Policy: %1$s";
-
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public static  final String MESSAGE_DUPLICATE_POLICY = "This policy already exists in this client.";
+    public static final String MESSAGE_DUPLICATE_POLICY = "This policy already exists in this client.";
 
     private final Index clientIndex;
     private final Index policyIndex;
     private final EditPolicyDescriptor editPolicyDescriptor;
 
-    /** Creates an EditPolicyCommand to edit the specified {@code Policy} given the {@code Client} index.
+
+    /**
+     * Creates an EditPolicyCommand to edit the specified {@code Policy} given the {@code Client} index.
      * @param clientIndex The index of the client in the client list.
      * @param policyIndex The index of the policy display from the client.
      * @param editPolicyDescriptor The details to edit the policy with.
@@ -107,7 +111,8 @@ public class EditPolicyCommand extends Command {
     }
 
     /**
-     * Copy constructor.
+     * Stores the details to edit the policy with. Each non-empty value will replace the corresponding field value of
+     * the client.
      */
     public static class EditPolicyDescriptor {
         private PolicyName policyName;
@@ -115,10 +120,16 @@ public class EditPolicyCommand extends Command {
         private Premium premium;
         private Frequency frequency;
 
+        /**
+         * Creates an EditPolicyDescriptor object.
+         */
         public EditPolicyDescriptor() {
 
         }
 
+        /**
+         * Copy constructor.
+         */
         public EditPolicyDescriptor(EditPolicyDescriptor toCopy) {
             setPolicyName(toCopy.policyName);
             setStartDate(toCopy.startDate);
@@ -165,7 +176,7 @@ public class EditPolicyCommand extends Command {
             return Optional.ofNullable(frequency);
         }
         @Override
-        public  boolean equals(Object other) {
+        public boolean equals(Object other) {
             if (other == this) {
                 return true;
             }

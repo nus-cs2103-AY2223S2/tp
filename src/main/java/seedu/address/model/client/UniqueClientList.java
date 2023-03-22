@@ -55,7 +55,6 @@ public class UniqueClientList implements Iterable<Client> {
      */
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-        
 
         int index = internalList.indexOf(target);
         if (index == -1) {

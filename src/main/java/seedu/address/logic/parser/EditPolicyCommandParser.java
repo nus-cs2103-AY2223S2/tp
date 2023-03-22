@@ -14,6 +14,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new EditPolicyCommand object
+ */
 public class EditPolicyCommandParser implements Parser<EditPolicyCommand> {
 
     /**
@@ -41,9 +44,9 @@ public class EditPolicyCommandParser implements Parser<EditPolicyCommand> {
 
         EditPolicyCommand.EditPolicyDescriptor editPolicyDescriptor = new EditPolicyCommand.EditPolicyDescriptor();
         if (argMultiMap.getValue(PREFIX_POLICY_NAME).isPresent()) {
-           editPolicyDescriptor.setPolicyName(
+            editPolicyDescriptor.setPolicyName(
                    ParserUtil.parsePolicyName(argMultiMap.getValue(PREFIX_POLICY_NAME).get())
-           );
+            );
         }
         if (argMultiMap.getValue(PREFIX_POLICY_START_DATE).isPresent()) {
             editPolicyDescriptor.setStartDate(
