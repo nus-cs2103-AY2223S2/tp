@@ -3,7 +3,6 @@
 
 box Logic LOGIC_COLOR_BACKGROUND
 participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
-participant ":ArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
 participant "m:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
 participant "contactIndex:ContactIndex" as ContactIndex LOGIC_COLOR
 end box
