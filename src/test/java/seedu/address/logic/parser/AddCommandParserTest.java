@@ -28,14 +28,6 @@ import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CardBuilder;
 
-
-
-
-
-
-
-
-
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 

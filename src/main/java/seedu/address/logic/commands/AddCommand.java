@@ -84,6 +84,8 @@ public class AddCommand extends Command {
         private Set<Tag> tags;
         private Deck deck;
 
+        public AddCardDescriptor() {}
+
         /**
          * Constructor for a Card Descriptor to be used to create a card instance.
          * @param question Question of the card to create
