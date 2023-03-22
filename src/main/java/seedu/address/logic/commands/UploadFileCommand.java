@@ -43,10 +43,11 @@ public class UploadFileCommand extends Command {
         Person personToUpload = lastShownList.get(targetIndex.getZeroBased());
         FilesManager filesManager = new FilesManager(personToUpload);
         filesManager.addFile();
-        //String pathString = "reports/" + personToUpload.getName().fullName;
-        //Path path = Paths.get(pathString);
-        //List<Path> paths = filesManager.getAllFiles(path);
         /*
+        String pathString = "reports/" + personToUpload.getName().fullName;
+        Path path = Paths.get(pathString);
+        List<Path> paths = filesManager.getAllFiles(path);
+
         for (int x = 0; x < paths.size(); x++) {
             int finalX = x;
             Thread thread = new Thread(new Runnable() {
@@ -56,8 +57,8 @@ public class UploadFileCommand extends Command {
                 }
             });
             thread.start();
-        }
-        */
+        }*/
+
         return new CommandResult(String.format(MESSAGE_UPLOAD_SUCCESS, personToUpload));
     }
 }
