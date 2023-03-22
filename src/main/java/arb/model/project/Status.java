@@ -36,7 +36,6 @@ public class Status {
         isDone = true;
     }
 
-
     /**
      * Sets the completion status to False.
      */
