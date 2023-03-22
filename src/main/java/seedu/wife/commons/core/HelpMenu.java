@@ -59,7 +59,7 @@ public enum HelpMenu {
     private final String command;
 
     /**
-     * Creates a new HelpMenu.
+     * Creates a new HelpMenu object.
      *
      * @param command type of the command
      */
@@ -71,16 +71,34 @@ public enum HelpMenu {
         return command;
     }
 
+    /**
+     * Retrieves all enums as a String created in displayHelpMenu.
+     *
+     * @return String of the general help message
+     */
     public static String getGeneralHelp() {
         return displayHelpMenu();
     }
 
+    /**
+     * Retrieves help message of a given input command.
+     *
+     * @param helpCommand the input command
+     * @return String of the command's specific message
+     */
     public static String getCommandHelp(HelpMenu helpCommand) {
         return helpCommand.getCommandUsage();
     }
 
     public abstract String getCommandUsage();
 
+    /**
+     * Checks if an input command is a valid command.
+     *
+     * @param commandToParse the input command to check
+     * @return the command as an enum if it is valid
+     *      otherwise the INVALID command
+     */
     public static HelpMenu parseCommand(String commandToParse) {
         return Arrays.stream(values())
                 .filter(type -> type.command.equals(commandToParse))
@@ -88,23 +106,32 @@ public enum HelpMenu {
     }
 
     /**
-     * Displays help menu with command descriptions
+     * Displays help menu with command examples
      * and usage format.
      * <p>
+     * Does not include the INVALID constant
+     *
      * @return list of commands as a single String
      */
     public static String displayHelpMenu() {
         StringBuilder sb = new StringBuilder();
+        HelpMenu[] values = HelpMenu.values();
+        int len = values().length;
+
         sb.append(MORE_INFO_MESSAGE);
         sb.append(System.lineSeparator());
         sb.append(COMMANDS_AVAILABLE);
 
-        for (HelpMenu command : HelpMenu.values()) {
+        for (int i = 0; i < len; i++) {
+            HelpMenu command = values[i];
             if (command.equals(INVALID)) {
                 continue;
             }
+
             sb.append(command.getCommand());
-            sb.append(", ");
+            if (i != len - 1) {
+                sb.append(", ");
+            }
         }
         return sb.toString();
     }

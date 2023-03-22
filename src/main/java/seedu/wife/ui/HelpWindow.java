@@ -99,6 +99,7 @@ public class HelpWindow extends UiPart<Stage> {
      *      specific to the command.
      */
     public void setHelpMessage(String messageToSet) {
+        assert !messageToSet.isEmpty() || !messageToSet.equals(null);
         helpMenu.setText(messageToSet);
     }
 
