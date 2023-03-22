@@ -8,7 +8,9 @@
  top to bottom direction
 
  Abstract Class "{abstract}\nItem" as Item
-  Abstract Class "{abstract}\nName" as Name
+ Abstract Class "{abstract}\nName" as Name
+ Class "UniqueItemList<T> " as UniqueItemList
+ Class ItemList<T extends Item>
 
 
  Class MenuItem
@@ -19,10 +21,10 @@
  Class UniqueMenuItemList extends UniqueItemList
 
  ItemList *--r> "1 " UniqueItemList
- UniqueItemList -r> Item
+ UniqueItemList -r>"*" Item
 
  Menu *--r> "1 " UniqueMenuItemList
- UniqueMenuItemList -r> MenuItem
+ UniqueMenuItemList -r>"*" MenuItem
  MenuItem *--> "1" ItemName
  MenuItem *--> "1 " ItemPrice
  MenuItem *--> "1 " ItemCost

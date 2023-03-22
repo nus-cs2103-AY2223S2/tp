@@ -40,6 +40,8 @@
  Abstract Class "{abstract}\nItem" as Item
  Abstract Class "{abstract}\nDeadline" as Deadline
  Abstract Class "{abstract}\nStatus" as Status
+ Class "UniqueItemList<T> " as UniqueItemList
+  Class ItemList<T extends Item>
 
  Class Order
  Class MenuItem
@@ -49,13 +51,15 @@
  Class OrderDeadline
  Class OrderList extends ItemList
  Class UniqueOrderList extends UniqueItemList
+ Class ItemList<T extends Item>
+
 
  ItemList *--r> "1 " UniqueItemList
- UniqueItemList -r> Item
+ UniqueItemList -r>"*" Item
 
  OrderList *--r> "1 " UniqueOrderList
- UniqueOrderList -r> Order
- Order *--> "*" MenuItem
+ UniqueOrderList ->"*" Order
+ Order *--> "1" MenuItem
  Order *--> "1" OrderDeadline
  Order *--> "1 " OrderStatus
  Order *--> "1 " Customer
