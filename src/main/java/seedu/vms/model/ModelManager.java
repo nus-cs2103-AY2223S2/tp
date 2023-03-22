@@ -36,6 +36,8 @@ public class ModelManager implements Model {
     private final FilteredIdDataMap<Patient> filteredPatientMap;
     private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
 
+    private final VmsParser vmsParser;
+
     /**
      * Initializes a ModelManager with the given patientManager and userPrefs.
      */
@@ -54,6 +56,8 @@ public class ModelManager implements Model {
         this.vaxTypeManager = vaxTypeManager;
 
         this.userPrefs = new UserPrefs(userPrefs);
+
+        this.vmsParser = new VmsParser();
     }
 
     /**
@@ -97,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public ParseResult parseCommand(String userCommand) throws ParseException {
         // TODO: Avoid creating a new parser everytime
-        return new VmsParser().parseCommand(userCommand);
+        return vmsParser.parseCommand(userCommand);
     }
 
     // =========== PatientManager ================================================================================
