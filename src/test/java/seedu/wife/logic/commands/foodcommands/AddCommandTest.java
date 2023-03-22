@@ -22,6 +22,7 @@ import seedu.wife.model.ReadOnlyUserPrefs;
 import seedu.wife.model.ReadOnlyWife;
 import seedu.wife.model.Wife;
 import seedu.wife.model.food.Food;
+import seedu.wife.model.tag.Tag;
 import seedu.wife.testutil.FoodBuilder;
 
 public class AddCommandTest {
@@ -78,7 +79,7 @@ public class AddCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    public static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -115,12 +116,47 @@ public class AddCommandTest {
         }
 
         @Override
+        public void createTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setWife(ReadOnlyWife newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyWife getWife() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTag(Tag target, Tag editedTag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tag> getFilteredTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tag> getTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTagList(Predicate<Tag> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -141,6 +177,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Food> getFilteredFoodList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Food> getFoodList() {
             throw new AssertionError("This method should not be called.");
         }
 
