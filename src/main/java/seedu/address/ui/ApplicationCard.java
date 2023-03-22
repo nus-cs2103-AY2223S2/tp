@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.application.Application;
 
 /**
@@ -39,10 +40,12 @@ public class ApplicationCard extends UiPart<Region> {
     @FXML
     private Label companyEmail;
     @FXML
+    private VBox taskDetails;
+    @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ApplicationCard} with the given {@code Application} and index to display.
      */
     public ApplicationCard(Application application, int displayedIndex) {
         super(FXML);
@@ -52,6 +55,12 @@ public class ApplicationCard extends UiPart<Region> {
         status.setText(application.getStatus().value.toString());
         role.setText(application.getRole().roleApplied);
         companyEmail.setText(application.getCompanyEmail().value);
+        taskDetails.setPrefHeight(Region.USE_PREF_SIZE);
+        if (application.hasTask()) {
+            Label description = new Label(application.getTask().getDescription().value);
+            Label deadline = new Label(application.getTask().getDeadline().toDisplayString());
+            taskDetails.getChildren().addAll(description, deadline);
+        }
         application.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

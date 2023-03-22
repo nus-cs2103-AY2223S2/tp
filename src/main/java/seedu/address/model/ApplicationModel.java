@@ -96,4 +96,11 @@ public interface ApplicationModel {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedApplicationList(Comparator<Application> comparator);
+
+    /**
+     * Checks if given application already has an existing task attached to it.
+     */
+    boolean applicationHasTask(Application application);
+
+    void addTaskToApplication(Application target, Application editedApplication);
 }

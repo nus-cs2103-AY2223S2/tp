@@ -33,6 +33,9 @@ public class ApplicationCommandTestUtil {
     public static final String VALID_COMPANY_EMAIL_GRAB = "hr@grab.com";
     public static final String VALID_STATUS_BYTEDANCE = "interested";
     public static final String VALID_STATUS_GRAB = "applied";
+    public static final String VALID_DEADLINE = "31-12-2023";
+    public static final String VALID_DESCRIPTION = "Online Assessment";
+    public static final String VALID_DESCRIPTION_INTERVIEW = "Technical Interview";
 
     public static final String ROLE_DESC_BYTEDANCE = " " + PREFIX_ROLE + VALID_ROLE_BYTEDANCE;
     public static final String ROLE_DESC_GRAB = " " + PREFIX_ROLE + VALID_ROLE_GRAB;

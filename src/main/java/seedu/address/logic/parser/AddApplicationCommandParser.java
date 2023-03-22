@@ -19,7 +19,6 @@ import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
 import seedu.address.model.tag.Tag;
 
-
 /**
  * Parses input arguments and creates a new AddApplicationCommand object
  */
@@ -49,7 +48,7 @@ public class AddApplicationCommandParser implements ApplicationParser<AddApplica
         Status status = ApplicationParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Application application = new Application(role, companyName, companyEmail, status, tagList);
+        Application application = new Application(role, companyName, companyEmail, status, null, tagList);
 
         return new AddApplicationCommand(application);
     }

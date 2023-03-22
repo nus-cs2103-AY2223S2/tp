@@ -6,7 +6,19 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddApplicationCommand;
+import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.ApplicationCommand;
+import seedu.address.logic.commands.ClearApplicationCommand;
+import seedu.address.logic.commands.DeleteApplicationCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
+import seedu.address.logic.commands.EditApplicationCommand;
+import seedu.address.logic.commands.EditTaskCommand;
+import seedu.address.logic.commands.ExitSprintCommand;
+import seedu.address.logic.commands.FindApplicationCommand;
+import seedu.address.logic.commands.HelpApplicationCommand;
+import seedu.address.logic.commands.ListApplicationCommand;
+import seedu.address.logic.commands.SortApplicationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -39,6 +51,7 @@ public class InternshipBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        //=========== Application Commands ==================================================================================
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
 
@@ -65,6 +78,16 @@ public class InternshipBookParser {
 
         case SortApplicationCommand.COMMAND_WORD:
             return new SortApplicationCommandParser().parse(arguments);
+
+        //=========== Task Commands ==================================================================================
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
+
+        case EditTaskCommand.COMMAND_WORD:
+            return new EditTaskCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
