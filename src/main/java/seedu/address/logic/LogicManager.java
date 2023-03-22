@@ -12,24 +12,27 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.injector.Injector;
 import seedu.address.logic.injector.NavigationInjector;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Level;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTracker;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.model.person.Person;
+import seedu.address.model.video.Video;
 import seedu.address.storage.Storage;
 
 /**
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final TrackerParser trackerParser;
     private final Injector navigationInjector;
 
     /**
@@ -39,7 +42,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         this.navigationInjector = new NavigationInjector();
-        addressBookParser = new AddressBookParser();
+        trackerParser = new TrackerParser();
     }
 
     @Override
@@ -49,7 +52,10 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
 
         commandText = navigationInjector.inject(commandText, model);
-        Command command = addressBookParser.parseCommand(commandText);
+
+        logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
+
+        Command command = trackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -67,13 +73,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<? extends ReadOnlyModule> getFilteredModuleList() {
+        return model.getFilteredModuleList();
     }
 
     @Override
-    public ObservableList<? extends ReadOnlyModule> getFilteredModuleList() {
-        return model.getFilteredModuleList();
+    public ObservableList<? extends ReadOnlyLecture> getFilteredLectureList() {
+        return model.getFilteredLectureList();
+    }
+
+    @Override
+    public ObservableList<? extends Video> getFilteredVideoList() {
+        return model.getFilteredVideoList();
     }
 
     @Override
@@ -89,5 +100,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Level getLastListLevel() {
+        return model.getLastListLevel();
     }
 }

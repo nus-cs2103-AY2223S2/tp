@@ -13,7 +13,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.module.NameContainsKeywordsPredicate;
+import seedu.address.model.module.CodeContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalVideos;
@@ -66,7 +66,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setTrackerFilePath_validPath_setsAddressBookFilePath() {
+    public void setTrackerFilePath_validPath_setsTrackerFilePath() {
         Path path = Paths.get("tracker/file/path");
         modelManager.setTrackerFilePath(path);
         assertEquals(path, modelManager.getTrackerFilePath());
@@ -75,7 +75,7 @@ public class ModelManagerTest {
     @Test
     public void hasLecture_nullModule_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                modelManager.hasLecture(null, TypicalLectures.CS2040S_WEEK_1));
+                modelManager.hasLecture(null, TypicalLectures.CS2040S_WEEK_1.getName()));
     }
 
     @Test
@@ -97,7 +97,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasVideo_nullLecture_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasVideo(null, TypicalVideos.CONTENT_VIDEO));
+        assertThrows(NullPointerException.class, () ->
+                modelManager.hasVideo(TypicalModules.CS2040S.getCode(), null, TypicalVideos.CONTENT_VIDEO.getName()));
     }
 
     @Test
@@ -146,7 +147,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = new String[] {"Data"};
-        modelManager.updateFilteredModuleList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredModuleList(new CodeContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(tracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

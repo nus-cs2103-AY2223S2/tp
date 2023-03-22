@@ -34,7 +34,7 @@ public class DeleteVideoCommand extends DeleteCommand {
      * from lecture with {@code lectureName} in module of {@code moduleCode}
      *
      * @param targetVideoName Name of Video to delete
-     * @param moduleCode Module Code of module that lecture that contains video is within
+     * @param moduleCode Module Code of module that contains lecture that video is within
      * @param lectureName Name of Lecture that video is within
      */
     public DeleteVideoCommand(VideoName targetVideoName, ModuleCode moduleCode, LectureName lectureName) {
@@ -45,6 +45,7 @@ public class DeleteVideoCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        // TODO: could try to encapsulate this to reuse
         requireNonNull(model);
 
         if (!model.hasModule(moduleCode)) {
@@ -57,14 +58,17 @@ public class DeleteVideoCommand extends DeleteCommand {
 
         ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
 
-        if (!model.hasVideo(lecture, targetVideoName)) {
+        if (!model.hasVideo(moduleCode, lectureName, targetVideoName)) {
             throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST,
                                                         targetVideoName,
                                                         lectureName,
                                                         moduleCode));
         }
 
-        Video targetVideo = model.getVideo(lecture, targetVideoName);
+        Video targetVideo = model.getVideo(moduleCode, lectureName, targetVideoName);
+
+        // TODO: repetition ends here
+
         model.deleteVideo(lecture, targetVideo);
 
         return new CommandResult(String.format(MESSAGE_DELETE_VIDEO_SUCCESS,

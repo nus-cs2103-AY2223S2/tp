@@ -32,6 +32,14 @@ public class TrackerTest {
     }
 
     @Test
+    public void clear_nonEmptyModuleList_emptyModuleList() {
+        Tracker tracker = TypicalModules.getTypicalTracker();
+        tracker.clear();
+
+        assertTrue(tracker.getModuleList().size() == 0);
+    }
+
+    @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> tracker.resetData(null));
     }
@@ -53,8 +61,13 @@ public class TrackerTest {
     }
 
     @Test
-    public void hasModule_nullModule_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> tracker.hasModule(null));
+    public void hasModuleReadOnlyModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> tracker.hasModule((ReadOnlyModule) null));
+    }
+
+    @Test
+    public void hasModuleModuleCode_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> tracker.hasModule((ModuleCode) null));
     }
 
     @Test
@@ -228,6 +241,16 @@ public class TrackerTest {
 
         @Override
         public ReadOnlyModule getModule(ModuleCode code) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(ReadOnlyModule module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
     }

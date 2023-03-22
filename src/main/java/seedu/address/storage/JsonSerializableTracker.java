@@ -48,6 +48,10 @@ class JsonSerializableTracker {
     public Tracker toModelType() throws IllegalValueException {
         Tracker tracker = new Tracker();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
+            if (jsonAdaptedModule == null) {
+                continue;
+            }
+
             Module module = jsonAdaptedModule.toModelType();
 
             if (tracker.hasModule(module)) {

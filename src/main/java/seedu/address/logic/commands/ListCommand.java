@@ -1,16 +1,25 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Level;
 import seedu.address.model.Model;
-import seedu.address.model.module.ModuleContainsKeywordsPredicate;
-import seedu.address.model.module.ModuleLectureContainsKeywordsPredicate;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
+import seedu.address.model.module.LecturePredicate;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.model.module.VideoPredicate;
+
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all modules/lectures/videos in the tracker to the user.
  */
 public class ListCommand extends Command {
 
@@ -18,45 +27,67 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all modules, lectures or videos.\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "cs2103 "
-            + PREFIX_LECTURE + "lecture-1 ";
+            + PREFIX_MODULE + " CS2040S "
+            + PREFIX_LECTURE + " Week 1";
 
-    public static final String MESSAGE_SUCCESS = "Listed all modules";
+    public static final String MESSAGE_SUCCESS_MODULES = "Listed all modules";
 
-    private ModuleContainsKeywordsPredicate modulePredicate;
+    public static final String MESSAGE_SUCCESS_LECTURES = "Listed all lectures from module: %s";
 
-    private ModuleLectureContainsKeywordsPredicate moduleLecturePredicate;
+    public static final String MESSAGE_SUCCESS_VIDEOS = "Listed all videos from module: %s, lecture: %s";
+
+    public static final String MESSAGE_FAIL_CODE = "Module code format is invalid";
+
+    private ModuleCode moduleCode;
+
+    private LectureName lectureName;
 
     /**
-     * Creates an empty ListCommand
+     * Creates a ListCommand to list content from current context
      */
     public ListCommand() {}
 
     /**
-     * Creates an ListCommand to add the specified {@code ModuleContainsKeywordsPredicate}
+     * Creates a ListCommand to list lecture contents from module context
+     * @param moduleCode
      */
-    public ListCommand(ModuleContainsKeywordsPredicate predicate) {
-        modulePredicate = predicate;
+    public ListCommand(ModuleCode moduleCode) {
+        this.moduleCode = moduleCode;
     }
 
     /**
-     * Creates an ListCommand to add the specified {@code ModuleLectureContainsKeywordsPredicate}
+     * Creates a ListCommand to list video contents from lecture context
+     * @param moduleCode
+     * @param lectureName
      */
-    public ListCommand(ModuleLectureContainsKeywordsPredicate predicate) {
-        moduleLecturePredicate = predicate;
+    public ListCommand(ModuleCode moduleCode, LectureName lectureName) {
+        this.moduleCode = moduleCode;
+        this.lectureName = lectureName;
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (modulePredicate != null) {
-            model.updateFilteredModuleList(modulePredicate);
-        } else if (moduleLecturePredicate != null) {
-            model.updateFilteredModuleList(moduleLecturePredicate);
-        } else {
-            model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        if (moduleCode != null && lectureName != null) {
+            if (!model.hasLecture(moduleCode, lectureName)) {
+                throw new CommandException(
+                    String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
+            }
+            ReadOnlyLecture lecture = model.getLecture(moduleCode, lectureName);
+            model.updateFilteredVideoList(new VideoPredicate(lecture), lecture);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_VIDEOS, moduleCode, lectureName), Level.VIDEO);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (moduleCode != null) {
+            if (!model.hasModule(moduleCode)) {
+                throw new CommandException(
+                    String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
+            }
+            ReadOnlyModule module = model.getModule(moduleCode);
+            model.updateFilteredLectureList(new LecturePredicate(module), module);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_LECTURES, moduleCode), Level.LECTURE);
+        }
+        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        return new CommandResult(MESSAGE_SUCCESS_MODULES, Level.MODULE);
     }
 
     @Override
@@ -66,14 +97,14 @@ public class ListCommand extends Command {
         }
         if (other instanceof ListCommand) {
             ListCommand otherCommand = (ListCommand) other;
-            if (modulePredicate != null && otherCommand.modulePredicate != null) {
-                return modulePredicate.equals(otherCommand.modulePredicate);
+            if (moduleCode != null && otherCommand.moduleCode != null) {
+                return moduleCode.equals(otherCommand.moduleCode);
             }
-            if (moduleLecturePredicate != null && otherCommand.moduleLecturePredicate != null) {
-                return moduleLecturePredicate.equals(otherCommand.moduleLecturePredicate);
+            if (lectureName != null && otherCommand.lectureName != null) {
+                return lectureName.equals(otherCommand.lectureName);
             }
-            return (modulePredicate == null && moduleLecturePredicate == null)
-                && (otherCommand.modulePredicate == null && otherCommand.moduleLecturePredicate == null);
+            return (moduleCode == null && lectureName == null)
+                && (otherCommand.moduleCode == null && otherCommand.lectureName == null);
         }
         return false;
     }

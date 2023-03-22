@@ -18,12 +18,11 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.navigation.NavigationContext;
-import seedu.address.model.person.Person;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the tracker data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -31,10 +30,10 @@ public class ModelManager implements Model {
     private final Tracker tracker;
     private final UserPrefs userPrefs;
     private final Navigation navigation;
-    private final FilteredList<? extends ReadOnlyModule> filteredModules;
-
-    private AddressBook addressBook; // TODO: Remove this
-    private FilteredList<Person> filteredPersons; // TODO: Remove this
+    private FilteredList<? extends ReadOnlyModule> filteredModules;
+    private FilteredList<? extends ReadOnlyLecture> filteredLectures;
+    private FilteredList<? extends Video> filteredVideos;
+    private Level lastListLevel;
 
     /**
      * Constructs a {@code ModelManager} using the provided {@code tracker} and {@code userPrefs}.
@@ -51,9 +50,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.navigation = new Navigation();
         filteredModules = new FilteredList<>(this.tracker.getModuleList());
-
-        addressBook = new AddressBook();
-        filteredPersons = new FilteredList<>(addressBook.getPersonList());
+        lastListLevel = Level.MODULE;
     }
 
     /**
@@ -108,13 +105,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearTracker() {
+        tracker.clear();
+    }
+
+    @Override
     public boolean hasModule(ReadOnlyModule module) {
         return tracker.hasModule(module);
     }
 
     @Override
     public boolean hasModule(ModuleCode moduleCode) {
-        return tracker.getModule(moduleCode) != null;
+        return tracker.hasModule(moduleCode);
     }
 
     @Override
@@ -139,22 +141,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasLecture(ReadOnlyModule module, ReadOnlyLecture lecture) {
-        requireNonNull(module);
-        return module.hasLecture(lecture);
-    }
-
-    @Override
     public boolean hasLecture(ModuleCode moduleCode, LectureName lectureName) {
-        ReadOnlyModule mod = tracker.getModule(moduleCode);
-        return mod != null && mod.getLecture(lectureName) != null;
+        return getLecture(moduleCode, lectureName) != null;
     }
 
     @Override
     public ReadOnlyLecture getLecture(ModuleCode moduleCode, LectureName lectureName) {
         ReadOnlyModule mod = tracker.getModule(moduleCode);
-        return mod.getLecture(lectureName);
+        return mod == null ? null : mod.getLecture(lectureName);
     }
+
     @Override
     public void deleteLecture(ReadOnlyModule module, ReadOnlyLecture target) {
         requireNonNull(module);
@@ -180,21 +176,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
-        requireNonNull(lecture);
-        return lecture.hasVideo(video);
+    public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+        return getVideo(moduleCode, lectureName, videoName) != null;
     }
 
     @Override
-    public boolean hasVideo(ReadOnlyLecture lecture, VideoName videoName) {
-        requireNonNull(lecture);
-        return lecture.hasVideo(videoName);
-    }
+    public Video getVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+        requireAllNonNull(moduleCode, lectureName, videoName);
 
-    @Override
-    public Video getVideo(ReadOnlyLecture lecture, VideoName videoName) {
-        requireNonNull(lecture);
-        return lecture.getVideo(videoName);
+        ReadOnlyModule mod = tracker.getModule(moduleCode);
+        if (mod == null) {
+            return null;
+        }
+
+        ReadOnlyLecture lec = mod.getLecture(lectureName);
+        if (lec == null) {
+            return null;
+        }
+
+        return lec.getVideo(videoName);
     }
 
     @Override
@@ -221,6 +221,27 @@ public class ModelManager implements Model {
         //CHECKSTYLE.ON: SeparatorWrap
     }
 
+    //=========== Filtered List Accessors =============================================================
+
+    @Override
+    public void updateAllFilteredListAsHidden() {
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    @Override
+    public Level getLastListLevel() {
+        return lastListLevel;
+    };
+
+    private Level setLastListLevel(Level listLevel) {
+        return lastListLevel = listLevel;
+    };
 
     //=========== Filtered Module List Accessors =============================================================
 
@@ -232,7 +253,59 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredModuleList(Predicate<? super ReadOnlyModule> predicate) {
         requireNonNull(predicate);
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
         filteredModules.setPredicate(predicate);
+        setLastListLevel(Level.MODULE);
+
+        // Hide other list components
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    //=========== Filtered Lecture List Accessors =============================================================
+
+    @Override
+    public ObservableList<? extends ReadOnlyLecture> getFilteredLectureList() {
+        return filteredLectures;
+    }
+
+    @Override
+    public void updateFilteredLectureList(Predicate<? super ReadOnlyLecture> predicate, ReadOnlyModule module) {
+        requireNonNull(predicate);
+        filteredLectures = new FilteredList<>(module.getLectureList());
+        filteredLectures.setPredicate(predicate);
+        setLastListLevel(Level.LECTURE);
+
+        // Hide other list components
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredVideos != null) {
+            filteredVideos.setPredicate(PREDICATE_HIDE_ALL_VIDEOS);
+        }
+    }
+
+    //=========== Filtered Video List Accessors =============================================================
+
+    @Override
+    public ObservableList<? extends Video> getFilteredVideoList() {
+        return filteredVideos;
+    }
+
+    @Override
+    public void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture) {
+        requireNonNull(predicate);
+        filteredVideos = new FilteredList<>(lecture.getVideoList());
+        filteredVideos.setPredicate(predicate);
+        setLastListLevel(Level.VIDEO);
+
+        // Hide other list components
+        filteredModules.setPredicate(PREDICATE_HIDE_ALL_MODULES);
+        if (filteredLectures != null) {
+            filteredLectures.setPredicate(PREDICATE_HIDE_ALL_LECTURES);
+        }
     }
 
     //=========== Navigation =================================================================================
@@ -292,61 +365,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return tracker.equals(other.tracker)
-            && userPrefs.equals(other.userPrefs)
-            && filteredModules.equals(other.filteredModules);
+                && userPrefs.equals(other.userPrefs)
+                && filteredModules.equals(other.filteredModules)
+                && navigation.equals(other.navigation);
     }
 
-    // TODO: Remove all code beyond this point
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
 }

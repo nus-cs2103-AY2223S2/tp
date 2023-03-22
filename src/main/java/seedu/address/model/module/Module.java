@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.lecture.Lecture;
@@ -15,6 +16,7 @@ import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.lecture.UniqueLectureList;
 import seedu.address.model.lecture.exceptions.DuplicateLectureException;
+import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,19 +33,6 @@ public class Module implements ReadOnlyModule {
 
     private final UniqueLectureList lectures = new UniqueLectureList();
 
-    // TODO: Consider removing this, also it is buggy
-    /**
-     * Constructs a {@code Module}.<p>
-     * Every field must be not null.
-     *
-     * @param code The module's code.
-     */
-    public Module(ModuleCode code) {
-        requireAllNonNull(code);
-        this.code = code;
-        this.name = new ModuleName(null);
-    }
-
     /**
      * Every field must be not null.
      *
@@ -52,13 +41,13 @@ public class Module implements ReadOnlyModule {
      * @param tags The tags applied to the module.
      * @param lectures The lectures of the module.
      */
-    public Module(ModuleCode code, ModuleName name, Set<Tag> tags, List<Lecture> lectures) {
+    public Module(ModuleCode code, ModuleName name, Set<Tag> tags, List<? extends ReadOnlyLecture> lectures) {
         requireAllNonNull(code, name, tags, lectures);
 
         this.code = code;
         this.name = name;
         this.tags.addAll(tags);
-        this.lectures.setLectures(lectures);
+        this.lectures.setLectures(lectures.stream().map((l) -> (Lecture) l).collect(Collectors.toList()));
     }
 
     @Override
@@ -99,6 +88,12 @@ public class Module implements ReadOnlyModule {
     }
 
     @Override
+    public boolean hasLecture(LectureName lectureName) {
+        requireNonNull(lectureName);
+        return getLecture(lectureName) != null;
+    }
+
+    @Override
     public boolean isSameModule(Module other) {
         if (other == this) {
             return true;
@@ -130,7 +125,7 @@ public class Module implements ReadOnlyModule {
      * @throws DuplicateLectureException Indicates that {@code editedLecture} is the same as another existing
      *                                   lecture in the module.
      */
-    public void setLecture(ReadOnlyLecture target, Lecture editedLecture) {
+    public void setLecture(ReadOnlyLecture target, Lecture editedLecture) throws LectureNotFoundException {
         requireNonNull(editedLecture);
 
         lectures.setLecture((Lecture) target, editedLecture);

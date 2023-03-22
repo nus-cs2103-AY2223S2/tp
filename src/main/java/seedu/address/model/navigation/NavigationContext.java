@@ -107,4 +107,25 @@ public class NavigationContext {
 
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof NavigationContext)) {
+            return false;
+        }
+
+        NavigationContext other = (NavigationContext) obj;
+
+        boolean moduleEquals = (moduleCode == null && other.moduleCode == null)
+                || (moduleCode.equals(other.moduleCode));
+
+        boolean lectureEquals = (lectureName == null && other.lectureName == null)
+                || (lectureName.equals(other.lectureName));
+
+        return moduleEquals && lectureEquals;
+    }
 }

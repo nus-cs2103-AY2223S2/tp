@@ -19,7 +19,7 @@ public class JsonAdaptedVideoTest {
     private static final String INVALID_TAG = "H@rd";
 
     private static final String VALID_NAME = TypicalVideos.CONTENT_VIDEO.getName().name;
-    private static final boolean VALID_HAS_WATCHED = false;
+    private static final boolean VALID_HAS_WATCHED = TypicalVideos.CONTENT_VIDEO.hasWatched();
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalVideos.CONTENT_VIDEO.getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
 
@@ -51,5 +51,24 @@ public class JsonAdaptedVideoTest {
                 new JsonAdaptedVideo(VALID_NAME, VALID_HAS_WATCHED, invalidTags);
         assertThrows(IllegalValueException.class, video::toModelType);
     }
+
+    @Test
+    public void toModelType_duplicateTags_duplicatesIgnored() throws Exception {
+        List<JsonAdaptedTag> duplicatedTags = new ArrayList<>(VALID_TAGS);
+        duplicatedTags.addAll(VALID_TAGS);
+
+        JsonAdaptedVideo video = new JsonAdaptedVideo(VALID_NAME, VALID_HAS_WATCHED, duplicatedTags);
+        assertEquals(TypicalVideos.CONTENT_VIDEO, video.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_nullValueIgnored() throws Exception {
+        List<JsonAdaptedTag> tagsContainingNull = new ArrayList<>(VALID_TAGS);
+        tagsContainingNull.add(null);
+
+        JsonAdaptedVideo video = new JsonAdaptedVideo(VALID_NAME, VALID_HAS_WATCHED, tagsContainingNull);
+        assertEquals(TypicalVideos.CONTENT_VIDEO, video.toModelType());
+    }
+
 
 }
