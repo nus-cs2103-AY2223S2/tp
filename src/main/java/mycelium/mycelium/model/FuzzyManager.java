@@ -3,7 +3,6 @@ package mycelium.mycelium.model;
 import java.util.logging.Logger;
 
 import mycelium.mycelium.commons.core.LogsCenter;
-import mycelium.mycelium.model.util.Fuzzy;
 import mycelium.mycelium.ui.MainWindow;
 import mycelium.mycelium.ui.commandbox.CommandBox;
 
@@ -24,34 +23,25 @@ public class FuzzyManager implements CommandBox.CommandInputListener {
     }
 
     @Override
-    public void onInputChanged(String rawInput, MainWindow mainWindow) {
-        if (rawInput.isEmpty()) {
+    public void onInputChanged(String input, MainWindow mainWindow) {
+        if (input.isEmpty()) {
             mainWindow.setClients(addressBook.getClientList());
             mainWindow.setProjects(addressBook.getProjectList());
             return;
         }
-        logger.info("Received fuzzy match request for: " + rawInput);
+        logger.info("Received fuzzy match request for: " + input);
 
         // The two lists we get here from the address book are immutable references. So we can do whatever with them
         // and not worry about messing up the address book's state.
         //
         // NOTE(jy): this is very inefficient, but it is simple and gets the job done for now.
 
-        var input = rawInput.toLowerCase();
         var clients = addressBook.getClientList()
-            .filtered(client -> Fuzzy.deltaPercent(input, client.getName().toString().toLowerCase()) > 0.0)
-            .sorted((client1, client2) -> {
-                var delta1 = Fuzzy.deltaPercent(input, client1.getName().toString().toLowerCase());
-                var delta2 = Fuzzy.deltaPercent(input, client2.getName().toString().toLowerCase());
-                return Double.compare(delta2, delta1);
-            });
+            .filtered(cli -> cli.fuzzyCompareTo(input) > 0.0)
+            .sorted((cli1, cli2) -> Double.compare(cli2.fuzzyCompareTo(input), cli1.fuzzyCompareTo(input)));
         var projects = addressBook.getProjectList()
-            .filtered(project -> Fuzzy.deltaPercent(input, project.getName().toString().toLowerCase()) > 0.0)
-            .sorted((project1, project2) -> {
-                var delta1 = Fuzzy.deltaPercent(input, project1.getName().toString().toLowerCase());
-                var delta2 = Fuzzy.deltaPercent(input, project2.getName().toString().toLowerCase());
-                return Double.compare(delta2, delta1);
-            });
+            .filtered(proj -> proj.fuzzyCompareTo(input) > 0.0)
+            .sorted((proj1, proj2) -> Double.compare(proj2.fuzzyCompareTo(input), proj1.fuzzyCompareTo(input)));
 
         mainWindow.setClients(clients);
         mainWindow.setProjects(projects);

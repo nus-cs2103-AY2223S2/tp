@@ -158,8 +158,8 @@ public class Project implements IsSame<Project>, FuzzyComparable<String> {
     }
 
     @Override
-    public double fuzzyCompareTo(String name) {
-        return Fuzzy.deltaPercent(name.toString(), name);
+    public double fuzzyCompareTo(String match) {
+        return Fuzzy.deltaPercent(name.toString().toLowerCase(), match.toLowerCase());
     }
 }
 

@@ -103,6 +103,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBox =
             new CommandBox(this, this::executeCommand, new FuzzyManager(logic.getAddressBook()), (mainWindow) -> {
             }, (mainWindow) -> {
+                // Just to "reset" the lists back to its state in the address book.
                 mainWindow.setClients(logic.getFilteredClientList());
                 mainWindow.setProjects(logic.getFilteredProjectList());
             });
