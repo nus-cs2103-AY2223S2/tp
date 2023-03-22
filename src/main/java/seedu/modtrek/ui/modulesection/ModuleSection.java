@@ -18,16 +18,12 @@ public class ModuleSection extends UiPart<Region> {
     protected HBox moduleSectionNav;
 
     @FXML
-    private StackPane moduleListPlaceholder;
+    protected StackPane moduleListPlaceholder;
 
     /**
      * Instantiates a ModuleSection.
-     * @param modules The list of modules to display in the ModuleSection.
      */
-    public ModuleSection(ObservableList<Module> modules) {
+    public ModuleSection() {
         super(FXML);
-
-        ModuleList moduleList = new ModuleList(modules);
-        moduleListPlaceholder.getChildren().add(moduleList.getRoot());
     }
 }
