@@ -1,5 +1,6 @@
 package seedu.recipe.ui;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import seedu.recipe.commons.core.GuiSettings;
 import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.logic.Logic;
@@ -17,11 +19,9 @@ import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.ui.events.DeleteRecipeEvent;
+import seedu.recipe.ui.events.EditRecipeEvent;
 
-/**
- * The Main Window. Provides the basic application layout containing
- * a menu bar and space where other JavaFX elements can be placed.
- */
+
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
@@ -52,7 +52,11 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Constructor that creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Initializes and configures the UI components.
+     *
+     * @param primaryStage the primary stage for this main window.
+     * @param logic the main logic instance of the application.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -68,13 +72,23 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
 
+        getRoot().addEventFilter(EditRecipeEvent.EDIT_RECIPE_EVENT_TYPE, this::handleEditRecipeEvent);
+
         helpWindow = new HelpWindow();
     }
 
+    /**
+     * Returns the primary stage of this main window.
+     *
+     * @return the primary stage.
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+    /**
+     * Sets accelerator for the help menu.
+     */
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
@@ -109,13 +123,57 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    /**
+     * Handles the DeleteRecipeEvent by executing the appropriate delete command
+     * based on the provided event data.
+     *
+     * @param event the DeleteRecipeEvent containing the index of the recipe to be deleted.
+     */
     private void handleDeleteRecipeEvent(DeleteRecipeEvent event) {
         int recipeIndex = event.getRecipeIndex();
         try {
-            String commandText = "delete " + (recipeIndex); // 1-indexed
+            String commandText = "delete " + (recipeIndex);
             executeCommand(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Failed to delete recipe: " + recipeIndex);
+        }
+    }
+
+    /**
+     * Handles the EditRecipeEvent by executing the appropriate edit command
+     * based on the provided event data. Updates the recipe with the changed values
+     * specified in the event.
+     *
+     * @param event the EditRecipeEvent containing the index of the recipe to be edited
+     *              and a map of the changed values.
+     */
+    private void handleEditRecipeEvent(EditRecipeEvent event) {
+        int recipeIndex = event.getRecipeIndex();
+        Map<String, String> changedValues = event.getChangedValues();
+        try {
+            StringBuilder commands = new StringBuilder();
+
+            // Add the index of the item to edit.
+            commands.append(recipeIndex);
+
+            // Check if the name has been changed and append the name prefix and value.
+            if (changedValues.containsKey("name")) {
+                commands.append(" n/");
+                commands.append(changedValues.get("name"));
+            }
+
+            // Check if the duration has been changed and append the duration prefix and value.
+            if (changedValues.containsKey("duration")) {
+                commands.append(" d/");
+                commands.append(changedValues.get("duration"));
+            }
+
+            //I'll add in more fields, but I need to make sure this works first.
+            String commandText = "edit " + commands.toString(); // 1-indexed
+            System.out.println(commandText);
+            executeCommand(commandText);
+        } catch (CommandException | ParseException e) {
+            logger.info("Failed to edit recipe: " + recipeIndex);
         }
     }
 
@@ -159,7 +217,10 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
-
+    
+    /**
+     * Makes the primary stage of this main window visible.
+     */
     void show() {
         primaryStage.show();
     }
@@ -176,14 +237,23 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Returns the {@code RecipeListPanel} contained in this main window.
+     *
+     * @return the {@code RecipeListPanel} instance.
+     */
     public RecipeListPanel getRecipeListPanel() {
         return recipeListPanel;
     }
 
     /**
-     * Executes the command and returns the result.
+     * Executes the command based on the given {@code commandText} and returns the result.
+     * Updates the UI components based on the command result.
      *
-     * @see seedu.recipe.logic.Logic#execute(String)
+     * @param commandText the command text to execute.
+     * @return the resulting {@code CommandResult} after executing the command.
+     * @throws CommandException if the command execution fails.
+     * @throws ParseException if the command text cannot be parsed.
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
