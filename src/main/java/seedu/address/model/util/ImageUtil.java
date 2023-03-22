@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -23,28 +24,28 @@ public class ImageUtil {
      * @return String file name of the new file.
      * @throws IOException when file I/O is unsuccessful.
      */
-    public static String importImage(String stringPath) throws IOException, ParseException, InvalidPathException {
+    public static String importImage(String stringPath) throws IOException, CommandException, InvalidPathException {
         try {
             checkDirectory();
         } catch (SecurityException se) {
-            throw new ParseException("Unable to import due to permissions.");
+            throw new CommandException("Unable to import due to permissions.");
         }
         if (stringPath == null || stringPath.isEmpty()) {
-            throw new ParseException("Path to image has not been included.");
+            throw new CommandException("Path to image has not been included.");
         }
         Path path = Paths.get(stringPath);
         if (!Files.exists(path)) {
-            throw new ParseException("Referenced file does not exist.");
+            throw new CommandException("Referenced file does not exist.");
         }
         assert Files.exists(path) : "File path invalid";
         String type = Files.probeContentType(path);
 
         if (type == null) {
-            throw new ParseException("File at path is not an image");
+            throw new CommandException("File at path is not an image");
         }
         boolean validImageType = type.equals("image/png") || type.equals("image/jpeg");
         if (!validImageType) {
-            throw new ParseException("Please only upload png or jpeg images.");
+            throw new CommandException("Please only upload png or jpeg images.");
         }
         assert type != null : "File Type is null";
         assert type.contains("image") : "File type is not image";

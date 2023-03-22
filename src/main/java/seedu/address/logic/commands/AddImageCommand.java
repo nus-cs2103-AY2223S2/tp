@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_IMAGE;
 import static seedu.address.model.util.ImageUtil.deleteImage;
+import static seedu.address.model.util.ImageUtil.importImage;
 
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -29,13 +31,13 @@ public class AddImageCommand extends Command {
             + PREFIX_ADD_IMAGE + "[IMAGE_PATH]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADD_IMAGE + "/pictures/johndoe.png";
     public static final String MESSAGE_SUCCESS = "Image Added";
-    private final Image toAdd;
+    private final String stringPath;
     private final Index index;
     /**
      * Creates an AddImageCommand to add the specified {@code Image}
      */
-    public AddImageCommand(Index index, Image image) {
-        toAdd = image;
+    public AddImageCommand(Index index, String stringPath) {
+        this.stringPath = stringPath;
         this.index = index;
     }
 
@@ -46,6 +48,20 @@ public class AddImageCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        Image newImage;
+        try {
+            String fileName = importImage(stringPath);
+            newImage = new Image(fileName);
+        } catch (CommandException ce) {
+            throw ce;
+        } catch (InvalidPathException ipe) {
+            throw new CommandException("Path to image provided is invalid.");
+        } catch (IOException io) {
+            if (io.getMessage().contains("Operation not permitted")) {
+                throw new CommandException("Upload failed due to lack of permission for directory/file.");
+            }
+            throw new CommandException("Upload image failed.");
+        }
         try {
             Image oldImage = personToEdit.getImage();
             if (!oldImage.imageName.equals(Image.DEFAULT_IMAGE)) {
@@ -58,7 +74,7 @@ public class AddImageCommand extends Command {
         }
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getStatus(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), toAdd);
+                personToEdit.getAddress(), personToEdit.getTags(), newImage);
         model.setPerson(personToEdit, editedPerson);
 
 
@@ -70,7 +86,7 @@ public class AddImageCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddImageCommand // instanceof handles nulls
-                && toAdd.equals(((AddImageCommand) other).toAdd));
+                && this.stringPath.equals(((AddImageCommand) other).stringPath));
     }
 
 }
