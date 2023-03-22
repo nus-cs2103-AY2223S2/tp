@@ -2,4 +2,5 @@
 
 <?import javafx.scene.control.TabPane?>
 
-<TabPane tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" />
+
+<TabPane focusTraversable="false" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" />

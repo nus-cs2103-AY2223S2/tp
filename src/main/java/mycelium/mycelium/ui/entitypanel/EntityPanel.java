@@ -7,7 +7,6 @@ import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import mycelium.mycelium.commons.core.LogsCenter;
-import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.UiPart;
@@ -30,10 +29,10 @@ public class EntityPanel extends UiPart<TabPane> {
      *
      * @param logic Logic to be used by the EntityPanel
      */
-    public EntityPanel(Logic logic) {
+    public EntityPanel(ObservableList<Project> projectList, ObservableList<Client> clientList) {
         super(FXML);
-        projectListPanel = new EntityList<Project>(logic.getFilteredProjectList(), ProjectEntity::new);
-        clientListPanel = new EntityList<Client>(logic.getFilteredClientList(), ClientEntity::new);
+        projectListPanel = new EntityList<Project>(projectList, ProjectEntity::new);
+        clientListPanel = new EntityList<Client>(clientList, ClientEntity::new);
         projectTab = new EntityTab("Projects", projectListPanel);
         clientTab = new EntityTab("Client", clientListPanel);
         this.selectionModel = getRoot().getSelectionModel();
@@ -43,15 +42,26 @@ public class EntityPanel extends UiPart<TabPane> {
         logger.fine("Initialised EntityPanel");
     }
 
-    public Tab getCurrentTab() {
-        return this.selectionModel.getSelectedItem();
-    }
-
+    /**
+     * Selects the client tab.
+     */
     public void selectClientTab() {
         this.selectionModel.select(this.clientTab.getRoot());
     }
 
+    /**
+     * Selects the project tab.
+     */
     public void selectProjectTab() {
         this.selectionModel.select(this.projectTab.getRoot());
+    }
+
+    /**
+     * Switches to the next tab.
+     */
+    public void nextTab() {
+        int size = this.tabs.size();
+        int i = this.selectionModel.getSelectedIndex();
+        this.selectionModel.select((i + 1) % size);
     }
 }
