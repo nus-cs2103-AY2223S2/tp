@@ -159,7 +159,9 @@ Here is how `Task` works:
 
 This is the class representation for the `Menu` class.
 
-<img src="images/MenuClassDiagram.png" width="450" />
+<p align ="center">
+   <img src="images/MenuClassDiagram.svg" width="450" />
+ </p>
 
 Here is how `Menu` works:
 
@@ -170,7 +172,9 @@ Here is how `Menu` works:
 
 This is the class representation for the `Order` class.
 
-<img src="images/OrderClassDiagram.png" width="450" />
+<p align ="center">
+   <img src="images/OrderClassDiagram.svg" width="450" />
+ </p>
 
 Here is how `Order` works:
 
