@@ -188,14 +188,14 @@ This section describes some noteworthy details on how certain features are imple
 
 **Target user profile**:
 
-* Business People on their computers most of their days
-* has a need to manage a significant number of contacts
+* Users who are on their computers most of their days
+* has a need to manage a significant number of contacts and meetings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts and meetings faster than a typical mouse/GUI driven app
 
 ### User stories
 
@@ -240,8 +240,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |`*`       | User who use the app for a long time                                       | Set a reminder to tag people | In future I can better organize people              |                                                                        |
 |`*`       | User who forget what is in contacts                                        | Ask if person/meeting still relevant | So that the contact remain relatively clean |                                                                        |
 |`*`       | User assign name to priority tag                                           | Customise the tags                                                                 | I can remember more easily who is ranked higher                        |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -435,7 +433,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **OS**: Operating System
 * **Java**: Programming Language by SUN Oracle
 * **CLI**: Command Line Interface
-
 
 --------------------------------------------------------------------------------------------------------------------
 
