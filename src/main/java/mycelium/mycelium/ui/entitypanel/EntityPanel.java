@@ -17,6 +17,9 @@ import mycelium.mycelium.ui.UiPart;
 public class EntityPanel extends UiPart<TabPane> {
     private static final String FXML = "EntityPanel.fxml";
     private Logger logger = LogsCenter.getLogger(getClass());
+
+
+
     private EntityList<Client> clientListPanel;
     private EntityList<Project> projectListPanel;
     private EntityTab projectTab;
@@ -26,8 +29,6 @@ public class EntityPanel extends UiPart<TabPane> {
 
     /**
      * Initialises a {@code EntityPanel} with a given {@code Logic}.
-     *
-     * @param logic Logic to be used by the EntityPanel
      */
     public EntityPanel(ObservableList<Project> projectList, ObservableList<Client> clientList) {
         super(FXML);
@@ -63,5 +64,19 @@ public class EntityPanel extends UiPart<TabPane> {
         int size = this.tabs.size();
         int i = this.selectionModel.getSelectedIndex();
         this.selectionModel.select((i + 1) % size);
+    }
+
+    /**
+     * Sets the clients in the client list panel.
+     */
+    public void setClients(ObservableList<Client> list) {
+        clientListPanel.setItems(list);
+    }
+
+    /**
+     * Sets the projects in the project list panel.
+     */
+    public void setProjects(ObservableList<Project> list) {
+        projectListPanel.setItems(list);
     }
 }
