@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <HBox alignment="CENTER" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="entityList" minHeight="100.0" prefWidth="340.0" styleClass="pane-with-border">
-         <children>
-            <StackPane fx:id="entityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-         </children>
-      </VBox>
-      <StackPane fx:id="entityDetailsPlaceholder" minHeight="100.0" minWidth="200.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS" />
+      <SplitPane dividerPositions="0.5" HBox.hgrow="ALWAYS">
+         <items>
+            <VBox fx:id="entityList" styleClass="pane-with-border">
+               <children>
+                  <StackPane fx:id="entityListPanelPlaceholder" minWidth="200.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Pane fx:id="entitiesTicker" minWidth="50.0">
+                     <children>
+                        <Label styleClass="label-header" stylesheets="@DnD.css" text="Editor" textFill="WHITE">
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <StackPane fx:id="entityDetailsPlaceholder" minWidth="200.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </VBox.margin>
+                  </StackPane>
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
    </children>
    <stylesheets>
       <URL value="@DarkTheme.css" />
