@@ -43,6 +43,15 @@ public class Parent extends Person {
     }
 
     /**
+     * A method that is used to change the parent's number
+     *
+     * @param phone Phone that is related to a Parent / NOK.
+     */
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    /**
      * Method to check if the Parent's phone number is valid.
      * @param test Phone number of Parent / NOK.
      * @return Returns true if the phone number is valid.

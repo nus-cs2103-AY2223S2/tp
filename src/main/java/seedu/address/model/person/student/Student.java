@@ -26,13 +26,14 @@ public class Student extends Person {
     protected Phone parentNumber;
     protected Name parentName;
     protected Relationship rls;
+    protected Phone studentNumber;
     private final IndexNumber indexNumber;
     private final Sex sex;
     private final Age age;
     private final Image image;
     private final Cca cca;
     private final Class sc;
-    private Attendance attendance;
+    private Set<Attendance> attendanceDates = new HashSet<>();
     private Set<Homework> homework = new HashSet<>();
     private Set<Test> test = new HashSet<>();
     private Set<Tag> tags;
@@ -52,7 +53,7 @@ public class Student extends Person {
      * @param age Student's age.
      * @param image Student's image.
      * @param email Student's email address.
-     * @param phone Student's contact number.
+     * @param studentNumber Student's contact number.
      * @param cca Student's CCA.
      * @param address Student's residential address.
      * @param attendance Student's attendance.
@@ -62,7 +63,7 @@ public class Student extends Person {
      */
     public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, Name parentName, Phone parentPhone,
                    Relationship rls, Age age, Image image, Email email, Phone phone, Cca cca, Address address,
-                   Attendance attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
+                   Set<Attendance> attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
@@ -70,7 +71,7 @@ public class Student extends Person {
         this.image = image;
         this.cca = cca;
         this.sc = sc;
-        this.attendance = attendance;
+        this.attendanceDates = attendance;
         this.homework.addAll(homework);
         this.test.addAll(test);
         this.comment = comment;
@@ -90,6 +91,26 @@ public class Student extends Person {
         this.parentName = parent.getName();
         this.parentNumber = parent.getPhone();
     }
+
+    /**
+     * A method that is used to change the parent's number in student
+     *
+     * @param parentNumber Phone that is related to a Parent / NOK.
+     */
+    public void setPhone(Phone parentNumber) {
+        this.parentNumber = parentNumber;
+    }
+
+
+    /**
+     * A method that returns the Parent.
+     *
+     * @return Parent.
+     */
+    public Parent getParent() {
+        return this.parent;
+    }
+
     /**
      * A method that returns the Parent / NOK name.
      *
@@ -176,8 +197,8 @@ public class Student extends Person {
      *
      * @return Student's attendance.
      */
-    public Attendance getAttendance() {
-        return attendance;
+    public Set<Attendance> getAttendance() {
+        return Collections.unmodifiableSet(attendanceDates);
     }
 
     /**
@@ -208,6 +229,18 @@ public class Student extends Person {
 
     public Class getSc() {
         return sc;
+    }
+
+    public Phone getStudentNumber() {
+        return studentNumber;
+    }
+
+    public Set<Tag> getTagList() {
+        return tags;
+    }
+
+    public Set<Homework> getHomeworkSet() {
+        return homework;
     }
 
     /**

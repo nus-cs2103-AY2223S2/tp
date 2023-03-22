@@ -37,12 +37,33 @@ public class ArgumentMultimap {
     public Optional<String> getValue(Prefix prefix) {
         if (!argMultimap.containsKey(prefix)) {
             switch(prefix.getPrefix()) {
+            case "n/":
+                Optional<String> missingName = Optional.of("Insert new name here!");
+                return missingName;
+            case "rls/":
+                Optional<String> missingRelationship = Optional.of("Insert parent relationship to student here!");
+                return missingRelationship;
+            case "pnP/":
+                Optional<String> missingParentPhone = Optional.of("Insert parent phone here!");
+                return missingParentPhone;
+            case "pn/":
+                Optional<String> missingParentName = Optional.of("Insert new name here!");
+                return missingParentName;
+            case "s/":
+                Optional<String> missingStudentSex = Optional.of("Insert student sex here!");
+                return missingStudentSex;
+            case "nc/":
+                Optional<String> missingStudentNewClass = Optional.of("Insert student class here!");
+                return missingStudentNewClass;
+            case "nin/":
+                Optional<String> missingStudentNewIndexNumber = Optional.of("Insert student index number here!");
+                return missingStudentNewIndexNumber;
             case "npnP/":
                 Optional<String> missingParentNewNumber = Optional.of("Insert parent phone here!");
                 return missingParentNewNumber;
             case "nn/":
-                Optional<String> missingName = Optional.of("Insert new name here!");
-                return missingName;
+                Optional<String> missingNewName = Optional.of("Insert new name here!");
+                return missingNewName;
             case "ageS/":
                 Optional<String> missingStudentAge = Optional.of("Insert student age here!");
                 return missingStudentAge;
@@ -65,7 +86,7 @@ public class ArgumentMultimap {
                 Optional<String> missingAddress = Optional.of("Insert Address here!");
                 return missingAddress;
             case "att/":
-                Optional<String> missingAttendance = Optional.of("Insert student attendance here!");
+                Optional<String> missingAttendance = Optional.of("F");
                 return missingAttendance;
             case "com/":
                 Optional<String> missingComment = Optional.of("Insert student comment here!");

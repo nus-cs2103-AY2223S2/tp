@@ -156,7 +156,6 @@ public class ParserUtil {
      * @return A Sex
      * @throws ParseException
      */
-
     public static Sex parseSex(String sex) throws ParseException {
         String trimmedSex = sex.trim().toUpperCase();
         if (!Sex.isValidSex(trimmedSex)) {
@@ -300,7 +299,6 @@ public class ParserUtil {
         if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        //Please edit this
         return new Attendance(attendance);
     }
 

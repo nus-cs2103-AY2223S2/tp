@@ -2,6 +2,7 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
@@ -62,6 +63,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_EMAILSTUDENT + "EMAIL STUDENT "
             + PREFIX_PHONESTUDENT + "PHONE STUDENT "
             + PREFIX_CCA + "CCA "
+            + PREFIX_ATTENDANCE + " T/F "
             + "]\n"
             + "Example: " + "student 1A " + COMMAND_WORD + " "
             + PREFIX_NAME + "Tan Ah Cow "
@@ -75,7 +77,8 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_IMAGESTUDENT + "C:// "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_PHONESTUDENT + "91234567 "
-            + PREFIX_CCA + "Captain Ball";
+            + PREFIX_CCA + "Captain Ball"
+            + PREFIX_ATTENDANCE + "T";
 
     public static final String MESSAGE_SUCCESS = "New student added:";
 
