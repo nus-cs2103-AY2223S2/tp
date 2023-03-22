@@ -28,9 +28,9 @@ UserPrefs ..u> ReadOnlyUserPrefs
 
 XYZList ..u|> ReadOnlyXYZList
 XYZList *--d> "         1" UniqueXYZList
-UniqueXYZList --> "~* all " XYZ
+UniqueXYZList --> "*" XYZ : contains all >
 
-ModelManager ---->"~* filtered" XYZ
+ModelManager ----> "*" XYZ : contains filtered >
 
 ItemList *-d> "1 " UniqueItemList
 UniqueItemList -d> "              *" Item
