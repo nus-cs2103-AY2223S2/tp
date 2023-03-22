@@ -1,11 +1,11 @@
 package seedu.address.model.documents;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a link to a cover letter in the internship application.
@@ -36,8 +36,7 @@ public class CoverLetterLink {
         try {
             new URL(test).toURI();
             return true;
-        }
-        catch (URISyntaxException | MalformedURLException exception) {
+        } catch (URISyntaxException | MalformedURLException exception) {
             return false;
         }
     }

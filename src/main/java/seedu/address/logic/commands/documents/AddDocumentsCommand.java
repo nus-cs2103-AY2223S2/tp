@@ -15,7 +15,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.person.*;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.JobTitle;
 
 /**
  * Adds links to a resume and/or cover letter to an application identified using it's displayed index
@@ -43,7 +47,7 @@ public class AddDocumentsCommand extends Command {
     private final Documents toAdd;
 
     /**
-     * @param targetIndex of the internship application to add contact details
+     * @param targetIndex of the internship application to add documents
      * @param documents documents to be added
      */
     public AddDocumentsCommand(Index targetIndex, Documents documents) {
@@ -71,8 +75,8 @@ public class AddDocumentsCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code InternshipApplication} with the details of {@code internshipToAddContact}
-     * added with the contact {@code toAdd}.
+     * Creates and returns a {@code InternshipApplication} with the details of {@code internshipToAddDocuments}
+     * added with the documents {@code toAdd}.
      */
     private static InternshipApplication createInternshipWithDocuments(InternshipApplication internshipToAddDocuments,
                                                                      Documents documents) {

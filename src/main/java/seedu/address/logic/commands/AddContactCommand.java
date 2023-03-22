@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -80,8 +81,9 @@ public class AddContactCommand extends Command {
         JobTitle jobTitle = internshipToAddContact.getJobTitle();
         InternshipStatus status = internshipToAddContact.getStatus();
         InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
+        Documents documents = internshipToAddContact.getDocuments();
 
-        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
+        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate, documents);
     }
 
     @Override

@@ -8,27 +8,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RESUME;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.documents.AddDocumentsCommand;
+import seedu.address.logic.commands.documents.EditDocumentsCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.documents.CoverLetterLink;
-import seedu.address.model.documents.Documents;
-import seedu.address.model.documents.ResumeLink;
 
 /**
- * Parses input arguments and creates a new AddContactCommand object
+ * Parses input arguments and creates a new EditDocumentsCommand object
  */
-public class AddDocumentsCommandParser implements Parser<AddDocumentsCommand> {
+public class EditDocumentsCommandParser implements Parser<EditDocumentsCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddContactCommand
      * and returns an AddContactCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddDocumentsCommand parse(String args) throws ParseException {
+    public EditDocumentsCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_RESUME, PREFIX_COVER_LETTER);
@@ -38,21 +35,26 @@ public class AddDocumentsCommandParser implements Parser<AddDocumentsCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDocumentsCommand.MESSAGE_USAGE),
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDocumentsCommand.MESSAGE_USAGE),
                     pe);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_RESUME, PREFIX_COVER_LETTER)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDocumentsCommand.MESSAGE_USAGE));
+        EditDocumentsCommand.EditDocumentsDescriptor editDocumentsDescriptor =
+                new EditDocumentsCommand.EditDocumentsDescriptor();
+        if (argMultimap.getValue(PREFIX_RESUME).isPresent()) {
+            editDocumentsDescriptor.setResumeLink(
+                    ParserUtil.parseResumeLink(argMultimap.getValue(PREFIX_RESUME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_COVER_LETTER).isPresent()) {
+            editDocumentsDescriptor.setCoverLetterLink(
+                    ParserUtil.parseCoverLetterLink(argMultimap.getValue(PREFIX_COVER_LETTER).get()));
         }
 
-        ResumeLink resumeLink = ParserUtil.parseResumeLink(argMultimap.getValue(PREFIX_RESUME).get());
-        CoverLetterLink coverLetterLink = ParserUtil.parseCoverLetterLink(argMultimap.getValue(PREFIX_COVER_LETTER)
-                .get());
+        if (!editDocumentsDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditDocumentsCommand.MESSAGE_NOT_EDITED);
+        }
 
-        Documents documents = new Documents(resumeLink, coverLetterLink);
-
-        return new AddDocumentsCommand(index, documents);
+        return new EditDocumentsCommand(index, editDocumentsDescriptor);
     }
 
     /**

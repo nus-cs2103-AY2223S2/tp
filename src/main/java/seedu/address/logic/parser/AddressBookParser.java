@@ -24,6 +24,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
 import seedu.address.logic.commands.documents.AddDocumentsCommand;
+import seedu.address.logic.commands.documents.EditDocumentsCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.note.ClearNoteCommand;
@@ -36,7 +37,7 @@ import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
 import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
 import seedu.address.logic.commands.task.todo.TodoCommand;
-import seedu.address.logic.parser.documents.AddDocumentsCommandParser;
+import seedu.address.logic.parser.documents.DocumentsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.FindTaskCommandParser;
 import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
@@ -145,9 +146,6 @@ public class AddressBookParser {
         case AddInterviewDateCommand.COMMAND_WORD:
             return new AddInterviewDateCommandParser().parse(arguments);
 
-        case AddDocumentsCommand.COMMAND_WORD:
-            return new AddDocumentsCommandParser().parse(arguments);
-
         case RevertCommand.COMMAND_WORD:
             return new RevertCommand();
 
@@ -159,6 +157,10 @@ public class AddressBookParser {
 
         case ListArchivedCommand.COMMAND_WORD:
             return new ListArchivedCommand();
+
+        case AddDocumentsCommand.COMMAND_WORD:
+        case EditDocumentsCommand.COMMAND_WORD:
+            return new DocumentsParser().parseDocumentsCommand(userInput);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
