@@ -580,7 +580,24 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 #### **Exit Command**
 
-{to be filled}
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/ExitCommand.java)
+
+The `exit` command allows users to exit the EduMate Application via the command line.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Command Formats:**
+* `exit`: Exits the EduMate Application.
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Info**: Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed through multiple classes then to the `MainWindow` class to handle the exit.
+
+</div>
+
+
 
 ### **Parsers**
 
