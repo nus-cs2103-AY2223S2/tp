@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   * User Guide:
     * To be added
   * Developer Guide:
-    * To be added.
+    * Update target user profile, value proposition, user stories, use cases
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): To be added
