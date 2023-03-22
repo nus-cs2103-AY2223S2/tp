@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
 
 import java.util.Collections;
@@ -17,7 +18,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.StateHistory;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.tag.Tag;
 
 public class UndoCommandTest {
 
@@ -73,7 +73,7 @@ public class UndoCommandTest {
         commands[4] = new DeleteCommand(Index.fromZeroBased(0));
         commands[5] = new AddCommand(CARL);
         commands[6] = new ListCommand();
-        commands[7] = new TagCommand(Index.fromZeroBased(1), new Tag("tag"));
+        commands[7] = new AddCommand(FIONA);
         commands[8] = new AddCommand(ELLE);
 
         Model expectedModel = new ModelManager();
