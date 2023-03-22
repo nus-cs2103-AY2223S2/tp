@@ -54,4 +54,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     ObservableList<Pair<String, String>> getReviewStatsList();
+
+    ObservableList<Pair<String, String>> getDeckNameList();
 }

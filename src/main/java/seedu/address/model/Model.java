@@ -156,4 +156,6 @@ public interface Model {
     void setNumCardsPerReview(int i);
 
     ObservableList<Pair<String, String>> getReviewStatsList();
+
+    ObservableList<Pair<String, String>> getDeckNameList();
 }

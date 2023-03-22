@@ -1,5 +1,9 @@
 package seedu.address.model.deck;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.util.Pair;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -11,6 +15,7 @@ public class Deck {
     public static final String MESSAGE_CONSTRAINTS = "Deck name can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public final String deckName;
+    private ObservableList<Pair<String, String>> deckNameList;
 
     /**
      * Constructing a deck.
@@ -19,6 +24,8 @@ public class Deck {
     public Deck(String deckName) {
         requireAllNonNull(deckName);
         this.deckName = deckName;
+        // initialise deckNameList
+        this.deckNameList = FXCollections.observableArrayList();
     }
 
     /**
@@ -27,6 +34,17 @@ public class Deck {
      */
     public String getDeckName() {
         return this.deckName;
+    }
+
+    /**
+     * Returns a header consisting of the title and the deckname wrapped in an Observablelist
+     * @return deckNameList
+     */
+    public ObservableList<Pair<String, String>> getDeckNameList() {
+        this.deckNameList.clear();
+        Pair<String, String> deckHeader = new Pair("Current Deck:",this.deckName);
+        this.deckNameList.add(deckHeader);
+        return this.deckNameList;
     }
 
     /**
@@ -77,5 +95,6 @@ public class Deck {
     public String toString() {
         return this.deckName;
     }
+
 
 }

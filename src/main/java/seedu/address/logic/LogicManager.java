@@ -88,6 +88,10 @@ public class LogicManager implements Logic {
         return model.getFilteredDeckList();
     }
 
+    public ObservableList<Pair<String, String>> getDeckNameList() {
+        return model.getDeckNameList();
+    }
+
     @Override
     public Path getMasterDeckFilePath() {
         return model.getMasterDeckFilePath();

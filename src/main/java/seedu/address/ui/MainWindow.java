@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Stack;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -38,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     //PLACEHOLDER FOR DECKLIST
     private UiPart<Region> leftPanel;
+    private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane rightPanelPlaceholder;
 
     @FXML
+    private StackPane rightPanelTitle;
+
+    @FXML
     private StackPane leftPanelPlaceholder;
 
     @FXML
@@ -61,6 +66,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TextFlow titlePanel;
+
 
 
     /**
@@ -185,6 +191,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
+        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitle.getChildren().add(rightTitle.getRoot());
+
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().removeAll();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());

@@ -230,6 +230,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Pair<String, String>> getDeckNameList() {
+        return selectedDeck.getDeckNameList();
+    }
+
+    @Override
     public int getDeckSize(int deckIndex) {
         Deck deck = filteredDecks.get(deckIndex);
         return new FilteredList<>(
