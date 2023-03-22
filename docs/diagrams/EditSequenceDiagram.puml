@@ -33,16 +33,16 @@ create EditCommand
 EditCommandParser -> EditCommand
 activate EditCommand
 
-EditCommand --> EditCommandParser : d
+EditCommand --> EditCommandParser : "e:EditCommand"
 deactivate EditCommand
 
-EditCommandParser --> InternBuddyParser : d
+EditCommandParser --> InternBuddyParser : "e:EditCommand"
 deactivate EditCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 EditCommandParser -[hidden]-> InternBuddyParser
 destroy EditCommandParser
 
-InternBuddyParser --> LogicManager : d
+InternBuddyParser --> LogicManager : "e:EditCommand"
 deactivate InternBuddyParser
 
 LogicManager -> EditCommand : execute()
