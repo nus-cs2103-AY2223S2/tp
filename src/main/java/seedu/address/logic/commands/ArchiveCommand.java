@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ArchiveCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
@@ -47,7 +48,7 @@ public class ArchiveCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof ArchiveCommand // instanceof handles nulls
+                && targetIndex.equals(((ArchiveCommand) other).targetIndex)); // state check
     }
 }
