@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.function.Predicate;
-
 /**
  * Tests that an {@code InternshipApplication}'s {@code InternshipDate}
  * is before the specified date given.
@@ -9,6 +7,11 @@ import java.util.function.Predicate;
 public class BeforeDatePredicate extends DatePredicate {
     private final InterviewDate beforeDate;
 
+    /**
+     * Creates a BeforeDatePredicate with boundary date specified (inclusive).
+     *
+     * @param beforeDate The date to compare to
+     */
     public BeforeDatePredicate(InterviewDate beforeDate) {
         this.beforeDate = beforeDate;
     }

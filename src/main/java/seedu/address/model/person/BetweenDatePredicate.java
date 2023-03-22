@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.function.Predicate;
-
 /**
  * Tests that an {@code InternshipApplication}'s {@code InternshipDate}
  * is between the specified dates given.
@@ -10,6 +8,12 @@ public class BetweenDatePredicate extends DatePredicate {
     private final InterviewDate startDate;
     private final InterviewDate endDate;
 
+    /**
+     * Creates a BetweenDatePredicate with boundary dates specified (both inclusive).
+     *
+     * @param startDate The start date of the interval
+     * @param endDate The end date of the interval
+     */
     public BetweenDatePredicate(InterviewDate startDate, InterviewDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;

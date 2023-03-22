@@ -89,7 +89,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      *
      * @param argMultimap Maps containing mapping of prefixes to their respective arguments
      * @return true if and only if the map contains only prefixes {@code PREFIX_DATE_FROM}
-     * and {@code PREFIX_DATE_TO} to its argument
+     *     and {@code PREFIX_DATE_TO} to its argument
      */
     private boolean isFindBetweenDateCommand(ArgumentMultimap argMultimap) {
         return !argMultimap.getValue(PREFIX_STATUS).isPresent()
