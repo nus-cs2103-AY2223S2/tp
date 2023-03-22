@@ -34,7 +34,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
 
-        AddCardDescriptor expectedCardDescriptor = new AddCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
+        AddCardDescriptor expectedCardDescriptor = new AddCardDescriptorBuilder()
+                .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS)
                 .withAnswer(VALID_ANSWER_PHOTOSYNTHESIS).withTags(VALID_TAG_MEDIUM).build();
 
         // whitespace only preamble

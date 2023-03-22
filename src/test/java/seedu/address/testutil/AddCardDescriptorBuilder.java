@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +11,9 @@ import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A utility class to help with building AddCardDescriptor objects.
+ */
 public class AddCardDescriptorBuilder {
 
     private AddCardDescriptor descriptor;
@@ -24,6 +26,9 @@ public class AddCardDescriptorBuilder {
         this.descriptor = new AddCardDescriptor(descriptor);
     }
 
+    /**
+     * Returns an {@code AddCardDescriptor} with fields containing {@code card}'s details
+     */
     public AddCardDescriptorBuilder(Card card) {
         descriptor = new AddCardDescriptor();
         descriptor.setQuestion(card.getQuestion());
@@ -32,11 +37,17 @@ public class AddCardDescriptorBuilder {
         descriptor.setDeck(card.getDeck());
     }
 
+    /**
+     * Sets the {@code Question} of the {@code AddCardDescriptor} that we are building.
+     */
     public AddCardDescriptorBuilder withQuestion(String questions) {
         descriptor.setQuestion(new Question(questions));
         return this;
     }
 
+    /**
+     * Sets the {@code Answer} of the {@code AddCardDescriptor} that we are building.
+     */
     public AddCardDescriptorBuilder withAnswer(String answer) {
         descriptor.setAnswer(new Answer(answer));
         return this;
@@ -52,10 +63,15 @@ public class AddCardDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Returns a AddCardDescriptor instance
+     *
+     * @return the AddCardDescriptor instance
+     */
     public AddCardDescriptor build() {
         if (descriptor.getTags().isEmpty()) {
             descriptor.setTags(new HashSet<>()); // tags cannot be empty
-        };
+        }
         return descriptor;
     }
 
