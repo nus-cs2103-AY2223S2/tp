@@ -1,26 +1,53 @@
 @startuml
 !include style.puml
 
-Actor User as user USER_COLOR
-Participant ":UI" as ui UI_COLOR
-Participant ":Logic" as logic LOGIC_COLOR
-Participant ":Model" as model MODEL_COLOR
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskBookParser" as TaskBookParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
 
-user -[USER_COLOR]> ui : "find n/read"
-activate ui UI_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
-ui -[UI_COLOR]> logic : execute("find n/read")
-activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : updateFilteredTaskList(predicate)
-activate model MODEL_COLOR
+[-> LogicManager : execute("find n/read")
+activate LogicManager
 
-model -[MODEL_COLOR]-> logic
-deactivate model
+LogicManager -> TaskBookParser : parseCommand("find")
+activate TaskBookParser
 
-logic --[LOGIC_COLOR]> ui
-deactivate logic
+create FindCommand
+TaskBookParser -> FindCommand
+activate FindCommand
 
-ui--[UI_COLOR]> user
-deactivate ui
+FindCommand --> TaskBookParser : f
+deactivate FindCommand
+
+TaskBookParser --> LogicManager : f
+deactivate TaskBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredTaskList
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
 @enduml
