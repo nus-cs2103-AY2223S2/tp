@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationDateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
@@ -137,6 +140,22 @@ public class ParserUtil {
             return Optional.empty();
         } else {
             return Optional.of(new InterviewDateTime(trimmedDateTime));
+        }
+    }
+
+    /**
+     * Parses a {@code String dateTime} into an {@code ApplicationDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @return Now if empty argument
+     */
+    public static ApplicationDateTime parseApplied(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (trimmedDateTime.isEmpty()) {
+            return new ApplicationDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+        } else {
+            return new ApplicationDateTime(DateTimeParser.parseDateTime(trimmedDateTime));
         }
     }
 }

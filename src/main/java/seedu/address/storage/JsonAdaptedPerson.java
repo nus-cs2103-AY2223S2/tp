@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationDateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
@@ -124,20 +126,35 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = Status.valueOf(status);
 
+        if (applicationDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ApplicationDateTime.class.getSimpleName()));
+        }
+
+        if (!DateTimeParser.isValidDateTime(applicationDate)) {
+            throw new IllegalValueException(ApplicationDateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        final ApplicationDateTime modelApplicationDateTime = new ApplicationDateTime(
+                DateTimeParser
+                .parseDateTime(applicationDate));
+
         if (interviewDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     InterviewDateTime.class.getSimpleName()));
         }
 
-        if (!InterviewDateTime.isValidDateTime(interviewDate)) {
+        if (!DateTimeParser.isValidDateTime(interviewDate)) {
             throw new IllegalValueException(InterviewDateTime.MESSAGE_CONSTRAINTS);
         }
 
         //will not throw ParseException as it has been checked in previous line
-        final Optional<InterviewDateTime> interviewDateTime = InterviewDateTime.createInterviewDateTime(interviewDate);
+        final Optional<InterviewDateTime> modelInterviewDateTime = InterviewDateTime
+                .createInterviewDateTime(interviewDate);
 
         final Set<Note> modelNotes = new HashSet<>(personNotes);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, interviewDateTime, modelNotes);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelApplicationDateTime,
+                modelInterviewDateTime, modelNotes);
     }
 
 }

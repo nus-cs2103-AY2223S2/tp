@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.ApplicationDateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.InterviewDateTime;
 import seedu.address.model.person.Name;
@@ -102,6 +103,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Status updatedStatus = personToEdit.getStatus(); //User not allowed to edit applicant status directly
+        ApplicationDateTime applicationDateTime = personToEdit.getApplicationDateTime();
         Optional<InterviewDateTime> updatedInterviewDateTime = editPersonDescriptor.getDateTime();
         if (!updatedInterviewDateTime.isPresent()) {
             updatedInterviewDateTime = personToEdit.getInterviewDateTime();
@@ -109,7 +111,7 @@ public class EditCommand extends Command {
         Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus,
-                updatedInterviewDateTime, updatedNotes);
+                applicationDateTime, updatedInterviewDateTime, updatedNotes);
     }
 
     @Override
@@ -208,7 +210,6 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-
         public void setNotes(Set<Note> notes) {
             this.notes = (notes != null) ? new HashSet<>(notes) : null;
         }

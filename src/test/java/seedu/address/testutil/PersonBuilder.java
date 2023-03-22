@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -27,6 +28,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "APPLIED";
+    public static final LocalDateTime DEFAULT_APPLICATIONDATETIME =
+            LocalDateTime.of(2023, 02, 02, 14, 0);
 
     private Name name;
     private Phone phone;
@@ -46,6 +49,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         status = Status.valueOf(DEFAULT_STATUS);
+        applicationDateTime = new ApplicationDateTime(DEFAULT_APPLICATIONDATETIME);
         interviewDateTime = Optional.empty();
         notes = new HashSet<>();
     }
@@ -59,6 +63,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
+        applicationDateTime = personToCopy.getApplicationDateTime();
         interviewDateTime = personToCopy.getInterviewDateTime();
         notes = new HashSet<>(personToCopy.getNotes());
     }
@@ -141,7 +146,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, status, interviewDateTime, notes);
+        return new Person(name, phone, email, address, status, applicationDateTime, interviewDateTime, notes);
     }
 
 }

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIEDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -51,6 +52,9 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_BOB = "APPLIED";
     public static final String VALID_STATUS_JOE = "REJECTED";
 
+    public static final String VALID_APPLICATIONDATE_AMY = "03-05-2023 13:00";
+    public static final String VALID_APPLICATIONDATE_BOB = "04-06-2023 19:30";
+
     public static final String VALID_NOTE_HUSBAND = "husband";
     public static final String VALID_NOTE_FRIEND = "friends";
 
@@ -71,6 +75,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_JOE = " " + PREFIX_ADDRESS + VALID_ADDRESS_JOE;
 
     public static final String INTERVIEW_AMY = " " + PREFIX_DATETIME + VALID_INTERVIEW_DATE_AMY;
+    public static final String APPLIED_DESC_AMY = " " + PREFIX_APPLIEDTIME + VALID_APPLICATIONDATE_AMY;
+    public static final String APPLIED_DESC_BOB = " " + PREFIX_APPLIEDTIME + VALID_APPLICATIONDATE_BOB;
+
     public static final String TAG_DESC_FRIEND = " " + PREFIX_NOTE + VALID_NOTE_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_NOTE + VALID_NOTE_HUSBAND;
 
