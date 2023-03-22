@@ -20,7 +20,7 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the person identified by the index used in the displayed person list.\n"
-            + "Parameters: Index(must be positive number) \n"
+            + "Parameters: Index (must be positive number) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "New Tag added: %1$s";
