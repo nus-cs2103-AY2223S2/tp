@@ -15,7 +15,7 @@ public class ProgressTest {
 
     @Test
     public void constructor_invalidProgress_throwsIllegalArgumentException() {
-        String invalidProgress = "";
+        String[] invalidProgress = {"", "a", "!"}
         assertThrows(IllegalArgumentException.class, () -> new Progress(invalidProgress));
     }
 
@@ -25,13 +25,11 @@ public class ProgressTest {
         assertThrows(NullPointerException.class, () -> Progress.isValidProgress(null));
 
         // invalid progress
-        // currently only accepts alphanumeric values
-        assertFalse(Progress.isValidProgress("")); // empty string
-        assertFalse(Progress.isValidProgress(" ")); // spaces only
-        assertFalse(Progress.isValidProgress("Finish*")); // "*" is not allowed
+        assertFalse(Progress.isValidProgress(new String[]{" ", " ", " "})); // empty string
+        assertFalse(Progress.isValidProgress(new String[]{"a", "*", "!"})); // non-numeric
+        assertFalse(Progress.isValidProgress(new String[]{"~", "~", "~"})); // all ~
         // valid progress
-        assertTrue(Progress.isValidProgress("Finish")); // single word
-        assertTrue(Progress.isValidProgress("In Progress")); // letters and spaces
-        assertTrue(Progress.isValidProgress("12345")); // numbers
+        assertTrue(Progress.isValidProgress(new String[]{"1", "65", "24"})); // all numeric
+        assertTrue(Progress.isValidProgress(new String[]{"~", "32", "~"})); // numerics + ~
     }
 }

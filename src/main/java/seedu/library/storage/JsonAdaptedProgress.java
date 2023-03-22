@@ -2,10 +2,13 @@ package seedu.library.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
+
 import seedu.library.commons.exceptions.IllegalValueException;
 import seedu.library.model.bookmark.Progress;
 
+/**
+ * Jackson-friendly version of {@link Progress}.
+ */
 public class JsonAdaptedProgress {
     private final String volume;
     private final String chapter;

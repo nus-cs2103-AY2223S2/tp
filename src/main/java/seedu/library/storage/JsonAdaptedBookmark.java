@@ -79,7 +79,7 @@ class JsonAdaptedBookmark {
         }
         final Title modelTitle = new Title(title);
 
-        final Progress modelProgress= progress.toModelType();
+        final Progress modelProgress = progress.toModelType();
 
         if (genre == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));
