@@ -8,8 +8,12 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyNote;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.task.note.NoteStorage;
+import seedu.address.storage.task.todo.TodoListStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,13 +23,18 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private TodoListStorage todoListStorage;
+    private NoteStorage noteStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          TodoListStorage todoListStorage, NoteStorage noteStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.todoListStorage = todoListStorage;
+        this.noteStorage = noteStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,4 +84,59 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ TodoList methods ==============================
+    @Override
+    public Path getTodoListFilePath() {
+        return todoListStorage.getTodoListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException {
+        return readTodoList(todoListStorage.getTodoListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return todoListStorage.readTodoList(filePath);
+    }
+
+    @Override
+    public void saveTodoList(ReadOnlyTodoList todoList) throws IOException {
+        saveTodoList(todoList, todoListStorage.getTodoListFilePath());
+    }
+
+    @Override
+    public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        todoListStorage.saveTodoList(todoList, filePath);
+    }
+
+    // ================ NoteList methods ==============================
+    @Override
+    public Path getNoteListFilePath() {
+        return noteStorage.getNoteListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyNote> readNoteList() throws DataConversionException, IOException {
+        return readNoteList(noteStorage.getNoteListFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyNote> readNoteList(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return noteStorage.readNoteList(filePath);
+    }
+
+    @Override
+    public void saveNoteList(ReadOnlyNote note) throws IOException {
+        saveNoteList(note, noteStorage.getNoteListFilePath());
+    }
+
+    @Override
+    public void saveNoteList(ReadOnlyNote note, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        noteStorage.saveNoteList(note, filePath);
+    }
 }

@@ -18,12 +18,11 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueApplicationList applications;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     * NoteList that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
     {
@@ -77,7 +76,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(application);
         return applications.contains(application);
     }
-
     //// person-level operations
 
     /**
@@ -141,7 +139,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeApplication(InternshipApplication key) {
         applications.remove(key);
     }
-
     //// util methods
 
     @Override
@@ -159,6 +156,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {

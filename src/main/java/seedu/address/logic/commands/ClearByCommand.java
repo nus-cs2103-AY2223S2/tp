@@ -42,6 +42,7 @@ public class ClearByCommand extends Command {
             + COMMAND_WORD + " s/REJECTED Clears all rejected application (with STATUS as REJECTED).";
 
     public static final String MESSAGE_INVALID_PARAMETER = "Invalid param!";
+    public static final String MESSAGE_NO_PARAMETER = "Please provide clear_by parameter!";
     public static final String MESSAGE_CLEAR_SUCCESS = "All internship application with %s : %s has been cleared!";
     public static final String MESSAGE_NULL = "There is nothing to clear!";
     public static final String MESSAGE_FAILED = "Clear command cannot be executed!";
