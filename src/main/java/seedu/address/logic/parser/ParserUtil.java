@@ -11,15 +11,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tutee.Address;
-import seedu.address.model.tutee.Email;
-import seedu.address.model.tutee.Name;
-import seedu.address.model.tutee.Phone;
-import seedu.address.model.tutee.Subject;
-import seedu.address.model.tutee.Schedule;
-import seedu.address.model.tutee.StartTime;
-import seedu.address.model.tutee.EndTime;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -164,9 +164,9 @@ public class ParserUtil {
         if (!EndTime.isValidEndTime(trimmedEndTime)) {
             throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
         }
-        DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime parsedEndTime = LocalTime.parse(endTime, TIME_FORMATTER);
-        LocalTime parsedStartTime = LocalTime.parse(startTime, TIME_FORMATTER);
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedEndTime = LocalTime.parse(endTime, timeFormatter);
+        LocalTime parsedStartTime = LocalTime.parse(startTime, timeFormatter);
         if (parsedEndTime.isBefore(parsedStartTime)) {
             throw new ParseException(EndTime.MESSAGE_CONSTRAINTS_AFTER_START_TIME);
         }

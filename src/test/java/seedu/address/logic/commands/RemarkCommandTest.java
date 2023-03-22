@@ -16,9 +16,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.tutee.Remark;
 import seedu.address.model.tutee.Tutee;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.tutee.fields.Remark;
+import seedu.address.testutil.TuteeTestBuilder;
+
 class RemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";
 
@@ -27,7 +28,7 @@ class RemarkCommandTest {
     @Test
     public void execute_deleteRemarkUnfilteredList_success() {
         Tutee firstTutee = model.getFilteredTuteeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Tutee editedTutee = new PersonBuilder(firstTutee).withRemark("").build();
+        Tutee editedTutee = new TuteeTestBuilder(firstTutee).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON,
                 new Remark(editedTutee.getRemark().toString()));
@@ -46,10 +47,17 @@ class RemarkCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Tutee firstTutee = model.getFilteredTuteeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Tutee editedTutee = new PersonBuilder(model.getFilteredTuteeList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Tutee editedTutee = new TuteeTestBuilder(model.getFilteredTuteeList()
+                .get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedTutee.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(
+            INDEX_FIRST_PERSON,
+            new Remark(
+                editedTutee.getRemark()
+                    .toString()
+            )
+        );
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedTutee);
 

@@ -21,7 +21,8 @@ public class PersonCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TuteeManagingSystem level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on
+     * TuteeManagingSystem level 4</a>
      */
 
     public final Tutee tutee;
@@ -58,15 +59,15 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.tutee = tutee;
         id.setText(displayedIndex + ". ");
-        name.setText(tutee.getName().fullName);
-        phone.setText(tutee.getPhone().value);
-        address.setText(tutee.getAddress().value);
-        email.setText(tutee.getEmail().value);
-        subject.setText(tutee.getSubject().subject);
-        schedule.setText(tutee.getSchedule().schedule);
-        startTime.setText(tutee.getStartTime().startTime);
-        endTime.setText(tutee.getEndTime().endTime);
-        remark.setText(tutee.getRemark().value);
+        name.setText(tutee.getName().toString());
+        phone.setText(tutee.getPhone().toString());
+        address.setText(tutee.getAddress().toString());
+        email.setText(tutee.getEmail().toString());
+        subject.setText(tutee.getSubject().toString());
+        schedule.setText(tutee.getSchedule().toString());
+        startTime.setText(tutee.getStartTime().toString());
+        endTime.setText(tutee.getEndTime().toString());
+        remark.setText(tutee.getRemark().toString());
         tutee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

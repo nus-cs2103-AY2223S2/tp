@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTEES;
 
@@ -21,9 +19,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tutee.*;
-import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutee.Tutee;
+import seedu.address.model.tutee.TuteeBuilder;
+import seedu.address.model.tutee.fields.Address;
+import seedu.address.model.tutee.fields.Email;
+import seedu.address.model.tutee.fields.EndTime;
+import seedu.address.model.tutee.fields.Name;
+import seedu.address.model.tutee.fields.Phone;
+import seedu.address.model.tutee.fields.Schedule;
+import seedu.address.model.tutee.fields.StartTime;
+import seedu.address.model.tutee.fields.Subject;
 
 /**
  * Edits the details of an existing tutee in the address book.
@@ -92,19 +98,18 @@ public class EditCommand extends Command {
     private static Tutee createEditedPerson(Tutee tuteeToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert tuteeToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(tuteeToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(tuteeToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(tuteeToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(tuteeToEdit.getAddress());
-        Remark updatedRemark = tuteeToEdit.getRemark(); // edit command does not allow editing remarks
-        Subject updatedSubject = editPersonDescriptor.getSubject().orElse(tuteeToEdit.getSubject());
-        Schedule updatedSchedule = editPersonDescriptor.getSchedule().orElse(tuteeToEdit.getSchedule());
-        StartTime updatedStartTime = editPersonDescriptor.getStartTime().orElse(tuteeToEdit.getStartTime());
-        EndTime updatedEndTime = editPersonDescriptor.getEndTime().orElse(tuteeToEdit.getEndTime());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(tuteeToEdit.getTags());
+        TuteeBuilder builder = new TuteeBuilder(tuteeToEdit);
+        editPersonDescriptor.getName().ifPresent(builder::withName);
+        editPersonDescriptor.getPhone().ifPresent(builder::withPhone);
+        editPersonDescriptor.getEmail().ifPresent(builder::withEmail);
+        editPersonDescriptor.getAddress().ifPresent(builder::withAddress);
+        editPersonDescriptor.getSubject().ifPresent(builder::withSubject);
+        editPersonDescriptor.getSchedule().ifPresent(builder::withSchedule);
+        editPersonDescriptor.getStartTime().ifPresent(builder::withStartTime);
+        editPersonDescriptor.getEndTime().ifPresent(builder::withEndTime);
+        editPersonDescriptor.getTags().ifPresent(builder::withTags);
 
-        return new Tutee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedSubject
-                ,updatedSchedule, updatedStartTime, updatedEndTime, updatedTags);
+        return builder.build();
     }
 
     @Override
@@ -197,21 +202,37 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setSubject(Subject subject) { this.subject = subject; }
+        public void setSubject(Subject subject) {
+            this.subject = subject;
+        }
 
-        public Optional<Subject> getSubject() { return Optional.ofNullable(subject); }
+        public Optional<Subject> getSubject() {
+            return Optional.ofNullable(subject);
+        }
 
-        public void setSchedule(Schedule schedule) { this.schedule = schedule; }
+        public void setSchedule(Schedule schedule) {
+            this.schedule = schedule;
+        }
 
-        public Optional<Schedule> getSchedule() { return Optional.ofNullable(schedule); }
+        public Optional<Schedule> getSchedule() {
+            return Optional.ofNullable(schedule);
+        }
 
-        public void setStartTime(StartTime startTime) { this.startTime = startTime; }
+        public void setStartTime(StartTime startTime) {
+            this.startTime = startTime;
+        }
 
-        public Optional<StartTime> getStartTime() { return Optional.ofNullable(startTime); }
+        public Optional<StartTime> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
 
-        public void setEndTime(EndTime endTime) { this.endTime = endTime; }
+        public void setEndTime(EndTime endTime) {
+            this.endTime = endTime;
+        }
 
-        public Optional<EndTime> getEndTime() { return Optional.ofNullable(endTime); }
+        public Optional<EndTime> getEndTime() {
+            return Optional.ofNullable(endTime);
+        }
 
         /**
          * Sets {@code tags} EndTime this object's {@code tags}.

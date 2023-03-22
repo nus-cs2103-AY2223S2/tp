@@ -25,7 +25,7 @@ import seedu.address.model.TuteeManagingSystem;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TuteeTestBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -36,7 +36,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Tutee editedTutee = new PersonBuilder().build();
+        Tutee editedTutee = new TuteeTestBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedTutee).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -54,7 +54,7 @@ public class EditCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredTuteeList().size());
         Tutee lastTutee = model.getFilteredTuteeList().get(indexLastPerson.getZeroBased());
 
-        PersonBuilder personInList = new PersonBuilder(lastTutee);
+        TuteeTestBuilder personInList = new TuteeTestBuilder(lastTutee);
         Tutee editedTutee = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
@@ -89,7 +89,7 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Tutee tuteeInFilteredList = model.getFilteredTuteeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Tutee editedTutee = new PersonBuilder(tuteeInFilteredList).withName(VALID_NAME_BOB).build();
+        Tutee editedTutee = new TuteeTestBuilder(tuteeInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
