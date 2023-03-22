@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INTERVAL;
 
 import java.util.Arrays;
 
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindDateCommand;
 import seedu.address.logic.commands.FindStatusCommand;
@@ -147,8 +146,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STATUS, PREFIX_DATE_BEFORE, PREFIX_DATE_AFTER,
-                        PREFIX_DATE_BEFORE, PREFIX_DATE_AFTER);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_STATUS, PREFIX_DATE_BEFORE, PREFIX_DATE_AFTER, PREFIX_DATE_FROM, PREFIX_DATE_TO);
         verifyFindCommandOptions(argMultimap);
         if (isFindStatusCommand(argMultimap)) {
             InternshipStatus status = ParserUtil.parseInternshipStatus(argMultimap.getValue(PREFIX_STATUS).get());
