@@ -279,6 +279,11 @@ Use case ends.
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 roles without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The CLI should be easy to use, with intuitive commands and clear error messages.
+5. The CLI should be reliable and stable, with no crashes or data corruption.
+6. The CLI should be fast and responsive, with minimal latency and minimal resource usage.
+7. The CLI should be accessible to users with different abilities and needs, including support for assistive technologies and localization.
+
 
 *{More to be added}*
 
