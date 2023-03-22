@@ -179,6 +179,8 @@ The mark feature mechanism is implemented by having the Event class keep track o
 
 ### Linkcontact feature
 
+The link contact feature allows users to link a contact to an event.
+
 #### Implementation
 The `linkcontact` feature is facilitated by `Event` class.
 The feature is implemented as follows:
