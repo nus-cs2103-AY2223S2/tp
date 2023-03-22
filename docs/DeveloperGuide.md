@@ -107,7 +107,9 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="centre">
+  <img src="images/LogicClassDiagram.png" width="550"/>
+</p>
 
 How the `Logic` component works:
 
@@ -121,12 +123,14 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+  :information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<p align="centre">
+  <img src="images/ParserClasses.png" width="600"/>
+</p> 
 
 How the parsing works:
 
@@ -181,16 +185,8 @@ This is the class representation for the `Task` class.
 Here is how `Task` works:
 
 * Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
-* Each of the attributes inherit off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
+* Each of the attributes inherits off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
-
-[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative &#40;arguably, a more OOP&#41; model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>)
-
-[//]: # ()
-[//]: # (<img src="images/BetterModelClassDiagram.png" width="450" />)
-
-[//]: # ()
-[//]: # (</div>)
 
 ### Storage component
 
