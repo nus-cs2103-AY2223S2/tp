@@ -175,7 +175,7 @@ The `AddCommand#execute` calls `Model#addApplication`, causing an update to the 
 
 Step 3. Result
 
-The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`. 
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`.
 
 
 ### Add contact feature
