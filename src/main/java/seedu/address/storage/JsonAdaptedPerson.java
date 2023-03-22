@@ -3,10 +3,13 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -23,6 +26,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Person}.
  */
+@JsonInclude(Include.NON_NULL)
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
@@ -64,11 +68,11 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
-        phone = source.getOptionalPhone().map(Phone::toString).orElse("");
-        email = source.getOptionalEmail().map(Email::toString).orElse("");
-        address = source.getOptionalAddress().map(Address::toString).orElse("");
-        education = source.getOptionalEducation().map(Education::toString).orElse("");
-        remark = source.getOptionalRemark().map(Remark::toString).orElse("");
+        phone = source.getOptionalPhone().map(Phone::toString).orElse(null);
+        email = source.getOptionalEmail().map(Email::toString).orElse(null);
+        address = source.getOptionalAddress().map(Address::toString).orElse(null);
+        education = source.getOptionalEducation().map(Education::toString).orElse(null);
+        remark = source.getOptionalRemark().map(Remark::toString).orElse(null);
         subjects.addAll(source.getSubjects().stream()
                 .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
@@ -101,43 +105,38 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
+        final Phone modelPhone = phone == null
+            ? null
+            : Optional.of(phone)
+                    .filter(Phone::isValidPhone)
+                    .map(Phone::new)
+                    .orElseThrow(() -> new IllegalValueException(Phone.MESSAGE_CONSTRAINTS));
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
+        final Email modelEmail = email == null
+            ? null
+            : Optional.of(email)
+                    .filter(Email::isValidEmail)
+                    .map(Email::new)
+                    .orElseThrow(() -> new IllegalValueException(Email.MESSAGE_CONSTRAINTS));
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
 
-        if (education == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Education.class.getSimpleName()));
-        }
-        if (!Education.isValidEducation(education)) {
-            throw new IllegalValueException(Education.MESSAGE_CONSTRAINTS);
-        }
-        final Education modelEducation = new Education(education);
+        final Address modelAddress = address == null
+            ? null
+            : Optional.of(address)
+                    .filter(Address::isValidAddress)
+                    .map(Address::new)
+                    .orElseThrow(() -> new IllegalValueException(Address.MESSAGE_CONSTRAINTS));
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
+        final Education modelEducation = education == null
+            ? null
+            : Optional.of(education)
+                    .filter(Education::isValidEducation)
+                    .map(Education::new)
+                    .orElseThrow(() -> new IllegalValueException(Education.MESSAGE_CONSTRAINTS));
+
+        final Remark modelRemark = remark == null
+            ? null
+            : new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
