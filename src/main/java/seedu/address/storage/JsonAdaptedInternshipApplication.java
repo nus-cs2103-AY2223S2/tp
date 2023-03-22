@@ -115,16 +115,10 @@ public class JsonAdaptedInternshipApplication {
             final Email modelEmail = new Email(contact.get(1));
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
-            if (modelInterviewDate != null) {
-                return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
-                        modelInterviewDate);
-            } else {
-                return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus);
-            }
-        } else if (modelInterviewDate != null) {
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus, modelInterviewDate);
-        } else {
-            return new InternshipApplication(modelCompanyName, modelJobTitle, modelStatus);
+            return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
+                    modelInterviewDate);
         }
+
+        return new InternshipApplication(modelCompanyName, modelJobTitle, null, modelStatus, modelInterviewDate);
     }
 }

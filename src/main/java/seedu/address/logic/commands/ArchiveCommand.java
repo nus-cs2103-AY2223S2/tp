@@ -13,6 +13,7 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
 
 /**
@@ -70,12 +71,9 @@ public class ArchiveCommand extends Command {
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
         Contact contact = internshipApplication.getContact();
+        InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        if (contact != null) {
-            return new InternshipApplication(companyName, jobTitle, contact, InternshipStatus.ARCHIVED);
-        } else {
-            return new InternshipApplication(companyName, jobTitle, InternshipStatus.ARCHIVED);
-        }
+        return new InternshipApplication(companyName, jobTitle, contact, InternshipStatus.ARCHIVED, interviewDate);
     }
 
     @Override
