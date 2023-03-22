@@ -49,9 +49,10 @@ public class ModelManager implements Model {
         this.todoList = new TodoList(todoList);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
-        cachedInternshipList = new ArrayList<>();
         filteredTodo = new FilteredList<>(this.todoList.getTodoList());
         filteredNote = new FilteredList<>(this.noteList.getNoteList());
+        cachedInternshipList = new ArrayList<>();
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
     public ModelManager() {
@@ -184,11 +185,6 @@ public class ModelManager implements Model {
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
-    @Override
-    public void addApplications(List<InternshipApplication> applications) {
-        addressBook.addApplications(applications);
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
-    }
 
     @Override
     public void addTodo(InternshipTodo todo) {
@@ -200,6 +196,14 @@ public class ModelManager implements Model {
     public void addNote(Note note) {
         noteList.addNote(note);
         updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    /**
+     * Add applications into the tracker.
+     */
+    public void addApplications(List<InternshipApplication> applications) {
+        addressBook.addApplications(applications);
+        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
     @Override

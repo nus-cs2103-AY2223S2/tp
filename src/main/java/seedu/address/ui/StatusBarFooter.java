@@ -50,7 +50,7 @@ public class StatusBarFooter extends UiPart<Region> {
 
         default:
             saveLocationStatus.setText(Paths.get(".").resolve(logic.getAddressBookFilePath()).toString());
-    }
+        }
 
     }
 

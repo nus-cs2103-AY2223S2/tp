@@ -39,70 +39,11 @@ public class InternshipApplication {
     }
 
     /**
-     * Every field must be present and not null.
-     */
-    public InternshipApplication(CompanyName name, JobTitle job, Contact contact) {
-        requireAllNonNull(name, job);
-        this.companyName = name;
-        this.jobTitle = job;
-        this.contact = contact;
-        this.status = InternshipStatus.NA;
-        this.interviewDate = null;
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InterviewDate interviewDate) {
-        requireAllNonNull(name, job);
-        this.companyName = name;
-        this.jobTitle = job;
-        this.contact = contact;
-        this.status = InternshipStatus.NA;
-        this.interviewDate = interviewDate;
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public InternshipApplication(CompanyName name, JobTitle job, InternshipStatus status) {
-        requireAllNonNull(name, job, status);
-        this.companyName = name;
-        this.jobTitle = job;
-        this.contact = null;
-        this.status = status;
-        this.interviewDate = null;
-    }
-    /**
-     * Every field must be present and not null.
-     */
-    public InternshipApplication(CompanyName name, JobTitle job, InternshipStatus status, InterviewDate interviewDate) {
-        requireAllNonNull(name, job, status);
-        this.companyName = name;
-        this.jobTitle = job;
-        this.contact = null;
-        this.status = status;
-        this.interviewDate = interviewDate;
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
-    public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InternshipStatus status) {
-        requireAllNonNull(name, job, contact, status);
-        this.companyName = name;
-        this.jobTitle = job;
-        this.contact = contact;
-        this.status = status;
-        this.interviewDate = null;
-    }
-
-    /**
-     * Every field must be present and not null.
+     * The company name and job title field must be present and not null.
      */
     public InternshipApplication(CompanyName name, JobTitle job, Contact contact, InternshipStatus status,
                                  InterviewDate interviewDate) {
-        requireAllNonNull(name, job, contact, status, interviewDate);
+        requireAllNonNull(name, job);
         this.companyName = name;
         this.jobTitle = job;
         this.contact = contact;

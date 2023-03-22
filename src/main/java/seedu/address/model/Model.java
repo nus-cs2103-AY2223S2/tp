@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
@@ -25,12 +26,19 @@ public interface Model {
      */
     Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
 
+    /** {@code Predicate} that evaluate to true for all unarchived applications */
+    Predicate<InternshipApplication> PREDICATE_SHOW_ONGOING_APPLICATIONS = internshipApplication ->
+            internshipApplication.getStatus() != InternshipStatus.ARCHIVED;
+
+    /** {@code Predicate} that evaluate to true for all archived internship applications */
+    Predicate<InternshipApplication> PREDICATE_SHOW_ARCHIVED_APPLICATIONS = internshipApplication ->
+            internshipApplication.getStatus() == InternshipStatus.ARCHIVED;
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<InternshipTodo> PREDICATE_SHOW_ALL_TODO = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -151,12 +159,6 @@ public interface Model {
     void addApplication(InternshipApplication application);
 
     /**
-     * Adds the given applications.
-     * {@code InternshipApplications} must not already exist in the tracker.
-     */
-    void addApplications(List<InternshipApplication> applications);
-
-    /**
      * Adds the given todo.
      * {@code todo} must not already exist in the tracker.
      */
@@ -167,6 +169,12 @@ public interface Model {
      * {@code note} must not already exist in the tracker.
      */
     void addNote(Note note);
+
+    /**
+     * Adds the given applications.
+     * {@code InternshipApplications} must not already exist in the tracker.
+     */
+    void addApplications(List<InternshipApplication> applications);
 
     /**
      * Adds the given person.
@@ -204,7 +212,9 @@ public interface Model {
      */
     void setNote(Note target, Note editedNote);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**

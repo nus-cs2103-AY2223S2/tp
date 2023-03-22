@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +40,11 @@ public class ClearByCommand extends Command {
             + "Clears all application with the specified keyword - COMPANY_NAME, JOB_TITLE or STATUS.\n"
             + "Three types of clear_by features are provided, but can only execute independently.\n"
             + "Examples: \n"
-            + COMMAND_WORD + " n/Meta Clears all application with COMPANY_NAME as Meta.\n"
-            + COMMAND_WORD + " j/Software engineer Clears all application with JOB_TITLE as Software Engineer.\n"
-            + COMMAND_WORD + " s/REJECTED Clears all rejected application (with STATUS as REJECTED).";
+            + COMMAND_WORD + " " + PREFIX_COMPANY_NAME + "Meta Clears all application with COMPANY_NAME as Meta.\n"
+            + COMMAND_WORD + " " + PREFIX_JOB_TITLE + "Software engineer Clears all application with JOB_TITLE as "
+            + "Software Engineer.\n"
+            + COMMAND_WORD + " " + PREFIX_STATUS
+            + "REJECTED Clears all rejected application (with STATUS as REJECTED).";
 
     public static final String MESSAGE_INVALID_PARAMETER = "Invalid param!";
     public static final String MESSAGE_NO_PARAMETER = "Please provide clear_by parameter!";

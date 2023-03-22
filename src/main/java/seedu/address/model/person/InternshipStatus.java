@@ -8,7 +8,8 @@ public enum InternshipStatus {
     PENDING,
     RECEIVED,
     REJECTED,
-    NO;
+    NO,
+    ARCHIVED;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status can only be of one of the following five types: NA, PENDING, RECEIVED, REJECTED or NO";
@@ -21,7 +22,7 @@ public enum InternshipStatus {
     public static boolean isValidStatus(String test) {
         InternshipStatus[] internshipStatuses = InternshipStatus.values();
         for (InternshipStatus internshipStatus : internshipStatuses) {
-            if (internshipStatus.name().equals(test)) {
+            if (internshipStatus.name().equals(test.toUpperCase())) {
                 return true;
             }
         }

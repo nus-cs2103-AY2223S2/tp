@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddInterviewDateCommand;
+import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearByCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -18,21 +19,22 @@ import seedu.address.logic.commands.EditStatusCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RevertAllCommand;
 import seedu.address.logic.commands.RevertCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
+import seedu.address.logic.commands.task.note.AddNoteCommand;
 import seedu.address.logic.commands.task.note.ClearNoteCommand;
 import seedu.address.logic.commands.task.note.DeleteNoteCommand;
 import seedu.address.logic.commands.task.note.ListNoteCommand;
-import seedu.address.logic.commands.task.note.AddNoteCommand;
+import seedu.address.logic.commands.task.todo.AddTodoCommand;
 import seedu.address.logic.commands.task.todo.ClearTodoCommand;
 import seedu.address.logic.commands.task.todo.DeleteTodoCommand;
 import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
 import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
-import seedu.address.logic.commands.task.todo.AddTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.TaskParser;
 
@@ -103,6 +105,12 @@ public class AddressBookParser {
 
         case ClearByCommand.COMMAND_WORD:
             return new ClearByCommandParser().parse(arguments);
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case ListArchivedCommand.COMMAND_WORD:
+            return new ListArchivedCommand();
 
         case RevertCommand.COMMAND_WORD:
             return new RevertCommand();

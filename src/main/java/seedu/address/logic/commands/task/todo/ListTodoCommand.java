@@ -10,7 +10,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.tag.TodoType;
 import seedu.address.model.task.InternshipTodo;
-
 /**
  * Lists all persons in the address book to the user.
  */
