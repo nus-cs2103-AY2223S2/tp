@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 
 /**
- * Adds a category to the address book.
+ * Adds a category to the Expense Tracker.
  */
 public class AddCategory extends Command {
 

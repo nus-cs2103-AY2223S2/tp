@@ -64,6 +64,9 @@ public class ExpenseTrackerParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 

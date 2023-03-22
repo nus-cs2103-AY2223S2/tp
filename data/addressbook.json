@@ -1,5 +1,6 @@
 {
   "categories" : [ {
+<<<<<<< HEAD
     "categoryName" : "a",
     "summary" : "ijifnbinbsg"
   }, {
@@ -63,3 +64,34 @@
     }
   } ]
 }
+=======
+    "categoryName" : "food",
+    "summary" : "summary"
+  } ],
+  "expenses" : [ {
+    "name" : "apple",
+    "amount" : "1.5",
+    "date" : "2023-03-16",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : "summary"
+    }
+  }, {
+    "name" : "orange",
+    "amount" : "2.0",
+    "date" : "2023-03-16",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : "summary"
+    }
+  }, {
+    "name" : "Fuji Apple",
+    "amount" : "2.0",
+    "date" : "2023-03-16",
+    "category" : {
+      "categoryName" : "food",
+      "summary" : "summary"
+    }
+  } ]
+}
+>>>>>>> a00a01a450cb914edba525f72dfe57b2c9d6002f
