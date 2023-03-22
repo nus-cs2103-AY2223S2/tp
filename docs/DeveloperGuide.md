@@ -177,6 +177,29 @@ The mark feature mechanism is implemented by having the Event class keep track o
 **Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
 
 
+### Linkcontact feature
+
+#### Implementation
+The `linkcontact` feature is facilitated by `Event` class.
+The feature is implemented as follows:
+* When a user adds an event, he can optionally add a contact to the event.
+* When a user edits an event, he can optionally add a contact to the event.
+* When a user edits an event, he can optionally change the contact of the event.
+* If the user specify a contact that does not exist in the contact list, the event will not be added/edited.
+* If the user specify a contact that already exists in the contact list, the event will be added/edited with the contact.
+
+The linkcontact feature will take in a contact number as a parameter. This parameter will be used to search for the contact in the contact list.
+1. If the contact is found, the contact will be linked to the event.
+2. If the contact is not found, the event will not be added/edited.
+
+#### Design consideration:
+* **Alternative 1 (current choice):** Add a `Contact` attribute to `Event` class.
+    * Pros: Easy to implement.
+    * Cons: May violate Single Responsibility Principle as `Event` class now has to handle both event and contact.
+* **Alternative 2:** Add the `contact` as just a normal string attribute to `Event` class.
+    * Pros: Even easier to implement.
+    * Cons: Hard to implement filtering of events by contact in the future.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
