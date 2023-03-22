@@ -22,13 +22,13 @@ public abstract class Task {
      *
      * @param title The title of the Task.
      */
-    public Task(Title title, Description description, Priority priority) {
+    public Task(Title title, Description description) {
         assert title != null;
 
         this.title = title;
         this.description = description;
         this.isDone = false;
-        this.priority = priority == null ? Priority.MEDIUM : priority;
+//        this.priority = priority == null ? Priority.MEDIUM : priority;
     }
 
 

@@ -20,8 +20,8 @@ public class Event extends Task {
      * @param eventDateTimes The date-times associated with the Event.
      * @param priority The priority of the Event.
      */
-    public Event(Title title, Description description, Priority priority, EventDateTimes eventDateTimes) {
-        super(title, description, priority);
+    public Event(Title title, Description description, EventDateTimes eventDateTimes) {
+        super(title, description);
 
         assert eventDateTimes != null;
         this.eventDateTimes = eventDateTimes;

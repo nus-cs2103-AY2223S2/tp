@@ -20,8 +20,8 @@ public class ToDo extends Task {
      * @param by The deadline date-time of the ToDo.
      * @param priority The priority of the ToDo.
      */
-    public ToDo(Title title, Description description, Priority priority, TodoDateTime by) {
-        super(title, description, priority);
+    public ToDo(Title title, Description description, TodoDateTime by) {
+        super(title, description);
 
         assert by != null;
         this.byDateTime = by;
