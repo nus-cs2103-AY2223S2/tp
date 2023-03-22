@@ -51,7 +51,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> dateList = this.parseDates(argMultimap.getAllValues(PREFIX_DATE));
         List<String> tagList = this.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        return new FindCommand(new InternshipContainsKeywordsPredicate(nameList, roleList, statusList, tagList));
+        return new FindCommand(new InternshipContainsKeywordsPredicate(nameList, roleList, statusList, dateList,
+                tagList));
     }
 
     private List<String> parseCompanyNames(List<String> unparsedNames) throws ParseException {

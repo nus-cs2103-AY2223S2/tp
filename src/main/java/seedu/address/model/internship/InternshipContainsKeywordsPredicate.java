@@ -12,6 +12,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     private final List<String> nameKeywords;
     private final List<String> roleKeywords;
     private final List<String> statusKeywords;
+    private final List<String> keyDates;
     private final List<String> tagKeywords;
 
     /**
@@ -20,10 +21,12 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
      * @param nameKeywords The keywords to check for in the Internship's company name.
      */
     public InternshipContainsKeywordsPredicate(List<String> nameKeywords, List<String> roleKeywords,
-                                               List<String> statusKeywords, List<String> tagKeywords) {
+                                               List<String> statusKeywords, List<String> keyDates,
+                                               List<String> tagKeywords) {
         this.nameKeywords = nameKeywords;
         this.roleKeywords = roleKeywords;
         this.statusKeywords = statusKeywords;
+        this.keyDates = keyDates;
         this.tagKeywords = tagKeywords;
     }
 
