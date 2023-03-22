@@ -34,6 +34,7 @@ public class ModelManager implements Model {
     private final FilteredList<ClassList> filteredClassLists;
 
     private final AssignmentList assignmentList = new AssignmentList();
+    private Predicate<ClassList> activeClassListPredicate;
 
     /**
      * Initializes a ModelManager with the given classList and userPrefs.
@@ -47,8 +48,9 @@ public class ModelManager implements Model {
         this.classList = new ClassList(addressBook);
         UniqueClassLists temp = new UniqueClassLists(this.classList);
         this.tutor = new Tutor(new Name("James"), new HashSet<>(), temp);
-        filteredStudents = new FilteredList<>(this.classList.getStudentList());
-        filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
+        this.filteredStudents = new FilteredList<>(this.classList.getStudentList());
+        this.filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
+        this.activeClassListPredicate = null;
 
         for (Student student : this.classList.getUniqueStudentList()) {
             addStudentToTaggedClasses(student);
@@ -117,7 +119,12 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student student) {
         classList.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        addStudentToTaggedClasses(student);
+        if (activeClassListPredicate == null) {
+            updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        } else {
+            updateFilteredClassLists(activeClassListPredicate);
+        }
     }
 
     @Override
@@ -181,6 +188,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
+        this.activeClassListPredicate = null;
         filteredStudents.setPredicate(predicate);
     }
 
@@ -188,7 +196,8 @@ public class ModelManager implements Model {
     public void updateFilteredClassLists(Predicate<ClassList> predicate) {
         requireNonNull(predicate);
         //filteredClassLists.setPredicate(predicate);
-        FilteredList<ClassList> filtered = filteredClassLists.filtered(predicate);
+        this.activeClassListPredicate = predicate;
+        FilteredList<ClassList> filtered = filteredClassLists.filtered(this.activeClassListPredicate);
         if (filtered.size() > 0) {
             filteredStudents.setPredicate(new SameStudentPredicate(filtered.get(0)));
         } else {

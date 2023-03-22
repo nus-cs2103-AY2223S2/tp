@@ -65,7 +65,7 @@ public class UniqueClassLists implements Iterable<ClassList> {
      */
     public void addStudent(Student student, String className) {
         for (ClassList lst: this.internalList) {
-            if (lst.getClassId().equals(className)) {
+            if (lst.getClassId().equals(className) && !lst.hasStudent(student)) {
                 lst.addStudent(student);
                 return;
             }
