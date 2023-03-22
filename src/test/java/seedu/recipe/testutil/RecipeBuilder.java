@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
-import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -21,14 +21,14 @@ public class RecipeBuilder {
     private RecipeDuration duration;
     private RecipePortion portion;
     private Set<Tag> tags = new HashSet<>();
-    private List<RecipeIngredient> ingredients = new ArrayList<>();
+    private List<IngredientBuilder> ingredients = new ArrayList<>();
     private List<Step> steps = new ArrayList<>();
 
     /**
      * Creates a {@code RecipeBuilder} with the default details.
      */
     public RecipeBuilder(Name name, RecipePortion portion, RecipeDuration duration,
-                         Set<Tag> tags, List<RecipeIngredient> ingredients, List<Step> steps) {
+                         Set<Tag> tags, List<IngredientBuilder> ingredients, List<Step> steps) {
         this.name = name;
         this.portion = portion;
         this.duration = duration;
@@ -59,7 +59,7 @@ public class RecipeBuilder {
         out.setDuration(duration);
         out.setPortion(portion);
         out.setTags(tags.toArray(Tag[]::new));
-        out.setIngredients(ingredients.toArray(RecipeIngredient[]::new));
+        out.setIngredients(ingredients.toArray(IngredientBuilder[]::new));
         out.setSteps(steps.toArray(Step[]::new));
         return out;
     }

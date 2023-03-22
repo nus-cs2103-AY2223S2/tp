@@ -6,11 +6,11 @@ import seedu.recipe.model.recipe.exceptions.RecipeQuantityInvalidArgumentExcepti
 import seedu.recipe.model.recipe.unit.RecipeIngredientQuantityUnit;
 
 /**
- * Represents the Quantity field associated with a {@code RecipeIngredient}.
+ * Represents the Quantity field associated with a {@code IngredientBuilder}.
  */
 public class RecipeIngredientQuantity {
     public static final String MESSAGE_CONSTRAINTS =
-            "The quantity for a Recipe RecipeIngredient should consist of this format:\n"
+            "The quantity for a Recipe IngredientBuilder should consist of this format:\n"
             + "`{amount} {unit}`, and the unit should comprise of alphabetic characters, "
             + "where the amount can either be a non-zero decimal, `A/a`, or `One/one`."
             + "i.e. `1 gram`, `1.5 L`, `A pinch of`, `One oz.`";

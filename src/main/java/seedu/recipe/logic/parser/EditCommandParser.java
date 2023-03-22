@@ -20,7 +20,7 @@ import seedu.recipe.logic.commands.EditCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.recipe.RecipeIngredient;
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
 
@@ -93,7 +93,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    private Optional<List<RecipeIngredient>> parseIngredientsForEdit(
+    private Optional<List<IngredientBuilder>> parseIngredientsForEdit(
             Collection<String> ingredients) throws ParseException {
         assert ingredients != null;
 

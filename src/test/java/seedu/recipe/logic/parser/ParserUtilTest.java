@@ -16,8 +16,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
-import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -180,14 +180,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseIngredient_validValueWithoutWhitespace_returnsIngredient() throws Exception {
-        RecipeIngredient expectedIngredient = new RecipeIngredient(VALID_INGREDIENT_1);
+        IngredientBuilder expectedIngredient = new IngredientBuilder(VALID_INGREDIENT_1);
         assertEquals(expectedIngredient, ParserUtil.parseIngredient(VALID_INGREDIENT_1));
     }
 
     @Test
     public void parseIngredient_validValueWithWhitespace_returnsTrimmedIngredient() throws Exception {
         String ingredientWithWhitespace = WHITESPACE + VALID_INGREDIENT_1 + WHITESPACE;
-        RecipeIngredient expectedIngredient = new RecipeIngredient(VALID_INGREDIENT_1);
+        IngredientBuilder expectedIngredient = new IngredientBuilder(VALID_INGREDIENT_1);
         assertEquals(expectedIngredient, ParserUtil.parseIngredient(ingredientWithWhitespace));
     }
 
@@ -209,11 +209,11 @@ public class ParserUtilTest {
 
     @Test
     public void parseIngredients_collectionWithValidIngredients_returnsIngredientsList() throws Exception {
-        List<RecipeIngredient> actualIngredientList =
+        List<IngredientBuilder> actualIngredientList =
                 ParserUtil.parseIngredients(Arrays.asList(VALID_INGREDIENT_1, VALID_INGREDIENT_2));
-        List<RecipeIngredient> expectedIngredientList =
-                new ArrayList<RecipeIngredient>(Arrays.asList(new RecipeIngredient(VALID_INGREDIENT_1),
-                                                        new RecipeIngredient(VALID_INGREDIENT_2)));
+        List<IngredientBuilder> expectedIngredientList =
+                new ArrayList<IngredientBuilder>(Arrays.asList(new IngredientBuilder(VALID_INGREDIENT_1),
+                                                        new IngredientBuilder(VALID_INGREDIENT_2)));
 
         assertEquals(expectedIngredientList, actualIngredientList);
     }

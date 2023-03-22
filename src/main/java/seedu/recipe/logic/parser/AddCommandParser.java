@@ -16,8 +16,8 @@ import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
-import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
 
@@ -73,7 +73,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         recipeDescriptor.setTags(tags);
 
         // 4. Parse Ingredients
-        List<RecipeIngredient> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
+        List<IngredientBuilder> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
         recipeDescriptor.setIngredients(ingredients);
 
         // 5. Parse Steps

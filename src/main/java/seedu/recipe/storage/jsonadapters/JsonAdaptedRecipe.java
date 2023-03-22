@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
-import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -130,11 +130,11 @@ public class JsonAdaptedRecipe {
         }
         res.setTags(tagList.toArray(Tag[]::new));
 
-        List<RecipeIngredient> ingredientsList = new ArrayList<>();
+        List<IngredientBuilder> ingredientsList = new ArrayList<>();
         for (JsonAdaptedIngredient i : ingredients) {
             ingredientsList.add(i.toModelType());
         }
-        res.setIngredients(ingredientsList.toArray(RecipeIngredient[]::new));
+        res.setIngredients(ingredientsList.toArray(IngredientBuilder[]::new));
 
         List<Step> stepList = new ArrayList<>();
         for (JsonAdaptedStep s : steps) {

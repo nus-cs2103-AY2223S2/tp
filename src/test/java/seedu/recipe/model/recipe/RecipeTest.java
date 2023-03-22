@@ -151,7 +151,7 @@ public class RecipeTest {
         assertEquals(newTagSet, test.getTags());
     }
 
-    //RecipeIngredient logic
+    //IngredientBuilder logic
     @Test
     public void getIngredients() {
         assertEquals(CACIO_INGREDIENTS, CACIO_E_PEPE.getIngredients());
@@ -159,16 +159,16 @@ public class RecipeTest {
 
     @Test
     public void setIngredients() {
-        List<RecipeIngredient> newIngredientList = new ArrayList<>(CACIO_INGREDIENTS);
-        RecipeIngredient[] ingredientsToAdd = new RecipeIngredient[]{new RecipeIngredient("RecipeIngredient one"),
-            new RecipeIngredient("RecipeIngredient two")};
+        List<IngredientBuilder> newIngredientList = new ArrayList<>(CACIO_INGREDIENTS);
+        IngredientBuilder[] ingredientsToAdd = new IngredientBuilder[]{new IngredientBuilder("IngredientBuilder one"),
+            new IngredientBuilder("IngredientBuilder two")};
         Recipe test = new RecipeBuilder(CACIO_E_PEPE).build();
         test.setIngredients(ingredientsToAdd);
         newIngredientList.addAll(List.of(ingredientsToAdd));
         assertEquals(newIngredientList, test.getIngredients());
     }
 
-    //RecipeIngredient logic
+    //IngredientBuilder logic
     @Test
     public void getSteps() {
         assertEquals(CACIO_STEPS, CACIO_E_PEPE.getSteps());

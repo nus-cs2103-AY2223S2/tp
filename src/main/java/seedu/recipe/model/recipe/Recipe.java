@@ -27,9 +27,9 @@ public class Recipe {
     // Identity field
     private final Name name;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<RecipeIngredient> ingredients = new ArrayList<>();
+    private final List<IngredientBuilder> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
-    private final Hashtable<RecipeIngredientQuantity, RecipeIngredient> ingredientTable = new Hashtable<>();
+    private final Hashtable<RecipeIngredientQuantity, IngredientBuilder> ingredientTable = new Hashtable<>();
 
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
@@ -47,11 +47,11 @@ public class Recipe {
         return name;
     }
 
-    public List<RecipeIngredient> getIngredients() {
+    public List<IngredientBuilder> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(RecipeIngredient... ingredients) {
+    public void setIngredients(IngredientBuilder... ingredients) {
         this.ingredients.addAll(List.of(ingredients));
     }
 

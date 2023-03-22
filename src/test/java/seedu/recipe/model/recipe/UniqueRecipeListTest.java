@@ -87,7 +87,7 @@ public class UniqueRecipeListTest {
         uniqueRecipeList.add(CACIO_E_PEPE);
         Recipe editedCacioEPepe = new RecipeBuilder(CACIO_E_PEPE).build();
         editedCacioEPepe.setTags(new Tag("Pasta"));
-        editedCacioEPepe.setIngredients(new RecipeIngredient("3 rashes bacon"));
+        editedCacioEPepe.setIngredients(new IngredientBuilder("3 rashes bacon"));
 
         uniqueRecipeList.setRecipe(CACIO_E_PEPE, editedCacioEPepe);
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
