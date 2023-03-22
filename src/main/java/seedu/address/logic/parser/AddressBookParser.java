@@ -19,7 +19,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListByNameCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTime;
-import seedu.address.logic.commands.MakeAppointmentCommand;
 import seedu.address.logic.commands.SearchAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 

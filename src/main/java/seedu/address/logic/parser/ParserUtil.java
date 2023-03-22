@@ -14,7 +14,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -151,6 +157,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code String appointment} into a {@code Appointment}.
+     */
     //"Next appointment time from: 2002-11-21T14:30 to: 2002-11-21T16:30"
     public static Appointment parseTimeFromAddressbook(String appointment) throws ParseException {
         requireNonNull(appointment);
@@ -168,7 +177,10 @@ public class ParserUtil {
         }
     }
 
-    public static LocalDate parseDate(String date) throws  ParseException {
+    /**
+     * Parses {@code String date} into a {@code LocalDate}.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedTime = date.trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -179,6 +191,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code String command} into a {@code String}.
+     */
     // command: makeApp {index} /from {startTime} /to {endTime}
     public static String parseAddAppointmentCommand(String command) throws ParseException {
         int idxFrom = command.indexOf("/from");

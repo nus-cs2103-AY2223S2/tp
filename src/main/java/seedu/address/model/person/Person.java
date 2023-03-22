@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -236,7 +235,8 @@ public class Person {
     /**
      * Every filed must be present and not null
      */
-    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags, Appointment appointment) {
+    public Person(Name name, Phone phone, Email email, Address address, Age age,
+                  Set<Tag> tags, Appointment appointment) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;

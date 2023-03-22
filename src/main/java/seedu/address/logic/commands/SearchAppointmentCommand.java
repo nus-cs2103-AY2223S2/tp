@@ -1,14 +1,16 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
+/**
+ * Search for persons having specified appointment Date
+ */
 public class SearchAppointmentCommand extends MakeAppointmentCommand {
 
     public static final String COMMAND_WORD = "searchDate";
@@ -16,6 +18,9 @@ public class SearchAppointmentCommand extends MakeAppointmentCommand {
 
     private final LocalDate toSearch;
 
+    /**
+     * Creates an SearchAppointmentCommand to search for appointment clash
+     */
     public SearchAppointmentCommand(LocalDate toSearch) {
         requireNonNull(toSearch);
         this.toSearch = toSearch;

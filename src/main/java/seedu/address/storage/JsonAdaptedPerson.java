@@ -12,7 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Age;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MedicalCondition;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -185,7 +192,8 @@ class JsonAdaptedPerson {
         if (appointment == null) {
             if (age != null && medicalCondition != null) {
                 if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical);
+                    return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                            modelAge, modelTags, modelMedical);
                 } else {
                     return new Person(modelName, modelPhone, modelEmail, modelAddress,
                             modelAge, modelTags, time, modelMedical);
@@ -209,7 +217,8 @@ class JsonAdaptedPerson {
             Appointment modelAppointment = ParserUtil.parseTimeFromAddressbook(appointment);
             if (age != null && medicalCondition != null) {
                 if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelMedical, modelAppointment);
+                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags,
+                            modelMedical, modelAppointment);
                 } else {
                     return new Person(modelName, modelPhone, modelEmail, modelAddress,
                             modelAge, modelTags, time, modelMedical, modelAppointment);
@@ -217,16 +226,20 @@ class JsonAdaptedPerson {
             }
             if (age != null && medicalCondition == null) {
                 if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, modelAppointment);
+                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge,
+                            modelTags, modelAppointment);
                 } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags, time, modelAppointment);
+                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelAge, modelTags,
+                            time, modelAppointment);
                 }
             }
             if (age == null && medicalCondition != null) {
                 if (time == null) {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMedical, modelAppointment);
+                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                            modelMedical, modelAppointment);
                 } else {
-                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, time, modelMedical, modelAppointment);
+                    return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                            time, modelMedical, modelAppointment);
                 }
             }
         }

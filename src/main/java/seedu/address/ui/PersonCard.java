@@ -69,25 +69,24 @@ public class PersonCard extends UiPart<Region> {
         if (person.hasAppointment()) {
             appointment.setText(person.getAppointment().toString());
             if (person.getMedicalCondition() != null) {
-    String s = person.getMedicalCondition().getValue();
-                medicalCondition.setText(s);
-}
-        } else {
-                appointment.setText("No appointment yet");
-                if (person.getMedicalCondition() == null) {
-                medicalCondition.setText("");
-                } else {
                 String s = person.getMedicalCondition().getValue();
                 medicalCondition.setText(s);
-                }
-                }
-                person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+            }
+        } else {
+            appointment.setText("No appointment yet");
+            if (person.getMedicalCondition() == null) {
+                medicalCondition.setText("");
+            } else {
+                String s = person.getMedicalCondition().getValue();
+                medicalCondition.setText(s);
+            }
+        }
+        person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-                }
+    }
 
 
-@Override
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {
