@@ -2,6 +2,7 @@ package arb.testutil;
 
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import arb.logic.commands.project.AddProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
@@ -27,6 +28,7 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + project.getTitle().fullTitle + " ");
         sb.append(PREFIX_DEADLINE + project.getDeadline().toString() + " ");
+        sb.append(PREFIX_PRICE + project.getPrice().fullPrice + " ");
         return sb.toString();
     }
 
@@ -38,6 +40,8 @@ public class ProjectUtil {
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_NAME).append(title.fullTitle).append(" "));
         descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
                 .append(deadline.toString()).append(" "));
+        descriptor.getPrice().ifPresent(price -> sb.append(PREFIX_PRICE)
+                .append(price.fullPrice.toString()).append(" "));
         return sb.toString();
     }
 }
