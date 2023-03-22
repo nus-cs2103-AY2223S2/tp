@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tank;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,7 +57,9 @@ public class TankFeedCommand extends TankCommand {
         String formattedDate = today.format(formatter);
 
 //        model.setDateFishesInTank(tankToFeed, today);
-        tankToFeed.setLastFedDateFishes(formattedDate);
+        model.setLastFedDateFishes(tankToFeed, formattedDate);
+
+        model.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
 
         return new CommandResult(String.format(MESSAGE_FEED_TANK_SUCCESS, tankToFeed));
     }

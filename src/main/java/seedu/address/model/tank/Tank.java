@@ -40,6 +40,8 @@ public class Tank {
 
     public void setLastFedDateFishes(String newDate) {
         fishList.setLastFedDateFishes(newDate);
+        System.out.println("checking fishList in Tank class");
+        System.out.println(fishList);
     }
 
     /**

@@ -52,7 +52,8 @@ public class Fish {
 
     public void setLastFedDate(String date) {
         LastFedDate newLastFedDate = new LastFedDate(date);
-        lastFedDate = newLastFedDate;
+        this.lastFedDate = newLastFedDate;
+//        System.out.println(this.toString());
     }
 
     public Species getSpecies() {

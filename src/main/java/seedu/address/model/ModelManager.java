@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -298,6 +299,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTank);
 
         tankList.setTank(target, editedTank);
+    }
+
+    @Override
+    public void setLastFedDateFishes(Tank tankToFeed, String date) {
+//        addressBook.setLastFedDateFishes(tankToFeed, date);
+        tankToFeed.setLastFedDateFishes(date);
     }
 
     //=========== Filtered TankList Accessors =============================================================

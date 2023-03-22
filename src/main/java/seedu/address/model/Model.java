@@ -159,4 +159,6 @@ public interface Model {
     ObservableList<Tank> getFilteredTankList();
 
     void updateFilteredTankList(Predicate<Tank> predicate);
+
+    void setLastFedDateFishes(Tank tankToFeed, String formattedDate);
 }
