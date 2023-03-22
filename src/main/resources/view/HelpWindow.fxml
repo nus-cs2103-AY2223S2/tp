@@ -21,33 +21,29 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-
-      <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="348.0" prefWidth="637.0">
-        <children>
-               <VBox prefHeight="246.0" prefWidth="544.0">
-                  <children>
+         <VBox>
+            <children>
+      
+            <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="75.0" prefWidth="629.0">
+              <children>
                 <Label fx:id="helpMessage" prefHeight="62.0" prefWidth="546.0" text="Label" />
-                     <TableView fx:id="tvtable" prefHeight="296.0" prefWidth="544.0">
-                       <columns>
-                         <TableColumn fx:id="commandCol" prefWidth="127.5" text="Command" />
-                         <TableColumn fx:id="exampleCol" prefWidth="415.5" text="Example" />
-                       </columns>
-                     </TableView>
-                  </children>
-               </VBox>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
-        </children>
-        <opaqueInsets>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </opaqueInsets>
-        <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-        </padding>
-      </HBox>
+                <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" prefHeight="25.0" prefWidth="70.0" text="Copy URL" />
+              </children>
+              <opaqueInsets>
+                <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+              </opaqueInsets>
+              <padding>
+                <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+              </padding>
+            </HBox>
+               <TableView fx:id="tvtable" prefHeight="315.0" prefWidth="629.0">
+                 <columns>
+                   <TableColumn fx:id="commandCol" prefWidth="117.5" text="Command" />
+                   <TableColumn fx:id="exampleCol" prefWidth="509.0" text="Example" />
+                 </columns>
+               </TableView>
+            </children>
+         </VBox>
     </Scene>
   </scene>
 </fx:root>
