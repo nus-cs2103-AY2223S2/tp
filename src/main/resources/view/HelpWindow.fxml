@@ -19,11 +19,10 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css" />
+        <URL value="@HelpWindow.css"/>
       </stylesheets>
          <VBox>
             <children>
-      
             <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="75.0" prefWidth="629.0">
               <children>
                 <Label fx:id="helpMessage" prefHeight="62.0" prefWidth="546.0" text="Label" />
