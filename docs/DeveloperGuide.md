@@ -516,7 +516,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 #### **Find Command**
 
-The 'find' command allows users to search for their contacts with partial information. For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
+The 'find' command allows users to search for their contacts with partial information. 
+
+For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
 
 **Parsing the inputs** - When the user types an input, the parser will extract out the relevant arguments and check if there is only one type of information.
 
@@ -527,7 +529,11 @@ The 'find' command allows users to search for their contacts with partial inform
 
 </div>
 
+<div markdown="span" class="alert alert-primary">
+
 :bulb: **Tip:** This command can be used before the other commands to return a list of contacts the user wants to work with. 
+
+</div>
 
 **Describing the find** - 'ContainsKeywordPredicate' class which extends from 'Predicate' handles storing the `Prefix` and `keywords` to pass into the `ModelManager` class. It then uses the Java `FilteredList` Library to handle the `Predicate` to return a list of people the user requested.
 
@@ -536,7 +542,9 @@ The 'find' command allows users to search for their contacts with partial inform
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/FindCommandParser.java)
 
-The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
+The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. 
+
+For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
 
 **Parsing the inputs** - When the user types an input, the parser will *scan* through the arguments. Then, it checks whether the field needs to be sorted in **ascending** or **descending** order. Finally, it combines all the comparators together so that we get a single comparator.
 
