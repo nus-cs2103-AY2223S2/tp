@@ -37,6 +37,9 @@ public class SampleDataUtil {
             new Internship(new CompanyName("Facebook"), new Role("Backend Developer"), new Status("rejected"),
                 new Date("2023-02-02"), new Comment("Rejected because I lack proficiency in SQL."),
                     getTagSet("sql")),
+            new Internship(new CompanyName("Paypal"), new Role("Product Manager"), new Status("Accepted"),
+                    new Date("2023-04-05"), new Comment("Starting work on 1 May."),
+                    getTagSet("UI", "UX"))
         };
     }
 
