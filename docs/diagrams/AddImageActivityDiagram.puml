@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes add-image command;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([image and image path is valid])
+    :Image is copied into "/profile_pictures";
+    if () then ([contact have profile image])
+        :Current image is deleted;
+    else ([else])
+    endif
+    :Store new image in model;
+    : Display success message;
+else ([else])
+    : Display error message;
+endif
+stop
+@enduml

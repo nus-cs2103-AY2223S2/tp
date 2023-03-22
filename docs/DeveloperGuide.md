@@ -158,3 +158,52 @@ System repeats Step 1-2 until valid details are entered.
 * Tutor: A user who tutors students in one or more classes
 * Faculty: a group of university departments concerned with a major division of knowledge
 * Contact: A person of interest, either student or tutor, who's details have been recorded by the user
+
+# Implementation
+## Add Image Feature
+### Add Image Implementation
+
+The add-image mechanism is facilitated by `AddImageCommand`, `AddImageCommandParser` and `ImageUtil` class.
+
+- `AddImageCommand` extends `Command`
+- `AddImageCommandParser` extends `Parser`
+
+The `AddImageCommandParser` parses the user input into index of contact and path to an image. 
+It returns a `AddImageCommand` with the 2 information retrieved. 
+`AddImageCommand#execute` copies the image provided by the user via a path and replaces the current image with the new one. 
+It also saves the file name of the new image to the `model`.
+
+Given below is an example usage scenario and how the add-image mechanism behaves at each step.
+
+Step 1. When user wants to add an image to a contact, they use the `add-image` command.
+
+Step 2. The `LogicManger` receives the command text from the user input and gives it to `AddressBookParser`. `AddressBookParser` calls `AddImageCommandParser` to parse the user input.
+
+Step 3. The `AddImageCommandParser` retrieves the contact index as well as the image path and creates a `AddImageCommand`
+
+Step 4. `AddImageCommand#execute` is called. The method calls `ImageUtil#importImage` to copy the image into the "profile_pictures/" directory. 
+Once that is successful, `AddImageCommand#execute` proceeds to call `ImageUtil#deleteImage` to remove the current image. 
+Finally `AddImageCommand#execute` updates the model provided in the arguments.
+
+> **Note**: If the path given is invalid or if the file at the given path is not a png/jpeg image, the command will not be completed.
+
+The following sequence diagram shows how the add-image operation works:<br>
+![AddImageSequenceDiagram](images/AddImageSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes add-image command: <br>
+![AddImageActivityDiagram](images/AddImageActivityDiagram.png)
+
+### Design considerations:
+
+- Alternative 1 (current choice): Copy the image into application-created directory
+   - Pros:
+      - A single location to store/check for images
+      - Naming scheme determined by application
+   - Cons:
+      - Copying is a file I/O which have many caveats
+- Alternative 2: Save the path provided by User
+   - Pros:
+      - Does not require any file I/O
+      - Easy to save as only the Path as a string
+   - Cons:
+      - Path is easily invalidated (e.g. user moves/deletes/renames the image)
