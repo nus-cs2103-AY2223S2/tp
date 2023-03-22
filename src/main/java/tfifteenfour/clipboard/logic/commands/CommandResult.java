@@ -75,4 +75,8 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, command);
     }
 
+    public Command getCommand() {
+        return this.command;
+    }
+
 }
