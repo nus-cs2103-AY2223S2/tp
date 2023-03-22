@@ -85,6 +85,10 @@ public class Project {
             builder.append(", due by: ").append(getDeadline());
         }
 
+        if (isPricePresent()) {
+            builder.append(", ").append(getPrice());
+        }
+
         return builder.toString();
     }
 

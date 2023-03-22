@@ -15,7 +15,7 @@ public class Price implements Comparable<Price> {
     public static final String VALIDATION_REGEX = "(([1-9]\\d{0,2}(,\\d{3})*)|(([1-9]\\d*)?\\d))(\\.\\d\\d)?$";
     private double price;
 
-    private String fullPrice;
+    public String fullPrice;
 
     /**
      * Constructs a {@code Price}.

@@ -3,6 +3,7 @@ package arb.testutil;
 import java.util.Optional;
 
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
 
@@ -14,8 +15,11 @@ public class ProjectBuilder {
     public static final String DEFAULT_TITLE = "Large Tree";
     public static final String DEFAULT_DEADLINE = "3pm 2000-01-01";
 
+    public static final String DEFAULT_PRICE = "0";
+
     private Title title;
     private Optional<Deadline> deadline;
+    private Optional<Price> price;
 
     /**
      * Creates a {@code ProjectBuilder} with the default details.
@@ -23,6 +27,7 @@ public class ProjectBuilder {
     public ProjectBuilder() {
         title = new Title(DEFAULT_TITLE);
         deadline = Optional.of(new Deadline(DEFAULT_DEADLINE));
+        price = Optional.of(new Price(DEFAULT_PRICE));
     }
 
     /**
@@ -31,6 +36,7 @@ public class ProjectBuilder {
     public ProjectBuilder(Project projectToCopy) {
         title = projectToCopy.getTitle();
         deadline = Optional.ofNullable(projectToCopy.getDeadline());
+        price = Optional.ofNullable(projectToCopy.getPrice());
     }
 
     /**
@@ -54,11 +60,21 @@ public class ProjectBuilder {
     }
 
     /**
+     * Sets the {@code Price} of the {@code Project} being built.
+     * @param price Price to set.
+     * @return The ProjectBuilder object.
+     */
+    public ProjectBuilder withPrice(String price) {
+        this.price = Optional.ofNullable(price).map(pr -> new Price(pr));
+        return this;
+    }
+
+    /**
      * Builds the Project.
      * @return The new Project.
      */
     public Project build() {
-        return new Project(title, this.deadline.orElse(null));
+        return new Project(title, this.deadline.orElse(null), this.price.orElse(null));
     }
 
 }
