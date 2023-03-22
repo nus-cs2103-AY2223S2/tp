@@ -28,9 +28,9 @@ public class Progress {
         requireNonNull(progress);
         checkArgument(isValidProgress(progress), MESSAGE_CONSTRAINTS);
 
-        volume = (progress[0].equals("~")) ? "" : progress[0];
-        chapter = (progress[1].equals("~")) ? "" : progress[1];
-        page = (progress[2].equals("~")) ? "" : progress[2];
+        volume = progress[0];
+        chapter = progress[1];
+        page = progress[2];
     }
 
     /**
@@ -58,15 +58,15 @@ public class Progress {
     public String toString() {
         String accumulator = "";
 
-        if (!volume.isEmpty()) {
+        if (!volume.equals("~")) {
             accumulator += "Vol. " + volume + " ";
         }
 
-        if (!chapter.isEmpty()) {
+        if (!chapter.equals("~")) {
             accumulator += "Ch. " + chapter + " ";
         }
 
-        if (!page.isEmpty()) {
+        if (!page.equals("~")) {
             accumulator += "Pg. " + page;
         }
 
