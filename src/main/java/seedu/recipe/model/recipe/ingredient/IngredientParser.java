@@ -15,11 +15,13 @@ import seedu.recipe.logic.parser.Prefix;
  */
 public class IngredientParser {
     public static final Prefix AMOUNT_PREFIX = new Prefix("-a");
-    public static final Prefix COMMON_NAME_PREFIX = new Prefix("-cn");
     public static final Prefix ESTIMATE_PREFIX = new Prefix("-e");
+
+    public static final Prefix COMMON_NAME_PREFIX = new Prefix("-cn");
     public static final Prefix NAME_PREFIX = new Prefix("-n");
-    public static final Prefix REMARK_PREFIX = new Prefix("-r");
     public static final Prefix SUBSTITUTION_PREFIX = new Prefix("-s");
+
+    public static final Prefix REMARK_PREFIX = new Prefix("-r");
 
     /**
      * Parses an IngredientBuilder instance for its arguments.
@@ -27,7 +29,6 @@ public class IngredientParser {
      * @param args The raw IngredientBuilder instance.
      */
     public static void parse(String args) {
-        System.out.println(args);
         List<PrefixPosition> positions = findAllPositions(args,
                 AMOUNT_PREFIX, COMMON_NAME_PREFIX,
                 ESTIMATE_PREFIX, NAME_PREFIX, REMARK_PREFIX, SUBSTITUTION_PREFIX);
@@ -38,7 +39,14 @@ public class IngredientParser {
             PrefixPosition p = positions.get(i);
             String arg = args.substring(p.startPos + p.getPrefix().getPrefix().length() + 1,
                     positions.get(i + 1).startPos).trim();
-            System.out.println("[" + p.getPrefix() + "][" + arg + "]");
+            if (!out.containsKey(p.getPrefix())) {
+                List<String> argList = List.of(arg);
+                out.put(p.getPrefix(), argList);
+            } else {
+                List<String> argList = new ArrayList<>(out.get(p.getPrefix()));
+                argList.add(arg);
+                out.replace(p.getPrefix(), argList);
+            }
         }
     }
 

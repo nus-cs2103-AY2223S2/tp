@@ -27,7 +27,7 @@ public class SampleDataUtil {
     public static final Set<Tag> CACIO_TAGS = Set.of(new Tag("Italian"));
     public static final List<IngredientBuilder> CACIO_INGREDIENTS = List.of(
             new IngredientBuilder("-n Kosher salt"),
-            new IngredientBuilder("-a 6 oz -n egg tagliolini -s bucatini, -s spaghetti"),
+            new IngredientBuilder("-a 6 oz -n egg tagliolini -s bucatini -s spaghetti"),
             new IngredientBuilder("-a 3 Tbsp -n unsalted butter -r cubed -r divided"),
             new IngredientBuilder("-a 1 tsp -n black pepper -r freshly cracked"),
             new IngredientBuilder("-a 3/4 cup -n Grana Padano -s Parmesan -r finely grated"),
@@ -88,8 +88,8 @@ public class SampleDataUtil {
                     new IngredientBuilder("-a 0.5 cup -n urad dal -cn split husked black lentils"),
                     new IngredientBuilder("-a 1 teaspoon -n fenugreek seeds"),
                     new IngredientBuilder("-a 0.5 teaspoon -n salt"),
-                    new IngredientBuilder("-a Vegetable oil -r for frying"),
-                    new IngredientBuilder("-a 3 tablespoons ghee -s vegetable oil"),
+                    new IngredientBuilder("-n Vegetable oil -r for frying"),
+                    new IngredientBuilder("-a 3 tablespoons -n ghee -s vegetable oil"),
                     new IngredientBuilder("-a 1 teaspoon -n mustard seeds"),
                     new IngredientBuilder("-a 0.5 teaspoon -n cumin seeds"),
                     new IngredientBuilder("-a 2 -n red peppers -r small -r dried -r hot"),
