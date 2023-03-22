@@ -81,10 +81,6 @@ public class ParentCard extends UiPart<Region> {
         String path = "src/main/resources/images/" + parent.getName() + ".png";
         File file = new File(path);
         if (!file.exists()) {
-//            path = "src/main/resources/images/defaultParent.png";
-//            file = new File(path);
-//            Image newImage = new Image(file.toURI().toString());
-//            circle.setFill(new ImagePattern(newImage));
             circle.setFill(Color.TRANSPARENT);
         } else {
             Image newImage = new Image(file.toURI().toString());
