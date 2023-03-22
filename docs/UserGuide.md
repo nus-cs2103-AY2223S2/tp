@@ -1,16 +1,17 @@
 ## Table of contents
 
-1. Overview
-2. How to use this guide
-3. Getting started
-4. Feature list
-5. Command summary
-6. Trouble shooting/FAQ
-7. Additional information
+1. [About HMHero](#1-about-hmhero)
+2. [Features](#2-features)
+3. [How to use this User Guide](#3-how-to-use-this-user-guide)
+4. [Quick Reference](#4-quick-reference)
+4. [Command summary](#command-summary)
+5. [Troubleshooting](#troubleshooting)
+6. [FAQ](#faq)
+7. [Glossary](#glossary)
 
 ---
 
-## About HMHero
+## 1. About HMHero
 
 In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant.
 
@@ -22,14 +23,14 @@ In addition, HMHero provides analytics regarding your hiring process, such as tu
 
 ---
 
-## Features
+## 2. Features
 
 There are two core features that HMHero provides:
 
 - Applicant Management System
 - Hiring Process Analytics
 
-#### Applicant Management System
+### 2.1 Applicant Management System
 
 HMHero empowers you to manage applicants during hiring process.
 
@@ -39,7 +40,7 @@ HMHero empowers you to manage applicants during hiring process.
 4. Filter all applicants based on their skillsets.
 5. View all applicants that have interviews coming up in three days.
 
-#### Hiring Process Analytics
+### 2.2 Hiring Process Analytics
 
 HMHero provides straightforward analysis on your hiring process to streamline and make your hiring process more efficient.
 
@@ -50,7 +51,7 @@ HMHero provides straightforward analysis on your hiring process to streamline an
 
 ---
 
-## 2. How to use this User Guide
+## 3. How to use this User Guide
 
 Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
 
@@ -91,7 +92,7 @@ to navigate back and forth between the links quickly. (<code>Command + Left arro
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Admonition Boxes
+### 3.1 Admonition Boxes
 
 In this guide, you will often come across colored boxes containing text that will aid you in better understanding
 how to use each feature.
@@ -109,7 +110,7 @@ Highlight dangers and things to look out for. </div>
 
 [Back to Table of Contents](#table-of-contents)
 
-### Miscellaneous Notations
+### 3.2 Miscellaneous Notations
 
 Other than the icons mentioned above, there are also some other notations used in this guide:
 
@@ -119,7 +120,7 @@ this documentation that is relevant to the phrase.
 [Back to Table of Contents](#table-of-contents)
 
 ---
-## Getting started
+## 4. Installation
 
 1. Ensure you have downloaded `Java 11` or above installed in your computer. If you have not, you may download it [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
 2. Download the latest `HMHero` from [here](https://github.com/AY2223S2-CS2103T-W14-4/tp/releases).
@@ -192,7 +193,7 @@ The following are the attributes stored for each `Applicant`
 Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
-### 5.2.2 Notes
+#### 5.2.2 Notes
 
 A note in HMHero serves as a means of labelling the skills of an applicant. These tags
 are unique and case-sensitive.
@@ -209,7 +210,7 @@ can include:
 HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
 the same name.
 
-### 5.2.3 Flags
+#### 5.2.3 Flags
 Flags are delimiters that enable HMHero to distinguiseh different parameters without ambiguity.
 
 You could put in the corresponding [Placeholder](#524-placeholders) immediately after each flag.
@@ -234,7 +235,7 @@ These placeholders follow immediately after a [Flag](#623-flags).
 Please refer to the subsequent [Command Format]() section to see how [Flags](#623-flags)
 and [Placeholders](#624-placeholders) are used together.
 
-### 5.2.4 Placeholders
+#### 5.2.4 Placeholders
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
@@ -263,7 +264,7 @@ Command Word: Tells HMHero what action you wish to execute. These actions are co
 For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
 
 
-## Trying your first command
+### 5.3 Trying your first command
 
 To let you become more familiar with HMHero, let's practise executing some commands.
 
@@ -364,7 +365,7 @@ Here is a checklist you can use before running a [[ command ]]:
 * [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
 
-## Commands
+## 6. Commands
 
 This section shares with you on how to use each [[ command ]] in detail.
 
@@ -385,9 +386,9 @@ What you should expect to find:
 * In most commands, if the same parameter is repeated and only one is required, we take the last value provided. 
 </div>
 
-### Applicant Commands
+### 6.1 Applicant Commands
 
-#### Create a new applicant: `add`
+#### 6.1.1 Create a new applicant: `add`
 
 **Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/TAG]`
 
@@ -423,7 +424,7 @@ HMHero does not already contain an applicant with the name "Thomas".
 ---
 
 
-#### Search for an applicant: `find`
+#### 6.1.2 Search for an applicant: `find`
 
 **Format**: `find n/[KEY] p/[KEY] ...`
 
@@ -480,7 +481,7 @@ HMHero contains the following applicants:
 ---
 
 
-#### List all applicants: `list`
+#### 6.1.3. List all applicants: `list`
 
 **Format**: `list`
 
@@ -522,7 +523,7 @@ HMHero contains the following applicants, each with their own attributes:
 ---
 
 
-#### Delete an applicant: `delete`
+#### 6.1.4. Delete an applicant: `delete`
 
 **Format**: `delete n/NAME p/PHONE`
 
@@ -559,7 +560,7 @@ HMHero contains the following applicants, each with their own attributes:
 ---
 
 
-#### Advance an applicant: `advance`
+#### 6.1.5. Advance an applicant: `advance`
 
 **Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]
 
@@ -614,7 +615,7 @@ HMHero contains the following applicants, each with their own attributes:
 ---
 
 
-#### Reject an applicant: `reject`
+#### 6.1.6. Reject an applicant: `reject`
 
 **Format**: `reject n/NAME p/PHONE
 
@@ -652,7 +653,7 @@ HMHero contains the following applicants, each with their own attributes:
 
 ---
 
-#### List all interview dates of applicants: `interview`
+#### 6.1.7. List all interview dates of applicants: `interview`
 
 **Format**: `interview`
 
@@ -696,7 +697,7 @@ HMHero contains the following applicants, each with their own attributes:
 ---
 
 
-#### Edit an existing applicant: `edit`
+#### 6.1.8. Edit an existing applicant: `edit`
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/TAG]`
 
@@ -745,17 +746,17 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Tags: [Python] [Java]`
 ---
 
 
-#### Remind on applicant's interview date: `remind`
+#### 6.1.9. Remind on applicant's interview date: `remind`
 - Will update soon
 
 
-### Statistics Command
+### 6.2. Statistics Command
 
 - Will update soon
 
-### General Commands
+### 6.3. General Commands
 
-#### Receive help during usage: `help`
+#### 6.3.1. Receive help during usage: `help`
 
 **Format**: `help [COMMAND_WORD]`
 
@@ -813,16 +814,16 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 ---
 
-#### Exit HMHero: `exit`
+#### 6.3.2. Exit HMHero: `exit`
 
 **Format**: `exit`
 
 > Exits HMHero
 
-```warning
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
 This command is the only guaranteed way for the data file to be saved when you exit the application.
 To prevent, always exit the application using this command instead of any other way.
-```
+</div>
 
 **Example:**
 
@@ -853,10 +854,10 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 
 > Exits HMHero
 
-```warning
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
 This command is the only guaranteed way for the data file to be saved when you exit the application.
 To prevent, always exit the application using this command instead of any other way.
-```
+</div>
 
 **Example:**
 
