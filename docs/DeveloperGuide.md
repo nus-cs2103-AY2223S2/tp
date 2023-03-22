@@ -57,6 +57,11 @@ The example used here is the command to add a plane of the following specificati
 This sequence is similar for most commands and the subsequent descriptions of Wingman's features include more detailed 
 diagrams to depict the processes at each layer in greater detail.
 
+### Example Activity Diagram
+<img src="images/WingmanLinkFlightActivity.png" width="231" alt="Link Flight activity diagram">
+
+Description coming soon
+
 ## Implementation
 
 ### Adding XYZ (seq. diagram focussed on UI layer) - Ai Bo
