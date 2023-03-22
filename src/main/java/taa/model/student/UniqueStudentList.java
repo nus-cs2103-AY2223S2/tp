@@ -2,6 +2,7 @@ package taa.model.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -146,17 +147,18 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalList.hashCode();
     }
 
+    public static HashMap<Name, Student> getNameToStuMap(List<Student> stuList) {
+        final HashMap<Name, Student> ans = new HashMap<>(stuList.size() << 1);
+        for (Student stu : stuList) {
+            ans.put(stu.getName(), stu);
+        }
+        return ans;
+    }
+
     /**
      * Returns true if {@code students} contains only unique students.
      */
     private boolean studentsAreUnique(List<Student> students) {
-        for (int i = 0; i < students.size() - 1; i++) {
-            for (int j = i + 1; j < students.size(); j++) {
-                if (students.get(i).isSameStudent(students.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return getNameToStuMap(students).size() >= students.size();
     }
 }
