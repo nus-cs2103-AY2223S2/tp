@@ -71,6 +71,13 @@ public class RerollAllEntities implements ReadOnlyEntities {
         return entities.asUnmodifiableObservableList().size() + " entities";
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof RerollAllEntities
+                && entities.equals(((RerollAllEntities) other).entities));
+    }
+
     /**
      * Returns list of characters
      */
