@@ -12,7 +12,6 @@ import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.plane.FlightPlaneType;
 import seedu.address.model.plane.Plane;
 
-
 /**
  * The command that unlinks a plane from a flight
  */
@@ -62,6 +61,7 @@ public class UnlinkPlaneCommand implements Command {
         try {
             for (Map.Entry<FlightPlaneType, Plane> entry : planes.entrySet()) {
                 flight.planeLink.delete(entry.getKey(), entry.getValue());
+                entry.getValue().setAvailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

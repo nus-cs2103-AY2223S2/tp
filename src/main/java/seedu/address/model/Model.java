@@ -70,7 +70,7 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
 
-    // ================ Pilot methods ==============================
+    //=========== Pilot methods ========================================================
 
     /**
      * Returns the person manager.
@@ -140,6 +140,14 @@ public interface Model {
     void setPilot(Pilot target, Pilot editedPilot);
 
     /**
+     * Checks the availability of the pilot.
+     *
+     * @param id the id of the pilot whose availability is to be checked.
+     * @return   the availability of the pilot.
+     */
+    boolean checkPilot(String id);
+
+    /**
      * Returns an unmodifiable view of the filtered pilot list
      */
     ObservableList<Pilot> getFilteredPilotList();
@@ -152,7 +160,7 @@ public interface Model {
     void updateFilteredPilotList(Predicate<Pilot> predicate);
 
 
-    // ================ Location methods ==============================
+    //=========== Location methods ========================================================
 
     /**
      * Returns location object by location id
@@ -199,7 +207,7 @@ public interface Model {
     void updateFilteredLocationList(Predicate<Location> predicate);
 
 
-    // ================ Crew methods ==============================
+    //=========== Crew methods ========================================================
 
     /**
      * Returns the crew manager file path.
@@ -251,12 +259,20 @@ public interface Model {
 
     void setCrew(Crew target, Crew editedCrew);
 
+    /**
+     * Checks the availability of the crew.
+     *
+     * @param id the id of the crew whose availability is to be checked.
+     * @return   the availability of the crew.
+     */
+    boolean checkCrew(String id);
+
     void updateFilteredCrewList(Predicate<Crew> predicate);
 
     ObservableList<Crew> getFilteredCrewList();
 
 
-    // ================ Plane methods ==============================
+    //=========== Plane methods ========================================================
 
     void setPlaneManager(ReadOnlyItemManager<Plane> manager);
 
@@ -274,12 +290,20 @@ public interface Model {
 
     void setPlane(Plane target, Plane editedPlane);
 
+    /**
+     * Checks the availability of the plane.
+     *
+     * @param id the id of the plane whose availability is to be checked.
+     * @return   the availability of the plane.
+     */
+    boolean checkPlane(String id);
+
     ObservableList<Plane> getFilteredPlaneList();
 
     void updateFilteredPlaneList(Predicate<Plane> predicate);
 
 
-    // ================ Flight methods ==============================
+    //=========== Flight methods ========================================================
 
     /**
      * Returns flight object by flight id

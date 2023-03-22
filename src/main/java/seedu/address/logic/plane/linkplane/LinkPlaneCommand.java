@@ -62,6 +62,7 @@ public class LinkPlaneCommand implements Command {
         try {
             for (Map.Entry<FlightPlaneType, Plane> entry : planes.entrySet()) {
                 flight.planeLink.putRevolve(entry.getKey(), entry.getValue());
+                entry.getValue().setUnavailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

@@ -61,6 +61,7 @@ public class LinkCrewCommand implements Command {
         try {
             for (Map.Entry<FlightCrewType, Crew> entry : crews.entrySet()) {
                 flight.crewLink.putRevolve(entry.getKey(), entry.getValue());
+                entry.getValue().setUnavailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

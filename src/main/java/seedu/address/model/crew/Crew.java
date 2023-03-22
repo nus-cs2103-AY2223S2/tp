@@ -23,9 +23,11 @@ public class Crew implements Item {
     private static final String ID_STRING = "ID";
     private static final String NAME_STRING = "Name";
     private static final String RANK_STRING = "Rank";
+    private static final String AVAILABILITY_STRING = "Status";
     private final String id;
     private final String name;
     private final CrewRank rank;
+    private boolean isAvailable;
 
     /**
      * Creates a crew with a random UUID as its id.
@@ -40,7 +42,7 @@ public class Crew implements Item {
     /**
      * Creates a crew.
      *
-     * @param id the id of the crew.
+     * @param id   the id of the crew.
      * @param name the name of the crew.
      * @param rank the rank of the crew.
      */
@@ -48,6 +50,7 @@ public class Crew implements Item {
         this.id = id;
         this.name = name;
         this.rank = rank;
+        this.isAvailable = true;
     }
 
     /**
@@ -78,12 +81,48 @@ public class Crew implements Item {
         return id;
     }
 
+    /**
+     * Returns the availability of the crew.
+     *
+     * @return the availability of the crew.
+     */
+    public boolean isAvailable() {
+        return this.isAvailable;
+    }
+
+    /**
+     * Sets the availability of the crew to unavailable.
+     */
+    public void setUnavailable() {
+        this.isAvailable = false;
+    }
+
+    /**
+     * Sets the availability of the crew to available.
+     */
+    public void setAvailable() {
+        this.isAvailable = true;
+    }
+
+    /**
+     * Returns a String corresponding to the availability of the crew.
+     *
+     * @return the availability of the crew as a String
+     */
+    public String getAvailabilityString() {
+        return (this.isAvailable)
+                ? "Available"
+                : "Unavailable";
+    }
+
     @Override
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s: %s", ID_STRING, id),
                 String.format("%s: %s", NAME_STRING, name),
-                String.format("%s: %s", RANK_STRING, rank));
+                String.format("%s: %s", RANK_STRING, rank),
+                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
+        );
     }
 
     @Override

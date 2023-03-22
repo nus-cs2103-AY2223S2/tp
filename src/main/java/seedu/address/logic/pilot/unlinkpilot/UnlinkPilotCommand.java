@@ -61,6 +61,7 @@ public class UnlinkPilotCommand implements Command {
         try {
             for (Map.Entry<FlightPilotType, Pilot> entry : pilots.entrySet()) {
                 flight.pilotLink.delete(entry.getKey(), entry.getValue());
+                entry.getValue().setAvailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

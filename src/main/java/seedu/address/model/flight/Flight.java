@@ -30,7 +30,6 @@ public class Flight implements Item {
     private final String code;
     private final String id;
 
-
     //TODO: Add exceptions to ensure departure and arrival locations are distinct
 
     /**
