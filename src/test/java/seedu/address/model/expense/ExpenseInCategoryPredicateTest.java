@@ -3,13 +3,12 @@ package seedu.address.model.expense;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;

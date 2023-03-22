@@ -5,9 +5,9 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalCategories.FOOD;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
