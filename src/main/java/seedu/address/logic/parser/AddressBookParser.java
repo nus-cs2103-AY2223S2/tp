@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddInterviewDateCommand;
+import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearByCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -18,8 +19,27 @@ import seedu.address.logic.commands.EditStatusCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListArchivedCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.task.FindTaskCommand;
+import seedu.address.logic.commands.task.note.ClearNoteCommand;
+import seedu.address.logic.commands.task.note.DeleteNoteCommand;
+import seedu.address.logic.commands.task.note.ListNoteCommand;
+import seedu.address.logic.commands.task.note.NoteCommand;
+import seedu.address.logic.commands.task.todo.ClearTodoCommand;
+import seedu.address.logic.commands.task.todo.DeleteTodoCommand;
+import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
+import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
+import seedu.address.logic.commands.task.todo.ListTodoCommand;
+import seedu.address.logic.commands.task.todo.TodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.task.FindTaskCommandParser;
+import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
+import seedu.address.logic.parser.task.note.NoteCommandParser;
+import seedu.address.logic.parser.task.todo.DeleteTodoCommandParser;
+import seedu.address.logic.parser.task.todo.EditContentCommandParser;
+import seedu.address.logic.parser.task.todo.EditDeadlineCommandParser;
+import seedu.address.logic.parser.task.todo.TodoCommandParser;
 
 /**
  * Parses user input.
@@ -81,8 +101,47 @@ public class AddressBookParser {
         case ClearByCommand.COMMAND_WORD:
             return new ClearByCommandParser().parse(arguments);
 
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskCommandParser().parse(arguments);
+
+        case TodoCommand.COMMAND_WORD:
+            return new TodoCommandParser().parse(arguments);
+
+        case ListTodoCommand.COMMAND_WORD:
+            return new ListTodoCommand();
+
+        case EditDeadlineCommand.COMMAND_WORD:
+            return new EditDeadlineCommandParser().parse(arguments);
+
+        case EditNoteContentCommand.COMMAND_WORD:
+            return new EditContentCommandParser().parse(arguments);
+
+        case DeleteTodoCommand.COMMAND_WORD:
+            return new DeleteTodoCommandParser().parse(arguments);
+
+        case ClearTodoCommand.COMMAND_WORD:
+            return new ClearTodoCommand();
+
+        case NoteCommand.COMMAND_WORD:
+            return new NoteCommandParser().parse(arguments);
+
+        case ListNoteCommand.COMMAND_WORD:
+            return new ListNoteCommand();
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
+
+        case ClearNoteCommand.COMMAND_WORD:
+            return new ClearNoteCommand();
+
         case AddInterviewDateCommand.COMMAND_WORD:
             return new AddInterviewDateCommandParser().parse(arguments);
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case ListArchivedCommand.COMMAND_WORD:
+            return new ListArchivedCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddInterviewDateCommand;
+import seedu.address.logic.commands.EditStatusCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.InterviewDate;
 
@@ -31,6 +32,10 @@ public class AddInterviewDateCommandParser implements Parser<AddInterviewDateCom
         } catch (ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddInterviewDateCommand.MESSAGE_USAGE));
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStatusCommand.MESSAGE_USAGE));
         }
 
         InterviewDate interviewDate = ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_DATE).get());

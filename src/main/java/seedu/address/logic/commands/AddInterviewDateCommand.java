@@ -31,7 +31,7 @@ public class AddInterviewDateCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE] (DATE must be in 'MM/dd/yyyy hh:mm a' format, where a can be AM or PM)"
             + "\nExample: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE + "06/07/2023 at 12:00 PM";
+            + PREFIX_DATE + "06/07/2023 12:00 PM";
 
     public static final String MESSAGE_ADD_INTERVIEW_DATE_SUCCESS = "Interview date added to application: %1$s";
 
