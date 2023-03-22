@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Comparator;
 import java.util.List;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -41,9 +42,10 @@ public class FishSortCommand extends FishCommand {
 
 
         model.sortFilteredFishList(fishComparator);
+        model.setGuiMode(GuiSettings.GuiMode.DISPLAY_SORTED_FISHES_TASKS);
         //model.updateFilteredFishList(x -> true);
 
-        return new CommandResult(String.format(MESSAGE_VIEW_FISH_SUCCESS, null));
+        return new CommandResult(MESSAGE_VIEW_FISH_SUCCESS, false, false, true);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class GuiSettings implements Serializable {
     /**
      * The current elements being displayed
      */
-    public enum GuiMode { DISPLAY_TANKS_TASKS, DISPLAY_FISHES_TASKS }
+    public enum GuiMode { DISPLAY_TANKS_TASKS, DISPLAY_FISHES_TASKS, DISPLAY_SORTED_FISHES_TASKS }
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
