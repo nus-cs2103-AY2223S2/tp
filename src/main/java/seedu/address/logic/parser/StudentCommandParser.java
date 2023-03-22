@@ -27,11 +27,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
 import java.util.HashSet;
 import java.util.Set;
