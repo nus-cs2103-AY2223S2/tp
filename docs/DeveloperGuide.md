@@ -172,8 +172,8 @@ Here is how `Task` works:
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both trackr data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -312,26 +312,29 @@ Our application:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a / an …​                                                         | I want to …​                                                                      | So that I can…​                                           |
-|----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | new user                                                                | see instructions on how to use the app                                               | refer to the instructions when learning how to use the app   |
-| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                           |
-| `* * *`  | small business owner                                                       | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
-| `* * *`  | small business owner who has lots of deadlines to meet                     | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
-| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct       |
-| `* * *`  | familiar user                                                           | delete existing orders from my order list                                            | clear my order list of orders that are not required anymore  |
-| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete
-| `* * *` | small business owner | add an new Item to my menu | keep reference to items that I am selling.
-| `* * *` | small business owner | note selling price and cost price of my items | don't have to keep a mental note of profit per item. 
-| `* * *` | small business owner | have a catalog items that I am selling | quickly create orders.
-| `* *` | business with many orders |have an overview of my Profit-and-Loss.
-| `* *`    | expert user                                                             | edit existing supplier information                                                   | keep my records accurate and up-to-date                      |
-| `* *`    | expert user                                                             | edit existing information about orders                                               | keep my order details accurate and up-to-date                |
-| `* *`    | expert user                                                             | edit existing task information                                                       | easily correct any wrong information keyed in                |
-| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                           | have a clearer view of ‘who supplies what’ at a glance       |
-| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details | have a record of everything                                  |
-| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                         | keep track of my deadlines and plan my time well             |
-| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email        | quickly obtain the details of the contact when I forget them |
+| Priority | As a / an …​                                                            | I want to …​                                                                          | So that I can…​                                              |
+|----------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | new user                                                                | see instructions on how to use the app                                                | refer to the instructions when learning how to use the app   |
+| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                    | easily find them in a single place                           |
+| `* * *`  | small business owner                                                    | add orders into my _order_ list                                                       | efficiently keep track of my orders                          |
+| `* * *`  | small business owner who has lots of deadlines to meet                  | add _tasks_, such as ordering ingredients                                             | keep track of my to-do list                                  |
+| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                                | ensure that the supplier contacts keyed in are correct       |
+| `* * *`  | familiar user                                                           | delete existing orders from my order list                                             | clear my order list of orders that are not required anymore  |
+| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                               | remove tasks that I no longer need to complete               |
+| `* * *`  | small business owner                                                    | add an new Item to my menu                                                            | keep reference to items that I am selling.                   |
+| `* * *`  | small business owner                                                    | note selling price and cost price of my items                                         | don't have to keep a mental note of profit per item.         |
+| `* * *`  | small business owner                                                    | have a catalog items that I am selling                                                | quickly create orders.                                       |
+| `* *`    | business with many orders                                               | have an overview of my Profit-and-Loss.                                               |
+| `* *`    | familiar user                                                           | edit existing supplier information                                                    | keep my records accurate and up-to-date                      |
+| `* *`    | familiar user                                                           | edit existing information about orders                                                | keep my order details accurate and up-to-date                |
+| `* *`    | familiar user                                                           | edit existing task information                                                        | easily correct any wrong information keyed in                |
+| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                            | have a clearer view of ‘who supplies what’ at a glance       |
+| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details  | have a record of everything                                  |
+| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                          | keep track of my deadlines and plan my time well             |
+| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email         | quickly obtain the details of the contact when I forget them |
+| `* *`    | forgetful business owner                                                | look for task information using keywords like task name, task status or task deadline | quickly obtain the details of the task when I forget them    |
+| `*`      | expert user                                                             | sort my orders by the order of earliest deadline to latest deadline                   | easily see which orders are due first                        |
+| `*`      | expert user                                                             | sort my tasks by the order of earliest deadline to latest deadline                    | easily see which tasks are due first                         |
 
 *{More to be added}*
 
@@ -662,6 +665,7 @@ Trackr displays an error message.
 * **CLI**: Command-Line Interface
 * **GUI**: Graphical User Interface
 * **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
+* **Customer**: Customer refers to someone whom the user receives an order from
 * **Order**: Order refers to the customers' orders the user accepts
 * **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
 * **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
