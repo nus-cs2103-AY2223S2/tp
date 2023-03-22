@@ -71,6 +71,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: delete a student**
 
+**Use case: Add Assignment**
+asgn_add
+
+**Use case: Delete Assignment**
+asgn_delete
+
+**Use case: Grade Student Submission of an Assignment**
+grade
+
+**Use case: Ungrade Student Submission of an Assignment**
+ungrade
+
 **MSS**
 
 1.  User requests to list all students in a class
