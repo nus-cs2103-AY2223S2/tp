@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
@@ -12,7 +14,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_204
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V2;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.CS2040S;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +23,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -94,10 +94,18 @@ public class TrackerParserTest {
     }
 
     @Test
-    public void parseCommand_deleteModule() throws Exception {
-        DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + CS2040S.getCode());
-        assertEquals(new DeleteModuleCommand(CS2040S.getCode()), command);
+    public void parseCommand_delete() throws Exception {
+        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD + " " + VALID_MODULE_CODE_2040)
+                instanceof DeleteCommand);
+        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
+                        + " " + VALID_LECTURE_NAME_L1
+                        + MODULE_CODE_DESC_2040)
+                instanceof DeleteCommand);
+        assertTrue(parser.parseCommand(DeleteCommand.COMMAND_WORD
+                        + " " + VALID_VIDEO_NAME_V1
+                        + MODULE_CODE_DESC_2040 + LECTURE_NAME_DESC_L1)
+                instanceof DeleteCommand);
+
     }
 
     @Test
