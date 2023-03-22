@@ -93,4 +93,6 @@ public interface Model {
      * @param petToArchive Pet object to archive
      */
     void archivePet(Pet petToArchive);
+
+    ReadOnlyPetPal getPetPalArchive();
 }

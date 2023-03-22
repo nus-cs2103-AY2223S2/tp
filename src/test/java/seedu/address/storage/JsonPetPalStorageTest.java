@@ -32,7 +32,8 @@ public class JsonPetPalStorageTest {
     }
 
     private java.util.Optional<ReadOnlyPetPal> readPetPal(String filePath) throws Exception {
-        return new JsonPetPalStorage(Paths.get(filePath)).readPetPal(addToTestDataPathIfNotNull(filePath));
+        return new JsonPetPalStorage(Paths.get(filePath), Paths.get(filePath))
+                .readPetPal(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -64,8 +65,9 @@ public class JsonPetPalStorageTest {
     @Test
     public void readAndSavePetPal_allInOrder_success() throws Exception {
         Path filePath = TEST_DATA_FOLDER.resolve("TempPetPal.json");
+        Path archiveFilePath = TEST_DATA_FOLDER.resolve("TempArchive.json");
         PetPal original = getTypicalPetPal();
-        JsonPetPalStorage jsonPetPalStorage = new JsonPetPalStorage(filePath);
+        JsonPetPalStorage jsonPetPalStorage = new JsonPetPalStorage(filePath, archiveFilePath);
 
         // Save in new file and read back
         jsonPetPalStorage.savePetPal(original, filePath);
@@ -99,7 +101,7 @@ public class JsonPetPalStorageTest {
      */
     private void savePetPal(ReadOnlyPetPal petPal, String filePath) {
         try {
-            new JsonPetPalStorage(Paths.get(filePath))
+            new JsonPetPalStorage(Paths.get(filePath), Paths.get(filePath))
                     .savePetPal(petPal, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

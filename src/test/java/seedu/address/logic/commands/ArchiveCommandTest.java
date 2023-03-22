@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.ArchiveCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,7 +25,7 @@ import seedu.address.model.pet.Pet;
  * {@code ArchiveCommand}.
  */
 public class ArchiveCommandTest {
-    private Model model = new ModelManager(getTypicalPetPal(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +34,7 @@ public class ArchiveCommandTest {
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive);
 
-        ModelManager expectedModel = new ModelManager(model.getPetPal(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
         expectedModel.archivePet(petToArchive);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
@@ -57,7 +56,7 @@ public class ArchiveCommandTest {
         ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PET);
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive);
-        Model expectedModel = new ModelManager(model.getPetPal(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
         expectedModel.archivePet(petToArchive);
         showNoPet(expectedModel);
 

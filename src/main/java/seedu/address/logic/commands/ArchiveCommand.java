@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ArchiveCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 

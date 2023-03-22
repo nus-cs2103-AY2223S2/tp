@@ -90,7 +90,7 @@ public class UniquePetList implements Iterable<Pet> {
         // add to archive list
         internalArchiveList.add(p);
         // remove from current list
-        if(!internalList.remove(p)) {
+        if (!internalList.remove(p)) {
             throw new PetNotFoundException();
         }
     }

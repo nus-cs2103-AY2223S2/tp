@@ -24,8 +24,8 @@ import seedu.address.model.pet.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalPetPal(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalPetPal(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
 
     @Test
     public void equals() {

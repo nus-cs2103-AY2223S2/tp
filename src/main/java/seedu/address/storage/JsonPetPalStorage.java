@@ -22,9 +22,11 @@ public class JsonPetPalStorage implements PetPalStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonPetPalStorage.class);
 
     private Path filePath;
+    private Path archiveFilePath;
 
-    public JsonPetPalStorage(Path filePath) {
+    public JsonPetPalStorage(Path filePath, Path archiveFilePath) {
         this.filePath = filePath;
+        this.archiveFilePath = archiveFilePath;
     }
 
     public Path getPetPalFilePath() {
@@ -33,7 +35,7 @@ public class JsonPetPalStorage implements PetPalStorage {
 
     @Override
     public Path getPetPalArchiveFilePath() {
-        return null;
+        return archiveFilePath;
     }
 
     @Override
@@ -84,21 +86,39 @@ public class JsonPetPalStorage implements PetPalStorage {
 
     @Override
     public Optional<ReadOnlyPetPal> readPetPalArchive() throws DataConversionException, IOException {
-        return Optional.empty();
+        return readPetPalArchive(filePath);
     }
 
     @Override
     public Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws DataConversionException, IOException {
-        return Optional.empty();
+        requireNonNull(filePath);
+        System.out.println(filePath);
+        Optional<JsonSerializablePetPal> jsonPetPalArchive = JsonUtil.readJsonFile(
+                filePath, JsonSerializablePetPal.class);
+
+        if (jsonPetPalArchive.isEmpty()) {
+            return Optional.empty();
+        }
+
+        try {
+            return Optional.of(jsonPetPalArchive.get().toModelType());
+        } catch (IllegalValueException ive) {
+            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            throw new DataConversionException(ive);
+        }
     }
 
     @Override
     public void savePetPalArchive(ReadOnlyPetPal petPal) throws IOException {
-
+        savePetPal(petPal, archiveFilePath);
     }
 
     @Override
     public void savePetPalArchive(ReadOnlyPetPal petPal, Path filePath) throws IOException {
+        requireNonNull(petPal);
+        requireNonNull(filePath);
 
+        FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePetPal(petPal), filePath);
     }
 }

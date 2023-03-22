@@ -109,7 +109,8 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editPetDescriptor.getDeadline().orElse(petToEdit.getDeadline());
         Set<Tag> updatedTags = editPetDescriptor.getTags().orElse(petToEdit.getTags());
 
-        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTimestamp, updatedDeadline, updatedTags);
+        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTimestamp, updatedDeadline, updatedTags);
     }
 
     @Override

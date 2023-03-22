@@ -56,7 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        PetPalStorage petPalStorage = new JsonPetPalStorage(userPrefs.getPetPalFilePath());
+        PetPalStorage petPalStorage = new JsonPetPalStorage(
+                userPrefs.getPetPalFilePath(), userPrefs.getPetPalArchiveFilePath());
         storage = new StorageManager(petPalStorage, userPrefsStorage);
 
         initLogging(config);
@@ -77,13 +78,17 @@ public class MainApp extends Application {
         Optional<ReadOnlyPetPal> petPalOptional;
         Optional<ReadOnlyPetPal> petPalArchive;
         ReadOnlyPetPal initialData;
+        ReadOnlyPetPal initialArchiveData;
 
         try {
             petPalOptional = storage.readPetPal();
+
             if (!petPalOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PetPal");
             }
+
             initialData = petPalOptional.orElseGet(SampleDataUtil::getSamplePetPal);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PetPal");
             initialData = new PetPal();
@@ -92,16 +97,23 @@ public class MainApp extends Application {
             initialData = new PetPal();
         }
 
-//        try {
-//            petPalArchive = storage.readPetPalArchive();
-//
-//        } catch (IOException e) {
-//            logger.warning("Problem reading from the archive. Will start with empty archive");
-//        } catch (DataConversionException e) {
-//            logger.warning("Archive file not in the correct format. Will start with an empty archive file");
-//        }
+        try {
+            petPalArchive = storage.readPetPalArchive();
 
-        return new ModelManager(initialData, userPrefs);
+            if (!petPalArchive.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample PetPal");
+            }
+
+            initialArchiveData = petPalArchive.orElse(new PetPal());
+        } catch (IOException e) {
+            logger.warning("Problem reading from the archive. Will start with empty archive");
+            initialArchiveData = new PetPal();
+        } catch (DataConversionException e) {
+            logger.warning("Archive file not in the correct format. Will start with an empty archive file");
+            initialArchiveData = new PetPal();
+        }
+
+        return new ModelManager(initialData, initialArchiveData, userPrefs);
     }
 
     private void initLogging(Config config) {

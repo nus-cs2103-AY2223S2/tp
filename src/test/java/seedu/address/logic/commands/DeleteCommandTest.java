@@ -26,7 +26,7 @@ import seedu.address.model.pet.Pet;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalPetPal(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getPetPal(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
         expectedModel.deletePet(petToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -58,7 +58,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
 
-        Model expectedModel = new ModelManager(model.getPetPal(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
         expectedModel.deletePet(petToDelete);
         showNoPet(expectedModel);
 

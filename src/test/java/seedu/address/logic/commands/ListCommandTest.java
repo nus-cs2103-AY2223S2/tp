@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPetPal(), new UserPrefs());
-        expectedModel = new ModelManager(model.getPetPal(), new UserPrefs());
+        model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
+        expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
     }
 
     @Test

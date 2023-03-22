@@ -22,8 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyPetPal_success() {
-        Model model = new ModelManager(getTypicalPetPal(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalPetPal(), new UserPrefs());
+        Model model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
         expectedModel.setPetPal(new PetPal());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
