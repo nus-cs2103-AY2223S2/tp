@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -27,7 +28,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_ROLE, PREFIX_STATUS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMPANY_NAME, PREFIX_ROLE, PREFIX_STATUS, PREFIX_DATE,
+                        PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -37,53 +39,53 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (!argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()
                 && !argMultimap.getValue(PREFIX_ROLE).isPresent()
                 && !argMultimap.getValue(PREFIX_STATUS).isPresent()
+                && !argMultimap.getValue(PREFIX_DATE).isPresent()
                 && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<String> names = new ArrayList<>();
-        List<String> roles = new ArrayList<>();
-        List<String> statuses = new ArrayList<>();
+        List<String> nameList = this.parseCompanyNames(argMultimap.getAllValues(PREFIX_COMPANY_NAME));
+        List<String> roleList = this.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
+        List<String> statusList = this.parseStatuses(argMultimap.getAllValues(PREFIX_STATUS));
+        List<String> dateList = this.parseDates(argMultimap.getAllValues(PREFIX_DATE));
+        List<String> tagList = this.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        List<String> nameKeywords;
-        List<String> roleKeywords;
-        List<String> statusKeywords;
-        List<String> tagKeywords;
+        return new FindCommand(new InternshipContainsKeywordsPredicate(nameList, roleList, statusList, tagList));
+    }
 
-        List<String> nameList = argMultimap.getAllValues(PREFIX_COMPANY_NAME);
-        for (String name : nameList) {
-            names.add(ParserUtil.parseCompanyName(name).fullCompanyName);
-        }
-        nameKeywords = this.split(names);
+    private List<String> parseCompanyNames(List<String> unparsedNames) throws ParseException {
+        List<String> parsedNames = ParserUtil.parseCompanyNames(unparsedNames).stream()
+                .map(name -> name.fullCompanyName)
+                .collect(Collectors.toList());
+        return parsedNames;
+    }
 
-        List<String> roleList = argMultimap.getAllValues(PREFIX_ROLE);
-        for (String role : roleList) {
-            roles.add(ParserUtil.parseRole(role).fullRole);
-        }
-        roleKeywords = this.split(roles);
+    private List<String> parseRoles(List<String> unparsedRoles) throws ParseException {
+        List<String> parsedRoles = ParserUtil.parseRoles(unparsedRoles).stream()
+                .map(role -> role.fullRole)
+                .collect(Collectors.toList());
+        return parsedRoles;
+    }
 
-        List<String> statusList = argMultimap.getAllValues(PREFIX_STATUS);
-        for (String status : statusList) {
-            statuses.add(ParserUtil.parseStatus(status).fullStatus);
-        }
-        statusKeywords = this.split(statuses);
+    private List<String> parseStatuses(List<String> unparsedStatuses) throws ParseException {
+        List<String> parsedStatuses = ParserUtil.parseStatuses(unparsedStatuses).stream()
+                .map(status -> status.fullStatus)
+                .collect(Collectors.toList());
+        return parsedStatuses;
+    }
 
-        List<String> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)).stream()
+    private List<String> parseDates(List<String> unparsedDates) throws ParseException {
+        List<String> parsedDates = ParserUtil.parseDates(unparsedDates).stream()
+                .map(date -> date.fullDate)
+                .collect(Collectors.toList());
+        return parsedDates;
+    }
+
+    private List<String> parseTags(List<String> unparsedTags) throws ParseException {
+        List<String> parsedTags = ParserUtil.parseTags(unparsedTags).stream()
                 .map(tag -> tag.tagName)
                 .collect(Collectors.toList());
-
-        tagKeywords = this.split(tags);
-
-        return new FindCommand(new InternshipContainsKeywordsPredicate(nameKeywords, roleKeywords, statusKeywords,
-                tagKeywords));
+        return parsedTags;
     }
-
-    private List<String> split(List<String> ls) throws ParseException {
-        return ls.stream()
-                .map(str -> str.split("\\s+"))
-                .flatMap(arr -> Arrays.asList(arr).stream())
-                .collect(Collectors.toList());
-    }
-
 }
