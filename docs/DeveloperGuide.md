@@ -156,6 +156,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+### How add feature is implemented
+
+The `add` command allows users to add an internship application to the tracker. The add mechanism is facilitated by `AddCommand` class. It extends `Command`but overrides the `Command#execute` to add an internship application to the tracker.
+
+The `AddCommandParser` checks that the user input is in the expected format, if not an exception will be thrown.
+
+The sequence diagram below shows how the `AddCommand` object is created:
+
+
 ### Add contact feature
 
 #### How is the feature implemented
