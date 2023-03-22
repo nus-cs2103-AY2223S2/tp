@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -32,6 +31,7 @@ import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.add.AddModuleCommand;
 import seedu.address.logic.commands.add.AddVideoCommand;
+import seedu.address.logic.commands.delete.DeleteCommand;
 import seedu.address.logic.commands.edit.EditCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand;
 import seedu.address.logic.commands.edit.EditLectureCommand.EditLectureDescriptor;

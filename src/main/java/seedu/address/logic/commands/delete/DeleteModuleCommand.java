@@ -40,7 +40,7 @@ public class DeleteModuleCommand extends DeleteCommand {
 
             ReadOnlyModule moduleToDelete = model.getModule(targetModuleCode);
             model.deleteModule(moduleToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetModuleCode));
 
         } else {
 
