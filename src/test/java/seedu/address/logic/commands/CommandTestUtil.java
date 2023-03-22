@@ -9,6 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -17,10 +21,6 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ContactBuilder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Contains helper methods for testing commands.
@@ -113,8 +113,8 @@ public class CommandTestUtil {
 
     public static void assertCommandSuccess(CommandResult result, Model actualModel,
         CommandResult expectedCommandResult, Model expectedModel) {
-            assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
+        assertEquals(expectedCommandResult, result);
+        assertEquals(expectedModel, actualModel);
     }
 
 

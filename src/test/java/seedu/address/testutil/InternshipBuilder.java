@@ -13,15 +13,13 @@ public class InternshipBuilder {
 
     private CompanyName companyName;
     private JobTitle jobTitle;
-
     /**
      * Creates an {@code InternshipApplicationBuilder} with the default details.
      */
-     public InternshipBuilder() {
+    public InternshipBuilder() {
         companyName = new CompanyName(DEFAULT_COMPANY_NAME);
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
-     }
-
+    }
     /**
      * Initializes the InternshipApplicationBuilder with the data of {@code internshipToCopy}.
      */
