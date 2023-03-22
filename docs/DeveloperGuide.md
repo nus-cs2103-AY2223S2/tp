@@ -257,7 +257,7 @@ The following sequence diagram shows how the edit operation works:
 The following is a more detailed explanation on how `EditCommand` works.
 
 1. When the user enters an `edit` command, the `EditCommandParser` parses the user's input.
-2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be removed.
+2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be edited.
 3. If the name, role, status, tag, date or comment fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the Internship will not be edited.
 4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
 5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
