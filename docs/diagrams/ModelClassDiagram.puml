@@ -17,7 +17,7 @@ Class UniqueXYZList
 Class XYZ
 Class "{abstract}\nItem" as Item
 Class ItemList<T extends Item>
-Class UniqueItemList<T>
+Class "UniqueItemList<T> " as UniqueItemList
 
 ModelManager ..u|> Model
 Model ..r> ReadOnlyUserPrefs

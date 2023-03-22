@@ -20,7 +20,7 @@ Class Tag
 }
 
 Class ItemList<T extends Item>
-Class UniqueItemList<T>
+Class "UniqueItemList<T> " as UniqueItemList
 
 ItemList *--> "1" UniqueItemList
 UniqueItemList --> Item

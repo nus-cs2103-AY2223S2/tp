@@ -131,14 +131,14 @@ The `Model` component,
 
 Here is the `Item` class that is what all model objects depend on.
 
-<img src="images/ItemClassDiagram.svg" width="450" />
+<img src="images/ItemClassDiagram.svg" width="350" />
 
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
 
 This is the class representation for the `Supplier` and `Customer` class.
 
-<img src="images/PersonClassDiagram.svg" width="450" />
+<img src="images/PersonClassDiagram.svg" width="500" />
 
 Here is how `Supplier` and `Customer` works:
 

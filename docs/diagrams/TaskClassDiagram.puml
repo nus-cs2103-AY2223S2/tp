@@ -11,6 +11,8 @@ Abstract Class "{abstract}\nItem" as Item
 Abstract Class "{abstract}\nName" as Name
 Abstract Class "{abstract}\nDeadline" as Deadline
 Abstract Class "{abstract}\nStatus" as Status
+Class "UniqueItemList<T> " as UniqueItemList
+Class ItemList<T extends Item>
 
 Class Task
 Class TaskName
