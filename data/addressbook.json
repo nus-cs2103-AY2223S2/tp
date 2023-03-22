@@ -1,97 +1,34 @@
 {
   "categories" : [ {
-<<<<<<< HEAD
     "categoryName" : "a",
-    "summary" : "ijifnbinbsg"
+    "summary" : ""
   }, {
     "categoryName" : "b",
-    "summary" : "sjibtsbgr"
-  }, {
-    "categoryName" : "fbjsgbg",
     "summary" : ""
-  }, {
-    "categoryName" : "sbfad",
-    "summary" : ""
-  }, {
-    "categoryName" : "agbrsbb",
-    "summary" : ""
-  }, {
-    "categoryName" : "argaebsb",
-    "summary" : ""
-  }, {
-    "categoryName" : "new cat",
-    "summary" : "safag"
-  } ],
-  "expenses" : [ {
-    "name" : "fgsgbsgns",
-    "amount" : "4.8",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "fbjsgbg",
-      "summary" : ""
-    }
-  }, {
-    "name" : "adfbb",
-    "amount" : "4.5",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "sbfad",
-      "summary" : ""
-    }
-  }, {
-    "name" : "argaeb",
-    "amount" : "4.5",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "agbrsbb",
-      "summary" : ""
-    }
-  }, {
-    "name" : "sadfvbq",
-    "amount" : "6.79",
-    "date" : "2023-03-15",
-    "category" : {
-      "categoryName" : "argaebsb",
-      "summary" : ""
-    }
-  }, {
-    "name" : "aaa",
-    "amount" : "1.0",
-    "date" : "2023-03-17",
-    "category" : {
-      "categoryName" : "a",
-      "summary" : "ijifnbinbsg"
-    }
-  } ]
-}
-=======
-    "categoryName" : "food",
-    "summary" : "summary"
   } ],
   "expenses" : [ {
     "name" : "apple",
-    "amount" : "1.5",
-    "date" : "2023-03-16",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "a",
+      "summary" : ""
     }
   }, {
     "name" : "orange",
-    "amount" : "2.0",
-    "date" : "2023-03-16",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "b",
+      "summary" : ""
     }
   }, {
-    "name" : "Fuji Apple",
-    "amount" : "2.0",
-    "date" : "2023-03-16",
+    "name" : "hello",
+    "amount" : "1.0",
+    "date" : "2023-03-22",
     "category" : {
-      "categoryName" : "food",
-      "summary" : "summary"
+      "categoryName" : "a",
+      "summary" : ""
     }
   } ]
 }
->>>>>>> a00a01a450cb914edba525f72dfe57b2c9d6002f

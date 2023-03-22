@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalExpenses.APPLE;
-import static seedu.address.testutil.TypicalExpenses.BANANA;
-import static seedu.address.testutil.TypicalExpenses.CHERRY;
-import static seedu.address.testutil.TypicalExpenses.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalExpenses.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +21,8 @@ import seedu.address.model.expense.ExpenseContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalExpenseTracker(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalExpenseTracker(), new UserPrefs());
 
     @Test
     public void equals() {

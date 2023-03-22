@@ -1,11 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-<<<<<<< HEAD
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
-=======
->>>>>>> a00a01a450cb914edba525f72dfe57b2c9d6002f
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
 import java.util.Optional;
@@ -49,7 +46,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-<<<<<<< HEAD
 
         if (categoryPredicate.isPresent()) {
             model.updateFilteredExpensesList(categoryPredicate.get());
@@ -68,8 +64,5 @@ public class ListCommand extends Command {
                 || (other instanceof ListCommand // instanceof handles nulls
                 && categoryPredicate.equals(((ListCommand) other).categoryPredicate)
                 && timespanPredicate.equals(((ListCommand) other).timespanPredicate)); // state check
-=======
-        return new CommandResult(MESSAGE_SUCCESS);
->>>>>>> a00a01a450cb914edba525f72dfe57b2c9d6002f
     }
 }
