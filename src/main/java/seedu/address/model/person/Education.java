@@ -30,7 +30,7 @@ public class Education {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidEducation(String test) {
-        return test.matches(VALIDATION_REGEX) || test.isEmpty();
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
