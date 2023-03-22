@@ -1,9 +1,11 @@
 package tfifteenfour.clipboard.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tfifteenfour.clipboard.MainApp;
@@ -36,6 +38,10 @@ public class StudentCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label studentId;
+    @FXML
+    private FlowPane modules;
+    @FXML
+    private FlowPane tags;
 
 
     /**
@@ -46,8 +52,13 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        studentId.setText(student.getStudentId().value);
-
+        //studentId.setText(student.getStudentId().value);
+        student.getModules().stream()
+                .sorted(Comparator.comparing(module -> module.moduleCode))
+                .forEach(module -> modules.getChildren().add(new Label(module.moduleCode)));
+        student.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
