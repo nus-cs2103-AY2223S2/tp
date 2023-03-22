@@ -386,13 +386,13 @@ All `Person` must have a `Name`, `Email`, `Course` and `Year`.
 
 For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different. 
 
-We included the `Skills` attribute to remind users to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.  
+We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.  
 
 **Aspect 1: How to implement the `GitHub` and `Linkedin` attributes:**
 
 - Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL. 
   - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
-  - Cons: Lack of details - user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
+  - Cons: Lack of details, user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
 - Alternative 2: Make them compulsory. 
   - Pros: Can remind users to ask the person that they are adding for their socials such that they can look them up if they want to.
   - Cons:
@@ -470,10 +470,11 @@ Even though the behaviour is similar to simply deleting and adding new modules a
 
 Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that he/she is able to reach out to them for collaboration more quickly.
 
-- filtered list contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user
-- **can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills
-- checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord)
-- case-insensitive
+- `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
+- **Can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills.
+- Checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord).
+- Case-insensitive
+- If the user types duplicate prefixes in the query i.e. `find s/java python s/javascript s/c sql`, only the last occurrence of the prefix will be taken i.e. `find s/c sql` will be taken.
 
 `find` has the prefixes corresponding to attributes as follows:
 * `n/` for `Name`
@@ -484,7 +485,7 @@ Finding i.e filtering a person by their attributes is implemented such that the 
 
 **Implementation Flow**
 
-The following sequence diagram summarizes what happens when a user executes a `findCommand`:
+The following sequence diagram summarizes what happens when a user executes a `find` command:
 
 ![Find Command Sequence Diagram](images/FindSequenceDiagram.png)
 
