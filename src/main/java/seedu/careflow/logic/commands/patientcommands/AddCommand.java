@@ -15,7 +15,7 @@ import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * Adds a patient to the patient records

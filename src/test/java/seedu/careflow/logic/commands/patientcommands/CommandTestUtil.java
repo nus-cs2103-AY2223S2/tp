@@ -23,8 +23,8 @@ import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlow;
 import seedu.careflow.model.CareFlowModel;
-import seedu.careflow.model.person.NameContainsKeywordsPredicate;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.testutil.EditPatientDescriptorBuilder;
 
 /**

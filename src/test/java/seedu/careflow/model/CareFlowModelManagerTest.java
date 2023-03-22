@@ -17,7 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.commons.core.GuiSettings;
-import seedu.careflow.model.person.NameContainsKeywordsPredicate;
+import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
 import seedu.careflow.testutil.DrugInventoryBuilder;
 import seedu.careflow.testutil.PatientRecordBuilder;
 

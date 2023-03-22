@@ -1,4 +1,4 @@
-package seedu.careflow.model.person;
+package seedu.careflow.model.patient;
 
 import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
 

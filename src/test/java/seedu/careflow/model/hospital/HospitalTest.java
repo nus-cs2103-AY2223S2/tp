@@ -10,8 +10,8 @@ import static seedu.careflow.testutil.TypicalHospitals.VALID_TAN_TOCK_SENG_HOSPI
 
 import org.junit.jupiter.api.Test;
 
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Phone;
 import seedu.careflow.testutil.HospitalBuilder;
 
 public class HospitalTest {

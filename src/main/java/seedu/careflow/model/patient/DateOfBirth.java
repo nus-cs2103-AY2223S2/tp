@@ -1,4 +1,4 @@
-package seedu.careflow.model.person;
+package seedu.careflow.model.patient;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.careflow.commons.util.AppUtil.checkArgument;

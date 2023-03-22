@@ -1,4 +1,4 @@
-package seedu.careflow.model.person;
+package seedu.careflow.model.patient;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.careflow.model.person.exceptions.DuplicatePatientException;
-import seedu.careflow.model.person.exceptions.PatientNotFoundException;
+import seedu.careflow.model.patient.exceptions.DuplicatePatientException;
+import seedu.careflow.model.patient.exceptions.PatientNotFoundException;
 
 /**
  * A list of patients that enforces uniqueness between its elements and does not allow nulls.

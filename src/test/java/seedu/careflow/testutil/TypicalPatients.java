@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.careflow.model.PatientRecord;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * A utility class containing a list of {@code Patient} objects to be used in tests.

@@ -1,4 +1,4 @@
-package seedu.careflow.model.person;
+package seedu.careflow.model.patient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

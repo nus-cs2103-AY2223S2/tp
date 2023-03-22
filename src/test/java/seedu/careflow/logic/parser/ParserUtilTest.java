@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.logic.parser.exceptions.ParseException;
-import seedu.careflow.model.person.Address;
-import seedu.careflow.model.person.Email;
-import seedu.careflow.model.person.Name;
-import seedu.careflow.model.person.Phone;
+import seedu.careflow.model.patient.Address;
+import seedu.careflow.model.patient.Email;
+import seedu.careflow.model.patient.Name;
+import seedu.careflow.model.patient.Phone;
 import seedu.careflow.model.tag.Tag;
 
 public class ParserUtilTest {

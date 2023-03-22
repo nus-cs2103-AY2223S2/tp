@@ -22,7 +22,7 @@ import seedu.careflow.model.DrugInventory;
 import seedu.careflow.model.ReadOnlyUserPrefs;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.hospital.Hospital;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 import seedu.careflow.model.readonly.ReadOnlyDrugInventory;
 import seedu.careflow.model.readonly.ReadOnlyHospitalRecords;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;

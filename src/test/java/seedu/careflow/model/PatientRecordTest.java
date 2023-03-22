@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.careflow.model.person.Patient;
-import seedu.careflow.model.person.exceptions.DuplicatePatientException;
+import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.patient.exceptions.DuplicatePatientException;
 import seedu.careflow.model.readonly.ReadOnlyPatientRecord;
 import seedu.careflow.testutil.PatientBuilder;
 

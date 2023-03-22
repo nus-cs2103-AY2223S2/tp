@@ -1,7 +1,7 @@
 package seedu.careflow.testutil;
 
 import seedu.careflow.model.PatientRecord;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * A utility class to help with building PatientRecord objects.

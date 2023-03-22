@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.careflow.commons.core.index.Index;
 import seedu.careflow.model.CareFlowModel;
-import seedu.careflow.model.person.Patient;
+import seedu.careflow.model.patient.Patient;
 
 /**
  * A utility class for test cases.

@@ -8,7 +8,7 @@ import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.careflow.logic.commands.patientcommands.DeleteCommand;
-import seedu.careflow.model.person.Ic;
+import seedu.careflow.model.patient.Ic;
 
 
 class DeleteCommandParserTest {
