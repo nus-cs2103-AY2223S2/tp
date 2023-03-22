@@ -9,9 +9,10 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 2. [Setting Up, Getting Started](#setting-up-getting-started)
 3. [Design](#design)
 4. [Implementation](#implementation)<br>
-   1. [Attendance Feature](#attendance-feature)<br>
-   2. [Grade Feature](#grade-feature)<br>
-   3. [Parent/NOK Edit Feature](#parentnok-edit-feature)<br>
+   1. [Student Delete Feature](#delete-student-feature)
+   2. [Attendance Feature](#attendance-feature)<br>
+   3. [Grade Feature](#grade-feature)<br>
+   4. [Parent/NOK Edit Feature](#parentnok-edit-feature)<br>
 5. [Proposed Features](#proposed-features)
 6. [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
 7. [Appendix](#appendix-requirements)<br>
@@ -321,12 +322,16 @@ Step 5. Edited `Parent` is saved to the storage file automatically after the com
 
 **Full implementation sequence diagram**
 ![Sequence Diagram](images/ParentEditCmd(Full Sequence Diagram).jpg)
+
 **Partial Sequence Diagram 1**
 ![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT1).jpg)
+
 **Partial Sequence Diagram 2**
 ![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT2).jpg)
+
 **Partial Sequence Diagram 3**
 ![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT3).jpg)
+
 **Partial Sequence Diagram 4**
 ![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT4).jpg)
 
