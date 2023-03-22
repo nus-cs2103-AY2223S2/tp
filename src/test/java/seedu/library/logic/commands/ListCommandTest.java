@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 
 /**
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalLibrary(), new UserPrefs());
-        expectedModel = new ModelManager(model.getLibrary(), new UserPrefs());
+        model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
+        expectedModel = new ModelManager(model.getLibrary(), new UserPrefs(), new Tags());
     }
 
     @Test

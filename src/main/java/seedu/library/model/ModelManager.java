@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.library.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.library.commons.core.GuiSettings;
 import seedu.library.commons.core.LogsCenter;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the library data.
@@ -20,24 +22,28 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Library library;
+    private final Tags tagList;
     private final UserPrefs userPrefs;
     private final FilteredList<Bookmark> filteredBookmarks;
 
     /**
-     * Initializes a ModelManager with the given library and userPrefs.
+     * Initializes a ModelManager with the given library and userPrefs, tagList.
      */
-    public ModelManager(ReadOnlyLibrary library, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyLibrary library, ReadOnlyUserPrefs userPrefs, ReadOnlyTags tagList) {
         requireAllNonNull(library, userPrefs);
 
-        logger.fine("Initializing with library: " + library + " and user prefs " + userPrefs);
+        logger.fine("Initializing with library: " + library
+                + " and user prefs " + userPrefs
+                + " and tag list " + tagList);
 
         this.library = new Library(library);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.tagList = new Tags(tagList);
         filteredBookmarks = new FilteredList<>(this.library.getBookmarkList());
     }
 
     public ModelManager() {
-        this(new Library(), new UserPrefs());
+        this(new Library(), new UserPrefs(), new Tags());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -109,6 +115,40 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedBookmark);
 
         library.setBookmark(target, editedBookmark);
+    }
+
+    //=========== tagList ================================================================================
+
+    @Override
+    public ReadOnlyTags getTags() {
+        return tagList;
+    }
+
+    @Override
+    public void addTags(Set<Tag> toAdd) {
+        for (Tag tagToAdd : toAdd) {
+            tagList.addTag(tagToAdd);
+        }
+    }
+
+    @Override
+    public boolean hasTag(Set<Tag> tags) {
+        return tagList.containsAll(tags);
+    }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        return tagList.contains(tag);
+    }
+
+    @Override
+    public String tagListToString() {
+        return tagList.tagListToString();
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        tagList.removeTag(target);
     }
 
     //=========== Filtered Bookmark List Accessors =============================================================
