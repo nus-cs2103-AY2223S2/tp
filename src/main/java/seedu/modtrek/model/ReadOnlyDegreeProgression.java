@@ -14,4 +14,11 @@ public interface ReadOnlyDegreeProgression {
      */
     ObservableList<Module> getModuleList();
 
+    /**
+     * Returns a DegreeProgressionData with the most updated details of the degree progression.
+     *
+     * @return the degree progression data
+     */
+    DegreeProgressionData getProgressionData();
+
 }

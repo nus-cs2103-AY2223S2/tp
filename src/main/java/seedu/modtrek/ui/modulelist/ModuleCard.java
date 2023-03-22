@@ -1,12 +1,5 @@
 package seedu.modtrek.ui.modulelist;
 
-import static seedu.modtrek.model.tag.Tag.ValidTag.COMPUTER_SCIENCE_BREADTH_AND_DEPTH;
-import static seedu.modtrek.model.tag.Tag.ValidTag.COMPUTER_SCIENCE_FOUNDATION;
-import static seedu.modtrek.model.tag.Tag.ValidTag.IT_PROFESSIONALISM;
-import static seedu.modtrek.model.tag.Tag.ValidTag.MATHEMATICS_AND_SCIENCES;
-import static seedu.modtrek.model.tag.Tag.ValidTag.UNIVERSITY_LEVEL_REQUIREMENTS;
-import static seedu.modtrek.model.tag.Tag.ValidTag.UNRESTRICTED_ELECTIVES;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -15,7 +8,7 @@ import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.tag.Tag;
-import seedu.modtrek.model.tag.Tag.ValidTag;
+import seedu.modtrek.model.tag.ValidTag;
 import seedu.modtrek.ui.UiPart;
 
 /**
@@ -52,23 +45,24 @@ public class ModuleCard extends UiPart<Region> {
 
         for (Tag tag : module.getTags()) {
             switch (ValidTag.valueOf(tag.tagName)) {
+            // TODO: See if you can make use of the new ValidTag enum :)
             case UNIVERSITY_LEVEL_REQUIREMENTS:
-                addTag("ULR", UNIVERSITY_LEVEL_REQUIREMENTS.toString(), "red");
+                addTag("ULR", tag.tagName.toString(), "red");
                 break;
             case COMPUTER_SCIENCE_FOUNDATION:
-                addTag("CSF", COMPUTER_SCIENCE_FOUNDATION.toString(), "blue");
+                addTag("CSF", tag.tagName.toString(), "blue");
                 break;
             case COMPUTER_SCIENCE_BREADTH_AND_DEPTH:
-                addTag("CSBD", COMPUTER_SCIENCE_BREADTH_AND_DEPTH.toString(), "green");
+                addTag("CSBD", tag.tagName.toString(), "green");
                 break;
             case IT_PROFESSIONALISM:
-                addTag("ITP", IT_PROFESSIONALISM.toString(), "yellow");
+                addTag("ITP", tag.tagName.toString(), "yellow");
                 break;
             case MATHEMATICS_AND_SCIENCES:
-                addTag("MS", MATHEMATICS_AND_SCIENCES.toString(), "purple");
+                addTag("MS", tag.tagName.toString(), "purple");
                 break;
             case UNRESTRICTED_ELECTIVES:
-                addTag("UE", UNRESTRICTED_ELECTIVES.toString(), "orange");
+                addTag("UE", tag.tagName.toString(), "orange");
                 break;
             default:
             }

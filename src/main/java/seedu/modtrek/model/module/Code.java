@@ -4,25 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
 /**
- * The type Code.
+ * Code denotes the Module Code for a module.
  */
 public class Code {
 
-    /**
-     * The constant MESSAGE_CONSTRAINTS.
-     */
     public static final String MESSAGE_CONSTRAINTS =
             "Module code is missing, invalid or at the wrong position. It should be alphanumeric.";
 
     private static final String VALIDATION_REGEX = "^[A-Z]{2,4}[0-9]{4}[A-Z]{0,1}$";
 
-    /**
-     * The Code.
-     */
     protected final String code;
 
     /**
-     * Instantiates a new Code.
+     * Instantiates a Code. The code cannot be null and must be valid.
      *
      * @param code the code
      */
@@ -33,7 +27,7 @@ public class Code {
     }
 
     /**
-     * Is valid code boolean.
+     * Checks if the code is valid based on the regex.
      *
      * @param test the test
      * @return the boolean

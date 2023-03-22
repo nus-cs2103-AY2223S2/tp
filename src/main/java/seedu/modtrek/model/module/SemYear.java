@@ -4,25 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
 /**
- * The type Sem year.
+ * SemYear denotes the Year and Semester when the module is taken.
  */
 public class SemYear {
 
-    /**
-     * The constant MESSAGE_CONSTRAINTS.
-     */
     public static final String MESSAGE_CONSTRAINTS =
-            "SemYear should be alphanumeric in the format YxSx, where x are digits";
+            "SemYear should be alphanumeric in the format YxS(T)x, where x are digits";
 
     private static final String VALIDATION_REGEX = "^Y[0-5]S[T]{0,1}[1-2]$";
 
-    /**
-     * The Semyear.
-     */
     protected final String semyear;
 
     /**
-     * Instantiates a new Sem year.
+     * Instantiates a new SemYear. This cannot be null and must be valid.
      *
      * @param semyear the semyear
      */
@@ -33,7 +27,7 @@ public class SemYear {
     }
 
     /**
-     * Is valid sem year boolean.
+     * Checks if the SemYear is valid.
      *
      * @param test the test
      * @return the boolean

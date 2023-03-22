@@ -13,6 +13,7 @@ import seedu.modtrek.model.tag.Tag;
  * Represents a module in ModTrek.
  */
 public class Module {
+
     // Identity fields
     private final Code code;
 
@@ -23,7 +24,7 @@ public class Module {
     private final Grade grade;
 
     /**
-     * Instantiates a new Module.
+     * Instantiates a new Module. All the parameters cannot be null.
      *
      * @param code         the code
      * @param credits      the credits
@@ -32,7 +33,7 @@ public class Module {
      * @param grade        the grade
      */
     public Module(Code code, Credit credits, SemYear semesterYear, Set<Tag> tags, Grade grade) {
-        requireAllNonNull(code, credits, semesterYear, tags);
+        requireAllNonNull(code, credits, semesterYear, tags, grade);
         this.code = code;
         this.credits = credits;
         this.semesterYear = semesterYear;
@@ -41,7 +42,7 @@ public class Module {
     }
 
     /**
-     * Instantiates a new Module.
+     * Instantiates a new Module with some default fields.
      *
      * @param code the code
      */
@@ -53,63 +54,41 @@ public class Module {
         this.grade = new Grade("S");
     }
 
-    /**
-     * Gets code.
-     *
-     * @return the code
-     */
     public Code getCode() {
         return code;
     }
 
-    /**
-     * Gets credit.
-     *
-     * @return the credit
-     */
     public Credit getCredit() {
         return credits;
     }
 
-    /**
-     * Gets sem year.
-     *
-     * @return the sem year
-     */
     public SemYear getSemYear() {
         return semesterYear;
     }
 
-    /**
-     * Gets grade.
-     *
-     * @return the grade
-     */
     public Grade getGrade() {
         assert grade != null;
         return grade;
     }
 
-    /**
-     * Gets tags.
-     *
-     * @return the tags
-     */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
-    /**
-     * Gets modifiable tags.
-     *
-     * @return the tags
-     */
     public Set<Tag> getModifiableTags() {
         return tags;
     }
 
+    public boolean isComplete() {
+        return !grade.isEmpty() && !tags.isEmpty();
+    }
+
+    public boolean isGradeable() {
+        return grade.isGradeable();
+    }
+
     /**
-     * Is same module boolean.
+     * Checks if the module is the same based on its code only.
      *
      * @param otherModule the other module
      * @return the boolean
