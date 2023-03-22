@@ -190,6 +190,28 @@ Consequently, the state of the selected tab needs to be shared between the two m
 
 > **Example:** If the user has navigated from the 1st tab to the 3rd using the tab bar before trying to navigate back to the 1st tab using `tab 1`, they should not be warned that they are already on the 1st tab. In other words, both methods should have their states in sync from the perspective of the user, so as not to induce unexpected behaviour.
 
+### Command for selecting 
+
+The `select` feature allows user to select which contact's details to display on the person details panel.
+
+There are _selected person_ and _selected index_ fields in `AddressBook` that keep tracks of which person's details should be displayed.
+These fields are initialised to null at the start when no person is selected yet.
+
+The `select` feature is facilitated through `SelectCommandParser` and `SelectCommand`.
+The `LogicManager` executes the `SelectCommand`, which communicates with the `ModelManager` and updates the _selected person_ and _selected index_ fields in `AddressBook`
+
+![Class Diagram of `select`](images/SelectClassDiagram.png)
+
+#### Design considerations:
+
+There are two ways to select a contact:
+* **Method 1:** Click on the contact in the current displayed contact list
+* **Method 2:** Use the `select` command
+
+Currently, the state of select is NOT shared between the two methods. (Future implementation: bind the two methods)
+> **Example:** If the user has selected index 1 by using `select 1`, clicking on the same contact at index 1 does not "deselect" contact..
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

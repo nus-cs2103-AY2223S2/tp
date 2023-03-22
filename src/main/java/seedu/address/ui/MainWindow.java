@@ -215,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             if (commandResult.isSelect()) {
+                bodyPanel.getAddressPanel().getPersonListPanel().clearSelection();
                 this.setPersonDetail();
                 this.setDisplayedIndex();
             } else {
@@ -231,7 +232,6 @@ public class MainWindow extends UiPart<Stage> {
              * and update the UI accordingly, so it is reset instead to reduce the chance of bugs.
              */
             bodyPanel.getAddressPanel().getPersonListPanel().scrollToTop();
-            bodyPanel.getAddressPanel().getPersonListPanel().clearSelection();
         }
     }
 
