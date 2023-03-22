@@ -23,59 +23,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The General Architecture of FriendlyLink follows that of [AddressBook3](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
-### Logic
+### Logic Component
 
-#### Add and Delete Elderly and Volunteer
-
-In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
-
-The `add_elderly` and `add_volunteer` commands accept attributes of `Elderly` and `Volunteer` through prefixes.
-Each prefix is followed by the information of one attribute. 
-Some prefixes, such as `availableDates`, `tags`, are optional.
-
-* This grants greater flexibility of user input, as the user can key in the attributes in any order.
-* The unspecified optional fields will return `null` value.
-* The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
-* When the `add` command format is invalid, or the user tries to add a duplicated person, 
-the add operation will be aborted.
-
-The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
-
-* Allows for filtering to display a subset of Elderly or Volunteers in UI.
-* Allows for easy retrieval of information for pairing.
-
-The `delete_elderly` and `delete_volunteer` commands make use of `NRIC` 
-attribute of Elderly and Volunteer. 
-FriendlyLink retrieves the target person uniquely identified by its NRIC, 
-and removes it from the database.
-
-* Allows more efficient deletion compare to index-based deletion.
-* The user don't need to check the index of the target person before deletion.
-
-If the deleted Elderly or Volunteer has existing pairing, the associated
-pairs will be automatically removed as well.
-
-#### Edit by index & NRIC
-
-#### Find by keyword
-
-#### Pairing and unpairing of elderly and volunteers
-
-Pairs are implemented as a class with 2 referenced attributes, elderly and volunteer.
-* This allows the NRIC of a person in the pair to be automatically updated when the person is updated.
-
-The pairs are stored in a list similar to persons.
-* Allows for filtering to display a subset of pairs in the UI.
-* Allows for identifying a pair by index.
-
-<img src="images/developerGuide/Pair.png" width="350" />
-
-Two pairs are identical if they have the same elderly and volunteer NRIC.
-
-* Just like persons, we do not allow duplicate pairs (due to add or edit pair)
-* Elderly and volunteer NRIC is used to identify a pair for deletion.
-
-### Storage
+### Storage component
 
 <img src="images/developerGuide/StorageClassDiagram.png"/>
 
@@ -106,6 +56,64 @@ Implications
 * Elderly and volunteer files need to be read into the model before pair files.
 
 </div>
+
+### Common classes
+
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
+
+## Implementation
+
+### Add and Delete Elderly and Volunteer
+
+In FriendlyLink, `Elderly` and `Volunteer` are both implemented as subclasses of the abstract class `Person`.
+
+The `add_elderly` and `add_volunteer` commands accept attributes of `Elderly` and `Volunteer` through prefixes.
+Each prefix is followed by the information of one attribute.
+Some prefixes, such as `availableDates`, `tags`, are optional.
+
+* This grants greater flexibility of user input, as the user can key in the attributes in any order.
+* The unspecified optional fields will return `null` value.
+* The `NRIC` attribute for Elderly and Volunteer will be cross-checked to ensure no duplicates.
+* When the `add` command format is invalid, or the user tries to add a duplicated person,
+  the add operation will be aborted.
+
+The Elderly and Volunteers are stored in separate `UniquePersonList` lists.
+
+* Allows for filtering to display a subset of Elderly or Volunteers in UI.
+* Allows for easy retrieval of information for pairing.
+
+The `delete_elderly` and `delete_volunteer` commands make use of `NRIC`
+attribute of Elderly and Volunteer.
+FriendlyLink retrieves the target person uniquely identified by its NRIC,
+and removes it from the database.
+
+* Allows more efficient deletion compare to index-based deletion.
+* The user don't need to check the index of the target person before deletion.
+
+If the deleted Elderly or Volunteer has existing pairing, the associated
+pairs will be automatically removed as well.
+
+### Edit by index & NRIC
+
+### Find by keyword
+
+### Pairing and unpairing of elderly and volunteers
+
+Pairs are implemented as a class with 2 referenced attributes, elderly and volunteer.
+
+* This allows the NRIC of a person in the pair to be automatically updated when the person is updated.
+
+The pairs are stored in a list similar to persons.
+
+* Allows for filtering to display a subset of pairs in the UI.
+* Allows for identifying a pair by index.
+
+<img src="images/developerGuide/Pair.png" width="350" />
+
+Two pairs are identical if they have the same elderly and volunteer NRIC.
+
+* Just like persons, we do not allow duplicate pairs (due to add or edit pair)
+* Elderly and volunteer NRIC is used to identify a pair for deletion.
 
 --------------------------------------------------------------------------------------------------------------------
 
