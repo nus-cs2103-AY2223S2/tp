@@ -290,6 +290,19 @@
 #cardPane .label{
     -fx-font-size: 20px;
     -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#cardPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+}
+
+#cardPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
 }
 
 #deckPane {
@@ -300,7 +313,6 @@
 #deckPane .label{
     -fx-font-size: 20px;
     -fx-text-fill: black;
-
 }
 
 #reviewStatsPane {
@@ -326,8 +338,6 @@
     -fx-border-width:5;
 }
 
-
-
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #FFFFFF;
@@ -349,12 +359,13 @@
     -fx-background-color: transparent, #ededed, transparent, #ededed;
     -fx-background-radius: 30;
     -fx-border-radius: 30;
-    -fx-border-width:5;
+    -fx-border-width: 5;
 }
 
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-padding: 7;
 }
 
 #tags .label {
@@ -364,5 +375,4 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 15;
-
 }
