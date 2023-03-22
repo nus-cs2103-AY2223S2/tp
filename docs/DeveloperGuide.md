@@ -240,6 +240,19 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find feature
+
+#### Implementation
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following is a more detailed explanation on how 'FindCommand' works.
+
+1. If the name, role, status, date or tag fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the `FindCommand` will not be executed.
+2. After the successful parsing of user input into `FindCommandParser`, an `InternshipContainsKeywordPredicate` object, containing the lists of keywords specified in the user input, is created, which in turn is used to create a `FindCommand` object.
+3. Following which, the `FindCommand#execute(Model model)` method is called which eventually calls the `updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipContainsKeywordPredicate` object, previously created by `FindCommandParser`, as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
 
 --------------------------------------------------------------------------------------------------------------------
 
