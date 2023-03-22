@@ -9,6 +9,7 @@ import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.Keyword;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
@@ -118,6 +119,21 @@ public interface Model {
      * The appointment must exist in the appointment manager.
      */
     void deleteAppointment(int id);
+
+    /** Returns an unmodifiable view of the filtered keyword list */
+    ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
+
+    /**
+     * Adds the given keyword.
+     * {@code appointment} must not already exist in the keyword manager.
+     */
+    void addKeyword(Keyword keyword);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the appointment manager.
+     */
+    void deleteKeyword(int id);
 
     /** Returns the {@code VaxTypeManager} the model is using. */
     VaxTypeManager getVaxTypeManager();
