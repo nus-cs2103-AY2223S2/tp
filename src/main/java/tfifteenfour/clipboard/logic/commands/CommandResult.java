@@ -17,12 +17,16 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The roster state has been modified */
+    private final boolean hasChangedModelState;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean hasChangedModelState, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.hasChangedModelState = hasChangedModelState;
         this.exit = exit;
     }
 
@@ -31,7 +35,11 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
+    }
+
+    public CommandResult(String feedbackToUser, boolean hasChangedModelState) {
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +52,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isStateModified() {
+        return hasChangedModelState;
     }
 
     @Override

@@ -61,7 +61,7 @@ public class RemarkCommand extends Command {
         model.setStudent(studentToEdit, editedStudent);
         //model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedStudent));
+        return new CommandResult(generateSuccessMessage(editedStudent), true);
     }
 
     /**
