@@ -2,13 +2,17 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -18,13 +22,19 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="348.0" prefWidth="637.0">
         <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
+               <VBox prefHeight="246.0" prefWidth="544.0">
+                  <children>
+                <Label fx:id="helpMessage" prefHeight="62.0" prefWidth="546.0" text="Label" />
+                     <TableView fx:id="tvtable" prefHeight="296.0" prefWidth="544.0">
+                       <columns>
+                         <TableColumn fx:id="commandCol" prefWidth="127.5" text="Command" />
+                         <TableColumn fx:id="exampleCol" prefWidth="415.5" text="Example" />
+                       </columns>
+                     </TableView>
+                  </children>
+               </VBox>
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
             <HBox.margin>
               <Insets left="5.0" />

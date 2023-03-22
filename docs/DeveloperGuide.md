@@ -462,7 +462,7 @@ Given below is an activity diagram to illustrate the behaviour of editing Person
 #### Design Considerations
 
 Updating the `Skills` and `Modules` using old and new prefixes ensures the user does not update the skillsets and modules unneccessarily.
-Even though the behaviour is similar to simply deleting and adding new modules and skills, update is more restrictive and maintains the integrity of the size of the hash tables that `Skills` and `Modules` are stored in. 
+Even though the behaviour is similar to simply deleting and adding new modules and skills, update is more restrictive and maintains the integrity of the size of the hash tables that `Skills` and `Modules` are stored in.
 
 [Scroll back to top](#table-of-contents)
 
