@@ -34,7 +34,7 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteModuleCommand() {
         assertParseSuccess(parser, "ST2334",
                 new DeleteModuleCommand(ST2334.getCode()));
-        assertParseSuccess(parser, "    CS2040S",
+        assertParseSuccess(parser, "    CS2040S", // with padded spaces
                 new DeleteModuleCommand(CS2040S.getCode()));
     }
 
@@ -42,7 +42,7 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteLectureCommand() {
         assertParseSuccess(parser, "Topic 1 /mod ST2334",
                 new DeleteLectureCommand(ST2334_TOPIC_1.getName(), ST2334.getCode()));
-        assertParseSuccess(parser, "Week 7  /mod   CS2040S",
+        assertParseSuccess(parser, "Week 7  /mod   CS2040S", // with padded spaces
                 new DeleteLectureCommand(CS2040S_WEEK_7.getName(), CS2040S.getCode()));
     }
 
@@ -50,7 +50,7 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteVideoCommand() {
         assertParseSuccess(parser, "Vid 3 /mod ST2334 /lec Topic 1",
                 new DeleteVideoCommand(INTRO_VIDEO.getName(), ST2334.getCode(), ST2334_TOPIC_1.getName()));
-        assertParseSuccess(parser, "Vid 2   /lec Week 3 /mod CS2040S",
+        assertParseSuccess(parser, "Vid 2   /lec Week 3 /mod CS2040S", // with padded spaces
                 new DeleteVideoCommand(ANALYSIS_VIDEO.getName(), CS2040S.getCode(), CS2040S_WEEK_3.getName()));
     }
 
