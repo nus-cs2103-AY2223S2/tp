@@ -33,8 +33,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("doctors") List<JsonAdaptedDoctor> doctors,
                                        @JsonProperty("unassignedPatients")
                                                List<JsonAdaptedPatient> unassignedPatients) {
-        doctors.addAll(doctors);
-        unassignedPatients.addAll(unassignedPatients);
+        this.doctors.addAll(doctors);
+        this.unassignedPatients.addAll(unassignedPatients);
     }
 
     /**
@@ -92,6 +92,16 @@ class JsonSerializableAddressBook {
                 });
             }
         }
+
+        // Add unassigned patients
+        for (JsonAdaptedPatient jsonAdaptedPatient : unassignedPatients) {
+            Patient patient = jsonAdaptedPatient.toModelType();
+            if (addressBook.hasPatient(patient)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
+            }
+            addressBook.addPatient(patient);
+        }
+
         return addressBook;
     }
 
