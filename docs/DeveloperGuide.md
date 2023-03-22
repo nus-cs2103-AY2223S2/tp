@@ -149,7 +149,7 @@ Here is how `Supplier` and `Customer` works:
 
 This is the class representation for the `Task` class.
 
-<img src="images/TaskClassDiagram.png" width="450" />
+<img src="images/TaskClassDiagram.svg" width="450" />
 
 Here is how `Task` works:
 
