@@ -41,6 +41,7 @@ activate AddressBook
 AddressBook --> MarkCommand
 deactivate AddressBook
 AddressBookParser<-- MarkCommand : commandResult
+deactivate MarkCommand
 deactivate AddressBookParser
 
 @enduml

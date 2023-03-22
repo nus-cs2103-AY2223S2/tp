@@ -287,6 +287,25 @@ The following activity diagram summarizes what happens when a user tries to add 
     * Pros: Seems more convenient for user as command line `add_pc` will not need to be repeated.
     * Cons: More prone to user errors and also harder to implement the type (fragile, bulky) of each of the parcel (future feature).
 
+
+### View Delivery feature
+#### Implementation Details
+The feature is implemented by making use of the `Index` class to select a recipient of choice from the list of person that is part of the `Model` component
+
+The `ViewCommand` will display all the delivery details (i.e. parcels, address, contact information, etc.) of the selected recipient under the `CommandResult` class.
+
+The following partial sequence diagram will show how the view delivery feature is implemented
+
+<img src="images/ViewCommandSequenceDiagram.png">
+
+#### Design Considerations:
+**Aspect: The method to select recipient**
+* **Alternative 1 (current choice):** Use the `Index` class to select recipient from the list
+    * Pros: Easy to implement, `Index` for each person is unique
+    * Cons: Have to execute `ListCommand` to obtain `Index` of recipient of interest
+* **Alternative 2:** Use the name of the recipient to select
+    * Pros: Physical parcels have the names of recipient on it, making it easy to locate the delivery details of said person
+    * Cons: Names may not be unique, it is possible to obtain the wrong delivery details
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

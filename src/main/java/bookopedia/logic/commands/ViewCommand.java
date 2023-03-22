@@ -43,14 +43,15 @@ public class ViewCommand extends Command {
             parcelsToPrint.append(p.toString());
             parcelsToPrint.append(" ");
         }
-        // this is temporary
-        return new CommandResult(deliveryToView.getName().toString() + "\n"
+        String detailsOfDelivery = deliveryToView.getName().toString() + "\n"
                 + deliveryToView.getAddress().toString() + "\n"
                 + deliveryToView.getEmail().toString() + "\n"
                 + deliveryToView.getPhone().toString() + "\n"
                 + "Parcels:" + "\n"
                 + parcelsToPrint + "\n"
-                + deliveryToView.getDeliveryStatus().toString() + "\n");
+                + deliveryToView.getDeliveryStatus().toString() + "\n";
+        // this is temporary
+        return new CommandResult(detailsOfDelivery);
     }
 
     @Override
