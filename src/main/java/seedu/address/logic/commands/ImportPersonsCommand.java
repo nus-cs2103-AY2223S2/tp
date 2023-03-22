@@ -28,6 +28,12 @@ public class ImportPersonsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             JsonAdaptedPerson[] personList = JsonUtil.fromJsonString(json, JsonAdaptedPerson[].class);
+            for (JsonAdaptedPerson jsonAdaptedPerson : personList) {
+                // check if duplicate
+                if (model.hasPerson(jsonAdaptedPerson.toModelType())) {
+                    throw new DuplicatePersonException();
+                }
+            }
             for (JsonAdaptedPerson p : personList) {
                 model.addPerson(p.toModelType());
             }
