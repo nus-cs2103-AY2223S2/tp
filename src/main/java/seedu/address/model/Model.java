@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -99,4 +100,6 @@ public interface Model {
 
     /** Saves the current address book state for undo/redo. */
     void commitAddressBook();
+    
+    Person findPersonByNric(Nric nric);
 }

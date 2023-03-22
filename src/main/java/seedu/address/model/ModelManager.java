@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.CannotRedoAddressBookException;
 import seedu.address.commons.exceptions.CannotUndoAddressBookException;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 
 /**
@@ -187,5 +188,10 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public Person findPersonByNric(Nric nric) {
+        return addressBook.findPersonByNric(nric);
     }
 }

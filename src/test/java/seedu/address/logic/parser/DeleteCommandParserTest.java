@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
@@ -26,7 +28,9 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_nricFieldPresent_success() {
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NRIC_DESC_BOB, new DeleteCommand(new Nric(VALID_NRIC_BOB)));
+        ArrayList<Nric> nricList = new ArrayList<>();
+        nricList.add(new Nric(VALID_NRIC_BOB));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NRIC_DESC_BOB, new DeleteCommand(nricList));
     }
 
     @Test
