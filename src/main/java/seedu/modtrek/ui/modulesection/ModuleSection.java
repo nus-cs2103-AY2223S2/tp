@@ -9,8 +9,7 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 
 /**
- * A subsection within the ResultsSection (left panel) that displays the modules queried by
- * the user.
+ * A subsection within the ResultsSection (left panel) that displays modules
  */
 public class ModuleSection extends UiPart<Region> {
     private static final String FXML = "modulesection/ModuleSection.fxml";

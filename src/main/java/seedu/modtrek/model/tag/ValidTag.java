@@ -1,5 +1,7 @@
 package seedu.modtrek.model.tag;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,6 +19,23 @@ public enum ValidTag {
 
     // Short-forms Accepted
     ULR, CSF, CSBD, ITP, MS, UE;
+
+    /**
+     * Retrieves the long form string of all the requirements.
+     * @return The long form string of all the requirements.
+     */
+    public static List<String> getTags() {
+        List<String> tags = new ArrayList<>();
+
+        tags.add("COMPUTER_SCIENCE_FOUNDATION");
+        tags.add("MATHEMATICS_AND_SCIENCES");
+        tags.add("UNRESTRICTED_ELECTIVES");
+        tags.add("IT_PROFESSIONALISM");
+        tags.add("UNIVERSITY_LEVEL_REQUIREMENTS");
+        tags.add("COMPUTER_SCIENCE_BREADTH_AND_DEPTH");
+
+        return tags;
+    }
 
     /**
      * Retrieves short form version of the requirement.

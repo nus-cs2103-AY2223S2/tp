@@ -1,10 +1,12 @@
 package seedu.modtrek.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.module.UniqueModuleList;
+import seedu.modtrek.model.tag.ValidTag;
 
 /**
  * DegreeProgressionData holds all the data for an overview of Degree Progression.
@@ -17,7 +19,7 @@ public class DegreeProgressionData {
     private int plannedCredit = 0; // Includes Incomplete Modules
     private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
     private float cumulativePoints = 0;
-    private float gpa;
+    private float gpa = 5.00f;
 
     private DegreeProgressionData() {}
 
@@ -30,6 +32,7 @@ public class DegreeProgressionData {
      */
     public static DegreeProgressionData generate(UniqueModuleList modList) {
         DegreeProgressionData data = new DegreeProgressionData();
+        data.initCompletedRequirementCredits();
         modList.forEach((module) -> {
             data.computeModule(module);
         });
@@ -45,6 +48,10 @@ public class DegreeProgressionData {
         return plannedCredit;
     }
 
+    public boolean isNoneCompleted() {
+        return completedCredit == 0;
+    }
+
     public Map<String, Integer> getCompletedRequirementCredits() {
         return completedRequirementCredits;
     }
@@ -58,7 +65,7 @@ public class DegreeProgressionData {
         int credit = Integer.valueOf(module.getCredit().toString());
         if (module.isComplete() && module.isGradeable()) {
             module.getTags().forEach((tag) -> {
-                completedRequirementCredits.merge(tag.toString(),
+                completedRequirementCredits.merge(tag.tagName,
                         credit, (oldValue, newValue) -> {
                             return oldValue + newValue;
                         });
@@ -70,7 +77,17 @@ public class DegreeProgressionData {
     }
 
     private void computeGpa() {
+        if (completedCredit == 0) {
+            this.gpa = 5.00f;
+            return;
+        }
         this.gpa = cumulativePoints / completedCredit;
     }
 
+    private void initCompletedRequirementCredits() {
+        List<String> tags = ValidTag.getTags();
+        for (String tag : tags) {
+            completedRequirementCredits.put(tag, 0);
+        }
+    }
 }

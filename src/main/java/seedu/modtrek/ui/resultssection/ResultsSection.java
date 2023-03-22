@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.modtrek.model.ReadOnlyDegreeProgression;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 import seedu.modtrek.ui.modulesection.ModuleListSection;
@@ -40,14 +41,14 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Creates a {@code ResultsSection} with the given {@code ObservableList<Module>}.
      */
-    public ResultsSection(ObservableList<Module> modules) {
+    public ResultsSection(ReadOnlyDegreeProgression degreeProgression, ObservableList<Module> modules) {
         super(FXML);
 
         displayFooter("Degree Progress", "Module List", "Module Search", () ->
-                displayProgress(), () ->
+                displayProgress(degreeProgression), () ->
                 displayAllModules(modules), () -> displayFindModules(modules));
 
-        displayProgress();
+        displayProgress(degreeProgression);
     }
 
     /**
@@ -72,7 +73,7 @@ public class ResultsSection extends UiPart<Region> {
     /**
      * Displays the current degree progress.
      */
-    public void displayProgress() {
+    public void displayProgress(ReadOnlyDegreeProgression degreeProgression) {
         footerButtonGroup.selectProgressButton();
 
         body.getChildren().clear();
@@ -80,7 +81,7 @@ public class ResultsSection extends UiPart<Region> {
         headerTitle.setText("My Degree Progress");
         headerSubtitle.setText("in summary");
 
-        renderSection(new ProgressSection().getRoot());
+        renderSection(new ProgressSection(degreeProgression.getProgressionData()).getRoot());
     }
 
     /**
@@ -91,29 +92,6 @@ public class ResultsSection extends UiPart<Region> {
     public void displayAllModules(ObservableList<Module> modules) {
         headerTitle.setText("My Modules");
         headerSubtitle.setText("in total");
-
-        String[] buttonLabels = new String[] {"Year 1", "Year 2", "Year 3", "Year 4"};
-
-
-        Runnable[] buttonHandlers = new Runnable[4];
-
-        Runnable year1ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 1 modules */);
-        buttonHandlers[0] = year1ModulesRenderer;
-
-        Runnable year2ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 2 modules */);
-        buttonHandlers[1] = year2ModulesRenderer;
-
-        Runnable year3ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 3 modules */);
-        buttonHandlers[2] = year3ModulesRenderer;
-
-        Runnable year4ModulesRenderer = getModuleRenderer(modules /* TODO: replace with only year 4 modules */);
-        buttonHandlers[3] = year4ModulesRenderer;
-
-
-//        FooterButtonGroup footerButtonGroup =
-//                new FooterButtonGroup(buttonLabels, buttonHandlers);
-//        resultsSection.getChildren().remove(resultsSection.lookup(".footer-button-group"));
-//        resultsSection.getChildren().add(footerButtonGroup.getRoot());
 
         displayModules(modules);
     }
@@ -159,14 +137,5 @@ public class ResultsSection extends UiPart<Region> {
     private void renderSection(Node section) {
         body.getChildren().clear();
         body.getChildren().add(section);
-    }
-
-    /**
-     * Gets the executable to render a given list of modules.
-     * @param modules the list of modules.
-     * @return the executable.
-     */
-    private Runnable getModuleRenderer(ObservableList<Module> modules) {
-        return () -> displayModules(modules);
     }
 }
