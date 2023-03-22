@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.card.Card;
@@ -156,5 +157,6 @@ public interface Model {
     void setNumCardsPerReview(int i);
 
     void tagCurrentCardInReview(Tag tag);
-    ObservableList<String> getReviewStatsList();
+
+    ObservableList<Pair<String, String>> getReviewStatsList();
 }

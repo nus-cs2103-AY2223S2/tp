@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
@@ -324,7 +325,8 @@ public class ModelManager implements Model {
         currReview.tagCurrentCard(tag);
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
     }
-    public ObservableList<String> getReviewStatsList() {
+
+    public ObservableList<Pair<String, String>> getReviewStatsList() {
         return currReview.getReviewStatsList();
     }
 }

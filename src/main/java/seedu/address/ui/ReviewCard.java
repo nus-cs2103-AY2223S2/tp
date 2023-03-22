@@ -29,9 +29,9 @@ public class ReviewCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label question;
     @FXML
-    private Label address;
+    private Label answer;
     @FXML
     private FlowPane tags;
 
@@ -42,9 +42,9 @@ public class ReviewCard extends UiPart<Region> {
         super(FXML);
         this.card = card;
 
-        name.setText(card.getQuestion().question);
+        question.setText(card.getQuestion().question);
 
-        address.setText(card.isFlipped() ? card.getAnswer().answer : EMPTY_STRING);
+        answer.setText(card.isFlipped() ? card.getAnswer().answer : EMPTY_STRING);
 
         card.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
