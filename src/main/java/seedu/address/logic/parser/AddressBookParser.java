@@ -46,47 +46,34 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        // if the user's command fits a keyword for a command, create a parser
+        if (AddCommand.COMMAND_WORD.contains(commandWord)) {
             return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
+        } else if (EditCommand.COMMAND_WORD.contains(commandWord)) {
             return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
+        } else if (DeleteCommand.COMMAND_WORD.contains(commandWord)) {
             return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case TagCommand.COMMAND_WORD:
-            return new TagCommandParser().parse(arguments);
-
-        case DeleteTagCommand.COMMAND_WORD:
+        } else if (DeleteTagCommand.COMMAND_WORD.contains(commandWord)) {
             return new DeleteTagCommandParser().parse(arguments);
-
-        case ExportCommand.COMMAND_WORD:
-            return new ExportCommand();
-
-        case FilterCommand.COMMAND_WORD:
+        } else if (ClearCommand.COMMAND_WORD.contains(commandWord)) {
+            return new ClearCommand();
+        } else if (FilterCommand.COMMAND_WORD.contains(commandWord)) {
             return new FilterCommandParser().parse(arguments);
-
-        default:
+        } else if (FindCommand.COMMAND_WORD.contains(commandWord)) {
+            return new FindCommandParser().parse(arguments);
+        } else if (ListCommand.COMMAND_WORD.contains(commandWord)) {
+            return new ListCommand();
+        } else if (ExitCommand.COMMAND_WORD.contains(commandWord)) {
+            return new ExitCommand();
+        } else if (HelpCommand.COMMAND_WORD.contains(commandWord)) {
+            return new HelpCommand();
+        } else if (TagCommand.COMMAND_WORD.contains(commandWord)) {
+            return new TagCommandParser().parse(arguments);
+        } else if (ExportCommand.COMMAND_WORD.contains(commandWord)) {
+            return new ExportCommand();
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
