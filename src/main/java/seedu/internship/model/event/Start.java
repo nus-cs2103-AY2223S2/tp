@@ -4,7 +4,7 @@ import static seedu.internship.commons.util.AppUtil.checkArgument;
 
 import static java.util.Objects.requireNonNull;
 
-public class Start {
+public class Start implements Comparable<Start> {
     public static final String MESSAGE_CONSTRAINTS =
             "Date needs to be of the format DD/MM/YYYY HHMM";
 
@@ -20,7 +20,7 @@ public class Start {
 
     private final String startDateTime;
 
-    private final TimeParser tp = new TimeParser(DATE_TIME_PATTERN, DATE_PARSE_FORMAT, TIME_PARSE_FORMAT);
+    public static final TimeParser tp = new TimeParser(DATE_TIME_PATTERN, DATE_PARSE_FORMAT, TIME_PARSE_FORMAT);
 
     /**
      * Constructs a {@code Position}.
@@ -41,11 +41,22 @@ public class Start {
         return this.tp.isValidTimeParser();
     }
 
+    @Override
+    public int compareTo(Start start) {
+        return this.tp.compareTo(start.tp);
+    }
+
+    public int compareEnd(End end){
+        return this.tp.compareTo(End.tp);
+    }
+
 
     @Override
     public String toString() {
         return tp.toString();
     }
+
+
 
     @Override
     public boolean equals(Object other) {
