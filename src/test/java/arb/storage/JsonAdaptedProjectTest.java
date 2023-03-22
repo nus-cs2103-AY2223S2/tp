@@ -54,10 +54,6 @@ class JsonAdaptedProjectTest {
     public void toModelType_nullDeadline_returnsProject() throws Exception {
         JsonAdaptedProject project = new JsonAdaptedProject(VALID_TITLE, null, VALID_STATUS, "2");
         Project expectedProject = new ProjectBuilder(PORTRAIT_PROJECT).withDeadline(null).build();
-        System.out.println(VALID_DEADLINE);
-        System.out.println(VALID_PRICE);
-        System.out.println(expectedProject);
-        System.out.println(project.toModelType());
         assertEquals(expectedProject, project.toModelType());
     }
 }
