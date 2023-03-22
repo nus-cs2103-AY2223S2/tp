@@ -64,7 +64,14 @@ public class Leave {
      */
     public void addEmployee(Employee employee) {
         requireNonNull(employee);
-        this.employees.add(employee);
+        employees.add(employee);
+    }
+
+    /**
+     * Replace an employee details with its updated details in the list.
+     */
+    public void setEmployee(Employee employeeToEdit, Employee editedEmployee) {
+        employees.setEmployee(employeeToEdit, editedEmployee);
     }
 
     /**
@@ -72,7 +79,7 @@ public class Leave {
      */
     public void deleteEmployee(Employee employee) {
         requireNonNull(employee);
-        this.employees.remove(employee);
+        employees.remove(employee);
     }
 
     /**

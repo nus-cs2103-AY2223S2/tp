@@ -368,15 +368,13 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Update a employee {@code employee} with editedEmployee {@code employee} in all leaves
-     * in the sudohr book.
+     * Update an employee {@code employee} with editedEmployee {@code employee} in all leaves in SudoHR.
      */
     public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
         ObservableList<Leave> leaveList = this.getLeavesList();
         for (Leave leave : leaveList) {
             if (leave.hasEmployee(employeeToEdit)) {
-                leave.deleteEmployee(employeeToEdit);
-                leave.addEmployee(editedEmployee);
+                leave.setEmployee(employeeToEdit, editedEmployee);
             }
         }
     }

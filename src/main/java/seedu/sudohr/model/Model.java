@@ -264,5 +264,4 @@ public interface Model {
      * Deletes an employee {@code employee} from all leaves in SudoHR.
      */
     void cascadeDeleteUserInLeaves(Employee employeeToDelete);
-
 }
