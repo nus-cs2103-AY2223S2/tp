@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -57,6 +58,15 @@ public class Appointment {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Checks if the given time occurs within the timeslot of the appointment
+     *
+     * @return If the given time occurs within the timeslot of the appointment
+     */
+    public boolean duringTime(ChronoLocalDateTime<?> time) {
+        return time.isAfter(timeslot.startingDateTime) && time.isBefore(timeslot.endingDateTime);
     }
 
     /**

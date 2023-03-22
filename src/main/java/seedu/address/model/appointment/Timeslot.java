@@ -20,7 +20,8 @@ public class Timeslot {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2},\\d{8} \\d{2}:\\d{2}";
+    public static final String TIMESLOT_VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2},\\d{8} \\d{2}:\\d{2}";
+    public static final String DATETIME_VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2}";
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyy HH:mm");
 
     public final LocalDateTime startingDateTime;
@@ -56,7 +57,23 @@ public class Timeslot {
      * Returns true if a given string is a valid timeslot.
      */
     public static boolean isValidTimeslot(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(TIMESLOT_VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid datetime.
+     */
+    public static boolean isValidDatetime(String test) {
+        return test.matches(DATETIME_VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the date time formatter used for parsing all date time strings.
+     *
+     * @return A date time formatter for parsing date time strings.
+     */
+    public static DateTimeFormatter getDateTimeFormatter() {
+        return dateTimeFormatter;
     }
 
     @Override
