@@ -102,6 +102,13 @@
   -fx-background-color: -fx-control-inner-background;
 }
 
+.result-message-box,
+.result-message-box .scroll-pane,
+.result-message-box .scroll-pane .content {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+}
+
 .result-message-death-color {
   -fx-text-fill: #7721d2;
 }
