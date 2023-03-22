@@ -26,11 +26,11 @@ activate FindEventCommandParser
 FindEventCommandParser --> AddressBookParser
 deactivate FindEventCommandParser
 
-AddressBookParser -> FindEventCommandParser : parse("concert")
+AddressBookParser -> FindEventCommandParser : parse(["concert"])
 activate FindEventCommandParser
 
 create EventNameContainsKeywordsPredicate
-FindEventCommandParser -> EventNameContainsKeywordsPredicate : EventNameContainsKeywordsPredicate("concert")
+FindEventCommandParser -> EventNameContainsKeywordsPredicate : EventNameContainsKeywordsPredicate(["concert"])
 activate EventNameContainsKeywordsPredicate
 
 EventNameContainsKeywordsPredicate--> FindEventCommandParser
@@ -40,7 +40,7 @@ create FindEventCommand
 FindEventCommandParser -> FindEventCommand
 activate FindEventCommand
 
-FindEventCommand --> FindEventCommandParser : f
+FindEventCommand --> FindEventCommandParser : 
 deactivate FindEventCommand
 
 FindEventCommandParser --> AddressBookParser : f
@@ -52,7 +52,7 @@ destroy FindEventCommandParser
 AddressBookParser --> LogicManager : f
 deactivate AddressBookParser
 
-LogicManager -> FindEventCommand : execute()
+LogicManager -> FindEventCommand : execute(model)
 activate FindEventCommand
 
 create CommandResult
