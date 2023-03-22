@@ -17,6 +17,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -227,7 +228,7 @@ public class AddDeckCommandTest {
         }
 
         @Override
-        public ObservableList<String> getReviewStatsList() {
+        public ObservableList<Pair<String, String> > getReviewStatsList() {
             throw new AssertionError("This method should not be called.");
         }
 
