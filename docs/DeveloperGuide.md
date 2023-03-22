@@ -171,13 +171,17 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Remind command
+### Reminder feature
 
 #### Implementation
 
-The remind command is facilitated by `RemindCommand`, which extends `Command`. It stores a `StartTimeWithinDaysPredicate`, used to test if an event should be displayed. An instance of `RemindCommand` is created by `RemindCommandParser`. `StartTimeWithinDaysPredicate` determines the current time using a `Clock` that is passed to its constructor. This `Clock` is created in `LogicManager`.
+The reminder feature is facilitated by `StartTimeWithinDaysPredicate`, that tests if ane event is within the given days.
 
-When the `EventBookParser` is used to parse user input of a remind command, it uses a new `RemindCommandParser` to create a `RemindCommand`.
+The current time is determined by a `Clock` that is created by `LogicManager`. The `LogicManager` creates an `EventBookParser` that has the `Clock` as an attribute. When parsing remind command as user input, the `EventBookParser` creates a `RemindCommandParser` with the `Clock` as an attribute and then uses the `RemindCommandParser` to parse the command argument.
+
+The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer. `RemindCommandParser` creates a `RemindCommand` with a `StartTimeWithinDaysPredicate`, that uses the `Clock` to get the current time, storing it as an attribute, and also stores the inputted days given as attributes. The `StartTimeWithinDaysPredicate` tests if a given event's start date is within the inputted days of the current time.
+
+The `RemindCommand` is then executed by `LogicManager`. It tests all events with the `StartTimeWithinDaysPredicate`, and filtered events are displayed.
 
 #### Design considerations:
 
