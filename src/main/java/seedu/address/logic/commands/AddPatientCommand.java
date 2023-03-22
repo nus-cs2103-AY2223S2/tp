@@ -19,7 +19,7 @@ import seedu.address.model.person.patient.Patient;
  * Adds a patient to the address book.
  */
 public class AddPatientCommand extends Command {
-    public static final String COMMAND_WORD = "add-pat";
+    public static final String COMMAND_WORD = "add-ptn";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
