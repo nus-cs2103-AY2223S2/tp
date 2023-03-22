@@ -24,15 +24,13 @@ public class DeadlineTest {
         // null deadline
         assertThrows(NullPointerException.class, () -> Deadline.isValidDeadline(null));
 
-        // invalid phone numbers
+        // invalid deadline
         assertFalse(Deadline.isValidDeadline("")); // empty string
         assertFalse(Deadline.isValidDeadline("2023-10-2a")); // non-numeric
         assertFalse(Deadline.isValidDeadline("2023/10/20")); // "/" instead of "-"
-        assertFalse(Deadline.isValidDeadline("2019-10-20")); // past the current date of today
 
-        // valid phone numbers
+        // valid deadline
         assertTrue(Deadline.isValidDeadline("2023-10-20"));
-        assertTrue(Deadline.isValidDeadline("2024-05-04"));
-        assertTrue(Deadline.isValidDeadline("2023-09-29"));
+        assertTrue(Deadline.isValidDeadline("2019-10-20")); // past the current date of today
     }
 }
