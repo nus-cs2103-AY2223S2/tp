@@ -92,7 +92,7 @@ public class Fuzzy {
      * <p>
      * Note that this method will not modify the original list. It is a pure function and safe to call multiple times.
      */
-    public static <T extends FuzzyComparable<String>> List<T> fuzzySearch(List<T> list, String query) {
+    public static <S, T extends FuzzyComparable<S>> List<T> fuzzySearch(List<T> list, S query) {
         ArrayList<T> xs = new ArrayList<>(list);
         // This is not very efficient, but it's simple and it works
         xs.sort((a, b) -> Double.compare(b.fuzzyCompareTo(query), a.fuzzyCompareTo(query)));
