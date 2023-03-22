@@ -7,31 +7,31 @@ title: William's Project Portfolio Page
 
 Team Builder is a desktop personal contacts book application used by the user to form a team for any event. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-Given below are my contributions to the project.  
+Given below are my contributions to the project.
 
-* **Undo functionality**: 
-  * Justification: 
+* **Undo functionality**:
+  * Justification:
     * Careless Users might want to undo their last command.
     * Rather than finding the reversing action, they can just use `undo`.
     * This is especially useful for users that accidentally use the `clear` command and would like to recover their contact list.
 
-  * Highlights: 
+  * Highlights:
     * Able to undo up to 10 last commands.
     * Able to undo: `add, edit, delete, clear`
-  
+
   * Credits:
     * iP undo implementation (bugs)
     * Momento Design Pattern
 
-* **Redo functionality**: 
-  * Justification: 
+* **Redo functionality**:
+  * Justification:
     * Careless Users might want to redo their last undo.
     * Rather than finding the reversing action, they can just use `redo`.
     * This is especially useful for users that accidentally use the `undo` command after adding someone important and would like to recover their last contact.
 
-  * Highlights: 
+  * Highlights:
     * Able to redo up to 10 last commands.
-  
+
   * Credits:
     * Momento Design Pattern
 
@@ -45,14 +45,14 @@ Given below are my contributions to the project.
 
 {:/comment}
 
-* **Code contributed**: 
+* **Code contributed**:
   > [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=WillCWX&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByNone&breakdown=true&since=2023-02-17&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=WillCWX&tabRepo=AY2223S2-CS2103T-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
   * 1870 lines
   * 22 commits
 
 * **Project management**:
   * Managed releases.
-  * Created issues: [\#26](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/26), [\#51](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/51), [\#54](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/54), [\#55](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/55), [\#56](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/56)    
+  * Created issues: [\#26](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/26), [\#51](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/51), [\#54](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/54), [\#55](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/55), [\#56](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/56)
   * In charge of Testing and Integration.
   * `to be added soon`
 
@@ -78,7 +78,7 @@ Given below are my contributions to the project.
     * `to be added soon`
 
 * **Tools**:
-  * Integrated an existing plugin fully (CodeCov) on team fork 
+  * Integrated an existing plugin fully (CodeCov) on team fork
 
 {::comment}
 

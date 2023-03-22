@@ -6,7 +6,7 @@ skinparam ClassBorderColor #000000
 title After command "list"
 
 package undoHistory {
-    class State1 as "__<color:blue>m0:Memento</color>__" 
+    class State1 as "__<color:blue>m0:Memento</color>__"
     class State2 as "__null:Memento__"
     class State3 as "__null:Memento__"
 }

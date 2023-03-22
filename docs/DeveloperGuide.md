@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Developer Guide
-include: style.css 
+
 ---
-<style> 
+<style>
    img.center {
       display: block;
       margin-left: auto;
@@ -80,7 +80,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png) 
+![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -182,7 +182,7 @@ Implementing this design pattern results in the following:
 - `Model` inferface extends the `Originator` interface, resulting in a concrete `Originator` in `ModelManger`.
 - `TeamBuilderMemento` implements the `Memento` interface and acts as a saved state of `ModelManager`
 - `HistoryUtil` replaces the `Caretaker` and tracks the timeline and order of `Memento`
-- Any modifying `Command` will call `HistoryUtil#storePast` with `Model#save()` and their `COMMAND_WORD`.  
+- Any modifying `Command` will call `HistoryUtil#storePast` with `Model#save()` and their `COMMAND_WORD`.\
 (`AddCommand` is given as an example.)
 
 ![Implemented Memento Design](images/ImplementedMementoDesignDiagram.png){:.center}
@@ -192,7 +192,7 @@ As we want `undo`/`redo` to provide feedback to the user, the `Commands` must pr
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-**Step 1.** 
+**Step 1.**
 The user launches the application for the first time. The `HistoryUtil` will be initialized with two empty `Memento` arrays, one for `undo` and another for `redo`. The array counter will be `-1` indicating totally empty arrays.
 
 ![UndoRedoState0](images/NewUndoRedoState0.png){:.center}
@@ -210,11 +210,11 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryUtil#undo`, which will call `Memento#restore()` on `undoHistory[currentNum]`. `Memento#restore()` will be called and state before the `add` command is restored. `HistoryUtil#undo` also moves the `Memento` into `redoFuture` and outputs an `Optional<String> description` to the `undo` command. The `undo` command then feedbacks to the user that the undo has occured successfully.  
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryUtil#undo`, which will call `Memento#restore()` on `undoHistory[currentNum]`. `Memento#restore()` will be called and state before the `add` command is restored. `HistoryUtil#undo` also moves the `Memento` into `redoFuture` and outputs an `Optional<String> description` to the `undo` command. The `undo` command then feedbacks to the user that the undo has occured successfully.
 
 ![UndoRedoState3](images/NewUndoRedoState3.png){:.center}
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentNum` is at index -1, then there are no previous TeamBuilder states to restore. In this case, `HistoryUtil#undo` returns `Optional.empty()`. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentNum` is at index -1, then there are no previous TeamBuilder states to restore. In this case, `HistoryUtil#undo` returns `Optional.empty()`.
 As `undo` command uses `Optional::isPresent` to check if undo is successful, it will then return an error message to the user.
 
 </div>
@@ -243,7 +243,7 @@ Step 6. The user executes `clear`, which calls `Model#Save` and stores the resul
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img class="center" src="images/CommitActivityDiagram.png" width="250" /> 
+<img class="center" src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -369,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. 
+
 
 *{More to be added}*
 
