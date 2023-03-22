@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import seedu.modtrek.model.module.Module;
@@ -19,6 +20,12 @@ public class ModuleCard extends UiPart<Region> {
 
     @FXML
     private Label moduleCardCode;
+
+    @FXML
+    private HBox moduleCardInfo;
+
+    @FXML
+    private Label moduleCardYearSem;
 
     @FXML
     private Label moduleCardCredits;
@@ -37,7 +44,26 @@ public class ModuleCard extends UiPart<Region> {
     public ModuleCard(Module module) {
         super(FXML);
 
+        fillCard(module);
+    }
+
+    /**
+     * Instantiates a new placeholder ModuleCard. Purpose of this placeholder is to set the
+     * max width of the actual ModuleCards in ModuleGroup.
+     */
+    public ModuleCard() {
+        super(FXML);
+    }
+
+    /**
+     * Populate the ModuleCard with its information (module code, credits, yearsem, grade, tags)
+     * @param module The module object that encapsulates the module information.
+     */
+    private void fillCard(Module module) {
         moduleCardCode.setText(module.getCode().toString());
+
+        moduleCardYearSem.setText(module.getSemYear().toString());
+
         moduleCardCredits.setText(module.getCredit() + "MC");
 
         String grade = module.getGrade().toString();
@@ -49,14 +75,6 @@ public class ModuleCard extends UiPart<Region> {
             String color = ValidTag.getColor(tag.tagName);
             addTag(tagNameShort, tagNameLong, color);
         }
-    }
-
-    /**
-     * Instantiates a new placeholder ModuleCard. Purpose of this placeholder is to set the
-     * max width of the actual ModuleCards in ModuleGroup.
-     */
-    public ModuleCard() {
-        super(FXML);
     }
 
     /**

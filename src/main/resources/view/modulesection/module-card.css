@@ -1,6 +1,6 @@
 .module-card {
     -fx-min-height: 100;
-    -fx-padding: 10 25;
+    -fx-padding: 10 0;
 
     -fx-border-radius: 10;
     -fx-background-radius: 10;
@@ -12,6 +12,10 @@
 }
 .module-card-placeholder {
     visibility: hidden;
+}
+
+#module-card-info {
+    -fx-spacing: 12;
 }
 
 .module-card-tag {
