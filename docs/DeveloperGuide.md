@@ -347,7 +347,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. FitBook adds the client into the list.
 3. FitBook displays that the client has been added.
 
-
    Use case ends.
 
 **Extensions**
@@ -363,10 +362,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. FitBook shows an error message for duplicate names.
        
        Use case ends.
-
-
-**Use case: UC03 - List clients**
-
+    
+>**Use case: UC03 - List clients**
 
 **MSS**
 
@@ -413,7 +410,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FitBook displays that the list is cleared.
 
    Use case ends.
-
 
 **Extensions**
 
@@ -482,7 +478,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. FitBook displays that the routine list is cleared.
 
    Use case ends.
-
 
 **Extensions**
 
