@@ -8,7 +8,6 @@ import static seedu.sudohr.logic.parser.CommandParserTestUtil.assertParseSuccess
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.logic.commands.department.ListEmployeeDepartmentCommand;
-import seedu.sudohr.logic.parser.department.ListEmployeeDepartmentCommandParser;
 import seedu.sudohr.model.department.DepartmentContainsEmployeePredicate;
 import seedu.sudohr.model.employee.Id;
 

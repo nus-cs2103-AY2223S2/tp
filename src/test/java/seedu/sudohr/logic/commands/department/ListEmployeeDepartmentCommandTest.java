@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.commons.core.Messages;
-import seedu.sudohr.logic.commands.department.ListEmployeeDepartmentCommand;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
