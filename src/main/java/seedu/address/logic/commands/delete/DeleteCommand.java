@@ -1,4 +1,6 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.delete;
+
+import seedu.address.logic.commands.Command;
 
 /**
  * Deletes a module, lecture or video specified in command from le Tracker

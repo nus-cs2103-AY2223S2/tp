@@ -6,10 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteLectureCommand;
-import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.DeleteVideoCommand;
+import seedu.address.logic.commands.delete.DeleteCommand;
+import seedu.address.logic.commands.delete.DeleteLectureCommand;
+import seedu.address.logic.commands.delete.DeleteModuleCommand;
+import seedu.address.logic.commands.delete.DeleteVideoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;

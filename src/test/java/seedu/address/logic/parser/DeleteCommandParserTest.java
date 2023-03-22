@@ -12,11 +12,10 @@ import static seedu.address.testutil.TypicalVideos.ANALYSIS_VIDEO;
 import static seedu.address.testutil.TypicalVideos.INTRO_VIDEO;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteLectureCommand;
-import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.DeleteVideoCommand;
+import seedu.address.logic.commands.delete.DeleteCommand;
+import seedu.address.logic.commands.delete.DeleteLectureCommand;
+import seedu.address.logic.commands.delete.DeleteModuleCommand;
+import seedu.address.logic.commands.delete.DeleteVideoCommand;
 import seedu.address.model.module.ModuleCode;
 
 /**
