@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -212,6 +213,17 @@ public class ModelManager implements Model {
             }
         }
         return totalEarnings;
+    }
+
+    @Override
+    public HashMap<String, Integer> getSummary() {
+        HashMap<String, Integer> summary = new HashMap<String, Integer>();
+
+        // Adding information to hashmap
+        summary.put("Clients: ", getNumberOfClients());
+        summary.put("Weekly Earnings: ", (int) getWeeklyEarnings());
+
+        return summary;
     }
 
     /**
