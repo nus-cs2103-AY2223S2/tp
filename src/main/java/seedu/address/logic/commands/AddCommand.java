@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -28,16 +28,16 @@ public class AddCommand extends Command {
             + PREFIX_ROLE + "ROLE "
             + PREFIX_CONTACT + "CONTACT "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_COMPANY + "COMPANY "
             + PREFIX_JOBDESCRIPTION + "JOB DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]..."
             + PREFIX_SALARY + "SALARY "
             + PREFIX_DEADLINE + "DEADLINE \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_ROLE + "Software Engineer Google "
+            + PREFIX_ROLE + "Software Engineer "
             + PREFIX_CONTACT + "98765432 "
             + PREFIX_EMAIL + "google@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_COMPANY + "Google "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
             + PREFIX_WEBSITE + "www.google.com "
@@ -63,7 +63,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasRole(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }

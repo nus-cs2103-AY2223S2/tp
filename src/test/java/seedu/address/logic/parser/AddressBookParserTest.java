@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeadlineCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditRoleDescriptor;
@@ -22,6 +23,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SalaryCommand;
 import seedu.address.logic.commands.exceptions.exceptions.ParseException;
 import seedu.address.model.job.NameContainsKeywordsPredicate;
 import seedu.address.model.job.Role;
@@ -87,6 +89,19 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
+
+    @Test
+    public void parseCommand_salary() throws Exception {
+        assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " asc") instanceof SalaryCommand);
+        assertTrue(parser.parseCommand(SalaryCommand.COMMAND_WORD + " desc") instanceof SalaryCommand);
+    }
+
+    @Test
+    public void parseCommand_deadline() throws Exception {
+        assertTrue(parser.parseCommand(DeadlineCommand.COMMAND_WORD + " asc") instanceof DeadlineCommand);
+        assertTrue(parser.parseCommand(DeadlineCommand.COMMAND_WORD + " desc") instanceof DeadlineCommand);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

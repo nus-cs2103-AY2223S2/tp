@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.job.Order;
 import seedu.address.model.job.Role;
 
 /**
@@ -126,6 +129,35 @@ public class ModelManager implements Model {
     public void updateFilteredRoleList(Predicate<Role> predicate) {
         requireNonNull(predicate);
         filteredRoles.setPredicate(predicate);
+    }
+
+    @Override
+    public void displaySortedSalaryList(Order order) {
+        List<Role> roles = filteredRoles.sorted((r1, r2) -> {
+            int s1 = Integer.parseInt(r1.getSalary().toString());
+            int s2 = Integer.parseInt(r2.getSalary().toString());
+            if (order.toString().equals("asc")) {
+                return Integer.compare(s1, s2);
+            } else {
+                return Integer.compare(s2, s1);
+            }
+        });
+        this.addressBook.setRoles(roles);
+    }
+
+    @Override
+    public void displaySortedDeadlineList(Order order) {
+
+        List<Role> roles = filteredRoles.sorted((r1, r2) -> {
+            LocalDate s1 = LocalDate.parse(r1.getDeadline().toString());
+            LocalDate s2 = LocalDate.parse(r2.getDeadline().toString());
+            if (order.toString().equals("asc")) {
+                return s1.compareTo(s2);
+            } else {
+                return s2.compareTo(s1);
+            }
+        });
+        this.addressBook.setRoles(roles);
     }
 
     @Override
