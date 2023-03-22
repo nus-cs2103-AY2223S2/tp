@@ -20,9 +20,9 @@ import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
-import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
+import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
 import seedu.vms.testutil.EditPatientDescriptorBuilder;
 
 /**

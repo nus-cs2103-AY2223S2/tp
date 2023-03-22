@@ -20,8 +20,8 @@ import org.junit.jupiter.api.Test;
 import seedu.vms.model.Model;
 import seedu.vms.model.ModelManager;
 import seedu.vms.model.UserPrefs;
-import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

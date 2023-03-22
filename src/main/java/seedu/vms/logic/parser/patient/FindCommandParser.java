@@ -9,7 +9,6 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -22,7 +21,6 @@ import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
-import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -38,12 +36,6 @@ public class FindCommandParser implements CommandParser {
     @Override
     public FindCommand parse(ArgumentMultimap argsMap) throws ParseException {
         requireNonNull(argsMap);
-
-        String trimmedArgs = argsMap.getPreamble().trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
 
         Boolean flagsPresent = false;
 
@@ -75,13 +67,16 @@ public class FindCommandParser implements CommandParser {
                     .ifPresent(findPatientDescriptor::setVaccines);
         }
 
-        if(!flagsPresent){
+        if (!flagsPresent) {
+            String trimmedArgs = argsMap.getPreamble().trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
             findPatientDescriptor.setNameSearch(trimmedArgs);
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(findPatientDescriptor);
     }
 
     /**

@@ -1,9 +1,10 @@
-package seedu.vms.model.patient;
+package seedu.vms.model.patient.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.vms.commons.util.StringUtil;
+import seedu.vms.model.patient.Patient;
 
 /**
  * Tests that a {@code Patient}'s {@code Name} matches any of the keywords given.

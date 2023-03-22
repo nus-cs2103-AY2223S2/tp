@@ -2,6 +2,7 @@ package seedu.vms.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -15,8 +16,11 @@ import seedu.vms.model.GroupName;
 import seedu.vms.model.Model;
 import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
-import seedu.vms.model.patient.NameContainsKeywordsPredicate;
 import seedu.vms.model.patient.Phone;
+import seedu.vms.model.patient.predicates.BloodTypePredicate;
+import seedu.vms.model.patient.predicates.DobPredicate;
+import seedu.vms.model.patient.predicates.NameContainsKeywordsPredicate;
+import seedu.vms.model.patient.predicates.PhoneNumberPredicate;
 
 /**
  * Finds and lists all patients in patient manager whose name contains any of the argument keywords.
@@ -33,16 +37,60 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameContainsKeywordsPredicate namePredicate;
+    private final PhoneNumberPredicate phonePredicate;
+    private final DobPredicate dobPredicate;
+    private final BloodTypePredicate bloodTypePredicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(NameContainsKeywordsPredicate namePredicate) {
+        this.namePredicate = namePredicate;
+        this.phonePredicate = null;
+        this.dobPredicate = null;
+        this.bloodTypePredicate = null;
+    }
+
+    public FindCommand(FindPatientDescriptor findPatientDescriptor) {
+        if (findPatientDescriptor.getNameSearch().isPresent()) {
+            String[] nameKeywords = findPatientDescriptor.getNameSearch().get().split("\\s+");
+            this.namePredicate = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+        } else {
+            this.namePredicate = null;
+        }
+
+        if (findPatientDescriptor.getPhone().isPresent()) {
+            this.phonePredicate = new PhoneNumberPredicate(findPatientDescriptor.getPhone().get());
+        } else {
+            this.phonePredicate = null;
+        }
+
+        if (findPatientDescriptor.getDob().isPresent()) {
+            this.dobPredicate = new DobPredicate(findPatientDescriptor.getDob().get());
+        } else {
+            this.dobPredicate = null;
+        }
+
+        if (findPatientDescriptor.getBloodType().isPresent()) {
+            this.bloodTypePredicate = new BloodTypePredicate(findPatientDescriptor.getBloodType().get());
+        } else {
+            this.bloodTypePredicate = null;
+        }
     }
 
     @Override
     public CommandMessage execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPatientList(predicate);
+        if (namePredicate != null) {
+            model.updateFilteredPatientList(namePredicate);
+        }
+        if (phonePredicate != null) {
+            model.updateFilteredPatientList(phonePredicate);
+        }
+        if (dobPredicate != null) {
+            model.updateFilteredPatientList(dobPredicate);
+        }
+        if (bloodTypePredicate != null) {
+            model.updateFilteredPatientList(bloodTypePredicate);
+        }
         return new CommandMessage(
                 String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
     }
@@ -51,7 +99,10 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                        && predicate.equals(((FindCommand) other).predicate)); // state check
+                        && namePredicate.equals(((FindCommand) other).namePredicate) // state check
+                        && phonePredicate.equals(((FindCommand) other).phonePredicate) // state check
+                        && dobPredicate.equals(((FindCommand) other).dobPredicate) // state check
+                        && bloodTypePredicate.equals(((FindCommand) other).bloodTypePredicate)); // state check
     }
 
     /**
