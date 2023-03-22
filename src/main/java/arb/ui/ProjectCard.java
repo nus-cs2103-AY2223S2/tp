@@ -52,7 +52,8 @@ public class ProjectCard extends UiPart<Region> {
             contentsPane.getChildren().remove(deadline);
         }
 
-        status.setText("Status: " + project.getStatus());
+        status.setText(project.isOverdue() ? "OVERDUE" : project.getStatus().toString());
+
     }
 
     @Override

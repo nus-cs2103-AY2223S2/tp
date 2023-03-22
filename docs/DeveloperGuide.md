@@ -250,7 +250,20 @@ For the project list, it can be sorted either by deadline or name. When the user
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Overdue Status
 
+### Implementation
+The displaying of the "OVERDUE" status is facilitated by the isOverdue method 
+in the Project class. The isOverdue method returns a boolean after using the 
+compareTo method in the Deadline class which checks the current date 
+against the deadline date of the project, i.e. check if a project's deadline 
+is past the current date.
+
+The Overdue status is highlighted in the UI when any project is past its deadline. 
+The ProjectCard class has been updated to run the aforementioned isOverdue 
+method for any project before setting its status to OVERDUE, DONE, or NOT DONE. 
+The OVERDUE status is shown for existing projects in the list that are overdue, and 
+if a user adds a project with a deadline with a data that has already past.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

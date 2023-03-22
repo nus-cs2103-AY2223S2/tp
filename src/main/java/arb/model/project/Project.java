@@ -2,14 +2,20 @@ package arb.model.project;
 
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.logging.Logger;
+
+import arb.commons.core.LogsCenter;
 
 /**
  * Represents a Project in the address book.
  * Guarantees: title and status is present and not null; field values are validated & immutable.
  */
 public class Project {
+
+    private static final Logger logger = LogsCenter.getLogger(Project.class);
 
     // Details fields. Deadline is optional.
     private final Title title;
@@ -40,6 +46,18 @@ public class Project {
 
     public Deadline getDeadline() {
         return deadline.orElse(null);
+    }
+
+    /**
+     * Returns true if this project has is overdue
+     */
+    public boolean isOverdue() {
+        LocalDate currentDate = LocalDate.now();
+        logger.info(currentDate.toString());
+        Deadline currentDateAsDeadline = new Deadline(currentDate.toString());
+        logger.info(currentDateAsDeadline.toString());
+        logger.info(Integer.toString(this.getDeadline().compareTo(currentDateAsDeadline)));
+        return this.getDeadline().compareTo(currentDateAsDeadline) < 0 && !this.status.getStatus();
     }
 
     public Status getStatus() {
