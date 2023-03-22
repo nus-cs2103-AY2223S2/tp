@@ -68,8 +68,10 @@
 //                DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
 //                        .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_BOB)
 //                        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-//        DESC_COMPANY_A = new ContactBuilder().withPhone(VALID_PHONE_COMPANY_A).withEmail(VALID_EMAIL_COMPANY_A).build();
-//        DESC_COMPANY_B = new ContactBuilder().withPhone(VALID_PHONE_COMPANY_B).withEmail(VALID_EMAIL_COMPANY_B).build();
+//        DESC_COMPANY_A = new ContactBuilder().withPhone(VALID_PHONE_COMPANY_A)
+//        .withEmail(VALID_EMAIL_COMPANY_A).build();
+//        DESC_COMPANY_B = new ContactBuilder().withPhone(VALID_PHONE_COMPANY_B)
+//        .withEmail(VALID_EMAIL_COMPANY_B).build();
 //    }
 //
 //    /**
