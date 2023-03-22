@@ -6,24 +6,35 @@ import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.sudohr.logic.commands.AddCommand;
-import seedu.sudohr.logic.commands.AddDepartmentCommand;
-import seedu.sudohr.logic.commands.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.logic.commands.ClearCommand;
 import seedu.sudohr.logic.commands.Command;
-import seedu.sudohr.logic.commands.DeleteCommand;
-import seedu.sudohr.logic.commands.EditCommand;
-import seedu.sudohr.logic.commands.EditDepartmentCommand;
 import seedu.sudohr.logic.commands.ExitCommand;
-import seedu.sudohr.logic.commands.FindCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
-import seedu.sudohr.logic.commands.ListCommand;
-import seedu.sudohr.logic.commands.ListDepartmentCommand;
-import seedu.sudohr.logic.commands.ListEmployeeDepartmentCommand;
-import seedu.sudohr.logic.commands.leavecommands.AddEmployeeToLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.DeleteEmployeeFromLeaveCommand;
-import seedu.sudohr.logic.commands.leavecommands.ListEmployeeInLeaveCommand;
+import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
+import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
+import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
+import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
+import seedu.sudohr.logic.commands.department.FindDepartmentCommand;
+import seedu.sudohr.logic.commands.department.ListDepartmentCommand;
+import seedu.sudohr.logic.commands.department.ListEmployeeDepartmentCommand;
+import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentCommand;
+import seedu.sudohr.logic.commands.employee.AddCommand;
+import seedu.sudohr.logic.commands.employee.DeleteCommand;
+import seedu.sudohr.logic.commands.employee.EditCommand;
+import seedu.sudohr.logic.commands.employee.FindCommand;
+import seedu.sudohr.logic.commands.employee.ListCommand;
+import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
+import seedu.sudohr.logic.commands.leave.DeleteEmployeeFromLeaveCommand;
+import seedu.sudohr.logic.commands.leave.ListEmployeeInLeaveCommand;
+import seedu.sudohr.logic.parser.department.*;
+import seedu.sudohr.logic.parser.employee.AddCommandParser;
+import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
+import seedu.sudohr.logic.parser.employee.EditCommandParser;
+import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
+import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.DeleteEmployeeFromLeaveCommandParser;
+import seedu.sudohr.logic.parser.leave.ListEmployeeInLeaveCommandParser;
 
 /**
  * Parses user input.
@@ -67,11 +78,22 @@ public class SudoHrParser {
         case EditDepartmentCommand.COMMAND_WORD:
             return new EditDepartmentCommandParser().parse(arguments);
 
+        case DeleteDepartmentCommand.COMMAND_WORD:
+            return new DeleteDepartmentCommandParser().parse(arguments);
+        case AddEmployeeToDepartmentCommand.COMMAND_WORD:
+            return new AddEmployeeToDepartmentCommandParser().parse(arguments);
+
         case ListDepartmentCommand.COMMAND_WORD:
             return new ListDepartmentCommand();
 
-        case AddEmployeeToDepartmentCommand.COMMAND_WORD:
-            return new AddEmployeeToDepartmentCommandParser().parse(arguments);
+        case ListEmployeeDepartmentCommand.COMMAND_WORD:
+            return new ListEmployeeDepartmentCommandParser().parse(arguments);
+
+        case FindDepartmentCommand.COMMAND_WORD:
+            return new FindDepartmentCommandParser().parse(arguments);
+
+        case RemoveEmployeeFromDepartmentCommand.COMMAND_WORD:
+            return new RemoveEmployeeFromDepartmentCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -81,9 +103,6 @@ public class SudoHrParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case ListEmployeeDepartmentCommand.COMMAND_WORD:
-            return new ListEmployeeDepartmentCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

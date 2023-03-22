@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.sudohr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.sudohr.logic.commands.CommandTestUtil.EID_DESC_BOB;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.sudohr.testutil.Assert.assertThrows;
-import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,16 +14,17 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sudohr.logic.commands.AddCommand;
 import seedu.sudohr.logic.commands.ClearCommand;
-import seedu.sudohr.logic.commands.DeleteCommand;
-import seedu.sudohr.logic.commands.EditCommand;
 import seedu.sudohr.logic.commands.ExitCommand;
-import seedu.sudohr.logic.commands.FindCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
-import seedu.sudohr.logic.commands.ListCommand;
+import seedu.sudohr.logic.commands.employee.AddCommand;
+import seedu.sudohr.logic.commands.employee.DeleteCommand;
+import seedu.sudohr.logic.commands.employee.EditCommand;
+import seedu.sudohr.logic.commands.employee.FindCommand;
+import seedu.sudohr.logic.commands.employee.ListCommand;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.employee.NameContainsKeywordsPredicate;
 import seedu.sudohr.testutil.EditEmployeeDescriptorBuilder;
 import seedu.sudohr.testutil.EmployeeBuilder;
@@ -48,8 +50,8 @@ public class SudoHrParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + EID_DESC_BOB);
+        assertEquals(new DeleteCommand(new Id(VALID_ID_BOB)), command);
     }
 
     @Test
@@ -57,8 +59,8 @@ public class SudoHrParserTest {
         Employee employee = new EmployeeBuilder().build();
         EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(employee).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + EID_DESC_BOB + " " + EmployeeUtil.getEditEmployeeDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(new Id(VALID_ID_BOB), descriptor), command);
     }
 
     @Test
