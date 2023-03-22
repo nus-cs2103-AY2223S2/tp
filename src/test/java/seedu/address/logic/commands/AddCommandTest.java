@@ -173,7 +173,7 @@ public class AddCommandTest {
         public boolean canRedoAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public Person findPersonByNric(Nric nric) {
             throw new AssertionError("This method should not be called.");
