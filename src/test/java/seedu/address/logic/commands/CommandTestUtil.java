@@ -12,6 +12,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -132,18 +133,17 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredInternshipList().size());
 
         Internship internship = model.getFilteredInternshipList().get(targetIndex.getZeroBased());
-        final String[] splitCompanyName = internship.getCompanyName().fullCompanyName.split("\\s+");
-        final String[] splitRole = internship.getRole().fullRole.split("\\s+");
-        final String[] splitStatus = internship.getStatus().fullStatus.split("\\s+");
-        final String[] splitTag = internship.getTags().isEmpty()
-                ? new String[0]
-                : internship.getTags().stream()
+        final List<String> nameList = Arrays.asList(internship.getCompanyName().fullCompanyName);
+        final List<String> roleList = Arrays.asList(internship.getRole().fullRole);
+        final List<String> statusList = Arrays.asList(internship.getStatus().fullStatus);
+        final List<String> dateList = Arrays.asList(internship.getDate().fullDate);
+        final List<String> tagList = internship.getTags().isEmpty()
+                ? Collections.emptyList()
+                : Arrays.asList(internship.getTags().stream()
                 .map(tag -> tag.tagName)
-                .map(str -> str.split("\\s+"))
-                .findFirst().get();
-        model.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(
-                Arrays.asList(splitCompanyName[0]), Arrays.asList(splitRole[0]), Arrays.asList(splitStatus[0]),
-                Arrays.asList((splitTag[0]))));
+                .findFirst().get());
+        model.updateFilteredInternshipList(new InternshipContainsKeywordsPredicate(nameList, roleList, statusList,
+                dateList, tagList));
 
         assertEquals(1, model.getFilteredInternshipList().size());
     }

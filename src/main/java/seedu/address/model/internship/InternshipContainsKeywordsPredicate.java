@@ -113,7 +113,9 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
         return other == this // short circuit if same object
                 || (other instanceof InternshipContainsKeywordsPredicate // instanceof handles nulls
                 && nameKeywords.equals(((InternshipContainsKeywordsPredicate) other).nameKeywords) // state check
+                && roleKeywords.equals(((InternshipContainsKeywordsPredicate) other).roleKeywords)
                 && statusKeywords.equals(((InternshipContainsKeywordsPredicate) other).statusKeywords)
+                && keyDates.equals(((InternshipContainsKeywordsPredicate) other).keyDates)
                 && tagKeywords.equals(((InternshipContainsKeywordsPredicate) other).tagKeywords));
     }
 
