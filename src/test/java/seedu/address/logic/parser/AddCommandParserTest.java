@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -27,31 +29,23 @@ public class AddCommandParserTest {
         Patient expectedPatient = new PatientBuilder(BOB).build();
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB, new AddCommand(expectedPatient));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
+            + NRIC_DESC_BOB, new AddCommand(expectedPatient));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB, new AddCommand(expectedPatient));
+        assertParseSuccess(parser, NAME_DESC_AMY
+            + NAME_DESC_BOB + NRIC_DESC_BOB, new AddCommand(expectedPatient));
 
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB, new AddCommand(expectedPatient));
-
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB, new AddCommand(expectedPatient));
-
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB, new AddCommand(expectedPatient));
-
-        // multiple tags - all accepted
-        Patient expectedPatientMultipleTags = new PatientBuilder(BOB).build();
-        assertParseSuccess(parser, NAME_DESC_BOB, new AddCommand(expectedPatientMultipleTags));
+        // multiple nrics - last phone accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + NRIC_DESC_AMY
+            + NRIC_DESC_BOB, new AddCommand(expectedPatient));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Patient expectedPatient = new PatientBuilder(AMY).build();
-        assertParseSuccess(parser, NAME_DESC_AMY,
-            new AddCommand(expectedPatient));
+        assertParseSuccess(parser, NAME_DESC_AMY + NRIC_DESC_AMY, new AddCommand(expectedPatient));
     }
 
     @Test
@@ -70,10 +64,10 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + NRIC_DESC_AMY, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + NRIC_DESC_BOB,
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
