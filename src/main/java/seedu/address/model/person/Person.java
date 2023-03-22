@@ -193,43 +193,43 @@ public class Person {
     }
 
     /**
-     * Returns true if the person contains all the keywords in all the fields specified, returns false otherwise.
+     * Returns true if the person contains one of the keywords in all the fields specified, returns false otherwise.
      */
-    public boolean contains(HashMap<String, String> keywords) {
+    public boolean contains(HashMap<String, Set<String>> keywords) {
         if (keywords.containsKey(PersonContainsKeywordsPredicate.NAMEKEY)
-                && !this.name.contains(keywords.get(PersonContainsKeywordsPredicate.NAMEKEY))) {
+                && !this.nameContains(keywords.get(PersonContainsKeywordsPredicate.NAMEKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.ADDRESSKEY)
-                && !this.address.contains(keywords.get(PersonContainsKeywordsPredicate.ADDRESSKEY))) {
+                && !this.addressContains(keywords.get(PersonContainsKeywordsPredicate.ADDRESSKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.COMMSKEY)
-                && !this.comms.contains(keywords.get(PersonContainsKeywordsPredicate.COMMSKEY))) {
+                && !this.commsContains(keywords.get(PersonContainsKeywordsPredicate.COMMSKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.EMAILKEY)
-                && !this.email.contains(keywords.get(PersonContainsKeywordsPredicate.EMAILKEY))) {
+                && !this.emailContains(keywords.get(PersonContainsKeywordsPredicate.EMAILKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.GENDERKEY)
-                && !this.gender.contains(keywords.get(PersonContainsKeywordsPredicate.GENDERKEY))) {
+                && !this.genderContains(keywords.get(PersonContainsKeywordsPredicate.GENDERKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.MAJORKEY)
-                && !this.major.contains(keywords.get(PersonContainsKeywordsPredicate.MAJORKEY))) {
+                && !this.majorContains(keywords.get(PersonContainsKeywordsPredicate.MAJORKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.MODULESKEY)
-                && !this.modules.contains(keywords.get(PersonContainsKeywordsPredicate.MODULESKEY))) {
+                && !this.moduleContains(keywords.get(PersonContainsKeywordsPredicate.MODULESKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.PHONEKEY)
-                && !this.phone.contains(keywords.get(PersonContainsKeywordsPredicate.PHONEKEY))) {
+                && !this.phoneContains(keywords.get(PersonContainsKeywordsPredicate.PHONEKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.RACEKEY)
-                && !this.race.contains(keywords.get(PersonContainsKeywordsPredicate.RACEKEY))) {
+                && !this.raceContains(keywords.get(PersonContainsKeywordsPredicate.RACEKEY))) {
             return false;
         }
         if (keywords.containsKey(PersonContainsKeywordsPredicate.TAGKEY)
@@ -240,12 +240,95 @@ public class Person {
         return true;
     }
 
-    private boolean tagsContains(String test) {
+    private boolean tagsContains(Set<String> test) {
         if (!test.isEmpty() && this.tags.isEmpty()) {
             return false;
         }
-        for (Tag tag: this.tags) {
-            if (tag.contains(test)) {
+        for (String t: test) {
+            for (Tag tag: this.tags) {
+                if (tag.contains(t)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean nameContains(Set<String> test) {
+        for (String t: test) {
+            if (this.name.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean addressContains(Set<String> test) {
+        for (String t: test) {
+            if (this.address.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean commsContains(Set<String> test) {
+        for (String t: test) {
+            if (this.comms.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean emailContains(Set<String> test) {
+        for (String t: test) {
+            if (this.email.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean genderContains(Set<String> test) {
+        for (String t: test) {
+            if (this.gender.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean majorContains(Set<String> test) {
+        for (String t: test) {
+            if (this.major.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean moduleContains(Set<String> test) {
+        for (String t: test) {
+            if (this.modules.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean phoneContains(Set<String> test) {
+        for (String t: test) {
+            if (this.phone.contains(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean raceContains(Set<String> test) {
+        for (String t: test) {
+            if (this.race.contains(t)) {
                 return true;
             }
         }

@@ -31,9 +31,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         PersonContainsKeywordsPredicate firstPredicate =
-                new PersonContainsKeywordsPredicate(Collections.singletonList("first"));
+                new PersonContainsKeywordsPredicate().withName(Collections.singletonList("first"));
         PersonContainsKeywordsPredicate secondPredicate =
-                new PersonContainsKeywordsPredicate(Collections.singletonList("second"));
+                new PersonContainsKeywordsPredicate().withName(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -79,6 +79,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private PersonContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new PersonContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new PersonContainsKeywordsPredicate().withName((Arrays.asList(userInput.split("\\s+"))));
     }
 }

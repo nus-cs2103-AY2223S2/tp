@@ -1,12 +1,23 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.List;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -36,39 +47,46 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE)
             );
         }
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            pred.withName(argMultimap.getValue(PREFIX_NAME).get());
+        List<String> names = argMultimap.getAllValues(PREFIX_NAME);
+        if (!names.isEmpty()) {
+            pred.withName(names);
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            pred.withPhone(argMultimap.getValue(PREFIX_PHONE).get());
+        List<String> phones = argMultimap.getAllValues(PREFIX_PHONE);
+        if (!phones.isEmpty()) {
+            pred.withPhone(phones);
         }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            pred.withEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        List<String> emails = argMultimap.getAllValues(PREFIX_EMAIL);
+        if (!emails.isEmpty()) {
+            pred.withEmail(emails);
         }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            pred.withAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        List<String> address = argMultimap.getAllValues(PREFIX_ADDRESS);
+        if (!address.isEmpty()) {
+            pred.withAddress(address);
         }
-        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            pred.withGender(argMultimap.getValue(PREFIX_GENDER).get());
+        List<String> genders = argMultimap.getAllValues(PREFIX_GENDER);
+        if (!genders.isEmpty()) {
+            pred.withGender(genders);
         }
-        if (argMultimap.getValue(PREFIX_MAJOR).isPresent()) {
-            pred.withMajor(argMultimap.getValue(PREFIX_MAJOR).get());
+        List<String> majors = argMultimap.getAllValues(PREFIX_MAJOR);
+        if (!majors.isEmpty()) {
+            pred.withMajor(majors);
         }
-        if (argMultimap.getValue(PREFIX_RACE).isPresent()) {
-            pred.withRace(argMultimap.getValue(PREFIX_RACE).get());
+        List<String> races = argMultimap.getAllValues(PREFIX_RACE);
+        if (!races.isEmpty()) {
+            pred.withRace(races);
         }
-        if (argMultimap.getValue(PREFIX_COMMS).isPresent()) {
-            pred.withComms(argMultimap.getValue(PREFIX_COMMS).get());
+        List<String> comms = argMultimap.getAllValues(PREFIX_COMMS);
+        if (!comms.isEmpty()) {
+            pred.withComms(comms);
         }
-        if (argMultimap.getValue(PREFIX_MODULES).isPresent()) {
-            pred.withModules(argMultimap.getValue(PREFIX_MODULES).get());
+        List<String> mods = argMultimap.getAllValues(PREFIX_MODULES);
+        if (!mods.isEmpty()) {
+            pred.withModules(mods);
         }
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            pred.withTag(argMultimap.getValue(PREFIX_TAG).get());
+        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
+        if (!tags.isEmpty()) {
+            pred.withTag(tags);
         }
-
-        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        // parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULES)).ifPresent(editPersonDescriptor::setModules);
 
         return new FindCommand(pred);
     }

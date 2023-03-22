@@ -1,6 +1,9 @@
 package seedu.address.model.person;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 
@@ -20,42 +23,112 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
     public static final String RACEKEY = "race";
     public static final String TAGKEY = "tag";
 
-    private final HashMap<String, String> keywords;
+    private final HashMap<String, Set<String>> keywords;
 
 
     public PersonContainsKeywordsPredicate() {
         this.keywords = new HashMap<>();
     }
 
-    public void withName(String name) {
-        this.keywords.put(NAMEKEY, name);
+    /**
+     * Stores the name in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withName(Collection<String> name) {
+        if (!this.keywords.containsKey(NAMEKEY)) {
+            this.keywords.put(NAMEKEY, new HashSet<>());
+        }
+        this.keywords.get(NAMEKEY).addAll(name);
+        return this;
     }
-    public void withComms(String comms) {
-        this.keywords.put(COMMSKEY, comms);
+    /**
+     * Stores the comms in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withComms(Collection<String> comms) {
+        if (!this.keywords.containsKey(COMMSKEY)) {
+            this.keywords.put(COMMSKEY, new HashSet<>());
+        }
+        this.keywords.get(COMMSKEY).addAll(comms);
+        return this;
     }
-    public void withAddress(String address) {
-        this.keywords.put(ADDRESSKEY, address);
+    /**
+     * Stores the address in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withAddress(Collection<String> address) {
+        if (!this.keywords.containsKey(ADDRESSKEY)) {
+            this.keywords.put(ADDRESSKEY, new HashSet<>());
+        }
+        this.keywords.get(ADDRESSKEY).addAll(address);
+        return this;
     }
-    public void withEmail(String email) {
-        this.keywords.put(EMAILKEY, email);
+    /**
+     * Stores the email in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withEmail(Collection<String> email) {
+        if (!this.keywords.containsKey(EMAILKEY)) {
+            this.keywords.put(EMAILKEY, new HashSet<>());
+        }
+        this.keywords.get(EMAILKEY).addAll(email);
+        return this;
     }
-    public void withGender(String gender) {
-        this.keywords.put(GENDERKEY, gender);
+    /**
+     * Stores the gender in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withGender(Collection<String> gender) {
+        if (!this.keywords.containsKey(GENDERKEY)) {
+            this.keywords.put(GENDERKEY, new HashSet<>());
+        }
+        this.keywords.get(GENDERKEY).addAll(gender);
+        return this;
     }
-    public void withMajor(String major) {
-        this.keywords.put(MAJORKEY, major);
+    /**
+     * Stores the major in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withMajor(Collection<String> major) {
+        if (!this.keywords.containsKey(MAJORKEY)) {
+            this.keywords.put(MAJORKEY, new HashSet<>());
+        }
+        this.keywords.get(MAJORKEY).addAll(major);
+        return this;
     }
-    public void withModules(String mod) {
-        this.keywords.put(MODULESKEY, mod);
+    /**
+     * Stores the modules in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withModules(Collection<String> mod) {
+        if (!this.keywords.containsKey(MODULESKEY)) {
+            this.keywords.put(MODULESKEY, new HashSet<>());
+        }
+        this.keywords.get(MODULESKEY).addAll(mod);
+        return this;
     }
-    public void withPhone(String phone) {
-        this.keywords.put(PHONEKEY, phone);
+    /**
+     * Stores the phone in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withPhone(Collection<String> phone) {
+        if (!this.keywords.containsKey(PHONEKEY)) {
+            this.keywords.put(PHONEKEY, new HashSet<>());
+        }
+        this.keywords.get(PHONEKEY).addAll(phone);
+        return this;
     }
-    public void withRace(String race) {
-        this.keywords.put(RACEKEY, race);
+    /**
+     * Stores the race in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withRace(Collection<String> race) {
+        if (!this.keywords.containsKey(RACEKEY)) {
+            this.keywords.put(RACEKEY, new HashSet<>());
+        }
+        this.keywords.get(RACEKEY).addAll(race);
+        return this;
     }
-    public void withTag(String tag) {
-        this.keywords.put(TAGKEY, tag);
+    /**
+     * Stores the tag in the predicate.
+     */
+    public PersonContainsKeywordsPredicate withTag(Collection<String> tag) {
+        if (!this.keywords.containsKey(TAGKEY)) {
+            this.keywords.put(TAGKEY, new HashSet<>());
+        }
+        this.keywords.get(TAGKEY).addAll(tag);
+        return this;
     }
 
     @Override
