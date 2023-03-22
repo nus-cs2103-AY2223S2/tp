@@ -21,7 +21,7 @@ public class PetListPanel extends UiPart<Region> {
     private ListView<Pet> petListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PetListPanel} with the given {@code ObservableList}.
      */
     public PetListPanel(ObservableList<Pet> petList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class PetListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Pet} using a {@code PetCard}.
      */
     class PetListViewCell extends ListCell<Pet> {
         @Override
