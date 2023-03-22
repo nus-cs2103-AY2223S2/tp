@@ -25,7 +25,7 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" />
-        <Label fx:id="status" styleClass="status-GRAY" />
+        <Label fx:id="status" />
       </HBox>
       <Label fx:id="nric" styleClass="cell_small_label" />
       <Label fx:id="ward" styleClass="cell_small_label" />
