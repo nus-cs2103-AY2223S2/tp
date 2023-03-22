@@ -28,7 +28,8 @@ public class Date {
             + "2. Dates must be valid. i.e.\n"
             + " - MM must be a number between 01 and 12 inclusive\n"
             + " - dd must be a number between 01 and 31 inclusive\n"
-            + " - dd should be within the valid range for the MM given";
+            + " - dd should be within the valid range for the MM given.\n"
+            + "Example Dates: Jan-23-2000";
 
     private static final DateFormat NUM_FORMATS =
             new DateFormat("uuuu", "MM", "dd");

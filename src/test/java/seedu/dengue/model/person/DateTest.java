@@ -28,7 +28,6 @@ public class DateTest {
         assertFalse(Date.isValidDate("")); // empty string
         assertFalse(Date.isValidDate(" ")); // spaces only
 
-        // acceptable formats
 
 
         // wrong formats
