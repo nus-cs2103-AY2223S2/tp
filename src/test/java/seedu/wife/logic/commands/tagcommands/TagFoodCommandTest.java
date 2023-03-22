@@ -31,9 +31,9 @@ import seedu.wife.testutil.TypicalTag;
  */
 public class TagFoodCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "%s successfully tagged with %s";
-    private static final String ERROR_DUPLICATE = "You have already tagged %s with %s.";
-    private static final String ERROR_TAG_NOT_FOUND = "There is no %s Tag!";
-    private static final String ERROR_FOOD_NOT_FOUND = "The food item index provided is invalid";
+    private static final String EXPECTED_ERROR_DUPLICATE_TAG = "You have already tagged %s with %s.";
+    private static final String EXPECTED_ERROR_TAG_NOT_FOUND = "There is no %s Tag!";
+    private static final String EXPECTED_ERROR_FOOD_NOT_FOUND = "The food item index provided is invalid";
 
     @Test
     public void execute_tagFood_success() {
@@ -69,7 +69,7 @@ public class TagFoodCommandTest {
         Tag tag = new TagBuilder().withTagName(VALID_TAG_DAIRY).build();
         TagFoodCommand tagFoodCommand = new TagFoodCommand(tag.getTagName(), INDEX_FIRST_FOOD);
 
-        String expectedMessage = String.format(ERROR_TAG_NOT_FOUND, tag.getTagName());
+        String expectedMessage = String.format(EXPECTED_ERROR_TAG_NOT_FOUND, tag.getTagName());
         assertCommandFailure(tagFoodCommand, model, expectedMessage);
     }
 
@@ -80,7 +80,7 @@ public class TagFoodCommandTest {
         model.createTag(tag);
         TagFoodCommand tagFoodCommand = new TagFoodCommand(tag.getTagName(), INDEX_THIRD_FOOD);
 
-        assertCommandFailure(tagFoodCommand, model, ERROR_FOOD_NOT_FOUND);
+        assertCommandFailure(tagFoodCommand, model, EXPECTED_ERROR_FOOD_NOT_FOUND);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class TagFoodCommandTest {
 
         TagFoodCommand tagFoodCommand = new TagFoodCommand(tag.getTagName(), INDEX_FIRST_FOOD);
 
-        String expectedMessage = String.format(ERROR_DUPLICATE, food.getName(), tag.getTagName());
+        String expectedMessage = String.format(EXPECTED_ERROR_DUPLICATE_TAG, food.getName(), tag.getTagName());
         assertCommandFailure(tagFoodCommand, model, expectedMessage);
     }
 

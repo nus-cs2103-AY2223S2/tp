@@ -22,7 +22,7 @@ import seedu.wife.testutil.TagBuilder;
  * A class to test the NewTagCommand.
  */
 public class CreateTagCommandTest {
-    private static final String EXPECTED_ERROR_DUPLICATE = "The tag you try to add is already in the tag list.";
+    private static final String EXPECTED_ERROR_DUPLICATE = "The tag you are trying to create has been created before.";
     private static final String EXPECTED_SUCCESS_MESSAGE = "Tag(s) successfully created:\n%s";
 
     @Test

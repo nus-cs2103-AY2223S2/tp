@@ -14,6 +14,8 @@ public class Messages {
     public static final String MESSAGE_SUCCESSFUL_FOOD_TAG = "%s successfully tagged with %s";
     public static final String MESSAGE_DOUBLE_TAG = "You have already tagged %s with %s.";
     public static final String MESSAGE_INVALID_INDEX = "Index you entered is invalid.";
+    public static final String MESSAGE_TAG_CREATE_SUCCESS = "Tag(s) successfully created:";
+    public static final String MESSAGE_DUPLICATE_TAG = "The tag you are trying to create has been created before.";
     public static final String MESSAGE_EMPTY_ARGUMENT = "You missed out the argument for the command, please refer"
             + " to help for more info. \n %s";
 }
