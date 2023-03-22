@@ -11,5 +11,7 @@ public interface ReadOnlyUserPrefs {
     GuiSettings getGuiSettings();
 
     Path getInternshipCatalogueFilePath();
+
+    Path getEventCatalogueFilePath();
 }
 
