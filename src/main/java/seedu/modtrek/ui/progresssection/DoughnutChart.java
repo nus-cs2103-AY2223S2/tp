@@ -166,7 +166,8 @@ public class DoughnutChart extends PieChart {
         double radius = chartProperties.get("radius") * offsetScale;
 
         ObservableList<Data> doughnutData = getData();
-        assert dataLabels.length == doughnutData.size() / 2 : "Number of data labels should be half the number of doughnut data";
+        assert dataLabels.length == doughnutData.size() / 2
+                : "Number of data labels should be half the number of doughnut data";
         for (int i = 0; i < doughnutData.size(); i += 2) {
             VBox dataLabel = dataLabels[i / 2];
             Data completeData = doughnutData.get(i);

@@ -2,6 +2,7 @@ package seedu.modtrek.ui.modulesection;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.modtrek.model.module.Module;
@@ -13,6 +14,9 @@ import seedu.modtrek.ui.UiPart;
  */
 public class ModuleSection extends UiPart<Region> {
     private static final String FXML = "modulesection/ModuleSection.fxml";
+
+    @FXML
+    protected HBox moduleSectionNav;
 
     @FXML
     private StackPane moduleListPlaceholder;

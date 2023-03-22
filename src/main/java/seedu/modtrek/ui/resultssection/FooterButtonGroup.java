@@ -20,7 +20,12 @@ public class FooterButtonGroup extends UiPart<Region> {
     /**
      * The 'display module list' button.
      */
-    private FooterButton modulelistButton;
+    private FooterButton moduleListButton;
+
+    /**
+     * The 'module search' button.
+     */
+    private FooterButton moduleSearchButton;
 
     @FXML
     private HBox footerButtonGroup;
@@ -28,38 +33,55 @@ public class FooterButtonGroup extends UiPart<Region> {
     /**
      * Creates a {@code FooterButtonGroup}.
      * @param progressButtonLabel The text label of the progress button.
-     * @param modulelistButtonLabel The text label of the module-list button.
+     * @param moduleListButtonLabel The text label of the module-list button.
      * @param progressButtonHandler The function to execute on clicking the progress button.
-     * @param modulelistButtonHandler The function to execute on clicking the module-list button.
+     * @param moduleListButtonHandler The function to execute on clicking the module-list button.
      */
-    public FooterButtonGroup(String progressButtonLabel, String modulelistButtonLabel,
-                             Runnable progressButtonHandler, Runnable modulelistButtonHandler) {
+    public FooterButtonGroup(String progressButtonLabel, String moduleListButtonLabel, String moduleSearchButtonLabel,
+                             Runnable progressButtonHandler, Runnable moduleListButtonHandler,
+                             Runnable moduleSearchButtonHandler) {
         super(FXML);
 
         progressButton = new FooterButton(progressButtonLabel, progressButtonHandler);
-        modulelistButton = new FooterButton(modulelistButtonLabel, modulelistButtonHandler);
+        moduleListButton = new FooterButton(moduleListButtonLabel, moduleListButtonHandler);
+        moduleSearchButton = new FooterButton(moduleSearchButtonLabel, moduleSearchButtonHandler);
 
-        footerButtonGroup.getChildren().addAll(progressButton.getRoot(), getDeco(), modulelistButton.getRoot());
+
+        footerButtonGroup.getChildren().addAll(progressButton.getRoot(), getDeco(),
+                moduleListButton.getRoot(), moduleSearchButton.getRoot());
     }
 
     /**
-     * Updates the styles for progress button and module-list button for the case where
-     * progress button gets selected.
+     * Updates the styles for all footer buttons for the case where progress button gets selected.
      */
     public void selectProgressButton() {
         progressButton.clearSelectedStyle();
-        modulelistButton.clearSelectedStyle();
+        moduleListButton.clearSelectedStyle();
+        moduleSearchButton.clearSelectedStyle();
+
         progressButton.addSelectedStyle();
     }
 
     /**
-     * Updates the styles for progress button and module-list button for the case where
-     * module-list button gets selected.
+     * Updates the styles for all footer buttons for the case where module-list button gets selected.
      */
-    public void selectModulelistButton() {
+    public void selectModuleListButton() {
         progressButton.clearSelectedStyle();
-        modulelistButton.clearSelectedStyle();
-        modulelistButton.addSelectedStyle();
+        moduleListButton.clearSelectedStyle();
+        moduleSearchButton.clearSelectedStyle();
+
+        moduleListButton.addSelectedStyle();
+    }
+
+    /**
+     * Updates the styles for uttonsall footer b for the case where module-search button gets selected.
+     */
+    public void selectModuleSearchButton() {
+        progressButton.clearSelectedStyle();
+        moduleListButton.clearSelectedStyle();
+        moduleSearchButton.clearSelectedStyle();
+
+        moduleSearchButton.addSelectedStyle();
     }
 
     /**

@@ -18,22 +18,11 @@
         <URL value="@module-section.css" />
     </stylesheets>
 
-    <HBox id="module-section-nav">
-        <Label text="Sort by:" id="module-section-nav-label" styleClass="h3" />
-        <ComboBox styleClass="h4">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Year"/>
-                    <String fx:value="Code"/>
-                    <String fx:value="Credits"/>
-                    <String fx:value="Grade"/>
-                    <String fx:value="Tag"/>
-                </FXCollections>
-            </items>
-            <value>
-                <String fx:value="Year"/>
-            </value>
-        </ComboBox>
+    <HBox fx:id="moduleSectionNav" id="module-section-nav">
+
+
+
+
     </HBox>
 
     <StackPane VBox.vgrow="ALWAYS" fx:id="moduleListPlaceholder" />
