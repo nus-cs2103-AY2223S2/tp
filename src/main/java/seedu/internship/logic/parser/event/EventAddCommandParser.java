@@ -35,16 +35,20 @@ public class EventAddCommandParser implements Parser<EventAddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENT_NAME,PREFIX_EVENT_START, PREFIX_EVENT_END, PREFIX_EVENT_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_START, PREFIX_EVENT_END, PREFIX_EVENT_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_NAME, PREFIX_EVENT_END,PREFIX_EVENT_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EventAddCommand.MESSAGE_USAGE));
+        }
+        if (!arePrefixesPresent(argMultimap,PREFIX_EVENT_START)) {
+            // If Start is not Present , then start == end
+            argMultimap.put(PREFIX_EVENT_START,argMultimap.getValue(PREFIX_EVENT_END).get() );
         }
 
         Name name = EventParserUtil.parseEventName(argMultimap.getValue(PREFIX_EVENT_NAME).get());
 
         Start start = EventParserUtil.parseEventStart(argMultimap.getValue(PREFIX_EVENT_START).get());
 
-        End end = EventParserUtil.parseEventEnd(argMultimap.getValue(PREFIX_EVENT_START).get());
+        End end = EventParserUtil.parseEventEnd(argMultimap.getValue(PREFIX_EVENT_END).get());
 
         Description desc = EventParserUtil.parseEventDescription(argMultimap.getValue(PREFIX_EVENT_DESCRIPTION).get());
 

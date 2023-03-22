@@ -1,5 +1,9 @@
 package seedu.internship.logic.commands;
 
+import static seedu.internship.model.event.Event.EMPTY_EVENT;
+import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_LIST;
+import static seedu.internship.model.internship.Internship.EMPTY_INTERNSHIP;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -43,7 +47,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, null, null);
+        this(feedbackToUser, showHelp, exit, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST);
     }
 
     /**
@@ -51,7 +55,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, Internship internship) {
-        this(feedbackToUser, false, false, internship, null);
+        this(feedbackToUser, false, false, internship, EMPTY_UNIQUE_EVENTS_LIST);
     }
 
     /**
@@ -67,7 +71,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, EMPTY_INTERNSHIP,EMPTY_UNIQUE_EVENTS_LIST);
     }
 
     public String getFeedbackToUser() {
@@ -86,6 +90,15 @@ public class CommandResult {
         return internship;
     }
 
+    public boolean isEmptyInternship() {
+        return this.internship.equals(EMPTY_INTERNSHIP);
+    }
+
+    public boolean isEmptyEvents() {
+        return this.events.equals(EMPTY_UNIQUE_EVENTS_LIST);
+    }
+
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -99,18 +112,12 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
 
-        if (this.internship != null && otherCommandResult.internship != null) {
-            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                    && showHelp == otherCommandResult.showHelp
-                    && exit == otherCommandResult.exit
-                    && internship.equals(otherCommandResult.internship);
-        } else if (this.internship == null && otherCommandResult.internship == null) {
-            return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                    && showHelp == otherCommandResult.showHelp
-                    && exit == otherCommandResult.exit;
-        } else {
-            return false;
-        }
+        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && showHelp == otherCommandResult.showHelp
+                && exit == otherCommandResult.exit
+                && internship.equals(otherCommandResult.internship)
+                && events.equals(events);
+
 
     }
 

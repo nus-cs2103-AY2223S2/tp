@@ -20,6 +20,7 @@ public class Internship {
     private final Status status;
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
+    public static final Internship EMPTY_INTERNSHIP = new Internship(new Position("EMPTY"),new Company("EMPTY"),new Status(0),new Description("EMPTY"), new HashSet<Tag>());
 
     /**
      * Every field must be present and not null.
@@ -86,6 +87,9 @@ public class Internship {
         }
 
         Internship otherInternship = (Internship) other;
+        if (otherInternship == EMPTY_INTERNSHIP || this == EMPTY_INTERNSHIP) {
+            return false;
+        }
         return otherInternship.getPosition().equals(getPosition())
                 && otherInternship.getCompany().equals(getCompany())
                 && otherInternship.getStatus().equals(getStatus())
