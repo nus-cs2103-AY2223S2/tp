@@ -2,8 +2,8 @@ package seedu.vms.model.patient.predicates;
 
 import java.util.function.Predicate;
 
-import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Dob;
+import seedu.vms.model.patient.Patient;
 
 /**
  * Tests that a {@code Patient}'s {@code Dob} matches the dob given.

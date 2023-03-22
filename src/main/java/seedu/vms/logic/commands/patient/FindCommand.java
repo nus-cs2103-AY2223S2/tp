@@ -42,6 +42,11 @@ public class FindCommand extends Command {
     private final DobPredicate dobPredicate;
     private final BloodTypePredicate bloodTypePredicate;
 
+    /**
+     * Existing FindCommand that was previously used to search using name only
+     *
+     * @param namePredicate
+     */
     public FindCommand(NameContainsKeywordsPredicate namePredicate) {
         this.namePredicate = namePredicate;
         this.phonePredicate = null;
@@ -49,6 +54,12 @@ public class FindCommand extends Command {
         this.bloodTypePredicate = null;
     }
 
+    /**
+     * New FindCommand that contains more patient information that is given by the user.
+     * Accepts different descriptors when applicable
+     *
+     * @param findPatientDescriptor
+     */
     public FindCommand(FindPatientDescriptor findPatientDescriptor) {
         if (findPatientDescriptor.getNameSearch().isPresent()) {
             String[] nameKeywords = findPatientDescriptor.getNameSearch().get().split("\\s+");
