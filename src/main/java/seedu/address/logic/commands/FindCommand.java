@@ -27,14 +27,14 @@ public class FindCommand extends Command {
 
     private NameContainsKeywordsPredicate predicate;
 
-    private PhoneContainsKeywordsPredicate phone_predicate;
+    private PhoneContainsKeywordsPredicate phonePredicate;
+
+    public FindCommand(PhoneContainsKeywordsPredicate phonePredicate) {
+        this.phonePredicate = phonePredicate;
+    }
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
-    }
-
-    public FindCommand(PhoneContainsKeywordsPredicate phone_predicate) {
-        this.phone_predicate = phone_predicate;
     }
 
     @Override

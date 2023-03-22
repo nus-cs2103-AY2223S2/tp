@@ -11,7 +11,6 @@ public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
     public PhoneContainsKeywordsPredicate(String keyword) {
         this.keyword = keyword;
     }
-    
     public boolean test(Person person) {
         return keyword.matches(person.getPhone().value);
     }

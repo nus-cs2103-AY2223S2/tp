@@ -26,7 +26,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (trimmedArgs.isEmpty()) {
             if (isNumber) {
                 throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE_2));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             } else {
                 throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
