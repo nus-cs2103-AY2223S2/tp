@@ -11,6 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.Reroll;
+import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
 
 /***/
 @JsonRootName(value = "reroll")
@@ -30,10 +33,11 @@ public class JsonSerializableReroll {
     }
     /***/
     public JsonSerializableReroll(ReadOnlyReroll source) {
-        mobs.addAll(source.getMobs().getEntityList().stream().map(JsonAdaptedMob::new).collect(Collectors.toList()));
-        characters.addAll(source.getCharacters()
-                .getEntityList().stream().map(JsonAdaptedCharacter::new).collect(Collectors.toList()));
-        items.addAll(source.getItems().getEntityList().stream()
+        mobs.addAll(source.getMobs().getEntityList().stream().map(x -> (Mob) x)
+                .map(JsonAdaptedMob::new).collect(Collectors.toList()));
+        characters.addAll(source.getCharacters().getEntityList().stream()
+                .map(x -> (Character) x).map(JsonAdaptedCharacter::new).collect(Collectors.toList()));
+        items.addAll(source.getItems().getEntityList().stream().map(x -> (Item) x)
                 .map(JsonAdaptedItem::new).collect(Collectors.toList()));
     }
     /***/
@@ -41,16 +45,16 @@ public class JsonSerializableReroll {
         Reroll reroll = new Reroll();
         // Add all mobs
         for (JsonAdaptedMob jsonMob : mobs) {
-            reroll.addMob(jsonMob.toModelType());
+            reroll.addEntity(jsonMob.toModelType());
         }
         // Add all characters
         for (JsonAdaptedCharacter jsonChar : characters) {
-            reroll.addCharacter(jsonChar.toModelType());
+            reroll.addEntity(jsonChar.toModelType());
         }
 
         // Add all items
         for (JsonAdaptedItem jsonItem : items) {
-            reroll.addItem(jsonItem.toModelType());
+            reroll.addEntity(jsonItem.toModelType());
         }
 
         return reroll;

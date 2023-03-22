@@ -1,14 +1,23 @@
 package seedu.address.experimental.model;
 
-import seedu.address.model.entity.Character;
+import javafx.collections.ObservableList;
+import seedu.address.model.entity.Entity;
 
 /**
  * Abstraction of all characters
  */
-public class RerollCharacters extends RerollEntities<Character> {
+public class RerollCharacters implements ReadOnlyEntities {
 
-    // For convenience
-    private final UniqueEntityList<Character> characters = entities;
+    private final ObservableList<Entity> characters;
+
+    public RerollCharacters(ObservableList<Entity> characters) {
+        this.characters = characters;
+    }
+
+    @Override
+    public ObservableList<Entity> getEntityList() {
+        return characters;
+    }
 
     @Override
     public boolean equals(Object other) {
