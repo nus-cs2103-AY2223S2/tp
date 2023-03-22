@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class DeleteTaskCommand extends Command {
      * a specified person
      */
     public DeleteTaskCommand(Index studentIndex, Index taskIndex) {
+        requireAllNonNull(studentIndex, taskIndex);
         this.taskIndex = taskIndex;
         this.studentIndex = studentIndex;
     }
