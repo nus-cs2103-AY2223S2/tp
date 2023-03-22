@@ -26,11 +26,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
 import java.util.HashSet;
@@ -330,7 +330,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
-        return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass,newStudentClass, newSex,
+        return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
                 newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca, newAttendance,
                 newComment, newStudentPhoneNumber, newEmail, newAddress, newTagList);
     }
