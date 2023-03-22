@@ -8,7 +8,6 @@ Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class "{abstract}\nEvent" as Event
 
 Class AddressBook
 Class ModelManager
@@ -33,8 +32,6 @@ Class Lab
 
 Class UniqueConsultationList
 Class Consultation
-Class Note
-
 }
 
 Class HiddenOutside #FFFFFF
@@ -73,18 +70,9 @@ UniqueConsultationList --> "~* all" Consultation
 UniqueTutorialList --> "~* all" Tutorial
 UniqueLabList --> "~* all" Lab
 
-Consultation -up-|> Event
-Tutorial -up-|> Event
-Lab -up-|> Event
-
 Consultation --> "*" Person
 Tutorial --> "*" Person
 Lab --> "*" Person
 
-
-Event --> "*" File
-Event --> "*" Note
-Event --> "1" LocalDate
-
-ModelManager -->"~* filtered" Person
+ModelManager ------>"~* filtered" Person
 @enduml
