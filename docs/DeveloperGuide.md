@@ -291,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Well Informed Fridge Environment (WIFE)` and the **Actor** is the `user`, unless specified otherwise)
 
-### **Use case UC01: Add a new item**
+### **Use case UC01: Add a new food item**
 **MSS**
 1. User add item by giving WIFE the name of the item.
 2. User confirms.
@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
+1.  User requests to list the food items stored in WIFE.
 2.  WIFE shows the full list of food items.
 3.  User tag food item at specified index with tags pre-defined by WIFE.
 4.  WIFE tagged the food item with the chosen tag.
@@ -356,11 +356,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty. </br>
+* 2a. The list is empty. Wife informs the user that the list is empty.</br>
   Use case ends.
 
 * 3a. The given index is invalid.
-    * 3a1. WIFE shows an error message. </br>
+    * 3a1. WIFE displays an error message to inform the user that the index
+    * inserted is invalid. </br>
       Use case resumes at step 2.
 
 * 4a. Chosen tag is not in the pre-defined list of tags.
@@ -389,6 +390,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     Use case ends.
 
+### **Use case UC07: Add a Pre-defined tag**
+
+**MSS**
+
+1. User adds a new tag by giving WIFE the name of the tag.
+2. User confirms.
+3. WIFE adds the tag to the list and displays all current tags in the fridge.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User keyed in an invalid tag name.
+    * 1a1. WIFE displays a message that tells the User that there the tag name keyed in by
+    * the user is invalid.
+
+      Use case ends.
+  
+* 1b. Tag already exists in WIFE's list of pre-defined tags.
+    * 1a1. WIFE displays a message that tells the User that there are already similar tags
+    * in the list, hence, no action will be carried out.
+
+      Use case ends.
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
