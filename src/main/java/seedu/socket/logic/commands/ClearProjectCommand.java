@@ -20,6 +20,7 @@ public class ClearProjectCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setProjects(new ArrayList<>());
+        model.commitSocket();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
