@@ -10,9 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Education;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +95,34 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String education} into an {@code Education}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code education} is invalid.
+     */
+    public static Education parseEducation(String education) throws ParseException {
+        requireNonNull(education);
+        String trimmedEducation = education.trim();
+        if (!Education.isValidEducation(trimmedEducation)) {
+            throw new ParseException(Education.MESSAGE_CONSTRAINTS);
+        }
+        return new Education(trimmedEducation);
+    }
+
+    /**
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * Doesn't throw {@code ParseException} as {@code remark} allows all characters,
+     * and thus is never invalid.
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
     }
 
     /**
