@@ -362,9 +362,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. FitBook shows an error message for duplicate names.
 
-
       Use case ends.
-
 
 
 **Use case: UC03 - List clients**
@@ -460,6 +458,132 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+> **Use case: UC08 - List Routines**
+
+ **MSS**
+
+1. User requests to list routines.
+2. FitBook displays a list of routines.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Routine list is empty use case.
+
+  Use case ends.
+
+> **Use case: UC09 - Clear Routines**
+
+**MSS**
+
+1. User requests to clear the list of routines.
+2. FitBook clears the list and database of routines.
+3. FitBook displays that the routine list is cleared.
+
+   Use case ends.
+
+
+**Extensions**
+
+* 1a. The routine list is empty in the database.
+
+    * 1a1. FitBook displays that the routine list is cleared.
+
+      Use case ends.
+
+> **Use case: UC09 - Delete Routine**
+
+**MSS**
+
+1.  User requests to list routines
+2.  FitBook shows a list of routines
+3.  User requests to delete a specific routine in the list
+4.  FitBook deletes the routine
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The routine list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FitBook shows an error message.
+
+      Use case resumes at step 2.
+
+> **Use case: UC10 - Delete Exercise**
+
+**MSS**
+
+1.  User requests to list routines
+2.  FitBook shows a list of routines
+3.  User requests to delete an exercise from a specific routine in the list
+4.  FitBook deletes the exercise from the specific routine in the list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The routine list is empty.
+
+  Use case ends.
+
+* 3a. The given routine index is invalid.
+
+    * 3a1. FitBook shows an error message.
+
+      Use case resumes at step 2.
+  
+  3b. The given exercise index is invalid.
+
+    * 3b1. FitBook shows an error message.
+    
+      Use case resumes at step 2.
+
+> **Use case: UC11 - Find Routine**
+
+**MSS**
+
+1. User requests to find a routine by name.
+2. FitBook displays the list of matching clients.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty in the database.
+    * 1a1. FitBook displays that there are no matches.
+
+      Use case ends.
+
+> **Use case: UC13 - Export Client List**
+
+**MSS**
+
+1. User request to export Client List.
+2. FitBook exports the Client List to csv format.
+
+**Extensions**
+
+* 1a. The Client csv file is opened in the background
+    * 1a1. FitBook shows an error message.  
+
+> **Use case: UC14 - Export Routine List**
+
+**MSS**
+
+1. User request to export Routine List.
+2. FitBook exports the Routine List to csv format.
+
+**Extensions**
+
+* 1a. The Routine csv file is opened in the background
+    * 1a1. FitBook shows an error message.
+
 *{More to be added}
 
 ---
@@ -529,6 +653,20 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Deleting an exercise
+1. Deleting an exercise while all routines are being shown
+
+    1. Prerequisites: List all routines using the `listRoutines` command. Multiple routines with their respective set of exercises in the list.
+
+    1. Test case: `deleteExercise 1 2`<br>
+       Expected: Second exercise from the first routine is deleted from the list. Details of the deleted exercise shown in the status message.
+
+    1. Test case: `deleteExercise 0 0`<br>
+       Expected: No exercise is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `deleteExercise`, `delete x y`, (where x or y is larger than the list size and exercise list size respectively )<br>
+       Expected: Similar to previous.
+   
 1. _{ more test cases …​ }_
 
 ### Saving data
