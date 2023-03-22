@@ -59,9 +59,8 @@ public class EditCommandParser implements CommandParser {
         if (argsMap.getValue(PREFIX_BLOODTYPE).isPresent()) {
             editPatientDescriptor.setBloodType(ParserUtil.parseBloodType(argsMap.getValue(PREFIX_BLOODTYPE).get()));
         }
-        parseAllergiesForEdit(argsMap.getAllValues(PREFIX_ALLERGY)).ifPresent(editPatientDescriptor::setAllergies);
-        parseVaccinesForEdit(argsMap.getAllValues(PREFIX_VACCINATION))
-                .ifPresent(editPatientDescriptor::setVaccines);
+        parseGroupNamesForEdit(argsMap.getAllValues(PREFIX_ALLERGY)).ifPresent(editPatientDescriptor::setAllergies);
+        parseGroupNamesForEdit(argsMap.getAllValues(PREFIX_VACCINATION)).ifPresent(editPatientDescriptor::setVaccines);
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -71,39 +70,19 @@ public class EditCommandParser implements CommandParser {
     }
 
     /**
-     * Parses {@code Collection<String> allergies} into a {@code Set<GroupName>} if
-     * {@code allergies} is non-empty.
-     * If {@code allergies} contain only one element which is an empty string, it
-     * will be parsed into a
-     * {@code Set<GroupName>} containing zero allergies.
+     * Parses {@code Collection<String> groupNames} into a {@code Set<GroupName>} if {@code groupNames} is non-empty.
+     * If {@code groupNames} contain only one element which is an empty string, it
+     * will be parsed into a {@code Set<GroupName>} containing zero allergies.
      */
-    private Optional<Set<GroupName>> parseAllergiesForEdit(Collection<String> allergies) throws ParseException {
-        assert allergies != null;
+    private Optional<Set<GroupName>> parseGroupNamesForEdit(Collection<String> groupNames) throws ParseException {
+        assert groupNames != null;
 
-        if (allergies.isEmpty()) {
+        if (groupNames.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> allergySet = allergies.size() == 1 && allergies.contains("") ? Collections.emptySet()
-                : allergies;
-        return Optional.of(ParserUtil.parseGroups(allergySet));
-    }
-
-    /**
-     * Parses {@code Collection<String> vaccines} into a {@code Set<GroupName>} if
-     * {@code vaccines} is non-empty.
-     * If {@code vaccines} contain only one element which is an empty string, it
-     * will be parsed into a
-     * {@code Set<GroupName>} containing zero vaccines.
-     */
-    private Optional<Set<GroupName>> parseVaccinesForEdit(Collection<String> vaccines) throws ParseException {
-        assert vaccines != null;
-
-        if (vaccines.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> vaccineSet = vaccines.size() == 1 && vaccines.contains("") ? Collections.emptySet()
-                : vaccines;
-        return Optional.of(ParserUtil.parseGroups(vaccineSet));
+        Collection<String> groupNamesSet = groupNames.size() == 1 && groupNames.contains("") ? Collections.emptySet()
+                : groupNames;
+        return Optional.of(ParserUtil.parseGroups(groupNamesSet));
     }
 
 }
