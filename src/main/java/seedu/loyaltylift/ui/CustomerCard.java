@@ -37,6 +37,8 @@ public class CustomerCard extends UiPart<Region> {
     private Label phone;
     @FXML
     private Label address;
+    //@FXML
+    //placeholder for bookmark
     @FXML
     private HBox customerTypePlaceholder;
 
@@ -53,11 +55,8 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         address.setText(customer.getAddress().value);
 
-        String path = "/src/main/resources/images/marked-icon.png";
-        Image symb = new Image(path,
-                20, 20, false, false);
-        ImageView markSymbol = new ImageView(symb);
-        customerTypePlaceholder.getChildren().add(markSymbol);
+        Bookmark bookmark = Bookmark.createBookmarkIcon(customer.getMarked()); //edit Marked to get boolean
+        // insert bookmark into placeholder
 
         Badge customerTypeTag = Badge.createCustomerTypeBadge(customer.getCustomerType());
         customerTypePlaceholder.getChildren().add(customerTypeTag.getRoot());
