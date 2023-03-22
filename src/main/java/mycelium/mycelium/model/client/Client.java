@@ -149,7 +149,7 @@ public class Client implements IsSame<Client>, FuzzyComparable<String> {
 
     @Override
     public double fuzzyCompareTo(String match) {
-        var ret = Fuzzy.deltaPercent(name.toString().toLowerCase(), match.toLowerCase());
+        var ret = Fuzzy.ratio(name.toString().toLowerCase(), match.toLowerCase());
         return ret;
     }
 }

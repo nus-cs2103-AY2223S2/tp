@@ -77,7 +77,7 @@ public class Fuzzy {
      * Computes a "delta-score" between two strings, and returns a value between 0 and 1, where 0 means the two strings
      * are completely different, and 1 means they are completely the same.
      */
-    public static double deltaPercent(String a, String b) {
+    public static double ratio(String a, String b) {
         return 1 - (double) delta(a, b) / Math.max(a.length(), b.length());
     }
 }
