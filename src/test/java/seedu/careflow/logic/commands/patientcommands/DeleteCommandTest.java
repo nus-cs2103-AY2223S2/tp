@@ -7,7 +7,6 @@ import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
-import static seedu.careflow.testutil.TypicalPatients.getTypicalPatients;
 
 
 import org.junit.jupiter.api.Test;

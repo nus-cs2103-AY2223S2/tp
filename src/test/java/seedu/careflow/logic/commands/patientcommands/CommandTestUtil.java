@@ -23,8 +23,11 @@ import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlow;
 import seedu.careflow.model.CareFlowModel;
+import seedu.careflow.model.hospital.Hospital;
+import seedu.careflow.model.patient.Name;
 import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
 import seedu.careflow.model.patient.Patient;
+import seedu.careflow.model.patient.Phone;
 import seedu.careflow.testutil.EditPatientDescriptorBuilder;
 
 /**
@@ -106,8 +109,6 @@ public class CommandTestUtil {
                                             CommandResult expectedCommandResult, CareFlowModel expectedCareFlowModel) {
         try {
             CommandResult result = command.execute(actualCareFlowModel);
-            System.out.println(expectedCommandResult.getFeedbackToUser());
-            System.out.println(result.getFeedbackToUser());
             assertEquals(expectedCommandResult, result);
             assertEquals(actualCareFlowModel.getDrugInventory(), expectedCareFlowModel.getDrugInventory());
             assertEquals(actualCareFlowModel.getPatientRecord(), expectedCareFlowModel.getPatientRecord());
@@ -137,7 +138,13 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         CareFlow expectedCareFlow = new CareFlow(actualCareFlowModel.getPatientRecord(),
-                                        actualCareFlowModel.getDrugInventory());
+                actualCareFlowModel.getDrugInventory());
+        // follow default hospital list of CareFlow
+        expectedCareFlow.addHospital(new Hospital(new Name("KK Women's and Children's Hospital"), new Phone("+65 62255554")));
+        expectedCareFlow.addHospital(new Hospital(new Name("Changi General Hospital"), new Phone("+65 67888833")));
+        expectedCareFlow.addHospital(new Hospital(new Name("Khoo Teck Puat Hospital"), new Phone("+65 65558000")));
+        expectedCareFlow.addHospital(new Hospital(new Name("Tan Tock Seng Hospital"), new Phone("+65 62566011")));
+
         List<Patient> expectedFilteredList = new ArrayList<>(actualCareFlowModel.getFilteredPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualCareFlowModel));

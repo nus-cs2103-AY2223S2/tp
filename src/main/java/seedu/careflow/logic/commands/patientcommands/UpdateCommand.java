@@ -15,6 +15,7 @@ import static seedu.careflow.model.CareFlowModel.PREDICATE_SHOW_ALL_PATIENTS;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.core.JsonPointer;
 import seedu.careflow.commons.util.CollectionUtil;
 import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
@@ -55,9 +56,10 @@ public class UpdateCommand extends Command {
             + PREFIX_DRUG_ALLERGY + " Aspirin "
             + PREFIX_EMERGENCY_CONTACT_NUMBER + " 93746552";
 
-    public static final String MESSAGE_UPDATE_PATIENT_SUCCESS = "Updated Patient: %1$s";
+    public static final String MESSAGE_UPDATE_PATIENT_SUCCESS = "Updated Patient: %1$s.";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This person already exists in the careflow storage.";
+    public static final String MESSAGE_PATIENT_NOT_FOUND = "This person is not found: %1$s.";
 
     private final Name name;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -86,6 +88,12 @@ public class UpdateCommand extends Command {
                 break;
             }
         }
+
+        if(patientToEdit == null) {
+            System.out.println("thorw expecption");
+            throw new CommandException(String.format(MESSAGE_PATIENT_NOT_FOUND, name));
+        }
+
         Patient editedPatient = createEditedPatient(requireNonNull(patientToEdit), editPatientDescriptor);
 
         if (!patientToEdit.isSamePatient(editedPatient) && careFlowModel.hasPatient(editedPatient)) {

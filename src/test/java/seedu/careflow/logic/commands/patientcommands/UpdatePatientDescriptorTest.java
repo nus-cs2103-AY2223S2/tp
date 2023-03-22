@@ -31,7 +31,6 @@ public class UpdatePatientDescriptorTest {
 
         // different name -> returns false
         EditPatientDescriptor editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        System.out.println(editedAmy.toString());
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
@@ -46,8 +45,25 @@ public class UpdatePatientDescriptorTest {
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).build();
+        // different birthday -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withDob(VALID_BIRTHDATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different gender -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withGender(VALID_GENDER_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different ic -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withIc(VALID_IC_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different drug allergy -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withDrugAllergy(VALID_DRUG_ALLERGY_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different emergency contact -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
     }
 }

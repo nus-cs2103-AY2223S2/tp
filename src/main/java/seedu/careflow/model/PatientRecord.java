@@ -65,11 +65,6 @@ public class PatientRecord implements ReadOnlyPatientRecord {
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
-        System.out.print("target");
-        System.out.println(target);
-
-        System.out.print("edited");
-        System.out.println(editedPatient);
         patients.setPatient(target, editedPatient);
     }
 
