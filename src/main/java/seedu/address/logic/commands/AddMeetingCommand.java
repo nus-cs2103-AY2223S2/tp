@@ -32,16 +32,16 @@ public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the address book. "
         + "Parameters: "
-        + PREFIX_MEETING_TITLE + "MEETING "
-        + PREFIX_PERSON + "NAME "
+        + PREFIX_MEETING_TITLE + "MEETING\n"
+        + PREFIX_PERSON + "NAME\n"
         + PREFIX_DATETIME + DATE_FORMAT + " " + TIME_FORMAT + " "
-        + PREFIX_LOCATION + "LOCATION "
-        + PREFIX_DESCRIPTION + "DESCRIPTION "
+        + PREFIX_LOCATION + "LOCATION\n"
+        + PREFIX_DESCRIPTION + "DESCRIPTION\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_MEETING_TITLE + "Meeting with John "
-        + PREFIX_PERSON + "John Doe "
-        + PREFIX_DATETIME + "02/02/2022 12:00 "
-        + PREFIX_LOCATION + "Zoom "
+        + PREFIX_MEETING_TITLE + "Meeting with John\n"
+        + PREFIX_PERSON + "John Doe\n"
+        + PREFIX_DATETIME + "02/02/2022 12:00\n"
+        + PREFIX_LOCATION + "Zoom\n"
         + PREFIX_DESCRIPTION + "Discuss about the project";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
