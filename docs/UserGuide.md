@@ -1,45 +1,78 @@
 ## Table of contents
 
-1. Overview
-2. How to use this guide
-3. Getting started
-4. Feature list
-5. Command summary
-6. Trouble shooting/FAQ
-7. Additional information
+1. [About HMHero](#1-about-hmhero)
+2. [Features](#2-features)
+   * 2.1. [Applicant Management System](#21-applicant-management-system)
+   * 2.2. [Hiring Process Analytics](#22-hiring-process-analytics)
+3. [How to use this User Guide](#3-how-to-use-this-user-guide)
+   * 3.1. [Admonition Boxes](#31-admonition-boxes)
+   * 3.2. [Miscellaneous Notations](#32-miscellaneous-notations)
+4. [Installation](#4-installation)
+5. [Quick Start](#5-quick-start)
+   * 5.1. [User Interface](#51-user-interface)
+   * 5.2. [Key Definitions](#52-key-definitions)
+     * 5.2.1. [Applicant](#521-applicant)
+     * 5.2.2. [Notes](#522-notes)
+     * 5.2.3. [Flags](#523-flags)
+     * 5.2.4. [Placeholders](#524-placeholders)
+   * 5.3. [Command Format](#53-command-format)
+   * 5.4. [Trying your First Command](#54-trying-your-first-command)
+6. [Commands](#6-commands)
+   * 6.1. [Applicant Commands](#61-applicant-commands)
+     * 6.1.1. [Create a new applicant](#611-create-a-new-applicant--add)
+     * 6.1.2. [Search for an applicant](#612-search-for-an-applicant--find)
+     * 6.1.3. [List all applicants](#613-list-all-applicants--list)
+     * 6.1.4. [Delete an applicant](#614-delete-an-applicant--delete)
+     * 6.1.5. [Advance an applicant](#615-advance-an-applicant--advance)
+     * 6.1.6. [Reject an applicant](#616-reject-an-applicant--reject)
+     * 6.1.7. [List all interview dates of applicants](#617-list-all-interview-dates-of-applicants--interview)
+     * 6.1.8. [Edit an existing applicant](#618-edit-an-existing-applicant--edit)
+     * 6.1.9. [Remind upcoming interviews](#619-remind-upcoming-interviews--remind)
+   * 6.2. [Statistic Commands](#62-statistics-commands)
+   * 6.3. [General Commands](#63-general-commands)
+     * 6.3.1. [Receive help during usage](#631-receive-help-during-usage--help)
+     * 6.3.2. [Exit HMHero](#632-exit-hmhero--exit)
+7. [Command summary](#7-command-summary)
+   * 7.1. [Applicant Commands](#71-applicant-commands)
+   * 7.2. [Statistics Commands](#72-statistics-commands)
+   * 7.3. [General Commands](#73-general-commands)
+8. [Troubleshooting](#8-troubleshooting)
+9. [FAQ](#9-faq)
+10. [Acknowledgements](#10-acknowledgements)
+11. [Glossary](#11-glossary)
 
 ---
 
-## About HMHero
+## 1. About HMHero
 
 In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant.
 
 HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, and recruiters who want to streamline the recruitment process and make it more efficient, helping their organizations manage job applications and hiring processes more effectively. 
 
-As a hiring manager, you can easily track applicant progress. HMHero allows you to store all applicant information in one centralized location, making it easy to filter applicants based on skillsets to find the right applicant for your job.
+As a hiring manager, you can easily track applicant progress. HMHero allows you to store all applicant information in one centralized location, making it easy to filter applicants based on skill-sets to find the right applicant for your job.
 
 In addition, HMHero provides analytics regarding your hiring process, such as turnover rate and average time taken to process each applicant. With HMHero, hiring managers can gain further insight on their hiring process, empowering them to make smart decisions to streamline their hiring process.
 
 ---
 
-## Features
+## 2. Features
 
 There are two core features that HMHero provides:
 
 - Applicant Management System
 - Hiring Process Analytics
 
-#### Applicant Management System
+### 2.1 Applicant Management System
 
 HMHero empowers you to manage applicants during hiring process.
 
 1. Easily add, edit, delete, and view your applicants.
 2. Quickly advance applicants through application statuses or reject them.
 3. Filter shortlisted applicants and sort them by interview date.
-4. Filter all applicants based on their skillsets.
+4. Filter all applicants based on their skill-sets.
 5. View all applicants that have interviews coming up in three days.
 
-#### Hiring Process Analytics
+### 2.2 Hiring Process Analytics
 
 HMHero provides straightforward analysis on your hiring process to streamline and make your hiring process more efficient.
 
@@ -50,7 +83,7 @@ HMHero provides straightforward analysis on your hiring process to streamline an
 
 ---
 
-## 2. How to use this User Guide
+## 3. How to use this User Guide
 
 Thank you for choosing HMHero! We believe that our product will be of use in the journey of your company's growth.
 
@@ -59,23 +92,23 @@ We highly recommend that you read through this User Guide in **sequential order*
 of how to use HMHero.
 </div>
 
-If you are a **new user**, and you have not installed HMHero yet, head over to the [Installation](#installation)
+If you are a **new user**, and you have not installed HMHero yet, head over to the [Installation](#4-installation)
 section.
 
-Once HMHero is installed, you can find the necessary information to get started in the [Quick Start](#quick-start)
+Once HMHero is installed, you can find the necessary information to get started in the [Quick Start](#5-quick-start)
 section!
 This includes:
-* The [User Interface](#user-interface) of HMHero
+* The [User Interface](#51-user-interface) of HMHero
 * How each `Applicant` is represented
 * HMHero's Command Format
 * Trying out your very first HMHero command
 
-If you are an **experienced user**, you may head over to the [Command Summary](#command-summary) to get a quick overview
+If you are an **experienced user**, you may head over to the [Command Summary](#7-command-summary) to get a quick overview
 of all the commands available in HMHero!
 
-If you are stuck, please refer to the section on [Troubleshooting](#troubleshooting) or [FAQ](#faq).
+If you are stuck, please refer to the section on [Troubleshooting](#8-troubleshooting) or [FAQ](#9-faq).
 
-You can also refer to the [Glossary](#glossary) for definitions of commonly used terminologies in HMHero.
+You can also refer to the [Glossary](#11-glossary) for definitions of commonly used terminologies in HMHero.
 
 <div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
 To aid in your navigation, we have included the a [Back to Table of Contents](#table-of-contents) link in every
@@ -91,7 +124,7 @@ to navigate back and forth between the links quickly. (<code>Command + Left arro
 
 [Back to Table of Contents](#table-of-contents)
 
-#### Admonition Boxes
+### 3.1 Admonition Boxes
 
 In this guide, you will often come across colored boxes containing text that will aid you in better understanding
 how to use each feature.
@@ -109,7 +142,7 @@ Highlight dangers and things to look out for. </div>
 
 [Back to Table of Contents](#table-of-contents)
 
-### Miscellaneous Notations
+### 3.2 Miscellaneous Notations
 
 Other than the icons mentioned above, there are also some other notations used in this guide:
 
@@ -119,7 +152,7 @@ this documentation that is relevant to the phrase.
 [Back to Table of Contents](#table-of-contents)
 
 ---
-## Getting started
+## 4. Installation
 
 1. Ensure you have downloaded `Java 11` or above installed in your computer. If you have not, you may download it [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html).
 2. Download the latest `HMHero` from [here](https://github.com/AY2223S2-CS2103T-W14-4/tp/releases).
@@ -141,8 +174,8 @@ You will notice that a folder called "data" would have been created in the same 
 Do not edit this file because doing so might result in a corruption of your data, causing the application to fail!
 </div>
 
-Not sure where to start? The following section on [Quick Start](#quick-start) is a tutorial on how to use HMHero
-after you have launched it for the first time. Feel free to skip to the next section on [Command](#command) if you
+Not sure where to start? The following section on [Quick Start](#5-quick-start) is a tutorial on how to use HMHero
+after you have launched it for the first time. Feel free to skip to the next section on [Commands](#6-commands) if you
 are already familiar with the application!
 
 [Back to Table of Contents](#table-of-contents)
@@ -151,12 +184,12 @@ are already familiar with the application!
 ---
 
 
-## 5. Quick Reference Guide
-This section covers everything you should know about HMHero, as well as a [tutorial]() on trying your first command.
-Of special note is the [Key Definitions]() and [Command Format]() sections, which covers essential knowledge to using
+## 5. Quick Start
+This section covers everything you should know about HMHero, as well as a tutorial on [trying your first command](#54-trying-your-first-command).
+Of special note is the [Key Definitions](#52-key-definitions) and [Command Format](#53-command-format) sections, which covers essential knowledge to using
 HMHero's features.
 
-### 5.1 Layout
+### 5.1 User Interface
 When you launch HMHero, HMHero appears on your screen as a Graphical User Interface(GUI). Let's explore the
 layout of the different components of HMHero.
 
@@ -169,7 +202,7 @@ The following picture of the main window shows the three components, numbered ac
 ![components.png](images%2Fcomponents.png)
 
 Besides the main window, HMHero also has the Help Window. It is not part of the main GUI and is only
-shown after a [Help Command]() is run.
+shown after a [Help Command](#631-receive-help-during-usage--help) is run.
 
 The Help Window looks like the following:
 
@@ -192,7 +225,7 @@ The following are the attributes stored for each `Applicant`
 Applicants are unique by name and phone number and Case Sensitive.
 This means you cannot add two or more applicants of the same name and phone number.
 
-### 5.2.2 Notes
+#### 5.2.2 Notes
 
 A note in HMHero serves as a means of labelling the skills of an applicant. These tags
 are unique and case-sensitive.
@@ -209,8 +242,8 @@ can include:
 HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
 the same name.
 
-### 5.2.3 Flags
-Flags are delimiters that enable HMHero to distinguiseh different parameters without ambiguity.
+#### 5.2.3 Flags
+Flags are delimiters that enable HMHero to distinguish different parameters without ambiguity.
 
 You could put in the corresponding [Placeholder](#524-placeholders) immediately after each flag.
 
@@ -220,7 +253,7 @@ You may find the following image taken from the subsequent <a href> Command Form
 </div>
 
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
-These placeholders follow immediately after a [Flag](#623-flags).
+These placeholders follow immediately after a [Flag](#523-flags).
 
 | Action | Corresponding Placeholder |
 |--------|---------------------------|
@@ -231,10 +264,10 @@ These placeholders follow immediately after a [Flag](#623-flags).
 | note/  | `NOTE`                    |
 | d/     | `DATETIME`                |
 
-Please refer to the subsequent [Command Format]() section to see how [Flags](#623-flags)
-and [Placeholders](#624-placeholders) are used together.
+Please refer to the subsequent [Command Format](#53-command-format) section to see how [Flags](#523-flags)
+and [Placeholders](#524-placeholders) are used together.
 
-### 5.2.4 Placeholders
+#### 5.2.4 Placeholders
 Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
 These placeholders follow immediately after a [Flag](#523-flags).
 
@@ -257,13 +290,13 @@ Before you delve into the different commands in Commands, let’s learn what a c
 Here is an example:
 ![CommandExample.png](images%2FCommandExample.png)
 A command consists of:
-Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands]().
+Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands](#6-commands).
 [Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
 [Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
 For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
 
 
-## Trying your first command
+### 5.4 Trying your First Command
 
 To let you become more familiar with HMHero, let's practise executing some commands.
 
@@ -284,7 +317,7 @@ command
 
 Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE`
 in the format. This indicates that the parameter is **optional**. Each of these placeholders in the parameters 
-have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
+have a default value based on the commands. These are documented in the [Commands](#6-commands) section for each command.
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
@@ -294,7 +327,7 @@ the date format of PHONE, certain characters you cannot use and the limit and pr
 
 **Let's try an example!**
 
-Suppose you just add Thomas, 91918153, thomas@gmail.com, living at 6 Sims Drive (s)543230 and you do not
+Suppose you just add Thomas, 91918153, thomas@gmail.com, living at 6 Sims Drive (s)543230, and you do not
 feel the need to record a note for this applicant.
 
 `NAME`: Thomas
@@ -338,7 +371,7 @@ However, note that the following executions are invalid:
   There is insufficient information provided; you must minimally provide a name.
 
 Find out more about restrictions in the sections [Flags](#523-flags), [Placeholders](#524-placeholders) 
-and [Commands](#commands).
+and [Commands](#6-commands).
 
 ---
 
@@ -354,12 +387,12 @@ For example, after adding an applicant, you decided to see the list of applicant
 
 **Format:** `list`
 
-The command you would like to enter into the [Command Input Box](#51-layout) would be:
+The command you would like to enter into the [Command Input Box](#51-user-interface) would be:
 
 ```list```
 
 You should now have a better understanding of how commands are formatted and used. All commands are consolidated
-in the [Command Summary](#command-summary).
+in the [Command Summary](#7-command-summary).
 
 Here is a checklist you can use before running a command:
 
@@ -369,7 +402,7 @@ Here is a checklist you can use before running a command:
 * [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
 
-## Commands
+## 6. Commands
 
 This section shares with you on how to use each command in detail.
 
@@ -390,9 +423,9 @@ What you should expect to find:
 * In most commands, if the same parameter is repeated and only one is required, we take the last value provided. 
 </div>
 
-### Applicant Commands
+### 6.1 Applicant Commands
 
-#### Create a new applicant: `add`
+#### 6.1.1 Create a new applicant: `add`
 
 **Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
 
@@ -430,7 +463,7 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 ---
 
 
-#### Search for an applicant: `find`
+#### 6.1.2 Search for an applicant: `find`
 
 **Format**: `find n/[KEY] p/[KEY] note/[KEY]`
 
@@ -439,7 +472,7 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 **Info**
 * The notation `[KEY]...` means that we take in name or phone or note or all.
   In this case, at least one `KEY` is required.
-* The `n/[KEY]` and `note/[KEY]` [are case-insensitive. (e.g. "apples" will match "Apples").
+* The `n/[KEY]` and `note/[KEY]` are case-insensitive. (e.g. "apples" will match "Apples").
 * The result will be applicants where each of the `KEY` are present in the `NAME` or `PHONE` or `NOTE`.
   (e.g. "Thomas" will match "Thomas Lee", "Thomas", "Thomas Tan" and "Thomas Lim",
   "91918153" will only match "91918153", "java" will match "java" and "javas")
@@ -469,9 +502,9 @@ Address: 6 Sims Drive (s)543230; Status: APPLIED
 HMHero contains the following applicants:
 
 1. Thomas Tan, 91918153
-1. Thomas, 98765432
-1. Marry, 98765432
-1. Thoma, 98231234
+2. Thomas, 98765432
+3. Marry, 98765432
+4. Thoma, 98231234
 
 **Command Input Box:**
 
@@ -488,14 +521,14 @@ HMHero contains the following applicants:
 ---
 
 
-#### List all applicants: `list`
+#### 6.1.3. List all applicants: `list`
 
 **Format**: `list`
 
 > List all applicants in HMHero
 
 **Info**
-* This command is useful to view all applicants again after using the [Find Command](#search-for-an-applicant--find).
+* This command is useful to view all applicants again after using the [Find Command](#612-search-for-an-applicant--find).
 
 
 **Example:**
@@ -505,9 +538,9 @@ HMHero contains the following applicants:
 HMHero contains the following applicants, each with their own attributes:
 
 1. Thomas Tan, 91918153
-1. Thomas, 98765432
-1. Marry, 98765432
-1. Thoma, 98231234
+2. Thomas, 98765432
+3. Marry, 98765432
+4. Thoma, 98231234
 
 **Command Input Box:**
 
@@ -530,7 +563,7 @@ HMHero contains the following applicants, each with their own attributes:
 ---
 
 
-#### Delete an applicant: `delete`
+#### 6.1.4. Delete an applicant: `delete`
 
 **Format**: `delete n/NAME p/PHONE`
 
@@ -552,9 +585,9 @@ HMHero contains the following applicants, each with their own attributes:
 HMHero contains the following applicants, each with their own attributes:
 
 1. Thomas Tan, 91918153
-1. Thomas, 91918153
-1. Marry, 98765432
-1. Thoma, 98231234
+2. Thomas, 91918153
+3. Marry, 98765432
+4. Thoma, 98231234
 
 **Command Input Box:**
 
@@ -570,7 +603,7 @@ Address: 6 Sims Drive (s)543230; Status: REJECTED`
 ---
 
 
-#### Advance an applicant: `advance`
+#### 6.1.5. Advance an applicant: `advance`
 
 **Format**: `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]`
 
@@ -607,13 +640,13 @@ Address: 6 Sims Drive (s)543230; Status: REJECTED`
 HMHero contains the following applicants, each with their own attributes:
 
 1. Thomas Tan, 91918153, SHORTLISTED
-1. Thomas, 91818153, APPLIED
+2. Thomas, 91818153, APPLIED
 
 **Command Input Box:**
 
 1. ```advance n/Thomas p/91918153 d/20-03-2023 12:12```
 
-1. ```advance n/Thomas Tan p/91818153```
+2. ```advance n/Thomas Tan p/91818153```
 
 **Command Output Box:**
 ```
@@ -628,7 +661,7 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 ---
 
 
-#### Reject an applicant: `reject`
+#### 6.1.6. Reject an applicant: `reject`
 
 **Format**: `reject n/NAME p/PHONE
 
@@ -651,8 +684,8 @@ Thomas, ACCEPTED, 91918153, thomas@gmail.com, 6 Sims Drive (s)543230
 
 HMHero contains the following applicants, each with their own attributes:
 
-1. Thomas Tan, 91918153, SHORTLISTED
-1. Thomas, 91818153, APPLIED
+1. Thomas Tan, 91918153, SHORTLISTED 
+2. Thomas, 91818153, APPLIED
 
 **Command Input Box:**
 
@@ -667,7 +700,7 @@ Rejected Applicant: Thomas
 ```
 ---
 
-#### List all interview dates of applicants: `interview`
+#### 6.1.7. List all interview dates of applicants: `interview`
 
 **Format**: `interview`
 
@@ -675,7 +708,7 @@ Rejected Applicant: Thomas
 
 **Info**
 * This command is useful to view all the applicants' interview dates again after
-  using the [Advance Command](#advance-an-applicant--advance).
+  using the [Advance Command](#615-advance-an-applicant--advance).
 
 
 **Example:**
@@ -684,9 +717,9 @@ Rejected Applicant: Thomas
 
 HMHero contains the following applicants, each with their own attributes:
 
-1. Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153,
-1. Thomas, SHORTLISTED 18-03-2023 12:12, 98765432
-1. Marry, SHORTLISTED 21-03-2023 12:12, 98765432
+1. Thomas Tan, SHORTLISTED 19-03-2023 12:12, 91918153, 
+2. Thomas, SHORTLISTED 18-03-2023 12:12, 98765432 
+3. Marry, SHORTLISTED 21-03-2023 12:12, 98765432
 
 **Command Input Box:**
 
@@ -703,7 +736,7 @@ Listed all shortlisted applicants
 ---
 
 
-#### Edit an existing applicant: `edit`
+#### 6.1.8. Edit an existing applicant: `edit`
 
 **Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATETIME] [note/TAG]`
 
@@ -753,17 +786,17 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Tags: [Python] [Java]
 ---
 
 
-#### Remind on applicant's interview date: `remind`
+#### 6.1.9. Remind upcoming interviews: `remind`
 - Will update soon
 
 
-### Statistics Command
+### 6.2. Statistics Commands
 
 - Will update soon
 
-### General Commands
+### 6.3. General Commands
 
-#### Receive help during usage: `help`
+#### 6.3.1. Receive help during usage: `help`
 
 **Format**: `help [COMMAND_WORD]`
 
@@ -821,16 +854,16 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 ---
 
-#### Exit HMHero: `exit`
+#### 6.3.2. Exit HMHero: `exit`
 
 **Format**: `exit`
 
 > Exits HMHero
 
-```warning
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
 This command is the only guaranteed way for the data file to be saved when you exit the application.
 To prevent, always exit the application using this command instead of any other way.
-```
+</div>
 
 **Example:**
 
@@ -852,9 +885,9 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 </div>
 
 
-## Command Summary
+## 7. Command Summary
 
-### Applicant Commands
+### 7.1. Applicant Commands
  Action                                 | Format                                                                                                                                                                            | Example                                                                     |
 |----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/TAG]`                                                                                                                                 | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
@@ -867,12 +900,12 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/TAG]`                                                                                          | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | To be updated                                                                                                                                                                     | To be updated                                                               |
 
-### Statistics Commands
+### 7.2. Statistics Commands
  Action                                  | Format  | Example |
 |-----------------------------------------|---------|---------|
 | Displays statistics collected by HMHero | `stats` | `stats` |
 
-### General Commands
+### 7.3. General Commands
  Action                                                | Format | Example |
 |-------------------------------------------------------|--------|---------|
 | Shows a help dialog with a list of available commands | `help` | `help`  |
@@ -881,7 +914,7 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 
 ---
 
-## Troubleshooting
+## 8. Troubleshooting
 
 **Problem:**
 
@@ -894,7 +927,7 @@ The JAR file not launching even after double-clicking the file.
     * The default key combination to launch your terminal is <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
 * Mac:
     * Use <kbd>Cmd</kbd>+<kbd>Space</kbd> to open Spotlight Search
-    * Search for "terminal" and click it to launch.
+    * Search for "terminal" and click it to launch. 
 2. Navigate to the location where "hmhero.jar" is stored within your terminal using `cd`. For example, `cd Downloads/`
 3. On your terminal, run `java -jar hmhero.jar`
 
@@ -920,7 +953,7 @@ Unable to exit/save HMHero to data file
 
 ---
 
-## FAQ
+## 9. FAQ
 
 ### Q: If I do not have Java 11, how do I install it on my computer? <br>
 **A:** You can navigate to this site [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) and download Java 11 according to your system’s specifications.
@@ -935,7 +968,7 @@ Unable to exit/save HMHero to data file
 **A:** Install HMHero on the other computer and overwrite the empty data file with the data file created by HMHero in your current computer.
 
 ---
-## Acknowledgements
+## 10. Acknowledgements
 
 
 HMHero is a brownfield software engineering project based off [AddressBook Level-3](https://nus-cs2103-ay2223s2.github.io/tp/), taken under the [CS2103T Software Engineering](https://nus-cs2103-ay2223s2.github.io/website/admin/index.html) held by School of Computing at National University of Singapore.
@@ -950,7 +983,7 @@ Documentation dependencies:
 
 ---
 
-## Glossary
+## 11. Glossary
 ### A
 > #### ADDRESS (Placeholder)
 > The ADDRESS is a text representing the address of the applicants.
