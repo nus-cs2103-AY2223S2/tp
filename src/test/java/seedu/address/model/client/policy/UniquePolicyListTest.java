@@ -83,4 +83,41 @@ class UniquePolicyListTest {
         assertFalse(list.equals(null));
         assertFalse(list.equals(4));
     }
+
+    @Test
+    void testCloneAddPolicy() {
+        UniquePolicyList listAfterCloneOne = list.clone();
+        assertFalse(list == listAfterCloneOne);
+        assertTrue(list.equals(listAfterCloneOne));
+
+        list.add(policy);
+        assertFalse(list.equals(listAfterCloneOne));
+
+        UniquePolicyList listAfterCloneTwo = list.clone();
+        assertFalse(list == listAfterCloneTwo);
+        assertTrue(list.equals(listAfterCloneTwo));
+
+        listAfterCloneTwo.add(policy1);
+        assertFalse(list.equals(listAfterCloneTwo));
+    }
+
+    @Test
+    void testCloneDeletePolicy() {
+        list.add(policy);
+        list.add(policy1);
+        UniquePolicyList listAfterCloneOne = list.clone();
+        assertFalse(list == listAfterCloneOne);
+        assertTrue(list.equals(listAfterCloneOne));
+
+        list.remove(policy);
+        assertFalse(list.equals(listAfterCloneOne));
+
+        UniquePolicyList listAfterCloneTwo = list.clone();
+        assertFalse(list == listAfterCloneTwo);
+        assertTrue(list.equals(listAfterCloneTwo));
+
+        listAfterCloneTwo.remove(policy1);
+        assertFalse(list.equals(listAfterCloneTwo));
+    }
+
 }

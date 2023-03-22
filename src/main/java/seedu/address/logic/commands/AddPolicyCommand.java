@@ -77,22 +77,6 @@ public class AddPolicyCommand extends Command {
         return new CommandResult(generateSuccessMessage());
     }
 
-    /**
-     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
-     */
-    private static Client cloneClient(Client clientToEdit) {
-        assert clientToEdit != null;
-
-        Name updatedName = clientToEdit.getName();
-        Phone updatedPhone = clientToEdit.getPhone();
-        Email updatedEmail = clientToEdit.getEmail();
-        Address updatedAddress = clientToEdit.getAddress();
-        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
-        Set<Tag> updatedTags = clientToEdit.getTags();
-
-        UniquePolicyList policyList = clientToEdit.getPolicyList().clone();
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
-    }
 
     /**
      * Generates a command execution success message based on the policy added
