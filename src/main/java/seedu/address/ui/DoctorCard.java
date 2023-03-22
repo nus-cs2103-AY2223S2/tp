@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Doctor;
+import seedu.address.model.person.doctor.Doctor;
 
 /**
  * An UI component that displays the name, phone number, email and tags of a {@code Doctor}.

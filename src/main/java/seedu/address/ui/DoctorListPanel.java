@@ -1,18 +1,21 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Doctor;
+import seedu.address.model.person.doctor.Doctor;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of doctors.
  */
 public class DoctorListPanel extends UiPart<Region> {
     private static final String FXML = "DoctorListPanel.fxml";
@@ -26,12 +29,21 @@ public class DoctorListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DoctorListPanel} with the given {@code ObservableList}.
      */
-    public DoctorListPanel(ObservableList<Doctor> doctorList, EnlargedContactCard enlargedContactCard) {
+    public DoctorListPanel(ObservableList<Doctor> doctorList,
+                           EnlargedDoctorInfoCard enlargedDoctorInfoCard,
+                           EnlargedInfoCardDisplayController infoCardDisplayController,
+                           PatientListPanel patientListPanel) {
         super(FXML);
         doctorListView.setItems(doctorList);
-        doctorListView.setCellFactory(listView -> new DoctorListViewCell());
+        doctorListView.setCellFactory(listView -> {
+            DoctorListViewCell generatedCell = new DoctorListViewCell();
+            generatedCell.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                infoCardDisplayController.displayDoctor();
+            });
+            return generatedCell;
+        });
         setSelectedDoctor(doctorList);
-        showSelectedDoctorInfo(enlargedContactCard);
+        showSelectedDoctorInfo(enlargedDoctorInfoCard, patientListPanel);
     }
 
     /**
@@ -56,15 +68,18 @@ public class DoctorListPanel extends UiPart<Region> {
     }
 
     /**
-     * Prompts {@code EnlargedContactCard} to display the information of the {@code Doctor} selected by the user.
+     * Prompts {@code EnlargedDoctorInfoCard} to display the information of the {@code Doctor} selected by the user.
      * This is done by configuring a {@code ChangeListener} to listen to user selection.
      *
-     * @param enlargedContactCard the UI part displaying the information of {@code Doctor} selected
+     * @param enlargedDoctorInfoCard the UI part displaying the information of {@code Doctor} selected
      */
-    private void showSelectedDoctorInfo(EnlargedContactCard enlargedContactCard) {
+    private void showSelectedDoctorInfo(
+            EnlargedDoctorInfoCard enlargedDoctorInfoCard,
+            PatientListPanel patientListPanel) {
         ChangeListener<Doctor> changeListener = (observable, oldValue, newValue) -> {
             selectedDoctor = observable.getValue();
-            enlargedContactCard.updateSelectedDoctor(selectedDoctor);
+            patientListPanel.setPatients(FXCollections.observableArrayList(selectedDoctor.getPatients()));
+            enlargedDoctorInfoCard.updateSelectedDoctorOptional(Optional.ofNullable(selectedDoctor));
         };
         doctorListView.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }

@@ -19,11 +19,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.Doctor;
-import seedu.address.model.person.DoctorContainsKeywordsPredicate;
-import seedu.address.model.person.DoctorFilter;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorFilter;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 

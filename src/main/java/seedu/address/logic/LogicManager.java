@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -14,8 +15,9 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 import seedu.address.storage.Storage;
 
 /**
@@ -68,6 +70,29 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Doctor> getFilteredDoctorList() {
         return model.getFilteredDoctorList();
+    }
+
+    @Override
+    public ObservableList<Patient> getFilteredPatientList() {
+        return model.getFilteredPatientList();
+    }
+
+    @Override
+    public Optional<Doctor> getDoctorIfPresent() {
+        Optional<Doctor> optionalDoctor = Optional.empty();
+        if (!model.getFilteredDoctorList().isEmpty()) {
+            optionalDoctor = Optional.of(model.getFilteredDoctorList().get(0));
+        }
+        return optionalDoctor;
+    }
+
+    @Override
+    public Optional<Patient> getPatientIfPresent() {
+        Optional<Patient> optionalPatient = Optional.empty();
+        if (!model.getFilteredPatientList().isEmpty()) {
+            optionalPatient = Optional.of(model.getFilteredPatientList().get(0));
+        }
+        return optionalPatient;
     }
 
     @Override

@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditDoctorCommand.EditDoctorDescriptor;
-import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Specialty;
-import seedu.address.model.person.Yoe;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.doctor.Specialty;
+import seedu.address.model.person.doctor.Yoe;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +39,7 @@ public class EditDoctorDescriptorBuilder {
         descriptor.setSpecialty(doctor.getSpecialty());
         descriptor.setYoe(doctor.getYoe());
         descriptor.setTags(doctor.getTags());
+        descriptor.setPatients(doctor.getPatients());
     }
 
     /**

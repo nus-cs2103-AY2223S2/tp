@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YOE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.DoctorContainsKeywordsPredicate;
+import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
 
 /**
  * Finds and lists all doctors in address book matching the respective parameters.
