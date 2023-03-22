@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a link to a cover letter in the internship application.
  * Guarantees: immutable; is valid as declared in {@link #isValidCoverLetterLink(String)}
  */
-public class CoverLetter {
+public class CoverLetterLink {
 
     public static final String MESSAGE_CONSTRAINTS = "Link to cover letter should be in the form http://domain/path "
             + "or https://domain/path";
@@ -23,7 +23,7 @@ public class CoverLetter {
      *
      * @param coverLetterLink A valid link to a cover letter.
      */
-    public CoverLetter(String coverLetterLink) {
+    public CoverLetterLink(String coverLetterLink) {
         requireNonNull(coverLetterLink);
         checkArgument(isValidCoverLetterLink(coverLetterLink), MESSAGE_CONSTRAINTS);
         value = coverLetterLink;
@@ -50,8 +50,8 @@ public class CoverLetter {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CoverLetter // instanceof handles nulls
-                && value.equals(((CoverLetter) other).value)); // state check
+                || (other instanceof CoverLetterLink // instanceof handles nulls
+                && value.equals(((CoverLetterLink) other).value)); // state check
     }
 
     @Override

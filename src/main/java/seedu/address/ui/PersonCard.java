@@ -6,6 +6,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InterviewDate;
 
@@ -48,6 +49,10 @@ public class PersonCard extends UiPart<Region> {
     private Label internshipStatus;
     @FXML
     private Label interviewDate;
+    @FXML
+    private Label resume;
+    @FXML
+    private Label coverLetter;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -73,6 +78,15 @@ public class PersonCard extends UiPart<Region> {
             interviewDate.setText(interviewDateStr.toString());
             interviewDate.setVisible(true);
             interviewDate.setManaged(true);
+        }
+        Documents documents = application.getDocuments();
+        if (documents != null) {
+            resume.setText(documents.getResume().value);
+            coverLetter.setText(documents.getCoverLetter().value);
+            resume.setVisible(true);
+            coverLetter.setVisible(true);
+            resume.setManaged(true);
+            coverLetter.setManaged(true);
         }
     }
 

@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.documents.AddDocumentsCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.note.ClearNoteCommand;
 import seedu.address.logic.commands.task.note.DeleteNoteCommand;
@@ -30,6 +31,7 @@ import seedu.address.logic.commands.task.todo.EditDeadlineCommand;
 import seedu.address.logic.commands.task.todo.EditNoteContentCommand;
 import seedu.address.logic.commands.task.todo.ListTodoCommand;
 import seedu.address.logic.commands.task.todo.TodoCommand;
+import seedu.address.logic.parser.documents.AddDocumentsCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.FindTaskCommandParser;
 import seedu.address.logic.parser.task.note.DeleteNoteCommandParser;
@@ -134,6 +136,9 @@ public class AddressBookParser {
 
         case AddInterviewDateCommand.COMMAND_WORD:
             return new AddInterviewDateCommandParser().parse(arguments);
+
+        case AddDocumentsCommand.COMMAND_WORD:
+            return new AddDocumentsCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

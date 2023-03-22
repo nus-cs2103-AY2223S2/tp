@@ -478,7 +478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable increase in sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster typing commands than using the mouse.
-4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application. 
+4. InternEase doesn't support resumeLink storing function. User can only include links to their resumeLink used for a particular application. 
 5. InternEase is unable to remind user through platform outside of the application.
 
 *{More to be added}*

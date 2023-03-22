@@ -11,24 +11,24 @@ import java.util.Objects;
 public class Documents {
 
     // Identity fields
-    private final Resume resume;
-    private final CoverLetter coverLetter;
+    private final ResumeLink resumeLink;
+    private final CoverLetterLink coverLetterLink;
 
     /**
      * Every field must be present and not null.
      */
-    public Documents(Resume resume, CoverLetter coverLetter) {
-        requireAllNonNull(resume, coverLetter);
-        this.resume = resume;
-        this.coverLetter = coverLetter;
+    public Documents(ResumeLink resumeLink, CoverLetterLink coverLetterLink) {
+        requireAllNonNull(resumeLink, coverLetterLink);
+        this.resumeLink = resumeLink;
+        this.coverLetterLink = coverLetterLink;
     }
 
-    public Resume getResume() {
-        return resume;
+    public ResumeLink getResume() {
+        return resumeLink;
     }
 
-    public CoverLetter getCoverLetter() {
-        return coverLetter;
+    public CoverLetterLink getCoverLetter() {
+        return coverLetterLink;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Documents {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(resume, coverLetter);
+        return Objects.hash(resumeLink, coverLetterLink);
     }
 
     @Override

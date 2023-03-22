@@ -10,9 +10,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
-import seedu.address.model.documents.CoverLetter;
+import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.documents.Resume;
+import seedu.address.model.documents.ResumeLink;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
@@ -128,16 +128,16 @@ public class JsonAdaptedInternshipApplication {
             final Contact modelContact = new Contact(modelPhone, modelEmail);
 
             if (documents.size() == 2) {
-                if (!Resume.isValidResumeLink(documents.get(0))) {
-                    throw new IllegalValueException(Resume.MESSAGE_CONSTRAINTS);
+                if (!ResumeLink.isValidResumeLink(documents.get(0))) {
+                    throw new IllegalValueException(ResumeLink.MESSAGE_CONSTRAINTS);
                 }
-                final Resume modelResume = new Resume(documents.get(0));
+                final ResumeLink modelResumeLink = new ResumeLink(documents.get(0));
 
-                if (!CoverLetter.isValidCoverLetterLink(documents.get(1))) {
-                    throw new IllegalValueException(CoverLetter.MESSAGE_CONSTRAINTS);
+                if (!CoverLetterLink.isValidCoverLetterLink(documents.get(1))) {
+                    throw new IllegalValueException(CoverLetterLink.MESSAGE_CONSTRAINTS);
                 }
-                final CoverLetter modelCoverLetter = new CoverLetter(documents.get(1));
-                final Documents modelDocuments = new Documents(modelResume, modelCoverLetter);
+                final CoverLetterLink modelCoverLetterLink = new CoverLetterLink(documents.get(1));
+                final Documents modelDocuments = new Documents(modelResumeLink, modelCoverLetterLink);
 
                 return new InternshipApplication(modelCompanyName, modelJobTitle, modelContact, modelStatus,
                         modelInterviewDate, modelDocuments);

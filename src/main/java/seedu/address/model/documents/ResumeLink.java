@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a link to a resume in the internship application.
  * Guarantees: immutable; is valid as declared in {@link #isValidResumeLink(String)}
  */
-public class Resume {
+public class ResumeLink {
 
     public static final String MESSAGE_CONSTRAINTS = "Link to resume should be in the form http://domain/path "
             + "or https://domain/path";
@@ -23,7 +23,7 @@ public class Resume {
      *
      * @param resumeLink A valid link to a resume.
      */
-    public Resume(String resumeLink) {
+    public ResumeLink(String resumeLink) {
         requireNonNull(resumeLink);
         checkArgument(isValidResumeLink(resumeLink), MESSAGE_CONSTRAINTS);
         value = resumeLink;
@@ -50,8 +50,8 @@ public class Resume {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Resume // instanceof handles nulls
-                && value.equals(((Resume) other).value)); // state check
+                || (other instanceof ResumeLink // instanceof handles nulls
+                && value.equals(((ResumeLink) other).value)); // state check
     }
 
     @Override
