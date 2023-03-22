@@ -468,10 +468,11 @@ Even though the behaviour is similar to simply deleting and adding new modules a
 
 ### Find Command
 
-Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that users are able to reach out to them for collaboration more quickly.
+Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that he/she is able to reach out to them for collaboration more quickly.
 
 - filtered list contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user
-- checks if the attributes of the person contain the keywords specified by the user
+- **can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills
+- checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord)
 - case-insensitive
 
 `find` has the prefixes corresponding to attributes as follows:
@@ -491,20 +492,33 @@ The following sequence diagram summarizes what happens when a user executes a `f
 
 #### Design Considerations
 
-We made our `find` command able to find by multiple attributes i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby users can find by not just one attribute, but rather a combination of attributes. Users just need to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
+We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
 
-Also, our find command can take in multiple keywords for each attribute i.e. find y/2 3 finds people that are
+Our find command can **take in multiple keywords for each attribute** i.e. `find m/cs2109s cs2103t` finds people that are taking have taken both modules CS2109S and CS2103T. We made it this way instead of `find m/cs2109s m/cs2103t` to increase the speed of the search i.e. user requires less key presses.
+
+We also chose to make our find command case-insensitive to increase the speed of the search i.e. user does not need to press the Caps Lock key.
 
 **Aspect 1: `find` by AND vs `find` by OR:**
 
 - Alternative 1 (current choice): `find` by AND
-    - Pros: Users can find people that have multiple attributes each, i.e. `find y/2 c/1` finds people that are both year 2 and enrolled in Computer Science, `find m/cs2109s s/python` finds people that are both proficient in python and taking/have taken CS2109S, etc. 
+    - Pros: User can find people that have multiple attributes and satisfy all keywords for each attribute, i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T, etc. 
     - Cons: More restrictive on the filteredPersons - people must have **all** the attributes specified by the user to be in the FilteredList.
 - Alternative 2: `find` by OR
     - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the FilteredList i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both. 
     - Cons:
-      Users cannot find people that have multiple attributes, i.e. the benefits of Alternative 1.
-- Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if users want to find people that have either of the attributes, they can still do so but they must call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites also filter by AND such as GitHub, YouTube and Shopee.
+      User cannot find people that have multiple attributes, i.e. the benefits of Alternative 1.
+- Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites also filter by AND such as GitHub, YouTube and Shopee.
+
+**Aspect 2: `find` by contains vs containsWord:**
+
+- Alternative 1 (current choice): `find` by contains
+  - Pros: User can find people that have multiple attributes containing the keywords specified by the user, i.e. `find c/bus` finds people that enrolled in Business Analytics, `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
+  - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam. 
+- Alternative 2: `find` by containsWord (not a built-in method but can be created)
+  - Pros: Resolves the cons in Alternative 1.
+  - Cons:
+    Harder for people to show up in the `FilteredList`, might lead to the user missing out on information that might be useful, i.e. find m/cs1101 will only find people that are taking/have taken CS1101 but it will not show people taking/have taken other variants of CS1101 such as CS1101S and CS1101R. In such cases, the user might want to find these people but are unaware that these variants even exist, and even if he/she know, he/she would have to query multiple commands like `find m/CS1101S` and `find m/CS1101SR`, which makes it more time-consuming.
+- Decision: We chose Alternative 1 as it is more conventional; our normal Ctrl-F or Cmd-F searches by contains instead of containsWord. This option enables the user to search faster, have more search results and can inform users about information that could be useful to them.
 
 <div style="page-break-after: always;"></div>
 
