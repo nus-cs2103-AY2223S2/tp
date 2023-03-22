@@ -79,7 +79,13 @@ public class JsonAdaptedPlane implements JsonAdaptedModel<Plane> {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, "model")
             );
         }
+        Plane newPlane = new Plane(id, model, age);
+        if (this.isAvailable) {
+            newPlane.setAvailable();
+        } else {
+            newPlane.setUnavailable();
+        }
 
-        return new Plane(id, model, age);
+        return newPlane;
     }
 }
