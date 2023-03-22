@@ -119,6 +119,9 @@ public class JsonAdaptedModule {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }
+        if (!ModuleName.isValidName(name)) {
+            throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
         final ModuleName moduleName = new ModuleName(name);
 
         return new Module(moduleCode, moduleName, moduleTags, moduleLectures.asUnmodifiableObservableList());

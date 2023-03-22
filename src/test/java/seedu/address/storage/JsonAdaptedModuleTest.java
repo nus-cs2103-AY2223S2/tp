@@ -18,17 +18,17 @@ public class JsonAdaptedModuleTest {
     private static final String INVALID_CODE = "Lorem";
     private static final String INVALID_TAG = "H@rd";
 
-    private static final String VALID_CODE = TypicalModules.CS2040S.getCode().code;
-    private static final String VALID_NAME = TypicalModules.CS2040S.getName().name;
-    private static final List<JsonAdaptedLecture> VALID_LECTURES = TypicalModules.CS2040S.getLectureList().stream()
+    private static final String VALID_CODE = TypicalModules.getCs2040s().getCode().code;
+    private static final String VALID_NAME = TypicalModules.getCs2040s().getName().name;
+    private static final List<JsonAdaptedLecture> VALID_LECTURES = TypicalModules.getCs2040s().getLectureList().stream()
             .map(JsonAdaptedLecture::new).collect(Collectors.toList());
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalModules.CS2040S.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalModules.getCs2040s().getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
 
     @Test
     public void toModelType_validModuleDetails_returnsModule() throws Exception {
-        JsonAdaptedModule module = new JsonAdaptedModule(TypicalModules.CS2040S);
-        assertEquals(TypicalModules.CS2040S, module.toModelType());
+        JsonAdaptedModule module = new JsonAdaptedModule(TypicalModules.getCs2040s());
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class JsonAdaptedModuleTest {
         lecturesContainingNull.add(null);
 
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, lecturesContainingNull, VALID_TAGS);
-        assertEquals(TypicalModules.CS2040S, module.toModelType());
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class JsonAdaptedModuleTest {
         duplicatedTags.addAll(VALID_TAGS);
 
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, duplicatedTags);
-        assertEquals(TypicalModules.CS2040S, module.toModelType());
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class JsonAdaptedModuleTest {
         tagsContainingNull.add(null);
 
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, tagsContainingNull);
-        assertEquals(TypicalModules.CS2040S, module.toModelType());
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
     }
 
 }

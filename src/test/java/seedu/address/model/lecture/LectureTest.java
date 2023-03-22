@@ -18,7 +18,7 @@ import seedu.address.testutil.TypicalVideos;
 
 public class LectureTest {
 
-    private final Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_2).build();
+    private final Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).build();
 
     @Test
     public void getTags_modifySet_throwsUnsupportedOperationException() {

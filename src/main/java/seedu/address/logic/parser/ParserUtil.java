@@ -115,10 +115,15 @@ public class ParserUtil {
     /**
      * Parses a {@code String moduleName} into a {@code ModuleName}.<p>
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code moduleName} is invalid.
      */
-    public static ModuleName parseModuleName(String moduleName) {
+    public static ModuleName parseModuleName(String moduleName) throws ParseException {
         requireNonNull(moduleName);
         String trimmedModuleName = moduleName.trim();
+        if (!ModuleName.isValidName(trimmedModuleName)) {
+            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
         return new ModuleName(trimmedModuleName);
     }
 

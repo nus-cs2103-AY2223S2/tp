@@ -38,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_VIDEO_NAME_V2 = "video2";
 
     public static final String INVALID_MODULE_CODE = "404CS";
+    public static final String INVALID_MODULE_NAME = "modu!e";
     public static final String INVALID_LECTURE_NAME = "l337ure!";
     public static final String INVALID_VIDEO_NAME = "v*deo";
 
@@ -49,6 +50,7 @@ public class CommandTestUtil {
     public static final String LECTURE_NAME_DESC_L2 = " " + PREFIX_LECTURE + " " + VALID_LECTURE_NAME_L2;
 
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE + INVALID_MODULE_CODE;
+    public static final String INVALID_MODULE_NAME_DESC = " " + PREFIX_NAME + INVALID_MODULE_NAME;
     public static final String INVALID_LECTURE_NAME_DESC = " " + PREFIX_LECTURE + INVALID_LECTURE_NAME;
 
     public static final String EDIT_MODULE_CODE_DESC_2103 = " " + PREFIX_CODE + " " + VALID_MODULE_CODE_2103;
@@ -61,6 +63,7 @@ public class CommandTestUtil {
     public static final String EDIT_VIDEO_NAME_DESC_V2 = " " + PREFIX_NAME + " " + VALID_VIDEO_NAME_V2;
 
     public static final String INVALID_EDIT_MODULE_CODE_DESC = " " + PREFIX_CODE + " " + INVALID_MODULE_CODE;
+    public static final String INVALID_EDIT_MODULE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_MODULE_NAME;
     public static final String INVALID_EDIT_LECTURE_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_LECTURE_NAME;
     public static final String INVALID_EDIT_VIDEO_NAME_DESC = " " + PREFIX_NAME + " " + INVALID_VIDEO_NAME;
 
