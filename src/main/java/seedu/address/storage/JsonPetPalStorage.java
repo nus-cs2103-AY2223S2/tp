@@ -44,7 +44,7 @@ public class JsonPetPalStorage implements PetPalStorage {
      */
     public Optional<ReadOnlyPetPal> readPetPal(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
-
+        System.out.println(filePath);
         Optional<JsonSerializablePetPal> jsonPetPal = JsonUtil.readJsonFile(
                 filePath, JsonSerializablePetPal.class);
         if (!jsonPetPal.isPresent()) {

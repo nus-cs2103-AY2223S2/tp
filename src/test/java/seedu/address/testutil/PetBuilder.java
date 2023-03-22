@@ -1,14 +1,10 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.pet.Address;
-import seedu.address.model.pet.Email;
-import seedu.address.model.pet.Name;
-import seedu.address.model.pet.OwnerName;
-import seedu.address.model.pet.Pet;
-import seedu.address.model.pet.Phone;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,6 +17,8 @@ public class PetBuilder {
     public static final String DEFAULT_NAME = "Amy Bee Woof";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final LocalDateTime DEFAULT_TIMESTAMP = LocalDateTime.now();
+    public static final Deadline DEFAULT_DEADLINE = new Deadline("Feed medicine", LocalDateTime.now());
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private OwnerName ownerName;
@@ -28,6 +26,8 @@ public class PetBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private LocalDateTime timestamp;
+    private Deadline deadline;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +39,8 @@ public class PetBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        timestamp = DEFAULT_TIMESTAMP;
+        deadline = DEFAULT_DEADLINE;
         tags = new HashSet<>();
     }
 
@@ -51,6 +53,8 @@ public class PetBuilder {
         phone = petToCopy.getPhone();
         email = petToCopy.getEmail();
         address = petToCopy.getAddress();
+        timestamp = petToCopy.getTimeStamp();
+        deadline = petToCopy.getDeadline();
         tags = new HashSet<>(petToCopy.getTags());
     }
     /**
@@ -102,7 +106,7 @@ public class PetBuilder {
     }
 
     public Pet build() {
-        return new Pet(ownerName, name, phone, email, address, tags);
+        return new Pet(ownerName, name, phone, email, address, timestamp, deadline, tags);
     }
 
 }

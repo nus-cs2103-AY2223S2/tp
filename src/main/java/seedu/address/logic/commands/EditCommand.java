@@ -6,8 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PETS;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +28,7 @@ import seedu.address.model.pet.Name;
 import seedu.address.model.pet.OwnerName;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.Phone;
+import seedu.address.model.pet.Deadline;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +46,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TIMESTAMP + "TIMESTAMP]...\n"
+            + "[" + PREFIX_DEADLINE + "DEADLINE]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -99,9 +105,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPetDescriptor.getPhone().orElse(petToEdit.getPhone());
         Email updatedEmail = editPetDescriptor.getEmail().orElse(petToEdit.getEmail());
         Address updatedAddress = editPetDescriptor.getAddress().orElse(petToEdit.getAddress());
+        LocalDateTime updatedTimestamp = editPetDescriptor.getTimeStamp().orElse(petToEdit.getTimeStamp());
+        Deadline updatedDeadline = editPetDescriptor.getDeadline().orElse(petToEdit.getDeadline());
         Set<Tag> updatedTags = editPetDescriptor.getTags().orElse(petToEdit.getTags());
 
-        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTimestamp, updatedDeadline, updatedTags);
     }
 
     @Override
@@ -127,11 +135,13 @@ public class EditCommand extends Command {
      * corresponding field value of the pet.
      */
     public static class EditPetDescriptor {
+        private LocalDateTime timestamp;
         private OwnerName ownerName;
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
+        private Deadline deadline;
         private Set<Tag> tags;
 
         public EditPetDescriptor() {}
@@ -146,6 +156,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDeadline(toCopy.deadline);
+            setTimeStamp(toCopy.timestamp);
             setTags(toCopy.tags);
         }
 
@@ -153,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, timestamp, deadline, tags);
         }
 
         public void setOwnerName(OwnerName ownerName) {
@@ -212,6 +224,21 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
+        public void setTimeStamp(LocalDateTime timestamp) {
+            this.timestamp = timestamp;
+        }
+
+        public Optional<LocalDateTime> getTimeStamp() {
+            return Optional.ofNullable(this.timestamp);
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(this.deadline);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -232,7 +259,11 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getTimeStamp().equals(e.getTimeStamp())
+                    && getDeadline().equals(e.getDeadline())
                     && getTags().equals(e.getTags());
         }
+
+
     }
 }

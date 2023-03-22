@@ -17,6 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.PetPal;
+import seedu.address.model.PetPalTest;
 import seedu.address.model.ReadOnlyPetPal;
 
 public class JsonPetPalStorageTest {
@@ -68,8 +69,9 @@ public class JsonPetPalStorageTest {
 
         // Save in new file and read back
         jsonPetPalStorage.savePetPal(original, filePath);
-
+        Path fP = Paths.get("src/test/data/JsonPetPalStorageTest/TempPetPal.json");
         ReadOnlyPetPal readBack = jsonPetPalStorage.readPetPal(filePath).get();
+
         assertEquals(original, new PetPal(readBack));
 
         // Modify data, overwrite exiting file, and read back

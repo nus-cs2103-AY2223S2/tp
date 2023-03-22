@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pet.Address;
-import seedu.address.model.pet.Email;
-import seedu.address.model.pet.Name;
-import seedu.address.model.pet.OwnerName;
-import seedu.address.model.pet.Phone;
+import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -127,6 +125,25 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String timestamp} into an {@code LocalDateTime}.
+     *
+     *
+     * @throws ParseException if the given {@code timestamp} is invalid.
+     */
+    public static LocalDateTime parseTimeStamp(String timestamp) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.parse(timestamp, formatter);
+    }
+
+    public static Deadline parseDeadline(String deadline) {
+        String[] split = deadline.split("-", 2);
+        String description = split[0].trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
+        return new Deadline(description, time);
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
@@ -137,4 +154,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
 }

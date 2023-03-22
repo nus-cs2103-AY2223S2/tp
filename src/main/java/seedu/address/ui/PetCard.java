@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -41,6 +43,10 @@ public class PetCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label amountDue;
+    @FXML
+    private Label deadline;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,6 +61,10 @@ public class PetCard extends UiPart<Region> {
         phone.setText(pet.getPhone().value);
         address.setText(pet.getAddress().value);
         email.setText(pet.getEmail().value);
+        LocalDateTime arrival = pet.getTimeStamp();
+        String amt = String.valueOf(Duration.between(arrival, LocalDateTime.now()).getSeconds() * (0.01));
+        amountDue.setText(amt);
+        deadline.setText(pet.getDeadline().toString());
         pet.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
