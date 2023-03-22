@@ -22,7 +22,7 @@ public class EditRecipeEvent extends Event {
         return recipeIndex;
     }
 
-    public int getChangedValues() {
-        return recipeIndex;
+    public Map<String, String> getChangedValues() {
+        return changedValues;
     }
 }

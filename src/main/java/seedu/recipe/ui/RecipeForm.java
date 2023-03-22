@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.ui.events.EditRecipeEvent;
 import seedu.recipe.model.recipe.Recipe;
 
 
@@ -56,6 +57,7 @@ public class RecipeForm extends UiPart<Region> {
     @FXML
     private Button cancelButton;
     
+    private int displayedIndex;
     private Map<String, String> initialValues;
     private Recipe recipe;
 
@@ -69,6 +71,7 @@ public class RecipeForm extends UiPart<Region> {
     public RecipeForm(Recipe recipe, int displayedIndex) {
         super(FXML);
         this.recipe = recipe;
+        this.displayedIndex = displayedIndex;
         if (recipe != null) {
             populateFields();
         }
@@ -171,6 +174,8 @@ public class RecipeForm extends UiPart<Region> {
         EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex);
         cardPane.fireEvent(editEvent);
         */
+        System.out.println(changedValues);
+        EditRecipeEvent editEvent = new EditRecipeEvent(displayedIndex, changedValues);
         closeForm();
     }
 
