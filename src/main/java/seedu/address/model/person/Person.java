@@ -20,7 +20,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    protected Phone phone;
     private final Email email;
 
     // Data fields

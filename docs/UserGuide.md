@@ -238,15 +238,22 @@ Examples:
 
 Edits personal details of students
 
-Format: `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]   `
+Format: `edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
+imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS> 
+pn/<PARENT NAME> pnP/<PARENT PHONE NUMBER> rls/<RELATIONSHIP>]`
 
 Examples:
-* `student 3B edit 23 cca/badminton`
-* `student 3B edit 23 cca/soccer att/2023-01-01 y`
+* `student 1A edit in/03 cca/basketball`
+* `student 1A edit in/03 cca/badminton ageS/23`
 
 **Expected Outcome:**
-* Edited Student: Jennifer Lim cca: badminton
-* Edited Student: Justina Lee attendance: cca:soccer 2023-01-01 y <br><br>
+* Edited Person: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
+* Student Age: Insert student age here!; Image Path: Insert student image here!; 
+* Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
+* 
+* Edited Person: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
+* Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; 
+* Student Phone: Insert student phone number here!; CCA: badminton
 
 <a name = "findstudent"/>
 

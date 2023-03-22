@@ -1,39 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENTCOMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEDELETE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -123,7 +91,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                         PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
-                        PREFIX_ADDRESS);
+                        PREFIX_ADDRESS, PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME);
 
         if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(studentClass, argMultimapAdd);
@@ -305,27 +273,35 @@ public class StudentCommandParser implements Parser<StudentCommand> {
      * @throws ParseException
      */
     private StudentEditCommand EditCommand(String sc, ArgumentMultimap argMultimap) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEXNUMBER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
                 || !argMultimap.getPreamble().isEmpty()
                 || sc.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentEditCommand.MESSAGE_USAGE));
         }
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NEWNAME).get());
+        Phone newStudentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
+        Email newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAILSTUDENT).get());
+        Address newAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Set<Tag> newTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
         IndexNumber newIndexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_NEWINDEXNUMBER).get());
-        Class studentClass = ParserUtil.parseStudentClass(sc);
-        Class newStudentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_NEWCLASS).get());
-        Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
-        Age newAge = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE).get());
+        Sex newSex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
+        Age newAge = ParserUtil.parseAge(argMultimap.getValue(PREFIX_STUDENTAGE).get());
         Image newImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGESTUDENT).get());
         Cca newCca = ParserUtil.parseCca(argMultimap.getValue(PREFIX_CCA).get());
+        Class studentClass = ParserUtil.parseStudentClass(sc);
+        Class newStudentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_NEWCLASS).get());
         Attendance newAttendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
         Comment newComment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
-        Phone newStudentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
-        Email newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address newAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Name newParentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENTNAME).get());
+        Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
+        Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
-        return new StudentEditCommand(indexNumber, newIndexNumber, studentClass, newStudentClass, newParentPhoneNumber,
-                newAge, newImage, newCca, newAttendance, newComment, newStudentPhoneNumber, newEmail, newAddress);
+        return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass,newStudentClass, newSex,
+                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca, newAttendance, newComment,
+                newStudentPhoneNumber, newEmail, newAddress, newTagList);
     }
 
     /**

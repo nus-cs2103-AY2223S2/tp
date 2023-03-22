@@ -53,7 +53,7 @@ public class Student extends Person {
      * @param age Student's age.
      * @param image Student's image.
      * @param email Student's email address.
-     * @param phone Student's contact number.
+     * @param studentNumber Student's contact number.
      * @param cca Student's CCA.
      * @param address Student's residential address.
      * @param attendance Student's attendance.
@@ -91,6 +91,26 @@ public class Student extends Person {
         this.parentName = parent.getName();
         this.parentNumber = parent.getPhone();
     }
+
+    /**
+     * A method that is used to change the parent's number in student
+     *
+     * @param parentNumber Phone that is related to a Parent / NOK.
+     */
+    public void setPhone(Phone parentNumber) {
+        this.parentNumber = parentNumber;
+    }
+
+
+    /**
+     * A method that returns the Parent.
+     *
+     * @return Parent.
+     */
+    public Parent getParent() {
+        return this.parent;
+    }
+
     /**
      * A method that returns the Parent / NOK name.
      *

@@ -32,10 +32,20 @@ public class Relationship {
      * Returns true if a given string is a valid relationship.
      */
     public static boolean isValidRelationship(String test) {
-        if (test.equals("Insert parent relationship to child here!")) {
+        if (isDefaultRelationship(test)) {
             return true;
         }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when a relationship isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultRelationship(String test) {
+        return test.equals("Insert parent relationship to student here!");
     }
 
     @Override

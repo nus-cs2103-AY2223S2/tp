@@ -1,19 +1,15 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PARENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -24,6 +20,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.parent.Relationship;
@@ -43,49 +40,85 @@ public class StudentEditCommand extends StudentCommand {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified by their "
+            + "index number and class in the displayed student list"
+            + "Parameters: "
+            + PREFIX_INDEXNUMBER + "INDEX NUMBER "
+            + "["
+            + PREFIX_NEWNAME + "NEW NAME "
+            + PREFIX_NEWINDEXNUMBER + "NEW INDEX NUMBER"
+            + PREFIX_NEWCLASS + "NEW STUDENT CLASS"
+            + PREFIX_SEX + "SEX"
+            + PREFIX_STUDENTAGE + "AGE"
+            + PREFIX_IMAGESTUDENT + "IMAGE STUDENT"
+            + PREFIX_CCA + "CCA"
+            + PREFIX_ATTENDANCE + "ATTENDANCE"
+            + PREFIX_COMMENT + "COMMENT"
+            + PREFIX_PHONESTUDENT + "STUDENT NUMBER"
+            + PREFIX_EMAILSTUDENT + "STUDENT EMAIL"
+            + PREFIX_ADDRESS + "ADDRESS"
+            + PREFIX_PARENTNAME + "PARENT NAME"
+            + PREFIX_PHONEPARENT + "PARENT PHONE NUMBER"
+            + PREFIX_RELATIONSHIP + "RELATIONSHIP"
+            + "]\n"
+            + "Example: \n" + "student 1A " + COMMAND_WORD + " "
+            + PREFIX_INDEXNUMBER + "02 "
+            + PREFIX_NEWNAME + "Tan Ah Niu "
+            + PREFIX_NEWINDEXNUMBER + "03 "
+            + PREFIX_NEWCLASS + "1B "
+            + PREFIX_SEX + "M"
+            + PREFIX_STUDENTAGE + "10 "
+            + PREFIX_IMAGESTUDENT + "C:// "
+            + PREFIX_CCA + "AIKIDO "
+            + PREFIX_ATTENDANCE + "T "
+            + PREFIX_COMMENT + "GOOD BOY "
+            + PREFIX_PHONESTUDENT + "90909090 "
+            + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
+            + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245) "
+            + PREFIX_PARENTNAME + "Tan Ah Seng "
+            + PREFIX_PHONEPARENT + "98989898 "
+            + PREFIX_RELATIONSHIP + "FATHER";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    private final IndexNumber indexNumber;
-    private final Class studentClass;
-    private final IndexNumber newIndexNumber;
-    private final Class newStudentClass;
-    private final Phone newParentPhoneNumber;
-    private final Age newAge;
-    private final Image newImage;
-    private final Cca newCca;
-    private final Attendance newAttendance;
-    private final Comment newComment;
-    private final Phone newStudentPhoneNumber;
-    private final Email newEmail;
-    private final Address newAddress;
+    private IndexNumber indexNumber;
+    private IndexNumber newIndexNumber;
+    private Class studentClass;
+    private Class newStudentClass;
+    private Name newStudentName;
+    private Age newAge;
+    private Image newImage;
+    private Cca newCca;
+    private Attendance newAttendance;
+    private Comment newComment;
+    private Phone newStudentPhoneNumber;
+    private Email newEmail;
+    private Address newAddress;
+    private Set<Tag> newTagList;
+    private Set<Test> newTest;
+    private Set<Homework> newHomework;
+    private Relationship newRelationship;
+    private Name newName;
+    private Sex newSex;
+    private Phone newParentPhoneNumber;
+    private Name newParentName;
+
+
 
     /**
      * @param indexNumber of the person in the filtered person list to edit
      */
-    public StudentEditCommand(IndexNumber indexNumber, IndexNumber newIndexNumber, Class studentClass, Class newStudentClass,
-                              Phone newParentPhoneNumber, Age newAge, Image newImage, Cca newCca, Attendance newAttendance,
-                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail, Address newAddress) {
+    public StudentEditCommand(Name name, Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber, Class studentClass, Class newStudentClass, Sex newSex,
+                               Phone newParentPhoneNumber, Name newParentName, Relationship newRelationship, Age newAge, Image newImage, Cca newCca, Attendance newAttendance,
+                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail, Address newAddress, Set<Tag> newTagList) {
         requireNonNull(indexNumber);
         requireNonNull(studentClass);
 
+        this.newName = newName;
+        this.newRelationship = newRelationship;
+        this.newParentName = newParentName;
         this.indexNumber = indexNumber;
         this.studentClass = studentClass;
-        this.newIndexNumber = newIndexNumber;
-        this.newStudentClass = newStudentClass;
         this.newParentPhoneNumber = newParentPhoneNumber;
         this.newAge = newAge;
         this.newImage = newImage;
@@ -95,6 +128,10 @@ public class StudentEditCommand extends StudentCommand {
         this.newStudentPhoneNumber = newStudentPhoneNumber;
         this.newEmail = newEmail;
         this.newAddress = newAddress;
+        this.newSex = newSex;
+        this.newTagList = newTagList;
+        this.newIndexNumber = newIndexNumber;
+        this.newStudentClass = newStudentClass;
     }
 
     @Override
@@ -109,273 +146,110 @@ public class StudentEditCommand extends StudentCommand {
         }
 
         for (Student student : students) {
-            Class sc = student.getStudentClass();
-            if (student.getIndexNumber().equals(indexNumber)
-                    && sc.equals(studentClass)) {
+            if (student.getIndexNumber().equals(indexNumber) && studentClass.equals(studentClass)) {
+                if (Name.isDefaultName(newName.fullName)) {
+                    this.newName = student.getName();
+                }
+                if (IndexNumber.isDefaultIndexNumber(newIndexNumber.value)) {
+                    this.newIndexNumber = this.indexNumber;
+                }
+                if (Class.isDefaultClass(newStudentClass.getClassName())) {
+                    this.newStudentClass = this.studentClass;
+                }
+                if (Phone.isDefaultPhone(newParentPhoneNumber.value)) {
+                    this.newParentPhoneNumber = student.getParentNumber();
+                }
+                if (Phone.isDefaultPhone(newStudentPhoneNumber.value)) {
+                    this.newStudentPhoneNumber = student.getPhone();
+                }
+                if (Age.isDefaultAge(newAge.value)) {
+                    this.newAge = student.getAge();
+                }
+                if (Image.isDefaultImage(newImage.value)) {
+                    this.newImage = student.getImage();
+                }
+                if (Cca.isDefaultCca(newCca.value)) {
+                    this.newCca = student.getCca();
+                }
+                if (Attendance.isDefaultAttendance(newAttendance.value)) {
+                    this.newAttendance = student.getAttendance();
+                }
+                if (Comment.isDefaultComment(newComment.value)) {
+                    this.newComment = student.getComment();
+                }
+                if (Image.isDefaultImage(newImage.value)) {
+                    this.newImage = student.getImage();
+                }
+                if (Email.isDefaultEmail(newEmail.value)) {
+                    this.newEmail = student.getEmail();
+                }
+                if (Address.isDefaultAddress(newAddress.value)) {
+                    this.newAddress = student.getAddress();
+                }
+                if (Sex.isDefaultSex(newSex.value)) {
+                    this.newSex = student.getSex();
+                }
+                if (Relationship.isDefaultRelationship(newRelationship.rls)) {
+                    this.newRelationship = student.getRls();
+                }
+                if (Name.isDefaultName(newParentName.fullName)) {
+                    this.newParentName = student.getParentName();
+                }
 
-                model.deleteStudent(student);
-                model.addStudent(editedStudent, sc);
+                this.newTagList = student.getTagList();
+                this.newTest = student.getTest();
+                this.newHomework = student.getHomeworkSet();
+                this.newName = student.getName();
+
+                Student newStudent = new Student(newName, this.newStudentClass, this.newIndexNumber, this.newSex,
+                        this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newAge, this.newImage,
+                        this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress, this.newAttendance,
+                        newHomework, this.newTest, this.newTagList, this.newComment);
+
+                model.setStudent(student, editStudent(model, student, newStudent));
                 model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-                return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+                return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, newStudent));
             }
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+
+        throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED);
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Method that helps transfer and update all students in the original Parent object to the new EDITED Parent object.
+     *
+     * @param studentToEdit Original Parent object that is to be edited.
+     * @param newStudent Edited Parent object.
+     * @return Edited Parent object with list of students in original Parent object and updates all the students.
      */
-    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
-        assert studentToEdit != null;
+    private Student editStudent(Model model, Student studentToEdit, Student newStudent) {
 
-        Class updatedStudentClass = editStudentDescriptor.getStudentClass().orElse(studentToEdit.getStudentClass());
-        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        IndexNumber updatedIndexNumber = editStudentDescriptor.getIndexNumber().orElse(studentToEdit.getIndexNumber());
-        Sex sex = studentToEdit.getSex();
-        Name parentName = studentToEdit.getParentName();
-        Phone updatedParentNumber = editStudentDescriptor.getParentNumber().orElse(studentToEdit.getParentNumber());
-        Relationship rls = studentToEdit.getRls();
-        Age updatedAge = editStudentDescriptor.getAge().orElse(studentToEdit.getAge());
-        Image updatedImage = editStudentDescriptor.getImage().orElse(studentToEdit.getImage());
-        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Phone updatedStudentNumber = editStudentDescriptor.getStudentNumber().orElse(studentToEdit.getStudentNumber());
-        Cca updatedCca = editStudentDescriptor.getCca().orElse(studentToEdit.getCca());
-        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
-        Comment updatedComment = editStudentDescriptor.getComment().orElse(studentToEdit.getComment());
-        Set<Tag> updatedTagList = editStudentDescriptor.getTagList().orElse(studentToEdit.getTagList());
-        Set<Homework> updatedHomeworkSet = editStudentDescriptor.getHomeworkSet().orElse(studentToEdit.getHomeworkSet());
-        Set<Test> updatedTestSet = editStudentDescriptor.getTestSet().orElse(studentToEdit.getTest());
+        Phone oldParentNumber = studentToEdit.getParentNumber();
 
-        return new Student(updatedName, updatedStudentClass, updatedIndexNumber, sex, parentName, updatedParentNumber,
-                rls, updatedAge, updatedImage, updatedEmail, updatedStudentNumber, updatedCca, updatedAddress,
-                updatedAttendance, updatedHomeworkSet, updatedTestSet, updatedTagList, updatedComment);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof StudentEditCommand)) {
-            return false;
-        }
-
-        // state check
-        StudentEditCommand e = (StudentEditCommand) other;
-        return indexNumber.equals(e.indexNumber)
-                && editStudentDescriptor.equals(e.editStudentDescriptor);
-    }
-
-    /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
-     */
-    public static class EditStudentDescriptor {
-        private Class sc;
-        private Name name;
-        private IndexNumber indexNumber;
-        private Phone parentNumber;
-        private Age age;
-        private Image image;
-        private Email email;
-        private Phone studentNumber;
-        private Cca cca;
-        private Address address;
-        private Attendance attendance;
-        private Comment comment;
-        private Set<Tag> tagList;
-        private Set<Homework> homeworkSet;
-        private Set<Test> testSet;
-
-        public EditStudentDescriptor() {}
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
-            setClass(toCopy.sc);
-            setName(toCopy.name);
-            setIndexNumber(toCopy.indexNumber);
-            setParentNumber(toCopy.parentNumber);
-            setAge(toCopy.age);
-            setImage(toCopy.image);
-            setCca(toCopy.cca);
-            setAttendance(toCopy.attendance);
-            setComment(toCopy.comment);
-            setTagList(toCopy.tagList);
-            setHomeworkSet(toCopy.homeworkSet);
-            setTestSet(toCopy.testSet);
-            setStudentNumber(toCopy.studentNumber);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-        }
-
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(sc, name, indexNumber, parentNumber, age, image, cca, attendance,
-                    comment, tagList, homeworkSet, testSet, studentNumber, email, address);
-        }
-
-        public void setClass(Class sc) {
-            this.sc = sc;
-        }
-
-        public Optional<Class> getStudentClass() {
-            return Optional.ofNullable(sc);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setParentNumber(Phone parentNumber) {
-            this.parentNumber = parentNumber;
-        }
-
-        public Optional<Phone> getParentNumber() {
-            return Optional.ofNullable(parentNumber);
-        }
-
-        public void setStudentNumber(Phone studentNumber) {
-            this.studentNumber = studentNumber;
-        }
-
-        public Optional<Phone> getStudentNumber() {
-            return Optional.ofNullable(studentNumber);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-
-        public void setIndexNumber(IndexNumber indexNumber) {
-            this.indexNumber = indexNumber;
-        }
-
-        public Optional<IndexNumber> getIndexNumber() {
-            return Optional.ofNullable(indexNumber);
-        }
-
-        public void setAge(Age age) {
-            this.age = age;
-        }
-
-        public Optional<Age> getAge() {
-            return Optional.ofNullable(age);
-        }
-
-        public void setImage(Image image) {
-            this.image = image;
-        }
-
-        public Optional<Image> getImage() {
-            return Optional.ofNullable(image);
-        }
-
-        public void setCca(Cca cca) {
-            this.cca = cca;
-        }
-
-        public Optional<Cca> getCca() {
-            return Optional.ofNullable(cca);
-        }
-
-        public void setAttendance(Attendance attendance) {
-            this.attendance = attendance;
-        }
-
-        public Optional<Attendance> getAttendance() {
-            return Optional.ofNullable(attendance);
-        }
-
-        public void setComment(Comment comment) {
-            this.comment = comment;
-        }
-
-        public Optional<Comment> getComment() {
-            return Optional.ofNullable(comment);
-        }
-
-        public void setTagList(Set<Tag> tagList) {
-            this.tagList = tagList;
-        }
-
-        public Optional<Set<Tag>> getTagList() {
-            return Optional.ofNullable(tagList);
-        }
-
-        public void setHomeworkSet(Set<Homework> homeworkSet) {
-            this.homeworkSet = homeworkSet;
-        }
-
-        public Optional<Set<Homework>> getHomeworkSet() {
-            return Optional.ofNullable(homeworkSet);
-        }
-
-        public void setTestSet(Set<Test> testSet) {
-            this.testSet = testSet;
-        }
-
-        public Optional<Set<Test>> getTestSet() {
-            return Optional.ofNullable(testSet);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
+        if (oldParentNumber == newStudent.getParentNumber()) {
+            return newStudent;
+        } else {
+            ObservableList<Parent> parents = model.getFilteredParentList();
+            ObservableList<Student> students = model.getFilteredStudentList();
+            Parent parentToEdit = null;
+            for (Parent parent : parents) {
+                if (parent.getPhone() == studentToEdit.getParentNumber()) {
+                    parentToEdit = parent;
+                }
             }
 
-            // instanceof handles nulls
-            if (!(other instanceof EditStudentDescriptor)) {
-                return false;
+            if (parentToEdit != null) {
+                parentToEdit.setPhone(newStudent.getParentNumber());
             }
 
-            // state check
-            EditStudentDescriptor e = (EditStudentDescriptor) other;
-
-            return getStudentClass().equals(e.getStudentClass())
-                    && getName().equals(e.getName())
-                    && getIndexNumber().equals(e.getIndexNumber())
-                    && getParentNumber().equals(e.getParentNumber())
-                    && getAge().equals(e.getAge())
-                    && getImage().equals(e.getImage())
-                    && getEmail().equals(e.getEmail())
-                    && getStudentNumber().equals(e.getStudentNumber())
-                    && getCca().equals(e.getCca())
-                    && getAddress().equals(e.getAddress())
-                    && getAttendance().equals(e.getAttendance())
-                    && getComment().equals(e.getComment())
-                    && getTagList().equals(e.getTagList())
-                    && getHomeworkSet().equals(e.getHomeworkSet())
-                    && getTestSet().equals(e.getTestSet());
+            for (Student student : students) {
+                if (student.getPhone() == studentToEdit.getParentNumber()) {
+                    student.setPhone(newStudent.getParentNumber());
+                }
+            }
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+            model.updateFilteredParentList(PREDICATE_SHOW_ALL_PARENTS);
         }
+        return newStudent;
     }
 }

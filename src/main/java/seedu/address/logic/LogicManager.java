@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -46,7 +47,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
         try {
             storage.savePC(model.getPcClass());
             storage.saveParents(model.getParents());
