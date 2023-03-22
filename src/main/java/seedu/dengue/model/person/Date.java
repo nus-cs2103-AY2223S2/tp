@@ -10,18 +10,15 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.regex.Pattern;
 
-
-
 /**
  * Represents a Person's dengue case date in the Dengue Hotspot Tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
 
-
     public static final String MESSAGE_CONSTRAINTS = "Dates should adhere to the following constraints:\n"
-            + "1. Dates to contain 4-digit years YYYY, 2-digit days dd and either 2-digit months MM," +
-            " 3-letter months MMM, \n"
+            + "1. Dates to contain 4-digit years YYYY, 2-digit days dd and either 2-digit months MM,"
+            + " 3-letter months MMM, \n"
             + "or fully-spelled months MMMM.\n"
             + " - If months are given in the MM format and the dates are ambiguous, eg. 20001010 \n "
             + "YYYY will be read first, followed by MM and DD. \n"
