@@ -167,6 +167,27 @@ Additionally, this operation involves searching through all `Person` objects in 
 
 The `deleteEventFromPersonList` method will check through the full list of `Person` objects (i.e., not just the filtered list on display) in order to completely remove the specified event from the `AddressBook`.
 
+### \[Implemented] Sort events feature
+
+#### Current Implementation
+
+Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`. 
+The events can be sorted based on their:
+- names in ascending order (using `sortevent a`)
+- names in descending order (using `sortevent b`)
+- start date times in ascending order (using `sortevent c`)
+- end date times in ascending order (using `sortevent d`)
+
+The following sequence diagram shows how the sort events operation works.
+
+![SortEventSequenceDiagram](images/SortEventSequenceDiagram.png)
+
+Sorting a list of events involves calling `Model#sortEventList(SortEventType)`, which will sort the event list based on the `SortEventType` object passed into the method.
+
+This sorting feature can only be executed when there are more than 1 event listed on the UI.
+It will only sort the event list based on the last String entered in the user input.
+Moreover, the sorting is preserved until this command is executed again to sort the events by another variable or the program stops running.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
