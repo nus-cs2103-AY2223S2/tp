@@ -3,6 +3,7 @@ package seedu.address.model.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
 
 /**
  * A list of contacts that enforces uniqueness between its elements and does not allow nulls.
- * A contact is considered unique by comparing using {@code Person#isSameContact(Contact)}. As such, adding and
+ * A contact is considered unique by comparing using {@code Contact#isSameContact(Contact)}. As such, adding and
  * updating of contacts uses Contact#isSameContact(Contact) for equality to ensure that the contact being added
  * or updated is unique in terms of identity in the UniqueContactList.
  * However, the removal of a contact uses Contact#equals(Object) to ensure that the contact
@@ -24,9 +25,12 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
  */
 public class UniqueContactList implements Iterable<Contact> {
 
+    private static HashMap<String, Integer> numberMap = new HashMap<>();
+    private static int count = 0;
     private final ObservableList<Contact> internalList = FXCollections.observableArrayList();
     private final ObservableList<Contact> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
 
     /**
      * Returns true if the list contains an equivalent Contact as the given argument.
@@ -36,6 +40,13 @@ public class UniqueContactList implements Iterable<Contact> {
         return internalList.stream().anyMatch(toCheck::isSameContact);
     }
 
+    public static HashMap<String, Integer> getNumberMap() {
+        return numberMap;
+    }
+
+    public static int getCount() {
+        return count;
+    }
     /**
      * Adds a Contact to the list.
      * The Contact must not already exist in the list.
@@ -46,6 +57,8 @@ public class UniqueContactList implements Iterable<Contact> {
             throw new DuplicateContactException();
         }
         internalList.add(toAdd);
+        numberMap.put(toAdd.getPhone().value, count);
+        count++;
     }
 
     /**
@@ -85,8 +98,8 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Replaces the contents of this list with {@code Contacts}.
-     * {@code Contacts} must not contain duplicate Contacts.
+     * Replaces the contents of this list with {@code contacts}.
+     * {@code contacts} must not contain duplicate Contacts.
      */
     public void setContacts(List<Contact> contacts) {
         requireAllNonNull(contacts);

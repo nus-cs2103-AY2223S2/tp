@@ -90,7 +90,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -99,7 +99,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Event` object residing in the `Model`.
 
 ### Logic component
 
@@ -112,7 +112,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a event).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -138,12 +138,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Event` objects (which are contained in a `UniqueEventList` object).
+* stores the currently 'selected' `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Event>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Event` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Event` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -171,6 +171,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Mark feature
+The mark feature mechanism is implemented by having the Event class keep track of an additional attribute called 'Mark'. When an event is completed, the event will be marked through the class attribute 'Mark'.
+
+**Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -189,11 +195,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th event in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new event. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -201,7 +207,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the event was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -246,7 +252,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the event being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -288,46 +294,48 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an...           | I can...                                         | so that...                                           |
-| -------- | -------------------- | ------------------------------------------------ | ---------------------------------------------------- |
-| `* * *`     | User                 | Click X to exit                                  | I can stop it                                        |
-| `* * *`     | User                 | add client contact                               | I can refer to when needed                           |
-| `* * *`     | User                 | View all my contacts                             | I can see who I can contact                          |
-| `* * *`     | User                 | link client contact to event                     | I can have quick reference to POC (Point of Contact) |
-| `* * *`     | User                 | See the rates I have discussed with the client   | I know how much money to collect                     |
-| `* * *`     | User                 | Mark the event that is done                      | I know what I don't have to do anymore               |
-| `* * *`     | User                 | Add events                                       | I can remember my events later                       |
-| `* * *`     | User                 | View events                                      | I can see what events I have done or am going to do  |
-| `* * *`     | User                 | Delete events                                    | I can remove unnecessary events                      |
-| `* * *`     | User                 | Add a date to my events                          | I know when the event is due                         |
-| `* * *`     | User                 | save my events after closing the app             | I can save for when I use the app another time       |
-| `* * *`     | User                 | load my saved events when opening the app        | I can see my events when I reopen the app            |
-| `* * *`     | User                 | Add a rate to an event                           | I can see how much I earn from an event              |
-| `* * *`     | User                 | View information associated to each event        | I can see its details                                |
-| `* * *`     | User                 | edit my existing event details                   | I can change the details whenever there are changes  |
-| `* * *`     | User                 | See what I have added before                     | I don't need repeat myself                           |
-| `* * *`     | User                 | Change a contact linked to an event              | I can link a different contact if the POC changes    |
-| `* * *`     | New user             | See usage instructions                           | I know how to use the software                       |
-| `* * *`     | User                 | View undone events                               | I can see what events I have to do                   |
-| `* * *`     | Freelancer           | link venue to event                              | I can have quick reference                           |
-| `* * *`     | Forgetful User       | Be reminded of upcoming events                   | I can remember                                       |
-| `* * *`     | User                 | Delete contacts                                  | I can delete unnecessary contacts                    |
-| `* *`   | User                 | Filter the events that has not been paid         | I can collect money                                  |
-| `* *`   | User                 | View the total revenue I have earned this week   | I can manage my money                                |
-| `* *`   | User                 | Set notes for contacts                           | I can keep track about them and rmb what not to do   |
-| `* *`   | User                 | View timing of upcoming events                   | I know when to go                                    |
-| `* *`   | User                 | See the most urgent events                       | I know what to do first                              |
-| `* *`   | Careless user        | Undo accidental deletion                         | I can undo deleted events                            |
-| `* *`   | Impatient person     | search contacts                                  | I can quick find specific POC                        |
-| `* *`   | Impatient person     | Search events                                    | I can quick find specific event                      |
-| `* *`   | Lazy person          | filter events to find similar events             | I can find similar events easily                     |
-| `* *`   | User                 | Add all information to an event at the same time | I can save time on adding all the information        |
-| `* *`   | User                 | View events associated to each contact           | I know what events to contact the POC for            |
-| `*`      | User                 | toggle between light and dark mode               | I can use the theme i prefer                         |
-| `*`      | User                 | Redo previous action                             | I can redo previous action                           |
-| `*`      | User                 | Use abbreviation                                 | I can quickly insert items                           |
-| `*`      | Goal oriented person | Set goals                                        | I can look at my goals                               |
-| `*`      | Forgetful User       | set reminders/checklist for events               | I can remember things to bring etc.                  |
+| Priority | As a/an...          | I can...                                         | so that...                                           |
+| -------- |---------------------| ------------------------------------------------ | ---------------------------------------------------- |
+| `* * *`     | User                | Access the software                              | I can use it                                         |
+| `* * *`     | User                | Click X to exit                                  | I can stop it                                        |
+| `* * *`     | User                | Add client contact to an event                    | I can refer to when needed                          |
+| `* * *`     | User                | View all my contacts                             | I can see who I can contact                          |
+| `* * *`     | User                | Link client contact to event                     | I can have quick reference to POC (Point of Contact) |
+| `* * *`     | User                | See the rates I have discussed with the client   | I know how much money to collect                     |
+| `* * *`     | User                | Mark the event that is done                      | I know what I don't have to do anymore               |
+| `* * *`     | User                | Unmark an event                                  | I can undo an accidental mark.                       |
+| `* * *`     | User                | Add events                                       | I can remember my events later                       |
+| `* * *`     | User                | View events                                      | I can see what events I have done or am going to do  |
+| `* * *`     | User                | Delete events                                    | I can remove unnecessary events                      |
+| `* * *`     | User                | Add dates to my events                           | I know when the event is due                         |
+| `* * *`     | User                | Save my events after closing the app             | I can save for when I use the app another time       |
+| `* * *`     | User                | Load my saved events when opening the app        | I can see my events when I reopen the app            |
+| `* * *`     | User                | Add a rate to an event                           | I can see how much I earn from an event              |
+| `* * *`     | User                | View information associated to each event        | I can see its details                                |
+| `* * *`     | User                | Edit my existing event details                   | I can change the details whenever there are changes  |
+| `* * *`     | User                | See what I have added before                     | I don't need repeat myself                           |
+| `* * *`     | User                | Change a contact linked to an event              | I can link a different contact if the POC changes    |
+| `* * *`     | New user            | See usage instructions                           | I know how to use the software                       |
+| `* * *`     | User                | View undone events                               | I can see what events I have to do                   |
+| `* * *`     | Freelancer          | Link venue to event                              | I can have quick reference                           |
+| `* * *`     | Forgetful User      | Be reminded of upcoming events                   | I can remember                                       |
+| `* * *`     | User                | Delete contacts                                  | I can delete unnecessary contacts                    |
+| `* *`   | User                | Filter the events that has not been paid         | I can collect money                                  |
+| `* *`   | User                | View the total revenue I have earned this week   | I can manage my money                                |
+| `* *`   | User                | Set notes for contacts                           | I can keep track about them and rmb what not to do   |
+| `* *`   | User                | View timing of upcoming events                   | I know when to go                                    |
+| `* *`   | User                | See the most urgent events                       | I know what to do first                              |
+| `* *`   | Careless user       | Undo accidental deletion                         | I can undo deleted events                            |
+| `* *`   | Impatient user      | Search contacts                                  | I can quick find specific POC                        |
+| `* *`   | Impatient user     | Search events                                    | I can quick find specific event                      |
+| `* *`   | Lazy user          | Filter events to find similar events             | I can find similar events easily                     |
+| `* *`   | User                | Add all information to an event at the same time | I can save time on adding all the information        |
+| `* *`   | User                | View events associated to each contact           | I know what events to contact the POC for            |
+| `*`      | User                | Toggle between light and dark mode               | I can use the theme i prefer                         |
+| `*`      | User                | Redo previous action                             | I can redo previous action                           |
+| `*`      | User                | Use abbreviation                                 | I can quickly insert items                           |
+| `*`      | Goal oriented user | Set goals                                        | I can look at my goals                               |
+| `*`      | Forgetful User      | Set reminders/checklist for events               | I can remember things to bring etc.                  |
 
 
 *{More to be added}*
@@ -356,7 +364,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to delete a specified event in the list.
 3. System deletes the event and displays information of the event deleted.
 
@@ -364,13 +372,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters the wrong command.
-   * 1a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 2.
 
-* 1b. User enters an invalid index.
-   * 1b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 2.
 
@@ -378,7 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to mark a specified event in the list.
 3. System marks the event and displays information of the event marked.
 
@@ -386,22 +394,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. User enters the wrong command.
-   * 1a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 2.
 
-* 1b. User enters an invalid index.
-   * 1b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 2.
 
-* 1c. User marks an event that is already marked.
-   * 1c1. System displays that the event has already been marked.
+* 2c. User marks an event that is already marked.
+   * 2c1. System displays that the event has already been marked.
 
       Use case ends.
 
-**Use case: UC4 - List Events**
+**Use case: UC4 - Unmark Event**
+
+**MSS**
+
+1. User <u>lists events (UC5)</u>.
+2. User requests to unmark a specified event in the list.
+3. System unmarks the event and displays information of the event unmarked.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User marks an event that is already unmarked.
+   * 2c1. System displays that the event has already been unmarked.
+
+      Use case ends.
+
+
+**Use case: UC5 - List Events**
 
 **MSS**
 
@@ -442,44 +478,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends. -->
 
-**Use case: UC5 - Link contact and event**
+**Use case: UC6 - Link contact and event**
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
-2. User <u>lists contacts (UC5)</u>.
-3. User requests to link a specified event and contact.
-4. System links them and displays the event's and contact's information.
+1. User <u>lists events (UC5)</u>.
+2. User requests to link a specified event and contact.
+3. System links them and displays the event's and contact's information.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. User enters the wrong command.
-   * 3a1. System displays that the command is invalid and to try again.
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 3b. User enters an invalid index.
-   * 3b1. System displays that the index is invalid and to try again.
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 3c. User enters an invalid contact information
-   * 3c1. System displays that the contact information is invalid and to try again.
+* 2c. User enters an invalid contact information
+   * 2c1. System displays that the contact information is invalid and to try again.
 
       Use case resumes at step 3.
 
-* 4a. The event has a contact linked already.
+* 3a. The event has a contact linked already.
    * 4a1. System replaces the previous contact with the new contact.
 
       Use case ends.
 
-**Use case: UC6 - Display Rate**
+**Use case: UC7 - Display Rate**
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to display the rate of a specified event in the list.
 3. System displays the event and displays information of the rate.
 
@@ -497,11 +532,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC7 - Tag a rate to an Event**
+<!-- **Use case: UC7 - Tag a rate to an Event**
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to tag a rate to a specified event in the list.
 3. System tags the rate to the event and displays information of the event tagged.
 
@@ -527,7 +562,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The event has a rate tagging already.
    * 3a1. System replaces the previous rate with the new rate.
 
-      Use case ends.
+      Use case ends. -->
 
 **Use case: UC8 - Add Contact**
 
@@ -554,7 +589,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <u>lists events (UC4)</u>.
+1. User <u>lists events (UC5)</u>.
 2. User requests to add a date to a specified event in the list.
 3. System adds the date to the event and displays information of the event with new date added.
 
@@ -582,6 +617,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: UC10 - Edit Event**
+
+**MSS**
+
+1. User <u>lists events (UC5)</u>.
+2. User requests to edit a specified event in the list.
+3. System updates the event with the edit and displays information of the event edited.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User enters the wrong command.
+   * 2a1. System displays that the command is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2b. User enters an invalid index.
+   * 2b1. System displays that the index is invalid and to try again.
+
+      Use case resumes at step 2.
+
+* 2c. User enters an invalid argument format.
+   * 2c1. System displays that the format is invalid and to try again.
+
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -591,7 +653,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. The system should work on both 32-bit and 64-bit environments.
 6. The source code should be open source.
 7. The product is offered as a free product.
-8. The system should respond within two seconds for events and persons up to 1000.
+8. The system should respond within two seconds for events and contacts up to 1000.
 9. The user interface should be intuitive enough for users who are not as IT-savvy.
 10. The dimensions should be at least `726px * 593px` so that it is readable for the user.
 
@@ -629,17 +691,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an event
 
-1. Deleting a person while all persons are being shown
+1. Deleting an event while all events are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all events using the `list` command. Multiple events in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No event is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
