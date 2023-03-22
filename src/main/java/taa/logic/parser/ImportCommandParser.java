@@ -20,7 +20,7 @@ public class ImportCommandParser implements Parser<ImportCommand> {
             throw new ParseException(SYNTAX_ERR_MSG_FULL);
         }
         final String[] tokens = sanitizedArgs.split(" ");
-        final boolean isForced=FORCE_FLAG.equals(tokens[0]);
+        final boolean isForced = FORCE_FLAG.equals(tokens[0]);
         final int fileIdx = isForced ? 1 : 0;
         if (tokens.length > fileIdx + 1) {
             throw new ParseException(SYNTAX_ERR_MSG_FULL);

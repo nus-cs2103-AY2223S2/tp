@@ -226,7 +226,7 @@ John von Neumann,
 Import data in CSV format from file.
 
 Format: `import [flag] [file path]`
-* Flag -force overwrites existing records.
+* Flag -force overwrites records of existing students.
 * Nothing is changed if file does not exist or file access denied.
 
 ### Export data in CSV format: `export` [coming soon]

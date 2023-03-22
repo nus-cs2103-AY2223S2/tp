@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -22,6 +24,7 @@ import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
 import taa.model.student.Name;
 import taa.model.student.Student;
+import taa.model.student.UniqueStudentList;
 import taa.model.tag.Tag;
 
 /**
@@ -42,13 +45,13 @@ public class ImportCommand extends Command {
     public static final String MSG_SUCC = "%d student(s) added.";
     private static final Predicate<String> IS_UNEMPTY = s -> !s.isEmpty();
     private final File f;
-    private final boolean isForced;
+    private final boolean isNotForced;
 
     /** Create import command by passing a file. Nothing is checked. */
     public ImportCommand(File f, boolean isForced) {
         requireNonNull(f);
         this.f = f;
-        this.isForced = isForced;
+        this.isNotForced = !isForced;
     }
 
     private static String mkMsgNoColumn(String keyword) {
@@ -116,27 +119,32 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_RD_IO_EXCEPTION);
         }
 
-        int nStu = 0;
+        final HashMap<Name, Student> nameToStu = UniqueStudentList.getNameToStuMap(model.getFilteredStudentList());
         final HashSet<Student> inFileStu = new HashSet<>();
+        final ArrayList<Student> toAdd = new ArrayList<>();
+        final ArrayList<Student> toDel = new ArrayList<>();
         for (CSVRecord record : parser) {
             final Student stu = parseFromCsvRec(record);
-            if (model.hasStudent(stu)) {
-                if (isForced) {
-                    model.deleteStudent(stu);
+            toAdd.add(stu);
+            final Student stuInList = nameToStu.get(stu.getName());
+            if (stuInList == null) {
+                if (!inFileStu.add(stu)) { // duplicate student in file
+                    throw new CommandException(MSG_DUP_STU_IN_FILE + ' ' + stu);
                 }
-                else {
+            } else {
+                if (isNotForced) {
                     throw new CommandException(AddStudentCommand.MESSAGE_DUPLICATE_STUDENT + ": " + stu);
                 }
+                toDel.add(stuInList);
             }
-            else if (!inFileStu.add(stu)) { // duplicate student in file
-                throw new CommandException(MSG_DUP_STU_IN_FILE + ' ' + stu);
-            }
-            nStu++;
         }
-        for (Student stu : inFileStu) {
+        for (Student stuInList : toDel) {
+            model.deleteStudent(stuInList);
+        }
+        for (Student stu : toAdd) {
             model.addStudent(stu);
         }
-        return new CommandResult(String.format(MSG_SUCC, nStu));
+        return new CommandResult(String.format(MSG_SUCC, toAdd.size()));
     }
 }
 
