@@ -19,7 +19,7 @@ import vimification.model.LogicTaskList;
  */
 public class JsonLogicTaskListStorage implements LogicTaskListStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonLogicTaskListStorage.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(JsonLogicTaskListStorage.class);
 
     private Path filePath;
 
@@ -49,6 +49,7 @@ public class JsonLogicTaskListStorage implements LogicTaskListStorage {
 
         Optional<JsonAdaptedLogicTaskList> jsonTaskList = JsonUtil.readJsonFile(
                 filePath, JsonAdaptedLogicTaskList.class);
+        LOGGER.info(jsonTaskList.toString());
         if (!jsonTaskList.isPresent()) {
             return Optional.empty();
         }
@@ -56,7 +57,7 @@ public class JsonLogicTaskListStorage implements LogicTaskListStorage {
         try {
             return Optional.of(jsonTaskList.get().toModelType());
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+            LOGGER.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }

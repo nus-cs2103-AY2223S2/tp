@@ -1,12 +1,14 @@
 package vimification.storage;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Deadline;
@@ -20,11 +22,13 @@ import vimification.model.task.Todo;
 @JsonRootName(value = "logicTaskList")
 public class JsonAdaptedLogicTaskList {
 
+    private static final Logger LOGGER = LogsCenter.getLogger(JsonAdaptedLogicTaskList.class);
+
     private final List<JsonAdaptedTask> tasks;
 
     @JsonCreator
     public JsonAdaptedLogicTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
-        this.tasks = tasks;
+        this.tasks = tasks == null ? List.of() : tasks;
     }
 
     /**
@@ -59,5 +63,10 @@ public class JsonAdaptedLogicTaskList {
             taskList.add(task);
         }
         return taskList;
+    }
+
+    @Override
+    public String toString() {
+        return "JsonAdpatedLogicTaskList: [" + tasks + "]";
     }
 }
