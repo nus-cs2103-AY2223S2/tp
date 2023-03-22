@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
 
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names of  should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Name should not be blank";
 
     public final String name;
 
@@ -28,7 +28,7 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         // Anything can be a valid Name , So it return True
-        if (test != ""){
+        if (test == ""){
             // An Empty String Cannot Be Valid
             return false;
         }
