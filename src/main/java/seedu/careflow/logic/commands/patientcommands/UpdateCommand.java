@@ -55,9 +55,9 @@ public class UpdateCommand extends Command {
             + PREFIX_DRUG_ALLERGY + " Aspirin "
             + PREFIX_EMERGENCY_CONTACT_NUMBER + " 93746552";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Updated Patient: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_UPDATE_PATIENT_SUCCESS = "Updated Patient: %1$s";
+    public static final String MESSAGE_NOT_UPDATED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This person already exists in the address book.";
 
     private final Name name;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -89,12 +89,12 @@ public class UpdateCommand extends Command {
         Patient editedPatient = createEditedPatient(requireNonNull(patientToEdit), editPatientDescriptor);
 
         if (!patientToEdit.isSamePatient(editedPatient) && careFlowModel.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
         careFlowModel.setPatient(patientToEdit, editedPatient);
         careFlowModel.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
+        return new CommandResult(String.format(MESSAGE_UPDATE_PATIENT_SUCCESS, editedPatient));
     }
 
     /**

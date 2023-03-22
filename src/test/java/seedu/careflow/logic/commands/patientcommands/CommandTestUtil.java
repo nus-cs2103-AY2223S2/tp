@@ -106,6 +106,8 @@ public class CommandTestUtil {
                                             CommandResult expectedCommandResult, CareFlowModel expectedCareFlowModel) {
         try {
             CommandResult result = command.execute(actualCareFlowModel);
+            System.out.println(expectedCommandResult.getFeedbackToUser());
+            System.out.println(result.getFeedbackToUser());
             assertEquals(expectedCommandResult, result);
             assertEquals(actualCareFlowModel.getDrugInventory(), expectedCareFlowModel.getDrugInventory());
             assertEquals(actualCareFlowModel.getPatientRecord(), expectedCareFlowModel.getPatientRecord());

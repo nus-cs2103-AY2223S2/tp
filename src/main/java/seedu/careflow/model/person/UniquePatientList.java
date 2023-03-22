@@ -61,6 +61,9 @@ public class UniquePatientList implements Iterable<Patient> {
             throw new PatientNotFoundException();
         }
 
+        System.out.println("in set patient: target: " + target.toString());
+        System.out.println("in set patient: edited: " + editedPatient.toString());
+
         if (!target.isSamePatient(editedPatient) && contains(editedPatient)) {
             throw new DuplicatePatientException();
         }

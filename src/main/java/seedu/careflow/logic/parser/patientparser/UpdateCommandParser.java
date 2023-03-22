@@ -84,7 +84,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         if (!editPatientDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(UpdateCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(UpdateCommand.MESSAGE_NOT_UPDATED);
         }
 
         return new UpdateCommand(name, editPatientDescriptor);

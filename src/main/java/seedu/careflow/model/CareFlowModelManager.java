@@ -161,6 +161,8 @@ public class CareFlowModelManager implements CareFlowModel {
 
     @Override
     public void setPatient(Patient target, Patient editedPatient) {
+        System.out.println("target hhh : " + target.toString());
+        System.out.println("edited: hhh " + editedPatient.toString());
         careFlow.setPatient(target, editedPatient);
     }
 
