@@ -17,9 +17,6 @@ import mycelium.mycelium.ui.UiPart;
 public class EntityPanel extends UiPart<TabPane> {
     private static final String FXML = "EntityPanel.fxml";
     private Logger logger = LogsCenter.getLogger(getClass());
-
-
-
     private EntityList<Client> clientListPanel;
     private EntityList<Project> projectListPanel;
     private EntityTab projectTab;
