@@ -1,0 +1,22 @@
+#copyButton, #helpMessage {
+    -fx-text-fill: white;
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 12pt;
+    -fx-text-alignment: center;
+}
+
+#copyButton {
+    -fx-background-color: #FF94B4;
+}
+
+#copyButton:hover {
+    -fx-background-color: #EF6FA3;
+}
+
+#copyButton:armed {
+    -fx-background-color: #DD689D;
+}
+
+#helpMessageContainer {
+    -fx-background-color: #605BF1;
+}
