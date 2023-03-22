@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
@@ -31,19 +30,19 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
-import seedu.address.model.person.Comment;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.parent.Parent;
-import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Sex;
+import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
-import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Homework;
+import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
