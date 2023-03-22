@@ -11,9 +11,9 @@ import java.util.Set;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
+import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -85,29 +85,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Ingredient}.
+     * Parses a {@code String tag} into a {@code RecipeIngredient}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Ingredient parseIngredient(String ingredient) throws ParseException {
+    public static RecipeIngredient parseIngredient(String ingredient) throws ParseException {
         requireNonNull(ingredient);
         String trimmedIngredient = ingredient.trim();
-        if (!Ingredient.isValidIngredient(trimmedIngredient)) {
+        if (!RecipeIngredient.isValidIngredient(trimmedIngredient)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Ingredient(trimmedIngredient);
+        return new RecipeIngredient(trimmedIngredient);
     }
 
     /**
-     * Parses a {@code String in} into a {@code Ingredient}.
+     * Parses a {@code String in} into a {@code RecipeIngredient}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static List<Ingredient> parseIngredients(Collection<String> ingredients) throws ParseException {
+    public static List<RecipeIngredient> parseIngredients(Collection<String> ingredients) throws ParseException {
         requireNonNull(ingredients);
-        List<Ingredient> ingredientList = new ArrayList<>();
+        List<RecipeIngredient> ingredientList = new ArrayList<>();
         for (String ingredientName : ingredients) {
             ingredientList.add(parseIngredient(ingredientName));
         }

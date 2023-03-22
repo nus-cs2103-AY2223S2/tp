@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 
 import seedu.recipe.model.ReadOnlyRecipeBook;
 import seedu.recipe.model.RecipeBook;
-import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
+import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -25,13 +25,13 @@ public class SampleDataUtil {
     public static final RecipePortion CACIO_PORTION = RecipePortion.of("1 - 2 servings");
     public static final RecipeDuration CACIO_DURATION = RecipeDuration.of("15 minutes");
     public static final Set<Tag> CACIO_TAGS = Set.of(new Tag("Italian"));
-    public static final List<Ingredient> CACIO_INGREDIENTS = List.of(
-            new Ingredient("Kosher salt"),
-            new Ingredient("-a 6 oz -n egg tagliolini -s bucatini, -s spaghetti"),
-            new Ingredient("-a 3 Tbsp -n unsalted butter -r cubed -r divided"),
-            new Ingredient("-a 1 tsp -n black pepper -r freshly cracked"),
-            new Ingredient("-a 3/4 cup -n Grana Padano -s Parmesan -r finely grated"),
-            new Ingredient("-a 1/3 cup -n Pecorino -r finely grated")
+    public static final List<RecipeIngredient> CACIO_INGREDIENTS = List.of(
+            new RecipeIngredient("-n Kosher salt"),
+            new RecipeIngredient("-a 6 oz -n egg tagliolini -s bucatini, -s spaghetti"),
+            new RecipeIngredient("-a 3 Tbsp -n unsalted butter -r cubed -r divided"),
+            new RecipeIngredient("-a 1 tsp -n black pepper -r freshly cracked"),
+            new RecipeIngredient("-a 3/4 cup -n Grana Padano -s Parmesan -r finely grated"),
+            new RecipeIngredient("-a 1/3 cup -n Pecorino -r finely grated")
                                                                     );
     public static final List<Step> CACIO_STEPS = List.of(
             new Step("Bring 3 quarts water to a boil in a 5-qt. pot. "
@@ -59,13 +59,13 @@ public class SampleDataUtil {
             RecipeDuration.of("35 minutes"),
             Set.of(new Tag("American"), new Tag("Breakfast")),
             List.of(
-                    new Ingredient("-a 200 g -n self-raising flour"),
-                    new Ingredient("-a 1 tsp -n baking powder"),
-                    new Ingredient("-a 1 -n egg"),
-                    new Ingredient("-a 1 knob -n butter"),
-                    new Ingredient("-a 150 g -n pack blueberry"),
-                    new Ingredient("-n golden syrup -s maple syrup"),
-                    new Ingredient("-n sunflower oil -s butter -r a little")),
+                    new RecipeIngredient("-a 200 g -n self-raising flour"),
+                    new RecipeIngredient("-a 1 tsp -n baking powder"),
+                    new RecipeIngredient("-a 1 -n egg"),
+                    new RecipeIngredient("-a 1 knob -n butter"),
+                    new RecipeIngredient("-a 150 g -n pack blueberry"),
+                    new RecipeIngredient("-n golden syrup -s maple syrup"),
+                    new RecipeIngredient("-n sunflower oil -s butter -r a little")),
             List.of(
                     new Step("Mix together 200 g self-raising flour, 1 tsp baking powder and a "
                                      + "pinch of salt in a large bowl."),
@@ -87,26 +87,26 @@ public class SampleDataUtil {
             RecipePortion.of("8 to 10 servings"),
             RecipeDuration.of("1 hour"),
             Set.of(new Tag("Indian")),
-            List.of(new Ingredient("-a 2 cups -n short-grain rice"),
-                    new Ingredient("-a 0.5 cup -n urad dal -aka split husked black lentils"),
-                    new Ingredient("-a 1 teaspoon -n fenugreek seeds"),
-                    new Ingredient("-a 0.5 teaspoon -n salt"),
-                    new Ingredient("-a Vegetable oil -r for frying"),
-                    new Ingredient("-a 3 tablespoons ghee -s vegetable oil"),
-                    new Ingredient("-a 1 teaspoon -n mustard seeds"),
-                    new Ingredient("-a 0.5 teaspoon -n cumin seeds"),
-                    new Ingredient("-a 2 small dried -n hot red peppers"),
-                    new Ingredient("-a 1 -n medium onion -r diced"),
-                    new Ingredient("-a 0.5 teaspoon -n salt"),
-                    new Ingredient("-a 0.5 teaspoon -n turmeric"),
-                    new Ingredient("-a Pinch of -n asafetida"),
-                    new Ingredient("-a 1 tablespoon -n ginger -r grated"),
-                    new Ingredient("-a 6 to 8 -n curry leaves"),
-                    new Ingredient("-a 4 -n garlic cloves -r minced"),
-                    new Ingredient("-a 2 -n small green chilli, -r finely chopped"),
-                    new Ingredient("-a 1.5 pounds -n potatoes, "
+            List.of(new RecipeIngredient("-a 2 cups -n short-grain rice"),
+                    new RecipeIngredient("-a 0.5 cup -n urad dal -aka split husked black lentils"),
+                    new RecipeIngredient("-a 1 teaspoon -n fenugreek seeds"),
+                    new RecipeIngredient("-a 0.5 teaspoon -n salt"),
+                    new RecipeIngredient("-a Vegetable oil -r for frying"),
+                    new RecipeIngredient("-a 3 tablespoons ghee -s vegetable oil"),
+                    new RecipeIngredient("-a 1 teaspoon -n mustard seeds"),
+                    new RecipeIngredient("-a 0.5 teaspoon -n cumin seeds"),
+                    new RecipeIngredient("-a 2 small dried -n hot red peppers"),
+                    new RecipeIngredient("-a 1 -n medium onion -r diced"),
+                    new RecipeIngredient("-a 0.5 teaspoon -n salt"),
+                    new RecipeIngredient("-a 0.5 teaspoon -n turmeric"),
+                    new RecipeIngredient("-a Pinch of -n asafetida"),
+                    new RecipeIngredient("-a 1 tablespoon -n ginger -r grated"),
+                    new RecipeIngredient("-a 6 to 8 -n curry leaves"),
+                    new RecipeIngredient("-a 4 -n garlic cloves -r minced"),
+                    new RecipeIngredient("-a 2 -n small green chilli, -r finely chopped"),
+                    new RecipeIngredient("-a 1.5 pounds -n potatoes, "
                                            + "-aka Yukon Gold, -r yellow-fleshed -r boiled -r peeled -r cubed"),
-                    new Ingredient("-a 0.5 cup -n cilantro -r leaves -r tender stems -r roughly chopped")),
+                    new RecipeIngredient("-a 0.5 cup -n cilantro -r leaves -r tender stems -r roughly chopped")),
             List.of(
                     new Step("Make the dosa batter: Put rice in a bowl, rinse well and cover with "
                                      + "4 cups cold water. Put urad dal and fenugreek seeds in a small bowl, rinse "
@@ -152,11 +152,11 @@ public class SampleDataUtil {
             RecipePortion.of("1 portion"),
             RecipeDuration.of("4 min"),
             Set.of(new Tag("English"), new Tag("Comfort food")),
-            List.of(new Ingredient("-a 2 thick slices of -n white bread"),
-                    new Ingredient("-a wedge (about 85g/3oz) -n camembert -s brie"),
-                    new Ingredient("-a a spoonful -n cranberry sauce"),
-                    new Ingredient("-a a few drops of -n balsamic vinegar"),
-                    new Ingredient("-n butter")
+            List.of(new RecipeIngredient("-a 2 thick slices of -n white bread"),
+                    new RecipeIngredient("-a wedge (about 85g/3oz) -n camembert -s brie"),
+                    new RecipeIngredient("-a a spoonful -n cranberry sauce"),
+                    new RecipeIngredient("-a a few drops of -n balsamic vinegar"),
+                    new RecipeIngredient("-n butter")
                    ),
             List.of(
                     new Step("Butter the bread. Put a wedge of camembert or brie on the unbuttered side of "
@@ -172,21 +172,21 @@ public class SampleDataUtil {
             RecipePortion.of("1 - 2 servings"),
             RecipeDuration.of("10 minutes"),
             Set.of(new Tag("English"), new Tag("Comfort food")),
-            List.of(new Ingredient("-a 120 Grams -n Self Rising Flour -r +additional to coat"),
-                    new Ingredient("-a 175 Grams -n Cod -r or any White Fleshed Fish"),
-                    new Ingredient("-a 1 Medium -n Egg White"),
-                    new Ingredient("-a 160 ML (0.5 cup or little under half a bottle) -n Light Beer -s Lager"),
-                    new Ingredient("-a 1 Large Waxy Potato, Peeled"),
-                    new Ingredient("-n Sunflower Oil"),
-                    new Ingredient("-n Salt"),
-                    new Ingredient("-a 1 Teaspoon -n Curry Powder -r used twice"),
-                    new Ingredient("-a 1 Teaspoon -n Baking Powder"),
-                    new Ingredient("-a 1 Tablespoon -n Gherkins -r chopped"),
-                    new Ingredient("-a 50 Grams -n Creme Fraiche"),
-                    new Ingredient("-a 200 Grams -n Mayonnaise"),
-                    new Ingredient("-a 0.75 -n Shallot -r Diced"),
-                    new Ingredient("-a 1 tsp -n Lemon Juice"),
-                    new Ingredient("-n Hot Sauce -r Optional")),
+            List.of(new RecipeIngredient("-a 120 Grams -n Self Rising Flour -r +additional to coat"),
+                    new RecipeIngredient("-a 175 Grams -n Cod -r or any White Fleshed Fish"),
+                    new RecipeIngredient("-a 1 Medium -n Egg White"),
+                    new RecipeIngredient("-a 160 ML (0.5 cup or little under half a bottle) -n Light Beer -s Lager"),
+                    new RecipeIngredient("-a 1 Large Waxy Potato, Peeled"),
+                    new RecipeIngredient("-n Sunflower Oil"),
+                    new RecipeIngredient("-n Salt"),
+                    new RecipeIngredient("-a 1 Teaspoon -n Curry Powder -r used twice"),
+                    new RecipeIngredient("-a 1 Teaspoon -n Baking Powder"),
+                    new RecipeIngredient("-a 1 Tablespoon -n Gherkins -r chopped"),
+                    new RecipeIngredient("-a 50 Grams -n Creme Fraiche"),
+                    new RecipeIngredient("-a 200 Grams -n Mayonnaise"),
+                    new RecipeIngredient("-a 0.75 -n Shallot -r Diced"),
+                    new RecipeIngredient("-a 1 tsp -n Lemon Juice"),
+                    new RecipeIngredient("-n Hot Sauce -r Optional")),
             List.of(
                     new Step("Get oil in pan medium-high heat for frying before assembling ingredients. "
                                      + "Do not need a deep pan or pot, a large pan will do"),
@@ -235,7 +235,7 @@ public class SampleDataUtil {
 
     private static Recipe build(
             Name name, RecipePortion portion, RecipeDuration duration,
-            Set<Tag> tags, List<Ingredient> ingredients, List<Step> steps) {
+            Set<Tag> tags, List<RecipeIngredient> ingredients, List<Step> steps) {
         requireNonNull(name);
         requireNonNull(portion);
         requireNonNull(duration);
@@ -246,7 +246,7 @@ public class SampleDataUtil {
         out.setPortion(portion);
         out.setDuration(duration);
         out.setTags(tags.toArray(Tag[]::new));
-        out.setIngredients(ingredients.toArray(Ingredient[]::new));
+        out.setIngredients(ingredients.toArray(RecipeIngredient[]::new));
         out.setSteps(steps.toArray(Step[]::new));
         return out;
     }

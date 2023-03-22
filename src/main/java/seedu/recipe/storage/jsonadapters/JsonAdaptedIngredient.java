@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.RecipeIngredient;
 
 /**
- * Jackson-friendly version of {@link Ingredient}.
+ * Jackson-friendly version of {@link RecipeIngredient}.
  */
 @JsonInclude(Include.NON_NULL)
 public class JsonAdaptedIngredient {
@@ -25,9 +25,9 @@ public class JsonAdaptedIngredient {
     }
 
     /**
-     * Converts a given {@code Ingredient} into this class for Jackson use.
+     * Converts a given {@code RecipeIngredient} into this class for Jackson use.
      */
-    public JsonAdaptedIngredient(Ingredient source) {
+    public JsonAdaptedIngredient(RecipeIngredient source) {
         ingredientName = source.name;
     }
 
@@ -37,15 +37,15 @@ public class JsonAdaptedIngredient {
     }
 
     /**
-     * Converts this Jackson-friendly adapted ingredient object into the model's {@code Ingredient} object.
+     * Converts this Jackson-friendly adapted ingredient object into the model's {@code RecipeIngredient} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted ingredient.
      */
-    public Ingredient toModelType() throws IllegalValueException {
+    public RecipeIngredient toModelType() throws IllegalValueException {
         try {
-            return new Ingredient(ingredientName);
+            return new RecipeIngredient(ingredientName);
         } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(Ingredient.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(RecipeIngredient.MESSAGE_CONSTRAINTS);
         }
     }
 }

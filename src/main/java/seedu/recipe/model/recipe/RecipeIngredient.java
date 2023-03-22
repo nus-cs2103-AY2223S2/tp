@@ -7,7 +7,7 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
  * Represents a recipe's ingredient in the recipe book.
  * Guarantees: immutable; is valid as declared in {@link #isValidIngredient(String)}
  */
-public class Ingredient {
+public class RecipeIngredient {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Ingredient contains alphanumeric characters and spaces, and it should not be blank";
@@ -17,11 +17,11 @@ public class Ingredient {
     public final String name;
 
     /**
-     * Constructs a {@code Ingredient}.
+     * Constructs a {@code RecipeIngredient}.
      *
      * @param name A valid ingredient number.
      */
-    public Ingredient(String name) {
+    public RecipeIngredient(String name) {
         requireNonNull(name);
         checkArgument(isValidIngredient(name), MESSAGE_CONSTRAINTS);
         this.name = name;
@@ -42,8 +42,8 @@ public class Ingredient {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Ingredient // instanceof handles nulls
-                && name.equals(((Ingredient) other).name)); // state check
+                || (other instanceof RecipeIngredient // instanceof handles nulls
+                && name.equals(((RecipeIngredient) other).name)); // state check
     }
 
     @Override

@@ -76,7 +76,11 @@ public class NameContainsKeywordsPredicateTest {
         r.setPortion(RecipePortion.of("1 serving"));
         r.setDuration(RecipeDuration.of("2 h"));
         r.setTags(new Tag("Mediterranean"));
-        r.setIngredients(new Ingredient("Butter"), new Ingredient("Onions"), new Ingredient("Halibut"));
+        r.setIngredients(
+            new RecipeIngredient("Butter"),
+            new RecipeIngredient("Onions"),
+            new RecipeIngredient("Halibut")
+        );
         r.setSteps(new Step("Descale the fish with a paring knife."));
         assertFalse(predicate.test(r));
     }

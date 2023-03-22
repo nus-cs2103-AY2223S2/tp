@@ -1,9 +1,6 @@
 package seedu.recipe.model.recipe;
 
-import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
-import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
-import seedu.recipe.model.recipe.recipefield.RecipeIngredientQuantity;
-import seedu.recipe.model.tag.Tag;
+import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +11,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
+import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
+import seedu.recipe.model.recipe.field.RecipeIngredientQuantity;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * Represents a Recipe in the recipe book.
@@ -27,9 +27,9 @@ public class Recipe {
     // Identity field
     private final Name name;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<Ingredient> ingredients = new ArrayList<>();
+    private final List<RecipeIngredient> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
-    private final Hashtable<RecipeIngredientQuantity, Ingredient> ingredientTable = new Hashtable<>();
+    private final Hashtable<RecipeIngredientQuantity, RecipeIngredient> ingredientTable = new Hashtable<>();
 
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
@@ -47,11 +47,11 @@ public class Recipe {
         return name;
     }
 
-    public List<Ingredient> getIngredients() {
+    public List<RecipeIngredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Ingredient... ingredients) {
+    public void setIngredients(RecipeIngredient... ingredients) {
         this.ingredients.addAll(List.of(ingredients));
     }
 

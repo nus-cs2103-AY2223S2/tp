@@ -8,10 +8,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.recipe.commons.util.CollectionUtil;
-import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
+import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -25,7 +25,7 @@ public class RecipeDescriptor {
     private RecipeDuration duration;
     private RecipePortion portion;
     private Set<Tag> tags;
-    private List<Ingredient> ingredients;
+    private List<RecipeIngredient> ingredients;
     private List<Step> steps;
 
     public RecipeDescriptor() {
@@ -63,9 +63,9 @@ public class RecipeDescriptor {
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
         newRecipe.setTags(updatedTags);
 
-        Ingredient[] updatedIngredients = getIngredients()
+        RecipeIngredient[] updatedIngredients = getIngredients()
                 .orElse(recipeToEdit.getIngredients())
-                .toArray(Ingredient[]::new);
+                .toArray(RecipeIngredient[]::new);
         newRecipe.setIngredients(updatedIngredients);
 
         Step[] updatedSteps = getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
@@ -130,11 +130,11 @@ public class RecipeDescriptor {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
-    public Optional<List<Ingredient>> getIngredients() {
+    public Optional<List<RecipeIngredient>> getIngredients() {
         return (ingredients != null) ? Optional.of(Collections.unmodifiableList(ingredients)) : Optional.empty();
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(List<RecipeIngredient> ingredients) {
         this.ingredients = (ingredients != null) ? new ArrayList<>(ingredients) : null;
     }
 

@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
+import seedu.recipe.model.recipe.RecipeIngredient;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.tag.Tag;
@@ -80,7 +80,9 @@ public class EditRecipeDescriptorBuilder {
      * Sets the {@code Ingredients} of the {@code EditRecipeDescriptor} that we are building.
      */
     public EditRecipeDescriptorBuilder withIngredients(String... ingredients) {
-        List<Ingredient> ingredientList = Stream.of(ingredients).map(Ingredient::new).collect(Collectors.toList());
+        List<RecipeIngredient> ingredientList = Stream.of(ingredients)
+                .map(RecipeIngredient::new)
+                .collect(Collectors.toList());
         descriptor.setIngredients(ingredientList);
         return this;
     }
