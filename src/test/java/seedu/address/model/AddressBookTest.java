@@ -90,21 +90,21 @@ public class AddressBookTest {
     }
 
     @Test
-    void addStudentToTutorialTest() {
+    void addStudentToTutorial_success() {
         Tutorial newTut = SAMPLE_TUTORIAL;
         newTut.addStudent(ALICE);
         assert(newTut.countStudents() == 1);
     }
 
     @Test
-    void addStudentToLabTest() {
+    void addStudentToLab_success() {
         Lab newLab = SAMPLE_LAB;
         newLab.addStudent(ALICE);
         assert(newLab.countStudents() == 1);
     }
 
     @Test
-    void addStudentToConsultationTest() {
+    void addStudentToConsultation_success() {
         Consultation newConsultation = SAMPLE_CONSULTATION;
         newConsultation.addStudent(ALICE);
         assert(newConsultation.countStudents() == 1);
