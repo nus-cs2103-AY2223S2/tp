@@ -140,6 +140,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public Model stateDetachedCopy() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<? super Person> getPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -68,7 +68,7 @@ public class StateHistory {
     }
 
     public int redo(int steps) {
-        int stop = min(now + steps, commandHistory.lastKey());
+        int stop = min(now + steps, !commandHistory.isEmpty() ? commandHistory.lastKey() : 0);
         int res = stop - now;
         now = stop;
         return res;

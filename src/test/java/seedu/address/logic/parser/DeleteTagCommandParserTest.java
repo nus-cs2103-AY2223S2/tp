@@ -11,8 +11,8 @@ import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.model.tag.Tag;
 
 /**
- * TagCommandParserTest is used to provide some test case for basic simple check on
- * TagCommandParser class implementation.
+ * DeleteTagCommandParserTest is used to provide some test case for basic simple check on
+ * DeleteTagCommandParser class implementation.
  */
 public class DeleteTagCommandParserTest {
 
