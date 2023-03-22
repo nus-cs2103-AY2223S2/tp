@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -51,6 +53,9 @@ public class AddCardDescriptorBuilder {
     }
 
     public AddCardDescriptor build() {
+        if (descriptor.getTags().isEmpty()) {
+            descriptor.setTags(new HashSet<>()); // tags cannot be empty
+        };
         return descriptor;
     }
 

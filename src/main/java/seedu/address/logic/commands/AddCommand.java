@@ -169,7 +169,6 @@ public class AddCommand extends Command {
 
             // state check
             AddCommand.AddCardDescriptor e = (AddCommand.AddCardDescriptor) other;
-
             return getQuestion().equals(e.getQuestion())
                     && getAnswer().equals(e.getAnswer())
                     && getTags().equals(e.getTags());
