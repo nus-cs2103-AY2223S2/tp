@@ -2,7 +2,10 @@ package mycelium.mycelium.model;
 
 import java.util.logging.Logger;
 
+import javafx.collections.transformation.SortedList;
 import mycelium.mycelium.commons.core.LogsCenter;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.MainWindow;
 import mycelium.mycelium.ui.commandbox.CommandBox;
 
@@ -36,10 +39,10 @@ public class FuzzyManager implements CommandBox.CommandInputListener {
         //
         // NOTE(jy): this is very inefficient, but it is simple and gets the job done for now.
 
-        var clients = addressBook.getClientList()
+        SortedList<Client> clients = addressBook.getClientList()
             .filtered(cli -> cli.fuzzyCompareTo(input) > 0.0)
             .sorted((cli1, cli2) -> Double.compare(cli2.fuzzyCompareTo(input), cli1.fuzzyCompareTo(input)));
-        var projects = addressBook.getProjectList()
+        SortedList<Project> projects = addressBook.getProjectList()
             .filtered(proj -> proj.fuzzyCompareTo(input) > 0.0)
             .sorted((proj1, proj2) -> Double.compare(proj2.fuzzyCompareTo(input), proj1.fuzzyCompareTo(input)));
 
