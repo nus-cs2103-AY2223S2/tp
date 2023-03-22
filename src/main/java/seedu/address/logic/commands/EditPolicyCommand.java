@@ -8,16 +8,21 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_PREMIUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_START_DATE;
 
+import java.util.List;
 import java.util.Optional;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
+import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.PolicyName;
 import seedu.address.model.client.policy.Premium;
+import seedu.address.model.client.policy.UniquePolicyList;
 
 public class EditPolicyCommand extends Command {
 
@@ -41,7 +46,8 @@ public class EditPolicyCommand extends Command {
 
     public static  final String MESSAGE_DUPLICATE_POLICY = "This policy already exists in this client.";
 
-    private final Index index;
+    private final Index clientIndex;
+    private final Index policyIndex;
     private final EditPolicyDescriptor editPolicyDescriptor;
 
     /** Creates an EditPolicyCommand to edit the specified {@code Policy} given the {@code Client} index.
@@ -53,13 +59,51 @@ public class EditPolicyCommand extends Command {
         requireAllNonNull(clientIndex, policyIndex);
         requireNonNull(editPolicyDescriptor);
 
-        this.
+        this.clientIndex = clientIndex;
+        this.policyIndex = policyIndex;
         this.editPolicyDescriptor = editPolicyDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult("Testing!");
+        requireNonNull(model);
+        List<Client> lastShownList = model.getFilteredClientList();
+        if (clientIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
+        Client clientToEditPolicy = lastShownList.get(clientIndex.getZeroBased());
+
+        List<Policy> lastShownPolicyList = clientToEditPolicy.getFilteredPolicyList();
+        if (policyIndex.getZeroBased() >= lastShownPolicyList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
+        }
+        Policy policyToEdit = lastShownPolicyList.get(policyIndex.getZeroBased());
+        Policy editedPolicy = createEditedPolicy(policyToEdit, editPolicyDescriptor);
+
+        UniquePolicyList clientPolicyList = clientToEditPolicy.getPolicyList();
+        if (!policyToEdit.isSamePolicy(editedPolicy) && clientPolicyList.contains(editedPolicy)) {
+            throw new CommandException(MESSAGE_DUPLICATE_POLICY);
+        }
+
+        clientPolicyList.setPolicy(policyToEdit, editedPolicy);
+        return new CommandResult(generateSuccessMessage(clientToEditPolicy, policyToEdit));
+    }
+
+    private String generateSuccessMessage(Client client, Policy policy) {
+        return String.format(
+              MESSAGE_EDIT_POLICY_SUCCESS, policy.toString()) + " from: "
+                    + client.getName().toString();
+    }
+
+    private static Policy createEditedPolicy(Policy policyToEdit, EditPolicyDescriptor editPolicyDescriptor) {
+        assert policyToEdit != null;
+
+        PolicyName updatedPolicyName = editPolicyDescriptor.getPolicyName().orElse(policyToEdit.getPolicyName());
+        CustomDate updatedCustomDate = editPolicyDescriptor.getStartDate().orElse(policyToEdit.getStartDate());
+        Premium updatedPremium = editPolicyDescriptor.getPremium().orElse(policyToEdit.getPremium());
+        Frequency updatedFrequency = editPolicyDescriptor.getFrequency().orElse(policyToEdit.getFrequency());
+
+        return new Policy(updatedPolicyName, updatedCustomDate, updatedPremium, updatedFrequency);
     }
 
     /**
