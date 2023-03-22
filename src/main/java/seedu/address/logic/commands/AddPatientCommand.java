@@ -34,7 +34,7 @@ public class AddPatientCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "jdoe@gmail.com "
-            + PREFIX_HEIGHT + "180.55 "
+            + PREFIX_HEIGHT + "1.85 "
             + PREFIX_WEIGHT + "70.50 "
             + PREFIX_DIAGNOSIS + "Fever "
             + PREFIX_STATUS + "Outpatient "
