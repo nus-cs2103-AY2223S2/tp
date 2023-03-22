@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="clientListView" VBox.vgrow="ALWAYS">
+<VBox stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <Label text="Clients" textFill="WHITE">
+      <font>
+         <Font name="SansSerif Bold" size="16.0" />
+      </font>
+      <padding>
+         <Insets bottom="16.0" left="16.0" right="8.0" top="8.0" />
+      </padding>
+   </Label>
+  <ListView fx:id="clientListView" stylesheets="@Styles.css" VBox.vgrow="ALWAYS">
       <opaqueInsets>
          <Insets />
       </opaqueInsets>
@@ -13,6 +23,6 @@
          <Insets />
       </VBox.margin></ListView>
    <padding>
-      <Insets bottom="20.0" left="20.0" right="10.0" top="20.0" />
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
 </VBox>
