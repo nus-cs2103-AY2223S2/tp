@@ -9,8 +9,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.time.Duration;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +48,7 @@ public class CronTest {
         System.setOut(new PrintStream(outputStreamCaptor));
 
         String p = "Task 1";
-        int frequency = 10;
+        int frequency = 5;
 
         TimerTask t = new TimerTask() {
             @Override
@@ -57,10 +57,15 @@ public class CronTest {
             }
         };
 
-        Cron cron = Cron.getInstance();
-        cron.addTask(t, frequency);
-        assertTimeoutPreemptively(Duration.ofSeconds(frequency - 5), () ->
-                assertEquals(p, outputStreamCaptor.toString().trim()));
+        // Caution: This is a time-sensitive test.
+        assertTimeoutPreemptively(Duration.ofSeconds(frequency - 1), () -> {
+            Cron cron = Cron.getInstance();
+            cron.addTask(t, frequency);
+            TimeUnit.SECONDS.sleep(frequency - 2);
+            assertEquals(p, outputStreamCaptor.toString().trim());
+        });
+
+        System.setOut(standardOut);
     }
 
     @Test
@@ -81,10 +86,5 @@ public class CronTest {
     @BeforeEach
     public void setUp() {
         stop();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
     }
 }
