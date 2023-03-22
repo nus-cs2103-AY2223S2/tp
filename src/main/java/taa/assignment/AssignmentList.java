@@ -53,7 +53,6 @@ public class AssignmentList {
             assignmentMap.get(assignmentName).gradeSubmission(student, marks);
         }
     }
-    // TODO: delete student from classList = must delete all submissions of studentId for all assignments.
 
     /**
      * @return A list of all assignments and submissions

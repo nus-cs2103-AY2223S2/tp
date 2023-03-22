@@ -12,6 +12,9 @@ import taa.model.student.Student;
  */
 public class Assignment {
     private String name;
+    private int totalMarks = 100;
+    private String deadline = "now";
+
     private ArrayList<Submission> submissions = new ArrayList<>();
     private final HashMap<Student, Submission> submissionMap = new HashMap<>();
 
@@ -46,6 +49,10 @@ public class Assignment {
 
     public ArrayList<Submission> getSubmissions() {
         return this.submissions;
+    }
+
+    public int getTotalMarks() {
+        return this.totalMarks;
     }
 
     /**
