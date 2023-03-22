@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 
@@ -24,8 +25,8 @@ import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalLibrary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
+    private Model expectedModel = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
 
     @Test
     public void equals() {

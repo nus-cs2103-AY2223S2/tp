@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.library.model.Library;
 import seedu.library.model.ReadOnlyLibrary;
+import seedu.library.model.ReadOnlyTags;
+import seedu.library.model.Tags;
 import seedu.library.model.bookmark.Author;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
@@ -42,6 +44,22 @@ public class SampleDataUtil {
             sampleAb.addBookmark(sampleBookmark);
         }
         return sampleAb;
+    }
+
+    public static Tag[] getSampleTags() {
+        return new Tag[] {
+            new Tag("MaleProtagonist"),
+            new Tag("FemaleProtagonist")
+        };
+    }
+
+    public static ReadOnlyTags getSampleTagList() {
+        Tags sampleTags = new Tags();
+        for (Tag sampleTag : getSampleTags()) {
+            sampleTags.addTag(sampleTag);
+        }
+        System.out.println(sampleTags);
+        return sampleTags;
     }
 
     /**

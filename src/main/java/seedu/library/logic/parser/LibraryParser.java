@@ -7,14 +7,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.library.logic.commands.AddCommand;
+import seedu.library.logic.commands.AddTagCommand;
 import seedu.library.logic.commands.ClearCommand;
 import seedu.library.logic.commands.Command;
 import seedu.library.logic.commands.DeleteCommand;
+import seedu.library.logic.commands.DeleteTagCommand;
 import seedu.library.logic.commands.EditCommand;
 import seedu.library.logic.commands.ExitCommand;
 import seedu.library.logic.commands.FindCommand;
 import seedu.library.logic.commands.HelpCommand;
 import seedu.library.logic.commands.ListCommand;
+import seedu.library.logic.commands.ListTagsCommand;
 import seedu.library.logic.parser.exceptions.ParseException;
 
 /**
@@ -47,11 +50,17 @@ public class LibraryParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -61,6 +70,9 @@ public class LibraryParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListTagsCommand.COMMAND_WORD:
+            return new ListTagsCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

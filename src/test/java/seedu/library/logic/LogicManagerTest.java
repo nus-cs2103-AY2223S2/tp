@@ -28,6 +28,7 @@ import seedu.library.model.ReadOnlyLibrary;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.storage.JsonLibraryStorage;
+import seedu.library.storage.JsonTagsStorage;
 import seedu.library.storage.JsonUserPrefsStorage;
 import seedu.library.storage.StorageManager;
 import seedu.library.testutil.BookmarkBuilder;
@@ -46,7 +47,8 @@ public class LogicManagerTest {
         JsonLibraryStorage libraryStorage =
                 new JsonLibraryStorage(temporaryFolder.resolve("library.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(libraryStorage, userPrefsStorage);
+        JsonTagsStorage tagsStorage = new JsonTagsStorage(temporaryFolder.resolve("tags.json"));
+        StorageManager storage = new StorageManager(libraryStorage, userPrefsStorage, tagsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,7 +77,9 @@ public class LogicManagerTest {
                 new JsonLibraryIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionLibrary.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(libraryStorage, userPrefsStorage);
+        JsonTagsStorage tagsStorage =
+                new JsonTagsStorage(temporaryFolder.resolve("ioExceptionTags.json"));
+        StorageManager storage = new StorageManager(libraryStorage, userPrefsStorage, tagsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -129,7 +133,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getLibrary(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getLibrary(), new UserPrefs(), model.getTags());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

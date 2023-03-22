@@ -19,14 +19,18 @@ import seedu.library.model.Library;
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
 import seedu.library.model.ReadOnlyLibrary;
+import seedu.library.model.ReadOnlyTags;
 import seedu.library.model.ReadOnlyUserPrefs;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.util.SampleDataUtil;
 import seedu.library.storage.JsonLibraryStorage;
+import seedu.library.storage.JsonTagsStorage;
 import seedu.library.storage.JsonUserPrefsStorage;
 import seedu.library.storage.LibraryStorage;
 import seedu.library.storage.Storage;
 import seedu.library.storage.StorageManager;
+import seedu.library.storage.TagsStorage;
 import seedu.library.storage.UserPrefsStorage;
 import seedu.library.ui.Ui;
 import seedu.library.ui.UiManager;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         LibraryStorage libraryStorage = new JsonLibraryStorage(userPrefs.getLibraryFilePath());
-        storage = new StorageManager(libraryStorage, userPrefsStorage);
+        TagsStorage tagsStorage = new JsonTagsStorage(userPrefs.getTagsFilePath());
+        storage = new StorageManager(libraryStorage, userPrefsStorage, tagsStorage);
 
         initLogging(config);
 
@@ -69,13 +74,30 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s library and {@code userPrefs}. <br>
-     * The data from the sample library will be used instead if {@code storage}'s library is not found,
-     * or an empty library will be used instead if errors occur when reading {@code storage}'s library.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s library, {@code userPrefs}
+     * and {@code tagsStorage}. <br> The data from the sample library will be used instead if {@code storage}'s
+     * library is not found, or an empty library will be used instead if errors
+     * occur when reading {@code storage}'s library.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyLibrary> libraryOptional;
         ReadOnlyLibrary initialData;
+        Optional<ReadOnlyTags> tagsOptional;
+        ReadOnlyTags initialTags;
+        try {
+            tagsOptional = storage.readTags();
+            if (!tagsOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Library");
+            }
+            initialTags = tagsOptional.orElseGet(SampleDataUtil::getSampleTagList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty tag list");
+            initialTags = new Tags();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty tag list");
+            initialTags = new Tags();
+        }
+
         try {
             libraryOptional = storage.readLibrary();
             if (!libraryOptional.isPresent()) {
@@ -90,7 +112,7 @@ public class MainApp extends Application {
             initialData = new Library();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, userPrefs, initialTags);
     }
 
     private void initLogging(Config config) {

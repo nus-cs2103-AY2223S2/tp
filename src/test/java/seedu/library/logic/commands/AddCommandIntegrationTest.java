@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.testutil.BookmarkBuilder;
@@ -22,14 +23,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalLibrary(), new UserPrefs());
+        model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
     }
 
     @Test
     public void execute_newBookmark_success() {
         Bookmark validBookmark = new BookmarkBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getLibrary(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getLibrary(), new UserPrefs(), new Tags());
         expectedModel.addBookmark(validBookmark);
 
         assertCommandSuccess(new AddCommand(validBookmark), model,
