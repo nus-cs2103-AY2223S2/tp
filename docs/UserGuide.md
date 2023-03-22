@@ -218,6 +218,19 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Selecting A Particular Contact To View: `select'
+
+Want to see the details of a particular contact?
+
+You can either use your cursor to click on the contact or use this command!
+
+> Command: `select INDEX`
+
+Here are some important requirements for you to take note:
+
+* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
+    * `INDEX` must be a **positive integer**.
+
 ### Finding Particular Contacts: `find`
 
 Want to narrow down your displayed contacts to a certain few?
@@ -297,19 +310,20 @@ Use this command to exit the application!
 
 ### Address Book Command Summary
 
-| Action     | Format, Examples                                                                                                                                                         |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action     | Format, Examples                                                                                                                                                      |
+|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                  |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                      |
+| **Clear**  | `clear`                                                                                                                                                               |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
-| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                            |
-| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                        |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                               |
-| **List**   | `list`                                                                                                                                                                   |
-| **Help**   | `help`                                                                                                                                                                   |
-| **Tab**    | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                            |
-| **Exit**   | `exit`                                                                                                                                                                   |
+| **Fav**    | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
+| **Unfav**  | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
+| **Select** | `select INDEX`<br> e.g., `select 2`                                                                                                                                   |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**   | `list`                                                                                                                                                                |
+| **Help**   | `help`                                                                                                                                                                |
+| **Tab**    | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                         |
+| **Exit**   | `exit`                                                                                                                                                                |
 
 --------------------------------------------------------------------------------------------------------------------
 ## Calendar Features
