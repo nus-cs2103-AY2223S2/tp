@@ -28,11 +28,7 @@ public class JsonAdaptedLogicTaskList {
 
     @JsonCreator
     public JsonAdaptedLogicTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
-        if (tasks == null) {
-            LOGGER.warning("JsonAdaptedLogicTaskList: task list read from file is null");
-            tasks = List.of();
-        }
-        this.tasks = tasks;
+        this.tasks = tasks == null ? List.of() : tasks;
     }
 
     /**
@@ -67,5 +63,10 @@ public class JsonAdaptedLogicTaskList {
             taskList.add(task);
         }
         return taskList;
+    }
+
+    @Override
+    public String toString() {
+        return "JsonAdpatedLogicTaskList: [" + tasks + "]";
     }
 }

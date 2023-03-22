@@ -69,6 +69,7 @@ public class JsonUtil {
         T jsonFile = null;
         try {
             jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);
+            logger.info("Object read from json file: " + jsonFile);
         } catch (IOException e) {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
             throw new DataConversionException(e);
