@@ -67,5 +67,4 @@ public class ListCommandTest {
     private ExpenseInCategoryPredicate preparePredicate(String userInput) throws ParseException {
         return new ExpenseInCategoryPredicate(ParserUtil.parseCategory(userInput));
     }
-    
 }
