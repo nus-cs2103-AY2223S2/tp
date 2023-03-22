@@ -382,6 +382,7 @@ Use case ends.
 * 3a. TrAcker detects an error in the entered tutorial data.
   * 3a1. TrAcker requests for the correct tutorial data where there was an error.
   * 3a2. TA enters new tutorial data.
+  
   Steps 3a1 - 3a2 are repeated until the data entered to create a new tutorial are correct.
   <br>
   Use case resumes from Step 4.
@@ -416,7 +417,8 @@ Use case ends.
 * 3a. TrAcker detects an error in the entered lab data.
     * 3a1. TrAcker requests for the correct lab data where there was an error.
     * 3a2. TA enters new lab data.
-      Steps 3a1 - 3a2 are repeated until the data entered to create a new lab are correct.
+      
+  Steps 3a1 - 3a2 are repeated until the data entered to create a new lab are correct.
       <br>
       Use case resumes from Step 4.
 
@@ -450,7 +452,8 @@ Use case ends.
 * 3a. TrAcker detects an error in the entered consultation data.
     * 3a1. TrAcker requests for the correct consultation data where there was an error.
     * 3a2. TA enters new consultation data.
-      Steps 3a1 - 3a2 are repeated until the data entered to create a new consultation are correct.
+      
+  Steps 3a1 - 3a2 are repeated until the data entered to create a new consultation are correct.
       <br>
       Use case resumes from Step 4.
 
@@ -486,21 +489,24 @@ Use case ends.
 * 3a. TrAcker detects that the event does not exist.
     * 3a1. TrAcker requests for the correct event data.
     * 3a2. TA enters new event data that the student should be added to.
-      Steps 3a1 - 3a2 are repeated until the event data entered is correct and exists.
+      
+  Steps 3a1 - 3a2 are repeated until the event data entered is correct and exists.
       <br>
       Use case resumes from Step 4.
 
 * 3b. TrAcker detects that the student does not exist.
     * 3b1. TrAcker requests for the correct student data.
     * 3b2. TA enters new student data.
-      Steps 3b1 - 3b2 are repeated until the student data entered is correct and exists.
+      
+  Steps 3b1 - 3b2 are repeated until the student data entered is correct and exists.
       <br>
       Use case resumes from Step 4.
 
 * 3c. TrAcker detects that the data entered is in a wrong format.
     * 3c1. TrAcker requests for the correct data format.
     * 3c2. TA enters new data format.
-      Steps 3c1 - 3c2 are repeated until the data format is correct.
+      
+  Steps 3c1 - 3c2 are repeated until the data format is correct.
       <br>
       Use case resumes from Step 4.
 
@@ -524,11 +530,12 @@ Preconditions:
 
 **MSS**
 
-1.  TA starts TrAcker desktop application.
-2.  TA enters command to delete event.
-3.  TA confirms the deletion of an event.
-4.  TrAcker removes all student from the event.
-5.  TrAcker displays the new event list.
+1. TA starts TrAcker desktop application.
+2. TA enters command to delete event.
+3. TA confirms the deletion of an event.
+4. TrAcker removes all student from the event.
+5. TrAcker removes event from the event list.
+6. TrAcker displays the new event list.
 
 Use case ends.
 
@@ -537,7 +544,8 @@ Use case ends.
 * 3a. TrAcker detects that the event does not exist.
     * 3a1. TrAcker requests for the correct event data.
     * 3a2. TA enters new event data that needs to be deleted.
-      Steps 3a1 - 3a2 are repeated until the event data entered exists.
+      
+  Steps 3a1 - 3a2 are repeated until the event data entered exists.
       <br>
       Use case resumes from Step 4.
 
@@ -549,7 +557,8 @@ Use case ends.
 * 3c. TrAcker detects that the event data to be deleted is entered is in a wrong format.
     * 3c1. TrAcker requests for the correct data format.
     * 3c2. TA enters new data format.
-      Steps 3c1 - 3c2 are repeated until the data format is correct.
+      
+  Steps 3c1 - 3c2 are repeated until the data format is correct.
       <br>
       Use case resumes from Step 4.
 
@@ -575,7 +584,7 @@ Preconditions:
 
 1.  TA starts TrAcker desktop application.
 2.  TA enters command to remove student from an event.
-3.  TA confirms the remobal of student to an event.
+3.  TA confirms the removal of student to an event.
 4.  TrAcker removes the student from an event.
 5.  TrAcker displays the new event list with the removed student.
 
@@ -586,14 +595,16 @@ Use case ends.
 * 3a. TrAcker detects that the event does not exist.
     * 3a1. TrAcker requests for the correct event data.
     * 3a2. TA enters new event data that needs to be deleted.
-      Steps 3a1 - 3a2 are repeated until the event data entered exists.
+      
+  Steps 3a1 - 3a2 are repeated until the event data entered exists.
       <br>
       Use case resumes from Step 4.
 
 * 3b. TrAcker detects that the student does not exist.
     * 3b1. TrAcker requests for the correct student data.
     * 3b2. TA enters new student data.
-      Steps 3b1 - 3b2 are repeated until the student data entered matches to an existing student.
+    
+  Steps 3b1 - 3b2 are repeated until the student data entered matches to an existing student.
       <br>
       Use case resumes from Step 4.
 
@@ -608,7 +619,7 @@ Use case ends
 
 System: Software System (TrAcker)
 <br>
-Use case: UC06 - Request for Help
+Use case: UC07 - Request for Help
 <br>
 Person: An undergraduate student in NUS enrolled in CS2040 as a student
 <br>
@@ -650,14 +661,320 @@ Use case ends.
 
 Use case ends.
 
-* a. At any time, TA decides not to confim the help command.
+* a. At any time, TA decides not to confirm the help command.
     * a1. TA removes input from TrAcker.
 
 Use case ends
 
 ---
 
-###
+#### Sort / Filter Students Use Cases
+
+System: Software System (TrAcker)
+<br>
+Use case: UC08 - Sort Students
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to sort students.
+3. TrAcker requests which group of students the TA wants to sort.
+4. TA enters requested details.
+5. TrAcker requests for the desired sorting metric to be used and the sorting order.
+6. TA enters requested details.
+7. TrAcker displays the students in sorted order.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. TrAcker detects error in entered data
+    * 4a1. TrAcker requests for the correct details.
+    * 4a2. TA enters new details.
+    Steps 4a1 - 4a2 are repreated until the data entered is correct.
+      <br>
+      Use case resumes from Step 5.
+
+* 6a. TrAcker detects error in entered data
+    * 6a1. TrAcker requests for the correct details.
+    * 6a2. TA enters new details.
+     
+  Steps 6a1 - 6a2 are repreated until the data entered is correct.
+      <br>
+      Use case resumes from Step 7.
+
+* a. At any time, TA decides not to sort students.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+System: Software System (TrAcker)
+<br>
+Use case: UC09 - Filter Students
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to filter students.
+3. TrAcker requests which group of students the TA wants to filter.
+4. TA enters requested details.
+5. TrAcker requests for the desired filter threshold value.
+6. TA enters requested details.
+7. TrAcker displays the students after filtering.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. TrAcker detects error in entered data
+    * 4a1. TrAcker requests for the correct details.
+    * 4a2. TA enters new details.
+      Steps 4a1 - 4a2 are repreated until the data entered is correct.
+      <br>
+      Use case resumes from Step 5.
+
+* 6a. TrAcker detects error in entered data
+    * 6a1. TrAcker requests for the correct details.
+    * 6a2. TA enters new details.
+      
+    Steps 6a1 - 6a2 are repreated until the data entered is correct.
+      <br>
+      Use case resumes from Step 7.
+
+* a. At any time, TA decides not to filter students.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+System: Software System (TrAcker)
+<br>
+Use case: UC10 - Show High Urgency Students
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to show students with high urgency.
+3. TrAcker requests which group of students the TA wants to show high urgency for.
+4. TA enters requested details.
+5. TrAcker calculates and shows a list of students who 
+fall within this category (performing well at the start but with a sudden drop in cosistency and standards.)
+
+Use case ends.
+
+**Extensions**
+
+* 4a. TrAcker detects error in entered data
+    * 4a1. TrAcker requests for the correct details.
+    * 4a2. TA enters new details.
+      
+  Steps 4a1 - 4a2 are repreated until the data entered is correct.
+      <br>
+      Use case resumes from Step 5.
+
+* a. At any time, TA decides not to show high urgency students.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+#### Student Progress Use Cases
+
+System: Software System (TrAcker)
+<br>
+Use case: UC11 - View Attendance
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to view attendance.
+3. TrAcker requests for event that TA wants to view attendance for.
+4. TA enters the event details.
+5. TrAcker displays corresponding student list with their attendance markings.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. TrAcker detects error in entered data
+    * 4a1. TrAcker requests for the correct details.
+    * 4a2. TA enters new details.
+      
+  Steps 4a1 - 4a2 are repreated until the data entered is correct.
+      <br>
+      Use case resumes from Step 5.
+
+* a. At any time, TA decides not to view attendance.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+System: Software System (TrAcker)
+<br>
+Use case: UC11 - View Low Performing Students
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to view low performing students.
+3. TrAcker requests for event that TA wants to view low performing students for.
+4. TA enters requested details.
+5. TrAcker requests for the number of students that the TA wants to view.
+6. TA enters an Integer n.
+7. TrAcker invokes <ins> "Filter Students" (UC09) </ins>
+8. TrAcker invokes <ins> "Sort Students" (UC08)</ins> and displays the n lowest performance according to performance
+in the corresponding class.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. TrAcker detects error in entered data
+    * 4a1. TrAcker requests for the correct details.
+    * 4a2. TA enters new details.
+      Steps 4a1 - 4a2 are repreated until the data entered is correct.
+      <br>
+      Use case resumes from Step 5.
+  
+* 6a. TrAcker detects invalid input
+    * 6a1. TrAcker requests for the valid input.
+    * 6a2. TA enters new input.
+  
+      Steps 6a1 - 6a2 are repreated until the input entered is valid.
+      <br>
+      Use case resumes from Step 7.
+
+* a. At any time, TA decides not to view low performing students.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+#### Notes Use Cases
+
+System: Software System (TrAcker)
+<br>
+Use case: UC12 - List all event notes (up to future one-week worth of events)
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to list notes.
+3. TrAcker displays notes listed for future one-week events
+
+Use case ends.
+
+**Extensions**
+
+* 3a. No notes found for future one-week events
+    * 3a1. TrAcker displays an empty card.
+
+Use case ends.
+
+* a. At any time, TA decides not to list notes.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+--- 
+
+System: Software System (TrAcker)
+<br>
+Use case: UC13 - Add notes to an event
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to add notes.
+3. TrAcker prompts for TA to enter note in a window.
+4. TA enters notes.
+5. TrAcker requests for TA to select the event to enter the note to.
+6. TA enters target event.
+7. TrAcker <ins> "List all event notes" (UC12). </ins>
+
+Use case ends.
+
+**Extensions**
+
+* 4a. TA enters nothing
+    * 4a1. TrAcker requests for more input from the TA.
+    * 4a2. TA enters details.
+    
+  Steps 4a1 - 4a2 are repeated until there is a non-empty text in the note.
+  <br>
+  Use case resumes from step 5.
+
+* 6a. TA enters invalid target event
+    * 6a1. TrAcker requests for valid event.
+    * 6a2. TA enters details.
+
+  Steps 6a1 - 6a2 are repeated until a valid event is entered.
+  <br>
+  Use case resumes from step 7.
+
+* a. At any time, TA decides to cancel note adding.
+    * a1. TrAcker requests to confirm the cancellation.
+    * a2. TA confirms the cancellation.
+
+Use case ends
+
+
 
 *{More to be added}*
 
