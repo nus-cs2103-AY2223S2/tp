@@ -23,20 +23,13 @@ public class ModelManager implements Model {
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private static final Predicate<Entity> PREDICATE_IS_CHARACTER = entity -> entity instanceof Character;
+    private static final Predicate<Entity> PREDICATE_IS_MOB = entity -> entity instanceof Mob;
+    private static final Predicate<Entity> PREDICATE_IS_ITEM = entity -> entity instanceof Item;
+
     private final Reroll reroll;
     private final UserPrefs userPrefs;
     private final FilteredList<Entity> filteredAllEntities;
-
-    private final Predicate<Entity> IS_CHARACTER = entity -> entity instanceof Character;
-    private final Predicate<Entity> IS_MOB = entity -> entity instanceof Mob;
-    private final Predicate<Entity> IS_ITEM = entity -> entity instanceof Item;
-
-    /*
-    private final FilteredList<Entity> filteredItems;
-    private final FilteredList<Entity> filteredMobs;
-    private final FilteredList<Entity> filteredCharacters;
-
-     */
     // Placeholder for the active list.
     private FilteredList<Entity> filteredActive;
     private Entity active = null;
@@ -54,13 +47,6 @@ public class ModelManager implements Model {
 
         this.reroll = new Reroll(reroll);
         this.userPrefs = new UserPrefs(userPrefs);
-
-        /*
-        this.filteredCharacters = new FilteredList<>(this.reroll.getCharacters().getEntityList());
-        this.filteredItems = new FilteredList<>(this.reroll.getItems().getEntityList());
-        this.filteredMobs = new FilteredList<>(this.reroll.getMobs().getEntityList());
-         */
-
         this.filteredAllEntities = new FilteredList<>(this.reroll.getAllList());
         // By default, the active list is all entities.
         this.filteredActive = this.filteredAllEntities;
@@ -149,17 +135,17 @@ public class ModelManager implements Model {
 
     @Override
     public void listItems() {
-        updateFilteredEntityList(IS_ITEM);
+        updateFilteredEntityList(PREDICATE_IS_ITEM);
     }
 
     @Override
     public void listCharacters() {
-        updateFilteredEntityList(IS_CHARACTER);
+        updateFilteredEntityList(PREDICATE_IS_CHARACTER);
     }
 
     @Override
     public void listMobs() {
-        updateFilteredEntityList(IS_MOB);
+        updateFilteredEntityList(PREDICATE_IS_MOB);
     }
 
     //=========== Filtered Entity List Accessors =============================================================
