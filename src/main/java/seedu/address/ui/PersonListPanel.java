@@ -51,24 +51,16 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
 
+        //Does not obey law of demeter
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName().toString()));
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail().toString()));
         address.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAddress().toString()));
         performance.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getPerformance().toString()));
         remark.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemark().toString()));
+        photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
 
-        //photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
-
-        photo.setCellFactory(
-                p -> new PhotoCell()
-        );
-
-
-        //to sort
-        //
-        //performance.setSortable(true);
-
+        //Sort
         SortedList<Person> sorted = new SortedList<>(personList);
         table.setItems(sorted);
         sorted.comparatorProperty().bind(table.comparatorProperty());
@@ -76,6 +68,8 @@ public class PersonListPanel extends UiPart<Region> {
             TableRow<Person> row = new TableRow<>();
             return row;
         });
+
+        //Custom callbacks to modify basic data for performance
         performance.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
             @Override
             public TableCell<Person, String> call(TableColumn<Person, String> param) {
@@ -99,22 +93,31 @@ public class PersonListPanel extends UiPart<Region> {
                 };
             }
         });
-    }
 
-    /**
-     * Allows the creation of a column with images
-     */
-    public static class PhotoCell extends TableCell<Person, String> {
-        private final ImageView imageView = new ImageView();
+        //Disable sort by photo
+        photo.setSortable(false);
 
-        @Override
-        protected void updateItem(String url, boolean empty) {
-            super.updateItem("", empty);
-            imageView.setImage(new Image(Objects.requireNonNull(this.getClass()
-                    .getResourceAsStream("/images/student.png"))));
-            imageView.setFitWidth(24);
-            imageView.setFitHeight(23);
-            setGraphic(imageView);
-        }
+        //Custom callbacks to modify basic data for photo
+        photo.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
+            @Override
+            public TableCell<Person, String> call(TableColumn<Person, String> param) {
+                return new TableCell<Person, String>() {
+                    public void updateItem(String path, boolean empty) {
+                        ImageView imageView = new ImageView();
+                        if (path == null || empty) {
+                            setGraphic(null);;
+                        } else {
+                            super.updateItem(path, empty);
+                            Image newImage = new Image(Objects.requireNonNull(this.getClass()
+                                    .getResourceAsStream(path)));
+                            imageView.setImage(newImage);
+                            imageView.setFitWidth(24);
+                            imageView.setFitHeight(23);
+                            setGraphic(imageView);
+                        }
+                    }
+                };
+            }
+        });
     }
 }

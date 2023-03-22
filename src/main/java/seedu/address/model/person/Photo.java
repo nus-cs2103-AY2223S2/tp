@@ -2,9 +2,6 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.URL;
-import javax.imageio.ImageIO;
-
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -34,14 +31,7 @@ public class Photo {
     public Photo(String photoFilePath) {
         requireNonNull(photoFilePath);
         GuiSettings guiSettings = new GuiSettings();
-
-        //If the url is not a valid image, set it to the default image found in GuiSettings
-        if (!isValidPhoto(photoFilePath)) {
-            this.photoFilePath = guiSettings.getPhoto();
-        } else {
-            this.photoFilePath = photoFilePath;
-        }
-
+        this.photoFilePath = photoFilePath;
         setDefaultDimensions(guiSettings);
     }
 
@@ -54,21 +44,6 @@ public class Photo {
         this.circleX = guiSettings.getCircleX();
         this.circleY = guiSettings.getCircleY();
         this.radius = guiSettings.getCircleRadius();
-    }
-
-    /**
-     * Checks if the url provided is a valid image.
-     * @param photoFilePath
-     * @return boolean value if whether url is valid
-     */
-    public static boolean isValidPhoto(String photoFilePath) {
-        try {
-            ImageIO.read(new URL(photoFilePath));
-        } catch (Exception e) {
-            //If URL is not valid, set it to a default image icon
-            return false;
-        }
-        return true;
     }
 
     public String getUrlPath() {

@@ -95,6 +95,7 @@ public class Person implements Comparable<Person> {
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
+     * Two person will not be compared by their photo id as this is a simple mock data
      */
     @Override
     public boolean equals(Object other) {
@@ -110,16 +111,20 @@ public class Person implements Comparable<Person> {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getPhoto().equals(getPhoto())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getPerformance().equals(getPerformance())
                 && otherPerson.getTags().equals(getTags());
     }
 
+    /**
+     * Excludes photo since the simple mock data of 15 photos is randomly assigned
+     * rather than actually stored in a database / backend
+     * @return hashcode
+     */
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, photo, performance, address, tags);
+        return Objects.hash(name, phone, email, performance, address, tags);
     }
 
     @Override

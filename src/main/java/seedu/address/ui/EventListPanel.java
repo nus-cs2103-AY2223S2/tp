@@ -1,13 +1,17 @@
 package seedu.address.ui;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Event;
@@ -28,6 +32,13 @@ public class EventListPanel extends UiPart<Region> {
     @FXML
     private ListView<Consultation> eventListViewRightCol;
 
+    @FXML
+    private ImageView tutorial;
+    @FXML
+    private ImageView lab;
+    @FXML
+    private ImageView consultation;
+
     /**
      * Creates a {@code EventListPanel} with the given {@code ObservableList}.
      */
@@ -42,6 +53,30 @@ public class EventListPanel extends UiPart<Region> {
 
         eventListViewRightCol.setItems((ObservableList<Consultation>) eventList.get(2));
         eventListViewRightCol.setCellFactory(listView -> new ConsultationListViewCell());
+
+        GuiSettings guiSettings = new GuiSettings();
+        int size = guiSettings.getEventIconSize();
+
+        //set tutorial icon
+        Image tutorialIcon = new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(guiSettings.getTutorialIcon())));
+        tutorial.setImage(tutorialIcon);
+        tutorial.setFitWidth(size);
+        tutorial.setFitHeight(size);
+
+        //set lab icon
+        Image labIcon = new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(guiSettings.getLabIcon())));
+        lab.setImage(labIcon);
+        lab.setFitWidth(size);
+        lab.setFitHeight(size);
+
+        //set consultation icon
+        Image consultationIcon = new Image(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream(guiSettings.getConsultationIcon())));
+        consultation.setImage(consultationIcon);
+        consultation.setFitWidth(size);
+        consultation.setFitHeight(size);
     }
 
     /**

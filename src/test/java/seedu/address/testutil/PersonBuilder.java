@@ -22,7 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_PHOTO = "https://picsum.photos/id/342/200/300";
+    public static final String DEFAULT_PHOTO = "/images/studentProfiles/student_9.png";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
     public static final String DEFAULT_PERFORMANCE = "1";

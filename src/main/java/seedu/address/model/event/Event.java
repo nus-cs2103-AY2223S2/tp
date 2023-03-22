@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Photo;
 
 /**
  * Represents an abstract event that tutorial, lab and consultation sessions will inherit from.
@@ -262,6 +264,14 @@ public abstract class Event {
             }
         }
         return validInteger;
+    }
+
+    public List<Photo> getStudentPhotos() {
+        return students.stream().map(Person::getPhoto).collect(Collectors.toList());
+    }
+
+    public List<String> getStudentProfiles() {
+        return getStudentPhotos().stream().map(Photo::getUrlPath).collect(Collectors.toList());
     }
 
 }
