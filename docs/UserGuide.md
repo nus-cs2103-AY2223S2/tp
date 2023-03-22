@@ -32,6 +32,7 @@ This user guide will help you get up to speed in no time!
     * [Delete an Event](#delete-an-event)
     * [Edit an Event](#edit-an-event)
     * [View Total Revenue](#view-total-revenue)
+    * [View upcoming events](#view-upcoming-events)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -111,13 +112,6 @@ Adding a contact to contacts
   - This command will create a new contact named `Tan Jun Wei` with phone number `82828234`.
 
 
-<!-- ### List all Contacts: `listcontact` <a id = "list-all-contacts"></a>
-
-Displays all contacts saved in a list
-
-**Format**: `listcontact` -->
-
-
 ### Link Contact to Event: `linkcontact` <a id = "link-contact-to-event"></a>
 
 Links client contact to an event.
@@ -151,21 +145,6 @@ Displays the rate tagged to an event.
   - This command will display the rate of the 2nd event in the event list.
 
 
-<!-- ### Tag Rate: `newrate` <a id = "tag-rate"></a>
-
-Tags a rate to an event.
-
-**Format**: `newrate INDEX AMOUNT`
-
-- Adds a specified rate, `AMOUNT`, to an event at the specified `INDEX`.
-
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
-
-**Example**:
-- `newrate 2 100` adds the rate of `100` to the `2nd event` in the event list. -->
-
-
 ### Mark Event as Done: `mark` <a id = "mark-event"></a>
 
 Marks a specified event in Paidlancers as done.
@@ -181,6 +160,7 @@ Marks a specified event in Paidlancers as done.
 - `mark 2`
   - This command will mark the 2nd event in the event list as done.
 
+
 ### Unmark an Event: `unmark` <a id = "unmark-event"></a>
 
 Unmarks a specified event in Paidlancers.
@@ -195,6 +175,7 @@ Unmarks a specified event in Paidlancers.
 - `unmark 2`
   - This command will unmark the 2nd event in the event list.
 
+
 ### Create new Event: `newevent` <a id = "create-new-event"></a>
 
 Creates a new event
@@ -206,6 +187,7 @@ Creates a new event
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
   - This command will create a new event named `DJ at wedding` with rate `100` at address `311, Clementi Ave 2, #02-25` from `11-03-2023 11:00` to `11-03-2023 17:00` with tags `friends` and `dj`.
+
 
 ### List all Events: `list` <a id = "list-all-events"></a>
 
@@ -230,6 +212,7 @@ Deletes the specified event from the event book.
 **Example**:
 - `delete 2`
   - This command will delete the 2nd event in the event list.
+
 
 ### Edit an Event: `edit` <a id = "edit-an-event"></a>
 
@@ -256,11 +239,35 @@ Edits the specified event from the event book.
 - `edit 1 n/Wedding Lunch`
   - This command will edit the name of the 1st event to be `Wedding Lunch`.
 
+
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
 Calculates and displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
+
+
+### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
+
+Displays events that start within a specified number of days.
+
+**Format**: `remind DAYS`
+
+- Displays events that start within the specified number of `DAYS`.
+  - `DAYS` must be a positive integer 1, 2, 3, …
+  - Only events that start after the current date and time will be displayed.
+  - The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
+
+**Example**:
+
+Assume the current date and time is 22-03-2023 11:00.
+
+- `remind 2`
+  - Events that start within 2 days will be displayed. These are events that start on:
+    * 22-03-2023 after 11:00
+    * 23-03-2023 the whole day
+    * 24-03-2023 the whole day
+  - Note that 24-03-2023 is within three days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
 ### Saving the data
 
@@ -287,7 +294,8 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
 |       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
 |       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
-| [View Total Revenue](#view-total-revenue) | `revenue` | `revenue` |
+| [View Total Revenue](#view-total-revenue)       |                  `revenue`               |                              `revenue`                               |
+| [View upcoming events](#view-upcoming-events)   |                 `remind DAYS`            |                              `remind 2`                             |
 
 [Back to top](#)
 
