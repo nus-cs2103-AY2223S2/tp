@@ -93,10 +93,11 @@ public class ParserUtil {
     public static IngredientBuilder parseIngredient(String ingredient) throws ParseException {
         requireNonNull(ingredient);
         String trimmedIngredient = ingredient.trim();
-        if (!IngredientBuilder.isValidIngredient(trimmedIngredient)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        try {
+            return new IngredientBuilder(trimmedIngredient);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(IngredientBuilder.MESSAGE_CONSTRAINTS);
         }
-        return new IngredientBuilder(trimmedIngredient);
     }
 
     /**

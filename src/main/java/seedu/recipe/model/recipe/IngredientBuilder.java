@@ -2,21 +2,27 @@ package seedu.recipe.model.recipe;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
+import static seedu.recipe.model.recipe.ingredient.IngredientParser.NAME_PREFIX;
+import static seedu.recipe.model.recipe.ingredient.IngredientParser.parse;
 
-import seedu.recipe.model.recipe.ingredient.IngredientParser;
+import java.util.HashMap;
+import java.util.List;
+
+import seedu.recipe.logic.parser.Prefix;
 
 /**
  * Represents a recipe's ingredient in the recipe book.
  * Guarantees: immutable; is valid as declared in {@link #isValidIngredient(String)}
  */
 public class IngredientBuilder {
-
     public static final String MESSAGE_CONSTRAINTS =
             "Ingredient contains alphanumeric characters and spaces, and it should not be blank";
     public static final String VALIDATION_REGEX =
             "^(([1-9][0-9]*|(([0-9]|[1-9][0-9]+)[./][0-9]+))([a-z.-]+)?|[A-Za-z().,/-]+)(\\s+[0-9A-Za-z().,+-/:;]+)*$";
 
     public final String name;
+
+    private final HashMap<Prefix, List<String >> arguments;
 
     /**
      * Constructs a {@code IngredientBuilder}.
@@ -25,16 +31,18 @@ public class IngredientBuilder {
      */
     public IngredientBuilder(String name) {
         requireNonNull(name);
-        checkArgument(isValidIngredient(name), MESSAGE_CONSTRAINTS);
-        IngredientParser.parse(name);
+        HashMap<Prefix, List<String>> tokens = parse(name);
+        checkArgument(tokens.containsKey(NAME_PREFIX), MESSAGE_CONSTRAINTS);
         this.name = name;
+        this.arguments = tokens;
     }
 
     /**
      * Returns true if a given string is a valid ingredient.
      */
     public static boolean isValidIngredient(String test) {
-        return test.matches(VALIDATION_REGEX);
+        HashMap<Prefix, List<String>> tokens = parse(test);
+        return tokens.containsKey(NAME_PREFIX);
     }
 
     @Override

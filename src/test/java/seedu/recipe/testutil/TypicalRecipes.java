@@ -1,5 +1,7 @@
 package seedu.recipe.testutil;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -21,15 +23,14 @@ public class TypicalRecipes {
     public static final Name CACIO_NAME = new Name("Cacio e Pepe");
     public static final RecipePortion CACIO_PORTION = RecipePortion.of("1 - 2 servings");
     public static final RecipeDuration CACIO_DURATION = RecipeDuration.of("15 minutes");
-    public static final Set<Tag> CACIO_TAGS = Set.of(new Tag("Italian"));
+    public static final Set<Tag> CACIO_TAGS = Set.of(new Tag("Fusion"), new Tag("Italian"));
     public static final List<IngredientBuilder> CACIO_INGREDIENTS = List.of(
             new IngredientBuilder("-n Kosher salt"),
-            new IngredientBuilder("-a 6 oz -n egg tagliolini -s bucatini, -s spaghetti"),
+            new IngredientBuilder("-a 6 oz -n egg tagliolini -s bucatini -s spaghetti"),
             new IngredientBuilder("-a 3 Tbsp -n unsalted butter -r cubed -r divided"),
             new IngredientBuilder("-a 1 tsp -n black pepper -r freshly cracked"),
             new IngredientBuilder("-a 3/4 cup -n Grana Padano -s Parmesan -r finely grated"),
-            new IngredientBuilder("-a 1/3 cup -n Pecorino -r finely grated")
-    );
+            new IngredientBuilder("-a 1/3 cup -n Pecorino -r finely grated"));
     public static final List<Step> CACIO_STEPS = List.of(
             new Step("Bring 3 quarts water to a boil in a 5-qt. pot. "
                     + "Season with salt; add pasta and cook, stirring occasionally, "
@@ -51,7 +52,9 @@ public class TypicalRecipes {
             CACIO_NAME, CACIO_PORTION, CACIO_DURATION, (
             (Supplier<String>) () -> {
                 StringBuilder out = new StringBuilder();
-                for (Tag tag : CACIO_TAGS) {
+                ArrayList<Tag> tags = new ArrayList<>(CACIO_TAGS);
+                tags.sort(Comparator.comparing(tag -> tag.tagName));
+                for (Tag tag : tags) {
                     out.append(tag.toString());
                 }
                 return out.toString();
@@ -86,16 +89,14 @@ public class TypicalRecipes {
             RecipePortion.of("2 - 3 servings"),
             RecipeDuration.of("35 minutes"),
             Set.of(new Tag("American"), new Tag("Breakfast")),
-            List.of(
-                    new IngredientBuilder("-a 200 g -n self-raising flour"),
+            List.of(new IngredientBuilder("-a 200 g -n self-raising flour"),
                     new IngredientBuilder("-a 1 tsp -n baking powder"),
                     new IngredientBuilder("-a 1 -n egg"),
                     new IngredientBuilder("-a 1 knob -n butter"),
-                    new IngredientBuilder("-a 150 g -n pack blueberry"),
+                    new IngredientBuilder("-a 150 g -n blueberries"),
                     new IngredientBuilder("-n golden syrup -s maple syrup"),
                     new IngredientBuilder("-n sunflower oil -s butter -r a little")),
-            List.of(
-                    new Step("Mix together 200 g self-raising flour, 1 tsp baking powder and a "
+            List.of(new Step("Mix together 200 g self-raising flour, 1 tsp baking powder and a "
                             + "pinch of salt in a large bowl."),
                     new Step("Beat 1 egg with 300ml milk, make a well in the centre of the dry ingredients "
                             + "and whisk in the milk to make a thick smooth batter."),
@@ -108,32 +109,32 @@ public class TypicalRecipes {
                     new Step("Cook for about 3 minutes over a medium heat until small bubbles appear on the "
                             + "surface of each pancake, then turn and cook another 2-3 minutes until golden."),
                     new Step("Cover with kitchen paper to keep warm while you use up the rest of the batter."),
-                    new Step("Serve with golden or maple syrup and the rest of the blueberries.")
-            )).build();
+                    new Step("Serve with golden or maple syrup and the rest of the blueberries."))).build();
+
     public static final Recipe MASALA_DOSA = new RecipeBuilder(
             new Name("Classic Masala Dosa"),
             RecipePortion.of("8 to 10 servings"),
             RecipeDuration.of("1 hour"),
             Set.of(new Tag("Indian")),
             List.of(new IngredientBuilder("-a 2 cups -n short-grain rice"),
-                    new IngredientBuilder("-a 0.5 cup -n urad dal -aka split husked black lentils"),
+                    new IngredientBuilder("-a 0.5 cup -n urad dal -cn split husked black lentils"),
                     new IngredientBuilder("-a 1 teaspoon -n fenugreek seeds"),
                     new IngredientBuilder("-a 0.5 teaspoon -n salt"),
-                    new IngredientBuilder("-a Vegetable oil -r for frying"),
-                    new IngredientBuilder("-a 3 tablespoons ghee -s vegetable oil"),
+                    new IngredientBuilder("-n Vegetable oil -r for frying"),
+                    new IngredientBuilder("-a 3 tablespoons -n ghee -s vegetable oil"),
                     new IngredientBuilder("-a 1 teaspoon -n mustard seeds"),
                     new IngredientBuilder("-a 0.5 teaspoon -n cumin seeds"),
-                    new IngredientBuilder("-a 2 small dried -n hot red peppers"),
-                    new IngredientBuilder("-a 1 -n medium onion -r diced"),
+                    new IngredientBuilder("-a 2 -n red peppers -r small -r dried -r hot"),
+                    new IngredientBuilder("-a 1 -n onion -r medium -r diced"),
                     new IngredientBuilder("-a 0.5 teaspoon -n salt"),
                     new IngredientBuilder("-a 0.5 teaspoon -n turmeric"),
-                    new IngredientBuilder("-a Pinch of -n asafetida"),
+                    new IngredientBuilder("-a a pinch -n asafetida"),
                     new IngredientBuilder("-a 1 tablespoon -n ginger -r grated"),
                     new IngredientBuilder("-a 6 to 8 -n curry leaves"),
                     new IngredientBuilder("-a 4 -n garlic cloves -r minced"),
-                    new IngredientBuilder("-a 2 -n small green chilli, -r finely chopped"),
-                    new IngredientBuilder("-a 1.5 pounds -n potatoes, "
-                            + "-aka Yukon Gold, -r yellow-fleshed -r boiled -r peeled -r cubed"),
+                    new IngredientBuilder("-a 2 -n small green chilli -r finely chopped"),
+                    new IngredientBuilder("-a 1.5 pounds -n Yukon Gold potatoes "
+                            + "-s yellow-fleshed potatoes -r boiled -r peeled -r cubed"),
                     new IngredientBuilder("-a 0.5 cup -n cilantro -r leaves -r tender stems -r roughly chopped")),
             List.of(
                     new Step("Make the dosa batter: Put rice in a bowl, rinse well and cover with "
@@ -164,13 +165,10 @@ public class TypicalRecipes {
                             + "Brush with about 1 teaspoon vegetable oil. Ladle 1/4 cup batter in the center "
                             + "of griddle. Using bottom of ladle, quickly spread batter outward in a "
                             + "circular motion to a diameter of about 7 inches. Drizzle 0.5 teaspoon oil "
-                            + "over the top."
-                            + " Leave dosa batter to brown gradually until outer edges begin to look dry, "
+                            + "over the top. Leave dosa batter to brown gradually until outer edges begin to look dry, "
                             + "about 2 minutes, cooking on one side only. With a spatula, carefully loosen "
-                            + "dosa "
-                            + "from griddle. Bottom should be crisp and beautifully browned. Spoon 0.5 cup "
-                            + "potato "
-                            + "filling onto top of dosa, centering it as a"
+                            + "dosa from griddle. Bottom should be crisp and beautifully browned. Spoon 0.5 cup "
+                            + "potato filling onto top of dosa, centering it as a"
                             + " strip in the middle of the round dosa. Flatten the potato mixture slightly. "
                             + "Using the spatula, fold the sides of the dosa around the filling to make a "
                             + "cylindrical shape. Serve immediately. Continue making dosas one at a time."))).build();
@@ -180,17 +178,15 @@ public class TypicalRecipes {
             RecipePortion.of("1 portion"),
             RecipeDuration.of("4 min"),
             Set.of(new Tag("English"), new Tag("Comfort food")),
-            List.of(new IngredientBuilder("-a 2 thick slices of -n white bread"),
-                    new IngredientBuilder("-a wedge (about 85g/3oz) -n camembert -s brie"),
+            List.of(new IngredientBuilder("-a 2 thick slices -n white bread"),
+                    new IngredientBuilder("-a wedge -e 85g/3oz -n camembert -s brie"),
                     new IngredientBuilder("-a a spoonful -n cranberry sauce"),
-                    new IngredientBuilder("-a a few drops of -n balsamic vinegar"),
-                    new IngredientBuilder("-n butter")
-            ),
+                    new IngredientBuilder("-a few drops -n balsamic vinegar"),
+                    new IngredientBuilder("-n butter")),
             List.of(
                     new Step("Butter the bread. Put a wedge of camembert or brie on the unbuttered side of "
                             + "one slice of bread. Top with a spoonful of cranberry sauce. Drizzle with a "
-                            + "few drops "
-                            + "of balsamic vinegar, if you have some."),
+                            + "few drops of balsamic vinegar, if you have some."),
                     new Step("Put the second slice of bread on top, buttered side out. Fry in a hot non-stick "
                             + "pan, pressing down with a fish slice, for a minute or two on each side, until "
                             + "golden brown and melting. Cut in half and eat straightaway."))).build();
@@ -201,10 +197,10 @@ public class TypicalRecipes {
             RecipeDuration.of("10 minutes"),
             Set.of(new Tag("English"), new Tag("Comfort food")),
             List.of(new IngredientBuilder("-a 120 Grams -n Self Rising Flour -r +additional to coat"),
-                    new IngredientBuilder("-a 175 Grams -n Cod -r or any White Fleshed Fish"),
+                    new IngredientBuilder("-a 175 Grams -n Cod -s White Fleshed Fish"),
                     new IngredientBuilder("-a 1 Medium -n Egg White"),
-                    new IngredientBuilder("-a 160 ML (0.5 cup or little under half a bottle) -n Light Beer -s Lager"),
-                    new IngredientBuilder("-a 1 Large Waxy Potato, Peeled"),
+                    new IngredientBuilder("-a 160 ML -e 0.5 cup -e little under half a bottle -n Light Beer -s Lager"),
+                    new IngredientBuilder("-a 1 -n Potato -r Large -r Waxy -r Peeled"),
                     new IngredientBuilder("-n Sunflower Oil"),
                     new IngredientBuilder("-n Salt"),
                     new IngredientBuilder("-a 1 Teaspoon -n Curry Powder -r used twice"),
@@ -220,29 +216,21 @@ public class TypicalRecipes {
                             + "Do not need a deep pan or pot, a large pan will do"),
                     new Step("In a bowl whisk together flour, baking soda, curry powder and beer. Then whisk "
                             + "egg whites till there are stiff peaks and fold into batter (if too heavy add "
-                            + "some "
-                            +
-                            "water)"),
+                            + "some water)"),
                     new Step("Add teaspoon of curry powder to dredging flour for more seasoning (optional)"),
                     new Step("Season fish with salt, then coat with flour. Knock off excess flour and put into "
                             + "batter mixture. Make sure fish is fully battered and ad to oil"),
                     new Step("Once fish is in, baste the fish with oil. Let first side cook until golden "
                             + "brown and flip. Basting fish with oil on other side. Take pan on and off oil "
-                            + "so that "
-                            + "the oil does not get too hot. Fish should be in oil 3-3.5 minutes. Once "
-                            + "finished "
-                            + "put on plate with paper towel and put in warm oven"),
+                            + "so that the oil does not get too hot. Fish should be in oil 3-3.5 minutes. "
+                            + "Once finished put on plate with paper towel and put in warm oven"),
                     new Step("Chop potato into square, then chop into tall skinny fries (the skinnier the fry "
                             + "the quicker they will cook). Then roll in paper towel to dry any excess "
-                            + "moisture."
-                            + " Add new oil to pain then add potatoes to high heat. Once fries are browned, "
-                            + "remove "
-                            + "from oil on to paper towel and add salt."),
+                            + "moisture. Add new oil to pain then add potatoes to high heat. Once fries are browned, "
+                            + "remove from oil on to paper towel and add salt."),
                     new Step("Add all Tartar ingredients together and mix. Add salt to taste and hot sauce "
                             + "if you want heat."),
                     new Step("Assemble together and enjoy!"))).build();
-    // Manually added - Recipe's details found in {@code CommandTestUtil}
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalRecipes() {
     } // prevents instantiation
@@ -265,6 +253,6 @@ public class TypicalRecipes {
                 FISH_AND_CHIPS,
                 GRILLED_CHEESE,
                 MASALA_DOSA
-                      );
+        );
     }
 }

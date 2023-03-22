@@ -4,6 +4,7 @@ import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
@@ -164,6 +165,8 @@ public class Recipe {
 
         if (!tags.isEmpty()) {
             builder.append(";\nTags: ");
+            ArrayList<Tag> tags = new ArrayList<>(this.tags);
+            tags.sort(Comparator.comparing(t -> t.tagName));
             tags.forEach(builder::append);
         }
 

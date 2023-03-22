@@ -160,8 +160,10 @@ public class RecipeTest {
     @Test
     public void setIngredients() {
         List<IngredientBuilder> newIngredientList = new ArrayList<>(CACIO_INGREDIENTS);
-        IngredientBuilder[] ingredientsToAdd = new IngredientBuilder[]{new IngredientBuilder("IngredientBuilder one"),
-            new IngredientBuilder("IngredientBuilder two")};
+        IngredientBuilder[] ingredientsToAdd = new IngredientBuilder[]{
+            new IngredientBuilder("-n IngredientBuilder one"),
+            new IngredientBuilder("-n IngredientBuilder two")
+        };
         Recipe test = new RecipeBuilder(CACIO_E_PEPE).build();
         test.setIngredients(ingredientsToAdd);
         newIngredientList.addAll(List.of(ingredientsToAdd));

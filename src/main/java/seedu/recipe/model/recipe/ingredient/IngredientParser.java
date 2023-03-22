@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import seedu.recipe.logic.parser.Prefix;
@@ -28,26 +29,11 @@ public class IngredientParser {
      *
      * @param args The raw IngredientBuilder instance.
      */
-    public static void parse(String args) {
+    public static HashMap<Prefix, List<String>> parse(String args) {
         List<PrefixPosition> positions = findAllPositions(args,
                 AMOUNT_PREFIX, COMMON_NAME_PREFIX,
                 ESTIMATE_PREFIX, NAME_PREFIX, REMARK_PREFIX, SUBSTITUTION_PREFIX);
-        positions.sort(Comparator.comparingInt(p -> p.startPos));
-        HashMap<Prefix, List<String>> out = new HashMap<>();
-        positions.add(new PrefixPosition(new Prefix(""), args.length()));
-        for (int i = 0; i < positions.size() - 1; i++) {
-            PrefixPosition p = positions.get(i);
-            String arg = args.substring(p.startPos + p.getPrefix().getPrefix().length() + 1,
-                    positions.get(i + 1).startPos).trim();
-            if (!out.containsKey(p.getPrefix())) {
-                List<String> argList = List.of(arg);
-                out.put(p.getPrefix(), argList);
-            } else {
-                List<String> argList = new ArrayList<>(out.get(p.getPrefix()));
-                argList.add(arg);
-                out.replace(p.getPrefix(), argList);
-            }
-        }
+        return extractAllArguments(args, positions);
     }
 
     private static List<PrefixPosition> findAllPositions(String args, Prefix... prefixes) {
@@ -67,20 +53,44 @@ public class IngredientParser {
         return positions;
     }
 
+    private static HashMap<Prefix, List<String>> extractAllArguments(String args, List<PrefixPosition> positions) {
+        HashMap<Prefix, List<String>> out = new HashMap<>();
+
+        //Sort positions
+        positions.sort(Comparator.comparingInt(p -> p.startPos));
+
+        //Add dummy flag to end of list
+        positions.add(new PrefixPosition(new Prefix(""), args.length()));
+
+        Function<PrefixPosition, Integer> getEndPosition = p -> p.prefix.getPrefix().length();
+
+        //Iterate and extract
+        for (int i = 0; i < positions.size() - 1; i++) {
+            PrefixPosition p = positions.get(i);
+            String arg = args.substring(
+                    p.startPos + getEndPosition.apply(p) + 1, //start
+                    positions.get(i + 1).startPos //end - next prefix's start
+            ).trim();
+
+            //Set or add if list exists
+            if (!out.containsKey(p.prefix)) { //Set
+                List<String> argList = List.of(arg);
+                out.put(p.prefix, argList);
+            } else { //Add to existing list
+                List<String> argList = new ArrayList<>(out.get(p.prefix));
+                argList.add(arg);
+                out.replace(p.prefix, argList);
+            }
+        }
+        return out;
+    }
+
     private static class PrefixPosition {
         private final Prefix prefix;
         private final int startPos;
         PrefixPosition(Prefix prefix, int startPos) {
             this.prefix = prefix;
             this.startPos = startPos;
-        }
-
-        int getStartPosition() {
-            return startPos;
-        }
-
-        Prefix getPrefix() {
-            return prefix;
         }
 
         @Override

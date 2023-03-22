@@ -9,15 +9,15 @@ import static seedu.recipe.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class IngredientBuilderTest {
-    private static final String VALID_INTEGER = "1 watermelon";
-    private static final String VALID_DECIMAL = "13.5 g molasses extract";
-    private static final String VALID_INTEGER_CONCAT_UNIT = "300g rice, washed";
-    private static final String VALID_DECIMAL_CONCAT_UNIT = "10.35oz. powder (can be substituted with flour)";
-    private static final String VALID_ALPHA = "butter";
+    private static final String VALID_INTEGER = "-a 1 -n watermelon";
+    private static final String VALID_DECIMAL = "-a 13.5 g -n molasses extract";
+    private static final String VALID_INTEGER_CONCAT_UNIT = "-a 300g -n rice -r washed";
+    private static final String VALID_DECIMAL_CONCAT_UNIT = "-a 10.35oz. -n powder -s flour";
+    private static final String VALID_ALPHA = "-n butter";
     private static final String TRAILING_WHITESPACE = "watermelon juice ";
     private static final String WHITESPACE = "  ";
-    private static final String LEADING_WHITESPACE = " juice of 1 carrot";
-    private static final String SLASH_UNIT = "1/3 cup milk";
+    private static final String LEADING_WHITESPACE = " juice of 1 carrot ";
+    private static final String SLASH_UNIT = "-a 1/3 cup -n milk";
 
     @Test
     public void null_name() {

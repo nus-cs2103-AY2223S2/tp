@@ -36,8 +36,8 @@ public class ParserUtilTest {
     private static final String VALID_DURATION = "1 hour";
     private static final String VALID_TAG_1 = "favourites";
     private static final String VALID_TAG_2 = "italian";
-    private static final String VALID_INGREDIENT_1 = "1 pound lasagna noodles";
-    private static final String VALID_INGREDIENT_2 = "1 teaspoon salt";
+    private static final String VALID_INGREDIENT_1 = "-a 1 pound -n lasagna sheets";
+    private static final String VALID_INGREDIENT_2 = "-a 1 teaspoon -n salt";
     private static final String VALID_STEP_1 =
             "Cook the lasagna noodles according to the package instructions. Drain and set aside.";
     private static final String VALID_STEP_2 =
