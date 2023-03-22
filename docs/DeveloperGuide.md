@@ -168,6 +168,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort feature
+
+#### About this feature
+The sort feature allows users to categorise their modules in ModTrek via the command `sort <flag>`.
+The flag parameter indicates which category to sort by. 
+
+The available categories are:
+- Semester Year (Default)
+- Module Code Prefix
+- Grade
+- Tags
+- Credits
+
+#### How it is implemented
+User input command -> Get flag with ArgumentMultimap#preamble -> based on the flag, sort the list of
+modules into a treemap where the keys are the valid flag values and the values are list of sorted modules
+-> Send to GUI to display sorted modules
+
+#### Parsing user input
+1. The user input `sort` command
+2. The `ModTrekParser` processes the input and creates a new `SortCommandParser`
+3. The `SortCommandParser` calls the `ArgumentMultimap#preamble()` to retrieve the flag. 
+If the flag is missing, a `ParseException` will be thrown.
+4. The `SortCommandParser` will check if the flag is valid. If it is invalid, a `ParseException` will be thrown.
+5. The `SortCommandParser` then creates a `SortCommand` determined by the flag.
+
+#### Command execution
+1. The `LogicManager` executes the `SortCommand`.
+2. The `SortCommand` calls `Model#sortMap(CliSyntax flag)` to update the internal state of the map in the model to
+sort by the corresponding category.
+
+#### Displaying of result
+1. The `SortCommand` creates a `CommandResult` with a success message and boolean to indicate which of the GUI screen
+to switch to.
+
+The following sequence diagram shows how `SortCommand` works during execution:
+<!--Diagram here-->
+
+The following activity diagram shows the logic flow as the user inputs the `sort` command:
+<!--Diagram here-->
+
+#### Design considerations
+*Aspect: Command to sort the modules*
+
+As the user adds more modules, he/she might find it more useful to look at the list of modules in different categories.
+However, the more useful categorising, in terms of progression, will be by the Semester Year. Therefore, at startup, 
+the module list will be categorised by Semester Year, but this command is implemented to give the user flexibility in their module viewing.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
