@@ -37,7 +37,8 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validRecipe).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRecipe), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRecipe.getTitle()),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validRecipe), modelStub.recipesAdded);
     }
 
