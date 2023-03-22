@@ -53,7 +53,7 @@ public class Student extends Person {
      * @param age Student's age.
      * @param image Student's image.
      * @param email Student's email address.
-     * @param studentNumber Student's contact number.
+     * @param phone Student's contact number.
      * @param cca Student's CCA.
      * @param address Student's residential address.
      * @param attendance Student's attendance.

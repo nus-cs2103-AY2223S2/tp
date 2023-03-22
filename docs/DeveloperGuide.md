@@ -250,7 +250,58 @@ We want to make it easy for the user to set tests without inputting all the deta
     * Pros: Use less memory
     * Cons: Hard to access and manipulate attendance data
     * Cons: Hard to read and write to storage
-    * Cons: Hard to add more features if more features are added 
+    * Cons: Hard to add more features if more features are added
+<br></br>
+### Parent / NOK Edit feature
+
+#### Current Implementation
+The edit feature for parent / NOK is facilitated by `edit`.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+<br></br>
+
+Step 1. User launches the application for the first time. <br></br>
+Step 2. User creates a new `Parent` using **Parent Add Command** or automatically creates a new `Parent` while using **Student Add Command**. <br></br>
+Step 3. During creation of `Parent`, <br></br>
+User encountered one of the two scenarios and require to edit the `Parent`:
+1. Did not include certain particulars of the `Parent`.
+2. Keyed in wrong particulars for the `Parent`.
+
+Step 4. User wants to amend the details of the `Parent` and hence executes the `edit` command with the `Name` of `Parent`, `Phone Number` of Parent and the `Particulars` that need to be edited.
+(Example of Parent Edit Command can be found in UserGuide) <br></br>
+Step 5. Edited `Parent` is saved to the storage file automatically after the command.
+
+**Full implementation sequence diagram**
+![Sequence Diagram](images/ParentEditCmd(Full Sequence Diagram).jpg)
+**Partial Sequence Diagram 1**
+![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT1).jpg)
+**Partial Sequence Diagram 2**
+![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT2).jpg)
+**Partial Sequence Diagram 3**
+![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT3).jpg)
+**Partial Sequence Diagram 4**
+![Sequence Diagram](images/ParentEditCmd(Sequence Diagram PT4).jpg)
+
+### Design considerations
+We want to make it easy for the user to edit `Parent / NOK` particulars without manually deleting the `Parent` and creating a new `Parent` and reassigning each `Student` attached to original `Parent` with the new `Parent`. 
+<br></br>
+We also do not want to trouble the user with inputting multiple **PREFIXES** to edit parent / NOK. Hence, user will only need to input **ESSENTIAL PREFIXES and information** for these: 
+1. Parent's / NOK's `Name` 
+2. Parent's / NOK's `Phone Number`
+3. Particulars that are being amended
+
+#### Aspect: How Parent Edit executes
+* **Alternative 1 (current choice):** Run the command with `parent edit n/<NAME> pnP/<PARENT_PHONE_NUMBER>` + PREFIXES and details of information that are being changed
+    * Pro: Easy to use
+    * Pro: Minimal input by user to edit `Parent / NOK` particulars
+    * Con: Slightly harder than Alternative 2 to implement
+    * Con: Need to test the **Parent Edit Command** exhaustively to ensure when creating the new `Parent`, system takes input from original `Parent` if there is no edit.
+* **Alternative 2:** User provides all updated particulars of the `Parent` to be edited. From these details, system will create a new `Parent` and replace the original copy of `Parent`.
+    * Pro: Easy to implement
+    * Pro: Makes use of existing features **Parent Add** and **Parent Delete**
+    * Con: Troublesome for the user as there is a need to input **ALL** particulars of a `Parent` even if he/she is just amending one particular of the `Parent`.
+    * Con: It may cause regressions, user may key in wrong details for some of the `Parent` particulars as he/she is keying in the command.
+    * Con: It is no longer **FAST** and **EASY** for the user to use.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -595,6 +646,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Attributes**: Information of a student / parent. <br> For example, name, phone number, email address etc <br><br>
 **CLI**: Command Line Interface <br><br>
 **Mainstream OS**: Windows, Linux, Unix, OS-X <br><br>
+**NOK**: Refers to Next-of-Kin, that could be a family member of a student or a guardian of a student.
 
 *{More to be added}*
 

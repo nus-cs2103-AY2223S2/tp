@@ -18,6 +18,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
        1. [Add parent/Next-of-Kin: `add`](#addparent)
        2. [Listing all parents/Next-of-Kins: `list`](#listparent)
        3. [Editing a parent/Next-of-Kin particulars: `edit`](#editparent)
+       4. [Deleting a parent/Next-of-Kin: `delete`](#deleteparent)
 3. [Viewing help: `help`](#help)
 4. [Exiting program: `exit`](#exit)
 5. [FAQ](#faq)
@@ -318,6 +319,8 @@ Examples:
 * `parent list` <br>
   Sample output: <parent name> <parent phone number> <parent email>
 * `parent list` <br><br>
+
+<a name = "editparent" />
 
 ### Edit Parent:  `edit`
 
