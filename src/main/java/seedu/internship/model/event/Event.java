@@ -13,7 +13,6 @@ public class Event  {
     private final End end;
     private final Description description;
     private Internship internship;
-    public final static Event EMPTY_EVENT = new Event(new Name("Empty"), new Start("Empty"), new End("Empty"), new Description("Empty"),Internship.EMPTY_INTERNSHIP);
 
     /**
      * Every Field must be present and not null.
@@ -44,7 +43,6 @@ public class Event  {
         if (this.internship == null) {
             this.internship = intern;
         }
-
     }
 
     public Name getName() {
@@ -102,9 +100,7 @@ public class Event  {
         }
 
         Event otherEvent = (Event) other;
-        if (this == EMPTY_EVENT || otherEvent == EMPTY_EVENT) {
-            return false;
-        }
+
         return otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
                 && otherEvent.getInternship().equals(getInternship())
