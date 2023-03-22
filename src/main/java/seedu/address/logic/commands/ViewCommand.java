@@ -11,22 +11,22 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 
 /**
- * Deletes an internship identified using it's displayed index from InternBuddy.
+ * Views an internship identified using it's displayed index from InternBuddy.
  */
-public class DeleteCommand extends Command {
+public class ViewCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the internship identified by the index number used in the displayed internship list.\n"
+            + ": Views the internship identified by the index number used in the displayed internship list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "Deleted Internship: %1$s";
+    public static final String MESSAGE_VIEW_INTERNSHIP_SUCCESS = "Viewed Internship: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public ViewCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -35,24 +35,23 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
 
+        //Checks for a valid index
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
-        Internship internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
-        //Delete internship
-        model.deleteInternship(internshipToDelete);
-        //Update right panel
-        if (internshipToDelete.equals(model.getSelectedInternship())) {
-            model.updateSelectedInternship(null);
-        }
-        return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete));
+        //Gets the internship to view
+        Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
+
+        //Functionality of the view internship command
+        model.updateSelectedInternship(internshipToView);
+        return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
     }
 }

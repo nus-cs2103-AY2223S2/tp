@@ -47,4 +47,12 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets the selected internship.
+     *
+     * @return the currently selected Internship
+     */
+    Internship getSelectedInternship();
+
 }

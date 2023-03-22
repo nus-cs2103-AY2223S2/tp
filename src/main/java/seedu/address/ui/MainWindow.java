@@ -4,11 +4,15 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -16,6 +20,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.internship.Internship;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private InternshipListPanel internshipListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private InternshipDetailsCard internshipDetailsCard;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -45,10 +51,21 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane internshipListPanelPlaceholder;
 
     @FXML
+    private StackPane internshipDetailsPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private ScrollPane rightPanel;
+    @FXML
+    private Text introOne;
+    @FXML
+    private Text introTwo;
+    @FXML
+    private ImageView introThree;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -147,6 +165,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+
+
     void show() {
         primaryStage.show();
     }
@@ -163,10 +183,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public InternshipListPanel getInternshipListPanel() {
-        return internshipListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -177,6 +193,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateRightPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -193,4 +210,27 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+    /**
+     * Updates the right panel whenever user calls a valid view command
+     */
+    private void updateRightPanel() {
+        Internship selectedInternship = logic.getSelectedInternship();
+        if (selectedInternship != null) {
+            //Update with internship information
+            internshipDetailsCard = new InternshipDetailsCard(selectedInternship, primaryStage.getScene());
+            internshipDetailsPanelPlaceholder.getChildren().clear();
+            internshipDetailsPanelPlaceholder.getChildren().add(internshipDetailsCard.getRoot());
+            internshipDetailsPanelPlaceholder.setAlignment(Pos.TOP_CENTER);
+        } else {
+            //Reset to original introduction information
+            internshipDetailsPanelPlaceholder.getChildren().clear();
+            internshipDetailsPanelPlaceholder.getChildren().add(introOne);
+            internshipDetailsPanelPlaceholder.getChildren().add(introTwo);
+            internshipDetailsPanelPlaceholder.getChildren().add(introThree);
+            internshipDetailsPanelPlaceholder.setAlignment(Pos.CENTER);
+        }
+    }
+
+
 }

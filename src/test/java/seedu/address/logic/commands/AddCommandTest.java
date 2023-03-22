@@ -120,6 +120,13 @@ public class AddCommandTest {
         }
 
         @Override
+        public void viewInternship(Internship target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+
+        @Override
         public ReadOnlyInternBuddy getInternBuddy() {
             throw new AssertionError("This method should not be called.");
         }
@@ -147,6 +154,17 @@ public class AddCommandTest {
         @Override
         public void updateFilteredInternshipList(Predicate<Internship> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Internship getSelectedInternship() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSelectedInternship(Internship target) {
+            //This will be called to update the right panel
+            assert(true);
         }
     }
 

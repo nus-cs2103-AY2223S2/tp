@@ -3,6 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.COMMENT_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_NAME_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.ROLE_DESC_APPLE;
@@ -80,7 +81,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + COMPANY_NAME_DESC_APPLE + ROLE_DESC_APPLE
-                + STATUS_DESC_APPLE + DATE_DESC_APPLE;
+                + STATUS_DESC_APPLE + DATE_DESC_APPLE + COMMENT_DESC_APPLE;
         Internship expectedInternship = new InternshipBuilder(APPLE).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
@@ -91,6 +92,17 @@ public class LogicManagerTest {
     @Test
     public void getFilteredInternshipList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredInternshipList().remove(0));
+    }
+
+    @Test
+    public void getInitialSelectedInternship_equalsNull_success() {
+        assertEquals(logic.getSelectedInternship(), null);
+    }
+
+    @Test
+    public void getNewSelectedInternship_equals_success() {
+        model.updateSelectedInternship(APPLE);
+        assertEquals(logic.getSelectedInternship(), APPLE);
     }
 
     /**

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Internship's company name in InternBuddy
+ * Represents an Internship's company name in InternBuddy.
  * Guarantees: immutable; is valid as declared in {@link #isValidCompanyName(String)}
  */
 public class CompanyName {

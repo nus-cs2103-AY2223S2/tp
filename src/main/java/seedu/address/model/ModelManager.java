@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final InternBuddy internBuddy;
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
+    private Internship selectedInternship;
 
     /**
      * Initializes a ModelManager with the given internBuddy and userPrefs.
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         this.internBuddy = new InternBuddy(internBuddy);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredInternships = new FilteredList<>(this.internBuddy.getInternshipList());
+        selectedInternship = null;
     }
 
     public ModelManager() {
@@ -99,6 +101,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void viewInternship(Internship target) {
+        internBuddy.viewInternship(target);
+    }
+
+    @Override
     public void addInternship(Internship internship) {
         internBuddy.addInternship(internship);
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
@@ -140,11 +147,25 @@ public class ModelManager implements Model {
             return false;
         }
 
+
         // state check
         ModelManager other = (ModelManager) obj;
         return internBuddy.equals(other.internBuddy)
                 && userPrefs.equals(other.userPrefs)
                 && filteredInternships.equals(other.filteredInternships);
     }
+
+    //=========== Selected internship =============================================================
+
+    @Override
+    public Internship getSelectedInternship() {
+        return this.selectedInternship;
+    }
+
+    @Override
+    public void updateSelectedInternship(Internship target) {
+        this.selectedInternship = target;
+    }
+
 
 }
