@@ -5,13 +5,19 @@
     "progress" : "94351253",
     "genre": "alice@example.com",
     "author": "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ {
+      "tag": "friends"
+    }]
   }, {
     "title": "Benson Meier",
     "progress" : "98765432",
     "genre": "johnd@example.com",
     "author": "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ {
+      "tag": "owesMoney"
+    }, {
+      "tag": "friends"
+    }]
   }, {
     "title": "Carl Kurz",
     "progress" : "95352563",
@@ -23,7 +29,9 @@
     "progress" : "87652533",
     "genre": "cornelia@example.com",
     "author": "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ {
+      "tag": "friends"
+    } ]
   }, {
     "title": "Elle Meyer",
     "progress" : "9482224",

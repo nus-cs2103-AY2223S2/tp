@@ -15,6 +15,7 @@ import seedu.library.commons.core.Messages;
 import seedu.library.commons.core.index.Index;
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.Bookmark;
 
@@ -24,7 +25,7 @@ import seedu.library.model.bookmark.Bookmark;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_BOOKMARK_SUCCESS, bookmarkToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getLibrary(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getLibrary(), new UserPrefs(), new Tags());
         expectedModel.deleteBookmark(bookmarkToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_BOOKMARK_SUCCESS, bookmarkToDelete);
 
-        Model expectedModel = new ModelManager(model.getLibrary(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getLibrary(), new UserPrefs(), new Tags());
         expectedModel.deleteBookmark(bookmarkToDelete);
         showNoBookmark(expectedModel);
 

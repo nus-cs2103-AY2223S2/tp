@@ -35,15 +35,28 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New bookmark added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOKMARK = "This bookmark already exists in the library";
+    public static final String MESSAGE_ERROR_TAG = "Tag not in tag list.";
 
     private final Bookmark toAdd;
+    private final boolean hasTags;
 
     /**
      * Creates an AddCommand to add the specified {@code Bookmark}
      */
-    public AddCommand(Bookmark bookmark) {
+    public AddCommand(Bookmark bookmark, boolean hasTags) {
         requireNonNull(bookmark);
         toAdd = bookmark;
+        this.hasTags = hasTags;
+    }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Bookmark}
+     * with default value false for hasTags
+     */
+    public AddCommand(Bookmark bookmark) {
+        requireNonNull(bookmark);
+        this.toAdd = bookmark;
+        this.hasTags = false;
     }
 
     @Override
@@ -52,6 +65,10 @@ public class AddCommand extends Command {
 
         if (model.hasBookmark(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKMARK);
+        }
+
+        if (hasTags && !model.hasTag(toAdd.getTags())) {
+            throw new CommandException(MESSAGE_ERROR_TAG);
         }
 
         model.addBookmark(toAdd);

@@ -54,11 +54,6 @@ public class TitleContainsKeywordsPredicateTest {
                 Arrays.asList("Alice", "Bob"), null, null, null);
         assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
-        // Only one matching keyword
-        predicate = new TitleContainsKeywordsPredicate(
-                Arrays.asList("Bob", "Carol"), null, null, null);
-        assertTrue(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
-
         // Mixed-case keywords
         predicate = new TitleContainsKeywordsPredicate(
                 Arrays.asList("aLIce", "bOB"), null, null, null);
@@ -67,20 +62,14 @@ public class TitleContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        TitleContainsKeywordsPredicate predicate =
-                new TitleContainsKeywordsPredicate(Collections.emptyList(), null, null, null);
-        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").build()));
-
         // Non-matching keyword
-        predicate =
+        TitleContainsKeywordsPredicate predicate =
                 new TitleContainsKeywordsPredicate(Arrays.asList("Carol"), null, null, null);
         assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Bob").build()));
 
-        // Keywords match progress, email and address, but does not match name
+        // Only one matching keyword
         predicate = new TitleContainsKeywordsPredicate(
-                Arrays.asList("12345", "alice@email.com", "Main", "Street"), null, null, null);
-        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice").withProgress("12345")
-                .withGenre("alice@email.com").withAuthor("Main Street").build()));
+                Arrays.asList("Bob", "Carol"), null, null, null);
+        assertFalse(predicate.test(new BookmarkBuilder().withTitle("Alice Carol").build()));
     }
 }

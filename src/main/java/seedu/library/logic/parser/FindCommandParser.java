@@ -3,7 +3,6 @@ package seedu.library.logic.parser;
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -33,8 +32,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR,
-                        PREFIX_PROGRESS, PREFIX_GENRE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_AUTHOR, PREFIX_GENRE, PREFIX_TAG);
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TAG, PREFIX_GENRE, PREFIX_AUTHOR)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -75,7 +73,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         return argumentMultimap.getValue(prefix).isPresent();
     }
 
-    private static List<String> parseTitle(ArgumentMultimap argMultimap) throws ParseException{
+    private static List<String> parseTitle(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_TITLE).get().equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EMPTY_KEYWORD));
         }
@@ -83,7 +81,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 argMultimap.getValue(PREFIX_TITLE).get().trim().split("\\s+"));
     }
 
-    private static List<String> parseGenre(ArgumentMultimap argMultimap) throws ParseException{
+    private static List<String> parseGenre(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_GENRE).get().equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EMPTY_KEYWORD));
         }
@@ -95,19 +93,19 @@ public class FindCommandParser implements Parser<FindCommand> {
         return genreKeywords;
     }
 
-    private static List<String> parseTag(ArgumentMultimap argMultimap) throws ParseException{
+    private static List<String> parseTag(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_TAG).get().equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EMPTY_KEYWORD));
         }
         List<String> tagKeywords = Arrays.asList(
                 argMultimap.getValue(PREFIX_TAG).get().trim().split("\\s+"));
-        if (tagKeywords.stream().anyMatch(keyword -> Tag.isValidTagName(keyword))) {
+        if (tagKeywords.stream().anyMatch(keyword -> Tag.isValidTagName("[" + keyword + "]"))) {
             throw new ParseException(MESSAGE_INVALID_TAG);
         }
         return tagKeywords;
     }
 
-    private static List<String> parseAuthor(ArgumentMultimap argMultimap) throws ParseException{
+    private static List<String> parseAuthor(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_AUTHOR).get().equals("")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EMPTY_KEYWORD));
         }

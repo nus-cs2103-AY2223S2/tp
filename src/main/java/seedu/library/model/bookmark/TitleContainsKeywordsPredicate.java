@@ -14,6 +14,14 @@ public class TitleContainsKeywordsPredicate implements Predicate<Bookmark> {
     private final List<String> tagKeywords;
     private final List<String> authorKeywords;
 
+    /**
+     * Constructs an {@code TitleContainsKeywordsPredicate}.
+     *
+     * @param titleKeywords keywords for searching title
+     * @param genreKeywords keywords for searching genre
+     * @param tagKeywords keywords for searching tag
+     * @param authorKeywords keywords for searching author
+     */
     public TitleContainsKeywordsPredicate(List<String> titleKeywords, List<String> genreKeywords,
                                           List<String> tagKeywords, List<String> authorKeywords) {
         this.titleKeywords = titleKeywords;

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -22,8 +23,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyLibrary_success() {
-        Model model = new ModelManager(getTypicalLibrary(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalLibrary(), new UserPrefs());
+        Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
+        Model expectedModel = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
         expectedModel.setLibrary(new Library());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

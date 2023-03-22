@@ -5,18 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.library.commons.core.Messages.MESSAGE_BOOKMARKS_LISTED_OVERVIEW;
 import static seedu.library.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.library.testutil.TypicalBookmarks.CARL;
-import static seedu.library.testutil.TypicalBookmarks.ELLE;
-import static seedu.library.testutil.TypicalBookmarks.FIONA;
 import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
 
@@ -24,8 +23,8 @@ import seedu.library.model.bookmark.TitleContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalLibrary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
+    private Model expectedModel = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
 
     @Test
     public void equals() {
@@ -57,30 +56,49 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noBookmarkFound() {
+    public void execute_oneTitleKeywordsOneAuthorKeywords_noBookmarkFound() {
         String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 0);
-        TitleContainsKeywordsPredicate predicate = preparePredicate(" ");
+        TitleContainsKeywordsPredicate predicate =
+                preparePredicate("Alice", null, null, "wall street");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredBookmarkList(predicate);
+        System.out.println(expectedModel.getFilteredBookmarkList());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredBookmarkList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noBookmarksFound() {
+        String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 0);
+        TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz", null, null, null);
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredBookmarkList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredBookmarkList());
     }
 
-    @Test
-    public void execute_multipleKeywords_multipleBookmarksFound() {
-        String expectedMessage = String.format(MESSAGE_BOOKMARKS_LISTED_OVERVIEW, 3);
-        TitleContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredBookmarkList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredBookmarkList());
-    }
-
     /**
      * Parses {@code userInput} into a {@code TitleContainsKeywordsPredicate}.
      */
-    private TitleContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TitleContainsKeywordsPredicate(
-                Arrays.asList(userInput.split("\\s+")), null, null, null);
+    private TitleContainsKeywordsPredicate preparePredicate(String titleInput, String genreInput,
+                                                            String tagInput, String authorInput) {
+        List<String> titleKeywords = null;
+        List<String> genreKeywords = null;
+        List<String> tagKeywords = null;
+        List<String> authorKeywords = null;
+
+        if (titleInput != null) {
+            titleKeywords = Arrays.asList(titleInput.split("\\s+"));
+        }
+        if (genreInput != null) {
+            genreKeywords = Arrays.asList(genreInput.split("\\s+"));
+        }
+        if (tagInput != null) {
+            tagKeywords = Arrays.asList(tagInput.split("\\s+"));
+        }
+        if (authorInput != null) {
+            authorKeywords = Arrays.asList(authorInput.split("\\s+"));
+        }
+        return new TitleContainsKeywordsPredicate(titleKeywords, genreKeywords, tagKeywords, authorKeywords);
     }
 }

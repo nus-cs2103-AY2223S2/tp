@@ -22,6 +22,7 @@ import seedu.library.logic.commands.EditCommand.EditBookmarkDescriptor;
 import seedu.library.model.Library;
 import seedu.library.model.Model;
 import seedu.library.model.ModelManager;
+import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.testutil.BookmarkBuilder;
@@ -32,7 +33,7 @@ import seedu.library.testutil.EditBookmarkDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +43,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOKMARK_SUCCESS, editedBookmark);
 
-        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs(), new Tags());
         expectedModel.setBookmark(model.getFilteredBookmarkList().get(0), editedBookmark);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +64,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOKMARK_SUCCESS, editedBookmark);
 
-        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs(), new Tags());
         expectedModel.setBookmark(lastBookmark, editedBookmark);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +77,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOKMARK_SUCCESS, editedBookmark);
 
-        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs(), new Tags());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +93,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_BOOKMARK_SUCCESS, editedBookmark);
 
-        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Library(model.getLibrary()), new UserPrefs(), new Tags());
         expectedModel.setBookmark(model.getFilteredBookmarkList().get(0), editedBookmark);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
