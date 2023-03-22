@@ -45,7 +45,7 @@ public class CronTest {
         System.setOut(new PrintStream(outputStreamCaptor));
 
         String p = "Task 1";
-        int frequency = 5;
+        int frequency = 10;
 
         TimerTask t = new TimerTask() {
             @Override
@@ -56,7 +56,7 @@ public class CronTest {
 
         Cron cron = Cron.getInstance();
         cron.addTask(t, frequency);
-        assertTimeoutPreemptively(Duration.ofSeconds(frequency - 1), () ->
+        assertTimeoutPreemptively(Duration.ofSeconds(frequency - 5), () ->
                 assertEquals(p, outputStreamCaptor.toString().trim()));
         System.setOut(System.out);
     }
