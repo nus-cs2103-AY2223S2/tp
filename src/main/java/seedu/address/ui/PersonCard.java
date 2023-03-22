@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -29,8 +30,6 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
-
-    private final int imgNumber = 9;
 
     @FXML
     private HBox cardPane;
@@ -67,8 +66,6 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
-        int imgIndex = displayedIndex % imgNumber;
-        imgIndex = imgIndex == 0 ? imgNumber : imgIndex;
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
@@ -76,13 +73,30 @@ public class PersonCard extends UiPart<Region> {
         parentPhone.setText(person.getParentPhone().value + " (P)");
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/avatars/" + imgIndex + ".png")));
-        phoneIcon1.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/phone.png")));
-        phoneIcon2.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/phone.png")));
-        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/address.png")));
-        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/icons/email.png")));
+        phoneIcon1.setImage(new Image(this.getClass().getResourceAsStream("/images/Phone.png")));
+        phoneIcon2.setImage(new Image(this.getClass().getResourceAsStream("/images/Phone.png")));
+        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/Address.png")));
+        emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/Email.png")));
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        personCardImage(person);
+    }
+
+    /**
+     * Provides avatar based on person's gender.
+     *
+     * @param person a given person
+     */
+    private void personCardImage(Person person) {
+        if (person.getTags().contains(new Tag("male")) && person.getTags().contains(new Tag("female"))) {
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+        } else if (person.getTags().contains(new Tag("male"))) {
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/male.png")));
+        } else if (person.getTags().contains(new Tag("female"))) {
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/female.png")));
+        } else {
+            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+        }
     }
 
     @Override
