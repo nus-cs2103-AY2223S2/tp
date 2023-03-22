@@ -63,4 +63,20 @@ public enum ValidTag {
         return mappedCredits.get(tag);
     }
 
+    /**
+     * Retrieves color for a given tag.
+     * @param tagName The name of the given tag.
+     * @return The color for the given tag.
+     */
+    public static String getColor(String tagName) {
+        Map<ValidTag, String> mappedColors = Map.of(
+                ULR, "red",
+                CSF, "blue",
+                CSBD, "purple",
+                ITP, "orange",
+                MS, "green",
+                UE, "yellow");
+        ValidTag tag = ValidTag.getShortForm(tagName);
+        return mappedColors.get(tag);
+    }
 }

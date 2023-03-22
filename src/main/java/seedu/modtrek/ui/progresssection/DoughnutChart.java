@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import seedu.modtrek.model.tag.ValidTag;
 
 /**
  * A doughnut chart that displays summary statistics of the degree progress.
@@ -104,15 +105,6 @@ public class DoughnutChart extends PieChart {
     private void createDataLabels() {
         final int numTags = 6;
 
-        // TODO: call from Tags enum
-        Map<String, String> tagColors = new HashMap<>();
-        tagColors.put("ULR", "red");
-        tagColors.put("ITP", "orange");
-        tagColors.put("UE", "yellow");
-        tagColors.put("MS", "green");
-        tagColors.put("CSF", "blue");
-        tagColors.put("CSBD", "purple");
-
         dataLabels = new VBox[numTags];
 
         Map<String, String> labelTexts = getDataLabelTexts();
@@ -125,7 +117,7 @@ public class DoughnutChart extends PieChart {
             String tag = completeData.getName().split("_")[0];
             Text completeLabel = new Text(labelTexts.get(tag));
             completeLabel.getStyleClass().addAll("p1");
-            completeLabel.setStyle("-fx-fill: -tag-" + tagColors.get(tag) + ";");
+            completeLabel.setStyle("-fx-fill: -tag-" + ValidTag.getColor(tag) + ";");
             completeLabel.setTextAlignment(TextAlignment.CENTER);
 
             VBox dataLabel = new VBox(completeLabel);
@@ -192,15 +184,6 @@ public class DoughnutChart extends PieChart {
         /* Change colors of doughnut chart */
         final int numTags = 6;
 
-        // TODO: call from Tags enum
-        Map<String, String> tagColors = new HashMap<>();
-        tagColors.put("ULR", "red");
-        tagColors.put("ITP", "orange");
-        tagColors.put("UE", "yellow");
-        tagColors.put("MS", "green");
-        tagColors.put("CSF", "blue");
-        tagColors.put("CSBD", "purple");
-
         ObservableList<Data> doughnutData = getData();
         assert doughnutData.size() == numTags * 2 : "Number of divisions of doughnut chart should be 12.";
         for (int i = 0; i < doughnutData.size(); i += 2) {
@@ -210,14 +193,14 @@ public class DoughnutChart extends PieChart {
             Node completeDataNode = completeData.getNode();
             String tag = completeData.getName().split("_")[0];
             completeDataNode.setStyle(
-                    "-fx-background-color: -tag-" + tagColors.get(tag) + "; "
+                    "-fx-background-color: -tag-" + ValidTag.getColor(tag) + "; "
                             + "-fx-border-width: 0;"
             );
 
             Node incompleteDataNode = incompleteData.getNode();
             if (isNoneComplete()) {
                 incompleteDataNode.setStyle(
-                        "-fx-background-color: -tag-" + tagColors.get(tag) + "; "
+                        "-fx-background-color: -tag-" + ValidTag.getColor(tag) + "; "
                                 + "; -fx-opacity: 0.25;" + "-fx-border-width: 0;"
                 );
             } else {

@@ -43,30 +43,11 @@ public class ModuleCard extends UiPart<Region> {
         String grade = module.getGrade().toString();
         moduleCardGrade.setText(!grade.isEmpty() ? grade : "–");
 
-        // TODO: call from Tag enum
         for (Tag tag : module.getTags()) {
-            switch (ValidTag.valueOf(tag.tagName)) {
-            // TODO: See if you can make use of the new ValidTag enum :)
-            case UNIVERSITY_LEVEL_REQUIREMENTS:
-                addTag("ULR", tag.tagName.toString(), "red");
-                break;
-            case COMPUTER_SCIENCE_FOUNDATION:
-                addTag("CSF", tag.tagName.toString(), "blue");
-                break;
-            case COMPUTER_SCIENCE_BREADTH_AND_DEPTH:
-                addTag("CSBD", tag.tagName.toString(), "green");
-                break;
-            case IT_PROFESSIONALISM:
-                addTag("ITP", tag.tagName.toString(), "yellow");
-                break;
-            case MATHEMATICS_AND_SCIENCES:
-                addTag("MS", tag.tagName.toString(), "purple");
-                break;
-            case UNRESTRICTED_ELECTIVES:
-                addTag("UE", tag.tagName.toString(), "orange");
-                break;
-            default:
-            }
+            String tagNameShort = ValidTag.getShortForm(tag.tagName).toString();
+            String tagNameLong = tag.toString();
+            String color = ValidTag.getColor(tag.tagName);
+            addTag(tagNameShort, tagNameLong, color);
         }
     }
 
@@ -78,13 +59,19 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
     }
 
-    private void addTag(String tagName, String tagFull, String tagColor) {
-        Label tag = new Label(tagName);
+    /**
+     * Adds a UI label to ModuleCard that corresponds to a given tag.
+     * @param tagNameShort The short form of the tag name.
+     * @param tagNameLong The full tag name in long form.
+     * @param tagColor The color of the tag.
+     */
+    private void addTag(String tagNameShort, String tagNameLong, String tagColor) {
+        Label tag = new Label(tagNameShort);
         tag.getStyleClass().addAll("module-card-tag", "module-card-tag-" + tagColor, "p2");
         moduleCardTagGroup.getChildren().add(tag);
 
         /* Add a helper text to moduleCardTag to show full description of tag, on hover. */
-        Tooltip tagToolTip = new Tooltip(tagFull);
+        Tooltip tagToolTip = new Tooltip(tagNameLong);
         Tooltip.install(tag, tagToolTip);
         tagToolTip.setShowDelay(Duration.seconds(0.05));
     }
