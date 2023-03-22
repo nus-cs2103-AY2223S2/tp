@@ -68,6 +68,14 @@ public class Event  {
     /**
      * Returns True if both events have the same start, end and internship
      */
+    public boolean isSameInternship(Internship internship) {
+        return internship != null
+                && this.internship.equals(internship);
+    }
+
+    /**
+     * Returns True if both events have the same start, end and internship
+     */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this){
             return true;

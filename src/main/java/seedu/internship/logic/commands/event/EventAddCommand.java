@@ -5,10 +5,13 @@ import static seedu.internship.logic.parser.CliSyntax.*;
 import static java.util.Objects.requireNonNull;
 
 
+import javafx.collections.ObservableList;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
 import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventByInternship;
+import seedu.internship.model.internship.Internship;
 
 
 public class EventAddCommand extends EventCommand {
@@ -54,10 +57,13 @@ public class EventAddCommand extends EventCommand {
             throw new CommandException(MESSAGE_NO_INTERNSHIP_SELECTED );
         }
         // Adding internship infromation to event
-        eventToAdd.setInternship(model.getSelectedInternship());
+        Internship selectedIntern = model.getSelectedInternship();
+        eventToAdd.setInternship(selectedIntern);
 
         model.addEvent(eventToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd));
+        model.updateFilteredEventList(new EventByInternship(selectedIntern));
+        ObservableList<Event> events = model.getFilteredEventList();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd) , selectedIntern, events);
     }
 
     @Override
