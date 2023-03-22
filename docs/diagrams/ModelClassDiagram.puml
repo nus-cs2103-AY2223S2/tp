@@ -6,7 +6,7 @@ skinparam classBackgroundColor MODEL_COLOR
 
 top to bottom direction
 
-
+package "Model " {
 Class "<<interface>>\nReadOnlyXYZList" as ReadOnlyXYZList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
@@ -18,6 +18,10 @@ Class XYZ
 Class "{abstract}\nItem" as Item
 Class ItemList<T extends Item>
 Class "UniqueItemList<T> " as UniqueItemList
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
 
 ModelManager ..u|> Model
 Model ..r> ReadOnlyUserPrefs
