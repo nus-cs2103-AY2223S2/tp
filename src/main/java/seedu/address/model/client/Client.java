@@ -124,4 +124,23 @@ public class Client {
         return this.getName().toString();
     }
 
+    /**
+     * Clone a {@code Client} with the details of {@code clientToEdit}
+     * Make sure it is pass by value not by reference
+     * @return
+     */
+    public Client cloneClient() {
+        assert this != null;
+
+        Name updatedName = this.getName();
+        Phone updatedPhone = this.getPhone();
+        Email updatedEmail = this.getEmail();
+        Address updatedAddress = this.getAddress();
+        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = this.getTags();
+
+        UniquePolicyList policyList = this.getPolicyList().clone(); // To change policyList you must use EditPolicy
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
+    }
+
 }

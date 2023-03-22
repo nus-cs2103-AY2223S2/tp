@@ -57,16 +57,19 @@ public class AddPolicyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
         Client clientToAddPolicy = lastshownList.get(index.getZeroBased());
+        Client addedPolicyClient = clientToAddPolicy.cloneClient();
         // handle duplicate policies
         if (clientToAddPolicy.getPolicyList().contains(policy)) {
             throw new CommandException("This policy already exists in the client's policy list");
         }
-        clientToAddPolicy.getPolicyList().add(policy);
-        model.setClient(clientToAddPolicy, clientToAddPolicy);
+
+        addedPolicyClient.getPolicyList().add(policy);
+        model.setClient(clientToAddPolicy, addedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         return new CommandResult(generateSuccessMessage());
     }
+
 
     /**
      * Generates a command execution success message based on the policy added
