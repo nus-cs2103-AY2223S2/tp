@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.task.model.calendar.DailyPlan;
+import seedu.task.model.task.Task;
 
 /**
  * Wraps all data at the planner level
@@ -46,6 +47,33 @@ public class Planner implements ReadOnlyPlanner {
 
     public void addDailyPlan(DailyPlan dp) {
         plansList.add(dp);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Planner}.
+     * {@code key} must exist in the planner.
+     */
+    public void removeTask(Task key) {
+        for (DailyPlan dp : plansList) {
+            if (dp.hasRemoved(key)) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the planner.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        for (DailyPlan dp: plansList) {
+            if (dp.hasEdited(target, editedTask)) {
+                break;
+            }
+        }
     }
 
     @Override

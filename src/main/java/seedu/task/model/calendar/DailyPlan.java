@@ -63,6 +63,40 @@ public class DailyPlan {
         taskList.add(t);
     }
 
+    /**
+     * Checks if task to be removed is in this daily plan. Removes task if found.
+     */
+    public boolean hasRemoved(Task t) {
+        int size = taskList.size();
+
+        for (int i = 0; i < size; i++) {
+            if (taskList.get(i) == t) {
+                this.currentWorkload = this.currentWorkload - taskList.get(i).getEffort().getEffort();
+                taskList.remove(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if target task is in this daily plan. Modifies if task is found, do nothing if task is not found.
+     */
+    public boolean hasEdited(Task target, Task editedTask) {
+        int size = taskList.size();
+
+        for (int i = 0; i < size; i++) {
+            if (taskList.get(i) == target) {
+                taskList.remove(i);
+                taskList.add(i, editedTask);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public long getDesiredWorkload() {
         return this.desiredWorkload;
     }

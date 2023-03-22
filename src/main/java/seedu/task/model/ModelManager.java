@@ -115,6 +115,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteTask(Task target) {
         taskBook.removeTask(target);
+        planner.removeTask(target);
     }
 
     @Override
@@ -126,8 +127,8 @@ public class ModelManager implements Model {
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
-
         taskBook.setTask(target, editedTask);
+        planner.setTask(target, editedTask);
     }
 
     @Override
