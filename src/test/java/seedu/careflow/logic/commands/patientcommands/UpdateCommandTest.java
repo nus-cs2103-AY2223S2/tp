@@ -2,30 +2,37 @@ package seedu.careflow.logic.commands.patientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.*;
+import static seedu.careflow.logic.commands.CommandTestUtil.DESC_AMY;
+import static seedu.careflow.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_DRUG_ALLERGY_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.careflow.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandFailure;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.showPatientAtIndex;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
-//import static seedu.careflow.testutil.TypicalIndexes.CARL;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.careflow.testutil.TypicalPatients.*;
-
-import seedu.careflow.commons.core.Messages;
-import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDescriptor;
+import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
 
 import org.junit.jupiter.api.Test;
-import seedu.careflow.commons.core.index.Index;
-import seedu.careflow.model.*;
+
+import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDescriptor;
+import seedu.careflow.model.CareFlowModel;
+import seedu.careflow.model.CareFlowModelManager;
+import seedu.careflow.model.DrugInventory;
+import seedu.careflow.model.PatientRecord;
+import seedu.careflow.model.UserPrefs;
 import seedu.careflow.model.patient.Name;
 import seedu.careflow.model.patient.Patient;
 import seedu.careflow.testutil.EditPatientDescriptorBuilder;
 import seedu.careflow.testutil.PatientBuilder;
 
-import java.io.File;
-
 
 /**
  * Contains integration tests (interaction with the CareFlowModel) and unit tests for UpdateCommand.
- * All tests assume that the typical patient record has patinet list starting with model.getFilteredPatientList().get(0).
+ * All tests assume that the typical patient record has patinet list starting with
+ * model.getFilteredPatientList().get(0).
  */
 public class UpdateCommandTest {
     private CareFlowModel model = new CareFlowModelManager(getTypicalPatientRecord(),
@@ -39,7 +46,7 @@ public class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_PATIENT_SUCCESS, editedPatient);
 
-        CareFlowModel expectedCareFlowModel = new CareFlowModelManager( new PatientRecord(model.getPatientRecord()),
+        CareFlowModel expectedCareFlowModel = new CareFlowModelManager(new PatientRecord(model.getPatientRecord()),
                 new DrugInventory(model.getDrugInventory()), new UserPrefs());
         expectedCareFlowModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
@@ -48,7 +55,6 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-//        Index indexLastPatient = Index.fromOneBased(model.getFilteredPatientList().size());
         Patient firstPatient = model.getFilteredPatientList().get(0);
         PatientBuilder personInList = new PatientBuilder(firstPatient);
         Patient editedPatient = personInList.withAddress(VALID_ADDRESS_BOB).withPhone(VALID_PHONE_BOB).build();
@@ -58,21 +64,22 @@ public class UpdateCommandTest {
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_PATIENT_SUCCESS, editedPatient);
 
-        CareFlowModel expectedCareFlowModel = new CareFlowModelManager( new PatientRecord(model.getPatientRecord()),
+        CareFlowModel expectedCareFlowModel = new CareFlowModelManager(new PatientRecord(model.getPatientRecord()),
                 new DrugInventory(model.getDrugInventory()), new UserPrefs());
-        expectedCareFlowModel.setPatient(firstPatient,editedPatient);
+        expectedCareFlowModel.setPatient(firstPatient, editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedCareFlowModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        UpdateCommand editCommand = new UpdateCommand(model.getFilteredPatientList().get(0).getName(), new EditPatientDescriptor());
+        UpdateCommand editCommand = new UpdateCommand(model.getFilteredPatientList().get(0).getName(),
+                new EditPatientDescriptor());
         Patient editedPatient = model.getFilteredPatientList().get(0);
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_PATIENT_SUCCESS, editedPatient);
 
-        CareFlowModel expectedCareFlowModel = new CareFlowModelManager( new PatientRecord(model.getPatientRecord()),
+        CareFlowModel expectedCareFlowModel = new CareFlowModelManager(new PatientRecord(model.getPatientRecord()),
                 new DrugInventory(model.getDrugInventory()), new UserPrefs());
         assertCommandSuccess(editCommand, model, expectedMessage, expectedCareFlowModel);
     }
@@ -81,7 +88,8 @@ public class UpdateCommandTest {
     public void execute_filteredList_success() {
         showPatientAtIndex(model, INDEX_FIRST);
         Patient personInFilteredList = model.getFilteredPatientList().get(0);
-        Patient editedPatient = new PatientBuilder(personInFilteredList).withDrugAllergy(VALID_DRUG_ALLERGY_BOB).build();
+        Patient editedPatient = new PatientBuilder(personInFilteredList).withDrugAllergy(VALID_DRUG_ALLERGY_BOB)
+                .build();
         UpdateCommand editCommand = new UpdateCommand(model.getFilteredPatientList().get(0).getName(),
                 new EditPatientDescriptorBuilder().withDrugAllergy(VALID_DRUG_ALLERGY_BOB).build());
 
@@ -89,7 +97,7 @@ public class UpdateCommandTest {
 
         CareFlowModel expectedCareFlowModel = new CareFlowModelManager(new PatientRecord(model.getPatientRecord()),
                 new DrugInventory(model.getDrugInventory()), new UserPrefs());
-        expectedCareFlowModel.setPatient(model.getFilteredPatientList().get(0),editedPatient);
+        expectedCareFlowModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedCareFlowModel);
     }
@@ -118,11 +126,13 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_invalidPatientNameUnfilteredList_failure() {
-        UpdateCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        UpdateCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
+                .build();
         // assume"A NOT FOUND NAME" is not inside list of patient names
         UpdateCommand editCommand = new UpdateCommand(new Name("A NOT FOUND NAME"), descriptor);
 
-        assertCommandFailure(editCommand, model, String.format(UpdateCommand.MESSAGE_PATIENT_NOT_FOUND,"A NOT FOUND NAME" ));
+        assertCommandFailure(editCommand, model, String.format(UpdateCommand.MESSAGE_PATIENT_NOT_FOUND,
+                "A NOT FOUND NAME"));
     }
 
 
@@ -133,7 +143,8 @@ public class UpdateCommandTest {
 
         // same values -> returns true
         UpdateCommand.EditPatientDescriptor copyDescriptor = new EditPatientDescriptor(DESC_AMY);
-        UpdateCommand commandWithSameValues = new UpdateCommand(model.getFilteredPatientList().get(0).getName(), copyDescriptor);
+        UpdateCommand commandWithSameValues = new UpdateCommand(model.getFilteredPatientList().get(0).getName(),
+                copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -146,10 +157,12 @@ public class UpdateCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new UpdateCommand(model.getFilteredPatientList().get(1).getName(), DESC_AMY)));
+        assertFalse(standardCommand.equals(new UpdateCommand(model.getFilteredPatientList().get(1).getName(),
+                DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new UpdateCommand(model.getFilteredPatientList().get(0).getName(), DESC_BOB)));
+        assertFalse(standardCommand.equals(new UpdateCommand(model.getFilteredPatientList().get(0).getName(),
+                DESC_BOB)));
     }
 
 }

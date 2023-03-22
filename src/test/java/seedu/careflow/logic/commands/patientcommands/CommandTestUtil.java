@@ -140,7 +140,8 @@ public class CommandTestUtil {
         CareFlow expectedCareFlow = new CareFlow(actualCareFlowModel.getPatientRecord(),
                 actualCareFlowModel.getDrugInventory());
         // follow default hospital list of CareFlow
-        expectedCareFlow.addHospital(new Hospital(new Name("KK Women's and Children's Hospital"), new Phone("+65 62255554")));
+        expectedCareFlow.addHospital(new Hospital(new Name("KK Women's and Children's Hospital"),
+                new Phone("+65 62255554")));
         expectedCareFlow.addHospital(new Hospital(new Name("Changi General Hospital"), new Phone("+65 67888833")));
         expectedCareFlow.addHospital(new Hospital(new Name("Khoo Teck Puat Hospital"), new Phone("+65 65558000")));
         expectedCareFlow.addHospital(new Hospital(new Name("Tan Tock Seng Hospital"), new Phone("+65 62566011")));

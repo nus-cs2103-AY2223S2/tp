@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.careflow.commons.core.Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW;
-import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.*;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandSuccess;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalPatients.CARL;
 import static seedu.careflow.testutil.TypicalPatients.ELLE;
@@ -25,7 +25,7 @@ import seedu.careflow.model.patient.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the CareFlowModel) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private CareFlowModel model = new CareFlowModelManager(getTypicalPatientRecord(),getTypicalDrugInventory(),
+    private CareFlowModel model = new CareFlowModelManager(getTypicalPatientRecord(), getTypicalDrugInventory(),
             new UserPrefs());
     private CareFlowModel expectedCareFlowModel = new CareFlowModelManager(getTypicalPatientRecord(),
             getTypicalDrugInventory(), new UserPrefs());

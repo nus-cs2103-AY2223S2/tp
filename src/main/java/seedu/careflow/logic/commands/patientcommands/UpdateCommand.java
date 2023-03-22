@@ -15,7 +15,6 @@ import static seedu.careflow.model.CareFlowModel.PREDICATE_SHOW_ALL_PATIENTS;
 import java.util.List;
 import java.util.Optional;
 
-import com.fasterxml.jackson.core.JsonPointer;
 import seedu.careflow.commons.util.CollectionUtil;
 import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
@@ -89,8 +88,7 @@ public class UpdateCommand extends Command {
             }
         }
 
-        if(patientToEdit == null) {
-            System.out.println("thorw expecption");
+        if (patientToEdit == null) {
             throw new CommandException(String.format(MESSAGE_PATIENT_NOT_FOUND, name));
         }
 

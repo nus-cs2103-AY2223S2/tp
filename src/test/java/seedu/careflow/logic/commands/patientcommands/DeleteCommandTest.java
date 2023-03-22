@@ -2,12 +2,13 @@ package seedu.careflow.logic.commands.patientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.*;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandFailure;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.assertCommandSuccess;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.showPatientAtIndex;
 import static seedu.careflow.testutil.TypicalDrugs.getTypicalDrugInventory;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.careflow.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
-
 
 import org.junit.jupiter.api.Test;
 

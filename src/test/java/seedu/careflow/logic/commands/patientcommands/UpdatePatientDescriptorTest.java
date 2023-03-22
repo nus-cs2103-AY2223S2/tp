@@ -3,9 +3,20 @@ package seedu.careflow.logic.commands.patientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.*;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.DESC_AMY;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.DESC_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_BIRTHDATE_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_DRUG_ALLERGY_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_GENDER_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_IC_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.careflow.logic.commands.patientcommands.CommandTestUtil.VALID_PHONE_BOB;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.careflow.logic.commands.patientcommands.UpdateCommand.EditPatientDescriptor;
 import seedu.careflow.testutil.EditPatientDescriptorBuilder;
 
@@ -62,7 +73,8 @@ public class UpdatePatientDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different emergency contact -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
     }

@@ -8,6 +8,7 @@ import static seedu.careflow.testutil.TypicalPatients.getTypicalPatientRecord;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.CareFlowModelManager;
 import seedu.careflow.model.UserPrefs;
@@ -23,7 +24,8 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new CareFlowModelManager(getTypicalPatientRecord(), getTypicalDrugInventory(), new UserPrefs());
-        expectedCareFlowModel = new CareFlowModelManager(model.getPatientRecord(), model.getDrugInventory(), new UserPrefs());
+        expectedCareFlowModel = new CareFlowModelManager(model.getPatientRecord(), model.getDrugInventory(),
+                new UserPrefs());
     }
 
     @Test
