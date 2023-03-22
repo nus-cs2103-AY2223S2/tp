@@ -30,7 +30,7 @@ public class AddCardDescriptorBuilder {
         descriptor.setDeck(card.getDeck());
     }
 
-    public AddCardDescriptorBuilder withQuestions(String questions) {
+    public AddCardDescriptorBuilder withQuestion(String questions) {
         descriptor.setQuestion(new Question(questions));
         return this;
     }
@@ -53,7 +53,5 @@ public class AddCardDescriptorBuilder {
     public AddCardDescriptor build() {
         return descriptor;
     }
-
-
 
 }
