@@ -22,4 +22,5 @@ public class Messages {
     //        + "parent name attached to given phone number.";
     public static final String MESSAGE_INVALID_PARENT = "The parent name and parent number provided does not match "
             + "any of the parents in our parent list!";
+    public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This attendance already exists in the address book";
 }

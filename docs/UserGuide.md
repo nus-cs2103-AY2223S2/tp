@@ -15,9 +15,9 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
         7. [Searching students: `find`](#findstudent)
         8. [Deleting a student: `delete`](#deletestudent)
     2. [Parent Features](#parent)
-        1. [Add parent/guardian: `add`](#addparent)
-        2. [Listing all parents: `list`](#listparent)
-        3. [Delete a parent/ parent information: `delete`](#deleteparent)
+       1. [Add parent/Next-of-Kin: `add`](#addparent)
+       2. [Listing all parents/Next-of-Kins: `list`](#listparent)
+       3. [Editing a parent/Next-of-Kin particulars: `edit`](#editparent)
 3. [Viewing help: `help`](#help)
 4. [Exiting program: `exit`](#exit)
 5. [FAQ](#faq)
@@ -170,6 +170,7 @@ User is able to leave the following categories unfilled by simply not putting th
 6. CCA <br><br>
 
 
+
 <a name="gradestudent"/>
 
 ### Adding a grade for student : `grade`
@@ -239,7 +240,7 @@ Examples:
 Edits personal details of students
 
 Format: `edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
-imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS> 
+imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS>
 pn/<PARENT NAME> pnP/<PARENT PHONE NUMBER> rls/<RELATIONSHIP>]`
 
 Examples:
@@ -247,12 +248,11 @@ Examples:
 * `student 1A edit in/03 cca/badminton ageS/23`
 
 **Expected Outcome:**
-* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
-* Student Age: Insert student age here!; Image Path: Insert student image here!; 
+* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M;
+* Student Age: Insert student age here!; Image Path: Insert student image here!;
 * Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
-* 
-* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
-* Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; 
+* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M;
+* Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!;
 * Student Phone: Insert student phone number here!; CCA: badminton
 
 <a name = "findstudent"/>
