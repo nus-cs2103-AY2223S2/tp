@@ -13,6 +13,8 @@ import seedu.internship.logic.commands.ExitCommand;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.ViewCommand;
+import seedu.internship.logic.commands.event.EventCommand;
+import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
 /**
@@ -40,6 +42,8 @@ public class InternshipCatalogueParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
+
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -53,6 +57,8 @@ public class InternshipCatalogueParser {
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case EventCommand.COMMAND_WORD:
+            return new EventCatalogueParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -40,6 +40,8 @@ public class ViewCommand extends Command {
         }
 
         Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
+        model.updateSelectedInternship(internshipToView);
+
         return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(),
                 internshipToView.getCompany()), internshipToView);
     }
