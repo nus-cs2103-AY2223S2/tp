@@ -287,10 +287,25 @@ The following sequence diagram shows how the `createtag` command.
 
 **insert sequence diagram
 
-### \[Proposed\] Data archiving
+### \[Implemented\] Dynamic Help
 
-_{Explain here how the data archiving feature will be implemented}_
+The dynamic help mechanism allows the user to receive help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only receive general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
 
+HelpMenu#getGeneralHelp() — Retrieves a general help message if the user inputs `help`.
+HelpMenu#getCommandHelp() — Retrieves the command specific help message.
+HelpMenu#parseCommand() — Parses the command input in `help COMMAND` to ensure it is a valid command.
+
+These operations are invoked in `HelpCommandParser.java` which calls HelpMenu#getGeneralHelp() or HelpMenu#getCommandHelp() depending on the help command input after parsing the input with HelpMenu#parseCommand(). 
+
+#### The help message is sent to the UI as follows:
+
+<div/>
+
+Step 1. After successful retrieval of the help message, the message is passed to the `HelpCommand` object returned by `HelpCommandParser`.
+
+Step 2. The `LogicManager` executes the `HelpCommand` object which generates a  containing a parameter for the help message.
+
+Step 3. MainWindow#executeCommand() extracts the help message from the `CommandResult` and sends it to `HelpWindow` as the text to be set in the FXML `label`.
 
 --------------------------------------------------------------------------------------------------------------------
 
