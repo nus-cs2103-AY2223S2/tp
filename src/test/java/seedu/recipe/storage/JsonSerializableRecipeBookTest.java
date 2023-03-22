@@ -52,7 +52,7 @@ public class JsonSerializableRecipeBookTest {
     public void toModelType_duplicateRecipes_throwsIllegalValueException() throws Exception {
         JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_RECIPE_FILE,
                                                                         JsonSerializableRecipeBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableRecipeBook.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableRecipeBook.MESSAGE_DUPLICATE_RECIPE,
                      dataFromFile::toModelType);
     }
 

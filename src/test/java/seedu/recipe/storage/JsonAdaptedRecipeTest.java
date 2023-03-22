@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.IngredientBuilder;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.RecipeDuration;
@@ -166,7 +166,7 @@ public class JsonAdaptedRecipeTest {
                 CACIO_TAGS.stream().map(JsonAdaptedTag::new).collect(Collectors.toList()),
                 invalidIngredients,
                 CACIO_STEPS.stream().map(JsonAdaptedStep::new).collect(Collectors.toList()));
-        String expectedMessage = String.format(Ingredient.MESSAGE_CONSTRAINTS);
+        String expectedMessage = String.format(IngredientBuilder.MESSAGE_CONSTRAINTS);
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 

@@ -20,7 +20,7 @@ import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipe;
 @JsonRootName(value = "recipebook")
 class JsonSerializableRecipeBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Recipes list contains duplicate recipe(s).";
+    public static final String MESSAGE_DUPLICATE_RECIPE = "Recipes list contains duplicate recipe(s).";
 
     private final List<JsonAdaptedRecipe> recipes = new ArrayList<>();
 
@@ -51,7 +51,7 @@ class JsonSerializableRecipeBook {
         for (JsonAdaptedRecipe jsonAdaptedRecipe : recipes) {
             Recipe recipe = jsonAdaptedRecipe.toModelType();
             if (recipeBook.hasRecipe(recipe)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RECIPE);
             }
             recipeBook.addRecipe(recipe);
         }

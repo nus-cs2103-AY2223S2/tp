@@ -4,7 +4,9 @@ import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -25,8 +29,10 @@ public class Recipe {
     // Identity field
     private final Name name;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<Ingredient> ingredients = new ArrayList<>();
+    private final List<IngredientBuilder> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
+    private final Hashtable<Ingredient, IngredientQuantity> ingredientTable = new Hashtable<>();
+
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
     private Optional<RecipeDuration> duration = Optional.empty();
@@ -43,11 +49,11 @@ public class Recipe {
         return name;
     }
 
-    public List<Ingredient> getIngredients() {
+    public List<IngredientBuilder> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Ingredient... ingredients) {
+    public void setIngredients(IngredientBuilder... ingredients) {
         this.ingredients.addAll(List.of(ingredients));
     }
 
@@ -159,6 +165,8 @@ public class Recipe {
 
         if (!tags.isEmpty()) {
             builder.append(";\nTags: ");
+            ArrayList<Tag> tags = new ArrayList<>(this.tags);
+            tags.sort(Comparator.comparing(t -> t.tagName));
             tags.forEach(builder::append);
         }
 
