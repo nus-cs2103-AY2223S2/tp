@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":Logic" as Logic LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+LogicManager -> StorageManager : saveFlightManager(flightManager)
+activate StorageManager
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageManager" as StorageManager STORAGE_COLOR
+participant ":JsonItemStorage" as JsonItemStorage STORAGE_COLOR
+end box
+
+
+StorageManager -> JsonItemStorage : save(flightManager, filePath )
+activate JsonItemStorage
+
+JsonItemStorage -> FileHelper : createIfMissing(filePath)
+
+FileHelper --> JsonItemStorage
+deactivate FileHelper
+
+JsonItemStorage -> JsonHelper : saveJsonFile(flightManager, filePath)
+JsonHelper --> JsonItemStorage
+deactivate JsonHelper
+
+JsonItemStorage --> StorageManager :
+deactivate JsonItemStorage
+
+
+LogicManager <--StorageManager
+deactivate StorageManager
+@enduml

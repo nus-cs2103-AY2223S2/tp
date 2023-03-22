@@ -97,7 +97,7 @@ This method calls `storage.saveXYZManager(model.getXYZManager())` and
 `storage.saveFlightManager(model.getFlightManager());`, to save the updated flight and XYZ objects in storage. Since 
 these 2 method calls work in the same way, we shall focus on just the latter, to be succinct. 
 
-<img src="" width="478" alt="Sequence diagram at Storage layer">
+<img src="images/WingmanUnlinkXYZDiagram.png" width="966" alt="Sequence diagram at Storage layer">
 
 After `model.getFlightManager()` returns the model, the `saveFlightManager` method calls the 
 `saveFlightManager(flightManager, flightStorage.getPath())` method in the same class. 
@@ -118,7 +118,9 @@ it directly with every change. However, this approach had a few limitations as d
 
 ### Displaying flights across all modes (expand on UI implementation using UI class diagram)- Yuanyuan
 
+
 ## Appendix: Requirements
+
 ### Product scope
 
 **Target user profile**:
