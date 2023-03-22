@@ -89,6 +89,19 @@ public class Attendance {
         return value.equals("F");
     }
 
+    /**
+     * Returns true if a given string is the default string given when the attendance isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultAttendance(String test) {
+        if (test.equals("Insert student attendance here!")) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return this.value;

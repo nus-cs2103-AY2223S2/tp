@@ -17,16 +17,15 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    protected Phone phone;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
     private final Comment comment;
+    private final Email email;
+    private final Name name;
+    private final Set<Tag> tags = new HashSet<>();
     private Class sc;
     private IndexNumber indexNumber;
 

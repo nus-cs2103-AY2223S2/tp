@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENTCOMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
@@ -19,6 +20,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORKDONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
@@ -41,6 +45,7 @@ import seedu.address.logic.commands.student.StudentAttendanceCommand;
 import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentCommentCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
+import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentGradeCommand;
 import seedu.address.logic.commands.student.StudentGradeDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -105,13 +110,22 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                         PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
                         PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
                         PREFIX_ADDRESS);
+
         ArgumentMultimap argMultimapGrade =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_GRADE, PREFIX_INDEXNUMBER, PREFIX_TEST,
                         PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE, PREFIX_HOMEWORKDONE);
+
         ArgumentMultimap argMultimapGradeDelete =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_GRADEDELETE, PREFIX_INDEXNUMBER, PREFIX_TEST,
                         PREFIX_HOMEWORK);
 
+        ArgumentMultimap argMultimapEdit =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_EDIT, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
+                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
+                        PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
+                        PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
+                        PREFIX_ADDRESS, PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME);
+                        
         ArgumentMultimap argumentMultimapAtt =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADDATTENDANCE, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE);
 
@@ -126,6 +140,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return gradeCommand(studentClass, argMultimapGrade);
         } else if (argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
             return gradeDeleteCommand(studentClass, argMultimapGradeDelete);
+        } else if (argMultimapEdit.getValue(PREFIX_EDIT).isPresent()) {
+            return editCommand(studentClass, argMultimapEdit);
         } else if (argumentMultimapAtt.getValue(PREFIX_ADDATTENDANCE).isPresent()) {
             return attCommand(studentClass, argumentMultimapAtt);
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
@@ -199,10 +215,10 @@ public class StudentCommandParser implements Parser<StudentCommand> {
     }
 
     /**
-     * Function to parse the "student class delete" command
+     * Function to parse the "student class comment" command
      * @param studentClass
      * @param argMultimap
-     * @return A StudentDeleteCommand
+     * @return A StudentCommentCommand
      * @throws ParseException
      */
     private StudentCommentCommand commentCommand(String studentClass, ArgumentMultimap argMultimap)
@@ -219,9 +235,11 @@ public class StudentCommandParser implements Parser<StudentCommand> {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Function to parse the "student class delete" command
+     * @param studentClass class of student
+     * @param argMultimap mapper for each prefix
+     * @return A StudentDeleteCommand
+     * @throws ParseException
      */
     public StudentDeleteCommand deleteCommand(String studentClass, ArgumentMultimap argMultimap) throws ParseException {
         if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
@@ -301,6 +319,44 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         }
     }
 
+    /**
+     * Function to parse the "student class edit" command
+     * @param sc class of student
+     * @param argMultimap mapper for each prefix
+     * @return A StudentEditCommand
+     * @throws ParseException
+     */
+    private StudentEditCommand editCommand(String sc, ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEXNUMBER)
+                || !argMultimap.getPreamble().isEmpty()
+                || sc.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentEditCommand.MESSAGE_USAGE));
+        }
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NEWNAME).get());
+        Phone newStudentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
+        Email newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAILSTUDENT).get());
+        Address newAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Set<Tag> newTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
+        IndexNumber newIndexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_NEWINDEXNUMBER).get());
+        Sex newSex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
+        Age newAge = ParserUtil.parseAge(argMultimap.getValue(PREFIX_STUDENTAGE).get());
+        Image newImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGESTUDENT).get());
+        Cca newCca = ParserUtil.parseCca(argMultimap.getValue(PREFIX_CCA).get());
+        Class studentClass = ParserUtil.parseStudentClass(sc);
+        Class newStudentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_NEWCLASS).get());
+        Attendance newAttendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
+        Comment newComment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
+        Name newParentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENTNAME).get());
+        Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
+        Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
+
+        return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
+                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca, newAttendance,
+                newComment, newStudentPhoneNumber, newEmail, newAddress, newTagList);
+    }
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

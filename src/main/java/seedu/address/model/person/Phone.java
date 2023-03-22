@@ -30,7 +30,6 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-
         if (isDefaultPhone(test)) {
             return true;
         }
