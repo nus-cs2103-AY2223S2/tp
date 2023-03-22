@@ -10,8 +10,8 @@ import seedu.address.model.deck.Deck;
  * An UI component that displays information of a {@code Deck}.
  */
 
-public class DeckElement extends UiPart<Region> {
-    private static final String FXML = "DeckElement.fxml";
+public class DeckCard extends UiPart<Region> {
+    private static final String FXML = "DeckListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -34,7 +34,7 @@ public class DeckElement extends UiPart<Region> {
      * Creates a {@code DeckCode} with the given {@code deck} and index to display.
      */
 
-    public DeckElement(Deck deck, int displayedIndex) {
+    public DeckCard(Deck deck, int displayedIndex) {
         super(FXML);
         this.deck = deck;
         id.setText(displayedIndex + ". ");
@@ -49,12 +49,12 @@ public class DeckElement extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeckElement)) {
+        if (!(other instanceof DeckCard)) {
             return false;
         }
 
         // state check
-        DeckElement deck = (DeckElement) other;
+        DeckCard deck = (DeckCard) other;
         return id.getText().equals(deck.id.getText())
                 && this.deck.equals(deck.deck);
     }

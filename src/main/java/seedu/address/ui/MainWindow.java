@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private CardListPanel cardListPanel;
+    private PersonListPanel personListPanel;
     //PLACEHOLDER FOR DECKLIST
     private UiPart<Region> leftPanel;
     private ResultDisplay resultDisplay;
@@ -125,8 +125,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(title);
 
-        cardListPanel = new CardListPanel(logic.getFilteredCardList());
-        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
+        personListPanel = new PersonListPanel(logic.getFilteredCardList());
+        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
@@ -200,8 +200,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
-    public CardListPanel getCardListPanel() {
-        return cardListPanel;
+    public PersonListPanel getPersonListPanel() {
+        return personListPanel;
     }
 
     public UiPart<Region> getLeftPanel() {
