@@ -48,16 +48,16 @@ public class StateHistoryTest {
     public void undo_exceededInterval_correctCount() throws CommandException {
         Model model = new ModelManager();
         StateHistory stateHistory = new StateHistory(model);
-        int N = StateHistory.HISTORY_DEFAULT_INTERVAL * 2 + 2;
-        for (int i = 0; i < N; i++) {
+        int n = StateHistory.HISTORY_DEFAULT_INTERVAL * 2 + 2;
+        for (int i = 0; i < n; i++) {
             AddCommand addCommand = new AddCommand(new PersonBuilder().withName(Integer.toString(i)).build());
             CommandResult result = addCommand.execute(model);
             stateHistory.addCommand(addCommand, model, result);
         }
-        assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), N);
-        for (int i = 0; i < N; ++i) {
+        assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), n);
+        for (int i = 0; i < n; ++i) {
             assertEquals(stateHistory.undo(1), 1);
-            assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), N - i - 1);
+            assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), n - i - 1);
         }
     }
 

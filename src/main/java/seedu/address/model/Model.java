@@ -88,7 +88,8 @@ public interface Model {
 
     Predicate<? super Person> getPredicate();
 
-    /** Returns a state-detached copy of this Model.
+    /**
+     * Returns a state-detached copy of this Model.
      * The copy (and its composition-descendant Objects) shall not be affected
      * by {@code Commands} applied to this Model Object.
      */

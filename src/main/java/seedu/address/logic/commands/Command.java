@@ -9,6 +9,11 @@ import seedu.address.model.StateHistory;
  */
 public abstract class Command {
 
+    /**
+     * Sets the StateHistory for this command to refer to.
+     *
+     * @param history StateHistory to use
+     */
     public void setHistory(StateHistory history) {
         // Do nothing
     }

@@ -20,8 +20,10 @@ public class CommandResult {
     /** Command is undoable and can be saved to undo & redo history. */
     private final boolean undoable;
 
-    /** Command only ever produces one resultant Model state, for any given initial Model state.
-     * (If false, a snapshot of Model must be taken afterwards to safely redo this Command.) */
+    /**
+     * Command only ever produces one resultant Model state, given the initial Model state.
+     * (If false, a snapshot of Model must be taken afterwards to safely redo this Command.)
+     */
     private final boolean deterministic;
 
     /**
