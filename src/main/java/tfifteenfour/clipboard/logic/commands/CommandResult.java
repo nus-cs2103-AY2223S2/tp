@@ -13,19 +13,15 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
     /** The roster state has been modified */
     private final boolean hasChangedModelState;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(Command command, String feedbackToUser, boolean showHelp, boolean hasChangedModelState) {
+    public CommandResult(Command command, String feedbackToUser, boolean hasChangedModelState) {
         this.command = command;
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
         this.hasChangedModelState = hasChangedModelState;
     }
 
@@ -34,19 +30,11 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(Command command, String feedbackToUser) {
-        this(command, feedbackToUser, false, false);
-    }
-
-    public CommandResult(Command command, String feedbackToUser, boolean hasChangedModelState) {
-        this(command, feedbackToUser, false, hasChangedModelState);
+        this(command, feedbackToUser, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
-    }
-
-    public boolean isShowHelp() {
-        return showHelp;
     }
 
     public boolean isStateModified() {
@@ -66,13 +54,12 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
                 && command == otherCommandResult.command;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, command);
+        return Objects.hash(feedbackToUser, command);
     }
 
     public Command getCommand() {
