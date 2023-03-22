@@ -283,7 +283,7 @@ delta between their names and the existing input.
 
 #### Ranking considerations
 
-For ease of use, there is a `Fuzzy#ratio()` method which wraps `Fuzzy#delta()`.
+For ease of use, there is a `Fuzzy#ratio` method which wraps `Fuzzy#delta`.
 The former returns a score between 0 and 1, where 0 means that the two strings
 are completely different, and 1 means the two are identical. Let us call this
 number the *delta score* of two strings.
