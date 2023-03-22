@@ -87,7 +87,7 @@ public class ClientCard extends UiPart<Region> {
         address.setText(client.getAddress().value);
         email.setText(client.getEmail().value);
         weight.setText(client.getWeight().value + " Kg");
-        goal.setText(client.getGoal().value);
+        setGoalCondition(client, goal);
         setCalorieCondition(client, calorie);
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
@@ -117,6 +117,16 @@ public class ClientCard extends UiPart<Region> {
             calorie.setText(client.getCalorie().value + " cal");
         } else {
             calorie.setManaged(false);
+            //caloriesIcon.setManaged(false);
+        }
+    }
+
+    private void setGoalCondition(Client client, Label goal) {
+        if (!client.getGoal().value.equals("client has not added a goal")) {
+            goal.setText(client.getGoal().value);
+        } else {
+            goal.setManaged(false);
+            goalIcon.setManaged(false);
         }
     }
 
