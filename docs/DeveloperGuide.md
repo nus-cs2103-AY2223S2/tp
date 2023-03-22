@@ -158,6 +158,50 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add module, lecture, and video feature
+
+The `add` command supports:
+- Adding a module to the tracker
+- Adding a lecture to a module in the tracker
+- Adding a video to a lecture which belongs to a module in the tracker
+
+It's behaviour is dependent on the arguments provided by the user.
+
+The feature utilises the following classes:
+- `AddCommandParser` – Creates the appropriate `AddCommand` subclass object base on the user's input
+- `AddCommand` – Base class of any `Command` subclass that adds some entity to the tracker
+- `AddModuleCommand` – Subclass of `AddCommand` which handles adding a module to the tracker
+- `AddLectureCommand` – Subclass of `AddCommand` which handles adding a lecture to a module
+- `AddVideoCommand` – Subclass of `AddCommand` which handles adding a video to a lecture
+
+The following sequence diagram depicts an `add` command execution for adding a module to the tracker.
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+![AddSequenceDiagramRefCreateModel](images/AddSequenceDiagramRefCreateModule.png)
+
+The following is a description of the code execution flow:
+
+1. `AddCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+
+| Has preamble | Has `/mod` argument | Has `/lec` argument | Intent      | `AddCommand` subclass |
+| ------------ | ------------------- | ------------------- | ----------- | --------------------- |
+| Yes          | No                  | No                  | Add module  | `AddModuleCommand`    |
+| Yes          | Yes                 | No                  | Add lecture | `AddLectureCommand`   |
+| Yes          | Yes                 | Yes                 | Add video   | `AddVideoCommand`     |
+
+2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+
+3. The appropriate `AddCommand` subclass object is created and then returned to the caller.
+
+4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `AddCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+   - The `Module`, `Lecture`, or `Video` being added already exist
+   - The `Module` which a `Lecture` is being added to does not exist
+   - The `Module` which a `Lecture` is specified to be in does not exist
+   - The `Lecture` which a `Video` is being added to does not exist
+
+5. If no errors occur (no exceptions are thrown), the command succeeds in adding the module/lecture/video to the tracker.
+
 ### Find command feature
 
 The proposed find command supports:
