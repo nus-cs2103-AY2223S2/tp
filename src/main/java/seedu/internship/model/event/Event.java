@@ -13,6 +13,7 @@ public class Event  {
     private final End end;
     private final Description description;
     private Internship internship;
+    public final static Event EMPTY_EVENT = new Event(new Name("Empty"), new Start("Empty"), new End("Empty"), new Description("Empty"),Internship.EMPTY_INTERNSHIP);
 
     /**
      * Every Field must be present and not null.
@@ -101,16 +102,24 @@ public class Event  {
         }
 
         Event otherEvent = (Event) other;
+        if (this == EMPTY_EVENT || otherEvent == EMPTY_EVENT) {
+            return false;
+        }
         return otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
                 && otherEvent.getInternship().equals(getInternship())
-                && otherEvent.getDescription().equals(getDescription());
+                && otherEvent.getDescription().equals(getDescription())
+                && otherEvent.getName().equals(getName());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(start, end, internship,description);
+    }
+
+    public boolean isDeadline(){
+        return this.start.compareEnd(end) == 0;
     }
 
     @Override
