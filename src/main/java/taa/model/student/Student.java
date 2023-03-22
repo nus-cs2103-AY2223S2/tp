@@ -25,6 +25,8 @@ public class Student {
     private final Set<Tag> classTags = new HashSet<>();
     private final Submissions submissions;
 
+    private final int hashcode;
+
     /**
      * Every field must be present and not null.
      */
@@ -35,6 +37,7 @@ public class Student {
         this.atd = new Attendance();
         this.classTags.addAll(classTags);
         this.submissions = new Submissions();
+        hashcode = Objects.hash(name, this.classTags);
     }
 
     public int getId() {
@@ -58,14 +61,6 @@ public class Student {
      */
     public Set<Tag> getClassTags() {
         return Collections.unmodifiableSet(classTags);
-    }
-
-    /**
-     * Associates this student with a new class/class list.
-     * @param newClass The new class/class list to associate this student with.
-     */
-    public void addClassTag(Tag newClass) {
-        this.classTags.add(newClass);
     }
 
     /**
@@ -123,8 +118,7 @@ public class Student {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, classTags);
+        return hashcode;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Name {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String fullName;
-
+    private final int hashcode;
     /**
      * Constructs a {@code Name}.
      *
@@ -30,6 +30,7 @@ public class Name {
         requireNonNull(name);
         AppUtil.checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
+        hashcode = fullName.hashCode();
     }
 
     /**
@@ -54,7 +55,7 @@ public class Name {
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return hashcode;
     }
 
 }
