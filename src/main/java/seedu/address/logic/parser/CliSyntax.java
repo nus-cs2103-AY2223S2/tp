@@ -17,4 +17,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE = new Prefix("b/");
     public static final Prefix PREFIX_NOTE_CONTENT = new Prefix("c/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_RESUME = new Prefix("rs/");
+    public static final Prefix PREFIX_COVER_LETTER = new Prefix("cl/");
 }
