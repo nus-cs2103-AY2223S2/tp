@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.Logic;
-import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
 import tfifteenfour.clipboard.logic.commands.HelpCommand;
@@ -22,7 +21,6 @@ import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.UploadCommand;
 import tfifteenfour.clipboard.logic.commands.ViewCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.parser.RosterParser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 
 /**
@@ -184,6 +182,8 @@ public class MainWindow extends UiPart<Stage> {
     public void refreshViewPane() {
         studentViewPanel = new StudentViewPanel(logic.getViewedStudent());
         studentViewPanelPlaceholder.getChildren().add(studentViewPanel.getRoot());
+    }
+
     @FXML
     private void handleUndo() {
         studentListPanel.setPersonListView(logic.getFilteredStudentList());
@@ -214,7 +214,6 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            Command commandType = RosterParser.parseCommand(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

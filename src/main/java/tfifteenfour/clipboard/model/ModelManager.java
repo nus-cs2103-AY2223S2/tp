@@ -49,6 +49,7 @@ public class ModelManager implements Model {
         this.userPrefs = userPrefs;
         this.prevStateModifyingCommand = prevStateModifyingCommand;
         this.filteredStudents = new FilteredList<>(roster.getStudentList());
+        viewedStudent = new FilteredList<>(roster.getStudentList());
     }
 
     @Override
