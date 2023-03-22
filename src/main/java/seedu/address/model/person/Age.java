@@ -46,7 +46,7 @@ public class Age {
     }
     @Override
     public String toString() {
-        return age == "" ? "" : "(age: " + age + ")";
+        return age == "" ? "" : age;
     }
 
     @Override

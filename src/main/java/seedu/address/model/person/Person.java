@@ -176,6 +176,14 @@ public class Person {
         return this.time != null;
     }
 
+    public boolean hasAge() {
+        return this.age.getAge() != "";
+    }
+
+    public boolean hasMedicalCondition() {
+        return this.medicalCondition.getValue() != "";
+    }
+
     public Age getAge() {
         return age;
     }

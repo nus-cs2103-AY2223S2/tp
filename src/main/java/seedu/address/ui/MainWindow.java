@@ -180,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    protected CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -189,11 +189,19 @@ public class MainWindow extends UiPart<Stage> {
             //Reused from https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui
             // with minor modifications
             detailDisplay.clearDetailDisplay();
+            detailDisplay.hideAppointmentButton();
+            detailDisplay.hideUploadButton();
+            detailDisplay.hideGenerateButton();
+            detailDisplay.hideViewDisplay();
 
             if (commandResult.hasPersonToShow()) {
                 Person personToShow = commandResult.getPersonToShow();
                 assert personToShow != null;
                 detailDisplay.setInfo(personToShow);
+                detailDisplay.showAppointmentButton();
+                detailDisplay.showGenerateButton();
+                detailDisplay.showUploadButton();
+                detailDisplay.showViewDisplay();
             }
             //@@author
 
