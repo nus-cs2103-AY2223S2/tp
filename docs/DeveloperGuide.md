@@ -177,11 +177,11 @@ This section describes some noteworthy details on how certain features are imple
 
 The reminder feature is facilitated by `StartTimeWithinDaysPredicate`, that tests if ane event is within the given days.
 
-The current time is determined by a `Clock` that is created by `LogicManager`. The `LogicManager` creates an `EventBookParser` that has the `Clock` as an attribute. When parsing remind command as user input, the `EventBookParser` creates a `RemindCommandParser` with the `Clock` as an attribute and then uses the `RemindCommandParser` to parse the command argument.
+The current time is determined by a `Clock` that is created by `LogicManager`. The `LogicManager` creates an `EventBookParser` with `Clock` as an attribute. When parsing a remind command, the `EventBookParser` creates a `RemindCommandParser` with the `Clock` as an attribute.
 
-The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer. `RemindCommandParser` creates a `RemindCommand` with a `StartTimeWithinDaysPredicate`, that uses the `Clock` to get the current time, storing it as an attribute, and also stores the inputted days given as attributes. The `StartTimeWithinDaysPredicate` tests if a given event's start date is within the inputted days of the current time.
+The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer. `RemindCommandParser` creates a `RemindCommand` with a `StartTimeWithinDaysPredicate`, that uses the `Clock` to get the current time. The `StartTimeWithinDaysPredicate` tests if a given event's start date is within the inputted days of the current time.
 
-The `RemindCommand` is then executed by `LogicManager`. It tests all events with the `StartTimeWithinDaysPredicate`, and filtered events are displayed.
+The `RemindCommand` is then executed by `LogicManager`. After testing all events with the `StartTimeWithinDaysPredicate`, filtered events are displayed.
 
 #### Design considerations:
 
