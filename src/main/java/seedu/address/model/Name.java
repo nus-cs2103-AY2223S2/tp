@@ -1,16 +1,13 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a module/lecture/video name in the tracker.
+ * Represents a non-blank name of an entity in the tracker.
  * Guarantees: immutable, is valid as declared in {@link #isValidName(String)}.
  */
 public class Name {
-
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the name must not be a whitespace,
@@ -21,13 +18,23 @@ public class Name {
     public final String name;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Name} which is validated using {@link Name#VALIDATION_REGEX}.
      *
      * @param name A valid name.
      */
-    public Name(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+    public Name(String name, String constraintsMesssage) {
+        this(name, VALIDATION_REGEX, constraintsMesssage);
+    }
+
+    /**
+     * Constructs a {@code Name} which is validated using the {@code validationRegex}.
+     *
+     * @param name A valid name.
+     * @param validationRegex The regex use to validate the name.
+     */
+    public Name(String name, String validationRegex, String constraintsMesssage) {
+        requireAllNonNull(name, validationRegex);
+        checkArgument(isValidName(name, validationRegex), constraintsMesssage);
         this.name = name;
     }
 
@@ -38,7 +45,7 @@ public class Name {
      * @return True if {@code test} is a valid name. Otherwise, false.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return isValidName(test, VALIDATION_REGEX);
     }
 
     @Override
@@ -50,12 +57,24 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && name.equals(((Name) other).name)); // state check
+                        && name.equals(((Name) other).name)); // state check
     }
 
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    /**
+     * Returns true if {@code test} is a valid name according to the {@code validationRegex}.
+     *
+     * @param test The string to check if it is a valid name.
+     * @param validationRegex The regex to validate the name with.
+     * @return True if {@code test} is a valid name. Otherwise, false.
+     */
+    protected static boolean isValidName(String test, String validationRegex) {
+        requireAllNonNull(test, validationRegex);
+        return test.matches(validationRegex);
     }
 
 }

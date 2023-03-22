@@ -79,7 +79,7 @@ public class TrackerTest {
     public void hasModule_moduleWithSameCodeInTracker_returnsTrue() {
         tracker.addModule(TypicalModules.CS2040S);
         Module editedCs2040s = new ModuleBuilder(TypicalModules.CS2040S)
-                .withName("Algorithms & Data Structures").build();
+                .withName("Algorithms and Data Structures").build();
 
         assertTrue(tracker.hasModule(editedCs2040s));
     }
@@ -162,7 +162,7 @@ public class TrackerTest {
         tracker.addModule(TypicalModules.CS2040S);
 
         Module editedCs2040s = new ModuleBuilder(TypicalModules.CS2040S)
-                .withName("Algorithms & Data Structures").build();
+                .withName("Algorithms and Data Structures").build();
 
 
         tracker.setModule(TypicalModules.CS2040S, editedCs2040s);

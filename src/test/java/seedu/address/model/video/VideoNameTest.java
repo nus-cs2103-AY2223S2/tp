@@ -28,7 +28,7 @@ public class VideoNameTest {
         assertFalse(VideoName.isValidName("")); // empty string
         assertFalse(VideoName.isValidName(" ")); // spaces only
         assertFalse(VideoName.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(VideoName.isValidName("LoremIpsum123*")); // contains non-alphanumeric characters
+        assertFalse(VideoName.isValidName("Lorem Ipsum 123*")); // contains non-alphanumeric or space characters
 
         // valid name
         assertTrue(VideoName.isValidName("lorem ipsum")); // alphabets only
