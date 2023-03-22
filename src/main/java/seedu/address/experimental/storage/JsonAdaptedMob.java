@@ -37,6 +37,7 @@ public class JsonAdaptedMob {
             this.tagged.addAll(tagged);
         }
     }
+
     /***/
     public JsonAdaptedMob(Mob source) {
         name = source.getName().fullName;
@@ -47,6 +48,7 @@ public class JsonAdaptedMob {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
+
     /***/
     public Mob toModelType() throws IllegalValueException {
         // dont care

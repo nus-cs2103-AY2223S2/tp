@@ -3,27 +3,23 @@ package seedu.address.experimental.model;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
-import seedu.address.model.entity.Item;
-import seedu.address.model.entity.Mob;
-
-// Driver function.
 
 /**
  * Reroll...
  */
 public class Reroll implements ReadOnlyReroll {
+
+    private final RerollAllEntities entities;
     private final RerollCharacters characters;
     private final RerollItems items;
     private final RerollMobs mobs;
-    private final RerollAllEntities entities;
 
     {
-        characters = new RerollCharacters();
-        items = new RerollItems();
-        mobs = new RerollMobs();
         entities = new RerollAllEntities();
+        characters = new RerollCharacters(entities.getCharacters());
+        items = new RerollItems(entities.getItems());
+        mobs = new RerollMobs(entities.getMobs());
     }
 
     public Reroll() {}
@@ -44,29 +40,27 @@ public class Reroll implements ReadOnlyReroll {
     public void resetData(ReadOnlyReroll newData) {
         requireNonNull(newData);
 
-        characters.resetData(newData.getCharacters());
-        items.resetData(newData.getItems());
-        mobs.resetData(newData.getMobs());
-
         // Initialize all entities
-        entities.addAll(characters);
-        entities.addAll(items);
-        entities.addAll(mobs);
-
+        entities.resetData(newData.getEntities());
     }
 
     @Override
-    public ReadOnlyEntities<Item> getItems() {
+    public ReadOnlyEntities getEntities() {
+        return entities;
+    }
+
+    @Override
+    public ReadOnlyEntities getItems() {
         return items;
     }
 
     @Override
-    public ReadOnlyEntities<Character> getCharacters() {
+    public ReadOnlyEntities getCharacters() {
         return characters;
     }
 
     @Override
-    public ReadOnlyEntities<Mob> getMobs() {
+    public ReadOnlyEntities getMobs() {
         return mobs;
     }
 
@@ -85,86 +79,26 @@ public class Reroll implements ReadOnlyReroll {
      * Add Entity
      */
     public void addEntity(Entity entity) {
-        if (entity instanceof Item) {
-            items.addEntity((Item) entity);
-        } else if (entity instanceof Character) {
-            characters.addEntity((Character) entity);
-        } else if (entity instanceof Mob) {
-            mobs.addEntity((Mob) entity);
-        }
+        entities.addEntity(entity);
     }
 
     /**
-     * Add Item
+     * Set entity
+     * @param target
+     * @param edited
      */
-    public void addItem(Item item) {
-        items.addEntity(item);
-        entities.addEntity(item);
-    }
-
-    /**
-     * Add Character
-     */
-    public void addCharacter(Character character) {
-        characters.addEntity(character);
-        entities.addEntity(character);
-    }
-
-    /**
-     * Add Mob
-     */
-    public void addMob(Mob mob) {
-        mobs.addEntity(mob);
-        entities.addEntity(mob);
-    }
-
-    /**
-     * Set Item
-     */
-    public void setItem(Item target, Item edited) {
-        items.setEntity(target, edited);
+    public void setEntity(Entity target, Entity edited) {
         entities.setEntity(target, edited);
     }
 
     /**
-     * Set character
+     * Delete entity
+     * @param entity
      */
-    public void setCharacter(Character target, Character edited) {
-        characters.setEntity(target, edited);
-        entities.setEntity(target, edited);
+    public void deleteEntity(Entity entity) {
+        entities.deleteEntity(entity);
     }
 
-    /**
-     * Set Mob
-     */
-    public void setMob(Mob target, Mob edited) {
-        mobs.setEntity(target, edited);
-        entities.setEntity(target, edited);
-    }
-
-    /**
-     * Delete item
-     */
-    public void deleteItem(Item key) {
-        items.deleteEntity(key);
-        entities.deleteEntity(key);
-    }
-
-    /**
-     * Delete character
-     */
-    public void deleteCharacter(Character key) {
-        characters.deleteEntity(key);
-        entities.deleteEntity(key);
-    }
-
-    /**
-     * Delete Mob
-     */
-    public void deleteMob(Mob key) {
-        mobs.deleteEntity(key);
-        entities.deleteEntity(key);
-    }
 
     // Misc ====================
 
@@ -176,31 +110,15 @@ public class Reroll implements ReadOnlyReroll {
         return entities.getEntityList();
     }
 
-    public ObservableList<? extends Entity> getCharacterList() {
-        // not slap at all
-        return characters.getEntityList();
-    }
-
-    public ObservableList<? extends Entity> getItemList() {
-        return items.getEntityList();
-    }
-
-    public ObservableList<? extends Entity> getMobList() {
-        return mobs.getEntityList();
-    }
-
-
     @Override
     public String toString() {
-        return "Characters:" + characters.toString() + "\nItems" + items.toString() + "\nMobs" + mobs.toString();
+        return "Many entities...";
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Reroll
-                && items.equals(((Reroll) other).items)
-                && mobs.equals(((Reroll) other).mobs)
-                && characters.equals(((Reroll) other).characters));
+                && entities.equals(((Reroll) other).entities));
     }
 }

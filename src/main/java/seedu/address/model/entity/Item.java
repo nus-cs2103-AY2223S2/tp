@@ -49,9 +49,13 @@ public class Item extends Entity {
         weight = DEFAULT_WEIGHT;
     }
 
-    public int getCost() { return this.cost; }
+    public int getCost() {
+        return this.cost;
+    }
 
-    public float getWeight() { return this.weight; }
+    public float getWeight() {
+        return this.weight;
+    }
 
     @Override
     public int hashCode() {

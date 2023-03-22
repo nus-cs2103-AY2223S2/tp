@@ -26,9 +26,17 @@ public class ModelManager implements Model {
     private final Reroll reroll;
     private final UserPrefs userPrefs;
     private final FilteredList<Entity> filteredAllEntities;
+
+    private final Predicate<Entity> IS_CHARACTER = entity -> entity instanceof Character;
+    private final Predicate<Entity> IS_MOB = entity -> entity instanceof Mob;
+    private final Predicate<Entity> IS_ITEM = entity -> entity instanceof Item;
+
+    /*
     private final FilteredList<Entity> filteredItems;
     private final FilteredList<Entity> filteredMobs;
     private final FilteredList<Entity> filteredCharacters;
+
+     */
     // Placeholder for the active list.
     private FilteredList<Entity> filteredActive;
     private Entity active = null;
@@ -46,11 +54,13 @@ public class ModelManager implements Model {
 
         this.reroll = new Reroll(reroll);
         this.userPrefs = new UserPrefs(userPrefs);
-        // Meaningless to maintain generics at this point.
-        // Don't want any generics outside of this model.
-        this.filteredCharacters = (FilteredList<Entity>) new FilteredList<>(this.reroll.getCharacterList());
-        this.filteredItems = (FilteredList<Entity>) new FilteredList<>(this.reroll.getItemList());
-        this.filteredMobs = (FilteredList<Entity>) new FilteredList<>(this.reroll.getMobList());
+
+        /*
+        this.filteredCharacters = new FilteredList<>(this.reroll.getCharacters().getEntityList());
+        this.filteredItems = new FilteredList<>(this.reroll.getItems().getEntityList());
+        this.filteredMobs = new FilteredList<>(this.reroll.getMobs().getEntityList());
+         */
+
         this.filteredAllEntities = new FilteredList<>(this.reroll.getAllList());
         // By default, the active list is all entities.
         this.filteredActive = this.filteredAllEntities;
@@ -116,31 +126,14 @@ public class ModelManager implements Model {
     @Override
     public void addEntity(Entity entity) {
         requireNonNull(entity);
-        if (entity instanceof Item) {
-            reroll.addItem((Item) entity);
-            filteredActive = filteredItems;
-        } else if (entity instanceof Character) {
-            reroll.addCharacter((Character) entity);
-            filteredActive = filteredCharacters;
-        } else if (entity instanceof Mob) {
-            reroll.addMob((Mob) entity);
-            filteredActive = filteredMobs;
-        }
+        reroll.addEntity(entity);
         updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
     }
 
     @Override
     public void deleteEntity(Entity key) {
         requireNonNull(key);
-        if (key instanceof Item) {
-            reroll.deleteItem((Item) key);
-        } else if (key instanceof Character) {
-            reroll.deleteCharacter((Character) key);
-        } else if (key instanceof Mob) {
-            reroll.deleteMob((Mob) key);
-        } else {
-
-        }
+        reroll.deleteEntity(key);
     }
 
     @Override
@@ -149,35 +142,24 @@ public class ModelManager implements Model {
         if (!target.getClass().equals(edited.getClass())) {
             return; // throw error.
         }
-        if (target instanceof Item) {
-            reroll.setItem((Item) target, (Item) edited);
-        } else if (target instanceof Character) {
-            reroll.setCharacter((Character) target, (Character) edited);
-        } else if (target instanceof Mob) {
-            reroll.setMob((Mob) target, (Mob) edited);
-        } else {
-        }
-
+        reroll.setEntity(target, edited);
     }
 
     // =========== List operations
 
     @Override
     public void listItems() {
-        filteredActive = filteredItems;
-        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+        updateFilteredEntityList(IS_ITEM);
     }
 
     @Override
     public void listCharacters() {
-        filteredActive = filteredCharacters;
-        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+        updateFilteredEntityList(IS_CHARACTER);
     }
 
     @Override
     public void listMobs() {
-        filteredActive = filteredMobs;
-        updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+        updateFilteredEntityList(IS_MOB);
     }
 
     //=========== Filtered Entity List Accessors =============================================================
@@ -196,7 +178,6 @@ public class ModelManager implements Model {
     // Reset
     @Override
     public void resetFilteredEntityList() {
-        filteredActive = filteredAllEntities;
         updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
     }
 
