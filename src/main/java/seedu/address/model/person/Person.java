@@ -23,20 +23,19 @@ public class Person {
 
     // Data fields
     private final Optional<Address> address;
-    private final Remark remark;
+    private final Optional<Remark> remark;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, remark);
-        //requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
         this.email = Optional.ofNullable(email);
         this.address = Optional.ofNullable(address);
-        this.remark = remark;
+        this.remark = Optional.ofNullable(remark);
         this.tags.addAll(tags);
     }
 
@@ -56,7 +55,7 @@ public class Person {
         return address;
     }
 
-    public Remark getRemark() {
+    public Optional<Remark> getOptionalRemark() {
         return remark;
     }
 
@@ -100,7 +99,8 @@ public class Person {
                 && otherPerson.getOptionalPhone().equals(getOptionalPhone())
                 && otherPerson.getOptionalEmail().equals(getOptionalEmail())
                 && otherPerson.getOptionalAddress().equals(getOptionalAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getTags().equals(getOptionalRemark());
     }
 
     @Override
@@ -119,7 +119,6 @@ public class Person {
                 .append(phone)
                 .append(email)
                 .append(address)
-                .append(getRemark())
                 .append(" Tags: ");
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
