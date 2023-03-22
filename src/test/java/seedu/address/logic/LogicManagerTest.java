@@ -132,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -154,7 +154,7 @@ public class LogicManagerTest {
      */
     private static class JsonPetPalIoExceptionThrowingStub extends JsonPetPalStorage {
         private JsonPetPalIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
+            super(filePath, filePath);
         }
 
         @Override

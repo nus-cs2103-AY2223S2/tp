@@ -17,7 +17,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.PetPal;
-import seedu.address.model.PetPalTest;
 import seedu.address.model.ReadOnlyPetPal;
 
 public class JsonPetPalStorageTest {

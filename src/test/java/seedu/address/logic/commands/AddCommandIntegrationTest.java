@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
+        model = new ModelManager(getTypicalPetPal(), getTypicalPetPal(), new UserPrefs());
     }
 
     @Test
     public void execute_newPet_success() {
         Pet validPet = new PetBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPetPal(), getTypicalPetPal(), new UserPrefs());
         expectedModel.addPet(validPet);
 
         assertCommandSuccess(new AddCommand(validPet), model,

@@ -96,6 +96,7 @@ public class ModelManagerTest {
     @Test
     public void equals() {
         PetPal petPal = new PetPalBuilder().withPet(ALICE).withPet(BENSON).build();
+        PetPal archivePetPal = new PetPal();
         PetPal differentPetPal = new PetPal();
         UserPrefs userPrefs = new UserPrefs();
 

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -26,7 +25,7 @@ import seedu.address.model.pet.Pet;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
+    private Model model = new ModelManager(getTypicalPetPal(), getTypicalPetPal(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
         expectedModel.deletePet(petToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -58,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
 
-        Model expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
         expectedModel.deletePet(petToDelete);
         showNoPet(expectedModel);
 

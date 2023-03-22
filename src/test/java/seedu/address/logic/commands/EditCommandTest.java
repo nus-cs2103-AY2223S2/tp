@@ -32,7 +32,7 @@ import seedu.address.testutil.PetBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
+    private Model model = new ModelManager(getTypicalPetPal(), getTypicalPetPal(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PET_SUCCESS, editedPet);
 
-        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()),
+                model.getPetPalArchive(), new UserPrefs());
         expectedModel.setPet(model.getFilteredPetList().get(0), editedPet);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +64,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PET_SUCCESS, editedPet);
 
-        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()),
+                model.getPetPalArchive(), new UserPrefs());
         expectedModel.setPet(lastPet, editedPet);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +78,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PET_SUCCESS, editedPet);
 
-        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()),
+                model.getPetPalArchive(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +95,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PET_SUCCESS, editedPet);
 
-        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(new PetPal(model.getPetPal()),
+                new PetPal(model.getPetPalArchive()), new UserPrefs());
         expectedModel.setPet(model.getFilteredPetList().get(0), editedPet);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -25,7 +24,7 @@ import seedu.address.model.pet.Pet;
  * {@code ArchiveCommand}.
  */
 public class ArchiveCommandTest {
-    private Model model = new ModelManager(getTypicalPetPal(), archivePetPal, new UserPrefs());
+    private Model model = new ModelManager(getTypicalPetPal(), getTypicalPetPal(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +33,7 @@ public class ArchiveCommandTest {
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive);
 
-        ModelManager expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
         expectedModel.archivePet(petToArchive);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
@@ -56,7 +55,7 @@ public class ArchiveCommandTest {
         ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PET);
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive);
-        Model expectedModel = new ModelManager(model.getPetPal(), archivePetPal, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
         expectedModel.archivePet(petToArchive);
         showNoPet(expectedModel);
 
