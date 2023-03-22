@@ -211,8 +211,8 @@ The feature is implemented as follows:
 * When a user adds an event, he can optionally add a contact to the event.
 * When a user edits an event, he can optionally add a contact to the event.
 * When a user edits an event, he can optionally change the contact of the event.
-* If the user specify a contact that does not exist in the contact list, the event will not be added/edited.
-* If the user specify a contact that already exists in the contact list, the event will be added/edited with the contact.
+* If the user specifies a contact that does not exist in the contact list, the event will not be added/edited.
+* If the user specifies a contact that already exists in the contact list, the event will be added/edited with the contact.
 
 The linkcontact feature will take in a contact number as a parameter. This parameter will be used to search for the contact in the contact list.
 1. If the contact is found, the contact will be linked to the event.
