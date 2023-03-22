@@ -333,7 +333,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentEditCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        //Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Name newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NEWNAME).get());
         Phone newStudentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
         Email newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAILSTUDENT).get());
@@ -353,7 +353,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
-        return new StudentEditCommand(name, newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
+        return new StudentEditCommand(newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
                 newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca,
                 newComment, newStudentPhoneNumber, newEmail, newAddress, newTagList);
     }
