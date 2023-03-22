@@ -640,6 +640,11 @@ sides, the left side [Main Section](#main-section) which handles user input and 
 
 [Insert diagram that labels the sides]
 
+Visual design of this section are implemented using the CSS file under resources. Details of such implementation are
+explained under [Theme](#theme) section.
+
+<br>
+
 Refer to [UI Component](#ui-component) for more information about this package.
 
 ## **Main section**
@@ -692,17 +697,26 @@ TEXT
 
 TEXT
 
-**DetailedContact**
+### **DetailedContact**
 
 TEXT
 
-**DetailedModule**
+### **DetailedModule**
 
 TEXT
 
-**DetailedSkill**
+### **DetailedSkill**
 
 TEXT
+
+
+## **Theme**
+
+CSS
+
+Colours
+
+Font
 
 
 [Scroll back to UI Implementation](#ui-implementation)
