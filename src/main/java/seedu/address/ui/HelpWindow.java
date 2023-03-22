@@ -15,7 +15,9 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    //public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    // I leave this here just in case we need it
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-f10-4.github.io/tp/UserGuide.html#quick-start";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

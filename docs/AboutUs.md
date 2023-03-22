@@ -21,10 +21,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Matthew Simon Castaneda
 
-<img src="images/matthewphoto.png" width="200px">
+<img src="images/seriouslia0.png" width="200px">
 
 [[github](http://github.com/seriouslia0)]
-[[portfolio](team/matthew.md)]
+[[portfolio](team/seriouslia0.md)]
 
 * Role: Chief Expresso Officer
 * Responsibilities: UI
@@ -41,10 +41,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Yuan Hao
 
-<img src="images/yuanhao.png" width="200px">
+<img src="images/iapetusbob.png" width="200px">
 
 [[github](http://github.com/iapetusbob)]
-[[portfolio](team/yuanhao.md)]
+[[portfolio](team/iapetusbob.md)]
 
 * Role: Developer
 * Responsibilities: UI
