@@ -169,7 +169,7 @@ Here is how `Task` works:
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.svg" width="550" />
+<img src="images/StorageClassDiagram.svg" width="650" />
 
 The `Storage` component,
 * can save both trackr data and user preference data in json format, and read them back into corresponding objects.
