@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -153,6 +153,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### \[Developed\] Editing a person
+
+Users can edit a person's `Name`, `Phone`, `Email`, `Address`, `Group` and `Tag`.
+This is implemented using the `EditCommand`, `EditPersonDescriptor` and `EditCommandParser` classes.
+
+#### Current Implementation
+
+The `EditCommand` receives an index of the person to be edited and an editable `EditPersonDescriptor` class which
+consists of the updated fields of the person.
+
+#### Class Diagram
+
+Below is a partial class diagram for `EditPersonCommand`, to make it more comprehensible, details not related to
+`EditPersonCommand` are abstracted away.
+
+<img src="images/EditCommandClassDiagram.png" width="600" />
+
+#### Sequence Diagram
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute API call.
+
+<img src="images/EditCommandSequenceDiagram.png" width="1000" />
+
+1. When `LogicManager` is called upon to execute the user's command, it calls the `AddressBookParser` class to
+   parse the user command.
+2. The `AddressBookParser` then creates an EditCommandParser to parse the user input.
+3. If `EditCommandParser` parse the command successfully, EditCommand is created.
+4. The `EditCommand` instance is then returned to the `LogicManager`
+5. The `LogicManager` then executes the `EditCommand` instance which edits the `Person` in the UniquePersonList and
+   UniqueGroupList(If group is deleted).
+6. Execution of `EditCommand` results in a `CommandResult` created and returned back to the `LogicManager`. 
+
+#### Activity diagram
+
+The following activity diagram summarises what happens when a user executes an edit command:
+
+<img src="images/EditCommandActivityDiagram.png" width="200" />
+
+#### Design consideration
+
+**Aspect: Overwriting or merging**
+1. Only allows group and tag to be overwritten
+   * Pros: Easy implementation and reduces editing errors
+   * Cons: Users had to retype every existing group/tag in addition to the new group/tag they want to include in.
+2. [Current implementation] Allows group and tag to be added on instead of overwritten
+   * Pros: Users can just add on one or more group/tag instead of retyping existing group/tag
+   * Cons: More bug-prone due to duplicate group/tag and adding to non-existing group
+
+#### Differences between EditCommand, EditIsolatedEventCommand and EditRecurringEventCommand*
 
 ### \[Proposed\] Undo/redo feature
 
