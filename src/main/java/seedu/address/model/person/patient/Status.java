@@ -1,6 +1,7 @@
 package seedu.address.model.person.patient;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class Status {
      */
     public Status(String status) {
         requireNonNull(status);
+        checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
         this.status = toTitleCase(status);
     }
 

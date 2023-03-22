@@ -24,7 +24,7 @@ public class PatientBuilder {
     public static final String DEFAULT_NAME = "Bobby Bob";
     public static final String DEFAULT_PHONE = "12345678";
     public static final String DEFAULT_EMAIL = "boby@gmail.org";
-    public static final String DEFAULT_HEIGHT = "1.7";
+    public static final String DEFAULT_HEIGHT = "1.70";
     public static final String DEFAULT_WEIGHT = "65";
     public static final String DEFAULT_DIAGNOSIS = "Asthma";
     public static final String DEFAULT_STATUS = Status.getDummyValidStatus();
