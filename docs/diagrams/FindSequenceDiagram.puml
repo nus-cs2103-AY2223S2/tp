@@ -71,6 +71,11 @@ deactivate CommandResult
 
 FindCommand --> LogicManager : result
 deactivate FindCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommand -[hidden]-> LogicManager
+destroy FindCommand
+
+destroy InternshipContainsKeywordPredicate
 
 [<--LogicManager
 deactivate LogicManager
