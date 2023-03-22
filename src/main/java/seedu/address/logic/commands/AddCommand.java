@@ -57,7 +57,8 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_NO_SELECTED_DECK);
         }
 
-        Card toAdd = cardDescriptor.buildCardInDeck(selectedDeck.get());
+        cardDescriptor.setDeck(selectedDeck.get());
+        Card toAdd = cardDescriptor.buildCard();
 
         if (model.hasCard(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CARD);
@@ -81,6 +82,7 @@ public class AddCommand extends Command {
         private Question question;
         private Answer answer;
         private Set<Tag> tags;
+        private Deck deck;
 
         /**
          * Constructor for a Card Descriptor to be used to create a card instance.
@@ -102,6 +104,7 @@ public class AddCommand extends Command {
             setQuestion(toCopy.question);
             setAnswer(toCopy.answer);
             setTags(toCopy.tags);
+            setDeck(toCopy.deck);
         }
 
         public void setQuestion(Question question) {
@@ -118,6 +121,10 @@ public class AddCommand extends Command {
 
         public Answer getAnswer() {
             return answer;
+        }
+
+        public void setDeck(Deck deck) {
+            this.deck = deck;
         }
 
         /**
@@ -140,13 +147,11 @@ public class AddCommand extends Command {
         /**
          * Creates an immutable card that is associated with the given deck.
          *
-         * @param deck The Deck associated with the card.
          * @return The new Card instance.
          */
-        public Card buildCardInDeck(Deck deck) {
+        public Card buildCard() {
             return new Card(question, answer, tags, deck);
         }
-
 
         @Override
         public boolean equals(Object other) {
