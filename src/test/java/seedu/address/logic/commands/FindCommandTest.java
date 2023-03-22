@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Level;
 import seedu.address.model.Model;
@@ -33,10 +34,11 @@ import seedu.address.testutil.TypicalModules;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
+    private static final Module CS2040S = TypicalModules.getCs2040s();
+    private static final Module ST2334 = TypicalModules.getSt2334();
+
     private Model model = new ModelManager(getTypicalTracker(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTracker(), new UserPrefs());
-    private final static Module CS2040S = TypicalModules.getCs2040s();
-    private final static Module ST2334 = TypicalModules.getSt2334();
 
     @Test
     public void equals() {

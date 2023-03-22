@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2103;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -11,6 +12,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
@@ -34,16 +36,18 @@ public class FindCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         String invalidFormat = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
 
-        // No empty args
+        // No empty keywords
         assertParseFailure(parser, PREAMBLE_WHITESPACE, invalidFormat);
 
-        // Missing module code and invalid lecture name format
-        assertParseFailure(parser, INVALID_LECTURE_NAME_DESC, invalidFormat);
+        // Keyword present, missing module code and invalid lecture name format
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + INVALID_LECTURE_NAME_DESC, invalidFormat);
 
-        // Invalid module code format
-        assertParseFailure(parser, INVALID_MODULE_CODE_DESC, ModuleCode.MESSAGE_CONSTRAINTS);
+        // Keyword present, invalid module code format
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + INVALID_MODULE_CODE_DESC, ModuleCode.MESSAGE_CONSTRAINTS);
 
-        // Valid module code present but invalid lecture name format
-        assertParseFailure(parser, MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC, LectureName.MESSAGE_CONSTRAINTS);
+        // Keyword present, valid module code present but invalid lecture name format
+        assertParseFailure(parser,
+            PREAMBLE_NON_EMPTY + MODULE_CODE_DESC_2103 + INVALID_LECTURE_NAME_DESC,
+                LectureName.MESSAGE_CONSTRAINTS);
     }
 }
