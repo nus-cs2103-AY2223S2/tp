@@ -98,6 +98,11 @@ public class RecipeCard extends UiPart<Region> {
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));        
 
+        //Selector focus
+            cardPane.setOnMouseEntered(event -> {
+            cardPane.requestFocus();
+        });
+
         // Add a click listener to the cardPane node
         cardPane.setOnMouseClicked(event -> {
             cardPane.requestFocus();
@@ -105,25 +110,20 @@ public class RecipeCard extends UiPart<Region> {
             popup.display();
         });
 
+        // All key listeners
         cardPane.setOnKeyPressed(event -> {
             cardPane.requestFocus();
             KeyCode input = event.getCode();
             if (input == KeyCode.DELETE ||
-             input == KeyCode.D || 
-             input == KeyCode.BACK_SPACE) 
-            {
+                input == KeyCode.D ||
+                input == KeyCode.BACK_SPACE) {
                 DeleteRecipeEvent deleteEvent = new DeleteRecipeEvent(displayedIndex);
                 cardPane.fireEvent(deleteEvent);
-            }
-        });
-
-        cardPane.setOnKeyPressed(event -> {
-            cardPane.requestFocus();
-            if (event.getCode() == KeyCode.P) {
+            } else if (event.getCode() == KeyCode.P) {
                 RecipePopup popup = new RecipePopup(recipe, displayedIndex);
                 popup.display();
             }
-        });  
+        });
     }
 
     @Override
