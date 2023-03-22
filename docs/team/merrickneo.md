@@ -20,26 +20,27 @@ title: <Merrick Neo> Project Portfolio Page
 - HMHero helps Hiring Managers track the statuses of candidates' applications
 
 (**Summary of Contributions**)
+1.  Enhanced `DeleteCommand` and `DeleteCommandParser` to remove an applicant based on their name and phone number, which was previously implemented using indexes.
 
-- Implemented `delete` feature to remove applicants that should no longer be tracked in HMHero
+Example Input: `delete n/John Doe p/(John Doe's number)`
 
-Example Input: `delete 1`
+Output: `Deleted Person: John Doe; Phone: 91234567; Email: johndoe@gmail.com; Address: SoC; Status: REJECTED; Tags: [Python]`
 
->Original List:
-```
-Here are the list of all applicants:
-1. John Doe (Applied)
-2. Jane Doe (Shortlisted)
-3. Joe Doe (Accepted)
-```
-Example Output:
-```
-John Doe is deleted from HRHero.
+2. Refactor tags to notes to allow users to note down traits and skillsets of applicants
 
-Here are the list of all applicants:
-1. Jane Doe (Shortlisted)
-2. Joe Doe (Accepted)
-```
+3. Implemented a `DateTimeParser` class to help check and validate interview dates for applicants.
+> Format: `DD-MM-YYYY HH:MM`
+- If the date provided is not in the right format, the error message `Invalid date and time provided` will be presented to the user.
+
+### Test Cases
+1. Wrote test cases for `DateTimeParser` and `InterviewDateTime`
+- Test cases provides full path coverage for the classes
+- Checks all valid and invalid datetime scenarios provided by the user
+
+2. Wrote test cases for  `DeleteCommand` and `DeleteCommandParser`
+- Rewrote test cases to test the new format for a  `DeleteCommand`
+- Checked positive cases where both name and phone number was provided
+- Checked negative cases where either the name or phone fields were missing
 
 (**This part can change according to your contributions**)
 
@@ -55,13 +56,17 @@ Example
 
 - **Project management**:
 
-  - to be added soon
+  - Set up Google Drive to help facilitate document sharing within team members
+  - Set up recurring Zoom meetings to discuss the team's progress and future plans
 
 (**Enhancements implemented**)
 
 - **Enhancements to existing features**:
 
-  - to be added soon
+  - Make error messages presented more specific to the user's situation
+  - Example:
+  `Invalid Date and Time Provided. Expected Format: "DD-MM-YYYY HH:MM"`
+
 
 - **Documentation**:
 
@@ -72,10 +77,8 @@ Example
 
 - **Community**:
 
-  - to be added soon
+  - Reviewed Pull Requests (PRs) made by team members
 
 - **Tools**:
 
   - to be added soon
-
-- _{you can add/remove categories in the list above}_
