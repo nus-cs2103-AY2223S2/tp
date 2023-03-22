@@ -8,9 +8,12 @@ import seedu.address.model.entity.Entity;
  */
 public class RerollMobs implements ReadOnlyEntities {
 
-    // for convenience
     private final ObservableList<Entity> mobs;
 
+    /**
+     * Initialize with list of mobs.
+     * @param mobs Unmodifiable list of mobs.
+     */
     public RerollMobs(ObservableList<Entity> mobs) {
         this.mobs = mobs;
     }

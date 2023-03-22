@@ -38,19 +38,29 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setRerollFilePath(newUserPrefs.getRerollFilePath());
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
 
+    /**
+     * Set new GUI settings.
+     * @param guiSettings new GuiSettings.
+     */
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
     }
 
+    @Override
     public Path getRerollFilePath() {
         return rerollFilePath;
     }
 
+    /**
+     * Set new path of Reroll.
+     * @param rerollFilePath Path.
+     */
     public void setRerollFilePath(Path rerollFilePath) {
         requireNonNull(rerollFilePath);
         this.rerollFilePath = rerollFilePath;

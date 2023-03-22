@@ -12,7 +12,7 @@ import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of Reroll data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code RerollStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(RerollStorage rerollStorage, UserPrefsStorage userPrefsStorage) {
         this.rerollStorage = rerollStorage;

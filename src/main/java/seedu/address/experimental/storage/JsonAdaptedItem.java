@@ -14,14 +14,18 @@ import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Name;
 import seedu.address.model.tag.Tag;
 
-/***/
+/**
+ * Jackson-friendly version of {@link Item}
+ */
 public class JsonAdaptedItem {
     private final String name;
     private final int cost;
     private final float weight;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    /***/
+    /**
+     * Constructs a {@code JsonAdaptedItem} with the given item details.
+     */
     @JsonCreator
     JsonAdaptedItem(@JsonProperty("name") String name, @JsonProperty("cost") int cost,
                     @JsonProperty("weight") float weight,
@@ -34,7 +38,9 @@ public class JsonAdaptedItem {
         }
     }
 
-    /***/
+    /**
+     * Converts a given {@code Item} into this class for Jackson use.
+     */
     public JsonAdaptedItem(Item source) {
         name = source.getName().fullName;
         cost = source.getCost();
@@ -44,7 +50,11 @@ public class JsonAdaptedItem {
                 .collect(Collectors.toList()));
     }
 
-    /***/
+    /**
+     * Converts this Jackson-friendly adapted Item object into the model's {@code Item} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted item.
+     */
     public Item toModelType() throws IllegalValueException {
         final List<Tag> tags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {

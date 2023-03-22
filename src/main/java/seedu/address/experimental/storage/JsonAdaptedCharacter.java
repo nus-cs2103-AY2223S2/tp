@@ -15,7 +15,9 @@ import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Stats;
 import seedu.address.model.tag.Tag;
 
-/***/
+/**
+ * Jackson-friendly version of {@link Character}
+ */
 public class JsonAdaptedCharacter {
     private final String name;
     private final JsonAdaptedStats stats;
@@ -23,6 +25,9 @@ public class JsonAdaptedCharacter {
     private final int xp;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedCharacter} with the given character details.
+     */
     @JsonCreator
     JsonAdaptedCharacter(@JsonProperty("name") String name, @JsonProperty("stats") JsonAdaptedStats stats,
                          @JsonProperty("level") int level, @JsonProperty("xp") int xp,
@@ -35,7 +40,10 @@ public class JsonAdaptedCharacter {
             this.tagged.addAll(tagged);
         }
     }
-    /***/
+
+    /**
+     * Converts a given {@code Character} into this class for Jackson use.
+     */
     public JsonAdaptedCharacter(Character source) {
         name = source.getName().fullName;
         stats = new JsonAdaptedStats(source.getStats());
@@ -46,7 +54,11 @@ public class JsonAdaptedCharacter {
                 .collect(Collectors.toList()));
     }
 
-    /***/
+    /**
+     * Converts this Jackson-friendly adapted Character object into the model's {@code Character} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted character.
+     */
     public Character toModelType() throws IllegalValueException {
         // dont care about error...
         Stats stat = stats.toModalType();
