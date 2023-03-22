@@ -107,6 +107,7 @@
 .result-message-box .scroll-pane .content {
   -fx-background-color: transparent;
   -fx-border-color: transparent;
+  -fx-font-size: 11;
 }
 
 .result-message-death-color {
