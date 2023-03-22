@@ -44,6 +44,10 @@ public class Phone {
         return new Phone(phone);
     }
 
+    public boolean isEmptyPhone() {
+        return this == NO_PHONE;
+    }
+
     /**
      * Returns true if a given string is a valid phone number.
      */
