@@ -75,7 +75,8 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_BENEDICT_2_NAME_WITH_ID, AMY);
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                VALID_BENEDICT_2_NAME_WITH_ID, AMY);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
 
@@ -100,7 +101,8 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_APPLICANT_NAME_AMY, BENEDICT_2);
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                VALID_APPLICANT_NAME_AMY, BENEDICT_2);
 
         Model expectedModel = new ModelManager(new ListingBook(model.getListingBook()), new UserPrefs());
 
@@ -150,7 +152,8 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), INVALID_BENEDICT_1_NAME_WITH_ID, AMY);
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                INVALID_BENEDICT_1_NAME_WITH_ID, AMY);
 
         String expectedErrorMessage = String.format(EditApplicantCommand.MESSAGE_APPLICANT_NOT_FOUND,
                 INVALID_BENEDICT_1_NAME_WITH_ID,
@@ -166,7 +169,8 @@ public class EditApplicantCommandTest {
         model.addListing(newListing);
 
         EditApplicantCommand editApplicantCommand = new EditApplicantCommand(
-                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())), VALID_APPLICANT_NAME_BENEDICT, AMY);
+                getIndexLastListing(new ArrayList<>(model.getFilteredListingList())),
+                VALID_APPLICANT_NAME_BENEDICT, AMY);
 
         String expectedErrorMessage = String.format(EditApplicantCommand.MESSAGE_AMBIGUOUS_APPLICANT,
                 VALID_APPLICANT_NAME_BENEDICT,
