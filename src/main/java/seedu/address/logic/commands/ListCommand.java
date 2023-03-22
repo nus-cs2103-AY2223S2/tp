@@ -24,13 +24,18 @@ public class ListCommand extends Command {
         this.classification = classification;
     }
 
+    public ListCommand() {
+        classification = null;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (classification.isCharacter()) {
+        if (classification == null) {
+            model.resetFilteredEntityList();
+        } else if (classification.isCharacter()) {
             model.listCharacters();
-        } else if ( classification.isItem()) {
+        } else if (classification.isItem()) {
             model.listItems();
         } else if (classification.isMob()) {
             model.listMobs();
