@@ -249,7 +249,7 @@ public class SudoHr implements ReadOnlySudoHr {
      * @param d The department to add the employee to
      */
     public void addEmployeeToDepartment(Employee p, Department d) {
-        requireAllNonNull(p,d);
+        requireAllNonNull(p, d);
         d.addEmployee(p);
     }
 
@@ -260,10 +260,14 @@ public class SudoHr implements ReadOnlySudoHr {
      * @param d The department to remove the employee from
      */
     public void removeEmployeeFromDepartment(Employee p, Department d) {
-        requireAllNonNull(p,d);
+        requireAllNonNull(p, d);
         d.removeEmployee(p);
     }
 
+    /**
+     * Deletes an employee from the employee list for each department it belongs to
+     * @param employeeToDelete employee to delete
+     */
     public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
         requireAllNonNull(employeeToDelete);
         ObservableList<Department> departmentList = this.getDepartmentList();
@@ -275,7 +279,7 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Edits an employee's details in the employee list for each department.
+     * Edits an employee's details in the employee list for each department it belongs to.
      * @param employeeToEdit the employee's details to edit
      * @param editedEmployee the updated details of an employee
      */
