@@ -361,9 +361,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The client added has duplicate names.
 
     * 1b1. FitBook shows an error message for duplicate names.
-
-
-      Use case ends.
+    
+       Use case ends.
 
 
 
