@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalTanks.TYPICAL_TANK_1_STRING;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.TaskList;
+import seedu.address.model.tank.Tank;
+import seedu.address.model.tank.TankName;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
@@ -13,8 +18,9 @@ import seedu.address.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task TASK_ONE = new Task(new Description("clean tank"));
-    public static final Task TASK_TWO = new Task(new Description("feed fish"));
+    public static final Task TASK_ONE = new Task(new Description("clean tank"),
+            new Tank(new TankName(TYPICAL_TANK_1_STRING), new AddressBook()));
+    public static final Task TASK_TWO = new Task(new Description("feed fish"), null);
 
     private TypicalTasks() {} // prevents instantiation
 

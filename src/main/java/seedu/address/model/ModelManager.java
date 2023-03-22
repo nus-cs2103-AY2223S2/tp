@@ -47,10 +47,23 @@ public class ModelManager implements Model {
         filteredTanks = new FilteredList<>(this.tankList.getTankList());
 
         updateTanksOfEachFishAndFishListOfEachTank();
+        updateTankOfEachTask();
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new TaskList(), new TankList());
+    }
+
+    /**
+     * Points the {@code Tank} object in each Task to the right instance.
+     */
+    public void updateTankOfEachTask() {
+        for (Task t : taskList.getTaskList()) {
+            if (t.isTankRelatedTask()) {
+                Tank realInstance = getTankListTankInstance(t.getTank());
+                t.setTank(realInstance);
+            }
+        }
     }
 
     /**
