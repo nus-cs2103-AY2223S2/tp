@@ -1,27 +1,27 @@
-### PowerConnect Developer Guide
+## PowerConnect Developer Guide
 
 PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
 
-##### Table of Contents
-1. [Quick Start](#quickstart)
-2. [Features](#features)
-    1. [Student Features](#student)
-        1. [Add student: `add`](#addstudent)
-        2. [Add students' grade: `grade`](#gradestudent)
-        3. [Add comments to students: `comment`](#commentstudent)
-        4. [Listing all students in a particular class: `list`](#liststudent)
-        5. [Editing a student's particulars: `edit`](#editstudent)
-        6. [Searching students: `find`](#findstudent)
-        7. [Deleting a student: `delete`](#deletestudent)
-        8. [Marking student 'attendance'](#attendance)
-    2. [Parent Features](#parent)
-        1. [Add parent/guardian: `add`](#addparent)
-        2. [Listing all parents: `list`](#listparent)
-        3. [Delete a parent/ parent information: `delete`](#deleteparent)
-3. [Viewing help: `help`](#help)
-4. [Exiting program: `exit`](#exit)
-5. [FAQ](#faq)
-6. [Command Summary](#summary)
+--------------------------------------------------------------------------------------------------------------------
+
+## **Table of Contents**
+1. [Acknowledgements](#acknowledgements)
+2. [Setting Up, Getting Started](#setting-up-getting-started)
+3. [Design](#design)
+4. [Implementation](#implementation)<br>
+   1. [Attendance Feature](#attendance-feature)<br>
+   2. [Grade Feature](#grade-feature)<br>
+   3. [Parent/NOK Edit Feature](#parentnok-edit-feature)<br>
+5. [Proposed Features](#proposed-features)
+6. [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
+7. [Appendix](#appendix-requirements)<br>
+   1. [Appendix-Requirements](#appendix-requirements)<br>
+      1. [Product Scope](#product-scope)<br>
+      2. [User Stories](#user-stories)<br>
+      3. [Use Cases](#use-cases)<br>
+      4. [Non-Functional Requirements](#non-functional-requirements)<br>
+      5. [Glossary](#glossary)<br>
+   2. [Appendix-Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting Up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -211,7 +211,7 @@ We want to make it easy for the user to set current date as present. Thus we all
     * Cons: Hard to access and manipulate attendance data
     * Cons: Hard to read and write to storage
     * Cons: Hard to add more features if more features are added eg. mark as MC, Late..
-
+<br><br>
 ### Grade feature
 
 #### Current Implementation
@@ -251,24 +251,23 @@ We want to make it easy for the user to set tests without inputting all the deta
     * Cons: Hard to access and manipulate attendance data
     * Cons: Hard to read and write to storage
     * Cons: Hard to add more features if more features are added
-<br></br>
-### Parent / NOK Edit feature
+<br><br>
+### Parent/NOK Edit Feature
 
 #### Current Implementation
 The edit feature for parent / NOK is facilitated by `edit`.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
-<br></br>
+<br>
 
-Step 1. User launches the application for the first time. <br></br>
-Step 2. User creates a new `Parent` using **Parent Add Command** or automatically creates a new `Parent` while using **Student Add Command**. <br></br>
-Step 3. During creation of `Parent`, <br></br>
+Step 1. User launches the application for the first time. <br>
+Step 2. User creates a new `Parent` using **Parent Add Command** or automatically creates a new `Parent` while using **Student Add Command**. <br>
+Step 3. During creation of `Parent`, <br>
 User encountered one of the two scenarios and require to edit the `Parent`:
 1. Did not include certain particulars of the `Parent`.
 2. Keyed in wrong particulars for the `Parent`.
 
-Step 4. User wants to amend the details of the `Parent` and hence executes the `edit` command with the `Name` of `Parent`, `Phone Number` of Parent and the `Particulars` that need to be edited.
-(Example of Parent Edit Command can be found in UserGuide) <br></br>
+Step 4. User wants to amend the details of the `Parent` and hence executes the `edit` command with the `Name` and `Phone Number` of Parent and the `Particulars` to be edited.<br>
 Step 5. Edited `Parent` is saved to the storage file automatically after the command.
 
 **Full implementation sequence diagram**
@@ -284,11 +283,11 @@ Step 5. Edited `Parent` is saved to the storage file automatically after the com
 
 ### Design considerations
 We want to make it easy for the user to edit `Parent / NOK` particulars without manually deleting the `Parent` and creating a new `Parent` and reassigning each `Student` attached to original `Parent` with the new `Parent`. 
-<br></br>
+<br><br>
 We also do not want to trouble the user with inputting multiple **PREFIXES** to edit parent / NOK. Hence, user will only need to input **ESSENTIAL PREFIXES and information** for these: 
 1. Parent's / NOK's `Name` 
 2. Parent's / NOK's `Phone Number`
-3. Particulars that are being amended
+3. Particulars that are being amended<br><br>
 
 #### Aspect: How Parent Edit executes
 * **Alternative 1 (current choice):** Run the command with `parent edit n/<NAME> pnP/<PARENT_PHONE_NUMBER>` + PREFIXES and details of information that are being changed
@@ -302,6 +301,10 @@ We also do not want to trouble the user with inputting multiple **PREFIXES** to 
     * Con: Troublesome for the user as there is a need to input **ALL** particulars of a `Parent` even if he/she is just amending one particular of the `Parent`.
     * Con: It may cause regressions, user may key in wrong details for some of the `Parent` particulars as he/she is keying in the command.
     * Con: It is no longer **FAST** and **EASY** for the user to use.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Proposed Features
 
 ### \[Proposed\] Undo/redo feature
 
@@ -390,7 +393,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, Dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -402,7 +405,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Requirements**
 
-### Product scope
+### Product Scope
 
 **Target user profile**:
 
@@ -417,7 +420,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Streamline administration processes because they have a lot of stuff to keep track of (eg. Attendance, assignments, grades, contact details)
 
 
-### User stories
+### User Stories
 
 | No  | As a...                     | I can...                                                                    | So that...                                                                                                                                 | Notes                                                                                                                                     | Priority |
 |-----|-----------------------------|-----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|----------|
@@ -456,7 +459,7 @@ _{Explain here how the data archiving feature will be implemented}_
 | 33  | Teacher                     | Track the date and time of the classes that I have                          | I am able to reach on time and teach the correct module for the particular lesson slot.                                                    | Out of scope                                                                                                                              | NA       |
 | 34  | Teacher                     | Amend date and time of certain lesson timings                               | I am able to change lesson dates and timings easily when lessons shift                                                                     |                                                                                                                                           | NA       |
 
-### Use cases
+### Use Cases
 
 ***For all use cases below, the System is PowerConnect and the Actor is the teacher, unless specified otherwise***
 
@@ -622,7 +625,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case ends.
 
-*{More to be added}* <br><br>
+*{More to be added}* <br></br>
 
 ### Non-Functional Requirements
 
@@ -639,7 +642,7 @@ _{Explain here how the data archiving feature will be implemented}_
 10. PowerConnect should be able to run on a 32-bit system with 8GB of RAM.
 11. PowerConnect should be able to display all success messages within 1 second.
 
-*{More to be added}*
+*{More to be added}* <br></br>
 
 ### Glossary
 
