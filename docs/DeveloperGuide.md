@@ -172,6 +172,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete student feature
+
+#### Current Implementation
+
+PowerConnect allows users to delete a student from the `UniqueStudentList` of `Class`. 
+
+When the user enters the delete student command, `MainWindow#executeCommand()` will be called. It will then call 
+`Logic#execute` which will return a `CommandResult`. The `execute` method is facilitated by `StudentDeleteCommand` 
+class. When `StudentDeleteCommand#execute` is called, it will call `deleteStudent()` method from model. This would call 
+`removeStudent` method from Class which in turn deletes the student from the `UniqueStudentList`.
+
+##### General Flow for StudentDeleteCommand
+
+The flow for StudentDeleteCommand#execute is as such:
+
+The `StudentClass` and `IndexNumber` to be used for deleting is retrieved from the user input
+
+The user inputs will be parsed into the `StudentCommandParser` which will then return a new `StudentDeleteCommand`
+
+The StudentDeleteCommand will then be immediately executed to delete the student from their UniqueStudentList via class and index number
+
+The delete success message and result list of students will then be shown back to the user via the dashboard
+
+Full implementation sequence diagram
+
+![Sequence Diagram](images/DeleteSequentialDiagram.jpg)
+
+### Design considerations
+We want to keep it simple for the user to delete students, using students' class and index number is sufficient to 
+identify the student that needs to be deleted.
+
+1.Exception is thrown immediately if either student class or index number is invalid
+2.Remove the student from the parent's list of children too so the necessary changes will be displayed 
+
+#### Aspect: How to delete students
+
+* **Alternative 1 (current choice):** Having a studentList for each class
+    * Pros: When deleting students, we do not have to go through all the students stored, improving its time complexity
+    * Pros: More flexible to add more class related features
+    * Pros: Displayed list of students will be neater
+    * Cons: Difficult to manage
+    * Cons: Harder to implement
+    * Cons: Uses more memory
+    * Cons: Harder to access and manipulate student data
+
+* **Alternative 2:** Allowing the users to delete a particular field of the student
+    * Pros: More flexibility for users
+    * Cons: Hard to implement, need to check the different prefixes to determine which field to delete
+
 ### Attendance feature 
 
 #### Current Implementation
