@@ -570,7 +570,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Meeting is not created since `25:00` is an invalid time. Error details shown in the status message. Status bar remains the same.
 
 2. Creating a meeting without a contact:
-    
+
     1. Test case: `addm m/Dinner at home dt/2003222`<br>
        Expected: New meeting is created for `200322` (20 March 2022).
 
