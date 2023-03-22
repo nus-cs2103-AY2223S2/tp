@@ -13,6 +13,7 @@ import ezschedule.logic.commands.ExitCommand;
 import ezschedule.logic.commands.FindCommand;
 import ezschedule.logic.commands.HelpCommand;
 import ezschedule.logic.commands.ListCommand;
+import ezschedule.logic.commands.SortCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,6 +60,9 @@ public class SchedulerParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
