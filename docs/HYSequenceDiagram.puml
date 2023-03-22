@@ -46,16 +46,4 @@ activate D COL1
 deactivate D COL1
 D --> PU
 deactivate D COL1
-
-
-
-
-
-
-
-
-
-
-
-
 @enduml
