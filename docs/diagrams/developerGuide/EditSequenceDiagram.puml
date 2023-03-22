@@ -6,7 +6,6 @@ participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "editDescriptor:EditDescriptor" as EditDescriptor LOGIC_COLOR
 participant "nric:Nric" as Nric LOGIC_COLOR
 participant "editCommand:EditCommand" as EditCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
 participant "<<class>>\nEditDescriptor" as EditDescriptorStatic LOGIC_COLOR
 end box
 
