@@ -29,7 +29,7 @@ Given below are my contributions to the project.
   * Readme.md
 
 * **Community**:
-  * to be added 
+  * to be added
 
 * **Tools**:
   * to be added
