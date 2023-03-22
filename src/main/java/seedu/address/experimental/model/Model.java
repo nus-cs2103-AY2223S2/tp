@@ -95,6 +95,12 @@ public interface Model {
     void updateFilteredEntityList(Predicate<Entity> predicate);
 
     /**
+     * Adds the predicate of the filtered entity list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void addFilteredEntityList(Predicate<Entity> predicate);
+    /**
      * Resets filtered entity list back to all entities Can be used before tag/name find function
      */
     void resetFilteredEntityList();
