@@ -54,6 +54,10 @@
                 <Label fx:id="age" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$age" />
             </HBox>
             <HBox>
+                <Text text="Attendance:    " />
+                <Label fx:id="attendance" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$attendance" />
+            </HBox>
+            <HBox>
                 <Text text="Gender:   " />
                 <Label fx:id="sex" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$sex">
                <font>

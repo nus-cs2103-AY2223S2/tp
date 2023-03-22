@@ -33,7 +33,7 @@ public class Student extends Person {
     private final Image image;
     private final Cca cca;
     private final Class sc;
-    private Attendance attendance;
+    private Set<Attendance> attendanceDates = new HashSet<>();
     private Set<Homework> homework = new HashSet<>();
     private Set<Test> test = new HashSet<>();
     private Set<Tag> tags;
@@ -62,16 +62,16 @@ public class Student extends Person {
      * @param tags Tag given to student.
      */
     public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, Name parentName, Phone parentPhone,
-                   Relationship rls, Age age, Image image, Email email, Phone studentNumber, Cca cca, Address address,
-                   Attendance attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
-        super(name, studentNumber, email, address, tags);
+                   Relationship rls, Age age, Image image, Email email, Phone phone, Cca cca, Address address,
+                   Set<Attendance> attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
+        super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
         this.age = age;
         this.image = image;
         this.cca = cca;
         this.sc = sc;
-        this.attendance = attendance;
+        this.attendanceDates = attendance;
         this.homework.addAll(homework);
         this.test.addAll(test);
         this.comment = comment;
@@ -197,8 +197,8 @@ public class Student extends Person {
      *
      * @return Student's attendance.
      */
-    public Attendance getAttendance() {
-        return attendance;
+    public Set<Attendance> getAttendance() {
+        return Collections.unmodifiableSet(attendanceDates);
     }
 
     /**

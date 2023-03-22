@@ -86,7 +86,7 @@ public class ArgumentMultimap {
                 Optional<String> missingAddress = Optional.of("Insert Address here!");
                 return missingAddress;
             case "att/":
-                Optional<String> missingAttendance = Optional.of("Insert student attendance here!");
+                Optional<String> missingAttendance = Optional.of("F");
                 return missingAttendance;
             case "com/":
                 Optional<String> missingComment = Optional.of("Insert student comment here!");
