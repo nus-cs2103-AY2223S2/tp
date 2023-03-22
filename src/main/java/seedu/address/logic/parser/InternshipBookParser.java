@@ -6,15 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddApplicationCommand;
-import seedu.address.logic.commands.ApplicationCommand;
-import seedu.address.logic.commands.ClearApplicationCommand;
-import seedu.address.logic.commands.DeleteApplicationCommand;
-import seedu.address.logic.commands.EditApplicationCommand;
-import seedu.address.logic.commands.ExitSprintCommand;
-import seedu.address.logic.commands.FindApplicationCommand;
-import seedu.address.logic.commands.HelpApplicationCommand;
-import seedu.address.logic.commands.ListApplicationCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -50,6 +42,18 @@ public class InternshipBookParser {
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
 
+        case ClearApplicationCommand.COMMAND_WORD:
+            return new ClearApplicationCommand();
+
+        case DeleteApplicationCommand.COMMAND_WORD:
+            return new DeleteApplicationCommandParser().parse(arguments);
+
+        case EditApplicationCommand.COMMAND_WORD:
+            return new EditApplicationCommandParser().parse(arguments);
+
+        case ExitSprintCommand.COMMAND_WORD:
+            return new ExitSprintCommand();
+
         case FindApplicationCommand.COMMAND_WORD:
             return new FindApplicationCommandParser().parse(arguments);
 
@@ -59,17 +63,8 @@ public class InternshipBookParser {
         case ListApplicationCommand.COMMAND_WORD:
             return new ListApplicationCommand();
 
-        case ExitSprintCommand.COMMAND_WORD:
-            return new ExitSprintCommand();
-
-        case EditApplicationCommand.COMMAND_WORD:
-            return new EditApplicationCommandParser().parse(arguments);
-
-        case DeleteApplicationCommand.COMMAND_WORD:
-            return new DeleteApplicationCommandParser().parse(arguments);
-
-        case ClearApplicationCommand.COMMAND_WORD:
-            return new ClearApplicationCommand();
+        case SortApplicationCommand.COMMAND_WORD:
+            return new SortApplicationCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

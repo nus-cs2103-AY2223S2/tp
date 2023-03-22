@@ -65,6 +65,11 @@ public class ApplicationLogicManager implements ApplicationLogic {
     }
 
     @Override
+    public ObservableList<Application> getSortedApplicationList() {
+        return model.getSortedApplicationList();
+    }
+
+    @Override
     public Path getInternshipBookFilePath() {
         return model.getInternshipBookFilePath();
     }
