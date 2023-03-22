@@ -88,7 +88,7 @@ public class ModelManager implements Model {
         userPrefs.setMasterDeckFilePath(masterDeckFilePath);
     }
 
-    /* MasterDeck Operations */
+    /* ==================================== MasterDeck Operations ==================================== */
 
     @Override
     public void setMasterDeck(ReadOnlyMasterDeck deck) {
@@ -100,7 +100,7 @@ public class ModelManager implements Model {
         return masterDeck;
     }
 
-    /* PowerCard Operations */
+    /* ==================================== PowerCard Operations ==================================== */
 
     @Override
     public boolean hasCard(Card card) {
@@ -316,6 +316,19 @@ public class ModelManager implements Model {
         assert currReview != null : "Flip command executed without a Review session.";
         currReview.flipCard();
         updateFilteredCardList(new IsSameCardPredicate(currReview.getCurrCard()));
+    }
+
+    @Override
+    public ModelState getState() {
+        if (currReview != null) {
+            return ModelState.REVIEW_MODE;
+        }
+        
+        if (selectedDeck != null) {
+            return ModelState.DECK_MODE;
+        }
+
+        return ModelState.MAIN_MODE;
     }
 
     @Override
