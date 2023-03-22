@@ -162,9 +162,20 @@ This section describes some noteworthy details on how certain features are imple
 
 The `add` command allows users to add an internship application to the tracker. The add mechanism is facilitated by `AddCommand` class. It extends `Command`but overrides the `Command#execute` to add an internship application to the tracker.
 
+The sequence diagram below shows how the `AddCommand` object is created:
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+Step 1. Parsing
+
 The `AddCommandParser` checks that the user input is in the expected format, if not an exception will be thrown.
 
-The sequence diagram below shows how the `AddCommand` object is created:
+Step 2. Execution
+
+The `AddCommand#execute` calls `Model#addApplication`, causing an update to the internship list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`. 
 
 
 ### Add contact feature

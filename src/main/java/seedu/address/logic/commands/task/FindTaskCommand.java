@@ -1,7 +1,5 @@
 package seedu.address.logic.commands.task;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -40,7 +38,7 @@ public class FindTaskCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
+        assert model != null;
         model.updateFilteredTodoList(titlePredicate);
         model.updateFilteredNoteList(contentPredicate);
         return new CommandResult(
