@@ -16,8 +16,8 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.JobTitle;
-import seedu.address.model.todo.ApplicationDeadline;
-import seedu.address.model.todo.InternshipTodo;
+import seedu.address.model.task.ApplicationDeadline;
+import seedu.address.model.task.InternshipTodo;
 
 /**
  * Parses input arguments and creates a new TodoCommand object
@@ -39,11 +39,13 @@ public class TodoCommandParser implements Parser<TodoCommand> {
 
         CompanyName companyName = ParserUtil.parseCompanyName(
                                                     argMultimap.getValue(PREFIX_COMPANY_NAME).orElse(null));
-        JobTitle jobTitle = ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOB_TITLE).orElse(null));
+        JobTitle jobTitle = ParserUtil.parseJobTitle(
+                argMultimap.getValue(PREFIX_JOB_TITLE).orElse(null));
         ApplicationDeadline deadline = ParserUtil.parseDeadline(
                 argMultimap.getValue(PREFIX_DEADLINE).orElse(null));
 
-        InternshipTodo todo = new InternshipTodo(companyName, jobTitle, deadline);
+        InternshipTodo todo = new InternshipTodo(
+                companyName, jobTitle, deadline);
 
         return new TodoCommand(todo);
     }

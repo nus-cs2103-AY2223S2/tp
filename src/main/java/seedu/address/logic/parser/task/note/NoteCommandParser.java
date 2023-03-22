@@ -12,8 +12,8 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.todo.Note;
-import seedu.address.model.todo.NoteContent;
+import seedu.address.model.task.Note;
+import seedu.address.model.task.NoteContent;
 
 /**
  * Parses input arguments and creates a new NoteCommand object

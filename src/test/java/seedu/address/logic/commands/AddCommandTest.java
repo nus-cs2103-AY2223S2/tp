@@ -113,7 +113,7 @@
 //        }
 //
 //        @Override
-//        public Path getAddressBookFilePath() {
+//        public Path getNoteListFilePath() {
 //            throw new AssertionError("This method should not be called.");
 //        }
 //

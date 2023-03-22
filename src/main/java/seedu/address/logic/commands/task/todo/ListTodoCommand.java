@@ -8,17 +8,18 @@ import java.util.List;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.todo.InternshipTodo;
-
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.InternshipTodo;
 /**
  * Lists all persons in the address book to the user.
  */
 public class ListTodoCommand extends Command {
 
-    public static final String COMMAND_WORD = "list todo";
-
+    public static final String COMMAND_WORD = "list_todo";
     public static final String MESSAGE_SUCCESS = "Listed all todos";
     public static final String MESSAGE_NO_APPLICATIONS = "No todo at the moment";
+
+    private static final TodoType type = TodoType.TODO;
 
 
     @Override
@@ -27,9 +28,9 @@ public class ListTodoCommand extends Command {
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
         List<InternshipTodo> lastShownList = model.getFilteredTodoList();
         if (lastShownList.size() > 0) {
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_SUCCESS, type);
         } else {
-            return new CommandResult(MESSAGE_NO_APPLICATIONS);
+            return new CommandResult(MESSAGE_NO_APPLICATIONS, type);
         }
     }
 }
