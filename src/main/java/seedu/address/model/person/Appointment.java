@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static java.util.Objects.requireNonNull;
@@ -7,47 +8,56 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Appointment {
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should in the format of yyyy-MM-dd HHmm";
+            "Both startTime and endTime should in the format of yyyy-MM-dd HHmm";
 
     // treat age also as a string
-    private LocalDateTime time = null;
+    private LocalDateTime startTime = null;
+    private LocalDateTime endTime = null;
     private boolean isDone;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Appoinment}.
      *
-     * @param time A valid time
+     * @param startTime A valid time
+     * @param endTime A valid time
      */
-    public Appointment(LocalDateTime time) {
-        requireNonNull(time);
-        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        this.time = time;
+    public Appointment(LocalDateTime startTime, LocalDateTime endTime) {
+        requireNonNull(startTime);
+        requireNonNull(endTime);
+        checkArgument(isValidTime(startTime, endTime), MESSAGE_CONSTRAINTS);
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.isDone = false;
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidTime(LocalDateTime time) {
+    public static boolean isValidTime(LocalDateTime startTime, LocalDateTime endTime) {
         // since all check have been done before time has been converted from String to LocalDateTime
+        // a lot of checks should be done here, both independently and dependently
         return true;
     }
-    public LocalDateTime getTime() {
-        return time;
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+    public LocalDateTime getEndTime() {
+        return endTime;
     }
     @Override
     public String toString() {
-        return "Next appointment time: " + time;
+        return "Next appointment time from: " + startTime + " to: " + endTime;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Appointment // instanceof handles nulls
-                && time.equals(((Appointment) other).time)); // state check
+                && startTime.equals(((Appointment) other).startTime) &&
+                endTime.equals(((Appointment) other).endTime)); // state check
     }
     @Override
     public int hashCode() {
-        return time.hashCode();
+        return startTime.hashCode() ^ endTime.hashCode();
     }
 }

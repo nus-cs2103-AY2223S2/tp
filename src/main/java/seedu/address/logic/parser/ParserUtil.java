@@ -30,6 +30,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String TIME_FORMAT_INVALID = "Time format should be yyyy-MM-dd HHmm.";
     public static final String DATE_FORMAT_INVALID = "Date format should be yyyy-MM-dd";
+    public static final String ADD_APPOINTMENT_COMMAND_INVALID = "Invalid add appointment command";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -162,8 +163,20 @@ public class ParserUtil {
         try {
             return LocalDate.parse(trimmedTime, formatter);
         } catch (DateTimeParseException e) {
-            throw new ParseException(TIME_FORMAT_INVALID);
+            throw new ParseException(DATE_FORMAT_INVALID);
         }
+    }
+
+    // command: makeApp /from {startTime} /to {endTime}
+    public static String parseAddAppointmentCommand(String command) throws ParseException {
+        int idxFrom = command.indexOf("/from");
+        int idxTo = command.indexOf("/to");
+        if (idxFrom == -1 || idxTo == -1 || idxTo <= idxFrom) {
+            throw new ParseException(ADD_APPOINTMENT_COMMAND_INVALID);
+        }
+        String startTime = command.substring(idxFrom + 5, idxTo).trim();
+        String endTime = command.substring(idxTo + 3).trim();
+        return startTime + '|' + endTime;
     }
 
     /**

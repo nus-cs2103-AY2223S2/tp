@@ -30,6 +30,7 @@ public class Person {
 
     private MedicalCondition medicalCondition;
     private Age age;
+    private Appointment appointment;
     /**
      * Every field must be present and not null.
      */
@@ -170,6 +171,10 @@ public class Person {
         return time;
     }
 
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
     /**
      * check if the person has scheduled time.
      * @return true if the person has time.
@@ -178,6 +183,8 @@ public class Person {
         return this.time != null;
     }
 
+    // notice: after adding Appoinment, time attribute in person becomes invalid
+    // therefore, isOnSearchDate should be done from Appointment side
     public boolean isOnSearchDate(LocalDate searchDate) {
         String n = name.fullName;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

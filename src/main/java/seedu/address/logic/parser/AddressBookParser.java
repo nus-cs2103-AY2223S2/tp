@@ -87,6 +87,9 @@ public class AddressBookParser {
         case SearchAppointmentCommand.COMMAND_WORD:
             return new SearchAppointmentCommandParser().parse(arguments);
 
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
