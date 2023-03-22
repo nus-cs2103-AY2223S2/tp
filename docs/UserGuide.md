@@ -10,14 +10,43 @@
 
 ---
 
-## 1. Overview
+## About HMHero
 
-HMHero is a tool that helps Hiring Managers easily track the statuses of candidates' applications.
+In a conventional application cycle, the large influx of applicants makes it challenging for Hiring Managers to track and monitor the progress of each applicant.
 
-In a conventional application cycle, the large influx of applicants makes it challenging for
-Hiring Managers to track and monitor the progress of each applicant. This application includes
-features such as quick searching of applicants, algorithm to prioritize applicants according
-to their strengths and tabs on every applicant's application status.
+HMHero is an Applicant Managing System designed to be used by human resource professionals, hiring managers, and recruiters who want to streamline the recruitment process and make it more efficient, helping their organizations manage job applications and hiring processes more effectively. 
+
+As a hiring manager, you can easily track applicant progress. HMHero allows you to store all applicant information in one centralized location, making it easy to filter applicants based on skillsets to find the right applicant for your job.
+
+In addition, HMHero provides analytics regarding your hiring process, such as turnover rate and average time taken to process each applicant. With HMHero, hiring managers can gain further insight on their hiring process, empowering them to make smart decisions to streamline their hiring process.
+
+---
+
+## Features
+
+There are two core features that HMHero provides:
+
+- Applicant Management System
+- Hiring Process Analytics
+
+#### Applicant Management System
+
+HMHero empowers you to manage applicants during hiring process.
+
+1. Easily add, edit, delete, and view your applicants.
+2. Quickly advance applicants through application statuses or reject them.
+3. Filter shortlisted applicants and sort them by interview date.
+4. Filter all applicants based on their skillsets.
+5. View all applicants that have interviews coming up in three days.
+
+#### Hiring Process Analytics
+
+HMHero provides straightforward analysis on your hiring process to streamline and make your hiring process more efficient.
+
+1. Find out how many applicants are accepted out of total applicants.
+2. Find out the average time taken to process each applicant.
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -35,6 +64,11 @@ section.
 
 Once HMHero is installed, you can find the necessary information to get started in the [Quick Start](#quick-start)
 section!
+This includes:
+* The [User Interface](#user-interface) of HMHero
+* How each `Applicant` is represented
+* HMHero's Command Format
+* Trying out your very first HMHero command
 
 If you are an **experienced user**, you may head over to the [Command Summary](#command-summary) to get a quick overview
 of all the commands available in HMHero!
@@ -284,7 +318,174 @@ the note/ prefix.
 Find out more about restrictions in the sections [Flag](#623-flags), [Placeholders](#624-placeholders), [Commands]()
 
 
-## Features
+## 5. Quick Reference Guide
+This section covers everything you should know about HMHero, as well as a [tutorial]() on trying your first command.
+Of special note is the [Key Definitions]() and [Command Format]() sections, which covers essential knowledge to using
+HMHero's features.
+
+### 5.1 Layout
+When you launch HMHero, HMHero appears on your screen as a Graphical User Interface(GUI). Let's explore the
+layout of the different components of HMHero.
+
+HMHero's GUI consists of a single main window consisting of 3 main sections.
+1. Command Input Box
+2. Command Result Box
+3. Applicant List Box
+
+The following picture of the main window shows the three components, numbered accordingly:
+![components.png](images%2Fcomponents.png)
+
+Besides the main window, HMHero also has the Help Window. It is not part of the main GUI and is only
+shown after a [Help Command]() is run.
+
+The Help Window looks like the following:
+
+![help_window.png](images%2Fhelp_window.png)
+
+### 5.2 Key Definitions
+
+#### 5.2.1 Applicant
+
+An applicant in HMHero represents an individual that applied for a job at your company. HMHero tracks various
+attributes of an applicant. Compulsory attributes would include their name, phone number, address and email.
+
+The following are the attributes stored for each `Applicant`
+* Name
+* Phone Number
+* Address
+* Email
+* Notes
+
+Applicants are unique by name and phone number and Case Sensitive.
+This means you cannot add two or more applicants of the same name and phone number.
+
+### 5.2.2 Notes
+
+A note in HMHero serves as a means of labelling the skills of an applicant. These tags
+are unique and case-sensitive.
+
+We can tag multiple applicants with the same note and each applicant can have multiple notes. These notes
+are optional.
+
+Feel free to make use of notes as you fit to highlight skill-sets of an applicant. Examples of such notes
+can include:
+* Highlight applicant's:
+  * Technical proficiency, e.g. `Python`, `Java`, `Flask`
+  * Soft Skills, e.g. `Project Management`, `Event Planning`
+
+HMHero's Notes are unique by name and are case-sensitive. This means you cannot add two or more notes of
+the same name.
+
+### 5.2.3 Flags
+Flags are delimiters that enable HMHero to distinguiseh different parameters without ambiguity.
+
+You could put in the corresponding [Placeholder](#524-placeholders) immediately after each flag.
+
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
+You may find the following image taken from the subsequent <a href> Command Format </a> section helpful:
+<img src="/Users/merrick/Documents/NUS/Y2S2/CS2103T/tp/docs/images/CommandExample.png">
+</div>
+
+Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+These placeholders follow immediately after a [Flag](#623-flags).
+
+| Action | Corresponding Placeholder |
+|--------|---------------------------|
+| n/     | `NAME`                    |
+| p/     | `PHONE`                   |
+| e/     | `EMAIL`                   |
+| a/     | `ADDRESS`                 |
+| note/  | `NOTE`                    |
+| d/     | `DATETIME`                |
+
+Please refer to the subsequent [Command Format]() section to see how [Flags](#623-flags)
+and [Placeholders](#624-placeholders) are used together.
+
+### 5.2.4 Placeholders
+Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied.
+These placeholders follow immediately after a [Flag](#523-flags).
+
+Please refer to the subsequent [Command Format](#53-command-format) 
+section to see how Flags and Placeholders are used together.
+
+| Placeholder  | Corresponding Flag | Description                                                                                  |
+|--------------|--------------------|----------------------------------------------------------------------------------------------|
+| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box. |
+| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                        |
+| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                 |
+| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                        |
+| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
+| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
+
+### 5.3 Command Format
+You will encounter HMHero commands throughout this User Guide.
+Before you delve into the different commands in Commands, let’s learn what a command consists of.
+
+Here is an example:
+![CommandExample.png](images%2FCommandExample.png)
+A command consists of:
+Command Word: Tells HMHero what action you wish to execute. These actions are covered in [Commands]().
+[Flags](#523-flags): Distinguishes between inputs. A flag is usually followed by a placeholder.
+[Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
+For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
+
+## 5.4 Trying your first command
+
+To get you more familiar with HMHero, let's practice executing some commands.
+
+To start off, let’s try out the `add` command! This command lets you add an [Applicant]() to HMHero.
+
+Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTES]`
+
+**What does the format mean?**
+
+The first word of every command allows HMHero to distinguish different commands
+* add tells HMHero that this is the command to add an applicant into HMHero
+* [Flags]() such as `n/` and `p/` are delimiters that enable HMHero to distinguish different parameters
+supplied by you without ambiguity
+* [Placeholders]() such as NAME and PHONE shows you what you should place in each portion of the command
+
+<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong>
+The <a href="#624-placeholders">Placeholders </a> section covers the restrictions for respective placeholders.
+For example, the datetime format for interviews, certain characters you cannot
+use and the limit and precision of numbers.
+</div>
+
+**Let's try an example**
+
+Suppose we want to add John Doe into our HMHero tracker. We have a list of his particulars
+and we want to record them down.
+
+`NAME`: John Doe
+
+`PHONE`: 91234567
+
+`EMAIL`: john@gmail.com
+
+`ADDRESS`: SoC COM 1
+
+The command to enter into the command box would be:
+```agsl
+add n/John Doe p/91234567 e/john@gmail.com a/SoC COM 1
+```
+
+The example above provides all the required fields to add an applicant
+- What if we wanted to also note down some key skillsets for John?
+
+We could edit our command to include it!
+```agsl
+add n/John Doe p/91234567 e/john@gmail.com a/SoC COM 1 notes/Java notes/Python
+```
+
+<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
+We can provide any number of notes to an applicant! Just ensure each NOTE is preceded by
+the note/ prefix.
+</div>
+
+Find out more about restrictions in the sections [Flag](#623-flags), [Placeholders](#624-placeholders), [Commands]()
+
+
+## Command Remarks
 
 | Note                                                                                                                                                                                                                               |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -472,22 +673,27 @@ Documentation dependencies:
 > A feature or function that HMHero can perform.
 > #### Command Line (CLI)
 > The typing interface that you use to interact with HMHero. It is represented as the box where you type in commands.
+
 ### E
 > #### EMAIL (Placeholder)
 > The EMAIL is a text representing the email address of the applicants.
 > #### Email
 > The email address of the applicant provided by the user.
+
 ### F
 > #### Flags
 > A marker to identify the type of input by the user. For instance, in `n/NAME`, `n/` is the flag.
+
 ### G
 > #### Graphical User Interface(GUI)
 > A Graphical User Interface is a graphics-based interface that uses icons, menus and a mouse (to click on the icon or pull down the menus) to manage interaction with the system. In HMHero, this presents as the window that appears when launching it.
+
 ### H
 > #### Help Window
 > A pop-up window containing help information, shown only after calling a <kbd>help</kbd> command.
 > #### Hiring Manager
 > A person responsible for overseeing the recruitment process within an organization, from identifying staffing needs to making hiring decisions.
+
 ### I
 > #### Input
 > The text that a user would enter into HMHero
@@ -495,9 +701,11 @@ Documentation dependencies:
 > The INTERVIEW_DATE is the date indicating when the applicant is having his/her interview.
 > #### Interview Date
 > Date where applicants are going to have their interviews. Interview date is in the format "day-month-year hour:minute", represented in the "DD-MM-YYYY HH:MM" format.
+
 ### K
 > #### KEYWORD (Placeholder)
 > The KEYWORD is the text we use search for an item. It can be `NAME` or `PHONE_NUMBER` of the applicant.
+
 ### N
 > #### NAME (Placeholder)
 > The NAME is a text representing the name of the applicants.
@@ -507,11 +715,13 @@ Documentation dependencies:
 > The NOTES are some texts that use to represent the skill set of the applicants.
 > #### Notes
 > The skill set the applicant possesses provided by the user.
+
 ### O
 > #### Operating System (OS)
 > Is a software program that manages computer hardware and software resources, and provides common services for computer programs to run and interact with the computer hardware.
 > #### Output
 > The result after calling a Command. Results are displayed in the GUI.
+
 ### P
 > #### Parameter
 > Values that are passed while calling the Commands. For instance, when calling `find n/NAME`, parameter here is `n/NAME`.
@@ -521,6 +731,7 @@ Documentation dependencies:
 > The phone number of the applicant provided by the user.
 > #### Placeholder
 > Placeholders in HMHero refers to the UPPER_CASE words that appear after the flags in commands that is provided by the user. For instance, `n/NAME`, `NAME` is a placeholder
+
 ### S
 > #### STATUS (Placeholder)
 > The STATUS is a text that represent the current state of the applicant.
@@ -528,6 +739,7 @@ Documentation dependencies:
 > Status has four stages, which are APPLIED, SHORTLISTED, ACCEPTED and REJECTED. Status can only be modified by using <kbd>advance</kbd> or <kbd>reject</kbd> command.
 > #### Syntax
 > The structure of statements/inputs users type into the Command Line.
+
 ### U
 > #### URL
 > A hyperlink to a website.

@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class Person {
     private final LocalDateTime applicationDate;
     private final Set<Note> notes = new HashSet<>();
     private final Optional<InterviewDateTime> interviewDateTime;
+    private final ApplicationDateTime applicationDateTime;
 
     /**
      * Every field must be present and not null.
@@ -40,7 +42,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.status = status;
-        this.applicationDate = LocalDateTime.now();
+        this.applicationDateTime = new ApplicationDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         this.interviewDateTime = interviewDateTime;
         this.notes.addAll(notes);
     }
@@ -90,10 +92,11 @@ public class Person {
     }
 
     /**
-     * Returns the {@Code ApplicationDateTime} for the applicant.
+     * Returns the {@code ApplicationDateTime} of the applicant.
+     * @return Application date and time of the applicant.
      */
-    public LocalDateTime getApplicationDateTime() {
-        return applicationDate;
+    public ApplicationDateTime getApplicationDateTime() {
+        return applicationDateTime;
     }
 
     /**
@@ -111,6 +114,10 @@ public class Person {
      */
     public String getInterviewDateTimeString() {
         return interviewDateTime.map(InterviewDateTime::toString).orElse("");
+    }
+
+    public String getApplicationDateTimeString() {
+        return applicationDateTime.toString();
     }
 
     /**
@@ -164,7 +171,7 @@ public class Person {
      * This is needed as Optional's equals method fails when two different Optional objects
      * are created with same value.
      */
-    public boolean hasSameDate(Person other) {
+    public boolean hasSameInterviewDate(Person other) {
         Optional<InterviewDateTime> idt1 = getInterviewDateTime();
         Optional<InterviewDateTime> idt2 = other.getInterviewDateTime();
         if (idt1.isEmpty() && idt2.isEmpty()) { //both dates are null
@@ -174,6 +181,16 @@ public class Person {
         } else { //only one exists
             return false;
         }
+    }
+
+    /**
+     * Returns true if the other person has the same application date.
+     * The application date is only precise until the nearest minute.
+     */
+    public boolean hasSameApplicationDate(Person other) {
+        ApplicationDateTime app1 = getApplicationDateTime();
+        ApplicationDateTime app2 = other.getApplicationDateTime();
+        return app1.equals(app2);
     }
 
     /**
@@ -198,13 +215,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getNotes().equals(getNotes())
                 && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.hasSameDate(this);
+                && otherPerson.hasSameInterviewDate(this)
+                && otherPerson.hasSameApplicationDate(this);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, notes, status, interviewDateTime);
+        return Objects.hash(name, phone, email, address, notes, status, interviewDateTime, applicationDateTime);
     }
 
     @Override
@@ -218,7 +236,11 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatus())
+                .append("; Application Date:")
+                .append(getApplicationDateTimeString())
+                .append("; Interview DateTime")
+                .append(getInterviewDateTimeString());
 
         Set<Note> notes = getNotes();
         if (!notes.isEmpty()) {
