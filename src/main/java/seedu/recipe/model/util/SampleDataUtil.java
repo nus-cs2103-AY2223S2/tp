@@ -57,16 +57,14 @@ public class SampleDataUtil {
             RecipePortion.of("2 - 3 servings"),
             RecipeDuration.of("35 minutes"),
             Set.of(new Tag("American"), new Tag("Breakfast")),
-            List.of(
-                    new IngredientBuilder("-a 200 g -n self-raising flour"),
+            List.of(new IngredientBuilder("-a 200 g -n self-raising flour"),
                     new IngredientBuilder("-a 1 tsp -n baking powder"),
                     new IngredientBuilder("-a 1 -n egg"),
                     new IngredientBuilder("-a 1 knob -n butter"),
                     new IngredientBuilder("-a 150 g -n blueberries"),
                     new IngredientBuilder("-n golden syrup -s maple syrup"),
                     new IngredientBuilder("-n sunflower oil -s butter -r a little")),
-            List.of(
-                    new Step("Mix together 200 g self-raising flour, 1 tsp baking powder and a "
+            List.of(new Step("Mix together 200 g self-raising flour, 1 tsp baking powder and a "
                             + "pinch of salt in a large bowl."),
                     new Step("Beat 1 egg with 300ml milk, make a well in the centre of the dry ingredients "
                             + "and whisk in the milk to make a thick smooth batter."),
@@ -79,8 +77,8 @@ public class SampleDataUtil {
                     new Step("Cook for about 3 minutes over a medium heat until small bubbles appear on the "
                             + "surface of each pancake, then turn and cook another 2-3 minutes until golden."),
                     new Step("Cover with kitchen paper to keep warm while you use up the rest of the batter."),
-                    new Step("Serve with golden or maple syrup and the rest of the blueberries.")
-                   ));
+                    new Step("Serve with golden or maple syrup and the rest of the blueberries.")));
+
     public static final Recipe MASALA_DOSA = build(
             new Name("Classic Masala Dosa"),
             RecipePortion.of("8 to 10 servings"),
@@ -94,8 +92,8 @@ public class SampleDataUtil {
                     new IngredientBuilder("-a 3 tablespoons ghee -s vegetable oil"),
                     new IngredientBuilder("-a 1 teaspoon -n mustard seeds"),
                     new IngredientBuilder("-a 0.5 teaspoon -n cumin seeds"),
-                    new IngredientBuilder("-a 2 small dried -n hot red peppers"),
-                    new IngredientBuilder("-a 1 -n medium onion -r diced"),
+                    new IngredientBuilder("-a 2 -n red peppers -r small -r dried -r hot"),
+                    new IngredientBuilder("-a 1 -n onion -r medium -r diced"),
                     new IngredientBuilder("-a 0.5 teaspoon -n salt"),
                     new IngredientBuilder("-a 0.5 teaspoon -n turmeric"),
                     new IngredientBuilder("-a a pinch -n asafetida"),
@@ -104,7 +102,7 @@ public class SampleDataUtil {
                     new IngredientBuilder("-a 4 -n garlic cloves -r minced"),
                     new IngredientBuilder("-a 2 -n small green chilli -r finely chopped"),
                     new IngredientBuilder("-a 1.5 pounds -n Yukon Gold potatoes "
-                                           + "-r yellow-fleshed potatoes -r boiled -r peeled -r cubed"),
+                            + "-s yellow-fleshed potatoes -r boiled -r peeled -r cubed"),
                     new IngredientBuilder("-a 0.5 cup -n cilantro -r leaves -r tender stems -r roughly chopped")),
             List.of(
                     new Step("Make the dosa batter: Put rice in a bowl, rinse well and cover with "
@@ -152,8 +150,7 @@ public class SampleDataUtil {
                     new IngredientBuilder("-a wedge -e 85g/3oz -n camembert -s brie"),
                     new IngredientBuilder("-a a spoonful -n cranberry sauce"),
                     new IngredientBuilder("-a few drops -n balsamic vinegar"),
-                    new IngredientBuilder("-n butter")
-                   ),
+                    new IngredientBuilder("-n butter")),
             List.of(
                     new Step("Butter the bread. Put a wedge of camembert or brie on the unbuttered side of "
                             + "one slice of bread. Top with a spoonful of cranberry sauce. Drizzle with a "
