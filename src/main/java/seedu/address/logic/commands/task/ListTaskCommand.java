@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.task;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_NOTES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TODO;
 
@@ -28,7 +27,7 @@ public class ListTaskCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
+        assert model != null;
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODO);
         model.updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
         List<InternshipTodo> lastShownTodoList = model.getFilteredTodoList();
