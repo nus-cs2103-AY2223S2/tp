@@ -8,13 +8,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.stage.Stage;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * Controller for a help page
@@ -43,20 +48,20 @@ public class HelpWindow extends UiPart<Stage> {
     private TableColumn<CommandExample, String> exampleCol;
 
     @FXML
-    private final CommandExample[] COMMAND_EXAMPLES = {
-            new CommandExample("Add", "add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
-            + "l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java"),
-            new CommandExample("View contact", "view 3"),
-            new CommandExample("View tab", "view c, view m, view s"),
-            new CommandExample("Edit contact in the right panel", "edit n/David m+/AY2223S2 CS2109S s-/python"),
-            new CommandExample("Find by attributes", "find n/David c/2 m/CS2109S s/java"),
-            new CommandExample("List the full list of contacts", "list"),
-            new CommandExample("Delete contact", "delete 3"),
-            new CommandExample("Clear all contacts", "clear"),
-            new CommandExample("View user guide and command list", "help")
+    private final CommandExample[] examples = {
+        new CommandExample("Add", "add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob "
+        + "l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java"),
+        new CommandExample("View contact", "view 3"),
+        new CommandExample("View tab", "view c, view m, view s"),
+        new CommandExample("Edit contact in the right panel", "edit n/David m+/AY2223S2 CS2109S s-/python"),
+        new CommandExample("Find by attributes", "find n/David c/2 m/CS2109S s/java"),
+        new CommandExample("List the full list of contacts", "list"),
+        new CommandExample("Delete contact", "delete 3"),
+        new CommandExample("Clear all contacts", "clear"),
+        new CommandExample("View user guide and command list", "help")
     };
 
-    private final ObservableList<CommandExample> commandExamples = FXCollections.observableArrayList(COMMAND_EXAMPLES);
+    private final ObservableList<CommandExample> commandExamples = FXCollections.observableArrayList(examples);
     /**
      * Creates a new HelpWindow.
      *
@@ -65,7 +70,6 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
-//        helpMessage.setEditable(false);
         commandCol.setCellValueFactory(new PropertyValueFactory<>("Command"));
         exampleCol.setCellValueFactory(new PropertyValueFactory<>("Example"));
         commandCol.setStyle("-fx-text-fill: black");
@@ -139,7 +143,8 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
-    private void copyExample(){
+
+    private void copyExample() {
         // Enable cell selection
         tvtable.getSelectionModel().setCellSelectionEnabled(true);
 
@@ -152,7 +157,7 @@ public class HelpWindow extends UiPart<Stage> {
                 Clipboard clipboard = Clipboard.getSystemClipboard();
                 ClipboardContent content = new ClipboardContent();
                 tvtable.getSelectionModel().select(arg2.getRow(), exampleCol);
-                content.putString(COMMAND_EXAMPLES[arg2.getRow()].getExample());
+                content.putString(examples[arg2.getRow()].getExample());
                 clipboard.setContent(content);
 
             }
@@ -166,7 +171,7 @@ public class HelpWindow extends UiPart<Stage> {
             cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
             text.wrappingWidthProperty().bind(exampleCol.widthProperty());
             text.textProperty().bind(cell.itemProperty());
-            return cell ;
+            return cell;
         });
         commandCol.setCellFactory(tc -> {
             TableCell<CommandExample, String> cell = new TableCell<>();
@@ -175,7 +180,7 @@ public class HelpWindow extends UiPart<Stage> {
             cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
             text.wrappingWidthProperty().bind(commandCol.widthProperty());
             text.textProperty().bind(cell.itemProperty());
-            return cell ;
+            return cell;
         });
     }
 }
