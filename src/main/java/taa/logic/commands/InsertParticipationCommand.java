@@ -20,8 +20,8 @@ import taa.model.student.Student;
 public class InsertParticipationCommand extends Command {
     public static final String COMMAND_WORD = "insertPP";
     public static final String SUCCESS_MSG = "Participation points inserted successfully!";
-    public static final String ATTENDANCE_NOT_MARKED = "Mark the attendance of the student " +
-            "first before inserting points!";
+    public static final String ATTENDANCE_NOT_MARKED = "Mark the attendance of the student "
+            + "first before inserting points!";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Inserts attendance points to the student identified\n"
             + "by the index number used in the displayed student list.\n"
