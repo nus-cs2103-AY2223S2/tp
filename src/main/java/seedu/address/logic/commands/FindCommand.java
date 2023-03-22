@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.function.Predicate;
 
@@ -17,13 +20,18 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attribute"
-            + " contain any of the specified keywords (case-insensitive) and displays them as a list with"
-            + " index numbers. Attribute is specified with /n, /a or /nric representing name, address "
+            + " contain any of the specified keywords (case-insensitive)"
+            + " and displays them as a list with\n"
+            + " index numbers. Attribute is specified using n/, a/ or i/ representing name, address "
             + " and nric respectively\n"
-            + "Parameters: ATTRIBUTE KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " /n" + " alice bob charlie" + "\n"
-            + "Example: " + COMMAND_WORD + " /a" + " 30 serangoon" + "\n"
-            + "Example: " + COMMAND_WORD + " /nric" + " S0067812L";
+            + "Parameters: "
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_NRIC + "NRIC]...\n"
+            + "Example: " + COMMAND_WORD + " n/" + "alice bob charlie" + "\n"
+            + "Example: " + COMMAND_WORD + " a/" + "30 Serangoon" + "\n"
+            + "Example: " + COMMAND_WORD + " i/" + "S0067812L" + "\n"
+            + "Example: " + COMMAND_WORD + " n/" + "alice" + "\n";
 
     private final Predicate<Person> predicate;
 
