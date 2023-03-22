@@ -12,7 +12,6 @@ import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.flight.Flight;
 import seedu.address.model.link.exceptions.LinkException;
 
-
 /**
  * The command that unlinks a crew from a flight
  */
@@ -62,6 +61,7 @@ public class UnlinkCrewCommand implements Command {
         try {
             for (Map.Entry<FlightCrewType, Crew> entry : crews.entrySet()) {
                 flight.crewLink.delete(entry.getKey(), entry.getValue());
+                entry.getValue().setAvailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

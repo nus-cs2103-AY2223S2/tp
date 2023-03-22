@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.logic.crew.addcrew.AddCrewCommandFactory;
+import seedu.address.logic.crew.checkcrew.CheckCrewCommandFactory;
 import seedu.address.logic.crew.deletecrew.DeleteCrewCommandFactory;
 import seedu.address.logic.crew.linkcrew.LinkCrewCommandFactory;
 import seedu.address.logic.crew.unlinkcrew.UnlinkCrewCommandFactory;
@@ -18,10 +19,12 @@ import seedu.address.logic.location.deletelocation.DeleteLocationCommandFactory;
 import seedu.address.logic.location.linklocation.LinkLocationCommandFactory;
 import seedu.address.logic.location.unlinklocation.UnlinkLocationCommandFactory;
 import seedu.address.logic.pilot.addpilot.AddPilotCommandFactory;
+import seedu.address.logic.pilot.checkpilot.CheckPilotCommandFactory;
 import seedu.address.logic.pilot.deletepilot.DeletePilotCommandFactory;
 import seedu.address.logic.pilot.linkpilot.LinkPilotCommandFactory;
 import seedu.address.logic.pilot.unlinkpilot.UnlinkPilotCommandFactory;
 import seedu.address.logic.plane.addplane.AddPlaneCommandFactory;
+import seedu.address.logic.plane.checkplane.CheckPlaneCommandFactory;
 import seedu.address.logic.plane.deleteplane.DeletePlaneCommandFactory;
 import seedu.address.logic.plane.linkplane.LinkPlaneCommandFactory;
 import seedu.address.logic.plane.unlinkplane.UnlinkPlaneCommandFactory;
@@ -41,19 +44,22 @@ public class WingmanParser extends FactoryParser {
             new AddPilotCommandFactory(),
             new DeletePilotCommandFactory(),
             new LinkPilotCommandFactory(),
-            new UnlinkPilotCommandFactory()
+            new UnlinkPilotCommandFactory(),
+            new CheckPilotCommandFactory()
         )),
         new CommandGroup(OperationMode.CREW, List.of(
             new AddCrewCommandFactory(),
             new DeleteCrewCommandFactory(),
             new LinkCrewCommandFactory(),
-            new UnlinkCrewCommandFactory()
+            new UnlinkCrewCommandFactory(),
+            new CheckCrewCommandFactory()
         )),
         new CommandGroup(OperationMode.PLANE, List.of(
             new AddPlaneCommandFactory(),
             new DeletePlaneCommandFactory(),
             new LinkPlaneCommandFactory(),
-            new UnlinkPlaneCommandFactory()
+            new UnlinkPlaneCommandFactory(),
+            new CheckPlaneCommandFactory()
         )),
         new CommandGroup(OperationMode.LOCATION, List.of(
             new AddLocationCommandFactory(),

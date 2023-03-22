@@ -61,6 +61,7 @@ public class LinkPilotCommand implements Command {
         try {
             for (Map.Entry<FlightPilotType, Pilot> entry : pilots.entrySet()) {
                 flight.pilotLink.putRevolve(entry.getKey(), entry.getValue());
+                entry.getValue().setUnavailable();
             }
         } catch (LinkException e) {
             throw new CommandException(e.getMessage());

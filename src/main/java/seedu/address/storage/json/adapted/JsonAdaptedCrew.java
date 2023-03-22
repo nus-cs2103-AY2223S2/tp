@@ -31,6 +31,10 @@ public class JsonAdaptedCrew implements JsonAdaptedModel<Crew> {
      */
     private final int rank;
 
+    /**
+     * The availability of the crew.
+     */
+    private boolean isAvailable;
 
     /**
      * Constructs a {@code JsonAdaptedPilot} with the given crew details.
@@ -43,11 +47,13 @@ public class JsonAdaptedCrew implements JsonAdaptedModel<Crew> {
     public JsonAdaptedCrew(
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
-            @JsonProperty("rank") int rank
+            @JsonProperty("rank") int rank,
+            @JsonProperty("isAvailable") boolean isAvailable
     ) {
         this.id = id;
         this.name = name;
         this.rank = rank;
+        this.isAvailable = isAvailable;
     }
 
 
@@ -60,6 +66,7 @@ public class JsonAdaptedCrew implements JsonAdaptedModel<Crew> {
         this.id = crew.getId();
         this.name = crew.getName();
         this.rank = crew.getRank().toIndex();
+        this.isAvailable = crew.isAvailable();
     }
 
     @Override
@@ -83,6 +90,13 @@ public class JsonAdaptedCrew implements JsonAdaptedModel<Crew> {
             throw new IllegalValueException(e.getMessage());
         }
 
-        return new Crew(id, name, rank);
+        Crew newCrew = new Crew(id, name, rank);
+        if (this.isAvailable) {
+            newCrew.setAvailable();
+        } else {
+            newCrew.setUnavailable();
+        }
+
+        return newCrew;
     }
 }

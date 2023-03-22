@@ -30,6 +30,8 @@ public class Pilot implements Item {
 
     private static final String FLIGHT_HR_STRING = "Flight Hour";
 
+    private static final String AVAILABILITY_STRING = "Status";
+
     private final String name;
 
     private final int age;
@@ -41,6 +43,7 @@ public class Pilot implements Item {
     private final PilotRank rank;
 
     private final String id;
+    private boolean isAvailable;
 
     /**
      * Creates a pilot with a random UUID as its id.
@@ -59,6 +62,7 @@ public class Pilot implements Item {
             int flightHour
     ) {
         this(UUID.randomUUID().toString(), name, age, gender, rank, flightHour);
+        this.isAvailable = true;
     }
 
     /**
@@ -85,6 +89,7 @@ public class Pilot implements Item {
         this.gender = gender;
         this.rank = rank;
         this.flightHour = flightHour;
+        this.isAvailable = true;
     }
 
     /**
@@ -132,6 +137,40 @@ public class Pilot implements Item {
         return flightHour;
     }
 
+    /**
+     * Returns the availability of the pilot.
+     *
+     * @return the availability of the pilot.
+     */
+    public boolean isAvailable() {
+        return this.isAvailable;
+    }
+
+    /**
+     * Sets the availability of the pilot to unavailable.
+     */
+    public void setUnavailable() {
+        this.isAvailable = false;
+    }
+
+    /**
+     * Sets the availability of the pilot to available.
+     */
+    public void setAvailable() {
+        this.isAvailable = true;
+    }
+
+    /**
+     * Returns a String corresponding to the availability of the pilot.
+     *
+     * @return the availability of the pilot as a String
+     */
+    public String getAvailabilityString() {
+        return (this.isAvailable)
+                ? "Available"
+                : "Unavailable";
+    }
+
     @Override
     public List<String> getDisplayList() {
         return List.of(
@@ -140,7 +179,8 @@ public class Pilot implements Item {
                 String.format("%s: %s", GENDER_STRING, gender),
                 String.format("%s: %s", AGE_STRING, age),
                 String.format("%s: %s", RANK_STRING, rank),
-                String.format("%s: %s", FLIGHT_HR_STRING, flightHour)
+                String.format("%s: %s", FLIGHT_HR_STRING, flightHour),
+                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
         );
     }
 
@@ -151,6 +191,6 @@ public class Pilot implements Item {
 
     @Override
     public String toString() {
-        return String.format("%s %s (age: %s)", rank, name, age);
+        return String.format("%s %s (%s: %s)", rank, name, AGE_STRING, age);
     }
 }

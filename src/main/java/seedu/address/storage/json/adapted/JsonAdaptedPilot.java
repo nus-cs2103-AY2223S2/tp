@@ -49,6 +49,11 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
     private final int flightHour;
 
     /**
+     * The availability of the pilot.
+     */
+    private boolean isAvailable;
+
+    /**
      * Constructs a {@code JsonAdaptedPilot} with the given pilot details.
      * This is intended for Jackson to use.
      *
@@ -62,7 +67,8 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
             @JsonProperty("rank") int rank,
             @JsonProperty("age") int age,
             @JsonProperty("gender") int gender,
-            @JsonProperty("flightHour") int flightHour
+            @JsonProperty("flightHour") int flightHour,
+            @JsonProperty("isAvailable") boolean isAvailable
     ) {
         this.id = id;
         this.name = name;
@@ -70,8 +76,8 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
         this.age = age;
         this.gender = gender;
         this.flightHour = flightHour;
+        this.isAvailable = isAvailable;
     }
-
 
     /**
      * Converts a given {@code Pilot} into this class for Jackson use.
@@ -85,6 +91,7 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
         this.gender = pilot.getGender().toIndex();
         this.age = pilot.getAge();
         this.flightHour = pilot.getFlightHour();
+        this.isAvailable = pilot.isAvailable();
     }
 
     @Override
@@ -116,6 +123,13 @@ public class JsonAdaptedPilot implements JsonAdaptedModel<Pilot> {
             throw new IllegalValueException(e.getMessage());
         }
 
-        return new Pilot(id, name, age, gender, rank, flightHour);
+        Pilot newPilot = new Pilot(id, name, age, gender, rank, flightHour);
+        if (this.isAvailable) {
+            newPilot.setAvailable();
+        } else {
+            newPilot.setUnavailable();
+        }
+
+        return newPilot;
     }
 }

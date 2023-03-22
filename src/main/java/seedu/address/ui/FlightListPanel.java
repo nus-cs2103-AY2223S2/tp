@@ -31,8 +31,11 @@ public class FlightListPanel extends UiPart<Region> {
      * @param logger     The logger to be used.
      * @param flightList The list of flights to be displayed.
      */
-    public FlightListPanel(Logger logger,
-                           ObservableList<Flight> flightList) {
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public FlightListPanel(
+            Logger logger,
+            ObservableList<Flight> flightList
+    ) {
         super(FXML);
         this.logger = logger;
         this.flightList.setItems(flightList);
