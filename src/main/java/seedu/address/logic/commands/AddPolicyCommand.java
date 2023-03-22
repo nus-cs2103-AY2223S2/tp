@@ -5,13 +5,20 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.model.client.Name;
+import seedu.address.model.client.Phone;
 import seedu.address.model.client.policy.Policy;
+import seedu.address.model.client.policy.UniquePolicyList;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -57,15 +64,34 @@ public class AddPolicyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
         Client clientToAddPolicy = lastshownList.get(index.getZeroBased());
+        Client addedPolicyClient = clientToAddPolicy.cloneClient();
         // handle duplicate policies
         if (clientToAddPolicy.getPolicyList().contains(policy)) {
             throw new CommandException("This policy already exists in the client's policy list");
         }
-        clientToAddPolicy.getPolicyList().add(policy);
-        model.setClient(clientToAddPolicy, clientToAddPolicy);
+
+        addedPolicyClient.getPolicyList().add(policy);
+        model.setClient(clientToAddPolicy, addedPolicyClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         return new CommandResult(generateSuccessMessage());
+    }
+
+    /**
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
+     */
+    private static Client cloneClient(Client clientToEdit) {
+        assert clientToEdit != null;
+
+        Name updatedName = clientToEdit.getName();
+        Phone updatedPhone = clientToEdit.getPhone();
+        Email updatedEmail = clientToEdit.getEmail();
+        Address updatedAddress = clientToEdit.getAddress();
+        //UniquePolicyList updatedPolicyList = editClientDescriptor.getPolicyList().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = clientToEdit.getTags();
+
+        UniquePolicyList policyList = clientToEdit.getPolicyList().clone();
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList);
     }
 
     /**
