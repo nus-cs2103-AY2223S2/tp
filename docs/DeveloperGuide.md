@@ -55,6 +55,8 @@ and removes it from the database.
 If the deleted Elderly or Volunteer has existing pairing, the associated
 pairs will be automatically removed as well.
 
+<img src="images/developerGuide/PersonAndPair.png" width="500" />
+
 #### Edit by index & NRIC
 
 #### Find by keyword
