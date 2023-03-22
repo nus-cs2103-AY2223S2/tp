@@ -153,6 +153,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented] Add event feature
+
+#### Current Implementation
+
+Adding an event is a feature that uses the command `addevent ev/EVENT_NAME from/EVENT_START_DATE_TIME to/EVENT_END_DATE_TIME`.
+
+The following sequence diagram shows how the add event operation works.
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram.png)
+
+This operation is similar to that of adding a person. Adding an event involves calling `Model#addEvent(Event)`, which in turn calls `AddressBook#addEvent(Event)` to add the Event object to the existing `AddressBook`.
+
 ### \[Implemented] Delete event feature
 
 #### Current Implementation
