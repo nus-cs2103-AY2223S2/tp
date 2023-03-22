@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -42,6 +43,15 @@ public class PetListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PetCard(pet, getIndex() + 1).getRoot());
+
+                LocalDateTime deadline = pet.getDeadline().getDate().minusDays(1);
+                LocalDateTime currTime = LocalDateTime.now();
+
+                if (currTime.isAfter(deadline)) {
+                    getStyleClass().add("deadline-date");
+                } else {
+                    getStyleClass().remove("deadline-date");
+                }
             }
         }
     }
