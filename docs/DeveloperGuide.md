@@ -2,8 +2,15 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
-{:toc}
+  {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+Trackr is a desktop application catered towards small businesses to trackr their suppliers, customers and orders. It is for users who are quick typers to accomplish their tasks through the Command Line Interface (CLI) while reaping the benefits of a Graphical User Interface (GUI).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,12 +31,15 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p align="center">
+  <img src="images/ArchitectureDiagram.svg" width="280" />
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -38,6 +48,7 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -50,12 +61,13 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_supplier 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center">
+  <img src="images/ArchitectureSequenceDiagram.svg" width="650" />
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -64,7 +76,9 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center">
+  <img src="images/ComponentManagers.svg" width="300" />
+</p>
 
 The sections below give more details of each component.
 
@@ -72,7 +86,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.svg)
+<p align="centre">
+  <img src="images/UiClassDiagram.svg" />
+</p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TabPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -94,6 +110,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -111,14 +128,17 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
+
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
-<img src="images/ModelClassDiagram.svg" width="450" />
-
+<p align="centre">
+  <img src="images/ModelClassDiagram.svg" width="450" />
+</p>
 
 The `Model` component,
 
@@ -131,14 +151,18 @@ The `Model` component,
 
 Here is the `Item` class that is what all model objects depend on.
 
-<img src="images/ItemClassDiagram.svg" width="350" />
-
+<p align="centre">
+  <img src="images/ItemClassDiagram.svg" width="350" />
+</p>p>
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
 
+
 This is the class representation for the `Supplier` and `Customer` class.
 
-<img src="images/PersonClassDiagram.svg" width="500" />
+<p align="centre">
+  <img src="images/PersonClassDiagram.svg" width="500" />
+</p>
 
 Here is how `Supplier` and `Customer` works:
 
@@ -149,7 +173,9 @@ Here is how `Supplier` and `Customer` works:
 
 This is the class representation for the `Task` class.
 
-<img src="images/TaskClassDiagram.svg" width="450" />
+<p align="centre">
+  <img src="images/TaskClassDiagram.svg" width="450" />
+</p>
 
 Here is how `Task` works:
 
@@ -157,13 +183,13 @@ Here is how `Task` works:
 * Each of the attributes inherit off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
 
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative &#40;arguably, a more OOP&#41; model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+[//]: # ()
+[//]: # (<img src="images/BetterModelClassDiagram.png" width="450" />)
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
+[//]: # ()
+[//]: # (</div>)
 
 ### Storage component
 
@@ -172,6 +198,7 @@ Here is how `Task` works:
 <img src="images/StorageClassDiagram.svg" width="550" />
 
 The `Storage` component,
+
 * can save both trackr data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
