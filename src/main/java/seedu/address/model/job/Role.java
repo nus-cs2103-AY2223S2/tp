@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.util.tag.Tag;
 
 /**
- * Represents a Role in the address book.
+ * Represents a Role in the company book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Role {
@@ -22,7 +22,7 @@ public class Role {
     private final Website website;
 
     // Data fields
-    private final Address address;
+    private final Company company;
     private final JobDescription jobDescription;
     private final Set<Tag> tags = new HashSet<>();
     private final Salary salary;
@@ -32,14 +32,14 @@ public class Role {
     /**
      * Every field must be present and not null.
      */
-    public Role(Name name, Phone phone, Email email, Address address, JobDescription jd, Set<Tag> tags,
-                  Website website, Salary salary, Deadline deadline, Experience experience) {
-        requireAllNonNull(name, phone, email, address, jd, tags, website, salary, deadline, experience);
+    public Role(Name name, Phone phone, Email email, Company company, JobDescription jd, Set<Tag> tags,
+                Website website, Salary salary, Deadline deadline, Experience experience) {
+        requireAllNonNull(name, phone, email, company, jd, tags, website, salary, deadline, experience);
 
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.company = company;
         this.jobDescription = jd;
         this.tags.addAll(tags);
         this.website = website;
@@ -60,8 +60,8 @@ public class Role {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Company getCompany() {
+        return company;
     }
 
     public Website getWebsite() {
@@ -106,7 +106,8 @@ public class Role {
         }
 
         return otherRole != null
-                && otherRole.getName().equals(getName());
+                && otherRole.getName().equals(getName())
+                && otherRole.getCompany().equals(getCompany());
     }
 
     /**
@@ -127,7 +128,7 @@ public class Role {
         return otherRole.getName().equals(getName())
                 && otherRole.getPhone().equals(getPhone())
                 && otherRole.getEmail().equals(getEmail())
-                && otherRole.getAddress().equals(getAddress())
+                && otherRole.getCompany().equals(getCompany())
                 && otherRole.getJobDescription().equals(getJobDescription())
                 && otherRole.getTags().equals(getTags())
                 && otherRole.getWebsite().equals(getWebsite())
@@ -139,7 +140,7 @@ public class Role {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, jobDescription, tags, website, salary, deadline, experience);
+        return Objects.hash(name, phone, email, company, jobDescription, tags, website, salary, deadline, experience);
 
     }
 
@@ -151,8 +152,8 @@ public class Role {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress())
+                .append("; Company: ")
+                .append(getCompany())
                 .append("; Job Description: ")
                 .append(getJobDescription());
 
