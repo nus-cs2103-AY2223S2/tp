@@ -151,4 +151,10 @@ public interface Model {
      * @throws ParseException if the user command cannot be parsed.
      */
     ParseResult parseCommand(String userCommand) throws ParseException;
+
+
+    void setVaxTypeManager(VaxTypeManager manager);
+
+
+    void setAppointmentManager(AppointmentManager manager);
 }

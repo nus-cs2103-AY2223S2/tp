@@ -159,4 +159,16 @@ public class VaxTypeModelStub implements Model {
         throw new UnsupportedOperationException("Unimplemented method 'parseCommand'");
     }
 
+    @Override
+    public void setVaxTypeManager(VaxTypeManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
+    }
+
+    @Override
+    public void setAppointmentManager(AppointmentManager manager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
+    }
+
 }
