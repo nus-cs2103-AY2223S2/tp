@@ -13,7 +13,8 @@ import java.util.Set;
 
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
-import seedu.recipe.model.recipe.field.RecipeIngredientQuantity;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -29,7 +30,7 @@ public class Recipe {
     private final Set<Tag> tags = new HashSet<>();
     private final List<IngredientBuilder> ingredients = new ArrayList<>();
     private final List<Step> steps = new ArrayList<>();
-    private final Hashtable<RecipeIngredientQuantity, IngredientBuilder> ingredientTable = new Hashtable<>();
+    private final Hashtable<Ingredient, IngredientQuantity> ingredientTable = new Hashtable<>();
 
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();

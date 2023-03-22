@@ -3,6 +3,8 @@ package seedu.recipe.model.recipe;
 import static java.util.Objects.requireNonNull;
 import static seedu.recipe.commons.util.AppUtil.checkArgument;
 
+import seedu.recipe.model.recipe.ingredient.IngredientParser;
+
 /**
  * Represents a recipe's ingredient in the recipe book.
  * Guarantees: immutable; is valid as declared in {@link #isValidIngredient(String)}
@@ -24,6 +26,7 @@ public class IngredientBuilder {
     public IngredientBuilder(String name) {
         requireNonNull(name);
         checkArgument(isValidIngredient(name), MESSAGE_CONSTRAINTS);
+        IngredientParser.parse(name);
         this.name = name;
     }
 
