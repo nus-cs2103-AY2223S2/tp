@@ -171,6 +171,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Mark feature
+The mark feature mechanism is implemented by having the Event class keep track of an additional attribute called 'Mark'. When an event is completed, the event will be marked through the class attribute 'Mark'.
+
+**Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
+
 ### Reminder feature
 
 #### Implementation
@@ -194,6 +199,7 @@ The `RemindCommand` is then executed by `LogicManager`. After testing all events
 * **Alternative 2:** Determine current time using `LocalDateTime.now()` in `StartTimeWithinDaysPredicate`.
     * Pros: Less coupling between classes.
     * Cons: Difficult to test, as the current time is based on real time.
+
 
 ### \[Proposed\] Undo/redo feature
 

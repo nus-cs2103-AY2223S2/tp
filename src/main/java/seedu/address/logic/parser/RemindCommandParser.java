@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.time.LocalDateTime;
+import java.time.Clock;
 
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -12,10 +12,10 @@ import seedu.address.model.event.StartTimeWithinDaysPredicate;
  * Parses input arguments and creates a new RemindCommand object
  */
 public class RemindCommandParser implements Parser<RemindCommand> {
-    private final LocalDateTime timeNow;
+    private final Clock clock;
 
-    public RemindCommandParser(LocalDateTime timeNow) {
-        this.timeNow = timeNow;
+    public RemindCommandParser(Clock clock) {
+        this.clock = clock;
     }
 
     /**
@@ -40,6 +40,6 @@ public class RemindCommandParser implements Parser<RemindCommand> {
 
 
         return new RemindCommand(new StartTimeWithinDaysPredicate(
-                LocalDateTime.now(), days));
+                clock, days));
     }
 }

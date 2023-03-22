@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.time.LocalDateTime;
+import java.time.Clock;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,10 +35,10 @@ public class EventBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    private final LocalDateTime timeNow;
+    private final Clock clock;
 
-    public EventBookParser(LocalDateTime timeNow) {
-        this.timeNow = timeNow;
+    public EventBookParser(Clock clock) {
+        this.clock = clock;
     }
 
     /**
@@ -93,7 +93,7 @@ public class EventBookParser {
             return new RateCommandParser().parse(arguments);
 
         case RemindCommand.COMMAND_WORD:
-            return new RemindCommandParser(timeNow).parse(arguments);
+            return new RemindCommandParser(clock).parse(arguments);
 
         case RevenueCommand.COMMAND_WORD:
             return new RevenueCommand();

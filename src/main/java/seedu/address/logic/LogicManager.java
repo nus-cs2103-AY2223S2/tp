@@ -2,7 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
+import java.time.Clock;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -37,7 +37,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        eventBookParser = new EventBookParser(LocalDateTime.now());
+        eventBookParser = new EventBookParser(Clock.systemDefaultZone());
     }
 
     @Override
