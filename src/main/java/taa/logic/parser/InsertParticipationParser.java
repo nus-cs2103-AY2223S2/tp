@@ -21,8 +21,8 @@ public class InsertParticipationParser implements Parser<InsertParticipationComm
     public InsertParticipationCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_CLASS_TAG, PREFIX_WEEK
-                        ,PREFIX_PARTICIPATION_POINTS);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_CLASS_TAG, PREFIX_WEEK,
+                        PREFIX_PARTICIPATION_POINTS);
 
         Index index;
         int week = -1;
