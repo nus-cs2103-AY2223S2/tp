@@ -27,6 +27,10 @@ public class Earning {
         value = earning;
     }
 
+    public static Earning placeholder() {
+        return new Earning("0");
+    }
+
     /**
      * Returns true if a given string is a valid earning.
      */

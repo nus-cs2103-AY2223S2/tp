@@ -269,6 +269,12 @@ public class AddCommandTest {
             throw new UnsupportedOperationException("Unimplemented method 'getPersonById'");
         }
 
+        @Override
+        public ObservableList<DeliveryJob> getFilteredDeliveryJobList() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredDeliveryJobList'");
+        }
+
     }
 
     /**

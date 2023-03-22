@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EARNING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECEPIENT_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
 
 import seedu.address.logic.commands.Command;
@@ -23,7 +23,7 @@ public class AddDeliveryJobCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a job to the delivery job system. "
             + "Parameters: "
             + PREFIX_SENDER_ID + "SENDER ID "
-            + PREFIX_RECEPIENT_ID + "RECEPIENT ID "
+            + PREFIX_RECIPIENT_ID + "RECIPIENT ID "
             + PREFIX_DELIVERY_DATE + "DELIVERY DATE "
             + PREFIX_DELIVERY_SLOT + "DELIVERY SLOT "
             + PREFIX_EARNING + "Earning ";

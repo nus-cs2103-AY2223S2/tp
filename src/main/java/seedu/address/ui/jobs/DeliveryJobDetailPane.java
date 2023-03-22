@@ -28,7 +28,7 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
     private StackPane senderContactInfoPlaceholder;
 
     @FXML
-    private StackPane recepientContactInfoPlaceholder;
+    private StackPane recipientContactInfoPlaceholder;
 
     @FXML
     private TitledPane contactInfoTitledPane;
@@ -59,9 +59,9 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
             senderContactInfoPlaceholder.getChildren().add(card.getRoot());
         });
 
-        ab.getPersonById(job.getRecepientId()).ifPresent(per -> {
-            PersonCard card = new PersonCard(per, "Recepient");
-            recepientContactInfoPlaceholder.getChildren().add(card.getRoot());
+        ab.getPersonById(job.getRecipientId()).ifPresent(per -> {
+            PersonCard card = new PersonCard(per, "Recipient");
+            recipientContactInfoPlaceholder.getChildren().add(card.getRoot());
         });
     }
 }

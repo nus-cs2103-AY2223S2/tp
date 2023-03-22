@@ -106,6 +106,8 @@ public interface Model {
 
     ReadOnlyDeliveryJobSystem getDeliveryJobSystem();
 
+    ObservableList<DeliveryJob> getFilteredDeliveryJobList();
+
     boolean hasDeliveryJob(DeliveryJob job);
 
     void deleteDeliveryJob(DeliveryJob target);
@@ -146,4 +148,5 @@ public interface Model {
      * Returns an unmodifiable view of the filtered person list
      */
     ObservableList<Reminder> getReminderList();
+
 }

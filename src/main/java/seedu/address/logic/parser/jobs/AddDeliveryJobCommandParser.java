@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELIVERY_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EARNING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECEPIENT_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
 
 import java.util.stream.Stream;
@@ -38,10 +38,10 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddDeliveryJobCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SENDER_ID, PREFIX_RECEPIENT_ID,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SENDER_ID, PREFIX_RECIPIENT_ID,
                 PREFIX_DELIVERY_DATE, PREFIX_DELIVERY_SLOT, PREFIX_EARNING);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SENDER_ID, PREFIX_RECEPIENT_ID, PREFIX_DELIVERY_DATE,
+        if (!arePrefixesPresent(argMultimap, PREFIX_SENDER_ID, PREFIX_RECIPIENT_ID, PREFIX_DELIVERY_DATE,
                 PREFIX_DELIVERY_SLOT, PREFIX_EARNING)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
@@ -49,7 +49,7 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
         }
 
         String sid = argMultimap.getValue(PREFIX_SENDER_ID).get();
-        String rid = argMultimap.getValue(PREFIX_RECEPIENT_ID).get();
+        String rid = argMultimap.getValue(PREFIX_RECIPIENT_ID).get();
         String ded = argMultimap.getValue(PREFIX_DELIVERY_DATE).get();
         String des = argMultimap.getValue(PREFIX_DELIVERY_SLOT).get();
         String ear = argMultimap.getValue(PREFIX_EARNING).get();

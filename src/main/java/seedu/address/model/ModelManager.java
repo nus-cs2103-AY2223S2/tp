@@ -218,6 +218,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<DeliveryJob> getFilteredDeliveryJobList() {
+        return filteredDeliveryJobs;
+    }
+
+    @Override
     public void updateFilteredDeliveryJobList(Predicate<DeliveryJob> predicate) {
         requireAllNonNull(predicate);
         filteredDeliveryJobs.setPredicate(predicate);
