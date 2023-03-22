@@ -32,13 +32,13 @@ public class SampleDataUtil {
         Reroll sampleRr = new Reroll();
         getSampleEntities();
         for (Item item : sampleItem) {
-            sampleRr.addItem(item);
+            sampleRr.addEntity(item);
         }
         for (Mob mob : sampleMob) {
-            sampleRr.addMob(mob);
+            sampleRr.addEntity(mob);
         }
         for (Character character : sampleCharacter) {
-            sampleRr.addCharacter(character);
+            sampleRr.addEntity(character);
         }
         return sampleRr;
     }

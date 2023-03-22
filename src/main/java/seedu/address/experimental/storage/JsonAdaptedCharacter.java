@@ -45,6 +45,7 @@ public class JsonAdaptedCharacter {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
+
     /***/
     public Character toModelType() throws IllegalValueException {
         // dont care about error...
