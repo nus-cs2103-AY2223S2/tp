@@ -1,6 +1,8 @@
 package vimification.logic.parser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -14,7 +16,7 @@ import java.util.function.Predicate;
  *
  * @param <T> the type of the parser result
  */
-public class ApplicativeParser<T> {
+public final class ApplicativeParser<T> {
 
     ///////////////////////////////////
     // PREDEFINED PARSER COMBINATORS //
@@ -52,18 +54,18 @@ public class ApplicativeParser<T> {
         return Optional.of(Pair.of(input.subview(length), input.substringTo(length)));
     });
 
+    private static final ApplicativeParser<Void> SKIP_WHITESPACES_1_PARSER =
+            satisfy(Character::isWhitespace).takeNext(SKIP_WHITESPACES_PARSER);
+
     /////////////////////////////////////
     // INSTANCE FIELDS AND CONSTRUCTOR //
     /////////////////////////////////////
 
     private final Function<StringView, Optional<Pair<StringView, T>>> runner;
-    private final String errorMessage;
 
     private ApplicativeParser(
-            Function<StringView, Optional<Pair<StringView, T>>> runner,
-            String errorMessage) {
+            Function<StringView, Optional<Pair<StringView, T>>> runner) {
         this.runner = runner;
-        this.errorMessage = errorMessage;
     }
 
     //////////////////////
@@ -72,7 +74,7 @@ public class ApplicativeParser<T> {
 
     private static <T> ApplicativeParser<T> fromRunner(
             Function<StringView, Optional<Pair<StringView, T>>> runner) {
-        return new ApplicativeParser<>(runner, null);
+        return new ApplicativeParser<>(runner);
     }
 
     /**
@@ -98,9 +100,9 @@ public class ApplicativeParser<T> {
     }
 
     /**
-     * Lifts a normal binary function to work on parsers. The first parser is run on the input, and
-     * may consume some characters. Then, the second parser is run on the remaining input. Finally,
-     * the results of the two parsers are combined using the binary function.
+     * Lifts a (curried) binary function to work on parsers. The first parser is run on the input,
+     * and may consume some characters. Then, the second parser is run on the remaining input.
+     * Finally, the results of the two parsers are combined using the binary function.
      * <p>
      * This method is equivalent to {@code liftA2} function in <b>Haskell</b>.
      * <p>
@@ -111,19 +113,24 @@ public class ApplicativeParser<T> {
      * @param <T> the type of the first parser result
      * @param <U> the type of the second parser result
      * @param <V> the type of the resultant parser result
-     * @param combiner the given binary function
+     * @param combiner the given (curried) binary function
      * @param left the first parser
      * @param right the second parser
      * @return a new parser, that first runs the first parser, then the second parser, and finally
      *         combines the result of these parsers using the binary function
      */
     public static <T, U, V> ApplicativeParser<V> lift(
+            Function<? super T, ? extends Function<? super U, ? extends V>> combiner,
+            ApplicativeParser<? extends T> left,
+            ApplicativeParser<? extends U> right) {
+        return left.flatMap(combiner.andThen(right::map));
+    }
+
+    public static <T, U, V> ApplicativeParser<V> lift(
             BiFunction<? super T, ? super U, ? extends V> combiner,
-            ApplicativeParser<T> left,
-            ApplicativeParser<U> right) {
-        return left.flatMap(leftValue -> right
-                .flatMap(rightValue -> ApplicativeParser
-                        .of(combiner.apply(leftValue, rightValue))));
+            ApplicativeParser<? extends T> left,
+            ApplicativeParser<? extends U> right) {
+        return lift(leftValue -> rightValue -> combiner.apply(leftValue, rightValue), left, right);
     }
 
     /**
@@ -145,12 +152,16 @@ public class ApplicativeParser<T> {
         return SKIP_WHITESPACES_PARSER;
     }
 
+    public static ApplicativeParser<Void> skipWhitespaces1() {
+        return SKIP_WHITESPACES_1_PARSER;
+    }
+
     /**
      * Returns a parser that consumes input until it reaches a whitespace character.
      *
      * @return a parser that parses until a whitespace character
      */
-    public static ApplicativeParser<String> parseNonWhitespaces() {
+    public static ApplicativeParser<String> nonWhitespaces() {
         return NON_WHITESPACES_PARSER;
     }
 
@@ -159,7 +170,7 @@ public class ApplicativeParser<T> {
      *
      * @return a parser that parses until eof
      */
-    public static ApplicativeParser<String> parseUntilEof() {
+    public static ApplicativeParser<String> untilEof() {
         return UNTIL_EOF_PARSER;
     }
 
@@ -170,7 +181,7 @@ public class ApplicativeParser<T> {
      * @param prefix the given prefix
      * @return a parser that succeeds when the input starts with the given prefix, fails otherwise
      */
-    public static ApplicativeParser<String> parseString(String prefix) {
+    public static ApplicativeParser<String> string(String prefix) {
         return fromRunner(input -> input.startsWith(prefix)
                 ? Optional.of(Pair.of(input.subview(prefix.length()), prefix))
                 : Optional.empty());
@@ -184,14 +195,31 @@ public class ApplicativeParser<T> {
      * @param end the substring to find
      * @return a parser that parses until the given substring is encountered
      */
-    public static ApplicativeParser<String> parseUntil(String end) {
+    public static ApplicativeParser<String> until(String end) {
         return fromRunner(input -> {
             int offset = input.indexOf(end);
-            return offset < 0
-                    ? Optional.empty()
-                    : Optional.of(Pair.of(
-                            input.subview(offset + end.length()),
-                            input.substringTo(offset)));
+            if (offset < 0) {
+                return Optional.empty();
+            }
+            StringView nextInput = input.subview(offset + end.length());
+            String value = input.substringTo(offset);
+            return Optional.of(Pair.of(nextInput, value));
+        });
+    }
+
+    public static ApplicativeParser<Character> character(char ch) {
+        return satisfy(c -> c == ch);
+    }
+
+    public static ApplicativeParser<Character> satisfy(CharPredicate predicate) {
+        return fromRunner(input -> {
+            if (input.isEmpty()) {
+                return Optional.empty();
+            }
+            char value = input.charAt(0);
+            return predicate.test(value)
+                    ? Optional.of(Pair.of(input.subview(1), value))
+                    : Optional.empty();
         });
     }
 
@@ -203,8 +231,9 @@ public class ApplicativeParser<T> {
      * @return a parser that tries the given parsers, until one succeeds
      */
     @SafeVarargs
-    public static <T> ApplicativeParser<T> choice(ApplicativeParser<T>... parsers) {
+    public static <T> ApplicativeParser<T> choice(ApplicativeParser<? extends T>... parsers) {
         return Arrays.stream(parsers)
+                .map(ApplicativeParser::<T>cast)
                 .reduce(ApplicativeParser::or)
                 .orElseGet(ApplicativeParser::fail);
     }
@@ -214,11 +243,7 @@ public class ApplicativeParser<T> {
     //////////////////////
 
     private Optional<Pair<StringView, T>> run(StringView input) {
-        Optional<Pair<StringView, T>> result = runner.apply(input);
-        if (errorMessage != null && result.isEmpty()) {
-            throw new ParserException(errorMessage);
-        }
-        return result;
+        return runner.apply(input);
     }
 
     @SuppressWarnings("unchecked")
@@ -235,7 +260,7 @@ public class ApplicativeParser<T> {
      * @return a new parser that runs both parsers, but keeps the result of only one parser
      */
     public <U> ApplicativeParser<T> dropNext(ApplicativeParser<U> that) {
-        return lift((left, right) -> left, this, that);
+        return lift(left -> right -> left, this, that);
     }
 
     /**
@@ -247,7 +272,7 @@ public class ApplicativeParser<T> {
      * @return a new parser that runs both parsers, but keeps the result of only one parser
      */
     public <U> ApplicativeParser<U> takeNext(ApplicativeParser<U> that) {
-        return lift((left, right) -> right, this, that);
+        return lift(left -> right -> right, this, that);
     }
 
     /**
@@ -262,14 +287,11 @@ public class ApplicativeParser<T> {
      * @return a new parser that applies the mapper function, after running this parser
      */
     public <U> ApplicativeParser<U> map(Function<? super T, ? extends U> mapper) {
-        return fromRunner(runner.andThen(opt -> opt.map(pair -> {
-            StringView input = pair.getFirst();
-            T oldValue = pair.getSecond();
-            return Pair.of(input, mapper.apply(oldValue));
-        })));
+        return fromRunner(input -> run(input).map(pair -> pair.mapSecond(mapper)));
     }
 
     /**
+     *
      * Runs this parser, then uses the given function to create another parser from the result of
      * this parser and run that parser.
      * <p>
@@ -285,10 +307,10 @@ public class ApplicativeParser<T> {
     public <U> ApplicativeParser<U> flatMap(
             Function<? super T, ? extends ApplicativeParser<? extends U>> flatMapper) {
         return fromRunner(input -> run(input).flatMap(pair -> {
-            StringView oldInput = pair.getFirst();
-            T oldValue = pair.getSecond();
-            ApplicativeParser<? extends U> that = flatMapper.apply(oldValue);
-            return that.<U>cast().run(oldInput);
+            StringView nextInput = pair.getFirst();
+            T value = pair.getSecond();
+            ApplicativeParser<? extends U> nextParser = flatMapper.apply(value);
+            return nextParser.<U>cast().run(nextInput);
         }));
     }
 
@@ -302,9 +324,27 @@ public class ApplicativeParser<T> {
      */
     public <U> ApplicativeParser<U> optionalMap(
             Function<? super T, ? extends Optional<? extends U>> optionalMapper) {
-        return flatMap(optionalMapper.andThen(opt -> opt
-                .map(ApplicativeParser::of)
-                .orElseGet(ApplicativeParser::fail))).cast();
+        return fromRunner(input -> run(input).flatMap(pair -> {
+            StringView nextInput = pair.getFirst();
+            T value = pair.getSecond();
+            return optionalMapper.apply(value).map(newValue -> Pair.of(nextInput, newValue));
+        }));
+    }
+
+    public <U> ApplicativeParser<U> constMap(U otherValue) {
+        return map(ignore -> otherValue);
+    }
+
+    public <U, V> ApplicativeParser<V> combine(
+            ApplicativeParser<? extends U> that,
+            BiFunction<? super T, ? super U, ? extends V> combiner) {
+        return lift(combiner, this, that);
+    }
+
+    public <U, V> ApplicativeParser<V> combine(
+            ApplicativeParser<? extends U> that,
+            Function<? super T, Function<? super U, ? extends V>> combiner) {
+        return lift(combiner, this, that);
     }
 
     /**
@@ -324,8 +364,47 @@ public class ApplicativeParser<T> {
      * @param that the other parser
      * @return a parser that chooses the result of the first succeeds parser
      */
-    public ApplicativeParser<T> or(ApplicativeParser<T> that) {
-        return fromRunner(input -> run(input).or(() -> that.run(input)));
+    public ApplicativeParser<T> or(ApplicativeParser<? extends T> that) {
+        return fromRunner(input -> run(input).or(() -> that.<T>cast().run(input)));
+    }
+
+    public ApplicativeParser<List<T>> many() {
+        return fromRunner(input -> {
+            List<T> result = new ArrayList<>();
+            StringView nextInput = input;
+            while (true) {
+                Optional<Pair<StringView, T>> opt = run(nextInput);
+                if (opt.isEmpty()) {
+                    break;
+                }
+                Pair<StringView, T> pair = opt.get();
+                nextInput = pair.getFirst();
+                result.add(pair.getSecond());
+            }
+            return Optional.of(Pair.of(input, result));
+        });
+    }
+
+    public ApplicativeParser<List<T>> many1() {
+        return fromRunner(input -> run(input).map(pair -> {
+            List<T> result = new ArrayList<>();
+            StringView nextInput = pair.getFirst();
+            result.add(pair.getSecond());
+            while (true) {
+                Optional<Pair<StringView, T>> opt = run(nextInput);
+                if (opt.isEmpty()) {
+                    break;
+                }
+                Pair<StringView, T> nextPair = opt.get();
+                nextInput = nextPair.getFirst();
+                result.add(nextPair.getSecond());
+            }
+            return Pair.of(nextInput, result);
+        }));
+    }
+
+    public ApplicativeParser<T> orElse(T otherValue) {
+        return or(of(otherValue));
     }
 
     /**
@@ -336,16 +415,13 @@ public class ApplicativeParser<T> {
      * @return a new parser that throws if this parser fails
      */
     public ApplicativeParser<T> throwIfFail(String errorMessage) {
-        return new ApplicativeParser<>(runner, errorMessage);
-    }
-
-    /**
-     * Returns a parser that does nothing when fails.
-     *
-     * @return a parser that does nothing when fails.
-     */
-    public ApplicativeParser<T> ignoreIfFail() {
-        return fromRunner(runner);
+        return fromRunner(input -> {
+            Optional<Pair<StringView, T>> opt = run(input);
+            if (opt.isEmpty()) {
+                throw new ParserException(errorMessage);
+            }
+            return opt;
+        });
     }
 
     /**
@@ -355,167 +431,22 @@ public class ApplicativeParser<T> {
      * @return a pair consists of the remaining input, and the parser result
      * @throws ParserException if this parser fails
      */
-    public Pair<String, T> parse(String input) {
-        return run(StringView.of(input, 0))
-                .map(pair -> Pair.of(pair.getFirst().toString(), pair.getSecond()))
+    public Pair<String, T> parsePartOf(String input) {
+        return run(StringView.of(input))
+                .map(pair -> pair.mapFirst(StringView::toString))
+                .orElseThrow(() -> new ParserException("Unable to parse input: " + input));
+    }
+
+    /**
+     * Runs this parser on the given input.
+     *
+     * @param input the given input, to be parsed
+     * @return the parser result
+     * @throws ParserException if this parser fails
+     */
+    public T parse(String input) {
+        return run(StringView.of(input))
+                .map(Pair::getSecond)
                 .orElseThrow(() -> new ParserException("Unable to parse input: " + input));
     }
 }
-
-
-/**
- * Wrapper of a normal {@code String} instance. Instances of this class are used to represent slices
- * of the original string.
- * <p>
- * A {@code StringView} instance stores 2 fields: the original string and an index that represents
- * the offset into the original string.
- */
-class StringView {
-
-    private String value;
-    private int index;
-
-    private StringView(String value, int index) {
-        this.value = value;
-        this.index = index;
-    }
-
-    /**
-     * Creates a new instance of this class.
-     *
-     * @param value the original string
-     * @param index the initial offset
-     * @return an instance of this class, which represents a substring that starts from
-     *         {@code index} in the original string.
-     */
-    static StringView of(String value, int index) {
-        return new StringView(value, index);
-    }
-
-    /**
-     * Checks whether this view starts with the given prefix.
-     *
-     * @param prefix the prefix to check
-     * @return whether this view starts with the given prefix
-     */
-    boolean startsWith(String prefix) {
-        return value.startsWith(prefix, index);
-    }
-
-    /**
-     * Returns a subview of this view, starting from an offset.
-     *
-     * @param offset the offset from the start of this view
-     * @return a new subview that starts from the given offset
-     */
-    StringView subview(int offset) {
-        return new StringView(value, index + offset);
-    }
-
-    /**
-     * Returns a substring, from the start of this view to the given offset.
-     *
-     * @param offset the offset from the start of this view
-     * @return a substring that starts at the start of this view, and ends before the given offset
-     */
-    String substringTo(int offset) {
-        return value.substring(index, index + offset);
-    }
-
-    /**
-     * Returns the character at the given offset.
-     *
-     * @param offset the offset from the start of this view
-     * @return the chatacter at the offset
-     */
-    char charAt(int offset) {
-        return value.charAt(index + offset);
-    }
-
-    /**
-     * Returns the length of this view.
-     *
-     * @return the length of this view
-     */
-    int length() {
-        return value.length() - index;
-    }
-
-    /**
-     * Returns the index of the first occurence of the given substring in this view.
-     *
-     * @param str the given substring to find
-     * @return the index of the first occurence of the given substring in this view, {@code -1} if
-     *         the substring does not appear in this view
-     */
-    int indexOf(String str) {
-        int result = value.indexOf(str, index);
-        return result < 0 ? result : result - index;
-    }
-
-    /**
-     * Checks whether this view represents an empty string.
-     *
-     * @return {@code true} if this view represents an empty string, otherwise {@code false}
-     */
-    boolean isEmpty() {
-        return index >= value.length();
-    }
-
-    @Override
-    public String toString() {
-        return value.substring(index);
-    }
-}
-
-
-/**
- * Represents a tuple of two elements.
- *
- * @param <T> the type of the first element
- * @param <U> the type of the second element
- */
-class Pair<T, U> {
-
-    private T first;
-    private U second;
-
-    /**
-     * Creates a new pair of two elements.
-     *
-     * @param first the first element
-     * @param second the second element
-     */
-    public Pair(T first, U second) {
-        this.first = first;
-        this.second = second;
-    }
-
-    /**
-     * Creates a new pair of two elements. This is a factory method, used to reduce the verbosity
-     * when creating a new pair.
-     *
-     * @param <T> the type of the first element
-     * @param <U> the type of the second element
-     * @param first the first element
-     * @param second the second element
-     * @return a new pair that contains the two elements
-     */
-    public static <T, U> Pair<T, U> of(T first, U second) {
-        return new Pair<>(first, second);
-    }
-
-    public T getFirst() {
-        return first;
-    }
-
-    public U getSecond() {
-        return second;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("[%s, %s]", first, second);
-    }
-}
-

@@ -1,5 +1,6 @@
 package vimification.logic;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -10,7 +11,8 @@ import vimification.logic.commands.CreateCommand;
 import vimification.logic.commands.LogicCommand;
 import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
-import vimification.logic.parser.ParseException;
+import vimification.logic.parser.ParserException;
+import vimification.logic.parser.VimificationParser;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 import vimification.model.task.Todo;
@@ -27,8 +29,7 @@ public class LogicManager implements Logic {
     private final LogicTaskList taskList;
     private final Storage storage;
     private final ObservableList<Task> viewTaskList;
-    // TODO : FIX THIS
-    // private final AddressBookParser addressBookParser;
+    private final VimificationParser vimificationParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -37,26 +38,24 @@ public class LogicManager implements Logic {
         this.taskList = taskList;
         this.storage = storage;
         this.viewTaskList = FXCollections.observableList(taskList.getInternalList());
+        this.vimificationParser = VimificationParser.getInstance();
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParserException {
         logger.info("[USER COMMAND] " + commandText);
 
         // TODO : FIX THIS
-        // Command command = addressBookParser.parseCommand(commandText);
-        Task dummyTask = new Todo("Dummy Task");
-        LogicCommand command = new CreateCommand(dummyTask);
+        LogicCommand command = vimificationParser.parse(commandText);
         CommandResult result = command.execute(taskList);
 
         // TODO: Fix this later
         // Only save when the result indicates that the task list should be saved
-        // try {
-        // storage.saveTaskList(model.getTaskList());
-        // } catch (IOException ioe) {
-        // throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        // }
-
+        try {
+            storage.saveLogicTaskList(taskList);
+        } catch (IOException ex) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ex, ex);
+        }
         return result;
     }
 

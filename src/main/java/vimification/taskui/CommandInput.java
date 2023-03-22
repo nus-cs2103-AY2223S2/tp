@@ -8,7 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import vimification.logic.Logic;
 import vimification.logic.commands.CommandException;
-import vimification.logic.parser.ParseException;
+import vimification.logic.parser.ParserException;
 
 /**
  *
@@ -67,7 +67,7 @@ public class CommandInput extends UiPart<TextField> {
             logic.execute(commandString);
         } catch (CommandException e) {
             // TODO : Load Error message at the bottom components
-        } catch (ParseException e) {
+        } catch (ParserException e) {
             // TODO : Load Error message at the bottom components
         }
 
