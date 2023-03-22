@@ -91,7 +91,8 @@ public class ClientCard extends UiPart<Region> {
         setCalorieCondition(client, calorie);
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
-                .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
+                .forEach(appointment -> appointments.getChildren().add(
+                        new Label(appointment.localDateTime.format(appointment.dateTimeFormatterForStr))));
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -102,7 +103,6 @@ public class ClientCard extends UiPart<Region> {
         emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
         weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
         goalIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/goalIcon.png")));
-        caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
     }
 
     /**
@@ -115,8 +115,10 @@ public class ClientCard extends UiPart<Region> {
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
             calorie.setText(client.getCalorie().value + " cal");
+            caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
         } else {
             calorie.setManaged(false);
+            caloriesIcon.setManaged(false);
         }
     }
 
