@@ -41,7 +41,7 @@ public class ExportCommand extends Command {
             }
         }
 
-        return new CommandResult("Exported to file");
+        return new CommandResult("Exported to file", false, false);
     }
 
 

@@ -51,11 +51,11 @@ public class DeleteTagCommand extends Command {
         Person deleteFromPerson = lastShownList.get(targetIndex.getZeroBased());
         //check if the tag with the given name exist
         if (!deleteFromPerson.getTags().contains(tagToDelete)) {
-            throw new CommandException(Messages.MESSAGE_UNEXISTING_TAG);
+            throw new CommandException(Messages.MESSAGE_NONEXISTENT_TAG);
         }
 
         model.deleteTag(deleteFromPerson, tagToDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, deleteFromPerson));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, deleteFromPerson), true, true);
     }
 
     @Override

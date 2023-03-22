@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class AddressBook implements ReadOnlyAddressBook, DeepCopyable<AddressBook> {
 
     private final UniquePersonList persons;
 
@@ -114,6 +114,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    @Override
+    public AddressBook deepCopy() {
+        AddressBook copy = new AddressBook();
+        for (Person p: persons.asUnmodifiableObservableList()) {
+            copy.addPerson(p.deepCopy());
+        }
+        return copy;
     }
 
     //// util methods
