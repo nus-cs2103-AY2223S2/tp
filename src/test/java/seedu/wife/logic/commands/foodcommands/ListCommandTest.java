@@ -2,7 +2,7 @@ package seedu.wife.logic.commands.foodcommands;
 
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.wife.logic.commands.CommandTestUtil.showFoodAtIndex;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
 import static seedu.wife.testutil.TypicalWife.getTypicalWife;
 
 import org.junit.jupiter.api.BeforeEach;

@@ -114,13 +114,13 @@ public class StringUtil {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isBlank()) {
-            throw new ParseException(String.format(Messages.MESSAGE_EMPTY_ARGUMENT,
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     commandHelpMessage));
         }
 
         if (!StringUtil.isInteger(trimmedArgs)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    Messages.MESSAGE_INVALID_INDEX));
+                    commandHelpMessage));
         }
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedArgs)) {

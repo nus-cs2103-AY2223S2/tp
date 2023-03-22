@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.logic.commands.CommandTestUtil.VALID_TAG_DAIRY;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.wife.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_FIRST_FOOD;
-import static seedu.wife.testutil.TypicalIndexes.INDEX_THIRD_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_FIRST_FOOD;
+import static seedu.wife.testutil.TypicalIndex.INDEX_THIRD_FOOD;
 import static seedu.wife.testutil.TypicalWife.getTypicalWifeWithoutFoodTag;
 
 import java.util.Set;
