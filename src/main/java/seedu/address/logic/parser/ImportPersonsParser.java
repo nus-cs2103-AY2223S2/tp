@@ -24,6 +24,6 @@ public class ImportPersonsParser implements Parser<ImportPersonsCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String input) {
-        return null;
+        return new AutocompleteResult(null, false);
     }
 }
