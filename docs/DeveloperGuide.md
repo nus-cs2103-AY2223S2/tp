@@ -133,13 +133,13 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `CookHubStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both recipe book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `RecipeBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.recipebook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,44 +260,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * Increase efficiency of preparing ingredients and cooking given limited time and resources
 * Provide convenience to student chefs with recipes catered to their needs
+* Easily plan out a week's worth of meals with grocery lists and meal plans
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* `     | cook | easily view the recipes that I viewed recently | have easy access to my favourite recipes |
-| `* * `   | cook | assign diffulty tags | easily search up easy recipes when I am busy |
-| `* `     | cook on a limited budget | filter recipes by cost | so I can use recipes that costs less |
-| `* * `   | student who wants to stay fit | assign healthy tags | make meals that are healthy |
-| `* `     | cook | add designs to my recipe | to beautify it |
-| `* * * ` | cook | add a title to the recipe | refer to it easily |
-| `* * * ` | cook | have a clear view of my recipe | easily follow instructions to make a meal |
-| `* * * ` | cook | read the recipes I have created ||
-| `* * * ` | cook | create a recipe ||
-| `* * `   | student who has limited time | search for the cooking time | be better able to plan my time |
-| `* `     | student with limited mental resources | create a meal plan for the week | take less time to think |
-| `* `     | cook | get a random recipe | get inspiration for what to cook |
-| `* * * ` | cook | see usage instructions | refer to instructions when I forget how to use the App |
-| `* * `   | cook | duplicate recipes | easily add variations |
-| `* * `   | consumer of food | rate the recipes | know which ones are worth cooking again |
-| `* * * ` | cook | edit all parts of the recipe | update and improve on the recipe after trying it out |
-| `* * `   | cook | save my favourtie recipes | easily find them again |
-| `* * `   | cook | categorize my recipes with labels | easily sort and filter them |
-| `* * * ` | cook | delete recipes ||
-| `* * `   | cook with limited ingredients | search up on recipes that contain only the ingredients I have in my fridge | |
-| `* `     | cook | get a list of groceries I need for the recipes for the week |limit my trips to the grocery store|
-| `* * `   | student with limited finanaces | add in the price of the ingredients| budget for my meals |
-| `* * * ` | cook | add recipes step by step | easily follow along when cooking easily |
-| `* * * ` | novice cook | add recipes step by step | easily follow along while cooking |
+| Priority | As a …​                                    | I want to …​                                                                                           | So that I can…​                                                                                                                                           |
+| -------- | ------------------------------------------ |--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* `     | cook | easily view the recipes that I viewed recently                                                         | have easy access to my favourite recipes                                                                                                                  |
+| `* * `   | cook | assign diffulty tags                                                                                   | easily search up easy recipes when I am busy                                                                                                              |
+| `* `     | cook on a limited budget | filter recipes by cost                                                                                 | so I can use recipes that costs less                                                                                                                      |
+| `* * `   | student who wants to stay fit | assign healthy tags                                                                                    | make meals that are healthy                                                                                                                               |
+| `* `     | cook | add designs to my recipe                                                                               | to beautify it                                                                                                                                            |
+| `* * * ` | cook | add a title to the recipe                                                                              | refer to it easily                                                                                                                                        |
+| `* * * ` | cook | have a clear view of my recipe                                                                         | easily follow instructions to make a meal                                                                                                                 |
+| `* * * ` | cook | read the recipes I have created                                                                        ||
+| `* * * ` | cook | create a recipe                                                                                        ||
+| `* * `   | student who has limited time | search for the cooking time                                                                            | be better able to plan my time                                                                                                                            |
+| `* `     | student with limited mental resources | create a meal plan for the week                                                                        | take less time to think                                                                                                                                   |
+| `* `     | cook | get a random recipe                                                                                    | get inspiration for what to cook                                                                                                                          |
+| `* * * ` | cook | see usage instructions                                                                                 | refer to instructions when I forget how to use the App                                                                                                    |
+| `* * `   | cook | duplicate recipes                                                                                      | easily add variations                                                                                                                                     |
+| `* * `   | consumer of food | rate the recipes                                                                                       | know which ones are worth cooking again                                                                                                                   |
+| `* * * ` | cook | edit all parts of the recipe                                                                           | update and improve on the recipe after trying it out                                                                                                      |
+| `* * `   | cook | save my favourtie recipes                                                                              | easily find them again                                                                                                                                    |
+| `* * `   | cook | categorize my recipes with labels                                                                      | easily sort and filter them                                                                                                                               |
+| `* * * ` | cook | delete recipes                                                                                         ||
+| `* * `   | cook with limited ingredients | search up on recipes that contain only the ingredients I have in my fridge                             |                                                                                                                                                           |
+| `* `     | cook | get a list of groceries I need for the recipes for the week                                            | limit my trips to the grocery store                                                                                                                       |
+| `* * `   | student with limited finanaces | add in the price of the ingredients                                                                    | budget for my meals                                                                                                                                       |
+| `* * * ` | cook | add recipes step by step                                                                               | easily follow along when cooking easily                                                                                                                   |
+| `* * * ` | novice cook | add recipes step by step                                                                               | easily follow along while cooking                                                                                                                         |
 | `* * `   | cook | input the number of servings wanted and have the amount of ingredients needed be updated automatically | input the number of servings wanted and have the amount of ingredients needed be updated automatically so that a different number of people can be served |
-| `* * `   | cook | see most recent recipe cooked | to quickly cook |
-| `* * `   | cook | easily search recipes based on the ingredients  | so that I can always find something to cook |
-| `* * `   | friend | export recipes | family and friends can use my ideas |
-| `* * `   | cook | import recipes easily  | save time adding recipes |
-| `* * `   | cook | add ingredients to each recipe | know what I need to cook |
+| `* * `   | cook | see most recent recipe cooked                                                                          | to quickly cook                                                                                                                                           |
+| `* * `   | cook | easily search recipes based on the ingredients                                                         | so that I can always find something to cook                                                                                                               |
+| `* * `   | friend | export recipes                                                                                         | family and friends can use my ideas                                                                                                                       |
+| `* * `   | cook | import recipes easily                                                                                  | save time adding recipes                                                                                                                                  |
+| `* * `   | cook | add ingredients to each recipe                                                                         | know what I need to cook                                                                                                                                  |
+| `* * `   | cook | get a list of groceries to buy                                                                         | know what groceries I need to cook my recipes                                                                                                             |
 
 
 
