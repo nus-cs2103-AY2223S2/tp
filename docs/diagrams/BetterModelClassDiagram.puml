@@ -18,4 +18,9 @@ Role *--> Name
 Role *--> Phone
 Role *--> Email
 Role *--> Address
+Role *--> Salary
+Role *--> Website
+Role *--> Deadline
+Role *--> JobDescription
+Role *--> Experience
 @enduml
