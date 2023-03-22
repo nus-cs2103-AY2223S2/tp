@@ -3,30 +3,44 @@
   "patients" : [ {
     "name" : "Alex Smith",
     "nric" : "S1334567A",
-    "status" : "GRAY"
+    "status" : "GRAY",
+    "ward" : "A1",
+    "discharge" : "12/02/2023 1400"
   }, {
     "name" : "Benson Tillman",
     "nric" : "S7654321F",
-    "status" : "GRAY"
+    "status" : "GRAY",
+    "ward" : "A2",
+    "discharge" : "12/02/2023 1500"
   }, {
     "name" : "Carl Leigh",
     "nric" : "S2468024G",
-    "status" : "GRAY"
+    "status" : "GRAY",
+    "ward" : "A3",
+    "discharge" : "12/02/2023 1600"
   }, {
     "name" : "Daniel Wellington",
     "nric" : "S1244567A",
-    "status" : "GRAY"
+    "status" : "GRAY",
+    "ward" : "A4",
+    "discharge" : "13/02/2023 1400"
   }, {
     "name" : "Elle Schmidt",
     "nric" : "S1235567A",
-    "status" : "GRAY"
+    "status" : "GRAY",
+    "ward" : "A5",
+    "discharge" : "13/02/2023 1500"
   }, {
     "name" : "Fiona Shrekt",
     "nric" : "S6969696B",
-    "status" : "GRAY"
+    "status" : "GRAY",
+    "ward" : "A6",
+    "discharge" : "13/02/2023 1600"
   }, {
     "name" : "George Townsend",
     "nric" : "S1224567A",
-    "status" : "GRAY"
+    "status" : "GRAY",
+    "ward" : "A7",
+    "discharge" : "14/02/2023 1400"
   } ]
 }

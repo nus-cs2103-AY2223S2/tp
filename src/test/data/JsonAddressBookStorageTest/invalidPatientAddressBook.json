@@ -2,6 +2,8 @@
   "patients": [ {
     "name": "Patient with invalid nric",
     "nric": "X1234567A",
-    "status": "GRAY"
+    "status": "GRAY",
+    "ward" : "A1",
+    "discharge" : "24/01/2023 1800"
   } ]
 }

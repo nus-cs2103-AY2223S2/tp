@@ -2,8 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DISCHARGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -16,7 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -29,11 +32,21 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "S8888888P";
     public static final String VALID_STATUS_AMY = "RED";
     public static final String VALID_STATUS_BOB = "GRAY";
+    public static final String VALID_WARD_AMY = "A1";
+    public static final String VALID_WARD_BOB = "A2";
+    public static final String VALID_DISCHARGE_AMY = "04/12/2023 1200";
+    public static final String VALID_DISCHARGE_BOB = "25/07/2023 1600";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NRIC_DESC_AMY = " " + PREFIX_NRIC + VALID_NRIC_AMY;
+    public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
+    public static final String WARD_DESC_AMY = " " + PREFIX_WARD + VALID_WARD_AMY;
+    public static final String DISCHARGE_DESC_AMY = " " + PREFIX_DISCHARGE + VALID_DISCHARGE_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
+    public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
+    public static final String WARD_DESC_BOB = " " + PREFIX_WARD + VALID_WARD_BOB;
+    public static final String DISCHARGE_DESC_BOB = " " + PREFIX_DISCHARGE + VALID_DISCHARGE_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
 
@@ -44,9 +57,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPatientDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).build();
 
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).build();
     }
 
     /**

@@ -2,6 +2,8 @@
   "patients": [ {
     "name" : "Alex Smith",
     "nric" : "X1334567A",
-    "status" : "LIME"
+    "status" : "LIME",
+    "ward" : "@#$",
+    "discharge" : "12/32/1232 1687"
   } ]
 }
