@@ -37,9 +37,9 @@ public class AddVideoCommandIntegrationTest {
 
     @Test
     public void execute_newVideo_success() {
-        Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
+        Module module = TypicalModules.getCs2040s();
         ModuleCode moduleCode = module.getCode();
-        Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
         LectureName lectureName = lecture.getName();
         Video validVideo = TypicalVideos.CONTENT_VIDEO;
 
@@ -67,9 +67,9 @@ public class AddVideoCommandIntegrationTest {
 
     @Test
     public void execute_moduleDoesNotExist_throwsCommandException() {
-        Module module = TypicalModules.CS2107;
+        Module module = TypicalModules.getCs2107();
         ModuleCode moduleCode = module.getCode();
-        Lecture lecture = new LectureBuilder(TypicalLectures.CS2107_LECTURE_1).build();
+        Lecture lecture = TypicalLectures.getCs2107Lecture1();
         LectureName lectureName = lecture.getName();
         Video validVideo = TypicalVideos.CONTENT_VIDEO;
 
@@ -79,9 +79,9 @@ public class AddVideoCommandIntegrationTest {
 
     @Test
     public void execute_lectureDoesNotExist_throwsCommandException() {
-        Module module = TypicalModules.CS2040S;
+        Module module = TypicalModules.getCs2040s();
         ModuleCode moduleCode = module.getCode();
-        Lecture lecture = new LectureBuilder(TypicalLectures.ST2334_TOPIC_1).build();
+        Lecture lecture = TypicalLectures.getSt2334Topic1();
         LectureName lectureName = lecture.getName();
         Video validVideo = TypicalVideos.CONTENT_VIDEO;
 
@@ -91,9 +91,9 @@ public class AddVideoCommandIntegrationTest {
 
     @Test
     public void execute_duplicateVideo_throwsCommandException() {
-        Module module = TypicalModules.CS2040S;
+        Module module = TypicalModules.getCs2040s();
         ModuleCode moduleCode = module.getCode();
-        Lecture lecture = new LectureBuilder(TypicalLectures.CS2040S_WEEK_1).build();
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
         LectureName lectureName = lecture.getName();
         Video videoInList = TypicalVideos.INTRO_VIDEO;
 
