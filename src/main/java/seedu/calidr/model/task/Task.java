@@ -1,5 +1,8 @@
 package seedu.calidr.model.task;
 
+import java.util.Optional;
+
+import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
 
@@ -10,6 +13,7 @@ import seedu.calidr.model.task.params.Title;
 public abstract class Task {
 
     private final Title title;
+    private final Optional<Description> description;
     private boolean isDone;
     private Priority priority;
 
@@ -22,6 +26,7 @@ public abstract class Task {
         assert title != null;
 
         this.title = title;
+        this.description = Optional.empty();
         this.isDone = false;
         this.priority = Priority.MEDIUM;
     }
@@ -37,13 +42,37 @@ public abstract class Task {
         assert priority != null;
 
         this.title = title;
+        this.description = Optional.empty();
         this.isDone = false;
         this.priority = priority;
     }
 
+    public Task(Title title, Description description) {
+        assert title != null;
+        assert description != null;
+
+        this.title = title;
+        this.description = Optional.of(description);
+        this.isDone = false;
+        this.priority = Priority.MEDIUM;
+    }
+    public Task(Title title, Priority priority, Description description) {
+        assert title != null;
+        assert priority != null;
+        assert description != null;
+
+        this.title = title;
+        this.description = Optional.of(description);
+        this.isDone = false;
+        this.priority = priority;
+    }
+
+
     public Title getTitle() {
         return this.title;
     }
+
+    public Optional<Description> getDescription() { return this.description; }
 
     public void mark() {
         this.isDone = true;
