@@ -31,10 +31,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private EnlargedContactCard enlargedContactCard;
-    private DoctorListPanel doctorListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ContactDisplay contactDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -43,10 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane enlargedContactCardPlaceholder;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane contactDisplayPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,11 +110,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        enlargedContactCard = new EnlargedContactCard();
-        enlargedContactCardPlaceholder.getChildren().add(enlargedContactCard.getRoot());
-
-        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList(), enlargedContactCard);
-        personListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
+        contactDisplay = new ContactDisplay(logic);
+        contactDisplayPlaceholder.getChildren().add(contactDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -170,10 +163,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public DoctorListPanel getPersonListPanel() {
-        return doctorListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -184,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            enlargedContactCard.updateSelectedDoctorOptional(logic.getDoctorIfPresent());
+            contactDisplay.setFeedbackToUser();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
