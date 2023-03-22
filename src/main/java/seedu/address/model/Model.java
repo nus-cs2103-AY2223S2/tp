@@ -18,8 +18,11 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
+
     /** {@code Predicate} that evaluate to true for all unarchived applications */
-    Predicate<InternshipApplication> PREDICATE_SHOW_ALL_APPLICATIONS = internshipApplication ->
+    Predicate<InternshipApplication> PREDICATE_SHOW_ONGOING_APPLICATIONS = internshipApplication ->
             internshipApplication.getStatus() != InternshipStatus.ARCHIVED;
 
     /** {@code Predicate} that evaluate to true for all archived internship applications */
@@ -31,7 +34,6 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
-
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

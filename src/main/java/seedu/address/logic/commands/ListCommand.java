@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ONGOING_APPLICATIONS;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ONGOING_APPLICATIONS);
         List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
         if (lastShownList.size() > 0) {
             return new CommandResult(MESSAGE_SUCCESS);
