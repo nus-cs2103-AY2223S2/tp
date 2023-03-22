@@ -1,5 +1,6 @@
 package seedu.dengue.storage;
 
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +53,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         postal = source.getPostal().value;
-        date = source.getDate().value;
+        date = source.getDate().value.toString();
         age = source.getAge().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

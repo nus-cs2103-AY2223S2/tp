@@ -68,5 +68,8 @@ dependencies {
 shadowJar {
     archiveFileName = 'denguetracker.jar'
 }
+run {
+    enableAssertions = true
+}
 
 defaultTasks 'clean', 'test'
