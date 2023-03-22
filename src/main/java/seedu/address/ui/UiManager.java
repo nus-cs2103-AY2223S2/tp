@@ -93,6 +93,7 @@ public class UiManager implements Ui {
      *
      * @param doctor a selected doctor.
      */
+    @Override
     public void showSelectedDoctor(Doctor doctor) {
         mainWindow.showSelectedDoctor(doctor);
     }
@@ -102,6 +103,7 @@ public class UiManager implements Ui {
      *
      * @param patient a selected patient.
      */
+    @Override
     public void showSelectedPatient(Patient patient) {
         mainWindow.showSelectedPatient(patient);
     }
@@ -112,6 +114,7 @@ public class UiManager implements Ui {
      *
      * @param doctorIndex the Index of the selected doctor.
      */
+    @Override
     public void scrollToSelectedDoctor(Index doctorIndex) {
         mainWindow.scrollToSelectedDoctor(doctorIndex);
     }
@@ -122,6 +125,7 @@ public class UiManager implements Ui {
      *
      * @param patientIndex the Index of the selected patient.
      */
+    @Override
     public void scrollToSelectedPatient(Index patientIndex) {
         mainWindow.scrollToSelectedPatient(patientIndex);
     }
