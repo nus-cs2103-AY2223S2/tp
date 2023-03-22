@@ -1,6 +1,7 @@
 package seedu.internship.model;
 
 import javafx.collections.ObservableList;
+import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -13,5 +14,6 @@ public interface ReadOnlyInternshipCatalogue {
      * This list will not contain any duplicate internships.
      */
     ObservableList<Internship> getInternshipList();
+
 
 }
