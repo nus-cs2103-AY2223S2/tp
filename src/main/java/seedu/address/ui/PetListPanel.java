@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -21,7 +22,7 @@ public class PetListPanel extends UiPart<Region> {
     private ListView<Pet> petListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PetListPanel} with the given {@code ObservableList}.
      */
     public PetListPanel(ObservableList<Pet> petList) {
         super(FXML);
@@ -30,7 +31,7 @@ public class PetListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Pet} using a {@code PetCard}.
      */
     class PetListViewCell extends ListCell<Pet> {
         @Override
@@ -42,6 +43,15 @@ public class PetListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PetCard(pet, getIndex() + 1).getRoot());
+
+                LocalDateTime deadline = pet.getDeadline().getDate().minusDays(1);
+                LocalDateTime currTime = LocalDateTime.now();
+
+                if (currTime.isAfter(deadline)) {
+                    getStyleClass().add("deadline-date");
+                } else {
+                    getStyleClass().remove("deadline-date");
+                }
             }
         }
     }
