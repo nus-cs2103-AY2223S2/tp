@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_EMPLOYEE;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -16,6 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.sudohr.commons.core.index.Index;
+import seedu.sudohr.logic.commands.department.EditDepartmentCommand;
+import seedu.sudohr.logic.commands.employee.EditCommand;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.SudoHr;
@@ -44,7 +47,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_ID_AMY;
+    public static final String EID_DESC_AMY = " " + PREFIX_EMPLOYEE + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
+    public static final String EID_DESC_BOB = " " + PREFIX_EMPLOYEE + VALID_ID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -58,6 +63,8 @@ public class CommandTestUtil {
 
     public static final String INVALID_ID_DESC = " " + PREFIX_ID + "help123"; // not allowed to have characters
     public static final String INVALID_ID_DESC_ZERO = " " + PREFIX_ID + "000"; // need at least 1 non-zero digit
+    public static final String INVALID_EID_DESC = " " + PREFIX_EMPLOYEE + "help123"; // not allowed to have characters
+    public static final String INVALID_EID_DESC_ZERO = " " + PREFIX_EMPLOYEE + "000"; // need at least 1 non-zero digit
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
