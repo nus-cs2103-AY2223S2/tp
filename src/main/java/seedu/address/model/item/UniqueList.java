@@ -3,8 +3,10 @@ package seedu.address.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +28,12 @@ public class UniqueList<T extends Item> implements Iterable<T> {
     private final ObservableList<T> internalList;
 
     /**
+     * The internal map responsible for holding the items. This would allow
+     * us an O(1) implementation of queries.
+     */
+    private final Map<String, T> internalMap;
+
+    /**
      * The unmodifiable view of the {@code internalList}.
      */
     private final ObservableList<T> internalUnmodifiableList;
@@ -39,7 +47,10 @@ public class UniqueList<T extends Item> implements Iterable<T> {
      */
     private UniqueList(ObservableList<T> internalList) {
         this.internalList = internalList;
-        internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+        this.internalMap = new HashMap<>();
+        internalList.forEach((val) -> internalMap.put(val.getId(), val));
+        internalUnmodifiableList = FXCollections.unmodifiableObservableList(
+                internalList);
     }
 
     /**
@@ -60,7 +71,9 @@ public class UniqueList<T extends Item> implements Iterable<T> {
      *                     identified by their unique ID.
      * @return a {@code UniqueList} from the given list of items.
      */
-    public static <T extends Item> UniqueList<T> fromObservableList(ObservableList<T> internalList) {
+    public static <T extends Item> UniqueList<T> fromObservableList(
+            ObservableList<T> internalList
+    ) {
         requireNonNull(internalList);
         requireAllNonNull(internalList.toArray());
         if (!internalList.isEmpty() && itemsHaveDuplicate(internalList)) {
@@ -77,7 +90,7 @@ public class UniqueList<T extends Item> implements Iterable<T> {
      *         argument.
      */
     public boolean contains(T toCheck) {
-        return this.contains(toCheck.getId());
+        return this.internalMap.containsKey(toCheck.getId());
     }
 
     /**
@@ -88,7 +101,7 @@ public class UniqueList<T extends Item> implements Iterable<T> {
      */
     public boolean contains(String id) {
         requireNonNull(id);
-        return internalList.stream().anyMatch((val) -> val.getId().equals(id));
+        return this.internalMap.containsKey(id);
     }
 
     /**
@@ -101,6 +114,7 @@ public class UniqueList<T extends Item> implements Iterable<T> {
             throw new ItemDuplicateException(toAdd.getClass());
         }
         internalList.add(toAdd);
+        internalMap.put(toAdd.getId(), toAdd);
     }
 
     /**
@@ -121,7 +135,8 @@ public class UniqueList<T extends Item> implements Iterable<T> {
         if (!Item.isSame(target, editedItem) && contains(editedItem)) {
             throw new ItemDuplicateException(editedItem.getClass());
         }
-
+        internalMap.remove(target.getId());
+        internalMap.put(editedItem.getId(), editedItem);
         internalList.set(index, editedItem);
     }
 
@@ -141,6 +156,8 @@ public class UniqueList<T extends Item> implements Iterable<T> {
         requireNonNull(id);
         if (!internalList.removeIf((val) -> val.getId().equals(id))) {
             throw new ItemNotFoundException(id);
+        } else {
+            internalMap.remove(id);
         }
     }
 
@@ -155,6 +172,8 @@ public class UniqueList<T extends Item> implements Iterable<T> {
             throw new ItemDuplicateException(replacement.get(0).getClass());
         }
         internalList.setAll(replacement);
+        internalMap.clear();
+        internalList.forEach((item) -> internalMap.put(item.getId(), item));
     }
 
     /**
