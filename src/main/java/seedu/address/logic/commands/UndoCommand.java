@@ -6,13 +6,13 @@ import seedu.address.model.Model;
 import seedu.address.model.StateHistory;
 
 /**
- * Finds and lists all persons in the address book whose field entries each match at least one of the provided regexes.
+ * Undoes a number of the most recent prior {@code Command}s.
  */
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the previous command or a number of most "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undoes the previous command, or a number of most "
             + "recent commands. Ignores Undo, Redo, and Export commands; affects all other valid commands.\n"
             + "Parameters: [NUMBER_OF_COMMANDS]...\n"
             + "Example: " + COMMAND_WORD + " 5";
@@ -25,7 +25,7 @@ public class UndoCommand extends Command {
     /**
      * Creates an UndoCommand to undo a given number of previous Commands.
      *
-     * @param predicate The predicate
+     * @param numCommands Number of commands to undo
      */
     public UndoCommand(int numCommands) {
         this.numCommands = numCommands;
