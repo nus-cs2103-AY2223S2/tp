@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/NricModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
@@ -128,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterNricModelClassDiagram.png" width="450" />
 
 </div>
 
@@ -238,6 +238,44 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Adding Nric as identifier
+
+#### Proposed Implementation
+
+The proposed `Nric` field is done similar to the implementation of the `Name` field. 
+
+Previously, name was used as the unique identifier for a `Person` object, where we check for equality between 
+two `Person` objects by name matching. As we acknowledge that in a clinical/hospital system, several patients may 
+have the same name, `Nric` was identified as a better unique identification choice. 
+
+The following additional constraints will be applied:
+
+1. `Nric` will be mandatory field when adding a new `Person`.
+2. `Nric` has to be in the following format: `@xxxxxxx#`
+   1. `@` has to be one of the following: `S`, `T`, `F`, `G`, or `M`
+   2. `xxxxxxx` is a 7-digit serial number, each `x` can be any number `0-9`
+   3. `#` can be any capital alphabet `A-Z`, and the field cannot be blank.
+3. `Nric` must be unique, the system will not allow the addition of a new person otherwise
+
+Given below is an updated `Model` component diagram.
+
+<img src="images/NricModelClassDiagram.png" width="450" />
+
+#### Design considerations:
+
+**Aspect: Mutability of `Nric` field:**
+
+* **Alternative 1 (current choice):** `Nric` is mutable.
+    * Pros: Easy to make corrections if entered wrongly, no need to type the entire `add` command again
+    * Cons: `Nric` never changes for a person, it may not make sense to make it mutable.
+
+* **Alternative 2:** `Nric` is immutable.
+    * Pros: Will ensure no tampering of identifier for a `Person` object.
+    * Cons: If `Nric` is wrongly entered, user will have to re-type the entire `add` command.
+      * This can have heavier consequences if much more data is added before the mistake is noticed.
+
+
+
 ### Light / Dark Theme
 
 #### Proposed Implementation
@@ -267,6 +305,12 @@ what happens when a user executes these commands or clicks the `Theme` button:
 * **Alternative 2:** One CSS file containing the information of two modes.
     * Pros: Less resource space and no need to change the file path.
     * Cons: Not easy to implement and require more FXML changes.
+
+
+### \[Proposed\] Find command
+Proposed Implementation
+
+_{Explain here how the find feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -368,17 +412,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  HS clears all the data in the system.
     Use case ends.
 
-**Use case: UC5 - Search for patients by health conditions**
+**Use case: UC5 - Search for patients by address**
 
 **MSS**
 
-1.  Administrator wants to search for patients based on a certain health condition.
-2.  HS provides a list of all patients with the specified health condition.
-    Use case ends.
+1. Administrator wants to search for patient by his address
+2. HS provides a list of all people staying in the given address 
 
 **Extensions**
 
-* 1a. No such patient has the specified health condition.
+* 1a. No such patient has the specified address.
   Use case ends.
 
 **Use case: UC6 - Search for patients by medicine**
