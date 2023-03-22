@@ -20,6 +20,11 @@ Class Name
 Class Phone
 Class Tag
 
+Class Salary
+Class Website
+Class Deadline
+Class JobDescription
+Class Experience
 }
 
 Class HiddenOutside #FFFFFF
@@ -41,6 +46,11 @@ Role *--> Phone
 Role *--> Email
 Role *--> Address
 Role *--> "*" Tag
+Role *--> Salary
+Role *--> Website
+Role *--> Deadline
+Role *--> JobDescription
+Role *--> Experience
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
