@@ -63,63 +63,44 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case AddClientCommand.COMMAND_WORD:
+        if (AddClientCommand.isCommandWord(commandWord)) {
             return new AddClientCommandParser().parse(arguments);
-
-        case AddProjectCommand.COMMAND_WORD:
+        } else if (AddProjectCommand.isCommandWord(commandWord)) {
             return new AddProjectCommandParser().parse(arguments);
-
-        case MarkProjectCommand.COMMAND_WORD:
+        } else if (MarkProjectCommand.isCommandWord(commandWord)) {
             return new MarkProjectCommandParser().parse(arguments);
-
-        case UnmarkProjectCommand.COMMAND_WORD:
+        } else if (UnmarkProjectCommand.isCommandWord(commandWord)) {
             return new UnmarkProjectCommandParser().parse(arguments);
-
-        case EditClientCommand.COMMAND_WORD:
+        } else if (EditClientCommand.isCommandWord(commandWord)) {
             return new EditClientCommandParser().parse(arguments);
-
-        case EditProjectCommand.COMMAND_WORD:
+        } else if (EditProjectCommand.isCommandWord(commandWord)) {
             return new EditProjectCommandParser().parse(arguments);
-
-        case DeleteClientCommand.COMMAND_WORD:
+        } else if (DeleteClientCommand.isCommandWord(commandWord)) {
             return new DeleteClientCommandParser().parse(arguments);
-
-        case DeleteProjectCommand.COMMAND_WORD:
+        } else if (DeleteProjectCommand.isCommandWord(commandWord)) {
             return new DeleteProjectCommandParser().parse(arguments);
-
-        case ClearClientCommand.COMMAND_WORD:
+        } else if (ClearClientCommand.isCommandWord(commandWord)) {
             return new ClearClientCommand();
-
-        case ClearProjectCommand.COMMAND_WORD:
+        } else if (ClearProjectCommand.isCommandWord(commandWord)) {
             return new ClearProjectCommand();
-
-        case FindClientCommand.COMMAND_WORD:
+        } else if (FindClientCommand.isCommandWord(commandWord)) {
             return new FindClientCommandParser().parse(arguments);
-
-        case FindProjectCommand.COMMAND_WORD:
+        } else if (FindProjectCommand.isCommandWord(commandWord)) {
             return new FindProjectCommandParser().parse(arguments);
-
-        case ListClientCommand.COMMAND_WORD:
+        } else if (ListClientCommand.isCommandWord(commandWord)) {
             return new ListClientCommand();
-
-        case ListProjectCommand.COMMAND_WORD:
+        } else if (ListProjectCommand.isCommandWord(commandWord)) {
             return new ListProjectCommand();
-
-        case SortClientCommand.COMMAND_WORD:
+        } else if (SortClientCommand.isCommandWord(commandWord)) {
             return new SortClientCommand();
-
-        case SortProjectCommand.COMMAND_WORD:
+        } else if (SortProjectCommand.isCommandWord(commandWord)) {
             return new SortProjectCommandParser().parse(arguments);
-
-        case ExitCommand.COMMAND_WORD:
+        } else if (ExitCommand.isCommandWord(commandWord)) {
             return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
+        } else if (HelpCommand.isCommandWord(commandWord)) {
             return new HelpCommand();
-
-        default:
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

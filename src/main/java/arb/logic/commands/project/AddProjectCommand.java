@@ -4,6 +4,12 @@ import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import arb.logic.commands.Command;
 import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
@@ -16,18 +22,21 @@ import arb.model.project.Project;
  */
 public class AddProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "add-project";
+    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
+    private static final String MAIN_COMMAND_WORD = "add-project";
+    private static final String ALIAS_COMMAND_WORD = "ap";
+    private static final Set<String> COMMAND_WORDS =
+            new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
+
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Adds a project to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + MAIN_COMMAND_WORD + " "
             + PREFIX_NAME + "Oil Painting "
             + PREFIX_DEADLINE + "2023-04-05";
-
-    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
 
     private final Project toAdd;
 
@@ -56,5 +65,13 @@ public class AddProjectCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddProjectCommand // instanceof handles nulls
                 && toAdd.equals(((AddProjectCommand) other).toAdd));
+    }
+
+    public static boolean isCommandWord(String commandWord) {
+        return COMMAND_WORDS.contains(commandWord);
+    }
+
+    public static List<String> getCommandWords() {
+        return new ArrayList<>(COMMAND_WORDS);
     }
 }
