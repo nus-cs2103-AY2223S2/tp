@@ -40,6 +40,11 @@ public class DeleteCommand extends Command {
         }
 
         Internship internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        // If Deleted Internship equals to the selected Internship
+        if (internshipToDelete == model.getSelectedInternship()) {
+            model.clearSelectedInternship();
+        }
         model.deleteInternship(internshipToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete));
     }
