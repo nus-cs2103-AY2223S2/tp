@@ -20,7 +20,7 @@ public class End {
 
     private final String endDateTime;
 
-    private final TimeParser tp = new TimeParser(DATE_TIME_PATTERN, DATE_PARSE_FORMAT, TIME_PARSE_FORMAT);
+    public static final TimeParser tp = new TimeParser(DATE_TIME_PATTERN, DATE_PARSE_FORMAT, TIME_PARSE_FORMAT);
 
     /**
      * Constructs a {@code Position}.
@@ -32,6 +32,10 @@ public class End {
         this.endDateTime = endDateTime;
         this.tp.parse(endDateTime);
         checkArgument(isValidEnd(), MESSAGE_CONSTRAINTS);
+    }
+
+    public int compareStart(Start start) {
+        return this.tp.compareTo(start.tp);
     }
 
     /**

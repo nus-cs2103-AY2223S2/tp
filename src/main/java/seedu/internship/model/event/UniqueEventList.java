@@ -18,6 +18,7 @@ public class UniqueEventList implements Iterable<Event> {
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();
     private final ObservableList<Event> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    public static final ObservableList<Event> EMPTY_UNIQUE_EVENTS_LIST = FXCollections.observableArrayList();
 
     /**
      * Returns true if the list contains an equivalent event as the given argument.
@@ -106,8 +107,12 @@ public class UniqueEventList implements Iterable<Event> {
         if (other == this) {
             return true;
         }
+
         if (other instanceof UniqueEventList) {
             UniqueEventList otherList = (UniqueEventList) other;
+            if (this == EMPTY_UNIQUE_EVENTS_LIST || otherList == EMPTY_UNIQUE_EVENTS_LIST ) {
+                return false;
+            }
             return this.internalList.equals(otherList.internalList);
         }
         return false;

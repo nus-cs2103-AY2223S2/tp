@@ -34,6 +34,8 @@ public class EventAddCommand extends EventCommand {
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the catalogue";
     public static final String MESSAGE_NO_INTERNSHIP_SELECTED = "Select an internship before adding an event.";
 
+    public static final String MESSAGE_END_BEFORE_START = "End Date Time cannot be before Start Date Time.";
+
     private final Event eventToAdd;
 
     /**
@@ -47,6 +49,9 @@ public class EventAddCommand extends EventCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (eventToAdd.getStart().compareEnd(eventToAdd.getEnd()) == 1) {
+            throw new CommandException(MESSAGE_END_BEFORE_START);
+        }
 
         if (model.hasEvent(eventToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
@@ -56,6 +61,8 @@ public class EventAddCommand extends EventCommand {
         if (!model.hasSelectedInternship()) {
             throw new CommandException(MESSAGE_NO_INTERNSHIP_SELECTED );
         }
+
+
         // Adding internship infromation to event
         Internship selectedIntern = model.getSelectedInternship();
         eventToAdd.setInternship(selectedIntern);
