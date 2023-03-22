@@ -18,6 +18,7 @@ import seedu.address.model.Level;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.CodeContainsKeywordsPredicate;
 import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
@@ -25,10 +26,12 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
+import seedu.address.model.video.Video;
 import seedu.address.testutil.LectureBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
+import seedu.address.testutil.TypicalVideos;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -36,6 +39,11 @@ import seedu.address.testutil.TypicalModules;
 public class FindCommandTest {
     private static final Module CS2040S = TypicalModules.getCs2040s();
     private static final Module ST2334 = TypicalModules.getSt2334();
+    private static final Lecture week1 = TypicalLectures.getCs2040sWeek1();
+    private static final Lecture week2 = TypicalLectures.getCs2040sWeek2();
+    private static final Lecture week3 = TypicalLectures.getCs2040sWeek3();
+    private static final Video vid1 = TypicalVideos.CONTENT_VIDEO;
+    private static final Video vid2 = TypicalVideos.ANALYSIS_VIDEO;
 
     private Model model = new ModelManager(getTypicalTracker(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTracker(), new UserPrefs());
@@ -113,6 +121,34 @@ public class FindCommandTest {
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2040S, ST2334), model.getFilteredModuleList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleLecturesFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_LECTURES_LISTED_OVERVIEW, 3);
+        LectureNameContainsKeywordsPredicate predicate =
+            (LectureNameContainsKeywordsPredicate) preparePredicate("week1 week2 week3", Level.LECTURE);
+        ReadOnlyModule module = new ModuleBuilder().build();
+        ModuleCode moduleCode = module.getCode();
+        expectedModel.updateFilteredLectureList(predicate, module);
+        FindCommand command = new FindCommand(Arrays.asList("week1", "week2", "week3"), moduleCode);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(week1, week2, week3), model.getFilteredLectureList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleVideosFound() {
+        String expectedMessage = String.format(Messages.MESSAGE_VIDEOS_LISTED_OVERVIEW, 2);
+        VideoNameContainsKeywordsPredicate predicate =
+            (VideoNameContainsKeywordsPredicate) preparePredicate("vid1 vid2", Level.VIDEO);
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
+        Lecture lecture = new LectureBuilder(TypicalLectures.getCs2040sWeek2()).build();
+        expectedModel.updateFilteredVideoList(predicate, lecture);
+        FindCommand command = new FindCommand(Arrays.asList("vid1", "vid2"), module.getCode(), lecture.getName());
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(vid1, vid2), model.getFilteredVideoList());
     }
 
     /**
