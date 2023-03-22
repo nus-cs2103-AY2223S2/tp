@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes multi-index delete command;
+:Check validity of each index;
+
+if () then ([all indexes valid])
+    :Delete cases associated with each index;
+    :Display success message;
+else ([else])
+    :Throw exception;
+endif
+stop
+
+@enduml

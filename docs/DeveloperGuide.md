@@ -238,6 +238,41 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Multi-index delete feature
+
+#### Proposed Implementation
+
+The proposed multi-index delete mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`, `DeleteCommandParser#parse()`, and `DeleteCommand#execute()` methods.
+
+Given below is an example usage scenario and how the multi-index delete mechanism behaves at each step.
+
+Step 1. The user launches the application and uses the `find` command to filter the list of cases. The `ModelManager`’s `FilteredList<Person>` is updated.
+
+Step 2. The user executes the `delete 1 3` command to delete the first and third persons in the filtered list currently being shown. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `delete` command word, passes the argument `1 3` to the `DeleteCommandParser`.
+
+Step 3. `DeleteCommandParser#parse()` is called. A list of valid indexes `List<Index>` is returned, and a `DeleteCommand` is constructed, taking in this list of indexes as an attribute.
+
+Step 4. `DeleteCommand#execute()` will get the most updated list of filtered persons and loop through the list of indexes to delete their associated cases using `Model#deletePerson()`. Users will be notified with a message upon successful deletion of all relevant persons.
+
+The following sequence diagram shows how the multi-index delete operation works:
+
+![DeleteMultiIndexSequenceDiagram](images/DeleteMultiIndexSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes a multi-index delete command:
+
+![DeleteMultiIndexActivityDiagram](images/DeleteMultiIndexActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How multi-index delete indicates successful execution:**
+
+* **Alternative 1 (current choice):** Display a message indicating that a number of cases were successfully deleted, the number of cases corresponding to the size of the list of indexes.
+    * Pros: Short and succinct, without taking up too much space on the GUI.
+    * Cons: Does not show exactly which cases were deleted.
+
+* **Alternative 2:** Display a message indicating successful deletion for each individual deleted case, along with the details of the deleted case.
+    * Pros: Shows exactly which cases were deleted for easy validation.
+    * Cons: Unnecessarily lengthy; may take up too much space if many cases were deleted at once.
 
 --------------------------------------------------------------------------------------------------------------------
 
