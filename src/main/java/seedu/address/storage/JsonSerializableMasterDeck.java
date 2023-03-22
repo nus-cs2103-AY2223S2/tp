@@ -69,7 +69,7 @@ class JsonSerializableMasterDeck {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CARD);
             }
 
-            Deck currDeck = card.getDeck().get();
+            Deck currDeck = card.getDeck();
             if (!masterDeck.hasDeck(currDeck)) {
                 throw new IllegalValueException(MESSAGE_MISSING_DECK);
             }

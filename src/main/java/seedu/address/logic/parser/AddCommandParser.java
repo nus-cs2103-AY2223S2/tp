@@ -12,7 +12,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddCommand.AddCardDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
-import seedu.address.model.card.Card;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;
 
