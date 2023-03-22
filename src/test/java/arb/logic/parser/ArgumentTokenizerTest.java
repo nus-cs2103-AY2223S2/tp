@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 
 public class ArgumentTokenizerTest {
 
-    private final Prefix unknownPrefix = new Prefix("--u");
-    private final Prefix pSlash = new Prefix("p/");
-    private final Prefix dashT = new Prefix("-t");
-    private final Prefix hatQ = new Prefix("^Q");
+    private final Prefix unknownPrefix = new Prefix("--u", "++u");
+    private final Prefix pSlash = new Prefix("p/", "pslash/");
+    private final Prefix dashT = new Prefix("-t", "tdash/");
+    private final Prefix hatQ = new Prefix("^Q", "qhat/");
 
     @Test
     public void tokenize_emptyArgsString_noValues() {
@@ -118,12 +118,13 @@ public class ArgumentTokenizerTest {
     @Test
     public void tokenize_multipleArgumentsWithRepeats() {
         // Two arguments repeated, some have empty values
-        String argsString = "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT value p/ pSlash value -t";
+        String argsString = "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT value p/ pSlash value "
+                + "-t tdash/ alias dash value qhat/ another qhat value pslash/ another pslash value pslash/";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreamblePresent(argMultimap, "SomePreambleString");
-        assertArgumentPresent(argMultimap, pSlash, "pSlash value");
-        assertArgumentPresent(argMultimap, dashT, "dashT-Value", "another dashT value", "");
-        assertArgumentPresent(argMultimap, hatQ, "", "");
+        assertArgumentPresent(argMultimap, pSlash, "pSlash value", "another pslash value", "");
+        assertArgumentPresent(argMultimap, dashT, "dashT-Value", "another dashT value", "", "alias dash value");
+        assertArgumentPresent(argMultimap, hatQ, "", "", "another qhat value");
     }
 
     @Test
@@ -138,13 +139,14 @@ public class ArgumentTokenizerTest {
 
     @Test
     public void equalsMethod() {
-        Prefix aaa = new Prefix("aaa");
+        Prefix aaa = new Prefix("aaa", null);
 
         assertEquals(aaa, aaa);
-        assertEquals(aaa, new Prefix("aaa"));
+        assertEquals(aaa, new Prefix("aaa", null));
 
         assertNotEquals(aaa, "aaa");
-        assertNotEquals(aaa, new Prefix("aab"));
+        assertNotEquals(aaa, new Prefix("aab", null));
+        assertNotEquals(aaa, new Prefix("aaa", "aab"));
     }
 
 }

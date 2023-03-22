@@ -5,6 +5,7 @@ import static arb.logic.commands.CommandTestUtil.SORTING_OPTION_DESC;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static arb.testutil.TypicalProjectSortingOptions.BY_DEADLINE;
+import static arb.testutil.TypicalProjectSortingOptions.BY_DEADLINE_ALIAS;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,10 @@ public class SortProjectCommandParserTest {
         // no leading and trailing whitespaces
         SortProjectCommand expectedSortProjectCommand =
                 new SortProjectCommand(BY_DEADLINE);
+        assertParseSuccess(parser, SORTING_OPTION_DESC, expectedSortProjectCommand);
+
+        // alias option
+        expectedSortProjectCommand = new SortProjectCommand(BY_DEADLINE_ALIAS);
         assertParseSuccess(parser, SORTING_OPTION_DESC, expectedSortProjectCommand);
     }
 }
