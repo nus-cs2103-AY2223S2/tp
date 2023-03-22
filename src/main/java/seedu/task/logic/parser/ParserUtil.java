@@ -200,12 +200,11 @@ public class ParserUtil {
     public static Effort parseEffort(String effort) throws ParseException {
         requireNonNull(effort);
         String trimmedEffort = effort.trim();
-        try {
-            long duration = Long.parseLong(trimmedEffort);
-            return new Effort(duration);
-        } catch (NumberFormatException e) {
+        if (!Effort.isValidEffort(trimmedEffort)) {
             throw new ParseException(Effort.MESSAGE_CONSTRAINTS);
         }
+        long taskEffort = Long.parseLong(trimmedEffort);
+        return new Effort(taskEffort);
     }
 
     /**
