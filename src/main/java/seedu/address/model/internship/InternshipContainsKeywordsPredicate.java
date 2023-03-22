@@ -58,7 +58,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     private boolean checkName(boolean noNameKeywords, Internship internship) {
         if (!noNameKeywords) {
             return this.nameKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
                             internship.getCompanyName().fullCompanyName, keyword));
         }
         return true;
@@ -67,7 +67,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     private boolean checkRole(boolean noRoleKeywords, Internship internship) {
         if (!noRoleKeywords) {
             return this.roleKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
                             internship.getRole().fullRole, keyword));
         }
         return true;
@@ -76,7 +76,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     private boolean checkStatus(boolean noStatusKeywords, Internship internship) {
         if (!noStatusKeywords) {
             return this.statusKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
                             internship.getStatus().fullStatus, keyword));
         }
         return true;
@@ -85,7 +85,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
     private boolean checkDate(boolean noKeyDates, Internship internship) {
         if (!noKeyDates) {
             return this.keyDates.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                    .anyMatch(keyword -> StringUtil.matchingStringIgnoreCase(
                             internship.getDate().fullDate, keyword));
         }
         return true;
@@ -96,7 +96,7 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
             return this.tagKeywords.stream()
                     .anyMatch(keyword -> internship.getTags().stream()
                             .map(tag -> tag.tagName)
-                            .anyMatch(tagName -> StringUtil.containsWordIgnoreCase(keyword, tagName)));
+                            .anyMatch(tagName -> StringUtil.matchingStringIgnoreCase(tagName, keyword)));
         }
         return true;
     }
