@@ -40,7 +40,9 @@ public class MeetingContainsNamesPredicate implements Predicate<Meeting> {
         if (!(other instanceof MeetingContainsNamesPredicate)) {
             return false;
         } // instanceof handles nulls
-        assert names != null;
+        if (names == null) {
+            return ((MeetingContainsNamesPredicate) other).names == null;
+        }
         return names.equals(((MeetingContainsNamesPredicate) other).names); // state check
     }
 
