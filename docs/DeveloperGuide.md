@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.svg" width="450" />
 
 
 The `Model` component,
@@ -131,14 +131,14 @@ The `Model` component,
 
 Here is the `Item` class that is what all model objects depend on.
 
-<img src="images/ItemClassDiagram.png" width="450" />
+<img src="images/ItemClassDiagram.svg" width="450" />
 
 
 Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
 
 This is the class representation for the `Supplier` and `Customer` class.
 
-<img src="images/PersonClassDiagram.png" width="450" />
+<img src="images/PersonClassDiagram.svg" width="450" />
 
 Here is how `Supplier` and `Customer` works:
 
