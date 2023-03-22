@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:ParseUtil.parseDate(string);
+if () then ([string is null])
+    :throw exception;
+    stop
+else ([else])
+    :trim date;
+    if () then ([isValidDate])
+        :return new date;
+        stop
+    else ([else])
+        :throw parseException;
+        stop
+@enduml

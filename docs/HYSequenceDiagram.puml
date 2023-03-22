@@ -1,0 +1,61 @@
+
+@startuml
+!include Style.puml
+'https://plantuml.com/sequence-diagram
+hide footbox
+
+
+
+
+
+participant "<<class>>\nParserUtil" as PU COL4
+
+-> PU : .parseDate("20000101")
+activate PU
+
+participant "<<class>>\nDate" as DATE COL2
+
+PU -> DATE : isValidDate(\n"20000101")
+activate DATE COL2
+
+DATE -> DATE : produceValidationFormat("20000101")
+activate DATE COL2
+DATE --> DATE : "yyyyMMdd"
+deactivate DATE COL2
+DATE --> PU
+deactivate DATE COL2
+create ":Date" as D COL1
+
+PU -> D
+activate D COL1
+D -> D : requireNonNull(\n"20000101")
+activate D COL1
+deactivate D
+D -> DATE : isValidDate("20000101")
+activate DATE COL2
+DATE -> DATE : produceValidationFormat("20000101")
+activate DATE COL2
+DATE --> DATE : "yyyyMMdd"
+deactivate DATE COL2
+DATE --> D
+deactivate DATE COL2
+D -> D : checkArgument(validity, constraints)
+activate D COL1
+
+
+deactivate D COL1
+D --> PU
+deactivate D COL1
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
