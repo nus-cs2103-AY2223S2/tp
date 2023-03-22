@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 
@@ -14,6 +14,7 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.person.CompanyName;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
 
 /**
@@ -60,7 +61,7 @@ public class EditStatusCommand extends Command {
         InternshipApplication updatedApplication = createdUpdatedApplication(internshipToUpdateStatus, toUpdate);
 
         model.setApplication(internshipToUpdateStatus, updatedApplication);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedApplication));
     }
 
@@ -74,9 +75,14 @@ public class EditStatusCommand extends Command {
         CompanyName companyName = internshipApplication.getCompanyName();
         JobTitle jobTitle = internshipApplication.getJobTitle();
         Contact contact = internshipApplication.getContact();
+        InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        if (contact != null) {
+        if (contact != null && interviewDate != null) {
+            return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
+        } else if (contact != null) {
             return new InternshipApplication(companyName, jobTitle, contact, status);
+        } else if (interviewDate != null) {
+            return new InternshipApplication(companyName, jobTitle, status, interviewDate);
         } else {
             return new InternshipApplication(companyName, jobTitle, status);
         }

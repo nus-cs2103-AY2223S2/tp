@@ -156,6 +156,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add contact feature
+
+#### How is the feature implemented
+
+The `add_contact` command allows users to add the contact of a company to an internship application. The implementation of the `add_contact` command is facilitated by the `AddContactCommand` class which is derived from the `Command` superclass, and overrides the `Command#execute` method. 
+The parsing process meanwhile involves the `AddressBookParser#parse#` and the `AddContactCommandParser#parse` methods.
+
+The activity diagram below shows the workflow of the `add_contact` command during its execution.
+
+![AddContactActivityDiagram](images/AddContactActivityDiagram.png)
+
+The constructor of the class `AddContactCommand` requires 2 arguments, a valid positive `Integer` index and a `Contact` object, both of which are obtained after the parsing process mentioned above.
+
+The relevant operations from the `Model` interface are `Model#getFilteredInternshipList`, `Model#setApplication` and `Model#updateFilteredInternshipList`.
+
+A sequence diagram is shown here to illustrate the execution process of the `add_contact` command.
+
+![AddContactSequenceDiagram](images/AddContactSequenceDiagram.png)
+
+Given below is an explanation on the `add_contact` command's behaviours.
+
+Step 1. Parsing
+
+The `CommandBox#execute` method is invoked when the user's input in `CommandBox` is parsed, which results in the command word being parsed in the method `InternEaseParser#parser`.
+The method `AddContactCommandParser#parse` is invoked only if the command word matches `AddContactCommand.COMMAND_WORD`.
+
+Step 2. Execution
+
+The `AddContactCommand#execute` method is invoked and calls are made to the `model` instance. The last shown list of internships are obtained by calling the method `Model#getFilteredInternshipList`.
+The internship application where the contact is to be added is then obtained by calling the `UniqueApplicationList#get` method with the specified index. As the InternshipApplication object is
+immutable, a new `InternshipApplication` object is created with the contact details. The `Model#setApplication` method is then invoked to update the specified application in the list.
+
+Step 3. Result
+
+The updated model is then saved. A `CommandResult` object with a message containing the execution result of the command is created and returned to `MainWindow#execute`. 
+The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the returned message for 2.5 seconds. 
+
+>**NOTE:**
+> Error handling: Any error message returned in the midst of execution will be displayed as a `ResultDialog` and the current command executed terminates immediately.
+
+#### Why is it implemented this way
+
+The `AddContactCommand` provides enhancement to the existing `AddCommand` by separating the process of adding contact details of the company from the initial process of
+adding a new internship application. This prevents the `AddCommand` from getting cluttered with large amount of arguments that may become difficult for the user to remember. 
+
+**Aspect: Where to save the contact details:**
+
+* **Alternative 1 (current choice):** Separating it into a separate `Contact` class.
+    * Pros: Flexibility to add more details to the contact if needed in the future.
+    * Cons: More time required to implement.
+
+* **Alternative 2:** Adding contact details as attributes in the `InternshipApplication` class.
+    * Pros: Easier than implement.
+    * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
+
 ### Clear_by feature
 This section elaborated the `clear_by` feature by its functionality and the path of execution together with the `ClearByCommand` implementation. Uml diagrams are used to aid this description.
 
@@ -198,7 +253,7 @@ Step 1. Parsing
 Step 2. Execution
     `ClearByCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getFilteredInternshipList`. Then, the list is filtered by `ClearByCommand#getFilteredList` to filter out the applications to be cleared.
     The size of the list-to-clear is checked before an iteration to `Model#deleteInternship` and `Model#addInternshipToCache`. The cleared items are stored in the cache list to support `RevertCommand` in current InternEase session.
-
+    
 Step 3. Result
     The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 2.5 seconds.
 
@@ -211,7 +266,6 @@ The `ClearByCommand` is an enhanced feature for both `DeleteCommand` and `ClearC
 Based on utility, the 3 fixed fields in an internship application are taken as the key attributes for this `clear_by` feature. The `PREFIX` for specifying the `clear_by` attribute is also the same as InternEase convention.
 For the ease of implementation and avoid ambiguity, constructor `ClearByCommand::new` is overloaded, taking different fields. The usage of enum `ParamType` to specify the operating attribute type generalized the `ClearByCommand#execute`.
 The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
-
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
@@ -280,9 +334,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command format is invalid.
     * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-    
+
       Use case ends.
-    
+
 
 **Use case: UC02 Add contact details of a company to an internship application**
 
@@ -290,7 +344,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows the internship application list with their indexes specified.
-3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index. 
+3.  User requests to add the contact details of a company to a specific internship application in the list by specifying its respective index.
 4.  InternEase adds the contact details of the company to the internship application and displays a success message.
 
     Use case ends.
@@ -324,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific internship application in the list by specifying its respective index.
 4. InterEase deletes the internship application from the list and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -335,9 +389,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. InternEase shows an error message and gives specific suggestion on the index's range.
-  
+
     * 3a2. User enters new internship application index.
-        
+
       Steps 3a1 to 3a2 are repeated until a valid index is provided.
       Use case resumes at step 4.
 
@@ -372,7 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to clear all the data in the application.
 2. InternEase clears all the internship application entries, shows an empty list of internship application data and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Use case: UC08 Edit the status of an internship application**
 
@@ -405,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b2. User enters a new command.
 
       Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
-    
+      
 **Use case: UC09 Help**
 
 **MSS**
@@ -419,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to view the list of internship applications.
 2.  InternEase shows all the internship applications as a list with their indexes specified.
-   
+
     Use case ends.
 
 **Extensions**
@@ -438,7 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. InternEase requests confirmation from user.
 5. InternEase updates the application status of the internship application and displays a success message.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 * 1a. The list is empty.
@@ -528,7 +582,7 @@ Similar to `UC06 Find an application by its field`except todo task entries and n
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable increase in sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster typing commands than using the mouse.
-4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application. 
+4. InternEase doesn't support resume storing function. User can only include links to their resume used for a particular application.
 5. InternEase is unable to remind user through platform outside of the application.
 
 *{More to be added}*
@@ -555,11 +609,11 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch of InternEase
 
     1. Download the jar file and copy into an empty folder
-   2. Launch the application by:
-      1. Double-click the jar file.<br>
-         or
-      2. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
-   Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimal.
+    2. Launch the application by:
+        1. Double-click the jar file.<br>
+           or
+        2. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
+           Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimal.
 
 2. Saving window preferences
 
@@ -569,11 +623,11 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 3. Shutting down InternEase
-   1. Shut down InternEase
-      1. Using `exit` command.<br>
-         or
-      2. Close the window using the 'X' button on top-right of the window frame.
-   2. All prior activities will be saved.
-   3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
+    1. Shut down InternEase
+        1. Using `exit` command.<br>
+           or
+        2. Close the window using the 'X' button on top-right of the window frame.
+    2. All prior activities will be saved.
+    3. Re-launch InternEase by [Step 1(ii)](#Launch-and-shutdown).<br>Expected: All the saved data will be loaded and displayed.
 
 *{More to be added}*

@@ -8,7 +8,8 @@ public enum InternshipStatus {
     PENDING,
     RECEIVED,
     REJECTED,
-    NO;
+    NO,
+    ARCHIVED;
 
     public static final String MESSAGE_CONSTRAINTS =
             "Status can only be of one of the following five types: NA, PENDING, RECEIVED, REJECTED or NO";
