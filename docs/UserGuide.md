@@ -2,13 +2,13 @@
 
 ## Features:
 
-### Viewing help : 'help' [coming soon]
+### Viewing help : 'help'
 
 Brings users to the help page.
 
 Format: 'help'
 
-### Adding a person: 'add' [coming soon]
+### Adding a person: 'add'
 
 Adds a person to the address book.
 
@@ -19,13 +19,13 @@ Examples:
 - 'add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/100 c/DBS'
 - 'add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 s/5000 c/Maybank t/criminal'
 
-### Listing all persons : 'list' [coming soon]
+### Listing all persons : 'list'
 
 Shows a list of all persons in the contact list.
 
 Format: list
 
-### Editing a person : 'edit' [coming soon]
+### Editing a person : 'edit'
 
 Edits an existing person in the contact list.
 
@@ -92,7 +92,7 @@ Examples:
 
 - 'unMark 3' unmarks the contact at index 3 as not requiring any further follow up action.
 
-### Deleting a person : 'delete' [coming soon]
+### Deleting a person : 'delete'
 
 Deletes the specified person from the contact list.
 
@@ -107,7 +107,7 @@ Examples:
 - 'delete 2' deletes the 2nd person in the address book.
 - find Betsy followed by 'delete 1' deletes the 1st person in the results of the find command.
 
-### Finding via keywords : 'find' [coming soon]
+### Finding via keywords : 'find'
 
 Finds the entries with the relevant keywords
 
@@ -120,13 +120,13 @@ Examples:
 - 'find' followed by 'KEYWORD1 KEYWORD2 …' returns all the
 - 'find Betsy' followed by delete 1 deletes the 1st person in the results of the find command.
 
-### Clearing all entries : 'clear' [coming soon]
+### Clearing all entries : 'clear'
 
 Clears all entries from the address book.
 
 Format: 'clear'
 
-### Exiting the program : 'exit' [coming soon]
+### Exiting the program : 'exit'
 
 Exits the program.
 
