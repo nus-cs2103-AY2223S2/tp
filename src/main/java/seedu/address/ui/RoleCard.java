@@ -71,7 +71,7 @@ public class RoleCard extends UiPart<Region> {
         salary.setText("$" + role.getSalary().salary);
         LocalDate currDeadline = LocalDate.parse(role.getDeadline().deadline);
         if (currDeadline.isBefore(LocalDate.now())) {
-            deadline.setText("EXPIRED");
+            deadline.setText(" EXPIRED ");
             deadline.setStyle("-fx-background-color: yellow; -fx-background-radius: 5px; -fx-text-fill: black");
         } else {
             deadline.setText(role.getDeadline().deadline);
