@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -96,16 +95,6 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getPatientManagerFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPatientManagerFilePath(Path patientManagerFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -200,6 +189,18 @@ public class AddCommandTest {
         public VaxType deleteVaxType(GroupName vaxName) throws IllegalValueException {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteVaxType'");
+        }
+
+        @Override
+        public void setVaxTypeManager(VaxTypeManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setVaxTypeManager'");
+        }
+
+        @Override
+        public void setAppointmentManager(AppointmentManager manager) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'setAppointmentManager'");
         }
 
         @Override

@@ -3,7 +3,6 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -93,17 +92,6 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public Path getPatientManagerFilePath() {
-        return userPrefs.getPatientManagerFilePath();
-    }
-
-    @Override
-    public void setPatientManagerFilePath(Path patientManagerFilePath) {
-        requireNonNull(patientManagerFilePath);
-        userPrefs.setPatientManagerFilePath(patientManagerFilePath);
-    }
-
     // =========== Parsing =======================================================================================
 
     @Override
@@ -167,6 +155,12 @@ public class ModelManager implements Model {
         appointmentManager.set(id, editedAppointment);
     }
 
+
+    @Override
+    public void setAppointmentManager(AppointmentManager manager) {
+        appointmentManager.resetData(manager);
+    }
+
     // =========== VaxTypeManager ==============================================================================
 
     @Override
@@ -180,6 +174,12 @@ public class ModelManager implements Model {
         return vaxTypeManager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
+    }
+
+
+    @Override
+    public void setVaxTypeManager(VaxTypeManager manager) {
+        vaxTypeManager.resetData(manager);
     }
 
     // =========== Filtered Patient List Accessors =============================================================

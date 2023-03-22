@@ -21,17 +21,16 @@ import seedu.vms.model.ModelManager;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.appointment.AppointmentManager;
-import seedu.vms.model.patient.ReadOnlyPatientManager;
-import seedu.vms.model.util.SampleDataUtil;
+import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
-import seedu.vms.storage.JsonPatientManagerStorage;
 import seedu.vms.storage.JsonUserPrefsStorage;
-import seedu.vms.storage.PatientManagerStorage;
 import seedu.vms.storage.Storage;
 import seedu.vms.storage.StorageManager;
 import seedu.vms.storage.UserPrefsStorage;
 import seedu.vms.storage.appointment.AppointmentStorage;
 import seedu.vms.storage.appointment.JsonAppointmentStorage;
+import seedu.vms.storage.patient.JsonPatientManagerStorage;
+import seedu.vms.storage.patient.PatientManagerStorage;
 import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 import seedu.vms.ui.Ui;
@@ -63,10 +62,9 @@ public class MainApp extends Application {
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage();
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage(
-                userPrefs.getPatientManagerFilePath());
+        PatientManagerStorage patientManagerStorage = new JsonPatientManagerStorage();
         VaxTypeStorage vaxTypeStorage = new JsonVaxTypeStorage();
         AppointmentStorage appointmentStorage = new JsonAppointmentStorage();
         storage = new StorageManager(patientManagerStorage, vaxTypeStorage, appointmentStorage, userPrefsStorage);
@@ -86,34 +84,11 @@ public class MainApp extends Application {
      * or an empty patient manager will be used instead if errors occur when reading {@code storage}'s patient manager.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        ReadOnlyPatientManager initialData;
-        try {
-            initialData = storage.readPatientManager();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty PatientManager");
-            initialData = SampleDataUtil.getSamplePatientManager();
-        }
-
-        VaxTypeManager vaxTypeManager = new VaxTypeManager();
-        try {
-            vaxTypeManager = storage.loadUserVaxTypes();
-        } catch (IOException ioEx) {
-            logger.warning("Unable to load vaccination types, default will be loaded, problem: " + ioEx.getMessage());
-            vaxTypeManager = storage.loadDefaultVaxTypes();
-        } catch (RuntimeException rte) {
-            // not suppose to happen but initialize as empty
-        }
-
-        AppointmentManager appointmentManager = new AppointmentManager();
-        try {
-            appointmentManager = storage.loadAppointments();
-        } catch (IOException ioEx) {
-            logger.warning("Unable to load appointments" + ioEx.getMessage());
-        } catch (RuntimeException rte) {
-            // not suppose to happen but initialize as empty
-        }
-
-        return new ModelManager(initialData, vaxTypeManager, appointmentManager, userPrefs);
+        return new ModelManager(
+                new PatientManager(),
+                new VaxTypeManager(),
+                new AppointmentManager(),
+                userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -160,9 +135,6 @@ public class MainApp extends Application {
      * reading from the file.
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
-        Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.info("Using prefs file : " + prefsFilePath);
-
         UserPrefs initializedPrefs;
         try {
             initializedPrefs = storage.readUserPrefs();
@@ -186,6 +158,7 @@ public class MainApp extends Application {
         logger.info("Starting PatientManager " + MainApp.VERSION);
         ui.start(primaryStage);
         startRefreshLoop();
+        logic.loadManagers();
     }
 
 

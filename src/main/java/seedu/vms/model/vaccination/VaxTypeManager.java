@@ -26,6 +26,17 @@ public class VaxTypeManager {
 
 
     /**
+     * Resets the data of this {@code VaxTypeManager} to the specified manager.
+     *
+     * @param manager - the state of the manager to reset to.
+     */
+    public void resetData(VaxTypeManager manager) {
+        typeMap.clear();
+        typeMap.putAll(manager.typeMap);
+    }
+
+
+    /**
      * Adds the specified {@code VaxType}. If there is another {@code VaxType}
      * with the same name as the specified, that {@code VaxType} is replaced.
      *

@@ -1,6 +1,5 @@
 package seedu.vms.model;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableMap;
@@ -45,16 +44,6 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Returns the user prefs' patient manager file path.
-     */
-    Path getPatientManagerFilePath();
-
-    /**
-     * Sets the user prefs' patient manager file path.
-     */
-    void setPatientManagerFilePath(Path patientManagerFilePath);
 
     /**
      * Replaces patient manager data with the data in {@code patientManager}.
@@ -151,4 +140,10 @@ public interface Model {
      * @throws ParseException if the user command cannot be parsed.
      */
     ParseResult parseCommand(String userCommand) throws ParseException;
+
+
+    void setVaxTypeManager(VaxTypeManager manager);
+
+
+    void setAppointmentManager(AppointmentManager manager);
 }

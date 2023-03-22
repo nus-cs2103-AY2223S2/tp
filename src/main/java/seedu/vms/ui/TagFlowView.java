@@ -1,6 +1,8 @@
 package seedu.vms.ui;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.scene.control.Label;
@@ -46,7 +48,9 @@ public class TagFlowView extends FlowPane {
      */
     public TagFlowView(Collection<String> tags, Collection<String> styleClasses) {
         getStyleClass().add(STYLE_CLASS_TAG_FLOW_PANE);
-        for (String tag : tags) {
+        ArrayList<String> sortedTags = new ArrayList<>(tags);
+        sortedTags.sort(Comparator.naturalOrder());
+        for (String tag : sortedTags) {
             Label label = formLabel(tag);
             label.getStyleClass().addAll(styleClasses);
             getChildren().add(label);

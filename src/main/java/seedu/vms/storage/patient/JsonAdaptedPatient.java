@@ -1,4 +1,4 @@
-package seedu.vms.storage;
+package seedu.vms.storage.patient;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,11 +17,12 @@ import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
+import seedu.vms.storage.JsonAdaptedGroupName;
 
 /**
  * Jackson-friendly version of {@link Patient}.
  */
-class JsonAdaptedPatient {
+public class JsonAdaptedPatient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
