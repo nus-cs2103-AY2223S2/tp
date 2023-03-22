@@ -15,16 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.event.UniqueEventList;
-import seedu.address.model.person.fields.Address;
-import seedu.address.model.person.fields.CommunicationChannel;
-import seedu.address.model.person.fields.Email;
-import seedu.address.model.person.fields.Favorite;
-import seedu.address.model.person.fields.Gender;
-import seedu.address.model.person.fields.Major;
-import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.Phone;
-import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.*;
 import seedu.address.model.person.fields.subfields.Tag;
 import seedu.address.model.user.User;
 
@@ -90,12 +81,13 @@ public class EditUserCommand extends Command {
         Race updatedRace = editPersonDescriptor.getRace().orElse(user.getRace());
         CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(user.getComms());
         Favorite currentFavorite = user.getIsFavorite();
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(user.getFaculty());
         UniqueEventList currentEvents = user.getEvents();
 
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(user.getTags());
 
         return new User(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGender, updatedMajor,
-                updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite, currentEvents);
+                updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite, updatedFaculty, currentEvents);
     }
 
     public EditPersonDescriptor getEditUserDescriptor() {

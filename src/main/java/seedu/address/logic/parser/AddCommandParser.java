@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULES;
@@ -18,15 +19,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.Address;
-import seedu.address.model.person.fields.CommunicationChannel;
-import seedu.address.model.person.fields.Email;
-import seedu.address.model.person.fields.Gender;
-import seedu.address.model.person.fields.Major;
-import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.Phone;
-import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.*;
 import seedu.address.model.person.fields.subfields.Tag;
 
 /**
@@ -43,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS);
+                        PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS, PREFIX_FACULTY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -59,8 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Modules modules = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULES));
         Race race = ParserUtil.parseRace(argMultimap.getValue(PREFIX_RACE).orElse(""));
         CommunicationChannel comms = ParserUtil.parseComms(argMultimap.getValue(PREFIX_COMMS).orElse(""));
+        Faculty faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).orElse(""));
 
-        Person person = new Person(name, phone, email, address, gender, major, modules, race, tagList, comms);
+        Person person = new Person(name, phone, email, address, gender, major, modules, race, tagList, comms, faculty);
 
         return new AddCommand(person);
     }

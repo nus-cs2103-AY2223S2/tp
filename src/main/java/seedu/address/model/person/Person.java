@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Favorite;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
@@ -34,6 +35,7 @@ public class Person {
     private final Modules modules;
     private final Race race;
     private final CommunicationChannel comms;
+    private final Faculty faculty;
 
     // Data fields
     private final Address address;
@@ -45,10 +47,9 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender,
-                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms) {
+                  Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms, Faculty faculty) {
         requireAllNonNull(name);
         this.name = name;
-
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -59,6 +60,7 @@ public class Person {
         this.race = race;
         this.comms = comms;
         this.isFavorite = new Favorite(false);
+        this.faculty = faculty;
     }
 
     /**
@@ -67,7 +69,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender,
                   Major major, Modules modules, Race race, Set<Tag> tags, CommunicationChannel comms,
-                  Favorite favorite) {
+                  Favorite favorite, Faculty faculty) {
         requireAllNonNull(name, favorite);
         this.name = name;
         this.isFavorite = favorite;
@@ -81,6 +83,7 @@ public class Person {
         this.modules = modules;
         this.race = race;
         this.comms = comms;
+        this.faculty = faculty;
     }
 
     /**
@@ -99,6 +102,7 @@ public class Person {
         this.modules = new Modules(new HashSet<>());
         this.race = new Race("");
         this.comms = new CommunicationChannel("");
+        this.faculty = new Faculty("");
     }
 
     /**
@@ -151,6 +155,10 @@ public class Person {
         return modules;
     }
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -179,7 +187,7 @@ public class Person {
     public Person favorite() {
         Favorite newFavorite = new Favorite(true);
         return new Person(name, phone, email, address, gender,
-                major, modules, race, tags, comms, newFavorite);
+                major, modules, race, tags, comms, newFavorite, faculty);
     }
 
     /**
@@ -188,7 +196,7 @@ public class Person {
     public Person unfavorite() {
         Favorite newFavorite = new Favorite(false);
         return new Person(name, phone, email, address, gender,
-                major, modules, race, tags, comms, newFavorite);
+                major, modules, race, tags, comms, newFavorite, faculty);
     }
 
     /**
@@ -241,7 +249,9 @@ public class Person {
                 .append("; Race: ")
                 .append(this.getRace())
                 .append("; Preferred Communication: ")
-                .append(this.getComms());
+                .append(this.getComms())
+                .append("; Faculty: ")
+                .append(this.getFaculty());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

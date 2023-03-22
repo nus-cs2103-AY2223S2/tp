@@ -17,16 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.editpersoncommandsparser.EditPersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.fields.Address;
-import seedu.address.model.person.fields.CommunicationChannel;
-import seedu.address.model.person.fields.Email;
-import seedu.address.model.person.fields.Favorite;
-import seedu.address.model.person.fields.Gender;
-import seedu.address.model.person.fields.Major;
-import seedu.address.model.person.fields.Modules;
-import seedu.address.model.person.fields.Name;
-import seedu.address.model.person.fields.Phone;
-import seedu.address.model.person.fields.Race;
+import seedu.address.model.person.fields.*;
 import seedu.address.model.person.fields.subfields.Tag;
 
 /**
@@ -104,11 +95,13 @@ public class EditContactCommand extends Command {
         Race updatedRace = editPersonDescriptor.getRace().orElse(personToEdit.getRace());
         CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(personToEdit.getComms());
         Favorite currentFavorite = personToEdit.getIsFavorite();
+        Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
 
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags, updatedComms, currentFavorite);
+                updatedGender, updatedMajor, updatedModules, updatedRace, updatedTags,
+                updatedComms, currentFavorite, updatedFaculty);
     }
 
     public EditPersonDescriptor getEditPersonDescriptor() {
