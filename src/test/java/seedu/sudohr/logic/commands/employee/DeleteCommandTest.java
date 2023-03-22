@@ -6,7 +6,9 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
 import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES;
-import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES;
+import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
+import static seedu.sudohr.testutil.TypicalDepartments.SALES;
 import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -18,6 +20,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.testutil.TypicalDepartments;
 import seedu.sudohr.testutil.TypicalEmployees;
 
 
@@ -27,7 +30,8 @@ import seedu.sudohr.testutil.TypicalEmployees;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalSudoHr(), new UserPrefs());
+    private Model model = new ModelManager(TypicalEmployees.getTypicalSudoHr(), new UserPrefs());
+    private Model modelWithDepts = new ModelManager(TypicalDepartments.getTypicalSudoHr(), new UserPrefs());
 
     @Test
     public void execute_validIdUnfilteredList_success() {
@@ -67,34 +71,42 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIdCascadeToDepartment_success() {
-
         Employee employeeToDelete = EMPLOYEE_IN_HUMAN_RESOURCES;
-
         assertTrue(employeeToDelete != null);
-
+        // ensure employee exists in HUMAN_RESOURCES
+        assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToDelete));
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
-        Model expectedModel = new ModelManager(model.getSudoHr(), new UserPrefs());
+        Model expectedModel = new ModelManager(modelWithDepts.getSudoHr(), new UserPrefs());
         expectedModel.deleteEmployee(employeeToDelete);
 
+        // check deletion command
         DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
+        assertCommandSuccess(deleteCommand, modelWithDepts, expectedMessage, expectedModel);
 
-        // normal deletion success
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        // check cascaded to department level
+        assertTrue(!modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToDelete));
+    }
 
-        /*
-        Check if employee deletion cascaded to department.
+    @Test
+    public void execute_cascadeDeleteEmployeeFromTwoDepartments_success() {
+        Employee employeeToDelete = EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES;
+        assertTrue(employeeToDelete != null);
+        // ensure employee exists in the two departments
+        assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToDelete));
+        assertTrue(modelWithDepts.getDepartment(SALES.getName()).hasEmployee(employeeToDelete));
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_EMPLOYEE_SUCCESS, employeeToDelete);
 
-        Checking equality of model does not mean that the cascading succeeded
-        as the equality check for department is by name.
+        Model expectedModel = new ModelManager(modelWithDepts.getSudoHr(), new UserPrefs());
+        expectedModel.deleteEmployee(employeeToDelete);
 
-        So Checking whether a list of department is equal to other list of department will not
-        check through the employees in the department.
-         */
-        assertFalse(
-                model.getFilteredDepartmentList().stream()
-                        .anyMatch(d -> d.getEmployees().contains(employeeToDelete))
-        );
+        // check deletion command
+        DeleteCommand deleteCommand = new DeleteCommand(employeeToDelete.getId());
+        assertCommandSuccess(deleteCommand, modelWithDepts, expectedMessage, expectedModel);
+
+        // check cascaded to department level
+        assertTrue(!modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToDelete));
+        assertTrue(!modelWithDepts.getDepartment(SALES.getName()).hasEmployee(employeeToDelete));
     }
 
     @Test

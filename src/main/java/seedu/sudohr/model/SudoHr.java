@@ -359,8 +359,7 @@ public class SudoHr implements ReadOnlySudoHr {
     }
 
     /**
-     * Deletes a employee {@code employee} from a specified leaeve{@code leave}
-     * in the sudohr book.
+     * Deletes an employee {@code employee} from a specified leaeve{@code leave} in SudoHR.
      */
     public void deleteEmployeeFromLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);

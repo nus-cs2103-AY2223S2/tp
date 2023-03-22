@@ -15,7 +15,10 @@ import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.sudohr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.sudohr.logic.commands.CommandTestUtil.showEmployeeAtIndex;
-import static seedu.sudohr.testutil.TypicalEmployees.getTypicalSudoHr;
+import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES;
+import static seedu.sudohr.testutil.TypicalDepartments.EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES;
+import static seedu.sudohr.testutil.TypicalDepartments.HUMAN_RESOURCES;
+import static seedu.sudohr.testutil.TypicalDepartments.SALES;
 import static seedu.sudohr.testutil.TypicalIds.ID_FIRST_PERSON;
 import static seedu.sudohr.testutil.TypicalIds.ID_SECOND_PERSON;
 import static seedu.sudohr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -31,9 +34,12 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.SudoHr;
 import seedu.sudohr.model.UserPrefs;
+import seedu.sudohr.model.employee.Email;
 import seedu.sudohr.model.employee.Employee;
+import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.testutil.EditEmployeeDescriptorBuilder;
 import seedu.sudohr.testutil.EmployeeBuilder;
+import seedu.sudohr.testutil.TypicalDepartments;
 import seedu.sudohr.testutil.TypicalEmployees;
 
 /**
@@ -41,7 +47,8 @@ import seedu.sudohr.testutil.TypicalEmployees;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalSudoHr(), new UserPrefs());
+    private Model model = new ModelManager(TypicalEmployees.getTypicalSudoHr(), new UserPrefs());
+    private Model modelWithDepts = new ModelManager(TypicalDepartments.getTypicalSudoHr(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -195,6 +202,70 @@ public class EditCommandTest {
                 new EditEmployeeDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_EMPLOYEE_TO_EDIT_NOT_FOUND);
+    }
+
+    @Test
+    public void execute_cascadeUpdateEmployeeFromDepartment_success() {
+        Employee employeeToEdit = EMPLOYEE_IN_HUMAN_RESOURCES;
+        assertTrue(employeeToEdit != null);
+        // ensure employee exists in HUMAN_RESOURCES
+        assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToEdit));
+
+        Employee editedEmployee = new EmployeeBuilder(EMPLOYEE_IN_HUMAN_RESOURCES).withId(VALID_ID_AMY).build();
+        EditCommand.EditEmployeeDescriptor descriptor = new EditEmployeeDescriptorBuilder(EMPLOYEE_IN_HUMAN_RESOURCES)
+                .withId(VALID_ID_AMY)
+                .build();
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        Model expectedModel = new ModelManager(modelWithDepts.getSudoHr(), new UserPrefs());
+        expectedModel.setEmployee(employeeToEdit, editedEmployee);
+
+        // check edit command
+        EditCommand editCommand = new EditCommand(employeeToEdit.getId(), descriptor);
+        assertCommandSuccess(editCommand, modelWithDepts, expectedMessage, expectedModel);
+
+        // check cascaded to department level, since employee is identified by id, old employee object
+        // should not be found in list whereas new employee object should be found.
+        assertTrue(!modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToEdit));
+        assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(editedEmployee));
+        // check all other fields remain the same
+        Employee extractFromDept = modelWithDepts
+                .getDepartment(HUMAN_RESOURCES.getName())
+                .getEmployee(new Id(VALID_ID_AMY));
+        assertTrue(extractFromDept.getName().equals(employeeToEdit.getName()));
+        assertTrue(extractFromDept.getPhone().equals(employeeToEdit.getPhone()));
+        assertTrue(extractFromDept.getEmail().equals(employeeToEdit.getEmail()));
+        assertTrue(extractFromDept.getTags().equals(employeeToEdit.getTags()));
+        assertTrue(extractFromDept.getAddress().equals(employeeToEdit.getAddress()));
+    }
+
+    @Test
+    public void execute_cascadeUpdateEmployeeFromTwoDepartments_success() {
+        Employee employeeToEdit = EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES;
+        assertTrue(employeeToEdit != null);
+        // ensure employee exists in HUMAN_RESOURCES and SALES
+        assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(employeeToEdit));
+        assertTrue(modelWithDepts.getDepartment(SALES.getName()).hasEmployee(employeeToEdit));
+
+        Employee editedEmployee = new EmployeeBuilder(EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES).withEmail(VALID_EMAIL_AMY)
+                .build();
+        EditCommand.EditEmployeeDescriptor descriptor =
+                new EditEmployeeDescriptorBuilder(EMPLOYEE_IN_HUMAN_RESOURCES_AND_SALES).withEmail(VALID_EMAIL_AMY)
+                .build();
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EMPLOYEE_SUCCESS, editedEmployee);
+        Model expectedModel = new ModelManager(modelWithDepts.getSudoHr(), new UserPrefs());
+        expectedModel.setEmployee(employeeToEdit, editedEmployee);
+
+        // check edit command
+        EditCommand editCommand = new EditCommand(employeeToEdit.getId(), descriptor);
+        assertCommandSuccess(editCommand, modelWithDepts, expectedMessage, expectedModel);
+
+        assertTrue(modelWithDepts.getDepartment(SALES.getName()).hasEmployee(editedEmployee));
+        assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName()).hasEmployee(editedEmployee));
+        // check employee name field in each department has been updated
+        assertTrue(modelWithDepts.getDepartment(SALES.getName())
+                .getEmployee(employeeToEdit.getId()).getEmail().equals(new Email(VALID_EMAIL_AMY)));
+        assertTrue(modelWithDepts.getDepartment(HUMAN_RESOURCES.getName())
+                .getEmployee(employeeToEdit.getId()).getEmail().equals(new Email(VALID_EMAIL_AMY)));
     }
 
     @Test
