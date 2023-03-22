@@ -97,6 +97,11 @@ public class DegreeProgressionTest {
         public ObservableList<Module> getModuleList() {
             return modules;
         }
+
+        @Override
+        public DegreeProgressionData getProgressionData() {
+            return null;
+        }
     }
 
 }

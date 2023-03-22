@@ -3,44 +3,40 @@ package seedu.modtrek.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.AppUtil.checkArgument;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
- * The type Grade.
+ * Grade denotes the grading based on NUS system for each module.
  */
 public class Grade {
 
-    /**
-     * The constant MESSAGE_CONSTRAINTS.
-     */
     public static final String MESSAGE_CONSTRAINTS =
             "Grade should be either one of [A+, A, A-, B+, B, B-, C+, C, D+, D, F, S, U]";
 
-    private static final List<String> VALID_GRADES = Arrays.asList(new String[] {
-        "A+",
-        "A",
-        "A-",
-        "B+",
-        "B",
-        "B-",
-        "C+",
-        "C",
-        "D+",
-        "D",
-        "F",
-        "S",
-        "U",
-        "" // empty grade field
-    });
+    private static Map<String, Double> gradeToPoints = Map.ofEntries(
+        Map.entry("A+", 5.0),
+        Map.entry("A", 5.0),
+        Map.entry("A-", 4.5),
+        Map.entry("B+", 4.0),
+        Map.entry("B", 3.5),
+        Map.entry("B-", 3.0),
+        Map.entry("C+", 2.5),
+        Map.entry("C", 2.0),
+        Map.entry("D+", 1.5),
+        Map.entry("D", 1.0),
+        Map.entry("F", 0.0),
+        Map.entry("S", 5.0),
+        Map.entry("U", 0.0),
+        Map.entry("", -1.0) // Empty grade
+    );
 
-    /**
-     * The Value.
-     */
+    private static final Set<String> VALID_GRADES = gradeToPoints.keySet();
+
     protected final String value;
 
     /**
-     * Instantiates a new Grade.
+     * Instantiates a new Grade. Grade cannot be null and must be valid.
      *
      * @param value the value
      */
@@ -51,7 +47,7 @@ public class Grade {
     }
 
     /**
-     * Is valid grade boolean.
+     * Checks if the Grade is valid based on a list of valid grades.
      *
      * @param test the test
      * @return the boolean
@@ -59,6 +55,18 @@ public class Grade {
     public static boolean isValidGrade(String test) {
         requireNonNull(test);
         return VALID_GRADES.contains(test);
+    }
+
+    public double toPoints() {
+        return gradeToPoints.get(value);
+    }
+
+    public boolean isEmpty() {
+        return value.equals("");
+    }
+
+    public boolean isGradeable() {
+        return !value.equals("U");
     }
 
     @Override

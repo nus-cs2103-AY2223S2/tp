@@ -1,6 +1,11 @@
 package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CREDIT;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_SEMYEAR;
+import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.modtrek.commons.core.Messages;
 import seedu.modtrek.model.Model;
@@ -14,9 +19,16 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds module with the specified module code.\n"
-            + "Parameters: MODULE CODE\n"
-            + "Example: " + COMMAND_WORD + " CS1101S";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds module with the specified module code "
+            + "or by its prefix, credits, semyear, grade, tag(s).\n"
+            + "Parameters: [MODULE CODE] or "
+            + "[" + PREFIX_CODE + " MODULE PREFIX] "
+            + "[" + PREFIX_CREDIT + " MODULE CREDITS] "
+            + "[" + PREFIX_SEMYEAR + " SEMESTER-YEAR] "
+            + "[" + PREFIX_GRADE + " GRADE] "
+            + "[" + PREFIX_TAG + " TAG...]\n"
+            + "Example 1: " + COMMAND_WORD + " CS1101S\n"
+            + "Example 2: " + COMMAND_WORD + " /m CS /g A";
 
     private final ModuleCodePredicate predicate;
 

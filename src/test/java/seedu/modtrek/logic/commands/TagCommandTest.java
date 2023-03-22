@@ -22,6 +22,7 @@ import seedu.modtrek.model.ModelManager;
 import seedu.modtrek.model.UserPrefs;
 import seedu.modtrek.model.module.Module;
 import seedu.modtrek.model.tag.Tag;
+import seedu.modtrek.testutil.ModuleUtil;
 
 class TagCommandTest {
     private Model model = new ModelManager(getTypicalDegreeProgression(),
@@ -29,7 +30,8 @@ class TagCommandTest {
 
     @Test
     public void execute_addOneTag_success() throws ParseException {
-        Set<Tag> taggedModuleTags = CS2100.getModifiableTags();
+        Module copyCs2100 = ModuleUtil.copy(CS2100);
+        Set<Tag> taggedModuleTags = copyCs2100.getModifiableTags();
         taggedModuleTags.add(new Tag("computer science breadth and depth"));
         Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
                 CS2100.getSemYear(), taggedModuleTags, CS2100.getGrade());
@@ -51,7 +53,8 @@ class TagCommandTest {
 
     @Test
     public void execute_addMultipleTags_success() throws ParseException {
-        Set<Tag> taggedModuleTags = CS2100.getModifiableTags();
+        Module copyCs2100 = ModuleUtil.copy(CS2100);
+        Set<Tag> taggedModuleTags = copyCs2100.getModifiableTags();
         taggedModuleTags.add(new Tag("computer science breadth and depth"));
         taggedModuleTags.add(new Tag("mathematics and sciences"));
         Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
@@ -94,12 +97,13 @@ class TagCommandTest {
 
     @Test
     public void execute_removeMultipleTags_success() throws ParseException {
+        Module copyCs2100 = ModuleUtil.copy(CS2100);
         Module untaggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
                 CS2100.getSemYear(), new HashSet<>(), CS2100.getGrade());
         Set<String> tagsToRemove = new HashSet<>();
         tagsToRemove.add("computer science foundation");
         tagsToRemove.add("mathematics and sciences");
-        Set<Tag> tagsToBeRemoved = CS2100.getModifiableTags();
+        Set<Tag> tagsToBeRemoved = copyCs2100.getModifiableTags();
         tagsToBeRemoved.add(new Tag("mathematics and sciences"));
         Module taggedModule = new Module(CS2100.getCode(), CS2100.getCredit(),
                 CS2100.getSemYear(), tagsToBeRemoved, CS2100.getGrade());

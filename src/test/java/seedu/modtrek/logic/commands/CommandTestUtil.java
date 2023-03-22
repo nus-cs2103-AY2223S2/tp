@@ -20,6 +20,8 @@ import seedu.modtrek.testutil.EditModuleDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_CODEPREFIX_CS = "CS";
+    public static final String VALID_CODEPREFIX_MA = "MA";
     public static final String VALID_CODE_CS1101S = "CS1101S";
     public static final String VALID_CODE_MA2002 = "MA2002";
     public static final String VALID_CREDIT_CS1101S = "4";
@@ -31,6 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_CS1101S = "COMPUTER SCIENCE FOUNDATION";
     public static final String VALID_TAG_MA2002 = "MATHEMATICS AND SCIENCES";
 
+    public static final String CODEPREFIX_DESC_CS = " " + PREFIX_CODE + VALID_CODEPREFIX_CS;
+    public static final String CODEPREFIX_DESC_MA = " " + PREFIX_CODE + VALID_CODEPREFIX_MA;
     public static final String CODE_DESC_CS1101S = " " + PREFIX_CODE + VALID_CODE_CS1101S;
     public static final String CODE_DESC_MA2002 = " " + PREFIX_CODE + VALID_CODE_MA2002;
     public static final String CREDIT_DESC_CS1101S = " " + PREFIX_CREDIT + VALID_CREDIT_CS1101S;
@@ -42,11 +46,12 @@ public class CommandTestUtil {
     public static final String TAG_DESC_MA2002 = " " + PREFIX_TAG + VALID_TAG_MA2002;
     public static final String TAG_DESC_CS1101S = " " + PREFIX_TAG + VALID_TAG_CS1101S;
 
-    public static final String INVALID_CODE_DESC = " " + PREFIX_CODE + "CS1101S&"; // '&' not allowed in names
-    public static final String INVALID_CREDIT_DESC = " " + PREFIX_CREDIT + "4MC"; // 'a' not allowed in phones
-    public static final String INVALID_SEMYEAR_DESC = " " + PREFIX_SEMYEAR + "YEAR1SEM1"; // missing '@' symbol
+    public static final String INVALID_CODEPREFIX_DESC = " " + PREFIX_CODE + "C";
+    public static final String INVALID_CODE_DESC = " " + PREFIX_CODE + "CS1101S&";
+    public static final String INVALID_CREDIT_DESC = " " + PREFIX_CREDIT + "4MC";
+    public static final String INVALID_SEMYEAR_DESC = " " + PREFIX_SEMYEAR + "YEAR1SEM1";
     public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "A++";
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "COMPUTER SCIENCE *"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "COMPUTER SCIENCE *";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
