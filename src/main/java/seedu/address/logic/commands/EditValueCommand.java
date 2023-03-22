@@ -117,11 +117,11 @@ public class EditValueCommand extends Command {
 
         Name updatedName = editMobDescriptor.getName().orElse(mobToEdit.getName());
         Stats updatedStats = editMobDescriptor.getStats().orElse(mobToEdit.getStats());
-        Integer updatedChallengeRating = editMobDescriptor.getChallengeRating().orElse(mobToEdit.getChallengeRating());
+        Float updatedChallengeRating = editMobDescriptor.getChallengeRating().orElse(mobToEdit.getChallengeRating());
         Boolean updatedIsLegendary = editMobDescriptor.getWeight().orElse(mobToEdit.getLegendaryStatus());
         Set<Tag> updatedTags = editMobDescriptor.getTags().orElse(mobToEdit.getTags());
 
-        return new Mob(updatedName, new Stats(0, 0, 0), updatedChallengeRating, updatedIsLegendary, updatedTags);
+        return new Mob(updatedName, updatedStats, updatedChallengeRating, updatedIsLegendary, updatedTags);
     }
 
     /**
@@ -301,7 +301,7 @@ public class EditValueCommand extends Command {
     public static class EditMobDescriptor extends EditEntityDescriptor {
 
         private Stats stats;
-        private int challengeRating;
+        private Float challengeRating;
         private Boolean isLegendary;
 
         /**
@@ -328,11 +328,11 @@ public class EditValueCommand extends Command {
             return Optional.ofNullable(stats);
         }
 
-        public void setChallengeRating(int challengeRating) {
+        public void setChallengeRating(float challengeRating) {
             this.challengeRating = challengeRating;
         }
 
-        public Optional<Integer> getChallengeRating() {
+        public Optional<Float> getChallengeRating() {
             return Optional.ofNullable(challengeRating);
         }
 
