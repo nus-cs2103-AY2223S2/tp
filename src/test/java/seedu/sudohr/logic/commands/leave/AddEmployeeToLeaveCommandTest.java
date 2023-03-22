@@ -278,7 +278,7 @@ public class AddEmployeeToLeaveCommandTest {
 
         @Override
         public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
-                        throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
