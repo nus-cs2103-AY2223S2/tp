@@ -369,6 +369,69 @@ Use case ends.
 
 
 
+**Use case: Sort jobs by salary**
+
+**MSS**
+1. User opens the application
+2. User enters the “salary” command followed by either "asc" or "desc"
+3. UI display the list of jobs sorted by salaries in either ascending or descending order with indexes.
+
+Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  Use case ends
+* 2b. The given second command is invalid e.g "ascending".
+    * 2b1. TechTrack shows an error message.
+      Use case resumes at step 2.
+
+
+
+**Use case: Sort jobs by deadline**
+
+**MSS**
+1. User opens the application
+2. User enters the “deadline” command followed by either "asc" or "desc"
+3. UI display the list of jobs sorted by deadlines in either ascending or descending order with their indexes.
+
+Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  Use case ends.
+* 2b. The given second command is invalid e.g "ascending".
+    * 2b1. TechTrack shows an error message.
+      Use case resumes at step 2.
+
+
+**Use case: find jobs by Companies**
+
+**MSS**
+1. User opens the application
+2. User enters the “Company” command followed by the keyword.
+3. UI display the list of jobs with companies that contain the keyword.
+
+Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  Use case ends.
+
+
+
+**Use case: find jobs by Tags**
+
+**MSS**
+1. User opens the application
+2. User enters the “Tag” command followed by the keyword.
+3. UI display the list of jobs with companies that contain the keyword.
+
+Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+  Use case ends.
+  
 ### Non-function requirement
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
