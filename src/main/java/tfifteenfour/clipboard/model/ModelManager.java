@@ -44,10 +44,11 @@ public class ModelManager implements Model {
         this(new Roster(), new UserPrefs());
     }
 
-    public ModelManager(Roster roster, UserPrefs userPrefs) {
+    public ModelManager(Roster roster, UserPrefs userPrefs, String prevStateModifyingCommand) {
         this.roster = roster;
         this.userPrefs = userPrefs;
-        this.filteredStudents = new FilteredList<>(this.roster.getStudentList());
+        this.prevStateModifyingCommand = prevStateModifyingCommand;
+        this.filteredStudents = new FilteredList<>(roster.getStudentList());
     }
 
     @Override
@@ -150,7 +151,7 @@ public class ModelManager implements Model {
 
     @Override
     public Model copy() {
-        return new ModelManager(this.roster.copy(), this.userPrefs);
+        return new ModelManager(this.roster.copy(), this.userPrefs, prevStateModifyingCommand);
     }
 
     @Override
