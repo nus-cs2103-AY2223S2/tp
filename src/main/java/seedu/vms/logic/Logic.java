@@ -33,6 +33,9 @@ public interface Logic {
     void setOnExecutionCompletion(Consumer<List<CommandMessage>> onExecutionComplete);
 
 
+    void loadManagers();
+
+
     /**
      * Returns the PatientManager.
      *
