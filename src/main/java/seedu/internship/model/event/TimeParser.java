@@ -105,4 +105,19 @@ public class TimeParser implements Comparable<TimeParser> {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this ){
+            return true;
+        }
+
+        if (obj instanceof TimeParser) {
+            TimeParser tpObj = (TimeParser) obj;
+            return this.ldt.equals(tpObj.ldt);
+        }
+        return false;
+    }
+
+
+
 }

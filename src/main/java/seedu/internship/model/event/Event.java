@@ -79,6 +79,7 @@ public class Event  {
         if (otherEvent == this){
             return true;
         }
+
         return otherEvent != null
                 && otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
@@ -115,7 +116,7 @@ public class Event  {
     }
 
     public boolean isDeadline(){
-        return this.start.compareEnd(end) == 0;
+        return this.start.compareTo(end) == 0;
     }
 
     @Override

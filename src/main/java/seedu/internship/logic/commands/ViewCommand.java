@@ -4,10 +4,13 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -42,8 +45,12 @@ public class ViewCommand extends Command {
         Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
         model.updateSelectedInternship(internshipToView);
 
+
+        model.updateFilteredEventList(new EventByInternship(model.getSelectedInternship()));
+        ObservableList<Event> events = model.getFilteredEventList();
+
         return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView.getPosition(),
-                internshipToView.getCompany()), internshipToView);
+                internshipToView.getCompany()), internshipToView, events);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class EventAddCommand extends EventCommand {
             + PREFIX_EVENT_DESCRIPTION + "DESCRIPTION "
             + "Example: " + EventCommand.COMMAND_WORD + " "
             + EventAddCommand.COMMAND_WORD + " "
-            + PREFIX_EVENT_NAME + "Technical Interview"
+            + PREFIX_EVENT_NAME + "Technical Interview "
             + PREFIX_EVENT_START + "10/09/2023 1500 "
             + PREFIX_EVENT_END + "10/09/2023 1700 "
             + PREFIX_EVENT_DESCRIPTION + "On Zoom ";
@@ -49,13 +49,12 @@ public class EventAddCommand extends EventCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (eventToAdd.getStart().compareEnd(eventToAdd.getEnd()) == 1) {
+        if (eventToAdd.getStart().compareTo(eventToAdd.getEnd()) == 1) {
             throw new CommandException(MESSAGE_END_BEFORE_START);
         }
 
-        if (model.hasEvent(eventToAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
-        }
+
+
 
         // Retreive the Selected Internship Index
         if (!model.hasSelectedInternship()) {
@@ -66,6 +65,11 @@ public class EventAddCommand extends EventCommand {
         // Adding internship infromation to event
         Internship selectedIntern = model.getSelectedInternship();
         eventToAdd.setInternship(selectedIntern);
+
+        if (model.hasEvent(eventToAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
+
 
         model.addEvent(eventToAdd);
         model.updateFilteredEventList(new EventByInternship(selectedIntern));
