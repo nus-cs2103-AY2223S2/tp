@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding a Patient
 
-The **Adding a Patient** mechanism is facilated by `VMS`. The Patient created is stored inside `PatientManager` object.
+The **Adding a Patient** mechanism is facilitated by `VMS`. The Patient created is stored inside `PatientManager` object.
 
 #### Usage
 
@@ -167,7 +167,7 @@ The activity diagram below illustrates the workflow of patient `AddCommand` beha
 
 Given below is an sequence diagram that illustrates the **Adding a Patient** mechanism behaves at every step.
 
-<img src="images/patient/AddPaitentSequenceDiagram.png" width="550" />
+<img src="images/patient/AddPatientSequenceDiagram.png" width="550" />
 
 Within `AddCommandParser#parse`, the following methods in `ParserUtil` will be invoked to help with parsing:
 `ParserUtil#parseName` will be called to create a Name object using "John Doe".
@@ -183,7 +183,7 @@ Note that `Allergies` and `Vaccines` are optional, so the user does not need to 
 
 ### Listing Patients
 
-The **Listing Patients** mechanism is facilated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
+The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
 
 #### Usage
 
@@ -201,7 +201,7 @@ This command is useful after doing a search, where the display may not show all 
 
 ### Finding a Patient
 
-The **Finding a Patient** mechanism is facilated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
+The **Finding a Patient** mechanism is facilitated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
 
 <!-- TODO describe the different search flags. That feature is still in progress -->
 
@@ -223,7 +223,7 @@ Given below is an sequence diagram that illustrates the **Finding a Patient** me
 
 ### Editing a Patient
 
-The **Editing a Patient** mechanism is facilated by `VMS`. It will read and modify a target Patient object from `PatientManger` inside `VMS` object.
+The **Editing a Patient** mechanism is facilitated by `VMS`. It will read and modify a target Patient object from `PatientManger` inside `VMS` object.
 
 #### Usage
 
