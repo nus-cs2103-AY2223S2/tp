@@ -15,6 +15,8 @@ import seedu.vms.logic.parser.VmsParser;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.Keyword;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
@@ -31,10 +33,12 @@ public class ModelManager implements Model {
     private final PatientManager patientManager;
     private final AppointmentManager appointmentManager;
     private final VaxTypeManager vaxTypeManager;
+    private final KeywordManager keywordManager;
     private final UserPrefs userPrefs;
 
     private final FilteredIdDataMap<Patient> filteredPatientMap;
     private final FilteredIdDataMap<Appointment> filteredAppointmentMap;
+    private final FilteredIdDataMap<Keyword> filteredKeywordMap;
 
     private final VmsParser vmsParser;
 
@@ -42,7 +46,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given patientManager and userPrefs.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager,
-            AppointmentManager appointmentManager, ReadOnlyUserPrefs userPrefs) {
+            AppointmentManager appointmentManager, KeywordManager keywordManager, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(patientManager, vaxTypeManager, appointmentManager, userPrefs);
 
         logger.fine("Initializing with patient manager: " + patientManager + " and user prefs " + userPrefs);
@@ -52,6 +56,9 @@ public class ModelManager implements Model {
 
         this.appointmentManager = new AppointmentManager(appointmentManager);
         filteredAppointmentMap = new FilteredIdDataMap<>(this.appointmentManager.getMapView());
+
+        this.keywordManager = new KeywordManager(keywordManager);
+        filteredKeywordMap = new FilteredIdDataMap<>(this.keywordManager.getMapView());
 
         this.vaxTypeManager = vaxTypeManager;
 
@@ -65,11 +72,11 @@ public class ModelManager implements Model {
      * empty {@code VaxTypeManager} and {@code AppointmentManager}.
      */
     public ModelManager(ReadOnlyPatientManager patientManager, ReadOnlyUserPrefs userPrefs) {
-        this(patientManager, new VaxTypeManager(), new AppointmentManager(), userPrefs);
+        this(patientManager, new VaxTypeManager(), new AppointmentManager(), new KeywordManager(), userPrefs);
     }
 
     public ModelManager() {
-        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(), new UserPrefs());
+        this(new PatientManager(), new VaxTypeManager(), new AppointmentManager(), new KeywordManager(), new UserPrefs());
     }
 
     // =========== UserPrefs ==================================================================================
@@ -186,6 +193,18 @@ public class ModelManager implements Model {
         vaxTypeManager.resetData(manager);
     }
 
+    // =========== KeywordManager ==============================================================================
+    @Override
+    public void addKeyword(Keyword keyword) {
+        keywordManager.add(keyword);
+        updateFilteredKeywordList(PREDICATE_SHOW_ALL_KEYWORDS);
+    }
+
+    @Override
+    public void deleteKeyword(int id) {
+        keywordManager.remove(id);
+    }
+
     // =========== Filtered Patient List Accessors =============================================================
 
     /**
@@ -231,6 +250,18 @@ public class ModelManager implements Model {
     @Override
     public AppointmentManager getAppointmentManager() {
         return appointmentManager;
+    }
+
+    // =========== Filtered Keyword Map Accessors ==========================================================
+    @Override
+    public ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList() {
+        return filteredKeywordMap.asUnmodifiableObservableMap();
+    }
+
+    @Override
+    public void updateFilteredKeywordList(Predicate<Keyword> predicate) {
+        requireNonNull(predicate);
+        filteredKeywordMap.filter(predicate);
     }
 
     // =========== Misc methods ================================================================================

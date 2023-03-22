@@ -26,6 +26,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Keyword> PREDICATE_SHOW_ALL_KEYWORDS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -124,14 +127,20 @@ public interface Model {
     ObservableMap<Integer, IdData<Keyword>> getFilteredKeywordList();
 
     /**
+     * Updates the filter of the filtered keyword list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredKeywordList(Predicate<Keyword> predicate);
+
+    /**
      * Adds the given keyword.
-     * {@code appointment} must not already exist in the keyword manager.
+     * {@code keyword} must not already exist in the keyword manager.
      */
     void addKeyword(Keyword keyword);
 
     /**
-     * Deletes the given appointment.
-     * The appointment must exist in the appointment manager.
+     * Deletes the given keyword.
+     * The keyword must exist in the keyword manager.
      */
     void deleteKeyword(int id);
 
