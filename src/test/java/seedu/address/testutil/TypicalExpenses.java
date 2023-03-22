@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalCategories.FOOD;
+import static seedu.address.testutil.TypicalCategories.MISCCAT;
+import static seedu.address.testutil.TypicalCategories.SCHOOL;
+import static seedu.address.testutil.TypicalCategories.TECH;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,10 +13,6 @@ import java.util.List;
 import seedu.address.model.ExpenseTracker;
 import seedu.address.model.expense.Expense;
 
-import static seedu.address.testutil.TypicalCategories.FOOD;
-import static seedu.address.testutil.TypicalCategories.MISCCAT;
-import static seedu.address.testutil.TypicalCategories.SCHOOL;
-import static seedu.address.testutil.TypicalCategories.TECH;
 
 
 /**

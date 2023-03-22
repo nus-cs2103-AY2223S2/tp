@@ -1,16 +1,19 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.expense.ExpenseInCategoryPredicate;
-
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalCategories.FOOD;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.Optional;
+
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.expense.ExpenseInCategoryPredicate;
+
+
 
 public class ListCommandParserTest {
     private ListCommandParser parser = new ListCommandParser();

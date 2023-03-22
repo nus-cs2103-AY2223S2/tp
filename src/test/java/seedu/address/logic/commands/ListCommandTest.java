@@ -5,24 +5,22 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.commons.core.Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
-import static seedu.address.testutil.TypicalExpenses.*;
 import static seedu.address.testutil.TypicalExpenses.CHERRY;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
+import java.util.Arrays;
+import java.util.Optional;
+
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.expense.Expense;
-import seedu.address.model.expense.ExpenseContainsKeywordsPredicate;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
+import seedu.address.testutil.TypicalExpenses;
 
-import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -34,7 +32,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalExpenseTracker(), new UserPrefs());
+        model = new ModelManager(TypicalExpenses.getTypicalExpenseTracker(), new UserPrefs());
         expectedModel = new ModelManager(model.getExpenseTracker(), new UserPrefs());
     }
 
@@ -46,7 +44,7 @@ public class ListCommandTest {
         expectedModel.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(
-                Arrays.asList(APPLE, BANANA, CHERRY, DURIAN, ELDERBERRY, FIG, GRAPE), model.getFilteredExpenseList());
+                Arrays.asList(TypicalExpenses.APPLE, TypicalExpenses.BANANA, CHERRY, TypicalExpenses.DURIAN, TypicalExpenses.ELDERBERRY, TypicalExpenses.FIG, TypicalExpenses.GRAPE), model.getFilteredExpenseList());
     }
 
     @Test
@@ -61,7 +59,7 @@ public class ListCommandTest {
         ListCommand command = new ListCommand(Optional.of(predicate), Optional.empty());
         expectedModel.updateFilteredExpensesList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(APPLE, BANANA), model.getFilteredExpenseList());
+        assertEquals(Arrays.asList(TypicalExpenses.APPLE, TypicalExpenses.BANANA), model.getFilteredExpenseList());
     }
 
     private ExpenseInCategoryPredicate preparePredicate(String userInput) throws ParseException {
