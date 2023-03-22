@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getOptionalAddress())
                 .orElse(null);
         Education updatedEducation = editPersonDescriptor.getEducation()
-                .orElse(personToEdit.getOptionalEducation().orElse(null));
+                .orElse(personToEdit.getOptionalEducation()).orElse(null);
         Remark oldRemark = personToEdit.getOptionalRemark().orElse(null); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
@@ -213,10 +213,14 @@ public class EditCommand extends Command {
         }
 
         public void setEducation(Education education) {
+            this.education = Optional.ofNullable(education);
+        }
+
+        public void setEducation(Optional<Education> education) {
             this.education = education;
         }
 
-        public Optional<Education> getEducation() {
+        public Optional<Optional<Education>> getEducation() {
             return Optional.ofNullable(education);
         }
 
@@ -272,6 +276,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getAddress().equals(e.getAddress())
                     && getAddress().equals(e.getAddress())
                     && getSubjects().equals(e.getSubjects())
                     && getTags().equals(e.getTags());

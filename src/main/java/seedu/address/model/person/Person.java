@@ -118,6 +118,7 @@ public class Person {
                 && otherPerson.getOptionalPhone().equals(getOptionalPhone())
                 && otherPerson.getOptionalEmail().equals(getOptionalEmail())
                 && otherPerson.getOptionalAddress().equals(getOptionalAddress())
+                && otherPerson.getOptionalEducation().equals(getOptionalEducation())
                 && otherPerson.getSubjects().equals(getSubjects())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getOptionalRemark().equals(getOptionalRemark());
