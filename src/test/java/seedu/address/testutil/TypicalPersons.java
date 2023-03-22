@@ -67,11 +67,11 @@ public class TypicalPersons {
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
             .withApplicationDateTime(VALID_APPLICATIONDATE_AMY)
-            .withStatus(VALID_STATUS_AMY).withInterviewDateTime(VALID_INTERVIEW_DATE_AMY)
+            .withStatus(VALID_STATUS_AMY).withInterviewDateTime("")
             .withNotes(VALID_NOTE_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withStatus(VALID_STATUS_BOB).withInterviewDateTime(VALID_INTERVIEW_DATE_AMY)
+            .withStatus(VALID_STATUS_BOB).withInterviewDateTime("")
             .withApplicationDateTime(VALID_APPLICATIONDATE_BOB)
             .withNotes(VALID_NOTE_HUSBAND, VALID_NOTE_FRIEND)
             .build();

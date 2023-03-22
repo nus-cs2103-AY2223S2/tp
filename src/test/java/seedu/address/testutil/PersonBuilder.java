@@ -29,7 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "APPLIED";
     public static final LocalDateTime DEFAULT_APPLICATIONDATETIME =
-            LocalDateTime.of(2023,04,04,14,0);
+            LocalDateTime.of(2023,02,02,14,0);
 
     private Name name;
     private Phone phone;
