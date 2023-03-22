@@ -229,17 +229,18 @@ follows the sequence.
 The following sequence diagram shows how the delete policy operation works:
 ![DeletePolicySequenceDiagram0](images/DeletePolicySequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
+## Undo/redo feature
 
-#### Proposed Implementation
+### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+The undo/redo mechanism is facilitated by `VersionedAddressBook`. It stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
 * `VersionedAddressBook#commit()`— Saves the current address book state in its history.
 * `VersionedAddressBook#undo()`— Restores the previous address book state from its history.
 * `VersionedAddressBook#redo()`— Restores a previously undone address book state from its history.
+* `VersionedAddressBook#canUndo()`- Returns true if undo is possible
+* `VersionedAddressBook#canRedo()`- Returns true if redo is possible
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
 and `Model#redoAddressBook()` respectively.
@@ -311,20 +312,24 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **current choice:** Saves the entire address book.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
+  
+**Issue: Pass by reference:**
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+* **what:** You may find previous versions of Address Books stored in `VersionedAddressBook#addressBookStateList` are changed also when current addressBook are being updated.
+* **Why:** 
+  * Objects (eg. Client, Policy) are passed by reference
+  * Objects are not deep copied.
+* **How to solve:**
+  * Implement clone method for objects (`Client#cloneClient` and `UniquePolicyList#clone` are already implemented)
+  * When commands are making changes to Address Book in model, make sure changes are only made upon new deep copied objects.
+  * Don't directly make changes on original objects (eg.Client and Policy)
 
 ### \[Proposed\] Data archiving
 
