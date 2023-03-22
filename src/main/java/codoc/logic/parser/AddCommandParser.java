@@ -61,8 +61,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Course course = ParserUtil.parseCourse(argMultimap.getValue(PREFIX_COURSE).get());
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
         Linkedin linkedin = ParserUtil.parseLinkedin(argMultimap.getValue(PREFIX_LINKEDIN).orElseGet(() -> null));
-        Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL));
-        Set<Module> moduleSet = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MOD));
+        Set<Skill> skillList = ParserUtil.parseSkillSet(argMultimap.getAllValues(PREFIX_SKILL));
+        Set<Module> moduleSet = ParserUtil.parseModuleSet(argMultimap.getAllValues(PREFIX_MOD));
 
         Person person = new Person(name, course, year, github, email, linkedin, skillList, moduleSet);
 

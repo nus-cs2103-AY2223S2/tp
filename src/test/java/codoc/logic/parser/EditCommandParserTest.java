@@ -1,43 +1,9 @@
 package codoc.logic.parser;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static codoc.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
-import static codoc.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
-import static codoc.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static codoc.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
-import static codoc.logic.commands.CommandTestUtil.INVALID_LINKEDIN_DESC;
-import static codoc.logic.commands.CommandTestUtil.INVALID_MOD_ADD_DESC;
-import static codoc.logic.commands.CommandTestUtil.INVALID_MOD_ADD_SEM_DESC;
-import static codoc.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static codoc.logic.commands.CommandTestUtil.INVALID_SKILL_ADD_DESC;
-import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_AMY;
-import static codoc.logic.commands.CommandTestUtil.LINKEDIN_DESC_BOB;
-import static codoc.logic.commands.CommandTestUtil.MOD_ADD_DESC_AY2223S2_CS2103T;
-import static codoc.logic.commands.CommandTestUtil.MOD_NEW_DESC_AY2223S2_CS2103T;
-import static codoc.logic.commands.CommandTestUtil.MOD_OLD_DESC_AY2223S2_CS2103T;
-import static codoc.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static codoc.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static codoc.logic.commands.CommandTestUtil.SKILL_ADD_DESC_CSHARP;
-import static codoc.logic.commands.CommandTestUtil.SKILL_ADD_DESC_JAVA;
-import static codoc.logic.commands.CommandTestUtil.SKILL_NEW_DESC_CSHARP;
-import static codoc.logic.commands.CommandTestUtil.SKILL_OLD_DESC_CSHARP;
-import static codoc.logic.commands.CommandTestUtil.VALID_COURSE_AMY;
-import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static codoc.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
-import static codoc.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
-import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_AMY;
-import static codoc.logic.commands.CommandTestUtil.VALID_LINKEDIN_BOB;
-import static codoc.logic.commands.CommandTestUtil.VALID_MODULE_AY2223S2_CS2103T;
-import static codoc.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static codoc.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_CSHARP;
-import static codoc.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
-import static codoc.logic.commands.CommandTestUtil.VALID_YEAR_BOB;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_DELETE;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_DELETE;
+import static codoc.logic.commands.CommandTestUtil.*;
+import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
+import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static codoc.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -56,14 +22,14 @@ import codoc.testutil.PersonBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String SKILL_EMPTY = " " + PREFIX_SKILL_DELETE;
-    private static final String MODULE_EMPTY = " " + PREFIX_MOD_DELETE;
+    private static final String SKILL_EMPTY = " " + PREFIX_SKILL;
+    private static final String MODULE_EMPTY = " " + PREFIX_MOD;
 
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser(new PersonBuilder().build());
+    private EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -109,23 +75,29 @@ public class EditCommandParserTest {
                         + VALID_GITHUB_AMY, Name.MESSAGE_CONSTRAINTS);
 
         // number of old and new modules or skills should be the same
+        /*
+        // Removed test cases as operation is no longer supported
         assertParseFailure(parser, MOD_OLD_DESC_AY2223S2_CS2103T, EditCommand.MESSAGE_INCORRECT_OLD_NEW_MOD_PREFIX);
         assertParseFailure(parser, MOD_NEW_DESC_AY2223S2_CS2103T, EditCommand.MESSAGE_INCORRECT_OLD_NEW_MOD_PREFIX);
         assertParseFailure(parser, SKILL_OLD_DESC_CSHARP, EditCommand.MESSAGE_INCORRECT_OLD_NEW_SKILL_PREFIX);
         assertParseFailure(parser, SKILL_NEW_DESC_CSHARP, EditCommand.MESSAGE_INCORRECT_OLD_NEW_SKILL_PREFIX);
+         */
 
 
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = GITHUB_DESC_BOB + SKILL_ADD_DESC_JAVA
-                + EMAIL_DESC_AMY + LINKEDIN_DESC_AMY + NAME_DESC_AMY + SKILL_ADD_DESC_CSHARP
-                + MOD_ADD_DESC_AY2223S2_CS2103T;
+        String userInput = GITHUB_DESC_BOB + SKILL_DESC_CSHARP
+                + EMAIL_DESC_AMY + LINKEDIN_DESC_AMY + NAME_DESC_AMY + SKILL_ADD_DESC_JAVA + SKILL_REMOVE_DESC_C
+                + MOD_DESC_AY2223S2_CS2103T + MOD_ADD_DESC_AY2223S2_CS2103T + MOD_REMOVE_DESC_AY2223S2_CS2103T
+                + COURSE_DESC_AMY + YEAR_DESC_BOB;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_JAVA, VALID_SKILL_CSHARP).withModules(VALID_MODULE_AY2223S2_CS2103T)
+                .withSkills(VALID_SKILL_CSHARP).withSkillsAdded(VALID_SKILL_JAVA).withSkillsRemoved(VALID_SKILL_C)
+                .withModules(VALID_MODULE_AY2223S2_CS2103T).withModulesAdded(VALID_MODULE_AY2223S2_CS2103T)
+                .withModulesRemoved(VALID_MODULE_AY2223S2_CS2103T)
                 .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB).build();
         EditCommand expectedCommand = new EditCommand(descriptor);
 
@@ -137,14 +109,7 @@ public class EditCommandParserTest {
         String userInput = GITHUB_DESC_BOB + EMAIL_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withName(VALID_NAME_AMY)
-                .withCourse(VALID_COURSE_AMY)
-                .withYear(VALID_YEAR_BOB)
                 .withGithub(VALID_GITHUB_BOB)
-                .withEmail(VALID_EMAIL_AMY)
-                .withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_CSHARP)
-                .withModules(VALID_MODULE_AY2223S2_CS2103T)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -152,59 +117,75 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // name
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withName(VALID_NAME_BOB).withGithub(VALID_GITHUB_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_CSHARP).withModules(VALID_MODULE_AY2223S2_CS2103T).build();
+        // Name
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, NAME_DESC_BOB, expectedCommand);
 
-        // phone
-        descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGithub(VALID_GITHUB_BOB)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_CSHARP).withModules(VALID_MODULE_AY2223S2_CS2103T).build();
+        // Course
+        descriptor = new EditPersonDescriptorBuilder().withCourse(VALID_COURSE_AMY).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, COURSE_DESC_AMY, expectedCommand);
+
+        // Year
+        descriptor = new EditPersonDescriptorBuilder().withYear(VALID_YEAR_AMY).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, YEAR_DESC_AMY, expectedCommand);
+
+        // Github
+        descriptor = new EditPersonDescriptorBuilder().withGithub(VALID_GITHUB_BOB).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, GITHUB_DESC_BOB, expectedCommand);
 
-        // email
-        descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGithub(VALID_GITHUB_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withLinkedin(VALID_LINKEDIN_AMY).withSkills(VALID_SKILL_CSHARP)
-                .withModules(VALID_MODULE_AY2223S2_CS2103T).withEmail(VALID_EMAIL_BOB).build();
+        // Email
+        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_BOB).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, EMAIL_DESC_BOB, expectedCommand);
 
-        // address
-        descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGithub(VALID_GITHUB_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_BOB)
-                .withSkills(VALID_SKILL_CSHARP).withModules(VALID_MODULE_AY2223S2_CS2103T).build();
+        // Linkedin
+        descriptor = new EditPersonDescriptorBuilder().withLinkedin(VALID_LINKEDIN_BOB).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, LINKEDIN_DESC_BOB, expectedCommand);
 
-        // skills
-        descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withGithub(VALID_GITHUB_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_CSHARP, VALID_SKILL_JAVA).withModules(VALID_MODULE_AY2223S2_CS2103T).build();
+        // Set skills
+        descriptor = new EditPersonDescriptorBuilder().withSkills(VALID_SKILL_CSHARP).build();
         expectedCommand = new EditCommand(descriptor);
-        assertParseSuccess(parser, SKILL_ADD_DESC_JAVA, expectedCommand);
+        assertParseSuccess(parser, SKILL_DESC_CSHARP, expectedCommand);
+
+        // Add skills
+        descriptor = new EditPersonDescriptorBuilder().withSkillsAdded(VALID_SKILL_CSHARP).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, SKILL_ADD_DESC_CSHARP, expectedCommand);
+
+        // Remove skills
+        descriptor = new EditPersonDescriptorBuilder().withSkillsRemoved(VALID_SKILL_C).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, SKILL_REMOVE_DESC_C, expectedCommand);
+
+        // Set modules
+        descriptor = new EditPersonDescriptorBuilder().withModules(VALID_MODULE_AY2223S2_CS2103T).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, MOD_DESC_AY2223S2_CS2103T, expectedCommand);
+
+        // Add modules
+        descriptor = new EditPersonDescriptorBuilder().withModulesAdded(VALID_MODULE_AY2223S2_CS2103T).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, MOD_ADD_DESC_AY2223S2_CS2103T, expectedCommand);
+
+        // Remove modules
+        descriptor = new EditPersonDescriptorBuilder().withModulesRemoved(VALID_MODULE_AY2223S2_CS2103T).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, MOD_REMOVE_DESC_AY2223S2_CS2103T, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        String userInput = GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + EMAIL_DESC_AMY
-                + SKILL_ADD_DESC_CSHARP + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + EMAIL_DESC_AMY + SKILL_ADD_DESC_CSHARP
-                + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + EMAIL_DESC_BOB + SKILL_ADD_DESC_JAVA;
+        String userInput = NAME_DESC_AMY + GITHUB_DESC_AMY + LINKEDIN_DESC_AMY + EMAIL_DESC_AMY + COURSE_DESC_AMY
+                + NAME_DESC_BOB + GITHUB_DESC_BOB + LINKEDIN_DESC_BOB + EMAIL_DESC_BOB + COURSE_DESC_BOB;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB).withLinkedin(VALID_LINKEDIN_BOB)
-                .withSkills(VALID_SKILL_CSHARP, VALID_SKILL_JAVA).withModules(VALID_MODULE_AY2223S2_CS2103T)
-                .build();
+                .withName(VALID_NAME_BOB).withCourse(VALID_COURSE_BOB).build();
         EditCommand expectedCommand = new EditCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -214,43 +195,29 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         String userInput = INVALID_GITHUB_DESC + GITHUB_DESC_BOB;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_CSHARP).withModules(VALID_MODULE_AY2223S2_CS2103T)
-                .withGithub(VALID_GITHUB_BOB).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withGithub(VALID_GITHUB_BOB).build();
         EditCommand expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // other valid values specified
+        // other valid values specified in between
         userInput = EMAIL_DESC_BOB + INVALID_GITHUB_DESC + LINKEDIN_DESC_BOB
                 + GITHUB_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withLinkedin(VALID_LINKEDIN_AMY).withSkills(VALID_SKILL_CSHARP)
-                .withModules(VALID_MODULE_AY2223S2_CS2103T)
-                .withGithub(VALID_GITHUB_BOB).withEmail(VALID_EMAIL_BOB)
-                .withLinkedin(VALID_LINKEDIN_BOB).build();
+        descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_BOB).withLinkedin(VALID_LINKEDIN_BOB)
+                .withGithub(VALID_GITHUB_BOB).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_resetSkills_success() {
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withGithub(VALID_GITHUB_AMY).withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills().withModules(VALID_MODULE_AY2223S2_CS2103T).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withSkills().build();
         EditCommand expectedCommand = new EditCommand(descriptor);
 
         assertParseSuccess(parser, SKILL_EMPTY, expectedCommand);
     }
     @Test
     public void parse_resetModules_success() {
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withCourse(VALID_COURSE_AMY).withYear(VALID_YEAR_BOB)
-                .withGithub(VALID_GITHUB_AMY).withEmail(VALID_EMAIL_AMY).withLinkedin(VALID_LINKEDIN_AMY)
-                .withSkills(VALID_SKILL_CSHARP).withModules().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withModules().build();
         EditCommand expectedCommand = new EditCommand(descriptor);
 
         assertParseSuccess(parser, MODULE_EMPTY, expectedCommand);

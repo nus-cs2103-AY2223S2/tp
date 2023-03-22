@@ -42,8 +42,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setGithub(person.getGithub());
         descriptor.setEmail(person.getEmail());
         descriptor.setLinkedin(person.getLinkedin());
-        descriptor.addSkills(person.getSkills());
-        descriptor.addMods(person.getModules());
+        descriptor.setSkillsFinal(person.getSkills());
+        descriptor.setModulesFinal(person.getModules());
     }
 
     /**
@@ -98,16 +98,57 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withSkills(String... skills) {
         Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
-        descriptor.addSkills(skillSet);
+        descriptor.setSkillsFinal(skillSet);
         return this;
     }
+
+    /**
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withSkillsAdded(String... skills) {
+        Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
+        descriptor.setSkillsAdded(skillSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withSkillsRemoved(String... skills) {
+        Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
+        descriptor.setSkillsRemoved(skillSet);
+        return this;
+    }
+
     /**
      * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withModules(String... modules) {
         Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
-        descriptor.addMods(moduleSet);
+        descriptor.setModulesFinal(moduleSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withModulesAdded(String... modules) {
+        Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
+        descriptor.setModulesAdded(moduleSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code modules} into a {@code Set<Module>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withModulesRemoved(String... modules) {
+        Set<Module> moduleSet = Stream.of(modules).map(Module::new).collect(Collectors.toSet());
+        descriptor.setModulesRemoved(moduleSet);
         return this;
     }
 

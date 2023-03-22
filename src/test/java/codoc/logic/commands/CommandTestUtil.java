@@ -1,19 +1,6 @@
 package codoc.logic.commands;
 
-import static codoc.logic.parser.CliSyntax.PREFIX_COURSE;
-import static codoc.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static codoc.logic.parser.CliSyntax.PREFIX_GITHUB;
-import static codoc.logic.parser.CliSyntax.PREFIX_LINKEDIN;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_ADD;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_NEW;
-import static codoc.logic.parser.CliSyntax.PREFIX_MOD_OLD;
-import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_ADD;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_NEW;
-import static codoc.logic.parser.CliSyntax.PREFIX_SKILL_OLD;
-import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
+import static codoc.logic.parser.CliSyntax.*;
 import static codoc.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,6 +34,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_LINKEDIN_AMY = "linkedin.com/in/4my";
     public static final String VALID_LINKEDIN_BOB = "linkedin.com/in/b0b";
+    public static final String VALID_SKILL_C = "C";
     public static final String VALID_SKILL_JAVA = "java";
     public static final String VALID_SKILL_CSHARP = "C#";
     public static final String VALID_MODULE_AY2223S2_CS2103T = "AY2223S2 CS2103T";
@@ -63,17 +51,21 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String LINKEDIN_DESC_AMY = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_AMY;
     public static final String LINKEDIN_DESC_BOB = " " + PREFIX_LINKEDIN + VALID_LINKEDIN_BOB;
+
     public static final String SKILL_DESC_CSHARP = " " + PREFIX_SKILL + VALID_SKILL_CSHARP;
+    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
     public static final String SKILL_ADD_DESC_CSHARP = " " + PREFIX_SKILL_ADD + VALID_SKILL_CSHARP;
     public static final String SKILL_ADD_DESC_JAVA = " " + PREFIX_SKILL_ADD + VALID_SKILL_JAVA;
-    public static final String SKILL_OLD_DESC_CSHARP = " " + PREFIX_SKILL_OLD + VALID_SKILL_CSHARP;
-    public static final String SKILL_NEW_DESC_CSHARP = " " + PREFIX_SKILL_NEW + VALID_SKILL_CSHARP;
+    public static final String SKILL_REMOVE_DESC_C = " " + PREFIX_SKILL_DELETE + VALID_SKILL_C;
+    // public static final String SKILL_OLD_DESC_CSHARP = " " + PREFIX_SKILL_OLD + VALID_SKILL_CSHARP;
+    // public static final String SKILL_NEW_DESC_CSHARP = " " + PREFIX_SKILL_NEW + VALID_SKILL_CSHARP;
 
-    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
     public static final String MOD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD + VALID_MODULE_AY2223S2_CS2103T;
     public static final String MOD_ADD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_ADD + VALID_MODULE_AY2223S2_CS2103T;
-    public static final String MOD_OLD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_OLD + VALID_MODULE_AY2223S2_CS2103T;
-    public static final String MOD_NEW_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_NEW + VALID_MODULE_AY2223S2_CS2103T;
+    public static final String MOD_REMOVE_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_DELETE
+            + VALID_MODULE_AY2223S2_CS2103T;
+    // public static final String MOD_OLD_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_OLD + VALID_MODULE_AY2223S2_CS2103T;
+    // public static final String MOD_NEW_DESC_AY2223S2_CS2103T = " " + PREFIX_MOD_NEW + VALID_MODULE_AY2223S2_CS2103T;
 
 
 
