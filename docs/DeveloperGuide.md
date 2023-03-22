@@ -603,7 +603,26 @@ The `sort` command allows users to arrange their contacts in the order they desi
 
 ### **Meet Command**
 
-{to be filled by Hafeez and Russell}
+<div markdown="span" class="alert alert-primary">
+    :construction: Integration works in the process.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Sub-Commands** <br>
+The `meet` command has 3 different sub-commands : `eat`, `study` and generally `meet`.
+However, we will be referring to all 3 commands generally as `meet`. All 3 commands only differ in the location
+recommendations as certain locations are only appropriate for certain activities.
+</div>
+
+This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
+
+#### LocationUtil
+{to be filled by Hafeez}
+#### Scheduler
+{to be filled by Russell}
+
+###
 
 ### **Parsers**
 
