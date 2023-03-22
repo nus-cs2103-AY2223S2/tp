@@ -268,6 +268,12 @@ what happens when a user executes these commands or clicks the `Theme` button:
     * Pros: Less resource space and no need to change the file path.
     * Cons: Not easy to implement and require more FXML changes.
 
+
+### \[Proposed\] Find command
+Proposed Implementation
+
+_{Explain here how the find feature will be implemented}_
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -368,17 +374,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  HS clears all the data in the system.
     Use case ends.
 
-**Use case: UC5 - Search for patients by health conditions**
+**Use case: UC5 - Search for patients by address**
 
 **MSS**
 
-1.  Administrator wants to search for patients based on a certain health condition.
-2.  HS provides a list of all patients with the specified health condition.
-    Use case ends.
+1. Administrator wants to search for patient by his address
+2. HS provides a list of all people staying in the given address 
 
 **Extensions**
 
-* 1a. No such patient has the specified health condition.
+* 1a. No such patient has the specified address.
   Use case ends.
 
 **Use case: UC6 - Search for patients by medicine**
