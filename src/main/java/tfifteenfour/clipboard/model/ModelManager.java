@@ -42,6 +42,12 @@ public class ModelManager implements Model {
         this(new Roster(), new UserPrefs());
     }
 
+    public ModelManager(Roster roster, UserPrefs userPrefs) {
+        this.roster = roster;
+        this.userPrefs = userPrefs;
+        this.filteredStudents = new FilteredList<>(this.roster.getStudentList());
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override
@@ -128,6 +134,11 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public Model copy() {
+        return new ModelManager(this.roster.copy(), this.userPrefs);
     }
 
     @Override

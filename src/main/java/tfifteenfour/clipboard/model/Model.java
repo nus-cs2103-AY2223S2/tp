@@ -90,4 +90,8 @@ public interface Model {
     ObservableList<Student> getViewedStudent();
 
     void updateViewedStudent(Predicate<Student> predicate);
+    /**
+     * Makes a copy of the model
+     */
+    Model copy();
 }
