@@ -157,6 +157,27 @@ Here is how `Task` works:
 * Each of the attributes inherit off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
 * The `Task` object have its `List` and `UniqueList`.
 
+This is the class representation for the `Menu` class.
+
+<img src="images/MenuClassDiagram.png" width="450" />
+
+Here is how `Menu` works:
+
+* Each `Menu` contains non-negative and non-zero number of `MenuItem`.
+* Each `MenuItem` contains their description, price and cost (e.g., `ItemName` for menu's item name).
+* The `MenuItem`'s `ItemName` attribute inherit off the corresponding `common` classes (e.g., `ItemName` inherit off `Name`).
+* The `MenuItem` object have its `List` called `Menu` and `UniqueList`.
+
+This is the class representation for the `Order` class.
+
+<img src="images/OrderClassDiagram.png" width="450" />
+
+Here is how `Order` works:
+
+* Each `OrderList` contains non-negative and non-zero number of `Order`.
+* Each `Order` contains their description, status and deadline (e.g., `ItemName` for menu's item name).
+* The `Order`'s `OrderDeadlne` and `OrderStatus` attribute inherit off the corresponding `common` classes (e.g., `OrderDeadline` inherit off `Deadline`).
+* The `Order` object have its `List` called `OrderList` and `UniqueList`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
