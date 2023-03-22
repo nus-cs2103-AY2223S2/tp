@@ -20,13 +20,13 @@ Use the available commands to manage your contacts and connect with students in 
 ### Command summary
 Action | Format, Examples
 | --- | --- |
-Add	| `add n/NAME y/YEAR c/COURSE e/EMAIL [g/GITHUB] [l/LINKEDIN] [m/YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `add n/Bob Sim y/2 c/com sci e/e0823741@nus.edu l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java`
+Add	| `add n/NAME y/YEAR c/COURSE e/EMAIL [g/GITHUB] [l/LINKEDIN] [m/YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `add n/Bob Sim y/2 c/2 e/e0823741@nus.edu g/bobby l/linkedin.com/in/bom-sim-086g93847/ m/ay2223s2 cs2103t m/ay2223s2 cs2101 s/python s/java`
 View contact | `view INDEX`<br />e.g., `view 3`
 View tab | `view C/M/T`<br />e.g., `view c`, `view m` or `view t`
 Edit | `edit [n/NAME] [y/YEAR] [c/COURSE] [e/EMAIL] [g/GITHUB] [l/LINKEDIN] [m/MODINDEX YEARTAKEN MODCODE]... [s/SKILL]...`<br />e.g., `edit n/Bob Lim m/2 ay2223s2 cs2109s`
 Find	name | `find NAME [MORENAMES]`<br />e.g., `find Bob Sam Pete`
-Find module | `findm MODCODE [MOREMODCODES]`<br />e.g., `findm cs2013t cs2109s cs2107`
-Find skills | `finds SKILL [MORESKILLS]`<br />e.g., `finds java python` 
+Find module | `find m/ MODCODE [MOREMODCODES]`<br />e.g., `find m/cs2013t cs2109s cs2107`
+Find skills | `find s/ SKILL [MORESKILLS]`<br />e.g., `find s/java python` 
 List | `view` the default list of all contacts
 Delete | `delete INDEX`<br />e.g., `delete 3`
 Clear all contacts | `clear`
