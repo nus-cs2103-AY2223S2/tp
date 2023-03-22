@@ -603,7 +603,7 @@ The `sort` command allows users to arrange their contacts in the order they desi
 
 ### **Meet Command**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-warning">
     :construction: Integration works in the process.
 </div>
 
