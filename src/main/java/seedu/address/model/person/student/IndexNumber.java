@@ -33,7 +33,23 @@ public class IndexNumber {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidIndexNumber(String test) {
+        if (isDefaultIndexNumber(test)) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when the index number isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultIndexNumber(String test) {
+        if (test.equals("Insert student index number here!")) {
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -126,7 +126,23 @@ public class Class {
      * @param className Test string to be checked.
      */
     public static boolean isValidClass(String className) {
+        if (isDefaultClass(className)) {
+            return true;
+        }
         return className.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when the class isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultClass(String test) {
+        if (test.equals("Insert student class here!")) {
+            return true;
+        }
+        return false;
     }
 
     /**

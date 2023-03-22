@@ -45,11 +45,24 @@ public class Comment {
      * @return true if a given string is a valid comment.
      */
     public static boolean isValidComment(String test) {
-        if (test.equals("Insert student comment here!")) {
+        if (isDefaultComment(test)) {
             return true;
         }
 
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is the default string given when the comment isn't given by user.
+     *
+     * @param test String value to test.
+     * @return Boolean value true if the string given is the default string by the system.
+     */
+    public static boolean isDefaultComment(String test) {
+        if (test.equals("Insert student comment here!")) {
+            return true;
+        }
+        return false;
     }
 
     @Override
