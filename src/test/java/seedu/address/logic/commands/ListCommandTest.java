@@ -44,7 +44,9 @@ public class ListCommandTest {
         expectedModel.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(
-                Arrays.asList(TypicalExpenses.APPLE, TypicalExpenses.BANANA, CHERRY, TypicalExpenses.DURIAN, TypicalExpenses.ELDERBERRY, TypicalExpenses.FIG, TypicalExpenses.GRAPE), model.getFilteredExpenseList());
+                Arrays.asList(TypicalExpenses.APPLE, TypicalExpenses.BANANA, CHERRY, TypicalExpenses.DURIAN,
+                        TypicalExpenses.ELDERBERRY, TypicalExpenses.FIG, TypicalExpenses.GRAPE),
+                model.getFilteredExpenseList());
     }
 
     @Test
@@ -65,10 +67,5 @@ public class ListCommandTest {
     private ExpenseInCategoryPredicate preparePredicate(String userInput) throws ParseException {
         return new ExpenseInCategoryPredicate(ParserUtil.parseCategory(userInput));
     }
-
-//    @Test
-//    public void execute_listIsFiltered_showsEverything() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-//    }
+    
 }
