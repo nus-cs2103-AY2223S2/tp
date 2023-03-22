@@ -17,6 +17,8 @@ title: Developer Guide
   - [Common Classes](#common-classes)
 - [Implementation](#implementation)
   - [Person Class](#person-class)
+  - [Module Class](#module-class)
+  - [Course and CourseList Class](#course-and-courselist-class)
   - [Edit Command](#edit-command)
   - [Find Command](#find-command)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -401,6 +403,31 @@ We included the `Skills` attribute to remind the user to add in the person's ski
 
 <div style="page-break-after: always;"></div>
 
+[Scroll back to top](#table-of-contents)
+
+### **Module Class**
+Each module in CoDoc have a string representing its module.
+#### Regex and validation
+All module string should satisfy the following regex pattern,
+
+<code>
+^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*
+</code>
+
+For example, a valid Module string is "AY2223S1 CS1101S"
+
+Additionally, a final validation is required to ensure that the 4 digit after
+the "AY" is valid. 
+
+The following are valid 4 digit sequence (last 2 digits are increments of first 2 digits)
+- 2223
+- 9900
+- 0102
+
+The following are invalid (the last 2 digit number is not an increment of the first)
+- 2224
+- 1111
+- 
 [Scroll back to top](#table-of-contents)
 
 ### **Course and CourseList Class**
