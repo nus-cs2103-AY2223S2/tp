@@ -1,14 +1,12 @@
 package arb.model.project;
 
-import arb.AppParameters;
-import arb.commons.core.LogsCenter;
-
 import static arb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
-import java.time.LocalDate;
 import java.util.logging.Logger;
+
 import arb.commons.core.LogsCenter;
 
 /**
@@ -50,6 +48,9 @@ public class Project {
         return deadline.orElse(null);
     }
 
+    /**
+     * Returns true if this project has is overdue
+     */
     public boolean isOverdue() {
         LocalDate currentDate = LocalDate.now();
         logger.info(currentDate.toString());
@@ -60,7 +61,7 @@ public class Project {
     }
 
     public Status getStatus() {
-       return status;
+        return status;
     }
 
     public void markAsDone() {
