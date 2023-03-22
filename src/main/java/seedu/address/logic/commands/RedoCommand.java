@@ -19,9 +19,6 @@ public class RedoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Redo successful!";
 
-    public RedoCommand() {
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

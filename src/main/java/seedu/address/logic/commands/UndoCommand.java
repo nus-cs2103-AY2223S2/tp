@@ -18,9 +18,6 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Undo successful!";
 
-    public UndoCommand() {
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
