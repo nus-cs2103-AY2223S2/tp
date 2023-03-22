@@ -15,12 +15,20 @@ public class SkillContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    private boolean doesNotContain(String skillUserIsSearchingFor, Person person) {
+        return person.getSkills().stream().noneMatch(
+                skill -> skill.skillName.equalsIgnoreCase(skillUserIsSearchingFor));
+    }
+
     @Override
     public boolean test(Person person) {
-        if (person.getSkills().isEmpty()) {
-            return false;
+
+        for (String word : keywords) {
+            if (doesNotContain(word, person)) {
+                return false;
+            }
         }
-        return keywords.stream().anyMatch(keyword -> person.getSkills().contains(new Skill(keyword)));
+        return true;
     }
 
     @Override
@@ -30,3 +38,4 @@ public class SkillContainsKeywordsPredicate implements Predicate<Person> {
                 && keywords.equals(((SkillContainsKeywordsPredicate) other).keywords)); // state check
     }
 }
+
