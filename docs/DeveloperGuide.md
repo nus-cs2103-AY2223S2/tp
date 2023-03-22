@@ -115,17 +115,48 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* `XYZ` is a placeholder for the specific object (e.g., `Supplier`, `Task`), which are all `Item` objects.
+* stores trackr data i.e., all `XYZ` objects (contained in respective `UniqueXYZList` object).
+* stores currently 'selected' `XYZ` objects (e.g., results of search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be viewed (e.g. UI bound to this list so that the UI automatically updates when the data in the list changes).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
+
+
+Here is the `Item` class that is what all model objects depend on.
+
+<img src="images/ItemClassDiagram.png" width="450" />
+
+
+Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
+
+This is the class representation for the `Supplier` and `Customer` class.
+
+<img src="images/PersonClassDiagram.png" width="450" />
+
+Here is how `Supplier` and `Customer` works:
+
+* `Supplier` and `Customer` inherit off `Person` class, which depends on the `Item` class.
+* Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the address)
+* The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
+
+
+This is the class representation for the `Task` class.
+
+<img src="images/TaskClassDiagram.png" width="450" />
+
+Here is how `Task` works:
+
+* Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
+* Each of the attributes inherit off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
+* The `Task` object have its `List` and `UniqueList`.
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -141,8 +172,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both trackr data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TrackrStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -281,26 +312,29 @@ Our application:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a / an …​                                                         | I want to …​                                                                      | So that I can…​                                           |
-|----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| `* * *`  | new user                                                                | see instructions on how to use the app                                               | refer to the instructions when learning how to use the app   |
-| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                           |
-| `* * *`  | small business owner                                                       | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
-| `* * *`  | small business owner who has lots of deadlines to meet                     | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
-| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct       |
-| `* * *`  | familiar user                                                           | delete existing orders from my order list                                            | clear my order list of orders that are not required anymore  |
-| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete
-| `* * *` | small business owner | add an new Item to my menu | keep reference to items that I am selling.
-| `* * *` | small business owner | note selling price and cost price of my items | don't have to keep a mental note of profit per item. 
-| `* * *` | small business owner | have a catalog items that I am selling | quickly create orders.
-| `* *` | business with many orders |have an overview of my Profit-and-Loss.
-| `* *`    | expert user                                                             | edit existing supplier information                                                   | keep my records accurate and up-to-date                      |
-| `* *`    | expert user                                                             | edit existing information about orders                                               | keep my order details accurate and up-to-date                |
-| `* *`    | expert user                                                             | edit existing task information                                                       | easily correct any wrong information keyed in                |
-| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                           | have a clearer view of ‘who supplies what’ at a glance       |
-| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details | have a record of everything                                  |
-| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                         | keep track of my deadlines and plan my time well             |
-| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email        | quickly obtain the details of the contact when I forget them |
+| Priority | As a / an …​                                                            | I want to …​                                                                          | So that I can…​                                              |
+|----------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `* * *`  | new user                                                                | see instructions on how to use the app                                                | refer to the instructions when learning how to use the app   |
+| `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                    | easily find them in a single place                           |
+| `* * *`  | small business owner                                                    | add orders into my _order_ list                                                       | efficiently keep track of my orders                          |
+| `* * *`  | small business owner who has lots of deadlines to meet                  | add _tasks_, such as ordering ingredients                                             | keep track of my to-do list                                  |
+| `* * *`  | familiar user                                                           | delete existing _supplier_ information                                                | ensure that the supplier contacts keyed in are correct       |
+| `* * *`  | familiar user                                                           | delete existing orders from my order list                                             | clear my order list of orders that are not required anymore  |
+| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                               | remove tasks that I no longer need to complete               |
+| `* * *`  | small business owner                                                    | add an new Item to my menu                                                            | keep reference to items that I am selling.                   |
+| `* * *`  | small business owner                                                    | note selling price and cost price of my items                                         | don't have to keep a mental note of profit per item.         |
+| `* * *`  | small business owner                                                    | have a catalog items that I am selling                                                | quickly create orders.                                       |
+| `* *`    | business with many orders                                               | have an overview of my Profit-and-Loss.                                               |
+| `* *`    | familiar user                                                           | edit existing supplier information                                                    | keep my records accurate and up-to-date                      |
+| `* *`    | familiar user                                                           | edit existing information about orders                                                | keep my order details accurate and up-to-date                |
+| `* *`    | familiar user                                                           | edit existing task information                                                        | easily correct any wrong information keyed in                |
+| `* *`    | business owner who has suppliers that supply different products         | _tag_ the supplier with their product type                                            | have a clearer view of ‘who supplies what’ at a glance       |
+| `* *`    | business owner who delivers orders                                      | mark orders as delivered (_Status_ of orders) and keep track of the delivery details  | have a record of everything                                  |
+| `* *`    | business owner on a time crunch                                         | mark tasks as Done or Not Done (Task status)                                          | keep track of my deadlines and plan my time well             |
+| `* *`    | forgetful business owner                                                | look for supplier information using keywords like name, phone number or email         | quickly obtain the details of the contact when I forget them |
+| `* *`    | forgetful business owner                                                | look for task information using keywords like task name, task status or task deadline | quickly obtain the details of the task when I forget them    |
+| `*`      | expert user                                                             | sort my orders by the order of earliest deadline to latest deadline                   | easily see which orders are due first                        |
+| `*`      | expert user                                                             | sort my tasks by the order of earliest deadline to latest deadline                    | easily see which tasks are due first                         |
 
 *{More to be added}*
 
@@ -631,6 +665,7 @@ Trackr displays an error message.
 * **CLI**: Command-Line Interface
 * **GUI**: Graphical User Interface
 * **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
+* **Customer**: Customer refers to someone whom the user receives an order from
 * **Order**: Order refers to the customers' orders the user accepts
 * **Task**: Task refers to any to-dos the user may have, it need not be related to suppliers or orders (For instance, it can be about tidying inventory)
 * **Menu Item**: Menu Item refers to any inventory/ stock that the user is selling to customers.
