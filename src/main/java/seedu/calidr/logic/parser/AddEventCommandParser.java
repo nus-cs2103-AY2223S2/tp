@@ -1,6 +1,7 @@
 package seedu.calidr.logic.parser;
 
 import static seedu.calidr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.calidr.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.calidr.logic.parser.CliSyntax.PREFIX_TO;
@@ -10,6 +11,7 @@ import java.util.stream.Stream;
 import seedu.calidr.logic.commands.AddEventCommand;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.task.Event;
+import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Title;
 
@@ -25,7 +27,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
      */
     public AddEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_FROM, PREFIX_TO);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_FROM, PREFIX_TO);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_FROM, PREFIX_TO)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -33,12 +35,16 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-
         String fromDateTimeString = argMultimap.getValue(PREFIX_FROM).get();
         String toDateTimeString = argMultimap.getValue(PREFIX_TO).get();
         EventDateTimes eventDateTimes = ParserUtil.parseEventDateTimes(fromDateTimeString, toDateTimeString);
 
-        Event event = new Event(title, eventDateTimes);
+        Description description = null;
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
+
+        Event event = new Event(title, description, eventDateTimes);
         return new AddEventCommand(event);
     }
 
