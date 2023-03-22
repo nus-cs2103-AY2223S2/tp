@@ -1,5 +1,8 @@
 package seedu.dengue.model.person;
 
+/**
+ * Represents a Date Format.
+ */
 public class DateFormat {
     private final String day;
     private final String month;
