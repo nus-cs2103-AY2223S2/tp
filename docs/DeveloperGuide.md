@@ -219,20 +219,130 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+### \[Implemented\] Tag-related Features
+
+#### Overview
+The tagging functionality is facilitated by the `UniqueTagList` stored in `WIFE`. Creating and deleting tags will 
+modify the tags within the `UniqueTagList` which contains all existing `Tag` objects. Additionally, every food item within 
+WIFE has its own collection of associated `Tag` objects stored in an internal Set<Tag>. Tagging/untagging a `Tag` to a `Food` will 
+add/remove the corresponding `Tag` object to/from the `Set<Tag>` stored within `Food` This allows for efficient tagging and 
+organization of items across multiple lists.
+
+The following UML diagram shows `Tag` and its associated class.
+
+*** insert uml
+
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How to store the tags for WIFE and each food item. **
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Store `Tag` in `UniqueTagList` and each `Food` stores its own set of associated
+    `Tag` objects.
+    * Pros: 
+      * Easy to implement.
+      * Users are able to create and reuse the same `Tag` that may be extensible for editing to suit their own use
+        case instead of providing a preset list of tags that cannot be extended for other food items in the list.
+    * Cons: 
+      * May have performance issues in terms of memory usage as additional storage is used.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
+* **Alternative 2:** Instantiates `Tag` with a specified name and stores all food classified by the tag in the 
+    instantiated class.
+    * Pros:
+        * Saves space. There is no need to store the set of associated `Tag`, `Set<Tag>` in `Food`. The association
+          of `Food` to `Tag` is represented by `List<Food>` in `Tag` object.
+        * Easily extensible. Creating a new `Tag` can be done by simply instantiating a new `Tag` object.
+    * Cons:
+        * May be more complicated in terms of implementation as compared to alternative 1.
+        * Approach is not as intuitive as compared to alternative 1 (simpler to add each `Tag` to the `Food`)
+      
 _{more aspects and alternatives to be added}_
+
+#### Feature 1 - `createtag`:
+The `createtag` command creates a new tag in WIFE which can be used to create a new tag that can be used to classify 
+food items in food lists. Once the tag is created using this command, the tag can be applied to food items using the 
+`tag` command.
+
+**Implementation**
+
+The first stage of the implementation is parsing the user input to `CreateTagCommand`. `CreateTagCommandParser` is used 
+to parse and check whether the user input is valid. After which a `CreateTagCommand` object is created with the specified
+tag name. 
+The second stage requires CreateTagCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies a tag name for the new tag when creating a new tag.
+2. If the tag name is empty, an error response is returned and users will be prompted to key in the command with the valid
+   tag name.
+3. If the tag name is invalid, an error response is returned and users will be prompted to key in the command with a valid
+   tag name.
+4. If the tag name inserted by the user has the same tag name as another tag in the `Model`, an error is returned to
+   inform the user that there is already a duplicated copy of tag in the `UniqueTagList`.
+5. If the tag storage of WIFE is full, an error response is returned to inform that the user has reached the maximum
+   capacity of the tag storage and will not be able to insert additional tag.
+6. Completion of step 5 without any exceptions will result in successful creation of a new `Tag` in WIFE and stored in
+   `UniqueTagList`
+
+The following sequence diagram shows how the `createtag` command.
+
+**insert sequence diagram
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+
 
 ### \[Proposed\] Data archiving
 
