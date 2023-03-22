@@ -17,6 +17,8 @@ _Details coming soon ..._
 1. [Attendance](#attendance)
    * mark
    * unmark
+2. [Participation](#Participation)
+   * insert
 2. [Assignments](#assignments)
    * add
    * delete
@@ -39,7 +41,7 @@ _Details coming soon ..._
 # Features
 
 ## Attendance
-Directs you to the attendance system. Within the attendance system, you can make the following calls:
+For attendance, you can make the following calls:
 * mark
 * unmark
 
@@ -56,6 +58,17 @@ Format: `unmark {student_number} w/{week_number}`<br>
 Examples
 * `unmarkAtd 1 w/1`
 * `unmarkAtd 2 w/1`
+
+### Participation
+For Participation, you can make the following calls:
+* insert
+
+### Insert participation points: `insert`
+Insert attendance of a student for that week<br>
+Format: `insertPP {student_number} w/{week_number} pp/{points}`
+Examples
+* `insertPP 1 w/1 pp/200`
+* `insertPP 2 w/1 pp/300`
 
 ## Assignments
 

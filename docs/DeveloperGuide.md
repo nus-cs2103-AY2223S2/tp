@@ -69,6 +69,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TAA` and the **Actor** is the `user`, unless specified otherwise)
 
+**use case: mark attendance of a student**
+
+**use case: unmark attendance of a student**
+
+**use case: insert participation points of a student**
+
 **Use case: delete a student**
 
 **Use case: Add Assignment**
@@ -85,6 +91,27 @@ ungrade
 
 **MSS**
 
+**Mark attendance**
+1.  User requests to list all students in a class
+2.  TAA shows a list of students
+3.  User requests to mark attendance of a specific student in the list for a specified week
+4.  TAA marks attendance
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index/week is invalid.
+
+    * 3a1. TAA shows an error message.
+
+      Use case resumes at step 2.
+
+**deleting student**
 1.  User requests to list all students in a class
 2.  TAA shows a list of students
 3.  User requests to delete a specific student in the list
