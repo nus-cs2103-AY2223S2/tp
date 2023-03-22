@@ -16,7 +16,10 @@ import seedu.recipe.logic.parser.Prefix;
  */
 public class IngredientBuilder {
     public static final String MESSAGE_CONSTRAINTS =
-            "Ingredient contains alphanumeric characters and spaces, and it should not be blank";
+            "Ingredients should follow this format: \n"
+            + "`-a {AMOUNT} -e {ESTIMATED AMOUNT} -n {NAME} `"
+            + "`-cn {COMMON NAME} [-r {REMARKS}] [-s {SUBSTITUTION}]\n"
+            + "i.e. `-a 1 oz. -n butter -r cubed -s margarine`";
     public static final String VALIDATION_REGEX =
             "^(([1-9][0-9]*|(([0-9]|[1-9][0-9]+)[./][0-9]+))([a-z.-]+)?|[A-Za-z().,/-]+)(\\s+[0-9A-Za-z().,+-/:;]+)*$";
 
