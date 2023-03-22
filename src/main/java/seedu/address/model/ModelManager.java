@@ -148,7 +148,7 @@ public class ModelManager implements Model {
 
     @Override
     public void displaySortedDeadlineList(Order order) {
-        List<Role> roles = filteredRoles.sorted((r1, r2) ->  {
+        List<Role> roles = filteredRoles.sorted((r1, r2) -> {
             LocalDate s1 = LocalDate.parse(r1.getDeadline().toString());
             LocalDate s2 = LocalDate.parse(r2.getDeadline().toString());
             if (order.toString().equals("asc")) {
