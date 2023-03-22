@@ -110,7 +110,7 @@ public class PersonBuilder {
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
     public PersonBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
+        this.remark = remark == null ? null : new Remark(remark);
         return this;
     }
 
