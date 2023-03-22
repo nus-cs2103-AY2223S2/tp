@@ -39,7 +39,6 @@ deactivate EventNameContainsKeywordsPredicate
 create FindEventCommand
 FindEventCommandParser -> FindEventCommand
 activate FindEventCommand
-
 FindEventCommand --> FindEventCommandParser : 
 deactivate FindEventCommand
 
