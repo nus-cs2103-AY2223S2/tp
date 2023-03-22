@@ -73,6 +73,24 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Undoing a previous command : `undo`
+
+Undoes a previously entered command.
+
+Format: `undo`
+
+* Returns the state of the address book to the state before the last entered user command.
+* Cannot be used if no user commands have been entered yet.
+
+### Redoing a previous command : `redo`
+
+Redoes a previously entered command.
+
+Format: `redo`
+
+* Returns the state of the address book to the state before undoing the last entered command.
+* If the address book is changed after an undo command, a redo command cannot be done.
+* Cannot be used if no user commands have been entered yet.
 
 ### Adding a person: `add`
 
@@ -248,3 +266,5 @@ _Details coming soon ..._
 | **Group Add** | `groupadd INDEX t/GROUPNAME`<br> e.g., `groupadd 3 t/Varsity`                                                                                                                                           |
 | **Show**      | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                                                                 |
 | **Display**   | `display`                                                                                                                                                                                               |
+| **Undo**      | `undo`                                                                                                                                                                                                  |
+| **Redo**      | `redo`                                                                                                                                                                                                  |
