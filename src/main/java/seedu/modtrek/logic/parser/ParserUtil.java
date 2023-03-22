@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.module.Code;
+import seedu.modtrek.model.module.CodePrefix;
 import seedu.modtrek.model.module.Credit;
 import seedu.modtrek.model.module.Grade;
 import seedu.modtrek.model.module.SemYear;
@@ -34,6 +35,21 @@ public class ParserUtil {
             throw new ParseException(Code.MESSAGE_CONSTRAINTS);
         }
         return new Code(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String codePrefix} into a {@code CodePrefix}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code codePrefix} is invalid.
+     */
+    public static CodePrefix parseCodePrefix(String codePrefix) throws ParseException {
+        requireNonNull(codePrefix);
+        String trimmedName = codePrefix.trim().toUpperCase(Locale.ROOT);
+        if (!CodePrefix.isValidCodePrefix(trimmedName)) {
+            throw new ParseException(CodePrefix.MESSAGE_CONSTRAINTS);
+        }
+        return new CodePrefix(trimmedName);
     }
 
     /**
