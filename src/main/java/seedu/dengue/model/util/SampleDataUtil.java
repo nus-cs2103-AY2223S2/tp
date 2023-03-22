@@ -21,22 +21,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Postal("674388"), new Date("2000-11-11"),
                 new Age("111"),
-                getTagSet("friends")),
+                getTagSet("DENV1")),
             new Person(new Name("Bernice Yu"), new Postal("992727"), new Date("2000-11-11"),
                 new Age("11"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("DENV2", "DENV4")),
             new Person(new Name("Charlotte Oliveiro"), new Postal("932283"),
                     new Date("2000-11-11"), new Age("0"),
-                getTagSet("neighbours")),
+                getTagSet("DENV3")),
             new Person(new Name("David Li"), new Postal("910312"), new Date("2000-11-11"),
                 new Age("1"),
-                getTagSet("family")),
+                getTagSet("DENV1")),
             new Person(new Name("Irfan Ibrahim"), new Postal("924921"), new Date("2000-11-11"),
                 new Age("199"),
-                getTagSet("classmates")),
+                getTagSet("DENV2")),
             new Person(new Name("Roy Balakrishnan"), new Postal("926247"), new Date("2000-11-11"),
                 new Age("2"),
-                getTagSet("colleagues"))
+                getTagSet("DENV4"))
         };
     }
 

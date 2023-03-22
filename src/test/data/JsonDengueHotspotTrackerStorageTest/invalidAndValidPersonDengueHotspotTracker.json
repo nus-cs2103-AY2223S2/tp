@@ -3,11 +3,13 @@
     "name": "Valid Person",
     "postal": "948242",
     "date": "2023-03-05",
-    "age": "22"
+    "age": "22",
+    "tagged": [ "DENV1" ]
   }, {
     "name": "Person With Invalid Postal Field",
     "postal": "948asdf2424",
     "date": "2023-03-05",
-    "age": "22"
+    "age": "22",
+    "tagged": [ "DENV1" ]
   } ]
 }

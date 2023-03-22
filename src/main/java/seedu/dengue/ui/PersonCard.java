@@ -15,6 +15,9 @@ import seedu.dengue.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String AGE_FORMAT = "Age: %s y/o";
+    private static final String POSTAL_FORMAT = "Postal Code: %s";
+    private static final String DATE_FORMAT = "Case reported on %s";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -34,9 +37,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label age;
+    @FXML
+    private Label postal;
     @FXML
     private Label date;
     @FXML
@@ -50,12 +53,12 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPostal().value);
-        age.setText(person.getAge().value);
-        date.setText(person.getDate().value);
+        age.setText(String.format(AGE_FORMAT, person.getAge().value));
+        postal.setText(String.format(POSTAL_FORMAT, person.getPostal().value));
+        date.setText(String.format(DATE_FORMAT, person.getDate().value));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName.toString())));
     }
 
     @Override

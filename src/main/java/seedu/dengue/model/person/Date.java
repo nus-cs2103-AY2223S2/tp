@@ -6,6 +6,7 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 
 /**
@@ -20,10 +21,13 @@ public class Date {
             + "1. Date to be formatted as yyyy-MM-dd in 3 blocks separated by a hyphen '-'\n"
             + " - Each block should only contain digits, and no other special characters\n"
             + "2. Dates must be valid. i.e.\n"
-            + " - MM cannot take values >12";
+            + " - MM must be a number between 01 and 12 inclusive\n"
+            + " - dd must be a number between 01 and 31 inclusive\n"
+            + " - dd should be within the valid range for the MM given";
 
-    private static final String VALIDATION_DATE = "yyyy-MM-dd";
-    private static final DateTimeFormatter VALIDATION_FORMAT = DateTimeFormatter.ofPattern(VALIDATION_DATE);
+    private static final String VALIDATION_DATE = "uuuu-MM-dd";
+    private static final DateTimeFormatter VALIDATION_FORMAT = DateTimeFormatter.ofPattern(VALIDATION_DATE)
+            .withResolverStyle(ResolverStyle.STRICT);
     public final String value;
 
     /**

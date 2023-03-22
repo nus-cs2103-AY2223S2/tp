@@ -9,10 +9,9 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
-    public final String tagName;
+    public static final String MESSAGE_CONSTRAINTS = "Tags should be one of the four dengue variants: "
+            + "DENV1, DENV2, DENV3, or DENV4.";
+    public final DengueVariant tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -22,14 +21,19 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        this.tagName = DengueVariant.valueOf(tagName);
     }
 
     /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            DengueVariant.valueOf(test);
+            return true;
+        } catch (IllegalArgumentException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -48,7 +52,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return '[' + tagName.toString() + ']';
     }
 
 }

@@ -16,14 +16,14 @@ import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.dengue.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.TAG_DESC_DENV2;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VALID_TAG_DENV2;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.dengue.testutil.TypicalPersons.AMY;
@@ -45,33 +45,33 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_DENV2).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB
-                + AGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + AGE_DESC_BOB + TAG_DESC_DENV2, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB
-                + AGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + AGE_DESC_BOB + TAG_DESC_DENV2, new AddCommand(expectedPerson));
 
         // multiple postals - last postal accepted
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_AMY + POSTAL_DESC_BOB + DATE_DESC_BOB
-                + AGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + AGE_DESC_BOB + TAG_DESC_DENV2, new AddCommand(expectedPerson));
 
         // multiple dates - last date accepted
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_AMY + DATE_DESC_BOB
-                + AGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + AGE_DESC_BOB + TAG_DESC_DENV2, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_AMY
-                + AGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + AGE_DESC_BOB + TAG_DESC_DENV2, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_DENV2, VALID_TAG_DENV1)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + TAG_DESC_DENV1 + TAG_DESC_DENV2, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
@@ -111,23 +111,23 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_DENV1 + TAG_DESC_DENV2, Name.MESSAGE_CONSTRAINTS);
 
         // invalid postal
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_POSTAL_DESC + DATE_DESC_BOB + AGE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Postal.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_DENV1 + TAG_DESC_DENV2, Postal.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + INVALID_DATE_DESC + AGE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Date.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_DENV1 + TAG_DESC_DENV2, Date.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + INVALID_AGE_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Age.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_DENV1 + TAG_DESC_DENV2, Age.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_DENV2, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + POSTAL_DESC_BOB + DATE_DESC_BOB + INVALID_AGE_DESC,
@@ -135,7 +135,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB
-                + AGE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + AGE_DESC_BOB + TAG_DESC_DENV1 + TAG_DESC_DENV2,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

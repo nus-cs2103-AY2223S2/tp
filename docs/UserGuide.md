@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+DengueHotspotTracker (DHT) is a **desktop app for managing Dengue Cases, optimized for**
+**use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
+Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,28 +16,30 @@ DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, opt
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `dht.jar` from [here](https://github.com/AY2223S2-CS2103-W17-2/tp/releases).
+2. Download the latest `dht.jar` from [here](https://github.com/AY2223S2-CS2103-W17-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your DengueHotspotTracker.
+3. Copy the file to the folder you want to use as the _home folder_ for your DengueHotspotTracker.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dht.jar` command to run
+the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all cases.
 
-   * `add n/John Tan p/543299 d/2023-02-13 a/20` : Adds a contact named `John Tan` to the Dengue Hotspot Tracker.
+   * `add n/John Tan p/543299 d/2023-02-13 a/20` : Adds a case named `John Tan` to the Dengue Hotspot Tracker.
 
    * `delete 3` : Deletes the 3rd case shown in the current list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all cases.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,6 +54,9 @@ DengueHotspotTracker Level 3 (AB3) is a **desktop app for managing contacts, opt
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items in curly brackets are features that are currently work in progress. <br>
+  e.g `{t/TAG}` means that tagging someone has not yet been implemented, but is planned to be a feature.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -76,44 +83,46 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a case: `add`
 
 Adds a dengue patient to the dengue hotspot tracker.
 
-Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE`
+Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [t/DENGUE_VARIANT_TAG]…​`
 
 Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20`
+* `add n/John Tan p/543299 d/2023-02-13 a/20 t/DENV1`
 * `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
 
-### Listing all persons : `list`
+### Listing all cases : `list`
 
-Shows a list of all persons in the Dengue Hotspot Tracker.
+Shows a list of all cases in the Dengue Hotspot Tracker.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a case : `edit`
 
-Edits an existing person in the Dengue Hotspot Tracker.
+Edits an existing case in the Dengue Hotspot Tracker.
 
-Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [t/DENGUE_VARIANT_TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the case at the specified `INDEX`. The index refers to the index number shown in the displayed case list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, all existing tags of the case will be removed i.e adding of tags is not cumulative.
+* You can remove all the case’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st person to be `S912345` and `2001-01-01` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st case to be `S912345` and `2001-01-01`
+respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd case to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating cases by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds cases whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]` or {`find PARTIAL_POSTAL_CODE filter DENGUE_VARIANT_TAG`}
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -124,26 +133,27 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
     * `S10` will match `S101234`
     * `s10` will also match `S101234`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Han Bo 101` will return `Abrahans Gruber`, `Boeing Yang` and all persons whose postal codes begin with `101`.
+  e.g. `Han Bo 101` will return `Abrahans Gruber`, `Boeing Yang` and all cases whose postal codes begin with `101`.
 
 Examples:
 * `find Boe` returns `Boeing` and `Wong Boe`
 * `find alex david 101` returns `Alexander Peterson`, `Allison Tan` (postal code), `Davidson Li`<br>
   ![result for 'find alex david 101'](..%2F..%2F..%2FDownloads%2Fimage%20%281%29.png)
 
-### Deleting a person : `delete`
+### Deleting a case : `delete`
 
-Deletes the specified person from the Dengue Hotspot Tracker.
+Deletes the specified case from the Dengue Hotspot Tracker.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the case at the specified `INDEX`.
+* The index refers to the index number shown in the displayed case list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the Dengue Hotspot Tracker.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd case in the Dengue Hotspot Tracker.
+* `find Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
+* `find s666` followed by `delete 4` deletes the 4th case in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -159,14 +169,17 @@ Format: `exit`
 
 ### Saving the data
 
-DengueHotspotTracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+DengueHotspotTracker data are saved in the hard disk automatically after any command that changes
+the data. There is no need to save manually.
 
 ### Editing the data file
 
-DengueHotspotTracker data are saved as a JSON file `[JAR file location]/data/denguehotspottracker.json`. Advanced users are welcome to update data directly by editing that data file.
+DengueHotspotTracker data are saved as a JSON file `[JAR file location]/data/denguehotspottracker.json`. Advanced users
+are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, DengueHotspotTracker will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, DengueHotspotTracker will discard all data and start with an
+empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -178,18 +191,19 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DengueHotspotTracker home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous DengueHotspotTracker home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [t/TAG]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, t/URGENT`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                     |
+|------------|----------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [t/TAG]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, t/URGENT` |
+| **Clear**  | `clear`                                                                                                              |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                  |
+| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`          |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                           |
+| **List**   | `list`                                                                                                               |
+| **Help**   | `help`                                                                                                               |
