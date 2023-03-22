@@ -160,7 +160,7 @@ public class StudentEditCommand extends StudentCommand {
         }
 
         for (Student student : students) {
-            if (student.getIndexNumber().equals(indexNumber) && studentClass.equals(studentClass)) {
+            if (student.getIndexNumber().equals(indexNumber) && student.getStudentClass().equals(studentClass)) {
                 if (Name.isDefaultName(newName.fullName)) {
                     this.newName = student.getName();
                 }
