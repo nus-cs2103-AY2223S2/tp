@@ -99,7 +99,7 @@ public class CalendarPanel extends UiPart<Region> {
         }
 
         public LocalDate getDateKey() {
-            return event.getStartDateTime().getDateTime().toLocalDate();
+            return event.getEffectiveStartDateTime().getDateTime().toLocalDate();
         }
     }
 }

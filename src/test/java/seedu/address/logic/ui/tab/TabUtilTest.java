@@ -15,9 +15,9 @@ import seedu.address.commons.core.index.Index;
  */
 class TabUtilTest {
 
-    private final TabUtil tabUtil = new TabUtil(TabType.ADDRESS_BOOK, TabType.CALENDAR);
+    private final TabUtil tabUtil = new TabUtil(TabType.ADDRESS_BOOK, TabType.EVENTS);
     private final TabInfo addressBookTabInfo = new TabInfo(Index.fromZeroBased(0), TabType.ADDRESS_BOOK);
-    private final TabInfo calendarTabInfo = new TabInfo(Index.fromZeroBased(1), TabType.CALENDAR);
+    private final TabInfo calendarTabInfo = new TabInfo(Index.fromZeroBased(1), TabType.EVENTS);
     private final List<TabInfo> tabInfoList = List.of(addressBookTabInfo, calendarTabInfo);
 
     @Test
