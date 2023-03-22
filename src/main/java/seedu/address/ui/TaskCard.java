@@ -54,11 +54,20 @@ public class TaskCard extends UiPart<Region> {
         //Since the mark functions are not implemented, conditions will show as checked.
         //Will need to update after the respective functions complete.
         switch (statusOfTask) {
+
         case INPROGRESS:
             taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+            break;
+
         case LATE:
             taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+            break;
+
         case COMPLETE:
+            taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
+            break;
+
+        default:
             taskStatus.setImage(new Image(this.getClass().getResourceAsStream("/images/check.png")));
         }
     }

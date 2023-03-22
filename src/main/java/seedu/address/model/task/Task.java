@@ -3,7 +3,6 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.Objects;
 
 import seedu.address.model.person.Name;
