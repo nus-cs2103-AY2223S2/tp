@@ -38,16 +38,6 @@ public class Name {
         this.name = name;
     }
 
-    /**
-     * Returns true if {@code test} is a valid name.
-     *
-     * @param test The string to check if it is a valid name.
-     * @return True if {@code test} is a valid name. Otherwise, false.
-     */
-    public static boolean isValidName(String test) {
-        return isValidName(test, VALIDATION_REGEX);
-    }
-
     @Override
     public String toString() {
         return name;
@@ -63,6 +53,16 @@ public class Name {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    /**
+     * Returns true if {@code test} is a valid name.
+     *
+     * @param test The string to check if it is a valid name.
+     * @return True if {@code test} is a valid name. Otherwise, false.
+     */
+    public static boolean isValidName(String test) {
+        return isValidName(test, VALIDATION_REGEX);
     }
 
     /**
