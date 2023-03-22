@@ -13,24 +13,24 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete n/John p/91234567")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
+LogicManager -> AddressBookParser : parseCommand("delete n/John p/91234567")
 activate AddressBookParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+AddressBookParser -> DeleteCommandParser : DeleteCommandParser()
 activate DeleteCommandParser
 
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+AddressBookParser -> DeleteCommandParser : parse("delete n/John p/91234567")
 activate DeleteCommandParser
 
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+DeleteCommandParser -> DeleteCommand : DeleteCommand("John", "91234567")
 activate DeleteCommand
 
 DeleteCommand --> DeleteCommandParser : d
@@ -48,14 +48,16 @@ deactivate AddressBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : updateFilteredPersonList(predicate)
 activate Model
+
+DeleteCommand -> Model : deletePerson(p)
 
 Model --> DeleteCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteCommand -> CommandResult : CommandResult()
 activate CommandResult
 
 CommandResult --> DeleteCommand

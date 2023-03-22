@@ -18,7 +18,9 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Notes
+Class ApplicationDateTime
+Class "Optional<InterviewDateTime>" as datetime
 
 }
 
@@ -40,7 +42,10 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *-> datetime
+Person *--> "*" Notes
+Person *--> ApplicationDateTime
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
