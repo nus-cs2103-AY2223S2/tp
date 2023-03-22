@@ -13,14 +13,18 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parsers the user input to check for validity of student added to event
+ * Parses input arguments, checka for validity of student added to event,
+ * and creates a new AddStudentToEventCommand object.
  */
 public class AddStudentToEventParser implements Parser<AddStudentToEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddStudentToEventCommand
      * and returns an AddStudentToEventCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args the given string arguments to be parsed.
+     * @return an AddStudentToEventCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddStudentToEventCommand parse(String args) throws ParseException {
         Index index;
@@ -35,7 +39,6 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
 
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
-        //todo: test
         String eventName = !tutorialName.isEmpty() ? tutorialName.get() : labName.get();
         String eventType = !tutorialName.isEmpty() ? "tutorial" : "lab";
 
