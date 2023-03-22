@@ -17,7 +17,7 @@ import seedu.library.model.util.SampleDataUtil;
 public class BookmarkBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
-    public static final String DEFAULT_PROGRESS = "85355255";
+    public static final String[] DEFAULT_PROGRESS = {"1", "50", "~"};
     public static final String DEFAULT_GENRE = "amy@gmail.com";
     public static final String DEFAULT_AUTHOR = "123, Jurong West Ave 6, #08-111";
 
@@ -77,7 +77,8 @@ public class BookmarkBuilder {
      * Sets the {@code Progress} of the {@code Bookmark} that we are building.
      */
     public BookmarkBuilder withProgress(String progress) {
-        this.progress = new Progress(progress);
+        String[] splitProgress = progress.split(" ");
+        this.progress = new Progress(splitProgress);
         return this;
     }
 

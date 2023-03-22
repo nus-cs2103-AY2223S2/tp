@@ -15,7 +15,7 @@ public class ProgressTest {
 
     @Test
     public void constructor_invalidProgress_throwsIllegalArgumentException() {
-        String[] invalidProgress = {"", "a", "!"}
+        String[] invalidProgress = {"", "a", "!"};
         assertThrows(IllegalArgumentException.class, () -> new Progress(invalidProgress));
     }
 

@@ -77,9 +77,18 @@ public class Progress {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Progress // instanceof handles nulls
-                && (volume == ((Progress) other).volume || volume.equals(((Progress) other).volume))
-                && (chapter == ((Progress) other).chapter || volume.equals(((Progress) other).chapter))
-                && (page == ((Progress) other).page || volume.equals(((Progress) other).page))); // state check
+                && volume.equals(((Progress) other).volume)
+                && chapter.equals(((Progress) other).chapter)
+                && page.equals(((Progress) other).page)); // state check
+    }
+
+    /**
+     * Gets the command string for this Progress object.
+     *
+     * @return the command string for this Progress object.
+     */
+    public String getDetails() {
+        return volume + " " + chapter + " " + page;
     }
 
     @Override

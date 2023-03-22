@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.library.logic.commands.AddCommand;
 import seedu.library.logic.commands.EditCommand.EditBookmarkDescriptor;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.Progress;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -30,8 +31,9 @@ public class BookmarkUtil {
      */
     public static String getBookmarkDetails(Bookmark bookmark) {
         StringBuilder sb = new StringBuilder();
+        Progress progress = bookmark.getProgress();
         sb.append(PREFIX_TITLE + bookmark.getTitle().value + " ");
-        sb.append(PREFIX_PROGRESS + bookmark.getProgress().value + " ");
+        sb.append(PREFIX_PROGRESS + progress.getDetails() + " ");
         sb.append(PREFIX_GENRE + bookmark.getGenre().value + " ");
         sb.append(PREFIX_AUTHOR + bookmark.getAuthor().value + " ");
         bookmark.getTags().stream().forEach(
@@ -46,7 +48,8 @@ public class BookmarkUtil {
     public static String getEditBookmarkDescriptorDetails(EditBookmarkDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.value).append(" "));
-        descriptor.getProgress().ifPresent(progress -> sb.append(PREFIX_PROGRESS).append(progress.value).append(" "));
+        descriptor.getProgress().ifPresent(progress -> sb.append(PREFIX_PROGRESS).append(progress.getDetails())
+                .append(" "));
         descriptor.getGenre().ifPresent(genre -> sb.append(PREFIX_GENRE).append(genre.value).append(" "));
         descriptor.getAuthor().ifPresent(author -> sb.append(PREFIX_AUTHOR).append(author.value).append(" "));
         if (descriptor.getTags().isPresent()) {
