@@ -42,7 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
         try {
             int targetIndex = personListView.getSelectionModel().getSelectedIndex() + 1;
             int size = personListView.getItems().size();
-            if (targetIndex > 0 && targetIndex < size) {
+            if (targetIndex > 0 && targetIndex <= size) {
                 mainWindow.handleClickInPersonListPanel("show " + targetIndex);
             } else {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

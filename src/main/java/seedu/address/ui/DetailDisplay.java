@@ -3,10 +3,12 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+
 
 
 /**
@@ -42,6 +44,9 @@ public class DetailDisplay extends UiPart<Region> {
     private Label time;
     @FXML
     private Label age;
+    @FXML
+    private Button appointmentButton;
+
     public DetailDisplay() {
         super(FXML);
     }
@@ -94,6 +99,14 @@ public class DetailDisplay extends UiPart<Region> {
         time.setText(null);
         address.setText(null);
         medicalCondition.setText(null);
+    }
+
+    public void hideAppointmentButton() {
+        appointmentButton.setVisible(false);
+    }
+
+    public void showAppointmentButton() {
+        appointmentButton.setVisible(true);
     }
 
     @Override

@@ -189,11 +189,13 @@ public class MainWindow extends UiPart<Stage> {
             //Reused from https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui
             // with minor modifications
             detailDisplay.clearDetailDisplay();
+            detailDisplay.hideAppointmentButton();
 
             if (commandResult.hasPersonToShow()) {
                 Person personToShow = commandResult.getPersonToShow();
                 assert personToShow != null;
                 detailDisplay.setInfo(personToShow);
+                detailDisplay.showAppointmentButton();
             }
             //@@author
 
