@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -76,6 +78,8 @@ public interface Model {
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    List<Person> getPersonsByIndexes(List<Index> indexList);
 
     /**
      * Adds the given person.
