@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.dengue.logic.commands.FindCommand;
-import seedu.dengue.model.person.PersonContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

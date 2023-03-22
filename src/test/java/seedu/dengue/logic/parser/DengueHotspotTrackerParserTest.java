@@ -24,7 +24,6 @@ import seedu.dengue.logic.commands.HelpCommand;
 import seedu.dengue.logic.commands.ListCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.person.PersonContainsKeywordsPredicate;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 import seedu.dengue.testutil.PersonBuilder;
 import seedu.dengue.testutil.PersonUtil;

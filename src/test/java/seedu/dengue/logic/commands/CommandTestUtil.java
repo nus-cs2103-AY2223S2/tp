@@ -18,7 +18,6 @@ import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.person.PersonContainsKeywordsPredicate;
 import seedu.dengue.testutil.EditPersonDescriptorBuilder;
 
 /**
