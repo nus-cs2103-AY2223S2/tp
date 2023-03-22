@@ -20,7 +20,8 @@ Given below are my contributions to the project.
   * To be added
 
 * **Enhancements to existing features**:
-  * To be added
+  * Added sorting to person's list
+  * Added sort by number of tags
 
 * **Documentation**:
   * User Guide:
