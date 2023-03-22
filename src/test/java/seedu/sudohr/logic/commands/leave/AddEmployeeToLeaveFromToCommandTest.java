@@ -1,14 +1,19 @@
 package seedu.sudohr.logic.commands.leave;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_LEAVE_DATE_LEAVE_TYPE_1;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_END_LEAVE_DATE;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_SECOND_DAY_LEAVE_DATE;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_START_LEAVE_DATE;
+import static seedu.sudohr.logic.commands.CommandTestUtil.VALID_THIRD_DAY_LEAVE_DATE;
 import static seedu.sudohr.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.sudohr.commons.core.GuiSettings;
-import seedu.sudohr.logic.commands.CommandResult;
 import seedu.sudohr.logic.commands.exceptions.CommandException;
 import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ReadOnlySudoHr;
@@ -29,30 +33,38 @@ import seedu.sudohr.model.employee.Id;
 import seedu.sudohr.model.leave.Leave;
 import seedu.sudohr.model.leave.LeaveDate;
 import seedu.sudohr.testutil.TypicalEmployees;
-import seedu.sudohr.testutil.TypicalLeave;
 
-/**
- * Adds a employee using it's displayed index to a specific leave using it's
- * displayed index in sudohr book.
- */
-public class AddEmployeeToLeaveCommandTest {
+public class AddEmployeeToLeaveFromToCommandTest {
 
     @Test
     public void execute_employeeAcceptedByLeave_addSuccessful() throws CommandException {
-
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
-        CommandResult commandResult = new AddEmployeeToLeaveCommand(
-                TypicalEmployees.ALICE_ID,
-                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+        List<LeaveDate> dates = new ArrayList<LeaveDate>();
 
-        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
-                TypicalEmployees.ALICE, TypicalLeave.LEAVE_TYPE_1),
-                commandResult.getFeedbackToUser());
+        dates.add(new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_SECOND_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_END_LEAVE_DATE)));
+
+        new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub);
 
         assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
-                VALID_LEAVE_DATE_LEAVE_TYPE_1))))
+                VALID_SECOND_DAY_LEAVE_DATE))))
                 .hasEmployee(TypicalEmployees.ALICE));
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_THIRD_DAY_LEAVE_DATE))))
+                .hasEmployee(TypicalEmployees.ALICE));
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_START_LEAVE_DATE))))
+                .hasEmployee(TypicalEmployees.ALICE));
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_END_LEAVE_DATE))))
+                .hasEmployee(TypicalEmployees.ALICE));
+
     }
 
     // handle adding to leave objects that already exists
@@ -64,20 +76,19 @@ public class AddEmployeeToLeaveCommandTest {
         modelStub.addEmployee(TypicalEmployees.ALICE);
         modelStub.addEmployee(TypicalEmployees.BENSON);
 
+        List<LeaveDate> dates = new ArrayList<LeaveDate>();
+
+        dates.add(new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_SECOND_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_END_LEAVE_DATE)));
+
         new AddEmployeeToLeaveCommand(
                 TypicalEmployees.ALICE_ID,
-                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
-
-        CommandResult commandResult = new AddEmployeeToLeaveCommand(
-                TypicalEmployees.BENSON_ID,
-                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
-
-        assertEquals(String.format(AddEmployeeToLeaveCommand.MESSAGE_ADD_LEAVE_SUCCESS,
-                TypicalEmployees.BENSON, TypicalLeave.LEAVE_TYPE_1),
-                commandResult.getFeedbackToUser());
+                new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE))).execute(modelStub);
 
         assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
-                VALID_LEAVE_DATE_LEAVE_TYPE_1))))
+                VALID_START_LEAVE_DATE))))
                 .hasEmployee(TypicalEmployees.ALICE));
     }
 
@@ -86,22 +97,39 @@ public class AddEmployeeToLeaveCommandTest {
     public void execute_duplicateEmployeeInLeave_throwsCommandException() throws CommandException {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
         modelStub.addEmployee(TypicalEmployees.ALICE);
+
+        List<LeaveDate> dates = new ArrayList<LeaveDate>();
+
+        dates.add(new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_SECOND_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE)));
+        dates.add(new LeaveDate(LocalDate.parse(VALID_END_LEAVE_DATE)));
+
         new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
-                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub);
+                new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE))).execute(modelStub);
 
-        assertThrows(CommandException.class, AddEmployeeToLeaveCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
-                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID,
-                        new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+        assertThrows(CommandException.class,
+                AddEmployeeToLeaveFromToCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
 
+        assertFalse(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE))))
+                .hasEmployee(TypicalEmployees.ALICE));
+
+        assertTrue(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_THIRD_DAY_LEAVE_DATE))))
+                .hasEmployee(TypicalEmployees.ALICE));
+        assertFalse(modelStub.sudoHr.getLeave(new Leave(new LeaveDate(LocalDate.parse(
+                VALID_END_LEAVE_DATE))))
+                .hasEmployee(TypicalEmployees.ALICE));
     }
 
     // Handle adding null employee
     @Test
     public void execute_addNullEmployeeToLeave_throwsCommandException() throws CommandException {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
-
-        assertThrows(NullPointerException.class, () -> new AddEmployeeToLeaveCommand(null,
-                new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
+        List<LeaveDate> dates = new ArrayList<LeaveDate>();
+        assertThrows(NullPointerException.class, () -> new AddEmployeeToLeaveFromToCommand(null,
+                dates).execute(modelStub));
     }
 
     // Handle adding null leave date
@@ -110,7 +138,7 @@ public class AddEmployeeToLeaveCommandTest {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
 
         assertThrows(NullPointerException.class, () ->
-                new AddEmployeeToLeaveCommand(TypicalEmployees.ALICE_ID, null).execute(modelStub));
+        new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, null).execute(modelStub));
     }
 
     /**
@@ -264,62 +292,74 @@ public class AddEmployeeToLeaveCommandTest {
 
         @Override
         public void addLeave(Leave leave) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addLeave'");
         }
 
         @Override
         public boolean hasLeave(Leave leave) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasLeave'");
         }
 
         @Override
         public Leave getInternalLeaveIfExist(Leave leaveToAdd) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getInternalLeaveIfExist'");
         }
 
         @Override
         public boolean hasEmployeeOnLeave(LeaveDate date, Employee employee) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasEmployeeOnLeave'");
         }
 
         @Override
         public void addEmployeeToLeave(Leave leaveToAdd, Employee employeeToAdd) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'addEmployeeToLeave'");
         }
 
         @Override
         public ObservableList<Leave> getFilteredLeaveList() {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getFilteredLeaveList'");
         }
 
         @Override
         public ObservableList<Leave> getLeavesList() {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getLeavesList'");
         }
 
         @Override
         public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'deleteEmployeeFromLeave'");
         }
 
         @Override
         public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'updateFilteredLeaveList'");
         }
 
         @Override
         public void cascadeUpdateUserInLeaves(Employee employeeToEdit, Employee editedEmployee) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'cascadeUpdateUserInLeaves'");
         }
 
         @Override
         public void cascadeDeleteUserInLeaves(Employee employeeToDelete) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'cascadeDeleteUserInLeaves'");
         }
 
         @Override
         public boolean checkEmployeeExists(Id id) {
-            throw new AssertionError("This method should not be called.");
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'checkEmployeeExists'");
         }
     }
 
@@ -414,7 +454,6 @@ public class AddEmployeeToLeaveCommandTest {
             requireNonNull(id);
             return sudoHr.checkEmployeeExists(id);
         }
-
 
     }
 }

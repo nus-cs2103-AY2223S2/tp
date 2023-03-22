@@ -10,6 +10,7 @@ import static seedu.sudohr.testutil.TypicalLeave.LEAVE_TYPE_2;
 import org.junit.jupiter.api.Test;
 
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
+import seedu.sudohr.model.employee.exceptions.EmployeeNotFoundException;
 import seedu.sudohr.testutil.EmployeeBuilder;
 import seedu.sudohr.testutil.LeaveBuilder;
 import seedu.sudohr.testutil.TypicalEmployees;
@@ -52,7 +53,6 @@ public class LeaveTest {
     public void execute_removeEmployee_success() {
         Leave leave = new LeaveBuilder().build();
         leave.addEmployee(new EmployeeBuilder().build());
-
         leave.deleteEmployee(new EmployeeBuilder().build());
         assertTrue(leave.equals(new LeaveBuilder().build()));
     }
@@ -64,6 +64,13 @@ public class LeaveTest {
 
         leave.deleteEmployee(TypicalEmployees.ALICE);
         assertTrue(leave.equals(new LeaveBuilder().build()));
+    }
+
+    @Test
+    public void execute_removeNonExistantEmployee_success() {
+        Leave leave = new LeaveBuilder().build();
+
+        assertThrows(EmployeeNotFoundException.class, () -> leave.deleteEmployee(TypicalEmployees.ALICE));
     }
 
     @Test

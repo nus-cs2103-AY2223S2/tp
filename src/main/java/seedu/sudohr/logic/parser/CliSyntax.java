@@ -21,4 +21,6 @@ public class CliSyntax {
 
     /* Prefix definitions for leave*/
     public static final Prefix PREFIX_DATE = new Prefix("g/");
+    public static final Prefix PREFIX_START_DATE = new Prefix("s/");
+    public static final Prefix PREFIX_END_DATE = new Prefix("e/");
 }
