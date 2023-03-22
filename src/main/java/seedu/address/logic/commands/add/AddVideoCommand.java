@@ -50,18 +50,16 @@ public class AddVideoCommand extends AddCommand {
             throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
-        ReadOnlyModule module = model.getTracker().getModule(moduleCode);
-
         if (!model.hasLecture(moduleCode, lectureName)) {
             throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
         }
 
-        ReadOnlyLecture lecture = module.getLecture(lectureName);
-
-        if (model.hasVideo(lecture, toAdd)) {
+        if (model.hasVideo(moduleCode, lectureName, toAdd.getName())) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_VIDEO, lectureName, moduleCode));
         }
 
+        ReadOnlyModule module = model.getModule(moduleCode);
+        ReadOnlyLecture lecture = module.getLecture(lectureName);
         model.addVideo(lecture, toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, lectureName, toAdd));

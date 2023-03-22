@@ -69,14 +69,14 @@ public class JsonTrackerStorageTest {
         assertEquals(original, new Tracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addModule(TypicalModules.CS2107);
-        original.removeModule(TypicalModules.ST2334);
+        original.addModule(TypicalModules.getCs2107());
+        original.removeModule(TypicalModules.getSt2334());
         jsonTrackerStorage.saveTracker(original, filePath);
         readBack = jsonTrackerStorage.readTracker(filePath).get();
         assertEquals(original, new Tracker(readBack));
 
         // Save and read without specifying file path
-        original.addModule(TypicalModules.ST2334);
+        original.addModule(TypicalModules.getSt2334());
         jsonTrackerStorage.saveTracker(original); // file path not specified
         readBack = jsonTrackerStorage.readTracker().get(); // file path not specified
         assertEquals(original, new Tracker(readBack));

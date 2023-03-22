@@ -59,16 +59,15 @@ public class EditLectureCommand extends EditCommand {
             throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
-        ReadOnlyModule module = model.getTracker().getModule(moduleCode);
-
         if (!model.hasLecture(moduleCode, lectureName)) {
             throw new CommandException(String.format(MESSAGE_LECTURE_DOES_NOT_EXIST, lectureName, moduleCode));
         }
 
+        ReadOnlyModule module = model.getModule(moduleCode);
         ReadOnlyLecture lectureToEdit = module.getLecture(lectureName);
         Lecture editedLecture = createEditedLecture(lectureToEdit);
 
-        if (!lectureToEdit.isSameLecture(editedLecture) && model.hasLecture(module, editedLecture)) {
+        if (!lectureToEdit.isSameLecture(editedLecture) && module.hasLecture(editedLecture)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_LECTURE, moduleCode));
         }
 

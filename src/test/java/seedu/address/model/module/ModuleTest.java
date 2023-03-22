@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.lecture.Lecture;
+import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.lecture.exceptions.DuplicateLectureException;
 import seedu.address.model.lecture.exceptions.LectureNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -16,7 +19,7 @@ import seedu.address.testutil.TypicalModules;
 
 public class ModuleTest {
 
-    private final Module module = new ModuleBuilder(TypicalModules.CS2040S).build();
+    private final Module module = new ModuleBuilder(TypicalModules.getCs2040s()).build();
 
     @Test
     public void getTags_modifySet_throwsUnsupportedOperationException() {
@@ -52,13 +55,17 @@ public class ModuleTest {
         assertFalse(module.isSameModule(editedModule));
     }
 
-    public void hasLecture_nullLecture_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> module.hasLecture(null));
+    public void hasLectureReadOnlyLecture_nullLecture_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> module.hasLecture((ReadOnlyLecture) null));
+    }
+
+    public void hasLectureLectureName_nullLecture_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> module.hasLecture((LectureName) null));
     }
 
     @Test
     public void hasLecture_lectureNotInModule_returnsFalse() {
-        assertFalse(module.hasLecture(TypicalLectures.ST2334_TOPIC_1));
+        assertFalse(module.hasLecture(TypicalLectures.getSt2334Topic1()));
     }
 
     @Test
@@ -68,14 +75,16 @@ public class ModuleTest {
 
     @Test
     public void removeLecture_lectureNotInModule_throwsLectureNotFoundException() {
-        assertThrows(LectureNotFoundException.class, () -> module.removeLecture(TypicalLectures.ST2334_TOPIC_1));
+        assertThrows(LectureNotFoundException.class, () -> module.removeLecture(TypicalLectures.getSt2334Topic1()));
     }
 
     @Test
     public void removeLecture_lectureInModule_moduleDoesNotHaveLecture() {
-        module.removeLecture(TypicalLectures.CS2040S_WEEK_1);
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
 
-        assertFalse(module.hasLecture(TypicalLectures.CS2040S_WEEK_1));
+        module.removeLecture(lecture);
+
+        assertFalse(module.hasLecture(lecture));
     }
 
     @Test
@@ -85,53 +94,60 @@ public class ModuleTest {
 
     @Test
     public void addLecture_lectureNotInModule_moduleHasLecture() {
-        module.addLecture(TypicalLectures.ST2334_TOPIC_1);
+        Lecture lecture = TypicalLectures.getSt2334Topic1();
 
-        assertTrue(module.hasLecture(TypicalLectures.ST2334_TOPIC_1));
+        module.addLecture(lecture);
+
+        assertTrue(module.hasLecture(lecture));
     }
 
     @Test
     public void addLecture_lectureInModule_throwsDuplicateLectureException() {
-        assertThrows(DuplicateLectureException.class, () -> module.addLecture(TypicalLectures.CS2040S_WEEK_1));
+        assertThrows(DuplicateLectureException.class, () -> module.addLecture(TypicalLectures.getCs2040sWeek1()));
     }
 
     @Test
     public void setLecture_nullTarget_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                module.setLecture(null, TypicalLectures.ST2334_TOPIC_1));
+                module.setLecture(null, TypicalLectures.getSt2334Topic1()));
     }
 
     @Test
     public void setLecture_nullEditedLecture_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                module.setLecture(TypicalLectures.CS2040S_WEEK_1, null));
+                module.setLecture(TypicalLectures.getCs2040sWeek1(), null));
     }
 
     @Test
     public void setLecture_targetNotInModule_throwsLectureNotFoundException() {
         assertThrows(LectureNotFoundException.class, () ->
-                module.setLecture(TypicalLectures.ST2334_TOPIC_1, TypicalLectures.ST2334_TOPIC_1));
+                module.setLecture(TypicalLectures.getSt2334Topic1(), TypicalLectures.getSt2334Topic1()));
     }
 
     @Test
     public void setLecture_editedLectureIsDuplicate_throwsDuplicateLectureException() {
         assertThrows(DuplicateLectureException.class, () ->
-                module.setLecture(TypicalLectures.CS2040S_WEEK_1, TypicalLectures.CS2040S_WEEK_2));
+                module.setLecture(TypicalLectures.getCs2040sWeek1(), TypicalLectures.getCs2040sWeek2()));
     }
 
     @Test
     public void setLecture_editedLectureHasNoChange_lectureNoChange() {
-        module.setLecture(TypicalLectures.CS2040S_WEEK_1, TypicalLectures.CS2040S_WEEK_1);
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
 
-        assertTrue(module.hasLecture(TypicalLectures.CS2040S_WEEK_1));
+        module.setLecture(lecture, lecture);
+
+        assertTrue(module.hasLecture(lecture));
     }
 
     @Test
     public void setLecture_validTargetAndEditedLecture_lectureReplaced() {
-        module.setLecture(TypicalLectures.CS2040S_WEEK_1, TypicalLectures.ST2334_TOPIC_1);
+        Lecture originalLecture = TypicalLectures.getCs2040sWeek1();
+        Lecture editedLecture = TypicalLectures.getSt2334Topic1();
 
-        assertFalse(module.hasLecture(TypicalLectures.CS2040S_WEEK_1));
-        assertTrue(module.hasLecture(TypicalLectures.ST2334_TOPIC_1));
+        module.setLecture(originalLecture, editedLecture);
+
+        assertFalse(module.hasLecture(originalLecture));
+        assertTrue(module.hasLecture(editedLecture));
     }
 
     @Test
@@ -141,12 +157,12 @@ public class ModuleTest {
 
     @Test
     public void getLecture_noLectureWithName_returnsNull() {
-        assertEquals(module.getLecture(TypicalLectures.ST2334_TOPIC_1.getName()), null);
+        assertEquals(module.getLecture(TypicalLectures.getSt2334Topic1().getName()), null);
     }
 
     @Test
     public void getLecture_hasLectureWithName_returnsLecture() {
-        assertEquals(module.getLecture(TypicalLectures.CS2040S_WEEK_1.getName()), TypicalLectures.CS2040S_WEEK_1);
+        assertEquals(module.getLecture(TypicalLectures.getCs2040sWeek1().getName()), TypicalLectures.getCs2040sWeek1());
     }
 
     @Test

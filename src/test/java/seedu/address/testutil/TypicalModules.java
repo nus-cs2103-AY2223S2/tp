@@ -8,6 +8,8 @@ import seedu.address.model.module.Module;
  */
 public class TypicalModules {
 
+    /** @deprecated Use {@link TypicalModules#getCs2040s()} instead. */
+    @Deprecated
     public static final Module CS2040S = new ModuleBuilder()
             .withCode("CS2040S").withName("Data Structures and Algorithms")
             .withTags("Heavy", "Math", "Analysis")
@@ -16,6 +18,8 @@ public class TypicalModules {
                     TypicalLectures.CS2040S_WEEK_5, TypicalLectures.CS2040S_WEEK_6,
                     TypicalLectures.CS2040S_WEEK_7)
             .build();
+    /** @deprecated Use {@link TypicalModules#getSt2334()} instead. */
+    @Deprecated
     public static final Module ST2334 = new ModuleBuilder()
             .withCode("ST2334").withName("Probability and Statistics")
             .withTags("Math", "Probability")
@@ -25,6 +29,8 @@ public class TypicalModules {
             .build();
 
     // Not included in typical tracker
+    /** @deprecated Use {@link TypicalModules#getCs2107()} instead. */
+    @Deprecated
     public static final Module CS2107 = new ModuleBuilder()
             .withCode("CS2107").withName("Introduction to Information Security")
             .withTags("Security", "ContentHeavy")
@@ -33,6 +39,38 @@ public class TypicalModules {
                     TypicalLectures.CS2107_LECTURE_5)
             .build();
 
+    public static Module getCs2040s() {
+        return new ModuleBuilder()
+                .withCode("CS2040S").withName("Data Structures and Algorithms")
+                .withTags("Heavy", "Math", "Analysis")
+                .withLectures(TypicalLectures.getCs2040sWeek1(), TypicalLectures.getCs2040sWeek2(),
+                        TypicalLectures.getCs2040sWeek3(), TypicalLectures.getCs2040sWeek4(),
+                        TypicalLectures.getCs2040sWeek5(), TypicalLectures.getCs2040sWeek6(),
+                        TypicalLectures.getCs2040sWeek7())
+                .build();
+    }
+
+    public static Module getSt2334() {
+        return new ModuleBuilder()
+                .withCode("ST2334").withName("Probability and Statistics")
+                .withTags("Math", "Probability")
+                .withLectures(TypicalLectures.getSt2334Topic1(), TypicalLectures.getSt2334Topic2(),
+                        TypicalLectures.getSt2334Topic3(), TypicalLectures.getSt2334Topic4(),
+                        TypicalLectures.getSt2334Topic5())
+                .build();
+    }
+
+    // Not included in typical tracker
+    public static Module getCs2107() {
+        return new ModuleBuilder()
+                .withCode("CS2107").withName("Introduction to Information Security")
+                .withTags("Security", "ContentHeavy")
+                .withLectures(TypicalLectures.getCs2107Lecture1(), TypicalLectures.getCs2107Lecture2(),
+                        TypicalLectures.getCs2107Lecture3(), TypicalLectures.getCs2107Lecture4(),
+                        TypicalLectures.getCs2107Lecture5())
+                .build();
+    }
+
     /**
      * Returns a {@code Tracker} with all typical modules.
      *
@@ -40,8 +78,8 @@ public class TypicalModules {
      */
     public static Tracker getTypicalTracker() {
         Tracker tracker = new Tracker();
-        tracker.addModule(CS2040S);
-        tracker.addModule(ST2334);
+        tracker.addModule(getCs2040s());
+        tracker.addModule(getSt2334());
 
         return tracker;
     }

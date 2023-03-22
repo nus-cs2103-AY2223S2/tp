@@ -43,12 +43,11 @@ public class AddLectureCommand extends AddCommand {
             throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
-        ReadOnlyModule module = model.getTracker().getModule(moduleCode);
-
-        if (model.hasLecture(module, toAdd)) {
+        if (model.hasLecture(moduleCode, toAdd.getName())) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_LECTURE, moduleCode));
         }
 
+        ReadOnlyModule module = model.getModule(moduleCode);
         model.addLecture(module, toAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleCode, toAdd));

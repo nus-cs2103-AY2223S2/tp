@@ -28,7 +28,7 @@ public class LectureNameTest {
         assertFalse(LectureName.isValidName("")); // empty string
         assertFalse(LectureName.isValidName(" ")); // spaces only
         assertFalse(LectureName.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(LectureName.isValidName("LoremIpsum123*")); // contains non-alphanumeric characters
+        assertFalse(LectureName.isValidName("Lorem Ipsum 123*")); // contains non-alphanumeric or space characters
 
         // valid name
         assertTrue(LectureName.isValidName("lorem ipsum")); // alphabets only

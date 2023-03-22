@@ -17,7 +17,7 @@ import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Tracker} with sample data.
  */
 public class SampleDataUtil {
     public static ReadOnlyTracker getSampleTracker() {
@@ -30,13 +30,13 @@ public class SampleDataUtil {
     public static Module[] getSampleModules() {
         return new Module[] {
             new Module(new ModuleCode("CS2040S"), new ModuleName("Data Structures and Algorithms"),
-                    getTagSet("Heavy", "Math", "Analysis"), Arrays.asList(getSampleLectures1())),
+                    getTagSet("Heavy", "Math", "Analysis"), Arrays.asList(getSampleLecturesCs2040s())),
             new Module(new ModuleCode("ST2334"), new ModuleName("Probability and Statistics"),
-                    getTagSet("Math", "Probability"), Arrays.asList(getSampleLectures2())),
+                    getTagSet("Math", "Probability"), Arrays.asList(getSampleLecturesSt2334())),
         };
     }
 
-    public static Lecture[] getSampleLectures1() {
+    public static Lecture[] getSampleLecturesCs2040s() {
         return new Lecture[] {
             new Lecture(new LectureName("Week 1"), getTagSet("Intro"),
                     Arrays.asList(getSampleVideos1())),
@@ -53,7 +53,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static Lecture[] getSampleLectures2() {
+    public static Lecture[] getSampleLecturesSt2334() {
         return new Lecture[] {
             new Lecture(new LectureName("Topic 1"), getTagSet("Intro"),
                     Arrays.asList(getSampleVideos2())),

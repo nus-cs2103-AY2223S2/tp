@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +30,22 @@ import seedu.address.model.video.VideoName;
 public class TagCommand extends Command {
     public static final String COMMAND_WORD = "tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tag a specified video, module, or lecture ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tag a specified video, module, or lecture" + "\n"
+            + "\n"
+            + "*** Command Format *** " + "\n"
+            + "Tag Module: " + COMMAND_WORD + " {module_code} " + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
+            + "Tag Lecture: " + COMMAND_WORD + " {lecture_name} " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
+            + "Tag Video: " + COMMAND_WORD + " {video_name} " + PREFIX_LECTURE
+            + " {lecture_name} " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
+            + "\n"
+            + "*** Example *** " + "\n"
+            + "Tag Module: " + COMMAND_WORD + " EG2310 " + PREFIX_TAG + " fun, hard" + "\n"
+            + "Tag Lecture: " + COMMAND_WORD + " Lecture_1 " + PREFIX_MODULE + " EG2310 "
+            + PREFIX_TAG + " fun, hard" + "\n"
+            + "Tag Video: " + COMMAND_WORD + " Video_1 " + PREFIX_LECTURE + " Lecture_1 " + PREFIX_MODULE + " EG2310 "
+            + PREFIX_TAG + " fun, hard";
 
     public static final String MESSAGE_SUCCESS = "%1$s tagged";
 
@@ -161,7 +179,7 @@ public class TagCommand extends Command {
         ReadOnlyModule targetModule = model.getModule(this.moduleCode);
         ReadOnlyLecture targetLecture = targetModule.getLecture(this.lectureName);
 
-        if (!model.hasVideo(targetLecture, this.videoName)) {
+        if (!model.hasVideo(this.moduleCode, this.lectureName, this.videoName)) {
             throw new CommandException(String.format(Messages.MESSAGE_VIDEO_DOES_NOT_EXIST, this.videoName,
                     this.lectureName,
                     this.moduleCode));

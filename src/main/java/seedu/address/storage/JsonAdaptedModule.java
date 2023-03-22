@@ -86,11 +86,19 @@ public class JsonAdaptedModule {
     public Module toModelType() throws IllegalValueException {
         final Set<Tag> moduleTags = new HashSet<>();
         for (JsonAdaptedTag adaptedTag : tagged) {
+            if (adaptedTag == null) {
+                continue;
+            }
+
             moduleTags.add(adaptedTag.toModelType());
         }
 
         final UniqueLectureList moduleLectures = new UniqueLectureList();
         for (JsonAdaptedLecture adaptedLecture : lectures) {
+            if (adaptedLecture == null) {
+                continue;
+            }
+
             Lecture lecture = adaptedLecture.toModelType();
 
             if (moduleLectures.contains(lecture)) {
@@ -110,6 +118,9 @@ public class JsonAdaptedModule {
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
+        }
+        if (!ModuleName.isValidName(name)) {
+            throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         final ModuleName moduleName = new ModuleName(name);
 

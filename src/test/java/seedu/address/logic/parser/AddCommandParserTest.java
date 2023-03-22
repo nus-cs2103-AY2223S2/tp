@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LECTURE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_VIDEO_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L2;
@@ -29,6 +30,7 @@ import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
 import seedu.address.testutil.LectureBuilder;
@@ -75,6 +77,11 @@ public class AddCommandParserTest {
     @Test
     public void parse_addModuleFieldInvalidModuleCodeValue_failure() {
         assertParseFailure(parser, INVALID_MODULE_CODE, ModuleCode.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_addModuleFieldInvalidModuleNameValue_failure() {
+        assertParseFailure(parser, VALID_MODULE_CODE_2103 + INVALID_MODULE_NAME_DESC, ModuleName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

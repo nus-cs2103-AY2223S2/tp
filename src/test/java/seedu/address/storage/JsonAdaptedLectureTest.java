@@ -10,26 +10,26 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.testutil.TypicalLectures;
 
-// TODO: test when duplictes are detected in videos
-// TODO: test when null is detected in videos
 public class JsonAdaptedLectureTest {
 
     private static final String INVALID_NAME = "Lecture_01**";
     private static final String INVALID_TAG = "H@rd";
 
-    private static final String VALID_NAME = TypicalLectures.CS2040S_WEEK_1.getName().name;
-    private static final List<JsonAdaptedVideo> VALID_VIDEOS = TypicalLectures.CS2040S_WEEK_1.getVideoList().stream()
+    private static final String VALID_NAME = TypicalLectures.getCs2040sWeek1().getName().name;
+    private static final List<JsonAdaptedVideo> VALID_VIDEOS = TypicalLectures.getCs2040sWeek1().getVideoList().stream()
             .map(JsonAdaptedVideo::new).collect(Collectors.toList());
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalLectures.CS2040S_WEEK_1.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalLectures.getCs2040sWeek1().getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
 
     @Test
     public void toModelType_validLectureDetails_returnsLecture() throws Exception {
-        JsonAdaptedLecture lecture = new JsonAdaptedLecture(TypicalLectures.CS2040S_WEEK_1);
-        assertEquals(TypicalLectures.CS2040S_WEEK_1, lecture.toModelType());
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
+        JsonAdaptedLecture adaptedLecture = new JsonAdaptedLecture(lecture);
+        assertEquals(lecture, adaptedLecture.toModelType());
     }
 
     @Test
@@ -53,6 +53,43 @@ public class JsonAdaptedLectureTest {
         JsonAdaptedLecture lecture =
                 new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, invalidTags);
         assertThrows(IllegalValueException.class, lecture::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateVideos_throwsIllegalValueException() {
+        List<JsonAdaptedVideo> dupicatedVideos = new ArrayList<>(VALID_VIDEOS);
+        dupicatedVideos.addAll(VALID_VIDEOS);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, dupicatedVideos, VALID_TAGS);
+        String expectedMessage = JsonAdaptedLecture.MESSAGE_DUPLICATE_VIDEO;
+        assertThrows(IllegalValueException.class, expectedMessage, lecture::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullInVideos_nullValueIgnored() throws IllegalValueException {
+        List<JsonAdaptedVideo> videosContainingNull = new ArrayList<>(VALID_VIDEOS);
+        videosContainingNull.add(null);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, videosContainingNull, VALID_TAGS);
+        assertEquals(TypicalLectures.getCs2040sWeek1(), lecture.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_duplicatesIgnored() throws Exception {
+        List<JsonAdaptedTag> duplicatedTags = new ArrayList<>(VALID_TAGS);
+        duplicatedTags.addAll(VALID_TAGS);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, duplicatedTags);
+        assertEquals(TypicalLectures.getCs2040sWeek1(), lecture.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_nullValueIgnored() throws Exception {
+        List<JsonAdaptedTag> tagsContainingNull = new ArrayList<>(VALID_TAGS);
+        tagsContainingNull.add(null);
+
+        JsonAdaptedLecture lecture = new JsonAdaptedLecture(VALID_NAME, VALID_VIDEOS, tagsContainingNull);
+        assertEquals(TypicalLectures.getCs2040sWeek1(), lecture.toModelType());
     }
 
 }

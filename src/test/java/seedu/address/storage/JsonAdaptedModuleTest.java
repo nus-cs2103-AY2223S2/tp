@@ -13,24 +13,22 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.testutil.TypicalModules;
 
-// TODO: test when duplictes are detected in lectures
-// TODO: test when null is detected in lectures
 public class JsonAdaptedModuleTest {
 
     private static final String INVALID_CODE = "Lorem";
     private static final String INVALID_TAG = "H@rd";
 
-    private static final String VALID_CODE = TypicalModules.CS2040S.getCode().code;
-    private static final String VALID_NAME = TypicalModules.CS2040S.getName().name;
-    private static final List<JsonAdaptedLecture> VALID_LECTURES = TypicalModules.CS2040S.getLectureList().stream()
+    private static final String VALID_CODE = TypicalModules.getCs2040s().getCode().code;
+    private static final String VALID_NAME = TypicalModules.getCs2040s().getName().name;
+    private static final List<JsonAdaptedLecture> VALID_LECTURES = TypicalModules.getCs2040s().getLectureList().stream()
             .map(JsonAdaptedLecture::new).collect(Collectors.toList());
-    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalModules.CS2040S.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = TypicalModules.getCs2040s().getTags().stream()
             .map(JsonAdaptedTag::new).collect(Collectors.toList());
 
     @Test
     public void toModelType_validModuleDetails_returnsModule() throws Exception {
-        JsonAdaptedModule module = new JsonAdaptedModule(TypicalModules.CS2040S);
-        assertEquals(TypicalModules.CS2040S, module.toModelType());
+        JsonAdaptedModule module = new JsonAdaptedModule(TypicalModules.getCs2040s());
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
     }
 
     @Test
@@ -61,6 +59,43 @@ public class JsonAdaptedModuleTest {
         JsonAdaptedModule module =
                 new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, invalidTags);
         assertThrows(IllegalValueException.class, module::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateLectures_throwsIllegalValueException() {
+        List<JsonAdaptedLecture> duplicatedLectures = new ArrayList<>(VALID_LECTURES);
+        duplicatedLectures.addAll(VALID_LECTURES);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, duplicatedLectures, VALID_TAGS);
+        String expectedMessage = JsonAdaptedModule.MESSAGE_DUPLICATE_LECTURE;
+        assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullInLectures_nullValueIgnored() throws Exception {
+        List<JsonAdaptedLecture> lecturesContainingNull = new ArrayList<>(VALID_LECTURES);
+        lecturesContainingNull.add(null);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, lecturesContainingNull, VALID_TAGS);
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_duplicatesIgnored() throws Exception {
+        List<JsonAdaptedTag> duplicatedTags = new ArrayList<>(VALID_TAGS);
+        duplicatedTags.addAll(VALID_TAGS);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, duplicatedTags);
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
+    }
+
+    @Test
+    public void toModelType_duplicateTags_nullValueIgnored() throws Exception {
+        List<JsonAdaptedTag> tagsContainingNull = new ArrayList<>(VALID_TAGS);
+        tagsContainingNull.add(null);
+
+        JsonAdaptedModule module = new JsonAdaptedModule(VALID_CODE, VALID_NAME, VALID_LECTURES, tagsContainingNull);
+        assertEquals(TypicalModules.getCs2040s(), module.toModelType());
     }
 
 }

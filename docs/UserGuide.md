@@ -44,9 +44,18 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - `delete-lecture /module {module_code} /lecture {lecture_id}`: Deletes the specified lecture from the specified module
   - `delete-video /module {module_code} /lecture {lecture_id} /video {video_id}`: Deletes the specified video from the specified lecture from the specified module
 - Tag
-  - `tag /module {module_code} /lecture {lecture_id} /description {tag_description}`: Tags a module from Le Tracker
-  - `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}`: Untags a module from Le Tracker
-
+  - `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a module from Le Tracker
+  - `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a lecture from 
+    a module 
+  - `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: 
+    Tags a video from a lecture
+  - `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes specified tags from a module 
+    from Le Tracker
+  - `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes the 
+    specified tags from a lecture 
+  - `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
+       Removes the specified tags of a video
+  
 Refer to the [Features](#features) below for details of each command.
 
 ---
@@ -252,33 +261,92 @@ Examples:
 
 - `delete-video /module CS2040 /lecture 1 /video 3` deletes the 3rd video in the results of the `list /module CS2040 /lecture 1` command
 
+### Tag a module
+
+Tag a specified module from the current list of modules in Le Tracker with descriptions
+
+Format: `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
+
+- `module_code` must belong to an existing module
+- `tag_1, tag_2, ...` must be of correct format
+
+Example:
+- `tag EG2310 /tags fun, hard` tags the module `EG2310` with the tags `fun` and `hard`
+
 ### Tag a lecture
 
-Tags a specified lecture from a specified module with a description
+Tag a specified lecture with descriptions
 
-Format: `tag /module {module_code} /lecture {lecture_id} /description {tag_description}`
+Format: `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-- Tag a lecture of the specified `lecture_id` from the specified `module_code`
-- The `lecture_id` refers to the index number shown when listing the lectures specified in it’s `module_code`
-- The `lecture_id` **must be a positive integer** 1, 2, 3, ...
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `lecture_name` must belong to an existing lecture in the specified module
+- `tag_1, tag_2, ...` must be of correct format
 
 Examples:
+- `tag Lecture_1 /mod CS2040 /tags Yay` tags the lecture `Lecture_1` in the module `CS2040` with the tag 
+  `Yay`
 
-- `tag /module CS2040 /lecture 1 /description Boohoo` tags the 1st lecture in the results of the `list /module CS2040` command with the description `Boohoo`
+### Tag a video
 
-### Delete a tag
+Tag a specified video with descriptions
 
-Deletes a specified tag of a specified lecture
+Format: `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
 
-Format: `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}`
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `lecture_name` must belong to an existing lecture in the specified module
+- `lecture_name` if not specified, defaults to the lecture name of the module in the current context (if any)
+- `video_name` must belong to an existing video in the specified lecture
+- `tag_1, tag_2, ...` must be of correct format
 
-- Untag a lecture of the specified `lecture_id` from the specified `module_code`
-- The `lecture_id` refers to the index number shown when listing the lectures specified in it’s `module_code`
-- The `lecture_id` **must be a positive integer** 1, 2, 3, …
-- The `tag_id` refers to the index number shown when listing the tags available of a lecture
-- The `tag_id` **must be a positive integer** 1, 2, 3, …
+Examples:
+- `tag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` tags the video `Video_1` in the lecture `Lecture_1` of 
+  the module `CS2040` with the tag `Yay`
 
-Example: `untag /module CS2040 /lecture 1 /tag 1` deletes the 1st tag of the 1st lecture in the results of the `list /module CS2040` command
+### Untag a module
+
+Remove specified tags from a specified module in the current list of modules in Le Tracker
+
+Format: `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
+
+- `module_code` must belong to an existing module
+- `tag_1, tag_2, ...` must belong to existing tags of the specified module
+
+Example:
+- `untag EG2310 /tags fun, hard` removes the tags `fun` and `hard` from the module `EG2310`
+
+### Untag a lecture
+
+Untag a specified lecture from a specified module with a description
+
+Format: `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
+
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `lecture_name` must belong to an existing lecture in the specified module
+- `tag_1, tag_2, ...` must belong to existing tags of the specified lecture
+
+Examples:
+- `untag Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` from the lecture `Lecture_1` in the module `CS2040`
+
+### Untag a video
+
+Remove specified tags from video
+
+Format: `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`
+
+- `module_code` must belong to an existing module
+- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- `lecture_name` must belong to an existing lecture in the specified module
+- `lecture_name` if not specified, defaults to the lecture name of the module in the current context (if any)
+- `video_name` must belong to an existing video in the specified lecture
+- `tag_1, tag_2, ...` must belong to existing tags of the specified video
+
+Examples:
+- `untag Video_1 /lec Lecture_1 /mod CS2040 /tags Yay` removes the tag `Yay` in the video `Video_1` of the 
+  lecture `Lecture_1` that belongs to the module `CS2040`
 
 ### Progress
 

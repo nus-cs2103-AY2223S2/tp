@@ -32,6 +32,14 @@ public class TrackerTest {
     }
 
     @Test
+    public void clear_nonEmptyModuleList_emptyModuleList() {
+        Tracker tracker = TypicalModules.getTypicalTracker();
+        tracker.clear();
+
+        assertTrue(tracker.getModuleList().size() == 0);
+    }
+
+    @Test
     public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> tracker.resetData(null));
     }
@@ -45,28 +53,36 @@ public class TrackerTest {
 
     @Test
     public void resetData_withDuplicateModules_throwsDuplicaateModuleException() {
-        Module editedCs2040s = new ModuleBuilder(TypicalModules.CS2040S).withTags("Easy").build();
-        List<Module> modules = Arrays.asList(TypicalModules.CS2040S, editedCs2040s);
+        Module originalCs2040s = TypicalModules.getCs2040s();
+        Module editedCs2040s = new ModuleBuilder(originalCs2040s).withTags("Easy").build();
+        List<Module> modules = Arrays.asList(originalCs2040s, editedCs2040s);
         ReadOnlyTracker newData = new TrackerStub(modules);
 
         assertThrows(DuplicateModuleException.class, () -> tracker.resetData(newData));
     }
 
     @Test
-    public void hasModule_nullModule_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> tracker.hasModule(null));
+    public void hasModuleReadOnlyModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> tracker.hasModule((ReadOnlyModule) null));
+    }
+
+    @Test
+    public void hasModuleModuleCode_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> tracker.hasModule((ModuleCode) null));
     }
 
     @Test
     public void hasModule_moduleNotInTracker_returnsFalse() {
-        assertFalse(tracker.hasModule(TypicalModules.CS2040S));
+        assertFalse(tracker.hasModule(TypicalModules.getCs2040s()));
     }
 
     @Test
     public void hasModule_moduleWithSameCodeInTracker_returnsTrue() {
-        tracker.addModule(TypicalModules.CS2040S);
-        Module editedCs2040s = new ModuleBuilder(TypicalModules.CS2040S)
-                .withName("Algorithms & Data Structures").build();
+        Module originalCs2040s = TypicalModules.getCs2040s();
+        tracker.addModule(originalCs2040s);
+
+        Module editedCs2040s = new ModuleBuilder(originalCs2040s)
+                .withName("Algorithms and Data Structures").build();
 
         assertTrue(tracker.hasModule(editedCs2040s));
     }
@@ -78,15 +94,17 @@ public class TrackerTest {
 
     @Test
     public void removeModule_moduleNotInTracker_throwsModuleNotFoundException() {
-        assertThrows(ModuleNotFoundException.class, () -> tracker.removeModule(TypicalModules.CS2040S));
+        assertThrows(ModuleNotFoundException.class, () -> tracker.removeModule(TypicalModules.getCs2040s()));
     }
 
     @Test
     public void removeModule_moduleInTracker_trackerDoesNotHaveModule() {
-        tracker.addModule(TypicalModules.CS2040S);
-        tracker.removeModule(TypicalModules.CS2040S);
+        Module module = TypicalModules.getCs2040s();
 
-        assertFalse(tracker.hasModule(TypicalModules.CS2040S));
+        tracker.addModule(module);
+        tracker.removeModule(module);
+
+        assertFalse(tracker.hasModule(module));
     }
 
     @Test
@@ -96,75 +114,91 @@ public class TrackerTest {
 
     @Test
     public void addModule_moduleNotInTracker_trackerHasModule() {
-        tracker.addModule(TypicalModules.CS2040S);
+        Module module = TypicalModules.getCs2040s();
 
-        assertTrue(tracker.hasModule(TypicalModules.CS2040S));
+        tracker.addModule(module);
+
+        assertTrue(tracker.hasModule(module));
     }
 
     @Test
     public void addModule_moduleInTracker_throwsDuplicateModuleException() {
-        tracker.addModule(TypicalModules.CS2040S);
+        Module module = TypicalModules.getCs2040s();
 
-        assertThrows(DuplicateModuleException.class, () -> tracker.addModule(TypicalModules.CS2040S));
+        tracker.addModule(module);
+
+        assertThrows(DuplicateModuleException.class, () -> tracker.addModule(module));
     }
 
     @Test
     public void setModule_nullTarget_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> tracker.setModule(null, TypicalModules.CS2040S));
+        assertThrows(NullPointerException.class, () -> tracker.setModule(null, TypicalModules.getCs2040s()));
     }
 
     @Test
     public void setModule_nullEditedModule_throwsNullPointerException() {
-        tracker.addModule(TypicalModules.CS2040S);
+        Module module = TypicalModules.getCs2040s();
 
-        assertThrows(NullPointerException.class, () -> tracker.setModule(TypicalModules.CS2040S, null));
+        tracker.addModule(module);
+
+        assertThrows(NullPointerException.class, () -> tracker.setModule(module, null));
     }
 
     @Test
     public void setModule_targetNotInTracker_throwsModuleNotFoundException() {
-        assertThrows(ModuleNotFoundException.class, () ->
-                tracker.setModule(TypicalModules.CS2040S, TypicalModules.CS2040S));
+        Module module = TypicalModules.getCs2040s();
+
+        assertThrows(ModuleNotFoundException.class, () -> tracker.setModule(module, module));
     }
 
     @Test
     public void setModule_editedModuleIsDuplicate_throwsDuplicateModuleException() {
-        tracker.addModule(TypicalModules.CS2040S);
-        tracker.addModule(TypicalModules.ST2334);
+        Module originalModule = TypicalModules.getCs2040s();
+        Module editedModule = TypicalModules.getSt2334();
 
-        assertThrows(DuplicateModuleException.class, () ->
-                tracker.setModule(TypicalModules.CS2040S, TypicalModules.ST2334));
+        tracker.addModule(originalModule);
+        tracker.addModule(editedModule);
+
+        assertThrows(DuplicateModuleException.class, () -> tracker.setModule(originalModule, editedModule));
     }
 
     @Test
     public void setModule_editedModuleHasNoChange_moduleNoChange() {
-        tracker.addModule(TypicalModules.CS2040S);
+        Module module = TypicalModules.getCs2040s();
 
-        tracker.setModule(TypicalModules.CS2040S, TypicalModules.CS2040S);
+        tracker.addModule(module);
 
-        assertTrue(tracker.hasModule(TypicalModules.CS2040S));
+        tracker.setModule(module, module);
+
+        assertTrue(tracker.hasModule(module));
     }
 
     @Test
     public void setModule_editedModuleHasSameCode_moduleReplaced() {
-        tracker.addModule(TypicalModules.CS2040S);
+        Module originalCs2040s = TypicalModules.getCs2040s();
 
-        Module editedCs2040s = new ModuleBuilder(TypicalModules.CS2040S)
-                .withName("Algorithms & Data Structures").build();
+        tracker.addModule(originalCs2040s);
+
+        Module editedCs2040s = new ModuleBuilder(originalCs2040s)
+                .withName("Algorithms and Data Structures").build();
 
 
-        tracker.setModule(TypicalModules.CS2040S, editedCs2040s);
+        tracker.setModule(originalCs2040s, editedCs2040s);
 
-        assertTrue(tracker.getModule(TypicalModules.CS2040S.getCode()).equals(editedCs2040s));
+        assertTrue(tracker.getModule(originalCs2040s.getCode()).equals(editedCs2040s));
     }
 
     @Test
     public void setModule_validTargetAndEditedModule_moduleReplaced() {
-        tracker.addModule(TypicalModules.CS2040S);
+        Module originalModule = TypicalModules.getCs2040s();
+        Module editedModule = TypicalModules.getSt2334();
 
-        tracker.setModule(TypicalModules.CS2040S, TypicalModules.ST2334);
+        tracker.addModule(originalModule);
 
-        assertFalse(tracker.hasModule(TypicalModules.CS2040S));
-        assertTrue(tracker.hasModule(TypicalModules.ST2334));
+        tracker.setModule(originalModule, editedModule);
+
+        assertFalse(tracker.hasModule(originalModule));
+        assertTrue(tracker.hasModule(editedModule));
     }
 
     @Test
@@ -179,14 +213,16 @@ public class TrackerTest {
 
     @Test
     public void getModule_noModuleWithCode_returnsNull() {
-        assertEquals(tracker.getModule(TypicalModules.CS2040S.getCode()), null);
+        assertEquals(tracker.getModule(TypicalModules.getCs2040s().getCode()), null);
     }
 
     @Test
     public void getModule_hasModuleWithCode_returnsModule() {
-        tracker.addModule(TypicalModules.CS2040S);
+        Module module = TypicalModules.getCs2040s();
 
-        assertEquals(tracker.getModule(TypicalModules.CS2040S.getCode()), TypicalModules.CS2040S);
+        tracker.addModule(module);
+
+        assertEquals(tracker.getModule(module.getCode()), module);
     }
 
     @Test
@@ -228,6 +264,16 @@ public class TrackerTest {
 
         @Override
         public ReadOnlyModule getModule(ModuleCode code) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(ReadOnlyModule module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasModule(ModuleCode moduleCode) {
             throw new AssertionError("This method should not be called.");
         }
     }

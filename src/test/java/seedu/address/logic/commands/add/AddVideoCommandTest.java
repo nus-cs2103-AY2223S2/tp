@@ -15,12 +15,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.Lecture;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoName;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
@@ -31,27 +32,28 @@ public class AddVideoCommandTest {
     @Test
     public void constructor_nullModuleCode_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddVideoCommand(null, TypicalLectures.CS2040S_WEEK_1.getName(),
+                new AddVideoCommand(null, TypicalLectures.getCs2040sWeek1().getName(),
                         TypicalVideos.CONTENT_VIDEO));
     }
 
     @Test
     public void constructor_nullLectureName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddVideoCommand(TypicalModules.CS2040S.getCode(), null,
+                new AddVideoCommand(TypicalModules.getCs2040s().getCode(), null,
                         TypicalVideos.CONTENT_VIDEO));
     }
 
     @Test
     public void constructor_nullVideo_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddVideoCommand(TypicalModules.CS2040S.getCode(), TypicalLectures.CS2040S_WEEK_1.getName(), null));
+                new AddVideoCommand(TypicalModules.getCs2040s().getCode(),
+                        TypicalLectures.getCs2040sWeek1().getName(), null));
     }
 
     @Test
     public void execute_videoAcceptedByModel_addSuccessful() throws CommandException {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        Lecture lecture = TypicalLectures.CS2040S_WEEK_1;
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
         LectureName lectureName = lecture.getName();
         Video video = TypicalVideos.REVISION_VIDEO;
 
@@ -67,16 +69,16 @@ public class AddVideoCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        AddVideoCommand command = new AddVideoCommand(TypicalModules.CS2040S.getCode(),
-                TypicalLectures.CS2040S_WEEK_1.getName(), TypicalVideos.CONTENT_VIDEO);
+        AddVideoCommand command = new AddVideoCommand(TypicalModules.getCs2040s().getCode(),
+                TypicalLectures.getCs2040sWeek1().getName(), TypicalVideos.CONTENT_VIDEO);
 
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
     public void execute_moduleDoesNotExist_throwsCommandException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         Video video = TypicalVideos.CONTENT_VIDEO;
 
         ModelStub modelStub = new ModelStubNoModule();
@@ -88,8 +90,8 @@ public class AddVideoCommandTest {
 
     @Test
     public void execute_lectureDoesNotExist_throwsCommandException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         Video video = TypicalVideos.CONTENT_VIDEO;
 
         ModelStub modelStub = new ModelStubNoLecture();
@@ -102,8 +104,8 @@ public class AddVideoCommandTest {
 
     @Test
     public void execute_duplicateVideo_throwsCommandException() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        Lecture lecture = TypicalLectures.CS2040S_WEEK_1;
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        Lecture lecture = TypicalLectures.getCs2040sWeek1();
         LectureName lectureName = lecture.getName();
         Video video = TypicalVideos.CONTENT_VIDEO;
 
@@ -117,8 +119,8 @@ public class AddVideoCommandTest {
 
     @Test
     public void equals() {
-        ModuleCode moduleCode = TypicalModules.CS2040S.getCode();
-        LectureName lectureName = TypicalLectures.CS2040S_WEEK_1.getName();
+        ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         AddVideoCommand addContentVideoCommand =
                 new AddVideoCommand(moduleCode, lectureName, TypicalVideos.CONTENT_VIDEO);
         AddVideoCommand addAnalysisVideoCommand =
@@ -150,8 +152,8 @@ public class AddVideoCommandTest {
         private final ArrayList<Video> videosAdded = new ArrayList<>();
 
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -165,7 +167,7 @@ public class AddVideoCommandTest {
         }
 
         @Override
-        public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
+        public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
             return false;
         }
 
@@ -193,8 +195,8 @@ public class AddVideoCommandTest {
      */
     private class ModelStubNoLecture extends ModelStub {
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -223,8 +225,8 @@ public class AddVideoCommandTest {
         }
 
         @Override
-        public ReadOnlyTracker getTracker() {
-            return TypicalModules.getTypicalTracker();
+        public ReadOnlyModule getModule(ModuleCode code) {
+            return TypicalModules.getTypicalTracker().getModule(code);
         }
 
         @Override
@@ -238,8 +240,8 @@ public class AddVideoCommandTest {
         }
 
         @Override
-        public boolean hasVideo(ReadOnlyLecture lecture, Video video) {
-            return this.lecture.equals(lecture) && this.video.equals(video);
+        public boolean hasVideo(ModuleCode moduleCode, LectureName lectureName, VideoName videoName) {
+            return this.lecture.getName().equals(lectureName) && this.video.getName().equals(videoName);
         }
     }
 
