@@ -93,7 +93,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_PHONEPARENT + "98989898 "
             + PREFIX_RELATIONSHIP + "FATHER";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
 
     private IndexNumber indexNumber;
     private IndexNumber newIndexNumber;
@@ -224,7 +224,7 @@ public class StudentEditCommand extends StudentCommand {
 
                 model.setStudent(student, editStudent(model, student, newStudent));
                 model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-                return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, newStudent));
+                return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, newStudent));
             }
         }
 

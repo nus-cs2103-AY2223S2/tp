@@ -247,11 +247,11 @@ Examples:
 * `student 1A edit in/03 cca/badminton ageS/23`
 
 **Expected Outcome:**
-* Edited Person: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
+* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
 * Student Age: Insert student age here!; Image Path: Insert student image here!; 
 * Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
 * 
-* Edited Person: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
+* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M; 
 * Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; 
 * Student Phone: Insert student phone number here!; CCA: badminton
 
@@ -390,7 +390,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "faq" />
+<a name = "faq" /></a>
 
 ## FAQ
 
@@ -398,7 +398,8 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "summary" />
+<a name = "summary" /> </a>
+
 
 ## Command Summary Student `student <CLASS>`
 
