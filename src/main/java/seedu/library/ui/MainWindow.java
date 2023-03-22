@@ -147,7 +147,7 @@ public class MainWindow extends UiPart<Stage> {
 
         Boolean flag = bookmarkListPanel.isChangedSelect();
         zoomView = new ZoomView(bookmarkListPanel.getFirstItem());
-        if(!flag){
+        if (!flag) {
             zoomView.hideFields();
         }
         zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
@@ -215,23 +215,19 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleUpdate(){
+    /**
+     * updates view on right panel
+     */
+    private void handleUpdate() {
         Bookmark currentSelect = bookmarkListPanel.getSelectedItem();
-//
         if (currentSelect == null) {
-
             zoomView = new ZoomView(bookmarkListPanel.getFirstItem());
             zoomView.hideFields();
             zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
-
-
-
         } else {
             zoomView = new ZoomView(currentSelect);
             zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
         }
-//
-
     }
 
     public BookmarkListPanel getBookmarkListPanel() {
@@ -256,7 +252,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-            if (commandResult.isUpdate()){
+            if (commandResult.isUpdate()) {
                 handleUpdate();
             }
 
