@@ -44,6 +44,13 @@ public class ModelManager implements Model {
         this(new Roster(), new UserPrefs());
     }
 
+    /**
+     * Constructs a ModelManager with the given roster, user preferences, and previous state modifying command.
+     *
+     * @param roster The roster to use in the ModelManager.
+     * @param userPrefs The user preferences to use in the ModelManager.
+     * @param prevStateModifyingCommand The previous state modifying command to use in the ModelManager.
+     */
     public ModelManager(Roster roster, UserPrefs userPrefs, String prevStateModifyingCommand) {
         this.roster = roster;
         this.userPrefs = userPrefs;

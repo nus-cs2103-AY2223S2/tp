@@ -22,13 +22,15 @@ import tfifteenfour.clipboard.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
-    private static final int stateHistoryBufferSize = 5;
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    private static final int stateHistoryBufferSize = 5;
 
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     private Model model;
     private final CircularBuffer<Model> stateHistoryBuffer = new CircularBuffer<>(stateHistoryBufferSize);
     private final Storage storage;
+
+
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
