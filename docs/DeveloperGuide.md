@@ -212,19 +212,6 @@ Based on utility, the 3 fixed fields in an internship application are taken as t
 For the ease of implementation and avoid ambiguity, constructor `ClearByCommand::new` is overloaded, taking different fields. The usage of enum `ParamType` to specify the operating attribute type generalized the `ClearByCommand#execute`.
 The other implementation aspects of `clear_by` feature follow the convention of `InternEase`.
 
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
 _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
@@ -469,245 +456,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a todo task.
-2.  InternEase adds the todo task, displays the todo list and a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The command format is invalid.
-    * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-
-      Use case ends.
+Similar to `UC01 Add an internship application entry` except todo task is added instead of an internship application.
 
 **Use case: UC13 List todo**
 
 **MSS**
 
-1.  User requests to view the list of todo tasks.
-2.  InternEase shows all the todo tasks as a list with their indexes specified.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The list is empty.
-    * 1a1. InternEase shows an alert message that there is no todo task in the list.
-
-      Use case ends.
+Similar to `UC10 List`except todo tasks are listed instead of internship applications.
 
 **Use case: UC14 Edit the note content of a todo task**
 
 **MSS**
 
-1.  User requests to view the list of todo tasks.
-2.  InternEase shows the todo task list with their indexes specified.
-3.  User requests to edit the note content of a specific todo task in the list by specifying its respective index.
-4.  InternEase updates the note content of the todo task and displays a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-    * 2a1. InternEase shows an alert message that there is no todo task in the list.
-
-      Use case ends.
-
-* 3a. The provided index is invalid.
-
-    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
-    * 3a2. User enters a new todo task index.
-
-      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
-
-* 3b. The command format is invalid.
-    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-    * 3b2. User enters a new command.
-
-      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+Similar to `UC08 Edit the status of an internship application`except the note content of a todo task is edited.
 
 **Use case: UC15 Edit the deadline of a todo task**
 
 **MSS**
-
-1.  User requests to view the list of todo tasks.
-2.  InternEase shows the todo task list with their indexes specified.
-3.  User requests to edit the deadlines of a specific todo task in the list by specifying its respective index.
-4.  InternEase updates the deadline of the todo task and displays a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-    * 2a1. InternEase shows an alert message that there is no todo task in the list.
-
-      Use case ends.
-
-* 3a. The provided index is invalid.
-
-    * 3a1. InternEase shows an error message and gives a specific suggestion on the index's range.
-    * 3a2. User enters a new todo task index.
-
-      Steps 3a1 to 3a2 are repeated until a valid index is provided. Use case resumes at step 4.
-
-* 3b. The command format is invalid.
-    * 3b1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-    * 3b2. User enters a new command.
-
-      Steps 3b1 to 3b2 are repeated until a valid command is entered. Use case resumes at step 4.
+Similar to `UC14 Edit the note content of a todo task` except the deadline is edited.
 
 **Use case: UC16 Delete a todo task entry**
 
 **MSS**
 
-1. User requests to view the list of todo tasks.
-2. InternEase shows the todo list with their indexes specified.
-3. User requests to delete a specific todo task in the list by specifying its respective index.
-4. InterEase deletes the todo task from the list and displays a success message.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-    * 2a1. InternEase shows an alert message that there is no todo task in the list.
-
-      Use case ends.
-
-* 3a. The given index is invalid.
-    * 3a1. InternEase shows an error message and gives specific suggestion on the index's range.
-
-    * 3a2. User enters new todo task index.
-
-      Steps 3a1 to 3a2 are repeated until a valid index is provided.
-      Use case resumes at step 4.
-
-* 3b. The command format is incorrect.
-
-    * 3b1. InternEase shows an error message and gives specific suggestion on the command format.
-
-    * 3b2. User enters new command.
-
-      Steps 3b1 to 3b2 are repeated until a valid command is provided.
-      Use case resumes at step 4.
+Similar to `UC05 Delete an internship application entry` except the specified todo task is deleted.
 
 **Use case: UC17 Clear all todo task entries**
 
 **MSS**
 
-1. User requests to clear all the data in the todo list.
-2. InternEase clears all the todo task entries, shows an empty list of todo task data and displays a success message.
-
-   Use case ends.
+Similar to `UC07 Clear all internship application entries` except all the todo task entries are cleared instead of all the internship application entries.
 
 **Use case: UC18 Add a note**
 
 **MSS**
 
-1.  User requests to add a note.
-2.  InternEase adds the note, displays the note list and a success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The command format is invalid.
-    * 1a1. InternEase shows an error message and gives a specific suggestion on the correct command format.
-
-      Use case ends.
+Similar to `UC01 Add an internship application entry` except a note entry is added instead of an internship application.
 
 **Use case: UC19 List note**
 
 **MSS**
 
-1.  User requests to view the list of notes.
-2.  InternEase shows all the notes as a list with their indexes specified.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The list is empty.
-    * 1a1. InternEase shows an alert message that there is no note in the list.
-
-      Use case ends.
+Similar to `UC10 List`except note entries are listed instead of internship applications.
 
 **Use case: UC20 Delete a note entry**
 
 **MSS**
 
-1. User requests to view the list of notes.
-2. InternEase shows the notes listed with their indexes specified.
-3. User requests to delete a specific note in the list by specifying its respective index.
-4. InterEase deletes the note from the list and displays a success message.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-    * 2a1. InternEase shows an alert message that there is no note in the list.
-
-      Use case ends.
-
-* 3a. The given index is invalid.
-    * 3a1. InternEase shows an error message and gives specific suggestion on the index's range.
-
-    * 3a2. User enters new note index.
-
-      Steps 3a1 to 3a2 are repeated until a valid index is provided.
-      Use case resumes at step 4.
-
-* 3b. The command format is incorrect.
-
-    * 3b1. InternEase shows an error message and gives specific suggestion on the command format.
-
-    * 3b2. User enters new command.
-
-      Steps 3b1 to 3b2 are repeated until a valid command is provided.
-      Use case resumes at step 4.
+Similar to `UC05 Delete an internship application entry` except the specified note entry is deleted.
 
 **Use case: UC21 Clear all note entries**
 
 **MSS**
 
-1. User requests to clear all the data in the note list.
-2. InternEase clears all the notes, shows an empty list of note data and displays a success message.
-
-   Use case ends.
+Similar to `UC07 Clear all internship application entries` except all the notes entries are cleared instead of all the internship application entries.
 
 **Use case: UC22 List task**
 
 **MSS**
 
-1.  User requests to view the list of todo tasks and notes.
-2.  InternEase shows a list of todo tasks and a list of notes with their indexes specified.
-
-    Use case ends.
-
-**Extensions**
-* 1a. The list is empty.
-    * 1a1. InternEase shows an alert message that there is no note or todo task in the list.
-
-      Use case ends.
+Similar to `UC10 List`except todo task entries and note entries are listed instead of internship applications.
 
 **Use case: UC23 Find a task by its field**
 
 **MSS**
 
-1.  User enters keyword for the note or todo task.
-2.  InternEase shows a list of notes and a list of todo tasks whose fulfill the matching keyword.
-    Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-    * 1a1. InternEase shows an alert message that there is no note or todo task in the list.
-
-      Use case ends.
+Similar to `UC06 Find an application by its field`except todo task entries and note entries which match the specified keyword are filtered out and listed.
 
 ### Non-Functional Requirements
 
