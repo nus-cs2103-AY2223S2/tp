@@ -68,7 +68,7 @@ public class PersonUtil {
         if (descriptor.getSubjects().isPresent()) {
             Set<Subject> subjects = descriptor.getSubjects().get();
             if (subjects.isEmpty()) {
-                sb.append(PREFIX_SUBJECT);
+                sb.append(PREFIX_SUBJECT + " ");
             } else {
                 subjects.forEach(s -> sb.append(PREFIX_SUBJECT).append(s.subjectName).append(" "));
             }
@@ -77,7 +77,7 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG + " ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
