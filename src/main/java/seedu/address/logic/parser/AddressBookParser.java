@@ -149,9 +149,6 @@ public class AddressBookParser {
         case RevertAllCommand.COMMAND_WORD:
             return new RevertAllCommand();
 
-        case AddInterviewDateCommand.COMMAND_WORD:
-            return new AddInterviewDateCommandParser().parse(arguments);
-
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
 
