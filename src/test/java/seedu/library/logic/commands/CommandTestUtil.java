@@ -120,7 +120,8 @@ public class CommandTestUtil {
 
         Bookmark bookmark = model.getFilteredBookmarkList().get(targetIndex.getZeroBased());
         final String[] splitName = bookmark.getTitle().value.split("\\s+");
-        model.updateFilteredBookmarkList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredBookmarkList(new TitleContainsKeywordsPredicate(
+                Arrays.asList(splitName[0]), null, null, null));
 
         assertEquals(1, model.getFilteredBookmarkList().size());
     }

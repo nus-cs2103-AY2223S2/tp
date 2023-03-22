@@ -9,23 +9,66 @@ import seedu.library.commons.util.StringUtil;
  * Tests that a {@code Bookmark}'s {@code Title} matches any of the keywords given.
  */
 public class TitleContainsKeywordsPredicate implements Predicate<Bookmark> {
-    private final List<String> keywords;
+    private final List<String> titleKeywords;
+    private final List<String> genreKeywords;
+    private final List<String> tagKeywords;
+    private final List<String> authorKeywords;
 
-    public TitleContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public TitleContainsKeywordsPredicate(List<String> titleKeywords, List<String> genreKeywords,
+                                          List<String> tagKeywords, List<String> authorKeywords) {
+        this.titleKeywords = titleKeywords;
+        this.genreKeywords = genreKeywords;
+        this.tagKeywords = tagKeywords;
+        this.authorKeywords = authorKeywords;
     }
 
     @Override
     public boolean test(Bookmark bookmark) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(bookmark.getTitle().value, keyword));
+        return testTitle(bookmark) && testGenre(bookmark) && testTag(bookmark) && testAuthor(bookmark);
+    }
+
+    private boolean testTitle(Bookmark bookmark) {
+        if (titleKeywords == null) {
+            return true;
+        } else {
+            return titleKeywords.stream()
+                    .allMatch(keyword -> StringUtil.containsWordIgnoreCase(bookmark.getTitle().value, keyword));
+        }
+    }
+
+    private boolean testGenre(Bookmark bookmark) {
+        if (genreKeywords == null) {
+            return true;
+        } else {
+            return genreKeywords.stream()
+                    .allMatch(keyword -> StringUtil.containsWordIgnoreCase(bookmark.getGenre().value, keyword));
+        }
+    }
+
+    private boolean testTag(Bookmark bookmark) {
+        if (tagKeywords == null) {
+            return true;
+        } else {
+            return tagKeywords.stream()
+                    .allMatch(keyword -> bookmark.getTags()
+                            .stream().anyMatch(tag -> keyword.equalsIgnoreCase(tag.tagName)));
+        }
+    }
+
+    private boolean testAuthor(Bookmark bookmark) {
+        if (authorKeywords == null) {
+            return true;
+        } else {
+            return authorKeywords.stream()
+                    .allMatch(keyword -> StringUtil.containsWordIgnoreCase(bookmark.getAuthor().value, keyword));
+        }
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TitleContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((TitleContainsKeywordsPredicate) other).keywords)); // state check
+                && titleKeywords.equals(((TitleContainsKeywordsPredicate) other).titleKeywords)); // state check
     }
 
 }
