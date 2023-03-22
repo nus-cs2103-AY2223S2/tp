@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,12 +17,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.InternshipTodo;
+import seedu.address.model.task.Note;
 import seedu.address.testutil.InternshipBuilder;
 
 public class AddCommandTest {
@@ -116,7 +116,23 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTodo(InternshipTodo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addApplications(List<InternshipApplication> applications) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -131,17 +147,58 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyTodoList getTodoList() {
+            return null;
+        }
+
+        @Override
+        public ReadOnlyNote getNoteList() {
+            return null;
+        }
+
+        @Override
         public boolean hasApplication(InternshipApplication application) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public boolean hasTodo(InternshipTodo todo) {
+            return false;
+        }
+
+        @Override
+        public boolean hasNote(Note note) {
+            return false;
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
+
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteInternship(InternshipApplication target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTodo(InternshipTodo target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteNote(Note target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearTodo(ReadOnlyTodoList internEase) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearNote(ReadOnlyNote internEase) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -157,6 +214,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTodo(InternshipTodo target, InternshipTodo editedTodo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNote(Note target, Note editedNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -167,12 +234,57 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<InternshipTodo> getFilteredTodoList() {
+            return null;
+        }
+
+        @Override
+        public ObservableList<Note> getFilteredNoteList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public List<InternshipApplication> getCachedInternshipList() {
+            return null;
+        }
+
+        @Override
+        public InternshipApplication getAndRemoveCachedApplication() {
+            return null;
+        }
+
+        @Override
+        public void addInternshipToCache(InternshipApplication application) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAllInternshipToCache(List<InternshipApplication> application) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEmptyInternshipCacheList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredInternshipList(Predicate<InternshipApplication> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTodoList(Predicate<InternshipTodo> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredNoteList(Predicate<Note> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
