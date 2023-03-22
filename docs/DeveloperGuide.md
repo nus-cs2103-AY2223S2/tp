@@ -185,16 +185,15 @@ The `RemindCommand` is then executed by `LogicManager`. It tests all events with
 
 #### Design considerations:
 
-**Aspect: How remind executes:**
+**Aspect: How current time is determined:**
 
-* **Alternative 1 (current choice):** Checks if event is within given days from current time.
-    * Pros: 
-    * Cons: 
+* **Alternative 1 (current choice):** Determine current time using a `Clock` created in `LogicManager`.
+    * Pros: Easy to test. A fixed `Clock` can be created.
+    * Cons: Coupling between classes that use `Clock`, even if the class only uses it to create an object that uses `Clock`
 
-* **Alternative 2:** Checks if event is within given days from time of opening app.
-  itself.
-    * Pros:
-    * Cons:
+* **Alternative 2:** Determine current time using `LocalDateTime.now()` in `StartTimeWithinDaysPredicate`.
+    * Pros: Less coupling between classes.
+    * Cons: Difficult to test, as the current time is based on real time.
 
 ### \[Proposed\] Undo/redo feature
 
