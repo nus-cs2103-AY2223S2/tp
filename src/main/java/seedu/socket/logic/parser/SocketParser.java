@@ -19,6 +19,7 @@ import seedu.socket.logic.commands.ListCommand;
 import seedu.socket.logic.commands.RedoCommand;
 import seedu.socket.logic.commands.RemoveCommand;
 import seedu.socket.logic.commands.SortCommand;
+import seedu.socket.logic.commands.SortProjectCommand;
 import seedu.socket.logic.commands.UndoCommand;
 import seedu.socket.logic.commands.ViewCommand;
 import seedu.socket.logic.parser.exceptions.ParseException;
@@ -82,6 +83,9 @@ public class SocketParser {
 
         case DeleteProjectCommand.COMMAND_WORD:
             return new DeleteProjectCommandParser().parse(arguments);
+
+        case SortProjectCommand.COMMAND_WORD:
+            return new SortProjectCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();

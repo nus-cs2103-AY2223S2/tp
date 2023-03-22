@@ -60,6 +60,16 @@
                         </Label>
                      </children>
                   </HBox>
+                  <HBox>
+                     <children>
+                        <Label styleClass="cell_small_label" text="Meeting: " />
+                        <Label fx:id="meeting" styleClass="cell_small_label" text="\$Date">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

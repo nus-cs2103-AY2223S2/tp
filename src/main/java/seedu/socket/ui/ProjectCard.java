@@ -24,6 +24,8 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
+    private Label meeting;
+    @FXML
     private FlowPane members;
 
     /**
@@ -40,6 +42,7 @@ public class ProjectCard extends UiPart<Region> {
             repoName.setText("Not available");
         }
         deadline.setText(project.getDeadline().deadline);
+        meeting.setText(project.getMeeting().meeting);
         project.getMembers().stream()
                 .sorted(Comparator.comparing(member -> member.getName().fullName))
                 .forEach(member -> members.getChildren().add(new Label(member.getName().fullName)));
