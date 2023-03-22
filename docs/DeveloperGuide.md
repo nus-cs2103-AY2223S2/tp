@@ -374,7 +374,7 @@ Use Case ends.
 
   * 1b1. System displays all internships that have not had a change in status in a week.
 
-    Use case ends. 
+    Use case ends.
 
 * 2a. The list is empty.
     Use case ends.
@@ -394,7 +394,7 @@ Use case ends.
 
 **Extensions**
 
-* 4a. User decides to not delete the listing  
+* 4a. User decides to not delete the listing
 Use Case Ends.
 
 **Use case: List all internship applications with a deadline on a particular date**

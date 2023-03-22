@@ -46,7 +46,7 @@ help you manage and keep track of your internship applications faster than tradi
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be 
+  e.g. in `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be
   used as `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java`.
 
 * Items in square brackets are optional.<br>
@@ -67,16 +67,16 @@ Format: `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG
 > If there is an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab` already saved in TinS:
 > * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab` is not valid
 > * Adding an Internship with `POSITION` as `Software Engineer 1` and `COMPANY_NAME` as `Grab` is valid
-> * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab 1` is valid 
+> * Adding an Internship with `POSITION` as `Software Engineer` and `COMPANY_NAME` as `Grab 1` is valid
 
-* `APPLICATION_STATUS` : Status of Application 
-  * `APPLICATION_STATUS` should be an Integer value from 0 to 3. Here are the statuses for the corresponding integer 
+* `APPLICATION_STATUS` : Status of Application
+  * `APPLICATION_STATUS` should be an Integer value from 0 to 3. Here are the statuses for the corresponding integer
   values:
     * `0` : Interested
     * `1` : Applied
     * `2` : Offered
     * `3` : Rejected
-* `DESCRIPTION` : Additional details about the Internship (E.g. Contact Details, Link to Webpage, Requirements of 
+* `DESCRIPTION` : Additional details about the Internship (E.g. Contact Details, Link to Webpage, Requirements of
 Internship)
 * `TAG` : Customised Tag
   * This is optional.
@@ -106,7 +106,7 @@ View details of the internship selected by ID.
 Format: `select ID`
 
 * `ID`: The number of the selected internship in the Internship List Panel
-* After keying in the `select` command, the program will return the all details of the selected internship in the right 
+* After keying in the `select` command, the program will return the all details of the selected internship in the right
 panel.
 
 Example:
@@ -129,7 +129,7 @@ Format: `exit`
 
 ### Saving the data
 
-The Intern Ship’s data is saved in the hard disk automatically after any command that changes the data. 
+The Intern Ship’s data is saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/I
 <tr>
 <td><b>Edit</b></td>
 <td><code>edit ID [p/POSITION] [c/COMPANY_NAME] [s/APPLICATION_STATUS] [d/DESCRIPTION] [t/TAG] ...</code><br>
-E.g. <code>edit 1 p/Data Analyst</code> edits the <code>POSITION</code> of first internship in the Internship List panel 
+E.g. <code>edit 1 p/Data Analyst</code> edits the <code>POSITION</code> of first internship in the Internship List panel
 to Data Analyst</td>
 </tr>
 
