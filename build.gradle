@@ -4,6 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'application'
     id 'jacoco'
+
 }
 
 mainClassName = 'seedu.dengue.Main'
@@ -73,3 +74,7 @@ run {
 }
 
 defaultTasks 'clean', 'test'
+
+checkstyle {
+    toolVersion = '10.2'
+}

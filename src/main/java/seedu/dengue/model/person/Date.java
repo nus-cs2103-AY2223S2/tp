@@ -31,12 +31,12 @@ public class Date {
             + " - dd must be a number between 01 and 31 inclusive\n"
             + " - dd should be within the valid range for the MM given";
 
-    private static final DateFormat NUM_FORMATS
-            = new DateFormat("uuuu", "MM", "dd");
-    private static final DateFormat LONG_FORMATS
-            = new DateFormat("uuuu", "MMMM", "dd");
-    private static final DateFormat SHORT_FORMATS
-            = new DateFormat("uuuu", "MMM", "dd");
+    private static final DateFormat NUM_FORMATS =
+            new DateFormat("uuuu", "MM", "dd");
+    private static final DateFormat LONG_FORMATS =
+            new DateFormat("uuuu", "MMMM", "dd");
+    private static final DateFormat SHORT_FORMATS =
+            new DateFormat("uuuu", "MMM", "dd");
     private static final Pattern LONG_MONTH_FORMAT_CHECK = Pattern.compile("[a-zA-Z]{4,}");
     private static final Pattern MONTH_FORMAT_CHECK = Pattern.compile("[a-zA-Z]{3}");
 
