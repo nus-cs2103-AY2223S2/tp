@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+* This project utilises the [PrettyTime](https://www.ocpsoft.org/prettytime/nlp/) library.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -233,6 +234,17 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### Sorting
+
+#### Implementation
+Sorting is facilitated by JavaFX's [`SortedList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/transformation/SortedList.html). The `SortedList` is overlaid over the `FilteredList`, while the `FilteredList` is overlaid over the `ObservableList`. The main window tracks the `SortedList`, so any changes will be propagated to the UI.
+
+The `SortedList` is updated by setting a `Comparator` that decides how to sort the contents of the list. Upon the user executing a `sort` command, the `Comparator` of the `SortedList` is updated with the `setComparator()` method.
+
+For the client list, it is only sorted with a `Comparator` that compares the names of the clients.
+
+For the project list, it can be sorted either by deadline or name. When the user executes a `sort` command, they can input which option they wish to sort by, which is parsed by `SortProjectCommandParser`.
 
 ### \[Proposed\] Data archiving
 
