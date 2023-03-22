@@ -60,21 +60,24 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getGithub().ifPresent(github -> sb.append(PREFIX_GITHUB).append(github.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getCourse().ifPresent(course -> sb.append(PREFIX_COURSE).append(Course.getIndex(course.course))
+                .append(" "));
+        descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.year).append(" "));
         descriptor.getLinkedin().ifPresent(linkedin -> sb.append(PREFIX_LINKEDIN).append(linkedin.value).append(" "));
-        if (descriptor.getSkillsAdded().isPresent()) {
-            Set<Skill> skills = descriptor.getSkillsAdded().get();
+        if (descriptor.getSkillsFinal().isPresent()) {
+            Set<Skill> skills = descriptor.getSkillsFinal().get();
             if (skills.isEmpty()) {
-                sb.append(PREFIX_SKILL_ADD);
+                sb.append(PREFIX_SKILL);
             } else {
-                skills.forEach(s -> sb.append(PREFIX_SKILL_ADD).append(s.skillName).append(" "));
+                skills.forEach(s -> sb.append(PREFIX_SKILL).append(s.skillName).append(" "));
             }
         }
-        if (descriptor.getModulesAdded().isPresent()) {
-            Set<Module> modules = descriptor.getModulesAdded().get();
+        if (descriptor.getModulesFinal().isPresent()) {
+            Set<Module> modules = descriptor.getModulesFinal().get();
             if (modules.isEmpty()) {
-                sb.append(PREFIX_MOD_ADD);
+                sb.append(PREFIX_MOD);
             } else {
-                modules.forEach(m -> sb.append(PREFIX_MOD_ADD).append(m.moduleName).append(" "));
+                modules.forEach(m -> sb.append(PREFIX_MOD).append(m.moduleName).append(" "));
             }
         }
         return sb.toString();
