@@ -2,6 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EDUCATION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EDUCATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -28,6 +30,7 @@ public class TypicalPersons {
             .withPhone("94351253")
             .withEmail("alice@example.com")
             .withAddress("123, Jurong West Ave 6, #08-111")
+            .withEducation("P1")
             .withRemark("She hates bob.")
             .withSubjects("Mathematics")
             .withTags("friends")
@@ -37,6 +40,7 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withEmail("johnd@example.com")
             .withAddress("311, Clementi Ave 2, #02-25")
+            .withEducation("P2")
             .withRemark("He can't take beer!")
             .withSubjects("English", "Science")
             .withTags("owesMoney", "friends")
@@ -46,6 +50,7 @@ public class TypicalPersons {
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
+            .withEducation("P3")
             .withRemark("Needs help with algebra.")
             .withSubjects()
             .withTags()
@@ -55,6 +60,7 @@ public class TypicalPersons {
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
+            .withEducation("P4")
             .withRemark("Needs help with compo.")
             .withSubjects()
             .withTags("friends")
@@ -64,6 +70,7 @@ public class TypicalPersons {
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
+            .withEducation("P5")
             .withRemark("Needs more time on limits")
             .withSubjects()
             .withTags()
@@ -73,6 +80,7 @@ public class TypicalPersons {
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
+            .withEducation("P6")
             .withRemark("Is good at algebra")
             .withSubjects()
             .withTags()
@@ -82,6 +90,7 @@ public class TypicalPersons {
             .withPhone("9482442")
             .withEmail("anna@example.com")
             .withAddress("4th street")
+            .withEducation("Sec 2")
             .withRemark("Is bad at argumentative essays")
             .withSubjects()
             .withTags()
@@ -93,6 +102,7 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withEmail("stefan@example.com")
             .withAddress("little india")
+            .withEducation("Sec 3")
             .withRemark("Needs help with trigo")
             .withSubjects()
             .withTags()
@@ -102,6 +112,7 @@ public class TypicalPersons {
             .withPhone("8482131")
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
+            .withEducation("Sec 4")
             .withRemark("Needs help with angles")
             .withSubjects()
             .withTags()
@@ -113,6 +124,7 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
+            .withRemark(VALID_EDUCATION_AMY)
             .withRemark(null)
             .withSubjects()
             .withTags(VALID_TAG_FRIEND)
@@ -122,6 +134,7 @@ public class TypicalPersons {
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
+            .withRemark(VALID_EDUCATION_BOB)
             .withRemark(null)
             .withSubjects()
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
