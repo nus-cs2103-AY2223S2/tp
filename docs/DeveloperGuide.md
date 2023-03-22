@@ -212,6 +212,46 @@ We want to make it easy for the user to set current date as present. Thus we all
     * Cons: Hard to read and write to storage
     * Cons: Hard to add more features if more features are added eg. mark as MC, Late..
 
+### Grade feature
+
+#### Current Implementation
+
+The grade feature is facilitated by `grade`. It is composed by a `Student` with an `Assignment` object.
+
+Given below is an example usage scenario and how the attendance mechanism behaves at each step
+
+Step 1. The user launches the application for the first time
+Step 2. The user creates a student using the Add command. The `Test` and `Homework` which extends `Assignment` of `Students` will be initialized with the initial name: Insert student test/homework here!, Score: -100, Weightage: -100, Deadline: No Deadline and Is Done(Homework): false.
+
+[//]: # (![Student Add Command]&#40;images/StudentAddCommand.png&#41;)
+Step 3. The user wants to add a test to a student. The user executes the `grade` command with the index of the student and test/TEST_NAME. The `test` of the student will be updated to the name.
+
+![Grade Command](images/Grade.jpg)
+
+Step 4. The test/homework is saved to the storage file automatically after each command. 
+
+Full implementation sequence diagram
+
+![Sequence Diagram](images/GradeSequentialDiagram.jpg)
+
+### Design considerations
+We want to make it easy for the user to set tests without inputting all the details at one go, with the test/homework name being the only field compulsory.
+
+#### Aspect: How to store test
+
+* **Alternative 1 (current choice):** Store test as a JsonAdaptedTest object
+    * Pros: Easy to access and manipulate attendance data
+    * Pros: Easy to read and write to storage
+    * Pros: Flexible to add more features if more features are added
+    * Cons: Hard to implement
+
+* **Alternative 2:** Store attendance as a string representation of Test details
+    * Pros: Easy to implement
+    * Pros: Use less memory
+    * Cons: Hard to access and manipulate attendance data
+    * Cons: Hard to read and write to storage
+    * Cons: Hard to add more features if more features are added 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
