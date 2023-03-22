@@ -28,7 +28,7 @@ public class InterviewDate {
     }
 
     /**
-     * returns if a given LocalDateTime is valid or null (ie interviewDate has not been added).
+     * Returns if a given LocalDateTime is valid or null (ie interviewDate has not been added).
      */
     public static boolean isValidInterviewDate(String test) {
         if (test == null) {
@@ -40,6 +40,37 @@ public class InterviewDate {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Checks if this {@code InterviewDate} is before the specified {@code InterviewDate} (inclusive).
+     *
+     * @param interviewDate The other date to compare to
+     * @return true if this date is before the {@code interviewDate} (inclusive)
+     */
+    public boolean isBeforeInclusive(InterviewDate interviewDate) {
+        return value.isBefore(interviewDate.value) || value.isEqual(interviewDate.value);
+    }
+
+    /**
+     * Checks if this {@code InterviewDate} is after the specified {@code InterviewDate} (inclusive).
+     *
+     * @param interviewDate The other date to compare to
+     * @return true if this date is after the {@code interviewDate} (inclusive)
+     */
+    public boolean isAfterInclusive(InterviewDate interviewDate) {
+        return value.isAfter(interviewDate.value) || value.isEqual(interviewDate.value);
+    }
+
+    /**
+     * Checks if this {@code InterviewDate} is between the specified {@code InterviewDate}'s (both inclusive).
+     *
+     * @param startDate The start date of the period
+     * @param endDate The end date of the period
+     * @return true if this date lies between both dates (both inclusive)
+     */
+    public boolean isBetweenInclusive(InterviewDate startDate, InterviewDate endDate) {
+        return isAfterInclusive(startDate) && isBeforeInclusive(endDate);
     }
 
     @Override

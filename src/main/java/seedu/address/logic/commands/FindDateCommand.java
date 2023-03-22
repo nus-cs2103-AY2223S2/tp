@@ -4,22 +4,24 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.DatePredicate;
 import seedu.address.model.person.StatusPredicate;
 
 /**
- * Finds and lists all internship application in record whose status
- * matches the specified keyword.
- * Keyword matching is case insensitive.
+ * Finds and lists all internship application in record whose {@code InterviewDate}
+ * is before, after or between specified date(s).
+ * The date specified is inclusive.
  */
-public class FindStatusCommand extends FindCommand {
-    private final StatusPredicate predicate;
+public class FindDateCommand extends FindCommand {
+    private final DatePredicate predicate;
 
     /**
-     * Creates an FindStatusCommand to find the specified {@code InternshipStatus}.
+     * Creates an FindDateCommand to find the internship application with {@code InternshipDate}
+     * matches the given predicate.
      *
-     * @param predicate The predicate containing status to be matched
+     * @param predicate The predicate containing date condition to be matched
      */
-    public FindStatusCommand(StatusPredicate predicate) {
+    public FindDateCommand(DatePredicate predicate) {
         this.predicate = predicate;
     }
 
