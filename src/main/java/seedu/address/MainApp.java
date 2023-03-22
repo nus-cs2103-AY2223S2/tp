@@ -75,7 +75,9 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPetPal> petPalOptional;
+        Optional<ReadOnlyPetPal> petPalArchive;
         ReadOnlyPetPal initialData;
+
         try {
             petPalOptional = storage.readPetPal();
             if (!petPalOptional.isPresent()) {
@@ -89,6 +91,15 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty PetPal");
             initialData = new PetPal();
         }
+
+//        try {
+//            petPalArchive = storage.readPetPalArchive();
+//
+//        } catch (IOException e) {
+//            logger.warning("Problem reading from the archive. Will start with empty archive");
+//        } catch (DataConversionException e) {
+//            logger.warning("Archive file not in the correct format. Will start with an empty archive file");
+//        }
 
         return new ModelManager(initialData, userPrefs);
     }

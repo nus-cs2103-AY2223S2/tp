@@ -84,7 +84,7 @@ public class ModelManager implements Model {
         userPrefs.setPetPalArchiveFilePath(petPalArchiveFilePath);
     }
 
-    //=========== PetPal ================================================================================
+    //===================================== PetPal ======================================================
 
     @Override
     public void setPetPal(ReadOnlyPetPal petPal) {
@@ -123,7 +123,8 @@ public class ModelManager implements Model {
     @Override
     public void archivePet(Pet petToArchive) {
         requireNonNull(petToArchive);
-
+        petPal.archivePet(petToArchive);
+        updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
     }
 
     //=========== Filtered Pet List Accessors =============================================================

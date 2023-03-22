@@ -56,7 +56,7 @@ public class PetPal implements ReadOnlyPetPal {
         setPets(newData.getPetList());
     }
 
-    //// person-level operations
+    //// pet-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -67,8 +67,8 @@ public class PetPal implements ReadOnlyPetPal {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a pet to the address book.
+     * The pet must not already exist in the address book.
      */
     public void addPet(Pet p) {
         pets.add(p);
@@ -86,11 +86,19 @@ public class PetPal implements ReadOnlyPetPal {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code PetPal}.
      * {@code key} must exist in the address book.
      */
     public void removePet(Pet key) {
         pets.remove(key);
+    }
+
+    /**
+     * Archives {@code p} from the {@code PetPal}
+     * {@code p} must exists in the address book
+     */
+    public void archivePet(Pet p) {
+        pets.archive(p);
     }
 
     //// util methods

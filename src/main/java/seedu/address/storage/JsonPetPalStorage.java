@@ -32,6 +32,11 @@ public class JsonPetPalStorage implements PetPalStorage {
     }
 
     @Override
+    public Path getPetPalArchiveFilePath() {
+        return null;
+    }
+
+    @Override
     public Optional<ReadOnlyPetPal> readPetPal() throws DataConversionException {
         return readPetPal(filePath);
     }
@@ -77,4 +82,23 @@ public class JsonPetPalStorage implements PetPalStorage {
         JsonUtil.saveJsonFile(new JsonSerializablePetPal(petPal), filePath);
     }
 
+    @Override
+    public Optional<ReadOnlyPetPal> readPetPalArchive() throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws DataConversionException, IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public void savePetPalArchive(ReadOnlyPetPal petPal) throws IOException {
+
+    }
+
+    @Override
+    public void savePetPalArchive(ReadOnlyPetPal petPal, Path filePath) throws IOException {
+
+    }
 }

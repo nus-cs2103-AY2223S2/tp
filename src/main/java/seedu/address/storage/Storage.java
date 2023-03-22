@@ -29,4 +29,7 @@ public interface Storage extends PetPalStorage, UserPrefsStorage {
     @Override
     void savePetPal(ReadOnlyPetPal petPal) throws IOException;
 
+    Optional<ReadOnlyPetPal> readPetPalArchive() throws DataConversionException, IOException;
+
+    void savePetPalArchive(ReadOnlyPetPal petPal) throws IOException;
 }
