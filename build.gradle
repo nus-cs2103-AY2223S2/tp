@@ -71,4 +71,8 @@ shadowJar {
     archiveFileName = 'dukedriver.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
