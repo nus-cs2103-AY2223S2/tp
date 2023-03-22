@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "m:Module" as Module LOGIC_COLOR
+participant "a:AddModuleCommand" as AddModuleCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add CS2040S")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand("add CS2040S")
+activate TrackerParser
+
+create AddCommandParser
+TrackerParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> TrackerParser
+deactivate AddCommandParser
+
+TrackerParser -> AddCommandParser : parse("CS2040S")
+activate AddCommandParser
+
+create Module
+AddCommandParser -[hidden]-> Module
+ref over AddCommandParser, Module
+    Create module
+end ref
+
+create AddModuleCommand
+AddCommandParser -> AddModuleCommand : AddModuleCommand(m)
+activate AddModuleCommand
+
+AddModuleCommand --> AddCommandParser : a
+deactivate AddModuleCommand
+
+AddCommandParser --> TrackerParser : a
+deactivate AddCommandParser
+
+AddCommandParser -[hidden]-> TrackerParser
+destroy AddCommandParser
+
+TrackerParser --> LogicManager : a
+deactivate TrackerParser
+
+LogicManager -> AddModuleCommand : execute()
+activate AddModuleCommand
+
+AddModuleCommand -> Model : hasModule(m)
+activate Model
+
+Model --> AddModuleCommand : false
+deactivate Model
+
+AddModuleCommand -> Model : addModule(m)
+activate Model
+
+Model --> AddModuleCommand
+deactivate Model
+
+create CommandResult
+AddModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddModuleCommand
+deactivate CommandResult
+
+AddModuleCommand --> LogicManager : result
+deactivate AddModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
