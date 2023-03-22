@@ -5,6 +5,7 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
@@ -46,6 +47,12 @@ public class DetailDisplay extends UiPart<Region> {
     private Label age;
     @FXML
     private Button appointmentButton;
+    @FXML
+    private Button generateButton;
+    @FXML
+    private Button uploadButton;
+    @FXML
+    private ListView<?> viewDisplay;
 
     public DetailDisplay() {
         super(FXML);
@@ -107,6 +114,30 @@ public class DetailDisplay extends UiPart<Region> {
 
     public void showAppointmentButton() {
         appointmentButton.setVisible(true);
+    }
+
+    public void hideGenerateButton() {
+        generateButton.setVisible(false);
+    }
+
+    public void showGenerateButton() {
+        generateButton.setVisible(true);
+    }
+
+    public void hideUploadButton() {
+        uploadButton.setVisible(false);
+    }
+
+    public void showUploadButton() {
+        uploadButton.setVisible(true);
+    }
+
+    public void hideViewDisplay() {
+        viewDisplay.setVisible(false);
+    }
+
+    public void showViewDisplay() {
+        viewDisplay.setVisible(true);
     }
 
     @Override

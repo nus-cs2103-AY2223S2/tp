@@ -190,12 +190,18 @@ public class MainWindow extends UiPart<Stage> {
             // with minor modifications
             detailDisplay.clearDetailDisplay();
             detailDisplay.hideAppointmentButton();
+            detailDisplay.hideUploadButton();
+            detailDisplay.hideGenerateButton();
+            detailDisplay.hideViewDisplay();
 
             if (commandResult.hasPersonToShow()) {
                 Person personToShow = commandResult.getPersonToShow();
                 assert personToShow != null;
                 detailDisplay.setInfo(personToShow);
                 detailDisplay.showAppointmentButton();
+                detailDisplay.showGenerateButton();
+                detailDisplay.showUploadButton();
+                detailDisplay.showViewDisplay();
             }
             //@@author
 
