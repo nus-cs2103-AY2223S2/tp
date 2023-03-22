@@ -1,12 +1,10 @@
 package seedu.vms.model.keyword;
 
-public class VaccinationKeyword implements Keyword {
+public class VaccinationKeyword extends Keyword {
     private static final String MAIN_KEY_NAME = "appointment";
 
-    private final String keyword;
-
     public VaccinationKeyword(String keyword) {
-        this.keyword = keyword;
+        super(keyword, MAIN_KEY_NAME);
     }
 
 }
