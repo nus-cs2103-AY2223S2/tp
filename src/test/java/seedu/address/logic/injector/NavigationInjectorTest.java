@@ -10,9 +10,9 @@ import java.util.regex.Matcher;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.TrackerParser;
 import seedu.address.model.Model;
 import seedu.address.model.navigation.NavigationContext;
 import seedu.address.testutil.ModelStub;
@@ -32,15 +32,15 @@ public class NavigationInjectorTest {
         String command = TEST_COMMAND_NAME;
         String injectedCommand = injector.inject(command, model);
 
-        final Matcher matcher = AddressBookParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
+        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
         assertTrue(matcher.matches());
         assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
 
         ArgumentMultimap argumentMultimap =
                 ArgumentTokenizer.tokenize(matcher.group("arguments"), PREFIX_MODULE, PREFIX_LECTURE);
 
-        String expectedModCode = TypicalModules.CS2040S.getCode().toString();
-        String expectedLecCode = TypicalLectures.CS2040S_WEEK_1.getName().toString();
+        String expectedModCode = TypicalModules.getCs2040s().getCode().toString();
+        String expectedLecCode = TypicalLectures.getCs2040sWeek1().getName().toString();
         assertEquals(expectedModCode, argumentMultimap.getValue(PREFIX_MODULE).get());
         assertEquals(expectedLecCode, argumentMultimap.getValue(PREFIX_LECTURE).get());
     }
@@ -51,7 +51,7 @@ public class NavigationInjectorTest {
         String command = TEST_COMMAND_NAME;
         String injectedCommand = injector.inject(command, model);
 
-        final Matcher matcher = AddressBookParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
+        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
         assertTrue(matcher.matches());
         assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
 
@@ -66,11 +66,11 @@ public class NavigationInjectorTest {
     @Test
     public void inject_modPresent_lecContext() {
         final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
-        String modCode = TypicalModules.CS2040S.getCode().toString();
+        String modCode = TypicalModules.getCs2040s().getCode().toString();
         String command = TEST_COMMAND_NAME + " " + PREFIX_MODULE + " " + modCode;
         String injectedCommand = injector.inject(command, model);
 
-        final Matcher matcher = AddressBookParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
+        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
         assertTrue(matcher.matches());
         assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
 
@@ -84,12 +84,12 @@ public class NavigationInjectorTest {
     @Test
     public void inject_lecPresent_lecContext() {
         final Model model = new ModelStubWithNavContext(TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1);
-        String lecName = TypicalLectures.CS2040S_WEEK_1.getName().toString();
-        String modCode = TypicalModules.CS2040S.getCode().toString();
+        String lecName = TypicalLectures.getCs2040sWeek1().getName().toString();
+        String modCode = TypicalModules.getCs2040s().getCode().toString();
         String command = TEST_COMMAND_NAME + " " + PREFIX_LECTURE + " " + lecName;
         String injectedCommand = injector.inject(command, model);
 
-        final Matcher matcher = AddressBookParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
+        final Matcher matcher = TrackerParser.BASIC_COMMAND_FORMAT.matcher(injectedCommand.trim());
         assertTrue(matcher.matches());
         assertEquals(TEST_COMMAND_NAME, matcher.group("commandWord"));
 

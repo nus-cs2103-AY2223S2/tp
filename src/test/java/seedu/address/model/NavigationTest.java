@@ -12,6 +12,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.navigation.NavigationContext;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
+import seedu.address.testutil.TypicalNavigationContexts;
 
 public class NavigationTest {
 
@@ -25,8 +26,8 @@ public class NavigationTest {
 
     @Test
     void navigate1_contextChangeToModule() {
-        Module mod = TypicalModules.CS2040S;
-        NavigationContext expectedContext = new NavigationContext().addModule(mod.getCode());
+        Module mod = TypicalModules.getCs2040s();
+        NavigationContext expectedContext = TypicalNavigationContexts.MODULE_CS2040S;
 
         navigation.navigateTo(mod.getCode());
         assertEquals(expectedContext, navigation.getCurrentContext());
@@ -37,11 +38,10 @@ public class NavigationTest {
 
     @Test
     void navigate2_contextChangeToLecture() {
-        Module mod = TypicalModules.CS2040S;
-        Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+        Module mod = TypicalModules.getCs2040s();
+        Lecture lec = TypicalLectures.getCs2040sWeek1();
 
-        NavigationContext expectedContext =
-                new NavigationContext().addModule(mod.getCode()).addLecture(lec.getName());
+        NavigationContext expectedContext = TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1;
 
         navigation.navigateTo(mod.getCode(), lec.getName());
         assertEquals(expectedContext, navigation.getCurrentContext());
@@ -53,9 +53,9 @@ public class NavigationTest {
 
     @Test
     void navigateToModFromRoot_contextChangeToMod() {
-        Module mod = TypicalModules.CS2040S;
+        Module mod = TypicalModules.getCs2040s();
 
-        NavigationContext expectedContext = new NavigationContext().addModule(mod.getCode());
+        NavigationContext expectedContext = TypicalNavigationContexts.MODULE_CS2040S;
 
         navigation.navigateToModFromRoot(mod.getCode());
         assertEquals(expectedContext, navigation.getCurrentContext());
@@ -66,11 +66,10 @@ public class NavigationTest {
 
     @Test
     void navigateToLecFromMod_contextChangeToLec() {
-        Module mod = TypicalModules.CS2040S;
-        Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+        Module mod = TypicalModules.getCs2040s();
+        Lecture lec = TypicalLectures.getCs2040sWeek1();
 
-        NavigationContext expectedContext =
-                new NavigationContext().addModule(mod.getCode()).addLecture(lec.getName());
+        NavigationContext expectedContext = TypicalNavigationContexts.LECTURE_CS2040S_WEEK_1;
 
         navigation.navigateToModFromRoot(mod.getCode());
         navigation.navigateToLecFromMod(lec.getName());
@@ -92,8 +91,8 @@ public class NavigationTest {
     void isAtLayer_fromRootToLecture_wrongLayer() {
         assertTrue(navigation.isAtLayer(NavLayer.ROOT));
 
-        Module mod = TypicalModules.CS2040S;
-        Lecture lec = TypicalLectures.CS2040S_WEEK_1;
+        Module mod = TypicalModules.getCs2040s();
+        Lecture lec = TypicalLectures.getCs2040sWeek1();
 
         navigation.navigateToModFromRoot(mod.getCode());
         assertTrue(navigation.isAtLayer(NavLayer.MODULE));
