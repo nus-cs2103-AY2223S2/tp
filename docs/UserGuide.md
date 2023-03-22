@@ -263,64 +263,6 @@ Command Word: Tells HMHero what action you wish to execute. These actions are co
 [Placeholders](#524-placeholders): Represents data that you wish to input. Replace this with valid data.
 For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
 
-## 5.4 Trying your first command
-
-To get you more familiar with HMHero, let's practice executing some commands.
-
-To start off, let’s try out the `add` command! This command lets you add an [Applicant]() to HMHero.
-
-Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTES]`
-
-**What does the format mean?**
-
-The first word of every command allows HMHero to distinguish different commands
-* add tells HMHero that this is the command to add an applicant into HMHero
-* [Flags]() such as `n/` and `p/` are delimiters that enable HMHero to distinguish different parameters
-supplied by you without ambiguity
-* [Placeholders]() such as NAME and PHONE shows you what you should place in each portion of the command
-
-<div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong>
-The <a href="#624-placeholders">Placeholders </a> section covers the restrictions for respective placeholders.
-For example, the datetime format for interviews, certain characters you cannot
-use and the limit and precision of numbers.
-</div>
-
-**Let's try an example**
-
-Suppose we want to add John Doe into our HMHero tracker. We have a list of his particulars
-and we want to record them down.
-
-`NAME`: John Doe
-
-`PHONE`: 91234567
-
-`EMAIL`: john@gmail.com
-
-`ADDRESS`: SoC COM 1
-
-The command to enter into the command box would be:
-```agsl
-add n/John Doe p/91234567 e/john@gmail.com a/SoC COM 1
-```
-
-The example above provides all the required fields to add an applicant
-- What if we wanted to also note down some key skillsets for John?
-
-We could edit our command to include it!
-```agsl
-add n/John Doe p/91234567 e/john@gmail.com a/SoC COM 1 notes/Java notes/Python
-```
-
-<div markdown="span" class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong>
-We can provide any number of notes to an applicant! Just ensure each NOTE is preceded by
-the note/ prefix.
-</div>
-
-Find out more about restrictions in the sections [Flag](#623-flags), [Placeholders](#624-placeholders), [Commands]()
-
-
-## Command Remarks
-
 
 ## Trying your first command
 
