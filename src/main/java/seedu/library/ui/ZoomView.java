@@ -22,6 +22,7 @@ public class ZoomView extends UiPart<Region> {
     private Label authorView;
     @FXML
     private Label genreView;
+
     @FXML
     private FlowPane tagsView;
     @FXML
@@ -29,7 +30,12 @@ public class ZoomView extends UiPart<Region> {
     @FXML
     private Label zoomTag;
 
-    /** Ui for zoom view */
+
+    /**
+     * Constructs a ZoomView that displays the details of the provided bookmark.
+     *
+     * @param bookmark a single Bookmark object
+     */
     public ZoomView(Bookmark bookmark) {
         super(FXML);
         this.bookmark = bookmark;
@@ -42,7 +48,9 @@ public class ZoomView extends UiPart<Region> {
 
     }
 
-    /** Hides fields for zoom view */
+    /**
+     * Method to hide the contents of ZoomView
+     */
     public void hideFields() {
         viewTitle.setVisible(false);
         authorView.setVisible(false);
