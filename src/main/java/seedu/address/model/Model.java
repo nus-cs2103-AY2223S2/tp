@@ -323,22 +323,34 @@ public interface Model {
      */
     Level getLastListLevel();
 
-    // TODO: Add JavaDocs
+    /**
+     * Navigates to the parent layer.
+     */
     void navigateBack();
 
-    // TODO: Add JavaDocs
+    /**
+     * Navigates to the root layer.
+     */
     void navigateToRoot();
 
-    // TODO: Add JavaDocs
+    /**
+     * Navigates to the specified module layer of module code.
+     */
     void navigateTo(ModuleCode moduleCode);
 
-    // TODO: Add JavaDocs
+    /**
+     * Navigates to the lecture layer of lecture name belonging to module layer of module code.
+     */
     void navigateTo(ModuleCode moduleCode, LectureName lectureName);
 
-    // TODO: Add JavaDocs
+    /**
+     * Navigates to the module layer of module code only from root layer.
+     */
     void navigateToModFromRoot(ModuleCode moduleCode);
 
-    // TODO: Add JavaDocs
+    /**
+     * Navigates to the lecture layer of lecture name only from module layer.
+     */
     void navigateToLecFromMod(LectureName lectureName);
 
     // TODO: Remove this

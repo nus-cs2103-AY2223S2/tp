@@ -31,28 +31,45 @@ public class NavigationInjector extends Injector {
         final String commandWord = matcher.group("commandWord");
 
         // If command is whitelisted, return unmodified user input.
-        for (var w : WHITELIST) {
-            if (commandWord.equals(w)) {
-                return commandText;
-            }
+        if (isCommandWhitelisted(commandWord)) {
+            return commandText;
         }
 
         final String arguments = matcher.group("arguments");
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_MODULE, PREFIX_LECTURE);
 
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_MODULE, PREFIX_LECTURE);
         NavigationContext navContext = model.getCurrentNavContext();
+        return injectMissingArgs(commandText, argMultimap, navContext).trim();
+    }
 
-        if (!argMultimap.getValue(PREFIX_MODULE).isPresent()) {
-            commandText += " " + navContext.getModulePrefixArg();
-        }
+    private String injectMissingArgs(String commandText, ArgumentMultimap argMultimap, NavigationContext navContext) {
+        boolean lectureArgSpecified = argMultimap.getValue(PREFIX_LECTURE).isPresent();
+        boolean moduleArgSpecified = argMultimap.getValue(PREFIX_MODULE).isPresent();
 
-        if (!argMultimap.getValue(PREFIX_LECTURE).isPresent()
-                && navContext.getLectureName() != null) {
-            commandText += " " + navContext.getLecturePrefixArg();
+        if (!moduleArgSpecified) {
+            commandText = injectModulePrefixArg(commandText, navContext);
+            if (!lectureArgSpecified) {
+                commandText = injectLecturePrefixArg(commandText, navContext);
+            }
         }
 
         return commandText;
     }
 
+    private String injectModulePrefixArg(String commandText, NavigationContext navContext) {
+        return commandText + " " + navContext.getModulePrefixArg();
+    }
+
+    private String injectLecturePrefixArg(String commandText, NavigationContext navContext) {
+        return commandText + " " + navContext.getLecturePrefixArg();
+    }
+
+    private boolean isCommandWhitelisted(String commandWord) {
+        for (var w : WHITELIST) {
+            if (commandWord.equals(w)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
