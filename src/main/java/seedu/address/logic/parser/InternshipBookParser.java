@@ -51,7 +51,7 @@ public class InternshipBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        //=========== Application Commands ==================================================================================
+        //=========== Application Commands ===========================================================================
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
 

@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
 
+import java.util.Comparator;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
 import seedu.address.model.application.AlphabeticalComparator;
 import seedu.address.model.application.Application;
-
-import java.util.Comparator;
 
 /**
  * Sorts applications in the order specified by user.
