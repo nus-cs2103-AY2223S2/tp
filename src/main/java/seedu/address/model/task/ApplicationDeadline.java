@@ -1,4 +1,4 @@
-package seedu.address.model.todo;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -36,6 +36,10 @@ public class ApplicationDeadline {
         return !test.isBefore(LocalDate.now());
     }
 
+    public LocalDate getDeadline() {
+        return applicationDeadline;
+    }
+
     @Override
     public String toString() {
         return fullName;
@@ -44,9 +48,9 @@ public class ApplicationDeadline {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof seedu.address.model.todo.ApplicationDeadline
+                || (other instanceof seedu.address.model.task.ApplicationDeadline
                 && applicationDeadline.equals(((
-                        seedu.address.model.todo.ApplicationDeadline) other).applicationDeadline));
+                        seedu.address.model.task.ApplicationDeadline) other).applicationDeadline));
     }
 
     @Override

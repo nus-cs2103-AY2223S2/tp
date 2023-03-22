@@ -19,4 +19,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_RESUME = new Prefix("rs/");
     public static final Prefix PREFIX_COVER_LETTER = new Prefix("cl/");
+
+    /* Prefix used in FindDateCommand */
+    public static final Prefix PREFIX_DATE_BEFORE = new Prefix("before/");
+    public static final Prefix PREFIX_DATE_AFTER = new Prefix("after/");
+    public static final Prefix PREFIX_DATE_FROM = new Prefix("from/");
+    public static final Prefix PREFIX_DATE_TO = new Prefix("to/");
 }

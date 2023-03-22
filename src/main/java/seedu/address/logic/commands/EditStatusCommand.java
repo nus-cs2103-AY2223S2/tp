@@ -77,15 +77,7 @@ public class EditStatusCommand extends Command {
         Contact contact = internshipApplication.getContact();
         InterviewDate interviewDate = internshipApplication.getInterviewDate();
 
-        if (contact != null && interviewDate != null) {
-            return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
-        } else if (contact != null) {
-            return new InternshipApplication(companyName, jobTitle, contact, status);
-        } else if (interviewDate != null) {
-            return new InternshipApplication(companyName, jobTitle, status, interviewDate);
-        } else {
-            return new InternshipApplication(companyName, jobTitle, status);
-        }
+        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
     }
 
     @Override

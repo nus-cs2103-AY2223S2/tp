@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
@@ -32,6 +31,7 @@ public class AddInterviewDateCommand extends Command {
             + "[" + PREFIX_DATE + "DATE] (DATE must be in 'MM/dd/yyyy hh:mm a' format, where a can be AM or PM)"
             + "\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "06/07/2023 12:00 PM";
+
 
     public static final String MESSAGE_ADD_INTERVIEW_DATE_SUCCESS = "Interview date added to application: %1$s";
 
@@ -76,11 +76,7 @@ public class AddInterviewDateCommand extends Command {
         Contact contact = internshipToAddInterviewDate.getContact();
         InternshipStatus status = internshipToAddInterviewDate.getStatus();
 
-        if (isNull(contact)) {
-            return new InternshipApplication(companyName, jobTitle, status, interviewDate);
-        } else {
-            return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
-        }
+        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
     }
 
     @Override

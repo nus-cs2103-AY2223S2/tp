@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<?import javafx.geometry.Insets?>
+
+<?import java.net.URL?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@NoteListCard.css" />
+    </stylesheets>
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+      <BorderPane>
+         <top>
+            <HBox spacing="5" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets top="10" right="15" left="10" />
+                </padding>
+               <children>
+                  <Label fx:id="tags" alignment="CENTER" styleClass="cell_small_label" text="Label" HBox.hgrow="ALWAYS" wrapText="true">
+                      <padding>
+                          <Insets bottom="2" left="4" right="4" top="2" />
+                      </padding>
+                      <minWidth>
+                       <!-- Ensures that the label text is never truncated -->
+                       <Region fx:constant="USE_PREF_SIZE" />
+                   </minWidth>
+               </Label>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox spacing="5" BorderPane.alignment="CENTER">
+                <padding>
+                    <Insets top="5" right="10" bottom="10" left="10" />
+                </padding>
+               <children>
+                  <Label fx:id="date" styleClass="cell_small_label"  text="Label" wrapText="true">
+                      <minWidth>
+                          <!-- Ensures that the label text is never truncated -->
+                          <Region fx:constant="USE_PREF_SIZE" />
+                      </minWidth>
+                  </Label>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <Label fx:id="noteContent" styleClass="cell_big_label" text="Label" BorderPane.alignment="CENTER_LEFT" wrapText="true">
+             <minWidth>
+                 <!-- Ensures that the label text is never truncated -->
+                 <Region fx:constant="USE_PREF_SIZE" />
+             </minWidth>
+            </Label>
+         </center>
+         <left>
+            <Label fx:id="id" styleClass="cell_big_label" text="Label" BorderPane.alignment="CENTER_LEFT" wrapText="true">
+                <padding>
+                    <Insets top="10" right="5" bottom="10" left="10" />
+                </padding>
+             <minWidth>
+                 <!-- Ensures that the label text is never truncated -->
+                 <Region fx:constant="USE_PREF_SIZE" />
+             </minWidth>
+            </Label>
+         </left>
+      </BorderPane>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>

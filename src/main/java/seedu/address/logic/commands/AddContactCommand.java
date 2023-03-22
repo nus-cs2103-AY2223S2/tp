@@ -81,16 +81,7 @@ public class AddContactCommand extends Command {
         InternshipStatus status = internshipToAddContact.getStatus();
         InterviewDate interviewDate = internshipToAddContact.getInterviewDate();
 
-        if (status != null && interviewDate != null) {
-            return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
-        } else if (status != null) {
-            return new InternshipApplication(companyName, jobTitle, contact, status);
-        } else if (interviewDate != null) {
-            return new InternshipApplication(companyName, jobTitle, contact, interviewDate);
-        } else {
-            return new InternshipApplication(companyName, jobTitle, contact);
-        }
-
+        return new InternshipApplication(companyName, jobTitle, contact, status, interviewDate);
     }
 
     @Override
