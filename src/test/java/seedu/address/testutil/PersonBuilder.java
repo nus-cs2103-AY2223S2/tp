@@ -58,6 +58,21 @@ public class PersonBuilder {
     }
 
     /**
+     * Initializes the PersonBuilder with the data of {@code role}.
+     */
+    public PersonBuilder(String role) {
+        name = new Name(DEFAULT_NAME);
+        phone = new Phone(DEFAULT_PHONE);
+        email = new Email(DEFAULT_EMAIL);
+        nric = new Nric(DEFAULT_NRIC);
+        address = new Address(DEFAULT_ADDRESS);
+        medication = new Medication(DEFAULT_MEDICATION);
+        tags = new HashSet<>();
+        appointments = new ArrayList<>();
+        this.role = new Role(role);
+    }
+
+    /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {

@@ -22,7 +22,7 @@ public class Patient extends Person {
     public Patient(Name name, Phone phone, Email email, Nric nric, Address address, Medication medication,
                    Set<Tag> tags, ArrayList<Appointment> patientAppointments, Role role) {
         super(name, phone, email, nric, address, tags, patientAppointments, role);
-        requireAllNonNull(name, phone, email, address, tags, patientAppointments);
+        requireAllNonNull(name, phone, email, address, tags, patientAppointments, role);
         this.medication = medication;
         this.patientAppointments = patientAppointments;
     }
@@ -109,15 +109,5 @@ public class Patient extends Person {
             string += appointmentBooking + "\n";
         }
         return string;
-    }
-
-    @Override
-    public boolean isDoctor() {
-        return false;
-    }
-
-    @Override
-    public boolean isPatient() {
-        return true;
     }
 }

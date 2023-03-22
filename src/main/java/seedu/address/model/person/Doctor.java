@@ -16,16 +16,6 @@ public class Doctor extends Person {
         super(name, phone, email, nric, address, tags, patientAppointments, role);
     }
 
-    @Override
-    public boolean isDoctor() {
-        return true;
-    }
-
-    @Override
-    public boolean isPatient() {
-        return false;
-    }
-
     /**
      * Returns true if both Doctors have the same NRIC.
      * This defines a weaker notion of equality between two doctors.

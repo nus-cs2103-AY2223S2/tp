@@ -36,7 +36,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags,
                   ArrayList<Appointment> patientAppointments, Role role) {
-        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments);
+        requireAllNonNull(name, phone, email, nric, address, tags, patientAppointments, role);
 
         this.name = name;
         this.phone = phone;
@@ -90,7 +90,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same NRIC.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {

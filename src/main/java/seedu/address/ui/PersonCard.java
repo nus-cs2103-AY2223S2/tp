@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
 
-        if (person.getRole().toString().equals("Doctor")) {
+        if (person.isDoctor()) {
             name.setText("[Dr] " + person.getName().fullName);
         } else {
             name.setText(person.getName().fullName);
