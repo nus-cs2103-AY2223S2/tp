@@ -281,19 +281,19 @@ Our application:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a / an …​                                                         | I want to …​                                                                      | So that I can…​                                           |
+| Priority | As a / an …​                                                            | I want to …​                                                                         | So that I can…​                                              |
 |----------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------|
 | `* * *`  | new user                                                                | see instructions on how to use the app                                               | refer to the instructions when learning how to use the app   |
 | `* * *`  | business owner who deals with a large number of suppliers and customers | store their contact information in the application                                   | easily find them in a single place                           |
-| `* * *`  | small business owner                                                       | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
-| `* * *`  | small business owner who has lots of deadlines to meet                     | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
+| `* * *`  | small business owner                                                    | add orders into my _order_ list                                                      | efficiently keep track of my orders                          |
+| `* * *`  | small business owner who has lots of deadlines to meet                  | add _tasks_, such as ordering ingredients                                            | keep track of my to-do list                                  |
 | `* * *`  | familiar user                                                           | delete existing _supplier_ information                                               | ensure that the supplier contacts keyed in are correct       |
 | `* * *`  | familiar user                                                           | delete existing orders from my order list                                            | clear my order list of orders that are not required anymore  |
-| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete
-| `* * *` | small business owner | add an new Item to my menu | keep reference to items that I am selling.
-| `* * *` | small business owner | note selling price and cost price of my items | don't have to keep a mental note of profit per item. 
-| `* * *` | small business owner | have a catalog items that I am selling | quickly create orders.
-| `* *` | business with many orders |have an overview of my Profit-and-Loss.
+| `* * *`  | familiar user                                                           | delete existing tasks from my task list                                              | remove tasks that I no longer need to complete               |
+| `* * *`  | small business owner                                                    | add an new Item to my menu                                                           | keep reference to items that I am selling.                   |
+| `* * *`  | small business owner                                                    | note selling price and cost price of my items                                        | don't have to keep a mental note of profit per item.         |
+| `* * *`  | small business owner                                                    | have a catalog items that I am selling                                               | quickly create orders.                                       |
+| `* *`    | business with many orders                                               | have an overview of my Profit-and-Loss.                                              |                                                              |
 | `* *`    | expert user                                                             | edit existing supplier information                                                   | keep my records accurate and up-to-date                      |
 | `* *`    | expert user                                                             | edit existing information about orders                                               | keep my order details accurate and up-to-date                |
 | `* *`    | expert user                                                             | edit existing task information                                                       | easily correct any wrong information keyed in                |
@@ -529,7 +529,7 @@ MSS
 
   Use case ends.
 
-**Use case: Finding a task**
+**Use case: Finding an Order**
 
 MSS
 
