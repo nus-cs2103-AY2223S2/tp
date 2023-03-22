@@ -17,6 +17,10 @@ public class Price implements Comparable<Price> {
 
     private String fullPrice;
 
+    /**
+     * Constructs a {@code Price}.
+     * @param price A valid price.
+     */
     public Price(String price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);

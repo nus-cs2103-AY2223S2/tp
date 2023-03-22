@@ -1,6 +1,8 @@
 package arb.logic.commands.project;
 
-import static arb.logic.parser.CliSyntax.*;
+import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
@@ -169,7 +171,9 @@ public class EditProjectCommand extends Command {
             this.deadline = deadline;
         }
 
-        public void setPrice(Price price) {this.price = price;}
+        public void setPrice(Price price) {
+            this.price = price;
+        }
 
         public Optional<Title> getTitle() {
             return Optional.ofNullable(title);

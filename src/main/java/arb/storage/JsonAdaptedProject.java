@@ -3,13 +3,13 @@ package arb.storage;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import arb.model.project.Price;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import arb.commons.core.LogsCenter;
 import arb.commons.exceptions.IllegalValueException;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Project;
 import arb.model.project.Title;
 

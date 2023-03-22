@@ -1,7 +1,9 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.parser.CliSyntax.*;
+import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static java.util.Objects.requireNonNull;
 
 import arb.commons.core.index.Index;
