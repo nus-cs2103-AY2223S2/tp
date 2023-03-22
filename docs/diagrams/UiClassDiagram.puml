@@ -52,13 +52,13 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
-GreetingBar --|> UiPart
-EventListPanel --|> UiPart
+GreetingBar ---|> UiPart
+EventListPanel -|> UiPart
 EventCard --|> UiPart
 
 
-PersonCard ..> Model
-EventCard ..> Model
+PersonCard ...> Model
+EventCard ...> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
