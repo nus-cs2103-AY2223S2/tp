@@ -215,6 +215,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         return patients.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Patient> getUnassignedPatientList() {
+        UniquePatientList unassignedPatients = new UniquePatientList();
+        for (Patient patient : patients) {
+            boolean unassigned = true;
+            for (Doctor doctor : doctors) {
+                if (doctor.hasPatient(patient)) {
+                    unassigned = false;
+                    break;
+                }
+            }
+            if (unassigned) {
+                unassignedPatients.add(patient);
+            }
+        }
+        return unassignedPatients.asUnmodifiableObservableList();
+    }
+
 
     @Override
     public boolean equals(Object other) {
