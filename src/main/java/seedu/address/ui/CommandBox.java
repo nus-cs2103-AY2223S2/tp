@@ -27,7 +27,7 @@ public class CommandBox extends UiPart<Region> {
     private TextField commandTextField;
 
     @FXML
-    private TextField commandSuggestionTextField;
+    private TextField commandRecommendationTextField;
 
     private final CommandRecommendationEngine commandRecommendationEngine = new CommandRecommendationEngine();
 
@@ -43,10 +43,10 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty()
                 .addListener((unused1, unused2, unused3) -> setStyleToDefault());
         commandTextField.textProperty()
-                .addListener((observable, oldValue, newValue) -> updateStringAutoCompletion(newValue));
+                .addListener((observable, oldValue, newValue) -> autocompleteInputString(newValue));
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
 
-        commandSuggestionTextField.setEditable(false);
+        commandRecommendationTextField.setEditable(false);
     }
 
     /**
@@ -107,14 +107,14 @@ public class CommandBox extends UiPart<Region> {
         try {
             String userInput = commandTextField.getText();
             if (e.getCode() == KeyCode.TAB) {
-                String commandSuggestion = commandRecommendationEngine.recommendCommand(userInput);
+                String commandRecommendation = commandRecommendationEngine.recommendCommand(userInput);
                 String autocompletedCommand =
-                        commandRecommendationEngine.autocompleteCommand(userInput, commandSuggestion);
+                        commandRecommendationEngine.autocompleteCommand(userInput, commandRecommendation);
                 if (!autocompletedCommand.equals("")) {
                     commandTextField.setText(autocompletedCommand);
                     commandTextField.end();
                 }
-                updateStringAutoCompletion(commandTextField.getText());
+                autocompleteInputString(commandTextField.getText());
                 e.consume();
             }
         } catch (CommandException ce) {
@@ -124,18 +124,18 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Updates the command suggestion text field.
+     * Updates the command recommendation text field.
      */
-    private void updateStringAutoCompletion(String commandText) {
+    private void autocompleteInputString(String commandText) {
         if (isEmpty() || isOverflow()) {
-            commandSuggestionTextField.setText("");
+            commandRecommendationTextField.setText("");
             return;
         }
         try {
-            commandSuggestionTextField.setText(commandRecommendationEngine.recommendCommand(commandText));
-            commandSuggestionTextField.positionCaret(commandTextField.getText().length());
+            commandRecommendationTextField.setText(commandRecommendationEngine.recommendCommand(commandText));
+            commandRecommendationTextField.positionCaret(commandTextField.getText().length());
         } catch (CommandException e) {
-            commandSuggestionTextField.setText(commandText);
+            commandRecommendationTextField.setText(commandText);
             setStyleToIndicateCommandFailure();
         }
     }

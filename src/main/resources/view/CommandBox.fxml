@@ -4,7 +4,7 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.StackPane?>
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <TextField fx:id="commandSuggestionTextField"/>
+    <TextField fx:id="commandRecommendationTextField"/>
     <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
     <effect>
         <DropShadow height="15.14" radius="6.3375" width="12.21"/>

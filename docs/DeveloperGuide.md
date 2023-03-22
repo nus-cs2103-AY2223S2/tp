@@ -77,7 +77,7 @@ Two pairs are identical if they have the same elderly and volunteer NRIC.
 
 ### Storage
 
-<img src="images/developerGuide/StorageClassDiagram.png" width="500" />
+<img src="images/developerGuide/StorageClassDiagram.png"/>
 
 The `Storage` component,
 
@@ -88,7 +88,9 @@ The `Storage` component,
 - depends on some classes in the Model component (because the Storage component’s job is to save/retrieve objects that
   belong to the Model)
 
-#### Pairs
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about `Pairs` implementation:**<br>
 
 Pairs saved only contains the NRIC of the elderly and volunteer.
 
@@ -102,6 +104,8 @@ Implications
 
 * A pair is reconstructed on startup by searching the model for the corresponding person.
 * Elderly and volunteer files need to be read into the model before pair files.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
