@@ -154,6 +154,82 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+#### Advancing an Applicant
+
+##### Overview
+
+The `advance` command advances an `Person` in HMHero, which advances the `status` of an `Person`.
+
+
+The activity diagram is as such:
+[Add in later]
+
+Here is the activity diagram showing the process of the `advance` command:
+[Add in later]
+
+##### Feature Details
+1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
+1. If the name and phone is not provided, an error is thrown and the user is prompted to 
+enter the command correctly via an error message.
+1. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
+1. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
+correctly via an error message.
+1. If the interview datetime provided exists in the `Model`, the user will be prompted to enter the command
+correctly via an error message.
+1. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
+correctly via an error message.
+1. The applicant is cross-referenced in the `Model` to check if it exists. 
+If it does not, then an error is raised to inform the user.
+1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and 
+the user is prompted to enter the command correctly via an error message.
+
+##### Feature Considerations
+
+It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in Accepted or
+Rejected status. This presents confusingly to the user, applicants ideally cannot be advanced with a rejected or 
+accepted status. For example, if an `Person` with the status `Accepted` or `Rejected`, then you cannot advance 
+an existing `Person` any further.
+
+When implementing this feature, we realised that it is common to advance just by one stage. We thus decided to provide
+a default behaviour when advancing an applicant's status.
+
+
+#### Rejecting an Applicant
+
+##### Overview
+
+The `reject` command rejects an `Person` in HMHero, which rejects the `status` of an `Person`.
+
+
+The activity diagram is as such:
+[Add in later]
+
+Here is the activity diagram showing the process of the `advance` command:
+[Add in later]
+
+##### Feature Details
+1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
+1. If the name and phone is not provided, an error is thrown and the user is prompted to
+enter the command correctly via an error message.
+1. The status must be either Applied or Shortlisted or Accepted. Else, then an error is raised to inform the user.
+1. The applicant is cross-referenced in the `Model` to check if it exists.
+If it does not, then an error is raised to inform the user.
+1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
+the user is prompted to enter the command correctly via an error message.
+2. If step 3, 4 and 5 completes without any exceptions, then the `Person` is successfully rejected.
+
+##### Feature Considerations
+
+It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in 
+Rejected status. This presents confusingly to the user, applicants ideally cannot be rejected with a rejected
+status. For example, if an `Person` with the status `Rejected`, then you cannot reject an existing `Person` any further.
+
+When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
+a default behaviour when rejecting an applicant's status.
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
