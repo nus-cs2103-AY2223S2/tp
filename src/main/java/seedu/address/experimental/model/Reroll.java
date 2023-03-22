@@ -82,6 +82,19 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     /**
+     * Add Entity
+     */
+    public void addEntity(Entity entity) {
+        if (entity instanceof Item) {
+            items.addEntity((Item) entity);
+        } else if (entity instanceof Character) {
+            characters.addEntity((Character) entity);
+        } else if (entity instanceof Mob) {
+            mobs.addEntity((Mob) entity);
+        }
+    }
+
+    /**
      * Add Item
      */
     public void addItem(Item item) {
@@ -180,5 +193,14 @@ public class Reroll implements ReadOnlyReroll {
     @Override
     public String toString() {
         return "Characters:" + characters.toString() + "\nItems" + items.toString() + "\nMobs" + mobs.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Reroll
+                && items.equals(((Reroll) other).items)
+                && mobs.equals(((Reroll) other).mobs)
+                && characters.equals(((Reroll) other).characters));
     }
 }
