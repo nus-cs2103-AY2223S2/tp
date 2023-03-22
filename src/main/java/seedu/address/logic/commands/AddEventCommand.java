@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.fields.DateTime;
 
 /**
  * Adds an Event to the Calendar.
@@ -29,8 +30,11 @@ public class AddEventCommand extends Command {
             + PREFIX_END_DATE_TIME + "2023-03-10 18:00"
             + PREFIX_RECURRENCE + "weekly ";
 
-    public static final String MESSAGE_SUCCESS = "New event added: %1$s";
+    private static final String MESSAGE_SUCCESS = "New event added: %1$s";
     private static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the Calendar!";
+    private static final String MESSAGE_INVALID_INTERVAL = "END DATE TIME ("
+            + PREFIX_END_DATE_TIME + ") should be after START DATE TIME ("
+            + PREFIX_START_DATE_TIME + ")";
 
     private final Event toDo;
 
@@ -48,6 +52,9 @@ public class AddEventCommand extends Command {
 
         if (model.hasEvent(toDo)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
+        if (!DateTime.isValidInterval(toDo.getStartDateTime(), toDo.getEndDateTime())) {
+            throw new CommandException(MESSAGE_INVALID_INTERVAL);
         }
 
         model.addEvent(this.toDo);

@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+Package Tab {
+
+Class "<<enumeration>>\nTabType" as TabType
+Class TabInfo
+Class TabUtil
+
+}
+
+Class Index
+Class ReadOnlyObjectWrapper
+
+TabUtil -down-> "~* tabInfoList" TabInfo
+TabUtil --> "1 selectedTabInfo" ReadOnlyObjectWrapper
+ReadOnlyObjectWrapper -> "1" TabInfo
+TabInfo -down-> "1" Index
+TabInfo -down-> "1" TabType
+
+@enduml

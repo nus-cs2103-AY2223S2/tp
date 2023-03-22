@@ -259,6 +259,21 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
+### Select contact to expand details: `select`
+
+Want to see more details about a certain contact in your list?
+
+Use this command to expand and view more information about the selected contact.
+
+> Command: `select INDEX`
+
+Here are some important requirements for you to take note:
+* `INDEX` refers to the index of the contact you wish to view more information on.
+    * `INDEX` must be a positive integer.
+
+Examples:
+* `select 1` expands the details of the first contact in your list.
+* `select 4` expands the details of the fourth contact in your list.
 
 ### Deleting A Contact : `delete`
 

@@ -375,6 +375,7 @@
 .scroll-bar .thumb {
     -fx-background-color: derive(#1d1d1d, 70%);
     -fx-background-insets: 3;
+    -fx-background-radius: 5;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {

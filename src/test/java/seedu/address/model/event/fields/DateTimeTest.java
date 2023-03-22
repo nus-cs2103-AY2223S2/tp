@@ -39,7 +39,7 @@ class DateTimeTest {
 
     @Test
     public void createInvalidDateTime_throwsException() {
-        assertThrows(NullPointerException.class, () -> new DateTime(null));
+        assertThrows(NullPointerException.class, () -> new DateTime((String) null));
         assertThrows(DateTimeParseException.class, () -> new DateTime(""));
         assertThrows(DateTimeParseException.class, () -> new DateTime(BAD_FORMAT_STRING));
     }

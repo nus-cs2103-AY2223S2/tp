@@ -49,6 +49,14 @@ public abstract class Event {
         return recurrence.isRecurring();
     }
 
+    public DateTime getEffectiveStartDateTime() {
+        return startDateTime;
+    }
+
+    public DateTime getEffectiveEndDateTime() {
+        return endDateTime;
+    }
+
     /**
      * Returns true if both Events have same Description.
      * This defines a weaker notion of equality between two Events.

@@ -64,7 +64,7 @@ public class BodyPanel extends UiPart<Region> {
             case ADDRESS_BOOK:
                 tab.setContent(addressPanel.getRoot());
                 break;
-            case CALENDAR:
+            case EVENTS:
                 tab.setContent(calendarPanel.getRoot());
                 break;
             case USER:
