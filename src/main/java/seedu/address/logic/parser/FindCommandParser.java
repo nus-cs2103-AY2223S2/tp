@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULES;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -25,9 +25,52 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        PersonContainsKeywordsPredicate pred = new PersonContainsKeywordsPredicate();
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+                        PREFIX_GENDER, PREFIX_MAJOR, PREFIX_MODULES, PREFIX_RACE, PREFIX_COMMS);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE)
+            );
+        }
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            pred.withName(argMultimap.getValue(PREFIX_NAME).get());
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            pred.withPhone(argMultimap.getValue(PREFIX_PHONE).get());
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            pred.withEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        }
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            pred.withAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        }
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            pred.withGender(argMultimap.getValue(PREFIX_GENDER).get());
+        }
+        if (argMultimap.getValue(PREFIX_MAJOR).isPresent()) {
+            pred.withMajor(argMultimap.getValue(PREFIX_MAJOR).get());
+        }
+        if (argMultimap.getValue(PREFIX_RACE).isPresent()) {
+            pred.withRace(argMultimap.getValue(PREFIX_RACE).get());
+        }
+        if (argMultimap.getValue(PREFIX_COMMS).isPresent()) {
+            pred.withComms(argMultimap.getValue(PREFIX_COMMS).get());
+        }
+        if (argMultimap.getValue(PREFIX_MODULES).isPresent()) {
+            pred.withModules(argMultimap.getValue(PREFIX_MODULES).get());
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            pred.withTag(argMultimap.getValue(PREFIX_TAG).get());
+        }
+
+        // parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        // parseModulesForEdit(argMultimap.getAllValues(PREFIX_MODULES)).ifPresent(editPersonDescriptor::setModules);
+
+        return new FindCommand(pred);
     }
 
 }

@@ -17,6 +17,13 @@ public class NusMod {
         return true;
     }
 
+    /**
+     * Returns true if test string is contained within the value of the field.
+     */
+    public boolean contains(String test) {
+        return this.name.toUpperCase().contains(test.toUpperCase());
+    }
+
     @Override
     public boolean equals(Object other) {
         return this == other

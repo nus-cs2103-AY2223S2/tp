@@ -49,6 +49,13 @@ public class Gender {
                 || Objects.equals(lowerCaseGender, "dns") || Objects.equals(lowerCaseGender, "");
     }
 
+    /**
+     * Returns true if test string is contained within the value of the field.
+     */
+    public boolean contains(String test) {
+        return this.gender.toString().toUpperCase().contains(test.toUpperCase());
+    }
+
     @Override
     public String toString() {
         return gender.toString();

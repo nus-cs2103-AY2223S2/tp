@@ -38,6 +38,13 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if test string is contained within the value of the field.
+     */
+    public boolean contains(String test) {
+        return this.value.toUpperCase().contains(test.toUpperCase());
+    }
+
     @Override
     public String toString() {
         return value;

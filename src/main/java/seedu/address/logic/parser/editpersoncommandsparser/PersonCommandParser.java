@@ -13,10 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
@@ -31,7 +28,7 @@ import seedu.address.model.person.fields.subfields.Tag;
 /**
  * Abstract class to inherit from for parser classes which parse objects of the {@link Person} class
  */
-public abstract class EditPersonCommandParser {
+public abstract class PersonCommandParser {
 
     public abstract Optional<Index> parseIndex(String index) throws ParseException;
 
@@ -98,6 +95,7 @@ public abstract class EditPersonCommandParser {
     }
 
 
+
     private Optional<Modules> parseModulesForEdit(Collection<String> mods) throws ParseException {
         assert mods != null;
 
@@ -122,6 +120,5 @@ public abstract class EditPersonCommandParser {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }
 

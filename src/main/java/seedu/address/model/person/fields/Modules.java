@@ -17,6 +17,21 @@ public class Modules {
         this.mods = mods;
     }
 
+    /**
+     * Returns true if test string is contained within the value of any of the NUSMods.
+     */
+    public boolean contains(String test) {
+        if (!test.isEmpty() && this.mods.isEmpty()) {
+            return false;
+        }
+        for (NusMod mod: this.mods) {
+            if (mod.contains(test)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //todo: Update modules to only be able to include mods that are a part of NUSMods.
     public static boolean isValidModules(String trimmedModules) {
         return true;

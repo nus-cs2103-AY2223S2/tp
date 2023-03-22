@@ -35,6 +35,13 @@ public class Race {
         return trimmedRace.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if test string is contained within the value of the field.
+     */
+    public boolean contains(String test) {
+        return this.race.toUpperCase().contains(test.toUpperCase());
+    }
+
     @Override
     public String toString() {
         return this.race;

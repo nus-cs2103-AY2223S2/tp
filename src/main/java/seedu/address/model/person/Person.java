@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -192,6 +193,66 @@ public class Person {
     }
 
     /**
+     * Returns true if the person contains all the keywords in all the fields specified, returns false otherwise.
+     */
+    public boolean contains(HashMap<String, String> keywords) {
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.NAMEKEY)
+                && !this.name.contains(keywords.get(PersonContainsKeywordsPredicate.NAMEKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.ADDRESSKEY)
+                && !this.address.contains(keywords.get(PersonContainsKeywordsPredicate.ADDRESSKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.COMMSKEY)
+                && !this.comms.contains(keywords.get(PersonContainsKeywordsPredicate.COMMSKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.EMAILKEY)
+                && !this.email.contains(keywords.get(PersonContainsKeywordsPredicate.EMAILKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.GENDERKEY)
+                && !this.gender.contains(keywords.get(PersonContainsKeywordsPredicate.GENDERKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.MAJORKEY)
+                && !this.major.contains(keywords.get(PersonContainsKeywordsPredicate.MAJORKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.MODULESKEY)
+                && !this.modules.contains(keywords.get(PersonContainsKeywordsPredicate.MODULESKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.PHONEKEY)
+                && !this.phone.contains(keywords.get(PersonContainsKeywordsPredicate.PHONEKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.RACEKEY)
+                && !this.race.contains(keywords.get(PersonContainsKeywordsPredicate.RACEKEY))) {
+            return false;
+        }
+        if (keywords.containsKey(PersonContainsKeywordsPredicate.TAGKEY)
+                && !this.tagsContains(keywords.get(PersonContainsKeywordsPredicate.TAGKEY))) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean tagsContains(String test) {
+        if (!test.isEmpty() && this.tags.isEmpty()) {
+            return false;
+        }
+        for (Tag tag: this.tags) {
+            if (tag.contains(test)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -250,5 +311,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }
