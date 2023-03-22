@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,9 +25,10 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private Status status;
+    private final Status status;
     private final Set<Note> notes = new HashSet<>();
-    private Optional<InterviewDateTime> interviewDateTime;
+    private final Optional<InterviewDateTime> interviewDateTime;
+    private final ApplicationDateTime applicationDateTime;
 
     /**
      * Every field must be present and not null.
@@ -38,8 +41,25 @@ public class Person {
         this.email = email;
         this.address = address;
         this.status = status;
+        this.applicationDateTime = new ApplicationDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
         this.interviewDateTime = interviewDateTime;
         this.notes.addAll(notes);
+    }
+
+    /**
+     * Constructor for updating status of person
+     */
+    public Person(Person person, Status newStatus) {
+        this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
+                newStatus, person.getInterviewDateTime(), person.getNotes());
+    }
+
+    /**
+     * Constructor for updating status and interview date time of person
+     */
+    public Person(Person person, Status newStatus, Optional<InterviewDateTime> interviewDateTime) {
+        this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
+                newStatus, interviewDateTime, person.getNotes());
     }
 
     public Name getName() {
@@ -71,6 +91,14 @@ public class Person {
     }
 
     /**
+     * Returns the {@code ApplicationDateTime} of the applicant.
+     * @return Application date and time of the applicant.
+     */
+    public ApplicationDateTime getApplicationDateTime() {
+        return applicationDateTime;
+    }
+
+    /**
      * Returns the {@code Optional<InterviewDateTime>} for the applicant.
      * @return Interview date of the applicant.
      */
@@ -78,29 +106,40 @@ public class Person {
         return interviewDateTime;
     }
 
+    /**
+     * Returns String representation of {@code Optional<InterviewDateTime>}
+     * for conversion to {@code JsonAdaptedPerson}
+     * @return InterviewDateTime as String
+     */
     public String getInterviewDateTimeString() {
         return interviewDateTime.map(InterviewDateTime::toString).orElse("");
     }
 
+    public String getApplicationDateTimeString() {
+        return applicationDateTime.toString();
+    }
+
     /**
-     * Sets Status for applicants.
-     * @param status new Status for the applicant.
+     * Returns a String to be displayed in the UI
+     * @return desired String to be displayed for InterviewDateTime
      */
-    private void setStatus(Status status) {
-        this.status = status;
+    public String getInterviewDateTimeDisplay() {
+        if (this.getStatus() == Status.SHORTLISTED) {
+            return interviewDateTime.map(InterviewDateTime::toString).orElse("");
+        } else {
+            return "";
+        }
     }
 
     /**
      * Advances status of applicants, according to application cycle
      */
-    public void advancePerson() {
+    public Person advancePerson(Optional<InterviewDateTime> interviewDateTime) {
         switch (this.status) {
         case APPLIED:
-            setStatus(Status.SHORTLISTED);
-            break;
+            return new Person(this, Status.SHORTLISTED, interviewDateTime);
         case SHORTLISTED:
-            setStatus(Status.ACCEPTED);
-            break;
+            return new Person(this, Status.ACCEPTED);
         default:
             throw new AssertionError("This person's application status cannot be advanced!");
         }
@@ -109,16 +148,8 @@ public class Person {
     /**
      * Changes the status of the applicant to Rejected
      */
-    public void rejectPerson() {
-        this.status = Status.REJECTED;
-    }
-
-    /**
-     * Sets interview dateTime for shortlisted applicants.
-     * @param interviewDateTime Interview dateTime for the applicant.
-     */
-    public void setInterviewDateTime(Optional<InterviewDateTime> interviewDateTime) {
-        this.interviewDateTime = interviewDateTime;
+    public Person rejectPerson() {
+        return new Person(this, Status.REJECTED);
     }
 
     /**
@@ -135,25 +166,11 @@ public class Person {
     }
 
     /**
-     * Returns true if the person status can be advanced otherwise false.
-     */
-    public boolean canAdvance() {
-        return this.status != Status.REJECTED && this.status != Status.ACCEPTED;
-    }
-
-    /**
-     * Returns true if the person status can be rejected otherwise false.
-     */
-    public boolean canReject() {
-        return this.status != Status.REJECTED;
-    }
-
-    /**
      * Returns true if the other person has the same interview date.
      * This is needed as Optional's equals method fails when two different Optional objects
      * are created with same value.
      */
-    public boolean hasSameDate(Person other) {
+    public boolean hasSameInterviewDate(Person other) {
         Optional<InterviewDateTime> idt1 = getInterviewDateTime();
         Optional<InterviewDateTime> idt2 = other.getInterviewDateTime();
         if (idt1.isEmpty() && idt2.isEmpty()) { //both dates are null
@@ -163,6 +180,16 @@ public class Person {
         } else { //only one exists
             return false;
         }
+    }
+
+    /**
+     * Returns true if the other person has the same application date.
+     * The application date is only precise until the nearest minute.
+     */
+    public boolean hasSameApplicationDate(Person other) {
+        ApplicationDateTime app1 = getApplicationDateTime();
+        ApplicationDateTime app2 = other.getApplicationDateTime();
+        return app1.equals(app2);
     }
 
     /**
@@ -187,13 +214,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getNotes().equals(getNotes())
                 && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.hasSameDate(this);
+                && otherPerson.hasSameInterviewDate(this)
+                && otherPerson.hasSameApplicationDate(this);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, notes, status, interviewDateTime);
+        return Objects.hash(name, phone, email, address, notes, status, interviewDateTime, applicationDateTime);
     }
 
     @Override
@@ -207,7 +235,15 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Status: ")
-                .append(getStatus());
+                .append(getStatus())
+                .append("; Application Date:")
+                .append(getApplicationDateTimeString())
+                .append("; Interview DateTime")
+                .append(getInterviewDateTimeString());
+        if (interviewDateTime.isPresent()) {
+            builder.append("; InterviewDateTime: ")
+                    .append(interviewDateTime.get());
+        }
 
         Set<Note> notes = getNotes();
         if (!notes.isEmpty()) {

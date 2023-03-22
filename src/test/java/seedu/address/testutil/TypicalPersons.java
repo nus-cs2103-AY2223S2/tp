@@ -34,31 +34,45 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withStatus("SHORTLISTED")
+            .withApplicationDateTime("02-01-2023 14:00")
             .withInterviewDateTime("02-03-2023 14:00")
             .withNotes("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withStatus("ACCEPTED").withInterviewDateTime("04-03-2024 13:00").build();
+            .withStatus("ACCEPTED")
+            .withApplicationDateTime("02-02-2023 14:00")
+            .withInterviewDateTime("04-03-2024 13:00").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withStatus("APPLIED")
+            .withApplicationDateTime("02-02-2023 14:00")
             .withInterviewDateTime("").withNotes("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withStatus("SHORTLISTED").withInterviewDateTime("04-03-2024 13:00").build();
+            .withStatus("SHORTLISTED")
+            .withApplicationDateTime("02-03-2023 14:00")
+            .withInterviewDateTime("04-03-2024 13:00").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
-            .withStatus("ACCEPTED").withInterviewDateTime("04-03-2024 13:00").build();
+            .withStatus("ACCEPTED")
+            .withApplicationDateTime("02-02-2023 14:00")
+            .withInterviewDateTime("04-03-2024 13:00").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withStatus("REJECTED").withInterviewDateTime("").build();
+            .withStatus("REJECTED")
+            .withApplicationDateTime("02-02-2023 14:00")
+            .withInterviewDateTime("").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withStatus("APPLIED").withInterviewDateTime("").build();
+            .withStatus("APPLIED")
+            .withApplicationDateTime("02-02-2023 14:00")
+            .withInterviewDateTime("").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave")
-            .withStatus("SHORTLISTED").withInterviewDateTime("05-07-2023 19:00").build();
+            .withStatus("SHORTLISTED")
+            .withApplicationDateTime("02-02-2023 14:00")
+            .withInterviewDateTime("05-07-2023 19:00").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

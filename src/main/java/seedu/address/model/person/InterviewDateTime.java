@@ -24,7 +24,7 @@ public class InterviewDateTime {
     /**
      * method to create InterviewDateTime, used in converting from json
      * @param dateTime String form of dateTime or empty string
-     * @return null if empty String, InterviewDateTime object otherwise
+     * @return {@code Optional.empty()} if empty String, otherwise returns {@code Optional<InterviewDateTime>}.
      * @throws ParseException if dateTime String cannot be parsed
      */
     public static Optional<InterviewDateTime> createInterviewDateTime(String dateTime) throws ParseException {
@@ -70,5 +70,12 @@ public class InterviewDateTime {
     @Override
     public String toString() {
         return DateTimeParser.datetimeFormatter(dateTime);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof InterviewDateTime // instanceof handles nulls
+                && dateTime.equals(((InterviewDateTime) other).dateTime)); // state check
     }
 }

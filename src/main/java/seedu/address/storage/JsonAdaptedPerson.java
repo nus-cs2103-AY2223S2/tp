@@ -33,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String status;
     private final String interviewDate;
+    private final String applicationDate;
     private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
     /**
@@ -41,14 +42,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("status") String status, @JsonProperty("interviewDate") String interviewDate,
-                             @JsonProperty("notes") List<JsonAdaptedNote> notes) {
+            @JsonProperty("status") String status, @JsonProperty("applicationDate") String applicationDate,
+            @JsonProperty("interviewDate") String interviewDate,
+            @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.status = status;
         this.interviewDate = interviewDate;
+        this.applicationDate = applicationDate;
         if (notes != null) {
             this.notes.addAll(notes);
         }
@@ -64,6 +67,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         status = source.getStatus().name();
         interviewDate = source.getInterviewDateTimeString();
+        applicationDate = source.getApplicationDateTimeString();
         notes.addAll(source.getNotes().stream()
                 .map(JsonAdaptedNote::new)
                 .collect(Collectors.toList()));

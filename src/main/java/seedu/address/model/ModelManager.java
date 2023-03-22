@@ -114,20 +114,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean advancePerson(Person target) {
-        requireNonNull(target);
-
-        return addressBook.advancePerson(target);
-    }
-
-    @Override
-    public boolean rejectPerson(Person target) {
-        requireNonNull(target);
-
-        return addressBook.rejectPerson(target);
-    }
-
-    @Override
     public void refreshListWithPredicate(Predicate<Person> predicate) {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         filteredPersons.setPredicate(predicate);
