@@ -660,19 +660,82 @@ Main section consists of the following components:
 
 ### **CommandBox**
 
-TEXT
+**Main input for the UI.**
+
+[CommandBox Image]
+
+`CommandBox`'s constructor takes in a `CommandExecutor` that is passed by the `MainWindow`. This creates a single, 
+bidirectional association between the two, removing the need for the `CommandBox` to interact with the `Model` directly.
+
+Users are able to write their commands into its text field and execute it by pressing `Enter` key.
+
+<br>
+
+#### Design considerations
+
+Commands may execute successfully or fail throwing exceptions. To increase usability of the `CommandBox`, following are
+implemented:
+* On succesful execution: text field is reset to be empty, ready to take in more commands.
+* On failed execution: command in text field is kept but shown in different color to indicate error, so that users can 
+modify the command without having to rewrite the whole command.
+
+<br>
 
 ### **ResultDisplay**
 
-TEXT
+**Main output for the UI.**
+
+[Placeholder for ResultDisplay image]
+
+Even though the program supports GUI, main interaction between the user and the program happens through the CLI. This
+leads to a need for showing results of command as Strings which the users can refer to, gaining more understanding about
+execution of commands.
+
+<br>
+
+#### Design considerations
+
+Since the execution of command is handled by the `Logic` component, all it needs to have is an uneditable text field
+that is updated by the `MainWindow` after execution. Respective commands executed are responsible for the content of
+this update, adhering to the segregation of concerns principle.
+
+<br>
 
 ### **PersonListPanel**
 
-TEXT
+Part of the main section that displays a list of person registered to the CoDoc database.
+
+The list is created as a ListView. More information about ListView
+[here](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ListView.html).
+
+[Placeholder for picture]
+
+<br>
+
+#### Design considerations
+
+Since the list is updated constantly as program executes, ListView was chosen as the way to display the list since it
+is able to observe changes in its content (as long as it is an 
+[ObservableList](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ObservableList.html)) and reflect the
+change during execution without having the user to update what is shown on the program separately.
+
+To allow cells within the ListView to show relevant information about a person, `PersonListPanel` also has a custom
+class `PersonListViewCell` that acts as a factory to create the cells through `PersonCard` class. Developers interested
+in changing how the cells within the ListView look should look into `PersonCard` and its `.fxml` file for modification.
+
+<br>
 
 ### **StatusBarFooter**
 
-TEXT
+Small section at the bottom of the program to show information about the status of the program.
+
+[Placeholder for image]
+
+Currently, it shows the path for CoDoc's database. Developers who are looking to show any other status to the user
+(such as internet connection availability, if required in future implementation) may use this to display such
+information.
+
+<br>
 
 ## **Info Panel**
 
@@ -691,32 +754,116 @@ Info Panel consists of the following components:
 
 ### **InfoTab**
 
-TEXT
+Similar to how `MainWindow` is the main controller for the primary stage, `InfoTab` is the class that acts as the 
+**main controller** for the right section, Info Panel.
+
+[Placeholder for image]
+
+<br>
+
+#### Design considerations
+
+The Info Panel is implemented to show details of a person as [PersonListPanel](#personlistpanel) is unable to show all
+information about a person given limited space within each cell. This "staged" person is called internally code-wise as
+`protagonist` and shall be referred to as that.
+
+However, even by having a separate panel dedicated for showing such information, the set of modules or skills a person
+has may grow so large to show all of them in one section. Furthermore, user do not need to see all of them at once as
+for the moment there are no direct links between contacts, modules and skills information of a person.
+
+This led to the design which top part of `InfoTab` shows basic information about the `protagonist` (name, year, course
+of study) and bottom part shows whatever [DetailedInfo](#detailedinfo) user wish to display. Since the name or course of
+study could become very long, the containing `VBox` has been allowed to grow and the information containing `label` are
+set to wrap its text.
+
+[Placeholder for table of images used in PR - Name wrap]
+
+Note that there are no listeners that observes the changes made to the staged `progatonist`. This is to prevent
+over-coupling of components which makes maintenance of code much harder. Instead, `MainWindow`'s `executeCommand`
+creates a new `InfoTab` at the end of every execution by referring to the `protagonist` at given state.
+
+<br>
 
 ### **DetailedInfo**
 
-TEXT
+Parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
+`DetailedSkill`.
+
+<br>
+
+#### Design considerations
+
+`InfoTab` may create either of the children classes, depending on what the user has specified using the
+[ViewCommand](#view-command). This parent class utilizes Java's polymorphism so that `InfoTab` can just display
+generated `DetailedInfo` that gets loaded into the bottom `detailedInfoPlaceholder` StackPane within the `InfoTab`.
+
+<br>
 
 ### **DetailedContact**
 
-TEXT
+Controller class for Info Panel which holds detailed contact information about a person. Shows contact information such
+as GitHub user ID, email address and LinkedIn profile URL.
+
+<br>
 
 ### **DetailedModule**
 
-TEXT
+Controller class for Info Panel which holds detailed module information about a person. Shows a list of modules taken
+by a person that is created as a ListView, similar to the [PersonListPanel](#personlistpanel).
+
+<br>
+
+#### Design considerations
+
+The ListView for list of modules are implemented in a similar manner to the one for [PersonListPanel](#personlistpanel).
+One major difference lies in the `prefHeight` attribute of the ListView set by the controller.
+
+The list of modules may grow or shrink as the program executes. Users may scroll down this list if it is unable to
+display all of its contents. However, we wanted to minimize GUI interaction since our primary users prefer a CLI. One
+could set the `VBox.vgrow` attribute of the container to "ALWAYS" and expand the table, but without limiting the
+`maxHeight` or `prefHeight` attribute for the ListView, it would grow all the way to the bottom of the panel showing
+too much of empty space in the ListView, negatively affecting its visuals.
+
+To get around this and make the height grow just enough to display all items in the list, controller will calculate
+the optimal height based on the number of entries and set it as the `prefHeight` of the ListView, minimizing the empty
+space.
+
+To let the users intuitively know that there are rooms for more modules to be added, ListView's `minHeight` has been set
+to `340` to reveal small amount of empty space. If the program window is resized too short, the ListView becomes a
+scrollable one.
+
+[Placeholder for table of images used in PR - Growling list]
+
+<br>
 
 ### **DetailedSkill**
 
-TEXT
+Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
+by a person that is created as a ListView.
 
+The implementation are very similar to its counterpart, hence refer to the [DetailedModule](#detailedmodule) for more
+information.
+
+<br>
 
 ## **Theme**
 
-CSS
+Most of the Java FXML components follow the style specified by the CSS file. Refer to this file under the `view` package
+within the `resources` folder when visual design changes are to be made.
 
-Colours
+CSS file also contains colors shown in the program in RGB color codes, developers may refer to
+[this page](https://www.rapidtables.com/web/color/RGB_Color.html) to decipher them.
 
-Font
+Fonts used in this program but not part of system fonts are stored in the `resources` folder as well, under the `font`
+package. These are loaded by the `MainApp` class upon initialization of the program. Mainly used fonts are:
+1. **Roboto Mono Regular**: contents requiring mono-spacing for better alignment (such as list of skills/modules).
+2. **Roboto Bold and Regular**: most of the texts displayed on the program.
+3. **Segeo UI**: for system-related texts (such as [CommandBox](#commandbox), [ResultDisplay](#resultdisplay) or
+[StatusBarFooter](#statusbarfooter)).
+
+<br>
+
+{More to be added}
 
 
 [Scroll back to UI Implementation](#ui-implementation)
