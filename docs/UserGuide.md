@@ -162,6 +162,13 @@ Undo the latest command and restore the team builder before that command.
 
 Format: `undo`
 
+### Undoing a command : `redo`
+
+Revoke the latest undo command and restore the team builder before that command.
+Redo will not work if any non-undo commands are entered after the desired undo command to revoke.
+
+Format: `redo`
+
 ### List all persons in a team: `@TODO`
 
 `@TODO`
