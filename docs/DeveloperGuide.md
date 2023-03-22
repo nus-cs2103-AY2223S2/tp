@@ -19,11 +19,39 @@ The set-up guide is still **_in progress_**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Architecture
+## Design
 
-The documentation for Architecture is still **_in progress_**
+The documentation for Design is still **_in progress_**
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Implementation
+
+### Enlarged Info Card feature
+As triage staff manage the contacts of doctors and patients, they may wish to pull up
+the personal information of the doctor or patient. Therefore, the right-most column within
+Docedex has been reserved to show the personal information of the selected doctor or patient.
+
+![](images/enlarged-contact-card-display.png)
+
+Let's call the card which displays this information **info cards**. However, the information
+displayed for a doctor compared to a patient has a few differences. Thus, two different info cards
+are required - one to display patient information and one to display doctor information.
+
+Let's call these cards `EnlargedDoctorInfoCard` and `EnlargedPatientInfoCard`. Now, we need a way
+to toggle between displaying either card, depending on whether the user has selected a doctor
+or patient to view.
+
+We will focus on the user clicking on a `DoctorCard`, though the ideas below can extend to
+the `PatientCard`, as well as other ways of querying for a doctor or patient
+(ie. through select-doc command).
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix: Requirements**
 
