@@ -58,12 +58,4 @@ EditPersonDescriptor -up-> "0..1" Name
 EditPersonDescriptor -up-> "*" Tag
 EditPersonDescriptor -up-> "*" Group
 
-
-
-'EditCommand -right-> "1" EditCustomerDescriptor
-
-
-
-
-
 @enduml
