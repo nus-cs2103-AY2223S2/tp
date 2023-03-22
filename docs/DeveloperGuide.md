@@ -554,7 +554,7 @@ Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser
 Below is an Activity Diagram for the execution of the `ViewCommand`.
 <img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
-    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
+    <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution <process></process>
 </div>
 
 #### **Find Command**
