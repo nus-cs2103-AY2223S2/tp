@@ -1,7 +1,6 @@
 package seedu.vms.storage;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import seedu.vms.commons.core.LogsCenter;
@@ -11,6 +10,7 @@ import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.appointment.AppointmentStorage;
+import seedu.vms.storage.patient.PatientManagerStorage;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 
 /**
@@ -41,11 +41,6 @@ public class StorageManager implements Storage {
     // ================ UserPrefs methods ==============================
 
     @Override
-    public Path getUserPrefsFilePath() {
-        return userPrefsStorage.getUserPrefsFilePath();
-    }
-
-    @Override
     public UserPrefs readUserPrefs() throws IOException {
         return userPrefsStorage.readUserPrefs();
     }
@@ -58,31 +53,13 @@ public class StorageManager implements Storage {
     // ================ PatientManager methods ==============================
 
     @Override
-    public Path getPatientManagerFilePath() {
-        return patientManagerStorage.getPatientManagerFilePath();
-    }
-
-    @Override
     public ReadOnlyPatientManager readPatientManager() throws IOException {
-        return readPatientManager(patientManagerStorage.getPatientManagerFilePath());
-    }
-
-    @Override
-    public ReadOnlyPatientManager readPatientManager(Path filePath)
-            throws IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return patientManagerStorage.readPatientManager(filePath);
+        return patientManagerStorage.readPatientManager();
     }
 
     @Override
     public void savePatientManager(ReadOnlyPatientManager patientManager) throws IOException {
-        savePatientManager(patientManager, patientManagerStorage.getPatientManagerFilePath());
-    }
-
-    @Override
-    public void savePatientManager(ReadOnlyPatientManager patientManager, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        patientManagerStorage.savePatientManager(patientManager, filePath);
+        patientManagerStorage.savePatientManager(patientManager);
     }
 
     // ================ Vax Type methods ==============================

@@ -1,7 +1,6 @@
 package seedu.vms.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.vms.testutil.TypicalPatients.getTypicalPatientManager;
 
@@ -18,6 +17,7 @@ import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.storage.appointment.JsonAppointmentStorage;
+import seedu.vms.storage.patient.JsonPatientManagerStorage;
 import seedu.vms.storage.vaccination.JsonVaxTypeStorage;
 import seedu.vms.testutil.SampleVaxTypeData;
 
@@ -67,11 +67,6 @@ public class StorageManagerTest {
         storageManager.savePatientManager(original);
         ReadOnlyPatientManager retrieved = storageManager.readPatientManager();
         assertEquals(original, new PatientManager(retrieved));
-    }
-
-    @Test
-    public void getPatientManagerFilePath() {
-        assertNotNull(storageManager.getPatientManagerFilePath());
     }
 
     @Test

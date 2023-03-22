@@ -2,8 +2,6 @@ package seedu.vms.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Objects;
 
 import seedu.vms.commons.core.GuiSettings;
@@ -14,7 +12,6 @@ import seedu.vms.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path patientManagerFilePath = Paths.get("data" , "patientmanager.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -35,7 +32,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setPatientManagerFilePath(newUserPrefs.getPatientManagerFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -45,15 +41,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
-    }
-
-    public Path getPatientManagerFilePath() {
-        return patientManagerFilePath;
-    }
-
-    public void setPatientManagerFilePath(Path patientManagerFilePath) {
-        requireNonNull(patientManagerFilePath);
-        this.patientManagerFilePath = patientManagerFilePath;
     }
 
     @Override
@@ -67,20 +54,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         UserPrefs o = (UserPrefs) other;
 
-        return guiSettings.equals(o.guiSettings)
-                && patientManagerFilePath.equals(o.patientManagerFilePath);
+        return guiSettings.equals(o.guiSettings);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, patientManagerFilePath);
+        return Objects.hash(guiSettings);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + patientManagerFilePath);
         return sb.toString();
     }
 

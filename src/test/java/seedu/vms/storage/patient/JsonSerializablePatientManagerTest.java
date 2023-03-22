@@ -1,4 +1,4 @@
-package seedu.vms.storage;
+package seedu.vms.storage.patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.vms.testutil.Assert.assertThrows;

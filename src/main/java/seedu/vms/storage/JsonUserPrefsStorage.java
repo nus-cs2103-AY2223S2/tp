@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 import seedu.vms.commons.exceptions.DataConversionException;
+import seedu.vms.commons.util.FileUtil;
 import seedu.vms.commons.util.JsonUtil;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
@@ -13,16 +14,16 @@ import seedu.vms.model.UserPrefs;
  * A class to access UserPrefs stored in the hard disk as a json file
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
+    private static final Path USER_PREF_FILE_PATH = Path.of("data", "userprefs.json");
 
     private Path filePath;
 
-    public JsonUserPrefsStorage(Path filePath) {
-        this.filePath = filePath;
+    public JsonUserPrefsStorage() {
+        this(USER_PREF_FILE_PATH);
     }
 
-    @Override
-    public Path getUserPrefsFilePath() {
-        return filePath;
+    public JsonUserPrefsStorage(Path filePath) {
+        this.filePath = filePath;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         Objects.requireNonNull(userPrefs);
+        FileUtil.createIfMissing(filePath);
         JsonUtil.serializeToFile(filePath, userPrefs);
     }
-
 }

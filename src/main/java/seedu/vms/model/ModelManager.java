@@ -3,7 +3,6 @@ package seedu.vms.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.vms.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -91,17 +90,6 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public Path getPatientManagerFilePath() {
-        return userPrefs.getPatientManagerFilePath();
-    }
-
-    @Override
-    public void setPatientManagerFilePath(Path patientManagerFilePath) {
-        requireNonNull(patientManagerFilePath);
-        userPrefs.setPatientManagerFilePath(patientManagerFilePath);
     }
 
     // =========== Parsing =======================================================================================

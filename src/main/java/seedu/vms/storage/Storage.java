@@ -1,6 +1,7 @@
 package seedu.vms.storage;
 
 import seedu.vms.storage.appointment.AppointmentStorage;
+import seedu.vms.storage.patient.PatientManagerStorage;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 
 /**
