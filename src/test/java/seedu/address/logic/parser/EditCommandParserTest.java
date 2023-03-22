@@ -24,8 +24,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditCardDescriptor;
+import seedu.address.logic.commands.cardcommands.EditCommand;
+import seedu.address.logic.commands.cardcommands.EditCommand.EditCardDescriptor;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
 import seedu.address.model.tag.Tag;

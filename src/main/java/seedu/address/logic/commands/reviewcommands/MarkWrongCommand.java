@@ -1,27 +1,30 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.reviewcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Marks the current card under review as correct.
+ * Marks the current card under review as wrong.
  */
-public class MarkCorrectCommand extends Command {
+public class MarkWrongCommand extends Command {
 
-    public static final String COMMAND_WORD = "'";
+    public static final String COMMAND_WORD = ";";
 
-    public static final String MESSAGE_SUCCESS = "Nicely! Showing next flashcard."
+    public static final String MESSAGE_SUCCESS = "You'll get it next time! Showing next flashcard."
             + "\nEnter [ to flip card and show answer!"
             + "\nEnter ] to return to previous card."
             + "\nEnter \\ to skip to next card.";
 
     public static final String MESSAGE_NO_MORE_NEXT_CARD = "Congrats! That was the last card.";
 
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (model.markCorrect()) {
+        if (model.markWrong()) {
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             return new CommandResult(MESSAGE_NO_MORE_NEXT_CARD);
