@@ -27,9 +27,9 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/Meeting d/CSXXXX project meeting` : Adds a task named Meeting to task book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete 3` : Deletes the 3rd task shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -44,7 +44,8 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-* First word is assumed to be a command word (add/delete/list/find)
+* First word is assumed to be a command word (add/delete/list/find).
+* Each task must have a corresponding description.
 * Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
 * Items in square brackets are optional.<br>
@@ -121,8 +122,8 @@ Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st task to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd task to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be `CS2102` and `URGENT`
+*  `edit 2 n/CS2102 Finals t/` Edits the name of the 2nd task to be `CS2102 Finals` and clears all existing tags.
 
 ### Locating tasks by name: `find`
 

@@ -3,30 +3,56 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  * [1. Introduction](#1-introduction)
+    * [1.1 Acknowledgements](#11-acknowledgements)
+    * [1.2 Setting up, getting started](#12-setting-up-getting-started)
+  * [2. Design](#2-design)
+    * [2.1 Architecture](#21-architecture)
+    * [2.2 UI Component](#22-ui-component)
+    * [2.3 Logic Component](#23-logic-component)
+    * [2.4 Model Component](#24-model-component)
+    * [2.5 Storage Component](#25-storage-component)
+    * [2.6 Common Classes](#26-common-classes)
+  * [3. Implementation](#3-implementation)
+    * [3.1 Add Feature](#31-add-feature)
+    * [3.2 Clear Feature](#32-clear-feature)
+    * [3.3 Delete Feature](#33-delete-feature)
+    * [3.4 Edit Feature](#34-edit-feature)
+    * [3.5 Find Feature](#35-find-feature)
+    * [3.6 List Feature](#36-list-feature)
+    * [3.7 Help Feature](#37-help-feature)
+    * [3.8 Stats Feature](#38-stats-feature)
+    * [3.9 Sort Feature](#39-sort-feature)
+    * [3.10 Alert Feature](#310-alert-feature)
+    * [3.11 Plan Feature](#311-plan-feature)
+  * [4. Documentation, Logging, Testing, Configuration, DevOps](#4-documentation-logging-testing-configuration-dev-ops)
+  * [5. Appendix: Requirements](#5-appendix-requirements)
+  * [6. Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## 1. Introduction 
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This Developer Guide details Clock-Work's design and implementation details.
 
---------------------------------------------------------------------------------------------------------------------
+### 1.1 **Acknowledgements**
 
-## **Setting up, getting started**
+* Tag's color code examples courtesy of https://sashamaps.net/docs/resources/20-colors/.
+
+### 1.2 **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 2. **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -67,7 +93,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -84,7 +110,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
-### Logic component
+### 2.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -113,7 +139,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 2.4 Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -133,7 +159,7 @@ The `Model` component,
 </div>
 
 
-### Storage component
+### 2.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -144,13 +170,13 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -251,13 +277,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -265,10 +291,86 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### 3.1 Add Feature
+
+### 3.2 Clear Feature
+
+### 3.3 Delete Feature
+
+### 3.4 Edit Feature
+
+### 3.5 Find Feature
+
+### 3.6 List Feature
+
+### 3.7 Help Feature
+
+### 3.8 Stats Feature
+
+### 3.9 sort Feature
+
+Given below is an example usage scenario and how the sort command behaves at each step
+
+Step 1. The user launches the application.
+
+Step 2. The application displays a list of tasks (that can also be empty).
+
+Step 2. The user executes `sort` command to sort the list. Look at [Sort Design Consideration](#391-design-consideration) for the sorting logic.
+
+Step 3. The sequence diagram below shows how the sort operation works:
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+
+#### 3.9.1 Design Consideration
+
+Sorts the list using the following format:
+
+Aspect: How are tasks sorted:
+
+###### Option 1(current choice):
+
+* SimpleTask is listed above Deadline and Event.
+* Deadline is  listed below SimpleTask and above Event.
+* Event is  listed below SimpleTask and Event.
+* When comparing 2 tasks of the same class:
+  * SimpleTask
+    * The task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+  * Deadline
+    * The task with the earlier deadline is listed above the task with later deadline.
+    * Else if both tasks have the same deadline, the task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
+  * Event
+    * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
+    * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
+    * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
+    * Else if both tasks have the same number of tags, the task with a smaller lexicgraphical name is listed above the other.
+
+Pros: Neater and more intuitive
+Cons: Will have to scroll down to see the order for Events if there are too many SimpleTasks.
+
+###### Option 2:
+
+Same as above, but:
+* Event is listed above SimpleTask and Deadline.
+* Deadline is  listed below Event and above SimpleTask.
+* SimpleTask is listed below Deadline and Event. 
+
+Pros: Able to see the Events happening close to date.
+Cons: Have to scroll down to see SimpleTasks.
+
+### 3.10 Alert Feature
+
+### 3.11 Plan Feature
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 4. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -278,7 +380,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 5. **Appendix: Requirements**
 
 ### Product scope
 
@@ -362,7 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 6. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
