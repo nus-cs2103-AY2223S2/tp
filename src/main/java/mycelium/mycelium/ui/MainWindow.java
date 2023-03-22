@@ -2,12 +2,8 @@ package mycelium.mycelium.ui;
 
 import java.util.logging.Logger;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputControl;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import mycelium.mycelium.commons.core.GuiSettings;
@@ -16,6 +12,7 @@ import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
+import mycelium.mycelium.logic.uievent.UiEventManager;
 import mycelium.mycelium.ui.commandbox.CommandBox;
 import mycelium.mycelium.ui.commandlog.CommandLog;
 import mycelium.mycelium.ui.entitypanel.EntityPanel;
@@ -70,46 +67,25 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
+        setEventHandlers();
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    public EntityPanel getEntityPanel() {
+        return entityPanel;
     }
 
-    /**
-     * Sets the accelerator of a MenuItem.
-     *
-     * @param keyCombination the KeyCombination value of the accelerator
-     */
-    private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
-        menuItem.setAccelerator(keyCombination);
+    public CommandBox getCommandBox() {
+        return commandBox;
+    }
 
-        /*
-         * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
-         *
-         * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
-         *
-         * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
-         */
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                menuItem.getOnAction().handle(new ActionEvent());
-                event.consume();
-            }
-        });
+    private void setEventHandlers() {
+        getRoot().addEventFilter(
+            UiEventManager.TYPE,
+            new UiEventManager(logic, this).getEventHandler());
     }
 
     /**
@@ -119,13 +95,18 @@ public class MainWindow extends UiPart<Stage> {
         logger.info("Filling inner parts of MainWindow...");
         helpWindow = new HelpWindow();
 
-        commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(
+            this::executeCommand, (String input) -> {
+                System.out.println("Input: " + input);
+            }
+        // TO BE REPLACED WITH FUZZY SEARCH
+        );
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         commandLog = new CommandLog();
         commandLogPlaceholder.getChildren().add(commandLog.getRoot());
 
-        entityPanel = new EntityPanel(logic);
+        entityPanel = new EntityPanel(logic.getFilteredProjectList(), logic.getFilteredClientList());
         entityPanelPlaceholder.getChildren().add(entityPanel.getRoot());
 
         statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
@@ -156,11 +137,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    void show() {
-        primaryStage.show();
-        fillInnerParts(); //This should be called before creating other UI parts
-    }
-
     /**
      * Closes the application.
      */
@@ -173,8 +149,9 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public EntityPanel getEntityPanel() {
-        return entityPanel;
+    void show() {
+        primaryStage.show();
+        fillInnerParts(); //This should be called before creating other UI parts
     }
 
     /**
