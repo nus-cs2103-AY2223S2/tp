@@ -1,1 +1,228 @@
-<?xml version="1.0" encoding="us-ascii" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="412px" preserveAspectRatio="none" style="width:535px;height:412px;background:#FFFFFF;" version="1.1" viewBox="0 0 535 412" width="535px" zoomAndPan="magnify"><defs/><g><!--class ReadOnlyXYZList--><g id="elem_ReadOnlyXYZList"><rect codeLine="9" fill="#9D0012" height="41.2813" id="ReadOnlyXYZList" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="116" x="133.5" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="156" y="24.6738">&#171;interface&#187;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="110" x="136.5" y="40.3145">ReadOnlyXYZList</text></g><!--class ReadOnlyUserPrefs--><g id="elem_ReadOnlyUserPrefs"><rect codeLine="10" fill="#9D0012" height="41.2813" id="ReadOnlyUserPrefs" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="131" x="397" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="427" y="24.6738">&#171;interface&#187;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="125" x="400" y="40.3145">ReadOnlyUserPrefs</text></g><!--class Model--><g id="elem_Model"><rect codeLine="11" fill="#9D0012" height="41.2813" id="Model" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="77" x="285" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="288" y="24.6738">&#171;interface&#187;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="304.5" y="40.3145">Model</text></g><!--class XYZList--><g id="elem_XYZList"><rect codeLine="12" fill="#9D0012" height="25.6406" id="XYZList" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="53" x="184" y="108"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="47" x="187" y="125.6738">XYZList</text></g><!--class ModelManager--><g id="elem_ModelManager"><rect codeLine="13" fill="#9D0012" height="25.6406" id="ModelManager" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="100" x="273.5" y="108"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="276.5" y="125.6738">ModelManager</text></g><!--class UserPrefs--><g id="elem_UserPrefs"><rect codeLine="14" fill="#9D0012" height="25.6406" id="UserPrefs" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="68" x="418.5" y="108"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="421.5" y="125.6738">UserPrefs</text></g><!--class UniqueXYZList--><g id="elem_UniqueXYZList"><rect codeLine="15" fill="#9D0012" height="25.6406" id="UniqueXYZList" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="97" x="173" y="194"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="91" x="176" y="211.6738">UniqueXYZList</text></g><!--class XYZ--><g id="elem_XYZ"><rect codeLine="16" fill="#9D0012" height="25.6406" id="XYZ" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="50" x="196.5" y="381"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="209" y="398.6738">XYZ</text></g><!--class Item--><g id="elem_Item"><rect codeLine="17" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="67" x="71" y="280"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="74" y="297.6738">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="26" x="91.5" y="313.3145">Item</text></g><!--class ItemList--><g id="elem_ItemList"><rect codeLine="18" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="139" x="7" y="108"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10" y="125.6738">ItemList</text><rect fill="#FFFFFF" height="17.9609" style="stroke:#9D0012;stroke-width:1.0;stroke-dasharray:2.0,2.0;" width="83" x="66" y="105"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="81" x="67" y="118.9492">T extends Item</text></g><!--class UniqueItemList--><g id="elem_UniqueItemList"><rect codeLine="19" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5" style="stroke:#9D0012;stroke-width:1.0;" width="127" x="11" y="194"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="14" y="211.6738">UniqueItemList&lt;T&gt;</text></g><!--reverse link Model to ModelManager--><g id="link_Model_ModelManager"><path codeLine="21" d="M323.5,69.83 C323.5,83.63 323.5,97.96 323.5,107.76 " fill="none" id="Model-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="316.5,69.87,323.5,49.87,330.5,69.87,316.5,69.87" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--link Model to ReadOnlyUserPrefs--><g id="link_Model_ReadOnlyUserPrefs"><path codeLine="22" d="M362.32,27.5 C371.65,27.5 380.98,27.5 390.3,27.5 " fill="none" id="Model-to-ReadOnlyUserPrefs" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#9D0012" points="395.24,27.5,386.24,23.5,390.24,27.5,386.24,31.5,395.24,27.5" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--reverse link ReadOnlyXYZList to Model--><g id="link_ReadOnlyXYZList_Model"><path codeLine="23" d="M256.03,27.5 C265.56,27.5 275.09,27.5 284.62,27.5 " fill="none" id="ReadOnlyXYZList-backto-Model" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#9D0012" points="251.28,27.5,260.28,31.5,256.28,27.5,260.28,23.5,251.28,27.5" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--reverse link XYZList to ModelManager--><g id="link_XYZList_ModelManager"><path codeLine="24" d="M243.83,121 C253.58,121 263.32,121 273.07,121 " fill="none" id="XYZList-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="238.94,121,247.94,125,243.94,121,247.94,117,238.94,121" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="248.9294" y="116.1379">1</text></g><!--link ModelManager to UserPrefs--><g id="link_ModelManager_UserPrefs"><path codeLine="25" d="M373.89,121 C386.56,121 399.22,121 411.89,121 " fill="none" id="ModelManager-to-UserPrefs" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="416.59,121,407.59,117,411.59,121,407.59,125,416.59,121" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="399.506" y="116.47">1</text></g><!--reverse link ReadOnlyUserPrefs to UserPrefs--><g id="link_ReadOnlyUserPrefs_UserPrefs"><path codeLine="26" d="M459.65,54.55 C457.74,72.02 455.32,94.22 453.84,107.76 " fill="none" id="ReadOnlyUserPrefs-backto-UserPrefs" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#9D0012" points="460.17,49.86,455.2167,58.3726,459.6272,54.8305,463.1694,59.241,460.17,49.86" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--reverse link ReadOnlyXYZList to XYZList--><g id="link_ReadOnlyXYZList_XYZList"><path codeLine="28" d="M199.98,69.33 C202.88,83.28 205.9,97.85 207.96,107.76 " fill="none" id="ReadOnlyXYZList-backto-XYZList" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="193.14,70.84,195.93,49.84,206.85,68,193.14,70.84" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--link XYZList to UniqueXYZList--><g id="link_XYZList_UniqueXYZList"><path codeLine="29" d="M213.98,148.58 C215.26,158.34 216.71,169.39 217.99,179.17 " fill="none" id="XYZList-UniqueXYZList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="212.32,135.9,209.1391,142.3716,213.8895,147.7969,217.0704,141.3253,212.32,135.9" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="219.67,192.05,222.4701,182.6076,219.0221,187.0922,214.5376,183.6442,219.67,192.05" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="219.0221" x2="217.985" y1="187.0922" y2="179.16"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="204.3408" y="182.6042">1</text></g><!--link UniqueXYZList to XYZ--><g id="link_UniqueXYZList_XYZ"><path codeLine="30" d="M221.5,220.43 C221.5,252.15 221.5,336.31 221.5,374.13 " fill="none" id="UniqueXYZList-to-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="221.5,379.11,225.5,370.11,221.5,374.11,217.5,370.11,221.5,379.11" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="190.7063" y="369.7137">* all</text></g><!--link ModelManager to XYZ--><g id="link_ModelManager_XYZ"><path codeLine="32" d="M319,134.39 C312.24,153.01 299,189.28 287.5,220 C266.26,276.73 240.53,343.68 228.43,375.06 " fill="none" id="ModelManager-to-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="226.74,379.44,233.7085,372.4801,228.5378,374.7744,226.2435,369.6037,226.74,379.44" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47" x="236.9374" y="369.7482">* filtered</text></g><!--link ItemList to UniqueItemList--><g id="link_ItemList_UniqueItemList"><path codeLine="34" d="M75.87,148.58 C75.63,158.34 75.37,169.39 75.14,179.17 " fill="none" id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="76.17,135.91,72.0326,141.8161,75.8932,147.9068,80.0305,142.0007,76.17,135.91" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="74.83,192.04,79.0366,183.1347,74.9454,187.0413,71.0387,182.9501,74.83,192.04" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="74.9454" x2="75.14" y1="187.0413" y2="179.045"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="61.8825" y="182.6042">1</text></g><!--link UniqueItemList to Item--><g id="link_UniqueItemList_Item"><path codeLine="35" d="M78.55,220.34 C82.99,233.89 90.26,256.05 95.97,273.48 " fill="none" id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="97.53,278.23,98.523,268.4313,95.9703,273.4795,90.9222,270.9268,97.53,278.23" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5" x="83.0563" y="268.8172">*</text></g><!--reverse link UniqueItemList to UniqueXYZList--><g id="link_UniqueItemList_UniqueXYZList"><path codeLine="37" d="M159.52,207 C163.92,207 168.31,207 172.71,207 " fill="none" id="UniqueItemList-backto-UniqueXYZList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="159.75,214,139.75,207,159.75,200,159.75,214" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--reverse link ItemList to XYZList--><g id="link_ItemList_XYZList"><path codeLine="38" d="M167.66,121 C173.01,121 178.35,121 183.7,121 " fill="none" id="ItemList-backto-XYZList" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="none" points="167.89,128,147.89,121,167.89,114,167.89,128" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--reverse link Item to XYZ--><g id="link_Item_XYZ"><path codeLine="39" d="M134.91,325.28 C157.64,343.05 187.78,366.63 205.85,380.76 " fill="none" id="Item-backto-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="131.08,322.29,135.7023,330.9868,135.0175,325.3715,140.6328,324.6868,131.08,322.29" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--SRC=[XL9TQy8m57tFhxZhez22xzA7kJqCb0vHs8OmOdDrmJHnISec-_ZjIz9MJLNMXt9pxZdddjpsXijIr0p1sBt0R5TNWfWjbpkgQGLKQ_KnV-FbLg8nCCo6_UPO2QLXMjpTJrx7nQIOdH1AGOsvfULserKjsJcLMBK3gs2bh5KLCAwnj5n9GiZOQo4PZRYqgDUqn3nVoXbILaYnVtf-cN1Z4w06UjW_oeL1_QXnRIBj0RsYdYg68YX2rRBYYQ4pfP9kKBTGttOX-NkDiSoTkg5VT6MifgNzMSe7YrKOw8kMu4kl7Cq1ForAra1vfs_iZwmSWaCC4t8Q5BAi_ixRMuMtGtH-OJ5TK-Hd6uyCqrJukSC4hhITUp9qZAFreV9fBiqchLMRjZ-_wmxIbFdPtUCon1kFJYwA8_yEW0e18ItfHtKCJrXpuVu5P2sfswIRnxgxn2kEZn2d2iyWQJxiMIJXxjTpYvkdSBDiZ_m1]--></g></svg>
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="412px" preserveAspectRatio="none"
+     style="width:535px;height:412px;background:#FFFFFF;" version="1.1" viewBox="0 0 535 412" width="535px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--class ReadOnlyXYZList-->
+        <g id="elem_ReadOnlyXYZList">
+            <rect codeLine="9" fill="#9D0012" height="41.2813" id="ReadOnlyXYZList" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="116" x="133.5" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="156"
+                  y="24.6738">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="110" x="136.5"
+                  y="40.3145">ReadOnlyXYZList
+            </text>
+        </g><!--class ReadOnlyUserPrefs-->
+        <g id="elem_ReadOnlyUserPrefs">
+            <rect codeLine="10" fill="#9D0012" height="41.2813" id="ReadOnlyUserPrefs" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="131" x="397" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="427"
+                  y="24.6738">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="125" x="400"
+                  y="40.3145">ReadOnlyUserPrefs
+            </text>
+        </g><!--class Model-->
+        <g id="elem_Model">
+            <rect codeLine="11" fill="#9D0012" height="41.2813" id="Model" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="77" x="285" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="288"
+                  y="24.6738">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="304.5"
+                  y="40.3145">Model
+            </text>
+        </g><!--class XYZList-->
+        <g id="elem_XYZList">
+            <rect codeLine="12" fill="#9D0012" height="25.6406" id="XYZList" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="53" x="184" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="47" x="187"
+                  y="125.6738">XYZList
+            </text>
+        </g><!--class ModelManager-->
+        <g id="elem_ModelManager">
+            <rect codeLine="13" fill="#9D0012" height="25.6406" id="ModelManager" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="100" x="273.5" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="276.5"
+                  y="125.6738">ModelManager
+            </text>
+        </g><!--class UserPrefs-->
+        <g id="elem_UserPrefs">
+            <rect codeLine="14" fill="#9D0012" height="25.6406" id="UserPrefs" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="68" x="418.5" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="421.5"
+                  y="125.6738">UserPrefs
+            </text>
+        </g><!--class UniqueXYZList-->
+        <g id="elem_UniqueXYZList">
+            <rect codeLine="15" fill="#9D0012" height="25.6406" id="UniqueXYZList" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="97" x="173" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="91" x="176"
+                  y="211.6738">UniqueXYZList
+            </text>
+        </g><!--class XYZ-->
+        <g id="elem_XYZ">
+            <rect codeLine="16" fill="#9D0012" height="25.6406" id="XYZ" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="50" x="196.5" y="381"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="209"
+                  y="398.6738">XYZ
+            </text>
+        </g><!--class Item-->
+        <g id="elem_Item">
+            <rect codeLine="17" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="67" x="71" y="280"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="74"
+                  y="297.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="26" x="91.5"
+                  y="313.3145">Item
+            </text>
+        </g><!--class ItemList-->
+        <g id="elem_ItemList">
+            <rect codeLine="18" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="139" x="7" y="108"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="10"
+                  y="125.6738">ItemList
+            </text>
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#9D0012;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="83" x="66" y="105"/>
+            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="81" x="67" y="118.9492">T extends Item
+            </text>
+        </g><!--class UniqueItemList-->
+        <g id="elem_UniqueItemList">
+            <rect codeLine="19" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
+                  style="stroke:#9D0012;stroke-width:1.0;" width="127" x="11" y="194"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="14"
+                  y="211.6738">UniqueItemList&lt;T&gt;
+            </text>
+        </g><!--reverse link Model to ModelManager-->
+        <g id="link_Model_ModelManager">
+            <path codeLine="21" d="M323.5,69.83 C323.5,83.63 323.5,97.96 323.5,107.76 " fill="none"
+                  id="Model-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="316.5,69.87,323.5,49.87,330.5,69.87,316.5,69.87"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link Model to ReadOnlyUserPrefs-->
+        <g id="link_Model_ReadOnlyUserPrefs">
+            <path codeLine="22" d="M362.32,27.5 C371.65,27.5 380.98,27.5 390.3,27.5 " fill="none"
+                  id="Model-to-ReadOnlyUserPrefs" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012" points="395.24,27.5,386.24,23.5,390.24,27.5,386.24,31.5,395.24,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link ReadOnlyXYZList to Model-->
+        <g id="link_ReadOnlyXYZList_Model">
+            <path codeLine="23" d="M256.03,27.5 C265.56,27.5 275.09,27.5 284.62,27.5 " fill="none"
+                  id="ReadOnlyXYZList-backto-Model" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012" points="251.28,27.5,260.28,31.5,256.28,27.5,260.28,23.5,251.28,27.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link XYZList to ModelManager-->
+        <g id="link_XYZList_ModelManager">
+            <path codeLine="24" d="M243.83,121 C253.58,121 263.32,121 273.07,121 " fill="none"
+                  id="XYZList-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="238.94,121,247.94,125,243.94,121,247.94,117,238.94,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="248.9294" y="116.1379">1
+            </text>
+        </g><!--link ModelManager to UserPrefs-->
+        <g id="link_ModelManager_UserPrefs">
+            <path codeLine="25" d="M373.89,121 C386.56,121 399.22,121 411.89,121 " fill="none"
+                  id="ModelManager-to-UserPrefs" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="416.59,121,407.59,117,411.59,121,407.59,125,416.59,121"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="399.506" y="116.47">1
+            </text>
+        </g><!--reverse link ReadOnlyUserPrefs to UserPrefs-->
+        <g id="link_ReadOnlyUserPrefs_UserPrefs">
+            <path codeLine="26" d="M459.65,54.55 C457.74,72.02 455.32,94.22 453.84,107.76 " fill="none"
+                  id="ReadOnlyUserPrefs-backto-UserPrefs"
+                  style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012" points="460.17,49.86,455.2167,58.3726,459.6272,54.8305,463.1694,59.241,460.17,49.86"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link ReadOnlyXYZList to XYZList-->
+        <g id="link_ReadOnlyXYZList_XYZList">
+            <path codeLine="28" d="M199.98,69.33 C202.88,83.28 205.9,97.85 207.96,107.76 " fill="none"
+                  id="ReadOnlyXYZList-backto-XYZList"
+                  style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="193.14,70.84,195.93,49.84,206.85,68,193.14,70.84"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link XYZList to UniqueXYZList-->
+        <g id="link_XYZList_UniqueXYZList">
+            <path codeLine="29" d="M213.98,148.58 C215.26,158.34 216.71,169.39 217.99,179.17 " fill="none"
+                  id="XYZList-UniqueXYZList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="212.32,135.9,209.1391,142.3716,213.8895,147.7969,217.0704,141.3253,212.32,135.9"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="219.67,192.05,222.4701,182.6076,219.0221,187.0922,214.5376,183.6442,219.67,192.05"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="219.0221" x2="217.985" y1="187.0922" y2="179.16"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="204.3408" y="182.6042">1
+            </text>
+        </g><!--link UniqueXYZList to XYZ-->
+        <g id="link_UniqueXYZList_XYZ">
+            <path codeLine="30" d="M221.5,220.43 C221.5,252.15 221.5,336.31 221.5,374.13 " fill="none"
+                  id="UniqueXYZList-to-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="221.5,379.11,225.5,370.11,221.5,374.11,217.5,370.11,221.5,379.11"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22"
+                  x="190.7063" y="369.7137">* all
+            </text>
+        </g><!--link ModelManager to XYZ-->
+        <g id="link_ModelManager_XYZ">
+            <path codeLine="32"
+                  d="M319,134.39 C312.24,153.01 299,189.28 287.5,220 C266.26,276.73 240.53,343.68 228.43,375.06 "
+                  fill="none" id="ModelManager-to-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="226.74,379.44,233.7085,372.4801,228.5378,374.7744,226.2435,369.6037,226.74,379.44"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47"
+                  x="236.9374" y="369.7482">* filtered
+            </text>
+        </g><!--link ItemList to UniqueItemList-->
+        <g id="link_ItemList_UniqueItemList">
+            <path codeLine="34" d="M75.87,148.58 C75.63,158.34 75.37,169.39 75.14,179.17 " fill="none"
+                  id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="76.17,135.91,72.0326,141.8161,75.8932,147.9068,80.0305,142.0007,76.17,135.91"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="74.83,192.04,79.0366,183.1347,74.9454,187.0413,71.0387,182.9501,74.83,192.04"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="74.9454" x2="75.14" y1="187.0413" y2="179.045"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="61.8825" y="182.6042">1
+            </text>
+        </g><!--link UniqueItemList to Item-->
+        <g id="link_UniqueItemList_Item">
+            <path codeLine="35" d="M78.55,220.34 C82.99,233.89 90.26,256.05 95.97,273.48 " fill="none"
+                  id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="97.53,278.23,98.523,268.4313,95.9703,273.4795,90.9222,270.9268,97.53,278.23"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="83.0563" y="268.8172">*
+            </text>
+        </g><!--reverse link UniqueItemList to UniqueXYZList-->
+        <g id="link_UniqueItemList_UniqueXYZList">
+            <path codeLine="37" d="M159.52,207 C163.92,207 168.31,207 172.71,207 " fill="none"
+                  id="UniqueItemList-backto-UniqueXYZList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="159.75,214,139.75,207,159.75,200,159.75,214"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link ItemList to XYZList-->
+        <g id="link_ItemList_XYZList">
+            <path codeLine="38" d="M167.66,121 C173.01,121 178.35,121 183.7,121 " fill="none"
+                  id="ItemList-backto-XYZList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="167.89,128,147.89,121,167.89,114,167.89,128"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link Item to XYZ-->
+        <g id="link_Item_XYZ">
+            <path codeLine="39" d="M134.91,325.28 C157.64,343.05 187.78,366.63 205.85,380.76 " fill="none"
+                  id="Item-backto-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="131.08,322.29,135.7023,330.9868,135.0175,325.3715,140.6328,324.6868,131.08,322.29"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--SRC=[XL9TQy8m57tFhxZhez22xzA7kJqCb0vHs8OmOdDrmJHnISec-_ZjIz9MJLNMXt9pxZdddjpsXijIr0p1sBt0R5TNWfWjbpkgQGLKQ_KnV-FbLg8nCCo6_UPO2QLXMjpTJrx7nQIOdH1AGOsvfULserKjsJcLMBK3gs2bh5KLCAwnj5n9GiZOQo4PZRYqgDUqn3nVoXbILaYnVtf-cN1Z4w06UjW_oeL1_QXnRIBj0RsYdYg68YX2rRBYYQ4pfP9kKBTGttOX-NkDiSoTkg5VT6MifgNzMSe7YrKOw8kMu4kl7Cq1ForAra1vfs_iZwmSWaCC4t8Q5BAi_ixRMuMtGtH-OJ5TK-Hd6uyCqrJukSC4hhITUp9qZAFreV9fBiqchLMRjZ-_wmxIbFdPtUCon1kFJYwA8_yEW0e18ItfHtKCJrXpuVu5P2sfswIRnxgxn2kEZn2d2iyWQJxiMIJXxjTpYvkdSBDiZ_m1]-->
+    </g>
+</svg>
