@@ -58,6 +58,13 @@ public class Department {
     }
 
     /**
+     * Replace an employee details with its updated details in the list.
+     */
+    public void setEmployee(Employee employeeToEdit, Employee editedEmployee) {
+        employees.setEmployee(employeeToEdit, editedEmployee);
+    }
+
+    /**
      * Removes {@code key} from this {@code sudohrBook}.
      * {@code key} must exist in the department.
      */

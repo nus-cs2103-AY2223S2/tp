@@ -167,7 +167,6 @@ public class ModelManager implements Model {
     @Override
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireAllNonNull(target, editedEmployee);
-
         sudoHr.setEmployee(target, editedEmployee);
     }
 
@@ -218,7 +217,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteEmployeeFromLeave(Leave leaveToDelete, Employee employeeToDelete) {
         requireAllNonNull(leaveToDelete, employeeToDelete);
-
         sudoHr.deleteEmployeeFromLeave(leaveToDelete, employeeToDelete);
     }
 
@@ -302,6 +300,18 @@ public class ModelManager implements Model {
     @Override
     public void removeEmployeeFromDepartment(Employee p, Department d) {
         sudoHr.removeEmployeeFromDepartment(p, d);
+    }
+
+    @Override
+    public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+        requireNonNull(employeeToDelete);
+        sudoHr.cascadeDeleteEmployeeToDepartments(employeeToDelete);
+    }
+
+    @Override
+    public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+        requireAllNonNull(employeeToEdit, editedEmployee);
+        sudoHr.cascadeEditEmployeeToDepartments(employeeToEdit, editedEmployee);
     }
 
     //=========== Filtered Department List Accessors =============================================================

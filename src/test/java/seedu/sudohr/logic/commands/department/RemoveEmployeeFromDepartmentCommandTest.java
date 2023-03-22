@@ -257,6 +257,16 @@ public class RemoveEmployeeFromDepartmentCommandTest {
         }
 
         @Override
+        public void cascadeDeleteEmployeeToDepartments(Employee employeeToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cascadeEditEmployeeToDepartments(Employee employeeToEdit, Employee editedEmployee) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addLeave(Leave leave) {
             throw new AssertionError("This method should not be called.");
         }

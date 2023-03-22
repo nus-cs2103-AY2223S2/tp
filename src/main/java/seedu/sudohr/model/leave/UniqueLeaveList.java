@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.sudohr.model.employee.Employee;
 import seedu.sudohr.model.employee.exceptions.DuplicateEmployeeException;
 import seedu.sudohr.model.leave.exceptions.DuplicateLeaveException;
 import seedu.sudohr.model.leave.exceptions.LeaveNotFoundException;
