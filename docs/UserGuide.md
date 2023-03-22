@@ -2,12 +2,44 @@
 
 1. [About HMHero](#1-about-hmhero)
 2. [Features](#2-features)
+   * 2.1. [Applicant Management System](#21-applicant-management-system)
+   * 2.2. [Hiring Process Analytics](#22-hiring-process-analytics)
 3. [How to use this User Guide](#3-how-to-use-this-user-guide)
-4. [Quick Reference](#4-quick-reference)
-4. [Command summary](#command-summary)
-5. [Troubleshooting](#troubleshooting)
-6. [FAQ](#faq)
-7. [Glossary](#glossary)
+   * 3.1. [Admonition Boxes](#31-admonition-boxes)
+   * 3.2. [Miscellaneous Notations](#32-miscellaneous-notations)
+4. [Installation](#4-installation)
+5. [Quick Reference Guide](#5-quick-reference-guide)
+   * 5.1. [Layout](#51-layout)
+   * 5.2. [Key Definitions](#52-key-definitions)
+     * 5.2.1. [Applicant](#521-applicant)
+     * 5.2.2. [Notes](#522-notes)
+     * 5.2.3. [Flags](#523-flags)
+     * 5.2.4. [Placeholders](#524-placeholders)
+   * 5.3. [Command Format](#53-command-format)
+   * 5.4. [Trying your First Command](#54-trying-your-first-command)
+6. [Commands](#6-commands)
+   * 6.1. [Applicant Commands](#61-applicant-commands)
+     * 6.1.1. [Create a new applicant](#611-create-a-new-applicant--add)
+     * 6.1.2. [Search for an applicant](#612-search-for-an-applicant--find)
+     * 6.1.3. [List all applicants](#613-list-all-applicants--list)
+     * 6.1.4. [Delete an applocant](#614-delete-an-applicant--delete)
+     * 6.1.5. [Advance an applicant](#615-advance-an-applicant--advance)
+     * 6.1.6. [Reject an applicant](#616-reject-an-applicant--reject)
+     * 6.1.7. [List all interview dates of applicants](#617-list-all-interview-dates-of-applicants--interview)
+     * 6.1.8. [Edit an existing applicant](#618-edit-an-existing-applicant--edit)
+     * 6.1.9. [Remind upcoming interviews](#619-remind-upcoming-interviews--remind)
+   * 6.2. [Statistic Commands](#62-statistics-commands)
+   * 6.3. [General Commands](#63-general-commands)
+     * 6.3.1. [Receive help during usage](#631-receive-help-during-usage--help)
+     * 6.3.2. [Exit HMHero](#632-exit-hmhero--exit)
+7. [Command summary](#7-command-summary)
+   * 7.1. [Applicant Commands](#71-applicant-commands)
+   * 7.2. [Statistics Commands](#72-statistics-commands)
+   * 7.3. [General Commands](#73-general-commands)
+8. [Troubleshooting](#8-troubleshooting)
+9. [FAQ](#9-faq)
+10. [Acknowledgements](#10-acknowledgements)
+11. [Glossary](#11-glossary)
 
 ---
 
@@ -264,7 +296,7 @@ Command Word: Tells HMHero what action you wish to execute. These actions are co
 For example, ITEM_NAME in n/ITEM_NAME can be replaced with n/Potato.
 
 
-### 5.3 Trying your first command
+### 5.4 Trying your First Command
 
 To let you become more familiar with HMHero, let's practise executing some commands.
 
@@ -754,11 +786,11 @@ Address: 7 Sims Drive (s)543212; Status: SHORTLISTED; Tags: [Python] [Java]
 ---
 
 
-#### 6.1.9. Remind on applicant's interview date: `remind`
+#### 6.1.9. Remind upcoming interviews: `remind`
 - Will update soon
 
 
-### 6.2. Statistics Command
+### 6.2. Statistics Commands
 
 - Will update soon
 
@@ -853,9 +885,9 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 </div>
 
 
-## Command Summary
+## 7. Command Summary
 
-### Applicant Commands
+### 7.1. Applicant Commands
  Action                                 | Format                                                                                                                                                                            | Example                                                                     |
 |----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/TAG]`                                                                                                                                 | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
@@ -868,12 +900,12 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/TAG]`                                                                                          | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | To be updated                                                                                                                                                                     | To be updated                                                               |
 
-### Statistics Commands
+### 7.2. Statistics Commands
  Action                                  | Format  | Example |
 |-----------------------------------------|---------|---------|
 | Displays statistics collected by HMHero | `stats` | `stats` |
 
-### General Commands
+### 7.3. General Commands
  Action                                                | Format | Example |
 |-------------------------------------------------------|--------|---------|
 | Shows a help dialog with a list of available commands | `help` | `help`  |
@@ -882,7 +914,7 @@ If your inventory data cannot be saved successfully, HMHero will not close in or
 
 ---
 
-## Troubleshooting
+## 8. Troubleshooting
 
 **Problem:**
 
@@ -921,7 +953,7 @@ Unable to exit/save HMHero to data file
 
 ---
 
-## FAQ
+## 9. FAQ
 
 ### Q: If I do not have Java 11, how do I install it on my computer? <br>
 **A:** You can navigate to this site [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) and download Java 11 according to your system’s specifications.
@@ -936,7 +968,7 @@ Unable to exit/save HMHero to data file
 **A:** Install HMHero on the other computer and overwrite the empty data file with the data file created by HMHero in your current computer.
 
 ---
-## Acknowledgements
+## 10. Acknowledgements
 
 
 HMHero is a brownfield software engineering project based off [AddressBook Level-3](https://nus-cs2103-ay2223s2.github.io/tp/), taken under the [CS2103T Software Engineering](https://nus-cs2103-ay2223s2.github.io/website/admin/index.html) held by School of Computing at National University of Singapore.
@@ -951,7 +983,7 @@ Documentation dependencies:
 
 ---
 
-## Glossary
+## 11. Glossary
 ### A
 > #### ADDRESS (Placeholder)
 > The ADDRESS is a text representing the address of the applicants.
