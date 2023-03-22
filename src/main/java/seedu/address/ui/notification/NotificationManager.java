@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.notification;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,25 +15,19 @@ import seedu.address.model.reminder.Reminder;
  * Provides basic functionality for using the Notification function
  */
 public class NotificationManager {
-
+    //initialisation
     private Logic logic;
     private Model model;
-    private List<Reminder> reminderList;
-    private String title = "";
-    private String text = "";
-    private Duration duration;
+
+    //notification settings
+    private Duration duration = Duration.INDEFINITE;
     private Pos position = Pos.TOP_RIGHT;
 
-    private Notifications notification;
 
     /**
-     * Constructor to create a Notification with specified input. Default constructor.
-     * @param title Main title of the Notification
-     * @param text Additional information for the Notification
+     * Constructor to create a Notification.
      */
-    public NotificationManager(String title, String text) {
-        this.title = title;
-        this.text = text;
+    public NotificationManager() {
     }
 
     /**
@@ -42,7 +36,6 @@ public class NotificationManager {
      */
     public NotificationManager(Logic logic) {
         this.logic = logic;
-        this.reminderList = logic.getReminderList();
     }
 
     /**
@@ -51,17 +44,20 @@ public class NotificationManager {
      */
     public NotificationManager(Model model) {
         this.model = model;
-        this.reminderList = model.getReminderList();
+    }
+
+    public void applySettings() {
+
     }
 
     /**
      * Method to show Notification built from the default constructor
      */
-    public void showDefault() {
+    public void testNotificatoin() {
         //show notifications
         Notifications notificationBuilder = Notifications.create()
-                .title(title)
-                .text(text)
+                .title("Test title")
+                .text("Test text")
                 .graphic(null)
                 .hideAfter(Duration.seconds(5))
                 .position(position);
@@ -71,7 +67,8 @@ public class NotificationManager {
     /**
      * Method to display Reminders at the start of the app.
      */
-    public void checkReminders() {
+    public void checkReminderList() {
+        List<Reminder> reminderList = this.logic.getReminderList();
         LocalDateTime now = LocalDateTime.now();
         for (int i = 0; i < reminderList.size(); i++) {
             Reminder r = reminderList.get(i);
@@ -80,18 +77,6 @@ public class NotificationManager {
                 String remind = "Remind at: " + r.reminderDateTimeToString();
                 show(des, remind);
             }
-        }
-    }
-
-    /**
-     * Method for the "list_reminder" command
-     */
-    public void listReminders() {
-        for (int i = 0; i < reminderList.size(); i++) {
-            Reminder r = reminderList.get(i);
-            String des = (i + 1) + ". " + r.getDescription();
-            String remind = "Remind at: " + r.reminderDateTimeToString();
-            show(des, remind);
         }
     }
 
@@ -105,8 +90,7 @@ public class NotificationManager {
         Notifications notificationBuilder = Notifications.create()
                 .title(title)
                 .text(text)
-                .graphic(null)
-                .hideAfter(Duration.INDEFINITE)
+                .hideAfter(duration)
                 .position(position);
         notificationBuilder.showConfirm();
     }
