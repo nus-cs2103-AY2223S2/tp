@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="199px" preserveAspectRatio="none" style="width:305px;height:199px;background:#FFFFFF;" version="1.1" viewBox="0 0 305 199" width="305px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="27.6094" id="_title" style="stroke:none;stroke-width:1.0;" width="154" x="68.5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="144" x="73.5" y="24.5332">After command "list"</text><!--MD5=[c6a10d839b5fce7952615c7fa3728354]
+cluster States--><g id="cluster_States"><rect fill="none" height="78" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="292" x="7" y="45.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="44" x="131" y="62.1426">States</text></g><!--MD5=[fea294b58d473e9280cfe4c83798149e]
+class State1--><g id="elem_State1"><rect codeLine="8" fill="#FEFECE" height="26.0986" id="State1" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.0;" width="63" x="23.5" y="81.6094"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="57" x="26.5" y="99.7412">t0:Trackr</text></g><!--MD5=[8cc037637095e940935efba53ef29e5a]
+class State2--><g id="elem_State2"><rect codeLine="9" fill="#FEFECE" height="26.0986" id="State2" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.0;" width="63" x="121.5" y="81.6094"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="57" x="124.5" y="99.7412">t1:Trackr</text></g><!--MD5=[4eb8b94b51d112d8c70b26f7c75650e7]
+class State3--><g id="elem_State3"><rect codeLine="10" fill="#FEFECE" height="26.0986" id="State3" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.0;" width="63" x="219.5" y="81.6094"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="57" x="222.5" y="99.7412">t2:Trackr</text></g><!--MD5=[af875161895cb5f0a2b02f995e6162c6]
+class Pointer--><g id="elem_Pointer"><rect codeLine="16" fill="#F1F1F1" height="26.0986" id="Pointer" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.0;" width="91" x="107.5" y="167.6094"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="85" x="110.5" y="185.7412">Current State</text></g><!--MD5=[dc702cd49c4e27e6abb2620dc4bb28d8]
+link State1 to State2--><!--MD5=[428d136baf6462f9e03ffacdcb621855]
+link State2 to State3--><!--MD5=[8b4f9a6a1c097d8f49c403451d22f285]
+reverse link State2 to Pointer--><g id="link_State2_Pointer"><path codeLine="18" d="M153,112.8594 C153,129.1794 153,153.2594 153,167.5994 " fill="none" id="State2-backto-Pointer" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="153,107.6494,149,116.6494,153,112.6494,157,116.6494,153,107.6494" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[6b2f4993ad6add83af3e5b5b038c3cec]
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "list"
+
+package States <<rectangle>> {
+    class State1 as "__t0:Trackr__" STATE_COLOR
+    class State2 as "__t1:Trackr__" STATE_COLOR
+    class State3 as "__t2:Trackr__" STATE_COLOR
+}
+
+State1 -[hidden]right-> State2
+State2 -[hidden]right-> State3
+
+class Pointer as "Current State"
+
+Pointer -up-> State2
+@end
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After command "list"
+
+package States <<rectangle>> {
+    class State1 as "__t0:Trackr__" #FEFECE
+    class State2 as "__t1:Trackr__" #FEFECE
+    class State3 as "__t2:Trackr__" #FEFECE
+}
+
+State1 -[hidden]right-> State2
+State2 -[hidden]right-> State3
+
+class Pointer as "Current State"
+
+Pointer -up-> State2
+@end
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: SG
+--></g></svg>
