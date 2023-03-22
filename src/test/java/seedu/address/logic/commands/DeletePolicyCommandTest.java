@@ -6,8 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//Todo: recover import
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
@@ -19,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -29,7 +29,7 @@ class DeletePolicyCommandTest {
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws CommandException {
         Client client = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
         Policy policyToDelete = client.getFilteredPolicyList().get(INDEX_FIRST_POLICY.getZeroBased());
 
@@ -41,9 +41,12 @@ class DeletePolicyCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
+        //Client editedClient = expectedModel.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
+        //Policy dummyPolicy = editedClient.getFilteredPolicyList().get(INDEX_FIRST_POLICY.getZeroBased());
+        deletePolicyCommand.execute(expectedModel);
         // the model contains the same client that contains same policy list so naturally deletes the policy
-        //TODO
-        // assertCommandSuccess(deletePolicyCommand, model, expectedMessage, expectedModel);
+
+        assertCommandSuccess(deletePolicyCommand, model, expectedMessage, expectedModel);
     }
 
 
@@ -65,7 +68,7 @@ class DeletePolicyCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws CommandException {
         showClientAtIndex(model, INDEX_FIRST_CLIENT);
         Client client = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
         Policy policyToDelete = client.getFilteredPolicyList().get(INDEX_FIRST_POLICY.getZeroBased());
@@ -78,9 +81,9 @@ class DeletePolicyCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredClientList(p -> p.equals(client));
-        // the model contains the same client that contains same policy list so naturally deletes the policy
-        // TODO
-        //assertCommandSuccess(deletePolicyCommand, model, expectedMessage, expectedModel);
+        deletePolicyCommand.execute(expectedModel);
+
+        assertCommandSuccess(deletePolicyCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
