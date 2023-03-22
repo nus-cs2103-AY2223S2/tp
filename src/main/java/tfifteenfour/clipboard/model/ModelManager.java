@@ -24,6 +24,8 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Student> viewedStudent;
 
+    private String prevStateModifyingCommand;
+
     /**
      * Initializes a ModelManager with the given roster and userPrefs.
      */
@@ -46,6 +48,16 @@ public class ModelManager implements Model {
         this.roster = roster;
         this.userPrefs = userPrefs;
         this.filteredStudents = new FilteredList<>(this.roster.getStudentList());
+    }
+
+    @Override
+    public void setPrevStateModifyingCommand(String commandText) {
+        this.prevStateModifyingCommand = commandText;
+    }
+
+    @Override
+    public String getPrevStateModifyingCommand() {
+        return this.prevStateModifyingCommand;
     }
 
     //=========== UserPrefs ==================================================================================

@@ -7,6 +7,7 @@ public class CircularBuffer<T> {
     private int size;
     private int head;
     private int tail;
+    private int numElements;
 
     public CircularBuffer(int size) {
         this.buffer = new ArrayList<T>(size);
@@ -19,6 +20,7 @@ public class CircularBuffer<T> {
         if (buffer.size() < size) {
             buffer.add(tail, item);
             tail = (tail + 1) % size;
+            numElements++;
         } else {
             buffer.set(head, item);
             head = (head + 1) % size;
@@ -32,6 +34,7 @@ public class CircularBuffer<T> {
         }
         T item = buffer.get(head);
         head = (head + 1) % size;
+        numElements--;
         return item;
     }
 
@@ -40,6 +43,7 @@ public class CircularBuffer<T> {
 			return null;
 		}
 		tail = (tail - 1 + size) % size;
+        numElements--;
 		return buffer.remove(tail);
 	}
 

@@ -39,7 +39,7 @@ public class CommandResult {
     }
 
     public CommandResult(String feedbackToUser, boolean hasChangedModelState) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, hasChangedModelState, false);
     }
 
     public String getFeedbackToUser() {

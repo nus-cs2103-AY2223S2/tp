@@ -94,4 +94,8 @@ public interface Model {
      * Makes a copy of the model
      */
     Model copy();
+
+    public void setPrevStateModifyingCommand(String commandText);
+
+    public String getPrevStateModifyingCommand();
 }

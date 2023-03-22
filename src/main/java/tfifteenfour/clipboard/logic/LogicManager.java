@@ -9,6 +9,7 @@ import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
+import tfifteenfour.clipboard.logic.commands.UndoCommand;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.RosterParser;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
@@ -21,10 +22,12 @@ import tfifteenfour.clipboard.storage.Storage;
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+    private static final int stateHistoryBufferSize = 5;
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final Model model;
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private Model model;
+    private final CircularBuffer<Model> stateHistoryBuffer = new CircularBuffer<>(stateHistoryBufferSize);
     private final Storage storage;
     private final RosterParser rosterParser;
 
@@ -37,13 +40,33 @@ public class LogicManager implements Logic {
         rosterParser = new RosterParser();
     }
 
+    CommandResult handleUndoCommand(Command command) throws CommandException, ParseException {
+        UndoCommand undoCmd = (UndoCommand) command;
+
+        undoCmd.setStateHistoryBuffer(this.stateHistoryBuffer);
+        CommandResult commandResult = undoCmd.execute(model);
+        model = undoCmd.getNewModel();
+
+        return commandResult;
+    }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
         Command command = rosterParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+
+        if (command instanceof UndoCommand) {
+            commandResult = handleUndoCommand(command);
+        } else {
+            Model modelCopy = model.copy();
+            commandResult = command.execute(model);
+            if (commandResult.isStateModified()) {
+                stateHistoryBuffer.add(modelCopy);
+                model.setPrevStateModifyingCommand(commandText);
+            }
+        }
 
         try {
             storage.saveRoster(model.getRoster());
@@ -51,6 +74,7 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
+        System.out.println("");
         return commandResult;
     }
 
