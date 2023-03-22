@@ -26,7 +26,6 @@ public class Person {
     // Data fields
     private final Address address;
     private final Status status;
-    private final LocalDateTime applicationDate;
     private final Set<Note> notes = new HashSet<>();
     private final Optional<InterviewDateTime> interviewDateTime;
     private final ApplicationDateTime applicationDateTime;

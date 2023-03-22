@@ -43,7 +43,7 @@ public class SummaryCommand extends Command {
             if (applicant.getInterviewDateTime().isEmpty() != true) {
                 LocalDateTime interviewDateTime = applicant.getInterviewDateTime().get().getDateTime();
                 Duration duration = Duration.between(interviewDateTime,
-                        applicant.getApplicationDateTime());
+                        applicant.getApplicationDateTime().getApplicationDateTime());
                 averageTimeToInterview += duration.toDays();
                 numApplicantsWithInterview++;
             }
