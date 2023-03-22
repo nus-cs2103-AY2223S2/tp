@@ -54,6 +54,11 @@ public class MeetingCard extends UiPart<Region> {
         formatDateTimePast();
     }
 
+    /**
+     * Updates the font colour of the dateTime depending on whether the meeting is over.
+     * If the meeting has passed based on the current system date/time, the font will be RED.
+     * Else it will be WHITE by default.
+     */
     public void formatDateTimePast() {
         if (meeting.hasPassed()) {
             dateTime.getStyleClass().add(ERROR_STYLE_CLASS);
