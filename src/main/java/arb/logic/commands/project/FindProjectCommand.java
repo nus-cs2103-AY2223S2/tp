@@ -31,7 +31,8 @@ public class FindProjectCommand extends Command {
             + "the specified keywords (case-insensitive) and contains any of the tags given (case-insensitive) "
             + "and falls within the given timeframe and displays them as a list with index numbers.\n"
             + "Parameters: name/TITLE tag/TAG start/START OF TIMEFRAME end/END OF TIMEFRAME...\n"
-            + "Example: " + MAIN_COMMAND_WORD + " name/sculpture name/digital tag/personal start/last week end/next year";
+            + "Example: " + MAIN_COMMAND_WORD + " name/sculpture name/digital tag/personal start/last "
+            + "week end/next year";
 
     private final Predicate<Project> predicate;
 

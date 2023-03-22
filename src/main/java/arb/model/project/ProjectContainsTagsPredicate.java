@@ -6,9 +6,12 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import arb.model.tag.Tag;
+
+/**
+ * Tests that a {@code Project}'s contains any of the tags given.
 public class ProjectContainsTagsPredicate implements Predicate<Project> {
     private final Set<Tag> tags;
-    
+
     public ProjectContainsTagsPredicate(List<String> keywords) {
         this.tags = keywords.stream().map(s -> new Tag(s)).collect(Collectors.toSet());
     }

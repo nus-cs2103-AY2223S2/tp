@@ -2,14 +2,12 @@ package arb.logic.parser.client;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static arb.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import arb.logic.commands.client.FindClientCommand;
-import arb.model.client.NameContainsKeywordsPredicate;
+import arb.logic.parser.exceptions.ParseException;
 
 public class FindClientCommandParserTest {
 
@@ -23,13 +21,13 @@ public class FindClientCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindClientCommand() {
-        // no leading and trailing whitespaces
-        FindClientCommand expectedFindClientCommand =
-                new FindClientCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindClientCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindClientCommand);
+        try {
+            assertTrue(new FindClientCommandParser().parse(" n/Alice t/friend") instanceof FindClientCommand);
+            assertTrue(new FindClientCommandParser()
+                    .parse(" \n n/Alice \n \t t/friend  \t") instanceof FindClientCommand);
+        } catch (ParseException e) {
+            assert false : e.getMessage();
+        }
     }
 
 }

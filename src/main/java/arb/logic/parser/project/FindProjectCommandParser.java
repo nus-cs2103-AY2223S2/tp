@@ -1,10 +1,10 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static arb.logic.parser.CliSyntax.PREFIX_START;
 import static arb.logic.parser.CliSyntax.PREFIX_END;
-import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
+import static arb.logic.parser.CliSyntax.PREFIX_START;
+import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.project.FindProjectCommand;
 import arb.logic.parser.ArgumentMultimap;
 import arb.logic.parser.ArgumentTokenizer;
@@ -41,7 +42,7 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG);
-        
+
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START, PREFIX_END, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_USAGE));
@@ -55,7 +56,7 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         //if (!tag.isEmpty()) {
         //    predicates.add(new ProjectContainsTagPredicate(tags));
         //}
-        
+
         List<String> titleKeywords = argMultimap.getAllValues(PREFIX_NAME);
         if (titleKeywords.stream().anyMatch(t -> t.isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_NAME_ERROR));
@@ -63,7 +64,7 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         if (!titleKeywords.isEmpty()) {
             predicates.add(new TitleContainsKeywordsPredicate(titleKeywords));
         }
-        
+
         Optional<String> startString = argMultimap.getValue(PREFIX_START);
         Deadline startOfTimeframe = null;
         if (startString.isPresent()) {
@@ -79,9 +80,8 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         if (startString.isPresent() || endString.isPresent()) {
             predicates.add(new ProjectWithinTimeframePredicate(startOfTimeframe, endOfTimeframe));
         }
-        
-        Predicate<Project> combinedPredicate = p -> predicates.stream().allMatch(pre -> pre.test(p));
-        return new FindProjectCommand(combinedPredicate);
+
+        return new FindProjectCommand(new CombinedPredicate<>(predicates));
     }
 
     /**

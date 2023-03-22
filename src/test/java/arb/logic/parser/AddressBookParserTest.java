@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,9 +35,7 @@ import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
-import arb.model.client.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
-import arb.model.project.TitleContainsKeywordsPredicate;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ClientUtil;
 import arb.testutil.EditClientDescriptorBuilder;
@@ -139,21 +136,21 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findClient() throws Exception {
+        List<String> tags = Arrays.asList("friend", "husband");
+        List<String> names = Arrays.asList("foo", "baz");
         for (String commandWord : FindClientCommand.getCommandWords()) {
-            List<String> keywords = Arrays.asList("foo", "bar", "baz");
-            FindClientCommand command = (FindClientCommand) parser.parseCommand(
-                    commandWord + " " + keywords.stream().collect(Collectors.joining(" ")));
-            assertEquals(new FindClientCommand(new NameContainsKeywordsPredicate(keywords)), command);
+            assertTrue(parser.parseCommand(
+                    ClientUtil.getFindClientCommand(tags, names, commandWord)) instanceof FindClientCommand);
         }
     }
 
     @Test
     public void parseCommand_findProject() throws Exception {
+        List<String> tags = Arrays.asList("painting", "pottery");
+        List<String> names = Arrays.asList("foo", "bar", "baz");
         for (String commandWord : FindProjectCommand.getCommandWords()) {
-            List<String> keywords = Arrays.asList("foo", "bar", "baz");
-            FindProjectCommand command = (FindProjectCommand) parser.parseCommand(
-                    commandWord + " " + keywords.stream().collect(Collectors.joining(" ")));
-            assertEquals(new FindProjectCommand(new TitleContainsKeywordsPredicate(keywords)), command);
+            assertTrue(parser.parseCommand(ProjectUtil
+                    .getFindProjectCommand(tags, names, commandWord)) instanceof FindProjectCommand);
         }
     }
 

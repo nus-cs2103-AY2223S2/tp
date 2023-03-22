@@ -1,6 +1,8 @@
 package arb.model.project;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import arb.commons.util.StringUtil;
@@ -9,10 +11,10 @@ import arb.commons.util.StringUtil;
  * Tests that a {@code Project}'s {@code Title} matches any of the keywords given.
  */
 public class TitleContainsKeywordsPredicate implements Predicate<Project> {
-    private final List<String> keywords;
+    private final Set<String> keywords;
 
     public TitleContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this.keywords = new HashSet<>(keywords);
     }
 
     @Override

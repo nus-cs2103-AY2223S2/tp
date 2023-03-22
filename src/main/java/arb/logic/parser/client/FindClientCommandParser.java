@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.logic.commands.client.FindClientCommand;
 import arb.logic.parser.ArgumentMultimap;
 import arb.logic.parser.ArgumentTokenizer;
@@ -36,7 +37,7 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_TAG);
-        
+
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindClientCommand.MESSAGE_USAGE));
@@ -50,7 +51,7 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         if (!tags.isEmpty()) {
             predicates.add(new ClientContainsTagPredicate(tags));
         }
-        
+
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
         if (nameKeywords.stream().anyMatch(t -> t.isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EMPTY_NAME_ERROR));
@@ -58,9 +59,8 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
         if (!nameKeywords.isEmpty()) {
             predicates.add(new NameContainsKeywordsPredicate(nameKeywords));
         }
-        
-        Predicate<Client> combinedPredicate = p -> predicates.stream().allMatch(pre -> pre.test(p));
-        return new FindClientCommand(combinedPredicate);
+
+        return new FindClientCommand(new CombinedPredicate<>(predicates));
     }
 
     /**

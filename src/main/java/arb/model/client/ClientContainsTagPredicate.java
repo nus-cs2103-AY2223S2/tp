@@ -6,11 +6,15 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import arb.model.tag.Tag;
+
+/**
+ * Tests that a {@code Client}'s contains any of the tags given.
+ */
 public class ClientContainsTagPredicate implements Predicate<Client> {
     private final Set<Tag> tags;
-    
+
     public ClientContainsTagPredicate(List<String> keywords) {
-        this.tags = keywords.stream().map(s -> new Tag(s)).collect(Collectors.toSet());
+        this.tags = keywords.stream().map(s -> new Tag(s.toLowerCase())).collect(Collectors.toSet());
     }
 
     @Override
