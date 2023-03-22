@@ -462,6 +462,8 @@ Use case ends.
 
 Use case ends.
 
+![TutorialUseCaseDiagram](images/TutorialUseCaseDiagram.png)
+
 ---
 System: Software System (TrAcker)
 <br>
@@ -613,6 +615,8 @@ Use case ends.
 
 Use case ends
 
+![StudentUseCaseDiagram](images/StudentUseCaseDiagram.png)
+
 ---
 
 #### Help Functionality Use Cases
@@ -661,10 +665,12 @@ Use case ends.
 
 Use case ends.
 
-* a. At any time, TA decides not to confirm the help command.
+* a. At any time, TA decides not to have help from TrAcker.
     * a1. TA removes input from TrAcker.
 
 Use case ends
+
+![HelpUseCaseDiagram](images/HelpUseCaseDiagram.png)
 
 ---
 
@@ -698,7 +704,8 @@ Use case ends.
 * 4a. TrAcker detects error in entered data
     * 4a1. TrAcker requests for the correct details.
     * 4a2. TA enters new details.
-    Steps 4a1 - 4a2 are repreated until the data entered is correct.
+    
+  Steps 4a1 - 4a2 are repreated until the data entered is correct.
       <br>
       Use case resumes from Step 5.
 
@@ -745,7 +752,8 @@ Use case ends.
 * 4a. TrAcker detects error in entered data
     * 4a1. TrAcker requests for the correct details.
     * 4a2. TA enters new details.
-      Steps 4a1 - 4a2 are repreated until the data entered is correct.
+      
+  Steps 4a1 - 4a2 are repreated until the data entered is correct.
       <br>
       Use case resumes from Step 5.
 
@@ -800,6 +808,9 @@ Use case ends.
     * a1. TA removes input from TrAcker.
 
 Use case ends
+
+
+![SortUseCaseDiagram](images/SortUseCaseDiagram.png)
 
 ---
 
@@ -946,7 +957,7 @@ Preconditions:
 4. TA enters notes.
 5. TrAcker requests for TA to select the event to enter the note to.
 6. TA enters target event.
-7. TrAcker <ins> "List all event notes" (UC12). </ins>
+7. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
 
 Use case ends.
 
@@ -974,9 +985,77 @@ Use case ends.
 
 Use case ends
 
+---
 
+System: Software System (TrAcker)
+<br>
+Use case: UC14 - Edit notes in an event
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to edit note for a specific event.
+3. TrAcker returns window with existing note.
+4. TA edit the notes and confirms finish.
+5. TrAcker saves the new edited note.
+6. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
+
+Use case ends.
+
+**Extensions**
+
+* a. At any time, TA decides to cancel note-editing.
+    * a1. TrAcker requests to confirm the cancellation.
+    * a2. TA confirms the cancellation.
+
+Use case ends
+
+---
+
+System: Software System (TrAcker)
+<br>
+Use case: UC14 - Delete notes from an event
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters command to delete note for a specific event.
+3. TrAcker requests to confirm on the deletion.
+4. TrAcker deletes the note.
+5. TrAcker invokes <ins> "List all event notes" (UC12). </ins>
+
+Use case ends.
+
+**Extensions**
+
+* a. At any time, TA decides to cancel note-deletion.
+    * a1. TrAcker requests to confirm the cancellation.
+    * a2. TA confirms the cancellation.
+
+Use case ends
+
+![NoteUseCaseDiagram](images/NoteUseCaseDiagram.png)
+
+
+---
 
 *{More to be added}*
+
+---
 
 ### Non-Functional Requirements
 
