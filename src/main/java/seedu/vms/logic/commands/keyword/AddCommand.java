@@ -14,7 +14,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_GROUP = "keyword";
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
-            + ": Adds a patient to the patient manager. "
+            + ": Adds a keyword to the keyword manager. "
             + "Parameters: "
             + DELIMITER + PREFIX_KEYWORD_MAIN + " MAIN KEYWORD "
             + DELIMITER + PREFIX_KEYWORD_SUB + " SUB KEYWORD ";
@@ -25,7 +25,7 @@ public class AddCommand extends Command {
     private final Keyword toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Patient}
+     * Creates an AddCommand to add the specified {@code Keyword}
      */
     public AddCommand(Keyword key) {
         requireNonNull(key);
