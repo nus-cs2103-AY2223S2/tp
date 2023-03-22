@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -13,7 +14,6 @@ public class Appointment {
     // treat age also as a string
     private LocalDateTime startTime = null;
     private LocalDateTime endTime = null;
-    private boolean isDone;
 
     /**
      * Constructs a {@code Appoinment}.
@@ -27,7 +27,6 @@ public class Appointment {
         checkArgument(isValidTime(startTime, endTime), MESSAGE_CONSTRAINTS);
         this.startTime = startTime;
         this.endTime = endTime;
-        this.isDone = false;
     }
 
     /**
@@ -43,6 +42,11 @@ public class Appointment {
     }
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+    public boolean isOnSearchDate(LocalDate searchDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = startTime.format(formatter);
+        return date.equals(searchDate.format(formatter));
     }
     @Override
     public String toString() {

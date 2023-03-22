@@ -31,6 +31,23 @@ public class Person {
     private MedicalCondition medicalCondition;
     private Age age;
     private Appointment appointment;
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags, LocalDateTime time) {
+        requireAllNonNull(name, phone, email, address, tags, age, time);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = new MedicalCondition("");
+        this.age = age;
+    }
+
+
     /**
      * Every field must be present and not null.
      */
@@ -43,6 +60,22 @@ public class Person {
         this.tags.addAll(tags);
         this.time = time;
         this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, LocalDateTime time,
+                  Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags, appointment);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = new MedicalCondition("");
+        this.appointment = appointment;
     }
 
     /**
@@ -63,6 +96,22 @@ public class Person {
     /**
      * Every field must be present and not null, medical condition will be created without any tag
      */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition, Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.medicalCondition = medicalCondition;
+        this.appointment = appointment;
+    }
+
+    /**
+     * Every field must be present and not null, medical condition will be created without any tag
+     */
     public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
                   LocalDateTime time, MedicalCondition medicalCondition) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -74,6 +123,23 @@ public class Person {
         this.time = time;
         this.age = age;
         this.medicalCondition = medicalCondition;
+    }
+
+    /**
+     * Every field must be present and not null, medical condition will be created without any tag
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  LocalDateTime time, MedicalCondition medicalCondition, Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.time = time;
+        this.age = age;
+        this.medicalCondition = medicalCondition;
+        this.appointment = appointment;
     }
 
     /**
@@ -93,8 +159,23 @@ public class Person {
     /**
      * Alternative constructor for person with scheduled time.
      */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = new Age("");
+        this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
+        this.appointment = appointment;
+    }
+
+    /**
+     * Alternative constructor for person with scheduled time.
+     */
     public Person(Name name, Phone phone, Email email, Address address, Age age,
-                  Set<Tag> tags, LocalDateTime time) {
+                  Set<Tag> tags, LocalDateTime time, Appointment appointment) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -104,6 +185,7 @@ public class Person {
         this.time = time;
         this.tags.addAll(tags);
         this.medicalCondition = new MedicalCondition("");
+        this.appointment = appointment;
     }
 
     /**
@@ -124,6 +206,22 @@ public class Person {
     /**
      * Every filed must be present and not null
      */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags,
+                  MedicalCondition medicalCondition, Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
+        this.appointment = appointment;
+    }
+
+    /**
+     * Every filed must be present and not null
+     */
     public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
@@ -133,6 +231,21 @@ public class Person {
         this.age = age;
         this.tags.addAll(tags);
         this.medicalCondition = new MedicalCondition("");
+    }
+
+    /**
+     * Every filed must be present and not null
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Age age, Set<Tag> tags, Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = age;
+        this.tags.addAll(tags);
+        this.medicalCondition = new MedicalCondition("");
+        this.appointment = appointment;
     }
 
     /**
@@ -148,6 +261,22 @@ public class Person {
         this.age = new Age("");
         this.tags.addAll(tags);
         this.medicalCondition = medicalCondition;
+    }
+
+    /**
+     * Every filed must be present and not null
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  MedicalCondition medicalCondition, Appointment appointment) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.age = new Age("");
+        this.tags.addAll(tags);
+        this.medicalCondition = medicalCondition;
+        this.appointment = appointment;
     }
 
     public Name getName() {
@@ -183,13 +312,14 @@ public class Person {
         return this.time != null;
     }
 
+    public boolean hasAppointment() {
+        return appointment != null;
+    }
+
     // notice: after adding Appoinment, time attribute in person becomes invalid
     // therefore, isOnSearchDate should be done from Appointment side
     public boolean isOnSearchDate(LocalDate searchDate) {
-        String n = name.fullName;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String date = time.format(formatter);
-        return date.equals(searchDate.format(formatter));
+        return appointment.isOnSearchDate(searchDate);
     }
 
     public Age getAge() {

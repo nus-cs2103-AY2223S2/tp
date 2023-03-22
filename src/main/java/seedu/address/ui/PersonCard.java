@@ -47,7 +47,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label time;
+    private Label appointment;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -66,28 +66,28 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        if (person.hasTime()) {
-            time.setText(person.getTime().toString());
+        if (person.hasAppointment()) {
+            appointment.setText(person.getAppointment().toString());
             if (person.getMedicalCondition() != null) {
-                String s = person.getMedicalCondition().getValue();
+    String s = person.getMedicalCondition().getValue();
                 medicalCondition.setText(s);
-            }
+}
         } else {
-            time.setText("");
-            if (person.getMedicalCondition() == null) {
+                appointment.setText("No appointment yet");
+                if (person.getMedicalCondition() == null) {
                 medicalCondition.setText("");
-            } else {
+                } else {
                 String s = person.getMedicalCondition().getValue();
                 medicalCondition.setText(s);
-            }
-        }
-        person.getTags().stream()
+                }
+                }
+                person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
+                }
 
 
-    @Override
+@Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {

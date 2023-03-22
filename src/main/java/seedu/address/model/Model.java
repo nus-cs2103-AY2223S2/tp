@@ -15,7 +15,7 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /** {@code Predicate} that filter out person with scheduled time */
-    Predicate<Person> PREDICATE_SCHEDULED = Person::hasTime;
+    Predicate<Person> PREDICATE_SCHEDULED = Person::hasAppointment;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

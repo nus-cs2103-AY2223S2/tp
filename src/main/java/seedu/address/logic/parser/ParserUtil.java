@@ -14,12 +14,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MedicalCondition;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -156,6 +151,23 @@ public class ParserUtil {
         }
     }
 
+    //"Next appointment time from: 2002-11-21T14:30 to: 2002-11-21T16:30"
+    public static Appointment parseTimeFromAddressbook(String appointment) throws ParseException {
+        requireNonNull(appointment);
+        String trimmedAppointment = appointment.trim();
+        int idxFrom = trimmedAppointment.indexOf("from:");
+        int idxTo = trimmedAppointment.indexOf("to:");
+        String startTimeStr = trimmedAppointment.substring(idxFrom + 5, idxTo).trim();
+        String endTimeStr = trimmedAppointment.substring(idxTo + 3).trim();
+        try {
+            LocalDateTime startTime = LocalDateTime.parse(startTimeStr);
+            LocalDateTime endTime = LocalDateTime.parse(endTimeStr);
+            return new Appointment(startTime, endTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TIME_FORMAT_INVALID);
+        }
+    }
+
     public static LocalDate parseDate(String date) throws  ParseException {
         requireNonNull(date);
         String trimmedTime = date.trim();
@@ -167,16 +179,20 @@ public class ParserUtil {
         }
     }
 
-    // command: makeApp /from {startTime} /to {endTime}
+    // command: makeApp {index} /from {startTime} /to {endTime}
     public static String parseAddAppointmentCommand(String command) throws ParseException {
         int idxFrom = command.indexOf("/from");
         int idxTo = command.indexOf("/to");
-        if (idxFrom == -1 || idxTo == -1 || idxTo <= idxFrom) {
+        if (idxFrom == -1 || idxTo == -1 || idxTo <= idxFrom || idxFrom == 0) {
+            throw new ParseException(ADD_APPOINTMENT_COMMAND_INVALID);
+        }
+        String index = command.substring(0, idxFrom).trim();
+        if (index.isEmpty()) {
             throw new ParseException(ADD_APPOINTMENT_COMMAND_INVALID);
         }
         String startTime = command.substring(idxFrom + 5, idxTo).trim();
         String endTime = command.substring(idxTo + 3).trim();
-        return startTime + '|' + endTime;
+        return index + ',' + startTime + '|' + endTime;
     }
 
     /**
