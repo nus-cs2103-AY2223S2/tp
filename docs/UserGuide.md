@@ -32,6 +32,7 @@ This user guide will help you get up to speed in no time!
     * [Delete an Event](#delete-an-event)
     * [Edit an Event](#edit-an-event)
     * [View Total Revenue](#view-total-revenue)
+    * [View upcoming events](#view-upcoming-events)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -262,6 +263,25 @@ Calculates and displays the total revenue based on all the completed events.
 
 **Format**: `revenue`
 
+### View Upcoming Events: `remind` <a id = "view-upcoming-events"></a>
+
+Displays events that start within a specified number of days.
+
+**Format**: `remind DAYS`
+
+- Displays events that start within the specified number of `DAYS`.
+  - `DAYS` must be a positive integer 1, 2, 3, …
+
+**Example**:
+
+Assume the current time is 22-03-2023 11:00.
+
+- `remind 2`
+  - Events that start within 2 days will be displayed. These are events that start on:
+    * 22-03-2023 after 11:00
+    * 23-03-2023
+    * 24-03-2023
+
 ### Saving the data
 
 Paidlancers data are saved in the hard disk automatically on command issue. There is no need to save manually.
@@ -287,7 +307,8 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 |       [View Event List](#list-all-events)       |                 `list`                 |                                 `list`                                 |
 |       [Delete an Event](#delete-an-event)       |               `delete INDEX`               |                               `delete 2`                               |
 |       [Edit an Event](#edit-an-event)       |               `edit INDEX  [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`               |                               `edit 2 r/100`                               |
-| [View Total Revenue](#view-total-revenue) | `revenue` | `revenue` |
+| [View Total Revenue](#view-total-revenue)       |                  `revenue`               |                              `revenue`                               |
+| [View upcoming events](#view-upcoming-events)   |                 `remind DAYS`            |                              `remind 2`                             |
 
 [Back to top](#)
 
