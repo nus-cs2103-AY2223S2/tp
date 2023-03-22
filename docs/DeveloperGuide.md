@@ -274,12 +274,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                   | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                  |
-| `* * *`  | computing student                          | delete an item               | remove entries that I no longer need |             
-| `* * *`  | computing student                          | edit an item                  |                                    |
-| `* * *`  | computing student                                        | see all my lectures, deadlines, and tutorials          |                 |
-| `* *`    | TBD                                       | TBD   | TDB             |
-| `*`      | TBD | TBD          | TBD                                                |
+| `* * *`  | computing student                          | add lectures, deadlines, and tutorials        |                                      |
+| `* * *`  | computing student                          | delete an item                                | remove entries that I no longer need |             
+| `* * *`  | computing student                          | edit an item                                  |                                      |
+| `* * *`  | computing student                          | see all my lectures, deadlines, and tutorials |                                      |
+| `* *`    | computing student                          | sort my lectures, deadlines, and tutorials    | prioritise certain modules           |
+| `* *`    | computing student                          | sort my exams by time                         | view my exam schedule                |
+| `* *`    | diligent student                           | add notes and remarks to my sc                |                                      |
+| `* *`    | unorganised user                           | search for my modules by name or type         | find specific information quickly    |
 
 *{More to be added}*
 
@@ -343,7 +345,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample modules. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -360,16 +362,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete 1`<br>
+      Expected: First module is deleted from the list. Details of the deleted module shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -377,4 +379,25 @@ testers are expected to do more *exploratory* testing.
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
+2. _{ more test cases …​ }_
+
+### Adding a module  
+
+1. Adding a module
+
+    1. Test case: `add n/CS2103T t/Tutorial a/COM1`<br>  
+       Expected: A new module is added to the list. Details of the added module is shown in the status message. Empty optional fields are left as "None.".
+       
+    2. Test case: `add n/CS2101 t/Lecture a/COM3 e/210323 10:00 s/Mr Ng`<br>  
+       Expected: A new module with optional fields are added to the list. Details of the added module is shown in the status message.
+       
+    3. Test case: `add n/CS1101S`<br>
+       Expected: No module is added as compulsory fields are missing. Error details shown in the status message.
+       
+### Editing a module
+
+1. Editing a module while all modules are being shown
+
+    1. Prerequisites: List all modules using the `list` command. Multiple modules in the list.
+
+    2. Test case: 
