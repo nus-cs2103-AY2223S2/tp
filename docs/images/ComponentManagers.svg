@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="351px" preserveAspectRatio="none" style="width:675px;height:351px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 675 351" width="675px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster Logic-->
+        <g id="cluster_Logic">
+            <rect fill="#E6EFF9" height="118" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="284"
+                  x="53" y="69.49"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="37" x="176.5" y="86.4559">Logic
+            </text>
+        </g><!--cluster Model-->
+        <g id="cluster_Model">
+            <rect fill="#FBEAE7" height="118" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="292"
+                  x="377" y="69.49"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="43" x="501.5" y="86.4559">Model
+            </text>
+        </g><!--cluster Storage-->
+        <g id="cluster_Storage">
+            <rect fill="#FFF5E7" height="118" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="302"
+                  x="254" y="227.49"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="54" x="378" y="244.4559">Storage
+            </text>
+        </g><!--class Logic-->
+        <g id="elem_Logic">
+            <rect codeLine="6" fill="#005EC4" height="48.1358" id="Logic" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="80" x="96" y="115.49"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="99"
+                  y="135.4559">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="35" x="118.5"
+                  y="154.5239">Logic
+            </text>
+        </g><!--class LogicManager-->
+        <g id="elem_LogicManager">
+            <rect codeLine="7" fill="#005EC4" height="29.0679" id="LogicManager" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="102" x="211" y="124.99"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="96" x="214"
+                  y="144.9559">LogicManager
+            </text>
+        </g><!--class Model-->
+        <g id="elem_Model">
+            <rect codeLine="11" fill="#D42E12" height="48.1358" id="Model" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="80" x="420" y="115.49"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="423"
+                  y="135.4559">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="42" x="439"
+                  y="154.5239">Model
+            </text>
+        </g><!--class ModelManager-->
+        <g id="elem_ModelManager">
+            <rect codeLine="12" fill="#D42E12" height="29.0679" id="ModelManager" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="109" x="535.5" y="124.99"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="103" x="538.5"
+                  y="144.9559">ModelManager
+            </text>
+        </g><!--class Storage-->
+        <g id="elem_Storage">
+            <rect codeLine="16" fill="#FA9E0D" height="48.1358" id="Storage" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="80" x="297" y="273.49"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="300"
+                  y="293.4559">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="52" x="311"
+                  y="312.5239">Storage
+            </text>
+        </g><!--class StorageManager-->
+        <g id="elem_StorageManager">
+            <rect codeLine="17" fill="#FA9E0D" height="29.0679" id="StorageManager" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="119" x="412.5" y="282.99"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="113" x="415.5"
+                  y="302.9559">StorageManager
+            </text>
+        </g><!--class HiddenOutside-->
+        <g id="elem_HiddenOutside">
+            <rect codeLine="20" fill="#FFFFFF" height="29.0679" id="HiddenOutside" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="108" x="7" y="282.99"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="102" x="10"
+                  y="302.9559">HiddenOutside
+            </text>
+        </g><!--reverse link Logic to HiddenOutside-->
+        <g id="link_Logic_HiddenOutside">
+            <path codeLine="21" d="M61,187.7831 C61,191.4002 61,195.1222 61,198.91 C61,229.2125 61,263.73 61,282.51 "
+                  fill="none" id="Logic-backto-HiddenOutside"
+                  style="stroke:#181818;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#181818" points="61,187.7831,57,196.7831,61,192.7831,65,196.7831,61,187.7831"
+                     style="stroke:#181818;stroke-width:1.1;"/>
+        </g><!--reverse link Logic to LogicManager-->
+        <g id="link_Logic_LogicManager">
+            <path codeLine="23"
+                  d="M66.0935,69.2747 C67.8319,63.0752 70.0397,56.9906 72.8313,51.2769 C78.4144,39.8494 86.3325,29.905 97.5,23.49 C127.95,6 145.16,7.66 176.5,23.49 C218.93,44.92 245.47,98.44 256.34,124.61 "
+                  fill="none" id="Logic-backto-LogicManager"
+                  style="stroke:#005EC4;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#FFFFFF" points="66.0935,69.2747,77.9633,52.8702,64.4833,49.0904,66.0935,69.2747"
+                     style="stroke:#005EC4;stroke-width:1.1;"/>
+        </g><!--reverse link Model to ModelManager-->
+        <g id="link_Model_ModelManager">
+            <path codeLine="24"
+                  d="M390.0935,69.2747 C391.8319,63.0752 394.0397,56.9906 396.8312,51.2769 C402.4144,39.8494 410.3325,29.905 421.5,23.49 C451.95,6 468.99,8 500.5,23.49 C543.87,44.81 572.16,98.38 583.87,124.59 "
+                  fill="none" id="Model-backto-ModelManager"
+                  style="stroke:#D42E12;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#FFFFFF" points="390.0935,69.2747,401.9633,52.8702,388.4833,49.0904,390.0935,69.2747"
+                     style="stroke:#D42E12;stroke-width:1.1;"/>
+        </g><!--reverse link Storage to StorageManager-->
+        <g id="link_Storage_StorageManager">
+            <path codeLine="25"
+                  d="M270.113,227.3058 C270.1748,227.1761 270.237,227.0467 270.2995,226.9175 C270.5498,226.4006 270.8063,225.8872 271.0691,225.3775 C271.5948,224.3582 272.1459,223.3538 272.7235,222.3667 C275.0339,218.4181 277.7688,214.745 281,211.49 C286.62,205.83 290.57,208.38 298.5,207.49 C319.83,205.08 376.51,200.59 395,211.49 C425.39,229.4 450.39,263.33 463.04,282.79 "
+                  fill="none" id="Storage-backto-StorageManager"
+                  style="stroke:#FA9E0D;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#FFFFFF" points="270.113,227.3058,284.6068,213.1662,271.9689,207.1426,270.113,227.3058"
+                     style="stroke:#FA9E0D;stroke-width:1.1;"/>
+        </g><!--link LogicManager to Model-->
+        <g id="link_LogicManager_Model">
+            <path codeLine="27"
+                  d="M313.41,139.49 C325.2,139.49 336.9925,139.49 348.785,139.49 C354.6813,139.49 360.5775,139.49 366.4734,139.49 C369.4214,139.49 372.3693,139.49 375.3171,139.49 C375.6855,139.49 376.054,139.49 376.4225,139.49 C376.6067,139.49 376.7909,139.49 376.9752,139.49 "
+                  fill="none" id="LogicManager-to-Model" style="stroke:#005EC4;stroke-width:1.1;"/>
+            <polygon fill="#005EC4"
+                     points="376.9752,139.49,367.9752,135.49,371.9752,139.49,367.9752,143.49,376.9752,139.49"
+                     style="stroke:#005EC4;stroke-width:1.1;"/>
+        </g><!--link LogicManager to Storage-->
+        <g id="link_LogicManager_Storage">
+            <path codeLine="28"
+                  d="M262,154.33 C262,163.7275 262,177.1094 262,191.9453 C262,199.3633 262,207.1448 262,214.9735 C262,218.8878 262,222.814 262,226.7124 C262,226.9561 262,227.1996 262,227.443 "
+                  fill="none" id="LogicManager-to-Storage" style="stroke:#005EC4;stroke-width:1.1;"/>
+            <polygon fill="#005EC4" points="262,227.443,266,218.443,262,222.443,258,218.443,262,227.443"
+                     style="stroke:#005EC4;stroke-width:1.1;"/>
+        </g><!--SRC=[ZP5HQuCm58NVyokozjb0tulGsTQDwGAkUtAZX9ZQO1ebYPInxRzFqkXCMqfz4Uuztps7amSkgMWB1hNv4WmrxK40NN7P44KEa2XL7pTxJYl9j8OpD0C0D8HMf6GmgKjEOOBZvsWRuGHdsyT5z19d-Frr2Rz194Y7JEPpBWrJEq9P67v82qqWqPUu8-my9RApKDxwzzywhGicO8gNg-H-QmjPwmlS4NRUMu_N8-itKolxt-1i4Q_kjtUW3N3rYEFShe_XIxeW9zKJBmecSMiqxnvlkhOVyAUeRL1uwXC0hrQKZuhz56ndq4-lz4f0-QY6GMWbu2meohseWzZ9pX84NWB5oxq9-iCtXC5mxmy0]-->
+    </g>
+</svg>
