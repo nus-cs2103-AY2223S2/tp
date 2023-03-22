@@ -88,7 +88,7 @@ in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts
-e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
+e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `PolicyListPanel` etc. All these, including the `MainWindow`,
 inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the
 visible GUI.
 
@@ -195,18 +195,23 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Delete Policy feature
-The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. 
 
-`DeletePolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class follows the sequence.
+The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`.
+
+`DeletePolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class
+follows the sequence.
+
 1. Get the `Client` based on the most updated client list in the `Model`.
 2. Delete the `Policy` associated to the given `Policy` index from the `Client` given.
 
 `DeletePolicyCommandParser` implements `Parser<DeletePolicyCommand>`. The logic of this class follows the sequence.
+
 1. Get the client index from the preamble of the input.
 2. Get the policy index from the prefix "pi/".
 
 The following sequence diagram shows how the delete policy operation works:
 ![DeletePolicySequenceDiagram0](images/DeletePolicySequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
