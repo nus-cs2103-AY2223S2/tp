@@ -11,10 +11,16 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class MixedPanel
+Class InternshipListPanel
+Class InternshipCard
+Class TodoListPanel
+Class TodoCard
+Class NoteListPanel
+Class NoteCard
 Class StatusBarFooter
 Class CommandBox
+Class ResultDialog
 }
 
 package Model <<Rectangle>> {
@@ -32,29 +38,52 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" MixedPanel
+MainWindow *-down-> "1" InternshipListPanel
+MainWindow *-down-> "1" TodoListPanel
+MainWindow *-down-> "1" NoteListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow --> "0..1" ResultDialog
+MixedPanel *-down-> "1" NoteListPanel
+MixedPanel *-down-> "1" TodoListPanel
 
-PersonListPanel -down-> "*" PersonCard
-
-MainWindow -left-|> UiPart
-
+MainWindow --|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+InternshipListPanel --|> UiPart
+TodoListPanel --|> UiPart
+NoteListPanel --|> UiPart
+MixedPanel --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+TodoCard --|> UiPart
+NoteCard --|> UiPart
+InternshipCard --|> UiPart
 
-PersonCard ..> Model
+InternshipListPanel -down-> InternshipCard
+TodoListPanel -down-> TodoCard
+NoteListPanel -down-> NoteCard
+
+InternshipCard .right.> Model
+TodoCard .left.> Model
+NoteCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
+InternshipListPanel -[hidden]left- CommandBox
+HelpWindow -[hidden]right- CommandBox
 CommandBox -[hidden]left- ResultDisplay
+CommandBox -[hidden]left- ResultDialog
 ResultDisplay -[hidden]left- StatusBarFooter
+InternshipListPanel -[hidden]left- ResultDialog
+InternshipListPanel -[hidden]right- NoteListPanel
+InternshipListPanel -[hidden]right- TodoListPanel
+NoteListPanel -[hidden]right- TodoListPanel
+Ui -[hidden]right- StatusBarFooter
+
+
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml

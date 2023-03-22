@@ -18,8 +18,12 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.NoteList;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyNote;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
@@ -28,6 +32,10 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.task.note.JsonNoteListStorage;
+import seedu.address.storage.task.note.NoteStorage;
+import seedu.address.storage.task.todo.JsonTodoListStorage;
+import seedu.address.storage.task.todo.TodoListStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +65,11 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
+        NoteStorage noteStorage = new JsonNoteListStorage(userPrefs.getNoteListFilePath());
+
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, todoListStorage, noteStorage);
+
 
         initLogging(config);
 
@@ -74,6 +86,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        ReadOnlyAddressBook initialAddressBook = initModelAddressBook(storage);
+        ReadOnlyTodoList initialTodoList = initModelTodoList(storage);
+        ReadOnlyNote initialNoteList = initModelNoteList(storage);
+
+        return new ModelManager(initialAddressBook, userPrefs, initialTodoList, initialNoteList);
+    }
+
+    private ReadOnlyAddressBook initModelAddressBook(Storage storage) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
@@ -90,7 +110,47 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return initialData;
+    }
+
+    private ReadOnlyTodoList initModelTodoList(Storage storage) {
+        Optional<ReadOnlyTodoList> todoListOptional;
+        ReadOnlyTodoList initialData;
+        try {
+            todoListOptional = storage.readTodoList();
+            if (!todoListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample todolist");
+            }
+            initialData = todoListOptional.orElseGet(SampleDataUtil::getSampleTodoList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty todolist");
+            initialData = new TodoList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty todolist");
+            initialData = new TodoList();
+        }
+
+        return initialData;
+    }
+
+    private ReadOnlyNote initModelNoteList(Storage storage) {
+        Optional<ReadOnlyNote> noteListOptional;
+        ReadOnlyNote initialData;
+        try {
+            noteListOptional = storage.readNoteList();
+            if (!noteListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample note list");
+            }
+            initialData = noteListOptional.orElseGet(SampleDataUtil::getSampleNoteList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty note list");
+            initialData = new NoteList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty note list");
+            initialData = new NoteList();
+        }
+
+        return initialData;
     }
 
     private void initLogging(Config config) {
