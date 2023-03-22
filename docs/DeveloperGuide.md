@@ -601,6 +601,10 @@ The `sort` command allows users to arrange their contacts in the order they desi
 
 {to be filled}
 
+### **Meet Command**
+
+{to be filled by Hafeez and Russell}
+
 ### **Parsers**
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -738,6 +742,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 #### **Target user profile**
 
 * has a need to manage a significant number of contacts
+* frustrated in the struggle to find suitable meetup venues and timings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -752,16 +757,17 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                           | So that I can…​                              |
-|----------|-----------|--------------------------------------------------------|----------------------------------------------|
-| `***`    | student   | view all my modules in one place                       | be more organised in my work                 |
-| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                      |
-| `***`    | user      | view my personal information                           | share it to whoever needs it                 |
-| `***`    | user      | update my profile                                      | personalise my experience                    |
-| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking     |
-| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules |
-| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me    |
-| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends     |
+| Priority | As a …​   | I want to …​                                           | So that I can…​                                             |
+|----------|-----------|--------------------------------------------------------|-------------------------------------------------------------|
+| `***`    | student   | view all my modules in one place                       | be more organised in my work                                |
+| `***`    | student   | decide a meeting place and time with my friends conveniently | plan meetups for social and academic purposes efficiently|
+| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                                     |
+| `***`    | user      | view my personal information                           | share it to whoever needs it                                |
+| `***`    | user      | update my profile                                      | personalise my experience                                   |
+| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking                    |
+| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules                |
+| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me                   |
+| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends                    |
 
 ### **Use Cases**
 
