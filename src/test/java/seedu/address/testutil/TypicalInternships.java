@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.NoteList;
+import seedu.address.model.TodoList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
@@ -43,5 +45,13 @@ public class TypicalInternships {
 
     public static List<InternshipApplication> getTypicalInternships() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static NoteList getTypicalNoteList() {
+        return new NoteList();
+    }
+
+    public static TodoList getTypicalTodoList() {
+        return new TodoList();
     }
 }
