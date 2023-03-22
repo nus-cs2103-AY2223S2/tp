@@ -33,7 +33,7 @@ public class DeleteApplicationCommand extends ApplicationCommand {
     @Override
     public CommandResult execute(ApplicationModel model) throws CommandException {
         requireNonNull(model);
-        List<Application> lastShownList = model.getFilteredApplicationList();
+        List<Application> lastShownList = model.getSortedApplicationList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);

@@ -70,7 +70,6 @@ public class SortApplicationCommand extends ApplicationCommand {
     @Override
     public CommandResult execute(ApplicationModel model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.updateSortedApplicationList(comparator);
         return new CommandResult(MESSAGE_SORT_SUCCESS);
     }

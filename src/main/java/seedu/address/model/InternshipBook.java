@@ -53,7 +53,6 @@ public class InternshipBook implements ReadOnlyInternshipBook {
      */
     public void resetData(ReadOnlyInternshipBook newData) {
         requireNonNull(newData);
-
         setApplications(newData.getApplicationList());
     }
 
@@ -82,7 +81,6 @@ public class InternshipBook implements ReadOnlyInternshipBook {
      */
     public void setApplication(Application target, Application editedApplication) {
         requireNonNull(editedApplication);
-
         applications.setApplication(target, editedApplication);
     }
 

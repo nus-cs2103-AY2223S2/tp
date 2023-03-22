@@ -5,6 +5,7 @@ import static seedu.address.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIO
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ApplicationModel;
+import seedu.address.model.application.DefaultComparator;
 
 /**
  * Lists all applications in the internship book to the user.
@@ -17,7 +18,8 @@ public class ListApplicationCommand extends ApplicationCommand {
     @Override
     public CommandResult execute(ApplicationModel model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        //model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        model.updateSortedApplicationList(new DefaultComparator(model.getFilteredApplicationList()));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

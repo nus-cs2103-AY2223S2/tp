@@ -88,7 +88,8 @@ public class Application {
         return otherApplication.getRole().equals(getRole())
                 && otherApplication.getCompanyName().equals(getCompanyName())
                 && otherApplication.getCompanyEmail().equals(getCompanyEmail())
-                && otherApplication.getTags().equals(getTags());
+                && otherApplication.getTags().equals(getTags())
+                && otherApplication.hasTask() == hasTask();
     }
 
     @Override
