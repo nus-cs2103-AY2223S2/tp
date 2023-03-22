@@ -22,7 +22,7 @@ public class TaskAddCommand extends TaskCommand {
             + ": Adds a Task to Fish Ahoy!. \n"
             + "Parameters: "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_TANK + "<optionlal> TANK INDEX "
+            + PREFIX_TANK + "<optional> TANK INDEX "
             + "Example: " + COMMAND_WORD + " " + TASK_COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Clean fresh water tank "
             + PREFIX_TANK + "1 ";
