@@ -32,7 +32,6 @@ public class Weight {
      * Returns true if a given string is a valid weight.
      */
     public static boolean isValidWeight(String test) {
-        test = test.trim();
         return test.matches(VALIDATION_REGEX) && !test.equals("0") && !test.equals("0.0");
     }
 
