@@ -22,9 +22,6 @@ public class ModuleCard extends UiPart<Region> {
     private Label moduleCardCode;
 
     @FXML
-    private HBox moduleCardInfo;
-
-    @FXML
     private Label moduleCardYearSem;
 
     @FXML
