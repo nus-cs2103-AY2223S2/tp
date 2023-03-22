@@ -278,8 +278,8 @@ JavaFX, which in turn invokes the `FuzzyManager`. The `FuzzyManager` obtains a
 reference to the unfiltered and unsorted list of clients and projects from
 `AddressBook`, performs the necessary ranking and filtering, and finally
 applies it onto `MainWindow`. Note that the `fuzzyCompareTo()` method invoked
-on `Client` and `Project` is just a convenience method to compute the fuzzy
-delta between their names and the existing input.
+on `Client` and `Project` is just a convenience method to compute the
+Levenshtein distance between their names and the existing input.
 
 #### Ranking considerations
 
