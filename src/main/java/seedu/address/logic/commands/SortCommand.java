@@ -32,7 +32,6 @@ public class SortCommand extends Command {
         this.comparator = comparator;
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
