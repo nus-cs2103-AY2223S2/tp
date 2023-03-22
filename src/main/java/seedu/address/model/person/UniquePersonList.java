@@ -98,6 +98,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns the {@code Person} with the specified Nric in the list otherwise returns null.
+     */
+    public Person findPersonByNric(Nric nric) {
+        requireNonNull(nric);
+        return internalList.stream().filter(p -> p.getNric().equals(nric)).findFirst().orElse(null);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
