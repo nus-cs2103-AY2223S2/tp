@@ -1,0 +1,21 @@
+@startuml
+start
+
+:switch to mode flight;
+
+if () then ([Flight does not exist yet])
+    :Add flight;
+else ([Flight already exists])
+endif
+
+if () then ([XYZ does not exist])
+    :switch to mode XYZ;
+    :Add XYZ;
+
+else ([XYZ already exists])
+endif
+
+:Link XYZ to flight;
+
+stop
+@enduml

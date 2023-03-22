@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyItemManager" as ReadOnlyItemManager
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model

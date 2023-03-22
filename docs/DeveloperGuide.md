@@ -1,5 +1,68 @@
 # Developer Guide
 
+## Table of Contents
+- **[Acknowledgements](#acknowledgements)**
+- **[Setting up, getting started](#setting-up-getting-started)**
+- **[Architecture](#architecture)**
+    * [UI Component](#ui-component)
+    * [Logic Component](#logic-component)
+    * [Model Component](#model-component)
+    * [Storage Component](#storage-component)
+- **[Implementation](#implementation)**
+    * [Adding locations](#adding-locations--seq-diagram-focussed-on-ui-layer----ai-bo)
+        * [Motivation](#motivation-for-unique-id)
+        * [Implementation](#implementation-of-unique-id)
+- **[Appendix: Requirements](#appendix--requirements)**
+
+## Acknowledgements
+Coming soon
+
+## Setting up, Getting started
+Coming soon
+
+## Architecture
+<img src="images/WingmanArchitectureDiagram.png" width="276" alt="Architecture diagram">
+
+Description coming soon
+
+
+### UI Component
+<img src="images/WingmanUiClassDiagram.png" width="1021" alt="UI Class diagram">
+
+Description coming soon
+
+
+### Logic Component
+<img src="images/WingmanLogicClassDiagram.png" width="608" alt="UI Class diagram">
+
+Description coming soon
+
+
+### Model Component
+<img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
+
+Description coming soon
+
+
+### Storage Component
+<img src="images/WingmanStorageClassDiagram.png" width="616" alt="UI Class diagram">
+
+Description coming soon
+
+
+## Implementation
+
+### Adding locations (seq. diagram focussed on UI layer) - Ai Bo
+
+### Deleting planes (seq. diagram focussed on Logic layer) - Celeste Cheah
+
+### Linking pilots to flight (seq. diagram focussed on Model layer) - Xiuxuan
+
+### Unlinking crew from flights (seq. diagram focussed on Storage layer) - Jishnu
+
+### Displaying flights across all modes (expand on UI implementation using UI class diagram)- Yuanyuan
+
+## Appendix: Requirements
 ### Product scope
 
 **Target user profile**:

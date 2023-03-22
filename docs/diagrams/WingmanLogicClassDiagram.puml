@@ -4,16 +4,16 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-package Logic {
+package LogicPackage {
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
 
 Class WingmanParser
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 
-
-Class "<<interface>>\nLogic" as Logic
-Class LogicManager
 }
 
 package Model{
