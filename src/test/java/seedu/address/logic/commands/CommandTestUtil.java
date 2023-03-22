@@ -27,6 +27,8 @@ import seedu.address.testutil.EditListingDescriptorBuilder;
 public class CommandTestUtil {
 
     // valid applicant info
+    public static final String VALID_APPLICANT_NAME_AMY = "Amy Smith";
+
     public static final String VALID_APPLICANT_NAME_BENEDICT = "Benedict Green";
     public static final String VALID_APPLICANT_NAME_WITH_ID_BENEDICT = "Benedict Green#2103";
     public static final String VALID_APPLICANT_NAME_BENEDICT_DESC = " " + PREFIX_APPLICANT
