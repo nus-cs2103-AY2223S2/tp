@@ -42,7 +42,6 @@ activate D COL1
 
 
 deactivate D COL1
-D -> D: create date\n with format \n"yyyyMMdd"
 
 
 D --> PU
