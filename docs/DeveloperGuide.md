@@ -158,6 +158,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find command feature
+
+The proposed find command supports:
+
+1. Searching for modules/lectures/videos based on current context.
+   - Root layer - Modules
+   - Module layer - Lectures
+   - Lecture layer - Videos
+2. Searching for modules/lectures/videos from `any` layer context.
+
+   - E.g: User navigates to a module CS2040S and she is currently in module layer. Executing `find {keywords} /mod CS2103` command show an error unless she navigates back to root layer. At this point, only below commands is valid.
+     Find lectures:
+
+     - `find {keywords}`
+     - `find {keywords} /mod CS2040S`
+
+     Find videos:
+
+     - `find {keywords} /lec Week1`
+     - `find {keywords} /mod CS2040S /lec Week1`
+
+3. Searching for multiple modules/lectures/videos from `any` layer context.
+
+Below is an activity diagram that showcase the event that occurs when find command is executed.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -223,7 +250,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -272,6 +299,7 @@ _{Explain here how the data archiving feature will be implemented}_
 - is reasonably comfortable using CLI apps
 
 **Value proposition**: fun, fast and stress-free way to organise and track lecture material
+
 - gamified tracking application
 - easily log lecture progress, search for lecture by mod code / keywords / topics for a stress-free learning environment
 - tailored to needs of students: provides additional information specific to lecture media such as watch progress and topics
@@ -325,21 +353,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User specifies the name and code of the module.
 3. A new module is added into the list.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 - 2a. The module name or code is blank.
 
-   - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Module code already exists.
 
-   - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Add a lecture**
 
@@ -351,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User specifies a name for the lecture with reference to a module code.
 3. A new lecture is appended into the list in that module.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -359,13 +387,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Module code does not exist.
 
   - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Add a video**
 
@@ -377,27 +405,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User specifies a name for the video with reference to a module code and that module lecture index number.
 3. A new video is appended into the list in that lecture residing in the module.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 - 2a. Video name is blank.
 
-   - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Module code does not exist.
 
-   - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture index does not exist.
 
-   - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Mark/Unmark a video**
 
@@ -409,131 +437,130 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. User specifies the module code, lecture index number and video index number to mark/unmark.
 3. Video shows a marked/unmarked indicator.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 - 2a. Module code does not exist.
 
-   - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Lecture index does not exist.
 
-   - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Video index does not exist.
 
-   - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Delete a Lecture**
 
 **MSS**
 
-1.  User requests to list lectures of a specific module
-2.  Le Tracker shows a list of lectures of the specified module
-3.  User requests to delete a specific lecture in the list, while citing the correct _module code_
-4.  Le Tracker deletes the lecture
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. There is no lecture in the specified module.
+1. User requests to list lectures of a specific module
+2. Le Tracker shows a list of lectures of the specified module
+3. User requests to delete a specific lecture in the list, while citing the correct _module code_
+4. Le Tracker deletes the lecture
 
    Use case ends.
 
-* 2b. There is no such module.
+**Extensions**
 
-   * 2b1. Le Tracker shows an error message.
+- 2a. There is no lecture in the specified module.
 
-      Use case resumes at step 1.
+  Use case ends.
 
-* 3a. The given index is invalid.
+- 2b. There is no such module.
 
-    * 3a1. Le Tracker shows an error message.
+  - 2b1. Le Tracker shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 1.
 
-* 3b. The given module code is invalid.
+- 3a. The given index is invalid.
 
-    * 3b1. Le Tracker shows an error message.
+  - 3a1. Le Tracker shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
+
+- 3b. The given module code is invalid.
+
+  - 3b1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
 
 **Use case: Delete a Lecture Video**
 
 **MSS**
 
-1.  User requests to list lecture videos of a specific lecture of a specific module
-2.  Le Tracker shows a list of lecture videos of such specifications
-3.  User requests to delete a specific video in the list, while citing the correct _module code_ and _lecture id
-4.  Le Tracker deletes the lecture video
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. There is no video in the specified module lecture.
+1. User requests to list lecture videos of a specific lecture of a specific module
+2. Le Tracker shows a list of lecture videos of such specifications
+3. User requests to delete a specific video in the list, while citing the correct _module code_ and \_lecture id
+4. Le Tracker deletes the lecture video
 
    Use case ends.
 
-* 2b. There is no such lecture in the module.
+**Extensions**
 
-   * 2b1. Le Tracker shows an error message.
+- 2a. There is no video in the specified module lecture.
 
-      Use case resumes at step 1.
+  Use case ends.
 
-* 2c. There is no such module.
+- 2b. There is no such lecture in the module.
 
-   * 2c1. Le Tracker shows an error message.
+  - 2b1. Le Tracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
-* 3a. The given index of the video is invalid.
+- 2c. There is no such module.
 
-   * 3a1. Le Tracker shows an error message.
+  - 2c1. Le Tracker shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 1.
 
-* 3b. The given index of the lecture is invalid.
+- 3a. The given index of the video is invalid.
 
-   * 3b1. Le Tracker shows an error message.
+  - 3a1. Le Tracker shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
-* 3c. The given index of the module is invalid.
+- 3b. The given index of the lecture is invalid.
 
-   * 3c1. Le Tracker shows an error message.
+  - 3b1. Le Tracker shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
+- 3c. The given index of the module is invalid.
+
+  - 3c1. Le Tracker shows an error message.
+
+    Use case resumes at step 2.
 
 _{More to be added}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 lectures without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Should be easy to navigate through using commands.
-5.  Should be easy to pick up on how to use the application.
-6.  Should allow multiple users to use the application.
-7.  Will not be pulling data from any third party APIs.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 lectures without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be easy to navigate through using commands.
+5. Should be easy to pick up on how to use the application.
+6. Should allow multiple users to use the application.
+7. Will not be pulling data from any third party APIs.
 
 _{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Module Code**: Unique code for each module
-* **Lecture Index**: Unique identifier for each lecture (Starting from 0)
-* **Video Index**: Unique identifier for each video (Starting from 0)
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Module Code**: Unique code for each module
+- **Lecture Index**: Unique identifier for each lecture (Starting from 0)
+- **Video Index**: Unique identifier for each video (Starting from 0)
 
 ---
 
