@@ -1,7 +1,7 @@
 package seedu.recipe.ui;
+
 import java.util.Comparator;
 import java.util.Optional;
-
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +13,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import seedu.recipe.model.recipe.Recipe;
 
 /**
@@ -94,11 +95,6 @@ public class RecipePopup extends UiPart<Region> {
         window.setTitle("Recipe Details");
         window.setMinWidth(500);
         window.setMinHeight(300);
-        /* Can be removed once we finalise decision to remove close button
-        Button closeButton = new Button("Close");
-        closeButton.setOnAction(event -> window.close());
-        VBox vbox = new VBox(getRoot(), closeButton);
-        */
         VBox vbox = new VBox(getRoot());
         Scene scene = new Scene(vbox);
         scene.setOnKeyPressed(event -> {
