@@ -13,6 +13,7 @@ PowerConnect is a desktop app for managing contacts, optimized for use via a Com
         5. [Editing a student's particulars: `edit`](#editstudent)
         6. [Searching students: `find`](#findstudent)
         7. [Deleting a student: `delete`](#deletestudent)
+        8. [Marking student 'attendance'](#attendance)
     2. [Parent Features](#parent)
         1. [Add parent/guardian: `add`](#addparent)
         2. [Listing all parents: `list`](#listparent)
@@ -170,6 +171,46 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Attendance feature 
+
+#### Current Implementation
+
+The attendance feature is facilitated by `Attendance`. It is composed by a `Person` with an `Attendance` object.
+
+Given below is an example usage scenario and how the attendance mechanism behaves at each step
+
+Step 1. The user launches the application for the first time 
+Step 2. The user creates a student using the Add command. The `Attendance` of `Students` will be initialized with the initial attendance state (F) indicating that the student is absent.
+
+[//]: # (![Student Add Command]&#40;images/StudentAddCommand.png&#41;)
+Step 3. The user wants to mark a particular student as present. The user executes the `Attendance` command with the index of the student and att/T. The `Attendance` of the student will be updated to the current date.
+
+![Attendance Command](images/MarkAttendance.jpg)
+
+Step 4. The attendance is saved to the storage file automatically after each command. Attendance is saved as the string representation of LocalDate in JsonAdaptedAttendance.
+
+Full implementation sequence diagram
+
+![Sequence Diagram](images/AttendanceSequenceDiagram.jpg)
+
+### Design considerations
+We want to make it easy for the user to set current date as present. Thus we allowed the user to set attendance as T which will automatically register as present today
+
+#### Aspect: How to store attendance
+
+* **Alternative 1 (current choice):** Store attendance as a JsonAdaptedAttendance object that records the string representation of LocalDate
+    * Pros: Easy to access and manipulate attendance data
+    * Pros: Easy to read and write to storage
+    * Pros: Flexible to add more features if more features are added eg. mark as MC, Late..
+    * Cons: Hard to implement
+  
+* **Alternative 2:** Store attendance as a string representation of LocalDate
+    * Pros: Easy to implement
+    * Pros: Use less memory
+    * Cons: Hard to access and manipulate attendance data
+    * Cons: Hard to read and write to storage
+    * Cons: Hard to add more features if more features are added eg. mark as MC, Late..
 
 ### \[Proposed\] Undo/redo feature
 
