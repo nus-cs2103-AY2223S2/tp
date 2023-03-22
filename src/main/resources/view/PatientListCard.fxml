@@ -24,12 +24,12 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="" styleClass="cell_big_label" />
+        <Label fx:id="name" styleClass="cell_big_label" />
         <Label fx:id="status" styleClass="status-GRAY" />
       </HBox>
-      <Label fx:id="nric" text="" styleClass="cell_small_label" />
-      <Label fx:id="ward" text="" styleClass="cell_small_label" />
-      <Label fx:id="discharge" text="" styleClass="cell_small_label" />
+      <Label fx:id="nric" styleClass="cell_small_label" />
+      <Label fx:id="ward" styleClass="cell_small_label" />
+      <Label fx:id="discharge" styleClass="cell_small_label" />
     </VBox>
   </GridPane>
 </HBox>
