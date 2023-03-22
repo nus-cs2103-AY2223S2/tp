@@ -8,12 +8,16 @@ import static seedu.socket.model.project.Project.PROJ_NAME;
 import static seedu.socket.model.project.Project.PROJ_REPO_HOST;
 import static seedu.socket.model.project.Project.PROJ_REPO_NAME;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.socket.model.person.Person;
 import seedu.socket.model.project.exceptions.DuplicateProjectException;
 import seedu.socket.model.project.exceptions.ProjectNotFoundException;
 
@@ -100,6 +104,50 @@ public class UniqueProjectList implements Iterable<Project> {
         }
 
         internalList.setAll(projects);
+    }
+
+    /**
+     * Updates matching {@code Person} instances in the {@code members} of each exiting {@code Project} with the given
+     * {@code Person}.
+     */
+    public void updateMemberInProjects(Person person, Person editedPerson) {
+        ArrayList<Project> projectsToEdit = new ArrayList<>(); // store projects to edit to avoid concurrent update
+        for (Project project : internalList) {
+            if (project.getMembers().contains(person)) {
+                projectsToEdit.add(project);
+            }
+        }
+        while (!projectsToEdit.isEmpty()) { // update matching projects in projects
+            Project projectToUpdate = projectsToEdit.remove(0);
+            Set<Person> updatedMembers = new HashSet<>(projectToUpdate.getMembers());
+            updatedMembers.remove(person);
+            updatedMembers.add(editedPerson);
+            Project updatedProject = new Project(projectToUpdate.getName(), projectToUpdate.getRepoHost(),
+                    projectToUpdate.getRepoName(), projectToUpdate.getDeadline(),
+                    projectToUpdate.getMeeting(), updatedMembers);
+            setProject(projectToUpdate, updatedProject);
+        }
+    }
+
+    /**
+     * Removes the given {@code Person} instance from the {@code members} of each existing {@code Project}.
+     */
+    public void removeMemberInProjects(Person key) {
+        ArrayList<Project> projectsToEdit = new ArrayList<>(); // store projects to edit to avoid concurrent update
+        for (Project project : internalList) {
+            if (project.getMembers().contains(key)) {
+                projectsToEdit.add(project);
+            }
+        }
+        while (!projectsToEdit.isEmpty()) { // update matching projects in projects
+            Project projectToUpdate = projectsToEdit.remove(0);
+            Set<Person> updatedMembers = new HashSet<>(projectToUpdate.getMembers());
+            updatedMembers.remove(key);
+            Project updatedProject = new Project(projectToUpdate.getName(), projectToUpdate.getRepoHost(),
+                    projectToUpdate.getRepoName(), projectToUpdate.getDeadline(),
+                    projectToUpdate.getMeeting(), updatedMembers);
+            setProject(projectToUpdate, updatedProject);
+        }
     }
 
     /**
