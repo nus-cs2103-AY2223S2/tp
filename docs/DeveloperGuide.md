@@ -123,9 +123,11 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and `Reminder` Objects (which are contained in a `ReminderList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* store the delivery job system data (all `DeliveryJob` objects are contained in a `UniqueDeliveryJobList` object).
+* stores the currently 'selected' `DeliveryJob` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<DeliveryJob>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* The address book structure largly remained the same.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -141,8 +143,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save delivery job system, address book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from `DeliveryJobSystemStroage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -336,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details>
-<summary><b>[DE3] Delete a job</b></summary>
+<summary><b>[DE3] Delete a delivery job</b></summary>
 <pre>
 <b>MSS</b>
 1. User is on homepage of list of jobs.
@@ -354,6 +356,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </pre>
 </details>
 
+<details>
+<summary><b>[DE4] Edit a delivery job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. System shows a list of jobs.
+3. User requests to edit a specific job in the list.
+4. User fill in and submit the changes.
+4. System update the job and list the new information.
+   Use case ends.
+
+<b>Extensions</b>
+* 2a. The list is empty.
+  Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.
+      Use case resumes at step 2.
+</pre>
+</details>
+
+<details>
+<summary><b>[DE5] Find a delivery job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. System shows a list of jobs.
+3. User requests search for a job with options.
+4. System displays search results that matches the query.
+   Use case ends.
+
+<b>Extensions</b>
+* 3a. Invalid search option given.
+    * 3a1. System shows an error message.
+      Use case resumes at step 2.
+* 4a. No item matches the query options.
+    * 4a. System shows empty list.
+      Use case resumes at step 2.
+</pre>
+</details>
 
 <details>
 <summary><b>[TT1] Display timetable and scheduling tasks of current week</b></summary>
