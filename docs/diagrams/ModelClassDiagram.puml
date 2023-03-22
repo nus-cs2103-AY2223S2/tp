@@ -33,10 +33,7 @@ Class Lab
 
 Class UniqueConsultationList
 Class Consultation
-
-Class File
 Class Note
-Class LocalDate
 
 }
 
@@ -79,6 +76,11 @@ UniqueLabList --> "~* all" Lab
 Consultation -up-|> Event
 Tutorial -up-|> Event
 Lab -up-|> Event
+
+Consultation --> "*" Person
+Tutorial --> "*" Person
+Lab --> "*" Person
+
 
 Event --> "*" File
 Event --> "*" Note
