@@ -1,4 +1,4 @@
-package seedu.vms.storage;
+package seedu.vms.storage.patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.vms.testutil.Assert.assertThrows;
@@ -17,7 +17,7 @@ import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 
 public class JsonPatientManagerStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonPatientManagerStorageTest");
+    private static final String TEST_DATA_FOLDER = "src/test/data/JsonPatientManagerStorageTest/";
 
     @TempDir
     public Path testFolder;
@@ -29,34 +29,33 @@ public class JsonPatientManagerStorageTest {
 
     private ReadOnlyPatientManager readPatientManager(String filePath) throws Exception {
         return new JsonPatientManagerStorage(Paths.get(filePath))
-                .readPatientManager(addToTestDataPathIfNotNull(filePath));
-    }
-
-    private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
-        return prefsFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder)
-                : null;
+                .readPatientManager();
     }
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertThrows(IOException.class, () -> readPatientManager("NonExistentFile.json"));
+        assertThrows(IOException.class,
+                () -> readPatientManager(TEST_DATA_FOLDER + "NonExistentFile.json"));
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(IOException.class, () -> readPatientManager("notJsonFormatPatientManager.json"));
+        assertThrows(IOException.class,
+                () -> readPatientManager(TEST_DATA_FOLDER + "notJsonFormatPatientManager.json"));
     }
 
     @Test
     public void readPatientManager_invalidPatientPatientManager_throwDataConversionException() {
-        assertThrows(IOException.class, () -> readPatientManager("invalidPatientPatientManager.json"));
+        // TODO: Check for proper exception
+        assertThrows(IOException.class,
+                () -> readPatientManager(TEST_DATA_FOLDER + "invalidPatientPatientManager.json"));
     }
 
     @Test
     public void readPatientManager_invalidAndValidPatientPatientManager_throwDataConversionException() {
+        // TODO: Check for proper exception
         assertThrows(IOException.class,
-                () -> readPatientManager("invalidAndValidPatientPatientManager.json"));
+                () -> readPatientManager(TEST_DATA_FOLDER + "invalidAndValidPatientPatientManager.json"));
     }
 
     @Test
@@ -66,15 +65,15 @@ public class JsonPatientManagerStorageTest {
         JsonPatientManagerStorage jsonPatientManagerStorage = new JsonPatientManagerStorage(filePath);
 
         // Save in new file and read back
-        jsonPatientManagerStorage.savePatientManager(original, filePath);
-        ReadOnlyPatientManager readBack = jsonPatientManagerStorage.readPatientManager(filePath);
+        jsonPatientManagerStorage.savePatientManager(original);
+        ReadOnlyPatientManager readBack = jsonPatientManagerStorage.readPatientManager();
         assertEquals(original, new PatientManager(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.add(HOON);
         original.remove(0);
-        jsonPatientManagerStorage.savePatientManager(original, filePath);
-        readBack = jsonPatientManagerStorage.readPatientManager(filePath);
+        jsonPatientManagerStorage.savePatientManager(original);
+        readBack = jsonPatientManagerStorage.readPatientManager();
         assertEquals(original, new PatientManager(readBack));
 
         // Save and read without specifying file path
@@ -96,7 +95,7 @@ public class JsonPatientManagerStorageTest {
     private void savePatientManager(ReadOnlyPatientManager patientManager, String filePath) {
         try {
             new JsonPatientManagerStorage(Paths.get(filePath))
-                    .savePatientManager(patientManager, addToTestDataPathIfNotNull(filePath));
+                    .savePatientManager(patientManager);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

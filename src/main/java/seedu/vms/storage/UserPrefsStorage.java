@@ -1,7 +1,6 @@
 package seedu.vms.storage;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 import seedu.vms.commons.exceptions.DataConversionException;
 import seedu.vms.model.ReadOnlyUserPrefs;
@@ -11,12 +10,6 @@ import seedu.vms.model.UserPrefs;
  * Represents a storage for {@link seedu.vms.model.UserPrefs}.
  */
 public interface UserPrefsStorage {
-
-    /**
-     * Returns the file path of the UserPrefs data file.
-     */
-    Path getUserPrefsFilePath();
-
     /**
      * Returns UserPrefs data from storage.
      *   Returns {@code Optional.empty()} if storage file is not found.

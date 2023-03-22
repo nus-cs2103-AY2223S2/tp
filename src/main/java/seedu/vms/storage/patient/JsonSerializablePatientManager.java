@@ -1,4 +1,4 @@
-package seedu.vms.storage;
+package seedu.vms.storage.patient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import seedu.vms.model.patient.ReadOnlyPatientManager;
  * An Immutable PatientManager that is serializable to JSON format.
  */
 @JsonRootName(value = "patientmanager")
-class JsonSerializablePatientManager {
+public class JsonSerializablePatientManager {
 
     public static final String DUPLICATE_ID = "Patients list contains duplicate ID(s).";
 

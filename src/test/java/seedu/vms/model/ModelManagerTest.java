@@ -8,8 +8,6 @@ import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalPatients.ALICE;
 import static seedu.vms.testutil.TypicalPatients.BENSON;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -36,20 +34,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
-        UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setPatientManagerFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
-        modelManager.setUserPrefs(userPrefs);
-        assertEquals(userPrefs, modelManager.getUserPrefs());
-
-        // Modifying userPrefs should not modify modelManager's userPrefs
-        UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setPatientManagerFilePath(Paths.get("new/address/book/file/path"));
-        assertEquals(oldUserPrefs, modelManager.getUserPrefs());
-    }
-
-    @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
     }
@@ -59,18 +43,6 @@ public class ModelManagerTest {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
-    }
-
-    @Test
-    public void setPatientManagerFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPatientManagerFilePath(null));
-    }
-
-    @Test
-    public void setPatientManagerFilePath_validPath_setsPatientManagerFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setPatientManagerFilePath(path);
-        assertEquals(path, modelManager.getPatientManagerFilePath());
     }
 
     @Test
@@ -111,7 +83,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setPatientManagerFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setGuiSettings(new GuiSettings(0, 0, 0, 0));
         assertFalse(modelManager.equals(new ModelManager(patientManager, differentUserPrefs)));
     }
 }

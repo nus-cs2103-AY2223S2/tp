@@ -70,7 +70,6 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setPatientManagerFilePath(Paths.get("patientmanager.json"));
         return userPrefs;
     }
 

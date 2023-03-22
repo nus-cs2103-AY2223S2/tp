@@ -1,7 +1,7 @@
-package seedu.vms.storage;
+package seedu.vms.storage.patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.vms.storage.JsonAdaptedPatient.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.vms.storage.patient.JsonAdaptedPatient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.vms.testutil.Assert.assertThrows;
 import static seedu.vms.testutil.TypicalPatients.BENSON;
 
@@ -17,6 +17,7 @@ import seedu.vms.model.patient.BloodType;
 import seedu.vms.model.patient.Dob;
 import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Phone;
+import seedu.vms.storage.JsonAdaptedGroupName;
 
 public class JsonAdaptedPatientTest {
     private static final String INVALID_NAME = "R@chel";
