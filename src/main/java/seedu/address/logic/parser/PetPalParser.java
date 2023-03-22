@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.pet.DeadlineWithinThreeDaysPredicate;
 
 /**
  * Parses user input.
@@ -62,6 +63,9 @@ public class PetPalParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand(new DeadlineWithinThreeDaysPredicate());
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
