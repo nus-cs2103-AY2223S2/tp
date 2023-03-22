@@ -111,4 +111,9 @@ public class LogicManager implements Logic {
     public ObservableList<Pair<String, String>> getReviewStatsList() {
         return model.getReviewStatsList();
     }
+
+    @Override
+    public ObservableList<Pair<String, String>> getReviewDeckNameList() {
+        return model.getReviewDeckNameList();
+    }
 }

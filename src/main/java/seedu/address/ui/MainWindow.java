@@ -191,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
-        rightTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightTitle = new DeckNamePanel(logic.getReviewDeckNameList());
         rightPanelTitle.getChildren().add(rightTitle.getRoot());
 
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());

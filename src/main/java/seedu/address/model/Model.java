@@ -158,4 +158,6 @@ public interface Model {
     ObservableList<Pair<String, String>> getReviewStatsList();
 
     ObservableList<Pair<String, String>> getDeckNameList();
+
+    ObservableList<Pair<String, String>> getReviewDeckNameList();
 }

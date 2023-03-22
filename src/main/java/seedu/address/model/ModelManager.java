@@ -328,4 +328,9 @@ public class ModelManager implements Model {
         return currReview.getReviewStatsList();
     }
 
+    @Override
+    public ObservableList<Pair<String, String>> getReviewDeckNameList() {
+        return currReview.getReviewDeckNameList();
+    }
+
 }

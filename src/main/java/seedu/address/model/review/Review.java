@@ -199,7 +199,9 @@ public class Review {
         updateReviewStatsList();
         return reviewStatsList;
     }
-
+    public ObservableList<Pair<String, String> > getReviewDeckNameList() {
+        return deck.getDeckNameList();
+    }
     private void updateReviewStatsList() {
         Pair<String, String> title = new Pair<String, String>("Deck Name", deck.getDeckName());
         Pair<String, String> cardsSeen = new Pair<String, String>("Current Card Number:",
