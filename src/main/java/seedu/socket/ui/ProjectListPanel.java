@@ -39,7 +39,6 @@ public class ProjectListPanel extends UiPart<Region> {
         protected void updateItem(Project project, boolean empty) {
             super.updateItem(project, empty);
             setMouseTransparent(true);
-            setFocusTraversable(false);
             if (empty || project == null) {
                 setGraphic(null);
                 setText(null);
