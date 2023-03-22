@@ -39,6 +39,10 @@ public class Deadline {
         return test.matches(VALIDATION_REGEX) && d.isAfter(LocalDateTime.now());
     }
 
+    public LocalDateTime getDate() {
+        return deadline;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
