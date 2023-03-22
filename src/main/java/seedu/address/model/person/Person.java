@@ -181,9 +181,15 @@ public class Person {
                 .append("\nGroups: ")
                 .append(getImmutableGroupTags())
                 .append("\nModules: ")
-                .append(getImmutableModuleTags());
+                .append(getImmutableModuleTags())
+                .append("\nLessons: ")
+                .append(getLessonsAsStr());
 
         return builder.toString();
+    }
+
+    public String getLessonsAsStr() {
+        return this.moduleTags.lessonsAsStr();
     }
 
 }

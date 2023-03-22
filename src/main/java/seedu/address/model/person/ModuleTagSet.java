@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.model.tag.ModuleTag;
+import seedu.address.model.timetable.Lesson;
 
 /**
  * This class was added to facilitate the Sort Command.
@@ -30,12 +32,15 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     private Set<ModuleTag> commonModules;
 
+    private final HashMap<ModuleTag, Set<Lesson>> lessons;
+
     /**
      * Initialises a new ModuleTagSet.
      */
     public ModuleTagSet() {
         modules = new HashSet<>();
         commonModules = new HashSet<>();
+        this.lessons = new HashMap<ModuleTag, Set<Lesson>>();
     }
 
     /**
@@ -44,6 +49,9 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public void add(ModuleTag moduleTag) {
         modules.add(moduleTag);
+        if (!this.lessons.containsKey(moduleTag)) {
+            this.lessons.put(moduleTag, new HashSet<Lesson>());
+        }
     }
 
     /**
@@ -51,7 +59,20 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      * Gives access from outside classes to this set.
      */
     public void addAll(Collection<? extends ModuleTag> moduleTags) {
-        modules.addAll(moduleTags);
+        for (ModuleTag tag : moduleTags) {
+            if (tag.isBasicTag()) {
+                modules.add(tag);
+            }
+        }
+    }
+
+    public void addLesson(ModuleTag hash, Lesson lesson) {
+        if (!this.lessons.containsKey(hash)) {
+            this.lessons.put(hash, new HashSet<Lesson>());
+            // should never come here.
+        }
+        modules.add(hash);
+        this.lessons.get(hash).add(lesson);
     }
 
     /**
@@ -60,14 +81,26 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
      */
     public void remove(ModuleTag moduleTag) {
         modules.remove(moduleTag);
+        this.lessons.remove(moduleTag);
     }
 
     /**
      * Removes all module tags from the set of modules.
      * Gives access from outside classes to this set.
      */
-    public void removeAll(Collection<? extends ModuleTag> moduleTag) {
-        modules.removeAll(moduleTag);
+    public void removeAll(Collection<? extends ModuleTag> moduleTags) {
+        for (ModuleTag tag : moduleTags) {
+            if (tag.isBasicTag()) {
+                modules.remove(tag);
+            }
+        }
+    }
+
+    public void removeLesson(ModuleTag hash, Lesson lesson) {
+        if (!this.lessons.containsKey(hash)) {
+            return;
+        }
+        this.lessons.get(hash).remove(lesson);
     }
 
     /**
@@ -150,5 +183,15 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
     public int compareTo(ModuleTagSet otherModuleTagSet) {
         return Integer.compare(getNumberOfCommonModules(),
                 otherModuleTagSet.getNumberOfCommonModules());
+    }
+
+    public String lessonsAsStr() {
+        String result = "";
+        for (ModuleTag hash: lessons.keySet()) {
+            result = result + hash;
+            result = result + lessons.get(hash).toString();
+            result = result + "\n";
+        }
+        return result;
     }
 }
