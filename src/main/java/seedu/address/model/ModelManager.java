@@ -75,6 +75,15 @@ public class ModelManager implements Model {
         userPrefs.setPetPalFilePath(petPalFilePath);
     }
 
+    public Path getPetPalArchiveFilePath() {
+        return userPrefs.getPetPalArchiveFilePath();
+    }
+
+    public void setPetPalArchiveFilePath(Path petPalArchiveFilePath){
+        requireNonNull(petPalArchiveFilePath);
+        userPrefs.setPetPalArchiveFilePath(petPalArchiveFilePath);
+    }
+
     //=========== PetPal ================================================================================
 
     @Override

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -38,6 +39,12 @@ public class PetPalParserTest {
         Pet pet = new PetBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PetUtil.getAddCommand(pet));
         assertEquals(new AddCommand(pet), command);
+    }
+
+    @Test
+    public void parseCommand_archive() throws Exception {
+        assertTrue(parser.parseCommand(
+                ArchiveCommand.COMMAND_WORD + " " + INDEX_FIRST_PET.getOneBased()) instanceof ArchiveCommand);
     }
 
     @Test

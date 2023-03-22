@@ -57,8 +57,8 @@ public class PetPalParser {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
-//        case ArchiveCommand.COMMAND_WORD:
-//            return new ArchiveCommand().parse(arguments);
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
