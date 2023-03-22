@@ -6,7 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 
-import java.util.List;
+import static seedu.address.model.Model.PREDICATE_SHOW_UPCOMING_INTERNSHIPS;
 
 import static java.util.Objects.requireNonNull;
 
@@ -19,36 +19,15 @@ public class UpcomingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all internships with deadlines in the upcoming week\n"
-            + "No parameters required\n"
+            + "No parameters required. Any parameters will be ignored.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_VIEW_INTERNSHIP_SUCCESS = "Viewed Internship: %1$s";
-
-    public UpcomingCommand() {
-    }
+    public static final String MESSAGE_SUCCESS = "Listed all upcoming internships";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Internship> lastShownList = model.getFilteredInternshipList();
-
-        //Checks for a valid index
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
-        }
-
-        //Gets the internship to view
-        Internship internshipToView = lastShownList.get(targetIndex.getZeroBased());
-
-        //Functionality of the view internship command
-        model.updateSelectedInternship(internshipToView);
-        return new CommandResult(String.format(MESSAGE_VIEW_INTERNSHIP_SUCCESS, internshipToView));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UpcomingCommand // instanceof handles nulls
-                && targetIndex.equals(((UpcomingCommand) other).targetIndex)); // state check
+        model.updateFilteredInternshipList(PREDICATE_SHOW_UPCOMING_INTERNSHIPS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

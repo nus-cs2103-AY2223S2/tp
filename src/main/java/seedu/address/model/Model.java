@@ -2,7 +2,8 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.internship.Internship;
@@ -13,6 +14,15 @@ import seedu.address.model.internship.Internship;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
+
+    /** {@code Predicate} that shows upcoming internships */
+    Predicate<Internship> PREDICATE_SHOW_UPCOMING_INTERNSHIPS = internship -> {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate now = LocalDate.now();
+        LocalDate nextWeek = now.plusWeeks(1);
+        LocalDate deadline = LocalDate.parse(internship.getDate().toString(), formatter);
+        return !deadline.isBefore(now) && deadline.isBefore(nextWeek);
+    };
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
