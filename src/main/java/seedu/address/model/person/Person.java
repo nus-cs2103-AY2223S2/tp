@@ -321,6 +321,7 @@ public class Person {
     // therefore, isOnSearchDate should be done from Appointment side
     public boolean isOnSearchDate(LocalDate searchDate) {
         return appointment.isOnSearchDate(searchDate);
+    }
 
     public boolean hasAge() {
         return this.age.getAge() != "";
