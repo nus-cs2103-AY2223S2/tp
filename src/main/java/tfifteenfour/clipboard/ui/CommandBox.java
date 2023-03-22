@@ -86,8 +86,7 @@ public class CommandBox extends UiPart<Region> {
                 commandTextField.setText(commandHistory.get(commandHistoryIndex));
                 commandTextField.positionCaret(commandTextField.getText().length());
             } else if (commandHistoryIndex == commandHistory.size() - 1) {
-                commandHistoryIndex = -1;
-                commandTextField.setText("");
+                commandTextField.positionCaret(commandTextField.getText().length());
             }
         }
     }
