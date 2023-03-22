@@ -46,6 +46,12 @@ public class RecipeForm extends UiPart<Region> {
     private FlowPane tags;
 
     @FXML
+    private VBox ingredientsBox;
+
+    @FXML
+    private VBox stepsBox;
+
+    @FXML
     private FlowPane ingredients;
 
     @FXML
@@ -89,8 +95,14 @@ public class RecipeForm extends UiPart<Region> {
         initialValues.put("name", nameField.getText());
         initialValues.put("duration", durationField.getText());
         initialValues.put("portion", portionField.getText());
-        initialValues.put("ingredients", ingredientsField.getText());
-        initialValues.put("steps", stepsField.getText());
+        initialValues.put("ingredients", ingredientsBox.getChildren().stream()
+            .map(node -> ((TextField) node).getText())
+            .collect(Collectors.joining(", ")));
+
+        initialValues.put("steps", stepsBox.getChildren().stream()
+            .map(node -> ((TextField) node).getText())
+            .collect(Collectors.joining(", ")));
+
         initialValues.put("tags", tagsField.getText());
     }
 
@@ -112,11 +124,7 @@ public class RecipeForm extends UiPart<Region> {
                         .map(Object::toString)
                         .orElse("Portion was not added.")
         );        
-        //Tags
-        tagsField.setText(recipe.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .map(tag -> tag.tagName)
-                .collect(Collectors.joining(", ")));
+        /* 
         //Ingredients
         ingredientsField.setText(recipe.getIngredients().stream()
                 .map(Ingredient::toString)
@@ -126,7 +134,24 @@ public class RecipeForm extends UiPart<Region> {
         stepsField.setText(recipe.getSteps().stream()
                 .map(Step::toString)
                 .collect(Collectors.joining(", ")));
-        
+        */
+        //Ingredients
+        recipe.getIngredients().forEach(ingredient -> {
+            TextField ingredientField = new TextField(ingredient.toString());
+            ingredientsBox.getChildren().add(ingredientField);
+        });
+
+        //Steps
+        recipe.getSteps().forEach(step -> {
+            TextField stepField = new TextField(step.toString());
+            stepsBox.getChildren().add(stepField);
+        });
+        //Tags
+        tagsField.setText(recipe.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .map(tag -> tag.tagName)
+                .collect(Collectors.joining(", ")));
+                
         storeInitialValues();
     }
     
@@ -154,10 +179,14 @@ public class RecipeForm extends UiPart<Region> {
                     currentValue = portionField.getText();
                     break;
                 case "ingredients":
-                    currentValue = ingredientsField.getText();
+                    currentValue = ingredientsBox.getChildren().stream()
+                        .map(node -> ((TextField) node).getText())
+                        .collect(Collectors.joining(", "));
                     break;
                 case "steps":
-                    currentValue = stepsField.getText();
+                    currentValue = stepsBox.getChildren().stream()
+                        .map(node -> ((TextField) node).getText())
+                        .collect(Collectors.joining(", "));
                     break;
                 case "tags":
                     currentValue = tagsField.getText();

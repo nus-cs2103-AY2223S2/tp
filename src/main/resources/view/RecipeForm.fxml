@@ -18,15 +18,13 @@
     <TextField fx:id="durationField" />
     <Label text="Portion:" />
     <TextField fx:id="portionField" />
+    <Label text="Ingredients:" />
+    <VBox fx:id="ingredientsBox" spacing="5" />
+    <Label text="Steps:" />
+    <VBox fx:id="stepsBox" spacing="5" />
     <Label text="Tags:" />
     <TextField fx:id="tagsField" />
     <FlowPane fx:id="tags" />
-    <Label text="Ingredients:" />
-    <TextField fx:id="ingredientsField" />
-    <FlowPane fx:id="ingredients" />
-    <Label text="Steps:" />
-    <TextField fx:id="stepsField" />
-    <FlowPane fx:id="steps" />
     <Button fx:id="saveButton" text="Save" />
     <Button fx:id="cancelButton" text="Cancel" />
 </VBox>
