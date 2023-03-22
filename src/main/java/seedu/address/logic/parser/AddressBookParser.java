@@ -20,7 +20,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RejectCommand;
 import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.SummaryCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
