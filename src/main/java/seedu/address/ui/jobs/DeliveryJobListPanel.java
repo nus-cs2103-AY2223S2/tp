@@ -55,6 +55,12 @@ public class DeliveryJobListPanel extends UiPart<Region> {
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.DELETE)) {
                     deleteHandler.accept(deliveryJobListView.getSelectionModel().getSelectedItem());
+                    selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
+                    return;
+                }
+                if (event.getCode().equals(KeyCode.UP) || event.getCode().equals(KeyCode.DOWN)) {
+                    selectItem(deliveryJobListView.getSelectionModel().getSelectedIndex());
+                    return;
                 }
             }
 
@@ -77,9 +83,13 @@ public class DeliveryJobListPanel extends UiPart<Region> {
      * @param idx
      */
     public void selectItem(int idx) {
-        logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
-        deliveryJobListView.getSelectionModel().select(idx);
-        onSelectHandler.accept(idx, deliveryJobListView.getSelectionModel().getSelectedItem());
+        if (deliveryJobListView.getItems().size() > 0) {
+            logger.info("Delivery selected:" + deliveryJobListView.getSelectionModel().getSelectedIndex());
+            deliveryJobListView.getSelectionModel().select(idx);
+            onSelectHandler.accept(idx + 1, deliveryJobListView.getSelectionModel().getSelectedItem());
+        } else {
+            onSelectHandler.accept(-1, null);
+        }
     }
 
     /**
