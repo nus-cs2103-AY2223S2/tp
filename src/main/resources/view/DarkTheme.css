@@ -95,7 +95,7 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #d9d9d9;
 }
 
 .list-cell:filled:odd {
@@ -111,7 +111,11 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
+.list-cell:even .label {
+    -fx-text-fill: black;
+}
+
+.list-cell:odd .label {
     -fx-text-fill: white;
 }
 
@@ -376,4 +380,13 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#taskDetails {
+    -fx-orientation: vertical;
+}
+
+#taskDetails .label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
 }

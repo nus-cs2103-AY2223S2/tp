@@ -15,7 +15,7 @@ import seedu.address.model.application.Application;
  */
 public class DeleteApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the application identified by the index number used in the displayed application list.\n"

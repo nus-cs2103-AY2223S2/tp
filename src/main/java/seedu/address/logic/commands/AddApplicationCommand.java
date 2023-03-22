@@ -16,7 +16,7 @@ import seedu.address.model.application.Application;
  */
 public class AddApplicationCommand extends ApplicationCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-app";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to the internship book. "
             + "Parameters: "
@@ -28,7 +28,7 @@ public class AddApplicationCommand extends ApplicationCommand {
             + PREFIX_ROLE + "SWE Intern "
             + PREFIX_COMPANY_NAME + "Goggle "
             + PREFIX_COMPANY_EMAIL + "gogglehiring@goggletalents.com "
-            + PREFIX_STATUS + "interested"
+            + PREFIX_STATUS + "interested "
             + PREFIX_TAG + "highSalary "
             + PREFIX_TAG + "bestWelfare";
 

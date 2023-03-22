@@ -9,6 +9,8 @@ import seedu.address.model.application.CompanyEmail;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.Role;
 import seedu.address.model.application.Status;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -61,7 +63,7 @@ public class ApplicationParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into an {@code Status}.
+     * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code status} is invalid.
@@ -69,14 +71,14 @@ public class ApplicationParserUtil {
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(status)) {
+        if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return new Status(status);
     }
 
     /**
-     * Parses a {@code String companyEmail} into an {@code CompanyEmail}.
+     * Parses a {@code String companyEmail} into a {@code CompanyEmail}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code companyEmail} is invalid.
@@ -90,4 +92,36 @@ public class ApplicationParserUtil {
         return new CompanyEmail(trimmedCompanyEmail);
     }
 
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDate(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.DEADLINE_HAS_PASSED);
+        }
+        return new Deadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
 }
