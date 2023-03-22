@@ -98,7 +98,8 @@ public class FileGenerator {
                     }
                 }
             }
-            pdfDocument.save(new File("reports/" + person.getName().fullName + "/mc.pdf"));
+            //making file name unique using store MC number do file check before save.
+            pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + "mc.pdf"));
             pdfDocument.close();
 
         } catch (IOException e) {

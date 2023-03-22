@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 /**
@@ -37,5 +40,19 @@ public class ImageReader implements FileReader<BufferedImage> {
     @Override
     public String getFileName(Path path) {
         return path.getFileName().toString();
+    }
+
+    /**
+     * Display image.
+     */
+    public void displayImage() {
+        BufferedImage image = loadFile(path);
+        if (image != null) {
+            JFrame frame = new JFrame();
+            frame.setSize(image.getWidth(), image.getHeight());
+            JLabel label = new JLabel(new ImageIcon(image));
+            frame.add(label);
+            frame.setVisible(true);
+        }
     }
 }

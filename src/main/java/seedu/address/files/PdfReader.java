@@ -72,7 +72,6 @@ public class PdfReader implements FileReader<PDDocument> {
                 frame.pack();
                 frame.setVisible(true);
             }
-
             //Close the PDF document
             doc.close();
         } catch (IOException e) {

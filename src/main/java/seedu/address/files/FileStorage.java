@@ -64,6 +64,7 @@ public class FileStorage {
             fileChooser.setMultiSelectionEnabled(true);
             int result = fileChooser.showOpenDialog(null);
 
+            //delete reject file if wrong extension not .pdf or .img
             if (result == JFileChooser.APPROVE_OPTION) {
                 File[] selectedFiles = fileChooser.getSelectedFiles();
                 String userDirPath = "reports/" + this.username + "/";

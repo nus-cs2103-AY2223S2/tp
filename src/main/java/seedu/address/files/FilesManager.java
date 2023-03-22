@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
@@ -74,6 +75,43 @@ public class FilesManager {
             e.printStackTrace();
         }
         return files;
+    }
+    /**
+     * @param fileName
+     * @return
+     */
+    public boolean fileExists(String fileName) {
+        List<Path> directories = getAllDirectories();
+        for (Path directory : directories) {
+            List<Path> files = getAllFiles(directory);
+            for (Path file : files) {
+                if (file.getFileName().toString().equals(fileName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Display file.
+     *
+     * @param path the path
+     */
+    public void displayFile(Path path) {
+        String fileName = path.getFileName().toString();
+        String extension = fileName.substring(
+                fileName.lastIndexOf('.') + 1).toLowerCase(Locale.ENGLISH);
+        if (extension.equals("jpg") || extension.equals("jpeg") || extension.equals("png")) {
+            ImageReader imageReader = new ImageReader(path);
+            imageReader.displayImage();
+        } else if (extension.equals("pdf")) {
+            PdfReader pdfReader = new PdfReader(path);
+            pdfReader.displayPdf();
+        } else {
+            //adding custom exception of Wrong File type exception
+            System.out.println("Invlid file type");
+        }
     }
 
 }
