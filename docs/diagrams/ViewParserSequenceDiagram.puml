@@ -13,51 +13,14 @@ activate ViewCommandParser
     alt Empty ParseArguments
     else Non-empty arguments
 
-        ViewCommandParser -> ArgumentTokenizer : tokenize(arguments)
-        note right of ViewCommandParser
-            Arguments can be
-            either a number or
-            name.
-        end note
-        activate ArgumentTokenizer
-        ArgumentTokenizer -> ArgumentTokenizer : findAllPrefixPositions(arguments))
-        activate ArgumentTokenizer
-
-        ArgumentTokenizer --> ArgumentTokenizer : positions
-        deactivate ArgumentTokenizer
-
-        ArgumentTokenizer -> ArgumentTokenizer : extractArguments(arguments, positions)
-        activate ArgumentTokenizer
-
-        create ArgumentMultimap
-        ArgumentTokenizer -> ArgumentMultimap
-        activate ArgumentMultimap
-
-        loop
-            ArgumentTokenizer -> ArgumentMultimap : prefixPosition
-            activate ArgumentMultimap
-            deactivate ArgumentMultimap
-        end
-
-        ArgumentMultimap --> ArgumentTokenizer : m
-        deactivate ArgumentMultimap
-
-        ArgumentTokenizer --> ArgumentTokenizer : m
-        deactivate ArgumentTokenizer
-
-        ArgumentTokenizer --> ViewCommandParser : m
-        deactivate ArgumentTokenizer
+        ref over ViewCommandParser, ArgumentMultimap : Parse Arguments
         alt Name present in arguments
-            ViewCommandParser -> ArgumentMultimap : getValue(Prefix.NAME)
-            activate ArgumentMultimap
+            ViewCommandParser -> ArgumentMultimap : getValue()
             ArgumentMultimap --> ViewCommandParser : name
-            deactivate ArgumentMultimap
         else Non-empty Preamble
             ViewCommandParser -> ArgumentMultimap : getPreamble()
-            activate ArgumentMultimap
 
             ArgumentMultimap --> ViewCommandParser : stringNumber
-            deactivate ArgumentMultimap
 
             create ContactIndex
             ViewCommandParser -> ContactIndex : stringNumber
