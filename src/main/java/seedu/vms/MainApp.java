@@ -21,6 +21,7 @@ import seedu.vms.model.ModelManager;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.PatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.JsonUserPrefsStorage;
@@ -88,6 +89,7 @@ public class MainApp extends Application {
                 new PatientManager(),
                 new VaxTypeManager(),
                 new AppointmentManager(),
+                new KeywordManager(),
                 userPrefs);
     }
 
