@@ -13,7 +13,7 @@ import seedu.calidr.model.task.params.Title;
 public abstract class Task {
 
     private final Title title;
-    private final Optional<Description> description;
+    private final Description description;
     private boolean isDone;
     private Priority priority;
 
@@ -22,49 +22,13 @@ public abstract class Task {
      *
      * @param title The title of the Task.
      */
-    public Task(Title title) {
+    public Task(Title title, Description description, Priority priority) {
         assert title != null;
 
         this.title = title;
-        this.description = Optional.empty();
+        this.description = description;
         this.isDone = false;
-        this.priority = Priority.MEDIUM;
-    }
-
-    /**
-     * Creates a Task object with the given title and priority.
-     *
-     * @param title The title of the Task.
-     * @param priority The priority associated with the Task.
-     */
-    public Task(Title title, Priority priority) {
-        assert title != null;
-        assert priority != null;
-
-        this.title = title;
-        this.description = Optional.empty();
-        this.isDone = false;
-        this.priority = priority;
-    }
-
-    public Task(Title title, Description description) {
-        assert title != null;
-        assert description != null;
-
-        this.title = title;
-        this.description = Optional.of(description);
-        this.isDone = false;
-        this.priority = Priority.MEDIUM;
-    }
-    public Task(Title title, Priority priority, Description description) {
-        assert title != null;
-        assert priority != null;
-        assert description != null;
-
-        this.title = title;
-        this.description = Optional.of(description);
-        this.isDone = false;
-        this.priority = priority;
+        this.priority = priority == null ? Priority.MEDIUM : priority;
     }
 
 
@@ -72,7 +36,7 @@ public abstract class Task {
         return this.title;
     }
 
-    public Optional<Description> getDescription() { return this.description; }
+    public Optional<Description> getDescription() { return Optional.of(this.description); }
 
     public void mark() {
         this.isDone = true;
@@ -83,6 +47,7 @@ public abstract class Task {
     }
 
     public void setPriority(Priority p) {
+        assert p != null;
         this.priority = p;
     }
 

@@ -1,5 +1,6 @@
 package seedu.calidr.model.task;
 
+import seedu.calidr.model.task.params.Description;
 import seedu.calidr.model.task.params.EventDateTimes;
 import seedu.calidr.model.task.params.Priority;
 import seedu.calidr.model.task.params.Title;
@@ -13,31 +14,16 @@ public class Event extends Task {
     private final EventDateTimes eventDateTimes;
 
     /**
-     * Creates a Event object with the given details and MEDIUM priority.
-     *
-     * @param title The title of the Event.
-     * @param eventDateTimes The date-times associaited with the Event.
-     */
-    public Event(Title title, EventDateTimes eventDateTimes) {
-        super(title);
-
-        assert eventDateTimes != null;
-
-        this.eventDateTimes = eventDateTimes;
-    }
-
-    /**
      * Creates an Event with the given details.
      *
      * @param title The title of the Event.
      * @param eventDateTimes The date-times associated with the Event.
      * @param priority The priority of the Event.
      */
-    public Event(Title title, EventDateTimes eventDateTimes, Priority priority) {
-        super(title, priority);
+    public Event(Title title, Description description, Priority priority, EventDateTimes eventDateTimes) {
+        super(title, description, priority);
 
         assert eventDateTimes != null;
-
         this.eventDateTimes = eventDateTimes;
     }
 
