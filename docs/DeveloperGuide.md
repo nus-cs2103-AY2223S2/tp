@@ -353,7 +353,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TrAcker` and the **Actor** is the `CS2040 TA`, unless specified otherwise)
+
+#### CRUD use cases
 
 ---
 System: Software System (TrAcker)
@@ -506,6 +508,156 @@ Use case ends.
     * a1. TA removes input from TrAcker.
 
 Use case ends
+
+---
+
+System: Software System (TrAcker)
+<br>
+Use case: UC05 - Delete Event
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to delete event.
+3.  TA confirms the deletion of an event.
+4.  TrAcker removes all student from the event.
+5.  TrAcker displays the new event list.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects that the event does not exist.
+    * 3a1. TrAcker requests for the correct event data.
+    * 3a2. TA enters new event data that needs to be deleted.
+      Steps 3a1 - 3a2 are repeated until the event data entered exists.
+      <br>
+      Use case resumes from Step 4.
+
+* 3b. TrAcker detects that there is no events at all.
+    * 3b1. TrAcker informs the TA that delete event cannot be invoked since no events exist.
+
+      Use case ends.
+
+* 3c. TrAcker detects that the event data to be deleted is entered is in a wrong format.
+    * 3c1. TrAcker requests for the correct data format.
+    * 3c2. TA enters new data format.
+      Steps 3c1 - 3c2 are repeated until the data format is correct.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to delete the event.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+System: Software System (TrAcker)
+<br>
+Use case: UC06 - Remove Student from an Event
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1.  TA starts TrAcker desktop application.
+2.  TA enters command to remove student from an event.
+3.  TA confirms the remobal of student to an event.
+4.  TrAcker removes the student from an event.
+5.  TrAcker displays the new event list with the removed student.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TrAcker detects that the event does not exist.
+    * 3a1. TrAcker requests for the correct event data.
+    * 3a2. TA enters new event data that needs to be deleted.
+      Steps 3a1 - 3a2 are repeated until the event data entered exists.
+      <br>
+      Use case resumes from Step 4.
+
+* 3b. TrAcker detects that the student does not exist.
+    * 3b1. TrAcker requests for the correct student data.
+    * 3b2. TA enters new student data.
+      Steps 3b1 - 3b2 are repeated until the student data entered matches to an existing student.
+      <br>
+      Use case resumes from Step 4.
+
+* a. At any time, TA decides not to remove student from the event.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+#### Help Functionality Use Cases
+
+System: Software System (TrAcker)
+<br>
+Use case: UC06 - Request for Help
+<br>
+Person: An undergraduate student in NUS enrolled in CS2040 as a student
+<br>
+Actor: CS2040 Teaching Assistant (TA)
+<br>
+Preconditions:
+- TA has access to the TrAcker application
+
+**MSS**
+
+1. TA starts TrAcker desktop application.
+2. TA enters help command.
+3. TA confirms the help command.
+4. Help categories displayed.
+5. Instructions and syntaxes for all valid TrAcker commands are displayed.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. TA enters help tutorial command
+    * 3a1. TrAcker displays instructions and syntaxes for all valid tutorial related commands.
+    
+Use case ends.
+
+* 3b. TA enters help lab command.
+    * 3b1. TrAcker displays instructions and syntaxes for all valid lab related commands.
+
+Use case ends.
+
+* 3c. TA enters help consultation command.
+    * 3c1. TrAcker displays instructions and syntaxes for all valid consultation related commands.
+
+Use case ends.
+
+* 3d. TA enters view externally command.
+    * 3d1. TrAcker displays instructions and syntaxes for all commands in an external online UserGuide.
+    * 3d2. TA navigates back to TrAcker application.
+
+Use case ends.
+
+* a. At any time, TA decides not to confim the help command.
+    * a1. TA removes input from TrAcker.
+
+Use case ends
+
+---
+
+###
 
 *{More to be added}*
 
