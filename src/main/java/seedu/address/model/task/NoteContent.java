@@ -1,4 +1,4 @@
-package seedu.address.model.todo;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class NoteContent {
 
-    public static final String MESSAGE_CONSTRAINTS = "Note content should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "NoteList content should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -46,12 +46,13 @@ public class NoteContent {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.todo.NoteContent // instanceof handles nulls
-                && content.equals(((seedu.address.model.todo.NoteContent) other).content)); // state check
+                || (other instanceof seedu.address.model.task.NoteContent // instanceof handles nulls
+                && content.equals(((seedu.address.model.task.NoteContent) other).content)); // state check
     }
 
     @Override
     public int hashCode() {
         return content.hashCode();
     }
+
 }

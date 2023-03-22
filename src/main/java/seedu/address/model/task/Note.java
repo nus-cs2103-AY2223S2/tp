@@ -1,14 +1,16 @@
-package seedu.address.model.todo;
+package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.model.tag.TodoType;
 
 /**
- * Provides a note object for planner.
+ * Represents a note object in the planner.
+ * Guarantees: immutable.
  */
 public class Note {
 
@@ -27,12 +29,30 @@ public class Note {
         this.type = TodoType.NOTE;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Note(NoteContent note, LocalDate date, TodoType type) {
+        requireAllNonNull(note, date, type);
+        this.note = note;
+        this.date = date;
+        this.type = type;
+    }
+
     public NoteContent getNote() {
         return note;
     }
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public String getJsonDate() {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(date);
+    }
+
+    public String getDateString() {
+        return DateTimeFormatter.ofPattern("dd MMM yyyy, EEEE").format(date);
     }
 
     public TodoType getType() {
@@ -84,6 +104,6 @@ public class Note {
     @Override
     public String toString() {
 
-        return getType() + "; Create Date: " + getDate() + "; Note: " + getNote();
+        return getType() + "; Create Date: " + getDate() + "; NoteList: " + getNote();
     }
 }

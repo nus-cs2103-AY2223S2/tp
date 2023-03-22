@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.tag.TodoType;
+
 /**
  * Represents the result of a command execution.
  */
@@ -16,6 +18,8 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
+
+    private TodoType type = TodoType.NONE;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -34,6 +38,15 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and set type to the command type.
+     */
+    public CommandResult(String feedbackToUser, TodoType type) {
+        this(feedbackToUser, false, false);
+        this.type = type;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -44,6 +57,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public TodoType getType() {
+        return type;
     }
 
     @Override

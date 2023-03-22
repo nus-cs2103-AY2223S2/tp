@@ -6,8 +6,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.todo.ContentContainsKeywordsPredicate;
-import seedu.address.model.todo.TitleContainsKeywordsPredicate;
+import seedu.address.model.tag.TodoType;
+import seedu.address.model.task.ContentContainsKeywordsPredicate;
+import seedu.address.model.task.TitleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all todos and notes in record whose name contains any of the argument keywords.
@@ -15,7 +16,7 @@ import seedu.address.model.todo.TitleContainsKeywordsPredicate;
  */
 public class FindTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "find tn";
+    public static final String COMMAND_WORD = "find_tn";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all todos and notes whose names "
             + "contain any of the specified keywords (case-insensitive) "
@@ -23,12 +24,13 @@ public class FindTaskCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " google software engineer intern";
 
+    private static final TodoType type = TodoType.BOTH;
+
     private final TitleContainsKeywordsPredicate titlePredicate;
     private final ContentContainsKeywordsPredicate contentPredicate;
 
     /**
-     * Find task or notes matches with keyword predicate {@code titlePredicate} and {@code contentPredicate}
-     * respectively.
+     * Find todo and content that match {@code titlePredicate} or {@code contentPredicate}.
      */
     public FindTaskCommand(TitleContainsKeywordsPredicate titlePredicate,
                            ContentContainsKeywordsPredicate contentPredicate) {
@@ -43,7 +45,7 @@ public class FindTaskCommand extends Command {
         model.updateFilteredNoteList(contentPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULT_LISTED_OVERVIEW,
-                        model.getFilteredNoteList().size() + model.getFilteredInternshipList().size()));
+                        model.getFilteredNoteList().size() + model.getFilteredTodoList().size()), type);
     }
 
     @Override
