@@ -1,11 +1,9 @@
 package seedu.modtrek.ui.modulesection;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 
 /**
