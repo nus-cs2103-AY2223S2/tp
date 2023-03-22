@@ -35,15 +35,17 @@
 
 !define STATE_COLOR #FEFECE
 
+' Set White Background
 skinparam BackgroundColor #FFFFFFF
 
+' Remove Shadows
 skinparam Shadowing false
 
 skinparam Class {
     FontColor #FFFFFF
     BorderThickness 1
-    BorderColor #FFFFFF
-    StereotypeFontColor #FFFFFF
+    BorderColor MODEL_COLOR
+'    StereotypeFontColor #FFFFFF
     FontName Arial
 }
 

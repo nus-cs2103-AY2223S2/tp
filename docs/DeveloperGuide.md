@@ -115,17 +115,48 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* `XYZ` is a placeholder for the specific object (e.g., `Supplier`, `Task`), which are all `Item` objects.
+* stores trackr data i.e., all `XYZ` objects (contained in respective `UniqueXYZList` object).
+* stores currently 'selected' `XYZ` objects (e.g., results of search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be viewed (e.g. UI bound to this list so that the UI automatically updates when the data in the list changes).
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
+
+
+Here is the `Item` class that is what all model objects depend on.
+
+<img src="images/ItemClassDiagram.png" width="450" />
+
+
+Each `ItemList` contains a `UniqueItemList` that stores a list of unique `Items`, which are defined by a model definiton (e.g., `Supplier` or `Task` from `ModelEnum`).
+
+This is the class representation for the `Supplier` and `Customer` class.
+
+<img src="images/PersonClassDiagram.png" width="450" />
+
+Here is how `Supplier` and `Customer` works:
+
+* `Supplier` and `Customer` inherit off `Person` class, which depends on the `Item` class.
+* Each `Person` contains their name, phone number, deadline, email and tags. (e.g., `PersonAddress` represents the address)
+* The `Supplier` and `Customer` object have their corresponding `List` and `UniqueList` that stores their information.
+
+
+This is the class representation for the `Task` class.
+
+<img src="images/TaskClassDiagram.png" width="450" />
+
+Here is how `Task` works:
+
+* Each `Task` contains their description, deadline and status (e.g., `TaskName` for task name).
+* Each of the attributes inherit off the corresponding `common` classes (e.g., `TaskName` inherit off `Name`).
+* The `Task` object have its `List` and `UniqueList`.
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
