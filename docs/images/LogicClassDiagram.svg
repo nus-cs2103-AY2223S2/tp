@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="597px" preserveAspectRatio="none" style="width:645px;height:597px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 645 597" width="645px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster Logic-->
+        <g id="cluster_Logic">
+            <rect fill="#E6EFF9" height="500" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="349"
+                  x="53" y="91"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="37" x="209" y="107.9659">Logic
+            </text>
+        </g><!--class EduMateParser-->
+        <g id="elem_EduMateParser">
+            <rect codeLine="8" fill="#005EC4" height="29.0679" id="EduMateParser" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="109" x="142.5" y="215"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="103" x="145.5"
+                  y="234.9659">EduMateParser
+            </text>
+        </g><!--class XYZCommand-->
+        <g id="elem_XYZCommand">
+            <rect codeLine="9" fill="#005EC4" height="29.0679" id="XYZCommand" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="99" x="269.5" y="538"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="272.5"
+                  y="557.9659">XYZCommand
+            </text>
+        </g><!--class CommandResult-->
+        <g id="elem_CommandResult">
+            <rect codeLine="10" fill="#005EC4" height="29.0679" id="CommandResult" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="117" x="122.5" y="288.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="111" x="125.5"
+                  y="308.4659">CommandResult
+            </text>
+        </g><!--class Command-->
+        <g id="elem_Command">
+            <rect codeLine="11" fill="#005EC4" height="48.1358" id="Command" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="75" x="281.5" y="416"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="65" x="286.5"
+                  y="435.9659">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="69" x="284.5"
+                  y="455.0339">Command
+            </text>
+        </g><!--class Logic-->
+        <g id="elem_Logic">
+            <rect codeLine="14" fill="#005EC4" height="48.1358" id="Logic" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="80" x="109" y="137"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="74" x="112"
+                  y="156.9659">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="35" x="131.5"
+                  y="176.0339">Logic
+            </text>
+        </g><!--class LogicManager-->
+        <g id="elem_LogicManager">
+            <rect codeLine="15" fill="#005EC4" height="29.0679" id="LogicManager" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="102" x="248" y="146.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="96" x="251"
+                  y="166.4659">LogicManager
+            </text>
+        </g>
+        <rect fill="#FBEAE7" height="58.1358" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="62"
+              x="431" y="411"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="441"
+              y="427.9659">Model
+        </text>
+        <rect fill="#FFF5E7" height="58.1358" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="72"
+              x="426" y="274"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="52" x="436"
+              y="290.9659">Storage
+        </text><!--class HiddenOutside-->
+        <g id="elem_HiddenOutside">
+            <rect codeLine="24" fill="#FFFFFF" height="29.0679" id="HiddenOutside" rx="2.5" ry="2.5"
+                  style="stroke:#FFFFFF;stroke-width:1.0;" width="108" x="7" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="102" x="10"
+                  y="26.9659">HiddenOutside
+            </text>
+        </g>
+        <g id="elem_GMN26">
+            <path d="M426,530 L426,548.5 L368.92,552.5 L426,556.5 L426,575.412 A0,0 0 0 0 426,575.412 L638,575.412 A0,0 0 0 0 638,575.412 L638,540 L628,530 L426,530 A0,0 0 0 0 426,530 "
+                  fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M628,530 L628,540 L638,540 L628,530 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="188" x="432"
+                  y="548.897">XYZCommand = AddCommand,
+            </text>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="113" x="471"
+                  y="566.603">FindCommand, etc
+            </text>
+        </g><!--link HiddenOutside to Logic-->
+        <g id="link_HiddenOutside_Logic">
+            <path codeLine="25"
+                  d="M61,36.44 C61,45.0425 61,56.8938 61,69.8739 C61,76.364 61,83.1363 61,89.9258 C61,90.138 61,90.3502 61,90.5624 "
+                  fill="none" id="HiddenOutside-to-Logic"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289" points="61,90.5624,65,81.5624,61,85.5624,57,81.5624,61,90.5624"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link LogicManager to Logic-->
+        <g id="link_LogicManager_Logic">
+            <path codeLine="27"
+                  d="M289.4,146.16 C272.61,121.75 235.28,73.97 189.5,55.5 C147.05,38.38 128.3,36.85 86.5,55.5 C76.0025,60.185 69.06,68.6275 64.5744,78.7708 C63.453,81.3066 62.4851,83.9487 61.6537,86.665 C61.2379,88.0231 60.8563,89.3998 60.5066,90.791 "
+                  fill="none" id="LogicManager-to-Logic"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#FFFFFF" points="60.5066,90.791,71.927,74.0705,58.3493,70.6578,60.5066,90.791"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link LogicManager to EduMateParser-->
+        <g id="link_LogicManager_EduMateParser">
+            <path codeLine="28" d="M277.87,175.78 C262.11,186.05 240.47,200.16 223.55,211.19 " fill="none"
+                  id="LogicManager-to-EduMateParser" style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#004289"
+                     points="219.73,213.68,229.4539,212.1161,223.9186,210.9495,225.0851,205.4143,219.73,213.68"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="217.8583" y="203.1524">1
+            </text>
+        </g><!--link EduMateParser to XYZCommand-->
+        <g id="link_EduMateParser_XYZCommand">
+            <path codeLine="29"
+                  d="M142.33,244.49 C127.71,250.99 113.6,260.42 105,274 C91.21,295.78 95.78,307.93 105,332 C141.28,426.71 242.12,502.04 291.31,534.37 "
+                  fill="none" id="EduMateParser-to-XYZCommand"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="295.2,536.9,289.8449,528.6343,291.0114,534.1695,285.4761,535.3361,295.2,536.9"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="135.2855,376.3001,133.7649,366.9119,128.5371,369.5986,135.2855,376.3001"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="43" x="142"
+                  y="376.897">creates
+            </text>
+        </g><!--reverse link Command to XYZCommand-->
+        <g id="link_Command_XYZCommand">
+            <path codeLine="31" d="M319,485.67 C319,504.24 319,524.46 319,537.53 " fill="none"
+                  id="Command-backto-XYZCommand" style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="none" points="312,485.95,319,465.95,326,485.95,312,485.95"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--reverse link Command to LogicManager-->
+        <g id="link_Command_LogicManager">
+            <path codeLine="32" d="M316.86,409.32 C312.57,349.93 303.08,218.5 299.99,175.74 " fill="none"
+                  id="Command-backto-LogicManager" style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="317.2,414.01,320.5467,404.7472,316.8427,409.0228,312.5672,405.3188,317.2,414.01"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="315.3602,308.34,317.6399,299.1067,311.7773,299.5301,315.3602,308.34"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="324"
+                  y="308.397">executes
+            </text>
+        </g><!--link LogicManager to Model-->
+        <g id="link_LogicManager_Model">
+            <path codeLine="34"
+                  d="M350.35,172.36 C402.38,185.9 480.16,215.17 516,274 C541.48,315.83 512.85,371.04 488.54,405.79 "
+                  fill="none" id="LogicManager-to-Model" style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#004289"
+                     points="485.87,409.53,494.3494,404.5201,488.7708,405.4575,487.8334,399.8788,485.87,409.53"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link LogicManager to Storage-->
+        <g id="link_LogicManager_Storage">
+            <path codeLine="35" d="M315.22,175.94 C340.5,197.65 389.96,240.12 424.44,269.74 " fill="none"
+                  id="LogicManager-to-Storage" style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#004289"
+                     points="427.84,272.66,423.6264,263.758,424.0498,269.399,418.4088,269.8223,427.84,272.66"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link Storage to Model--><!--reverse link Storage to Command--><!--link Command to Model-->
+        <g id="link_Command_Model">
+            <path codeLine="38" d="M356.98,440 C379.48,440 401.98,440 424.48,440 " fill="none" id="Command-to-Model"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289" points="429.31,440,420.31,436,424.31,440,420.31,444,429.31,440"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link Logic to CommandResult-->
+        <g id="link_Logic_CommandResult">
+            <path codeLine="41"
+                  d="M61.03,162.16 C61.31,163.7 63.7,176.35 69,185 C93.63,225.25 134.1,263.01 159.05,284.24 "
+                  fill="none" id="Logic-to-CommandResult"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="162.67,287.29,158.3491,278.4396,158.8406,284.075,153.2052,284.5666,162.67,287.29"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--link LogicManager to CommandResult-->
+        <g id="link_LogicManager_CommandResult">
+            <path codeLine="42"
+                  d="M296.72,175.78 C293.25,193.22 285.27,223.43 269,244 C255.21,261.43 234.7,275.37 216.95,285.21 "
+                  fill="none" id="LogicManager-to-CommandResult"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="212.87,287.42,222.6904,286.6712,217.2714,285.0478,218.8948,279.6289,212.87,287.42"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+        </g><!--reverse link CommandResult to Command-->
+        <g id="link_CommandResult_Command">
+            <path codeLine="43"
+                  d="M190.41,323.52 C199.07,340.13 213.13,363.94 230,381 C244.92,396.08 264.39,409.31 281.32,419.32 "
+                  fill="none" id="CommandResult-backto-Command"
+                  style="stroke:#004289;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#004289"
+                     points="188.15,319.1,188.6726,328.935,190.4203,323.5549,195.8004,325.3026,188.15,319.1"
+                     style="stroke:#004289;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="231.5582,368.2261,235.6526,376.8102,239.9163,372.7642,231.5582,368.2261"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="56" x="244"
+                  y="376.897">produces
+            </text>
+        </g><!--SRC=[TLBBRjim4BppAxRgjIBWQv0AS6J72M9NXPe2IUiWOCcrJLWc1JwG5cd-lGfDsMASwYBkp71tTgGFKl762mJh_ZH8MxzhYDrArJB3Ti2CqK-t6yct2gs54Hsz9KlTQ0FpQdPTFfRLlAeV9-FwPg3Y3RFsWl7jscYln8cUaBOZsHfXhjUI9wqknkNDhAw-Vvd0Co7bQoUO2hzW3hyoOz54xEx-HwbtEwP4169Le_MDYrZsp7vPPnXtBqiL1HcmWvZq4xBpSwaScXNZM1HB5Nm5PJX5LJWlcEgS6_9ot6AX1JQmg2RJ-NjR39JVd3RXVLlLuzdqF-hzj2if1AhAEokxR_NnCZmaHIajeaCoD0VKoFN6qRyzcv1v8FCY6sLleasgqFmOCvm1DzYn5Wf21dZksxmRr4UQ-cXmvUY1x7hWR-G-DabTvSK-o5CufaRwzFByvoR4y11lzErfZ_kM7gyTs7qe_HYb7KA0GAy6YvuDb_uCOo5YyGcMwbAgOuckpprabVw1QGv2FwaJoS5Oi9jmNLAjqSBprwJ-0G00]-->
+    </g>
+</svg>
