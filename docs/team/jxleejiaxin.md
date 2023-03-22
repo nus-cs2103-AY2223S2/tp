@@ -21,17 +21,7 @@ title: <Lee Jia Xin> Project Portfolio Page
 
 (**Summary of Contributions**)
 
-- To be added soon.
-
-(**This part can change according to your contributions**)
-
-Example
-
-- to be added soon
-
 (**Code contributions**)
-
-Example
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jxleejiaxin&breakdown=true)
 
@@ -41,17 +31,22 @@ Example
 
 (**Enhancements implemented**)
 
+- **New Features Added**:
+
+  - Interview Command which displays all shortlisted applicants sorted by interview date.
+
 - **Enhancements to existing features**:
 
-  - to be added soon
+  - Added Status field to Person class and updating JsonAdaptedPerson.
+  - Improve find command to find based on note prefix
 
 - **Documentation**:
 
-  - to be added soon
+  - Wrote the `About HMHero` and `Features` section in the User Guide.
 
 - **Community**:
 
-  - to be added soon
+  - Reviewed PRs from team members.
 
 - **Tools**:
 

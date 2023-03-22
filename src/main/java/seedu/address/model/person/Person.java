@@ -239,6 +239,10 @@ public class Person {
                 .append(getApplicationDateTimeString())
                 .append("; Interview DateTime")
                 .append(getInterviewDateTimeString());
+        if (interviewDateTime.isPresent()) {
+            builder.append("; InterviewDateTime: ")
+                    .append(interviewDateTime.get());
+        }
 
         Set<Note> notes = getNotes();
         if (!notes.isEmpty()) {

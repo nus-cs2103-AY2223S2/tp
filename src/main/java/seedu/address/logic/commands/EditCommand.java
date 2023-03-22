@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
@@ -44,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DATETIME + "DATETIME]"
             + "[" + PREFIX_NOTE + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -101,13 +103,15 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Status updatedStatus = personToEdit.getStatus(); //User not allowed to edit applicant status directly
-        //TODO: command to edit interview date time
-        ApplicationDateTime applicationDateTime = personToEdit.getApplicationDateTime(); //User not allowed to edit
-        Optional<InterviewDateTime> interviewDateTime = personToEdit.getInterviewDateTime();
+        ApplicationDateTime applicationDateTime = personToEdit.getApplicationDateTime();
+        Optional<InterviewDateTime> updatedInterviewDateTime = editPersonDescriptor.getDateTime();
+        if (!updatedInterviewDateTime.isPresent()) {
+            updatedInterviewDateTime = personToEdit.getInterviewDateTime();
+        }
         Set<Note> updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStatus,
-                applicationDateTime, interviewDateTime, updatedNotes);
+                applicationDateTime, updatedInterviewDateTime, updatedNotes);
     }
 
     @Override
@@ -137,6 +141,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private InterviewDateTime dateTime;
         private Set<Note> notes;
 
         public EditPersonDescriptor() {}
@@ -150,6 +155,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDateTime(toCopy.dateTime);
             setNotes(toCopy.notes);
         }
 
@@ -157,7 +163,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, notes);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateTime, notes);
         }
 
         public void setName(Name name) {
@@ -190,6 +196,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setDateTime(InterviewDateTime dateTime) {
+            this.dateTime = dateTime;
+        }
+
+        public Optional<InterviewDateTime> getDateTime() {
+            return Optional.ofNullable(this.dateTime);
         }
 
         /**
@@ -228,6 +242,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getDateTime().equals(e.getDateTime())
                     && getNotes().equals(e.getNotes());
         }
     }

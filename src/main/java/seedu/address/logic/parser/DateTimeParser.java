@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.InterviewDateTime;
 
 
 /**
@@ -27,7 +27,7 @@ public class DateTimeParser {
         try {
             return LocalDateTime.parse(dateTimeString, format);
         } catch (DateTimeParseException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_DATETIME);
+            throw new ParseException(InterviewDateTime.MESSAGE_CONSTRAINTS);
         }
     }
 

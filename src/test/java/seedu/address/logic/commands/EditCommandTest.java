@@ -35,7 +35,7 @@ public class EditCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws Exception {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -156,6 +156,14 @@ public class EditCommandTest {
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
+
+        // object = this -> returns true
+        assertTrue(copyDescriptor.equals(copyDescriptor));
+
+        // object = null -> returns false
+        assertFalse(copyDescriptor.equals(null));
+
+        copyDescriptor.isAnyFieldEdited();
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));
