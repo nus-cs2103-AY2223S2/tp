@@ -124,7 +124,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
             return new StudentFindCommandParser().parse(studentClass + arguments);
         } else {
-            //Rest of logic (Need to edit)
+            //Rest of logic (Need to  edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
     }
