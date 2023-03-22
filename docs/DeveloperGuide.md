@@ -119,7 +119,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `TaskBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -136,7 +136,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TaskBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 2.4 Model component
@@ -269,6 +269,19 @@ _{Explain here how the data archiving feature will be implemented}_
 ### 3.2 Clear Feature
 
 ### 3.3 Delete Feature
+Deletes a task based on index(es) of tasks from the list currently being shown to users. In the previous iteration of AB3,
+deletion of task must be done 1 index at a time, but this feature is extended to support deletion at multiple indices in Clock-Work to improve the efficiency of
+the program. Input index(es) is checked for validity (has a task at supposed index), and an error prompt will be displayed
+to users should the input be invalid. 
+
+Multiple deletions within a single command must be done in the following manner:
+1. Indices must be separated by whitespace, such as `delete 1 2 3`
+2. Indices must be entered in ascending order
+
+In the event where one of the multiple indices entered is invalid, the entire command is rejected and no deletion is executed, 
+and users will be informed about the non-execution. This is to enforce atomicity and date safety, as deletion is irreversible,
+so it should only be executed when it is certain that the user is clear about the intended behavior of the command.
+
 
 ### 3.4 Edit Feature
 
@@ -279,8 +292,11 @@ _{Explain here how the data archiving feature will be implemented}_
 ### 3.7 Help Feature
 
 ### 3.8 Stats Feature
+Statistics is a useful way for users to get an overview of all open tasks in the TaskBook. Currently, `stats` supports 1 
+view - categorise by tags. The number of tasks that fall under each tag is counted, and displayed, for up to a maximum of 10
+tags. 
 
-### 3.9 sort Feature
+### 3.9 Sort Feature
 
 Given below is an example usage scenario and how the sort command behaves at each step
 
