@@ -26,6 +26,7 @@ public class ProjectListPanel extends UiPart<Region> {
     public ProjectListPanel(Logic logic) {
         super(FXML);
         this.logic = logic;
+        projectListView.setFocusTraversable(false);
         projectListView.setItems(logic.getFilteredProjectList());
         projectListView.setCellFactory(listView -> new ProjectListViewCell());
     }
@@ -37,7 +38,8 @@ public class ProjectListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Project project, boolean empty) {
             super.updateItem(project, empty);
-
+            setMouseTransparent(true);
+            setFocusTraversable(false);
             if (empty || project == null) {
                 setGraphic(null);
                 setText(null);
