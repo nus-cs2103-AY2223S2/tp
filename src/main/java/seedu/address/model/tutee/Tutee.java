@@ -43,8 +43,10 @@ public class Tutee {
     /**
      * Every field must be present and not null.
      */
-    public Tutee(Name name, Phone phone, Email email, Address address, Attendance attendance, Remark remark, Subject subject, Schedule schedule
-            , StartTime startTime, EndTime endTime, Set<Tag> tags) {
+    public Tutee(Name name, Phone phone, Email email, Address address,
+        Attendance attendance, Remark remark, Subject subject, Schedule schedule,
+        StartTime startTime, EndTime endTime, Set<Tag> tags
+    ) {
         requireAllNonNull(name, phone, email, attendance, address, remark, subject, schedule, startTime, endTime, tags);
         this.name = name;
         this.phone = phone;
@@ -81,28 +83,28 @@ public class Tutee {
     }
 
     public Remark getRemark() {
-        return remark; 
-	}
+        return remark;
+    }
 
     public Subject getSubject() {
-        return subject; 
-	}
+        return subject;
+    }
 
     public Schedule getSchedule() {
-        return schedule; 
-	}
+        return schedule;
+    }
 
     public StartTime getStartTime() {
-        return startTime; 
-	}
+        return startTime;
+    }
 
     public EndTime getEndTime() {
-        return endTime; 
-	}
+        return endTime;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@link UnsupportedOperationException}
-     * if modification is attempted.
+     *     if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
@@ -110,7 +112,7 @@ public class Tutee {
 
     /**
      * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     *     This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Tutee otherTutee) {
         if (otherTutee == this) {
@@ -123,7 +125,7 @@ public class Tutee {
 
     /**
      * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     *     This defines a stronger notion of equality between two persons.
      */
     @Override
     public boolean equals(Object other) {
@@ -141,8 +143,7 @@ public class Tutee {
                 && otherTutee.getEmail().equals(getEmail())
                 && otherTutee.getAddress().equals(getAddress())
                 && otherTutee.getSubject().equals(getSubject())
-                && otherTutee.getTags().equals(getTags())
-                ;
+                && otherTutee.getTags().equals(getTags());
     }
 
     @Override

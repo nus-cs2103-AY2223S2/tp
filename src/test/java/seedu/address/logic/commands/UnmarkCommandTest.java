@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -27,8 +27,8 @@ public class UnmarkCommandTest {
         expectedModel.addTutee(AMY);
 
         Tutee amy = new TuteeTestBuilder(AMY)
-        .withAttendance(new Attendance(Set.of(LocalDate.of(2020, 03, 04))))
-        .build();
+            .withAttendance(new Attendance(Set.of(LocalDate.of(2020, 03, 04))))
+            .build();
 
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.addTutee(amy);
@@ -37,8 +37,8 @@ public class UnmarkCommandTest {
         UnmarkCommand cmd = parser.parse("0 2020-03-04");
 
         assertCommandSuccess(
-            cmd, 
-            model, 
+            cmd,
+            model,
             "Marked" + AMY.getName() + "'s attendance for 2020-03-04 as absent",
             expectedModel
         );
@@ -56,8 +56,8 @@ public class UnmarkCommandTest {
         UnmarkCommand cmd = parser.parse("0 2020-03-04");
 
         assertCommandSuccess(
-            cmd, 
-            model, 
+            cmd,
+            model,
             AMY.getName() + "was not present on 2020-03-04!",
             expectedModel
         );

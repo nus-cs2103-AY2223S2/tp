@@ -4,18 +4,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -64,13 +64,30 @@ public class TypicalPersons {
             .withStartTime("10:00").withEndTime("12:00").build();
 
     // Manually added - Tutee's details found in {@code CommandTestUtil}
-    public static final Tutee AMY = new TuteeTestBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withAddress(VALID_ADDRESS_AMY).withSubject(VALID_SUBJECT_AMY)
-            .withSchedule(VALID_SCHEDULE_AMY).withStartTime(VALID_STARTTIME_AMY).withEndTime(VALID_ENDTIME_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Tutee BOB = new TuteeTestBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSubject(VALID_SUBJECT_BOB).withSchedule(VALID_SCHEDULE_BOB)
-            .withStartTime(VALID_STARTTIME_BOB).withEndTime(VALID_ENDTIME_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+    public static final Tutee AMY = new TuteeTestBuilder()
+        .withName(VALID_NAME_AMY)
+        .withPhone(VALID_PHONE_AMY)
+        .withEmail(VALID_EMAIL_AMY)
+        .withAddress(VALID_ADDRESS_AMY)
+        .withAddress(VALID_ADDRESS_AMY)
+        .withSubject(VALID_SUBJECT_AMY)
+        .withSchedule(VALID_SCHEDULE_AMY)
+        .withStartTime(VALID_STARTTIME_AMY)
+        .withEndTime(VALID_ENDTIME_AMY)
+        .withTags(VALID_TAG_FRIEND)
+        .build();
+
+    public static final Tutee BOB = new TuteeTestBuilder()
+        .withName(VALID_NAME_BOB)
+        .withPhone(VALID_PHONE_BOB)
+        .withEmail(VALID_EMAIL_BOB)
+        .withAddress(VALID_ADDRESS_BOB)
+        .withSubject(VALID_SUBJECT_BOB)
+        .withSchedule(VALID_SCHEDULE_BOB)
+        .withStartTime(VALID_STARTTIME_BOB)
+        .withEndTime(VALID_ENDTIME_BOB)
+        .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+        .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

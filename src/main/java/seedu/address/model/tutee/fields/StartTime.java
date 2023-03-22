@@ -17,9 +17,7 @@ public class StartTime {
 
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
-    public final LocalTime time;
-
-    public final String startTime;
+    private final LocalTime time;
 
     /**
      * Constructs a {@code StartTime} with the specified start time.
@@ -30,7 +28,6 @@ public class StartTime {
         requireNonNull(startTime);
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
         this.time = LocalTime.parse(startTime, TIME_FORMATTER);
-        this.startTime = startTime;
     }
 
     /**

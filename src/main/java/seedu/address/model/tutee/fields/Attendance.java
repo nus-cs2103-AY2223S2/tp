@@ -39,7 +39,7 @@ public class Attendance implements Iterable<LocalDate> {
      * @param date Date of the tutee's absence
      * @return A new Attendance instance with the new date marked
      * @throws NoSuchElementException If the student not present on the
-     * given date, marking them as absent again will throw a {@link NoSuchElementException}
+     *     given date, marking them as absent again will throw a {@link NoSuchElementException}
      */
     public Attendance unmarkAttendance(LocalDate date) {
         Set<LocalDate> copy = Set.copyOf(attendances);
@@ -72,13 +72,13 @@ public class Attendance implements Iterable<LocalDate> {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        } 
+        }
 
         if (!(other instanceof Attendance)) {
             return false;
         }
 
-        Attendance o = (Attendance)other;
+        Attendance o = (Attendance) other;
         return o.attendances.equals(this.attendances);
     }
 

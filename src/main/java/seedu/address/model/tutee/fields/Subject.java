@@ -1,30 +1,22 @@
 package seedu.address.model.tutee.fields;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tutee's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidSubject(String)}
  */
 public class Subject {
-
-    public static String[] subjectsOffered = {"Math", "Physics", "English"};
-    public static List<String> subjectsOfferedList = Arrays.asList(subjectsOffered);
-
-    public static String subjectsBuilder() {
-        final StringBuilder builder = new StringBuilder();
-        for (String subject: subjectsOffered) {
-            builder.append(subject).append(", ");
-        }
-        return builder.toString();
-    }
-            
     public static final String MESSAGE_CONSTRAINTS =
             "Subjects should only be: " + subjectsBuilder();
+
+    public static final String[] SUBJECTS_OFFERED = {"Math", "Physics", "English"};
+    public static final List<String> SUBJECTS_OFFERED_LIST = Arrays.asList(SUBJECTS_OFFERED);
 
     /*
      * The first character of the address must not be a whitespace,
@@ -32,7 +24,7 @@ public class Subject {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String subject;
+    private final String subject;
 
     /**
      * Constructs a {@code Subject}.
@@ -46,11 +38,22 @@ public class Subject {
     }
 
     /**
+     * Helper method for creating the MESSAGE_CONSTRAINTS message
+     */
+    private static String subjectsBuilder() {
+        final StringBuilder builder = new StringBuilder();
+        for (String subject: SUBJECTS_OFFERED) {
+            builder.append(subject).append(", ");
+        }
+        return builder.toString();
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidSubject(String test) {
         return test.matches(VALIDATION_REGEX)
-                && subjectsOfferedList.contains(test);
+                && SUBJECTS_OFFERED_LIST.contains(test);
     }
 
 

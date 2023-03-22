@@ -32,89 +32,15 @@ import seedu.address.model.tutee.fields.Subject;
 class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutee's %s field is missing!";
 
-    /**
-     * Call this method to parse the field from its string value. If the field has an invalid value determined by its `isValid`
-     * check, then a {@link IllegalValueException} will be thrown.
-     * 
-     * A {@link RuntimeException} may be thrown if the provided class does not have the requisite validation method, constraint message
-     * and constructor. If this is the case, you should modify your class appropriately. This exception should never be thrown when
-     * in production.
-     * 
-     * @param <T> Type of the field. Its class must have a public string constant named MESSAGE_CONSTRAINTS and a public static
-     * method called isValid + the name of the class, i.e. `isValidName(String arg)` and takes in 1 string parameter, returning a boolean.
-     * It must also have a constructor that takes a single string as a parameter.
-     * @param value String value to parse
-     * @param clazz Class of the field
-     * false is returned
-     * @return Parsed field value
-     * @throws IllegalValueException
-     */
-    private static <T> T validateField(String value, Class<T> clazz) throws IllegalValueException {
-        String simpleName = clazz.getSimpleName();
-        try {
-            if (value == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, simpleName));
-            }
-
-            String constraintsMessage = (String) clazz.getField("MESSAGE_CONSTRAINTS").get(null);
-            boolean isValid = (boolean) clazz.getMethod("isValid" + simpleName, String.class).invoke(null, value);
-            if (!isValid) {
-                throw new IllegalValueException(constraintsMessage);
-            }
-
-            try {
-                return clazz.getConstructor(String.class).newInstance(value);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(String.format(
-                    "Could not find a constructor of the signature %s(String value)", 
-                    simpleName
-                ));
-            }
-        } catch (final NoSuchFieldException e) {
-            throw new RuntimeException(String.format(
-                "Class %s does not contain a field called MESSAGE_CONSTRAINTS", 
-                simpleName
-            ));
-        } catch (final NoSuchMethodException e) {
-            throw new RuntimeException(String.format(
-                "Class %s does not contain a method called isValid%s",
-                simpleName,
-                simpleName
-            ));
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(String.format(
-                "Could not access the field MESSAGE_CONSTRAINTS or "
-                    + " the method isValid%s on class %s",
-                simpleName,
-                simpleName
-            ));
-        } catch (final InvocationTargetException e) {
-            throw new RuntimeException(String.format(
-                "MESSAGE_CONSTRAINTS and isValid%s must both be static",
-                simpleName
-            ));
-            } catch (final InstantiationException e) {
-            throw new RuntimeException(String.format(
-                "Could not find a constructor of the signature %s(String value)",
-                simpleName
-            ));
-        } catch (final ClassCastException e) {
-            throw new RuntimeException(String.format(
-                "Class %s: MESSAGE_CONSTRAINTS must be of type String, and isValid%s must return a boolean",
-                simpleName
-            ));
-        }
-    }
-
+    private final String address;
+    private final String email;
+    private final String endTime;
     private final String name;
     private final String phone;
-    private final String email;
-    private final String address;
     private final String remark;
-    private final String subject;
     private final String schedule;
     private final String startTime;
-    private final String endTime;
+    private final String subject;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<LocalDate> attendanceDates = new ArrayList<>();
 
@@ -123,13 +49,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(
-        @JsonProperty("name") String name, 
+        @JsonProperty("name") String name,
         @JsonProperty("phone") String phone,
-        @JsonProperty("email") String email, 
+        @JsonProperty("email") String email,
         @JsonProperty("address") String address,
-        @JsonProperty("remark") String remark, 
+        @JsonProperty("remark") String remark,
         @JsonProperty("subject") String subject,
-        @JsonProperty("schedule") String schedule, 
+        @JsonProperty("schedule") String schedule,
         @JsonProperty("startTime") String startTime,
         @JsonProperty("endTime") String endTime,
         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
@@ -156,19 +82,95 @@ class JsonAdaptedPerson {
      * Converts a given {@code Tutee} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Tutee source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        remark = source.getRemark().value;
-        subject = source.getSubject().subject;
-        schedule = source.getSchedule().schedule;
-        startTime = source.getStartTime().startTime;
-        endTime = source.getEndTime().endTime;
+        name = source.getName().toString();
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
+        address = source.getAddress().toString();
+        remark = source.getRemark().toString();
+        subject = source.getSubject().toString();
+        schedule = source.getSchedule().toString();
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         attendanceDates.forEach(attendanceDates::add);
+    }
+
+    /**
+     * Call this method to parse the field from its string value. If the field has an
+     * invalid value determined by its `isValid` * check, then a
+     * {@link IllegalValueException} will be thrown.
+     *
+     * A {@link RuntimeException} may be thrown if the provided class does not have the requisite
+     * validation method, constraint message and constructor. If this is the case, you should modify your class
+     * appropriately. This exception should never be thrown when in production.
+     *
+     * @param <T> Type of the field. Its class must have a public string constant named MESSAGE_CONSTRAINTS and
+     *     a public static method called isValid + the name of the class, i.e. `isValidName(String arg)`
+     *     and takes in 1 string parameter, returning a boolean. It must also have a constructor that takes a
+     *     single string as a parameter.
+     * @param value String value to parse
+     * @param clazz Class of the field
+     *     false is returned
+     * @return Parsed field value
+     * @throws IllegalValueException
+     */
+    private static <T> T validateField(String value, Class<T> clazz) throws IllegalValueException {
+        String simpleName = clazz.getSimpleName();
+        try {
+            if (value == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, simpleName));
+            }
+
+            String constraintsMessage = (String) clazz.getField("MESSAGE_CONSTRAINTS").get(null);
+            boolean isValid = (boolean) clazz.getMethod("isValid" + simpleName, String.class).invoke(null, value);
+            if (!isValid) {
+                throw new IllegalValueException(constraintsMessage);
+            }
+
+            try {
+                return clazz.getConstructor(String.class).newInstance(value);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(String.format(
+                    "Could not find a constructor of the signature %s(String value)",
+                    simpleName
+                ));
+            }
+        } catch (final NoSuchFieldException e) {
+            throw new RuntimeException(String.format(
+                "Class %s does not contain a field called MESSAGE_CONSTRAINTS",
+                simpleName
+            ));
+        } catch (final NoSuchMethodException e) {
+            throw new RuntimeException(String.format(
+                "Class %s does not contain a method called isValid%s",
+                simpleName,
+                simpleName
+            ));
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(String.format(
+                "Could not access the field MESSAGE_CONSTRAINTS or "
+                    + " the method isValid%s on class %s",
+                simpleName,
+                simpleName
+            ));
+        } catch (final InvocationTargetException e) {
+            throw new RuntimeException(String.format(
+                "MESSAGE_CONSTRAINTS and isValid%s must both be static",
+                simpleName
+            ));
+        } catch (final InstantiationException e) {
+            throw new RuntimeException(String.format(
+                "Could not find a constructor of the signature %s(String value)",
+                simpleName
+            ));
+        } catch (final ClassCastException e) {
+            throw new RuntimeException(String.format(
+                "Class %s: MESSAGE_CONSTRAINTS must be of type String, and isValid%s must return a boolean",
+                simpleName
+            ));
+        }
     }
 
     /**

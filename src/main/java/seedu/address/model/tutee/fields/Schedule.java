@@ -1,11 +1,10 @@
 package seedu.address.model.tutee.fields;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Tutee's schedule in the address book.
@@ -13,17 +12,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Schedule {
 
-    public static String[] daysOfWeek = {"monday", "tuesday", "wednesday"
-        ,"thursday", "friday", "saturday", "sunday"};
-    public static List<String> daysOfWeekList = Arrays.asList(daysOfWeek);
-
-    public static String weekBuilder() {
-        final StringBuilder builder = new StringBuilder();
-        for (String days: daysOfWeek) {
-            builder.append(days).append(", ");
-        }
-        return builder.toString();
-    }
+    public static final String[] DAYS_OF_WEEK = {"monday", "tuesday", "wednesday",
+        "thursday", "friday", "saturday", "sunday"};
+    public static final List<String> DAYS_OF_WEEK_LIST = Arrays.asList(DAYS_OF_WEEK);
 
     public static final String MESSAGE_CONSTRAINTS =
             "Subjects should only be: " + weekBuilder();
@@ -34,7 +25,7 @@ public class Schedule {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String schedule;
+    private final String schedule;
 
     /**
      * Constructs a {@code Schedule}.
@@ -48,11 +39,22 @@ public class Schedule {
     }
 
     /**
+     * Helper method used for creating the MESSAGE_CONSTRAINTS variable
+     */
+    private static String weekBuilder() {
+        final StringBuilder builder = new StringBuilder();
+        for (String days: DAYS_OF_WEEK) {
+            builder.append(days).append(", ");
+        }
+        return builder.toString();
+    }
+
+    /**
      * Returns true if a given string is a valid day of the week.
      */
     public static boolean isValidSchedule(String test) {
         return test.matches(VALIDATION_REGEX)
-                && daysOfWeekList.contains(test);
+                && DAYS_OF_WEEK_LIST.contains(test);
     }
 
     @Override

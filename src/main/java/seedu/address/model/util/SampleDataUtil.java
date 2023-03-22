@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyTuteeManagingSystem;
 import seedu.address.model.TuteeManagingSystem;
-import seedu.address.model.tutee.*;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.fields.Address;
 import seedu.address.model.tutee.fields.Attendance;
@@ -18,7 +18,6 @@ import seedu.address.model.tutee.fields.Remark;
 import seedu.address.model.tutee.fields.Schedule;
 import seedu.address.model.tutee.fields.StartTime;
 import seedu.address.model.tutee.fields.Subject;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code TuteeManagingSystem} with sample data.
@@ -38,8 +37,8 @@ public class SampleDataUtil {
                 EMPTY_REMARK,
                 new Subject("Math"),
                 new Schedule("monday"),
-                new StartTime("08:30"), 
-                new EndTime("09:30"), 
+                new StartTime("08:30"),
+                new EndTime("09:30"),
                 getTagSet("friends")
             ),
             new Tutee(
@@ -48,10 +47,10 @@ public class SampleDataUtil {
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 new Attendance(),
-                EMPTY_REMARK, 
-                new Subject("Math"), 
+                EMPTY_REMARK,
+                new Subject("Math"),
                 new Schedule("monday"),
-                new StartTime("08:30"), 
+                new StartTime("08:30"),
                 new EndTime("11:30"),
                 getTagSet("colleagues", "friends")
             ),
@@ -74,8 +73,8 @@ public class SampleDataUtil {
                 new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 new Attendance(),
-                EMPTY_REMARK, 
-                new Subject("Math"), 
+                EMPTY_REMARK,
+                new Subject("Math"),
                 new Schedule("thursday"),
                 new StartTime("08:00"),
                 new EndTime("09:30"),
@@ -95,16 +94,16 @@ public class SampleDataUtil {
                 getTagSet("classmates")
             ),
             new Tutee(
-                new Name("Roy Balakrishnan"), 
-                new Phone("92624417"), 
+                new Name("Roy Balakrishnan"),
+                new Phone("92624417"),
                 new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 new Attendance(),
-                EMPTY_REMARK, 
+                EMPTY_REMARK,
                 new Subject("Math"),
                 new Schedule("tuesday"),
-                new StartTime("10:30"), 
-                new EndTime("12:30"), 
+                new StartTime("10:30"),
+                new EndTime("12:30"),
                 getTagSet("colleagues"))
         };
     }

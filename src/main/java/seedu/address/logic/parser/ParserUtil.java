@@ -164,9 +164,9 @@ public class ParserUtil {
         if (!EndTime.isValidEndTime(trimmedEndTime)) {
             throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
         }
-        DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime parsedEndTime = LocalTime.parse(endTime, TIME_FORMATTER);
-        LocalTime parsedStartTime = LocalTime.parse(startTime, TIME_FORMATTER);
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedEndTime = LocalTime.parse(endTime, timeFormatter);
+        LocalTime parsedStartTime = LocalTime.parse(startTime, timeFormatter);
         if (parsedEndTime.isBefore(parsedStartTime)) {
             throw new ParseException(EndTime.MESSAGE_CONSTRAINTS_AFTER_START_TIME);
         }

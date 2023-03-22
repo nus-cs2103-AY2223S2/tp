@@ -67,7 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         )
         .withEndTime(
             ParserUtil.parseEndTime(
-                argMultimap.getValue(PREFIX_ENDTIME).get(), 
+                argMultimap.getValue(PREFIX_ENDTIME).get(),
                 argMultimap.getValue(PREFIX_STARTTIME).get()
             )
         )

@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -78,7 +78,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT; // empty subject not allowed for students
-    public static final String INVALID_SCHEDULE_DESC = " " + PREFIX_SUBJECT + "mon"; // short form for the day not allowed
+    public static final String INVALID_SCHEDULE_DESC = " "
+            + PREFIX_SUBJECT + "mon"; // short form for the day not allowed
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "two"; // must be in HH:MM format
     public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME; // empty end time not allowed for students
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -148,7 +149,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTuteeList().size());
 
         Tutee tutee = model.getFilteredTuteeList().get(targetIndex.getZeroBased());
-        final String[] splitName = tutee.getName().fullName.split("\\s+");
+        final String[] splitName = tutee.getName().toString().split("\\s+");
         model.updateFilteredTuteeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTuteeList().size());

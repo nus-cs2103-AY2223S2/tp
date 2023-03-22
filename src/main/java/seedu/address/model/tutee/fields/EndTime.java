@@ -1,10 +1,11 @@
 package seedu.address.model.tutee.fields;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents the end time of a tuition session.
@@ -20,9 +21,7 @@ public class EndTime {
 
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
-    public final LocalTime time;
-
-    public final String endTime;
+    private final LocalTime time;
 
     /**
      * Constructs an {@code EndTime} with the specified end time.
@@ -33,7 +32,6 @@ public class EndTime {
         requireNonNull(endTime);
         checkArgument(isValidEndTime(endTime), MESSAGE_CONSTRAINTS);
         this.time = LocalTime.parse(endTime, TIME_FORMATTER);
-        this.endTime = endTime;
     }
 
     /**

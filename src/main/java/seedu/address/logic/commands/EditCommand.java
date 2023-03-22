@@ -206,32 +206,32 @@ public class EditCommand extends Command {
             this.subject = subject;
         }
 
-        public Optional<Subject> getSubject() { 
+        public Optional<Subject> getSubject() {
             return Optional.ofNullable(subject);
         }
 
-        public void setSchedule(Schedule schedule) { 
+        public void setSchedule(Schedule schedule) {
             this.schedule = schedule;
         }
 
         public Optional<Schedule> getSchedule() {
-            return Optional.ofNullable(schedule); 
+            return Optional.ofNullable(schedule);
         }
 
         public void setStartTime(StartTime startTime) {
-            this.startTime = startTime; 
+            this.startTime = startTime;
         }
 
         public Optional<StartTime> getStartTime() {
-            return Optional.ofNullable(startTime); 
+            return Optional.ofNullable(startTime);
         }
 
         public void setEndTime(EndTime endTime) {
-            this.endTime = endTime; 
+            this.endTime = endTime;
         }
 
         public Optional<EndTime> getEndTime() {
-            return Optional.ofNullable(endTime); 
+            return Optional.ofNullable(endTime);
         }
 
         /**

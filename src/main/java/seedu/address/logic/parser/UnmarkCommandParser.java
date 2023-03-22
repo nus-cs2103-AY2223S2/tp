@@ -12,6 +12,9 @@ import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parser for the {@link UnmarkCommand}
+ */
 public class UnmarkCommandParser implements Parser<UnmarkCommand> {
     @Override
     public UnmarkCommand parse(String userInput) throws ParseException {
@@ -24,8 +27,12 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
             try {
                 date = LocalDate.parse(args[1], DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT));
             } catch (DateTimeParseException e) {
-                throw new ParseException(String.format("%s expects the date in the following format: %s", UnmarkCommand.COMMAND_WORD, MarkCommand.EXPECTED_DATE_FORMAT));
-            } 
+                throw new ParseException(String.format(
+                    "%s expects the date in the following format: %s",
+                    UnmarkCommand.COMMAND_WORD,
+                    MarkCommand.EXPECTED_DATE_FORMAT
+                ));
+            }
         } else {
             throw new ParseException(String.format("%s needs an index!", UnmarkCommand.COMMAND_WORD));
         }

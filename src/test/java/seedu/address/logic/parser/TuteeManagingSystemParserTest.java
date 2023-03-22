@@ -26,8 +26,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.fields.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.TuteeTestBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TuteeTestBuilder;
 
 public class TuteeManagingSystemParserTest {
 

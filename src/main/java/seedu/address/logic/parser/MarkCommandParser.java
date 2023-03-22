@@ -11,8 +11,10 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parser for the {@link MarkCommand} command
+ */
 public class MarkCommandParser implements Parser<MarkCommand> {
-
     @Override
     public MarkCommand parse(String userInput) throws ParseException {
         String[] args = userInput.split(" ");
@@ -25,10 +27,10 @@ public class MarkCommandParser implements Parser<MarkCommand> {
                 date = LocalDate.parse(args[1], DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT));
             } catch (DateTimeParseException e) {
                 throw new ParseException(String.format("%s expects the date in the following format: %s",
-                    MarkCommand.COMMAND_WORD, 
+                    MarkCommand.COMMAND_WORD,
                     MarkCommand.EXPECTED_DATE_FORMAT
                 ));
-            } 
+            }
         } else {
             throw new ParseException(String.format("%s needs an index!", MarkCommand.COMMAND_WORD));
         }

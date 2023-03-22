@@ -19,7 +19,7 @@ import seedu.address.model.tutee.fields.Subject;
  * Builder class for {@link Tutee}
  */
 public class TuteeBuilder {
-  // Identity fields
+    // Identity fields
     private Name name;
     private Phone phone;
     private Email email;
@@ -36,6 +36,10 @@ public class TuteeBuilder {
 
     public TuteeBuilder() {}
 
+    /**
+     * Create a TuteeBuilder instance and populate it with the fields of
+     * an existing Tutee
+     */
     public TuteeBuilder(Tutee existing) {
         this.name = existing.getName();
         this.phone = existing.getPhone();
@@ -52,53 +56,97 @@ public class TuteeBuilder {
         this.tags = Set.copyOf(existing.getTags());
     }
 
+    /**
+     * Change the stored email in the builder
+     */
     public TuteeBuilder withEmail(Email email) {
         this.email = email;
         return this;
     }
+
+    /**
+     * Change the stored phone in the builder
+     */
     public TuteeBuilder withPhone(Phone phone) {
         this.phone = phone;
         return this;
     }
+
+    /**
+     * Change the stored name in the builder
+     */
     public TuteeBuilder withName(Name name) {
         this.name = name;
         return this;
     }
+
+    /**
+     * Change the stored address in the builder
+     */
     public TuteeBuilder withAddress(Address address) {
         this.address = address;
         return this;
     }
+
+    /**
+     * Change the stored remark in the builder
+     */
     public TuteeBuilder withRemark(Remark remark) {
         this.remark = remark;
         return this;
     }
+
+    /**
+     * Change the stored subject in the builder
+     */
     public TuteeBuilder withSubject(Subject subject) {
         this.subject = subject;
         return this;
     }
+
+    /**
+     * Change the stored schedule in the builder
+     */
     public TuteeBuilder withSchedule(Schedule schedule) {
         this.schedule = schedule;
         return this;
     }
+
+    /**
+     * Change the stored StartTime in the builder
+     */
     public TuteeBuilder withStartTime(StartTime startTime) {
         this.startTime = startTime;
         return this;
     }
+
+    /**
+     * Change the stored EndTime in the builder
+     */
     public TuteeBuilder withEndTime(EndTime endTime) {
         this.endTime = endTime;
         return this;
     }
 
+    /**
+     * Change the stored tags in the builder
+     */
     public TuteeBuilder withTags(Set<Tag> tags) {
         this.tags = tags;
         return this;
     }
 
+    /**
+     * Change the stored tags in the builder
+     */
     public TuteeBuilder withTags(Tag ...tags) {
         this.tags = Set.of(tags);
         return this;
     }
 
+    /**
+     * Change the stored attendance in the builder
+     */
     public TuteeBuilder withAttendance(Attendance attendance) {
         this.attendance = attendance;
         return this;

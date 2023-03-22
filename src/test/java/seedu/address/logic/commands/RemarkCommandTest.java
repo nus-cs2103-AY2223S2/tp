@@ -19,6 +19,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.tutee.Tutee;
 import seedu.address.model.tutee.fields.Remark;
 import seedu.address.testutil.TuteeTestBuilder;
+
 class RemarkCommandTest {
     private static final String REMARK_STUB = "Some remark";
 
@@ -46,10 +47,17 @@ class RemarkCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Tutee firstTutee = model.getFilteredTuteeList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Tutee editedTutee = new TuteeTestBuilder(model.getFilteredTuteeList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Tutee editedTutee = new TuteeTestBuilder(model.getFilteredTuteeList()
+                .get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_PERSON, new Remark(editedTutee.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(
+            INDEX_FIRST_PERSON,
+            new Remark(
+                editedTutee.getRemark()
+                    .toString()
+            )
+        );
 
         String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedTutee);
 
