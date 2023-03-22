@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
@@ -36,6 +37,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.student.StudentAddCommand;
+import seedu.address.logic.commands.student.StudentAttendanceCommand;
 import seedu.address.logic.commands.student.StudentCommand;
 import seedu.address.logic.commands.student.StudentCommentCommand;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
@@ -110,6 +112,9 @@ public class StudentCommandParser implements Parser<StudentCommand> {
                 ArgumentTokenizer.tokenize(arguments, PREFIX_GRADEDELETE, PREFIX_INDEXNUMBER, PREFIX_TEST,
                         PREFIX_HOMEWORK);
 
+        ArgumentMultimap argumentMultimapAtt =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_ADDATTENDANCE, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE);
+
         if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
             return addCommand(studentClass, argMultimapAdd);
         } else if (argMultimapDelete.getValue(PREFIX_DELETE).isPresent()) {
@@ -121,12 +126,28 @@ public class StudentCommandParser implements Parser<StudentCommand> {
             return gradeCommand(studentClass, argMultimapGrade);
         } else if (argMultimapGradeDelete.getValue(PREFIX_GRADEDELETE).isPresent()) {
             return gradeDeleteCommand(studentClass, argMultimapGradeDelete);
+        } else if (argumentMultimapAtt.getValue(PREFIX_ADDATTENDANCE).isPresent()) {
+            return attCommand(studentClass, argumentMultimapAtt);
         } else if (argMultimap.getValue(PREFIX_FIND).isPresent()) {
             return new StudentFindCommandParser().parse(studentClass + arguments);
         } else {
             //Rest of logic (Need to edit)
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HELP_MESSAGE));
         }
+    }
+
+    private StudentAttendanceCommand attCommand(String studentClass,
+                                                ArgumentMultimap argumentMultimapAtt) throws ParseException {
+        if (!arePrefixesPresent(argumentMultimapAtt, PREFIX_INDEXNUMBER, PREFIX_ATTENDANCE)
+                || !argumentMultimapAtt.getPreamble().isEmpty()
+                || studentClass.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    StudentAttendanceCommand.MESSAGE_USAGE));
+        }
+        Class sc = ParserUtil.parseStudentClass(studentClass);
+        IndexNumber indexNumber = ParserUtil.parseIndexNumber(argumentMultimapAtt.getValue(PREFIX_INDEXNUMBER).get());
+        Attendance attendance = ParserUtil.parseAttendance(argumentMultimapAtt.getValue(PREFIX_ATTENDANCE).get());
+        return new StudentAttendanceCommand(sc, indexNumber, attendance);
     }
 
     /**
@@ -170,8 +191,10 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         homeworkSet.add(homework);
         Set<Test> testSet = new HashSet<>();
         testSet.add(test);
+        Set<Attendance> attendanceSet = new HashSet<>();
+        attendanceSet.add(attendance);
         Student student = new Student(name, sc, indexNumber, sex, parentName, parentNumber, rls,
-                age, image, email, phone, cca, address, attendance, homeworkSet, testSet, tagList, comment);
+                age, image, email, phone, cca, address, attendanceSet, homeworkSet, testSet, tagList, comment);
         return new StudentAddCommand(student);
     }
 
