@@ -165,7 +165,7 @@ The `add` command allows users to add an internship application to the tracker. 
 The `AddCommandParser` checks that the user input is in the expected format, if not an exception will be thrown.
 
 The sequence diagram below shows how the `AddCommand` object is created:
-
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
 ### Add contact feature
 
