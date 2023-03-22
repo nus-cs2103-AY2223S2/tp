@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,7 +53,9 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + "i/T0123456A");
-        assertEquals(new DeleteCommand(new Nric("T0123456A")), command);
+        ArrayList<Nric> nricList = new ArrayList<>();
+        nricList.add(new Nric("T0123456A"));
+        assertEquals(new DeleteCommand(nricList), command);
     }
 
     @Test
