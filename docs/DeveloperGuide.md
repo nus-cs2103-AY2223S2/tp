@@ -9,7 +9,14 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We would like to thank:
+
+* [CS2103T AY22/23 Semester 2 teaching team](https://nus-cs2103-ay2223s2.github.io/website/admin/instructors.html) for imparting valuable knowledge, skills and guidance
+* [SE-edu AddressBook 3](https://github.com/se-edu/addressbook-level3) which `QuickContacts` is built on
+* Open-source libraries used in `QuickContacts`:
+  * [JavaFX](https://openjfx.io/)
+  * [Jackson](https://github.com/FasterXML/jackson)
+  * [JUnit](https://junit.org/junit5/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -266,7 +273,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -485,26 +491,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case continues at step 1.
 
-
-*{More to be added}*
-
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  Can support 1000 meetings with same amount of lag as 10 meeting
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Can support 1000 meetings with same amount of lag as 10 meeting
 5. Commands should be intuitive to not technical people
 6. Should be clear that meeting and people are 2 seperate things
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Meetings**: Important dates with a duration and a place
-* **Find**: Searches by name field, case insensitive, match all matching words individually
+* **Find**: Searches by name field, case-insensitive, match all matching words individually
 * **GUI**: Graphic User Interface
 * **MSS**: Main Success Scenario
 * **OS**: Operating System
@@ -529,38 +530,82 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Deleting a contact
 
-### Deleting a person
+1. Deleting a contact while all contacts are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete 0`<br>
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Creating a meeting
+
+1. Creating a meeting with a contact:
+
+    1. Prerequisites: Contact `Alex Yeo` exists in QuickContacts.
+
+    2. Test case: `addm m/Lunch with Alex dt/2003 15:00 p/Alex Yeo`<br>
+       Expected: New meeting with `Alex Yeo` on 20 March (of the current year) at 3PM is created, and it is displayed in the meetings list.
+
+    3. Test case: `addm m/Lunch with Alex dt/2003 25:00 p/Alex Yeo l/The Deck des/Weekly catch-up`<br>
+       Expected: Meeting is not created since `25:00` is an invalid time. Error details shown in the status message. Status bar remains the same.
+
+2. Creating a meeting without a contact:
+    
+    1. Test case: `addm m/Dinner at home dt/2003222`<br>
+       Expected: New meeting is created for `200322` (20 March 2022).
+
+    2. Test case: `addm m/Dinner at home`<br>
+       Expected: Meeting is not created as a date(and time) is required. Error details shown in the status message. Status bar remains the same.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. To simulate data file is not found:
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisite: `QuickContacts` is currently not running and the data files have been generated.
 
-1. _{ more test cases …​ }_
+   2. Rename the file `quickcontacts.json` in the same directory to `quickcontacts.json.backup`.
+
+   3. Launch `QuickContacts`.
+
+   Expected: `QuickContacts` launches normally and re-generates the sample default data.
+
+2. To simulate data file is corrupted:
+
+   1. Prerequisite: `QuickContacts` is currently not running and the data files have been generated.
+
+   2. Open `quickcontacts.json` with a text editor, add a few random characters and save it.
+
+   3. Launch `QuickContacts`.
+
+   Expected: A warning message will be displayed and `QuickContacts` will start from an empty data file.
+
+3. To simulate restoring data from a backup data file:
+
+   1. Prerequisite: `QuickContacts` is currently not running and the data files have been generated and you have the backup file ready. Assume that the backup file is named `quickcontacts.json.backup`.
+
+   2. Delete `quickcontacts.json` from the directory that contains `quickcontacts.jar`.
+
+   3. Move `quickcontacts.json.backup` into the same directory as `quickcontacts.jar`.
+
+   4. Rename `quickcontacts.json.backup` to `quickcontacts.json`.
+
+   5. Launch `QuickContacts`.
+
+   Expected: `QuickContacts` will launch normally with the data restored from the backup.
