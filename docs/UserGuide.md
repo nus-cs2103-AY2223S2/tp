@@ -271,16 +271,19 @@ Displays events that start within a specified number of days.
 
 - Displays events that start within the specified number of `DAYS`.
   - `DAYS` must be a positive integer 1, 2, 3, …
+  - Only events that start after the current date and time will be displayed.
+  - The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
 
 **Example**:
 
-Assume the current time is 22-03-2023 11:00.
+Assume the current date and time is 22-03-2023 11:00.
 
 - `remind 2`
   - Events that start within 2 days will be displayed. These are events that start on:
     * 22-03-2023 after 11:00
-    * 23-03-2023
-    * 24-03-2023
+    * 23-03-2023 the whole day
+    * 24-03-2023 the whole day
+  - Note that 24-03-2023 is within three days of 22-03-2023, so events on 24-03-2023 that start more than 48 hours from the current date and time are displayed.
 
 ### Saving the data
 
