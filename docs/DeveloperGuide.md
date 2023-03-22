@@ -176,6 +176,30 @@ The mark feature mechanism is implemented by having the Event class keep track o
 
 **Implementation design**: The feature is implemented with a seperate class 'Mark' instead of a 'isDone' boolean attribute. This ensures that there is a greater abstraction and allows for further development if we wish to further develop the application to keep track of other milestones.
 
+### Reminder feature
+
+#### Implementation
+
+The reminder feature is facilitated by `StartTimeWithinDaysPredicate`, that tests if ane event is within the given days.
+
+The current time is determined by a `Clock` that is created by `LogicManager`. The `LogicManager` creates an `EventBookParser` with `Clock` as an attribute. When parsing a remind command, the `EventBookParser` creates a `RemindCommandParser` with the `Clock` as an attribute.
+
+The `RemindCommandParser` checks if the command argument has the correct format. The command argument represents days and should be a positive integer. `RemindCommandParser` creates a `RemindCommand` with a `StartTimeWithinDaysPredicate`, that uses the `Clock` to get the current time. The `StartTimeWithinDaysPredicate` tests if a given event's start date is within the inputted days of the current time.
+
+The `RemindCommand` is then executed by `LogicManager`. After testing all events with the `StartTimeWithinDaysPredicate`, filtered events are displayed.
+
+#### Design considerations:
+
+**Aspect: How current time is determined:**
+
+* **Alternative 1 (current choice):** Determine current time using a `Clock` created in `LogicManager`.
+    * Pros: Easy to test. A fixed `Clock` can be created.
+    * Cons: Coupling between classes that use `Clock`, even if the class only uses it to create an object that uses `Clock`
+
+* **Alternative 2:** Determine current time using `LocalDateTime.now()` in `StartTimeWithinDaysPredicate`.
+    * Pros: Less coupling between classes.
+    * Cons: Difficult to test, as the current time is based on real time.
+
 
 ### Linkcontact feature
 

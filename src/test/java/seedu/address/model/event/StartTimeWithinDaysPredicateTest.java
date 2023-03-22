@@ -2,7 +2,7 @@ package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalTimes.TIME_NOW;
+import static seedu.address.testutil.TypicalTimes.CLOCK_FIXED_AT_TIME_NOW;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,16 +15,16 @@ public class StartTimeWithinDaysPredicateTest {
         int secondPredicateDays = 4;
 
         StartTimeWithinDaysPredicate firstPredicate = new StartTimeWithinDaysPredicate(
-                TIME_NOW, firstPredicateDays);
+                CLOCK_FIXED_AT_TIME_NOW, firstPredicateDays);
         StartTimeWithinDaysPredicate secondPredicate = new StartTimeWithinDaysPredicate(
-                TIME_NOW, secondPredicateDays);
+                CLOCK_FIXED_AT_TIME_NOW, secondPredicateDays);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
         StartTimeWithinDaysPredicate firstPredicateCopy = new StartTimeWithinDaysPredicate(
-                TIME_NOW, firstPredicateDays);
+                CLOCK_FIXED_AT_TIME_NOW, firstPredicateDays);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -39,7 +39,7 @@ public class StartTimeWithinDaysPredicateTest {
 
     @Test
     public void test_isWithinDays_returnsTrue() {
-        StartTimeWithinDaysPredicate predicate = new StartTimeWithinDaysPredicate(TIME_NOW, 3);
+        StartTimeWithinDaysPredicate predicate = new StartTimeWithinDaysPredicate(CLOCK_FIXED_AT_TIME_NOW, 3);
 
         // 1 March 2023 to 1 March 2023 is <= 3 days
         assertTrue(predicate.test(new EventBuilder().withStartTime("01-03-2023 11:00").build()));
@@ -51,7 +51,7 @@ public class StartTimeWithinDaysPredicateTest {
 
     @Test
     public void test_isNotWithinDays_returnsFalse() {
-        StartTimeWithinDaysPredicate predicate = new StartTimeWithinDaysPredicate(TIME_NOW, 3);
+        StartTimeWithinDaysPredicate predicate = new StartTimeWithinDaysPredicate(CLOCK_FIXED_AT_TIME_NOW, 3);
 
         // 1 March 2023 10:59 is before 1 March 2023 11:00
         assertFalse(predicate.test(new EventBuilder().withStartTime("01-03-2023 10:59").build()));

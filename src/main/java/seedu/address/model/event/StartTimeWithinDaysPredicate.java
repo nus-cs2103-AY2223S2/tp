@@ -1,5 +1,6 @@
 package seedu.address.model.event;
 
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -16,8 +17,8 @@ public class StartTimeWithinDaysPredicate implements Predicate<Event> {
      * Creates a predicate to test if an event is within the given {@code days} from
      * the given {@code timeNow}.
      */
-    public StartTimeWithinDaysPredicate(LocalDateTime timeNow, Integer days) {
-        this.timeNow = timeNow;
+    public StartTimeWithinDaysPredicate(Clock clock, Integer days) {
+        this.timeNow = LocalDateTime.now(clock);
         this.days = days;
     }
 
