@@ -10,7 +10,6 @@ import seedu.address.model.crew.Crew;
 import seedu.address.model.crew.FlightCrewType;
 import seedu.address.model.item.Item;
 import seedu.address.model.link.Link;
-import seedu.address.model.link.exceptions.LinkException;
 import seedu.address.model.location.FlightLocationType;
 import seedu.address.model.location.Location;
 import seedu.address.model.pilot.FlightPilotType;
@@ -36,13 +35,12 @@ public class Flight implements Item {
     /**
      * Creates a new flight
      *
-     * @param id                the id of the  flight
-     * @param code              the code
-     * @param pilotLink         the link to the pilot
-     * @param crewLink          the link to the crew
-     * @param planeLink         the link to the plane
-     * @param locationLink      the link to the location
-     * @throws LinkException if the link cannot be created
+     * @param id           the id of the  flight
+     * @param code         the code
+     * @param pilotLink    the link to the pilot
+     * @param crewLink     the link to the crew
+     * @param planeLink    the link to the plane
+     * @param locationLink the link to the location
      */
     public Flight(
             String id,
@@ -51,7 +49,7 @@ public class Flight implements Item {
             Link<FlightCrewType, Crew, ReadOnlyItemManager<Crew>> crewLink,
             Link<FlightPlaneType, Plane, ReadOnlyItemManager<Plane>> planeLink,
             Link<FlightLocationType, Location, ReadOnlyItemManager<Location>> locationLink
-    ) throws LinkException {
+    ) {
         this.id = id;
         this.code = code;
         this.pilotLink = pilotLink;
@@ -65,11 +63,11 @@ public class Flight implements Item {
      *
      * @param code the code of the flight
      */
-    public Flight(String code) throws LinkException {
+    public Flight(String code) {
         this(UUID.randomUUID().toString(), code,
                 new Link<>(
-                Pilot.SHAPE,
-                GetUtil.getLazy(Model.class).map(Model::getPilotManager)
+                        Pilot.SHAPE,
+                        GetUtil.getLazy(Model.class).map(Model::getPilotManager)
                 ), new Link<>(
                         Crew.SHAPE,
                         GetUtil.getLazy(Model.class).map(Model::getCrewManager)
@@ -78,8 +76,11 @@ public class Flight implements Item {
                         GetUtil.getLazy(Model.class).map(Model::getPlaneManager)
                 ), new Link<>(
                         Location.SHAPE,
-                        GetUtil.getLazy(Model.class).map(Model::getLocationManager)
-                ));
+                        GetUtil
+                                .getLazy(Model.class)
+                                .map(Model::getLocationManager)
+                )
+        );
     }
 
     public String getCode() {

@@ -7,7 +7,6 @@ import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
 import seedu.address.model.flight.Flight;
-import seedu.address.model.link.exceptions.LinkException;
 
 
 /**
@@ -30,11 +29,7 @@ public class AddFlightCommandFactory implements CommandFactory<AddFlightCommand>
     @Override
     public AddFlightCommand createCommand(CommandParam param) throws ParseException {
         final String code = param.getNamedValuesOrThrow(PREFIX_CODE);
-        try {
-            final Flight flight = new Flight(code);
-            return new AddFlightCommand(flight);
-        } catch (LinkException e) {
-            throw new ParseException(e.getMessage());
-        }
+        final Flight flight = new Flight(code);
+        return new AddFlightCommand(flight);
     }
 }
