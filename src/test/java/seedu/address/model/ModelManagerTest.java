@@ -75,30 +75,32 @@ public class ModelManagerTest {
     @Test
     public void hasLecture_nullModule_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                modelManager.hasLecture(null, TypicalLectures.CS2040S_WEEK_1.getName()));
+                modelManager.hasLecture(null, TypicalLectures.getCs2040sWeek1().getName()));
     }
 
     @Test
     public void deleteLecture_nullModule_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                modelManager.deleteLecture(null, TypicalLectures.CS2040S_WEEK_1));
+                modelManager.deleteLecture(null, TypicalLectures.getCs2040sWeek1()));
     }
 
     @Test
     public void addLecture_nullModule_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.addLecture(null, TypicalLectures.CS2040S_WEEK_1));
+        assertThrows(NullPointerException.class, () ->
+                modelManager.addLecture(null, TypicalLectures.getCs2040sWeek1()));
     }
 
     @Test
     public void setLecture_nullModule_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                modelManager.setLecture(null, TypicalLectures.ST2334_TOPIC_1, TypicalLectures.ST2334_TOPIC_1));
+                modelManager.setLecture(null, TypicalLectures.getSt2334Topic1(), TypicalLectures.getSt2334Topic1()));
     }
 
     @Test
     public void hasVideo_nullLecture_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                modelManager.hasVideo(TypicalModules.CS2040S.getCode(), null, TypicalVideos.CONTENT_VIDEO.getName()));
+                modelManager.hasVideo(
+                        TypicalModules.getCs2040s().getCode(), null, TypicalVideos.CONTENT_VIDEO.getName()));
     }
 
     @Test
