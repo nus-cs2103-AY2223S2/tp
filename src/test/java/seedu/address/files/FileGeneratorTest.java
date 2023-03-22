@@ -53,9 +53,9 @@ class FileGeneratorTest {
         FileGenerator fileGenerator = new FileGenerator(person, doctorName, description, days);
 
         // Call the createMcForm() method
-        fileGenerator.createMcForm();
+        fileGenerator.createMcForm("");
         // Check if the file was created in the expected location
-        File file = new File("reports/" + person.getName().fullName + "/mc.pdf");
+        File file = new File("reports/" + person.getName().fullName + "/-mc.pdf");
         assertTrue(file.exists());
 
         // Check if the form fields were filled in correctly
