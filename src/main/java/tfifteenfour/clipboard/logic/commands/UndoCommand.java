@@ -12,7 +12,7 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
     private CircularBuffer<Model> stateHistoryBuffer;
-    private Model newModel;
+    private Model prevModel;
 
     public UndoCommand() {
         super(false);
@@ -27,13 +27,18 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (stateHistoryBuffer.size() > 0) {
-            this.newModel = stateHistoryBuffer.removeLast();
-            newModel.getFilteredStudentList().forEach(System.out::println);
+            this.prevModel = stateHistoryBuffer.removeLast();
+            Command prevCommandExecuted = prevModel.getCommandExecuted();
+            if (prevCommandExecuted instanceof UploadCommand) {
+                UploadCommand uploadCmd = (UploadCommand) prevCommandExecuted;
+                System.out.println("undo upload ###########");
+                uploadCmd.deleteUploadedFile();
+            }
         } else {
             throw new CommandException("Cannot undo any further");
         }
         return new CommandResult(this, String.format("Undid previous command: %s",
-                model.getPrevStateModifyingCommand()), false);
+                prevModel.getCommandTextExecuted()), false);
     }
 
     /**
@@ -50,7 +55,7 @@ public class UndoCommand extends Command {
      *
      * @return The new model.
      */
-    public Model getNewModel() {
-        return this.newModel;
+    public Model getPrevModel() {
+        return this.prevModel;
     }
 }

@@ -13,7 +13,7 @@ import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
  */
 public class UploadCommandParser implements Parser<UploadCommand> {
 
-    public static final String DESTINATION_FILEPATH = "./data";
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the UploadCommand
@@ -27,6 +27,6 @@ public class UploadCommandParser implements Parser<UploadCommand> {
         }
 
         Path sourcePath = Paths.get(trimmedArgs);
-        return new UploadCommand(sourcePath, Paths.get(DESTINATION_FILEPATH));
+        return new UploadCommand(sourcePath);
     }
 }

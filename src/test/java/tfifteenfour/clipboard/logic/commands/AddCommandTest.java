@@ -86,12 +86,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPrevStateModifyingCommand(String commandText) {
+        public void setCommandExecuted(Command command) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public String getPrevStateModifyingCommand() {
+        public Command getCommandExecuted() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCommandTextExecuted(String commandText) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getCommandTextExecuted() {
             throw new AssertionError("This method should not be called.");
         }
 

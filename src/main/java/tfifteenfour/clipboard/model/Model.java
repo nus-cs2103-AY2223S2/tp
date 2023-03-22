@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
+import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -95,7 +96,11 @@ public interface Model {
      */
     Model copy();
 
-    public void setPrevStateModifyingCommand(String commandText);
+    public void setCommandTextExecuted(String commandText);
 
-    public String getPrevStateModifyingCommand();
+    public String getCommandTextExecuted();
+
+    public void setCommandExecuted(Command command);
+
+    public Command getCommandExecuted();
 }

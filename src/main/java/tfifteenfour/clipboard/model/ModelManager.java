@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.model.student.Student;
 
 /**
@@ -24,7 +25,8 @@ public class ModelManager implements Model {
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Student> viewedStudent;
 
-    private String prevStateModifyingCommand;
+    private String commandTextExecuted;
+    private Command commandExecuted;
 
     /**
      * Initializes a ModelManager with the given roster and userPrefs.
@@ -49,24 +51,34 @@ public class ModelManager implements Model {
      *
      * @param roster The roster to use in the ModelManager.
      * @param userPrefs The user preferences to use in the ModelManager.
-     * @param prevStateModifyingCommand The previous state modifying command to use in the ModelManager.
+     * @param commandTextExecuted The previous state modifying command to use in the ModelManager.
      */
-    public ModelManager(Roster roster, UserPrefs userPrefs, String prevStateModifyingCommand) {
+    public ModelManager(Roster roster, UserPrefs userPrefs, String commandTextExecuted) {
         this.roster = roster;
         this.userPrefs = userPrefs;
-        this.prevStateModifyingCommand = prevStateModifyingCommand;
+        this.commandTextExecuted = commandTextExecuted;
         this.filteredStudents = new FilteredList<>(roster.getStudentList());
         viewedStudent = new FilteredList<>(roster.getStudentList());
     }
 
     @Override
-    public void setPrevStateModifyingCommand(String commandText) {
-        this.prevStateModifyingCommand = commandText;
+    public void setCommandExecuted(Command command) {
+        this.commandExecuted = command;
     }
 
     @Override
-    public String getPrevStateModifyingCommand() {
-        return this.prevStateModifyingCommand;
+    public Command getCommandExecuted() {
+        return this.commandExecuted;
+    }
+
+    @Override
+    public void setCommandTextExecuted(String commandText) {
+        this.commandTextExecuted = commandText;
+    }
+
+    @Override
+    public String getCommandTextExecuted() {
+        return this.commandTextExecuted;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -159,7 +171,7 @@ public class ModelManager implements Model {
 
     @Override
     public Model copy() {
-        return new ModelManager(this.roster.copy(), this.userPrefs, prevStateModifyingCommand);
+        return new ModelManager(this.roster.copy(), this.userPrefs, commandTextExecuted);
     }
 
     @Override
@@ -193,3 +205,4 @@ public class ModelManager implements Model {
         viewedStudent.setPredicate(predicate);
     }
 }
+
