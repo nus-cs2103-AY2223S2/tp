@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
- * Adds a patient to the address book.
+ * Adds a patient to MedInfo.
  */
 public class AddCommand extends Command {
 
