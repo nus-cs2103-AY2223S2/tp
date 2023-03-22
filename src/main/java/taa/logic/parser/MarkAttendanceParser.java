@@ -42,7 +42,7 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
         }
 
         if (week == -1) {
-            throw new ParseException(Attendance.ERROR_MSG);
+            throw new ParseException(Attendance.WEEK_ERROR_MSG);
         }
 
         return new MarkAttendanceCommand(index, Index.fromOneBased(week));

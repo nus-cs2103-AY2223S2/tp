@@ -1,16 +1,22 @@
 package taa.model.student;
 
+import java.util.Arrays;
+
 /**
- * Attendance class
+ * Attendance class, manages attendance and class participation points
  */
 public class Attendance {
-    public static final String ERROR_MSG = "Week number out of range, should be between 1-12";
+    public static final String WEEK_ERROR_MSG = "Week number out of range, should be integer between 1-12";
+    public static final String POINTS_ERROR_MSG = "Participation points should be integer between 0-700";
     private final boolean[] attendanceList = new boolean[12];
+
+    private final int[] participationPoint = new int[12];
 
     /**
      * constructor for attendance class
      */
     public Attendance() {
+        Arrays.fill(participationPoint, -1);
     }
 
     /**
@@ -19,6 +25,9 @@ public class Attendance {
      * @return true if week is valid and otherwise
      */
     public static boolean isValidWeek(String week) {
+        if (!week.matches("[0-9]+")) {
+            return false;
+        }
         int intWeek = Integer.parseInt(week);
         if (intWeek <= 0 || intWeek > 12) {
             System.out.println(week);
@@ -46,6 +55,7 @@ public class Attendance {
      */
     public void markAttendance(int week) {
         this.attendanceList[week] = true;
+        this.participationPoint[week] = 0;
     }
 
     /**
@@ -70,9 +80,53 @@ public class Attendance {
     /**
      * Function to unmark attendance
      *
-     * @param index index to unmark
+     * @param week index to unmark
      */
-    public void unmarkAttendance(int index) {
-        this.attendanceList[index] = false;
+    public void unmarkAttendance(int week) {
+        this.attendanceList[week] = false;
+        this.participationPoint[week] = -1;
+    }
+
+    /**
+     * Checks if points is a valid value
+     * @param points String version of points to be checked
+     * @return boolean if points is valid or not
+     */
+    public static boolean isValidParticipationPoints(String points) {
+        if (!points.matches("[0-9]+")) {
+            return false;
+        }
+        int pp = Integer.parseInt(points);
+        return pp > 0 && pp < 700;
+    }
+
+    /**
+     * Inserts participation points to the specified week.
+     * Called only after ensuring points and week is valid
+     * @param week week to add points
+     * @param points value of points to add
+     */
+    public void insertParticipationPoints(int week, int points) {
+        this.participationPoint[week] = points;
+    }
+
+    /**
+     * Calculate average points of student. Only consider weeks
+     * when participation points are inserted
+     * @return the average participation points of student
+     */
+    public float getAveragePP() {
+        int pt = 0;
+        int weeks = 0;
+        for (int i = 0; i < 12; i++) {
+            if (this.attendanceList[i] && this.participationPoint[i] > 0) {
+                pt += this.participationPoint[i];
+                weeks += 1;
+            }
+        }
+        if (weeks == 0) {
+            return 0;
+        }
+        return (float) pt / weeks;
     }
 }

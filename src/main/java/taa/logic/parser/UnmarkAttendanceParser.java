@@ -36,7 +36,7 @@ public class UnmarkAttendanceParser implements Parser<UnmarkAttendanceCommand> {
         }
 
         if (week == -1) {
-            throw new ParseException(Attendance.ERROR_MSG);
+            throw new ParseException(Attendance.WEEK_ERROR_MSG);
         }
 
         return new UnmarkAttendanceCommand(index, Index.fromOneBased(week));

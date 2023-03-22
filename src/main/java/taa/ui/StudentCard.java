@@ -51,7 +51,8 @@ public class StudentCard extends UiPart<Region> {
         Submission latestSubmission = student.getLatestSubmission();
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        attendance.setText(String.format("Attendance: %d/12", this.student.getNumWeeksPresent()));
+        attendance.setText(String.format("Attendance: %d/12, Participation points: %.2f",
+                this.student.getNumWeeksPresent(), this.student.getPP()));
         assignment.setText("Latest assignment: "
                 + (latestSubmission == null ? "None" : latestSubmission.describeSubmission()));
         groups.setText("Groups: None");
