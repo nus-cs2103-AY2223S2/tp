@@ -1,19 +1,12 @@
 package seedu.socket.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.socket.logic.commands.EditProjectCommand.EditProjectDescriptor;
-import seedu.socket.model.person.Address;
-import seedu.socket.model.person.Email;
-import seedu.socket.model.person.GitHubProfile;
-import seedu.socket.model.person.Name;
-import seedu.socket.model.person.Person;
-import seedu.socket.model.person.Phone;
-import seedu.socket.model.person.tag.Language;
-import seedu.socket.model.person.tag.Tag;
-import seedu.socket.model.project.*;
+import seedu.socket.model.project.Project;
+import seedu.socket.model.project.ProjectDeadline;
+import seedu.socket.model.project.ProjectMeeting;
+import seedu.socket.model.project.ProjectName;
+import seedu.socket.model.project.ProjectRepoHost;
+import seedu.socket.model.project.ProjectRepoName;
 
 /**
  * A utility class to help with building EditProjectDescriptor objects.
