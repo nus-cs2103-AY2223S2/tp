@@ -10,10 +10,13 @@ import java.io.PrintStream;
 import java.time.Duration;
 import java.util.TimerTask;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CronTest {
+    private final PrintStream standardOut = System.out;
+
     @Test
     public void singleton_test() {
         assertEquals(Cron.getInstance().hashCode(), Cron.getInstance().hashCode());
@@ -58,7 +61,6 @@ public class CronTest {
         cron.addTask(t, frequency);
         assertTimeoutPreemptively(Duration.ofSeconds(frequency - 5), () ->
                 assertEquals(p, outputStreamCaptor.toString().trim()));
-        System.setOut(System.out);
     }
 
     @Test
@@ -79,5 +81,10 @@ public class CronTest {
     @BeforeEach
     public void setUp() {
         stop();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
     }
 }
