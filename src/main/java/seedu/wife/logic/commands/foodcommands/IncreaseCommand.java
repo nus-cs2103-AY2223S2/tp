@@ -22,8 +22,8 @@ public class IncreaseCommand extends Command {
     public static final String COMMAND_WORD = "inc";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Increases the quantity of the food item at the given index. "
             + "If no specific quantity is mentioned, it increases by 1 by default\n"
-            + "Parameters: INDEX [quantity to increase by]...\n"
-            + "Example: " + COMMAND_WORD + " 1 [qty/100]";
+            + "Parameters: INDEX [q/quantity to increase by]...\n"
+            + "Example: " + COMMAND_WORD + " 1 q/100";
     public static final String MESSAGE_INCREASE_FOOD_SUCCESS = "Increased Food: %1$s";
 
     public final Index index;
