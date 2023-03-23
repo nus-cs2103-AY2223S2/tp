@@ -1,4 +1,5 @@
 @startuml
+!pragma layout smetana
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_DARK
@@ -13,7 +14,7 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
-Class StatusBarFooter
+Class UserProfilePanel
 Class CommandBox
 }
 
@@ -28,21 +29,21 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
+MainWindow *-down-> "1" UserProfilePanel
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
-MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
 
-MainWindow -left-|> UiPart
+MainWindow --|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
 PersonCard --|> UiPart
-StatusBarFooter --|> UiPart
+UserProfilePanel --|> UiPart
 HelpWindow --|> UiPart
 
 PersonCard ..> Model
@@ -52,7 +53,8 @@ MainWindow -right-> Logic
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+UserProfilePanel -[hidden]left- HelpWindow
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml
