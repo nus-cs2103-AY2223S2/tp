@@ -46,7 +46,7 @@ public class ParserUtil {
      */
     public static EmployeeId parseEmployeeId(String employeeId) throws ParseException {
         String trimmedEmployeeId = employeeId.trim();
-        if (!EmployeeId.isValidNumber(trimmedEmployeeId)) {
+        if (!EmployeeId.isValidEmployeeId(trimmedEmployeeId)) {
             throw new ParseException(MESSAGE_INVALID_EMPLOYEE_ID);
         }
         return new EmployeeId(trimmedEmployeeId);

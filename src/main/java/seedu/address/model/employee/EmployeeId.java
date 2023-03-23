@@ -35,17 +35,14 @@ public class EmployeeId {
      */
     public EmployeeId(String id) {
         requireNonNull(id);
-        checkArgument(isValidNumber(id));
+        checkArgument(isValidEmployeeId(id));
         this.value = String.valueOf(Integer.parseInt(id));
     }
 
 
-    /**
-     * Returns true if a given string is a valid number, and can possibly be an employee ID.
-     */
-    public static boolean isValidNumber(String test) {
+    /*public static boolean isValidNumber(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
+    }*/
 
 
     /**

@@ -181,10 +181,10 @@ Step 5. `storage#saveAddressBook()` is then called, and updates the storage to c
 ### Delete Feature
 
 #### Implementation
+
 This section explains the implementation of the `delete` feature. 
 The command takes in one parameter which is the employee ID, executing the command leads to the removal of the employee 
 with that specific employee ID
-
 Below is a sequence diagram and the explanation of `delete` command.
 
 ![DeleteCommand](images/DeleteCommand.png)
@@ -197,7 +197,8 @@ This creates a `DeleteCommand` object.
 
 Step 3. The `execute` method of `DeleteCommand` will be called, it returns a `CommandResult`object.
 
-Step 4. This finds the `employee` with an Employee ID of 1. If there is no employee with the Employee ID 1, a 
+
+Step 4. This finds the `employee` with an Employee ID of 1. If there is no employee with the Employee ID 1, a
 `CommandException` will be thrown and a message indicating invalid Employee ID will be returned. However,
 if there is an employee with the given employee ID, then using `model#deletePerson()`, the person will be deleted 
 from the database.
