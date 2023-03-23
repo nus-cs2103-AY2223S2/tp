@@ -154,9 +154,71 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add feature
+## Add Feature
 
-{%include_relative _devguide/implementation/AddFeature.md %}
+### Implementation Details
+
+The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`.
+
+Given below is a class diagram on the `Student` class and the classes related to its attributes: <br>
+
+![student_diagram](images/StudentClassDiagram.png)
+
+The `Student` object is composed of attributes:
+
+* `Name`: The name of the student.
+* `Phone`: The phone number of the student.
+* `Email`: The email address of the student.
+* `Address`: The address of the student.
+* `Education`: The education level of the student.
+* `Subject`: The subjects the tutor is teaching the student.
+* `Remark`: Remarks/notes the tutor has about the student.
+
+### Proposed Implementation
+The `add` command has the following fields:
+* Prefix `\n` followed by the name of the student.
+* Prefix `\p` followed by the phone number of the student.
+* Prefix `\e` followed by the student's email.
+* Prefix `\a` followed by the student's address.
+* Prefix `\edu` followed by the student's education level.
+* Prefix `\s` followed by the subject name.
+* Prefix `\r` followed by the remarks/notes on the student.
+
+Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.: <br>
+
+![add_sequence](images/AddSequenceDiagram.png)
+
+### Feature details
+1. The app will validate the parameters supplied by the user with pre-determined formats for each attribute.
+2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
+3. If the input passes the validation check, a new `Student` entry is created and stored in the `AddressBook`.
+
+### General Design Considerations
+
+The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. </br>
+
+Some additions made were the `Education`, `Subject` and `Remark` attributes. </br>
+1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
+2. `Subject` is implemented in a similar way to `Tags` in AB3 but has been modified to accomodate subject names that are more than one word long as in real life.
+3. Every attribute except`Name` has been made **OPTIONAL** to accomodate circumstances where some student's details are unknown at the time of entry.
+    * We utilised the [java.util.Optional<T>](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html "java.util.Optional<T>") class to encapsulate the optional logic of the attributes.
+
+When adding a student entry, these were the alternatives considered.
+* **Alternative 1 (current choice):** Only `Name` has to be specified to create a `Student` entry, making the other attributes `Optional<>`.
+    * Pros:
+        * Improves user convenience by allowing them to add a `Student` entry even with limited knowledge about their details.
+    * Cons:
+        * A lot of modification for empty/*null* inputs have to be accounted for when saving the data and testing.
+* **Alternative 2:** All parameters have to be filled in
+    * Pros:
+        * Easier to implement as there is lesser room for errors when dealing with empty/*null* inputs
+    * Cons:
+        * `add` becomes a lengthy command to execute as unnecessary additional time is needed to enter dummy values to meet the input requirements.
+        * Reduces user convenience as "useful" entries that can be made are limited to students whose details are all known.
+## Edit Feature
+
+### Implementation Details
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -261,35 +323,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* works as a private academic tutor, with 10 students
-* is not tech-savvy but has basic data entry skills to use programs like Excel to track his students
-* doesn’t know how to use the analytics functions of Excel and needs a simple interface to generate analytics
+* Teaching Assistants (TAs)/tutors who have a class of students to manage and are preferably are proficient typers.
 
 **Value proposition**: 
 
-* keep track of students, their progress, and any student-specific info (like their weak subject)
-* has simpler interface than Excel
-* handles errors such as wrong data inputs in a user-friendly manner. (guides users / gives suggestions)
+* TeachMeSenpai acts as an optimised app for tutors to manage their students' data, obtain insights on their students' data.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                    | I want to …​                                                                            | So that I can…​                                                |
-| -------- | ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `* * *`  | new user                  | open the app                                                                           | begin using the app                                           |
-| `* * *`  | new user                  | close the app                                                                          | leave the app                                                 |
-| `* * *`  | new user                  | add a student's name                                                                   | track a student's progress by their name                      |
-| `* * *`  | new user                  | include student's education level when adding the student (eg. P6)                     | keep track of a student's education level                     |
-| `* * *`  | new user                  | include student's phone number when adding the student (eg. 94206942)                  | keep track of a student's phone number                        |
-| `* * *`  | new user                  | include student's email when adding the student (eg. iloveanimegirls@gmail.com)        | keep track of a student's email                               |
-| `* * *`  | new user                  | include student's address when adding the student (eg. Block 69 S642069)               | keep track of a student's address and go to the place easily  |
-| `* * *`  | new user                  | include optional student-specific notes when adding the student (eg. Good in Japanese) | store additional student's descriptive information            |
-| `* * *`  | user with some experience | delete a student entry from my list (by index)                                         | remove all details related to a certain student               |
-| `* * *`  | new user                  | have my changes autosave                                                               | be sure that I won't lose my changes if I crash/close the app |
-| `* * *`  | new user                  | view my list of students                                                               | keep track of who I'm currently teaching                      |
-| `* * *`  | new user                  | View the address of a student                                                          | know where to go if I need to provide tuition at their house  |
-| `* * *`  | new user                  | have my data persist between use sessions                                              | continue my session where I left off                          |
+| Priority | As a …​ | I want to …​                                                                                                | So that I can…​                                                             |
+|----------|---------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `* * *`  | tutor   | open the app                                                                                                | begin using the app                                                         |
+| `* * *`  | tutor   | close the app                                                                                               | leave the app                                                               |
+| `* * *`  | tutor   | add a student's name                                                                                        | track a student's progress by their name                                    |
+| `* * *`  | tutor   | include student's education level when adding the student (eg. P6)                                          | keep track of a student's education level                                   |
+| `* * *`  | tutor   | include student's phone number when adding the student (eg. 94206942)                                       | keep track of a student's phone number                                      |
+| `* * *`  | tutor   | include student's email when adding the student (eg. iloveanimegirls@gmail.com)                             | keep track of a student's email                                             |
+| `* * *`  | tutor   | include student's address when adding the student (eg. Block 69 S642069)                                    | keep track of a student's address and go to the place easily                |
+| `* * *`  | tutor   | include the subjects I'm teaching a student to their entry (eg. Mathematics, English)                       | keep track of what subjects I'm teaching the student                        |
+| `* * *`  | tutor   | include optional student-specific notes when adding the student (eg. Good in Japanese)                      | store information for a particular student such as notes and remarks        |
+| `* * *`  | tutor   | delete a student entry from my list (by index)                                                              | remove all details related to a certain student                             |
+| `* * *`  | tutor   | have my changes saved automatically                                                                         | be sure that I won't lose my changes if I crash/close the app               |
+| `* * *`  | tutor   | view my list of students                                                                                    | keep track of who I'm currently teaching                                    |
+| `* * *`  | tutor   | View the address of a student                                                                               | know where to go if I need to provide tuition at their house                |
+| `* * *`  | tutor   | have my data persist between use sessions                                                                   | continue my session where I left off                                        |
+| `* * *`  | tutor   | find my students by searching their names                                                                   | quickly view that student's details                                         |
+| `* *`    | tutor   | filter my students by education level (eg. all P6 students)                                                 | view my students of the same education level                                |
+| `* * *`  | tutor   | edit a student's name                                                                                       | correct a student's name                                                    |
+| `* * *`  | tutor   | edit the subjects I'm teaching a particular student                                                         | update or correct a student's records                                       |
+| `* * *`  | tutor   | edit a student's education level                                                                            | update or correct a student's records                                       |
+| `* *`    | tutor   | filter my students by subjects                                                                              | view all the student's I'm teaching a particular subject to                 |
+| `* *`    | tutor   | filter my students by address (eg. Ang Mo Kio)                                                              | view all the students who live in a particular area                         |
+| `* *`    | tutor   | filter my students by email (eg. @gmail)                                                                    | view all the students with similar emails                                   |
+| `* *`    | tutor   | sort my students by their names                                                                             | view my students in a systematic manner                                     |
+| `* *`    | tutor   | sort my students by their education level                                                                   | view my students according to their education level                         | 
+| `* * *`  | new user | receieve an appropriate and user-friendly error message when I enter the wrong inputs/parameters for a command | find out the correct input/parameter format and use the feature as intended |
+| `* * *`  | new user | be able to ask for help                                                                                     | learn how to use the app                                                    |
+
+
 
 ### Use cases
 
