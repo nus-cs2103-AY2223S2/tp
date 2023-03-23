@@ -2,6 +2,8 @@ package arb.model.project;
 
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_PRICE_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_PRICE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
@@ -23,7 +25,8 @@ public class ProjectTest {
         Project defaultCopy = new ProjectBuilder().build();
 
         Project sky = new ProjectBuilder().withTitle(VALID_TITLE_SKY_PAINTING)
-                .withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
+                .withDeadline(VALID_DEADLINE_SKY_PAINTING)
+                .withPrice(VALID_PRICE_SKY_PAINTING).build();
 
         assertFalse(defaultProject.equals(null)); // null
         assertFalse(defaultProject.equals(3)); // different type
@@ -34,6 +37,8 @@ public class ProjectTest {
         assertFalse(sky.equals(editedSky)); // changed title
         editedSky = new ProjectBuilder(sky).withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
         assertFalse(sky.equals(editedSky)); // changed deadline
+        editedSky = new ProjectBuilder(sky).withPrice(VALID_PRICE_OIL_PAINTING).build();
+        assertFalse(sky.equals(editedSky)); // changed price
         editedSky = new ProjectBuilder(sky).withStatus(true).build();
         assertFalse(sky.equals(editedSky)); // changed status
         editedSky = new ProjectBuilder(editedSky).withStatus(false).build();
@@ -48,7 +53,8 @@ public class ProjectTest {
         Project defaultCopyWithoutDeadline = new ProjectBuilder().withDeadline(null).build();
 
         Project skyWithoutDeadline = new ProjectBuilder()
-                .withTitle(VALID_TITLE_SKY_PAINTING).withDeadline(null).build();
+                .withTitle(VALID_TITLE_SKY_PAINTING).withPrice(VALID_PRICE_SKY_PAINTING)
+                .withDeadline(null).build();
 
         assertFalse(defaultProjectWithoutDeadline.equals(null)); // null
         assertFalse(defaultProjectWithoutDeadline.equals(3)); // different type
@@ -56,9 +62,20 @@ public class ProjectTest {
 
         assertFalse(defaultProjectWithoutDeadline.equals(defaultProject)); // different deadlines
 
+        Project defaultProjectWithoutPrice = new ProjectBuilder().withPrice(null).build();
+
+        Project skyWithoutPrice = new ProjectBuilder()
+                .withTitle(VALID_TITLE_SKY_PAINTING).withPrice(null).build();
+
+        assertFalse(defaultProjectWithoutPrice.equals(null)); // null
+        assertFalse(defaultProjectWithoutPrice.equals(3)); // different type
+        assertFalse(defaultProjectWithoutPrice.equals(skyWithoutPrice)); //different project
+
+        assertFalse(defaultProjectWithoutPrice.equals(defaultProject)); // different prices
+
         Project editedSkyWithDeadline = new ProjectBuilder(skyWithoutDeadline)
                 .withDeadline(VALID_DEADLINE_SKY_PAINTING).withStatus(true).build();
-        editedSky = new ProjectBuilder(sky).withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
+        editedSky = new ProjectBuilder(sky).build();
 
         assertFalse(editedSkyWithDeadline.equals(editedSky));
         editedSkyWithDeadline = new ProjectBuilder(editedSkyWithDeadline)
@@ -77,8 +94,8 @@ public class ProjectTest {
         assertFalse(SKY_PAINTING.isSameProject(null));
 
         // same name, all other attributes different -> returns true
-        Project editedSkyPainting = new ProjectBuilder(SKY_PAINTING).withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
-        editedSkyPainting.markAsDone();
+        Project editedSkyPainting = new ProjectBuilder(SKY_PAINTING).withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withPrice(VALID_PRICE_OIL_PAINTING).withStatus(true).build();
         assertTrue(SKY_PAINTING.isSameProject(editedSkyPainting));
 
         // different name, all other attributes same -> returns false

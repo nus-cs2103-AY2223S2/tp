@@ -59,7 +59,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Project project = new Project(title, deadline, price, tagList);
-        
+
         return new AddProjectCommand(project);
     }
 

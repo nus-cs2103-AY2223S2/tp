@@ -28,7 +28,7 @@ class JsonAdaptedProjectTest {
 
     private static final String VALID_TITLE = PORTRAIT_PROJECT.getTitle().toString();
     private static final String VALID_DEADLINE = PORTRAIT_PROJECT.getDeadline().toString();
-    private static final String VALID_PRICE = PORTRAIT_PROJECT.getPrice().toString();
+    private static final String VALID_PRICE = PORTRAIT_PROJECT.getPrice().getPrice();
     private static final String VALID_STATUS = Boolean.toString(PORTRAIT_PROJECT.getStatus().getStatus());
     private static final List<JsonAdaptedTag> VALID_TAGS = PORTRAIT_PROJECT.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -50,7 +50,8 @@ class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
-        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_DEADLINE, VALID_STATUS, VALID_PRICE, VALID_TAGS);
+        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_DEADLINE, VALID_STATUS,
+                VALID_PRICE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
@@ -79,15 +80,9 @@ class JsonAdaptedProjectTest {
 
     @Test
     public void toModelType_invalidPrice_throwsIllegalValueException() throws Exception {
-        JsonAdaptedProject project = new JsonAdaptedProject(VALID_TITLE, VALID_DEADLINE, VALID_STATUS, INVALID_PRICE, VALID_TAGS);
+        JsonAdaptedProject project = new JsonAdaptedProject(VALID_TITLE, VALID_DEADLINE, VALID_STATUS,
+                INVALID_PRICE, VALID_TAGS);
         String expectedMessage = Price.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullPrice_throwsIllegalValueException() throws Exception {
-        JsonAdaptedProject project = new JsonAdaptedProject(VALID_TITLE, VALID_DEADLINE, VALID_STATUS, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Price.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 

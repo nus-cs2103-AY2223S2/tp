@@ -85,7 +85,8 @@ public class ProjectBuilder {
         return this;
     }
 
-    /** Sets the {@code Price} of the {@code Project} being built.
+    /**
+     * Sets the {@code Price} of the {@code Project} being built.
      * @param price Price to set.
      * @return The ProjectBuilder object.
      */

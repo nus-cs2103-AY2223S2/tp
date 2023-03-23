@@ -62,7 +62,7 @@ public class EditProjectDescriptorBuilder {
         return this;
     }
 
-    /**  
+    /**
      * Sets the {@code Price} of the {@code EditProjectDescriptor} that we are building.
      */
     public EditProjectDescriptorBuilder withPrice(String price) {

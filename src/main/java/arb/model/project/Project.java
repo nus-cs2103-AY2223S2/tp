@@ -69,6 +69,10 @@ public class Project {
      * Returns true if this project has is overdue
      */
     public boolean isOverdue() {
+        if (!isDeadlinePresent()) {
+            return false;
+        }
+
         LocalDate currentDate = LocalDate.now();
         logger.info(currentDate.toString());
         Deadline currentDateAsDeadline = new Deadline(currentDate.toString());

@@ -3,7 +3,8 @@ package arb.logic.commands.project;
 import static arb.logic.commands.CommandTestUtil.DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
-import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_PRICE_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_TAG_POTTERY;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -43,9 +44,14 @@ public class EditProjectDescriptorTest {
                 .withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
         assertFalse(DESC_OIL_PAINTING.equals(editedOilPainting));
 
+        // different price -> returns false
+        editedOilPainting = new EditProjectDescriptorBuilder(DESC_OIL_PAINTING)
+                .withPrice(VALID_PRICE_SKY_PAINTING).build();
+        assertFalse(DESC_OIL_PAINTING.equals(editedOilPainting));
+
         // different tags -> returns false
         editedOilPainting = new EditProjectDescriptorBuilder(DESC_OIL_PAINTING)
-                .withTags(VALID_TAG_PAINTING).build();
+                .withTags(VALID_TAG_POTTERY).build();
         assertFalse(DESC_OIL_PAINTING.equals(editedOilPainting));
     }
 }

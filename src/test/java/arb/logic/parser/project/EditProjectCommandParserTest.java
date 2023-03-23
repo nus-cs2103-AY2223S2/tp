@@ -6,7 +6,12 @@ import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_ALIAS_SKY_PAINTIN
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DEADLINE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static arb.logic.commands.CommandTestUtil.INVALID_PRICE_DESC;
 import static arb.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static arb.logic.commands.CommandTestUtil.PRICE_DESC_ALIAS_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.PRICE_DESC_ALIAS_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.PRICE_DESC_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.PRICE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_ALIAS_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_ALIAS_POTTERY;
 import static arb.logic.commands.CommandTestUtil.TAG_DESC_PAINTING;
@@ -14,6 +19,8 @@ import static arb.logic.commands.CommandTestUtil.TITLE_DESC_ALIAS_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.TITLE_DESC_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_SKY_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_PRICE_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_PRICE_SKY_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_POTTERY;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_SKY_PAINTING;
@@ -30,6 +37,7 @@ import arb.commons.core.index.Index;
 import arb.logic.commands.project.EditProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Title;
 import arb.testutil.EditProjectDescriptorBuilder;
 
@@ -75,6 +83,8 @@ public class EditProjectCommandParserTest {
                 Title.MESSAGE_CONSTRAINTS); // invalid title
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC,
                 Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_PRICE_DESC,
+                Price.MESSAGE_CONSTRAINTS); // invalid price
 
         // valid deadline followed by invalid deadline. The test case for invalid deadline
         // followed by valid deadline
@@ -83,7 +93,7 @@ public class EditProjectCommandParserTest {
                 + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + VALID_DEADLINE_SKY_PAINTING,
+        assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_DEADLINE_DESC,
                 Title.MESSAGE_CONSTRAINTS);
     }
 
@@ -93,11 +103,12 @@ public class EditProjectCommandParserTest {
 
         // using main prefixes
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
-                + TITLE_DESC_SKY_PAINTING + TAG_DESC_PAINTING;
+                + TITLE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING + TAG_DESC_PAINTING;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_SKY_PAINTING)
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withPrice(VALID_PRICE_SKY_PAINTING)
                 .withTags(VALID_TAG_PAINTING)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
@@ -106,13 +117,15 @@ public class EditProjectCommandParserTest {
 
         // using alias prefixes
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING
-                + TITLE_DESC_ALIAS_SKY_PAINTING + TAG_DESC_ALIAS_PAINTING;
+                + TITLE_DESC_ALIAS_SKY_PAINTING + PRICE_DESC_ALIAS_SKY_PAINTING
+                + TAG_DESC_ALIAS_PAINTING;
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // using a mix of main and alias prefixes
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING
-                + TITLE_DESC_SKY_PAINTING + TAG_DESC_ALIAS_PAINTING;
+                + TITLE_DESC_SKY_PAINTING + PRICE_DESC_SKY_PAINTING
+                + TAG_DESC_ALIAS_PAINTING;
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -122,17 +135,20 @@ public class EditProjectCommandParserTest {
         Index targetIndex = INDEX_FIRST;
 
         // using main prefixes
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING;
+        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_OIL_PAINTING
+                + PRICE_DESC_OIL_PAINTING;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withPrice(VALID_PRICE_OIL_PAINTING)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // using alias prefixes
-        userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING;
+        userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_OIL_PAINTING
+                + PRICE_DESC_ALIAS_OIL_PAINTING;
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -161,14 +177,25 @@ public class EditProjectCommandParserTest {
         userInput = targetIndex.getOneBased() + DEADLINE_DESC_ALIAS_SKY_PAINTING;
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // price, using main prefix
+        userInput = targetIndex.getOneBased() + PRICE_DESC_SKY_PAINTING;
+        descriptor = new EditProjectDescriptorBuilder().withPrice(VALID_PRICE_SKY_PAINTING).build();
+        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // price, using alias prefix
+        userInput = targetIndex.getOneBased() + PRICE_DESC_ALIAS_SKY_PAINTING;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags, using main prefix
         userInput = targetIndex.getOneBased() + TAG_DESC_PAINTING;
         descriptor = new EditProjectDescriptorBuilder().withTags(VALID_TAG_PAINTING).build();
         expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags, using alias prefix
         userInput = targetIndex.getOneBased() + TAG_DESC_ALIAS_PAINTING;
-        expectedCommand = new EditProjectCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -176,10 +203,13 @@ public class EditProjectCommandParserTest {
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC_SKY_PAINTING
                 + DEADLINE_DESC_ALIAS_SKY_PAINTING + DEADLINE_DESC_ALIAS_OIL_PAINTING
-                + DEADLINE_DESC_OIL_PAINTING + TAG_DESC_PAINTING + TAG_DESC_ALIAS_POTTERY;
+                + DEADLINE_DESC_OIL_PAINTING + PRICE_DESC_SKY_PAINTING + PRICE_DESC_ALIAS_OIL_PAINTING
+                + PRICE_DESC_ALIAS_SKY_PAINTING + PRICE_DESC_OIL_PAINTING
+                + TAG_DESC_PAINTING + TAG_DESC_ALIAS_POTTERY;
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withPrice(VALID_PRICE_OIL_PAINTING)
                 .withTags(VALID_TAG_PAINTING, VALID_TAG_POTTERY)
                 .build();
         EditProjectCommand expectedCommand = new EditProjectCommand(targetIndex, descriptor);

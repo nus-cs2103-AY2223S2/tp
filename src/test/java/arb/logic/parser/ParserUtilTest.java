@@ -19,6 +19,7 @@ import arb.model.client.Email;
 import arb.model.client.Name;
 import arb.model.client.Phone;
 import arb.model.project.Deadline;
+import arb.model.project.Price;
 import arb.model.project.Title;
 import arb.model.tag.Tag;
 
@@ -30,6 +31,7 @@ public class ParserUtilTest {
 
     private static final String INVALID_TITLE = "Sk! P@inting";
     private static final String INVALID_DEADLINE = "ocean";
+    private static final String INVALID_PRICE = "and";
     private static final String INVALID_SORTING_OPTION = "sky";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -40,6 +42,7 @@ public class ParserUtilTest {
 
     private static final String VALID_TITLE = "Sky Painting";
     private static final String VALID_DEADLINE = "3pm today";
+    private static final String VALID_PRICE = "3";
     private static final String VALID_SORTING_OPTION = "deadline";
 
     private static final String WHITESPACE = " \t\r\n";
@@ -232,6 +235,24 @@ public class ParserUtilTest {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
+    }
+
+    @Test
+    public void parsePrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithoutWhitespace_returnsPrice() throws Exception {
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(VALID_PRICE));
+    }
+
+    @Test
+    public void parsePrice_validValueWithWhitespace_returnsTrimmedPrice() throws Exception {
+        String priceWithWhitespace = WHITESPACE + VALID_PRICE + WHITESPACE;
+        Price expectedPrice = new Price(VALID_PRICE);
+        assertEquals(expectedPrice, ParserUtil.parsePrice(priceWithWhitespace));
     }
 
     @Test
