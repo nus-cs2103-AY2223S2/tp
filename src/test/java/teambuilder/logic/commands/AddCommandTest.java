@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import teambuilder.commons.core.GuiSettings;
-import teambuilder.commons.core.Momento;
+import teambuilder.commons.core.Memento;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.ReadOnlyTeamBuilder;
@@ -81,16 +81,16 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public Momento save() {
-            return new Momento() {
+        public Memento save() {
+            return new Memento() {
                 @Override
                 public boolean restore() {
                     return true;
                 }
 
                 @Override
-                public void setDescription(String desc) {
-                    return;
+                public Memento getUpdatedMemento() {
+                    return this;
                 }
             };
         }

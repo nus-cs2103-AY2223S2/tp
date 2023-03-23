@@ -1,0 +1,39 @@
+@startuml MementoDesignPatternDiagram
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam classAttributeIconSize 0
+
+class "<<interface>>\nMemento" as Memento
+show Memento method
+Memento : +restore()
+
+class "Caretaker" as Caretaker
+show Caretaker members
+Caretaker : -undoHistory: Memento[]
+Caretaker : +undo()
+note bottom : calls Memento#restore()
+Caretaker -left-o Memento
+
+class "<<interface>>\nOriginator" as Originator
+show Originator method
+Originator : +save()
+
+Memento <.left.  Originator
+
+class "ConcreteOriginator" as CO
+show CO method
+CO : +save()
+CO : +setState()
+
+CO -up.|> Originator
+
+Class "ConcreteMemento" as CM
+show CM members
+CM : -state
+CM : -originator
+CM : +restore()
+note bottom : calls Originator#setState(state)
+
+CM -up.|> Memento
+CO <-> CM

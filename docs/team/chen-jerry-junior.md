@@ -9,7 +9,7 @@ Team Builder is a desktop personal contacts book application used by the user to
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be added
+* **New Feature**: Major Field
     * To be added
 
 * **New Feature**: To be added
@@ -20,7 +20,7 @@ Given below are my contributions to the project.
     * To be added
 
 * **Enhancements to existing features**:
-    * To be added
+    * Filter
 
 * **Documentation**:
     * User Guide:

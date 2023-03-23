@@ -20,31 +20,21 @@ import teambuilder.model.ReadOnlyTeamBuilder;
 import teambuilder.model.ReadOnlyUserPrefs;
 import teambuilder.model.person.Person;
 
-public class UndoCommandTest {
+public class RedoCommandIntegrationTest {
     @Test
     public void constructor_noNull() {
-        UndoCommand undoer = new UndoCommand();
+        RedoCommand undoer = new RedoCommand();
         assertTrue(undoer != null);
     }
 
     @Test
-    public void execute_undoSuccessFul_successMessage() throws CommandException {
+    public void execute_redoUnsuccessful_failureMessage() throws CommandException {
         Model stub = new ModelStub();
         HistoryUtil history = HistoryUtil.getInstance();
-        history.storePast(new FilledMomento(), FilledMomento.DESC);
-        CommandResult commandResult = new UndoCommand().execute(stub);
-        assertEquals(UndoCommand.MESSAGE_SUCCESS + FilledMomento.DESC, commandResult.getFeedbackToUser());
-    }
-
-    @Test
-    public void execute_undoUnsuccessful_failureMessage() throws CommandException {
-        Model stub = new ModelStub();
-        HistoryUtil history = HistoryUtil.getInstance();
-        for (int i = 0; i < 11; i++) {
-            history.undo();
-        };
-        CommandResult commandResult = new UndoCommand().execute(stub);
-        assertEquals(UndoCommand.MESSAGE_FAILURE, commandResult.getFeedbackToUser());
+        while (history.redo().isPresent())
+            ;
+        CommandResult commandResult = new RedoCommand().execute(stub);
+        assertEquals(RedoCommand.MESSAGE_FAILURE, commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -52,16 +42,28 @@ public class UndoCommandTest {
         Model stub = new EmptyModelStub();
         HistoryUtil history = HistoryUtil.getInstance();
         history.storePast(stub.save(), EmptyMomentoStub.DESC);
+        history.undo();
 
-        CommandResult commandResult = new UndoCommand().execute(stub);
-        assertEquals(UndoCommand.MESSAGE_FAILURE, commandResult.getFeedbackToUser());
+        CommandResult commandResult = new RedoCommand().execute(stub);
+        assertEquals(RedoCommand.MESSAGE_FAILURE, commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_restoreSuccessFul_successMessage() throws CommandException {
+        Model stub = new ModelStub();
+        HistoryUtil history = HistoryUtil.getInstance();
+        history.storePast(new FilledMomento(), FilledMomento.DESC);
+        history.undo();
+
+        CommandResult commandResult = new RedoCommand().execute(stub);
+        assertEquals(RedoCommand.MESSAGE_SUCCESS + FilledMomento.DESC, commandResult.getFeedbackToUser());
     }
 
     @Test
     public void equals() {
-        UndoCommand one = new UndoCommand();
-        UndoCommand ptrOne = one;
-        UndoCommand two = new UndoCommand();
+        RedoCommand one = new RedoCommand();
+        RedoCommand ptrOne = one;
+        RedoCommand two = new RedoCommand();
         Object obj = new Object();
         String str = "Hello!";
 
@@ -94,17 +96,7 @@ public class UndoCommandTest {
 
         @Override
         public Memento save() {
-            return new Memento() {
-                @Override
-                public boolean restore() {
-                    return true;
-                }
-
-                @Override
-                public Memento getUpdatedMemento() {
-                    return this;
-                }
-            };
+            return new FilledMomento();
         }
 
         @Override
@@ -206,6 +198,7 @@ public class UndoCommandTest {
     }
 
     private class EmptyModelStub extends ModelStub {
+
         @Override
         public Memento save() {
             return new EmptyMomentoStub();

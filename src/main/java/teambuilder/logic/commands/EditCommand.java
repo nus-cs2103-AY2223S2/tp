@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import teambuilder.commons.core.Memento;
 import teambuilder.commons.core.Messages;
-import teambuilder.commons.core.Momento;
 import teambuilder.commons.core.index.Index;
 import teambuilder.commons.util.CollectionUtil;
 import teambuilder.commons.util.HistoryUtil;
@@ -90,9 +90,8 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        Momento old = model.save();
-        old.setDescription(COMMAND_WORD + " " + editedPerson);
-        HistoryUtil.getInstance().store(old);
+        Memento old = model.save();
+        HistoryUtil.getInstance().storePast(old, COMMAND_WORD + " " + editedPerson);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -114,8 +113,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Tag> updatedTeams = editPersonDescriptor.getTeams().orElse(personToEdit.getTeams());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMajor,
-                updatedTags, updatedTeams);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMajor, updatedTags,
+                updatedTeams);
     }
 
     @Override
@@ -168,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, major, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, major, tags, teams);
         }
 
         public void setName(Name name) {
@@ -219,6 +218,14 @@ public class EditCommand extends Command {
         }
 
         /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException} if modification is
+         * attempted. Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
          * Sets {@code teams} to this object's {@code teams}. A defensive copy of {@code teams} is used internally.
          */
         public void setTeams(Set<Tag> teams) {
@@ -231,14 +238,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTeams() {
             return (teams != null) ? Optional.of(Collections.unmodifiableSet(teams)) : Optional.empty();
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException} if modification is
-         * attempted. Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         @Override
@@ -262,6 +261,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getMajor().equals(e.getMajor())
+                    && getTeams().equals(e.getTeams())
                     && getTags().equals(e.getTags());
             // @formatter:on
         }
