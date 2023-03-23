@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "t:TimetableCommand" as TimetableCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(timetable)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(timetable)
+activate AddressBookParser
+
+create TimetableCommand
+AddressBookParser -> TimetableCommand
+activate TimetableCommand
+
+TimetableCommand --> AddressBookParser
+deactivate TimetableCommand
+
+AddressBookParser --> LogicManager : t
+deactivate AddressBookParser
+
+LogicManager -> TimetableCommand : execute()
+activate TimetableCommand
+
+TimetableCommand -> Model : updateFocusDate()
+TimetableCommand -> Model : updateSortedDeliveryJobList()
+TimetableCommand -> Model : updateSortedDeliveryJobListByDate()
+TimetableCommand -> Model : updateWeekDeliveryJobList()
+activate Model
+
+Model --> TimetableCommand
+deactivate Model
+
+TimetableCommand --> LogicManager : result
+deactivate TimetableCommand
+TimetableCommand -[hidden]-> LogicManager : result
+destroy TimetableCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -226,27 +227,67 @@ public class TimetableWindow extends UiPart<Stage> implements Initializable {
 
     }
     private void addJobSlotsToPanel(StackPane panelPlaceholder, DeliveryList jobListInDay) {
+        ListView slotList = new ListView();
         if (jobListInDay != null) {
             for (int i = 0; i < jobListInDay.size(); i++) {
-                ObservableList<DeliveryJob> jobListInSlot = FXCollections.observableList(jobListInDay.get(i));
-                StackPane deliveryJobListPanelPlaceholder = new StackPane();
 
-                DayJobListPanel deliveryJobListPanel = new DayJobListPanel(jobListInSlot);
+                addJobListToDaySlot(slotList, jobListInDay.get(i), i);
+
+                /*if (jobListInDay.get(i).size() > 0) {
+                    ObservableList<DeliveryJob> jobListInSlot = FXCollections.observableList(jobListInDay.get(i));
+                    StackPane deliveryJobListPanelPlaceholder = new StackPane();
+
+                    DayJobListPanel deliveryJobListPanel = new DayJobListPanel(jobListInSlot);
 
                 /*Text slotNo = new Text();
                 slotNo.setText(String.format("Slot %d", i + 1));*/
-                TitledPane slotPane = new TitledPane();
-                slotPane.setText(String.format("Slot %d", i + 1));
-                ListView jobDayList = new ListView();
-                AnchorPane slotPaneContainer = new AnchorPane();
-                slotPaneContainer.getChildren().add(deliveryJobListPanel.getRoot());
-                slotPane.setContent(slotPaneContainer);
+                    /*TitledPane slotPane = new TitledPane();
+                    slotPane.setText(String.format("Slot %d", i + 1));
+                    //ListView jobDayList = new ListView();
+                    AnchorPane slotPaneContainer = new AnchorPane();
+                    slotPaneContainer.getChildren().add(deliveryJobListPanel.getRoot());
+                    slotPane.setContent(slotPaneContainer);
 
-                deliveryJobListPanelPlaceholder.getChildren().add(slotPane);
-                panelPlaceholder.getChildren().add(deliveryJobListPanelPlaceholder);
+                    slotList.getItems().add(slotPane); */
+
+                    //deliveryJobListPanelPlaceholder.getChildren().add(slotPane);
+                    //panelPlaceholder.getChildren().add(slotList);
+                //}
             }
 
         }
+        //slotList.setMaxHeight(Control.USE_PREF_SIZE);
+        slotList.setMinWidth(102);
+        slotList.setMinHeight(305);
+        //slotList.getStylesheets().add("ui/style_listview");
+        panelPlaceholder.getChildren().add(slotList);
+    }
+
+    private void addJobListToDaySlot(ListView slotList,
+                                     ArrayList<DeliveryJob> jobListInDay, int slotNo) {
+        //ListView slotList = new ListView();
+        if (jobListInDay.size() > 0) {
+            ObservableList<DeliveryJob> jobListInSlot = FXCollections.observableList(jobListInDay);
+            StackPane deliveryJobListPanelPlaceholder = new StackPane();
+
+            DayJobListPanel deliveryJobListPanel = new DayJobListPanel(jobListInSlot);
+
+            TitledPane slotPane = new TitledPane();
+            slotPane.setText(String.format("Slot %d", slotNo + 1));
+            //ListView jobDayList = new ListView();
+            AnchorPane slotPaneContainer = new AnchorPane();
+            slotPaneContainer.getChildren().add(deliveryJobListPanel.getRoot());
+            slotPane.setContent(slotPaneContainer);
+
+            slotList.getItems().add(slotPane);
+
+            //deliveryJobListPanelPlaceholder.getChildren().add(slotPane);
+            //panelPlaceholder.getChildren().add(slotList);
+
+        }
+        slotList.setMinWidth(102);
+        slotList.setMinHeight(305);
+        //return slotPane;
     }
 
     /*private void addDayTextToTimetableStackPane() {
