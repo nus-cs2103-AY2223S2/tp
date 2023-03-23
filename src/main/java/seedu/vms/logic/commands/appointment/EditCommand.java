@@ -8,9 +8,8 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.Messages;
@@ -19,12 +18,14 @@ import seedu.vms.commons.util.CollectionUtil;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.vaccination.Requirement;
+import seedu.vms.model.vaccination.VaxChecker;
 import seedu.vms.model.vaccination.VaxType;
 
 /**
@@ -103,39 +104,39 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_PAST_APPOINTMENT);
         }
 
-        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
-        HashSet<GroupName> history = new HashSet<>();
-        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
+        // Checks for no existing next appointment
+        for (Map.Entry<Integer, IdData<Appointment>> entry : model.getAppointmentManager().getMapView().entrySet()) {
             Appointment appointment = entry.getValue().getValue();
-            if (appointment.getPatient().equals(editedAppointment.getPatient())) {
-
-                // Checks for no existing next appointment
-                if (appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
-                    throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
-                }
-
-                // Adds vaccine to patient history
-                if (entry.getKey() != index.getZeroBased()) {
-                    history.addAll(vaccinationList.get(appointment.getVaccination().getName()).getGroups());
-                }
+            if (appointment.getPatient().equals(editedAppointment.getPatient())
+                    && appointment.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+                throw new CommandException(MESSAGE_EXISTING_APPOINTMENT);
             }
         }
 
-        // Checks if the given patient has taken the vaccine or the necessary vaccine
-        for (Requirement requirement: vaccinationList.get(editedAppointment.getVaccination().getName())
-                .getHistoryReqs()) {
-            if (!requirement.check(history)) {
-                switch (requirement.getReqType()) {
-                case ALL:
-                    // Fallthrough
-                case ANY:
-                    throw new CommandException(MESSAGE_MISSING_VAX_REQ);
-                case NONE:
-                    throw new CommandException(MESSAGE_EXIST_VAX_REQ);
-                default:
-                    // Should not reach here
-                }
-            }
+        // Checks if the given patient can take the vaccination
+        Patient patient = patientList.get(editedAppointment.getPatient().getZeroBased()).getValue();
+        VaxType toTake = vaccinationList.get(editedAppointment.getVaccination().getName());
+
+        List<VaxType> patientHistory = patient.getVaccine()
+                .stream()
+                .map(vaxName -> vaccinationList.get(vaxName.getName()))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        Age patientAge;
+        try {
+            patientAge = new Age(LocalDateTime.now().getYear() - patient.getDob().value.getYear());
+        } catch (IllegalArgumentException illArgEx) {
+            // if for some reason the user decide to turn back time on their system
+            throw new CommandException("Patient contains an invalid DOB");
+        }
+
+        HashSet<GroupName> allergies = new HashSet<>(patient.getAllergy());
+
+        boolean isTakable = VaxChecker.check(toTake, patientAge, allergies, patientHistory);
+
+        if (!isTakable) {
+            throw new CommandException("Patient cannot take the vaccination");
         }
 
         model.setAppointment(index.getZeroBased(), editedAppointment);
