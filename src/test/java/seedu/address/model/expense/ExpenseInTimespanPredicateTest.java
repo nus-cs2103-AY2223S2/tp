@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalCategories.MISCCAT;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UserDefinedCategory;
