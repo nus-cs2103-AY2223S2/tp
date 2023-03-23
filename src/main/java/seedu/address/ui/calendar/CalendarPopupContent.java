@@ -17,7 +17,7 @@ public class CalendarPopupContent extends UiPart<Region> {
     @FXML
     private ScrollPane popupContent;
     @FXML
-    private Label clientLabel;
+    private Label studentLabel;
     @FXML
     private FlowPane datePane;
     @FXML
@@ -27,7 +27,7 @@ public class CalendarPopupContent extends UiPart<Region> {
     @FXML
     private Label dateLabel;
     @FXML
-    private Label timeLabel;
+    private Label durationLabel;
     @FXML
     private Label locationLabel;
     @FXML
@@ -38,9 +38,9 @@ public class CalendarPopupContent extends UiPart<Region> {
      */
     public CalendarPopupContent(CalendarEvent calendarEvent) {
         super(FXML);
-        clientLabel.setText(calendarEvent.getName().toString());
+        studentLabel.setText(calendarEvent.getName().toString());
         dateLabel.setText(calendarEvent.getDate());
-        timeLabel.setText(calendarEvent.getTimeFormat());
+        durationLabel.setText(calendarEvent.getDuration());
         locationLabel.setText(calendarEvent.getAddress().toString());
     }
 }

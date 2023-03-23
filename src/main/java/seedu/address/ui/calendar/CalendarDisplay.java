@@ -20,6 +20,8 @@ import seedu.address.ui.UiPart;
 
 /**
  * A UI component that displays information of a Calendar.
+ * Allows for toggling between months and displays a grid layout of the calendar.
+ * Uses a {@link CalendarLogic} object to manage the underlying logic.
  */
 public class CalendarDisplay extends UiPart<Region> {
     private static final String FXML = "CalendarDisplay.fxml";
@@ -40,7 +42,9 @@ public class CalendarDisplay extends UiPart<Region> {
     private NextButton nextButton;
 
     /**
-     * Creates a Calendar with the given list of CalendarEvents.
+     * Creates a CalendarDisplay object with the given {@link Logic} object and {@link Stage} object.
+     * @param logic the Logic object to be used.
+     * @param primaryStage the Stage object to be used.
      */
     public CalendarDisplay(Logic logic, Stage primaryStage) {
         super(FXML);
@@ -58,7 +62,6 @@ public class CalendarDisplay extends UiPart<Region> {
 
     /**
      * Handles the {@code KeyEvent} and toggles either the next or previous Calendar month.
-     *
      * @param event the KeyEvent to be handled.
      */
     @FXML
@@ -81,6 +84,10 @@ public class CalendarDisplay extends UiPart<Region> {
         calendarLogic.drawBody();
     }
 
+    /**
+     * Resets the margin for the given node.
+     * @param node the node to have its margin reset.
+     */
     public void resetMargin(Node node) {
         topCalendar.setMargin(node, MARGIN);
     }
@@ -104,6 +111,7 @@ public class CalendarDisplay extends UiPart<Region> {
         calendarGrid.getChildren().add(0, node);
     }
 
+
     private void drawHeader() {
         Text textHeader = calendarLogic.getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot());
@@ -111,7 +119,10 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
     /**
-     * Adds the node to be contained within the calendarGrid.
+     * Adds the node to be contained within the calendarGrid at the given column and row index.
+     * @param node the node to be added.
+     * @param columnIndex the column index for the node.
+     * @param rowIndex the row index for the node.
      */
     public void addToCalendarGrid(Node node, int columnIndex, int rowIndex) {
         calendarGrid.add(node, columnIndex, rowIndex);

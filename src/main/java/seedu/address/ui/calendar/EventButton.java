@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
 /**
- * Button that contains a CalendarEvent.
+ * A UI component that represents a button that contains a {@code CalendarEvent}.
+ * When clicked, a {@code CalendarPopup} displaying the event's details will appear.
  */
 public class EventButton extends CalendarButton {
     private static final String FXML = "EventButton.fxml";
@@ -25,7 +26,9 @@ public class EventButton extends CalendarButton {
     private Button eventButton;
 
     /**
-     * Creates a {@code EventButton} with the given Appointment details.
+     * Constructs an {@code EventButton} with the given {@code CalendarEvent} and {@code Stage}.
+     * @param calendarEvent The {@code CalendarEvent} to be displayed on the button.
+     * @param primaryStage The primary {@code Stage} of the application.
      */
     public EventButton(CalendarEvent calendarEvent, Stage primaryStage) {
         super(FXML);
@@ -35,6 +38,9 @@ public class EventButton extends CalendarButton {
         initialiseEventButton();
     }
 
+    /**
+     * Initializes the UI components of the {@code EventButton}.
+     */
     private void initialiseEventButton() {
         eventButton.setText(calendarEvent.getTimeFormat() + " " + calendarEvent.getName());
         eventButton.focusedProperty().addListener(this::handleFocusedEvent);
@@ -49,6 +55,11 @@ public class EventButton extends CalendarButton {
         primaryStage.yProperty().addListener(stageSizeListener);
     }
 
+    /**
+     * Handles the event where the {@code EventButton} is clicked.
+     * Displays the {@code CalendarPopup} for the {@code CalendarEvent}.
+     * @param event The {@code ActionEvent} that triggered the method call.
+     */
     @FXML @Override
     protected void handleOnAction(ActionEvent event) {
         if (!calendarPopup.getRoot().isShowing()) {
@@ -56,6 +67,11 @@ public class EventButton extends CalendarButton {
         }
     }
 
+    /**
+     * Handles the event where the {@code EventButton} is focused.
+     * Displays the {@code CalendarPopup} for the {@code CalendarEvent} and changes the border of the button.
+     * @param observable The {@code Observable} object that triggered the method call.
+     */
     @FXML @Override
     protected void handleFocusedEvent(Observable observable) {
         if (!calendarPopup.getRoot().isShowing() && eventButton.isFocused()) {
@@ -68,6 +84,10 @@ public class EventButton extends CalendarButton {
         }
     }
 
+    /**
+     * Displays the {@code CalendarPopup} for the {@code CalendarEvent}.
+     * Places the popup on the {@code EventButton} and aligns it to the center of the screen.
+     */
     private void displayPopup() {
         Point2D p = eventButton.localToScene(ORIGIN, ORIGIN);
         calendarPopup.getRoot().show(eventButton,

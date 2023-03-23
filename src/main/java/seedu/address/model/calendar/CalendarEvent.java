@@ -58,6 +58,10 @@ public class CalendarEvent implements Comparable<CalendarEvent> {
         return this.person.getSession().getTimeFormat();
     }
 
+    public String getDuration() {
+        return this.person.getSession().getSessionDuration().toString().substring(2);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) { // short circuit if same object

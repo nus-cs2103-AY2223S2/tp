@@ -179,10 +179,10 @@ public class Session implements Comparable<Session>{
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Start Date Time: ")
+        builder.append(" Start: ")
                 .append(LocalDateTime.parse(getStartDateTime(),
                         DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER))
-                .append("\n End Date Time: ")
+                .append("\n End: ")
                 .append(LocalDateTime.parse(getEndDateTime(),
                         DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")).format(DATE_TIME_FORMATTER));
         return builder.toString();

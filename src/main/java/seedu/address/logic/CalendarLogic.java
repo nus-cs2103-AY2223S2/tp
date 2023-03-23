@@ -32,7 +32,7 @@ public class CalendarLogic {
     private static final String[] DAY_NAMES = {
             "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
-    private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; "
+    private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; -fx-font-family: 'Comic Sans';"
             + "-fx-background-color: #fff";
 
     private static final String EMPTY_MESSAGE = "";

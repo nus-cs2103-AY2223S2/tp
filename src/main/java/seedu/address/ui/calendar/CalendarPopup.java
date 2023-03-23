@@ -8,8 +8,7 @@ import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.ui.UiPart;
 
 /**
- * The Popup that is displayed when a {@code CalendarButton} is
- * interacted with.
+ * The Popup that is displayed when a {@code CalendarButton} is interacted with.
  */
 public class CalendarPopup extends UiPart<Popup> {
     private static final String FXML = "CalendarPopup.fxml";
@@ -18,7 +17,9 @@ public class CalendarPopup extends UiPart<Popup> {
     private Popup popup;
 
     /**
-     * Creates a {@code CalendarPopup} with the given CalendarEvent details.
+     * Creates a {@code CalendarPopup} with the given {@code CalendarEvent} details.
+     * @param calendarEvent The {@code CalendarEvent} to display in the popup.
+     * @param owner The owner of the popup.
      */
     public CalendarPopup(CalendarEvent calendarEvent, Node owner) {
         super(FXML);
@@ -27,6 +28,10 @@ public class CalendarPopup extends UiPart<Popup> {
         popup.sizeToScene();
     }
 
+    /**
+     * Initializes the content of the {@code CalendarPopup} with the given {@code CalendarEvent}.
+     * @param calendarEvent The {@code CalendarEvent} to display in the popup.
+     */
     private void initialiseCalendarPopup(CalendarEvent calendarEvent) {
         popup.getContent().add(new CalendarPopupContent(calendarEvent).getRoot());
         popup.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);

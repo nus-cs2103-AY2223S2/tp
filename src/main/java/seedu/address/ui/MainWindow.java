@@ -93,6 +93,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void registerShortcutsForTabs() {
+        tabPane.getStyleClass().add("floating");
         registerShortcut(tabPane, contactsTab, new KeyCodeCombination(KeyCode.DIGIT1,
                 KeyCombination.CONTROL_DOWN));
         registerShortcut(tabPane, calendarTab, new KeyCodeCombination(KeyCode.DIGIT2,
