@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         }
 
         // Checks if the appointment to be edited has not passed
-        if (appointmentToEdit.getAppointmentEndTime().isAfter(LocalDateTime.now())) {
+        if (appointmentToEdit.getAppointmentEndTime().isBefore(LocalDateTime.now())) {
             throw new CommandException(MESSAGE_PAST_APPOINTMENT);
         }
 
