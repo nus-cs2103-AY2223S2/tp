@@ -1,0 +1,13 @@
+@startuml
+start
+
+:Delete command is detected;
+
+if () then ([parse data])
+    :Instantiate DeleteCommand with relevant indices;
+    :Removes tasks from TaskBook and saves changes;
+    :Removes task from UI;
+else ([else])
+endif
+stop
+@enduml
