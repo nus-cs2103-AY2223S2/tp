@@ -53,8 +53,12 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        System.out.println(person.getPhone().isEmptyPhone());
         if (!person.getPhone().isEmptyPhone()) {
             phone.setText(person.getPhone().value);
+        } else {
+            phone.setVisible(false);
+            phone.setManaged(false);
         }
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
