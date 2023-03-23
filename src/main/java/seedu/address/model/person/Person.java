@@ -41,7 +41,8 @@ public class Person {
      */
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task) {
-        requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark, task);
+        requireAllNonNull(name, gender, phone, email, company, industry,
+                occupation, jobTitle, address, tags, remark, task);
         this.name = name;
         this.gender = gender;
         this.phone = phone;
@@ -63,8 +64,8 @@ public class Person {
     public Person(Name name, Gender gender, Phone phone, Email email, Company company, Industry industry,
                   Occupation occupation, JobTitle jobTitle, Address address, Remark remark, Set<Tag> tags, Task task,
                   LeadStatus status) {
-        requireAllNonNull(name, gender, phone, email, company, industry, occupation, jobTitle, address, tags, remark, task,
-                status);
+        requireAllNonNull(name, gender, phone, email, company, industry,
+                occupation, jobTitle, address, tags, remark, task, status);
         this.name = name;
         this.gender = gender;
         this.phone = phone;

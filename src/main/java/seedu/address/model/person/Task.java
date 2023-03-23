@@ -3,12 +3,16 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Person's task in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Task {
     public final String value;
 
+    /**
+     * Class constructor.
+     * @param task input task.
+     */
     public Task(String task) {
         requireNonNull(task);
         value = task;

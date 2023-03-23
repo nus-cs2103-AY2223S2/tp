@@ -105,8 +105,8 @@ public class StatusCommand extends Command {
         Set<Tag> tags = toBeUpdated.getTags();
         Task task = toBeUpdated.getTask();
 
-        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address, remark, tags, task,
-                status);
+        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address,
+                remark, tags, task, status);
     }
 
     @Override

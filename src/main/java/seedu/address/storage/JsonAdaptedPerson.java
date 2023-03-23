@@ -186,7 +186,7 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
-        if(task == null) {
+        if (task == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Task.class.getSimpleName()));
         }
         final Task modelTask = new Task(task);
