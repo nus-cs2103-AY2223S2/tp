@@ -176,7 +176,9 @@ The `Student` object is composed of attributes:
 
 ### Proposed Implementation
 The `add` command has the following fields:
-* Prefix `\n` followed by the name of the student.
+> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`. 
+> Unless stated as`[COMPULSORY]`, the field is optional.
+* Prefix `\n` followed by the name of the student `[COMPULSORY]`.
 * Prefix `\p` followed by the phone number of the student.
 * Prefix `\e` followed by the student's email.
 * Prefix `\a` followed by the student's address.
@@ -195,7 +197,8 @@ Here is a sequence diagram showing the interactions between components when `add
 
 ### General Design Considerations
 
-The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. </br>
+The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. 
+Hence, resulting in a similar implementation of the `add` feature. </br>
 
 Some additions made were the `Education`, `Subject` and `Remark` attributes. </br>
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
@@ -219,6 +222,43 @@ When adding a student entry, these were the alternatives considered.
 
 ### Implementation Details
 
+The implementation of `edit` involves creating a new `Student` object with updated details to replace the previous `Student` object.
+This is done with the help of the `EditPersonDescriptor` class, which helps create the new `Student` object.
+
+With a similar fields to the [Add feature](#add-feature), `edit` has an additional `INDEX` parameter. </br>
+> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`. 
+> Unless stated as`[COMPULSORY]`, the field is optional.
+* `INDEX` which represents the index number of the student to be edited in the list.
+* Prefix `\n` followed by the name of the student.
+* Prefix `\p` followed by the phone number of the student.
+* Prefix `\e` followed by the student's email.
+* Prefix `\a` followed by the student's address.
+* Prefix `\edu` followed by the student's education level.
+* Prefix `\s` followed by the subject name.
+* Prefix `\r` followed by the remarks/notes on the student.
+
+Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.: <br>
+
+![edit_sequence](images/EditSequenceDiagram.png)
+
+### Feature details
+1. Similar to `add`, the app will validate the parameters supplied by the user with pre-determined formats for each attribute.
+2. If an input fails the validation check, an error message is provided which details the error and prompts the user for a corrected input.
+3. If the input passes the validation check, the corresponding `Student` is replaced by a new edited `Student` object and stored in the `AddressBook`.
+
+### General Design Considerations
+When editing a student entry, whether a new `Student` object should be created.
+* **Alternative 1 (Current choice):** `edit` will create a new `Student` object with the help of `EditPersonDescriptor`
+  * Pros:
+    * Meets the expectations of the immutable `Student` class.
+  * Cons:
+    * Inefficient as an entire `Student` object is created even if only one field is changed. </br>
+    
+* **Alternative 2:** `edit` directly sets the updated values in the existing `Student` object directly.
+  * Pros:
+    * More timely option and space efficient.
+  * Cons:
+    * In order to execute this, `Student` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
 
 ### \[Proposed\] Undo/redo feature
 
