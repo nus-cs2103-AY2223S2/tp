@@ -89,11 +89,19 @@ grade
 **Use case: Ungrade Student Submission of an Assignment**
 ungrade
 
+
+**Use case: Add Class List** classlist 
+
+**User case: List Student** list
+
+**User case: SearchStudent** search
+
 ## **Mark/Unmark Attendance**
 
 Mark and Unmark is very similar in nature and their implementation. <br>
 
 Below is the main success scenario of Mark/Unmark
+
 
 **MSS**
 
@@ -153,6 +161,36 @@ Below is the sequence diagram for Marking attendane of a student
     * 3a1. TAA shows an error message.
 
       Use case resumes at step 2.
+
+**list student**
+1. User requests to list all students in a class.
+2. TAA shows a list of students and number of students listed.
+
+    Use case ends.
+
+**search student**
+1.  User requests to search for a particular student
+2.  TAA shows the information of the student searched
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No student is found for the keyword.
+
+  Use case ends.
+
+**add classlist**
+1.  User requests to add a new class list with a specific name.
+2.  TAA adds the new class list with the name specified.
+    Use case ends.
+
+**Extensions**
+
+* 2a. Class list with the same name already exists.
+  * 2a1. TAA shows an error message.
+    Use case ends.
+
 
 *{More to be added}*
 
