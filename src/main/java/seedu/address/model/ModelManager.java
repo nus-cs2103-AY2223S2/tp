@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ import seedu.address.model.listing.Listing;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final ListingBook listingBook;
+    private ListingBook prevListingBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Listing> filteredListings;
 
@@ -31,6 +33,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with listing book: " + listingBook + " and user prefs " + userPrefs);
 
         this.listingBook = new ListingBook(listingBook);
+        this.prevListingBook = new ListingBook(listingBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredListings = new FilteredList<>(this.listingBook.getListingList());
     }
@@ -94,11 +97,13 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteListing(Listing target) {
+        this.prevListingBook.setListings(listingBook.getListingList());
         listingBook.removeListing(target);
     }
 
     @Override
     public void addListing(Listing listing) {
+        this.prevListingBook.setListings(listingBook.getListingList());
         listingBook.addListing(listing);
         updateFilteredListingList(PREDICATE_SHOW_ALL_LISTINGS);
     }
@@ -106,8 +111,15 @@ public class ModelManager implements Model {
     @Override
     public void setListing(Listing target, Listing editedListing) {
         requireAllNonNull(target, editedListing);
-
+        this.prevListingBook.setListings(listingBook.getListingList());
         listingBook.setListing(target, editedListing);
+    }
+
+    @Override
+    public void undo() {
+        List<Listing> temp = listingBook.getListingList();
+        this.listingBook.setListings(prevListingBook.getListingList());
+        this.prevListingBook.setListings(temp);
     }
 
     //=========== Filtered Listing List Accessors =============================================================
