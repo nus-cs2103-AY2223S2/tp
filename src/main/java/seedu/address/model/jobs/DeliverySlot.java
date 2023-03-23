@@ -31,7 +31,7 @@ public class DeliverySlot {
      *
      * @param value A invalid slot.
      */
-    public DeliverySlot() {
+    private DeliverySlot() {
         this.value = "-1";
     }
 

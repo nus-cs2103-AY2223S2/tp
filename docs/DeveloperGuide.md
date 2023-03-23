@@ -123,9 +123,11 @@ How the parsing works:
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and `Reminder` Objects (which are contained in a `ReminderList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* store the delivery job system data (all `DeliveryJob` objects are contained in a `UniqueDeliveryJobList` object).
+* stores the currently 'selected' `DeliveryJob` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<DeliveryJob>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* The address book structure largly remained the same.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -141,8 +143,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save delivery job system, address book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from `DeliveryJobSystemStroage`, `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -232,6 +234,87 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+### \[Proposed\] Timetable feature
+#### Proposed Implementation
+
+Given below is an example usage scenario and how the timetable mechanism behaves at each step.
+
+* `DeliveryJobSystem#commit()` — Saves the current delivery job system state in its history.
+* `DeliveryJobSystem#timetable_date()` — Shows timetable of the specified week by user.
+* `DeliveryJobSystem#timetable()` — Shows timetable of current week.
+
+These operations are exposed in the `Model` and `Logic` interface as `Model#commitDeliveryJob()`, `Logic#executeTimetableCommand()` and `Logic#execute()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the delivery job list system after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
+
+Step 3. The user executes `add_job si/ALE48 …​` to add a new job. The `add_job` command also calls `Model#addDeliveryJob()`, causing another modified delivery job list system to be saved into the `deliveryJobListSystem`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDeliveryJob()`, so the delivery job list state will not be saved into the `deliveryJobListSystem`.
+
+</div>
+
+Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the current week.
+
+The `timetable_date` command is quite similar — it calls `Model#updateFocusDate()`, before calling `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
+
+
+The following sequence diagram shows how the timetable operation works:
+
+![TimetableSequenceDiagram](images/TimetableSequenceDiagram.png)
+
+The following sequence diagram shows how the timetable_date operation works:
+
+![TimetableSequenceDiagram](images/TimetableDateSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TimetableCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How timetable executes:**
+
+* **Alternative 1 (current choice):** Saves the entire delivery job list system.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows which date to show timetable of specific week.
+    * Pros: Will use less memory.
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
+### \[Proposed\] Statistics feature
+#### Proposed Implementation
+
+Given below is an example usage scenario and how the statistics mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user inputs a series of commands to modify the state of the deliveryJobList.
+
+Step 3. The user now wants to view a summary of the statistics of the jobs in the deliveryJobList. 
+The `statistics` command will open up the statistics window, where a list of statistics will be shown.
+
+The following sequence diagram shows how the statistics operation works:
+
+//to be added
+
+The following sequence diagram shows how the statistics operation works:
+
+//to be added
+
+#### Design considerations:
+
+//to be added
 
 _{more aspects and alternatives to be added}_
 
@@ -336,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </details>
 
 <details>
-<summary><b>[DE3] Delete a job</b></summary>
+<summary><b>[DE3] Delete a delivery job</b></summary>
 <pre>
 <b>MSS</b>
 1. User is on homepage of list of jobs.
@@ -354,6 +437,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </pre>
 </details>
 
+<details>
+<summary><b>[DE4] Edit a delivery job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. System shows a list of jobs.
+3. User requests to edit a specific job in the list.
+4. User fill in and submit the changes.
+4. System update the job and list the new information.
+   Use case ends.
+
+<b>Extensions</b>
+* 2a. The list is empty.
+  Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. System shows an error message.
+      Use case resumes at step 2.
+</pre>
+</details>
+
+<details>
+<summary><b>[DE5] Find a delivery job</b></summary>
+<pre>
+<b>MSS</b>
+1. User is on homepage of list of jobs.
+2. System shows a list of jobs.
+3. User requests search for a job with options.
+4. System displays search results that matches the query.
+   Use case ends.
+
+<b>Extensions</b>
+* 3a. Invalid search option given.
+    * 3a1. System shows an error message.
+      Use case resumes at step 2.
+* 4a. No item matches the query options.
+    * 4a. System shows empty list.
+      Use case resumes at step 2.
+</pre>
+</details>
 
 <details>
 <summary><b>[TT1] Display timetable and scheduling tasks of current week</b></summary>
@@ -419,7 +541,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <b>Extensions:</b>
 * 2a. Index provided by user is not found in reminder list.
-    * 2a1. System will promopt user again.
+    * 2a1. System will prompt user again.
       Use case resumes from step 1.
 </pre>
 </details>
