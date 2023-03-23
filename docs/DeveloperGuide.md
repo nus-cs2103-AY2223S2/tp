@@ -252,17 +252,17 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. 
 
-Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the address book after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
+Step 2. The user executes `delete_job ALBE6DD723` command to delete job with ID ALBE6DD723 in the DeliveryJobSystem. The `delete` command calls `Model#commitDeliveryJob()`, causing the modified state of the delivery job list system after the `delete_job ALBE6DD723` command executes to be saved in the `deliveryJobSystemStateList`.
 
-Step 3. The user executes `add_job si/ALE48 …​` to add a new job. The `add_job` command also calls `Model#addDeliveryJob()`, causing another modified address book state to be saved into the `deliveryJobListSystem`.
+Step 3. The user executes `add_job si/ALE48 …​` to add a new job. The `add_job` command also calls `Model#addDeliveryJob()`, causing another modified delivery job list system to be saved into the `deliveryJobListSystem`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDeliveryJob()`, so the delivery job list state will not be saved into the `deliveryJobListSystem`.
 
 </div>
 
-Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateFocusDate()`, before calling `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
+Step 4. The user now wants to view timetable of the current week by executing the `timetable` command. The `timetable` command will call `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the current week.
 
-The `timetable_date` command is quite similar — it also calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `timetable_date` command is quite similar — it calls `Model#updateFocusDate()`, before calling `Model#updateSortedDeliveryJobList()` and `Model#updateWeekDeliveryJobList`, which will update the job list in the week according to the given date.
 
 
 The following sequence diagram shows how the timetable operation works:
