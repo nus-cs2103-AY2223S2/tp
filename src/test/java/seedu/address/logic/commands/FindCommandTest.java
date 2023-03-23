@@ -62,7 +62,6 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        // NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         PersonContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -84,9 +83,6 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    // private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-    //     return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    // }
     private PersonContainsKeywordsPredicate preparePredicate(String userInput) {
         return new PersonContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
