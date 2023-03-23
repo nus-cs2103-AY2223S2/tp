@@ -458,6 +458,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+### Use case: View calendar events
+
+**MSS**
+
+1. User requests to view the calendar events.
+2. SportSync displays the calendar events on the interface.
+3. User interacts with the calendar events as required. 
+
+    Use case ends.
+
 ### Features
 
 **Group**
