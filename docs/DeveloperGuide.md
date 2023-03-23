@@ -391,6 +391,78 @@ The following activity diagram summarizes what happens when a TA executes an del
 
 _{more aspects and alternatives to be added}_
 
+
+### \[Proposed\] Help feature
+
+#### Proposed Implementation
+
+The proposed Help feature expands on the default Help feature available in AB3. Instead of displaying the UserGuide URL
+and asking the user to visit the webpage to view the commands, this new Help feature will display the commands in the
+result box. This facilitates the user's usage by providing easy in-app reference instead of having to refer to an
+external window. Switch-Case will be used to identify subsequent commands and parse() method will be implemented
+for helps with deeper abstractions.
+
+<img src="images/TrAcker-activity-diagrams/HelpActivityDiagram.png" width="550" />
+
+As seen from the Activity diagram above, Help is split into 3 categories: Student, Event and Sort/Filter(Organisation).
+
+#### Usage Example
+
+Command chaining will be used for this feature. Upon entering `help` into the command box, the 3 categories will be displayed.
+To choose the desired category, user will have to chain down the command by entering `help event`. Subsequently
+`help event lab` to access Lab related helps.
+
+#### Design Considerations
+
+Why Command Chaining was used?
+
+PROS
+* Seasoned users will be able to pinpoint the help they require in the future in 1 command
+* Specific syntax will be displayed instead of displaying everything and letting the user find themselves
+* Helps fresh users by "starting simple" by requiring just single 'help' and allows them to dive deeper if they so desire
+
+CONS
+* User will have to type quite a bit
+
+#### Possible Updates
+
+Commands may be abstracted deeper if the displayed syntaxes were deemed too overwhelming. This will definitely require 
+more typing from the user and deeper abstraction will be carefully considered to see if it is really necessary.
+
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+After the user types "/filter [group] [criteria] [threshold]" and clicks "enter", our system will parse the input given
+and detect that it is a "filter" command that is being called.
+
+1. Depending on the "[group]" typed by the user, our system goes to the AddressBook in storage and
+   accesses the relevant Unique[group]List. For example, if the desired group is the "tutorial" group,
+   then "UniqueTutorialList" will be accessed to iterate through the people in that group.
+
+2. Our system iterates through each Person object in the list and creates a new list that only stores
+   People objects whose criteria value is below the given threshold.
+
+3. Our system finally displays all the Person objects in the form of a table to the user.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+Todo: add clean image of activity diagram
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Iterates through the existing list and manually filters the desired ones.
+    * Pros: Easy to implement.
+    * Cons: Takes up extra space.
+
+* **Alternative 2:** Uses the previously implemented 'sort' method and set visibility of people whose criteria
+  is lower than threshold to be 0% (hide them from view))
+  itself.
+    * Pros: Will use less space and uses previously implemented code for abstraction.
+    * Cons: May mutate the list unncessarily or introduce bugs if visibility for hidden rows is not reset to 100%.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
