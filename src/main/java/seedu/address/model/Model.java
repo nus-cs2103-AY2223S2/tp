@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -92,6 +93,24 @@ public interface Model {
      * Sorts the filter of the filtered person list in alphabetical order.
      */
     void sortAddressBook();
+
+    /**
+     * Commits the current state of the address book.
+     * Removes all elements of the addressBookStateList beyond the current pointer.
+     */
+    void commitAddressBook();
+
+    /**
+     * Undoes the previous command by resetting the state of the address book to the previous state.
+     * @throws CommandException If there are no more commands left to undo.
+     */
+    void undoAddressBook() throws CommandException;
+
+    /**
+     * Redoes the previous undone command by resetting the state of the address book to the next state.
+     * @throws CommandException If there are no more commands left to redo.
+     */
+    void redoAddressBook() throws CommandException;
 
     boolean hasTag(Tag toAdd);
 

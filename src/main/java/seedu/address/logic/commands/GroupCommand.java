@@ -40,6 +40,7 @@ public class GroupCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TAG);
         }
         model.addTag(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
