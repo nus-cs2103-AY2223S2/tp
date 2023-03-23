@@ -1,0 +1,10 @@
+@startuml
+
+
+!define COL1 #FFF55F
+!define COL2 #7777DB
+!define COL3 #5252CE
+!define COL4 #FFFFFF
+!define COL5 #03F2B4
+
+@enduml

@@ -53,7 +53,8 @@ public class Date {
     }
 
     /**
-     * Returns if a given string is a valid date.
+     * @param test A string which is tested on whether it is a valid date.
+     * @return A boolean value.
      */
     public static boolean isValidDate(String test) {
         try {
@@ -68,15 +69,15 @@ public class Date {
 
     /**
      * Produces a validation format, given input date string, to accommodate different date formats.
-     * such as yyyy-MM-dd or yyyy MMMM dd.
+     * such as yyyy-MM-dd, yyyy MMMM dd or MMM/yyyy/dd.
      * When the order of numbers are ambiguous e.g. "20000101",
-     * The first chain of alphabets 3 letters or longer will be parsed as MMM or MMMM.
+     * the first chain of alphabets 3 letters or longer will be parsed as MMM or MMMM.
      * The first 4-digit substring will be read into the year parameter.
      * Then, if month is in MM format,
      * the first 2-digit substring will be read into the month parameter.
      * Lastly, the last 2-digit substring will be read into the day parameter.
      * @param date A string representation of the date.
-     * @return
+     * @return A format representation of the date. Eg. "yyyy MMM dd"
      */
     public static DateTimeFormatter produceValidationFormat(String date)
             throws IllegalArgumentException {

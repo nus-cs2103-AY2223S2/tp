@@ -14,8 +14,9 @@ import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.ModelManager;
 import seedu.dengue.model.UserPrefs;
+import seedu.dengue.model.person.FilterPredicate;
 import seedu.dengue.model.person.Person;
-import seedu.dengue.model.person.PersonContainsKeywordsPredicate;
+
 
 public class ClearCommandTest {
     @Test
@@ -50,7 +51,7 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalDengueHotspotTracker(), new UserPrefs());
 
-        PersonContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        FilterPredicate predicate = preparePredicate("Kurz Elle Kunz");
         model.updateFilteredPersonList(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
@@ -77,8 +78,8 @@ public class ClearCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private PersonContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new PersonContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private FilterPredicate preparePredicate(String userInput) {
+        return new FilterPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
 }
