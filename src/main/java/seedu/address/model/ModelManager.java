@@ -143,7 +143,7 @@ public class ModelManager implements Model {
                 return Integer.compare(s2, s1);
             }
         });
-        logger.info("Sorted AddressBook " + this.addressBook);
+        logger.info("AddressBook is sorted: " + this.addressBook);
 
         this.addressBook.setRoles(roles);
     }
