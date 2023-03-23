@@ -9,6 +9,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+
     public static final String MESSAGE_NRIC_DOES_NOT_EXIST = "One or more NRIC specified does not exist in our records";
+    public static final String MESSAGE_CANNOT_REDO = "Cannot redo any further!";
+    public static final String MESSAGE_CANNOT_UNDO = "Cannot undo any further!";
 
 }
