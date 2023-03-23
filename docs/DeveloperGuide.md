@@ -5,20 +5,15 @@ students are more familiar with and used to using CLI.
 
 ##### Table of Contents
 
-1. [Quick Start](#quickstart)
-2. [Features](#features)
-    1. [Add Roles: `add`](#addrole)
-    2. [Delete Role: `delete`](#deleterole)
-    3. [Edit Role: `edit`](#editrole)
-    4. [Find Role: `find`](#findrole)
-    5. [Sort by Salary: `salary`](#sortsalary)
-    6. [Sort by deadline: `deadline`](#sortdeadline)
-    7. [Find by Companies: `company`](#findcompanies)
-    8. [View more details: `view`](#view)
-3. [Viewing help: `help`](#help)
-4. [Exiting program: `exit`](#exit)
-5. [FAQ](#faq)
-6. [Command Summary](#summary)
+Todo: Add links
+1. [Acknowledgements]()
+2. [Setting up, getting started]()
+3. [Design]()
+   1. [UI Component]()
+   2. [Logic Component]()
+   3. [Model Component]()
+   4. [Storage Component]()
+4. [Implementation]()
 
 --------------------------------------------------------------------------------------------------------------------
 
