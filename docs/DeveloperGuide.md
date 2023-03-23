@@ -248,6 +248,52 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### \[Proposed\] Company Command Feature
 
 The proposed CompanyCommand feature allows the user to filter companies based on a given keyword. The idea is that the
@@ -261,10 +307,8 @@ Given below is an example usage of how CompanyCommand is being used in the follo
    current address book. <img src="images/SalaryCommand0.png" width="800" />
 
 2. The user can choose to use the `Company Command` in asc or desc order.
-    - The user executes `salary asc` command to sort the salary of the roles in the ascending
-      order. <img src="images/SalaryCommand1.png" width="800" />
-    - The user executes `salary desc` command to sort the salary of the roles in the descending
-      order. <img src="images/SalaryCommand2.png" width="800" />
+    - The user executes `company <keyword>` command to filter roles by their company.
+    <img src="images/CompanyCommand1.png" width="800" />
 
 The following sequence diagram shows how the Company Command is being done:
 
@@ -276,15 +320,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design considerations:
 
-**Aspect: How Salary Command executes:**
+**Aspect: How Company Command executes:**
 
-* **Alternative 1 (current choice):** Sort the salary of the roles in asc/desc order.
+* **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
-
-* **Alternative 2:** One sort command with the given attribute.
-    * Pros: Easy CLI for the user to use.
-    * Cons: Can be harder to implement and debug if more attributes are being sorted.
 
 _{more aspects and alternatives to be added}_
 

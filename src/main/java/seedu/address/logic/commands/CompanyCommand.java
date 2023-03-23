@@ -12,7 +12,7 @@ import seedu.address.model.job.CompanyContainsKeywordsPredicate;
  */
 public class CompanyCommand extends Command {
 
-    public static final String COMMAND_WORD = "Company";
+    public static final String COMMAND_WORD = "company";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all companies whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
