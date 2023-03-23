@@ -407,6 +407,10 @@ public final class ApplicativeParser<T> {
         return or(of(otherValue));
     }
 
+    public ApplicativeParser<Void> optional() {
+        return this.<Void>constMap(null).orElse(null);
+    }
+
     /**
      * Returns a new parser that throws an exception (immediately) if this parser fails. The thrown
      * exception will stop a parsing pipeline.
