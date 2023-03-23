@@ -49,8 +49,13 @@ public class FilesManager {
         store.uploadFile();
     }
 
+    /**
+     * Generate mc.
+     */
     public void generateMc() {
-        create.createMcForm();
+        Path path2 = Paths.get(path);
+        FileStorage.createDrc(path);
+        create.createMcForm(Integer.toString(numberOfFiles(path2)));
     }
 
 
@@ -75,6 +80,9 @@ public class FilesManager {
             e.printStackTrace();
         }
         return files;
+    }
+    public int numberOfFiles(Path drc) {
+        return getAllFiles(drc).size();
     }
     /**
      * @param fileName

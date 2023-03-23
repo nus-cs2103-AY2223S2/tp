@@ -51,7 +51,7 @@ public class FileGenerator {
     /**
      * Create Mc form.
      */
-    public void createMcForm() {
+    public void createMcForm(String filename) {
         try {
             // Load the original PDF form
             PDDocument pdfDocument = PDDocument.load(new File("lib/MC.pdf"));
@@ -99,7 +99,7 @@ public class FileGenerator {
                 }
             }
             //making file name unique using store MC number do file check before save.
-            pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + "mc.pdf"));
+            pdfDocument.save(new File("reports/" + person.getName().fullName + "/" + filename + "-mc.pdf"));
             pdfDocument.close();
 
         } catch (IOException e) {
