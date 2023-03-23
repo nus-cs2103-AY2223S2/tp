@@ -46,7 +46,6 @@ public class Description {
 
     @Override
     public boolean equals(Object other) {
-        System.out.println(defaultValue.equals(((Description) other).value));
         return other == this // short circuit if same object
                 || (other instanceof Description // instanceof handles nulls
                 && value.equals(((Description) other).value)); // state check
