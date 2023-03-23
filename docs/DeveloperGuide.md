@@ -167,7 +167,7 @@ Here is how `Task` works:
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W15-2/tp/blob/master/src/main/java/trackr/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.svg" width="650" />
 
@@ -178,7 +178,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `trackr.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
