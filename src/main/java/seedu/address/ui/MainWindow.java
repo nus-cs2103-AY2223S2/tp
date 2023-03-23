@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
                 Person personToShow = commandResult.getPersonToShow();
                 assert personToShow != null;
                 FilesManager filesManager = new FilesManager(personToShow);
-                detailDisplay.setInfo(personToShow, new ObservableFile(filesManager.getAllFileNames())
+                detailDisplay.setInfo(personToShow, new ObservableFile(filesManager.getFileNames())
                         .getObservableFileList());
                 detailDisplay.showAppointmentButton();
                 detailDisplay.showGenerateButton();

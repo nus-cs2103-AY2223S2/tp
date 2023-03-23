@@ -25,6 +25,7 @@ public class FilesManager {
     private FileGenerator create;
     private String path;
     private List<Path> files;
+    private List<String> fileNames;
 
     /**
      * Instantiates a new Files manager.
@@ -37,7 +38,8 @@ public class FilesManager {
         create = new FileGenerator(person,
                 "Handsome", "description", 20);
         path = "reports/" + person.getName().fullName;
-        getAllFiles();
+        setAllFiles();
+        setFileNames();
     }
 
     public void initFile() {
@@ -46,6 +48,16 @@ public class FilesManager {
 
     public void deleteAll() {
         FileStorage.deleteDrc(path);
+    }
+
+    /**
+     * Delete file.
+     *
+     * @param fileName the file name
+     */
+    public void deleteFile(String fileName) {
+        String uri = path + "/" + fileName;
+        FileStorage.deleteFile(uri);
     }
 
     public void addFile() {
@@ -61,8 +73,6 @@ public class FilesManager {
         create.createMcForm(Integer.toString(numberOfFiles(path2)));
     }
 
-
-
     public List<Path> getAllDirectories() {
         List<Path> directories = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(reportsDir)) {
@@ -74,7 +84,7 @@ public class FilesManager {
         return directories;
     }
 
-    public void getAllFiles() {
+    private void setAllFiles() {
         Path directory = Paths.get(path);
         files = new ArrayList<>();
         try (Stream<Path> stream = Files.walk(directory)) {
@@ -85,11 +95,14 @@ public class FilesManager {
         }
     }
 
-    public List<String> getAllFileNames() {
-        List<String> fileNames = files.stream()
+    private void setFileNames() {
+        fileNames = files.stream()
                 .map(Path::getFileName)
                 .map(Path::toString)
                 .collect(Collectors.toList());
+    }
+
+    public List<String> getFileNames() {
         return fileNames;
     }
 
