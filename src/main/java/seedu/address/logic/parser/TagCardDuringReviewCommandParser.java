@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.commands.TagCardDuringReviewCommand;
+import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 

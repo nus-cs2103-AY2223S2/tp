@@ -9,7 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.TagCardDuringReviewCommand;
+import seedu.address.logic.commands.reviewcommands.TagCardDuringReviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.card.Answer;
 import seedu.address.model.card.Question;
