@@ -213,7 +213,10 @@ which are the Policy Name, Policy Date, Policy Premium, and Policy Frequency res
 
 ### Delete Policy feature
 
-The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`.
+The delete policy mechanism is facilitated by `DeletePolicyCommand` and `DeletePolicyCommandParser`. The feature is implemented by getting the client index and the policy index in their respective list in the application. Once given, we will retrieve the `Client`
+object from the model. Given the `Client`object we will retrieve the policies associated to this `Client` and remove the policy based on the index given. 
+
+These classes are implemented this way because, like other commands, such as `DeleteCommand` we first have to retrieve the client list followed by executing the delete feature. 
 
 `DeletePolicyCommand` extends from `Command` by overriding methods from its parent class. The logic of this class
 follows the sequence.
@@ -229,6 +232,9 @@ follows the sequence.
 The following sequence diagram shows how the delete policy operation works:
 ![DeletePolicySequenceDiagram0](images/DeletePolicySequenceDiagram.png)
 
+**Alternatives Considered**:
+- We are considering if we could recieve the policies from the model instead of the client. 
+- We are also considering to execute a `SelectCommand` in the process of `DeleteCommand` so that the user will automatically move to the targeted client that he or she wishes to delete a policy from. 
 ## Undo/redo feature
 
 ### Implementation
