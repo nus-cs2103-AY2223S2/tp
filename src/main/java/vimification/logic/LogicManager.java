@@ -7,7 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import vimification.commons.core.LogsCenter;
-import vimification.logic.commands.LogicCommand;
+import vimification.logic.commands.logicCommands.LogicCommand;
 import vimification.logic.commands.CommandException;
 import vimification.logic.commands.CommandResult;
 import vimification.logic.parser.ParserException;

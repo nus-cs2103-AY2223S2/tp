@@ -3,7 +3,7 @@ package vimification.logic.parser;
 import java.util.logging.Logger;
 
 import vimification.commons.core.LogsCenter;
-import vimification.logic.commands.LogicCommand;
+import vimification.logic.commands.logicCommands.LogicCommand;
 
 public class VimificationParser {
 

@@ -37,6 +37,10 @@ public abstract class Task {
         isDone = false;
     }
 
+    public boolean containsKeyword(String keyword) {
+        return description.contains(keyword);
+    }
+
     public abstract Task clone();
 
     public boolean isSameTask(Task otherTask) {

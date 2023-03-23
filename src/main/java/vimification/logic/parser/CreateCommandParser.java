@@ -2,7 +2,7 @@ package vimification.logic.parser;
 
 import java.time.LocalDateTime;
 
-import vimification.logic.commands.CreateCommand;
+import vimification.logic.commands.logicCommands.CreateCommand;
 import vimification.model.task.Deadline;
 import vimification.model.task.Todo;
 

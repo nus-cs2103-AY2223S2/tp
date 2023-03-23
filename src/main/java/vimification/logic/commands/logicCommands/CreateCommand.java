@@ -1,7 +1,9 @@
-package vimification.logic.commands;
+package vimification.logic.commands.logicCommands;
 
 import static java.util.Objects.requireNonNull;
 
+import vimification.logic.commands.CommandException;
+import vimification.logic.commands.CommandResult;
 import vimification.model.LogicTaskList;
 import vimification.model.task.Task;
 
