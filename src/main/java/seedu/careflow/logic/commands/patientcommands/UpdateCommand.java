@@ -10,6 +10,7 @@ import static seedu.careflow.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.careflow.logic.parser.patientparser.PatientParser.OPERATION_TYPE;
 import static seedu.careflow.model.CareFlowModel.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class UpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "update";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE =  OPERATION_TYPE + " " + COMMAND_WORD
             + ": Update the details of the person identified given the patient name. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: Patient name"
@@ -49,7 +50,7 @@ public class UpdateCommand extends Command {
             + " [ " + PREFIX_IC + " IC ] "
             + " [ " + PREFIX_NAME + " DRUG ALLERGY NUMBER ] "
             + " [ " + PREFIX_EMERGENCY_CONTACT_NUMBER + " EMRGENCY CONTACT ]\n"
-            + "Example: " + COMMAND_WORD + " John "
+            + "Example: " +  OPERATION_TYPE + " " + COMMAND_WORD + " John "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_EMAIL + " johndoe@example.com "
             + PREFIX_DRUG_ALLERGY + " Aspirin "

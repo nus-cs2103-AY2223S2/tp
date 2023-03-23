@@ -2,6 +2,7 @@ package seedu.careflow.logic.commands.patientcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_IC;
+import static seedu.careflow.logic.parser.patientparser.PatientParser.OPERATION_TYPE;
 
 import java.util.List;
 
@@ -21,15 +22,15 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = OPERATION_TYPE + " " +  COMMAND_WORD
             + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1"
+            + "Example: " + OPERATION_TYPE + " " +  COMMAND_WORD + " 1"
             + "\nOR\n"
-            + COMMAND_WORD + ":  Deletes the the patient identified by the IC number.\n"
+            + OPERATION_TYPE + " " +  COMMAND_WORD + ":  Deletes the the patient identified by the IC number.\n"
             + "Parameters: "
             + PREFIX_IC + " IC\n"
-            + "Example: " + COMMAND_WORD + " -ic T1234567A";
+            + "Example: " + OPERATION_TYPE + " " +  COMMAND_WORD + " -ic T1234567A";
 
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted patient: %1$s";
 

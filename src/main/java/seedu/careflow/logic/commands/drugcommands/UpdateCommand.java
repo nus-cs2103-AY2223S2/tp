@@ -1,18 +1,19 @@
 package seedu.careflow.logic.commands.drugcommands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
-import static seedu.careflow.logic.parser.CliSyntax.PREFIX_UPDATE;
-
-import java.util.List;
-
 import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
 import seedu.careflow.logic.commands.exceptions.CommandException;
 import seedu.careflow.model.CareFlowModel;
 import seedu.careflow.model.drug.Drug;
 import seedu.careflow.model.drug.TradeName;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.careflow.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_TRADE_NAME;
+import static seedu.careflow.logic.parser.CliSyntax.PREFIX_UPDATE_BY;
+import static seedu.careflow.logic.parser.drugparser.DrugParser.OPERATION_TYPE;
 
 /**
  * Updates the storage count of an existing Drug in the drug inventory.
@@ -26,11 +27,11 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Updates storage count of drug whose trade name matches given trade name.\n"
             + "Parameters: "
-            + PREFIX_TRADE_NAME + " TRADENAME "
-            + PREFIX_UPDATE + " UPDATE VALUE (add + or - in front for addition/deduction) \n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_TRADE_NAME + " Panadol "
-            + PREFIX_UPDATE + " +30";
+            + "TRADENAME "
+            + PREFIX_UPDATE_BY + " AMOUNT (add + or - in front for addition/deduction) \n"
+            + "Example: " + OPERATION_TYPE + " " + COMMAND_WORD
+            + " Panadol "
+            + PREFIX_UPDATE_BY + " +30";
 
     private final TradeName tradeName;
     private final Integer value;

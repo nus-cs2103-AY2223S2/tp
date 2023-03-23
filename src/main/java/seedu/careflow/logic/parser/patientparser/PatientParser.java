@@ -26,7 +26,6 @@ public class PatientParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parse(String commandWord, String arguments) throws ParseException {
-        assert false;
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);

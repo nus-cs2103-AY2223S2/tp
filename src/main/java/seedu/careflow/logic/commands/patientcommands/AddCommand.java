@@ -10,6 +10,7 @@ import static seedu.careflow.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_IC;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.careflow.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.careflow.logic.parser.patientparser.PatientParser.OPERATION_TYPE;
 
 import seedu.careflow.logic.commands.Command;
 import seedu.careflow.logic.commands.CommandResult;
@@ -22,7 +23,8 @@ import seedu.careflow.model.patient.Patient;
  */
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to patient records.\n"
+    public static final String MESSAGE_USAGE = OPERATION_TYPE + " " + COMMAND_WORD + ": Adds a patient to patient " +
+            "records.\n"
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_PHONE + " PHONE "
@@ -33,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_IC + " IC "
             + PREFIX_DRUG_ALLERGY + " DRUG_ALLERGY "
             + PREFIX_EMERGENCY_CONTACT_NUMBER + " EMERGENCY_CONTACT_NUMBER\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + OPERATION_TYPE + " " +  COMMAND_WORD + " "
             + PREFIX_NAME + " Tom Smith "
             + PREFIX_PHONE + " 84356788 "
             + PREFIX_EMAIL + " tsmith@gmail.com "
