@@ -227,6 +227,6 @@ public class Review {
         Pair<String, String> next = new Pair<>("Enter [ to go back, ] to go forward", "");
         Pair<String, String> mark = new Pair<>("Press ; to mark wrong, ' to mark correct", "");
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title, cardsSeen, currentScore, flip, next, mark);
+        this.reviewStatsList.addAll(title, cardsSeen, currentScore, flip, next, mark); // warning being called here
     }
 }
