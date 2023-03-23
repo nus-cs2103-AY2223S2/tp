@@ -13,20 +13,20 @@ public class CheckCrewCommand implements Command {
     /**
      * The UUID of the crew whose availability is to be checked.
      */
-    private final String uuid;
+    private final String id;
 
     /**
      * Creates a command that, when executed, checks the availability of the crew with the given UUID.
      *
-     * @param uuid the UUID of the crew to be checked.
+     * @param id the UUID of the crew to be checked.
      */
-    public CheckCrewCommand(String uuid) {
-        this.uuid = uuid;
+    public CheckCrewCommand(String id) {
+        this.id = id;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        boolean isAvailable = model.checkCrew(this.uuid);
+        boolean isAvailable = model.checkCrewByIndex(Integer.parseInt(this.id));
         if (isAvailable) {
             return new CommandResult("This crew is available.");
         } else {
