@@ -219,17 +219,17 @@ Given below is an example usage of how Salary Command is being used in the follo
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the current address
    book from the storage and loads it.
 
-   <br> <img src="images/SalaryCommand0.png" width="800" /> </br>
+   <img src="images/SalaryCommand0.png" width="800" />
 
 2. The user can choose to use the `SalaryCommand` in asc or desc order.
     - The user executes `salary asc` command to sort the salary of the roles in the ascending
       order. 
    
-      <br> <img src="images/SalaryCommand1.png" width="800" /> </br>
+      <img src="images/SalaryCommand1.png" width="800" />
     - The user executes `salary desc` command to sort the salary of the roles in the descending
       order.
    
-      <br> <img src="images/SalaryCommand2.png" width="800" /> </br>
+      <img src="images/SalaryCommand2.png" width="800" />
 
 The following sequence diagram shows how the Salary Command is being done: 
 
