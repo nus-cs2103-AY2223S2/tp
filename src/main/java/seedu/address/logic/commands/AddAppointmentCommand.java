@@ -29,6 +29,7 @@ public class AddAppointmentCommand extends MakeAppointmentCommand {
 
     public static final String COMMAND_WORD = "makeApp";
     public static final String MESSAGE_SUCCESS = "Appointment successfully made";
+    public static final String APPOINTMENT_CLASH = "This appointment has clash with existing arranged appointments";
 
     private final Index index;
     private Appointment appointmentToAdd;
@@ -43,6 +44,7 @@ public class AddAppointmentCommand extends MakeAppointmentCommand {
         this.appointmentToAdd = appointmentToAdd;
     }
 
+    // should check for possible clashes with other appointments
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -54,6 +56,10 @@ public class AddAppointmentCommand extends MakeAppointmentCommand {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, appointmentToAdd);
+
+        if (model.hasClash(editedPerson, index)) {
+            throw new CommandException(APPOINTMENT_CLASH);
+        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

@@ -335,6 +335,10 @@ public class Person {
         return this.medicalCondition.getValue() != "";
     }
 
+    public boolean hasClash(Person person) {
+        return appointment.hasClash(person.getAppointment());
+    }
+
     public Age getAge() {
         return age;
     }
