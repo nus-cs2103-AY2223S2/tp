@@ -287,6 +287,66 @@ The following sequence diagram shows how the `createtag` command.
 
 **insert sequence diagram
 
+### \[Implementing\] Increase/Decrease quantity of a food item.
+
+#### Overview
+The increase/decrease quantity feature is meant to be a shorthand for users to change the quantity of a particular food item.
+Traditionally, to change the quantity of an item, the user would use the edit command to edit the quantity of a food item.
+The user can now specify `inc` or `dec` to increase or decrease the quantity of the indexed food item respectively.
+
+
+The following UML diagram shows `Tag` and its associated class.
+
+*** insert uml
+
+#### Design considerations:
+
+* **Alternative 1:** The command parameter will be the new quantity of the food item to edit
+    * Pros:
+        * Easily implemented. The command parameter will be set as the new quantity of the item.
+    * Cons:
+        * May not be intuitive for the user, as the command is to increase/decrease the quantity.
+        * Can be unnecessarily complicated for the user, i.e entering a higher quantity than the current quantity for
+          `inc` and vice versa.
+        * Does not significantly value-add to the product as compared to just using the edit command.
+
+* **Alternative 2 (Current implementation):** The command parameter will be the quantity to increase/decrease the
+quantity of the food item by.
+    * Pros:
+        * Intuitive for the user to key in the quantity they want to increase/decrease by.
+    * Cons:
+        * Parameter to increase/decrease quantity must be checked that it is a positive integer.
+        * Users will have to use separate commands to increase and decrease quantity.
+
+Another aspect that was considered when implementing this feature was having a default quantity to increase and decrease
+if no quantity was specified. We realised it was intuitive for users to make the default increment or decrement set to
+1, easing convenience for the user.
+
+**Implementation** 
+<div> Note: The implementation for `inc` and `dec` are the same, except the variable names and logic used to calculate 
+new quantity (Addition/Subtraction) The described implementation is for the `inc` command. </div>
+
+The first stage of the implementation is parsing the user input to `IncreaseCommand`. `IncreaseCommandParser` is used
+to parse and check whether the user input is valid. After which a `IncreaseCommand` object is created along with a 
+`IncreaseFoodDescriptor` instance to modify the current food item.
+
+The second stage requires IncreaseCommand#execute() to be called.
+
+**Usage Scenario**
+
+1. The user specifies an index of the food item to be edited.
+2. If the index is out of bounds from the food list, an error response is returned and users will be prompted to key in
+   the command with the valid index.
+3. If no specific quantity is specified, the quantity of the indexed food item will be increased by one.
+4. If a specific quantity is specified, the quantity of the indexed food item will be increased by that value.
+5. If the specific quantity is lesser than or equal to 0, an error response is returned and users will be prompted to 
+   key in the command with a valid quantity.
+
+
+The following activity diagram shows the usage of the `inc` command.
+
+**insert activity diagram
+
 ### \[Implemented\] Dynamic Help
 
 The dynamic help mechanism allows the user to receive help for the specific command being queried i.e. `help add`. It extends the traditional help functionality where the user only receive general help. The help commands and respective outputs are stored internally as enums in `HelpMenu.java`. Additionally, `HelpMenu.java` implements the following operations:
@@ -437,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a2. WIFE asks if the user wish to add the new tags into the tag list. <br/>
     Use case resumes at step 2.
 
-### **Use case UC06: Update a food item**
+### **Use case UC06: Edit a food item**
 
 **MSS**
 
@@ -480,7 +540,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * in the list, hence, no action will be carried out.
 
       Use case ends.
-  
+
+### **Use case UC08: Increase the quantity of a food item**
+
+**MSS**
+
+1. User selects a food item to increase its quantity in WIFE.
+2. WIFE informs the user that the increase has been completed.
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects an invalid food item.
+    * 1a1. WIFE displays a message that tells the User that the selected food item is invalid.
+      Use case ends.
+
+* 1b. The user does not specify the quantity of the food item to increase by
+    * 1b1. WIFE increases the quantity of the specified food item by 1.
+      Use case resumes from Step 2.
+* 1c. The user specifies a value that is lesser than or equal to 0 for the quantity of the food item to increase by.
+    * 1b1. WIFE displays a message that tells the User that the specified value is invalid.
+      Use case ends.
+
+### **Use case UC09: Decrease the quantity of a food item**
+The same as Use Case UC08: Increment the quantity of a food item, except that it is to decrease the quantity of a food 
+item.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
