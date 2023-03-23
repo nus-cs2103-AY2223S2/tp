@@ -32,8 +32,7 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        <TextFlow fx:id="titlePanel"/>
-
+        <TextFlow fx:id="titlePanel" />
         <SplitPane fx:id="cardList" dividerPositions="0.2" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <items>
             <VBox prefHeight="0.0" prefWidth="0.0">
