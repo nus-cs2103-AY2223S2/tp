@@ -316,9 +316,19 @@ _Details coming soon ..._
 
 Adds a policy to a specific client
 
+Do note that the Policy Name should be from the following list:
+- Health Insurance
+- Life Insurance
+- Medical Insurance
+- Fire Insurance
+- Car Insurance
+- Travel Insurance
+
+The frequency should be one of the following: `weekly`, `monthly`,`yearly` 
+
 Format: `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY`
 
-Examples: `addPolicy INDEX pn/Health pd/28.05.2023 pp/300 pf/monthly`
+Examples: `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
 ### Listing all policies.
 
@@ -369,5 +379,5 @@ the data of your previous AddressBook home folder.
  **Undo**            | `undo`                                                                                                                                                                
  **Redo**            | `redo`                                                                                                                                                                
  **Help**            | `help`                                                                                                                                                                
- **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health pd/28.05.2023 pp/300 pf/monthly`                         
+ **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`                         
  **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    

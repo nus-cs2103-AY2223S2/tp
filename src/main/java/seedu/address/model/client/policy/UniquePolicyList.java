@@ -145,4 +145,20 @@ public class UniquePolicyList implements Iterable<Policy> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
+    /**
+     * Deep copy Policy list
+     * Only used in undo and redo
+     * @return new policy list cloned
+     */
+    public UniquePolicyList clone() {
+        UniquePolicyList result = new UniquePolicyList();
+        Iterator it = this.internalList.iterator();
+        while (it.hasNext()) {
+            Policy toAdd = (Policy) it.next();
+            result.add(toAdd);
+        }
+        return result;
+    }
+
 }

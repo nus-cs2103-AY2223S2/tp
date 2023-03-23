@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class DeletePolicyCommand extends Command {
         }
 
         Client clientToDeletePolicy = lastShownList.get(clientIndex.getZeroBased());
+        Client deletedPolicyClient = clientToDeletePolicy.cloneClient();
         // Work with titus on how to select the client that we are interested in first.
         CommandResult cr = new SelectCommand(clientIndex).execute(model);
 
@@ -62,7 +64,10 @@ public class DeletePolicyCommand extends Command {
         }
 
         Policy policyToDelete = lastShownPolicyList.get(policyIndex.getZeroBased());
-        clientToDeletePolicy.getPolicyList().remove(policyToDelete);
+        //clientToDeletePolicy.getPolicyList().remove(policyToDelete);
+        deletedPolicyClient.getPolicyList().remove(policyToDelete);
+        model.setClient(clientToDeletePolicy, deletedPolicyClient);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         return new CommandResult(generateSuccessMessage(clientToDeletePolicy, policyToDelete));
     }

@@ -13,7 +13,9 @@ Class HelpWindow
 Class ResultDisplay
 Class ClientListPanel
 Class ClientCard
-Class StatusBarFooter
+Class ClientLabel
+Class PolicyListPanel
+Class PolicyCard
 Class CommandBox
 }
 
@@ -33,10 +35,12 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" ClientListPanel
-MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" PolicyListPanel
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "0..1" ClientLabel
 
 ClientListPanel -down-> "*" ClientCard
+PolicyListPanel -down-> "*" PolicyCard
 
 MainWindow -left-|> UiPart
 
@@ -44,17 +48,23 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 ClientListPanel --|> UiPart
 ClientCard --|> UiPart
-StatusBarFooter --|> UiPart
+PolicyListPanel --|> UiPart
+PolicyCard --|> UiPart
+ClientLabel --|> UiPart
 HelpWindow --|> UiPart
 
 ClientCard ..> Model
+PolicyCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 ClientListPanel -[hidden]left- HelpWindow
+ClientCard -[hidden]left- PolicyCard
+PolicyListPanel -[hidden]left- HelpWindow
+PolicyCard -[hidden]left- ClientCard
 HelpWindow -[hidden]left- CommandBox
+ClientLabel -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml
