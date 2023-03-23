@@ -1,24 +1,32 @@
 package expresslibrary.logic.parser;
 
-import expresslibrary.commons.core.index.Index;
-import expresslibrary.commons.exceptions.IllegalValueException;
-import expresslibrary.logic.commands.AddCommand;
-import expresslibrary.logic.commands.BorrowCommand;
-import expresslibrary.logic.parser.exceptions.ParseException;
+import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_BOOK;
+import static expresslibrary.logic.parser.CliSyntax.PREFIX_DUEDATE;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static expresslibrary.logic.parser.CliSyntax.*;
-import static expresslibrary.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static java.util.Objects.requireNonNull;
+import expresslibrary.commons.core.index.Index;
+import expresslibrary.commons.exceptions.IllegalValueException;
+import expresslibrary.logic.commands.BorrowCommand;
+import expresslibrary.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new BorrowCommand object
+ */
 public class BorrowCommandParser implements Parser<BorrowCommand> {
 
-    private final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the BorrowCommand
+     * and returns an BorrowCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public BorrowCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_DUEDATE);
@@ -35,9 +43,10 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
         if (argMultimap.getValue(PREFIX_DUEDATE).isPresent()) {
             String dateString = argMultimap.getValue(PREFIX_DUEDATE).orElse("");
             try {
-                dueDate = LocalDate.parse(dateString, FORMATTER);
-            } catch(DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_INVALID_DATE));
+                dueDate = LocalDate.parse(dateString, dateFormatter);
+            } catch (DateTimeParseException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        BorrowCommand.MESSAGE_INVALID_DATE));
             }
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE));

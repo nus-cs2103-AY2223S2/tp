@@ -1,5 +1,12 @@
 package expresslibrary.logic.commands;
 
+import static expresslibrary.commons.util.CollectionUtil.requireAllNonNull;
+import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_BOOKS;
+import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.time.LocalDate;
+import java.util.List;
+
 import expresslibrary.commons.core.Messages;
 import expresslibrary.commons.core.index.Index;
 import expresslibrary.logic.commands.exceptions.CommandException;
@@ -7,15 +14,9 @@ import expresslibrary.model.Model;
 import expresslibrary.model.book.Book;
 import expresslibrary.model.person.Person;
 
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static expresslibrary.commons.util.CollectionUtil.requireAllNonNull;
-import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_BOOKS;
-import static expresslibrary.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Lends a book to a person in the express library.
+ */
 public class BorrowCommand extends Command {
 
     public static final String COMMAND_WORD = "borrow";
@@ -37,6 +38,11 @@ public class BorrowCommand extends Command {
     private final Index bookIndex;
     private final LocalDate dueDate;
 
+    /**
+     * @param personIndex of the person in the filtered person list to lend book to
+     * @param bookIndex of the book to lend to the specified person
+     * @param dueDate of the book stating when it should be returned
+     */
     public BorrowCommand(Index personIndex, Index bookIndex, LocalDate dueDate) {
         requireAllNonNull(personIndex, bookIndex, dueDate);
 
