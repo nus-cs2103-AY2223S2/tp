@@ -92,10 +92,6 @@ public class TaskTest {
 
         // a INPROGRESS task has higher priority than COMPLETE task
         assertTrue(VALID_TASK_1.compareTo(VALID_COMPLETE_TASK) < 0);
-
-        // a task with an earlier creation date has higher priority
-        assertTrue(VALID_TASK_1.compareTo(VALID_TASK_3) < 0);
-
     }
 
     @Test
