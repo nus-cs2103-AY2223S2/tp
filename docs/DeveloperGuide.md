@@ -287,6 +287,51 @@ so it should only be executed when it is certain that the user is clear about th
 
 ### 3.5 Find Feature
 
+Before, the `find` feature on AB3 would find persons whose names contain any of the given keywords. This limited the search functionality to purely names. With our new enhancement, `find` can now search via any field.
+The FindCommandParser does the heavy lifting where it will automatically create appropriate predicates based on user input.
+
+You can find the specific implementation in the `FindCommandParser` class and the `FindCommand` class.
+
+Given below is an example usage scenario and how the find mechanism behaves.
+
+Step 1. The user inputs a `find` command with parameter `n/read`. The parser recognises the command word and calls the FindCommandParser.
+
+Step 2. The `FindCommandParser` recognises that the parameter is being searched is the name field.
+
+Step 3. `FindCommandParser` calls `FindCommand` with appropriate predicate (`NameContainsAllKeywordsPredicate`).
+
+Step 4. `FindCommand` is executed and model filters with the predicate passed.
+
+Step 5. The result of the filtered list is passed back to the UI.
+
+The following sequence diagram summarizes what happens in this example usage scenario:
+
+![SortCommandSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `find` command:
+
+![SortCommandSequenceDiagram](images/FindActivityDiagram.png)
+
+#### 3.5.1 Design Consideration
+
+#### Option 1 (current choice):
+* Find can search any attribute
+* It searches via matched substring
+* In the case of a sample search term `n/read book`, the whole string must be in the name of the task.
+* Only accepts 1 attribute at a time.
+* Can accept multiple of same attribute search terms along with a flag to indicate type of searching.
+* e.g. `all/`
+
+Pros: Simple for users while still being flexible and powerful.  
+Cons: Cannot find by multiple attributes at a time for more powerful functionality.
+
+#### Option 2:
+* Allow mix-and-matching of attributes for searching
+* Can still have a flag to indicate any or all search term matching
+
+Pros: More powerful functionality  
+Cons: More complicated to implement and unwieldy for users.
+
 ### 3.6 List Feature
 
 ### 3.7 Help Feature
