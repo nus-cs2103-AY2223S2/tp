@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.patient.Patient;
 import seedu.address.model.person.patient.Status;
 
@@ -17,7 +18,7 @@ public class TypicalPatients {
             .withEmail("zayden@gmail.com")
             .withPhone("23456978")
             .withTags("teenager")
-            .withHeight("1.6")
+            .withHeight("1.60")
             .withWeight("64")
             .withDiagnosis("Asthma")
             .withStatus(Status.getDummyValidStatus(0))
@@ -41,7 +42,7 @@ public class TypicalPatients {
             .withEmail("xannypeters@outlook.com")
             .withPhone("25466234")
             .withTags("lowPriority")
-            .withHeight("1.8")
+            .withHeight("1.82")
             .withWeight("76")
             .withDiagnosis("Pneumonia")
             .withStatus(Status.getDummyValidStatus(3))
@@ -53,11 +54,23 @@ public class TypicalPatients {
             .withEmail("breakingbad@outlook.com")
             .withPhone("18001800")
             .withTags("severePriority")
-            .withHeight("1.9")
+            .withHeight("1.91")
             .withWeight("68")
             .withDiagnosis("Eating Disorder")
             .withStatus(Status.getDummyValidStatus(5))
             .withRemark("Check back regarding meal plan")
+            .build();
+
+    // Do not assign this patient to any doctors in test scenarios
+    public static final Patient UNASSIGNED = new PatientBuilder()
+            .withName("Rob Smith")
+            .withEmail("robbie@gmail.com")
+            .withPhone("12346666")
+            .withHeight("1.74")
+            .withWeight("63.4")
+            .withDiagnosis("None")
+            .withStatus("Outpatient")
+            .withRemark("Non compliant")
             .build();
 
 
@@ -65,7 +78,28 @@ public class TypicalPatients {
 
     private TypicalPatients() {} // prevents instantiation
 
+    /**
+     * Returns an {@code AddressBook} with all the typical patients.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Patient patient : getTypicalPatients()) {
+            ab.addPatient(patient);
+        }
+        return ab;
+    }
+
     public static List<Patient> getTypicalPatients() {
-        return new ArrayList<>(Arrays.asList(ZAYDEN));
+        return new ArrayList<>(Arrays.asList(ZAYDEN, YANNIE, XANNY, WALTER));
+    }
+
+    /**
+     * Returns a patient that is not assigned to any doctor
+     * in test scenarios.
+     *
+     * @return Patient an unassigned patient.
+     */
+    public static Patient getUnassignedPatient() {
+        return UNASSIGNED;
     }
 }
