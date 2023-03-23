@@ -6,13 +6,14 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import vimification.Gui;
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc. It
  * contains a scene graph with a root node of type {@code T}.
  */
-public abstract class UiPart<T> {
+public abstract class UiPart<T extends Node> {
 
     /** Resource folder where FXML files are stored. */
     public static final String FXML_FILE_FOLDER = "/view/";
@@ -87,6 +88,31 @@ public abstract class UiPart<T> {
         String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;
         URL fxmlFileUrl = Gui.class.getResource(fxmlFileNameWithFolder);
         return requireNonNull(fxmlFileUrl);
+    }
+
+    /**
+     * Specifies whether the root of {@code Node} and any subnodes should be rendered as part of the
+     * scene graph. A node may be visible and yet not be shown in the rendered scene if, for
+     * instance, it is off the screen or obscured by another Node. Invisible nodes never receive
+     * mouse events or keyboard focus and never maintain keyboard focus when they become invisible.
+     *
+     * @defaultValue true
+     */
+    public void setVisible(boolean isVisible) {
+        this.getRoot().setVisible(isVisible);
+    }
+
+    /**
+     * Requests that this {@code Node} get the input focus, and that this {@code Node}'s top-level
+     * ancestor become the focused window. To be eligible to receive the focus, the node must be
+     * part of a scene, it and all of its ancestors must be visible, and it must not be disabled. If
+     * this node is eligible, this function will cause it to become this {@code Scene}'s "focus
+     * owner". Each scene has at most one focus owner node. The focus owner will not actually have
+     * the input focus, however, unless the scene belongs to a {@code Stage} that is both visible
+     * and active.
+     */
+    public void requestFocus() {
+        this.getRoot().requestFocus();
     }
 
 }
