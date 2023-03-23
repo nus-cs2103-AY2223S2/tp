@@ -10,7 +10,6 @@ import seedu.address.commons.util.GetUtil;
 import seedu.address.logic.core.CommandFactory;
 import seedu.address.logic.core.CommandParam;
 import seedu.address.logic.core.exceptions.ParseException;
-import seedu.address.logic.crew.linklocation.LinkCrewToLocationCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyItemManager;
 import seedu.address.model.crew.Crew;

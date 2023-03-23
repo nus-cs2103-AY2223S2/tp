@@ -97,7 +97,6 @@ public class UnlinkPilotCommandFactory implements CommandFactory<UnlinkPilotComm
         ));
     }
 
-
     private boolean addPilot(
             Optional<String> pilotIdOptional,
             FlightPilotType type,
