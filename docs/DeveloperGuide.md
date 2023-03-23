@@ -171,6 +171,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### New Contact feature
+
+### Implementation
+
+The new contact feature is facilitated by the `Contact` class. `Contact` class encapsulates the two attributes of a contact with the help of the `ContactName` and `ContactPhone` class.
+A new contact created will be added to the contact list which will be saved in a JSON file.
+
+### Design considerations:
+
+**Aspect: How new contact is created:**
+
+* **Alternative 1 (current choice):** Create a new contact through creating `ContactName` and `ContactPhone` attributes.
+    * Pros: More levels of abstraction to prevent the accidental change of information.
+    * Cons: Complicated code.
+* **Alternative 2:** Created a new contact through storing strings input by user.
+    * Pros: Easy to code.
+    * Cons: Might be hard to keep track or do comparisons with.
+  
+
 ### Mark feature
 The mark feature mechanism is implemented by having the Event class keep track of an additional attribute called 'Mark'. When an event is completed, the event will be marked through the class attribute 'Mark'.
 
