@@ -109,8 +109,10 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
         if (crewIdOptional.isEmpty()) {
             return false;
         }
+        int indexOfCrew =
+                Integer.parseInt(crewIdOptional.get());
         Optional<Crew> crewOptional =
-                crewManagerLazy.get().getItem(crewIdOptional.get());
+                crewManagerLazy.get().getItemByIndex(indexOfCrew);
         if (crewOptional.isEmpty()) {
             return false;
         }
@@ -124,11 +126,14 @@ public class LinkCrewCommandFactory implements CommandFactory<LinkCrewCommand> {
         if (flightIdOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+        int indexOfFlight =
+                Integer.parseInt(flightIdOptional.get());
         Optional<Flight> flightOptional =
-                flightManagerLazy.get().getItem(flightIdOptional.get());
+                flightManagerLazy.get().getItemByIndex(indexOfFlight);
         if (flightOptional.isEmpty()) {
             throw new ParseException(NO_FLIGHT_MESSAGE);
         }
+
         return flightOptional.get();
     }
 
