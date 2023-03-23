@@ -1,5 +1,6 @@
 package tfifteenfour.clipboard.storage.serializedClasses;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +10,7 @@ import tfifteenfour.clipboard.model.course.Group;
 
 public class SerializedGroup {
     private String groupName;
-    private List<SerializedStudent> students;
+    private List<SerializedStudent> students = new ArrayList<>();
 
     public SerializedGroup(Group group) {
         this.groupName = group.getGroupName();
@@ -17,6 +18,8 @@ public class SerializedGroup {
                 .map(student -> new SerializedStudent(student))
                 .collect(Collectors.toList());
     }
+
+    public SerializedGroup() {}
 
     @JsonProperty("groupName")
     public String getGroupName() {
@@ -26,5 +29,11 @@ public class SerializedGroup {
     @JsonProperty("students")
     public List<SerializedStudent> getStudents() {
         return students;
+    }
+
+    public Group toModelType() {
+        Group newGroup = new Group(this.groupName);
+        this.students.stream().forEach(student -> newGroup.addStudent(student.toModelType()));
+        return newGroup;
     }
 }

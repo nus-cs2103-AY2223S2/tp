@@ -2,10 +2,12 @@ package tfifteenfour.clipboard.storage;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,10 +15,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import tfifteenfour.clipboard.commons.core.LogsCenter;
 import tfifteenfour.clipboard.commons.exceptions.DataConversionException;
-import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
 import tfifteenfour.clipboard.commons.util.FileUtil;
-import tfifteenfour.clipboard.commons.util.JsonUtil;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
+import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.storage.serializedClasses.SerializedRoster;
 
 /**
@@ -25,6 +26,7 @@ import tfifteenfour.clipboard.storage.serializedClasses.SerializedRoster;
 public class JsonRosterStorage implements RosterStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonRosterStorage.class);
+    private static final ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
     private Path filePath;
 
@@ -37,9 +39,13 @@ public class JsonRosterStorage implements RosterStorage {
     }
 
     @Override
-    public Optional<ReadOnlyRoster> readRoster() throws DataConversionException {
+    public Optional<ReadOnlyRoster> readRoster() throws DataConversionException, IOException{
         return readRoster(filePath);
     }
+
+
+
+
 
     /**
      * Similar to {@link #readRoster()}.
@@ -47,21 +53,47 @@ public class JsonRosterStorage implements RosterStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyRoster> readRoster(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyRoster> readRoster(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableRoster> jsonRoster = JsonUtil.readJsonFile(
-                filePath, JsonSerializableRoster.class);
-        if (!jsonRoster.isPresent()) {
-            return Optional.empty();
+        // Optional<JsonSerializableRoster> jsonRoster = JsonUtil.readJsonFile(
+        //         filePath, JsonSerializableRoster.class);
+
+
+        File file = new File(filePath.toString());
+        Scanner scanner = new Scanner(file);
+
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            System.out.println(line);
         }
 
+        scanner.close();
+
         try {
-            return Optional.of(jsonRoster.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+            SerializedRoster jsonRoster = mapper.readValue(file, SerializedRoster.class);
+            Roster roster = jsonToRoster(jsonRoster);
+
+            System.out.println(rosterToJson(roster));
+
+            return Optional.of(roster);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Optional.empty();
         }
+        //to add: handling for problematic file
+
+
+
+        // if (!jsonRoster.isPresent()) {
+        //     return Optional.empty();
+        // }
+        // try {
+        //     return Optional.of(jsonRoster.get().toModelType());
+        // } catch (IllegalValueException ive) {
+        //     logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
+        //     throw new DataConversionException(ive);
+        // }
     }
 
     @Override
@@ -82,20 +114,25 @@ public class JsonRosterStorage implements RosterStorage {
 
         //     IM USING MY OWN IMPLEMENTATION OF SAVING JSON BECAUSE I HAVE NO IDEA HOW THIS WORKS.
         // MEANS THIS COMMENTED CODE HAVE TO TRACE BACK ALL THE WAY CUZ ITS UNUSED
-        //JsonUtil.saveJsonFile(new JsonSerializableRoster(roster), filePath);
 
-        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-        String rosterJson = rosterToJson(mapper, roster);
+        // JsonUtil.saveJsonFile(new JsonSerializableRoster(roster), filePath);
+
+
+        String rosterJson = rosterToJson(roster);
         writeJsonToFile(rosterJson, filePath);
 
 
     }
 
-    private String rosterToJson(ObjectMapper mapper, ReadOnlyRoster roster) throws IOException {
+    private String rosterToJson(ReadOnlyRoster roster) throws IOException {
         SerializedRoster wrapper = new SerializedRoster(roster);
         String rosterJson = mapper.writeValueAsString(wrapper);
 
         return rosterJson;
+    }
+
+    private Roster jsonToRoster(SerializedRoster serializedRoster) {
+        return serializedRoster.toModelType();
     }
 
     private void writeJsonToFile(String json, Path filePath) throws IOException {

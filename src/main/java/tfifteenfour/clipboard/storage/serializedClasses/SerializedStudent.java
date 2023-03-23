@@ -1,20 +1,26 @@
 package tfifteenfour.clipboard.storage.serializedClasses;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import tfifteenfour.clipboard.model.student.Email;
+import tfifteenfour.clipboard.model.student.Name;
+import tfifteenfour.clipboard.model.student.Phone;
+import tfifteenfour.clipboard.model.student.Remark;
 import tfifteenfour.clipboard.model.student.Student;
+import tfifteenfour.clipboard.model.student.StudentId;
 import tfifteenfour.clipboard.model.tag.Tag;
 
 public class SerializedStudent {
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String studentId;
-    private final String remark;
-    private final List<Tag> tags;
+    private String name;
+    private String phone;
+    private String email;
+    private String studentId;
+    private String remark;
+    private List<Tag> tags;
 
     public SerializedStudent(Student student) {
         this.name = student.getName().toString();
@@ -24,6 +30,8 @@ public class SerializedStudent {
         this.remark = student.getRemark().toString();
         this.tags = new ArrayList<Tag>(student.getTags());
     }
+
+    public SerializedStudent() {}
 
     @JsonProperty("name")
     public String getName() {
@@ -53,5 +61,11 @@ public class SerializedStudent {
     @JsonProperty("tags")
     public List<Tag> getTagged() {
         return tags;
+    }
+
+    public Student toModelType() {
+        return new Student(new Name(name), new Phone(phone),
+                new Email(email), new StudentId(studentId),
+                new HashSet<>(), new Remark(remark), new HashSet<>(tags));
     }
 }
