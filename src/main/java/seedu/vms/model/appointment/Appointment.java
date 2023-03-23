@@ -34,6 +34,10 @@ public class Appointment implements Comparable<Appointment> {
         this.vaccine = vaccine;
         isCompleted = false;
     }
+
+    /**
+     * Every field must be present and not null.
+     */
     public Appointment(Index patientId, LocalDateTime startTime, LocalDateTime endTime, GroupName vaccine,
                        Boolean isCompleted) {
         requireAllNonNull(patientId, startTime, endTime, vaccine, isCompleted);
@@ -66,12 +70,18 @@ public class Appointment implements Comparable<Appointment> {
         return isCompleted;
     }
 
+    /**
+     * Marks the appointment as completed.
+     */
     public Appointment mark() {
         assert !isCompleted;
 
         return new Appointment(patientId, startTime, endTime, vaccine, true);
     }
 
+    /**
+     * Unmarks the appointment as not completed.
+     */
     public Appointment unmark() {
         assert isCompleted;
 
