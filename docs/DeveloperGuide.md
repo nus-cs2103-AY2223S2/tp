@@ -154,6 +154,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Edit Category feature
+
+The edit category feature is implemented similarly to all the other commands, such as the add category and delete category
+feature. However, the method of handling the user input is slightly more complicated as it falls into one of the following:
+1. The user wishes to edit both the category's name and summary.
+2. The user only wishes to edit the category's name.
+3. The user only wishes to edit the category's summary.
+4. The user is calling the command with no arguments.
+
+In order to deal with the multiple scenarios, especially with the difficulty of segregating the second and third cases,
+`EditCategoryParser#parse()` checks the arguments provided by the user and passes them in accordingly to `EditCategory()`,
+whereby missing arguments in lieu of a full edit (Defined by our team as editing both the category's name and summary) are 
+passed in as `null` and checked later in `EditCategory#execute()`.
+
+To edit the category, we check that the index provided by the user is correct and return the `Category` object which matches
+the index (If it is a valid input.). Thereafter, `UserDefinedCategory#setCategoryName()` and `UserDefinedCategory#setDescription()`
+are used to edit the `Category` object.
+
+Given below is an example usage scenario of how the Edit Category behaves:
+
+Step 1. The user launches the application with prior data.
+
+//Insert pictures of launched app.
+
+Step 2. The user uses the `lcat` command to list out all categories.
+
+//Insert pictures of results of lcat.
+
+Step 3. The user uses the `ecat 1 c/newname s/newsummary` command.
+
+//Insert pictures of executing command.
+
+The following sequence diagram shows the order of operations of the Edit Category command:
+
+//Insert sequence diagram of how the edit category command works.
+
+#### Design considerations:
+**Aspect: How the category object is edited**:
+
+* **Alternative 1 (Current choice):** Directly retrieve and edit the currently-specified `Category` object.
+  * Pros: No need to re-point all `Expense` objects currently affiliated with the `Category` object that is being edited.
+  * Cons: Mutates the state of the `Category` object, which might not be ideal if seeking immutability.
+
+* **Alternative 2 :** Retrieve the specified `Category` object's name and summary, and create a new `Category` object 
+that uses the same name and summary before replacing the required name or summary depending on user's arguments.
+  * Pros: Enforces immutability by replacing the previous `Category` object.
+  * Cons: There is now a need to re-direct all `Expense` objects affiliated with the previous `Category` object of interest.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
