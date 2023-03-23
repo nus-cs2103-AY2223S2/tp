@@ -18,6 +18,7 @@ import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.InterviewDate;
 import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Review;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.ApplicationDeadline;
 import seedu.address.model.task.NoteContent;
@@ -71,6 +72,33 @@ public class ParserUtil {
             throw new ParseException(JobTitle.MESSAGE_CONSTRAINTS);
         }
         return new JobTitle(trimmedJobTitle);
+    }
+
+    /**
+     * Parses a {@code String Review} into a {@code Review}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code review} is invalid.
+     */
+    public static Review parseReview(String review) throws ParseException {
+        requireNonNull(review);
+        String trimmedReview = review.trim();
+        if (!JobTitle.isValidJobTitle(trimmedReview)) {
+            throw new ParseException(Review.MESSAGE_CONSTRAINTS);
+        }
+        return new Review(trimmedReview);
+    }
+
+    /**
+     * Parses {@code Collection<String> reviews} into a {@code Set<Review>}.
+     */
+    public static Set<Review> parseReviews(Collection<String> reviews) throws ParseException {
+        requireNonNull(reviews);
+        final Set<Review> reviewList = new HashSet<>();
+        for (String review : reviews) {
+            reviewList.add(parseReview(review));
+        }
+        return reviewList;
     }
 
     /**
