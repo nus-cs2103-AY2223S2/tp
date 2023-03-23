@@ -13,8 +13,6 @@ import static seedu.dengue.logic.commands.CommandTestUtil.INVALID_VARIANT_DESC;
 import static seedu.dengue.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_BOB;
-import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV2;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_AMY;
@@ -24,6 +22,8 @@ import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV2;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_VARIANT;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -85,7 +85,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC, Postal.MESSAGE_CONSTRAINTS); // invalid postal
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_AGE_DESC, Age.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_VARIANT_DESC, Variant.MESSAGE_CONSTRAINTS); // invalid variant
+        assertParseFailure(parser, "1" + INVALID_VARIANT_DESC, Variant.MESSAGE_CONSTRAINTS); // invalid var
 
         // invalid postal followed by valid date
         assertParseFailure(parser, "1" + INVALID_POSTAL_DESC + DATE_DESC_AMY, Postal.MESSAGE_CONSTRAINTS);
@@ -96,9 +96,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_VARIANT} alone will reset the dengue variants of the {@code Person} being edited,
         // parsing it together with a valid variant results in error
-        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1 + VARIANT_EMPTY, Variant.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_EMPTY + VARIANT_DESC_DENV1, Variant.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + VARIANT_EMPTY + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1, Variant.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1 + VARIANT_EMPTY,
+                Variant.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_DESC_DENV2 + VARIANT_EMPTY + VARIANT_DESC_DENV1,
+                Variant.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VARIANT_EMPTY + VARIANT_DESC_DENV2 + VARIANT_DESC_DENV1,
+                Variant.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DATE_DESC

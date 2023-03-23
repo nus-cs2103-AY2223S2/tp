@@ -16,14 +16,14 @@ import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_AMY;
 import static seedu.dengue.logic.commands.CommandTestUtil.POSTAL_DESC_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.dengue.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV1;
-import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV2;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_AGE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_POSTAL_BOB;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV1;
 import static seedu.dengue.logic.commands.CommandTestUtil.VALID_VARIANT_DENV2;
+import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV1;
+import static seedu.dengue.logic.commands.CommandTestUtil.VARIANT_DESC_DENV2;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.dengue.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.dengue.testutil.TypicalPersons.AMY;
@@ -68,7 +68,8 @@ public class AddCommandParserTest {
                 + AGE_DESC_BOB + VARIANT_DESC_DENV2, new AddCommand(expectedPerson));
 
         // multiple variants - all accepted
-        Person expectedPersonMultipleVariants = new PersonBuilder(BOB).withVariants(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
+        Person expectedPersonMultipleVariants = new PersonBuilder(BOB)
+                .withVariants(VALID_VARIANT_DENV2, VALID_VARIANT_DENV1)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + POSTAL_DESC_BOB + DATE_DESC_BOB + AGE_DESC_BOB
                 + VARIANT_DESC_DENV1 + VARIANT_DESC_DENV2, new AddCommand(expectedPersonMultipleVariants));

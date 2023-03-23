@@ -52,7 +52,7 @@ public class CommandTestUtil {
     public static final String INVALID_POSTAL_DESC = " " + PREFIX_POSTAL + "911a"; // 'a' not allowed in postals
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE; // empty string not allowed for age
-    public static final String INVALID_VARIANT_DESC = " " + PREFIX_VARIANT + "severe"; // "severe" is not a valid dengue variant
+    public static final String INVALID_VARIANT_DESC = " " + PREFIX_VARIANT + "severe"; // "severe" is an invalid variant
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

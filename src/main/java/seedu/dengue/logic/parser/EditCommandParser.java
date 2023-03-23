@@ -76,7 +76,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (variants.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> variantSet = variants.size() == 1 && variants.contains("") ? Collections.emptySet() : variants;
+        Collection<String> variantSet = variants.size() == 1 && variants.contains("")
+                ? Collections.emptySet()
+                : variants;
         return Optional.of(ParserUtil.parseVariants(variantSet));
     }
 

@@ -8,8 +8,8 @@ import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.person.Postal;
-import seedu.dengue.model.variant.Variant;
 import seedu.dengue.model.util.SampleDataUtil;
+import seedu.dengue.model.variant.Variant;
 
 /**
  * A utility class to help with building Person objects.

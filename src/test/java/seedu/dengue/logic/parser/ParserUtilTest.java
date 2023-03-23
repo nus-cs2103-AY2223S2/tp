@@ -178,7 +178,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseVariants_collectionWithInvalidVariants_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseVariants(Arrays.asList(VALID_VARIANT_1, INVALID_VARIANT)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseVariants(
+                Arrays.asList(VALID_VARIANT_1, INVALID_VARIANT)));
     }
 
     @Test
@@ -189,7 +190,8 @@ public class ParserUtilTest {
     @Test
     public void parseVariants_collectionWithValidVariants_returnsVariantSet() throws Exception {
         Set<Variant> actualVariantSet = ParserUtil.parseVariants(Arrays.asList(VALID_VARIANT_1, VALID_VARIANT_2));
-        Set<Variant> expectedVariantSet = new HashSet<>(Arrays.asList(new Variant(VALID_VARIANT_1), new Variant(VALID_VARIANT_2)));
+        Set<Variant> expectedVariantSet = new HashSet<>(
+                Arrays.asList(new Variant(VALID_VARIANT_1), new Variant(VALID_VARIANT_2)));
 
         assertEquals(expectedVariantSet, actualVariantSet);
     }
