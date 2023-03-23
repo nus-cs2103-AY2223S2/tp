@@ -158,6 +158,12 @@ public class Tutorial extends Event {
                 && otherTutorial.getDate().equals(getDate());
     }
 
+    //Get copy of tutorial
+    @Override
+    public Tutorial copy() {
+        return new Tutorial(getName(), getDate(), getStudents(), getAttachments(), getNotes());
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.

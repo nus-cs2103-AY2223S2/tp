@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.AddTutorialCommand.MESSAGE_DUPLICATE_
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
@@ -54,11 +55,14 @@ public class AddRecurCommand extends Command {
         }
 
         for (int i = 0; i < count; i++) {
-            toAdd.setName(toAdd.getName() + i + i);
+            Event newEvent = toAdd.copy();
+            newEvent.setName(newEvent.getName() + i);
             if (lab) {
-                model.addLab((Lab) toAdd);
+                model.addLab((Lab) newEvent);
             } else if (tutorial) {
-                model.addTutorial((Tutorial) toAdd);
+                model.addTutorial((Tutorial) newEvent);
+            } else {
+                model.addConsultation((Consultation) newEvent);
             }
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

@@ -158,6 +158,12 @@ public class Lab extends Event {
                 && otherLab.getDate().equals(getDate());
     }
 
+    //Get copy of tutorial
+    @Override
+    public Lab copy() {
+        return new Lab(getName(), getDate(), getStudents(), getAttachments(), getNotes());
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.

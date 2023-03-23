@@ -100,15 +100,18 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
     }
 
     boolean isLab(String newArgs) {
+        System.out.println(newArgs.trim().split("/")[0].equals("Lab"));
         return newArgs.trim().split("/")[0].equals("Lab");
     }
 
     boolean isTutorial(String newArgs) {
-        return newArgs.trim().split(" ")[0].equals("Tutorial");
+        System.out.println(newArgs.trim().split("/")[0].equals("Tutorial"));
+        return newArgs.trim().split("/")[0].equals("Tutorial");
     }
 
     boolean isConsultation(String newArgs) {
-        return newArgs.trim().split(" ")[0].equals("Consultation");
+        System.out.println(newArgs.trim().split("/")[0].equals("Consultation"));
+        return newArgs.trim().split("/")[0].equals("Consultation");
     }
 
     /**
