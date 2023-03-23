@@ -132,7 +132,30 @@ The `Model` component,
 
 </div>
 
+### Smaller components used by Model component
+***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java)
 
+![ClientAndProjectClassDiagram](images/ClientAndProjectClassModel.png)
+
+The `Model` box is the central component of the Mycelium's data. 
+It contains the entities `Client` and `Project` which are used to store the data of each entity. 
+
+The `Client` class contains the attributes for a client's `Name`, `Email`, `YearOfBirth`, source and `Phone` number,
+where the name and email are compulsory fields. The rest of the attributes are optional, and hence stored in `Optional` objects.
+The source attribute is a `String`.
+
+The `Project` class contains the attributes for a project's `Name`, `ProjectStatus`, `Email`, source, description, acceptedOn and deadline,
+where the project name and email are compulsory fields. The rest of the attributes are optional, where source, description and deadline are wrapped in `Optional` objects.
+These optional attributes are typed:
+- source: String
+- projectStatus: `ProjectStatus`
+- description: String
+- acceptedOn: `LocalDate`
+- deadline: `LocalDate`
+
+Each entity uses different methods, which they inherit from `ClientModel` and `ProjectModel` interface via the `Model` interface respectively.
+
+Moreover, each entity is also stored in a `UniqueList`, which ensures that the list do not contain duplicates. `UniqueList` from each entity is then stored in `AddressBook`, which contains the overarching methods for handling each type of list. 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -146,7 +169,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `mycelium.mycelium.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
