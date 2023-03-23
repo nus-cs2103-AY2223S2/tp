@@ -68,12 +68,12 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -103,12 +103,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setRecipeBook(ReadOnlyRecipeBook newData) {
+        public ReadOnlyRecipeBook getRecipeBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyRecipeBook getRecipeBook() {
+        public void setRecipeBook(ReadOnlyRecipeBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 

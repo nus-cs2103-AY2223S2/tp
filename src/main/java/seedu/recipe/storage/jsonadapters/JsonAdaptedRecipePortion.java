@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonadapters;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -14,7 +14,7 @@ import seedu.recipe.model.recipe.RecipePortion;
  * Jackson-friendly version of {@link Name}.
  */
 @JsonInclude(Include.NON_NULL)
-class JsonAdaptedRecipePortion {
+public class JsonAdaptedRecipePortion {
 
     private final int lowerRange;
 

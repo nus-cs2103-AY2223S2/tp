@@ -4,7 +4,9 @@ import static seedu.recipe.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 import seedu.recipe.model.recipe.exceptions.RecipeDurationNotPresentException;
 import seedu.recipe.model.recipe.exceptions.RecipePortionNotPresentException;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -24,13 +28,14 @@ public class Recipe {
 
     // Identity field
     private final Name name;
+    private final Set<Tag> tags = new HashSet<>();
+    private final List<IngredientBuilder> ingredients = new ArrayList<>();
+    private final List<Step> steps = new ArrayList<>();
+    private final Hashtable<Ingredient, IngredientQuantity> ingredientTable = new Hashtable<>();
 
     // Data fields
     private Optional<RecipePortion> portion = Optional.empty();
     private Optional<RecipeDuration> duration = Optional.empty();
-    private Set<Tag> tags = new HashSet<>();
-    private List<Ingredient> ingredients = new ArrayList<>();
-    private List<Step> steps = new ArrayList<>();
 
     /**
      * Only the name field is required. The rest are optional (but recommended)
@@ -44,11 +49,11 @@ public class Recipe {
         return name;
     }
 
-    public List<Ingredient> getIngredients() {
+    public List<IngredientBuilder> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Ingredient... ingredients) {
+    public void setIngredients(IngredientBuilder... ingredients) {
         this.ingredients.addAll(List.of(ingredients));
     }
 
@@ -83,6 +88,7 @@ public class Recipe {
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
      * @return A set of the tags associated with this Recipe.
      */
     public Set<Tag> getTags() {
@@ -159,6 +165,8 @@ public class Recipe {
 
         if (!tags.isEmpty()) {
             builder.append(";\nTags: ");
+            ArrayList<Tag> tags = new ArrayList<>(this.tags);
+            tags.sort(Comparator.comparing(t -> t.tagName));
             tags.forEach(builder::append);
         }
 

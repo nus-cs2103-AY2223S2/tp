@@ -29,7 +29,7 @@ public class JsonSerializableRecipeBookTest {
     @Test
     public void toModelType_typicalRecipesFile_success() throws Exception {
         JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_RECIPE_FILE,
-                JsonSerializableRecipeBook.class).get();
+                                                                        JsonSerializableRecipeBook.class).get();
         RecipeBook recipeBookFromFile = dataFromFile.toModelType();
         RecipeBook typicalRecipesRecipeBook = TypicalRecipes.getTypicalRecipeBook();
         assertEquals(recipeBookFromFile.toString(), typicalRecipesRecipeBook.toString());
@@ -38,21 +38,22 @@ public class JsonSerializableRecipeBookTest {
     /**
      * Tests if an invalid data file with improperly formatted arguments causes the appropriate control flow
      * and raises an IllegalArgumentException, from attempting to instantiate with invalid arguments.
+     *
      * @throws Exception
      */
     @Test
     public void toModelType_invalidRecipeFile_throwsIllegalValueException() throws Exception {
         JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(INVALID_RECIPE_FILE,
-                JsonSerializableRecipeBook.class).get();
+                                                                        JsonSerializableRecipeBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateRecipes_throwsIllegalValueException() throws Exception {
         JsonSerializableRecipeBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_RECIPE_FILE,
-                JsonSerializableRecipeBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableRecipeBook.MESSAGE_DUPLICATE_PERSON,
-                dataFromFile::toModelType);
+                                                                        JsonSerializableRecipeBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableRecipeBook.MESSAGE_DUPLICATE_RECIPE,
+                     dataFromFile::toModelType);
     }
 
     @Test
