@@ -175,6 +175,11 @@ public class AddTxnCommandTest {
         }
 
         @Override
+        public void sortPersonList(String attribute) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
             throw new AssertionError("This method should not be called.");
         }

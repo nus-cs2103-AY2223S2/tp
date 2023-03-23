@@ -12,6 +12,7 @@ public class Description {
             "Description should not be blank";
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
+
     public final String value;
 
     /**
@@ -21,6 +22,7 @@ public class Description {
     public Description(String description) {
         requireNonNull(description);
         checkArgument(isValidDescription(description));
+
         value = description;
     }
 
