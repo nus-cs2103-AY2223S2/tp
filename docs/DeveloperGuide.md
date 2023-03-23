@@ -266,7 +266,7 @@ The commands would be in the format `<action>XYZCommand`, where `XYZ` represents
 
 ### FindXYZCommand
 
-The `find` command finds object `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
+The `find` command finds objects `XYZ` from the internal `XYZList`, which stores all the `XYZ` objects, that matches the provided keywords.
 
 The keywords that can be provided are the same as those provided during the `add` and `edit` command.
 For example, `n/` would represent a task name for `FindTaskCommand` and order name for `FindSupplierCommand`.
