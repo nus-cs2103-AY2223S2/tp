@@ -317,6 +317,7 @@ User may choose between the two formats for the `delete` command which function 
 The following sequence diagram shows how the `delete`
 
 The following activity diagram shows what happens when a user executes a `delete` command:
+![Activity Diagram of delete command](images/DeleteActivityDiagram.png)
 
 ### **Sort modules feature**
 
