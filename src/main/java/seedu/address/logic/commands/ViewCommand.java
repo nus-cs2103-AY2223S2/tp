@@ -19,8 +19,7 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View more details of the role "
-            + "by the index number used in the displayed role list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "by the index number used in the displayed role list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 

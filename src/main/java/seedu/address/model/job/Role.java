@@ -148,26 +148,31 @@ public class Role {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Company: ")
+                .append("\n")
+                .append("Company: ")
                 .append(getCompany())
-                .append("; Job Description: ")
-                .append(getJobDescription());
+                .append("\n");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append("Salary: ").append(getSalary())
+                .append("\n")
+                .append("Deadline: ").append(getDeadline())
+                .append("\n")
+                .append("Experience: ").append(getExperience())
+                .append("\n")
+                .append("Phone: ").append(getPhone())
+                .append("\n")
+                .append("Email: ").append(getEmail())
+                .append("\n")
+                .append("Website: ").append(getWebsite())
+                .append("\n")
+                .append("Job Description: ").append(getJobDescription())
+                .append("\n");
 
-
-        builder.append("; Website: ").append(getWebsite());
-        builder.append("; Salary: ").append(getSalary());
-        builder.append("; Deadline: ").append(getDeadline());
-        builder.append("; Experience: ").append(getExperience());
         return builder.toString();
     }
 }
