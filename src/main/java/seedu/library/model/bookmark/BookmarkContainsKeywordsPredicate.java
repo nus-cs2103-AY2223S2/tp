@@ -8,7 +8,7 @@ import seedu.library.commons.util.StringUtil;
 /**
  * Tests that a {@code Bookmark}'s {@code Title} matches any of the keywords given.
  */
-public class TitleContainsKeywordsPredicate implements Predicate<Bookmark> {
+public class BookmarkContainsKeywordsPredicate implements Predicate<Bookmark> {
     private final List<String> titleKeywords;
     private final List<String> genreKeywords;
     private final List<String> tagKeywords;
@@ -17,13 +17,13 @@ public class TitleContainsKeywordsPredicate implements Predicate<Bookmark> {
     /**
      * Constructs an {@code TitleContainsKeywordsPredicate}.
      *
-     * @param titleKeywords keywords for searching title
-     * @param genreKeywords keywords for searching genre
-     * @param tagKeywords keywords for searching tag
+     * @param titleKeywords  keywords for searching title
+     * @param genreKeywords  keywords for searching genre
+     * @param tagKeywords    keywords for searching tag
      * @param authorKeywords keywords for searching author
      */
-    public TitleContainsKeywordsPredicate(List<String> titleKeywords, List<String> genreKeywords,
-                                          List<String> tagKeywords, List<String> authorKeywords) {
+    public BookmarkContainsKeywordsPredicate(List<String> titleKeywords, List<String> genreKeywords,
+                                             List<String> tagKeywords, List<String> authorKeywords) {
         this.titleKeywords = titleKeywords;
         this.genreKeywords = genreKeywords;
         this.tagKeywords = tagKeywords;
@@ -74,9 +74,43 @@ public class TitleContainsKeywordsPredicate implements Predicate<Bookmark> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TitleContainsKeywordsPredicate // instanceof handles nulls
-                && titleKeywords.equals(((TitleContainsKeywordsPredicate) other).titleKeywords)); // state check
-    }
+        if (other == this) {
+            return true;
+        }
 
+        if (!(other instanceof BookmarkContainsKeywordsPredicate)) {
+            return false;
+        }
+        boolean sameTitleKeyword;
+        boolean sameGenreKeyword;
+        boolean sameTagKeyword;
+        boolean sameAuthorKeyword;
+
+        if (this.titleKeywords == null) {
+            sameTitleKeyword = this.titleKeywords == ((BookmarkContainsKeywordsPredicate) other).titleKeywords;
+        } else {
+            sameTitleKeyword = titleKeywords.equals(((BookmarkContainsKeywordsPredicate) other).titleKeywords);
+        }
+
+        if (this.genreKeywords == null) {
+            sameGenreKeyword = this.genreKeywords == ((BookmarkContainsKeywordsPredicate) other).genreKeywords;
+        } else {
+            sameGenreKeyword = genreKeywords.equals(((BookmarkContainsKeywordsPredicate) other).genreKeywords);
+        }
+
+        if (this.tagKeywords == null) {
+            sameTagKeyword = this.tagKeywords == ((BookmarkContainsKeywordsPredicate) other).tagKeywords;
+        } else {
+            sameTagKeyword = tagKeywords.equals(((BookmarkContainsKeywordsPredicate) other).tagKeywords);
+        }
+
+        if (this.authorKeywords == null) {
+            sameAuthorKeyword = this.authorKeywords == ((BookmarkContainsKeywordsPredicate) other).authorKeywords;
+        } else {
+            sameAuthorKeyword = authorKeywords.equals(((BookmarkContainsKeywordsPredicate) other).authorKeywords);
+        }
+
+
+        return sameTitleKeyword && sameGenreKeyword && sameTagKeyword && sameAuthorKeyword; // state check
+    }
 }
