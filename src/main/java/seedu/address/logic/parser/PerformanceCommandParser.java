@@ -28,7 +28,7 @@ public class PerformanceCommandParser implements Parser<PerformanceCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    PerformanceCommand.MESSAGE_USAGE), ive);
+                    PerformanceCommand.MESSAGE_USAGE + "\n" + PerformanceCommand.PERFORMANCE_EXAMPLE), ive);
         }
 
         String performance = argMultimap.getValue(PREFIX_PERFORMANCE).orElse("1");

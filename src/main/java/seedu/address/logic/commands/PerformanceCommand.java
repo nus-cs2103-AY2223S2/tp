@@ -19,13 +19,10 @@ public class PerformanceCommand extends Command {
 
     public static final String COMMAND_WORD = "performance";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the performance of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Existing performance will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "per/ [PERFORMANCE]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+    public static final String MESSAGE_USAGE = "Performance Syntax: INDEX (must be a positive integer) "
+            + "per/ [PERFORMANCE]";
+
+    public static final String PERFORMANCE_EXAMPLE = "Example: " + COMMAND_WORD + " 1 "
             + "per/5";
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =

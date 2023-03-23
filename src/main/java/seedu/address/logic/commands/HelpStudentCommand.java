@@ -13,6 +13,14 @@ public class HelpStudentCommand extends HelpCommand {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(STUDENT_CATEGORIES);
+        return new CommandResult(AddCommand.MESSAGE_USAGE + "\n"
+                + DeleteCommand.MESSAGE_USAGE + "\n"
+                + EditCommand.MESSAGE_USAGE + "\n"
+                + FindCommand.MESSAGE_USAGE + "\n"
+                + PerformanceCommand.MESSAGE_USAGE + "\n"
+                + PhotoCommand.MESSAGE_USAGE + "\n"
+                + RemarkCommand.MESSAGE_USAGE + "\n"
+                + "List Syntax: list" + "\n"
+                + "Clear Syntax: clear");
     }
 }
