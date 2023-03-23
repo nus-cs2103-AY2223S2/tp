@@ -9,4 +9,5 @@ import seedu.address.model.employee.EmployeeId;
 public class TypicalEmployeeIds {
     public static final EmployeeId EMPLOYEE_ID_ONE = new EmployeeId("1");
     public static final EmployeeId EMPLOYEE_ID_TWO = new EmployeeId("2");
+    public static final EmployeeId EMPLOYEE_ID_THREE = new EmployeeId("3");
 }
