@@ -298,7 +298,7 @@ public interface Model {
      * @param lecture The lecture that the video list belongs to.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredVideoList(Predicate<? super Video> predicate, ReadOnlyLecture lecture);
+    void updateFilteredVideoList(Predicate<Video> predicate, ReadOnlyLecture lecture);
 
     /**
      * Updates the filter to hide all the contents of a list.

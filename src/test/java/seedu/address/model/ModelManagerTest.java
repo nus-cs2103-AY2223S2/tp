@@ -13,7 +13,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.module.CodeContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.testutil.TypicalLectures;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalVideos;
@@ -149,7 +149,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = new String[] {"Data"};
-        modelManager.updateFilteredModuleList(new CodeContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(tracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
