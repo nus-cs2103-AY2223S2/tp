@@ -71,7 +71,7 @@ public class DeleteEmployeeFromLeaveCommandTest {
                         new LeaveDate(LocalDate.parse(VALID_LEAVE_DATE_LEAVE_TYPE_1))).execute(modelStub));
     }
 
-    // Remove a nonexistent employee
+    // Remove a employee from leave that already has an existing employee added
     @Test
     public void execute_removeNonExistentEmployeeFromLeave_throwsCommandException() {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
