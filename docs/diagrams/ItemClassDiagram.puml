@@ -1,0 +1,23 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Enum "<<enumeration>>\nModelEnum" as ModelEnum{
+SUPPLIER
+TASK
+ORDER
+CUSTOMER
+}
+Abstract Class "{abstract}\nItem" as Item
+Class ItemList<T extends Item>
+Class "UniqueItemList<T> " as UniqueItemList
+
+
+Item -right-> "1 " ModelEnum
+UniqueItemList -up-> "            *" Item
+ItemList -left-> " 1" UniqueItemList
+
+@enduml

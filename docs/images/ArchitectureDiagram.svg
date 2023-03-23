@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
+     height="491.7px" preserveAspectRatio="none" style="width:302px;height:491px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 302 491" width="302.5px" zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster  -->
+        <g id="cluster_ ">
+            <rect fill="none" height="388.3" rx="2.75" ry="2.75" style="stroke:#181818;stroke-width:1.1;" width="212.3"
+                  x="7.7" y="96.8"/>
+            <text fill="#000000" font-family="sans-serif" font-size="15.4" font-weight="bold" lengthAdjust="spacing"
+                  textLength="4.4" x="111.65" y="115.6182">&#160;
+            </text>
+        </g><!--class UI-->
+        <g id="elem_UI">
+            <rect codeLine="8" fill="#1D8900" height="28.2047" id="UI" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="55" x="39.6" y="137.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="15.4" lengthAdjust="spacing" textLength="13.2" x="60.5"
+                  y="156.9412">UI
+            </text>
+        </g><!--class Logic-->
+        <g id="elem_Logic">
+            <rect codeLine="9" fill="#3333C4" height="28.2047" id="Logic" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="55" x="133.1" y="137.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="15.4" lengthAdjust="spacing" textLength="37.4" x="141.9"
+                  y="156.9412">Logic
+            </text>
+        </g><!--class Storage-->
+        <g id="elem_Storage">
+            <rect codeLine="10" fill="#A38300" height="28.2047" id="Storage" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="61.6" x="140.8" y="438.9"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="15.4" lengthAdjust="spacing" textLength="55" x="144.1"
+                  y="458.3412">Storage
+            </text>
+        </g><!--class Model-->
+        <g id="elem_Model">
+            <rect codeLine="11" fill="#9D0012" height="28.2047" id="Model" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="55" x="66" y="232.1"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="15.4" lengthAdjust="spacing" textLength="41.8" x="72.6"
+                  y="251.5412">Model
+            </text>
+        </g><!--class Main-->
+        <g id="elem_Main">
+            <rect codeLine="12" fill="#808080" height="28.2047" id="Main" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="55" x="66" y="326.7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="15.4" lengthAdjust="spacing" textLength="33" x="77"
+                  y="346.1412">Main
+            </text>
+        </g><!--class Commons-->
+        <g id="elem_Commons">
+            <rect codeLine="13" fill="#6A6ADC" height="28.2047" id="Commons" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="75.9" x="25.85" y="438.9"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="15.4" lengthAdjust="spacing" textLength="69.3" x="29.15"
+                  y="458.3412">Commons
+            </text>
+        </g><!--class User-->
+        <g id="elem_User">
+            <rect codeLine="16" fill="#E41F36" height="63.8" id="User" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="55" x="39.6" y="7.7"/>
+            <image height="52.8" width="48.4" x="42.9"
+                   xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAwCAIAAADl8g+2AAAB6klEQVR4XtWXMU7EMBBF9yacgJaKjpKGmoIecQG4ABwAiZ6CloqS4xghhEAIIWq+cOQ4/vHwx7vrXaRXoCTrebbHM2YRdvY2zoIf9add4vX47PPm9vvhEeCPt9OLp90D/kyhRQLxvu7uY/iCj6vrBhW3RJq9wfP+Ef/QwCehGACsk2s9HBLv55ccrwY8eIQaqgRmxpFskDo8ziyqBDKOw9hg73icWSSJhmWIiBkqSbwcnnAABXFHJAmMxQEUxB2RJFznooBHY/6PRPN2iNVCkkCv4gAKWEIejZEktuKIBrlr5Ih7EXQJzInD2Ih7EXSJ4K/ceiN1SGDQ2l2GQZHlEWo4JILs4TIIXonw62HsC/LXaxAaJCKs0hY+IkngaNSyDM9rr+Jbfsj8IYHwKQm8E01LhYLLb3OqEgjPfQtPlMlBtyhu9mbNS9gdy5gZ1I3airXhn4RZCSP5cxAMC5PAr5TTi2+4oZQSvAUrh3vKREKsRctT3D0nEs33Bi/F3XMiYeTUyslP2USCP10f+YkdJRpuDMuQ3zZGiW4JEcnTYpTocDgLZiTEGrVCUm6OEj2PRiTl5ijRp0zlpB60SYl0QEYJ/mjdpKY6SDT/j7UM6ZQOEp0rVaSU6FypIqmnDxL2VWpNlBKbZSskfgABK9seuySkMQAAAABJRU5ErkJggg=="
+                   y="13.2"/>
+        </g><!--class File-->
+        <g id="elem_File">
+            <rect codeLine="17" fill="#83E769" height="63.8" id="File" rx="2.75" ry="2.75"
+                  style="stroke:#181818;stroke-width:0.0;" width="55" x="240.9" y="421.3"/>
+            <image height="52.8" width="45.1" x="245.85"
+                   xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAwCAIAAAAD28TyAAABD0lEQVR4Xu3YsQrCMBCA4b6us7NTBwcnceyqm+DiIriJY8c+g6KIooirB9ESc+klbZKLYuCfNPSzHtamWb7rxSrDL7H1sqtH6dj6usBHp/NmV+35Dxu/bVk33o9d3jd1y8sML9Dmx+6W3p4cBtPT2KXiOMSYlQ3fWz3CzhlnT9n4bCwDVRyQnj1l49WWAV+fPcEHtwmew27imWwtz2dD83MhL2O1FZ7blvkINgTXzTyWLa64QWxotO9rEx8rrN1UspP9/TbcCoqVluH/j9+03Ut2WzvmvGPa7iW7rR1z3tvbSt5qG1NuinMX271Gu3pvXP/GVkq272xt+IV4TzwOMdvhomzYvMB2LVxC0ds8PQEl7Yb8x9H04AAAAABJRU5ErkJggg=="
+                   y="426.8"/>
+        </g><!--link UI to Logic-->
+        <g id="link_UI_Logic">
+            <path codeLine="20" d="M94.853,151.8 C105.149,151.8 115.445,151.8 125.741,151.8 " fill="none"
+                  id="UI-to-Logic" style="stroke:#008000;stroke-width:1.1;"/>
+            <polygon fill="#008000" points="131.197,151.8,121.297,147.4,125.697,151.8,121.297,156.2,131.197,151.8"
+                     style="stroke:#008000;stroke-width:1.1;"/>
+        </g><!--link UI to Model-->
+        <g id="link_UI_Model">
+            <path codeLine="21" d="M70.994,166.529 C75.405,181.951 82.621,207.229 87.692,224.983 " fill="none"
+                  id="UI-to-Model" style="stroke:#008000;stroke-width:1.1;"/>
+            <polygon fill="#008000"
+                     points="89.133,230.01,90.6524,219.2833,87.6262,224.7204,82.1891,221.6942,89.133,230.01"
+                     style="stroke:#008000;stroke-width:1.1;"/>
+        </g><!--link Logic to Storage-->
+        <g id="link_Logic_Storage">
+            <path codeLine="22" d="M161.106,166.529 C162.855,214.236 168.718,373.857 170.83,431.288 " fill="none"
+                  id="Logic-to-Storage" style="stroke:#0000FF;stroke-width:1.1;"/>
+            <polygon fill="#0000FF"
+                     points="171.039,436.722,175.0685,426.6655,170.8349,431.2258,166.2746,426.9921,171.039,436.722"
+                     style="stroke:#0000FF;stroke-width:1.1;"/>
+        </g><!--link Logic to Model-->
+        <g id="link_Logic_Model">
+            <path codeLine="23" d="M150.7,166.529 C139.304,182.226 120.494,208.131 107.58,225.918 " fill="none"
+                  id="Logic-to-Model" style="stroke:#0000FF;stroke-width:1.1;"/>
+            <polygon fill="#0000FF"
+                     points="104.423,230.263,113.7941,224.8267,107.6495,225.8088,106.6674,219.6643,104.423,230.263"
+                     style="stroke:#0000FF;stroke-width:1.1;"/>
+        </g><!--link Main to UI-->
+        <g id="link_Main_UI">
+            <path codeLine="24"
+                  d="M82.269,326.381 C70.631,311.399 53.185,286.022 46.2,260.7 C37.873,230.516 48.829,194.7 57.761,172.898 "
+                  fill="none" id="Main-to-UI" style="stroke:#808080;stroke-width:1.1;"/>
+            <polygon fill="#808080"
+                     points="59.906,167.86,51.962,175.2263,57.7394,172.9153,60.0504,178.6928,59.906,167.86"
+                     style="stroke:#808080;stroke-width:1.1;"/>
+        </g><!--link Main to Logic-->
+        <g id="link_Main_Logic">
+            <path codeLine="25"
+                  d="M103.653,326.37 C114.532,311.179 131.494,285.428 140.8,260.7 C151.756,231.583 156.794,195.679 159.005,173.536 "
+                  fill="none" id="Main-to-Logic" style="stroke:#808080;stroke-width:1.1;"/>
+            <polygon fill="#808080"
+                     points="159.5,168.245,154.2144,177.7019,158.9978,173.722,162.9777,178.5054,159.5,168.245"
+                     style="stroke:#808080;stroke-width:1.1;"/>
+        </g><!--link Main to Storage-->
+        <g id="link_Main_Storage">
+            <path codeLine="26" d="M103.081,355.586 C116.831,374.968 142.274,410.784 157.982,432.916 " fill="none"
+                  id="Main-to-Storage" style="stroke:#808080;stroke-width:1.1;"/>
+            <polygon fill="#808080"
+                     points="160.985,437.14,158.8428,426.5202,157.8016,432.6549,151.6668,431.6137,160.985,437.14"
+                     style="stroke:#808080;stroke-width:1.1;"/>
+        </g><!--reverse link Model to Main-->
+        <g id="link_Model_Main">
+            <path codeLine="27" d="M93.5,268.224 C93.5,285.934 93.5,310.904 93.5,326.205 " fill="none"
+                  id="Model-backto-Main" style="stroke:#808080;stroke-width:1.1;"/>
+            <polygon fill="#808080" points="93.5,262.801,89.1,272.701,93.5,268.301,97.9,272.701,93.5,262.801"
+                     style="stroke:#808080;stroke-width:1.1;"/>
+        </g><!--link Main to Commons--><!--reverse link Model to Storage-->
+        <g id="link_Model_Storage">
+            <path codeLine="30"
+                  d="M107.349,266.926 C117.843,282.458 131.934,305.118 140.8,326.7 C156.805,365.684 165.913,415.041 169.62,438.504 "
+                  fill="none" id="Model-backto-Storage"
+                  style="stroke:#A38300;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#A38300"
+                     points="104.313,262.515,106.2786,273.1689,107.4216,267.0523,113.5382,268.1952,104.313,262.515"
+                     style="stroke:#A38300;stroke-width:1.1;"/>
+        </g><!--link Storage to File-->
+        <g id="link_Storage_File">
+            <path codeLine="31" d="M202.609,453.2 C212.905,453.2 223.212,453.2 233.508,453.2 " fill="none"
+                  id="Storage-to-File" style="stroke:#A38300;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#A38300" points="238.975,453.2,229.075,448.8,233.475,453.2,229.075,457.6,238.975,453.2"
+                     style="stroke:#A38300;stroke-width:1.1;"/>
+        </g><!--link User to UI-->
+        <g id="link_User_UI">
+            <path codeLine="32" d="M67.1,71.929 C67.1,90.541 67.1,113.663 67.1,130.031 " fill="none" id="User-to-UI"
+                  style="stroke:#181818;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#181818" points="67.1,135.366,71.5,125.466,67.1,129.866,62.7,125.466,67.1,135.366"
+                     style="stroke:#181818;stroke-width:1.1;"/>
+        </g><!--SRC=[PL5RQy8m67t_VaMiUxMoFPV2rga8bGulJqCaQpzhC4rAqZ9axByl5wkT3QM4SyvtEISZ9dBU5aWYUJoo7AU953dMZPuMCcyh58sEOVGescbKUjgQVu_KpOLZMBSL1z1d9cggQ4NUf2fG9P9BHSPpTm0-Q7wc9PA0156qnhoXekGOnpz0p4aurPhibkOx95cQhNjeAakMapHRB9C1jscaibqtsspzkfWD-9Kia9DLzZvBXnnbWenBXPSUcCYgaaBtnnssB_0BuFaWUd8P18IQVSsjtzmgRx9xc4uxPnnlxWxRPm0mTYUVTW4K-zZRT9XYvQdfY4diJO2FmHHyyHOjVFNU4ONy5dVIrpYBViR5ehlb0F9Z7z6kjyVR-ixq6xkH9rOKVizhTW3TgzZ2Vo-p3xi6dIJqPXzLDYrmyOQXNViF]-->
+    </g>
+</svg>

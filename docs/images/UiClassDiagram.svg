@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="650px" preserveAspectRatio="none"
+     style="width:936px;height:650px;background:#FFFFFF;" version="1.1" viewBox="0 0 936 650" width="936px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster UI-->
+        <g id="cluster_UI">
+            <rect fill="#83E769" height="587.5" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="657"
+                  x="7" y="56"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="14" x="328.5" y="73.1074">UI
+            </text>
+        </g><!--cluster Model-->
+        <g id="cluster_Model">
+            <rect fill="#F97181" height="95" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="201"
+                  x="696" y="549"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="44" x="774.5" y="566.1074">Model
+            </text>
+        </g><!--cluster Logic-->
+        <g id="cluster_Logic">
+            <rect fill="#C8C8FA" height="95" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="201"
+                  x="696" y="158"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="38" x="777.5" y="175.1074">Logic
+            </text>
+        </g><!--class Ui-->
+        <g id="elem_Ui">
+            <rect codeLine="7" fill="#1D8900" height="41.2813" id="Ui" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="77" x="427.5" y="93"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="430.5"
+                  y="110.6738">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="12" x="460"
+                  y="126.3145">Ui
+            </text>
+        </g><!--class UiPart-->
+        <g id="elem_UiPart">
+            <rect codeLine="8" fill="#1D8900" height="41.2813" id="UiPart" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="370.5" y="586.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="373.5"
+                  y="604.1738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="385"
+                  y="619.8145">UiPart
+            </text>
+        </g><!--class UiManager-->
+        <g id="elem_UiManager">
+            <rect codeLine="9" fill="#1D8900" height="25.6406" id="UiManager" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="74" x="540" y="100.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="68" x="543"
+                  y="118.1738">UiManager
+            </text>
+        </g><!--class MainWindow-->
+        <g id="elem_MainWindow">
+            <rect codeLine="10" fill="#1D8900" height="25.6406" id="MainWindow" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="85" x="501.5" y="203"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="79" x="504.5"
+                  y="220.6738">MainWindow
+            </text>
+        </g><!--class HelpWindow-->
+        <g id="elem_HelpWindow">
+            <rect codeLine="11" fill="#1D8900" height="25.6406" id="HelpWindow" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="83" x="23.5" y="289"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="77" x="26.5"
+                  y="306.6738">HelpWindow
+            </text>
+        </g><!--class ResultDisplay-->
+        <g id="elem_ResultDisplay">
+            <rect codeLine="12" fill="#1D8900" height="25.6406" id="ResultDisplay" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="92" x="287" y="289"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="86" x="290"
+                  y="306.6738">ResultDisplay
+            </text>
+        </g><!--class TabPanel-->
+        <g id="elem_TabPanel">
+            <rect codeLine="13" fill="#1D8900" height="25.6406" id="TabPanel" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="580.5" y="289"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="583.5"
+                  y="306.6738">TabPanel
+            </text>
+        </g><!--class XYZListView-->
+        <g id="elem_XYZListView">
+            <rect codeLine="14" fill="#1D8900" height="25.6406" id="XYZListView" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="82" x="566" y="384.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="76" x="569"
+                  y="402.1738">XYZListView
+            </text>
+        </g><!--class XYZCard-->
+        <g id="elem_XYZCard">
+            <rect codeLine="15" fill="#1D8900" height="25.6406" id="XYZCard" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="62" x="582" y="489.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="56" x="585"
+                  y="507.1738">XYZCard
+            </text>
+        </g><!--class HomeView-->
+        <g id="elem_HomeView">
+            <rect codeLine="16" fill="#1D8900" height="25.6406" id="HomeView" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="71" x="459.5" y="384.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="65" x="462.5"
+                  y="402.1738">HomeView
+            </text>
+        </g><!--class FinanceCard-->
+        <g id="elem_FinanceCard">
+            <rect codeLine="17" fill="#1D8900" height="25.6406" id="FinanceCard" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="88" x="459" y="489.5"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="82" x="462"
+                  y="507.1738">FinanceCard
+            </text>
+        </g><!--class StatusBarFooter-->
+        <g id="elem_StatusBarFooter">
+            <rect codeLine="18" fill="#1D8900" height="25.6406" id="StatusBarFooter" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="110" x="142" y="289"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="104" x="145"
+                  y="306.6738">StatusBarFooter
+            </text>
+        </g><!--class CommandBox-->
+        <g id="elem_CommandBox">
+            <rect codeLine="19" fill="#1D8900" height="25.6406" id="CommandBox" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="93" x="414.5" y="289"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="417.5"
+                  y="306.6738">CommandBox
+            </text>
+        </g><!--class HiddenModel-->
+        <g id="elem_HiddenModel">
+            <rect codeLine="23" fill="#F97181" height="25.6406" id="HiddenModel" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="134" x="739" y="594"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="128" x="742"
+                  y="611.6738">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+            </text>
+        </g><!--class HiddenLogic-->
+        <g id="elem_HiddenLogic">
+            <rect codeLine="27" fill="#C8C8FA" height="25.6406" id="HiddenLogic" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="134" x="739" y="203"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="128" x="742"
+                  y="220.6738">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+            </text>
+        </g><!--class HiddenOutside-->
+        <g id="elem_HiddenOutside">
+            <rect codeLine="30" fill="#FFFFFF" height="25.6406" id="HiddenOutside" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="99" x="416.5" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="419.5"
+                  y="24.6738">HiddenOutside
+            </text>
+        </g>
+        <g id="elem_GMN49">
+            <path d="M683,375 L683,393.5 L648.2,397.5 L683,401.5 L683,419.582 A0,0 0 0 0 683,419.582 L929,419.582 A0,0 0 0 0 929,419.582 L929,385 L919,375 L683,375 A0,0 0 0 0 683,375 "
+                  fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M919,375 L919,385 L929,385 L919,375 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169" x="715"
+                  y="394.0283">XYZListView = TaskListView,
+            </text>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="221" x="693"
+                  y="411.3193">OrderListView, MenuItemListView etc.
+            </text>
+        </g>
+        <g id="elem_GMN52">
+            <path d="M680.5,480 L680.5,498.5 L644.28,502.5 L680.5,506.5 L680.5,524.582 A0,0 0 0 0 680.5,524.582 L897.5,524.582 A0,0 0 0 0 897.5,524.582 L897.5,490 L887.5,480 L680.5,480 A0,0 0 0 0 680.5,480 "
+                  fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M887.5,480 L887.5,490 L897.5,490 L887.5,480 " fill="#FEFFDD"
+                  style="stroke:#181818;stroke-width:0.5;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="192"
+                  x="686.5" y="499.0283">XYZCard = TaskCard, OrderCard,
+            </text>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110"
+                  x="731.5" y="516.3193">MenuItemCard etc.
+            </text>
+        </g><!--link HiddenOutside to Ui-->
+        <g id="link_HiddenOutside_Ui">
+            <path codeLine="31" d="M466,33.34 C466,46.89 466,69.05 466,86.48 " fill="none" id="HiddenOutside-to-Ui"
+                  style="stroke:#0E4100;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#0E4100" points="466,91.15,470,82.15,466,86.15,462,82.15,466,91.15"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--reverse link Ui to UiManager-->
+        <g id="link_Ui_UiManager">
+            <path codeLine="33" d="M525.96,113.5 C530.53,113.5 535.1,113.5 539.66,113.5 " fill="none"
+                  id="Ui-backto-UiManager" style="stroke:#0E4100;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="526.1,120.5,506.1,113.5,526.1,106.5,526.1,120.5"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link UiManager to MainWindow-->
+        <g id="link_UiManager_MainWindow">
+            <path codeLine="34" d="M572.95,126.82 C567.24,144.23 556.76,176.15 550.1,196.43 " fill="none"
+                  id="UiManager-to-MainWindow" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="548.55,201.14,555.1578,193.8368,550.1097,196.3895,547.557,191.3413,548.55,201.14"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="541.2939" y="191.6452">1
+            </text>
+        </g><!--link MainWindow to CommandBox-->
+        <g id="link_MainWindow_CommandBox">
+            <path codeLine="35" d="M521.88,239.39 C509.96,251.45 495.3,266.29 483.35,278.38 " fill="none"
+                  id="MainWindow-CommandBox" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="530.69,230.47,523.6267,231.9227,522.251,239.0013,529.3143,237.5487,530.69,230.47"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="474.36,287.48,483.533,283.8945,477.8763,283.9253,477.8455,278.2685,474.36,287.48"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <line style="stroke:#0E4100;stroke-width:1.1;" x1="477.8763" x2="483.495" y1="283.9253" y2="278.23"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="469.545" y="277.6042">1
+            </text>
+        </g><!--link MainWindow to ResultDisplay-->
+        <g id="link_MainWindow_ResultDisplay">
+            <path codeLine="36" d="M499.61,234.67 C463.8,248.93 413.65,268.89 377.74,283.19 " fill="none"
+                  id="MainWindow-ResultDisplay" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="511.46,229.95,504.4066,228.45,500.3092,234.3839,507.3626,235.8839,511.46,229.95"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="365.67,287.99,375.5115,288.3714,370.3143,286.1378,372.5479,280.9406,365.67,287.99"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <line style="stroke:#0E4100;stroke-width:1.1;" x1="370.3143" x2="377.745" y1="286.1378" y2="283.185"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="367.4965" y="277.6042">1
+            </text>
+        </g><!--link MainWindow to TabPanel-->
+        <g id="link_MainWindow_TabPanel">
+            <path codeLine="37" d="M563.42,240.3 C573.08,251.9 584.73,265.88 594.42,277.5 " fill="none"
+                  id="MainWindow-TabPanel" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="555.3,230.56,556.0662,237.7303,562.9796,239.7808,562.2134,232.6105,555.3,230.56"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="602.66,287.39,599.9672,277.9164,599.4575,283.5502,593.8236,283.0405,602.66,287.39"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <line style="stroke:#0E4100;stroke-width:1.1;" x1="599.4575" x2="594.335" y1="283.5502" y2="277.405"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="591.5154" y="277.6042">1
+            </text>
+        </g><!--link MainWindow to StatusBarFooter-->
+        <g id="link_MainWindow_StatusBarFooter">
+            <path codeLine="38" d="M487.24,230.74 C425.54,245.68 327.09,269.51 262.24,285.21 " fill="none"
+                  id="MainWindow-StatusBarFooter" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="499.63,227.74,492.8573,225.264,487.9669,230.5634,494.7396,233.0394,499.63,227.74"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="250.01,288.17,259.6985,289.9401,254.8696,286.9936,257.8162,282.1647,250.01,288.17"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <line style="stroke:#0E4100;stroke-width:1.1;" x1="254.8696" x2="262.65" y1="286.9936" y2="285.11"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="258.6543" y="277.8338">1
+            </text>
+        </g><!--link MainWindow to HelpWindow-->
+        <g id="link_MainWindow_HelpWindow">
+            <path codeLine="39"
+                  d="M501.11,223.98 C425.17,236.41 262.15,263.51 125,289 C121.16,289.71 117.19,290.47 113.2,291.24 "
+                  fill="none" id="MainWindow-to-HelpWindow" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="108.42,292.17,118.0199,294.3704,113.3273,291.2114,116.4862,286.5188,108.42,292.17"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22"
+                  x="112.023" y="286.3342">0..1
+            </text>
+        </g><!--link TabPanel to HomeView-->
+        <g id="link_TabPanel_HomeView">
+            <path codeLine="41" d="M598.44,315.22 C577.24,331.88 539.22,361.76 515.65,380.28 " fill="none"
+                  id="TabPanel-to-HomeView" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="511.75,383.34,521.3028,380.9432,515.6875,380.2585,516.3723,374.6432,511.75,383.34"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="508.1579" y="373.1377">1
+            </text>
+        </g><!--link TabPanel to XYZListView-->
+        <g id="link_TabPanel_XYZListView">
+            <path codeLine="42" d="M613.08,315.22 C611.89,331.18 609.79,359.27 608.39,377.88 " fill="none"
+                  id="TabPanel-to-XYZListView" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="608.03,382.76,612.6876,374.082,608.4015,377.7738,604.7097,373.4877,608.03,382.76"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="599.9364" y="373.1377">1
+            </text>
+        </g><!--link XYZListView to XYZCard-->
+        <g id="link_XYZListView_XYZCard">
+            <path codeLine="44" d="M607.71,410.72 C608.75,428.61 610.7,462.06 611.92,482.98 " fill="none"
+                  id="XYZListView-to-XYZCard" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="612.2,487.78,615.6538,478.5566,611.9005,482.789,607.6682,479.0357,612.2,487.78"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="606.0662" y="478.1792">*
+            </text>
+        </g><!--link HomeView to XYZCard-->
+        <g id="link_HomeView_XYZCard">
+            <path codeLine="46" d="M509,410.72 C530.2,429.23 570.49,464.4 594.22,485.11 " fill="none"
+                  id="HomeView-to-XYZCard" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="597.88,488.3,593.7216,479.3721,594.11,485.0156,588.4665,485.404,597.88,488.3"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="587.737" y="478.1792">*
+            </text>
+        </g><!--link HomeView to FinanceCard-->
+        <g id="link_HomeView_FinanceCard">
+            <path codeLine="47" d="M495.95,410.72 C497.34,428.61 499.94,462.06 501.56,482.98 " fill="none"
+                  id="HomeView-to-FinanceCard" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="501.93,487.79,505.2239,478.5083,501.5443,482.8049,497.2477,479.1253,501.93,487.79"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="493.3534" y="478.1792">1
+            </text>
+        </g><!--link ResultDisplay to UiPart-->
+        <g id="link_ResultDisplay_UiPart">
+            <path codeLine="49" d="M335.87,315.25 C345.68,357.13 378.18,495.81 394.49,565.41 " fill="none"
+                  id="ResultDisplay-to-UiPart" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="none" points="401.25,563.59,399,584.65,387.62,566.78,401.25,563.59"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link CommandBox to UiPart-->
+        <g id="link_CommandBox_UiPart">
+            <path codeLine="50"
+                  d="M450.05,315.18 C438.67,328.7 421.49,351.69 414,375 C393.46,438.94 395.5,517.95 399.37,565.04 "
+                  fill="none" id="CommandBox-to-UiPart" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="none" points="406.32,564.14,401.28,584.72,392.38,565.49,406.32,564.14"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link StatusBarFooter to UiPart-->
+        <g id="link_StatusBarFooter_UiPart">
+            <path codeLine="51" d="M205.37,315.25 C234.42,357.77 331.62,500.05 378.41,568.54 " fill="none"
+                  id="StatusBarFooter-to-UiPart" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="none" points="384.07,564.42,389.57,584.88,372.51,572.31,384.07,564.42"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link HelpWindow to UiPart-->
+        <g id="link_HelpWindow_UiPart">
+            <path codeLine="52"
+                  d="M78.44,315.39 C115.22,349.27 220.75,446.13 310,525 C327.73,540.67 347.55,557.8 364.41,572.26 "
+                  fill="none" id="HelpWindow-to-UiPart" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="none" points="368.89,566.88,379.53,585.2,359.78,577.52,368.89,566.88"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link XYZCard to UiPart-->
+        <g id="link_XYZCard_UiPart">
+            <path codeLine="53" d="M587.79,515.86 C555.6,531.65 499.06,559.38 457.17,579.92 " fill="none"
+                  id="XYZCard-to-UiPart" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="none" points="460.35,586.16,439.31,588.68,454.18,573.59,460.35,586.16"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link FinanceCard to UiPart-->
+        <g id="link_FinanceCard_UiPart">
+            <path codeLine="54" d="M491.25,515.66 C478.2,529.18 456.5,551.64 438.02,570.78 " fill="none"
+                  id="FinanceCard-to-UiPart" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="none" points="443.18,575.51,424.25,585.03,433.11,565.79,443.18,575.51"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--reverse link UiPart to MainWindow-->
+        <g id="link_UiPart_MainWindow">
+            <path codeLine="55"
+                  d="M418.69,565.37 C429.77,507.83 440.74,406.13 460,375 C483.95,336.29 518.51,353.37 543,315 C560.25,287.98 562.49,248.83 555.61,229.2 "
+                  fill="none" id="UiPart-backto-MainWindow" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="none" points="425.61,566.49,414.49,584.53,411.93,563.49,425.61,566.49"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link MainWindow to UiPart--><!--link XYZCard to Model-->
+        <g id="link_XYZCard_Model">
+            <path codeLine="57"
+                  d="M640.61,515.87 C648.8,520.44 657.35,526.2 664,533 C676.525,545.815 686.3,563.3425 693.0513,578.0113 C693.8952,579.8448 694.6918,581.6338 695.4407,583.3632 C695.6279,583.7956 695.8121,584.2243 695.9934,584.649 "
+                  fill="none" id="XYZCard-to-Model" style="stroke:#0E4100;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#0E4100"
+                     points="695.9934,584.649,696.1399,574.8012,694.0309,580.0502,688.7819,577.9412,695.9934,584.649"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link FinanceCard to Model-->
+        <g id="link_FinanceCard_Model">
+            <path codeLine="58"
+                  d="M533.79,515.9 C543.61,519.39 554.63,522.82 565,525 C586.6,529.54 645.48,521 664,533 C679.035,542.745 688.89,560.1775 695.055,575.5638 C695.2477,576.0446 695.4367,576.5234 695.6222,576.9999 C695.715,577.2382 695.8068,577.4759 695.8978,577.713 "
+                  fill="none" id="FinanceCard-to-Model"
+                  style="stroke:#0E4100;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#0E4100"
+                     points="695.8978,577.713,696.4079,567.8773,694.1065,573.0448,688.939,570.7434,695.8978,577.713"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link UiManager to Logic-->
+        <g id="link_UiManager_Logic">
+            <path codeLine="60"
+                  d="M614.3,119.81 C630.94,123.71 649.93,130.43 664,142 C677.845,153.375 687.6625,170.8575 694.1063,185.8625 C694.509,186.8003 694.8985,187.7284 695.2751,188.6448 C695.4633,189.103 695.6484,189.5582 695.8301,190.0103 C695.8756,190.1233 695.9208,190.2361 695.9659,190.3487 "
+                  fill="none" id="UiManager-to-Logic" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100"
+                     points="695.9659,190.3487,696.3373,180.5068,694.1089,185.7063,688.9095,183.4779,695.9659,190.3487"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--reverse link Logic to MainWindow-->
+        <g id="link_Logic_MainWindow">
+            <path codeLine="61"
+                  d="M695.7884,216 C695.6364,216 695.4844,216 695.3324,216 C695.0284,216 694.7245,216 694.4205,216 C693.8125,216 693.2045,216 692.5966,216 C691.3806,216 690.1647,216 688.9488,216 C684.085,216 679.2213,216 674.3575,216 C664.63,216 654.9025,216 645.175,216 C625.72,216 606.265,216 586.81,216 "
+                  fill="none" id="Logic-backto-MainWindow" style="stroke:#0E4100;stroke-width:1.1;"/>
+            <polygon fill="#0E4100" points="695.7884,216,686.7884,212,690.7884,216,686.7884,220,695.7884,216"
+                     style="stroke:#0E4100;stroke-width:1.1;"/>
+        </g><!--link HomeView to XYZListView--><!--link CommandBox to TabPanel--><!--link ResultDisplay to CommandBox--><!--link StatusBarFooter to ResultDisplay--><!--link HelpWindow to StatusBarFooter--><!--SRC=[fLDTRziW57tdLx3ihMgiHTfJbUMXxh96IkGgI_RPgQ8sIL0mH82LLLt_-m0R- -AasiFy1ESS7xZt7jumaVEge5YR9qwJGrLofFTC78WY9IPAoUDgn_Aze5hZKJBgawdaKk7rx27DvjdoOVKU279EjBuc-NwhP2MAM8hGmJ9aIos2n-CbpGqHMqud4-0smiyeTIvuC1upOQZQaDnAxiMQ3J3HUCq2_qmUjL4aDo-El2FAD0AtR4HhjY327gcQ_O8myPM9GXuRu9RoGmGigQwukM7wmCbJWwt8unqHb3VRRzz_p9asNnWzTaXAL14yPKa1EMM2Y9m2mMT3J6NxfAPIclPkgInB8efh-HkzTBrQo8BoNhiMsSt7-PcEuNzylZ-th2Yeg6rZ8tZiN6vPtZjsddsQfVztR6qR6xbZcyPvJLOPpMm-tqxzXs8qIIOk0wYTB4uutPZaZuSxT6X7AeOJF1WDuDIx9Ru84gy1tJ-dSP8u6g-fsh2y9kXF7-Y6Jl8kIQmA11C5owYeDcLdMPXH13QTw6BGnXO5hxFiAMdzOQXHr1XRX9z5_GhRhaPmhmKHrnKUmSrj8WnS8i9XHrqu0DNwk1pvHn2vT2YCacBRdR65-_IUkWS2TEhdpeVsL_rdF0rXIyQUm783gIkumHzialG-R2_nlS2PAgZga0KLrSpGils5cZmvjNU5NOL5O-kMbxLVlRJkmSxBl1M8LYZ85mmV2vnmB8gVIoyZiRJ_94xo4SlXsu3J2Afktdy1]-->
+    </g>
+</svg>

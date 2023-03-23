@@ -14,12 +14,14 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
+package "Trackr Storage" #F4F6F6{
+Class "<<interface>>\nTrackrStorage" as TrackrStorage
+Class JsonTrackrStorage
+Class JsonSerializableTrackr
+Class JsonAdaptedSupplier
 Class JsonAdaptedTag
+Class JsonAdaptedTask
+Class JsonAdaptedOrder
 }
 
 }
@@ -29,15 +31,17 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" TrackrStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> TrackrStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonTrackrStorage .up.|> TrackrStorage
+JsonTrackrStorage ..> JsonSerializableTrackr
+JsonSerializableTrackr --> "*" JsonAdaptedSupplier
+JsonAdaptedSupplier --> "*" JsonAdaptedTag
+JsonSerializableTrackr --> "*" JsonAdaptedOrder
+JsonSerializableTrackr --> "*" JsonAdaptedTask
 
 @enduml
