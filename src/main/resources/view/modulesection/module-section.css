@@ -27,7 +27,8 @@
     -fx-padding: 7 10;
 
     -fx-text-fill: -white;
-    -fx-font-family: 'Courier Prime Bold', monospace;
+    -fx-font-family: 'Courier Prime Bold', sans-serif;
+    -fx-font-weight: 600;
 
     -fx-border-radius: 7;
     -fx-background-radius: 7;
