@@ -11,5 +11,4 @@ else([else])
 endif
 :Assign task to person;
 stop
-
 @enduml

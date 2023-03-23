@@ -263,19 +263,19 @@ Below is a sequence diagram that illustrates how a user adds new tasks into the 
 
 * **Alternative 2:** Require all fields to be compulsory
     * Pros: Easier to implement, fewer bugs may be generated.
-    * Cons: Less intuitive and less user-friendly, as users who might not have a content description in mind when 
+    * Cons: Less intuitive and less user-friendly, as users who might not have a content description in mind when
   creating tasks may be forced to key in random content to add tasks.
 
 #### 3.1.3 Constraints:
 **Title must be unique:** </br>
-We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique 
+We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique
 titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as
 "Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be
 able to clearly distinguish the purpose of each task just by looking at the title. </br>
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
 to distinguish between the tasks unless they read each of the task content individually. It would also impair visual
 clarity when searching for tasks, as tasks with similar titles might clutter up the GUI.
-Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in 
+Hence, our approach in mandating unique titles are geared towards improving organisation and visual clarity for users in
 both the short and long term.
 
 ### 3.2 Deleting a task
@@ -300,13 +300,13 @@ Below is an activity diagram showcasing the 2 steps: </br>
 
 * **Alternative 1 (current choice):** Users have to call `listtask` to find the index of the task they wish to delete.
     * Pros: Increase convenience for users, as they do not have to remember the index of each task while being easier to implement.
-    * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of 
+    * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of
   obtaining the index needed for `deletetask`.
 
 * **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can
 use this index when deleting tasks
     * Pros: If the user remembers the index of each task, they will not need to call `listtask`. Hence, it will be less
-  troublesome for them to delete tasks as the number of steps required is reduced by one. 
+  troublesome for them to delete tasks as the number of steps required is reduced by one.
   Also reduces coupling, as `deletetask` will not have to depend on `listtask` to function properly.
     * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks. </br>
   If the user does not keep track of the indexes they have used for previous tasks, they may have to still
@@ -749,7 +749,7 @@ feature would work in practice.
 
     * 5a1. OfficeConnect shows an error message.
 
-      Use case resumes at step 2. 
+      Use case resumes at step 2.
 
 ---
 #### 5.4.5 Use case 5: Remove assignment of task from a person
@@ -986,13 +986,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder 
+   1. Download the jar file and copy into an empty folder
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
       optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
@@ -1002,12 +1002,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
    2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-      Timestamp in the status bar is updated. 
+      Timestamp in the status bar is updated.
    3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same. 
+      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
