@@ -11,7 +11,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.pet.*;
+import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Deadline;
+import seedu.address.model.pet.Email;
+import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
+import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -127,7 +132,6 @@ public class ParserUtil {
     /**
      * Parses a {@code String timestamp} into an {@code LocalDateTime}.
      *
-     *
      * @throws ParseException if the given {@code timestamp} is invalid.
      */
     public static LocalDateTime parseTimeStamp(String timestamp) {
@@ -135,6 +139,12 @@ public class ParserUtil {
         return LocalDateTime.parse(timestamp, formatter);
     }
 
+    /**
+     * Parses a {@code String deadline} into a Deadline object
+     *
+     * @param deadline takes in a deadline date in the form of yyyy-MM-dd HH:mm:ss
+     * @return new Deadline(String description, LocalDateTime time)
+     */
     public static Deadline parseDeadline(String deadline) {
         String[] split = deadline.split("-", 2);
         String description = split[0].trim();

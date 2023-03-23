@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -15,7 +14,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.pet.*;
+import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Deadline;
+import seedu.address.model.pet.Email;
+import seedu.address.model.pet.Name;
+import seedu.address.model.pet.OwnerName;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -125,16 +130,18 @@ class JsonAdaptedPet {
         final Address modelAddress = new Address(address);
 
         if (timestamp == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDateTime.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalDateTime.class.getSimpleName()));
         }
         Instant i = Instant.parse(timestamp + "Z");
         final LocalDateTime modelTimeStamp = LocalDateTime.ofInstant(i, ZoneId.systemDefault());
 
         if (deadline == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
         }
 
-        String split[] = deadline.split("by", 2);
+        String[] split = deadline.split("by", 2);
         String description = split[0].trim();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
@@ -142,7 +149,8 @@ class JsonAdaptedPet {
 
         final Set<Tag> modelTags = new HashSet<>(petTags);
 
-        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail, modelAddress, modelTimeStamp, modelDeadline, modelTags);
+        return new Pet(modelOwnerName, modelName, modelPhone, modelEmail,
+                modelAddress, modelTimeStamp, modelDeadline, modelTags);
     }
 
 }

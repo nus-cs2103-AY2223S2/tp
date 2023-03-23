@@ -21,47 +21,45 @@ import seedu.address.model.pet.Pet;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code ArchiveCommand}.
  */
-public class DeleteCommandTest {
-
+public class ArchiveCommandTest {
     private Model model = new ModelManager(getTypicalPetPal(), getTypicalPetPal(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Pet petToDelete = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PET);
+        Pet petToArchive = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
+        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PET);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
+        String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive);
 
         ModelManager expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
-        expectedModel.deletePet(petToDelete);
+        expectedModel.archivePet(petToArchive);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_validIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPetList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PET_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PET_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_invalidIndexFilteredList_success() {
         showPetAtIndex(model, INDEX_FIRST_PET);
 
-        Pet petToDelete = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PET);
+        Pet petToArchive = model.getFilteredPetList().get(INDEX_FIRST_PET.getZeroBased());
+        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PET);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PET_SUCCESS, petToDelete);
-
+        String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PET_SUCCESS, petToArchive);
         Model expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
-        expectedModel.deletePet(petToDelete);
+        expectedModel.archivePet(petToArchive);
         showNoPet(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -69,34 +67,33 @@ public class DeleteCommandTest {
         showPetAtIndex(model, INDEX_FIRST_PET);
 
         Index outOfBoundIndex = INDEX_SECOND_PET;
-        // ensures that outOfBoundIndex is still in bounds of PetPal list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPetPal().getPetList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PET_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PET_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PET);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PET);
+        ArchiveCommand archiveFirstCommand = new ArchiveCommand(INDEX_FIRST_PET);
+        ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_SECOND_PET);
 
         // same object -> returns true
-        assertEquals(deleteFirstCommand, deleteFirstCommand);
+        assertEquals(archiveFirstCommand, archiveSecondCommand);
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PET);
-        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
+        ArchiveCommand archiveFirstCommandCopy = new ArchiveCommand(INDEX_FIRST_PET);
+        assertEquals(archiveFirstCommand, archiveFirstCommandCopy);
 
         // different types -> returns false
-        assertNotEquals(1, deleteFirstCommand);
+        assertNotEquals(1, archiveFirstCommand);
 
         // null -> returns false
-        assertNotEquals(null, deleteFirstCommand);
+        assertNotEquals(null, archiveFirstCommand);
 
         // different PET -> returns false
-        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
+        assertNotEquals(archiveFirstCommand, archiveSecondCommand);
     }
 
     /**

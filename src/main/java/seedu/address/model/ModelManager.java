@@ -21,25 +21,28 @@ public class ModelManager implements Model {
 
     private final PetPal petPal;
     private PetPal petPalCache;
+
+    private final PetPal petPalArchive;
     private final UserPrefs userPrefs;
     private final FilteredList<Pet> filteredPets;
 
     /**
      * Initializes a ModelManager with the given PetPal and userPrefs.
      */
-    public ModelManager(ReadOnlyPetPal petPal, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPetPal petPal, ReadOnlyPetPal petPalArchive, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(petPal, userPrefs);
 
-        logger.fine("Initializing with address book: " + petPal + " and user prefs " + userPrefs);
+        logger.info("Initializing with PetPal: " + petPal + " and user prefs " + userPrefs);
 
         this.petPalCache = new PetPal(petPal);
         this.petPal = new PetPal(petPal);
+        this.petPalArchive = new PetPal(petPalArchive);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPets = new FilteredList<>(this.petPal.getPetList());
     }
 
     public ModelManager() {
-        this(new PetPal(), new UserPrefs());
+        this(new PetPal(), new PetPal(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -77,7 +80,16 @@ public class ModelManager implements Model {
         userPrefs.setPetPalFilePath(petPalFilePath);
     }
 
-    //=========== PetPal ================================================================================
+    public Path getPetPalArchiveFilePath() {
+        return userPrefs.getPetPalArchiveFilePath();
+    }
+
+    public void setPetPalArchiveFilePath(Path petPalArchiveFilePath) {
+        requireNonNull(petPalArchiveFilePath);
+        userPrefs.setPetPalArchiveFilePath(petPalArchiveFilePath);
+    }
+
+    //===================================== PetPal ======================================================
 
     @Override
     public void setPetPal(ReadOnlyPetPal petPal) {
@@ -87,6 +99,10 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyPetPal getPetPal() {
         return petPal;
+    }
+
+    public ReadOnlyPetPal getPetPalArchive() {
+        return petPalArchive;
     }
 
     @Override
@@ -123,7 +139,8 @@ public class ModelManager implements Model {
     @Override
     public void archivePet(Pet petToArchive) {
         requireNonNull(petToArchive);
-
+        petPal.archivePet(petToArchive);
+        updateFilteredPetList(PREDICATE_SHOW_ALL_PETS);
     }
 
     //=========== Filtered Pet List Accessors =============================================================

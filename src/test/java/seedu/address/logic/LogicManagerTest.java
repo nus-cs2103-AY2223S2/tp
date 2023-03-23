@@ -45,8 +45,10 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonPetPalStorage petPalStorage =
-                new JsonPetPalStorage(temporaryFolder.resolve("PetPal.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+                new JsonPetPalStorage(temporaryFolder.resolve("PetPal.json"),
+                        temporaryFolder.resolve("archive.json"));
+        JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(petPalStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
@@ -130,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getPetPal(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPetPal(), model.getPetPalArchive(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -152,7 +154,7 @@ public class LogicManagerTest {
      */
     private static class JsonPetPalIoExceptionThrowingStub extends JsonPetPalStorage {
         private JsonPetPalIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
+            super(filePath, filePath);
         }
 
         @Override

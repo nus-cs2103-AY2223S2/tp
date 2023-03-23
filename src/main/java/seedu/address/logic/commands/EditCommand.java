@@ -2,12 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PETS;
 
 import java.time.LocalDateTime;
@@ -23,12 +23,12 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.pet.Address;
+import seedu.address.model.pet.Deadline;
 import seedu.address.model.pet.Email;
 import seedu.address.model.pet.Name;
 import seedu.address.model.pet.OwnerName;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.Phone;
-import seedu.address.model.pet.Deadline;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -109,7 +109,8 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editPetDescriptor.getDeadline().orElse(petToEdit.getDeadline());
         Set<Tag> updatedTags = editPetDescriptor.getTags().orElse(petToEdit.getTags());
 
-        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTimestamp, updatedDeadline, updatedTags);
+        return new Pet(updatedOwnerName, updatedName, updatedPhone, updatedEmail,
+                updatedAddress, updatedTimestamp, updatedDeadline, updatedTags);
     }
 
     @Override

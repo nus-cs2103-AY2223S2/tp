@@ -2,12 +2,18 @@ package seedu.address.model.pet;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ *  Deadline object with fields (String description, LocalDateTime time)
+ *  Represents a deadline for reminder
+ */
 public class Deadline {
 
-    public static final String MESSAGE_CONSTRAINTS = "Deadline description can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Deadline description can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -45,8 +51,8 @@ public class Deadline {
 
     @Override
     public String toString() {
-        DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return description + " by " + deadline.format(CUSTOM_FORMATTER) + "";
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return description + " by " + deadline.format(customFormatter) + "";
     }
 
     @Override

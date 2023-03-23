@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path petPalFilePath = Paths.get("data" , "petpal.json");
+    private Path petPalArchiveFilePath = Paths.get("data", "archive.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -48,12 +49,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path getPetPalFilePath() {
-        return petPalFilePath;
+        return this.petPalFilePath;
     }
 
     public void setPetPalFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.petPalFilePath = addressBookFilePath;
+    }
+
+    public Path getPetPalArchiveFilePath() {
+        return this.petPalArchiveFilePath;
+    }
+
+    public void setPetPalArchiveFilePath(Path petPalArchiveFilePath) {
+        requireNonNull(petPalArchiveFilePath);
+        this.petPalArchiveFilePath = petPalArchiveFilePath;
     }
 
     @Override
@@ -68,12 +78,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && petPalFilePath.equals(o.petPalFilePath);
+                && petPalFilePath.equals(o.petPalFilePath)
+                && petPalArchiveFilePath.equals(o.petPalArchiveFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, petPalFilePath);
+        return Objects.hash(guiSettings, petPalFilePath, petPalArchiveFilePath);
     }
 
     @Override
@@ -81,6 +92,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + petPalFilePath);
+        sb.append("\nLocal archive file location: " + petPalArchiveFilePath);
         return sb.toString();
     }
 

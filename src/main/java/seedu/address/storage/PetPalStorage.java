@@ -18,6 +18,11 @@ public interface PetPalStorage {
     Path getPetPalFilePath();
 
     /**
+     * @return the file path for the archive file.
+     */
+    Path getPetPalArchiveFilePath();
+
+    /**
      * Returns PetPal data as a {@link ReadOnlyPetPal}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
@@ -41,5 +46,13 @@ public interface PetPalStorage {
      * @see #savePetPal(ReadOnlyPetPal)
      */
     void savePetPal(ReadOnlyPetPal petPal, Path filePath) throws IOException;
+
+    Optional<ReadOnlyPetPal> readPetPalArchive() throws DataConversionException, IOException;
+
+    Optional<ReadOnlyPetPal> readPetPalArchive(Path filePath) throws DataConversionException, IOException;
+
+    void savePetPalArchive(ReadOnlyPetPal petPal) throws IOException;
+
+    void savePetPalArchive(ReadOnlyPetPal petPal, Path filePath) throws IOException;
 
 }
