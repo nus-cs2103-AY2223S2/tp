@@ -158,11 +158,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Implementation Details
 
-The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`.
+The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`. <br>
 
 Given below is a class diagram on the `Student` class and the classes related to its attributes: <br>
 
-![student_diagram](images/StudentClassDiagram.png)
+![student_diagram](images/StudentClassDiagram.png) 
 
 The `Student` object is composed of attributes:
 
@@ -259,7 +259,34 @@ When editing a student entry, whether a new `Student` object should be created.
     * More timely option and space efficient.
   * Cons:
     * In order to execute this, `Student` cannot be immutable, this reduces the defensiveness of the program, making it more susceptible to errors.
+    
+### \[Proposed\] Sort feature
 
+### Proposed Implementation
+
+The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of: <br>
+* `sort` in [javafx.collections.FXCollections](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/FXCollections.html) for the main sorting functionality.
+  * In order to sort by `Name`, the comparator will be as follows `Comparator<Name>`.
+* `comparing` in [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) class to execute `sort` in ascending and descending orders. <br>
+
+An example usage would be `sort ASC` to sort the list in ascending order, and `sort DESC` to sort the list in descending order.
+> `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
+
+#### Exepected execution:
+1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
+2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
+
+### Design Considerations:
+**Aspect: Command format:**
+* **Alternative 1:** `sort`
+  * Pros:
+    * Simpler command for users to execute
+  * Cons:
+      * Less flexible as users cannot decide which attribute to sort by.
+      * Reduces extensibility of the feature (eg. sort by subject tag is more complicated if `sort` doesn't accept inputs)
+      * Users cannot choose which order to sort in as it will be defaulted to sorting in ascending order.
+
+_{more aspects to be added}_
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
