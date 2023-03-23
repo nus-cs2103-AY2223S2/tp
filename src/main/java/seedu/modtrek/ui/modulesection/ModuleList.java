@@ -1,9 +1,9 @@
 package seedu.modtrek.ui.modulesection;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -34,19 +34,26 @@ public class ModuleList extends UiPart<Region> {
         if (modules.size() == 0) {
             displayPlaceholderText(isFilteredList);
         }
-        displayModuleGroup(modules);
+        displayModuleGroup(modules, isFilteredList);
     }
 
     /**
      * Displays all module groups within a module list.
      * @param modules the list of modules
+     * @param isFilteredList indicates if the list of modules is filtered by a search query
      */
-    private void displayModuleGroup(ObservableList<Module> modules) {
-        HashMap<SemYear, ArrayList<Module>> modsPerSemYear = new HashMap<>();
+    private void displayModuleGroup(ObservableList<Module> modules, boolean isFilteredList) {
+        if (isFilteredList) {
+            ModuleGroup moduleGroup = new ModuleGroup(modules, "");
+            moduleList.getChildren().add(moduleGroup.getRoot());
+            return;
+        }
+
+        HashMap<SemYear, ObservableList<Module>> modsPerSemYear = new HashMap<>();
         for (Module module : modules) {
             SemYear semYear = module.getSemYear();
             if (!modsPerSemYear.containsKey(semYear)) {
-                ArrayList<Module> mods = new ArrayList<>();
+                ObservableList<Module> mods = FXCollections.observableArrayList();
                 mods.add(module);
                 modsPerSemYear.put(semYear, mods);
             } else {
@@ -54,8 +61,8 @@ public class ModuleList extends UiPart<Region> {
             }
         }
 
-        for (Map.Entry<SemYear, ArrayList<Module>> entry : modsPerSemYear.entrySet()) {
-            ModuleGroup moduleGroup = new ModuleGroup(entry.getKey(), entry.getValue());
+        for (Map.Entry<SemYear, ObservableList<Module>> entry : modsPerSemYear.entrySet()) {
+            ModuleGroup moduleGroup = new ModuleGroup(entry.getValue(), entry.getKey().toString());
             moduleList.getChildren().add(moduleGroup.getRoot());
         }
     }
