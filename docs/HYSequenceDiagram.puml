@@ -36,6 +36,7 @@ activate DATE COL2
 DATE --> DATE : "yyyyMMdd"
 deactivate DATE COL2
 DATE --> D
+deactivate DATE
 
 participant "<<class>>\nLocalDate" as LD COL5
 D -> LD : parse("20000101", "yyyyMMdd")
