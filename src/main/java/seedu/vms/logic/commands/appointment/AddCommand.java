@@ -7,6 +7,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
+import java.util.HashSet;
 import java.util.Map;
 
 import javafx.collections.ObservableMap;
@@ -14,11 +15,13 @@ import seedu.vms.commons.core.Messages;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
+import seedu.vms.model.GroupName;
 import seedu.vms.model.IdData;
 import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 import seedu.vms.model.appointment.AppointmentManager;
 import seedu.vms.model.patient.Patient;
+import seedu.vms.model.vaccination.Requirement;
 import seedu.vms.model.vaccination.VaxType;
 
 /**
@@ -47,6 +50,8 @@ public class AddCommand extends Command {
             + " in the appointment manager";
     public static final String MESSAGE_EXISTING_PATIENT_ID = "This patient already has an existing appointment";
     public static final String MESSAGE_MISSING_VAX_TYPE = "The given vaccine is not in the vaccine manager";
+    public static final String MESSAGE_MISSING_VAX_REQ = "The Patient has not taken all the needed vaccine";
+    public static final String MESSAGE_EXIST_VAX_REQ = "The Patient has already taken this vaccine dose";
 
     private final Appointment toAdd;
 
@@ -72,6 +77,31 @@ public class AddCommand extends Command {
         ObservableMap<String, VaxType> vaccinationList = model.getVaxTypeManager().asUnmodifiableObservableMap();
         if (!vaccinationList.containsKey(toAdd.getVaccination().getName())) {
             throw new CommandException(MESSAGE_MISSING_VAX_TYPE);
+        }
+
+        // Checks if the given patient has taken the vaccine or the necessary vaccine
+        Map<Integer, IdData<Appointment>> appointmentList = model.getAppointmentManager().getMapView();
+        HashSet<GroupName> history = new HashSet<>();
+        for (Map.Entry<Integer, IdData<Appointment>> entry : appointmentList.entrySet()) {
+            Appointment appointment = entry.getValue().getValue();
+            if (appointment.getPatient().equals(toAdd.getPatient())) {
+                history.addAll(vaccinationList.get(appointment.getVaccination().getName()).getGroups());
+            }
+        }
+        for (Requirement requirement: vaccinationList.get(toAdd.getVaccination().getName()).getHistoryReqs()) {
+            if (!requirement.check(history)) {
+                switch (requirement.getReqType()){
+                case ALL:
+                    // Fallthrough
+                case ANY:
+                    throw new CommandException(MESSAGE_MISSING_VAX_REQ);
+                case NONE:
+                    throw new CommandException(MESSAGE_EXIST_VAX_REQ);
+                default:
+                    // Should not reach here
+                }
+
+            }
         }
 
         model.addAppointment(toAdd);
