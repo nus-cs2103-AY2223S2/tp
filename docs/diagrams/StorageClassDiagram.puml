@@ -11,7 +11,7 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
-Class "<<interface>>\nStorage" as Storage
+Class "<<interface>>\nStorage" as StorageFacade
 Class StorageManager
 
 package "Codoc Storage" #F4F6F6{
@@ -20,6 +20,7 @@ Class JsonCodocStorage
 Class JsonSerializableCodoc
 Class JsonAdaptedPerson
 Class JsonAdaptedSkill
+Class JsonAdaptedModule
 }
 
 }
@@ -27,17 +28,21 @@ Class JsonAdaptedSkill
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
-StorageManager .up.|> Storage
+StorageManager .up.|> StorageFacade
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" CodocStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> CodocStorage
 
+
+
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonCodocStorage .up.|> CodocStorage
 JsonCodocStorage ..> JsonSerializableCodoc
 JsonSerializableCodoc --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedSkill
+JsonAdaptedPerson --> "*" JsonAdaptedModule
+
 
 @enduml
