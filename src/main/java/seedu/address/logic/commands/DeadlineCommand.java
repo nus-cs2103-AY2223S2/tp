@@ -15,8 +15,8 @@ public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the Deadline in asc/desc order.\n"
-            + "Parameters: ORDER (must be either asc OR desc)\n"
+            + ": Sorts the Deadline in asc/desc order.\n \n"
+            + "Parameters: ORDER (must be either asc OR desc)\n \n"
             + "Example: " + COMMAND_WORD + " desc";
     public static final String MESSAGE_SUCCESS = "Deadline sorted in %1$s";
     private Order order;

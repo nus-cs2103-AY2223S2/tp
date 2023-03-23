@@ -40,10 +40,11 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
+            primaryStage.setResizable(false);
             mainWindow = new MainWindow(primaryStage, logic);
+            logger.info("Main Window set");
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
