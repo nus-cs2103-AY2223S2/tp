@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.net.URI;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -16,26 +17,11 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-t14-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Command Summary" + "\n"
-            + "Action   |    Format, Examples" + "\n"
-            + "List     |list" + "\n"
-            + "Add      |add n/COMPANY_NAME r/ROLE s/STATUS d/DATE" + "\n"
-            + "          e.g., edit 2 s/assessment r/SoftWare Developer" + "\n"
-            + "Delete   |delete INDEX" + "\n"
-            + "Edit     |edit INDEX [n/NAME] [r/ROLE] [s/STATUS] [d/DATE]" + "\n"
-            + "         e.g.,edit 2 s/assessment r/SoftWare Developer" + "\n"
-            + "Help     |help" + "\n"
-            + "Exit     |exit" + "\n"
-            + "For details. Please refer to the user guide: " + USERGUIDE_URL;
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
     private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
 
     /**
      * Creates a new HelpWindow.
@@ -44,7 +30,6 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -108,5 +93,24 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * Opens the user guide in a browser
+     */
+    @FXML
+    private void goToUserGuide() {
+        //@author eugenetangkj-reused
+        //Adapted with modifications from
+        // https://stackoverflow.com/questions/5226212/how-to-open-the-default-webbrowser-using-java
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI(USERGUIDE_URL));
+            } catch (Exception e) {
+                //Should not reach here
+                e.printStackTrace();
+                assert (false);
+            }
+        }
     }
 }

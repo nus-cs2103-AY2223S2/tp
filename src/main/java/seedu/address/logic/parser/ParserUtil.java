@@ -139,6 +139,66 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> tags} into a {@code Set<CompanyName>}.
+     *
+     * @param companyNames The collection of company name strings to be parsed.
+     * @return a set of {@code CompanyName} objects encapsulating the company name strings.
+     */
+    public static Set<CompanyName> parseCompanyNames(Collection<String> companyNames) throws ParseException {
+        requireNonNull(companyNames);
+        final Set<CompanyName> companyNameSet = new HashSet<>();
+        for (String tagName : companyNames) {
+            companyNameSet.add(parseCompanyName(tagName));
+        }
+        return companyNameSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Role>}.
+     *
+     * @param roles The collection of role strings to be parsed.
+     * @return a set of {@code Role} objects encapsulating the role strings.
+     */
+    public static Set<Role> parseRoles(Collection<String> roles) throws ParseException {
+        requireNonNull(roles);
+        final Set<Role> roleSet = new HashSet<>();
+        for (String role : roles) {
+            roleSet.add(parseRole(role));
+        }
+        return roleSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Status>}.
+     *
+     * @param statuses The collection of status strings to be parsed.
+     * @return a set of {@code Tag} objects encapsulating the status strings.
+     */
+    public static Set<Status> parseStatuses(Collection<String> statuses) throws ParseException {
+        requireNonNull(statuses);
+        final Set<Status> statusSet = new HashSet<>();
+        for (String status : statuses) {
+            statusSet.add(parseStatus(status));
+        }
+        return statusSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Date>}.
+     *
+     * @param dates The collection of dates strings to be parsed.
+     * @return a set of {@code Date} objects encapsulating the date strings.
+     */
+    public static Set<Date> parseDates(Collection<String> dates) throws ParseException {
+        requireNonNull(dates);
+        final Set<Date> dateSet = new HashSet<>();
+        for (String date : dates) {
+            dateSet.add(parseDate(date));
+        }
+        return dateSet;
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      *
      * @param tags The collection of tag strings to be parsed.

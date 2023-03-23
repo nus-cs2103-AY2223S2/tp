@@ -32,11 +32,11 @@ public class FindCommandTest {
         InternshipContainsKeywordsPredicate firstPredicate =
                 new InternshipContainsKeywordsPredicate(Collections.singletonList("first"),
                         Collections.singletonList("first"), Collections.singletonList("first"),
-                        Collections.singletonList("first"));
+                        Collections.singletonList("first"), Collections.singletonList("first"));
         InternshipContainsKeywordsPredicate secondPredicate =
                 new InternshipContainsKeywordsPredicate(Collections.singletonList("second"),
                         Collections.singletonList("second"), Collections.singletonList("second"),
-                        Collections.singletonList("second"));
+                        Collections.singletonList("second"), Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -63,7 +63,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_INTERNSHIP_LISTED_OVERVIEW, 0);
         InternshipContainsKeywordsPredicate predicate =
                 new InternshipContainsKeywordsPredicate(Collections.emptyList(), Collections.emptyList(),
-                        Collections.emptyList(), Collections.emptyList());
+                        Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -74,8 +74,9 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleInternshipsFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIP_LISTED_OVERVIEW, 3);
         InternshipContainsKeywordsPredicate predicate =
-                new InternshipContainsKeywordsPredicate(Arrays.asList("Goldman", "Riot", "Samsung"),
-                        Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+                new InternshipContainsKeywordsPredicate(Arrays.asList("Goldman", "Riot Games", "Samsung"),
+                        Collections.emptyList(), Collections.emptyList(), Collections.emptyList(),
+                        Collections.emptyList());
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static seedu.address.model.internship.Status.ACCEPTED;
 import static seedu.address.model.internship.Status.APPLIED;
 import static seedu.address.model.internship.Status.ASSESSMENT;
 import static seedu.address.model.internship.Status.INTERVIEW;
@@ -123,6 +124,7 @@ public class InternshipCard extends UiPart<Region> {
         colorMap.put(INTERVIEW, Color.rgb(126, 68, 250, 1.0));
         colorMap.put(OFFERED, Color.rgb(42, 174, 79, 1.0));
         colorMap.put(REJECTED, Color.rgb(250, 68, 68, 1.0));
+        colorMap.put(ACCEPTED, Color.rgb(10, 50, 20, 1.0));
         return colorMap;
     }
 
@@ -147,13 +149,16 @@ public class InternshipCard extends UiPart<Region> {
             dateLabel = "Date of Interview: ";
             break;
         case OFFERED:
-            dateLabel = "Date of Notice of Offer: ";
+            dateLabel = "Deadline of Offer Acceptance: ";
             break;
         case REJECTED:
             dateLabel = "Date of Notice of Rejection: ";
             break;
+        case ACCEPTED:
+            dateLabel = "Date of Acceptance: ";
+            break;
         default:
-            dateLabel = "Date Added: ";
+            dateLabel = "Deadline of Application: ";
         }
         return dateLabel;
     }

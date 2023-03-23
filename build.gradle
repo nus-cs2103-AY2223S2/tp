@@ -141,4 +141,8 @@ test {
     }
 }
 
+tasks.withType(JavaExec) {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
