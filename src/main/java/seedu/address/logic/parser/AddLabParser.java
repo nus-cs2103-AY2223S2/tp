@@ -34,11 +34,16 @@ public class AddLabParser implements Parser<AddLabCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_LAB);
         System.out.println(argMultimap.getPreamble().isEmpty());
         //Make the user not create lab and students with the same command
-        if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+        if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
-                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_LAB)
-                || !argMultimap.getPreamble().isEmpty())) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabCommand.MESSAGE_USAGE));
+                PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddLabCommand.MESSAGE_USAGE));
+        }
+
+        if ((!arePrefixesPresent(argMultimap, PREFIX_LAB) || !argMultimap.getPreamble().isEmpty())) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddLabCommand.MESSAGE_USAGE));
         }
 
         String name = ParserUtil.parseLabName(argMultimap.getValue(PREFIX_LAB).get());

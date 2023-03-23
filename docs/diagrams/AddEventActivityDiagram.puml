@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Enter event name;
+if () then ([is recurring event])
+    :Enter Recur;
+else ([else])
+    endif
+if () then ([know event date])
+    :Enter event date;
+else ([else])
+    endif
+if () then ([know student details])
+    :Enter student details;
+else ([else])
+    endif
+if () then ([attachment(s) available])
+    :Enter attachment filepath;
+else ([else])
+    endif
+:TA confirms input;
+:TrAcker saves new event list;
+:TrAcker displays new event list;
+stop
+
+@enduml

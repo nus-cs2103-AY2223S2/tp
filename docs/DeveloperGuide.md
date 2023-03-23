@@ -98,9 +98,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("rm 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `rm 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -248,11 +248,72 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Event feature
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Proposed Implementation
 
+The proposed CRUD (Create, Read, Update and Delete) mechanism for events is facilitated by `Event`, `Tutorial`, `Lab`, `Consultation`. The Teaching Assistant (TA) using the application will be able to:
 
+* Add a tutorial which will be saved in the current address book state in its history.
+* Delete a tutorial which will be saved in the current address book state in its history.
+* Edit a tutorial which will be saved in the current address book state in its history.
+
+* Add a lab which will be saved in the current address book state in its history.
+* Delete a lab which will be saved in the current address book state in its history.
+* Edit a lab which will be saved in the current address book state in its history.
+
+* Add a consultation which will be saved in the current address book state in its history.
+* Delete a consultation which will be saved in the current address book state in its history.
+* Edit a consultation which will be saved in the current address book state in its history.
+
+The following activity diagram summarizes what happens when a TA executes an add event.
+Do take note that whether the event is recurring or not is included as well:
+
+<img src="images/TrAcker-activity-diagrams/AddEventActivityDiagram.png" width="250" />
+
+The following activity diagram summarizes what happens when a TA executes an delete event:
+
+<img src="images/TrAcker-activity-diagrams/DeleteEventActivityDiagram.png" width="550" />
+
+The following activity diagram summarizes what happens when a TA executes an edit event:
+
+<img src="images/TrAcker-activity-diagrams/EditEventActivityDiagram.png" width="550" />
+
+The following activity diagram summarizes what happens when a TA executes an add student to event:
+
+<img src="images/TrAcker-activity-diagrams/AddStudentToEventActivityDiagram.png" width="550" />
+
+The following activity diagram summarizes what happens when a TA executes an edit student in event:
+
+<img src="images/TrAcker-activity-diagrams/EditStudentInEventActivityDiagram.png" width="550" />
+
+The following activity diagram summarizes what happens when a TA executes an delete student from event:
+
+<img src="images/TrAcker-activity-diagrams/DeleteStudentFromEventActivityDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: How CRUD (non-recurring) events executes:**
+
+* **Alternative 1 (current choice):** Save Tutorial, Lab and Consultation as separate events.
+    * Pros: Easy to implement, better abstraction.
+    * Cons: More memory since more code is written.
+
+* **Alternative 2:** Combine all the Tutorial, Lab and Consultations in an event, and check whether it is Tutorial, Lab or Consultation based on the title or command.
+  itself.
+    * Pros: Will use less memory since less code is written,
+    * Cons: Involves checking the content of the event such as the title, which does not obey to Software Principles.
+
+**Aspect: How CRUD (recurring) events executes:**
+
+* **1:** Increments Tutorial, Lab and Consultation only by date.
+    * Pros: Ensures consistency and no duplicates due to mishandled / unhandles cases.
+    * Cons: There can be a recurring event based by name. For example, the head TA can be in charge of multiple tutorials occurring at the same time,
+  but TrAcker does not allow this since only one event can occur during a period of time (i.e. no timing overlap of events ).
+  
+  
+This implementation can be overcome in future versions by allowing TrAcker to warn the TA of overlapping timings and the TA agreeing to it. This will involve
+  a lot of cases which is why it is not allowed for now.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -1059,11 +1120,24 @@ Use case ends
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 50 students without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be able to display student profile pictures within 10 seconds
-5. Should be able to show student performance in a chart within 10 seconds
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 200 students without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The Help syntax should be easily rendered.
+5. Help displayed should be segmented properly.
+6. Help displayed should be easy to follow.
+7. Syntax help provided should be unambiguous.
+8. Each page should load within 2 seconds.
+9. The application should run on any operating system.
+10. Any sorting should run in a maximum time of O(nlogn).
+11. Events should be added in 1 second.
+12. Events should be delete in 1 second.
+13. There should be no keyboard input lag at any time.
+14. Uploading attachments should take at most 10 seconds.
+15. Deleting attachments should take at most 10 seconds.
+16. Displaying a student profile picture should take at most 5 seconds.
+17. Data should be saved to local storage after any data change has been made within the application.
+18. Event notes should be pure texts (no images or videos).
 
 *{More to be added}*
 
@@ -1106,13 +1180,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `rm 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `rm 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

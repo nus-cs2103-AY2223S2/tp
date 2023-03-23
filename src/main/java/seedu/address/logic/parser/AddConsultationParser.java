@@ -32,12 +32,15 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
         String newArgs = args.trim().replaceFirst("Consultation", "");
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CONSULTATION);
-        System.out.println("newArgs" + args);
         //Make the user not create lab and students with the same command
-        if (arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+        if (!arePrefixesAbsent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_PHOTO, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_PERFORMANCE,
-                PREFIX_TAG) && (!arePrefixesPresent(argMultimap, PREFIX_CONSULTATION)
-                || !argMultimap.getPreamble().isEmpty())) {
+                PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddConsultationCommand.MESSAGE_USAGE));
+        }
+
+        if ((!arePrefixesPresent(argMultimap, PREFIX_CONSULTATION) || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConsultationCommand.MESSAGE_USAGE));
         }
