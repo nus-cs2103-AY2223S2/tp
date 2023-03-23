@@ -131,6 +131,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getTagMappingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getTagMappingList().remove(0));
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withClient(BENSON).withClient(ALICE)
                 .withProject(OIL_PAINTING).withProject(SKY_PAINTING).build();

@@ -3,10 +3,11 @@
   "projects" : [ {
     "title": "Portrait Commission",
     "deadline": "2pm 2025-02-01",
-    "status": "NOT DONE"
+    "status": "false",
+    "tagged": [ "painting" ]
   }, {
     "title": "Portrait Commission",
     "deadline": "3pm tomorrow",
-    "status": "NOT DONE"
+    "status": "false"
   }]
 }

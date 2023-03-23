@@ -9,8 +9,12 @@ import arb.logic.commands.CommandResult;
 import arb.logic.commands.exceptions.CommandException;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.ListType;
+import arb.ui.client.ClientListPanel;
+import arb.ui.project.ProjectListPanel;
+import arb.ui.tag.TagMappingListPanel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -36,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private ProjectListPanel projectListPanel;
+    private TagMappingListPanel tagMappingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -119,6 +124,8 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         clientListPanel = new ClientListPanel(logic.getSortedClientList());
         projectListPanel = new ProjectListPanel(logic.getSortedProjectList());
+        tagMappingListPanel = new TagMappingListPanel(logic.getTagMappingList());
+
         setCurrentlyShownList(ListType.CLIENT);
 
         resultDisplay = new ResultDisplay();
@@ -182,18 +189,31 @@ public class MainWindow extends UiPart<Stage> {
         return projectListPanel;
     }
 
+    public TagMappingListPanel getTagMappingListPanel() {
+        return tagMappingListPanel;
+    }
+
+    private void replaceShownList(Node newList) {
+        this.listPanelPlaceholder.getChildren().clear();
+        this.listPanelPlaceholder.getChildren().add(newList);
+    }
+
     private void showClientList() {
         this.logic.setListType(ListType.CLIENT);
         this.listLabel.setText("Client List");
-        this.listPanelPlaceholder.getChildren().clear();
-        this.listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+        this.replaceShownList(clientListPanel.getRoot());
     }
 
     private void showProjectList() {
         this.logic.setListType(ListType.PROJECT);
         this.listLabel.setText("Project List");
-        this.listPanelPlaceholder.getChildren().clear();
-        this.listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+        this.replaceShownList(projectListPanel.getRoot());
+    }
+
+    private void showTagList() {
+        this.logic.setListType(ListType.TAG);
+        this.listLabel.setText("Tag List");
+        this.replaceShownList(tagMappingListPanel.getRoot());
     }
 
     private void setCurrentlyShownList(ListType listToBeShown) {
@@ -203,6 +223,9 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case CLIENT:
             showClientList();
+            break;
+        case TAG:
+            showTagList();
             break;
         default:
             break;
@@ -228,6 +251,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            logger.info("Display " + commandResult.getListToBeShown() + " list.");
             setCurrentlyShownList(commandResult.getListToBeShown());
 
             return commandResult;

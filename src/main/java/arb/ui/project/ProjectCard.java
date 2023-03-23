@@ -1,8 +1,9 @@
-package arb.ui;
+package arb.ui.project;
 
 import java.util.Comparator;
 
-import arb.model.client.Client;
+import arb.model.project.Project;
+import arb.ui.UiPart;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -11,11 +12,11 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 /**
- * An UI component that displays information of a {@code Client}.
+ * An UI component that displays information of a {@code Project}.
  */
-public class ClientCard extends UiPart<Region> {
+public class ProjectCard extends UiPart<Region> {
 
-    private static final String FXML = "ClientListCard.fxml";
+    private static final String FXML = "project/ProjectListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,47 +26,48 @@ public class ClientCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Client client;
+    public final Project project;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private VBox contentsPane;;
+    private VBox contentsPane;
     @FXML
-    private Label name;
+    private Label title;
+    @FXML
+    private Label deadline;
+    @FXML
+    private Label status;
+    @FXML
+    private Label price;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code ClientCard} with the given {@code Client} and index to display.
+     * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
      */
-    public ClientCard(Client client, int displayedIndex) {
+    public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
-        this.client = client;
+        this.project = project;
         id.setText(displayedIndex + ". ");
-        name.setText(client.getName().fullName);
+        title.setText(project.getTitle().fullTitle);
 
-        if (client.isPhonePresent()) {
-            phone.setText(client.getPhone().value);
+        if (project.isDeadlinePresent()) {
+            deadline.setText(project.getDeadline().toString());
         } else {
-            contentsPane.getChildren().remove(phone);
+            contentsPane.getChildren().remove(deadline);
+        }
+        if (project.isPricePresent()) {
+            price.setText(project.getPrice().toString());
+        } else {
+            contentsPane.getChildren().remove(price);
         }
 
-        if (client.isEmailPresent()) {
-            email.setText(client.getEmail().value);
-        } else {
-            contentsPane.getChildren().remove(email);
-        }
+        status.setText("Status: " + (project.isOverdue() ? "OVERDUE" : project.getStatus().toString()));
 
-        client.getTags().stream()
+        project.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -78,13 +80,13 @@ public class ClientCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ClientCard)) {
+        if (!(other instanceof ProjectCard)) {
             return false;
         }
 
         // state check
-        ClientCard card = (ClientCard) other;
+        ProjectCard card = (ProjectCard) other;
         return id.getText().equals(card.id.getText())
-                && client.equals(card.client);
+                && project.equals(card.project);
     }
 }

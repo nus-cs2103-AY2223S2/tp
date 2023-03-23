@@ -1,6 +1,7 @@
 package arb.logic.commands.project;
 
 import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class ListProjectCommand extends Command {
     public CommandResult execute(Model model, ListType currentListBeingShown) {
         requireNonNull(model);
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        //model.updateSortedProjctList(); // will fill in upon sorting being merged in
+        model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
         return new CommandResult(MESSAGE_SUCCESS, ListType.PROJECT);
     }
 

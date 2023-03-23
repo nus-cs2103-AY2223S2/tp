@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import arb.commons.core.GuiSettings;
 import arb.commons.core.LogsCenter;
 import arb.model.client.Client;
 import arb.model.project.Project;
+import arb.model.tag.TagMapping;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
     private final SortedList<Client> sortedClients;
     private final FilteredList<Project> filteredProjects;
     private final SortedList<Project> sortedProjects;
+    private final ObservableList<TagMapping> tagMappings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,6 +47,7 @@ public class ModelManager implements Model {
         sortedClients = new SortedList<>(this.filteredClients);
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
         sortedProjects = new SortedList<>(this.filteredProjects);
+        tagMappings = this.addressBook.getTagMappingList();
     }
 
     public ModelManager() {
@@ -99,11 +103,13 @@ public class ModelManager implements Model {
 
     @Override
     public void resetProjectList() {
+        addressBook.resetProjectTagMappings();
         addressBook.setProjects(new ArrayList<Project>());
     }
 
     @Override
     public void resetClientList() {
+        addressBook.resetClientTagMappings();
         addressBook.setClients(new ArrayList<Client>());
     }
 
@@ -157,7 +163,7 @@ public class ModelManager implements Model {
         addressBook.setProject(target, editedProject);
     }
 
-    //=========== Filtered Client List Accessors =============================================================
+    //=========== Filtered Client List Accessors ============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
@@ -167,6 +173,14 @@ public class ModelManager implements Model {
     public ObservableList<Client> getFilteredClientList() {
         return filteredClients;
     }
+
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
+    }
+
+    //=========== Filtered Project List Accessors ===========================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
@@ -178,18 +192,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredClientList(Predicate<Client> predicate) {
-        requireNonNull(predicate);
-        filteredClients.setPredicate(predicate);
-    }
-
-    @Override
     public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
     }
 
-    //=========== Sorted Client List Accessors =============================================================
+    //=========== Sorted Client List Accessors ==============================================================
 
     @Override
     public SortedList<Client> getSortedClientList() {
@@ -197,18 +205,27 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateSortedClientList(Comparator<Client> comparator) {
+        sortedClients.setComparator(comparator);
+    }
+
+    //=========== Sorted Project List Accessors =============================================================
+
+    @Override
     public SortedList<Project> getSortedProjectList() {
         return sortedProjects;
     }
 
     @Override
-    public void updateSortedClientList(Comparator<Client> comparator) {
-        sortedClients.setComparator(comparator);
-    }
-
-    @Override
     public void updateSortedProjectList(Comparator<Project> comparator) {
         sortedProjects.setComparator(comparator);
+    }
+
+    //=========== Tag Mapping List Accessors ================================================================
+
+    @Override
+    public ObservableList<TagMapping> getTagMappingList() {
+        return tagMappings;
     }
 
     @Override
@@ -223,14 +240,21 @@ public class ModelManager implements Model {
             return false;
         }
 
-        // state check
+        // for tag mappings, order in the list doesn't matter
         ModelManager other = (ModelManager) obj;
+        List<TagMapping> sortedThisTagMappings = new ArrayList<>(tagMappings);
+        sortedThisTagMappings.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
+        List<TagMapping> sortedOtherTagMappings = new ArrayList<>(((ModelManager) other).tagMappings);
+        sortedOtherTagMappings.sort((a, b) -> a.getTag().tagName.compareTo(b.getTag().tagName));
+
+        // state check
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredClients.equals(other.filteredClients)
                 && filteredProjects.equals(other.filteredProjects)
                 && sortedClients.equals(other.sortedClients)
-                && sortedProjects.equals(other.sortedProjects);
+                && sortedProjects.equals(other.sortedProjects)
+                && sortedThisTagMappings.equals(sortedOtherTagMappings);
     }
 
 }

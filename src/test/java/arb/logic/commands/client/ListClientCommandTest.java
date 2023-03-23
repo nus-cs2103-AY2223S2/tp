@@ -40,6 +40,12 @@ public class ListClientCommandTest {
     }
 
     @Test
+    public void execute_currentListShownTag_success() {
+        assertCommandSuccess(new ListClientCommand(), ListType.TAG, ListType.CLIENT, model,
+                ListClientCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
     public void execute_listIsFiltered_showsEverything() {
         showClientAtIndex(model, INDEX_FIRST);
         assertCommandSuccess(new ListClientCommand(), ListType.CLIENT, ListType.CLIENT, model,

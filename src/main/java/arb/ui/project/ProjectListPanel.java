@@ -1,9 +1,10 @@
-package arb.ui;
+package arb.ui.project;
 
 import java.util.logging.Logger;
 
 import arb.commons.core.LogsCenter;
 import arb.model.project.Project;
+import arb.ui.UiPart;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -14,7 +15,7 @@ import javafx.scene.layout.Region;
  * Panel containing the list of projects.
  */
 public class ProjectListPanel extends UiPart<Region> {
-    private static final String FXML = "ProjectListPanel.fxml";
+    private static final String FXML = "project/ProjectListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ProjectListPanel.class);
 
     @FXML

@@ -21,6 +21,7 @@ import arb.model.client.Client;
 import arb.model.client.exceptions.DuplicateClientException;
 import arb.model.project.Project;
 import arb.model.project.exceptions.DuplicateProjectException;
+import arb.model.tag.TagMapping;
 import arb.testutil.ClientBuilder;
 import arb.testutil.ProjectBuilder;
 import javafx.collections.FXCollections;
@@ -54,7 +55,7 @@ public class AddressBookTest {
                 .build();
         List<Client> newClients = Arrays.asList(ALICE, editedAlice);
 
-        AddressBookStub newData = new AddressBookStub(newClients, Arrays.asList());
+        AddressBookStub newData = new AddressBookStub(newClients, Arrays.asList(), Arrays.asList());
 
         assertThrows(DuplicateClientException.class, () -> addressBook.resetData(newData));
     }
@@ -66,7 +67,7 @@ public class AddressBookTest {
                 .build();
         List<Project> newProjects = Arrays.asList(SKY_PAINTING, editedSkyPainting);
 
-        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newProjects);
+        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newProjects, Arrays.asList());
 
         assertThrows(DuplicateProjectException.class, () -> addressBook.resetData(newData));
     }
@@ -128,16 +129,23 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getProjectList().remove(0));
     }
 
+    @Test
+    public void getTagMappingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTagMappingList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose clients list and projects list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
+        private final ObservableList<TagMapping> tagMappings = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Client> clients, Collection<Project> projects) {
+        AddressBookStub(Collection<Client> clients, Collection<Project> projects, Collection<TagMapping> tagMappings) {
             this.clients.setAll(clients);
             this.projects.setAll(projects);
+            this.tagMappings.setAll(tagMappings);
         }
 
         @Override
@@ -148,6 +156,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Project> getProjectList() {
             return projects;
+        }
+
+        @Override
+        public ObservableList<TagMapping> getTagMappingList() {
+            return tagMappings;
         }
     }
 

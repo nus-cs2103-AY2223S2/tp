@@ -2,7 +2,7 @@ package arb.logic.commands.project;
 
 import static arb.logic.commands.CommandTestUtil.DESC_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.DESC_SKY_PAINTING;
-import static arb.logic.commands.CommandTestUtil.VALID_DEADLINE_OIL_PAINTING;
+import static arb.logic.commands.CommandTestUtil.VALID_TAG_PAINTING;
 import static arb.logic.commands.CommandTestUtil.VALID_TITLE_OIL_PAINTING;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import arb.commons.core.Messages;
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
-import arb.model.AddressBook;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
@@ -39,7 +38,7 @@ public class EditProjectCommandTest {
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
@@ -53,17 +52,17 @@ public class EditProjectCommandTest {
 
         ProjectBuilder projectInList = new ProjectBuilder(lastProject);
         Project editedProject = projectInList.withTitle(VALID_TITLE_OIL_PAINTING)
-                .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withTags(VALID_TAG_PAINTING)
                 .build();
 
         EditProjectDescriptor descriptor = new EditProjectDescriptorBuilder()
                 .withTitle(VALID_TITLE_OIL_PAINTING)
-                .withDeadline(VALID_DEADLINE_OIL_PAINTING).build();
+                .withTags(VALID_TAG_PAINTING).build();
         EditProjectCommand editProjectCommand = new EditProjectCommand(indexLastProject, descriptor);
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setProject(lastProject, editedProject);
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
@@ -75,10 +74,9 @@ public class EditProjectCommandTest {
         EditProjectCommand editProjectCommand = new EditProjectCommand(INDEX_FIRST,
                 new EditProjectDescriptor());
         Project editedProject = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
-
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,
                 expectedModel);
@@ -95,7 +93,7 @@ public class EditProjectCommandTest {
 
         String expectedMessage = String.format(EditProjectCommand.MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setProject(model.getFilteredProjectList().get(0), editedProject);
 
         assertCommandSuccess(editProjectCommand, ListType.PROJECT, ListType.PROJECT, model, expectedMessage,

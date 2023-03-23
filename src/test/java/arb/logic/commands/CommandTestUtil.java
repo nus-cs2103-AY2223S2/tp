@@ -5,6 +5,7 @@ import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_OPTION;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
+import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static arb.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,6 +47,10 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_OIL_PAINTING = "Oil Painting";
     public static final String VALID_DEADLINE_SKY_PAINTING = "6pm 2023-02-02";
     public static final String VALID_DEADLINE_OIL_PAINTING = "midnight 2023-05-05";
+    public static final String VALID_PRICE_SKY_PAINTING = "3";
+    public static final String VALID_PRICE_OIL_PAINTING = "5";
+    public static final String VALID_TAG_PAINTING = "painting";
+    public static final String VALID_TAG_POTTERY = "pottery";
 
     public static final String VALID_SORTING_OPTION_DEADLINE = "deadline";
     public static final String VALID_SORTING_OPTION_DEADLINE_ALIAS = "d";
@@ -81,6 +86,14 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_OIL_PAINTING = " " + PREFIX_DEADLINE + VALID_DEADLINE_OIL_PAINTING;
     public static final String DEADLINE_DESC_ALIAS_OIL_PAINTING = " " + PREFIX_DEADLINE.getAlias()
             + VALID_DEADLINE_OIL_PAINTING;
+    public static final String PRICE_DESC_SKY_PAINTING = " " + PREFIX_PRICE + VALID_PRICE_SKY_PAINTING;
+    public static final String PRICE_DESC_ALIAS_SKY_PAINTING = " " + PREFIX_PRICE.getAlias() + VALID_PRICE_SKY_PAINTING;
+    public static final String PRICE_DESC_OIL_PAINTING = " " + PREFIX_PRICE + VALID_PRICE_OIL_PAINTING;
+    public static final String PRICE_DESC_ALIAS_OIL_PAINTING = " " + PREFIX_PRICE.getAlias() + VALID_PRICE_OIL_PAINTING;
+    public static final String TAG_DESC_PAINTING = " " + PREFIX_TAG + VALID_TAG_PAINTING;
+    public static final String TAG_DESC_ALIAS_PAINTING = " " + PREFIX_TAG.getAlias() + VALID_TAG_PAINTING;
+    public static final String TAG_DESC_POTTERY = " " + PREFIX_TAG + VALID_TAG_POTTERY;
+    public static final String TAG_DESC_ALIAS_POTTERY = " " + PREFIX_TAG.getAlias() + VALID_TAG_POTTERY;
 
     public static final String SORTING_OPTION_DESC = " " + PREFIX_OPTION + VALID_SORTING_OPTION_DEADLINE;
 
@@ -93,6 +106,7 @@ public class CommandTestUtil {
             + "watercolour painting&"; // '&' not allowed in titles
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
             + "ocean"; // 'ocean' is not able to be parsed into a date
+    public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "and";
 
     public static final String INVALID_SORTING_OPTION_DESC = " " + PREFIX_OPTION
             + "deadline&"; // does not match 'deadline' or 'name'
@@ -117,10 +131,14 @@ public class CommandTestUtil {
 
     static {
         DESC_SKY_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_SKY_PAINTING)
-                .withDeadline(VALID_DEADLINE_SKY_PAINTING).build();
+                .withDeadline(VALID_DEADLINE_SKY_PAINTING)
+                .withPrice(VALID_PRICE_SKY_PAINTING)
+                .withTags(VALID_TAG_PAINTING, VALID_TAG_POTTERY).build();
 
         DESC_OIL_PAINTING = new EditProjectDescriptorBuilder().withTitle(VALID_TITLE_OIL_PAINTING)
                 .withDeadline(VALID_DEADLINE_OIL_PAINTING)
+                .withPrice(VALID_PRICE_OIL_PAINTING)
+                .withTags(VALID_TAG_PAINTING)
                 .build();
     }
 

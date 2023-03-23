@@ -1,9 +1,10 @@
-package arb.ui;
+package arb.ui.client;
 
 import java.util.logging.Logger;
 
 import arb.commons.core.LogsCenter;
 import arb.model.client.Client;
+import arb.ui.UiPart;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -14,7 +15,7 @@ import javafx.scene.layout.Region;
  * Panel containing the list of clients.
  */
 public class ClientListPanel extends UiPart<Region> {
-    private static final String FXML = "ClientListPanel.fxml";
+    private static final String FXML = "client/ClientListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ClientListPanel.class);
 
     @FXML

@@ -25,6 +25,7 @@ import arb.logic.commands.project.ListProjectCommand;
 import arb.logic.commands.project.MarkProjectCommand;
 import arb.logic.commands.project.SortProjectCommand;
 import arb.logic.commands.project.UnmarkProjectCommand;
+import arb.logic.commands.tag.ListTagCommand;
 import arb.logic.parser.client.AddClientCommandParser;
 import arb.logic.parser.client.DeleteClientCommandParser;
 import arb.logic.parser.client.EditClientCommandParser;
@@ -92,6 +93,8 @@ public class AddressBookParser {
             return new ListClientCommand();
         } else if (ListProjectCommand.isCommandWord(commandWord)) {
             return new ListProjectCommand();
+        } else if (ListTagCommand.isCommandWord(commandWord)) {
+            return new ListTagCommand();
         } else if (SortClientCommand.isCommandWord(commandWord)) {
             return new SortClientCommand();
         } else if (SortProjectCommand.isCommandWord(commandWord)) {
