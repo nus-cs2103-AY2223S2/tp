@@ -14,7 +14,7 @@ import seedu.vms.model.Model;
 import seedu.vms.model.appointment.Appointment;
 
 /**
- * Deletes an appointment identified using it's displayed index from the appointment manager.
+ * Marks an appointment identified using it's displayed index from the appointment manager.
  */
 public class MarkCommand extends Command {
 
