@@ -72,12 +72,14 @@ public class LogicManager implements Logic {
             switch (getOperationMode()) {
             case PILOT:
                 storage.savePilotManager(model.getPilotManager());
+                storage.saveLocationManager(model.getLocationManager());
                 break;
             case LOCATION:
                 storage.saveLocationManager(model.getLocationManager());
                 break;
             case PLANE:
                 storage.savePlaneManager(model.getPlaneManager());
+                storage.saveLocationManager(model.getLocationManager());
                 break;
             case FLIGHT:
                 storage.saveFlightManager(model.getFlightManager());
