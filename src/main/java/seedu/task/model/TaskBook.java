@@ -98,7 +98,7 @@ public class TaskBook implements ReadOnlyTaskBook {
         tasks.sort();
     }
 
-    public void plan(int workload, Planner plans) {
+    public void plan(long workload, Planner plans) {
         tasks.plan(workload, plans);
     }
 

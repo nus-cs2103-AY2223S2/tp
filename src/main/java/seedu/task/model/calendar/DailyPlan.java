@@ -23,7 +23,7 @@ public class DailyPlan {
      * @param workload Amount of work user wants to put in a day
      * @param date Date which plan is for
      */
-    public DailyPlan(int workload, LocalDate date) {
+    public DailyPlan(long workload, LocalDate date) {
         this.desiredWorkload = workload;
         this.currentWorkload = 0;
         this.date = date;

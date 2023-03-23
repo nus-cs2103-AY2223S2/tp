@@ -152,7 +152,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void plan(int value) {
+        public void plan(long value) {
             throw new AssertionError("This method should not be called.");
         }
 

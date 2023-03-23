@@ -43,6 +43,14 @@ public class CommandResult {
         this(feedbackToUser, false, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified chained {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(CommandResult feedback, String feedbackToUser) {
+        this(feedback.feedbackToUser + "\n" + feedbackToUser, false, false, false);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
     }

@@ -24,7 +24,7 @@ public class MonthlyPlan {
      * @param workload amount of work user is willing to put in a day
      * @param currentDate date command is ran
      */
-    public MonthlyPlan(int workload, LocalDate currentDate) {
+    public MonthlyPlan(long workload, LocalDate currentDate) {
         today = currentDate;
         for (int i = 0; i < 30; i++) {
             dailyPlans[i] = new DailyPlan(workload, currentDate.plusDays(i));

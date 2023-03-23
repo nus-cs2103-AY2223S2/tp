@@ -137,7 +137,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void plan(int workload) {
+    public void plan(long workload) {
         taskBook.plan(workload, planner);
     }
 

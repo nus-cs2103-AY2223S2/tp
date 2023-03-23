@@ -119,7 +119,7 @@ public class UniqueTaskList implements Iterable<Task> {
      * Main algorithm that supports the planning function
      * @param workload amount of effort user wants to put in per day in the workplan.
      */
-    public void plan(int workload, Planner planner) {
+    public void plan(long workload, Planner planner) {
         LocalDate currentDate = java.time.LocalDate.now();
         SimpleTaskList simpleTasks = filterSimpleTasks(currentDate);
         EventList events = filterEvents(currentDate);

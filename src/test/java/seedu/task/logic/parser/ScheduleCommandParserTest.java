@@ -15,7 +15,7 @@ public class ScheduleCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsScheduleCommand() {
-        assertParseSuccess(parser, "2023-07-18", new ScheduleCommand(LocalDate.parse("2023-07-18")));
+        assertParseSuccess(parser, " D/2023-07-18", new ScheduleCommand(LocalDate.parse("2023-07-18")));
     }
 
     @Test
