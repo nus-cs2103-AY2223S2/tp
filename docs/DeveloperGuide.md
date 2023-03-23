@@ -204,8 +204,8 @@ The highlight mechanism is facilitated by the 'PetListPanel', 'Pet', and 'MarkCo
 This feature highlight pets that have not been marked and have a deadline within a day in the GUI.
 The highlight feature will be executed automatically every certain time window without user input to support real-time state.
 
-##### Given below is an example usage scenario and how the highlight mechanism behaves at each step:
-Step 1. The user launches the application
+#### Given below is an example usage scenario and how the highlight mechanism behaves at each step:
+Step 1. The user launches the application.
 
 Step 2. The user decides to add two pet to the pet list with a deadline due three days later.
 
@@ -235,8 +235,7 @@ The following activity diagram summarizes what happens during the process:
 * Pros:
     * Use less memory since it will be executed only when needed.
 * Cons:
-    * Does not show a real-time state of the list.
-    * User might forget to refresh to the updated state.
+    * User might forget to refresh to the updated state and shows the outdated instead.
 
 ### Undo Feature
 #### Current Implementation
