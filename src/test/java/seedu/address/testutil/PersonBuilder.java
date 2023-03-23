@@ -7,6 +7,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
@@ -30,6 +31,8 @@ public class PersonBuilder {
     public static final String DEFAULT_RACE = "Chinese";
     public static final String DEFAULT_COMMS = "Telegram";
 
+    public static final String DEFAULT_FACULTY = "School Of Computing";
+
     private Name name;
     private Phone phone;
     private Email email;
@@ -40,6 +43,8 @@ public class PersonBuilder {
     private Modules modules;
     private Race race;
     private CommunicationChannel comms;
+
+    private Faculty faculty;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -55,6 +60,7 @@ public class PersonBuilder {
         this.modules = new Modules(new HashSet<>());
         this.race = new Race(DEFAULT_RACE);
         this.comms = new CommunicationChannel(DEFAULT_COMMS);
+        this.faculty = new Faculty(DEFAULT_FACULTY);
     }
 
     /**
@@ -71,6 +77,7 @@ public class PersonBuilder {
         this.modules = personToCopy.getModules();
         this.race = personToCopy.getRace();
         this.comms = personToCopy.getComms();
+        this.faculty = personToCopy.getFaculty();
     }
 
     /**
@@ -137,7 +144,6 @@ public class PersonBuilder {
         return this;
     }
 
-
     /**
      * Sets the {@code Comms} of the {@code Person} that we are building.
      */
@@ -145,12 +151,21 @@ public class PersonBuilder {
         this.comms = new CommunicationChannel(comms);
         return this;
     }
+
+    /**
+     * Sets the {@code Faculty} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withFaculty(String faculty) {
+        this.faculty = new Faculty(faculty);
+        return this;
+    }
+
     /**
      * Builds the {@code person} object
      */
     public Person build() {
         return new Person(this.name, this.phone, this.email, this.address, this.gender,
-                this.major, this.modules, this.race, this.tags, this.comms);
+                this.major, this.modules, this.race, this.tags, this.comms, this.faculty);
     }
 
 }

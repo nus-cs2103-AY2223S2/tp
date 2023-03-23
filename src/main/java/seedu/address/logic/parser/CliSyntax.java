@@ -18,6 +18,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_RACE = new Prefix("r/");
     public static final Prefix PREFIX_COMMS = new Prefix("c/");
 
+    public static final Prefix PREFIX_FACULTY = new Prefix("f/");
+
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_START_DATE_TIME = new Prefix("s/");
     public static final Prefix PREFIX_END_DATE_TIME = new Prefix("e/");

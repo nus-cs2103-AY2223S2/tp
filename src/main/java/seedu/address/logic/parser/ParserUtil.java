@@ -16,6 +16,7 @@ import seedu.address.model.event.fields.Recurrence;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
 import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Faculty;
 import seedu.address.model.person.fields.Gender;
 import seedu.address.model.person.fields.Major;
 import seedu.address.model.person.fields.Modules;
@@ -278,7 +279,23 @@ public class ParserUtil {
         if (!CommunicationChannel.isValidComms(trimmedComms)) {
             throw new ParseException(CommunicationChannel.MESSAGE_CONSTRAINTS);
         }
-        return new CommunicationChannel(comms);
+        return new CommunicationChannel(trimmedComms);
+    }
+    /**
+     * Parses a {@code String faculty} into an {@code Faculty}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code faculty} is invalid.
+     */
+    public static Faculty parseFaculty(String faculty) throws ParseException {
+        if (faculty == null) {
+            return null;
+        }
+        String trimmedFaculty = faculty.trim();
+        if (!Faculty.isValidFaculty(trimmedFaculty)) {
+            throw new ParseException(Faculty.MESSAGE_CONSTRAINTS);
+        }
+        return new Faculty(trimmedFaculty);
     }
 
     /**
