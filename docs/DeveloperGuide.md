@@ -293,6 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | staff member | view patients by ward                              | find patients in a ward and check the occupancy within certain wards                        |
 | `* *`    | staff member | view patients by status                            | address higher priority patients more quickly                                               |
 | `* *`    | staff member | view list of wards                                 | see current wards in system at a glance                                                     |
+| `* *`    | staff member | view the current total occupancy                   | see the total number of patients currently admitted                                         |
 | `* *`    | staff member | confirm a deletion                                 | avoid any mistakes                                                                          |
 
 *{More to be added}*
