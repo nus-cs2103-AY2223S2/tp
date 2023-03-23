@@ -154,6 +154,72 @@ Classes used by multiple components are in the `seedu.fitbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find feature
+
+#### Implementation
+
+The proposed find mechanism is facilitated by `FitBook`. It implements the following operations:
+
+* `FitBook#getFilteredClientList()` — Retrieves the client list.
+* `FitBook#updateFilteredClientList(Predicate<Client> predicate)` — Filters the client list with the 
+   given predicate.
+
+These operations are exposed in the  `FitBookModel` interface as `FitBookModel#getFilteredClientList()`, 
+`FitBookModel#updateFilteredClientList(Predicate<Client> predicate)` respectively.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FitBook` will be initialized with the initial
+FitBook state, and the `currentStatePointer` pointing to that single FitBook state.
+
+![FindState0](images/FindState0.png)
+
+Step 2. The user executes `find n/alex n/john` command to find all clients with "alex" or "john" in their name in the
+FitBook. The `find` command calls `FitBookModel#updateFilteredClientList(Predicate<Client> predicate)`, causing the
+modified state of the FitBook after the `find n/alex` command executes to be saved in the `fitBookStateList`, and the
+`currentStatePointer` is shifted to the newly inserted FitBook state.
+
+![FindState1](images/FindState1.png)
+
+Step 3. The user now decides that he does not need to find the details of the client named "John". The user executes
+`find n/alex`, causing another the current FitBook state to be deleted, and a new FitBook state added into the
+`fitBookStateList`.
+
+![FindState2](images/FindState2.png)
+
+![FindState3](images/FindState3.png)
+
+Step 4. The user now needs to view all of his clients' details again. The user executes `listClients` which will shift
+the `currentStatePointer` to the first FitBook state, and restores the FitBook to that state.
+
+![FindState3](images/FindState4.png)
+
+The following sequence diagram shows how the find operation works:
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/FindActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How find executes more than once:**
+
+* **Alternative 1 (current choice):** Finds from the entire FitBook.
+    * Pros: Easy to implement.
+    * Cons: Lower performance as every command will have to filter the entire FitBook.
+
+* **Alternative 2:** Finds from an already filtered list.
+    * Pros: Better performance.
+    * Cons: May result in high memory usage as each new state has to be saved.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

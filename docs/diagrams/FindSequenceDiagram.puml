@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!define LOGIC_COLOR_T1 #7777DB
+!define MODEL_COLOR_T2 #3333C4
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager
+participant ":FitBookParser" as FitBookParser
+participant ":FindCommandParser" as FindCommandParser
+participant ":FindCommand" as FindCommand
+participant ":CommandResult" as CommandResult
+end box
+
+box Model MODEL_COLOR_T2
+participant ":Model" as Model
+end box
+
+[-> LogicManager : execute("find n/alex")
+activate LogicManager
+
+LogicManager -> FitBookParser : parseCommand("find n/alex")
+activate FitBookParser
+
+create FindCommandParser
+FitBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> FitBookParser
+deactivate FindCommandParser
+
+FitBookParser -> FindCommandParser : parse(" n/alex")
+activate FindCommandParser
+
+FindCommandParser -> FindCommandParser : checkParseStringFormat(" n/alex")
+activate FindCommandParser
+FindCommandParser --> FindCommandParser
+deactivate FindCommandParser
+
+FindCommandParser -> FindCommand
+activate FindCommand
+FindCommand -> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> FitBookParser
+deactivate FindCommandParser
+destroy FindCommandParser
+
+FitBookParser -> LogicManager
+deactivate FitBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredClientList()
+activate Model
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand -> LogicManager : result
+[<-- LogicManager
+deactivate LogicManager
+
+@enduml
