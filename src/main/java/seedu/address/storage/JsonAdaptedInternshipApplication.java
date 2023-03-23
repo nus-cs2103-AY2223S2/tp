@@ -13,8 +13,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
-import seedu.address.model.person.*;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.CompanyName;
+import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.person.InterviewDate;
+import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Review;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.person.InternshipApplication}.
