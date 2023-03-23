@@ -50,7 +50,6 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client client) {
-        System.out.println(client);
         name = client.getName().fullName;
         email = client.getEmail().value;
         yearOfBirth = client.getYearOfBirth().map(x -> x.value).orElse(null);

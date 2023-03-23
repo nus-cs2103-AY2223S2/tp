@@ -6,6 +6,8 @@ import java.util.Optional;
 import mycelium.mycelium.model.person.Email;
 import mycelium.mycelium.model.person.Name;
 import mycelium.mycelium.model.person.Phone;
+import mycelium.mycelium.model.util.Fuzzy;
+import mycelium.mycelium.model.util.FuzzyComparable;
 import mycelium.mycelium.model.util.IsSame;
 import mycelium.mycelium.model.util.NonEmptyString;
 
@@ -15,7 +17,7 @@ import mycelium.mycelium.model.util.NonEmptyString;
  * A client can be created with just a name and email or with all available information.
  * The name and email are required fields and cannot be null.
  */
-public class Client implements IsSame<Client> {
+public class Client implements IsSame<Client>, FuzzyComparable<String> {
     private final Name name;
 
     private final Email email;
@@ -143,5 +145,11 @@ public class Client implements IsSame<Client> {
     @Override
     public String toString() {
         return String.format("%s (%s)", name, email);
+    }
+
+    @Override
+    public double fuzzyCompareTo(String match) {
+        var ret = Fuzzy.ratio(name.toString().toLowerCase(), match.toLowerCase());
+        return ret;
     }
 }

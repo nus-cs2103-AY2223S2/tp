@@ -6,13 +6,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.util.Fuzzy;
+import mycelium.mycelium.model.util.FuzzyComparable;
 import mycelium.mycelium.model.util.IsSame;
 import mycelium.mycelium.model.util.NonEmptyString;
 
 /**
  * Represents a project.
  */
-public class Project implements IsSame<Project> {
+public class Project implements IsSame<Project>, FuzzyComparable<String> {
     public static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
@@ -153,6 +155,11 @@ public class Project implements IsSame<Project> {
     @Override
     public String toString() {
         return String.format("%s from client %s", name, clientEmail);
+    }
+
+    @Override
+    public double fuzzyCompareTo(String match) {
+        return Fuzzy.ratio(name.toString().toLowerCase(), match.toLowerCase());
     }
 }
 

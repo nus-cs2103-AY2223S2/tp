@@ -52,6 +52,17 @@ public class EntityList<T> extends UiPart<Region> {
     }
 
     /**
+     * Replaces the contents of the list panel with the given list.
+     *
+     * @param list The new list to display.
+     */
+    public void setItems(ObservableList<T> list) {
+        requireNonNull(list);
+        listView.setItems(list);
+        logger.fine("Reset list panel with " + list.size() + " items");
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code T}.
      */
     class ListViewCell extends ListCell<T> {

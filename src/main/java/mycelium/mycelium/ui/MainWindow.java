@@ -2,6 +2,7 @@ package mycelium.mycelium.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
@@ -13,6 +14,9 @@ import mycelium.mycelium.logic.commands.CommandResult;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.logic.uievent.UiEventManager;
+import mycelium.mycelium.model.FuzzyManager;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.ui.commandbox.CommandBox;
 import mycelium.mycelium.ui.commandlog.CommandLog;
 import mycelium.mycelium.ui.entitypanel.EntityPanel;
@@ -36,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CommandBox commandBox;
     private CommandLog commandLog;
+
     private EntityPanel entityPanel;
     private StatusBarFooter statusBarFooter;
 
@@ -95,12 +100,13 @@ public class MainWindow extends UiPart<Stage> {
         logger.info("Filling inner parts of MainWindow...");
         helpWindow = new HelpWindow();
 
-        commandBox = new CommandBox(
-            this::executeCommand, (String input) -> {
-                System.out.println("Input: " + input);
-            }
-        // TO BE REPLACED WITH FUZZY SEARCH
-        );
+        commandBox =
+            new CommandBox(this, this::executeCommand, new FuzzyManager(logic.getAddressBook()), (mainWindow) -> {
+            }, (mainWindow) -> {
+                // Just to "reset" the lists back to its state in the address book.
+                mainWindow.setClients(logic.getFilteredClientList());
+                mainWindow.setProjects(logic.getFilteredProjectList());
+            });
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         commandLog = new CommandLog();
@@ -176,5 +182,20 @@ public class MainWindow extends UiPart<Stage> {
             commandLog.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+
+    /**
+     * Sets the clients in the entity panel.
+     */
+    public void setClients(ObservableList<Client> list) {
+        entityPanel.setClients(list);
+    }
+
+    /**
+     * Sets the projects in the entity panel.
+     */
+    public void setProjects(ObservableList<Project> list) {
+        entityPanel.setProjects(list);
     }
 }
