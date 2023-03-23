@@ -29,10 +29,10 @@ public class ObservableFile {
         this.listOfFileName = listOfFileName;
     }
 
-    public ObservableList<File> getObservableFileList() {
-        ObservableList<File> fileList = FXCollections.observableArrayList();
+    public ObservableList<UiFile> getObservableFileList() {
+        ObservableList<UiFile> fileList = FXCollections.observableArrayList();
         for (String s: listOfFileName) {
-            File file = new File(s);
+            UiFile file = new UiFile(s);
             fileList.add(file);
         }
         return fileList;

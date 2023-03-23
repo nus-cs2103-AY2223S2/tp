@@ -3,9 +3,9 @@ package seedu.address.ui;
 /**
  * Class to handle File UI icon.
  */
-public class File {
+public class UiFile {
     private String fileName;
-    public File(String fileName) {
+    public UiFile(String fileName) {
         this.fileName = fileName;
     }
     public String getFileName() {

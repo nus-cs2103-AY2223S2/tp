@@ -55,7 +55,7 @@ public class DetailDisplay extends UiPart<Region> {
     @FXML
     private Button uploadButton;
     @FXML
-    private ListView<File> viewDisplay;
+    private ListView<UiFile> viewDisplay;
 
     public DetailDisplay() {
         super(FXML);
@@ -64,7 +64,7 @@ public class DetailDisplay extends UiPart<Region> {
     /**
      * Displays information of a specified person.
      */
-    public void setInfo(Person person, ObservableList<File> fileList) {
+    public void setInfo(Person person, ObservableList<UiFile> fileList) {
         this.person = person;
         viewDisplay.setItems(fileList);
         viewDisplay.setCellFactory(listView -> new FileList.FileListViewCell());

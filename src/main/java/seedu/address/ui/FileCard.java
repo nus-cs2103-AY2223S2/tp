@@ -20,7 +20,7 @@ public class FileCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final File file;
+    public final UiFile file;
 
     @FXML
     private HBox cardPane;
@@ -32,7 +32,7 @@ public class FileCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public FileCard(File file, int displayedIndex) {
+    public FileCard(UiFile file, int displayedIndex) {
         super(FXML);
         this.file = file;
         id.setText(displayedIndex + ". ");

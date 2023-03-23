@@ -19,12 +19,12 @@ public class FileList extends UiPart<Region> {
     private static final String FXML = "DetailDisplay.fxml";
     private final Logger logger = LogsCenter.getLogger(FileList.class);
     @FXML
-    private ListView<File> viewDisplay;
+    private ListView<UiFile> viewDisplay;
     private MainWindow mainWindow;
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public FileList(ObservableList<File> fileList, MainWindow mainWindow) {
+    public FileList(ObservableList<UiFile> fileList, MainWindow mainWindow) {
         super(FXML);
         viewDisplay.setItems(fileList);
         viewDisplay.setCellFactory(listView -> new FileListViewCell());
@@ -48,9 +48,9 @@ public class FileList extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code File} using a {@code PersonCard}.
      */
 
-    static class FileListViewCell extends ListCell<File> {
+    static class FileListViewCell extends ListCell<UiFile> {
         @Override
-        protected void updateItem(File file, boolean empty) {
+        protected void updateItem(UiFile file, boolean empty) {
             super.updateItem(file, empty);
             if (empty || file == null) {
                 setGraphic(null);
