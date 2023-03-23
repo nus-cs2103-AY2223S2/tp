@@ -62,6 +62,15 @@ public class Doctor extends Person {
     }
 
     /**
+     * Returns true if doctor contains supplied patient.
+     *
+     * @param patient a patient.
+     */
+    public boolean hasPatient(Patient patient) {
+        return patients.contains(patient);
+    }
+
+    /**
      * Returns true if both doctors have the same name.
      * This defines a weaker notion of equality between two doctors.
      */

@@ -90,6 +90,7 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Doctor> doctors = FXCollections.observableArrayList();
         private final ObservableList<Patient> patients = FXCollections.observableArrayList();
+        private final ObservableList<Patient> unassignedPatients = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -108,6 +109,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Patient> getPatientList() {
             return patients;
+        }
+
+        @Override
+        public ObservableList<Patient> getUnassignedPatientList() {
+            return unassignedPatients;
         }
     }
 

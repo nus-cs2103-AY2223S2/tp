@@ -12,10 +12,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.doctor.Doctor;
+import seedu.address.model.person.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -189,5 +192,43 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Updates {@code ContactDisplay} to show information about selected {@code Doctor}.
+     *
+     * @param doctor a selected doctor.
+     */
+    public void showSelectedDoctor(Doctor doctor) {
+        contactDisplay.showSelectedDoctor(doctor);
+    }
+
+    /**
+     * Updates {@code ContactDisplay} to show information about selected {@code Patient}.
+     *
+     * @param patient a selected patient.
+     */
+    public void showSelectedPatient(Patient patient) {
+        contactDisplay.showSelectedPatient(patient);
+    }
+
+    /**
+     * Scrolls down the doctor list panel
+     * to show information about selected {@code Doctor}.
+     *
+     * @param doctorIndex the Index of the selected doctor.
+     */
+    public void scrollToSelectedDoctor(Index doctorIndex) {
+        contactDisplay.scrollToSelectedDoctor(doctorIndex);
+    }
+
+    /**
+     * Scrolls down the patient list panel
+     * to show information about selected {@code Patient}.
+     *
+     * @param patientIndex the Index of the selected patient.
+     */
+    public void scrollToSelectedPatient(Index patientIndex) {
+        contactDisplay.scrollToSelectedPatient(patientIndex);
     }
 }
