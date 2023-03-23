@@ -65,4 +65,17 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * @return New stiring equal to {@code s} with all adjacent space characters compressed into one whitespace, where
+     *          space is defined as [ \t\r\n\f].
+     * */
+    public static String rmAdjSpace(String s) {
+        return s.replaceAll("[ \t\r\n\f]+", " ");
+    }
 }
+
+
+
+
+

@@ -6,7 +6,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -21,16 +24,16 @@ import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
 import taa.model.student.Name;
 import taa.model.student.Student;
+import taa.model.student.UniqueStudentList;
 import taa.model.tag.Tag;
 
 /**
- * Import student data in CSV format from file. Each student is separately imported using a {@link AddStudentCommand}
- * object to reuse duplication detection code.
- * */
+ * Import student data in CSV format from file.
+ */
 public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
     public static final String MSG_USAGE = COMMAND_WORD + ": Import data in CSV format from file. Parameter: FILE_PATH";
-    public static final String MSG_FILE_NOT_EXIST = "The specified file does not exist.";
+    public static final String MSG_FILE_DNE = "The specified file does not exist.";
     public static final String MSG_FILE_IS_DIR = "The specified file path is a directory.";
     public static final String MSG_FILE_CANT_RD = "The specified file does not grant read permission.";
     public static final String MSG_FILE_ACCESS_DENIED = "Access to the specified file is denied by system.";
@@ -38,14 +41,17 @@ public class ImportCommand extends Command {
     public static final String MSG_RD_IO_EXCEPTION = "An IOException occurred while reading specified file.";
     public static final String MSG_ENTRY_FMT_ERR = "The following entry does not comply with format: ";
     public static final String MSG_INCONSISTENT_ENTRY = "This entry has more columns than defined fields.";
-    public static final String MSG_SUCCESS = "%d student(s) added.";
+    public static final String MSG_DUP_STU_IN_FILE = "The file contains this student at least twice:";
+    public static final String MSG_SUCC = "%d student(s) added.";
     private static final Predicate<String> IS_UNEMPTY = s -> !s.isEmpty();
     private final File f;
+    private final boolean isNotForced;
 
     /** Create import command by passing a file. Nothing is checked. */
-    public ImportCommand(File f) {
+    public ImportCommand(File f, boolean isForced) {
         requireNonNull(f);
         this.f = f;
+        this.isNotForced = !isForced;
     }
 
     private static String mkMsgNoColumn(String keyword) {
@@ -87,7 +93,7 @@ public class ImportCommand extends Command {
         requireNonNull(model);
         try {
             if (!f.exists()) {
-                throw new CommandException(MSG_FILE_NOT_EXIST);
+                throw new CommandException(MSG_FILE_DNE);
             }
             if (f.isDirectory()) {
                 throw new CommandException(MSG_FILE_IS_DIR);
@@ -113,12 +119,32 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_RD_IO_EXCEPTION);
         }
 
-        int nLines = 0;
+        final HashMap<Name, Student> nameToStu = UniqueStudentList.getNameToStuMap(model.getFilteredStudentList());
+        final HashSet<Student> inFileStu = new HashSet<>();
+        final ArrayList<Student> toAdd = new ArrayList<>();
+        final ArrayList<Student> toDel = new ArrayList<>();
         for (CSVRecord record : parser) {
-            new AddStudentCommand(parseFromCsvRec(record)).execute(model);
-            nLines++;
+            final Student stu = parseFromCsvRec(record);
+            toAdd.add(stu);
+            final Student stuInList = nameToStu.get(stu.getName());
+            if (stuInList == null) {
+                if (!inFileStu.add(stu)) { // duplicate student in file
+                    throw new CommandException(MSG_DUP_STU_IN_FILE + ' ' + stu);
+                }
+            } else {
+                if (isNotForced) {
+                    throw new CommandException(AddStudentCommand.MESSAGE_DUPLICATE_STUDENT + ": " + stu);
+                }
+                toDel.add(stuInList);
+            }
         }
-        return new CommandResult(String.format(MSG_SUCCESS, nLines));
+        for (Student stuInList : toDel) {
+            model.deleteStudent(stuInList);
+        }
+        for (Student stu : toAdd) {
+            model.addStudent(stu);
+        }
+        return new CommandResult(String.format(MSG_SUCC, toAdd.size()));
     }
 }
 
