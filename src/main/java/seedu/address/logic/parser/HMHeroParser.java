@@ -18,12 +18,15 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.InterviewCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RejectCommand;
+import seedu.address.logic.commands.RemindCommand;
+import seedu.address.logic.commands.SummaryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
+public class HMHeroParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -65,6 +68,9 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case SummaryCommand.COMMAND_WORD:
+            return new SummaryCommand();
+
         case AdvanceCommand.COMMAND_WORD:
             return new AdvanceCommandParser().parse(arguments);
 
@@ -79,6 +85,9 @@ public class AddressBookParser {
 
         case InterviewCommand.COMMAND_WORD:
             return new InterviewCommand();
+
+        case RemindCommand.COMMAND_WORD:
+            return new RemindCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

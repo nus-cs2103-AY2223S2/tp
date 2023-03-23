@@ -19,13 +19,14 @@ title: <Frederic Chow> Project Portfolio Page
 
 - HMHero helps Hiring Managers track the statuses of candidates' applications
 
-<br>  
+<br>
 
 (**Summary of Contributions**)
 
 (**Code contributions**)
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fredericchow00&breakdown=true)
+- **Code contributed**: 
+[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=fredericchow00&breakdown=true)
 
 - **Project management**:
 
@@ -85,10 +86,10 @@ Example Input: `advance n/John Doe p/(John Doe's number)`
 
 Output: `Successfully advanced John Doe`
 
-2. Enhanced `AdvanceCommand` to detect for duplicate interview date and time when 
+2. Enhanced `AdvanceCommand` to detect for duplicate interview date and time when
 advancing an applicant from `APPLIED` to `SHORTLISTED`.
 
-> Example Situation: There is an applicant, Jane Goh, whose status is 
+> Example Situation: There is an applicant, Jane Goh, whose status is
 `SHORTLISTED` with the `InterviewDateTime` of `05-05-2023 18:00`.
 
 Example Input: `advance n/John Doe p/(John Doe's number) d/05-05-2023 18:00`
@@ -104,7 +105,7 @@ Output: `There is a clash of interview date and time with Jane Goh!`
 
 2. Wrote test cases for RejectCommandParser
 
-    - Test cases that covers possible paths taken by `parse(String args)` 
+    - Test cases that covers possible paths taken by `parse(String args)`
    in `RejectCommandParser` class.
 
 

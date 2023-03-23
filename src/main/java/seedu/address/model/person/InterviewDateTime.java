@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.Optional;
 
 import seedu.address.logic.parser.DateTimeParser;
@@ -39,16 +40,18 @@ public class InterviewDateTime {
     }
 
     /**
-     * Returns if a given dateTime string is valid
-     * Use before invoking createInterviewDateTime to ensure it does not throw ParseException
+     * Method to check whether the applicant is going to have an interview in three days.
+     * @return True if the applicant is going to have interview in three days.
      */
-    public static boolean isValidDateTime(String dateTime) {
-        try {
-            DateTimeParser.parseDateTime(dateTime);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
+    public boolean isWithinThreeDays() {
+        LocalDateTime currTime = LocalDateTime.now();
+        Period interval = Period.between(currTime.toLocalDate(), dateTime.toLocalDate());
+        int yearsFromNow = interval.getYears();
+        int monthsFromNow = interval.getMonths();
+        int daysFromNow = interval.getDays();
+        return (daysFromNow <= 3 && daysFromNow >= 0)
+                && monthsFromNow == 0
+                && yearsFromNow == 0;
     }
 
     @Override

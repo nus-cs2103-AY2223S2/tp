@@ -88,21 +88,21 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `HMHeroParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete n/John p/91234567")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete n/John p/91234567` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -112,11 +112,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `HMHero` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HMHeroParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W14-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -128,7 +128,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Note` list in the `HMHero`, which `Person` references. This allows `HMHero` to only require one `Note` object per unique note, instead of each `Person` needing their own `Note` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -143,7 +143,7 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `HMHeroStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -156,41 +156,172 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+#### Advancing an Applicant
+
+##### Overview
+
+The `advance` command advances an `Person` in HMHero, which advances the `status` of an `Person`.
+
+
+The activity diagram is as such:
+[Add in later]()
+
+Here is the activity diagram showing the process of the `advance` command:
+[Add in later]()
+
+##### Feature Details
+1. The user specifies an applicant name and phone that represents an `Person` to be advanced.
+1. If the name and phone is not provided, an error is thrown and the user is prompted to 
+enter the command correctly via an error message.
+1. The status must be either Applied or Shortlisted. Else, then an error is raised to inform the user.
+1. If the interview datetime is not provided when the status is Applied, the user will be prompted to enter the command
+correctly via an error message.
+1. If the interview datetime provided exists in the `Model`, the user will be prompted to enter the command
+correctly via an error message.
+1. If the interview datetime is provided when the status is Shortlisted, the user will be prompted to enter the command
+correctly via an error message.
+1. The applicant is cross-referenced in the `Model` to check if it exists. 
+If it does not, then an error is raised to inform the user.
+1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and 
+the user is prompted to enter the command correctly via an error message.
+
+##### Feature Considerations
+
+It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in Accepted or
+Rejected status. This presents confusingly to the user, applicants ideally cannot be advanced with a rejected or 
+accepted status. For example, if an `Person` with the status `Accepted` or `Rejected`, then you cannot advance 
+an existing `Person` any further.
+
+When implementing this feature, we realised that it is common to advance just by one stage. We thus decided to provide
+a default behaviour when advancing an applicant's status.
+
+
+#### Rejecting an Applicant
+
+##### Overview
+
+The `reject` command rejects an `Person` in HMHero, which rejects the `status` of an `Person`.
+
+
+The activity diagram is as such:
+[Add in later]()
+
+Here is the activity diagram showing the process of the `advance` command:
+[Add in later]()
+
+##### Feature Details
+1. The user specifies an applicant name and phone that represents an `Person` to be rejected.
+1. If the name and phone is not provided, an error is thrown and the user is prompted to
+enter the command correctly via an error message.
+1. The status must be either Applied or Shortlisted or Accepted. Else, then an error is raised to inform the user.
+1. The applicant is cross-referenced in the `Model` to check if it exists.
+If it does not, then an error is raised to inform the user.
+1. Finally, if the name and phone does not fully match the Applicant List is provided, an error is thrown and
+the user is prompted to enter the command correctly via an error message.
+2. If step 5 completes without any exceptions, then the `Person` is successfully rejected.
+
+##### Feature Considerations
+
+It should be noted that when checking for status in the `Person` inside the `Model`, Applicants cannot be in 
+Rejected status. This presents confusingly to the user, applicants ideally cannot be rejected with a rejected
+status. For example, if an `Person` with the status `Rejected`, then you cannot reject an existing `Person` any further.
+
+When implementing this feature, we realised that it is common to reject without removing. We thus decided to provide
+a default behaviour when rejecting an applicant's status.
+
+
+#### Editing an Applicant
+
+##### Overview
+
+The `edit` feature edits the attached attributes of a specified `Person`,which is specified by the 
+one-indexed `personList` presented to the user.
+
+The activity diagram is as such:
+[add in later]()
+
+Here is the activity diagram showing the process of the `edit` command:
+[add in later]()
+
+
+##### Feature Details
+
+1. The user specifies an item index that represents an `Person` to be edited.
+1. If a negative or zero index is provided, an error is thrown and the user is prompted to enter the command correctly 
+via an error message.
+1. At least one field to be edited has to be provided. Else, the user will be prompted to enter the 
+command correctly via an error message.
+1. The applicant is cross-referenced in the `Model` to check if it already exists. If it already does, 
+then an error is raised to inform the user.
+1. Finally, if an index that is not in the valid range of the Person List is provided, an error is thrown 
+and the user is prompted to enter the command correctly via an error message.
+1. If step 4 completes without any exceptions, then the new `Person` is successfully edited.
+
+##### Feature Considerations
+
+Similar to the `new` command, it should be noted that when checking for duplicates in the `UniquePersonList` inside the 
+`Model`, Applicants cannot have the same name and phone number. For example, if a `Person` with the name `Thomas` and 
+`91823452` already exists inside the list, then you cannot edit an existing `Person` to have the name `Thomas` and 
+`91823452`.
+
+When providing multiple arguments with the same delimiter, 
+the last instance of the repeat delimiter is taken during the `parse` command.
+
+
+#### Displaying the list
+
+##### Overview
+The `list` command displays the full list by HMHero.
+
+##### Feature Details
+
+1. The user calls the `list` command.
+1. HMHero performs the necessary calculations to obtain the statistics. HMHero displays the result to the user.
+
+##### Feature Considerations
+
+The five statistics were chosen as a baseline and they are a good starting point for users to help 
+track the number of applicants. For example, the user can obtain the total number of applicants, and also provide 
+the total numbers of applicants for each status.
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedHMHero`. It extends `HMHero` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedHMHero#commit()` — Saves the current address book state in its history.
+* `VersionedHMHero#undo()` — Restores the previous address book state from its history.
+* `VersionedHMHero#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitHMHero()`, `Model#undoHMHero()` and `Model#redoHMHero()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedHMHero` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitHMHero()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitHMHero()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitHMHero()`, so the address book state will not be saved into the `addressBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoHMHero()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial HMHero state, then there are no previous HMHero states to restore. The `undo` command uses `Model#canUndoHMHero()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -203,17 +334,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoHMHero()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone HMHero states to restore. The `redo` command uses `Model#canRedoHMHero()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitHMHero()`, `Model#undoHMHero()` or `Model#redoHMHero()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitHMHero()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -331,8 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HMHero shows an error message.
 
       Use case resumes at step 2.
-      
-      
+
 **Use case: Advance an applicant’s status**
 
 **MSS**
@@ -433,7 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     2. Shortlisted
     3. Accepted
     4. Rejected
-* **Application stage**: 
+* **Application stage**:
     * All applicants added are at the Applied status by default. From there, hiring managers can advance their
     application status to Shortlisted, then to Accepted. Applicants can be rejected at any stage excepted for Accepted.
 ![Application Stage](images/application_stage.png)

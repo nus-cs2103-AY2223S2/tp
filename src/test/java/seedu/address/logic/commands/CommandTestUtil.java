@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIEDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
@@ -15,7 +17,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.HMHero;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -46,9 +48,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_JOE = "Block 123, Joe Street 3";
 
     public static final String VALID_STATUS_AMY = "APPLIED";
-    public static final String VALID_INTERVIEW_DATE_AMY = "";
+    public static final String VALID_INTERVIEW_DATE_AMY = "20-03-2023 12:12";
     public static final String VALID_STATUS_BOB = "APPLIED";
     public static final String VALID_STATUS_JOE = "REJECTED";
+
+    public static final String VALID_APPLICATIONDATE_AMY = "03-05-2023 13:00";
+    public static final String VALID_APPLICATIONDATE_BOB = "04-06-2023 19:30";
 
     public static final String VALID_NOTE_HUSBAND = "husband";
     public static final String VALID_NOTE_FRIEND = "friends";
@@ -69,6 +74,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ADDRESS_DESC_JOE = " " + PREFIX_ADDRESS + VALID_ADDRESS_JOE;
 
+    public static final String INTERVIEW_AMY = " " + PREFIX_DATETIME + VALID_INTERVIEW_DATE_AMY;
+    public static final String APPLIED_DESC_AMY = " " + PREFIX_APPLIEDTIME + VALID_APPLICATIONDATE_AMY;
+    public static final String APPLIED_DESC_BOB = " " + PREFIX_APPLIEDTIME + VALID_APPLICATIONDATE_BOB;
+
     public static final String TAG_DESC_FRIEND = " " + PREFIX_NOTE + VALID_NOTE_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_NOTE + VALID_NOTE_HUSBAND;
 
@@ -76,6 +85,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "20-may-2023 12:12";
+    // words not allowed in dateTime
     public static final String INVALID_TAG_DESC = " " + PREFIX_NOTE + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -137,7 +148,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        HMHero expectedHMHero = new HMHero(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -145,7 +156,7 @@ public class CommandTestUtil {
         /* we don't check for filtered list if reject command fails because we still want list to be filtered
         so that user can see */
         if (!(command instanceof RejectCommand)) {
-            assertEquals(expectedAddressBook, actualModel.getAddressBook());
+            assertEquals(expectedHMHero, actualModel.getAddressBook());
             assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
         } else {
 
