@@ -48,7 +48,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Patient expectedPatient = new PatientBuilder(BOB).withPatientId(VALID_ID_BOB).withTags(VALID_TAG_FRIEND).build();
+        Patient expectedPatient =
+            new PatientBuilder(BOB).withPatientId(VALID_ID_BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ID_DESC_BOB + NAME_DESC_BOB + PHONE_DESC_BOB
