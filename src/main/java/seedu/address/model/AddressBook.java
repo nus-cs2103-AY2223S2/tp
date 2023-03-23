@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
+import seedu.address.model.ward.UniqueWardList;
+import seedu.address.model.ward.Ward;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.patient.UniquePatientList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePatientList patients;
+    private final UniqueWardList wards;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -28,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         patients = new UniquePatientList();
+        wards = new UniqueWardList();
     }
 
     public AddressBook() {
@@ -52,12 +56,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the ward list with {@code wards}.
+     * {@code wards} must not contain duplicate wards.
+     */
+    public void setWards(List<Ward> wards) {
+        this.wards.setWards(wards);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPatients(newData.getPatientList());
+        setWards(newData.getWardList());
     }
 
     //// patient-level operations
@@ -109,6 +122,47 @@ public class AddressBook implements ReadOnlyAddressBook {
         patients.remove(key);
     }
 
+    //// ward-level operations
+
+    /**
+     * Returns true if a ward with the same identity as {@code ward} exists in
+     * the address book.
+     */
+    public boolean hasWard(Ward ward) {
+        requireNonNull(ward);
+        return wards.contains(ward);
+    }
+
+    /**
+     * Adds a ward to the address book.
+     * The ward must not already exist in the address book.
+     */
+    public void addWard(Ward ward) {
+        wards.add(ward);
+    }
+
+    /**
+     * Replaces the given ward {@code target} in the list with
+     * {@code editedWard}.
+     * {@code target} must exist in the address book.
+     * The ward identity of {@code editedWard} must not be the same as another
+     * existing ward in the address book.
+     */
+    public void setWard(Ward target, Ward editedWard) {
+        requireNonNull(editedWard);
+
+        wards.setWard(target, editedWard);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeWard(Ward ward) {
+        wards.remove(ward);
+    }
+
+
     //// util methods
 
     @Override
@@ -120,6 +174,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Patient> getPatientList() {
         return patients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Ward> getWardList() {
+        return wards.asUnmodifiableObservableList();
     }
 
     @Override
