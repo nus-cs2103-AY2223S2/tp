@@ -43,7 +43,7 @@ public class BookmarkContainsKeywordsPredicateTest {
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword
+        // One name keyword
         BookmarkContainsKeywordsPredicate predicate = new BookmarkContainsKeywordsPredicate(
                 Collections.singletonList("Alice"), null, null, null
         );
