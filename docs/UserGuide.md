@@ -32,16 +32,16 @@ Examples:
 
 ## Delete Image for contacts
 
-Delete image of a contact.
+Delete the image of a contact.
 Format: `delete-image INDEX`
 
-* Delete image of contact specified by `INDEX`
+* Deletes the image of contact specified by `INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
-* The image must be placed in a specific folder for BookFace to locate
 * A default image will be used after it is deleted
-  Example:
-* `delete-image` 2 deletes the image of the 2nd person in the address book.
+  
+Example:
+* `delete-image 2` deletes the image of the 2nd person in the address book.
 
 ## Quick Import for admin contacts: `import`
 
