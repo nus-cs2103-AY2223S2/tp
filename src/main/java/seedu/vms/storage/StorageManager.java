@@ -7,9 +7,11 @@ import seedu.vms.commons.core.LogsCenter;
 import seedu.vms.model.ReadOnlyUserPrefs;
 import seedu.vms.model.UserPrefs;
 import seedu.vms.model.appointment.AppointmentManager;
+import seedu.vms.model.keyword.KeywordManager;
 import seedu.vms.model.patient.ReadOnlyPatientManager;
 import seedu.vms.model.vaccination.VaxTypeManager;
 import seedu.vms.storage.appointment.AppointmentStorage;
+import seedu.vms.storage.keyword.KeywordStorage;
 import seedu.vms.storage.patient.PatientManagerStorage;
 import seedu.vms.storage.vaccination.VaxTypeStorage;
 
@@ -23,6 +25,7 @@ public class StorageManager implements Storage {
     private VaxTypeStorage vaxTypeStorage;
     private AppointmentStorage appointmentStorage;
     private UserPrefsStorage userPrefsStorage;
+    private KeywordStorage keywordStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code PatientManagerStorage} and {@code UserPrefStorage}.
@@ -31,11 +34,13 @@ public class StorageManager implements Storage {
             PatientManagerStorage patientManagerStorage,
             VaxTypeStorage vaxTypeStorage,
             AppointmentStorage appointmentStorage,
-            UserPrefsStorage userPrefsStorage) {
+            UserPrefsStorage userPrefsStorage,
+            KeywordStorage keywordStorage) {
         this.patientManagerStorage = patientManagerStorage;
         this.vaxTypeStorage = vaxTypeStorage;
         this.appointmentStorage = appointmentStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.keywordStorage = keywordStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -91,4 +96,16 @@ public class StorageManager implements Storage {
     public void saveAppointments(AppointmentManager manager) throws IOException {
         appointmentStorage.saveAppointments(manager);
     }
+
+    // ================ Keyword methods ===============================
+    @Override
+    public KeywordManager loadKeywords() throws IOException {
+        return keywordStorage.loadKeywords();
+    }
+
+    @Override
+    public void saveKeywords(KeywordManager manager) throws IOException {
+        keywordStorage.saveKeywords(manager);
+    }
+
 }
