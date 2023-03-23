@@ -77,7 +77,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `XListPanel` (`X` is a placeholder for a specific model list panel  e.g., `CustomerListPanel`, `VehicleListPanel`), `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -86,7 +86,8 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays specific objects residing in the `Model` such as the `Customer`, `Vehicle`, `Service`, `Appointment` and `PartMap` objects.
+* also depends on some mapping classes in the `Model` component as certain objects have an integer array of object ids that refer to another object. One example is the Customer class, which has a `HashSet<Integer>` of `Vehicle` IDs. To associate each `Customer` object with the corresponding `Vehicle` objects, the Model uses an object called `CustomerVehicleMap`. The `UI` component then displays the relevant objects based on these mappings. In essence, the `Model` uses these mapping classes to ensure that objects with references to one another are properly connected and displayed in the user interface.
 
 ### Logic component
 
@@ -141,11 +142,11 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="1000" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both AutoM8 shop data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `ShopStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -272,6 +273,43 @@ Step 6. User executes list command. Commands that are not undoable are not added
 * **Alternative 2:** Use `HistoryManager` for undo/redo.
     * Pros: Does not need to maintain separate stacks and able to use what is in the codebase.
     * Cons: Single Responsibility Principle and Separation of Concerns are violated as `HistoryManager` would need to handle two different things._
+
+### Update Service Priority Feature
+This feature updates the priority of a service by increasing or decreasing it by 1 level. Priority levels are defined: low, medium, high
+> <b>Note:</b> Services created without specifying a priority by default are set with a low priority.
+#### Implementation
+> <b>Note:</b> In this explanation, X is either `Prioritise` or `Deprioritise`, depending on whether the user enters "prioritise 1" or "deprioritise 1"
+
+Users will be able to update the priority of a Service via 2 different commands: `PrioritiseCommand` and `DeprioritiseCommand`. The logical flow and interaction of both commands work similarly where the only difference is in the adjustment of priority up or down.
+
+When the user uses this feature, the XCommandParser parses the service integer id input of the user and creates a XServiceCommand object with the id passed in as a parameter. The XServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the XServiceCommand would then create a new `Service` that has an updated priority according to the given Command to increase (`prioritise`) or decrease (`deprioritise`) the level by 1.
+
+Given below is an example usage scenario and the description of how the XServiceCommand executes. 
+
+Step 1. The user launches the application and enters "listservices" which executes the command to list all services.
+
+Step 2. In the list of services, service with id 1 has a priority of low. The user enters the "prioritise 1" command to increase the priority of the service with id 1. 
+
+Step 3. The PrioritiseServiceCommandParser parses the service integer id input of the user and creates a PrioritiseServiceCommand object with the id passed in as a parameter. 
+
+Step 4. The PrioritiseServiceCommand then calls Model#getServiceList to retrieve the list of services and retrieve the service which id corresponds with the user input. The execution within the PrioritiseServiceCommand would then create a new `Service` that has an updated priority of medium, which is then updated in the `Model` with the `setService()` method.
+
+Step 5. Finally, an `updateFilteredServiceList()` is called to display an updated list with all services, included the lastest updated service with the id 1 and a new priority of medium in the Ui. With the increased priority, the service with id 1 should also be displayed higher than those with lower priorities.
+
+The Sequence Diagram below illustrates the interactions with the `Logic` and `Model` components for the `execute("prioritise 1")` or `execute("deprioritise 1")` API call.
+<img src="images/SetServicePrioritySequenceDiagram.png" width="1100" />
+
+#### Design considerations:
+
+**Aspect: The way users can set priority**
+
+* **Alternative 1 (current choice):** Allow priority level adjustment by increasing or decreasing level by 1
+    * Pros: Implementation is easy, parsing is very similar to how other id specific Commands have been implemented
+    * Cons: UX is comprimised slightly as users need to enter the command twice to increase priority from low to high.
+
+* **Alternative 2:** Allow users to directly indicate the priority level they want the service to be set (e.g. setservicepriority 1 high)
+    * Pros: Better UX, users do not need to enter the command twice to increase priority from low to high.
+    * Cons: Need to implement extra steps to validate user input and parse the priority level they input to ensure it matches the system's defined priority levels
 
 _{more aspects and alternatives to be added}_
 
