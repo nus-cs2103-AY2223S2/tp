@@ -676,7 +676,15 @@ This feature is composed of 2 modules : `LocationUtil` and `Scheduler`
 #### LocationUtil
 {to be filled by Hafeez}
 #### Scheduler
-{to be filled by Russell}
+The Scheduler uses the participants' schedule to find common time periods that everyone
+would be free so that a meetup could be scheduled.
+
+The scheduler will always recommend timeslots and rank them in descending time duration that
+the participants could meet up.
+
+##### What needs to be fixed:
+Integration with the `LocationUtil` so that we can find the exact location of every participant
+before the time recommended so that we can use LocationUtil to recommend an optimal meetup spot.
 
 ###
 
