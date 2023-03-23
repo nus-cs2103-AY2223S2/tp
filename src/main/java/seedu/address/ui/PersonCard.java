@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -16,6 +17,10 @@ import seedu.address.model.tag.ModuleTag;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String GROUP_TAG_STYLE = "-fx-text-fill: black; -fx-background-color: rgb(227, 211, 238); "
+            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
+    private static final String MODULE_TAG_STYLE = "-fx-text-fill: #FFFFFF; -fx-background-color: rgb(150, 146, 223); "
+            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,18 +38,9 @@ public class PersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
 
     @FXML
-    private FlowPane groupTags;
-
-    @FXML
-    private FlowPane moduleTags;
+    private FlowPane allTags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,25 +50,22 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(person.getContactIndex() + ". ");
         name.setText(person.getName().getValue());
-        phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue().getName());
-        email.setText(person.getEmail().getValue());
         person.getImmutableGroupTags().stream()
                 .sorted(GroupTag::compareTo)
                 .forEach(groupTag -> {
-                    Label temp = new Label(groupTag.tagName);
-                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000; "
-                            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
-                    groupTags.getChildren().add(temp);
+                    Button temp = new Button(groupTag.tagName);
+                    temp.setStyle(GROUP_TAG_STYLE);
+                    allTags.getChildren().add(temp);
                 });
         person.getImmutableCommonModuleTags().stream()
                 .sorted(ModuleTag::compareTo)
                 .forEach(moduleTag -> {
-                    Label temp = new Label(moduleTag.tagName);
-                    temp.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #000000; "
-                            + "-fx-padding: 2 5 2 5; -fx-background-radius: 5;");
-                    moduleTags.getChildren().add(temp);
+                    Button temp = new Button(moduleTag.tagName);
+                    temp.setStyle(MODULE_TAG_STYLE);
+                    allTags.getChildren().add(temp);
                 });
+        allTags.setHgap(4.0);
+        allTags.setVgap(4.0);
     }
 
     @Override
