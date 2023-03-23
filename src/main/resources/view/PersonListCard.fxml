@@ -16,10 +16,13 @@
      </Label>
      <Label fx:id="name" styleClass="cell_big_label" text="\$first">
             <HBox.margin>
-               <Insets right="10.0" />
+               <Insets />
             </HBox.margin>
          </Label>
-      <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
+      <Label fx:id="gender" graphicTextGap="6.0" styleClass="cell_big_label" text="\$gender">
+               <padding>
+                  <Insets left="5.0" right="10.0" />
+               </padding></Label>
       <Label fx:id="status" contentDisplay="RIGHT" styleClass="cell_lead_status_label" text="\$lead_status">
             <padding>
                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

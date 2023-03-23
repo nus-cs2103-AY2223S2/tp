@@ -14,6 +14,8 @@ public class Gender {
 
     /* The input should be "male" or "female" */
     public static final String VALIDATION_REGEX = ".*\\bmale\\b|.*\\bfemale\\b";
+    public static final String VALUE_MALE = "(M)";
+    public static final String VALUE_FEMALE = "(F)";
 
     public final String value;
 
@@ -25,7 +27,7 @@ public class Gender {
     public Gender(String gender) {
         requireNonNull(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
-        this.value = gender;
+        this.value = gender.equals("male") ? VALUE_MALE : VALUE_FEMALE;
     }
 
     /**
